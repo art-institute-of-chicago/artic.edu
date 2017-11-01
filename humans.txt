@@ -1,0 +1,64 @@
+/* SITE BY */
+Name: AREA 17, http://www.area17.com/
+
+/* A17 TEAM */
+Role: Creative Director
+Name: Kemp Attwood
+Site: https://area17.com/about/kemp-attwood
+Twitter: @attwoodkemp
+
+Role: Producer
+Name: Jesse Golomb
+Site: https://area17.com/about/jesse-golomb
+Twitter: @jessegolomb_
+
+Role: Strategy
+Name: Pat McQueen
+Site: https://area17.com/about/pat-mcqueen
+Twitter:
+
+Role: Strategy
+Name: Skyler Swezy
+Site: https://area17.com/about/skyler-swezy
+Twitter: @skylerswezy
+
+Role: UX
+Name: Christophe da Silva
+Site: https://area17.com/about/christophe-da-silva
+Twitter: @kjuice
+
+Role: Designer
+Name: Marius Roosendaal
+Site: https://area17.com/about/marius-roosendaal
+Twitter: @mroosendaal
+
+Role: Technical Lead
+Name: Iain Lawson
+Site: https://area17.com/about/iain-lawson
+Twitter:
+
+Role: Back End Development
+Name: Fernando Petrelli
+Site: https://area17.com/about/fernando-petrelli
+Twitter: @ferpetrelli
+
+Role: Back End Developer
+Name: Quentin Renard
+Site: https://area17.com/about/quentin-renard
+Twitter: @ifox
+
+Role: Front End Development
+Name: Mike Byrne
+Site: https://area17.com/about/mike-byrne
+Twitter: @13twelve
+
+/* SPECIAL THANKS */
+
+PG Tips for excellent pyramid tea bags.
+
+/* SITE */
+Built on top of AREA 17 FE boilerplate and AREA 17 CMS Toolkit.
+
+Standards: HTML5, CSS3
+Components: SCSS, Vanilla JS, PHP
+Software: Sublime Text 3
