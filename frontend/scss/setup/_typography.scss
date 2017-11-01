@@ -1,0 +1,41 @@
+// ####################################################
+// Load fonts
+//
+// Use below @font-face declaration template to load fonts
+// Copy/paste for each font to be loaded
+
+/*
+@font-face {
+  font-family: Graphik;
+  src: url('/app/themes/wyss-institute/assets/fonts/Graphik-Bold-Web.eot');
+  src: url('/app/themes/wyss-institute/assets/fonts/Graphik-Bold-Web.eot?#iefix') format('embedded-opentype'),
+       url('/app/themes/wyss-institute/assets/fonts/Graphik-Bold-Web.woff2') format('woff2'),
+       url('/app/themes/wyss-institute/assets/fonts/Graphik-Bold-Web.woff') format('woff');
+}
+*/
+
+// ####################################################
+// Site font stack variables
+//
+// uncomment and complete stack with project fonts
+// xxxxx--loaded variables need a font loader to be activated (see setup/mixins/typography for CSS rule) :
+// https://code.area17.com/mike/a17-js-helpers/wikis/A17-Helpers-fontObservers
+
+// the fall back font family string. eg. Helvetica, Arial, sans-serif.
+$serif-font: serif;
+$sans-serif-font: sans-serif;
+// the font family string when the primary font is loaded (your primary font plus the fall back string)
+$serif-font--loaded: Georgia, #{$serif-font};
+$sans-serif-font--loaded: Arial, #{$sans-serif-font};
+// the appended class names when the fonts have loaded
+$serif-font-loaded-class: 'js-serif-font-loaded';
+$sans-serif-font-loaded-class: 'js-sans-serif-font-loaded';
+// cap heights of the fonts - measure height of a capital H at 100px and then divide by 100
+$cap-heights: (
+  serif: .66,
+  sans-serif: .568,
+  arial: .72,
+  helvetica: .72,
+  'Times New Roman': .67,
+  'Roboto': .72
+);

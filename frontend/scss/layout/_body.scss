@@ -1,0 +1,51 @@
+html {
+  /* juggling left/right and margin left/right as 100vw includes scroll bars so forcing 100vw width to make grid colspan calcs work */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100vw;
+  min-height: 100%;
+  margin-right: -50vw;
+  margin-left: -50vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+body {
+  background: $color__background;
+  color: $color__text;
+  font-family: $sans-serif-font;
+  font-size: 62.5%;
+  font-feature-settings: 'kern';
+  font-kerning: normal;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: common-ligatures;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  &::after {
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    width: 1px;
+    height: 1px;
+    margin-top: -1px;
+    margin-left: -1px;
+    color: transparent;
+    font: 0/0 a;
+    text-shadow: none;
+  }
+}
+
+@each $name, $point in $breakpoints {
+  @include breakpoint('#{$name}') {
+    head {
+      font-family: '#{$name}';
+    }
+
+    body::after {
+      content: '#{$name}';
+    }
+  }
+}

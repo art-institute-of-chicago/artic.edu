@@ -1,0 +1,274 @@
+// ####################################################
+// Font setup mixins
+//
+// Use the serif/sans-serif mixins directly in the SCSS do any responsive overwrites
+// with within the breakpoint mixin e.g.
+
+/*
+$f-h1: (
+  font-family: $serif-font,
+  font-family-loaded: $serif-font--loaded,
+  font-loaded-class: $serif-font-loaded-class,
+  settings: (
+    'small+': ( default: true, font-size: 28, line-height: 30, font-weight: normal ),
+    'medium+': ( font-size: 36, line-height: 40 ),
+    'large+': ( font-size: 40, line-height: 45, letter-spacing: -.01em ),
+   )
+);
+
+@mixin f-h1() {
+  @include font-styles($f-h1);
+}
+
+%f-h1,
+.f-h1 {
+  @include f-h1;
+}
+
+$f-ui: (
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'small+': ( default: true, font-size: 15, line-height: 20, font-weight: 300, push: 1),
+   ),
+  tuck-method: 'padding', // <-- swaps to using padding-top/margin-bottom to allow you to align multiple items on one line
+);
+
+@mixin f-ui() {
+  @include font-styles($f-ui);
+}
+
+%f-ui,
+.f-ui {
+  @include f-ui;
+}
+*/
+
+// This assumes that the font is vertically centered within the box so may require some tweaking
+// https://codepen.io/13twelve/pen/PJgqBN?editors=0100
+@mixin untuck($tuck-method: 'pseudo') {
+  @if ($tuck-method == null or $tuck-method == 'pseudo') {
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
+  @if ($tuck-method == 'padding') {
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+}
+
+@mixin tuck($font: false, $font-size: false, $line-height: false, $tuck-method: 'pseudo', $pre-tucked: false, $push: 0) {
+  @if $font and $font-size and $line-height {
+    // check for a font family rather than a single font name
+    $font-family-comma-index: str-index("#{$font}", ',');
+    @if $font-family-comma-index {
+      // get the primary font from the font family
+      $font: str-slice($font, 0, $font-family-comma-index - 1);
+      $font: str-replace($font, '"', '');
+    }
+    // get the appropriate cap height
+    @if map-has-key($cap-heights, $font) {
+      // adjust cap height for this font size
+      $cap-height: $font-size * map-get($cap-heights, $font);
+      // check push isn't null
+      @if ($push == null) {
+        $push: 0;
+      }
+      // calc the push/pull
+      $pull: (($line-height - $cap-height) / 2) + $push;
+      // if the tuck method is using pseudo blocks
+      @if ($tuck-method == null or $tuck-method == 'pseudo') {
+        // add the psuedo-block if required
+        @if ($pre-tucked == false) {
+          &::before,
+          &::after {
+            content: '';
+            display: block;
+          }
+        }
+        // set the push/pull tucks
+        &::before {
+          padding-top: $pull * 1px;
+        }
+        &::after {
+          margin-bottom: - $pull * 1px;
+        }
+      }
+      // if the tuck method is padding-top/margin-bottom
+      @if ($tuck-method == 'padding') {
+        padding-top: $pull * 1px;
+        margin-bottom: - $pull * 1px;
+      }
+    } @else {
+      @warn "Unknown font `#{$font}` in $cap-heights.";
+    }
+  } @else {
+    @warn "Can't tuck without a font, font size and line-height.";
+  }
+}
+
+@mixin font-style($font: false, $font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0) {
+  // set font settings
+  @if $font-size {
+    font-size: $font-size * 1px;
+  }
+  @if $line-height {
+    line-height: $line-height * 1px;
+  }
+  @if $font-weight {
+    font-weight: $font-weight;
+  }
+  @if $font-style {
+    font-style: $font-style;
+  }
+  @if $letter-spacing {
+    letter-spacing: $letter-spacing;
+  }
+  @if $text-transform {
+    text-transform: $text-transform;
+  }
+  // is tuck required?
+  @if $font-size and $line-height and $tuck {
+    @if ($font-size < 1) {
+      @warn "Did you intend to set a font size of 0? Perhaps no font size has been defined in the font info object?";
+    }
+    @if ($line-height < 1) {
+      @warn "Did you intend to set a line-height of 0? Perhaps no line-height has been defined in the font info object?";
+    }
+    @include tuck($font, $font-size, $line-height, $tuck-method, $pre-tucked, $push);
+  }
+}
+
+@mixin font-styles($obj) {
+  $font-family: map-get($obj, font-family);
+  $font-family-loaded: map-get($obj, font-family-loaded);
+  $font-loaded-class: map-get($obj, font-loaded-class);
+  $settings: map-get($obj, settings);
+  // set base font family
+  @if $font-family {
+    font-family: $font-family;
+  } @else {
+    @warn "No fall back font family specified.";
+  }
+  // set font family when font loaded class, if exists
+  @if $font-family-loaded and $font-loaded-class {
+    .#{$font-loaded-class} & {
+      font-family: $font-family-loaded;
+    }
+  }
+  // set the various font info per breakpoint
+  @if $settings and $font-family {
+    $font-size: 0;
+    $line-height: 0;
+    $untuck: false;
+    $tuck-method: null;
+    // loop the breakpoints in the setttings
+    @each $breakpoint, $font-info in $settings {
+      // check this is a valid breakpoint
+      @if map-has-key($breakpoints-with-directions, $breakpoint) {
+        // get font info for this breakpoint
+        @if map-has-key($font-info, font-size) {
+          // conditional here because this can inherit from earlier items in the map so that the tuck calculation can take place
+          $font-size: map-get($font-info, font-size);
+        }
+        @if map-has-key($font-info, line-height) {
+          $line-height: map-get($font-info, line-height);
+        }
+        $font-weight: map-get($font-info, font-weight);
+        $font-style: map-get($font-info, font-style);
+        $letter-spacing: map-get($font-info, letter-spacing);
+        $text-transform: map-get($font-info, text-transform);
+        $push: map-get($font-info, push);
+        $font: if($font-family-loaded, $font-family-loaded, $font-family);
+        @if map-has-key($font-info, tuck-method) {
+          // check if the new tuck method differs from the last
+          $untuck: if(($tuck-method && $tuck-method != map-get($font-info, tuck-method)), $tuck-method, false);
+          // set the new tuck method
+          $tuck-method: map-get($font-info, tuck-method);
+        } @else {
+          // set old tuck method or default if no old tuck method
+          $tuck-method: if($tuck-method, $tuck-method, 'pseudo');
+        }
+        // check if this is the smallest breakpoint (the default font setting)
+        @if (index($settings, ($breakpoint $font-info)) == 1) {
+          @include font-style($font, $font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push);
+        } @else {
+          @include breakpoint(#{$breakpoint}) {
+            $pre-tucked: true;
+            @if $untuck {
+              @include untuck($untuck);
+              $pre-tucked: false;
+            }
+            @include font-style($font, $font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, $pre-tucked, $tuck-method, $push);
+          }
+        }
+      } @else {
+        @warn "Setting font info to unknown breakpoint: `#{$breakpoint}`";
+      }
+    }
+  } @else {
+    @warn "No font settings specified.";
+  }
+}
+
+/*
+  @mixin font_smoothing
+
+  Set font smoothing ON or OFF
+*/
+@mixin font-smoothing($value: on) {
+  @if $value == on {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  } @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+
+/*
+  @mixin text-underline
+
+  Inserts vendor prefixed box shadows
+
+  Parameters:
+  $off - color
+  $on - color for hover
+  $pos - vertical position
+*/
+@mixin text-underline($pos: 14,$off: $color__white,$on: $color__black--93) {
+  text-decoration: none;
+  background: {
+    image: linear-gradient(to bottom, rgba($off, 0) 50%, rgba($off, 1) 50%);
+    repeat: repeat-x;
+    size: 2px 2px;
+    position: 0 $pos*1px;
+  }
+  // to draw the lines below the regular height of the box...
+  //padding-bottom: 3px;
+  //margin-bottom: -3px;
+
+  &:hover,
+  &:focus {
+    background-image: linear-gradient(to bottom, rgba($on, 0) 50%, rgba($on, 1) 50%);
+  }
+}
+
+
+/*
+  @mixin hide_text
+
+  Hides text in an element
+*/
+
+@mixin hide-text() {
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+  overflow: hidden;
+  text-indent: -100%;
+}

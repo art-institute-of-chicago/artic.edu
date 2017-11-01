@@ -1,0 +1,62 @@
+// Baseline grid height
+$base-height: 5;
+
+// Max widths the main column can run to over the breakpoints
+// values can either be 'fluid' or a pixel value
+// recommended xxlarge is a px value and xsmall is fluid
+$main-col-widths: (
+  xxlarge: 1440px,
+  xlarge: 1220px,
+  large: 930px,
+  medium: 590px,
+  small: 374px,
+  xsmall: 'fluid'
+);
+
+// Inner gutters, in px or vw, of each breakpoint
+$inner-gutters: (
+  xxlarge: 40px,
+  xlarge: 40px,
+  large: 30px,
+  medium: 30px,
+  small: 20px,
+  xsmall: 20px
+);
+
+// Outer gutters, in px or vw, of each breakpoint
+$outer-gutters: (
+  xxlarge: 200px,
+  xlarge: 150px,
+  large: 100px,
+  medium: 100px,
+  small: 50px,
+  xsmall: 40px
+);
+
+// How many columns are in each breakpoint
+$column-count: (
+  xxlarge: 12,
+  xlarge: 12,
+  large: 12,
+  medium: 6,
+  small: 2,
+  xsmall: 2
+);
+
+// Breakpoint information, where each starts and stops
+// if a breakpoint is not fluid, then the start value is equal to the main col value plus 2x the gutter at this breakpoint
+$breakpoints: (
+  xsmall: (start: null, end: 413),
+  small: (start: 414, end: 649),
+  medium: (start: 650, end: 989),
+  large: (start: 990, end: 1299),
+  xlarge: (start: 1300, end: 1519),
+  xxlarge: (start: 1520, end: null)
+);
+
+// Uniform border radius
+$border-radius: 2px;
+
+// Some easing functions
+$bezier--bounce: cubic-bezier(.5, -.6, .5, 1.6);
+$bezier--ease-in-out: cubic-bezier(.5, 0, .5, 0);

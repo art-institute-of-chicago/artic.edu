@@ -1,0 +1,36 @@
+// Main Color List - try not to use
+$color__red: #ee263e;
+$color__green: #0f0;
+
+// Colors - Grayscale
+$color__black: #000;
+$color__black--93: #121212;
+$color__black--91: #171717;
+$color__black--90: #1a1a1a;
+$color__black--89: #1c1c1c;
+$color__black--85: #262626;
+$color__black--80: #333;
+$color__black--72: #474747;
+$color__black--61: #636363;
+$color__black--60: #666;
+$color__black--50: #808080;
+$color__black--49: #828282;
+$color__black--40: #999;
+$color__black--35: #a6a6a6;
+$color__black--30: #b3b3b3;
+$color__black--25: #bfbfbf;
+$color__black--22: #c7c7c7;
+$color__black--20: #ccc;
+$color__black--15: #d9d9d9;
+$color__black--10: #e3e4e5;
+$color__black--5: #f2f2f2;
+$color__black--3-5: #f6f5f4;
+$color__black--3: #f7f7f7;
+$color__black--2: #fbfbfb;
+$color__white: #fff;
+
+// Colors by usage - use these!
+$color__background: $color__white;
+$color__text: $color__black;
+$color__error: $color__red;
+$color__separator: $color__black--85;

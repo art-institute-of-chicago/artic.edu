@@ -1,0 +1,13 @@
+.btn {
+  display: block;
+  min-width: 100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border: 0;
+  border-radius: $border-radius;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all .25s;
+  -webkit-appearance: none;
+}

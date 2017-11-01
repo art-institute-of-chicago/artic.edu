@@ -1,0 +1,24 @@
+{
+  "name": "aic",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "a17-helpers": "git+https://code.area17.com/a17/a17-helpers.git"
+  },
+  "devDependencies": {
+    "a17-script": "git+https://code.area17.com/a17/a17-script.git#gulp"
+  },
+  "scripts": {
+    "init": "a17-script init",
+    "dev": "a17-script dev",
+    "styles": "a17-script styles",
+    "scripts": "a17-script scripts",
+    "build": "a17-script build",
+    "toolkit": "a17-script toolkit",
+    "production": "a17-script prod"
+  },
+  "engines": {
+    "node": ">= 6.10.3",
+    "npm": ">= 3.10.10"
+  }
+}

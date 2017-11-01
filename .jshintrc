@@ -1,0 +1,20 @@
+{
+  "bitwise": true,
+  "browser": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "eqnull": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "node": true,
+  "strict": false,
+  "quotmark": "single",
+  "undef": true,
+  "globals": {
+      "A17": true
+  },
+  "esversion": 6
+}

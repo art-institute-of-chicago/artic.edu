@@ -1,0 +1,14 @@
+// @mixin btn-color
+@mixin btn-color($name, $text-color: inherit, $background-color: transparent, $border-color: transparent, $text-color--hover: inherit, $background-color--hover: transparent, $border-color--hover: transparent) {
+  .btn--#{$name} {
+    border-color: $border-color;
+    background-color: $background-color;
+    color: $text-color;
+
+    &:hover {
+      border-color: $border-color--hover;
+      background-color: $background-color--hover;
+      color: $text-color--hover;
+    }
+  }
+}
