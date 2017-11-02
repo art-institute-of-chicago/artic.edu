@@ -1,6 +1,13 @@
 // Main Color List - try not to use
-$color__red: #ee263e;
-$color__green: #0f0;
+// reds
+$color__red--100: #b50938;
+$color__red--110: #a30832;
+$color__red--120: #91072d;
+$color__red--5: #fbf3f6;
+// warm greys
+$color__grey--100: #8e847d;
+$color__grey--110: #807770;
+$color__grey--120: #726a64;
 
 // Colors - Grayscale
 $color__black: #000;
@@ -13,8 +20,10 @@ $color__black--80: #333;
 $color__black--72: #474747;
 $color__black--61: #636363;
 $color__black--60: #666;
+$color__black--54: #767676;
 $color__black--50: #808080;
 $color__black--49: #828282;
+$color__black--42: #999;
 $color__black--40: #999;
 $color__black--35: #a6a6a6;
 $color__black--30: #b3b3b3;
@@ -22,15 +31,116 @@ $color__black--25: #bfbfbf;
 $color__black--22: #c7c7c7;
 $color__black--20: #ccc;
 $color__black--15: #d9d9d9;
-$color__black--10: #e3e4e5;
-$color__black--5: #f2f2f2;
+$color__black--10: #e6e6e6;
+$color__black--5: #f3f3f3;
 $color__black--3-5: #f6f5f4;
-$color__black--3: #f7f7f7;
+$color__black--3: #f8f8f8;
 $color__black--2: #fbfbfb;
 $color__white: #fff;
 
 // Colors by usage - use these!
-$color__background: $color__white;
-$color__text: $color__black;
-$color__error: $color__red;
-$color__separator: $color__black--85;
+
+/***
+
+Text colors:
+
+<ul class="colors">
+  <li><span style="background:#1a1a1a;"></span> `$color__text--titles`
+  #1a1a1a (90% black)</li>
+  <li><span style="background:#333;"></span> `$color__text`
+  #333 (80% black)</li>
+  <li><span style="background:#767676;"></span> `$color__text--secondary`
+  #767676 (54% black)</li>
+  <li><span style="background:#999;"></span> `$color__text--contrast`
+  #999 (42% black)</li>
+  <li><span style="background:#b3b3b3;"></span> `$color__text--forms`
+  #b3b3b3 (30% black)</li>
+</ul>
+
+***/
+$color__text--titles: $color__black--90;
+$color__text: $color__black--80;
+$color__text--secondary: $color__black--54;
+$color__text--contrast: $color__black--42;
+$color__text--forms: $color__black--30;
+
+/***
+
+Backgrounds:
+
+<ul class="colors">
+  <li><span style="background:#fff;"></span> `$color__bg`
+  #fff</li>
+  <li><span style="background:#f3f3f3;"></span> `$color__bg--primary`
+  #f3f3f3 (5% black)</li>
+  <li><span style="background:#f8f8f8;"></span> `$color__bg--secondary`
+  #f8f8f8 (3% black)</li>
+</ul>
+
+***/
+$color__bg: $color__white;
+$color__bg--primary: $color__black--5;
+$color__bg--secondary: $color__black--3;
+
+/***
+
+Rules:
+
+<ul class="colors">
+  <li><span style="background:#e6e6e6;"></span> `$color__rules--primary`
+  #e6e6e6 (10% black)</li>
+  <li><span style="background:#ccc;"></span> `$color__rules--secondary`
+  #ccc (20% black)</li>
+</ul>
+
+***/
+$color__rules--primary: $color__black--10;
+$color__rules--secondary: $color__black--20;
+
+/***
+
+Links:
+
+<ul class="colors">
+  <li><span style="background:#8e847d;"></span> `$color__link`
+  #8e847d (warm grey 100)</li>
+  <li><span style="background:#807770;"></span> `$color__link--hover`
+  #807770 (warm grey 110)</li>
+  <li><span style="background:#726a64;"></span> `$color__link--active`
+  #726a64 (warm grey 120)</li>
+</ul>
+
+***/
+$color__link: $color__grey--100;
+$color__link--hover: $color__grey--110;
+$color__link--active: $color__grey--120;
+
+/***
+
+Misc:
+
+<ul class="colors">
+  <li><span style="background:#b50938;"></span> `$color__error`
+  #b50938 (red 100)</li>
+</ul>
+
+***/
+$color__error: $color__red--100;
+
+
+/***
+
+Reds usage to be defined:
+
+<ul class="colors">
+  <li><span style="background:#b50938;"></span> `$color__red--100`
+  #b50938 (red 100)</li>
+  <li><span style="background:#a30832;"></span> `$color__red--110`
+  #a30832 (red 110)</li>
+  <li><span style="background:#91072d;"></span> `$color__red--120`
+  #91072d (red 120)</li>
+  <li><span style="background:#fbf3f6;"></span> `$color__red--5`
+  #fbf3f6 (red 5)</li>
+</ul>
+
+***/
