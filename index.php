@@ -252,7 +252,7 @@
       </li>
     </ul>
 
-    <div class="m-icons-demo">
+    <div class="sg-icons">
       <svg class="icon--alert"><use xlink:href="#icon--alert" /></svg>
       <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
       <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>

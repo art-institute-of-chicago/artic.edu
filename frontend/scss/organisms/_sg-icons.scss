@@ -1,0 +1,13 @@
+.sg-icons {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 4px 0 24px 20px;
+  background: $color__bg--primary;
+}
+
+.sg-icons svg {
+  flex: 0 0 auto;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: $color__black;
+}

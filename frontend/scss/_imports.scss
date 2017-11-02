@@ -60,6 +60,10 @@ $include-icons: false; // see icons.scss!
 @import 'globals/header';
 @import 'globals/footer';
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ styleguide */
+
+@import 'organisms/sg-icons';
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ states */
 
 //@import 'state/name';
