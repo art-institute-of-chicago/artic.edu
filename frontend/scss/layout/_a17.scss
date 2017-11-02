@@ -1,4 +1,8 @@
 #a17 {
   @extend %container;
   position: relative;
+
+  div[style] > & {
+    width: 100%;
+  }
 }

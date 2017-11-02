@@ -8,12 +8,12 @@ Icons are combined into one SVG as symbols by the Gulp task. This also generates
 Default icon size is 16 x 16 px. If the icon's width/height is larger than this than specify the box size in the file name. Eg:
 
 * `location.svg` is a 16px square SVG
-* `location.svg` is a 24px square SVG
+* `location--24.svg` is a 24px square SVG
 
 More variants maybe added later, so anything thats not a 16px square SVG needs a dimension modifier.
 
 ```
-<div class="m-icons-demo">
+<div class="sg-icons">
   <svg class="icon--alert"><use xlink:href="#icon--alert" /></svg>
   <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
   <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
