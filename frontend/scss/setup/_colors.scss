@@ -45,7 +45,7 @@ $color__white: #fff;
 Text colors:
 
 <ul class="colors">
-  <li><span style="background:#1a1a1a;"></span> `$color__text--titles`
+  <li><span style="background:#1a1a1a;"></span> `$color__text--title`
   #1a1a1a (90% black)</li>
   <li><span style="background:#333;"></span> `$color__text`
   #333 (80% black)</li>
@@ -58,7 +58,7 @@ Text colors:
 </ul>
 
 ***/
-$color__text--titles: $color__black--90;
+$color__text--title: $color__black--90;
 $color__text: $color__black--80;
 $color__text--secondary: $color__black--54;
 $color__text--contrast: $color__black--42;
