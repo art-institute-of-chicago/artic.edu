@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <title>icon_new-window_16</title>
+  <g id="bg">
+    <rect x="-1120" y="-220" width="1660" height="2000" fill="#fff"/>
+  </g>
+  <g id="icons">
+    <g>
+      <polyline points="7 2.5 2.5 2.5 2.5 13.5 13.5 13.5 13.5 9" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+      <polyline points="9 2.5 13.5 2.5 13.5 7" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+      <line x1="7.5" y1="8.5" x2="13.5" y2="2.5" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+    </g>
+  </g>
+</svg>

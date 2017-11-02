@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <title>icon_return_16</title>
+  <g id="bg">
+    <rect x="-720" y="-420" width="1660" height="2000" fill="#fff"/>
+  </g>
+  <g id="icons">
+    <g>
+      <rect x="3" y="8" width="9" height="2" fill="#767676"/>
+      <rect x="9.5" y="5.5" width="7" height="2" transform="translate(19.5 -6.5) rotate(90)" fill="#767676"/>
+      <polygon points="6 5 2 9 6 13 6 5" fill="#767676"/>
+    </g>
+  </g>
+</svg>

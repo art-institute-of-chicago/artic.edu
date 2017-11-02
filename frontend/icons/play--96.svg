@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <title>icon_play_96</title>
+  <g id="bg">
+    <rect x="-120" y="-1420" width="1660" height="2000" fill="#fff"/>
+  </g>
+  <g id="icons">
+    <circle cx="48" cy="48" r="47.99" transform="translate(-17.57 30.43) rotate(-30)" opacity="0.9"/>
+    <path d="M36.29,26.18c-.71-.41-1.29-.08-1.29.75V69.07c0,.83.58,1.17,1.29.75L72.47,48.76a.8.8,0,0,0,0-1.5Z" fill="#fff"/>
+  </g>
+</svg>

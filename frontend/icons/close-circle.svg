@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <title>icon_close-circle_16</title>
+  <g id="bg">
+    <rect x="-920" y="-420" width="1660" height="2000" fill="#fff"/>
+  </g>
+  <g id="icons">
+    <path d="M8,1a7,7,0,1,0,7,7A7,7,0,0,0,8,1Zm3.53,9.47-1.06,1.06L8,9.06,5.53,11.53,4.47,10.47,6.94,8,4.47,5.53,5.53,4.47,8,6.94l2.47-2.47,1.06,1.06L9.06,8Z" fill="#767676"/>
+  </g>
+</svg>

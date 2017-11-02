@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <title>icon_location_16</title>
+  <g id="bg">
+    <rect x="-320" y="-220" width="1660" height="2000" fill="#fff"/>
+  </g>
+  <g id="icons">
+    <path d="M8,1A5,5,0,0,0,3,6c0,3.33,5,9,5,9s5-5.67,5-9A5,5,0,0,0,8,1ZM8,8a2,2,0,1,1,2-2A2,2,0,0,1,8,8Z" fill="#767676"/>
+  </g>
+</svg>

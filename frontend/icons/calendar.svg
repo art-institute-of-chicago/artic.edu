@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <title>icon_calendar_16</title>
+  <g id="bg">
+    <rect x="-320" y="-420" width="1660" height="2000" fill="#fff"/>
+  </g>
+  <g id="icons">
+    <rect x="4" y="1" width="1" height="2" fill="#767676"/>
+    <rect x="11" y="1" width="1" height="2" fill="#767676"/>
+    <path d="M2,3V13a1,1,0,0,0,1,1H13a1,1,0,0,0,1-1V3Zm10,9H4V6h8Z" fill="#767676"/>
+  </g>
+</svg>

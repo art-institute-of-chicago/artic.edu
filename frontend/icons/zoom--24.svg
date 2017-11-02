@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <title>icon_zoom_24</title>
+  <g id="bg">
+    <rect x="-320" y="-1020" width="1660" height="2000" fill="#fff"/>
+  </g>
+  <g id="icons">
+    <line x1="16.5" y1="7.5" x2="22.5" y2="1.5" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+    <line x1="16.5" y1="16.5" x2="22.5" y2="22.5" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+    <line x1="7.5" y1="16.5" x2="1.5" y2="22.5" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+    <line x1="7.5" y1="7.5" x2="1.5" y2="1.5" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+    <polyline points="1.5 7 1.5 1.5 7 1.5" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+    <polyline points="7 22.5 1.5 22.5 1.5 17" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+    <polyline points="22.5 17 22.5 22.5 17 22.5" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+    <polyline points="17 1.5 22.5 1.5 22.5 7" fill="none" stroke="#767676" stroke-miterlimit="10"/>
+  </g>
+</svg>

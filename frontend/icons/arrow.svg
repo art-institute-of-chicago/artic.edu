@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <title>icon_arrow_16</title>
+  <g id="bg">
+    <rect x="-720" y="-220" width="1660" height="2000" fill="#fff"/>
+  </g>
+  <g id="icons">
+    <polyline points="6 13 11 8 6 3" fill="none" stroke="#767676" stroke-linecap="square" stroke-miterlimit="10" stroke-width="1.5"/>
+  </g>
+</svg>

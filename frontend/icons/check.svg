@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <title>icon_check_16</title>
+  <g id="bg">
+    <rect x="-120" y="-220" width="1660" height="2000" fill="#fff"/>
+  </g>
+  <g id="icons">
+    <polyline points="3 8 6 11 13 4" fill="none" stroke="#767676" stroke-linecap="square" stroke-miterlimit="10" stroke-width="1.5"/>
+  </g>
+</svg>
