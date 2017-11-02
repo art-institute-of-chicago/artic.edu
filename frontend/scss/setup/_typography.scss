@@ -22,11 +22,11 @@
 // https://code.area17.com/mike/a17-js-helpers/wikis/A17-Helpers-fontObservers
 
 // the fall back font family string. eg. Helvetica, Arial, sans-serif.
-$serif-font: serif;
-$sans-serif-font: sans-serif;
+$serif-font: 'Times New Roman', Times, Georgia, serif;
+$sans-serif-font: Helvetica, Arial, sans-serif;
 // the font family string when the primary font is loaded (your primary font plus the fall back string)
-$serif-font--loaded: Georgia, #{$serif-font};
-$sans-serif-font--loaded: Arial, #{$sans-serif-font};
+$serif-font--loaded: 'Sabon', #{$serif-font};
+$sans-serif-font--loaded: 'Ideal Sans', #{$sans-serif-font};
 // the appended class names when the fonts have loaded
 $serif-font-loaded-class: 'js-serif-font-loaded';
 $sans-serif-font-loaded-class: 'js-sans-serif-font-loaded';
@@ -35,7 +35,218 @@ $cap-heights: (
   serif: .66,
   sans-serif: .568,
   arial: .72,
-  helvetica: .72,
+  helvetica: .725,
   'Times New Roman': .67,
-  'Roboto': .72
+  'Roboto': .72,
+  'Ideal Sans': .725,
+  'Sabon': .72,
 );
+
+/***
+
+f-display-2
+
+```
+<p class="f-display-2">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-display-2: (
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 32, line-height: 40, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: -.1em, push: 1),
+    'small+': (font-size: 40, line-height: 52),
+    'medium+': (font-size: 68, line-height: 80, push: 2),
+   )
+);
+
+@mixin f-display-2() {
+  @include font-styles($f-display-2);
+}
+
+%f-display-2,
+.f-display-2 {
+  @include f-display-2;
+}
+
+/***
+
+f-display-1
+
+```
+<p class="f-display-1">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-display-1: (
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 22, line-height: 28, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: -.09em, push: 1),
+    'small+': (font-size: 27, line-height: 40, letter-spacing: -.1em, push: 1),
+    'medium+': (font-size: 32, line-height: 48, letter-spacing: -.01em, push: 1),
+    'xlarge+': (font-size: 38, line-height: 56, push: 1),
+   )
+);
+
+@mixin f-display-1() {
+  @include font-styles($f-display-1);
+}
+
+%f-display-1,
+.f-display-1 {
+  @include f-display-1;
+}
+
+/***
+
+f-headline
+
+```
+<p class="f-headline">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-headline: (
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 38, line-height: 48, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+   )
+);
+
+@mixin f-headline() {
+  @include font-styles($f-headline);
+}
+
+%f-headline,
+.f-headline {
+  @include f-headline;
+}
+
+/***
+
+f-headline-editorial
+
+```
+<p class="f-headline-editorial">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-headline-editorial: (
+  font-family: $serif-font,
+  font-family-loaded: $serif-font--loaded,
+  font-loaded-class: $serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 38, line-height: 48, letter-spacing: -.05em, push: 0),
+   )
+);
+
+@mixin f-headline-editorial() {
+  @include font-styles($f-headline-editorial);
+}
+
+%f-headline-editorial,
+.f-headline-editorial {
+  @include f-headline-editorial;
+}
+
+/***
+
+f-deck-2
+
+```
+<p class="f-deck-2">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-deck-2: (
+  font-family: $serif-font,
+  font-family-loaded: $serif-font--loaded,
+  font-loaded-class: $serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.05em, push: 0),
+    'small+': (font-size: 24, line-height: 32, push: 0),
+    'medium+': (font-size: 28, line-height: 26, push: 0),
+    'xlarge+': (font-size: 30, line-height: 40, push: 0),
+   )
+);
+
+@mixin f-deck-2() {
+  @include font-styles($f-deck-2);
+}
+
+%f-deck-2,
+.f-deck-2 {
+  @include f-deck-2;
+}
+
+/***
+
+f-deck-1
+
+```
+<p class="f-deck-1">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-deck-1: (
+  font-family: $serif-font,
+  font-family-loaded: $serif-font--loaded,
+  font-loaded-class: $serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.05em, push: 0),
+    'small+': (font-size: 24, line-height: 32, push: 0),
+    'medium+': (font-size: 28, line-height: 36, push: 0),
+   )
+);
+
+@mixin f-deck-1() {
+  @include font-styles($f-deck-1);
+}
+
+%f-deck-1,
+.f-deck-1 {
+  @include f-deck-1;
+}
+
+
+/***
+
+f-body
+
+```
+<p class="f-body">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-body: (
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 17, line-height: 24, font-weight: 'lighter', letter-spacing: .01em),
+    'small+': (font-size: 18, line-height: 28),
+    'medium+': (font-size: 19, line-height: 28),
+   )
+);
+
+@mixin f-body() {
+  @include font-styles($f-body);
+}
+
+%f-body,
+.f-body {
+  @include f-body;
+}
