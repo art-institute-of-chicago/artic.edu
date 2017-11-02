@@ -3,7 +3,7 @@
   z-index: 9999;
   left: 0;
   bottom: 0;
-  padding: 1px 8px;
+  padding: 5px 8px;
   background: $color__black;
   color: $color__white;
   font-size: 11px;
@@ -20,7 +20,7 @@
     position: absolute;
     right: 8px;
     bottom: 100%;
-    color: $color__green;
+    color: #00a449;
     font-weight: bold;
     text-align: right;
     text-transform: uppercase;
@@ -28,7 +28,6 @@
   }
 
   &::before {
-    margin-bottom: -2px;
     @each $name, $point in $breakpoints {
       @include breakpoint('#{$name}') {
         content: '#{$name}';
@@ -38,7 +37,7 @@
 
   &::after {
     content: attr(data-env);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 }
 
