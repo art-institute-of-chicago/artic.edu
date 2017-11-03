@@ -271,8 +271,9 @@ $f-subheading: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 0),
-    'large+': (font-size: 17, line-height: 24, push: 0),
+    'xsmall': (font-size: 17, line-height: 24, letter-spacing: .01em, push: 0),
+    'small+': (font-size: 18, line-height: 28, push: 0),
+    'medium+': (font-size: 19, line-height: 28, push: 0),
    )
 );
 
@@ -331,9 +332,9 @@ $f-body: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 17, line-height: 24, font-weight: 'lighter', letter-spacing: .01em),
-    'small+': (font-size: 18, line-height: 28),
-    'medium+': (font-size: 19, line-height: 28),
+    'xsmall': (font-size: 17, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+    'small+': (font-size: 18, line-height: 28, push: 0),
+    'medium+': (font-size: 19, line-height: 28, push: 0),
    )
 );
 
@@ -344,6 +345,36 @@ $f-body: (
 %f-body,
 .f-body {
   @include f-body;
+}
+
+/***
+
+f-body-emphasis
+
+```
+<p class="f-body-emphasis">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-body-emphasis: (
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 17, line-height: 24, font-weight: 'lighter', font-style: 'italic', push: 0),
+    'small+': (font-size: 18, line-height: 28, push: 0),
+    'medium+': (font-size: 19, line-height: 28, push: 0),
+   )
+);
+
+@mixin f-body-emphasis() {
+  @include font-styles($f-body-emphasis);
+}
+
+%f-body-emphasis,
+.f-body-emphasis {
+  @include f-body-emphasis;
 }
 
 /***
@@ -378,6 +409,36 @@ $f-body-editorial: (
 
 /***
 
+f-body-editorial
+
+```
+<p class="f-body-editorial">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-body-editorial-emphasis: (
+  font-family: $serif-font,
+  font-family-loaded: $serif-font--loaded,
+  font-loaded-class: $serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 17, line-height: 24, font-style: 'italic', push: 0),
+    'small+': (font-size: 18, line-height: 28, push: 0),
+    'medium+': (font-size: 19, line-height: 28, push: 0),
+   )
+);
+
+@mixin f-body-editorial-emphasis() {
+  @include font-styles($f-body-editorial-emphasis);
+}
+
+%f-body-editorial-emphasis,
+.f-body-editoria-emphasisl {
+  @include f-body-editorial-emphasis;
+}
+
+/***
+
 f-buttons
 
 ```
@@ -407,15 +468,15 @@ $f-buttons: (
 
 /***
 
-f-grey
+f-secondary
 
 ```
-<p class="f-grey">The quick brown fox, <br>jumps over the lazy dog</p>
+<p class="f-secondary">The quick brown fox, <br>jumps over the lazy dog</p>
 ```
 
 ***/
 
-$f-grey: (
+$f-secondary: (
   font-family: $sans-serif-font,
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
@@ -425,13 +486,13 @@ $f-grey: (
    )
 );
 
-@mixin f-grey() {
-  @include font-styles($f-grey);
+@mixin f-secondary() {
+  @include font-styles($f-secondary);
 }
 
-%f-grey,
-.f-grey {
-  @include f-grey;
+%f-secondary,
+.f-secondary {
+  @include f-secondary;
 }
 
 /***
@@ -478,7 +539,7 @@ $f-caption: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 15, line-height: 20, letter-spacing: .01em, push: 0)
+    'xsmall': (font-size: 15, line-height: 20, font-weight: 'lighter', letter-spacing: .01em, push: 0)
    )
 );
 
@@ -506,8 +567,9 @@ $f-list-3: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 24, line-height: 32, letter-spacing: -.05em, push: 0),
-    'xlarge+': (font-size: 30, line-height: 40, push: 0),
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.05em, push: 0),
+    'large+': (font-size: 24, line-height: 32, push: 0),
+    'xlarge+': (font-size: 29, line-height: 36, push: 0),
    )
 );
 
@@ -580,58 +642,32 @@ $f-list-1: (
 
 /***
 
-f-quote-2
+f-quote
 
 ```
-<p class="f-quote-2">The quick brown fox, <br>jumps over the lazy dog</p>
-```
-
-***/
-
-$f-quote-2: (
-  font-family: $sans-serif-font,
-  font-family-loaded: $sans-serif-font--loaded,
-  font-loaded-class: $sans-serif-font-loaded-class,
-  settings: (
-    'xsmall': (font-size: 30, line-height: 40, letter-spacing: -.015em, font-style: italic, push: 0),
-   )
-);
-
-@mixin f-quote-2() {
-  @include font-styles($f-quote-2);
-}
-
-%f-quote-2,
-.f-quote-2 {
-  @include f-quote-2;
-}
-
-/***
-
-f-quote-1
-
-```
-<p class="f-quote-1">The quick brown fox, <br>jumps over the lazy dog</p>
+<p class="f-quote">The quick brown fox, <br>jumps over the lazy dog</p>
 ```
 
 ***/
 
-$f-quote-1: (
+$f-quote: (
   font-family: $sans-serif-font,
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 26, line-height: 32, letter-spacing: -.015em, font-style: italic, push: 0),
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.015em, font-style: italic, push: 0),
+    'small+': (font-size: 24, line-height: 32, push: 0),
+    'medium+': (font-size: 30, line-height: 40, push: 0),
    )
 );
 
-@mixin f-quote-1() {
-  @include font-styles($f-quote-1);
+@mixin f-quote() {
+  @include font-styles($f-quote);
 }
 
-%f-quote-1,
-.f-quote-1 {
-  @include f-quote-1;
+%f-quote,
+.f-quote {
+  @include f-quote;
 }
 
 /***
@@ -649,7 +685,9 @@ $f-dropcap-editorial: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 96, line-height: 120, text-transform: 'uppercase', push: 0),
+    'xsmall': (font-size: 52, line-height: 60, text-transform: 'uppercase', push: 0),
+    'small+': (font-size: 54, line-height: 60, push: 0),
+    'medium+': (font-size: 96, line-height: 120, push: 0),
    )
 );
 
@@ -677,7 +715,8 @@ $f-date-numeral: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 48, line-height: 56, letter-spacing: -.02, push: 0),
+    'xsmall': (font-size: 38, line-height: 44, letter-spacing: -.02, push: 0),
+    'medium': (font-size: 48, line-height: 56, push: 0),
    )
 );
 

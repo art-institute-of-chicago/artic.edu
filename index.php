@@ -105,10 +105,24 @@
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
       </li>
       <li>
+        <p class="f-body">f-body-emphasis</p>
+        <p class="f-body-emphasis">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-body-emphasis">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+      </li>
+      <li>
         <p class="f-body-editorial">f-body-editorial</p>
         <p class="f-body-editorial">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
         <p class="f-body-editorial">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+      </li>
+      <li>
+        <p class="f-body-editorial-emphasis">f-body-editorial-emphasis</p>
+        <p class="f-body-editorial-emphasis">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-body-editorial-emphasis">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
       </li>
       <li>
@@ -119,10 +133,10 @@
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
       </li>
       <li>
-        <p class="f-grey">f-grey</p>
-        <p class="f-grey">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-secondary">f-secondary</p>
+        <p class="f-secondary">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-        <p class="f-grey">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-secondary">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
       </li>
       <li>
@@ -161,17 +175,10 @@
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
       </li>
       <li>
-        <p class="f-quote-2">f-quote-2</p>
-        <p class="f-quote-2">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-quote">f-quote</p>
+        <p class="f-quote">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-        <p class="f-quote-2">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-        <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-      </li>
-      <li>
-        <p class="f-quote-1">f-quote-1</p>
-        <p class="f-quote-1">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-        <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-        <p class="f-quote-1">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-quote">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
       </li>
       <li>
