@@ -57,9 +57,9 @@ $f-display-2: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 32, line-height: 40, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: -.1em, push: 1),
-    'small+': (font-size: 40, line-height: 52),
-    'medium+': (font-size: 68, line-height: 80, push: 2),
+    'xsmall': (font-size: 32, line-height: 40, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: .1em, push: 0),
+    'small+': (font-size: 40, line-height: 52, push: 0),
+    'medium+': (font-size: 68, line-height: 80, push: 0),
    )
 );
 
@@ -87,10 +87,10 @@ $f-display-1: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 22, line-height: 28, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: -.09em, push: 1),
-    'small+': (font-size: 27, line-height: 40, letter-spacing: -.1em, push: 1),
-    'medium+': (font-size: 32, line-height: 48, letter-spacing: -.01em, push: 1),
-    'xlarge+': (font-size: 38, line-height: 56, push: 1),
+    'xsmall': (font-size: 22, line-height: 28, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: .09em, push: 0),
+    'small+': (font-size: 27, line-height: 40, letter-spacing: .1em, push: 0),
+    'medium+': (font-size: 32, line-height: 48, letter-spacing: .01em, push: 0),
+    'xlarge+': (font-size: 38, line-height: 56, letter-spacing: .1em, push: 0),
    )
 );
 
@@ -118,7 +118,10 @@ $f-headline: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 38, line-height: 48, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+    'xsmall': (font-size: 24, line-height: 32, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+    'small+': (font-size: 32, line-height: 40),
+    'medium+': (font-size: 36, line-height: 44),
+    'large+': (font-size: 38, line-height: 48),
    )
 );
 
@@ -146,7 +149,10 @@ $f-headline-editorial: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 38, line-height: 48, letter-spacing: -.05em, push: 0),
+    'xsmall': (font-size: 24, line-height: 32, letter-spacing: -.05em, push: 0),
+    'small+': (font-size: 32, line-height: 40, letter-spacing: .05em, push: 0),
+    'medium+': (font-size: 36, line-height: 44, letter-spacing: .01em, push: 0),
+    'large+': (font-size: 38, line-height: 48, letter-spacing: -.05em, push: 0),
    )
 );
 
@@ -169,55 +175,25 @@ f-deck-2
 
 ***/
 
-$f-deck-2: (
+$f-deck: (
   font-family: $serif-font,
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.05em, push: 0),
     'small+': (font-size: 24, line-height: 32, push: 0),
-    'medium+': (font-size: 28, line-height: 26, push: 0),
-    'xlarge+': (font-size: 30, line-height: 40, push: 0),
+    'medium+': (font-size: 27, line-height: 36, push: 0),
+    'xlarge+': (font-size: 29, line-height: 40, push: 0),
    )
 );
 
-@mixin f-deck-2() {
-  @include font-styles($f-deck-2);
+@mixin f-deck() {
+  @include font-styles($f-deck);
 }
 
-%f-deck-2,
-.f-deck-2 {
+%f-deck,
+.f-deck {
   @include f-deck-2;
-}
-
-/***
-
-f-deck-1
-
-```
-<p class="f-deck-1">The quick brown fox, <br>jumps over the lazy dog</p>
-```
-
-***/
-
-$f-deck-1: (
-  font-family: $serif-font,
-  font-family-loaded: $serif-font--loaded,
-  font-loaded-class: $serif-font-loaded-class,
-  settings: (
-    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.05em, push: 0),
-    'small+': (font-size: 24, line-height: 32, push: 0),
-    'medium+': (font-size: 28, line-height: 36, push: 0),
-   )
-);
-
-@mixin f-deck-1() {
-  @include font-styles($f-deck-1);
-}
-
-%f-deck-1,
-.f-deck-1 {
-  @include f-deck-1;
 }
 
 /***
@@ -235,7 +211,9 @@ $f-module-title-2: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 19, line-height: 28, letter-spacing: .08em, push: 0),
+    'xsmall': (font-size: 15, line-height: 20, letter-spacing: .08em, push: 0),
+    'small+': (font-size: 17, line-height: 24, push: 0),
+    'small+': (font-size: 19, line-height: 28, push: 0),
     'xlarge+': (font-size: 21, line-height: 32, push: 0),
    )
 );

@@ -63,17 +63,10 @@
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
       </li>
       <li>
-        <p class="f-deck-2">f-deck-2</p>
-        <p class="f-deck-2">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-deck">f-deck</p>
+        <p class="f-deck">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-        <p class="f-deck-2">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-        <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-      </li>
-      <li>
-        <p class="f-deck-1">f-deck-1</p>
-        <p class="f-deck-1">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-        <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
-        <p class="f-deck-1">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+        <p class="f-deck">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
       </li>
       <li>
