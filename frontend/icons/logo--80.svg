@@ -1,8 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
-  <title>logo_80</title>
-  <g id="bg">
-    <rect x="-360" y="-1820" width="1660" height="2000" fill="#fff"/>
-  </g>
   <g id="icons">
     <g>
       <rect width="80" height="80" fill="#b50938"/>

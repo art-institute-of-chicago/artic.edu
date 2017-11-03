@@ -55,6 +55,8 @@ Text colors:
   #999 (42% black)</li>
   <li><span style="background:#b3b3b3;"></span> `$color__text--forms`
   #b3b3b3 (30% black)</li>
+  <li><span style="background:#b50938;"></span> `$color__text--error`
+  #b50938 (red 100)</li>
 </ul>
 
 ***/
@@ -63,6 +65,7 @@ $color__text: $color__black--80;
 $color__text--secondary: $color__black--54;
 $color__text--contrast: $color__black--42;
 $color__text--forms: $color__black--30;
+$color__text--error: $color__red--100;
 
 /***
 
@@ -75,12 +78,15 @@ Backgrounds:
   #f3f3f3 (5% black)</li>
   <li><span style="background:#f8f8f8;"></span> `$color__bg--secondary`
   #f8f8f8 (3% black)</li>
+  <li><span style="background:#fbf3f6;"></span> `$color__bg--error`
+  #fbf3f6 (red 5)</li>
 </ul>
 
 ***/
 $color__bg: $color__white;
 $color__bg--primary: $color__black--5;
 $color__bg--secondary: $color__black--3;
+$color__bg--error: $color__red--5;
 
 /***
 
@@ -108,6 +114,12 @@ Links:
   #807770 (warm grey 110)</li>
   <li><span style="background:#726a64;"></span> `$color__link--active`
   #726a64 (warm grey 120)</li>
+  <li><span style="background:#b50938;"></span> `$color__link--brand`
+  #b50938 (red 100)</li>
+  <li><span style="background:#a30832;"></span> `$color__link--brand-hover`
+  #a30832 (red 110)</li>
+  <li><span style="background:#91072d;"></span> `$color__link--brand--active`
+  #91072d (red 120)</li>
 </ul>
 
 ***/
@@ -115,32 +127,9 @@ $color__link: $color__grey--100;
 $color__link--hover: $color__grey--110;
 $color__link--active: $color__grey--120;
 
-/***
-
-Misc:
-
-<ul class="colors">
-  <li><span style="background:#b50938;"></span> `$color__error`
-  #b50938 (red 100)</li>
-</ul>
-
-***/
-$color__error: $color__red--100;
+$color__link--brand: $color__red--100;
+$color__link--brand-hover: $color__red--110;
+$color__link--brand-active: $color__red--120;
 
 
-/***
 
-Reds usage to be defined:
-
-<ul class="colors">
-  <li><span style="background:#b50938;"></span> `$color__red--100`
-  #b50938 (red 100)</li>
-  <li><span style="background:#a30832;"></span> `$color__red--110`
-  #a30832 (red 110)</li>
-  <li><span style="background:#91072d;"></span> `$color__red--120`
-  #91072d (red 120)</li>
-  <li><span style="background:#fbf3f6;"></span> `$color__red--5`
-  #fbf3f6 (red 5)</li>
-</ul>
-
-***/

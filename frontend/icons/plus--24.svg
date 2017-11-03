@@ -1,9 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <title>icon_plus_24</title>
-  <g id="bg">
-    <rect x="-720" y="-820" width="1660" height="2000" fill="#fff"/>
-  </g>
-  <g id="icons">
-    <polygon points="20 11 13 11 13 4 11 4 11 11 4 11 4 13 11 13 11 20 13 20 13 13 20 13 20 11" fill="#1a1a1a"/>
-  </g>
+    <polygon points="20 11 13 11 13 4 11 4 11 11 4 11 4 13 11 13 11 20 13 20 13 13 20 13 20 11" fill="currentColor"/>
 </svg>
