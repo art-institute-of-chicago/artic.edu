@@ -76,41 +76,32 @@
   opacity: .25;
   pointer-events: none;
 
-  &.js-hide {
-    display: none;
-  }
-
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       @if (map-get($main-col-widths, $name) == 'fluid') {
         width: calc(100vw - #{map-get($outer-gutters, $name) * 2});
-        background: repeating-linear-gradient(
-          90deg,
-          #7fffff,
-          #7fffff calc((100vw - #{((map-get($column-count, $name) - 1) * map-get($inner-gutters, $name)) + (2 * map-get($outer-gutters, $name))}) / #{map-get($column-count, $name)}),
-          rgba(0,0,0,0) calc((100vw - #{((map-get($column-count, $name) - 1) * map-get($inner-gutters, $name)) + (2 * map-get($outer-gutters, $name))}) / #{map-get($column-count, $name)}),
-          rgba(0,0,0,0) calc(
-            (
-              (100vw - #{((map-get($column-count, $name) - 1) * map-get($inner-gutters, $name)) + (2 * map-get($outer-gutters, $name))}) / #{map-get($column-count, $name)})
-              +
-              #{map-get($inner-gutters, $name)}
-            )
-        );
       } @else {
-        width: map-get($main-col-widths, $name) + map-get($inner-gutters, $name) + map-get($inner-gutters, $name);
-        background: repeating-linear-gradient(
-          90deg,
-          rgba(0,0,0,0),
-          rgba(0,0,0,0) map-get($inner-gutters, $name),
-          #7fffff map-get($inner-gutters, $name),
-          #7fffff calc(
-            (
-              (#{map-get($main-col-widths, $name)} - #{(map-get($column-count, $name) - 1) * map-get($inner-gutters, $name)}) / #{map-get($column-count, $name)})
-              +
-              #{map-get($inner-gutters, $name)}
-            )
-        );
+        width: map-get($main-col-widths, $name);
       }
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(127,255,255,.5),
+        rgba(127,255,255,.5) colspan(1, $name),
+        rgba(255,127,255,.5) colspan(1, $name),
+        rgba(255,127,255,.5) colspan(2, $name)
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.75) colspan(3, $name),
+        rgba(0,0,0,0) colspan(3, $name),
+        rgba(0,0,0,0) colspan(5, $name)
+      ),
+      ;
     }
+  }
+
+  &.js-hide {
+    display: none;
   }
 }

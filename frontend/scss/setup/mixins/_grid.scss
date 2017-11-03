@@ -14,23 +14,33 @@
 @function colspan($number-of-columns:1, $breakpoint:'xsmall', $bump:0px, $inverse:false) {
   @if map-has-key($breakpoints-with-directions, $breakpoint) {
     $this-bp-main-col-width: map-get($main-col-widths, $breakpoint);
-    $this-bp-inner-gutter: map-get($inner-gutters, $breakpoint);
     $this-bp-outer-gutter: map-get($outer-gutters, $breakpoint);
-    $this-bp-total-cols: map-get($column-count, $breakpoint);
+    $this-multiplier: 1;
+    $this-calc: '';
 
-    @if ($number-of-columns >= $this-bp-total-cols) {
+    @if($inverse) {
+      $this-multiplier: -1;
+    }
+
+    @if ($number-of-columns >= 58) {
       @if ($this-bp-main-col-width == 'fluid') {
-        @return calc(100vw - #{2 * $this-bp-outer-gutter});
+        $this-calc: '100vw - #{2 * $this-bp-outer-gutter}';
+
+        @if($inverse) {
+          $this-calc: '(#{$this-calc}) * -1';
+        }
+
+        @return calc(#{$this-calc});
       } @else {
-        @return $this-bp-main-col-width;
+        @return $this-bp-main-col-width * $this-multiplier;
       }
     } @else {
 
       @if ($this-bp-main-col-width == 'fluid') {
-        $this-calc: '((100vw - #{(($this-bp-total-cols - 1) * $this-bp-inner-gutter) + (2 * $this-bp-outer-gutter)}) / #{$this-bp-total-cols}) * #{$number-of-columns}';
+        $this-calc: '(100vw - (2 * #{$this-bp-outer-gutter})) / 58';
 
         @if ($number-of-columns >= 1) {
-          $this-calc: '(#{$this-calc}) + #{($number-of-columns - 1) * $this-bp-inner-gutter}';
+          $this-calc: '(#{$this-calc}) * #{$number-of-columns}';
         }
 
         @if($bump != 0px) {
@@ -44,16 +54,37 @@
         @return calc(#{$this-calc});
 
       } @else {
-        $this-multiplier: 1;
-        @if($inverse) {
-          $this-multiplier: -1;
-        }
-
-        @return #{((((($this-bp-main-col-width - ($this-bp-total-cols - 1) * $this-bp-inner-gutter) / $this-bp-total-cols) * $number-of-columns) + ($number-of-columns - 1) * $this-bp-inner-gutter) + $bump) * $this-multiplier};
+        @return #{((($this-bp-main-col-width / 58) * $number-of-columns) + $bump) * $this-multiplier};
       }
-
     }
+  } @else {
+    @warn "Unknown breakpoint `#{$breakpoints}` in $breakpoints-with-directions";
   }
+}
+
+/*
+  @mixin gridcolsToColspan
+
+  Returns the number of CSS columns to span to make a grid listing
+
+  Parameters:
+  $number-of-columns - how many grid columns there are, so for a 4 column grid listing, 4
+  $breakpoint - maximum number of CSS columns in the container, defaults to 58
+  $gutter-cols - number of CSS columns between each item
+
+  So for a 3 column listing at xlarge:
+
+  width: colspan(gridcolsToColspan(3), 'xlarge');
+
+  And for a 3 column listing inside a left rail thats 38 CSS columns wide:
+
+  width: colspan(gridcolsToColspan(3,38,1), xlarge);
+  margin-left: colspan(1, xlarge);
+
+  See: https://codepen.io/13twelve/pen/rYaZWG
+*/
+@function grid-cols-to-colspan($number-of-columns: 1, $container-max-cols: 58, $gutter-cols: 2) {
+  @return ($container-max-cols - (($number-of-columns - 1) * $gutter-cols)) / $number-of-columns;
 }
 
 /*
@@ -134,13 +165,6 @@
   NB: only works with breakpoint names, not the +/- variants
 */
 @mixin push($number-of-columns:1, $breakpoint:'xsmall', $bump:0px, $in-container:false) {
-  @if map-has-key($breakpoints-with-directions, $breakpoint){
-    @if($in-container){
-      $bump: $bump + (map-get($inner-gutters, $breakpoint) * 2);
-    } @else {
-      $bump: $bump + map-get($inner-gutters, $breakpoint);
-    }
-  }
   margin-left: colspan($number-of-columns, $breakpoint, $bump);
 }
 
@@ -184,93 +208,6 @@
           @include push($colspan, #{$name}, $bump);
         }
       }
-    }
-  }
-}
-
-/*
-  @mixin push-gutter
-
-  Adds gutter margin to the sides passed to the set breakpoints.
-  Defaults to left margin across all breakpoints.
-
-  Parameters:
-  $sides - the sides you'd like to apply margin to
-  $bps - at which breakpoints
-
-  NB: only works with breakpoint names, not the +/- variants
-*/
-@mixin push-gutter($sides:(left), $bps: $breakpoints) {
-  @each $name, $point in $bps {
-    @include breakpoint('#{$name}') {
-      @each $dir in $sides {
-        margin-#{$dir}: map-get($inner-gutters, $name);
-      }
-    }
-  }
-}
-
-/*
-  @mixin columns-container
-
-  Sets up columns container
-
-  Parameters:
-  none
-
-  ```scss
-    .list-articles {
-    @include columns-container;
-  }
-  ```
-*/
-@mixin columns-container() {
-  @include float-clear();
-
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      margin-left: - map-get($inner-gutters, $name);
-    }
-  }
-}
-
-/*
-  @mixin column
-
-  Sets up single column
-
-  Parameters:
-  $colspans - scss map detailing how many design columns this column needs to span on each breakpoint
-
-  ```scss
-  $column-spans__list-articles: (
-    xsmall: 3,
-    small: 3,
-    medium: 4,
-    large: 4,
-    xlarge: 3,
-    xxlarge: 3
-  );
-
-  .list-articles__item {
-    @include column($column-spans__list-articles);
-  }
-  ```
-
-  NB: only works with breakpoint names, not the +/- variants
-*/
-@mixin column($colspans:false) {
-  float: left;
-
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      @if $colspans {
-        $colspan: map-get($colspans, #{$name});
-        @if $colspan {
-          width: colspan($colspan, #{$name});
-        }
-      }
-      margin-left: (map-get($inner-gutters, #{$name}));
     }
   }
 }
