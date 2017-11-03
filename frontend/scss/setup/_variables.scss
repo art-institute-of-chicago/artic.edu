@@ -16,11 +16,11 @@ $main-col-widths: (
 
 // Outer gutters, in px or vw, of each breakpoint
 $outer-gutters: (
-  xsmall: 10px,
-  small: 20px,
-  medium: 30px,
-  large: 20px,
-  xlarge: 3vw,
+  xsmall: 300vw / 64,
+  small: 300vw / 64,
+  medium: 300vw / 64,
+  large: 300vw / 64,
+  xlarge: 300vw / 64,
   xxlarge: 0,
 );
 
