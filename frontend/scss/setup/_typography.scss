@@ -167,10 +167,10 @@ $f-headline-editorial: (
 
 /***
 
-f-deck-2
+f-deck
 
 ```
-<p class="f-deck-2">The quick brown fox, <br>jumps over the lazy dog</p>
+<p class="f-deck">The quick brown fox, <br>jumps over the lazy dog</p>
 ```
 
 ***/
@@ -193,7 +193,7 @@ $f-deck: (
 
 %f-deck,
 .f-deck {
-  @include f-deck-2;
+  @include f-deck;
 }
 
 /***
@@ -213,7 +213,7 @@ $f-module-title-2: (
   settings: (
     'xsmall': (font-size: 15, line-height: 20, letter-spacing: .08em, push: 0),
     'small+': (font-size: 17, line-height: 24, push: 0),
-    'small+': (font-size: 19, line-height: 28, push: 0),
+    'medium+': (font-size: 19, line-height: 28, push: 0),
     'xlarge+': (font-size: 21, line-height: 32, push: 0),
    )
 );
