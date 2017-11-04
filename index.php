@@ -35,6 +35,19 @@
 <body>
 <div id="a17">
   <main id="content">
+    <p style="margin-top: 0; padding-top: 20px;">
+      <button class="btn f-buttons">Action</button>
+      <button class="btn btn--secondary f-buttons">Action</button>
+      <button class="btn btn--tertiary f-buttons">Action</button>
+      <button class="btn btn--quaternary f-buttons">Action</button>
+      <button class="btn btn--secondary f-buttons"><svg class="icon--new-window" aria-hidden="true"><use xlink:href="#icon--new-window" /></svg>Action</button>
+      <button class="btn btn--disabled f-buttons">Action</button>
+      <button class="btn f-buttons" disabled>Action</button>
+    </p>
+    <p style="margin-top: 0; padding-top: 20px;">
+      <a href="#" class="tag f-tag">Kanan Jarrus</a>
+      <a href="#" class="tag f-tag">Caleb Dume</a>
+    </p>
     <ul class="sg-type-spec">
       <li>
         <p class="f-display-2">f-display-2</p>
