@@ -1,6 +1,6 @@
 import { purgeProperties } from 'a17-helpers';
 
-var textCount = function(container) {
+const textCount = function(container) {
 
   const input = container.querySelector('input');
   const output = container.querySelector('output');
