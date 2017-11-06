@@ -1,0 +1,97 @@
+/***
+
+```
+<span class="select" data-behavior="formSelectFocus">
+  <select name="select1" id="select1">
+    <option>Option 1</option>
+    <option>Option 2</option>
+    <option>Option 3</option>
+    <option>Option 4</option>
+    <option>Option 5</option>
+  </select>
+</span>
+```
+
+***/
+
+
+.select {
+  @include styled-select;
+  border: 1px solid $color__input-border;
+  border-radius: $border-radius;
+  background-color: $color__white;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $color__input-border--hover;
+  }
+
+  &:focus,
+  &.s-focus {
+    @extend %default-focus-style;
+    border-color: $color__input-border--focus;
+  }
+
+  .s-error & {
+    border-color: $color__input-border--error;
+  }
+}
+
+.select select {
+  height: 48px;
+  padding: 0 35px 0 15px;
+  border: 0 none;
+  border-radius: $border-radius;
+  color: $color__input-text;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-padding-end: 35px !important;
+  -webkit-padding-start: 15px !important;
+
+  &::before,
+  &::after {
+    content: none;
+    display: none;
+  }
+}
+
+.select:hover select {
+  color: $color__input-text--hover;
+}
+
+.select select:focus {
+  outline: none;
+}
+
+.select select:disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.select option {
+  font-weight: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.select::after {
+  content: '';
+  right: 15px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='square' stroke-miterlimit='10' stroke-width='1.5' d='M6 13l5-5-5-5'/%3E%3C/svg%3E");
+  opacity: .54;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.select:hover::after {
+  opacity: .9;
+}
+
+.select:focus::after,
+.select.s-focus::after {
+  opacity: .9;
+}

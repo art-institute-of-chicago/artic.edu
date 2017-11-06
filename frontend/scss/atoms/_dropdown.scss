@@ -1,0 +1,213 @@
+/***
+
+```
+<span aria-title="sort by" class="dropdown" data-behavior="dropdown">
+  <button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+  <ul class="f-secondary">
+    <li><a href="#">Option 1</a></li>
+    <li><a href="#">Option 2</a></li>
+    <li><a href="#">Option 3</a></li>
+    <li><a href="#">Option 4</a></li>
+    <li><a href="#">Option 5</a></li>
+    <li><a href="#">Option 6</a></li>
+    <li><a href="#">Option 7</a></li>
+    <li><a href="#">Option 8</a></li>
+    <li><a href="#">Option 9</a></li>
+    <li><a href="#">Option 10</a></li>
+  </ul>
+</span>
+
+<span aria-title="sort by" class="dropdown" data-behavior="dropdown" data-dropdown-hoverable>
+  <button class="f-secondary">Dropdown Hoverable<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+  <ul class="f-secondary">
+    <li><a href="#">Option 1</a></li>
+    <li><a href="#">Option 2</a></li>
+    <li><a href="#">Option 3</a></li>
+  </ul>
+</span>
+
+<span aria-title="sort by" class="dropdown dropdown--filter" data-behavior="dropdown">
+  <button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+  <ul class="f-secondary">
+    <li><a href="#">Option 1</a></li>
+    <li><a href="#">Option 2</a></li>
+    <li><a href="#">Option 3</a></li>
+    <li><a href="#">Option 4</a></li>
+    <li><a href="#">Option 5</a></li>
+    <li><a href="#">Option 6</a></li>
+    <li><a href="#">Option 7</a></li>
+    <li><a href="#">Option 8</a></li>
+    <li><a href="#">Option 9</a></li>
+    <li><a href="#">Option 10</a></li>
+  </ul>
+</span>
+```
+
+***/
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown.s-active {
+  z-index: 2;
+}
+
+.dropdown.s-active::before {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: -1px;
+  bottom: -1px;
+  width: 20px;
+  background-color: $color__white;
+  opacity: 0;
+}
+
+.dropdown > button {
+  display: block;
+  position: relative;
+  min-width: 180px;
+  height: 48px;
+  padding: 0 68px 0 15px;
+  border: 1px solid $color__input-border;
+  background: none;
+  color: $color__input-text;
+  line-height: 48px;
+  text-align: left;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+}
+
+.dropdown > button:hover {
+  border-color: $color__input-border--hover;
+  color: $color__input-text--hover;
+}
+
+.dropdown > button:focus,
+.dropdown > button:active {
+  border-color: $color__input-border--focus;
+  color: $color__input-text--focus;
+}
+
+.dropdown > button > .icon--arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  margin-top: -8px;
+  transform: rotate(90deg);
+  transform-origin: 8px 8px;
+  transition: transform .25s $bezier--bounce;
+}
+
+.dropdown.s-active > button > .icon--arrow {
+  transform: rotate(90deg) scaleX(-1);
+}
+
+.dropdown > ul {
+  @extend %styled-scrollbars;
+  display: none;
+  position: absolute;
+  left: calc(100% + 20px);
+  top: -1px;
+  min-width: 100%;
+  max-height: 200px;
+  margin-top: 0;
+  background-color: $color__white;
+  box-shadow: $shadow;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+}
+
+.dropdown.s-active > ul {
+  display: block;
+}
+
+.dropdown > ul > li:not(:first-child) {
+  border-top: 1px solid $color__rules--tertiary;
+}
+
+.dropdown > ul a:not([class]) {
+  display: block;
+  padding: 10px 16px;
+  background-color: $color__white;
+  color: $color__text--secondary;
+  text-decoration: none;
+}
+
+.dropdown > ul a:not([class]):hover {
+  background-color: $color__bg--secondary;
+  color: $color__text--title;
+}
+
+.dropdown > ul a:not([class]):active,
+.dropdown > ul .s-active a:not([class]) {
+  background-color: $color__bg--primary;
+  color: $color__text--title;
+}
+
+
+// variation `dropdown--filter`
+
+.dropdown--filter.s-active::before {
+  content: none;
+  display: none;
+}
+
+.dropdown--filter > button {
+  color: $color__link;
+}
+
+.dropdown--filter > button:hover {
+  color: $color__link--hover;
+}
+
+.dropdown--filter > button:active {
+  color: $color__link--active;
+}
+
+.dropdown--filter > button,
+.dropdown--filter > button:hover,
+.dropdown--filter > button:focus,
+.dropdown--filter > button:active {
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-top-color: $color__rules--primary;
+}
+
+.dropdown--filter > button::before {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 48px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: $color__rules--primary;
+}
+
+.dropdown--filter.s-active > button > .icon--arrow {
+  transform: rotate(90deg);
+}
+
+.dropdown--filter > ul {
+  left: 0;
+  top: 0;
+}

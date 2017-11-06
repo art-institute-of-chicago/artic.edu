@@ -46,7 +46,7 @@
       </span>
       <span class="radio">
         <input type="radio" value="roption3" id="roption3" name="roptions" disabled>
-        <label for="roption3" class="f-secondary">Option 3</label>
+        <label for="roption3" class="f-secondary">Disabled</label>
       </span>
     </p>
     <p style="margin-top: 0; padding-top: 20px;">
@@ -60,7 +60,7 @@
       </span>
       <span class="checkbox">
         <input type="checkbox" value="coption3" id="coption3" name="coption3" disabled>
-        <label for="coption3" class="f-secondary">Option</label>
+        <label for="coption3" class="f-secondary">Disabled</label>
       </span>
     </p>
     <p style="margin-top: 0; padding-top: 20px;">
@@ -80,8 +80,49 @@
       <em class="error-msg f-secondary">Error message</em>
     </p>
     <p style="margin-top: 0; padding-top: 20px;">
+      <label for="tinput4" class="f-secondary">Label</label>
+      <input class="f-secondary" type="text" name="tinput4" id="tinput4" placeholder="Disabled" value="Disabled" disabled>
+    </p>
+    <p style="margin-top: 0; padding-top: 20px;">
       <label for="textarea1">Label</label>
       <textarea name="textarea1" id="textarea1" class="f-secondary">Mon jinn chewbacca darth darth kenobi. Moff fett hutt cade dantooine organa skywalker. Yavin darth calamari dagobah. Maul tusken raider hutt grievous.</textarea>
+    </p>
+    <p style="margin-top: 0; padding-top: 20px;">
+      <label for="select1">Label</label>
+      <span class="select" data-behavior="formSelectFocus">
+        <select class="f-secondary" name="select1" id="select1">
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+          <option>Option 4</option>
+          <option>Option 5</option>
+        </select>
+      </span>
+    </p>
+    <p class="s-error" style="margin-top: 0; padding-top: 20px;">
+      <label for="select2">Label</label>
+      <span class="select" data-behavior="formSelectFocus">
+        <select class="f-secondary" name="select2" id="select2">
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+          <option>Option 4</option>
+          <option>Option 5</option>
+        </select>
+      </span>
+    </p>
+    <p style="margin-top: 0; padding-top: 20px;">
+      <label for="select3">Label</label>
+      <span class="select" data-behavior="formSelectFocus">
+        <select class="f-secondary" name="select3" id="select3" disabled>
+          <option>Disabled</option>
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+          <option>Option 4</option>
+          <option>Option 5</option>
+        </select>
+      </span>
     </p>
     <p style="margin-top: 0; padding-top: 20px;">
       <button class="btn f-buttons">Action</button>
@@ -96,6 +137,51 @@
       <a href="#" class="tag f-tag">Kanan Jarrus</a>
       <a href="#" class="tag f-tag">Caleb Dume</a>
     </p>
+
+    <div style="margin-top: 0; padding-top: 20px;">
+      <span aria-title="sort by" class="dropdown" data-behavior="dropdown">
+        <button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+        <ul class="f-secondary">
+          <li><a href="#">Option 1</a></li>
+          <li><a href="#">Option 2</a></li>
+          <li><a href="#">Option 3</a></li>
+          <li><a href="#">Option 4</a></li>
+          <li><a href="#">Option 5</a></li>
+          <li><a href="#">Option 6</a></li>
+          <li><a href="#">Option 7</a></li>
+          <li><a href="#">Option 8</a></li>
+          <li><a href="#">Option 9</a></li>
+          <li><a href="#">Option 10</a></li>
+        </ul>
+      </span>
+    </div>
+    <div style="margin-top: 0; padding-top: 20px;">
+      <span aria-title="sort by" class="dropdown" data-behavior="dropdown" data-dropdown-hoverable>
+        <button class="f-secondary">Dropdown Hoverable<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+        <ul class="f-secondary">
+          <li><a href="#">Newest</a></li>
+          <li><a href="#">Oldest</a></li>
+        </ul>
+      </span>
+    </div>
+    <div style="margin-top: 0; padding-top: 20px;">
+      <span aria-title="sort by" class="dropdown dropdown--filter" data-behavior="dropdown">
+        <button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+        <ul class="f-secondary">
+          <li class="s-active"><a href="#">Dropdown</a></li>
+          <li><a href="#">Option 1</a></li>
+          <li><a href="#">Option 2</a></li>
+          <li><a href="#">Option 3</a></li>
+          <li><a href="#">Option 4</a></li>
+          <li><a href="#">Option 5</a></li>
+          <li><a href="#">Option 6</a></li>
+          <li><a href="#">Option 7</a></li>
+          <li><a href="#">Option 8</a></li>
+          <li><a href="#">Option 9</a></li>
+          <li><a href="#">Option 10</a></li>
+        </ul>
+      </span>
+    </div>
     <ul class="sg-type-spec">
       <li>
         <p class="f-display-2">f-display-2</p>
