@@ -17,3 +17,41 @@
     }
   }
 }
+
+%styled-scrollbars {
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-scrollbar:vertical {
+    width: 11px;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    height: 11px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 2px solid $color__white;
+    background-color: rgba(0,0,0,.5);
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: $color__white;
+  }
+}
+
+%default-focus-style {
+  outline-color: Highlight;
+  outline-style: solid;
+  outline-width: 2px;
+
+  @media (-webkit-min-device-pixel-ratio:0) {
+    & {
+      outline-color: -webkit-focus-ring-color;
+      outline-style: auto;
+    }
+  }
+}
