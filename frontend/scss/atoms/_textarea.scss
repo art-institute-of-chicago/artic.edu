@@ -1,0 +1,21 @@
+/***
+
+```
+<textarea name="textarea1" id="textarea1" class="f-secondary">Mon jinn chewbacca darth darth kenobi. Moff fett hutt cade dantooine organa skywalker. Yavin darth calamari dagobah. Maul tusken raider hutt grievous.</textarea>
+```
+
+***/
+
+%textarea {
+  @extend %input;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  min-height: 160px;
+  padding: 12px 20px 12px 16px;
+  resize: vertical;
+}
+
+textarea {
+  @extend %textarea;
+}

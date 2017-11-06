@@ -1,0 +1,18 @@
+/***
+
+```
+<em class="error-msg f-secondary">Error message</em>
+```
+
+***/
+
+.error-msg {
+  display: block;
+  color: $color__text--error;
+  font-style: normal;
+
+  label + &,
+  input + & {
+    margin-top: 4px;
+  }
+}

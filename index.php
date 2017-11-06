@@ -36,6 +36,54 @@
 <div id="a17">
   <main id="content">
     <p style="margin-top: 0; padding-top: 20px;">
+      <span class="radio">
+        <input type="radio" value="roption1" id="roption1" name="roptions">
+        <label for="roption1" class="f-secondary">Option 1</label>
+      </span>
+      <span class="radio">
+        <input type="radio" value="roption2" id="roption2" name="roptions" checked>
+        <label for="roption2" class="f-secondary">Option 2</label>
+      </span>
+      <span class="radio">
+        <input type="radio" value="roption3" id="roption3" name="roptions" disabled>
+        <label for="roption3" class="f-secondary">Option 3</label>
+      </span>
+    </p>
+    <p style="margin-top: 0; padding-top: 20px;">
+      <span class="checkbox">
+        <input type="checkbox" value="coption1" id="coption1" name="coption1">
+        <label for="coption1" class="f-secondary">Option</label>
+      </span>
+      <span class="checkbox">
+        <input type="checkbox" value="coption2" id="coption2" name="coption2" checked>
+        <label for="coption2" class="f-secondary">Option</label>
+      </span>
+      <span class="checkbox">
+        <input type="checkbox" value="coption3" id="coption3" name="coption3" disabled>
+        <label for="coption3" class="f-secondary">Option</label>
+      </span>
+    </p>
+    <p style="margin-top: 0; padding-top: 20px;">
+      <label for="tinput1" class="f-secondary">Label</label>
+      <input class="f-secondary" type="text" name="tinput1" id="tinput1" placeholder="Placeholder">
+    </p>
+    <p>
+      <label for="tinput2" class="f-secondary">Label</label>
+      <span class="input-with-output" data-behavior="textCount">
+        <input class="f-secondary" type="text" name="tinput2" id="tinput2" placeholder="Placeholder">
+        <output for="tinput2" class="f-secondary"></output>
+      </span>
+    </p>
+    <p class="s-error" style="margin-top: 0; padding-top: 20px;">
+      <label for="tinput3" class="f-secondary">Label</label>
+      <input class="f-secondary" type="text" name="tinput3" id="tinput3" placeholder="Placeholder" value="Value">
+      <em class="error-msg f-secondary">Error message</em>
+    </p>
+    <p style="margin-top: 0; padding-top: 20px;">
+      <label for="textarea1">Label</label>
+      <textarea name="textarea1" id="textarea1" class="f-secondary">Mon jinn chewbacca darth darth kenobi. Moff fett hutt cade dantooine organa skywalker. Yavin darth calamari dagobah. Maul tusken raider hutt grievous.</textarea>
+    </p>
+    <p style="margin-top: 0; padding-top: 20px;">
       <button class="btn f-buttons">Action</button>
       <button class="btn btn--secondary f-buttons">Action</button>
       <button class="btn btn--tertiary f-buttons">Action</button>

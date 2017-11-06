@@ -1,0 +1,58 @@
+/***
+
+```
+<input class="f-secondary" type="text" name="tinput1" id="tinput1" placeholder="Placeholder">
+```
+
+***/
+
+%input {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin: 0;
+  padding: 1px 15px 0;
+  border: 1px solid $color__input-border;
+  border-radius: $border-radius;
+  background-color: $color__white;
+  color: $color__input-text;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-variant-numeric: lining-nums;
+
+  @include placeholder() {
+    color: $color__text--forms;
+  }
+
+  &:hover {
+    border-color: $color__input-border--hover;
+    color: $color__input-text--hover;
+    outline: 0 none;
+  }
+
+  &:focus {
+    border-color: $color__input-border--focus;
+    color: $color__input-text--focus;
+    outline: 0 none;
+  }
+
+  &:disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
+
+  .s-error > & {
+    border-color: $color__input-border--error;
+  }
+
+  label + & {
+    margin-top: 16px;
+  }
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number] {
+  @extend %input;
+}

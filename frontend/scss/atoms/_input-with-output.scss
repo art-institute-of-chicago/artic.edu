@@ -1,0 +1,41 @@
+/***
+
+```
+<span class="input-with-output" data-behavior="TextCount">
+  <input class="f-secondary" type="text" name="tinput2" id="tinput2" placeholder="Placeholder">
+  <output for="tinput2" class="f-secondary">0</output>
+</span>
+```
+
+***/
+
+.input-with-output {
+  display: block;
+  position: relative;
+
+  label + & {
+    margin-top: 24px;
+  }
+}
+
+.input-with-output input {
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  padding-right: 100px;
+}
+
+.input-with-output output {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  color: $color__input-output;
+  text-align: right;
+  transform: translateY(-50%);
+
+  &::before,
+  &::after {
+    content: none;
+    display: none;
+  }
+}

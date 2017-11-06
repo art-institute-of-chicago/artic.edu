@@ -1,0 +1,17 @@
+/***
+
+```
+<label for="tinput1" class="f-secondary">Label</label>
+```
+
+***/
+
+
+label {
+  display: block;
+  color: $color__text;
+
+  .s-error > & {
+    color: $color__text--error;
+  }
+}

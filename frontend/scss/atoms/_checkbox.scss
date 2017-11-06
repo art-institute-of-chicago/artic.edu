@@ -1,0 +1,99 @@
+/***
+
+```
+<span class="checkbox">
+  <input type="checkbox" value="option1" id="option1" name="option1">
+  <label for="option1" class="f-secondary">Option</label>
+</span>
+<span class="checkbox">
+  <input type="checkbox" value="option2" id="option2" name="option2" checked>
+  <label for="option2" class="f-secondary">Option</label>
+</span>
+<span class="checkbox">
+  <input type="checkbox" value="option3" id="option3" name="option3" disabled>
+  <label for="option3" class="f-secondary">Disabled</label>
+</span>
+```
+
+
+***/
+
+.checkbox input[type=checkbox] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin-top: -1px;
+  margin-left: -1px;
+  padding: 0;
+  border: 0 none;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+}
+
+.checkbox label {
+  display: block;
+  position: relative;
+  padding-left: 34px;
+  color: $color__input-text;
+  cursor: pointer;
+}
+
+.checkbox label:hover,
+.checkbox input[type=checkbox]:focus + label {
+  color: $color__input-text--focus;
+}
+
+.checkbox label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid $color__input-border;
+  border-radius: $border-radius;
+  background-color: $color__white;
+}
+
+.checkbox label::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 7px;
+  width: 5px;
+  height: 12px;
+  border: 1.5px solid $color__white;
+  border-top: 0 none;
+  border-left: 0 none;
+  background-color: transparent;
+  opacity: 0;
+  transform: rotate(45deg) scale(.1);
+  transition: all .15s $bezier__bounce;
+}
+
+.checkbox input[type=checkbox]:focus + label::before {
+  border-color: $color__input-border--focus;
+}
+
+.checkbox label:hover::before {
+  border-color: $color__input-border--hover;
+}
+
+
+
+.checkbox input[type=checkbox]:checked + label::before {
+  border-color: $color__input-border--checked;
+  background-color: $color__input-border--checked;
+}
+
+.checkbox input[type=checkbox]:checked + label::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+
+
+.checkbox input[type=checkbox]:disabled + label {
+  opacity: .5;
+  pointer-events: none;
+}

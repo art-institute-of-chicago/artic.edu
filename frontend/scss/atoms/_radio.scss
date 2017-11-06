@@ -1,0 +1,90 @@
+/***
+
+radio
+=============
+
+```
+<span class="radio">
+  <input type="radio" value="option1" id="option1" name="options">
+  <label for="option1" class="f-secondary">Option 1</label>
+</span>
+<span class="radio">
+  <input type="radio" value="option2" id="option2" name="options" checked>
+  <label for="option2" class="f-secondary">Option 2</label>
+</span>
+<span class="radio">
+  <input type="radio" value="option3" id="option3" name="options" disabled>
+  <label for="option3" class="f-secondary">Disabled</label>
+</span>
+```
+
+
+***/
+
+.radio input[type=radio] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin-top: -1px;
+  margin-left: -1px;
+  padding: 0;
+  border: 0 none;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+}
+
+.radio label {
+  display: block;
+  position: relative;
+  padding-left: 34px;
+  color: $color__input-text;
+  cursor: pointer;
+}
+
+.radio label:hover,
+.radio input[type=checkbox]:focus + label {
+  color: $color__input-text--focus;
+}
+
+.radio label::before,
+.radio label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid $color__input-border;
+  border-radius: 50%;
+}
+
+.radio label::after {
+  border: 0 none;
+  background-color: $color__white;
+  opacity: 0;
+  transform: scale(.1);
+  transition: all .15s $bezier__bounce;
+}
+
+.radio input[type=radio]:focus + label::before {
+  border-color: $color__input-border--focus;
+}
+
+.radio label:hover::before {
+  border-color: $color__input-border--hover;
+}
+
+.radio input[type=radio]:checked + label::before {
+  border-color: $color__input-border--checked;
+  background-color: $color__input-border--checked;
+}
+
+.radio input[type=radio]:checked + label::after {
+  opacity: 1;
+  transform: scale(.375);
+}
+
+.radio input[type=radio]:disabled + label {
+  opacity: .5;
+  pointer-events: none;
+}
