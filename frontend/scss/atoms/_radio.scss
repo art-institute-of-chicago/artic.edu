@@ -42,8 +42,12 @@ radio
 }
 
 .radio label:hover,
-.radio input[type=checkbox]:focus + label {
+.radio input[type=radio]:focus + label {
   color: $color__input-text--focus;
+}
+
+.radio input[type=radio]:focus + label {
+  @extend %default-focus-style;
 }
 
 .radio label::before,

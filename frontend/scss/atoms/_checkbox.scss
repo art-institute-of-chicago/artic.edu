@@ -43,6 +43,10 @@
   color: $color__input-text--focus;
 }
 
+.checkbox input[type=checkbox]:focus + label {
+  @extend %default-focus-style;
+}
+
 .checkbox label::before {
   content: '';
   position: absolute;
