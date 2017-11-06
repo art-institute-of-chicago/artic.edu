@@ -97,11 +97,14 @@ Rules:
   #e6e6e6 (10% black)</li>
   <li><span style="background:#ccc;"></span> `$color__rules--secondary`
   #ccc (20% black)</li>
+  <li><span style="background:#f3f3f3;"></span> `$color__rules--tertiary`
+  #f3f3f3 (5% black)</li>
 </ul>
 
 ***/
 $color__rules--primary: $color__black--10;
 $color__rules--secondary: $color__black--20;
+$color__rules--tertiary: $color__black--5;
 
 /***
 
@@ -133,7 +136,32 @@ $color__link--brand-active: $color__red--120;
 
 
 
+/***
 
+Forms:
+
+<ul class="colors">
+  <li><span style="background:#767676;"></span> `$color__input-text`
+  #767676 (54% black)</li>
+  <li><span style="background:#767676;"></span> `$color__input-text--hover`
+  #767676 (54% black)</li>
+  <li><span style="background:#1a1a1a;"></span> `$color__input-text--focus`
+  #1a1a1a (90% black)</li>
+  <li><span style="background:#999;"></span> `$color__input-output`
+  #999 (42% black)</li>
+  <li><span style="background:#ccc;"></span> `$color__input-border`
+  #ccc (20% black)</li>
+  <li><span style="background:#b3b3b3;"></span> `$color__input-border--hover
+  #b3b3b3 (30% black)</li>
+  <li><span style="background:#999;"></span> `$color__input-border--focus`
+  #999 (42% black)</li>
+  <li><span style="background:#b50938;"></span> `$color__input-border--error`
+  #b50938 (red 100)</li>
+  <li><span style="background:1a1a1a;"></span> `$color__input-border--checked`
+  #1a1a1a (90% black)</li>
+</ul>
+
+***/
 $color__input-text: $color__black--54;
 $color__input-text--hover: $color__black--54;
 $color__input-text--focus: $color__black--90;
