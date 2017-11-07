@@ -190,6 +190,29 @@
       </ul>
     </nav>
 
+
+    <div class="calendar" data-behavior="calendar" data-calendar-url="/events">
+      <b class="calendar__title f-caption" data-calendar-title></b>
+      <table class="f-caption">
+        <thead>
+          <tr>
+            <th title="Sunday">S</th>
+            <th title="Monday">M</th>
+            <th title="Tuesday">T</th>
+            <th title="Wednesday">W</th>
+            <th title="Thursday">T</th>
+            <th title="Friday">F</th>
+            <th title="Saturday">S</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <a href="#" class="calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
+      <a href="#" class="calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
+    </div>
+
+
     <ul class="sg-type-spec">
       <li>
         <p class="f-display-2">f-display-2</p>
