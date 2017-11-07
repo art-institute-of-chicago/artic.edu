@@ -99,12 +99,15 @@ Rules:
   #ccc (20% black)</li>
   <li><span style="background:#f3f3f3;"></span> `$color__rules--tertiary`
   #f3f3f3 (5% black)</li>
+  <li><span style="background:#b50938;"></span> `$color__rules--brand`
+  #b50938 (red 100)</li>
 </ul>
 
 ***/
 $color__rules--primary: $color__black--10;
 $color__rules--secondary: $color__black--20;
 $color__rules--tertiary: $color__black--5;
+$color__rules--brand: $color__red--100;
 
 /***
 
@@ -123,6 +126,12 @@ Links:
   #a30832 (red 110)</li>
   <li><span style="background:#91072d;"></span> `$color__link--brand--active`
   #91072d (red 120)</li>
+  <li><span style="background:#999;"></span> `$color__link--tab`
+  #999 (42% black)</li>
+  <li><span style="background:#767676;"></span> `$color__link--tab-hover`
+  #767676 (54% black)</li>
+  <li><span style="background:#1a1a1a;"></span> `$color__link--tab-active`
+  #1a1a1a (90% black)</li>
 </ul>
 
 ***/
@@ -134,6 +143,9 @@ $color__link--brand: $color__red--100;
 $color__link--brand-hover: $color__red--110;
 $color__link--brand-active: $color__red--120;
 
+$color__link--tab: $color__black--42;
+$color__link--tab-hover: $color__black--54;
+$color__link--tab-active: $color__black--90;
 
 
 /***

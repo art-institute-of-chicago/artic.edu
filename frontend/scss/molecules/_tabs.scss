@@ -1,0 +1,63 @@
+/***
+
+```
+<nav class="tabs">
+  <ul class="tabs__items">
+    <li class="tabs__item s-active"><span class="tabs__item-trigger">Exhibitions</span></li>
+    <li class="tabs__item"><a class="tabs__item-trigger" href="#">Events</a></li>
+  </ul>
+</nav>
+```
+
+***/
+
+.tabs {
+  border-top: 1px solid $color__rules--primary;
+
+  & + * {
+    margin-top: 40px;
+  }
+}
+
+.tabs__items {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: -1px;
+
+  &::before,
+  &::after {
+    content: none;
+    display: none;
+  }
+}
+
+.tabs__item {
+  flex: 0 0 auto;
+  margin-left: 32px;
+}
+
+.tabs__item:first-child {
+  margin-left: 0;
+}
+
+.tabs__item-trigger {
+  display: block;
+  height: 80px;
+  color: $color__link--tab;
+  line-height: 80px;
+  text-decoration: none;
+}
+
+.tabs__item-trigger:hover,
+.tabs__item-trigger:focus {
+  color: $color__link--tab-hover;
+}
+
+.s-active > .tabs__item-trigger,
+.tabs__item-trigger:active {
+  color: $color__link--tab-active;
+}
+
+.s-active > .tabs__item-trigger {
+  border-top: 1px solid $color__rules--brand;
+}

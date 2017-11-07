@@ -182,6 +182,14 @@
         </ul>
       </span>
     </div>
+
+    <nav class="tabs" style="margin-top: 20px;">
+      <ul class="tabs__items f-module-title-1">
+        <li class="tabs__item s-active"><span class="tabs__item-trigger">Exhibitions</span></li>
+        <li class="tabs__item"><a class="tabs__item-trigger" href="#">Events</a></li>
+      </ul>
+    </nav>
+
     <ul class="sg-type-spec">
       <li>
         <p class="f-display-2">f-display-2</p>
