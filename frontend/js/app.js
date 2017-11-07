@@ -1,4 +1,4 @@
-import { manageBehaviors, resized } from 'a17-helpers';
+import { manageBehaviors, resized, getCurrentMediaQuery } from 'a17-helpers';
 import * as Behaviors from './behaviors';
 
 /*
@@ -9,11 +9,15 @@ import * as Behaviors from './behaviors';
 
 */
 
+var A17 = window.A17 || {};
+
 // HTML4 browser?
 if (!A17.browserSpec || A17.browserSpec === 'html4') {
   // lets kill further JS execution of A17 js here
   throw new Error('HTML4');
 }
+
+A17.currentMediaQuery = getCurrentMediaQuery();
 
 document.addEventListener('DOMContentLoaded', function(){
   // go go go
