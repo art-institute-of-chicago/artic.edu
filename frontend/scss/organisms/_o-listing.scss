@@ -29,7 +29,6 @@ Basic flexed set up
   }
 }
 
-
 /***
 
 Variant: `o-listing--keyline-top` - draws a keyline top
@@ -53,6 +52,15 @@ Variant: `o-listing--keyline-top` - draws a keyline top
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       left: colspan(2, #{$name});
+    }
+  }
+}
+
+.o-listing--keyline-top.o-listing--gridlines-top::after,
+.o-listing--keyline-top.o-listing--gridlines-rows::after {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      top: colspan(1, #{$name});
     }
   }
 }
@@ -134,6 +142,14 @@ Variants: `.o-listing--gridlines-right` and `o-listing--gridlines-cols`
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       right: colspan(1, #{$name}, 0, true);
+    }
+  }
+}
+
+.o-listing--keyline-top.o-listing--gridlines-cols:not(.o-listing--gridlines-top) > *::after {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      top: colspan(1, #{$name}, 0, true);
     }
   }
 }
@@ -225,131 +241,146 @@ Variants: `.o-listing--gridlines-right` and `o-listing--gridlines-cols`
 Variants: `.o-listing--gridlines-top` and `o-listing--gridlines-rows`
 
 * `.o-listing--gridlines-top` draws a line the width of the item at the top of the item
-* `.o-listing--gridlines-row` draws a line the width of item plus the space between the items, fixes the first and last item of each row
+* `.o-listing--gridlines-rows` draws a line the width of item plus the space between the items, fixes the first and last item of each row
 
 
 ***/
 
 // draws the keylines using a pusedo block, which pushes the content below it down
 // spacing done by this psuedo block
-.o-listing--gridlines-top > *::before,
-.o-listing--gridlines-rows > *::before {
+.o-listing--gridlines-top > *,
+.o-listing--gridlines-rows > * {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      padding-top: colspan(1, #{$name});
+    }
+  }
+}
+
+// draw a keyline at the top of each element
+.o-listing--gridlines-top > *::before {
   content: '';
   display: block;
-  position: relative;
+  position: absolute;
   left: 0;
   right: 0;
+  top: 0;
   height: 1px;
-  margin-bottom: 19px;
+  background-color: $color__rules--primary;
+  pointer-events: none;
+}
+
+// start drawing a keyline at the top of the first item in each row
+// this keyline will be full width
+.o-listing--gridlines-rows > *::before {
+  content: '';
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
   background-color: $color__rules--primary;
   pointer-events: none;
 
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      margin-bottom: colspan(1, #{$name}, -1px);
+      width: colspan(58, #{$name});
     }
   }
 }
 
-// for rows, the block needs to be wider than the item
-.o-listing--gridlines-rows > *::before {
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      margin-right: colspan(1, #{$name}, 0, true);
-      margin-left: colspan(1, #{$name}, 0, true);
-    }
-  }
-}
-
-// but then we need to fix it for the first and last item of each row
 @include breakpoint('small') {
   .o-listing--gridlines-rows.o-listing--2-col\@small > *:nth-child(2n + 1)::before {
-    margin-left: 0;
-  }
-
-  .o-listing--gridlines-rows.o-listing--2-col\@small > *:nth-child(2n)::before {
-    margin-right: 0;
+    display: block;
   }
 }
 
 @include breakpoint('medium') {
-  .o-listing--gridlines-rows.o-listing--2-col\@medium > *:nth-child(2n + 1)::before {
-    margin-left: 0;
-  }
-
-  .o-listing--gridlines-rows.o-listing--2-col\@medium > *:nth-child(2n)::before {
-    margin-right: 0;
-  }
-
+  .o-listing--gridlines-rows.o-listing--2-col\@medium > *:nth-child(2n + 1)::before,
   .o-listing--gridlines-rows.o-listing--3-col\@medium > *:nth-child(3n + 1)::before {
-    margin-left: 0;
-  }
-
-  .o-listing--gridlines-rows.o-listing--3-col\@medium > *:nth-child(3n)::before {
-    margin-right: 0;
+    display: block;
   }
 }
 
 @include breakpoint('large') {
   .o-listing--gridlines-rows.o-listing--4-col\@large > *:nth-child(4n + 1)::before {
-    margin-left: 0;
-  }
-
-  .o-listing--gridlines-rows.o-listing--4-col\@large > *:nth-child(4n)::before {
-    margin-right: 0;
+    display: block;
   }
 }
 
 @include breakpoint('xlarge') {
-  .o-listing--gridlines-rows.o-listing--4-col\@xlarge > *:nth-child(4n + 1)::before {
-    margin-left: 0;
-  }
-
-  .o-listing--gridlines-rows.o-listing--4-col\@xlarge > *:nth-child(4n)::before {
-    margin-right: 0;
-  }
-
+  .o-listing--gridlines-rows.o-listing--4-col\@xlarge > *:nth-child(4n + 1)::before,
   .o-listing--gridlines-rows.o-listing--5-col\@xlarge > *:nth-child(5n + 1)::before {
-    margin-left: 0;
-  }
-
-  .o-listing--gridlines-rows.o-listing--5-col\@xlarge > *:nth-child(5n)::before {
-    margin-right: 0;
+    display: block;
   }
 }
 
 @include breakpoint('xxlarge') {
-  .o-listing--gridlines-rows.o-listing--4-col\@xxlarge > *:nth-child(4n + 1)::before {
-    margin-left: 0;
-  }
-
-  .o-listing--gridlines-rows.o-listing--4-col\@xxlarge > *:nth-child(4n)::before {
-    margin-right: 0;
-  }
-
+  .o-listing--gridlines-rows.o-listing--4-col\@xxlarge > *:nth-child(4n + 1)::before,
   .o-listing--gridlines-rows.o-listing--5-col\@xxlarge > *:nth-child(5n + 1)::before {
-    margin-left: 0;
-  }
-
-  .o-listing--gridlines-rows.o-listing--5-col\@xxlarge > *:nth-child(5n)::before {
-    margin-right: 0;
+    display: block;
   }
 }
 
 
-/***
-
-Variants: `.o-listing--gridlines-right.o-listing--gridlines-top` and `.o-listing--gridlines-right.o-listing--gridlines-rows
-
-
-***/
-
+// Gridlines in 2 directions need some fixing
+// adjust the top position of the vertical gridlines when right hand lines are used with top or rows
 .o-listing--gridlines-right.o-listing--gridlines-top > *::after,
 .o-listing--gridlines-right.o-listing--gridlines-rows > *::after {
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       top: colspan(1, #{$name});
     }
+  }
+}
+
+// adjust the bottom position of the vertical gridlines when cols lines are used with top or rows
+// starts off easy
+.o-listing--gridlines-cols.o-listing--gridlines-rows > *::after {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      bottom: colspan(1, #{$name}, 0, true);
+    }
+  }
+}
+
+// then you have to select the last row of everything and fix
+@include breakpoint('small') {
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--2-col\@small > *:nth-child(2n+1):nth-last-child(-n+2)::after,
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--2-col\@small > *:nth-child(2n+1):nth-last-child(-n+2) ~ *::after {
+    bottom: 0;
+  }
+}
+
+@include breakpoint('medium') {
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--2-col\@medium > *:nth-child(2n+1):nth-last-child(-n+2)::after,
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--2-col\@medium > *:nth-child(2n+1):nth-last-child(-n+2) ~ *::after,
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--3-col\@medium > *:nth-child(3n+1):nth-last-child(-n+3)::after,
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--3-col\@medium > *:nth-child(3n+1):nth-last-child(-n+3) ~ *::after {
+    bottom: 0;
+  }
+}
+
+@include breakpoint('large') {
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--4-col\@large > *:nth-child(4n+1):nth-last-child(-n+4)::after,
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--4-col\@large > *:nth-child(4n+1):nth-last-child(-n+4) ~ *::after {
+    bottom: 0;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--4-col\@xlarge > *:nth-child(4n+1):nth-last-child(-n+4)::after,
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--4-col\@xlarge > *:nth-child(4n+1):nth-last-child(-n+4) ~ *::after {
+    bottom: 0;
+  }
+}
+
+@include breakpoint('xxlarge') {
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--4-col\@xxlarge > *:nth-child(4n+1):nth-last-child(-n+4)::after,
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--4-col\@xxlarge > *:nth-child(4n+1):nth-last-child(-n+4) ~ *::after,
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--5-col\@xxlarge > *:nth-child(5n+1):nth-last-child(-n+5)::after,
+  .o-listing--gridlines-cols.o-listing--gridlines-rows.o-listing--5-col\@xxlarge > *:nth-child(5n+1):nth-last-child(-n+5) ~ *::after {
+    bottom: 0;
   }
 }
 
