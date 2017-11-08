@@ -23,10 +23,10 @@
 
 // the fall back font family string. eg. Helvetica, Arial, sans-serif.
 $serif-font: 'Times New Roman', Times, Georgia, serif;
-$sans-serif-font: Helvetica, Arial, sans-serif;
+$sans-serif-font: "Ideal Sans A", "Ideal Sans B", Helvetica, Arial, sans-serif;
 // the font family string when the primary font is loaded (your primary font plus the fall back string)
 $serif-font--loaded: 'Sabon', #{$serif-font};
-$sans-serif-font--loaded: 'Ideal Sans', #{$sans-serif-font};
+$sans-serif-font--loaded: "Ideal Sans A", "Ideal Sans B", #{$sans-serif-font};
 // the appended class names when the fonts have loaded
 $serif-font-loaded-class: 'js-serif-font-loaded';
 $sans-serif-font-loaded-class: 'js-sans-serif-font-loaded';
@@ -38,7 +38,7 @@ $cap-heights: (
   helvetica: .725,
   'Times New Roman': .67,
   'Roboto': .72,
-  'Ideal Sans': .725,
+  'Ideal Sans': .715,
   'Sabon': .72,
 );
 

@@ -22,6 +22,7 @@
   <![endif]-->
   <!-- insert head.js - ideally minified and inline and not linked like this -->
   <script src="/dist/scripts/head.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
   <link href="/dist/styles/app.css" rel="stylesheet" />
 
   <style>
