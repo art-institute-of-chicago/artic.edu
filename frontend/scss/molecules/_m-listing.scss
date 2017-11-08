@@ -29,7 +29,13 @@
   flex: 1 0 auto;
   flex-flow: column nowrap;
   min-height: 120px;
-  padding-top: 12px;
+  margin-top: 12px;
+  padding-bottom: .02px;
+
+  &:first-child {
+    min-height: 0;
+    margin-top: 0;
+  }
 }
 
 .m-listing__meta > * {
@@ -42,7 +48,21 @@
 
 .m-listing__bottom {
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 4px;
+
+  &.f-secondary {
+    @include breakpoint('small+') {
+      margin-bottom: -8px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-bottom: -4px;
+    }
+
+    @include breakpoint('large+') {
+      margin-bottom: -8px;
+    }
+  }
 }
 
 
@@ -57,6 +77,20 @@
   display: block;
   color: $color__text--title;
   font-weight: normal;
+
+  &.f-list-2 {
+    @include breakpoint('small+') {
+      margin-top: -12px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: -8px;
+    }
+
+    @include breakpoint('large+') {
+      margin-top: -12px;
+    }
+  }
 }
 
 .m-listing__price,

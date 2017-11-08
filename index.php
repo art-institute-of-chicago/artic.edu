@@ -213,90 +213,157 @@
       <a href="#" class="calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
     </div>
 
-    <p class="f-secondary">o-listing</p>
+    <hr class="hr--big-break">
+    <p class="f-secondary">o-listing, no cols</p>
+    <ul class="o-listing">
+      <?php include './_listitems.php'; ?>
+    </ul>
+
+    <hr class="hr--big-break">
+    <p class="f-secondary">o-listing, no cols, o-listing--gridlines-top</p>
+    <ul class="o-listing o-listing--gridlines-top">
+      <?php include './_listitems.php'; ?>
+    </ul>
+
+    <hr class="hr--big-break">
+    <p class="f-secondary">o-listing, 2 cols at small, 3 cols at medium, 4 cols large+ (most examples follow this)</p>
     <ul class="o-listing o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--keyline-top</p>
     <ul class="o-listing o-listing--keyline-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--gridlines-right</p>
     <ul class="o-listing o-listing--gridlines-right o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--gridlines-cols</p>
     <ul class="o-listing o-listing--gridlines-cols o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--keyline-top o-listing--gridlines-cols</p>
     <ul class="o-listing o-listing--keyline-top o-listing--gridlines-cols o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--gridlines-top</p>
     <ul class="o-listing o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--keyline-top o-listing--gridlines-top</p>
     <ul class="o-listing o-listing--keyline-top o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--gridlines-rows</p>
     <ul class="o-listing o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--gridlines-right o-listing--gridlines-top</p>
     <ul class="o-listing o-listing--gridlines-right o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--keyline-top o-listing--gridlines-right o-listing--gridlines-top</p>
     <ul class="o-listing o-listing--keyline-top o-listing--gridlines-right o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--gridlines-right o-listing--gridlines-rows</p>
     <ul class="o-listing o-listing--gridlines-right o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--gridlines-cols o-listing--gridlines-top</p>
     <ul class="o-listing o-listing--gridlines-cols o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--keyline-top o-listing--gridlines-cols o-listing--gridlines-top</p>
     <ul class="o-listing o-listing--keyline-top o-listing--gridlines-cols o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
+    <hr class="hr--big-break">
     <p class="f-secondary">o-listing--gridlines-cols o-listing--gridlines-rows</p>
     <ul class="o-listing o-listing--gridlines-cols o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
-    <hr>
-    <p class="f-secondary">5 col</p>
+    <hr class="hr--big-break">
+    <p class="f-secondary">4 col at large+</p>
+    <ul class="o-listing o-listing--gridlines-cols o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+      <li class="m-listing">
+        <a href="#" class="m-listing__link">
+          <span class="m-listing__img">
+            <img src="http://placehold.dev.area17.com/image/400x225">
+          </span>
+          <span class="m-listing__meta">
+            <em class="m-listing__type f-tag">Special Exhibition</em> <br>
+            <strong class="m-listing__title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
+            <span class="m-listing__bottom m-listing__date f-secondary">Oct 29, 2017</span>
+          </span>
+        </a>
+      </li>
+      <li class="m-listing">
+        <a href="#" class="m-listing__link">
+          <span class="m-listing__img">
+            <img src="http://placehold.dev.area17.com/image/400x225">
+          </span>
+          <span class="m-listing__meta">
+            <em class="m-listing__type f-tag">Ongoing</em> <br>
+            <strong class="m-listing__title f-list-3">Along the Lines: Selected drawings by Saul Steinberg</strong> <br>
+            <span class="m-listing__bottom m-listing__date f-secondary">Oct 29, 2017</span>
+          </span>
+        </a>
+      </li>
+      <li class="m-listing">
+        <a href="#" class="m-listing__link">
+          <span class="m-listing__img">
+            <img src="http://placehold.dev.area17.com/image/400x225">
+          </span>
+          <span class="m-listing__meta">
+            <em class="m-listing__type f-tag">Ongoing</em> <br>
+            <strong class="m-listing__title f-list-3">Charles White Murals</strong> <br>
+            <span class="m-listing__bottom m-listing__date f-secondary">Through Nov 29, 2017</span>
+          </span>
+        </a>
+      </li>
+      <li class="m-listing">
+        <a href="#" class="m-listing__link">
+          <span class="m-listing__img">
+            <img src="http://placehold.dev.area17.com/image/400x225">
+          </span>
+          <span class="m-listing__meta">
+            <em class="m-listing__type f-tag">Ongoing</em> <br>
+            <strong class="m-listing__title f-list-3">Moholy-Nagy&mdash;Future Present</strong> <br>
+            <span class="m-listing__bottom m-listing__date f-secondary">Through Nov 29, 2017</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <hr class="hr--big-break">
+    <p class="f-secondary">5 col at xlarge+</p>
 
     <ul class="o-listing o-listing--gridlines-cols o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--5-col@xlarge o-listing--5-col@xxlarge">
       <li class="m-listing">

@@ -23,7 +23,11 @@ Basic flexed set up
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       width: colspan(58, #{$name});
-      margin-top: colspan(1, #{$name});
+      @if ($name == 'xsmall') {
+        margin-top: colspan(2, #{$name});
+      } @else {
+        margin-top: colspan(1, #{$name});
+      }
       margin-left: colspan(2, #{$name});
     }
   }
@@ -60,7 +64,11 @@ Variant: `o-listing--keyline-top` - draws a keyline top
 .o-listing--keyline-top.o-listing--gridlines-rows::after {
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      top: colspan(1, #{$name});
+      @if ($name == 'xsmall') {
+        top: colspan(2, #{$name});
+      } @else {
+        top: colspan(1, #{$name});
+      }
     }
   }
 }
@@ -248,7 +256,11 @@ Variants: `.o-listing--gridlines-top` and `o-listing--gridlines-rows`
 .o-listing--gridlines-rows > * {
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      padding-top: colspan(1, #{$name});
+      @if ($name == 'xsmall') {
+        padding-top: colspan(2, #{$name});
+      } @else {
+        padding-top: colspan(1, #{$name});
+      }
     }
   }
 }
