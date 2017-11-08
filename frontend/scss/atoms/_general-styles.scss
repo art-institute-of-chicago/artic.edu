@@ -100,6 +100,14 @@ pre code {
   padding: 0;
 }
 
+hr,
+.hr {
+  height: 0;
+  margin-top: 39px;
+  border: 0;
+  border-top: 1px solid $color__rules--primary;
+}
+
 .js-hide {
   display: none;
 }

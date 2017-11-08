@@ -61,7 +61,7 @@
             }
           } @else {
             // if there is a bump, we need to return a calc
-            $this-calc: $this-calc + $bump;
+            $this-calc: '(#{$this-calc} + #{$bump})';
             @if($inverse) {
               $this-calc: '(#{$this-calc}) * -1';
             }

@@ -2,7 +2,9 @@
 
 .o-listing {
   display: flex;
+  position: relative;
   flex-flow: row wrap;
+  margin-top: 20px;
 
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
@@ -10,6 +12,23 @@
     }
   }
 }
+
+.o-listing > * {
+  position: relative;
+  flex: 0 0 auto;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      width: colspan(58, #{$name});
+      margin-top: colspan(1, #{$name});
+      margin-left: colspan(2, #{$name});
+    }
+  }
+}
+
+
+
+
 
 .o-listing--keyline-top {
   position: relative;
@@ -32,60 +51,8 @@
   }
 }
 
-.o-listing > * {
-  position: relative;
-  flex: 0 0 auto;
 
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      width: colspan(58, #{$name});
-      margin-top: colspan(1, #{$name});
-      margin-left: colspan(2, #{$name});
-    }
-  }
-}
 
-.o-listing--gridlines-right::before {
-  content: '';
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: $color__bg;
-  pointer-events: none;
-
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      left: colspan(1, #{$name});
-    }
-  }
-}
-
-.o-listing--gridlines-right > * {
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      margin-top: 0;
-      padding-top: colspan(1, #{$name});
-    }
-  }
-}
-
-.o-listing--gridlines-right > *::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: $color__rules--primary;
-  pointer-events: none;
-
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      left: colspan(1, #{$name}, 0, true);
-    }
-  }
-}
 
 
 .o-listing--2-col\@small > * {
@@ -94,25 +61,9 @@
   }
 }
 
-.o-listing--2-col\@small\+ > * {
-  @include breakpoint('small') {
-    width: colspan(grid-cols-to-colspan(2), 'small');
-  }
-
+.o-listing--2-col\@medium > * {
   @include breakpoint('medium') {
     width: colspan(grid-cols-to-colspan(2), 'medium');
-  }
-
-  @include breakpoint('large') {
-    width: colspan(grid-cols-to-colspan(2), 'large');
-  }
-
-  @include breakpoint('xlarge') {
-    width: colspan(grid-cols-to-colspan(2), 'xlarge');
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(grid-cols-to-colspan(2), 'xxlarge');
   }
 }
 
@@ -128,26 +79,284 @@
   }
 }
 
-.o-listing--4-col\@large\+ > * {
-  @include breakpoint('large') {
-    width: colspan(grid-cols-to-colspan(4), 'large');
-  }
-
+.o-listing--4-col\@xlarge > * {
   @include breakpoint('xlarge') {
     width: colspan(grid-cols-to-colspan(4), 'xlarge');
   }
+}
 
+.o-listing--5-col\@xlarge > * {
+  @include breakpoint('xlarge') {
+    width: colspan(grid-cols-to-colspan(5), 'xlarge');
+  }
+}
+
+.o-listing--4-col\@xxlarge > * {
   @include breakpoint('xxlarge') {
     width: colspan(grid-cols-to-colspan(4), 'xxlarge');
   }
 }
 
-.o-listing--5-col\@xlarge\+ > * {
-  @include breakpoint('xlarge') {
-    width: colspan(grid-cols-to-colspan(5), 'xlarge');
-  }
-
+.o-listing--5-col\@xxlarge > * {
   @include breakpoint('xxlarge') {
     width: colspan(grid-cols-to-colspan(5), 'xxlarge');
   }
 }
+
+
+
+
+
+.o-listing--gridlines-right::after,
+.o-listing--gridlines-cols::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: $color__bg;
+  pointer-events: none;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      right: colspan(1, #{$name}, 0, true);
+    }
+  }
+}
+
+.o-listing--gridlines-cols > * {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-top: 0;
+      padding-top: colspan(1, #{$name});
+    }
+  }
+}
+
+.o-listing--gridlines-cols.o-listing--2-col\@small > *:nth-child(1),
+.o-listing--gridlines-cols.o-listing--2-col\@small > *:nth-child(2) {
+  @include breakpoint('small') {
+    padding-top: 0;
+  }
+}
+
+.o-listing--gridlines-cols.o-listing--2-col\@medium > *:nth-child(1),
+.o-listing--gridlines-cols.o-listing--2-col\@medium > *:nth-child(2) {
+  @include breakpoint('medium') {
+    padding-top: 0;
+  }
+}
+
+.o-listing--gridlines-cols.o-listing--3-col\@medium > *:nth-child(1),
+.o-listing--gridlines-cols.o-listing--3-col\@medium > *:nth-child(2),
+.o-listing--gridlines-cols.o-listing--3-col\@medium > *:nth-child(3) {
+  @include breakpoint('medium') {
+    padding-top: 0;
+  }
+}
+
+.o-listing--gridlines-cols.o-listing--4-col\@large > *:nth-child(1),
+.o-listing--gridlines-cols.o-listing--4-col\@large > *:nth-child(2),
+.o-listing--gridlines-cols.o-listing--4-col\@large > *:nth-child(3),
+.o-listing--gridlines-cols.o-listing--4-col\@large > *:nth-child(4) {
+  @include breakpoint('large') {
+    padding-top: 0;
+  }
+}
+
+.o-listing--gridlines-cols.o-listing--4-col\@xlarge > *:nth-child(1),
+.o-listing--gridlines-cols.o-listing--4-col\@xlarge > *:nth-child(2),
+.o-listing--gridlines-cols.o-listing--4-col\@xlarge > *:nth-child(3),
+.o-listing--gridlines-cols.o-listing--4-col\@xlarge > *:nth-child(4) {
+  @include breakpoint('xlarge') {
+    padding-top: 0;
+  }
+}
+
+.o-listing--gridlines-cols.o-listing--4-col\@xxlarge > *:nth-child(1),
+.o-listing--gridlines-cols.o-listing--4-col\@xxlarge > *:nth-child(2),
+.o-listing--gridlines-cols.o-listing--4-col\@xxlarge > *:nth-child(3),
+.o-listing--gridlines-cols.o-listing--4-col\@xxlarge > *:nth-child(4) {
+  @include breakpoint('xxlarge') {
+    padding-top: 0;
+  }
+}
+
+.o-listing--gridlines-cols.o-listing--5-col\@xlarge > *:nth-child(1),
+.o-listing--gridlines-cols.o-listing--5-col\@xlarge > *:nth-child(2),
+.o-listing--gridlines-cols.o-listing--5-col\@xlarge > *:nth-child(3),
+.o-listing--gridlines-cols.o-listing--5-col\@xlarge > *:nth-child(4),
+.o-listing--gridlines-cols.o-listing--5-col\@xlarge > *:nth-child(5) {
+  @include breakpoint('xlarge') {
+    padding-top: 0;
+  }
+}
+
+.o-listing--gridlines-cols.o-listing--5-col\@xxlarge > *:nth-child(1),
+.o-listing--gridlines-cols.o-listing--5-col\@xxlarge > *:nth-child(2),
+.o-listing--gridlines-cols.o-listing--5-col\@xxlarge > *:nth-child(3),
+.o-listing--gridlines-cols.o-listing--5-col\@xxlarge > *:nth-child(4),
+.o-listing--gridlines-cols.o-listing--5-col\@xxlarge > *:nth-child(5) {
+  @include breakpoint('xxlarge') {
+    padding-top: 0;
+  }
+}
+
+.o-listing--gridlines-right > *::after,
+.o-listing--gridlines-cols > *::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: $color__rules--primary;
+  pointer-events: none;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      right: colspan(1, #{$name}, 0, true);
+    }
+  }
+}
+
+
+
+
+.o-listing--gridlines-top > *::before,
+.o-listing--gridlines-rows > *::before {
+  content: '';
+  display: block;
+  position: relative;
+  left: 0;
+  right: 0;
+  height: 1px;
+  margin-bottom: 19px;
+  background-color: $color__rules--primary;
+  pointer-events: none;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-bottom: colspan(1, #{$name}, -1px);
+    }
+  }
+}
+
+.o-listing--gridlines-rows > *::before {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-right: colspan(1, #{$name}, 0, true);
+      margin-left: colspan(1, #{$name}, 0, true);
+    }
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--2-col\@small > *:nth-child(2n + 1)::before {
+  @include breakpoint('small') {
+    margin-left: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--2-col\@small > *:nth-child(2n)::before {
+  @include breakpoint('small') {
+    margin-right: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--2-col\@medium > *:nth-child(2n + 1)::before {
+  @include breakpoint('medium') {
+    margin-left: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--2-col\@medium > *:nth-child(2n)::before {
+  @include breakpoint('medium') {
+    margin-right: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--3-col\@medium > *:nth-child(3n + 1)::before {
+  @include breakpoint('medium') {
+    margin-left: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--3-col\@medium > *:nth-child(3n)::before {
+  @include breakpoint('medium') {
+    margin-right: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--4-col\@large > *:nth-child(4n + 1)::before {
+  @include breakpoint('large') {
+    margin-left: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--4-col\@large > *:nth-child(4n)::before {
+  @include breakpoint('large') {
+    margin-right: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--4-col\@xlarge > *:nth-child(4n + 1)::before {
+  @include breakpoint('xlarge') {
+    margin-left: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--4-col\@xlarge > *:nth-child(4n)::before {
+  @include breakpoint('xlarge') {
+    margin-right: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--4-col\@xxlarge > *:nth-child(4n + 1)::before {
+  @include breakpoint('xxlarge') {
+    margin-left: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--5-col\@xlarge > *:nth-child(5n + 1)::before {
+  @include breakpoint('xlarge') {
+    margin-left: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--5-col\@xlarge > *:nth-child(5n)::before {
+  @include breakpoint('xlarge') {
+    margin-right: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--4-col\@xxlarge > *:nth-child(4n)::before {
+  @include breakpoint('xxlarge') {
+    margin-right: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--5-col\@xxlarge > *:nth-child(5n + 1)::before {
+  @include breakpoint('xxlarge') {
+    margin-left: 0;
+  }
+}
+
+.o-listing--gridlines-rows.o-listing--5-col\@xxlarge > *:nth-child(5n)::before {
+  @include breakpoint('xxlarge') {
+    margin-right: 0;
+  }
+}
+
+
+
+.o-listing--gridlines-right.o-listing--gridlines-top > *::after,
+.o-listing--gridlines-right.o-listing--gridlines-rows > *::after {
+  top: 20px;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      top: colspan(1, #{$name});
+    }
+  }
+}
+
