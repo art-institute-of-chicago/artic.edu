@@ -213,14 +213,19 @@
       <a href="#" class="calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
     </div>
 
+    <p class="f-secondary">o-listing</p>
+    <ul class="o-listing o-listing--2-col@small o-listing--2-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+      <?php include './_listitems.php'; ?>
+    </ul>
+
     <p class="f-secondary">o-listing--keyline-top</p>
     <ul class="o-listing o-listing--keyline-top o-listing--2-col@small o-listing--2-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr>
-    <p class="f-secondary">o-listing--gridlines-left</p>
-    <ul class="o-listing o-listing--gridlines-left o-listing--2-col@small o-listing--2-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-listing--gridlines-right</p>
+    <ul class="o-listing o-listing--gridlines-right o-listing--2-col@small o-listing--2-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
@@ -243,14 +248,14 @@
     </ul>
 
     <hr>
-    <p class="f-secondary">o-listing--gridlines-left o-listing--gridlines-top</p>
-    <ul class="o-listing o-listing--gridlines-left o-listing--gridlines-top o-listing--2-col@small o-listing--2-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-listing--gridlines-right o-listing--gridlines-top</p>
+    <ul class="o-listing o-listing--gridlines-right o-listing--gridlines-top o-listing--2-col@small o-listing--2-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr>
-    <p class="f-secondary">o-listing--gridlines-left o-listing--gridlines-rows</p>
-    <ul class="o-listing o-listing--gridlines-left o-listing--gridlines-rows o-listing--2-col@small o-listing--2-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-listing--gridlines-right o-listing--gridlines-rows</p>
+    <ul class="o-listing o-listing--gridlines-right o-listing--gridlines-rows o-listing--2-col@small o-listing--2-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
@@ -270,7 +275,6 @@
     <p class="f-secondary">5 col</p>
 
     <ul class="o-listing o-listing--gridlines-cols o-listing--gridlines-rows  o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--5-col@xlarge o-listing--5-col@xxlarge">
-      <?php for ($i = 0; $i < 2; $i++): ?>
       <li class="m-listing">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
@@ -326,7 +330,6 @@
           </span>
         </a>
       </li>
-      <?php endfor; ?>
     </ul>
 
 
