@@ -5,3 +5,7 @@ npm-debug.log
 dist
 toolkit
 /test
+
+/vendor
+Homestead.json
+Homestead.yaml
