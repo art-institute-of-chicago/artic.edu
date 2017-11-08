@@ -132,6 +132,7 @@ Variants: `.o-listing--gridlines-right` and `o-listing--gridlines-cols`
 .o-listing--gridlines-right > *::after,
 .o-listing--gridlines-cols > *::after {
   content: '';
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -158,10 +159,9 @@ Variants: `.o-listing--gridlines-right` and `o-listing--gridlines-cols`
 // cols gridlines need to stretch to reach each other
 // so from the 2nd row onwards, needs a negative top spacing
 @include breakpoint('small') {
-  .o-listing--gridlines-right.o-listing--2-col\@small > *:nth-child(2n)::after,
-  .o-listing--gridlines-cols.o-listing--2-col\@small > *:nth-child(2n)::after {
-    content: none;
-    display: none;
+  .o-listing--gridlines-right.o-listing--2-col\@small > *:not(:nth-child(2n))::after,
+  .o-listing--gridlines-cols.o-listing--2-col\@small > *:not(:nth-child(2n))::after {
+    display: block;
   }
 
   .o-listing--gridlines-cols.o-listing--2-col\@small > *:nth-child(2) ~ *::after {
@@ -170,12 +170,11 @@ Variants: `.o-listing--gridlines-right` and `o-listing--gridlines-cols`
 }
 
 @include breakpoint('medium') {
-  .o-listing--gridlines-right.o-listing--2-col\@medium > *:nth-child(2n)::after,
-  .o-listing--gridlines-right.o-listing--3-col\@medium > *:nth-child(3n)::after,
-  .o-listing--gridlines-cols.o-listing--2-col\@medium > *:nth-child(2n)::after,
-  .o-listing--gridlines-cols.o-listing--3-col\@medium > *:nth-child(3n)::after {
-    content: none;
-    display: none;
+  .o-listing--gridlines-right.o-listing--2-col\@medium > *:not(:nth-child(2n))::after,
+  .o-listing--gridlines-right.o-listing--3-col\@medium > *:not(:nth-child(3n))::after,
+  .o-listing--gridlines-cols.o-listing--2-col\@medium > *:not(:nth-child(2n))::after,
+  .o-listing--gridlines-cols.o-listing--3-col\@medium > *:not(:nth-child(3n))::after {
+    display: block;
   }
 
   .o-listing--gridlines-cols.o-listing--2-col\@medium > *:nth-child(2) ~ *::after {
@@ -188,10 +187,9 @@ Variants: `.o-listing--gridlines-right` and `o-listing--gridlines-cols`
 }
 
 @include breakpoint('large') {
-  .o-listing--gridlines-right.o-listing--4-col\@large > *:nth-child(4n)::after,
-  .o-listing--gridlines-cols.o-listing--4-col\@large > *:nth-child(4n)::after {
-    content: none;
-    display: none;
+  .o-listing--gridlines-right.o-listing--4-col\@large > *:not(:nth-child(4n))::after,
+  .o-listing--gridlines-cols.o-listing--4-col\@large > *:not(:nth-child(4n))::after {
+    display: block;
   }
 
   .o-listing--gridlines-cols.o-listing--4-col\@large > *:nth-child(4) ~ *::after {
@@ -200,12 +198,11 @@ Variants: `.o-listing--gridlines-right` and `o-listing--gridlines-cols`
 }
 
 @include breakpoint('xlarge') {
-  .o-listing--gridlines-right.o-listing--4-col\@xlarge > *:nth-child(4n)::after,
-  .o-listing--gridlines-right.o-listing--5-col\@xlarge > *:nth-child(5n)::after,
-  .o-listing--gridlines-cols.o-listing--4-col\@xlarge > *:nth-child(4n)::after,
-  .o-listing--gridlines-cols.o-listing--5-col\@xlarge > *:nth-child(5n)::after {
-    content: none;
-    display: none;
+  .o-listing--gridlines-right.o-listing--4-col\@xlarge > *:not(:nth-child(4n))::after,
+  .o-listing--gridlines-right.o-listing--5-col\@xlarge > *:not(:nth-child(5n))::after,
+  .o-listing--gridlines-cols.o-listing--4-col\@xlarge > *:not(:nth-child(4n))::after,
+  .o-listing--gridlines-cols.o-listing--5-col\@xlarge > *:not(:nth-child(5n))::after {
+    display: block;
   }
 
   .o-listing--gridlines-cols.o-listing--4-col\@xlarge > *:nth-child(4) ~ *::after {
@@ -218,12 +215,11 @@ Variants: `.o-listing--gridlines-right` and `o-listing--gridlines-cols`
 }
 
 @include breakpoint('xxlarge') {
-  .o-listing--gridlines-right.o-listing--4-col\@xxlarge > *:nth-child(4n)::after,
-  .o-listing--gridlines-right.o-listing--5-col\@xxlarge > *:nth-child(5n)::after,
-  .o-listing--gridlines-cols.o-listing--4-col\@xxlarge > *:nth-child(4n)::after,
-  .o-listing--gridlines-cols.o-listing--5-col\@xxlarge > *:nth-child(5n)::after {
-    content: none;
-    display: none;
+  .o-listing--gridlines-right.o-listing--4-col\@xxlarge > *:not(:nth-child(4n))::after,
+  .o-listing--gridlines-right.o-listing--5-col\@xxlarge > *:not(:nth-child(5n))::after,
+  .o-listing--gridlines-cols.o-listing--4-col\@xxlarge > *:not(:nth-child(4n))::after,
+  .o-listing--gridlines-cols.o-listing--5-col\@xxlarge > *:not(:nth-child(5n))::after {
+    display: block;
   }
 
   .o-listing--gridlines-cols.o-listing--4-col\@xxlarge > *:nth-child(4) ~ *::after {
@@ -286,6 +282,12 @@ Variants: `.o-listing--gridlines-top` and `o-listing--gridlines-rows`
     @include breakpoint('#{$name}') {
       width: colspan(58, #{$name});
     }
+  }
+}
+
+@include breakpoint('xsmall') {
+  .o-listing--gridlines-rows.o-listing--2-col\@small > *::before {
+    display: block;
   }
 }
 
