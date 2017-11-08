@@ -57,6 +57,10 @@ Text colors:
   #b3b3b3 (30% black)</li>
   <li><span style="background:#b50938;"></span> `$color__text--error`
   #b50938 (red 100)</li>
+  <li><span style="background:#b50938;"></span> `$color__text--highlight`
+  #b50938 (red 100)</li>
+  <li><span style="background:#8e847d;"></span> `$color__text--type`
+  #8e847d (warm grey 100)</li>
 </ul>
 
 ***/
@@ -66,6 +70,8 @@ $color__text--secondary: $color__black--54;
 $color__text--contrast: $color__black--42;
 $color__text--forms: $color__black--30;
 $color__text--error: $color__red--100;
+$color__text--highlight: $color__red--100;
+$color__text--type: $color__grey--100;
 
 /***
 
