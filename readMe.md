@@ -1,4 +1,4 @@
-# New England Journal of Medicine
+# Art Institute of Chicago
 
 This development repository for the AIC build, uses as its foundation the AREA 17 FE boilerplate and the AREA 17 CMS Toolkit.
 

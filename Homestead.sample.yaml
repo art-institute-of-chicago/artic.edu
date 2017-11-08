@@ -1,4 +1,4 @@
-ip: 192.168.10.10
+ip: 192.168.10.20
 memory: 2048
 cpus: 1
 provider: virtualbox
@@ -8,11 +8,12 @@ keys:
 folders:
     -
         map: /Users/fernando/trabajo/proyectos/aic
-        to: /home/vagrant/code
+        to: /home/vagrant/aic
 sites:
-    -
-        map: homestead.test
-        to: /home/vagrant/code/public
+    - map: aic.dev.a17.io
+      to: "/home/vagrant/aic/public"
+    - map: admin.aic.dev.a17.io
+      to: "/home/vagrant/aic/public"
 databases:
     - homestead
 name: aic
