@@ -1,0 +1,30 @@
+
+
+.m-listing {
+}
+
+.m-listing__link,
+.m-listing span,
+.m-listing strong,
+.m-listing em {
+  display: block;
+  text-decoration: none;
+}
+
+.m-listing__img {
+  display: block;
+}
+
+.m-listing__img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.m-listing__meta {
+  display: block;
+}
+
+.m-listing__meta > br {
+  display: none;
+}

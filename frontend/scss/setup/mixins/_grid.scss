@@ -100,7 +100,7 @@
 }
 
 /*
-  @mixin gridcolsToColspan
+  @mixin grid-cols-to-colspan
 
   Returns the number of CSS columns to span to make a grid listing
 
@@ -111,11 +111,11 @@
 
   So for a 3 column listing at xlarge:
 
-  width: colspan(gridcolsToColspan(3), 'xlarge');
+  width: colspan(grid-cols-to-colspan(3), 'xlarge');
 
   And for a 3 column listing inside a left rail thats 38 CSS columns wide:
 
-  width: colspan(gridcolsToColspan(3,38,1), xlarge);
+  width: colspan(grid-cols-to-colspan(3,38,1), xlarge);
   margin-left: colspan(1, xlarge);
 
   See: https://codepen.io/13twelve/pen/rYaZWG

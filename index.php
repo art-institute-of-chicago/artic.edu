@@ -213,7 +213,7 @@
     </div>
 
 
-    <ul class="o-listing o-listing--keyline-top o-listing--2-col@small+ o-listing--4-col@large+">
+    <ul class="o-listing o-listing--gridlines-right o-listing--keyline-top o-listing--2-col@small+ o-listing--4-col@large+">
       <li class="m-listing">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
@@ -264,7 +264,7 @@
       </li>
     </ul>
 
-    <ul class="o-listing o-listing--keyline-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--5-col@xlarge+">
+    <ul class="o-listing o-listing--gridlines-right o-listing--keyline-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--5-col@xlarge+">
       <li class="m-listing">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
