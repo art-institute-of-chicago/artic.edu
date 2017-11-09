@@ -214,104 +214,104 @@
     </div>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing, no cols</p>
-    <ul class="o-listing">
+    <p class="f-secondary">o-grid-listing, no cols</p>
+    <ul class="o-grid-listing">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing, no cols, o-listing--gridlines-top</p>
-    <ul class="o-listing o-listing--gridlines-top">
+    <p class="f-secondary">o-grid-listing, no cols, o-grid-listing--gridlines-top</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-top">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing, 2 cols at small, 3 cols at medium, 4 cols large+ (most examples follow this)</p>
-    <ul class="o-listing o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing, 2 cols at small, 3 cols at medium, 4 cols large+ (most examples follow this)</p>
+    <ul class="o-grid-listing o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--keyline-top</p>
-    <ul class="o-listing o-listing--keyline-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--keyline-top</p>
+    <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--gridlines-right</p>
-    <ul class="o-listing o-listing--gridlines-right o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--gridlines-right</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--gridlines-cols</p>
-    <ul class="o-listing o-listing--gridlines-cols o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--gridlines-cols</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--keyline-top o-listing--gridlines-cols</p>
-    <ul class="o-listing o-listing--keyline-top o-listing--gridlines-cols o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-cols</p>
+    <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--gridlines-top</p>
-    <ul class="o-listing o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--gridlines-top</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--keyline-top o-listing--gridlines-top</p>
-    <ul class="o-listing o-listing--keyline-top o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-top</p>
+    <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--gridlines-rows</p>
-    <ul class="o-listing o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--gridlines-rows</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--gridlines-right o-listing--gridlines-top</p>
-    <ul class="o-listing o-listing--gridlines-right o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-top</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--keyline-top o-listing--gridlines-right o-listing--gridlines-top</p>
-    <ul class="o-listing o-listing--keyline-top o-listing--gridlines-right o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-right o-grid-listing--gridlines-top</p>
+    <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--gridlines-right o-listing--gridlines-rows</p>
-    <ul class="o-listing o-listing--gridlines-right o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-rows</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--gridlines-cols o-listing--gridlines-top</p>
-    <ul class="o-listing o-listing--gridlines-cols o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-top</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--keyline-top o-listing--gridlines-cols o-listing--gridlines-top</p>
-    <ul class="o-listing o-listing--keyline-top o-listing--gridlines-cols o-listing--gridlines-top o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--gridlines-top</p>
+    <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
-    <p class="f-secondary">o-listing--gridlines-cols o-listing--gridlines-rows</p>
-    <ul class="o-listing o-listing--gridlines-cols o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">4 col at large+</p>
-    <ul class="o-listing o-listing--gridlines-cols o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--4-col@xlarge o-listing--4-col@xxlarge">
+    <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <li class="m-listing">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
@@ -365,7 +365,7 @@
     <hr class="hr--big-break">
     <p class="f-secondary">5 col at xlarge+</p>
 
-    <ul class="o-listing o-listing--gridlines-cols o-listing--gridlines-rows o-listing--2-col@small o-listing--3-col@medium o-listing--4-col@large o-listing--5-col@xlarge o-listing--5-col@xxlarge">
+    <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--5-col@xlarge o-grid-listing--5-col@xxlarge">
       <li class="m-listing">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
