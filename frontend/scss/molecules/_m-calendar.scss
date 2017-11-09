@@ -110,12 +110,15 @@
   top: 0;
   width: 64px;
   height: 48px;
+  border: 0 none;
+  background-color: transparent;
+  cursor: pointer;
 
   &::after {
     content: '';
     position: absolute;
     left: 0;
-    right: 0;
+    top: 0;
     width: 100%;
     height: 100%;
   }
@@ -187,6 +190,7 @@
 .m-calendar thead th {
   height: 48px;
   border-bottom: 1px solid $color__black--5;
+  color: $color__text--secondary;
   font-weight: normal;
 }
 
@@ -221,6 +225,14 @@
 
   &:active {
     background-color: $color__red--100;
+    color: $color__white;
+  }
+}
+
+.m-calendar table .m-calendar__today a {
+  color: $color__red--100;
+
+  &:active {
     color: $color__white;
   }
 }

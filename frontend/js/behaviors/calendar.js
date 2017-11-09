@@ -1,7 +1,5 @@
 import { purgeProperties } from 'a17-helpers';
 
-A17.importantDates = '20171109,20171119,20171207,20180127';
-
 const calendar = function(container) {
 
   const today = new Date();
@@ -15,8 +13,6 @@ const calendar = function(container) {
   let months = [];
   let monthLengths = [];
   let daysHtml = '';
-  let importantDates = [];
-  let importantDatesLength = 0;
 
   // give the months some names
   months[0] = 'Jan';
@@ -65,21 +61,6 @@ const calendar = function(container) {
     while(loopMonthLengths % 7 > 0) {
       loopMonthLengths++;
     }
-    // check against important dates this month in this year
-    var thisMonthImportantDates = '';
-    var thisMonthImportantDatesRegex = false;
-    if (importantDates.length > 0) {
-      for (let i = 0; i < importantDatesLength; i++) {
-        if (month === importantDates[i].month && year === importantDates[i].year) {
-          thisMonthImportantDates = thisMonthImportantDates + ':' + importantDates[i].date + ':|';
-        }
-      }
-      if (thisMonthImportantDates.length > 0) {
-        thisMonthImportantDates = thisMonthImportantDates.slice(0, -1);
-        // make regex for testing
-        thisMonthImportantDatesRegex = new RegExp(thisMonthImportantDates);
-      }
-    }
     // generate HTML
     // open new tr
     daysHtml = '<tr>';
@@ -93,20 +74,19 @@ const calendar = function(container) {
       } else {
         // normalize date
         var currentDate = (i - firstDayOfMonth);
+        var istoday = (currentDate === todayDate && month === todayMonth && year === todayYear);
+        var beforeToday = (year < todayYear || (year === todayYear && month < todayMonth) || (year === todayYear && month === todayMonth && currentDate < todayDate));
         // is this today?
-        if (currentDate === todayDate && month === todayMonth && year === todayYear) {
-          tdClassName = 'calendar__today';
+        if (istoday) {
+          tdClassName = 'm-calendar__today';
         }
-        // see if we match an important date
-        // using regex for speed and so I don't have to do another loop in a loop
-        if (thisMonthImportantDatesRegex && thisMonthImportantDatesRegex.test(':' + currentDate + ':')) {
+        // if today or after, add a link
+        if (istoday || !beforeToday) {
           var urlMonth = (month + 1);
           urlMonth = (urlMonth < 10) ? '0' + urlMonth : urlMonth.toString();
           var urlDay = (currentDate < 10) ? '0' + currentDate : currentDate.toString();
           thisDay = '<a href="'+ searchUrl + '?date=' + year.toString() + urlMonth + urlDay + '" data-date="' + year.toString() + urlMonth + urlDay + '">' + currentDate + '</a>';
-        }
-        // lastly, this must be a day with no events
-        if (thisDay === '') {
+        } else {
           thisDay = currentDate;
         }
       }
@@ -140,6 +120,7 @@ const calendar = function(container) {
     if (clicked.getAttribute('data-calendar-next') !== null) {
       event.preventDefault();
       event.stopPropagation();
+      clicked.blur();
       currentMonth++;
       _normaliseYearMonth();
       _generateCalendar(currentYear, currentMonth);
@@ -147,6 +128,7 @@ const calendar = function(container) {
     if (clicked.getAttribute('data-calendar-prev') !== null) {
       event.preventDefault();
       event.stopPropagation();
+      clicked.blur();
       currentMonth--;
       _normaliseYearMonth();
       _generateCalendar(currentYear, currentMonth);
@@ -159,26 +141,6 @@ const calendar = function(container) {
   }
 
   function _init() {
-    // process important dates
-    importantDates = A17.importantDates.split(',') || [];
-    importantDatesLength = importantDates.length;
-
-    for (let i = 0; i < importantDatesLength; i++) {
-      let importantDate = importantDates[i];
-      let typeOfImportantDate = (typeof importantDate).toLowerCase();
-      if (typeOfImportantDate !== 'object') {
-        if (typeOfImportantDate === 'number') {
-          typeOfImportantDate = typeOfImportantDate.toString();
-        }
-        importantDates[i] = {
-          year: parseInt(importantDate.substring(0,4)),
-          month: parseInt(importantDate.substring(4,6) - 1),
-          date: parseInt(importantDate.substring(6,8))
-        };
-      } else {
-        importantDates.splice(i, 1);
-      }
-    }
     // listen for clicks
     container.addEventListener('click', _handleClicks, false);
     // draw initial calendar
