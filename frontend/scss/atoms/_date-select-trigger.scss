@@ -1,0 +1,49 @@
+/***
+
+```
+<span class="date-select-trigger">
+  <button class="date-select-trigger__open">
+    <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
+    <span class="date-select-trigger__label">Select date</span>
+    <span class="date-select-trigger__selected-date"></span>
+  </button>
+  <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
+  <input type="hidden" name="date1" id="date1" value="">
+</span>
+<span class="date-select-trigger s-date-selected">
+  <button class="date-select-trigger__open">
+    <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
+    <span class="date-select-trigger__label f-buttons">Select date</span>
+    <span class="date-select-trigger__selected-date f-buttons">13 Dec, 2017</span>
+  </button>
+  <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
+  <input type="hidden" name="date2" id="date2" value="">
+</span>
+```
+
+***/
+
+
+.date-select-trigger {
+}
+
+.date-select-trigger__selected-date,
+.date-select-trigger__clear {
+  display: none;
+}
+
+.date-select-trigger__label {
+  display: inline-block;
+}
+
+.date-select-trigger.s-date-selected {
+
+  .date-select-trigger__label {
+    display: none;
+  }
+
+  .date-select-trigger__selected-date,
+  .date-select-trigger__clear {
+    display: inline-block;
+  }
+}

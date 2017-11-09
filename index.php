@@ -191,11 +191,32 @@
       </ul>
     </nav>
 
+    <p class="f-secondary">
+      <span class="date-select-trigger">
+        <button class="date-select-trigger__open">
+          <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
+          <span class="date-select-trigger__label f-buttons">Select date</span>
+          <span class="date-select-trigger__selected-date f-buttons"></span>
+        </button>
+        <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
+        <input type="hidden" name="date1" id="date1" value="">
+      </span>
+
+      <span class="date-select-trigger s-date-selected">
+        <button class="date-select-trigger__open">
+          <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
+          <span class="date-select-trigger__label f-buttons">Select date</span>
+          <span class="date-select-trigger__selected-date f-buttons">13 Dec, 2017</span>
+        </button>
+        <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
+        <input type="hidden" name="date2" id="date2" value="">
+      </span>
+    </p>
 
     <div class="m-calendar" data-behavior="calendar" data-calendar-url="/events">
       <b class="m-calendar__title f-caption" data-calendar-title></b>
-      <table class="f-caption">
-        <thead>
+      <table>
+        <thead class="f-caption">
           <tr>
             <th title="Sunday">S</th>
             <th title="Monday">M</th>
@@ -206,11 +227,11 @@
             <th title="Saturday">S</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="f-secondary">
         </tbody>
       </table>
-      <a href="#" class="m-calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
-      <a href="#" class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
+      <button class="m-calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+      <button class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
     </div>
 
     <hr class="hr--big-break">
