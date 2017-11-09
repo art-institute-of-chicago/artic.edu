@@ -184,16 +184,16 @@
       </span>
     </div>
 
-    <nav class="tabs" style="margin-top: 20px;">
-      <ul class="tabs__items f-module-title-1">
-        <li class="tabs__item s-active"><span class="tabs__item-trigger">Exhibitions</span></li>
-        <li class="tabs__item"><a class="tabs__item-trigger" href="#">Events</a></li>
+    <nav class="m-tabs" style="margin-top: 20px;">
+      <ul class="m-tabs__items f-module-title-1">
+        <li class="tabs__item s-active"><span class="m-tabs__item-trigger">Exhibitions</span></li>
+        <li class="m-tabs__item"><a class="m-tabs__item-trigger" href="#">Events</a></li>
       </ul>
     </nav>
 
 
-    <div class="calendar" data-behavior="calendar" data-calendar-url="/events">
-      <b class="calendar__title f-caption" data-calendar-title></b>
+    <div class="m-calendar" data-behavior="calendar" data-calendar-url="/events">
+      <b class="m-calendar__title f-caption" data-calendar-title></b>
       <table class="f-caption">
         <thead>
           <tr>
@@ -209,8 +209,8 @@
         <tbody>
         </tbody>
       </table>
-      <a href="#" class="calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
-      <a href="#" class="calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
+      <a href="#" class="m-calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
+      <a href="#" class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a>
     </div>
 
     <hr class="hr--big-break">
@@ -306,6 +306,24 @@
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+      <?php include './_listitems.php'; ?>
+    </ul>
+
+    <hr class="hr--big-break">
+    <p class="f-secondary">o-grid-listing--gridlines-split-rows</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-split-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+      <?php include './_listitems.php'; ?>
+    </ul>
+
+    <hr class="hr--big-break">
+    <p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-split-rows</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-split-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+      <?php include './_listitems.php'; ?>
+    </ul>
+
+    <hr class="hr--big-break">
+    <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-split-rows</p>
+    <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-split-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
       <?php include './_listitems.php'; ?>
     </ul>
 

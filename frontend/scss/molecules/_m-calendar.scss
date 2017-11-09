@@ -73,18 +73,18 @@
 ***/
 
 
-.calendar {
+.m-calendar {
   position: relative;
   width: 304px;
   padding-bottom: 12px;
   box-shadow: $shadow;
 }
 
-.calendar a {
+.m-calendar a {
   text-decoration: none;
 }
 
-.calendar__title {
+.m-calendar__title {
   display: block;
   height: 48px;
   margin: 0;
@@ -104,8 +104,8 @@
 }
 
 
-.calendar__next,
-.calendar__prev {
+.m-calendar__next,
+.m-calendar__prev {
   position: absolute;
   top: 0;
   width: 64px;
@@ -121,16 +121,16 @@
   }
 }
 
-.calendar__next {
+.m-calendar__next {
   right: 0;
 }
 
-.calendar__prev {
+.m-calendar__prev {
   left: 0;
 }
 
-.calendar__next .icon--arrow,
-.calendar__prev .icon--arrow {
+.m-calendar__next .icon--arrow,
+.m-calendar__prev .icon--arrow {
   display: block;
   position: absolute;
   left: 50%;
@@ -140,71 +140,71 @@
   color: $color__white;
 }
 
-.calendar__prev .icon--arrow {
+.m-calendar__prev .icon--arrow {
   transform: rotate(180deg);
   transform-origin: 8px 8px;
 }
 
-.calendar__next .icon--arrow:hover,
-.calendar__prev .icon--arrow:hover,
-.calendar__next .icon--arrow:focus,
-.calendar__prev .icon--arrow:focus {
+.m-calendar__next .icon--arrow:hover,
+.m-calendar__prev .icon--arrow:hover,
+.m-calendar__next .icon--arrow:focus,
+.m-calendar__prev .icon--arrow:focus {
   color: $color__black--30;
 }
 
-.calendar__next .icon--arrow:active,
-.calendar__prev .icon--arrow:active {
+.m-calendar__next .icon--arrow:active,
+.m-calendar__prev .icon--arrow:active {
   color: $color__black--42;
 }
 
 
-.calendar table {
+.m-calendar table {
   width: 100%;
   color: $color__black--20;
   text-align: center;
   table-layout: fixed;
 }
 
-.calendar th,
-.calendar td {
+.m-calendar th,
+.m-calendar td {
   width: 40px;
   height: 40px;
   vertical-align: middle;
 }
 
-.calendar th:first-child,
-.calendar td:first-child {
+.m-calendar th:first-child,
+.m-calendar td:first-child {
   width: 52px;
   padding-left: 12px;
 }
 
-.calendar th:last-child,
-.calendar td:last-child {
+.m-calendar th:last-child,
+.m-calendar td:last-child {
   width: 52px;
   padding-right: 12px;
 }
 
-.calendar thead th {
+.m-calendar thead th {
   height: 48px;
   border-bottom: 1px solid $color__black--5;
   font-weight: normal;
 }
 
-.calendar tr td {
+.m-calendar tr td {
   height: 44px;
   padding-top: 4px;
 }
 
-.calendar tr:first-child td {
+.m-calendar tr:first-child td {
   height: 52px;
   padding-top: 12px;
 }
 
-.calendar__today {
+.m-calendar__today {
   color: $color__red--100;
 }
 
-.calendar table a {
+.m-calendar table a {
   display: inline-block;
   width: 40px;
   height: 40px;

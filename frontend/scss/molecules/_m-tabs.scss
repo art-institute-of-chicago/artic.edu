@@ -11,7 +11,7 @@
 
 ***/
 
-.tabs {
+.m-tabs {
   border-top: 1px solid $color__rules--primary;
 
   & + * {
@@ -19,7 +19,7 @@
   }
 }
 
-.tabs__items {
+.m-tabs__items {
   display: flex;
   flex-flow: row wrap;
   margin-top: -1px;
@@ -31,16 +31,16 @@
   }
 }
 
-.tabs__item {
+.m-tabs__item {
   flex: 0 0 auto;
   margin-left: 32px;
 }
 
-.tabs__item:first-child {
+.m-tabs__item:first-child {
   margin-left: 0;
 }
 
-.tabs__item-trigger {
+.m-tabs__item-trigger {
   display: block;
   height: 80px;
   color: $color__link--tab;
@@ -48,16 +48,16 @@
   text-decoration: none;
 }
 
-.tabs__item-trigger:hover,
-.tabs__item-trigger:focus {
+.m-tabs__item-trigger:hover,
+.m-tabs__item-trigger:focus {
   color: $color__link--tab-hover;
 }
 
-.s-active > .tabs__item-trigger,
-.tabs__item-trigger:active {
+.s-active > .m-tabs__item-trigger,
+.m-tabs__item-trigger:active {
   color: $color__link--tab-active;
 }
 
-.s-active > .tabs__item-trigger {
+.s-active > .m-tabs__item-trigger {
   border-top: 1px solid $color__rules--brand;
 }
