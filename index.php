@@ -191,29 +191,7 @@
       </ul>
     </nav>
 
-    <p class="f-secondary">
-      <span class="date-select-trigger">
-        <button class="date-select-trigger__open">
-          <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
-          <span class="date-select-trigger__label f-buttons">Select date</span>
-          <span class="date-select-trigger__selected-date f-buttons"></span>
-        </button>
-        <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
-        <input type="hidden" name="date1" id="date1" value="">
-      </span>
-
-      <span class="date-select-trigger s-date-selected">
-        <button class="date-select-trigger__open">
-          <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
-          <span class="date-select-trigger__label f-buttons">Select date</span>
-          <span class="date-select-trigger__selected-date f-buttons">13 Dec, 2017</span>
-        </button>
-        <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
-        <input type="hidden" name="date2" id="date2" value="">
-      </span>
-    </p>
-
-    <div class="m-calendar" data-behavior="calendar" data-calendar-url="/events">
+    <div class="m-calendar m-calendar--inline" style="margin-top: 20px;" data-behavior="calendar" data-calendar-url="/events">
       <b class="m-calendar__title f-caption" data-calendar-title></b>
       <table>
         <thead class="f-caption">
@@ -233,6 +211,17 @@
       <button class="m-calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
       <button class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
     </div>
+
+    <p class="f-secondary">
+      <span class="date-select-trigger" data-behavior="selectDate">
+        <button class="date-select-trigger__open" data-selectDate-open>
+          <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
+          <span class="date-select-trigger__label f-buttons">Choose date</span>
+          <span class="date-select-trigger__selected-date f-buttons" data-selectDate-display></span>
+        </button>
+        <button class="date-select-trigger__clear" data-selectDate-clear><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
+      </span>
+    </p>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing, no cols</p>
@@ -652,6 +641,27 @@
       <svg class="icon--zoom--24"><use xlink:href="#icon--zoom--24" /></svg>
     </div>
   </main>
+
+  <div class="m-calendar" id="calendar" data-behavior="calendar">
+    <b class="m-calendar__title f-caption" data-calendar-title></b>
+    <table>
+      <thead class="f-caption">
+        <tr>
+          <th title="Sunday">S</th>
+          <th title="Monday">M</th>
+          <th title="Tuesday">T</th>
+          <th title="Wednesday">W</th>
+          <th title="Thursday">T</th>
+          <th title="Friday">F</th>
+          <th title="Saturday">S</th>
+        </tr>
+      </thead>
+      <tbody class="f-secondary">
+      </tbody>
+    </table>
+    <button class="m-calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+    <button class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+  </div>
 
   <span class="design-grid-toggle design-grid-toggle--baseline" onClick="this.nextElementSibling.classList.toggle('js-hide');">Toggle baseline grid</span>
   <span class="design-grid design-grid--baseline js-hide"></span>

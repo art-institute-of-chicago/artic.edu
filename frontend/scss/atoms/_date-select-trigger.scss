@@ -8,7 +8,6 @@
     <span class="date-select-trigger__selected-date"></span>
   </button>
   <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
-  <input type="hidden" name="date1" id="date1" value="">
 </span>
 <span class="date-select-trigger s-date-selected">
   <button class="date-select-trigger__open">
@@ -17,7 +16,6 @@
     <span class="date-select-trigger__selected-date f-buttons">13 Dec, 2017</span>
   </button>
   <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
-  <input type="hidden" name="date2" id="date2" value="">
 </span>
 ```
 
@@ -25,6 +23,13 @@
 
 
 .date-select-trigger {
+  position: relative;
+}
+
+.date-select-trigger .f-buttons::before,
+.date-select-trigger .f-buttons::after {
+  content: none;
+  display: none;
 }
 
 .date-select-trigger__selected-date,
@@ -32,9 +37,47 @@
   display: none;
 }
 
+.date-select-trigger button {
+  height: 24px;
+  padding: 0;
+  border: 0 none;
+  background: none;
+  color: $color__link;
+  line-height: 24px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $color__link--hover;
+  }
+
+  &:active {
+    color: $color__link--active;
+  }
+}
+
+.date-select-trigger svg {
+  vertical-align: text-bottom;
+}
+
+.date-select-trigger .icon--calendar {
+  margin-right: 8px;
+}
+
+.date-select-trigger__open {
+}
+
 .date-select-trigger__label {
   display: inline-block;
 }
+
+.date-select-trigger__clear {
+  margin-left: 6px;
+}
+
+
+
+
 
 .date-select-trigger.s-date-selected {
 
