@@ -4,9 +4,9 @@ import { positionElementToTarget } from '../functions';
 const selectDate = function(container) {
 
   const calendar = document.getElementById('calendar');
-  const opener = document.querySelector('[data-selectDate-open]');
-  const clear = document.querySelector('[data-selectDate-clear]');
-  const display = document.querySelector('[data-selectDate-display]');
+  const opener = container.querySelector('[data-selectDate-open]');
+  const clear = container.querySelector('[data-selectDate-clear]');
+  const display = container.querySelector('[data-selectDate-display]');
   const dateSelectedClass = 's-date-selected';
 
   let calendarOpen = false;
@@ -25,6 +25,7 @@ const selectDate = function(container) {
     opener.blur();
     if (!calendarOpen) {
       document.documentElement.classList.add('s-calendar-active');
+      triggerCustomEvent(calendar, 'calendar:opener', { el: container });
       positionElementToTarget({
         element: calendar,
         target: container,
@@ -34,7 +35,6 @@ const selectDate = function(container) {
         }
       });
       setFocusOnTarget(calendar);
-      triggerCustomEvent(calendar, 'calendar:opener', { el: container });
       calendarOpen = true;
     } else {
       _closeCalendar();
