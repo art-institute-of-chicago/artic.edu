@@ -49,20 +49,6 @@
 .m-listing__bottom {
   margin-top: auto;
   padding-top: 4px;
-
-  &.f-secondary {
-    @include breakpoint('small+') {
-      margin-bottom: -8px;
-    }
-
-    @include breakpoint('medium+') {
-      margin-bottom: -4px;
-    }
-
-    @include breakpoint('large+') {
-      margin-bottom: -8px;
-    }
-  }
 }
 
 
@@ -77,20 +63,6 @@
   display: block;
   color: $color__text--title;
   font-weight: normal;
-
-  &.f-list-2 {
-    @include breakpoint('small+') {
-      margin-top: -12px;
-    }
-
-    @include breakpoint('medium+') {
-      margin-top: -8px;
-    }
-
-    @include breakpoint('large+') {
-      margin-top: -12px;
-    }
-  }
 }
 
 .m-listing__price,
