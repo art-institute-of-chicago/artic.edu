@@ -23,7 +23,12 @@
 
 
 .date-select-trigger {
+  display: inline-block;
   position: relative;
+
+  & + & {
+    margin-left: 16px;
+  }
 }
 
 .date-select-trigger .f-buttons::before,

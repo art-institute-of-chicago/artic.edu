@@ -8,6 +8,7 @@ const calendar = function(container) {
   const todayYear = today.getFullYear();
   const searchUrl = container.getAttribute('data-calendar-url') || false;
 
+  let minDate = today;
   let opener = false;
 
   let currentMonth;
@@ -77,13 +78,13 @@ const calendar = function(container) {
         // normalize date
         var currentDate = (i - firstDayOfMonth);
         var istoday = (currentDate === todayDate && month === todayMonth && year === todayYear);
-        var beforeToday = (year < todayYear || (year === todayYear && month < todayMonth) || (year === todayYear && month === todayMonth && currentDate < todayDate));
+        var beforeMinDate = (year < minDate.getFullYear() || (year === minDate.getFullYear() && month < minDate.getMonth()) || (year === minDate.getFullYear() && month === minDate.getMonth() && currentDate < minDate.getDate()));
         // is this today?
         if (istoday) {
           tdClassName = 'm-calendar__today';
         }
         // if today or after, add a link
-        if (istoday || !beforeToday) {
+        if (istoday || !beforeMinDate) {
           var titleAttr = currentDate + ' ' + months[month] + ', ' + year;
           var urlMonth = (month + 1);
           urlMonth = (urlMonth < 10) ? '0' + urlMonth : urlMonth.toString();
@@ -140,9 +141,11 @@ const calendar = function(container) {
       if (!searchUrl && opener) {
         event.preventDefault();
         event.stopPropagation();
+        let chosenDate = clicked.getAttribute('data-date');
         triggerCustomEvent(opener, 'calendar:dateSelected', {
-          date: clicked.getAttribute('data-date'),
-          friendlyString: clicked.getAttribute('title')
+          dateObj: new Date(parseInt(chosenDate.substring(0,4)), (parseInt(chosenDate.substring(4,6)) - 1), parseInt(chosenDate.substring(6,8))),
+          dateString: chosenDate,
+          friendlyString: clicked.getAttribute('title'),
         });
       }
     }
@@ -154,18 +157,29 @@ const calendar = function(container) {
     }
   }
 
+  function _minDateSent(event) {
+    if (event && event.data.minDate) {
+      minDate = event.data.minDate;
+    } else {
+      minDate = today;
+    }
+    _generateCalendar(minDate.getFullYear(), minDate.getMonth());
+  }
+
   function _init() {
     // listen for clicks
     container.addEventListener('click', _handleClicks, false);
     container.addEventListener('calendar:opener', _openerSent, false);
+    container.addEventListener('calendar:minDate', _minDateSent, false);
     // draw initial calendar
-    _generateCalendar(today.getFullYear(), today.getMonth());
+    _generateCalendar(minDate.getFullYear(), minDate.getMonth());
   }
 
   this.destroy = function() {
     // remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('calendar:opener', _openerSent);
+    container.removeEventListener('calendar:minDate', _minDateSent);
 
     // remove properties of this behavior
     purgeProperties(this);

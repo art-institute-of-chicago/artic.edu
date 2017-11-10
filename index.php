@@ -191,6 +191,7 @@
       </ul>
     </nav>
 
+    <p class="f-body">Inline calendar</p>
     <div class="m-calendar m-calendar--inline" style="margin-top: 20px;" data-behavior="calendar" data-calendar-url="/events">
       <b class="m-calendar__title f-caption" data-calendar-title></b>
       <table>
@@ -220,6 +221,28 @@
           <span class="date-select-trigger__selected-date f-buttons" data-selectDate-display></span>
         </button>
         <button class="date-select-trigger__clear" data-selectDate-clear><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
+        <input type="hidden">
+      </span>
+    </p>
+
+    <p class="f-secondary">
+      <span class="date-select-trigger" data-behavior="selectDate" data-selectDate-range="true" data-selectDate-id="cal01" data-selectDate-role="start" data-selectDate-linkedId="cal02">
+        <button class="date-select-trigger__open" data-selectDate-open>
+          <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
+          <span class="date-select-trigger__label f-buttons">Start date</span>
+          <span class="date-select-trigger__selected-date f-buttons" data-selectDate-display></span>
+        </button>
+        <button class="date-select-trigger__clear" data-selectDate-clear><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
+        <input type="hidden">
+      </span>
+      <span class="date-select-trigger" data-behavior="selectDate" data-selectDate-range="true" data-selectDate-id="cal02" data-selectDate-role="end" data-selectDate-linkedId="cal01">
+        <button class="date-select-trigger__open" data-selectDate-open>
+          <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
+          <span class="date-select-trigger__label f-buttons">End date</span>
+          <span class="date-select-trigger__selected-date f-buttons" data-selectDate-display></span>
+        </button>
+        <button class="date-select-trigger__clear" data-selectDate-clear><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
+        <input type="hidden">
       </span>
     </p>
 

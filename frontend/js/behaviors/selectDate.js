@@ -7,6 +7,10 @@ const selectDate = function(container) {
   const opener = container.querySelector('[data-selectDate-open]');
   const clear = container.querySelector('[data-selectDate-clear]');
   const display = container.querySelector('[data-selectDate-display]');
+  const hiddenInput = container.querySelector('input[type=hidden]');
+  const linked = (container.getAttribute('data-selectDate-range') === 'true');
+  const linkedSelectDate = document.querySelector('[data-selectDate-id=' + container.getAttribute('data-selectDate-linkedId') + ']') || false;
+  const role = (linked) ? container.getAttribute('data-selectDate-role') : false;
   const dateSelectedClass = 's-date-selected';
 
   let calendarOpen = false;
@@ -41,19 +45,56 @@ const selectDate = function(container) {
     }
   }
 
-  function _clearSelected() {
+  function _clearSelected(event) {
     event.preventDefault();
-    opener.blur();
+    clear.blur();
     container.classList.remove(dateSelectedClass);
     display.textContent = '';
+    if (hiddenInput) {
+      hiddenInput.value = '';
+    }
+    if (linked && linkedSelectDate && role && role === 'start') {
+      triggerCustomEvent(linkedSelectDate, 'selectDate:startDateCleared');
+    }
   }
 
   function _dateSelected(event) {
-    if (calendarOpen && event && event.data.date && event.data.friendlyString) {
-      display.textContent = event.data.friendlyString;
-      container.classList.add(dateSelectedClass);
+    if (calendarOpen && event) {
+      if (hiddenInput && event.data.friendlyString) {
+        display.textContent = event.data.friendlyString;
+        container.classList.add(dateSelectedClass);
+      }
+      if (hiddenInput && event.data.dateString) {
+        hiddenInput.value = event.data.dateString;
+      }
+      _closeCalendar();
+      if (linked && linkedSelectDate && role && role === 'start' && event.data.dateObj) {
+        // if this is the start date of a range selector, tell the end about this
+        triggerCustomEvent(linkedSelectDate, 'selectDate:startDateCleared');
+        // add a day to the chosen date to make the end selector min date
+        let minDate = event.data.dateObj;
+        minDate = new Date(minDate.setDate(minDate.getDate() + 1));
+        // tell the end date selector about this min date
+        triggerCustomEvent(linkedSelectDate, 'selectDate:startDateSelected', {
+          minDate: minDate
+        });
+      }
     }
-    _closeCalendar();
+  }
+
+  function _startDateSelected(event) {
+    if (linked && linkedSelectDate && role && role === 'end' && event && event.data.minDate) {
+      // if this is the end date selector and the start date has been selected
+      // tell the calendar to update
+      triggerCustomEvent(calendar, 'calendar:minDate', {
+        minDate: event.data.minDate
+      });
+      _openCalendar(event);
+    }
+  }
+
+  function _startDateCleared(event) {
+    _clearSelected(event);
   }
 
   function _clicksOutside(event) {
@@ -75,6 +116,8 @@ const selectDate = function(container) {
     opener.addEventListener('click', _openCalendar, false);
     clear.addEventListener('click', _clearSelected, false);
     container.addEventListener('calendar:dateSelected', _dateSelected, false);
+    container.addEventListener('selectDate:startDateSelected', _startDateSelected, false);
+    container.addEventListener('selectDate:startDateCleared', _startDateCleared, false);
     document.addEventListener('click', _clicksOutside, false);
     window.addEventListener('keyup', _escape, false);
   }
@@ -84,6 +127,8 @@ const selectDate = function(container) {
     opener.removeEventListener('click', _openCalendar);
     clear.removeEventListener('click', _clearSelected);
     container.removeEventListener('calendar:dateSelected', _dateSelected);
+    container.removeEventListener('selectDate:startDateSelected', _startDateSelected);
+    container.removeEventListener('selectDate:startDateCleared', _startDateCleared);
     document.removeEventListener('click', _clicksOutside);
     window.removeEventListener('keyup', _escape);
 
