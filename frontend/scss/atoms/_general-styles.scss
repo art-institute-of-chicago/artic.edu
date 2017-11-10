@@ -26,7 +26,17 @@ img {
 }
 
 a {
-  color: inherit;
+  color: $color__link;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $color__link--hover;
+  }
+
+  &:active {
+    color: $color__link--active;
+  }
 }
 
 a[href^="tel:"],
@@ -137,4 +147,19 @@ svg.icon--quote--76 {
 
 .a17s_transition {
   transition: transform .5s $bezier--ease-in-out;
+}
+
+.icon--arrow--left {
+  transform: rotate(180deg);
+  transform-origin: 8px 8px;
+}
+
+.icon--arrow--top {
+  transform: rotate(-90deg);
+  transform-origin: 8px 8px;
+}
+
+.icon--arrow--bottom {
+  transform: rotate(90deg);
+  transform-origin: 8px 8px;
 }

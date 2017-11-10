@@ -24,7 +24,7 @@ Basic flexed set up
     @include breakpoint('#{$name}') {
       width: colspan(58, #{$name});
       @if ($name == 'xsmall') {
-        margin-top: colspan(2, #{$name});
+        margin-top: 28px;
       } @else {
         margin-top: colspan(1, #{$name});
       }
@@ -123,8 +123,6 @@ X cols at XXXXX breakpoint
     width: colspan(grid-cols-to-colspan(5), 'xxlarge');
   }
 }
-
-
 
 /***
 
@@ -249,7 +247,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       @if ($name == 'xsmall') {
-        padding-top: colspan(2, #{$name});
+        padding-top: 16px;
       } @else {
         padding-top: colspan(1, #{$name});
       }
@@ -291,45 +289,79 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 }
 
 @include breakpoint('xsmall') {
-  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small > *::before,
-  .o-grid-listing--gridlines-split-rows.o-grid-listing--2-col\@small > *::before {
+  .o-grid-listing--gridlines-rows:not([class*=col\@xsmall]) > *::before,
+  .o-grid-listing--gridlines-split-rows:not([class*=col\@xsmall]) > *::before,
+  .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@xsmall > *::before,
+  .o-grid-listing--gridlines-split-rows.o-grid-listing--2-col\@xsmall > *::before {
     display: block;
+  }
+
+  .o-grid-listing--gridlines-split-rows.o-grid-listing--2-col\@xsmall > *:nth-child(2) ~ * {
+    margin-top: colspan(4, 'xsmall');
   }
 }
 
 @include breakpoint('small') {
+  .o-grid-listing--gridlines-rows:not([class*=col\@small]) > *::before,
+  .o-grid-listing--gridlines-split-rows:not([class*=col\@small]) > *::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@small > *:nth-child(2n + 1)::before,
   .o-grid-listing--gridlines-split-rows.o-grid-listing--2-col\@small > *:nth-child(2n + 1)::before {
     display: block;
   }
+
+  .o-grid-listing--gridlines-split-rows.o-grid-listing--2-col\@small > *:nth-child(2) ~ * {
+    margin-top: colspan(4, 'small');
+  }
 }
 
 @include breakpoint('medium') {
+  .o-grid-listing--gridlines-rows:not([class*=col\@medium]) > *::before,
+  .o-grid-listing--gridlines-split-rows:not([class*=col\@medium]) > *::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--2-col\@medium > *:nth-child(2n + 1)::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--3-col\@medium > *:nth-child(3n + 1)::before,
-  .o-grid-listing--gridlines-split-rows.o-grid-listing--2-col\@medium > *:nth-child(3n + 1)::before,
+  .o-grid-listing--gridlines-split-rows.o-grid-listing--2-col\@medium > *:nth-child(2n + 1)::before,
   .o-grid-listing--gridlines-split-rows.o-grid-listing--3-col\@medium > *:nth-child(3n + 1)::before {
     display: block;
+  }
+
+  .o-grid-listing--gridlines-split-rows.o-grid-listing--2-col\@medium > *:nth-child(2) ~ *,
+  .o-grid-listing--gridlines-split-rows.o-grid-listing--3-col\@medium > *:nth-child(3) ~ * {
+    margin-top: colspan(3, 'medium');
   }
 }
 
 @include breakpoint('large') {
+  .o-grid-listing--gridlines-rows:not([class*=col\@large]) > *::before,
+  .o-grid-listing--gridlines-split-rows:not([class*=col\@large]) > *::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@large > *:nth-child(4n + 1)::before,
   .o-grid-listing--gridlines-split-rows.o-grid-listing--4-col\@large > *:nth-child(4n + 1)::before {
     display: block;
   }
+
+  .o-grid-listing--gridlines-split-rows.o-grid-listing--4-col\@large > *:nth-child(4) ~ * {
+    margin-top: colspan(2, 'large');
+  }
 }
 
 @include breakpoint('xlarge') {
+  .o-grid-listing--gridlines-rows:not([class*=col\@xlarge]) > *::before,
+  .o-grid-listing--gridlines-split-rows:not([class*=col\@xlarge]) > *::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xlarge > *:nth-child(4n + 1)::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--5-col\@xlarge > *:nth-child(5n + 1)::before,
   .o-grid-listing--gridlines-split-rows.o-grid-listing--4-col\@xlarge > *:nth-child(4n + 1)::before,
   .o-grid-listing--gridlines-split-rows.o-grid-listing--5-col\@xlarge > *:nth-child(5n + 1)::before {
     display: block;
   }
+
+  .o-grid-listing--gridlines-split-rows.o-grid-listing--4-col\@xlarge > *:nth-child(4) ~ *,
+  .o-grid-listing--gridlines-split-rows.o-grid-listing--5-col\@xlarge > *:nth-child(5) ~ * {
+    margin-top: colspan(2, 'xlarge');
+  }
 }
 
 @include breakpoint('xxlarge') {
+  .o-grid-listing--gridlines-rows:not([class*=col\@xxlarge]) > *::before,
+  .o-grid-listing--gridlines-split-rows:not([class*=col\@xxlarge]) > *::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@xxlarge > *:nth-child(4n + 1)::before,
   .o-grid-listing--gridlines-rows.o-grid-listing--5-col\@xxlarge > *:nth-child(5n + 1)::before,
   .o-grid-listing--gridlines-split-rows.o-grid-listing--4-col\@xxlarge > *:nth-child(4n + 1)::before,

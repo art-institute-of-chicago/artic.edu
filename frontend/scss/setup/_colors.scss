@@ -17,6 +17,7 @@ $color__black--90: #1a1a1a;
 $color__black--89: #1c1c1c;
 $color__black--85: #262626;
 $color__black--80: #333;
+$color__black--75: #404040;
 $color__black--72: #474747;
 $color__black--61: #636363;
 $color__black--60: #666;
@@ -53,6 +54,8 @@ Text colors:
   #767676 (54% black)</li>
   <li><span style="background:#999;"></span> `$color__text--contrast`
   #999 (42% black)</li>
+  <li><span style="background:#fff;"></span> `$color__text--title-contrast`
+  #fff (white)</li>
   <li><span style="background:#b3b3b3;"></span> `$color__text--forms`
   #b3b3b3 (30% black)</li>
   <li><span style="background:#b50938;"></span> `$color__text--error`
@@ -68,6 +71,7 @@ $color__text--title: $color__black--90;
 $color__text: $color__black--80;
 $color__text--secondary: $color__black--54;
 $color__text--contrast: $color__black--42;
+$color__text--title-contrast: $color__white;
 $color__text--forms: $color__black--30;
 $color__text--error: $color__red--100;
 $color__text--highlight: $color__red--100;
@@ -84,6 +88,8 @@ Backgrounds:
   #f3f3f3 (5% black)</li>
   <li><span style="background:#f8f8f8;"></span> `$color__bg--secondary`
   #f8f8f8 (3% black)</li>
+  <li><span style="background:#333;"></span> `$color__bg--footer`
+  #333 (80% black)</li>
   <li><span style="background:#fbf3f6;"></span> `$color__bg--error`
   #fbf3f6 (red 5)</li>
 </ul>
@@ -92,6 +98,7 @@ Backgrounds:
 $color__bg: $color__white;
 $color__bg--primary: $color__black--5;
 $color__bg--secondary: $color__black--3;
+$color__bg--footer: $color__black--80;
 $color__bg--error: $color__red--5;
 
 /***
@@ -105,6 +112,8 @@ Rules:
   #ccc (20% black)</li>
   <li><span style="background:#f3f3f3;"></span> `$color__rules--tertiary`
   #f3f3f3 (5% black)</li>
+  <li><span style="background:#404040;"></span> `$color__rules--contrast`
+  #404040 (75% black)</li>
   <li><span style="background:#b50938;"></span> `$color__rules--brand`
   #b50938 (red 100)</li>
 </ul>
@@ -113,6 +122,7 @@ Rules:
 $color__rules--primary: $color__black--10;
 $color__rules--secondary: $color__black--20;
 $color__rules--tertiary: $color__black--5;
+$color__rules--contrast: $color__black--75;
 $color__rules--brand: $color__red--100;
 
 /***

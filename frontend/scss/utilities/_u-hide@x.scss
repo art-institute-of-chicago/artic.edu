@@ -1,0 +1,87 @@
+/***
+
+```
+<span class="u-hide@xsmall">u-hide@xsmall</span>
+<span class="u-hide@small">u-hide@small</span>
+<span class="u-hide@medium">u-hide@medium</span>
+<span class="u-hide@large">u-hide@large</span>
+<span class="u-hide@xlarge">u-hide@xlarge</span>
+<span class="u-hide@xxlarge">u-hide@xxlarge</span>
+<span class="u-hide@small-">u-hide@small-</span>
+<span class="u-hide@medium-">u-hide@medium-</span>
+<span class="u-hide@small+">u-hide@small+</span>
+<span class="u-hide@medium+">u-hide@medium+</span>
+<span class="u-hide@large+">u-hide@large+</span>
+```
+
+***/
+
+.u-hide {
+  display: none;
+}
+
+@include breakpoint('xsmall') {
+  .u-hide\@xsmall {
+    display: none;
+  }
+}
+
+@include breakpoint('small') {
+  .u-hide\@small {
+    display: none;
+  }
+}
+
+@include breakpoint('medium') {
+  .u-hide\@medium {
+    display: none;
+  }
+}
+
+@include breakpoint('large') {
+  .u-hide\@large {
+    display: none;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .u-hide\@xlarge {
+    display: none;
+  }
+}
+
+@include breakpoint('xxlarge') {
+  .u-hide\@xxlarge {
+    display: none;
+  }
+}
+
+@include breakpoint('small-') {
+  .u-hide\@small\- {
+    display: none;
+  }
+}
+
+@include breakpoint('medium-') {
+  .u-hide\@medium\- {
+    display: none;
+  }
+}
+
+@include breakpoint('small+') {
+  .u-hide\@small\+ {
+    display: none;
+  }
+}
+
+@include breakpoint('medium+') {
+  .u-hide\@medium\+ {
+    display: none;
+  }
+}
+
+@include breakpoint('large+') {
+  .u-hide\@large\+ {
+    display: none;
+  }
+}

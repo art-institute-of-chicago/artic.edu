@@ -1,0 +1,135 @@
+
+.g-footer {
+  @include background-fill;
+  padding-bottom: 44px;
+  background-color: $color__bg--footer;
+  color: $color__text--contrast;
+
+  @include breakpoint('large+') {
+    padding-bottom: 60px;
+  }
+}
+
+.g-footer .o-grid-listing > *::before,
+.g-footer .o-grid-listing > *::after {
+  background-color: $color__rules--contrast;
+}
+
+.g-footer .o-grid-listing > *:first-child::after {
+  display: none;
+  content: none;
+}
+
+.g-footer .o-grid-listing > * > *:first-child {
+  margin-top: 0;
+}
+
+@include breakpoint('medium+') {
+  .g-footer .o-grid-listing > *:nth-child(2) {
+    padding-top: 48px;
+  }
+}
+
+@include breakpoint('medium-') {
+  .g-footer .o-grid-listing > *::after {
+    content: none;
+    display: none;
+  }
+
+  .g-footer .o-grid-listing > *:nth-child(1),
+  .g-footer .o-grid-listing > *:nth-child(2) {
+    order: 1;
+  }
+
+  .g-footer .o-grid-listing > *:nth-child(3),
+  .g-footer .o-grid-listing > *:nth-child(4) {
+    order: 3;
+  }
+
+  .g-footer .o-grid-listing > *:nth-child(5),
+  .g-footer .o-grid-listing > *:nth-child(6) {
+    order: 2;
+  }
+
+  .g-footer .o-grid-listing > *:nth-child(7),
+  .g-footer .o-grid-listing > *:nth-child(8) {
+    order: 4;
+  }
+}
+
+.g-footer h3 {
+  color: $color__text--title-contrast;
+}
+
+.g-footer h3 a {
+  display: flex;
+  color: inherit;
+}
+
+.g-footer h3 .icon--arrow {
+  position: relative;
+  top: 4px;
+  flex: 0 0 auto;
+  margin-left: auto;
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
+.g-footer figure {
+  margin-top: 20px;
+}
+
+.g-footer figure a {
+  display: block;
+}
+
+.g-footer figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.g-footer__legals {
+  padding-top: 19px;
+  border-top: 1px solid $color__rules--contrast;
+
+  @include breakpoint('large+') {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+
+.g-footer__legals li {
+  @include breakpoint('large+') {
+    flex: 0 0 auto;
+    margin-left: 16px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+
+.g-footer__credit {
+  position: absolute;
+  right: 0;
+  bottom: 44px;
+  color: $color__text--contrast;
+
+  @include breakpoint('large+') {
+    bottom: 60px;
+  }
+
+  &:hover,
+  &:focus {
+    color: $color__text--title-contrast;
+  }
+
+  &::before,
+  &::after {
+    display: none;
+  }
+}
