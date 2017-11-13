@@ -23,7 +23,7 @@
   <!-- insert head.js - ideally minified and inline and not linked like this -->
   <script src="/dist/scripts/head.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
-  <link href="/dist/styles/app.css" rel="stylesheet" />
+  <link href="{{ revAsset('styles/app.css') }}" rel="stylesheet" />
 
   <style>
     #a17 {
@@ -203,6 +203,6 @@
   <span class="design-grid design-grid--columns js-hide"></span>
 </div>
 
-<script src="/dist/scripts/app.js"></script>
+<script src="{{ revAsset('scripts/app.js') }}"></script>
 </body>
 </html>

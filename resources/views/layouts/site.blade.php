@@ -50,8 +50,8 @@
   </header>
 
   <main id="content">
-    <ul class="o-features o-features--full">
-      <li class="m-listing m-listing--feature o-features__hero">
+    <ul class="o-features">
+      <li class="m-listing m-listing--feature o-features__hero-100vw">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
             <video src="/test/hero-video.mp4" poster="/test/hero-poster.jpg" autoplay loop muted></video>
@@ -74,7 +74,7 @@
             <span class="m-listing__meta-top">
               <em class="m-listing__type f-tag">Special Exhibition</em>
             </span> <br>
-            <strong class="m-listing__title f-module-title-1">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
+            <strong class="m-listing__title f-module-title-1">Moholy- Nagy: Future Present</strong> <br>
           </span>
         </a>
       </li>
@@ -87,7 +87,7 @@
             <span class="m-listing__meta-top">
               <em class="m-listing__type f-tag">Special Exhibition</em>
             </span> <br>
-            <strong class="m-listing__title f-module-title-1">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
+            <strong class="m-listing__title f-module-title-1">Rubens and his legacy</strong> <br>
           </span>
         </a>
       </li>

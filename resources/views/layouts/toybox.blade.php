@@ -23,7 +23,7 @@
   <!-- insert head.js - ideally minified and inline and not linked like this -->
   <script src="/dist/scripts/head.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
-  <link href="/dist/styles/app.css" rel="stylesheet" />
+  <link href="{{ revAsset('styles/app.css') }}" rel="stylesheet" />
 
   <style>
     #a17 {
@@ -249,127 +249,127 @@
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing, no cols</p>
     <ul class="o-grid-listing">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing, no cols, o-grid-listing--gridlines-top</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-top">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing, no cols, o-grid-listing--gridlines-rows</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-rows">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing, no cols, o-grid-listing--gridlines-split-rows</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-split-rows">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing, 2 cols at small, 3 cols at medium, 4 cols large+ (most examples follow this)</p>
     <ul class="o-grid-listing o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--keyline-top</p>
     <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-right</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-cols</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-cols</p>
     <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-top</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-top</p>
     <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-rows</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-top</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-right o-grid-listing--gridlines-top</p>
     <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-rows</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-top</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--gridlines-top</p>
     <ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-split-rows</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-split-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-split-rows</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-split-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
     <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-split-rows</p>
     <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-split-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-      <?php include './includes/_listitems.php'; ?>
+      @include('shared.listitems')
     </ul>
 
     <hr class="hr--big-break">
@@ -680,8 +680,8 @@
     </div>
   </main>
 
-  <?php include './includes/_g-footer.php'; ?>
-  <?php include './includes/_g-calendar.php'; ?>
+  @include('shared.footer')
+  @include('shared.calendar')
 
   <span class="design-grid-toggle design-grid-toggle--baseline" onClick="this.nextElementSibling.classList.toggle('js-hide');">Toggle baseline grid</span>
   <span class="design-grid design-grid--baseline js-hide"></span>
@@ -689,7 +689,7 @@
   <span class="design-grid design-grid--columns js-hide"></span>
 </div>
 
-<script src="/dist/scripts/app.js"></script>
+<script src="{{ revAsset('scripts/app.js') }}"></script>
 </body>
 </html>
 
