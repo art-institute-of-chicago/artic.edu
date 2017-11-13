@@ -634,8 +634,8 @@
         <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
       </li>
       <li>
-        <p class="f-body-editorial">f-dropcap-editorial / f-body-editorial f-body-editorial--w-dropcap</p>
-        <p class="f-body-editorial f-body-editorial--w-dropcap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula libero vel quam fringilla dignissim. Praesent finibus sem sed arcu tempor, non tincidunt magna luctus. Maecenas lacinia interdum lacinia. Pellentesque ac felis vehicula, fermentum mauris sed, ornare ex. Mauris cursus, nulla eget fermentum molestie, metus velit sodales turpis, nec tempus felis orci id erat.</p>
+        <p class="f-body-editorial">f-dropcap-editorial / f-dropcap-editorial</p>
+        <p class="f-body-editorial"><span class="f-dropcap-editorial">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula libero vel quam fringilla dignissim. Praesent finibus sem sed arcu tempor, non tincidunt magna luctus. Maecenas lacinia interdum lacinia. Pellentesque ac felis vehicula, fermentum mauris sed, ornare ex. Mauris cursus, nulla eget fermentum molestie, metus velit sodales turpis, nec tempus felis orci id erat.</p>
       </li>
       <li>
         <p class="f-date-numeral">f-date-numeral</p>
