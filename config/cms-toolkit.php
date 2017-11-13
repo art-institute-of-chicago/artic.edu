@@ -1,7 +1,7 @@
 <?php
 
 return [
-    // 'templates_on_frontend_domain' => true,
+    'templates_on_frontend_domain' => true,
 
     'frontend' => [
         'dev_assets_path' => '/dist',
