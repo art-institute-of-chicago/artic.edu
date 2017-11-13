@@ -35,6 +35,8 @@
 }
 
 
+// child variant `o-features__hero-100vw`
+
 .o-features__hero-100vw {
   @include breakpoint('medium+') {
     position: relative;
@@ -44,7 +46,6 @@
     margin-left: -50vw;
   }
 }
-
 
 .o-features__hero-100vw.m-listing--feature .m-listing__meta {
   @include breakpoint('medium+') {
