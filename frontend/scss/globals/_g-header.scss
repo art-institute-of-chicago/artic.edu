@@ -81,3 +81,9 @@
     text-decoration: underline;
   }
 }
+
+.g-header__opening-hours br {
+  @include breakpoint('large+') {
+    display: none;
+  }
+}

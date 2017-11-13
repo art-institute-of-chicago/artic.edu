@@ -42,13 +42,22 @@
 
 .m-listing__img {
   display: block;
+  position: relative;
+  height: 0;
+  padding-bottom: 62.25%;
+  overflow: hidden;
 }
 
-.m-listing__img img {
-  display: block;
-  flex: 0 0 auto;
+.m-listing__img img,
+.m-listing__img video {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .m-listing__meta {
@@ -87,7 +96,6 @@
 
 
 .m-listing__type {
-  display: block;
   color: $color__text--type;
   font-style: normal;
 }
@@ -100,7 +108,6 @@
 
 .m-listing__price,
 .m-listing__date {
-  display: block;
   color: $color__text;
 }
 
@@ -136,4 +143,19 @@
     right: 40px;
     bottom: 40px;
   }
+}
+
+.o-features__hero.m-listing--feature .m-listing__meta {
+  @include breakpoint('large+') {
+    right: 50%;
+  }
+}
+
+.m-listing--feature .m-listing__type,
+.m-listing--feature .m-listing__title {
+  color: $color__text--title-contrast;
+}
+
+.m-listing--feature .m-listing__date {
+  color: $color__text--contrast;
 }

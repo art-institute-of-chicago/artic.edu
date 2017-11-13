@@ -12,8 +12,8 @@
   margin-left: calc(-50vw - 2px);
 
   @include breakpoint('xxlarge') {
-    width: calc( #{map-get($main-col-widths, xxlarge)} + 4px );
-    margin-left: calc( #{map-get($main-col-widths, xxlarge) / -2} - 2px );
+    width: calc( #{map-get($main-col-widths, xxlarge)} + 84px );
+    margin-left: calc( #{map-get($main-col-widths, xxlarge) / -2} - 42px );
   }
 }
 

@@ -46,7 +46,7 @@
         <li><a href="#">Become a member</a></li>
       </ul>
     </nav>
-    <p class="g-header__opening-hours f-secondary"><a href="#">Open daily 10:30&ndash;5:00, Thursdays until 8:00</a></p>
+    <p class="g-header__opening-hours f-secondary"><a href="#">Open daily 10:30&ndash;5:00, <br>Thursdays until 8:00</a></p>
   </header>
 
   <main id="content">
@@ -54,46 +54,40 @@
       <li class="m-listing m-listing--feature o-features__hero">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
-            <img src="http://placehold.dev.area17.com/image/350x200">
+            <video src="/test/hero-video.mp4" poster="/test/hero-poster.jpg" autoplay loop muted></video>
           </span>
           <span class="m-listing__meta">
             <span class="m-listing__meta-top">
               <em class="m-listing__type f-tag">Now open</em>
-              <span class="m-listing__date f-secondary">Oct 29, 2017</span>
+              <span class="m-listing__date f-secondary">September 19, 2015 - January 3, 2016</span>
             </span> <br>
-            <strong class="m-listing__title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong>
+            <strong class="m-listing__title f-display-1">Making Place: The Architecture of David Adjaye</strong>
           </span>
         </a>
       </li>
       <li class="m-listing m-listing--feature">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
-            <img src="http://placehold.dev.area17.com/image/350x200">
+            <img src="/test/feature-1.jpg">
           </span>
           <span class="m-listing__meta">
             <span class="m-listing__meta-top">
               <em class="m-listing__type f-tag">Special Exhibition</em>
             </span> <br>
-            <strong class="m-listing__title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
-            <span class="m-listing__meta-bottom">
-              <span class="m-listing__date f-secondary">Oct 29, 2017</span>
-            </span>
+            <strong class="m-listing__title f-module-title-1">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
           </span>
         </a>
       </li>
       <li class="m-listing m-listing--feature">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
-            <img src="http://placehold.dev.area17.com/image/350x200">
+            <img src="/test/feature-2.jpg">
           </span>
           <span class="m-listing__meta">
             <span class="m-listing__meta-top">
               <em class="m-listing__type f-tag">Special Exhibition</em>
             </span> <br>
-            <strong class="m-listing__title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
-            <span class="m-listing__meta-bottom">
-              <span class="m-listing__date f-secondary">Oct 29, 2017</span>
-            </span>
+            <strong class="m-listing__title f-module-title-1">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
           </span>
         </a>
       </li>
