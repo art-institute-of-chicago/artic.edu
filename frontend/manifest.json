@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "app.css": {
+      "files": [
+        "scss/app.scss"
+      ]
+    },
+    "html4css.css": {
+      "files": [
+        "scss/html4css.scss"
+      ]
+    }
+  },
+  "paths": {
+    "source": "frontend/",
+    "icons": "icons/",
+    "styles": "scss/",
+    "scripts": "js/",
+    "dist": "public/dist/",
+    "toolkit": "toolkit/"
+  },
+  "config": {
+    "devUrl": "http://aic.localip",
+    "whitelist": [
+      "/wp-admin/admin-ajax.php"
+    ],
+    "blacklist": [
+      "/wp-admin/**"
+    ]
+  }
+}
