@@ -126,7 +126,14 @@
 
 .m-listing--feature .m-listing__meta {
   position: absolute;
-  left: 40px;
-  right: 40px;
-  bottom: 40px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  min-height: 0;
+
+  @include breakpoint('large+') {
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+  }
 }

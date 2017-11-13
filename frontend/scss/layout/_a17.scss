@@ -1,8 +1,14 @@
 #a17 {
   @extend %container;
   position: relative;
+  padding-top: 84px;
+
+  @include breakpoint('medium+') {
+    padding-top: 0;
+  }
 
   div[style] > & {
     width: 100%;
+    padding-top: 0;
   }
 }

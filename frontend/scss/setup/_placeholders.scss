@@ -7,12 +7,12 @@
     @include breakpoint('#{$name}') {
       @if (map-get($main-col-widths, $name) == 'fluid') {
         width: auto;
-        padding-right: map-get($outer-gutters, $name);
-        padding-left: map-get($outer-gutters, $name);
+        margin-right: map-get($outer-gutters, $name);
+        margin-left: map-get($outer-gutters, $name);
       } @else {
         width: map-get($main-col-widths, $name);
-        padding-right: 0;
-        padding-left: 0;
+        margin-right: auto;
+        margin-left: auto;
       }
     }
   }

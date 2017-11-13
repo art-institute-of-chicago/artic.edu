@@ -10,6 +10,11 @@
   left: 50%;
   width: calc(100vw + 4px);
   margin-left: calc(-50vw - 2px);
+
+  @include breakpoint('xxlarge') {
+    width: calc( #{map-get($main-col-widths, xxlarge)} + 4px );
+    margin-left: calc( #{map-get($main-col-widths, xxlarge) / -2} - 2px );
+  }
 }
 
 .o-features > * {
@@ -19,6 +24,9 @@
 }
 
 .o-features > *:not(.o-features__hero) {
-  width: calc(50% - 4px);
   margin-top: 4px;
+
+  @include breakpoint('medium+') {
+    width: calc(50% - 4px);
+  }
 }
