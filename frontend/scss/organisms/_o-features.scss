@@ -1,0 +1,24 @@
+
+.o-features {
+  display: flex;
+  position: relative;
+  flex-flow: row wrap;
+  margin: 0 -2px;
+}
+
+.o-features--full {
+  left: 50%;
+  width: calc(100vw + 4px);
+  margin-left: calc(-50vw - 2px);
+}
+
+.o-features > * {
+  flex: 0 0 auto;
+  width: calc(100% - 4px);
+  margin: 0 2px;
+}
+
+.o-features > *:not(.o-features__hero) {
+  width: calc(50% - 4px);
+  margin-top: 4px;
+}

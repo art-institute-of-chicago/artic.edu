@@ -1,0 +1,40 @@
+
+
+.m-title-bar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 19px;
+  border-top: 1px solid $color__rules--secondary;
+}
+
+.m-title-bar__title {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+.m-title-bar__links {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row wrap;
+  margin-top: 0;
+}
+
+.m-title-bar__links li {
+  flex: 0 0 auto;
+  margin-left: 20px;
+}
+
+.m-title-bar__links a {
+  color: $color__link;
+
+  &:hover,
+  &:focus {
+    color: $color__link--hover;
+  }
+
+  &:active {
+    color: $color__link--active;
+  }
+}

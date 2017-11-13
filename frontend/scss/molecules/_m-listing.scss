@@ -1,4 +1,31 @@
+/***
 
+```
+<li class="m-listing m-listing--feature o-features__hero">
+  <a href="#" class="m-listing__link">
+    <span class="m-listing__img">
+      <img src="http://placehold.dev.area17.com/image/400x225">
+    </span>
+    <span class="m-listing__meta">
+      <em class="m-listing__type f-tag">Now open</em> <span class="m-listing__bottom m-listing__date f-secondary">Oct 29, 2017</span><br>
+      <strong class="m-listing__title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong>
+    </span>
+  </a>
+</li>
+<li class="m-listing m-listing--feature">
+  <a href="#" class="m-listing__link">
+    <span class="m-listing__img">
+      <img src="http://placehold.dev.area17.com/image/400x225">
+    </span>
+    <span class="m-listing__meta">
+      <em class="m-listing__type f-tag">Now open</em> <span class="m-listing__bottom m-listing__date f-secondary">Oct 29, 2017</span><br>
+      <strong class="m-listing__title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong>
+    </span>
+  </a>
+</li>
+```
+
+***/
 
 .m-listing {
   display: flex;
@@ -46,10 +73,16 @@
   display: none;
 }
 
-.m-listing__bottom {
+.m-listing__meta-top {
+  display: block;
+}
+
+.m-listing__meta-bottom {
+  display: block;
   margin-top: auto;
   padding-top: 4px;
 }
+
 
 
 
@@ -79,4 +112,21 @@
   display: inline-block;
   padding-left: 4px;
   color: $color__text--highlight;
+}
+
+
+
+// variant `m-listing--feature`
+
+.m-listing--feature .m-listing__link {
+  display: block;
+  position: relative;
+  height: auto;
+}
+
+.m-listing--feature .m-listing__meta {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
 }

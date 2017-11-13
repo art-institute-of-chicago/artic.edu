@@ -60,9 +60,12 @@ $include-icons: false; // see icons.scss!
 @import 'molecules/m-tabs';
 @import 'molecules/m-calendar';
 @import 'molecules/m-listing';
+@import 'molecules/m-title-bar';
+@import 'molecules/m-info-block';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
+@import 'organisms/o-features';
 @import 'organisms/o-grid-listing';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
@@ -73,7 +76,7 @@ $include-icons: false; // see icons.scss!
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ sections */
 
-@import 'globals/header';
+@import 'globals/g-header';
 @import 'globals/g-footer';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ styleguide */

@@ -1,0 +1,62 @@
+.g-header {
+  position: absolute;
+  z-index: map-get($zindexs, 'header');
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 112px;
+}
+
+.g-header__logo {
+  position: absolute;
+  left: 0;
+  top: 20px;
+}
+
+.g-header__opening-hours {
+  position: absolute;
+  left: 100px;
+  top: 20px;
+  margin-top: 0;
+  color: $color__text--contrast;
+}
+
+.g-header nav ul {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 0;
+}
+
+.g-header nav li {
+  flex: 0 0 auto;
+  margin-left: 28px;
+}
+
+.g-header__nav-primary {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.g-header__nav-primary a {
+  color: $color__text--title-contrast;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.g-header__nav-secondary {
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+
+.g-header__nav-secondary a,
+.g-header__opening-hours a {
+  color: $color__text--contrast;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
