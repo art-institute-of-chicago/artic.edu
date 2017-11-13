@@ -168,6 +168,8 @@ return [
          * Package Service Providers...
          */
 
+        A17\CmsToolkit\CmsToolkitServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

@@ -6,6 +6,7 @@ toolkit
 /public/hot
 /public/storage
 /storage/*.key
+/storage/debugbar
 /vendor
 /.idea
 /.vagrant
@@ -15,3 +16,7 @@ npm-debug.log
 yarn-error.log
 .env
 .DS_Store
+
+/public/toolkit
+/public/styleguide
+/public/storage
