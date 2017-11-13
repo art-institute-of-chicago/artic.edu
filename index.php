@@ -1,3 +1,12 @@
+<!-- DEPRECATED: Use aic/resources/views/layouts/site.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/site.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/site.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/site.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/site.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/site.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/site.blade.php -->
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="f-no-js">
 <head>

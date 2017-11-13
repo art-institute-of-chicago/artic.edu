@@ -1,3 +1,11 @@
+<!-- DEPRECATED: Use aic/resources/views/shared/listitems.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/listitems.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/listitems.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/listitems.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/listitems.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/listitems.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/listitems.blade.php -->
+
 <?php for ($i = 0; $i < 6; $i++): ?>
   <li class="m-listing">
     <a href="#" class="m-listing__link">

@@ -1,3 +1,11 @@
+<!-- DEPRECATED: Use aic/resources/views/layouts/typespec.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/typespec.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/typespec.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/typespec.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/typespec.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/typespec.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/layouts/typespec.blade.php -->
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="f-no-js">
 <head>

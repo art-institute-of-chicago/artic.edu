@@ -1,3 +1,11 @@
+<!-- DEPRECATED: Use aic/resources/views/shared/calendar.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/calendar.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/calendar.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/calendar.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/calendar.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/calendar.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/calendar.blade.php -->
+
 <div class="m-calendar" id="calendar" data-behavior="calendar">
   <b class="m-calendar__title f-caption" data-calendar-title></b>
   <table>
