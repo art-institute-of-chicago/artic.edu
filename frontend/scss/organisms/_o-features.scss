@@ -3,30 +3,71 @@
   display: flex;
   position: relative;
   flex-flow: row wrap;
-  margin: 0 -2px;
-}
+  margin-top: 0;
 
-.o-features--full {
-  left: 50%;
-  width: calc(100vw + 4px);
-  margin-left: calc(-50vw - 2px);
-
-  @include breakpoint('xxlarge') {
-    width: calc( #{map-get($main-col-widths, xxlarge)} + 84px );
-    margin-left: calc( #{map-get($main-col-widths, xxlarge) / -2} - 42px );
+  @include breakpoint('medium+') {
+    margin-right: -2px;
+    margin-left: -2px;
   }
 }
 
 .o-features > * {
   flex: 0 0 auto;
-  width: calc(100% - 4px);
-  margin: 0 2px;
-}
-
-.o-features > *:not(.o-features__hero) {
+  width: 100%;
   margin-top: 4px;
 
   @include breakpoint('medium+') {
+    width: calc(100% - 4px);
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+}
+
+.o-features > *:first-child {
+  margin-top: 0;
+}
+
+.o-features > *:not(.o-features__hero-100vw) {
+
+  @include breakpoint('medium+') {
     width: calc(50% - 4px);
+  }
+}
+
+
+.o-features__hero-100vw {
+  @include breakpoint('medium+') {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin-right: auto;
+    margin-left: -50vw;
+  }
+}
+
+
+.o-features__hero-100vw.m-listing--feature .m-listing__meta {
+  @include breakpoint('medium+') {
+    left: 50%;
+    width: colspan(40, medium);
+    margin-left: colspan(29, medium, 0, true);
+  }
+
+  @include breakpoint('large+') {
+    left: 50%;
+    width: colspan(29, large);
+    margin-left: colspan(29, large, 0, true);
+  }
+
+  @include breakpoint('xlarge+') {
+    left: 50%;
+    width: colspan(29, xlarge);
+    margin-left: colspan(29, xlarge, 0, true);
+  }
+
+  @include breakpoint('xxlarge') {
+    left: 50%;
+    width: colspan(29, xxlarge);
+    margin-left: colspan(29, xxlarge, 0, true);
   }
 }

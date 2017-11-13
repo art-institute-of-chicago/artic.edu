@@ -50,8 +50,8 @@
   </header>
 
   <main id="content">
-    <ul class="o-features o-features--full">
-      <li class="m-listing m-listing--feature o-features__hero">
+    <ul class="o-features">
+      <li class="m-listing m-listing--feature o-features__hero-100vw">
         <a href="#" class="m-listing__link">
           <span class="m-listing__img">
             <video src="/test/hero-video.mp4" poster="/test/hero-poster.jpg" autoplay loop muted></video>
