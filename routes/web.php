@@ -2,4 +2,4 @@
 
 Route::name('home')->get('/', 'HomeController@index');
 
-Route::name('templates')->get('/', 'TemplatesController@index');
+Route::get('/templates/{slug?}', 'TemplatesController@index');
