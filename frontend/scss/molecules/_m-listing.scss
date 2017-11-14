@@ -128,7 +128,7 @@
 .m-listing--feature .m-listing__img {
   display: block;
   position: relative;
-  max-height: 90vh;
+  max-height: 95vh;
   overflow: hidden;
 }
 
@@ -137,6 +137,21 @@
   display: block;
   height: 0;
   padding-bottom: 62.25%;
+}
+
+.m-listing--feature .m-listing__img::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(to top, rgba(0,0,0,.3) 0%, rgba(0,0,0,.033) 20%, rgba(0,0,0,0) 50%);
+}
+
+
+.o-features__hero-100vw.m-listing--feature .m-listing__img::after {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 48px, rgba(0,0,0,0) 240px, rgba(0,0,0,0) calc(100% - 320px), rgba(0,0,0,.4) 100%);
 }
 
 .m-listing--feature .m-listing__img img,

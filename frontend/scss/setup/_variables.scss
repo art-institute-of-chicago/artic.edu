@@ -11,7 +11,7 @@ $main-col-widths: (
   medium: 'fluid',
   large: 'fluid',
   xlarge: 'fluid',
-  xxlarge: 1400px,
+  xxlarge: 1550px,
 );
 
 // Outer gutters, in px or vw, of each breakpoint
@@ -27,12 +27,12 @@ $outer-gutters: (
 // Breakpoint information, where each starts and stops
 // if a breakpoint is not fluid, then the start value is equal to the main col value plus 2x the gutter at this breakpoint
 $breakpoints: (
-  xsmall: (start: null, end: 399),
-  small: (start: 400, end: 699),
-  medium: (start: 700, end: 999),
-  large: (start: 1000, end: 1259),
-  xlarge: (start: 1260, end: 1449),
-  xxlarge: (start: 1450, end: null)
+  xsmall: (start: null, end: 599),
+  small: (start: 600, end: 799),
+  medium: (start: 800, end: 1039),
+  large: (start: 1040, end: 1259),
+  xlarge: (start: 1260, end: 1499),
+  xxlarge: (start: 1500, end: null)
 );
 
 // zindexs

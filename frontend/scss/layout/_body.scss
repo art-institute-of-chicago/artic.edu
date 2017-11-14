@@ -12,6 +12,7 @@ html {
 }
 
 body {
+  @include font-smoothing(on);
   background: $color__bg;
   color: $color__text;
   font-family: $sans-serif-font;
