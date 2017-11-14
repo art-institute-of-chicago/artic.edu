@@ -1,3 +1,11 @@
+<!-- DEPRECATED: Use aic/resources/views/shared/footer.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/footer.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/footer.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/footer.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/footer.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/footer.blade.php -->
+<!-- DEPRECATED: Use aic/resources/views/shared/footer.blade.php -->
+
 <footer id="footer" class="g-footer">
   <a href="#a17" class="f-secondary g-footer__top-link">Back to top<svg aria-hidden="true" class="icon--arrow icon--arrow--top"><use xlink:href="#icon--arrow" /></svg></a>
   <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-split-rows o-grid-listing--2-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">

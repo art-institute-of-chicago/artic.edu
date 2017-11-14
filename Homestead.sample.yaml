@@ -1,0 +1,20 @@
+ip: 192.168.10.20
+memory: 2048
+cpus: 1
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+keys:
+    - ~/.ssh/id_rsa
+folders:
+    -
+        map: /Users/fernando/trabajo/proyectos/aic
+        to: /home/vagrant/aic
+sites:
+    - map: aic.dev.a17.io
+      to: "/home/vagrant/aic/public"
+    - map: admin.aic.dev.a17.io
+      to: "/home/vagrant/aic/public"
+databases:
+    - homestead
+name: aic
+hostname: aic

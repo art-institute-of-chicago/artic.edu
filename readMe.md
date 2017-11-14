@@ -1,12 +1,32 @@
-# New England Journal of Medicine
+# Art Institute of Chicago
 
 This development repository for the AIC build, uses as its foundation the AREA 17 FE boilerplate and the AREA 17 CMS Toolkit.
 
-Before editing any files here, please install [EditorConfig](https://code.area17.com/a17/fe-boilerplate/wikis/dotfiles-editorconfig) to your text editor, enable [jshint](https://code.area17.com/a17/fe-boilerplate/wikis/dotfiles-jshintrc) and enable [scss-lint](https://code.area17.com/a17/fe-boilerplate/wikis/dotfiles-scss-lint-yml).
+#### Homestead config
 
-## Local Compile
+- Rename `Homestead.example.yaml` to `Homestead.yaml`
+- Update `folders.map` with your local path to the AIC repository
+- Change the IP at the top if you have another vagrant machine running at the same IP
+- Install composer dependencies `composer install`. This step should be done inside the VM, but in order to get the VM running you need to install the dependencies. TODO: Solve this egg-chicken issue.
+- Provision your vagrant machine with `vagrant up`
 
-In order to compile SCSS/JS files, you will need Node and Gulp running on your system. Typically we install Node and NVM via the package manger Homebrew. Once those are installed, within this directory you will need to:
+In case the system didn't update your /etc/hosts file automatically:
+
+- Add the ip and domain defined at `Homestead.yaml` to your `/etc/hosts` file.
+
+
+#### Application setup
+
+- Hop into the vm with `vagrant ssh` and cd into the aic folder in `/home/vagrant/aic`
+- Ensure dependencies are installed with `composer install`
+- Copy `.env.example` as `.env` and update with your local settings (if necessary).
+- Generate your application key: `php artisan key:generate`
+- Migrate the database schema: `php artisan migrate`
+- Create a superadmin user: `php artisan cms-toolkit:superadmin`
+- Access the CMS [here](http://admin.aic.dev.a17.io/login).
+- Access Templates Here [here](http://admin.aic.dev.a17.io/templates/home).
+
+#### Frontend assets (To be defined)
 
 ```
 $ npm install
