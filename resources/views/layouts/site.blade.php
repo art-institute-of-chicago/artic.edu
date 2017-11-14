@@ -8,20 +8,19 @@
   <title>AIC</title>
 
   <!-- Main Favicon -->
-  <link rel="shortcut icon" href="/dist/images/favicon.ico">
+  <link rel="shortcut icon" href="{{ revAsset('styles/images/favicon.ico') }}">
   <!-- Apple Touch Icons (ipad/iphone standard+retina) -->
-  <link rel="apple-touch-icon" href="/dist/images/favicon-152.png"> <!-- General use iOS/Android icon, auto-downscaled by devices. -->
-  <link rel="apple-touch-icon" type="image/png" href="/dist/images/favicon-120.png" sizes="120x120"> <!-- iPhone retina touch icon -->
-  <link rel="apple-touch-icon" type="image/png" href="/dist/images/favicon-76.png" sizes="76x76"> <!-- iPad home screen icons -->
+  <link rel="apple-touch-icon" href="{{ revAsset('styles/images/favicon-152.png') }}"> <!-- General use iOS/Android icon, auto-downscaled by devices. -->
+  <link rel="apple-touch-icon" type="image/png" href="{{ revAsset('styles/images/favicon-120.png') }}" sizes="120x120"> <!-- iPhone retina touch icon -->
+  <link rel="apple-touch-icon" type="image/png" href="{{ revAsset('styles/images/favicon-76.png') }}" sizes="76x76"> <!-- iPad home screen icons -->
   <!-- Favicon Fallbacks for old browsers that don't read .ico -->
-  <link rel="icon" type="image/png" href="/dist/images/favicon-32.png" sizes="32x32">
-  <link rel="icon" type="image/png" href="/dist/images/favicon-16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="{{ revAsset('styles/images/favicon-32.png') }}" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{ revAsset('styles/images/favicon-32.png') }}" sizes="16x16">
 
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
   <![endif]-->
-  <!-- insert head.js - ideally minified and inline and not linked like this -->
-  <script src="/dist/scripts/head.js"></script>
+  <@include('layouts._head-js')
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
   <link href="{{ revAsset('styles/app.css') }}" rel="stylesheet" />
 </head>
