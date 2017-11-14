@@ -3,20 +3,24 @@
 @section('content')
 
 <ul class="o-features">
-  <li class="m-listing m-listing--feature o-features__hero-100vw">
-    <a href="#" class="m-listing__link">
-      <span class="m-listing__img">
-        <video src="/test/hero-video.mp4" poster="/test/hero-poster.jpg" autoplay loop muted></video>
-      </span>
-      <span class="m-listing__meta">
-        <span class="m-listing__meta-top">
-          <em class="m-listing__type f-tag">Now open</em>
-          <span class="m-listing__date f-secondary">September 19, 2015 - January 3, 2016</span>
-        </span> <br>
-        <strong class="m-listing__title f-display-1">Making Place: The Architecture of David Adjaye</strong>
-      </span>
-    </a>
-  </li>
+
+  @isset($listingFeatured)
+    <li class="m-listing m-listing--feature o-features__hero-100vw">
+      <a href="#" class="m-listing__link">
+        <span class="m-listing__img">
+          <video src="/test/hero-video.mp4" poster="/test/hero-poster.jpg" autoplay loop muted></video>
+        </span>
+        <span class="m-listing__meta">
+          <span class="m-listing__meta-top">
+            <em class="m-listing__type f-tag">{{ $listingFeatured->type }}</em>
+            <span class="m-listing__date f-secondary">{{ $listingFeatured->dateFormatted }}</span>
+          </span> <br>
+          <strong class="m-listing__title f-display-1">{{ $listingFeatured->title }}</strong>
+        </span>
+      </a>
+    </li>
+  @endisset
+
   <li class="m-listing m-listing--feature">
     <a href="#" class="m-listing__link">
       <span class="m-listing__img">

@@ -2,4 +2,9 @@
 
 Route::name('home')->get('/', 'HomeController@index');
 
-Route::get('/templates/{slug?}', 'TemplatesController@index');
+if (!app()->environment('production')) {
+  $router->get('/statics/{slug?}', [
+    'as' => 'statics.index',
+    'uses' => 'StaticsController@index'
+  ]);
+}

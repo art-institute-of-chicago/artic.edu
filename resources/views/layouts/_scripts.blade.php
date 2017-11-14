@@ -1,1 +1,1 @@
-<script src="{{revAsset('app.js')}}"></script>
+<script src="{{revAsset('scripts/app.js')}}"></script>
