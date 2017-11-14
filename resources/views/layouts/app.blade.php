@@ -21,7 +21,7 @@
 
   @include('layouts._head-js')
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
-  <link href="{{revAsset('app.css')}}" rel="stylesheet" />
+  <link href="{{revAsset('styles/app.css')}}" rel="stylesheet" />
 </head>
 
 <body>
@@ -45,6 +45,6 @@
 
 </div>
 
-@include('layouts.scripts_js')
+@include('layouts._scripts')
 </body>
 </html>
