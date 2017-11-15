@@ -25,34 +25,72 @@ class StaticsController extends Controller {
 
   public function home() {
     return view('statics/home', [
-      'listingFeatured' => new StaticObjectPresenter([
-        'title' => 'Testing listing featured',
-        'date'  => $this->faker->date('d/m/Y'),
-        'type'  => 'Now Open',
-        'dateFormatted' => 'September 19, 2015 - January 3, 2016',
-      ])
+      'heroExhibitions' => $this->getExhibitions(3),
+      'featuredExhibitions' => $this->getExhibitions(2),
+      'exhibitions' => $this->getExhibitions(4),
+    ]);
+  }
+
+  public function whatson() {
+    return view('statics/whatson', [
+      'featuredExhibitions' => $this->getExhibitions(2),
+      'exhibitions' => $this->getExhibitions(12),
     ]);
   }
 
   // --------------------------------------------------------------------------------------------
-  // SOME FAKER EXAMPLES
+  // Make some fake datas
   // --------------------------------------------------------------------------------------------
 
-  // $this->faker->uuid
-  // $this->faker->name
-  // $this->faker->uuid
-  // $this->faker->country
-  // $this->faker->firstName
-  // $this->faker->lastName
-  // $this->faker->date
-  // $this->faker->boolean
-  // $this->faker->randomDigit
-  // $this->faker->sentence
-  // $this->faker->company
-  // $this->faker->city
-  // $this->faker->year
-  // $this->faker->numberBetween
-  // $this->faker->isbn13
-  // $this->faker->randomElement
+  private function getImage() {
+    $images = array(
+      array("src" => "http://placehold.dev.area17.com/image/524x750", "width" => 524, "height" => 750),
+      array("src" => "http://placehold.dev.area17.com/image/516x750", "width" => 516, "height" => 750),
+      array("src" => "http://placehold.dev.area17.com/image/651x500", "width" => 651, "height" => 500),
+      array("src" => "http://placehold.dev.area17.com/image/1193x1547", "width" => 1193, "height" => 1547),
+      array("src" => "http://placehold.dev.area17.com/image/3868x2052", "width" => 3868, "height" => 2052),
+      array("src" => "http://placehold.dev.area17.com/image/1537x2029", "width" => 1537, "height" => 2029),
+      array("src" => "http://placehold.dev.area17.com/image/2272x2279", "width" => 2272, "height" => 2279),
+      array("src" => "http://placehold.dev.area17.com/image/1571x3000", "width" => 1571, "height" => 3000),
+      array("src" => "http://placehold.dev.area17.com/image/2978x3000", "width" => 2978, "height" => 3000),
+      array("src" => "http://placehold.dev.area17.com/image/2161x3000", "width" => 2161, "height" => 3000),
+      array("src" => "http://placehold.dev.area17.com/image/1768x2100", "width" => 1768, "height" => 2100),
+    );
+
+    return $this->faker->randomElement($images);
+  }
+
+  private function getExhibitionType($upcoming = false) {
+    $exhibitionTypes = array("Exhibition","Special Exhibition","Ongoing");
+    return $upcoming ? "Upcoming" : $this->faker->randomElement($exhibitionTypes);
+  }
+
+  private function getFormattedDateString() {
+    return $this->faker->monthName().' '.$this->faker->numberBetween(1,30).', '.$this->faker->year();
+  }
+
+
+  private function getExhibition($upcoming = false) {
+    return new StaticObjectPresenter([
+      "type" => $this->getExhibitionType($upcoming),
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/event",
+      "title" => $this->faker->sentence(6, true),
+      "dateStart" => $this->getFormattedDateString(),
+      "dateEnd" => $this->getFormattedDateString(),
+      "closingSoon" => $this->faker->boolean(10),
+      "image" => $this->getImage(),
+    ]);
+  }
+
+  private function getExhibitions($num = 3, $upcoming = false) {
+    $exhibitions = array();
+    for ($i = 0; $i < $num; $i++) {
+      $exhibition = $this->getExhibition($upcoming);
+      array_push($exhibitions, $exhibition);
+    }
+    return $exhibitions;
+  }
+
 
 }
