@@ -39,7 +39,7 @@
   left: 100px;
   top: 20px;
   margin-top: 0;
-  color: $color__text--contrast;
+  color: $color__text--secondary;
 }
 
 .g-header nav ul {
@@ -60,7 +60,7 @@
 }
 
 .g-header__nav-primary a {
-  color: $color__text--title-contrast;
+  color: $color__text--title;
 
   &:hover {
     text-decoration: underline;
@@ -75,7 +75,7 @@
 
 .g-header__nav-secondary a,
 .g-header__opening-hours a {
-  color: $color__text--contrast;
+  color: $color__text--secondary;
 
   &:hover {
     text-decoration: underline;

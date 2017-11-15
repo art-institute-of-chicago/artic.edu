@@ -53,6 +53,10 @@
   padding-bottom: 66.66%;
 }
 
+.m-listing__img--square::before {
+  padding-bottom: 100%;
+}
+
 .m-listing__img img,
 .m-listing__img video {
   position: absolute;

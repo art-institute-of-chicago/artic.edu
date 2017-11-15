@@ -3,7 +3,7 @@ $feature = isset($feature) ? $feature : false;
 $hero = isset($hero) ? $hero : false;
 @endphp
 <{{ $tag or 'li' }} class="m-listing{{ $feature ? " m-listing--feature" : "" }}{{ ($feature and $hero) ? " o-features__hero-100vw" : "" }}">
-  <a href="#" class="m-listing__link">
+  <a href="{{ $exhibition->slug }}" class="m-listing__link">
     <span class="m-listing__img">
       <img src="{{ $exhibition->image['src'] }}">
     </span>
@@ -22,7 +22,7 @@ $hero = isset($hero) ? $hero : false;
       @elseif ($feature)
       <strong class="m-listing__title f-module-title-1">{{ $exhibition->title }}</strong>
       @else
-      <strong class="m-listing__title f-list-3">{{ $exhibition->title }}</strong>
+      <strong class="m-listing__title f-list-2">{{ $exhibition->title }}</strong>
       @endif
       @if (!$feature)
       <br>

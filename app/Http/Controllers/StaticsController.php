@@ -23,11 +23,22 @@ class StaticsController extends Controller {
       return view(($slug != "") ? "statics/{$slug}" : "statics/index");
   }
 
+  public function typetest() {
+    return view('statics/typetest', [
+      'exhibitions1' => $this->getExhibitions(2),
+      'exhibitions2' => $this->getExhibitions(3),
+      'exhibitions3' => $this->getExhibitions(4),
+      'products' => $this->getProducts(5),
+    ]);
+  }
+
   public function home() {
     return view('statics/home', [
+      'contrastHeader' => true,
       'heroExhibitions' => $this->getExhibitions(3),
       'featuredExhibitions' => $this->getExhibitions(2),
       'exhibitions' => $this->getExhibitions(4),
+      'products' => $this->getProducts(5),
     ]);
   }
 
@@ -92,5 +103,42 @@ class StaticsController extends Controller {
     return $exhibitions;
   }
 
+
+  private function getProduct() {
+    $priceRounded = $this->faker->boolean(70);
+    $price = $this->faker->numberBetween(30,2500);
+    $priceSale = $this->faker->boolean(30);
+
+    if ($priceSale) {
+      $priceSale = floor($price * 0.75);
+    }
+
+    if (!$priceRounded) {
+      $price = $price - 0.01;
+    }
+
+    if ($priceSale && !$priceRounded) {
+      $priceSale = $priceSale - 0.01;
+    }
+
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/product",
+      "title" => $this->faker->sentence(4, true),
+      "image" => $this->getImage(),
+      "price" => $price,
+      "priceSale" => $priceSale,
+      "currency" => "$",
+    ]);
+  }
+
+  private function getProducts($num = 5) {
+    $products = array();
+    for ($i = 0; $i < $num; $i++) {
+      $product = $this->getProduct();
+      array_push($products, $product);
+    }
+    return $products;
+  }
 
 }

@@ -1,0 +1,83 @@
+
+
+.o-article {
+
+  @include breakpoint('small+') {
+    padding-right: colspan(3, small);
+  }
+
+  @include breakpoint('medium+') {
+    padding-right: colspan(8, medium);
+  }
+
+  @include breakpoint('large+') {
+    display: flex;
+    flex-flow: row wrap;
+    padding-right: 0;
+  }
+}
+
+.o-article__header {
+  @include breakpoint('large+') {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  @include breakpoint('xlarge+') {
+    padding-left: colspan(13, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    padding-left: colspan(13, xxlarge);
+  }
+}
+
+.o-article__body {
+  position: relative;
+
+  @include breakpoint('large+') {
+    flex: 0 0 auto;
+    width: colspan(36, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(41, xlarge);
+    padding-left: colspan(13, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(41, xxlarge);
+    padding-left: colspan(13, xxlarge);
+  }
+}
+
+.o-article__asides {
+  @include breakpoint('large+') {
+    flex: 0 0 auto;
+    width: colspan(18, large);
+    margin-left: colspan(4, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(13, xlarge);
+    margin-left: colspan(4, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(13, xxlarge);
+    margin-left: colspan(4, xxlarge);
+  }
+}
+
+.o-article__caption-test {
+  @include breakpoint('xlarge+') {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: colspan(9, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(9, xxlarge);
+  }
+}
