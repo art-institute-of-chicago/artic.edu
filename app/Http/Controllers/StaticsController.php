@@ -35,6 +35,7 @@ class StaticsController extends Controller {
   public function home() {
     return view('statics/home', [
       'contrastHeader' => true,
+      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'heroExhibitions' => $this->getExhibitions(3),
       'featuredExhibitions' => $this->getExhibitions(2),
       'exhibitions' => $this->getExhibitions(4),
@@ -44,6 +45,7 @@ class StaticsController extends Controller {
 
   public function whatson() {
     return view('statics/whatson', [
+      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'featuredExhibitions' => $this->getExhibitions(2),
       'exhibitions' => $this->getExhibitions(12),
     ]);

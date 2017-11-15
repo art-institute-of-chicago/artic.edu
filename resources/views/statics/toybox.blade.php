@@ -150,12 +150,29 @@
   </span>
 </div>
 
-<nav class="m-tabs" style="margin-top: 20px;">
-  <ul class="m-tabs__items f-module-title-1">
-    <li class="tabs__item s-active"><span class="m-tabs__item-trigger">Exhibitions</span></li>
-    <li class="m-tabs__item"><a class="m-tabs__item-trigger" href="#">Events</a></li>
-  </ul>
-</nav>
+@include('shared._intro-block', array('intro' => $intro))
+
+@php
+$introBlockActionsPrimary = array();
+array_push($introBlockActionsPrimary, array('text' => 'Plan your visit', 'href' => '#'));
+$introBlockActionsSecondary = array();
+array_push($introBlockActionsSecondary, array('text' => 'Hours and admission', 'href' => '#'));
+array_push($introBlockActionsSecondary, array('text' => 'Directions and parking', 'href' => '#'));
+@endphp
+@include('shared._intro-block', array('intro' => $intro, 'primaryActions' => $introBlockActionsPrimary, 'secondaryActions' => $introBlockActionsSecondary))
+
+@php
+$titleBarLinks = array();
+array_push($titleBarLinks, array('text' => 'Explore What&rsquo;s on', 'href' => '#'));
+@endphp
+@include('shared._title-bar', array('title' => 'What&rsquo;s on Today', 'links' => $titleBarLinks))
+
+@php
+$navTabLinks = array();
+array_push($navTabLinks, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($navTabLinks, array('text' => 'Events', 'href' => '#', 'active' => false));
+@endphp
+@include('shared._nav-tabs', array('links' => $navTabLinks))
 
 <p class="f-body">Inline calendar</p>
 <div class="m-calendar m-calendar--inline" style="margin-top: 20px;" data-behavior="calendar" data-calendar-url="/events">
