@@ -22,8 +22,12 @@ return [
           'title' => 'Categories',
           'module' => true,
         ],
-        'categorySegments' => [
-          'title' => 'Category Segments',
+        'siteTags' => [
+          'title' => 'Tags',
+          'module' => true,
+        ],
+        'segments' => [
+          'title' => 'Segments',
           'module' => true,
         ]
       ]

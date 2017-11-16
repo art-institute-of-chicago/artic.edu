@@ -17,7 +17,6 @@
             'list' => $segmentsList,
             'placeholder' => 'Select some segments',
         ])
-
     </section>
 @stop
 

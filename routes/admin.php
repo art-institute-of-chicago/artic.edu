@@ -4,5 +4,6 @@ Route::name('home')->get('/', '\A17\CmsToolkit\Http\Controllers\Admin\UserContro
 
 Route::group(['prefix' => 'general'], function () {
   Route::module('categories');
-  Route::module('categorySegments');
+  Route::module('siteTags');
+  Route::module('segments');
 });

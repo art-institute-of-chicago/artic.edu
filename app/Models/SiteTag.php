@@ -5,7 +5,7 @@ namespace App\Models;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
-class Category extends Model
+class SiteTag extends Model
 {
     use HasSlug;
 

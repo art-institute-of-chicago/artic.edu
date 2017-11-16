@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 use App\Repositories\SegmentRepository;
 
-class CategoryController extends ModuleController
+class SiteTagController extends ModuleController
 {
-    protected $moduleName = 'categories';
+    protected $moduleName = 'siteTags';
 
     /*
      * Relations to eager load for the index view
@@ -25,17 +25,16 @@ class CategoryController extends ModuleController
      */
     protected $filters = [];
 
+    protected function indexData($request)
+    {
+        return [];
+    }
+
     protected function formData($request)
     {
         return [
             'segmentsList' => app(SegmentRepository::class)->listAll('name'),
         ];
     }
-
-    protected function indexData($request)
-    {
-        return [];
-    }
-
 
 }

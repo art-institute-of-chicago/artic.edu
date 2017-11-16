@@ -2,14 +2,13 @@
 
 @section('form')
     {{ Form::model($form_fields, $form_options) }}
-    @formField('publish_status')
     <section class="box">
         <header class="header_small">
-            <h3><b>{{ $form_fields['title'] or 'New item' }}</b></h3>
+            <h3><b>{{ $form_fields['name'] or 'New item' }}</b></h3>
         </header>
         @formField('input', [
-            'field' => 'title',
-            'field_name' => 'Title',
+            'field' => 'name',
+            'field_name' => 'Name',
         ])
     </section>
 @stop

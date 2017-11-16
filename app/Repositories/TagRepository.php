@@ -2,30 +2,17 @@
 
 namespace App\Repositories;
 
-use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
+
 use A17\CmsToolkit\Repositories\ModuleRepository;
-use App\Models\Category;
+use App\Models\Tag;
 
-class CategoryRepository extends ModuleRepository
+class TagRepository extends ModuleRepository
 {
-    use HandleSlugs;
+    
 
-    public function __construct(Category $model)
+    public function __construct(Tag $model)
     {
         $this->model = $model;
-    }
-
-    public function afterSave($object, $fields)
-    {
-        $object->segments()->sync($fields['selected_segments'] ?? []);
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-        $fields = $this->getFormFieldsForMultiSelect($fields, 'segments', 'id', 'selected_segments');
-        return $fields;
     }
 
     /**
@@ -85,4 +72,14 @@ class CategoryRepository extends ModuleRepository
      *
      */
 
+    /**
+     *
+     * After save hook
+     *
+     * public function afterSave($object, $fields)
+     * {
+     *     parent::afterSave($object, $fields);
+     * }
+     *
+     */
 }

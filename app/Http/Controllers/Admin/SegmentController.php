@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 
-class CategorySegmentController extends ModuleController
+class SegmentController extends ModuleController
 {
-    protected $moduleName = 'categorySegments';
+    protected $moduleName = 'Segments';
 
     /*
      * Relations to eager load for the index view

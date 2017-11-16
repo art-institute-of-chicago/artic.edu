@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-use App\Repositories\SegmentRepository;
 
-class CategoryController extends ModuleController
+class TagController extends ModuleController
 {
-    protected $moduleName = 'categories';
+    protected $moduleName = 'tags';
 
     /*
      * Relations to eager load for the index view
@@ -17,7 +16,7 @@ class CategoryController extends ModuleController
     /*
      * Relations to eager load for the form view
      */
-    protected $formWith = ['segments'];
+    protected $formWith = [];
 
     /*
      * Filters mapping ('fFilterName' => 'filterColumn')
@@ -25,17 +24,14 @@ class CategoryController extends ModuleController
      */
     protected $filters = [];
 
-    protected function formData($request)
-    {
-        return [
-            'segmentsList' => app(SegmentRepository::class)->listAll('name'),
-        ];
-    }
-
     protected function indexData($request)
     {
         return [];
     }
 
+    protected function formData($request)
+    {
+        return [];
+    }
 
 }

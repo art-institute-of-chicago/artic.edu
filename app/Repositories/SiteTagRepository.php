@@ -4,13 +4,13 @@ namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\ModuleRepository;
-use App\Models\Category;
+use App\Models\SiteTag;
 
-class CategoryRepository extends ModuleRepository
+class SiteTagRepository extends ModuleRepository
 {
     use HandleSlugs;
 
-    public function __construct(Category $model)
+    public function __construct(SiteTag $model)
     {
         $this->model = $model;
     }
@@ -50,18 +50,6 @@ class CategoryRepository extends ModuleRepository
      *
      */
 
-    /**
-     *
-     * Custom form fields
-     *
-     * public function getFormFields($object)
-     * {
-     *     $fields = parent::getFormFields($object);
-     *
-     *     return $fields;
-     * }
-     *
-     */
 
     /**
      *

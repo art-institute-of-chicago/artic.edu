@@ -4,13 +4,13 @@ namespace App\Repositories;
 
 
 use A17\CmsToolkit\Repositories\ModuleRepository;
-use App\Models\CategorySegment;
+use App\Models\Segment;
 
-class CategorySegmentRepository extends ModuleRepository
+class SegmentRepository extends ModuleRepository
 {
     
 
-    public function __construct(CategorySegment $model)
+    public function __construct(Segment $model)
     {
         $this->model = $model;
     }

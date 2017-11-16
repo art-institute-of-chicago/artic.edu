@@ -1,16 +1,15 @@
 @extends('cms-toolkit::layouts.resources.index', [
-    'title' => 'Category Segment',
+    'title' => 'Tag',
     'create' => true,
+    'publish' => false,
     'edit' => true,
     'delete' => true,
     'search' => true,
     'columns' => [
-        'title' => [
-            'title' => 'Title',
+        'name' => [
+            'title' => 'Name',
             'edit_link' => true,
-            'field' => 'title',
+            'field' => 'name',
         ]
     ]
 ])
-
-
