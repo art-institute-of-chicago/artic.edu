@@ -168,11 +168,36 @@ array_push($titleBarLinks, array('text' => 'Explore What&rsquo;s on', 'href' => 
 @include('shared._title-bar', array('title' => 'What&rsquo;s on Today', 'links' => $titleBarLinks))
 
 @php
-$navTabLinks = array();
-array_push($navTabLinks, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($navTabLinks, array('text' => 'Events', 'href' => '#', 'active' => false));
+$navTabPrimaryLinksPrimary = array();
+array_push($navTabPrimaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($navTabPrimaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
 @endphp
-@include('shared._nav-tabs', array('links' => $navTabLinks))
+@include('shared._nav-tabs-primary', array('links' => $navTabPrimaryLinksPrimary))
+
+@php
+$navTabPrimaryLinksPrimary = array();
+array_push($navTabPrimaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($navTabPrimaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+$navTabPrimaryLinksSecondary = array();
+array_push($navTabPrimaryLinksSecondary, array('text' => 'Exhibitions', 'href' => '#'));
+@endphp
+@include('shared._nav-tabs-primary', array('linksPrimary' => $navTabPrimaryLinksPrimary, 'linksSecondary' => $navTabPrimaryLinksSecondary))
+
+@php
+$navTabSecondaryLinksPrimary = array();
+array_push($navTabSecondaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($navTabSecondaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+@endphp
+@include('shared._nav-tabs-secondary', array('linksPrimary' => $navTabSecondaryLinksPrimary))
+
+@php
+$navTabSecondaryLinksPrimary = array();
+array_push($navTabSecondaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($navTabSecondaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+$navTabSecondaryLinksSecondary = array();
+array_push($navTabSecondaryLinksSecondary, array('text' => 'Archive', 'href' => '#'));
+@endphp
+@include('shared._nav-tabs-secondary', array('linksPrimary' => $navTabSecondaryLinksPrimary, 'linksSecondary' => $navTabSecondaryLinksSecondary))
 
 <p class="f-body">Inline calendar</p>
 <div class="m-calendar m-calendar--inline" style="margin-top: 20px;" data-behavior="calendar" data-calendar-url="/events">

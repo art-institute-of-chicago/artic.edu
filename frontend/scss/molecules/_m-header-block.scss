@@ -1,0 +1,26 @@
+
+
+.m-header-block {
+  position: relative;
+  padding-top: 28px;
+
+  & + * {
+    margin-top: 80px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background-color: $color__rules--primary;
+  }
+}
+
+.m-header-block__title {
+  margin-top: 0;
+  color: $color__text--title;
+}

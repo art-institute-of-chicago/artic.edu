@@ -1,0 +1,86 @@
+/***
+
+```
+<nav class="m-tabs-primary">
+  <ul class="m-tabs-primary__items-primary">
+    <li class="m-tabs-primary__item-primary s-active"><span class="m-tabs-primary__item-primary-trigger">Exhibitions</span></li>
+    <li class="m-tabs-primary__item-primary"><a class="m-tabs-primary__item-primary-trigger" href="#">Events</a></li>
+  </ul>
+</nav>
+<nav class="m-tabs-primary">
+  <ul class="m-tabs-primary__items-primary">
+    <li class="m-tabs-primary__item-primary s-active"><span class="m-tabs-primary__item-primary-trigger">Exhibitions</span></li>
+    <li class="m-tabs-primary__item-primary"><a class="m-tabs-primary__item-primary-trigger" href="#">Events</a></li>
+  </ul>
+  <ul class="m-tabs-primary__items-secondary">
+    <li class="m-tabs-primary__item-secondary"><span class="m-tabs-primary__item-secondary-trigger">Login</span></li>
+  </ul>
+</nav>
+```
+
+***/
+/***
+
+***/
+
+.m-tabs-primary {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top: 40px;
+  border-top: 1px solid $color__rules--primary;
+
+  & + * {
+    margin-top: 40px;
+  }
+}
+
+.m-tabs-primary__items-primary,
+.m-tabs-primary__items-secondary {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row wrap;
+  margin-top: -1px;
+
+  &::before,
+  &::after {
+    content: none;
+    display: none;
+  }
+}
+
+.m-tabs-primary__item-primary,
+.m-tabs-primary__item-secondary {
+  flex: 0 0 auto;
+  margin-left: 32px;
+}
+
+.m-tabs-primary__item-primary:first-child {
+  margin-left: 0;
+}
+
+.m-tabs-primary__item-primary-trigger,
+.m-tabs-primary__item-secondary-trigger {
+  display: block;
+  height: 80px;
+  color: $color__link--tab;
+  line-height: 80px;
+  text-decoration: none;
+}
+
+.m-tabs-primary__item-primary-trigger:hover,
+.m-tabs-primary__item-primary-trigger:focus,
+.m-tabs-primary__item-secondary-trigger:hover,
+.m-tabs-primary__item-secondary-trigger:focus {
+  color: $color__link--tab-hover;
+}
+
+.s-active > .m-tabs-primary__item-primary-trigger,
+.m-tabs-primary__item-primary-trigger:active,
+.m-tabs-primary__item-secondary-trigger:active {
+  color: $color__link--tab-active;
+}
+
+.s-active > .m-tabs-primary__item-primary-trigger {
+  border-top: 1px solid $color__rules--brand;
+}
