@@ -52,14 +52,17 @@ $include-icons: false; // see icons.scss!
 @import 'atoms/radio';
 @import 'atoms/select';
 @import 'atoms/error-msg';
+@import 'atoms/type';
+@import 'atoms/title';
+@import 'atoms/date';
+@import 'atoms/price';
 @import 'atoms/dropdown';
 @import 'atoms/date-select-trigger';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ molecules */
 
 @import 'molecules/m-header-block';
-@import 'molecules/m-tabs-primary';
-@import 'molecules/m-tabs-secondary';
+@import 'molecules/m-tabs';
 @import 'molecules/m-calendar';
 @import 'molecules/m-listing';
 @import 'molecules/m-title-bar';

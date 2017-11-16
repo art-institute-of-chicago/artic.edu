@@ -9,25 +9,24 @@ $hero = isset($hero) ? $hero : false;
     </span>
     <span class="m-listing__meta">
       <span class="m-listing__meta-top">
-        <em class="m-listing__type f-tag">{{ $exhibition->type }}</em>
+        <em class="type f-tag">{{ $exhibition->type }}</em>
         @if ($exhibition->closingSoon)
-        <span class="m-listing__closing-soon f-tag">Closing Soon</span>
+        <span class="type f-tag">Closing Soon</span>
         @endif
         @if ($feature and $hero)
-        <span class="m-listing__date f-secondary">{{ $exhibition->dateStart }} - {{ $exhibition->dateEnd }}</span>
+        <span class="date f-secondary">{{ $exhibition->dateStart }} - {{ $exhibition->dateEnd }}</span>
         @endif
-      </span> <br>
+      </span><br>
       @if ($feature and $hero)
-      <strong class="m-listing__title f-display-1">{{ $exhibition->title }}</strong>
+      <strong class="title f-display-1">{{ $exhibition->title }}</strong>
       @elseif ($feature)
-      <strong class="m-listing__title f-module-title-1">{{ $exhibition->title }}</strong>
+      <strong class="title f-module-title-1">{{ $exhibition->title }}</strong>
       @else
-      <strong class="m-listing__title f-list-2">{{ $exhibition->title }}</strong>
+      <strong class="title f-list-2">{{ $exhibition->title }}</strong>
       @endif
       @if (!$feature)
-      <br>
-      <span class="m-listing__meta-bottom">
-        <span class="m-listing__date f-secondary">Through {{ $exhibition->dateEnd }}</span>
+      <br><span class="m-listing__meta-bottom">
+        <span class="date f-secondary">Through {{ $exhibition->dateEnd }}</span>
       </span>
       @endif
     </span>

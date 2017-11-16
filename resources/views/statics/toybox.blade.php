@@ -150,7 +150,7 @@
   </span>
 </div>
 
-@include('shared._intro-block', array('intro' => $intro))
+@include('shared._intro-block', array('intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.'))
 
 @php
 $introBlockActionsPrimary = array();
@@ -159,7 +159,7 @@ $introBlockActionsSecondary = array();
 array_push($introBlockActionsSecondary, array('text' => 'Hours and admission', 'href' => '#'));
 array_push($introBlockActionsSecondary, array('text' => 'Directions and parking', 'href' => '#'));
 @endphp
-@include('shared._intro-block', array('intro' => $intro, 'primaryActions' => $introBlockActionsPrimary, 'secondaryActions' => $introBlockActionsSecondary))
+@include('shared._intro-block', array('intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.', 'primaryActions' => $introBlockActionsPrimary, 'secondaryActions' => $introBlockActionsSecondary))
 
 @php
 $titleBarLinks = array();
@@ -172,7 +172,7 @@ $navTabPrimaryLinksPrimary = array();
 array_push($navTabPrimaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
 array_push($navTabPrimaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
 @endphp
-@include('shared._nav-tabs-primary', array('links' => $navTabPrimaryLinksPrimary))
+@include('shared._nav-tabs', array('variation' => 'primary', 'linksPrimary' => $navTabPrimaryLinksPrimary))
 
 @php
 $navTabPrimaryLinksPrimary = array();
@@ -181,14 +181,14 @@ array_push($navTabPrimaryLinksPrimary, array('text' => 'Events', 'href' => '#', 
 $navTabPrimaryLinksSecondary = array();
 array_push($navTabPrimaryLinksSecondary, array('text' => 'Exhibitions', 'href' => '#'));
 @endphp
-@include('shared._nav-tabs-primary', array('linksPrimary' => $navTabPrimaryLinksPrimary, 'linksSecondary' => $navTabPrimaryLinksSecondary))
+@include('shared._nav-tabs', array('variation' => 'primary', 'linksPrimary' => $navTabPrimaryLinksPrimary, 'linksSecondary' => $navTabPrimaryLinksSecondary))
 
 @php
 $navTabSecondaryLinksPrimary = array();
 array_push($navTabSecondaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
 array_push($navTabSecondaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
 @endphp
-@include('shared._nav-tabs-secondary', array('linksPrimary' => $navTabSecondaryLinksPrimary))
+@include('shared._nav-tabs', array('linksPrimary' => $navTabSecondaryLinksPrimary))
 
 @php
 $navTabSecondaryLinksPrimary = array();
@@ -197,7 +197,7 @@ array_push($navTabSecondaryLinksPrimary, array('text' => 'Events', 'href' => '#'
 $navTabSecondaryLinksSecondary = array();
 array_push($navTabSecondaryLinksSecondary, array('text' => 'Archive', 'href' => '#'));
 @endphp
-@include('shared._nav-tabs-secondary', array('linksPrimary' => $navTabSecondaryLinksPrimary, 'linksSecondary' => $navTabSecondaryLinksSecondary))
+@include('shared._nav-tabs', array('linksPrimary' => $navTabSecondaryLinksPrimary, 'linksSecondary' => $navTabSecondaryLinksSecondary))
 
 <p class="f-body">Inline calendar</p>
 <div class="m-calendar m-calendar--inline" style="margin-top: 20px;" data-behavior="calendar" data-calendar-url="/events">

@@ -1,0 +1,95 @@
+/***
+
+```
+<nav class="m-tabs">
+  <ul class="m-tabs__items-primary">
+    <li class="m-tabs__item s-active"><span class="m-tabs__item-trigger">Exhibitions</span></li>
+    <li class="m-tabs__item"><a class="m-tabs__item-trigger" href="#">Events</a></li>
+  </ul>
+</nav>
+<nav class="m-tabs">
+  <ul class="m-tabs__items-primary">
+    <li class="m-tabs__item s-active"><span class="m-tabs__item-trigger">Exhibitions</span></li>
+    <li class="m-tabs__item"><a class="m-tabs__item-trigger" href="#">Events</a></li>
+  </ul>
+  <ul class="m-tabs__items-secondary">
+    <li class="m-tabs__item"><span class="m-tabs__item-trigger">Login</span></li>
+  </ul>
+</nav>
+<nav class="m-tabs m-tabs--primary">
+  <ul class="m-tabs__items-primary">
+    <li class="m-tabs__item s-active"><span class="m-tabs__item-trigger">Exhibitions</span></li>
+    <li class="m-tabs__item"><a class="m-tabs__item-trigger" href="#">Events</a></li>
+  </ul>
+</nav>
+```
+
+***/
+
+.m-tabs {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid $color__rules--primary;
+
+  & + * {
+    margin-top: 40px;
+  }
+}
+
+.m-tabs__items-primary,
+.m-tabs__items-secondary {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row wrap;
+  margin-top: 0;
+}
+
+.m-tabs__item {
+  flex: 0 0 auto;
+  margin-left: 32px;
+}
+
+.m-tabs__items-primary .m-tabs__item:first-child {
+  margin-left: 0;
+}
+
+.m-tabs__item-trigger {
+  display: block;
+  color: $color__link--tab;
+  text-decoration: none;
+}
+
+.m-tabs__item-trigger:hover,
+.m-tabs__item-trigger:focus {
+  color: $color__link--tab-hover;
+}
+
+.s-active > .m-tabs__item-trigger,
+.m-tabs__item-trigger:active {
+  color: $color__link--tab-active;
+}
+
+
+
+// Variant `m-tabs--primary`
+
+.m-tabs--primary {
+  padding-top: 0;
+}
+
+.m-tabs--primary .m-tabs__items-primary,
+.m-tabs--primary .m-tabs__items-secondary {
+  margin-top: -1px;
+}
+
+.m-tabs--primary .m-tabs__item-trigger {
+  height: 80px;
+  line-height: 80px;
+}
+
+.m-tabs--primary .s-active .m-tabs__item-trigger {
+  border-top: 1px solid $color__rules--brand;
+}

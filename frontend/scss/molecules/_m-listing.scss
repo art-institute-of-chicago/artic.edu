@@ -1,28 +1,74 @@
 /***
 
 ```
-<li class="m-listing m-listing--feature o-features__hero">
-  <a href="#" class="m-listing__link">
-    <span class="m-listing__img">
-      <img src="http://placehold.dev.area17.com/image/400x225">
-    </span>
-    <span class="m-listing__meta">
-      <em class="m-listing__type f-tag">Now open</em> <span class="m-listing__bottom m-listing__date f-secondary">Oct 29, 2017</span><br>
-      <strong class="m-listing__title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong>
-    </span>
-  </a>
-</li>
-<li class="m-listing m-listing--feature">
-  <a href="#" class="m-listing__link">
-    <span class="m-listing__img">
-      <img src="http://placehold.dev.area17.com/image/400x225">
-    </span>
-    <span class="m-listing__meta">
-      <em class="m-listing__type f-tag">Now open</em> <span class="m-listing__bottom m-listing__date f-secondary">Oct 29, 2017</span><br>
-      <strong class="m-listing__title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong>
-    </span>
-  </a>
-</li>
+<ul class="o-features">
+  <li class="m-listing m-listing--feature o-features__hero">
+    <a href="#" class="m-listing__link">
+      <span class="m-listing__img">
+        <img src="http://placehold.dev.area17.com/image/400x225">
+      </span>
+      <span class="m-listing__meta">
+        <em class="type f-tag">Now open</em> <span class="m-listing__bottom date f-secondary">Oct 29, 2017</span><br>
+        <strong class="title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong>
+      </span>
+    </a>
+  </li>
+  <li class="m-listing m-listing--feature">
+    <a href="#" class="m-listing__link">
+      <span class="m-listing__img">
+        <img src="http://placehold.dev.area17.com/image/400x225">
+      </span>
+      <span class="m-listing__meta">
+        <em class="type f-tag">Now open</em> <span class="m-listing__bottom date f-secondary">Oct 29, 2017</span><br>
+        <strong class="title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong>
+      </span>
+    </a>
+  </li>
+</ul>
+<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+  <li class="m-listing">
+    <a href="#" class="m-listing__link">
+      <span class="m-listing__img">
+        <img src="http://placehold.dev.area17.com/image/400x225">
+      </span>
+      <span class="m-listing__meta">
+        <span class="m-listing__meta-top">
+          <em class="type f-tag">Special Exhibition</em>
+        </span><br>
+        <strong class="title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong><br>
+        <span class="m-listing__meta-bottom">
+          <span class="date f-secondary">Through September 29, 2017</span>
+        </span>
+      </span>
+    </a>
+  </li>
+  <li class="m-listing">
+    <a href="#" class="m-listing__link">
+      <span class="m-listing__img m-listing__img--square">
+        <img src="http://placehold.dev.area17.com/image/300x300">
+      </span>
+      <span class="m-listing__meta">
+        <strong class="m-listing__title f-list-2">Glass Sculpture</strong> <br>
+        <span class="m-listing__meta-bottom">
+          <span class="price f-secondary">$257</span>
+        </span>
+      </span>
+    </a>
+  </li>
+  <li class="m-listing">
+    <a href="#" class="m-listing__link">
+      <span class="m-listing__img m-listing__img--square">
+        <img src="http://placehold.dev.area17.com/image/300x300">
+      </span>
+      <span class="m-listing__meta">
+        <strong class="m-listing__title f-list-2">Rock Sculpture</strong> <br>
+        <span class="m-listing__meta-bottom">
+          <span class="price price--sale f-secondary"><strike>$1453</strike> <em>$1089</em></span>
+        </span>
+      </span>
+    </a>
+  </li>
+</ul>
 ```
 
 ***/
@@ -104,34 +150,6 @@
 
 
 
-.m-listing__type {
-  color: $color__text--type;
-  font-style: normal;
-}
-
-.m-listing__title {
-  display: block;
-  color: $color__text--title;
-  font-weight: normal;
-}
-
-.m-listing__price,
-.m-listing__date {
-  color: $color__text;
-}
-
-.m-listing__price strike {
-  color: $color__text--contrast;
-}
-
-.m-listing__price .m-listing__sale-price {
-  display: inline-block;
-  padding-left: 4px;
-  color: $color__text--highlight;
-}
-
-
-
 // variant `m-listing--feature`
 
 .m-listing--feature .m-listing__link {
@@ -180,12 +198,12 @@
   }
 }
 
-.m-listing--feature .m-listing__type,
-.m-listing--feature .m-listing__title {
+.m-listing--feature .type,
+.m-listing--feature .title {
   color: $color__text--title-contrast;
 }
 
-.m-listing--feature .m-listing__date {
+.m-listing--feature .date {
   color: $color__text--contrast;
 }
 

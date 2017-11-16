@@ -11,7 +11,7 @@ $navTabPrimaryLinksPrimary = array();
 array_push($navTabPrimaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
 array_push($navTabPrimaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
 @endphp
-@include('shared._nav-tabs-primary', array('linksPrimary' => $navTabPrimaryLinksPrimary))
+@include('shared._nav-tabs', array('variation' => 'primary', 'linksPrimary' => $navTabPrimaryLinksPrimary))
 
 @php
 $navTabSecondaryLinksPrimary = array();
@@ -20,7 +20,7 @@ array_push($navTabSecondaryLinksPrimary, array('text' => 'Events', 'href' => '#'
 $navTabSecondaryLinksSecondary = array();
 array_push($navTabSecondaryLinksSecondary, array('text' => 'Archive', 'href' => '#'));
 @endphp
-@include('shared._nav-tabs-secondary', array('linksPrimary' => $navTabSecondaryLinksPrimary, 'linksSecondary' => $navTabSecondaryLinksSecondary))
+@include('shared._nav-tabs', array('linksPrimary' => $navTabSecondaryLinksPrimary, 'linksSecondary' => $navTabSecondaryLinksSecondary))
 
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@medium o-grid-listing--2-col@large o-grid-listing--2-col@xlarge o-grid-listing--2-col@xxlarge">
   @foreach ($featuredExhibitions as $exhibition)

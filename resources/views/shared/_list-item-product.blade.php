@@ -4,12 +4,12 @@
       <img src="{{ $product->image['src'] }}">
     </span>
     <span class="m-listing__meta">
-      <strong class="m-listing__title f-list-2">{{ $product->title }}</strong> <br>
+      <strong class="title f-list-2">{{ $product->title }}</strong> <br>
       <span class="m-listing__meta-bottom">
         @if ($product->priceSale)
-        <span class="m-listing__price f-secondary"><strike>{{ $product->currency }}{{ $product->price }}</strike> <span class="m-listing__sale-price">{{ $product->currency }}{{ $product->priceSale }}</span></span>
+        <span class="price price--sale f-secondary"><strike>{{ $product->currency }}{{ $product->price }}</strike> <em>{{ $product->currency }}{{ $product->priceSale }}</em></span>
         @else
-        <span class="m-listing__price f-secondary">{{ $product->currency }}{{ $product->price }}</span>
+        <span class="price f-secondary">{{ $product->currency }}{{ $product->price }}</span>
         @endif
       </span>
     </span>
