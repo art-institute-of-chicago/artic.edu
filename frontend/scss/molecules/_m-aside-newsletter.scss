@@ -1,0 +1,159 @@
+/***
+
+```
+<form class="m-aside-newsletter">
+  <fieldset>
+    <legend><span class="title f-deck">Sign up to our newsletter and receive updates.</span></legend>
+    <input id="newsletterEmail" name="newsletterEmail">
+    <label for="newsletterEmail">Email address</label>
+    <button type="submit">Sign Up</button>
+  </fieldset>
+</form>
+```
+
+***/
+
+.m-aside-newsletter {
+  @include background-fill;
+  margin-top: 40px;
+  background-color: $color__bg--secondary;
+}
+
+.m-aside-newsletter fieldset {
+  display: block;
+  margin: 0;
+  padding: 40px 0;
+
+  @include breakpoint('medium+') {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: colspan(25, medium);
+  }
+
+  @include breakpoint('large+') {
+    padding-left: colspan(29, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    padding-left: colspan(29, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    padding-left: colspan(29, xxlarge);
+  }
+}
+
+.m-aside-newsletter legend {
+  float: left;
+
+  @include breakpoint('medium+') {
+    position: absolute;
+    left: 0;
+    top: 45px;
+  }
+
+  @include breakpoint('large+') {
+    top: 60px;
+  }
+}
+
+.m-aside-newsletter legend span {
+  display: block;
+
+  @include breakpoint('medium+') {
+    width: colspan(23, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(29, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(29, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(29, xxlarge);
+  }
+}
+
+.m-aside-newsletter__field {
+  display: block;
+  position: relative;
+  clear: left;
+  padding-top: 20px;
+}
+
+.m-aside-newsletter label {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+}
+
+.m-aside-newsletter input {
+  display: block;
+  width: calc(100% - 60px);
+  border: 0 none;
+  border-bottom: 1px solid $color__rules--secondary;
+  background-color: transparent;
+}
+
+.m-aside-newsletter button {
+  @include untuck;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  padding: 0 0 4px;
+  border: 0 none;
+  border-bottom: 1px solid $color__rules--secondary;
+  background-color: transparent;
+  color: $color__link--brand;
+  text-align: right;
+
+  &:hover,
+  &:focus {
+    color: $color__link--brand-hover;
+  }
+
+  &:active {
+    color: $color__link--brand-active;
+  }
+}
+
+.m-aside-newsletter__msg {
+  @include untuck;
+  @include background-fill;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: -40px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: green;
+  color: $color__text--title-contrast;
+  font-style: normal;
+
+  @include breakpoint('medium+') {
+    margin-bottom: -60px;
+    margin-left: colspan(25, medium, 0, true);
+  }
+
+  @include breakpoint('large+') {
+    margin-left: colspan(29, large, 0, true);
+  }
+
+  @include breakpoint('xlarge+') {
+    margin-left: colspan(29, xlarge, 0, true);
+  }
+
+  @include breakpoint('xxlarge') {
+    margin-left: colspan(29, xxlarge, 0, true);
+  }
+}
+
+.m-aside-newsletter__msg--error {
+  background-color: $color__bg--error;
+  color: $color__text--error;
+}

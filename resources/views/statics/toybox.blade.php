@@ -199,6 +199,10 @@ array_push($navTabSecondaryLinksSecondary, array('text' => 'Archive', 'href' => 
 @endphp
 @include('shared._nav-tabs', array('linksPrimary' => $navTabSecondaryLinksPrimary, 'linksSecondary' => $navTabSecondaryLinksSecondary))
 
+@include('shared._aside-newsletter')
+@include('shared._aside-newsletter', array('error' => true))
+@include('shared._aside-newsletter', array('success' => true))
+
 <p class="f-body">Inline calendar</p>
 <div class="m-calendar m-calendar--inline" style="margin-top: 20px;" data-behavior="calendar" data-calendar-url="/events">
   <b class="m-calendar__title f-caption" data-calendar-title></b>
