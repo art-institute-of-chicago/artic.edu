@@ -48,6 +48,7 @@ class StaticsController extends Controller {
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'featuredExhibitions' => $this->getExhibitions(2),
       'exhibitions' => $this->getExhibitions(12),
+      'eventsByDay' => $this->makeEventsByDates(1),
     ]);
   }
 
@@ -78,6 +79,15 @@ class StaticsController extends Controller {
     return $upcoming ? "Upcoming" : $this->faker->randomElement($exhibitionTypes);
   }
 
+  private function getEventType($exlusive = false) {
+    $eventTypes = array("Family Program","Gallery Talk","Talks");
+    return $this->faker->randomElement($eventTypes);
+  }
+
+  private function makeEventTime($hour,$minute) {
+    return $hour.':'.$minute.($hour > 11 ? 'pm' : 'am');
+  }
+
   private function getFormattedDateString() {
     return $this->faker->monthName().' '.$this->faker->numberBetween(1,30).', '.$this->faker->year();
   }
@@ -105,6 +115,39 @@ class StaticsController extends Controller {
     return $exhibitions;
   }
 
+  private function getEvent() {
+    $hour = $this->faker->numberBetween(10,19);
+
+    return new StaticObjectPresenter([
+      "type" => $this->getEventType(),
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/event",
+      "title" => $this->faker->sentence(6, true),
+      "timeStart" => $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30')),
+      "timeEnd" => $this->makeEventTime(($hour+1), ($this->faker->boolean() ? '00' : '30')),
+      "image" => $this->getImage(),
+    ]);
+  }
+
+  private function getEvents($num = 3) {
+    $events = array();
+    for ($i = 0; $i < $num; $i++) {
+      $event = $this->getEvent();
+      array_push($events, $event);
+    }
+    return $events;
+  }
+
+  private function makeEventsByDates($days = 1, $startDate = "today") {
+    $dates = array();
+    $date = date_create( ($startDate !== "today") ? $startDate : '' );
+    for ($i = 0; $i < $days; $i++) {
+      date_add($date, date_interval_create_from_date_string($i.' days'));
+      $thisDay = array('date' => array('date' => date('d'), 'month' => date('M'), 'day' => date('D')), 'events' => $this->getEvents($this->faker->numberBetween(3,6)));
+      array_push($dates, $thisDay);
+    }
+    return $dates;
+  }
 
   private function getProduct() {
     $priceRounded = $this->faker->boolean(70);

@@ -58,4 +58,33 @@ array_push($titleBarLinks, array('text' => 'Browse events', 'href' => '#'));
 @endphp
 @include('shared._title-bar', array('title' => 'Today&rsquo;s Events', 'links' => $titleBarLinks))
 
+<ul class="o-grid-listing">
+@foreach ($eventsByDay as $date)
+  <li class="m-date-listing">
+    <h3 class="day">
+        <span class="day__date f-date-numeral">{{ $date['date']['date'] }}</span>
+        <span class="day__month f-tag">{{ $date['date']['month'] }}</span>
+        <span class="day__day f-tag">{{ $date['date']['day'] }}</span>
+    </h3>
+    <ul class="m-date-listing__items">
+    @foreach ($date['events'] as $event)
+        <li class="m-listing">
+          <a href="{{ $event->slug }}" class="m-listing__link">
+            <span class="m-listing__img m-listing__img--square">
+              <img src="{{ $event->image['src'] }}">
+            </span>
+            <span class="m-listing__meta">
+              <em class="type f-secondary">{{ $event->type }}</em>
+              <strong class="m-listing__title f-list-2">{{ $event->title }}</strong> <br>
+              <span class="date f-secondary">{{ $event->timeStart }}-{{ $event->timeEnd }}</span>
+            </span>
+          </a>
+        </li>
+    @endforeach
+    </ul>
+  </li>
+@endforeach
+</ul>
+
+
 @endsection
