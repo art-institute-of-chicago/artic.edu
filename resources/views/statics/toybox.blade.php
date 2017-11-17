@@ -184,20 +184,48 @@ array_push($navTabPrimaryLinksSecondary, array('text' => 'Exhibitions', 'href' =
 @include('shared._nav-tabs', array('variation' => 'primary', 'linksPrimary' => $navTabPrimaryLinksPrimary, 'linksSecondary' => $navTabPrimaryLinksSecondary))
 
 @php
-$navTabSecondaryLinksPrimary = array();
-array_push($navTabSecondaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($navTabSecondaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+$linksBarPrimary = array();
+array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
 @endphp
-@include('shared._nav-tabs', array('linksPrimary' => $navTabSecondaryLinksPrimary))
+@include('shared._nav-tabs', array('linksPrimary' => $linksBarPrimary))
 
 @php
-$navTabSecondaryLinksPrimary = array();
-array_push($navTabSecondaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($navTabSecondaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
-$navTabSecondaryLinksSecondary = array();
-array_push($navTabSecondaryLinksSecondary, array('text' => 'Archive', 'href' => '#'));
+$linksBarPrimary = array();
+array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+$linksBarPrimarySecondary = array();
+array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'));
 @endphp
-@include('shared._nav-tabs', array('linksPrimary' => $navTabSecondaryLinksPrimary, 'linksSecondary' => $navTabSecondaryLinksSecondary))
+@include('shared._nav-tabs', array('linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarPrimarySecondary))
+
+@php
+$linksBarPrimary = array();
+array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true, 'icon' => 'icon--arrow'));
+array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false, 'icon' => 'icon--arrow'));
+$linksBarPrimarySecondary = array();
+array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#', 'icon' => 'icon--arrow'));
+@endphp
+@include('shared._nav-tabs', array('linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarPrimarySecondary))
+
+@php
+$linksBarPrimary = array();
+array_push($linksBarPrimary, array('text' => 'Btn 1', 'href' => '#', 'variation' => ''));
+array_push($linksBarPrimary, array('text' => 'Btn 2', 'href' => '#', 'variation' => 'btn--secondary'));
+array_push($linksBarPrimary, array('text' => 'Btn 3', 'href' => '#', 'variation' => 'btn--tertiary'));
+array_push($linksBarPrimary, array('text' => 'Btn 4', 'href' => '#', 'variation' => 'btn--quaternary'));
+array_push($linksBarPrimary, array('text' => 'Btn 5', 'href' => '#', 'variation' => 'btn--secondary btn--w-icon', 'icon' => 'icon--new-window'));
+@endphp
+@include('shared._nav-tabs', array('variation' => 'buttons', 'linksPrimary' => $linksBarPrimary))
+
+@php
+$linksBarPrimary = array();
+array_push($linksBarPrimary, array('text' => 'Upcoming Exhibits', 'href' => '#', 'variation' => ''));
+$linksBarPrimarySecondary = array();
+array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'));
+@endphp
+@include('shared._nav-tabs', array('variation' => 'buttons', 'linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarPrimarySecondary))
+
 
 @include('shared._aside-newsletter')
 @include('shared._aside-newsletter', array('error' => true))

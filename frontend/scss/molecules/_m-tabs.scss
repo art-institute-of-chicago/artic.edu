@@ -58,17 +58,20 @@
 
 .m-tabs__item-trigger {
   display: block;
-  color: $color__link--tab;
   text-decoration: none;
 }
 
-.m-tabs__item-trigger:hover,
-.m-tabs__item-trigger:focus {
+.m-tabs__item-trigger:not([class*=btn]) {
+  color: $color__link--tab;
+}
+
+.m-tabs__item-trigger:not([class*=btn]):hover,
+.m-tabs__item-trigger:not([class*=btn]):focus {
   color: $color__link--tab-hover;
 }
 
-.s-active > .m-tabs__item-trigger,
-.m-tabs__item-trigger:active {
+.s-active > .m-tabs__item-trigger:not([class*=btn]),
+.m-tabs__item-trigger:not([class*=btn]):active {
   color: $color__link--tab-active;
 }
 
