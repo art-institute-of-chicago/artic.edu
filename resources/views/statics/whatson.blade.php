@@ -68,14 +68,15 @@ array_push($titleBarLinks, array('text' => 'Browse events', 'href' => '#'));
     </h3>
     <ul class="m-date-listing__items">
     @foreach ($date['events'] as $event)
-        <li class="m-listing">
+        <li class="m-listing m-listing--row">
           <a href="{{ $event->slug }}" class="m-listing__link">
-            <span class="m-listing__img m-listing__img--square">
+            <span class="m-listing__img">
               <img src="{{ $event->image['src'] }}">
             </span>
             <span class="m-listing__meta">
-              <em class="type f-secondary">{{ $event->type }}</em>
-              <strong class="m-listing__title f-list-2">{{ $event->title }}</strong> <br>
+              @if ($event->exclusive)<em class="exclusive f-tag">Member Exclusive</em>@endif
+              <em class="type f-tag">{{ $event->type }}</em> <br>
+              <strong class="title f-list-2">{{ $event->title }}</strong> <br>
               <span class="date f-secondary">{{ $event->timeStart }}-{{ $event->timeEnd }}</span>
             </span>
           </a>

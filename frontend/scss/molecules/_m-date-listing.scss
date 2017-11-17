@@ -1,0 +1,52 @@
+
+
+.m-date-listing {
+  padding-top: 15px;
+  border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('medium+') {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}
+
+.m-date-listing .day {
+  margin-top: 0;
+
+  @include breakpoint('medium+') {
+    flex: 0 0 auto;
+    align-self: flex-start;
+    width: 100%;
+    width: colspan(11, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(11, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(11, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(11, xxlarge);
+  }
+}
+
+.m-date-listing__items {
+
+  @include breakpoint('medium+') {
+    flex: 1;
+    width: auto;
+    margin-top: 0;
+  }
+
+  @include breakpoint('large+') {
+  }
+
+  @include breakpoint('xlarge+') {
+  }
+
+  @include breakpoint('xxlarge') {
+  }
+}

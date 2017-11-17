@@ -96,11 +96,15 @@
   content: '';
   display: block;
   height: 0;
-  padding-bottom: 66.66%;
+  padding-bottom: 66.66%; // 3:2
 }
 
 .m-listing__img--square::before {
-  padding-bottom: 100%;
+  padding-bottom: 100%; // 1:1
+}
+
+.m-listing__img--wide::before {
+  padding-bottom: 42.857%; // 21:9
 }
 
 .m-listing__img img,
@@ -207,3 +211,75 @@
   color: $color__text--contrast;
 }
 
+
+
+
+// variant `m-listing--row`
+
+.m-listing--row {
+  flex-flow: row nowrap;
+  max-width: 100%;
+
+  & + & {
+    margin-top: 20px;
+    padding-top: 19px;
+    border-top: 1px solid $color__rules--primary;
+  }
+}
+
+.m-listing--row .m-listing__link {
+  flex-flow: row nowrap;
+  height: auto;
+}
+
+.m-listing--row .m-listing__img {
+  align-self: flex-start;
+  width: colspan(14, xsmall);
+
+  @include breakpoint('small+') {
+    width: colspan(14, small);
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(14, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(14, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(14, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(14, xxlarge);
+  }
+}
+
+.m-listing--row .m-listing__meta {
+  flex: 1;
+  width: auto;
+  margin-top: 0;
+  margin-left: colspan(2, xsmall);
+
+  @include breakpoint('small+') {
+    margin-left: colspan(1, small);
+  }
+
+  @include breakpoint('medium+') {
+    margin-left: colspan(1, medium);
+  }
+
+  @include breakpoint('large+') {
+    margin-left: colspan(1, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    margin-left: colspan(1, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    margin-left: colspan(1, xxlarge);
+  }
+}

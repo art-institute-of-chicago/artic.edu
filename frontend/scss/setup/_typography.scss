@@ -716,7 +716,7 @@ $f-date-numeral: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 38, line-height: 44, letter-spacing: -.02, push: 0),
+    'xsmall': (font-size: 38, line-height: 44, letter-spacing: -.02em, push: 0),
     'medium': (font-size: 48, line-height: 56, push: 0),
    )
 );

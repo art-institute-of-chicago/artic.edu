@@ -79,7 +79,7 @@ class StaticsController extends Controller {
     return $upcoming ? "Upcoming" : $this->faker->randomElement($exhibitionTypes);
   }
 
-  private function getEventType($exlusive = false) {
+  private function getEventType() {
     $eventTypes = array("Family Program","Gallery Talk","Talks");
     return $this->faker->randomElement($eventTypes);
   }
@@ -125,6 +125,7 @@ class StaticsController extends Controller {
       "title" => $this->faker->sentence(6, true),
       "timeStart" => $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30')),
       "timeEnd" => $this->makeEventTime(($hour+1), ($this->faker->boolean() ? '00' : '30')),
+      "exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
     ]);
   }
@@ -138,12 +139,11 @@ class StaticsController extends Controller {
     return $events;
   }
 
-  private function makeEventsByDates($days = 1, $startDate = "today") {
+  private function makeEventsByDates($days = 1, $startDate = "now") {
     $dates = array();
-    $date = date_create( ($startDate !== "today") ? $startDate : '' );
+    $date = strtotime($startDate);
     for ($i = 0; $i < $days; $i++) {
-      date_add($date, date_interval_create_from_date_string($i.' days'));
-      $thisDay = array('date' => array('date' => date('d'), 'month' => date('M'), 'day' => date('D')), 'events' => $this->getEvents($this->faker->numberBetween(3,6)));
+      $thisDay = array('date' => array('date' => date('d', strtotime($startDate. ' + '.$i.' days')), 'month' => date('M', strtotime($startDate. ' + '.$i.' days')), 'day' => date('D', strtotime($startDate. ' + '.$i.' days'))), 'events' => $this->getEvents($this->faker->numberBetween(3,6)));
       array_push($dates, $thisDay);
     }
     return $dates;

@@ -1,0 +1,86 @@
+/***
+
+```
+<h3 class="day">
+  <span class="day__date f-date-numeral">17</span>
+  <span class="day__month f-tag">Oct</span>
+  <span class="day__day f-tag">Tue</span>
+</h3>
+```
+
+***/
+
+.day {
+  position: relative;
+  height: 60px;
+  font-weight: normal;
+}
+
+.day::after {
+  content: '';
+  position: absolute;
+  left: 80px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: $color__rules--primary;
+
+  .m-date-listing & {
+    top: -16px;
+  }
+
+  @include breakpoint('medium+') {
+    left: colspan(4, medium);
+  }
+
+  @include breakpoint('large+') {
+    left: colspan(4, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    left: colspan(4, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    left: colspan(4, xxlarge);
+  }
+}
+
+.day__date {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: $color__text--title;
+}
+
+.day__month {
+  top: 8px;
+  color: $color__text--title;
+}
+
+.day__day {
+  top: 26px;
+  color: $color__text--secondary;
+}
+
+.day__month,
+.day__day {
+  position: absolute;
+  left: 100px;
+
+  @include breakpoint('medium+') {
+    left: colspan(5, medium);
+  }
+
+  @include breakpoint('large+') {
+    left: colspan(5, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    left: colspan(5, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    left: colspan(5, xxlarge);
+  }
+}
