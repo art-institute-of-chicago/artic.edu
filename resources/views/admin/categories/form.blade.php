@@ -11,7 +11,7 @@
             'field_name' => 'Name',
         ])
 
-         @formField('multi_select', [
+        @formField('multi_select', [
             'field' => 'selected_segments',
             'field_name' => 'Segments',
             'list' => $segmentsList,

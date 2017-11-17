@@ -1,9 +1,16 @@
 <?php
 
 return [
-    'home' => [
-        'title' => 'Home',
-        'route' => 'admin.users.index',
+    'exhibitions' => [
+        'title' => 'Exhibitions',
+        'route' => 'admin.exhibitions.exhibitions.index',
+
+        'primary_navigation' => [
+          'exhibitions' => [
+            'title' => 'Exhibitions',
+            'module' => true,
+          ]
+        ]
     ],
 
     // 'users' => [

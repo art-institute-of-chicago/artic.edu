@@ -31,7 +31,10 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "app/Helpers/MigrationHelpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
