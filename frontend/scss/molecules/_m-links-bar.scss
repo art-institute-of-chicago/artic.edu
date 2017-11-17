@@ -38,7 +38,7 @@
     margin-top: 40px;
   }
 
-  .m-intro-block + & {
+  .m-intro-block + &:not(.m-links-bar--tabs) {
     margin-top: 40px;
     padding-top: 0;
     border-top: 0 none;
