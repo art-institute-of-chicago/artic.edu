@@ -150,6 +150,13 @@
   </span>
 </div>
 
+<p>
+  <a class="arrow-link" href="#">Forward<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+  <a class="arrow-link arrow-link--back" href="#">Back<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+  <a class="arrow-link arrow-link--up" href="#">Up<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+  <a class="arrow-link arrow-link--down" href="#">Down<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a>
+</p>
+
 @include('shared._intro-block', array('intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.'))
 
 @php

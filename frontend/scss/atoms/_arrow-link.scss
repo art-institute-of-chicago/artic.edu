@@ -1,0 +1,30 @@
+/***
+
+```
+<a class="arrow-link" href="#">Forward<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+<a class="arrow-link arrow-link--back" href="#">Back<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+<a class="arrow-link arrow-link--up" href="#">Up<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+<a class="arrow-link arrow-link--down" href="#">Down<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a>
+```
+
+***/
+
+.arrow-link svg {
+  transform: rotate(360deg);
+  transform-origin: 8px 8px;
+}
+
+.arrow-link--back svg {
+  transform: rotate(180deg);
+  transform-origin: 8px 8px;
+}
+
+.arrow-link--up svg {
+  transform: rotate(-90deg);
+  transform-origin: 8px 8px;
+}
+
+.arrow-link--down svg {
+  transform: rotate(90deg);
+  transform-origin: 8px 8px;
+}
