@@ -1,13 +1,17 @@
 <?php
 
 return [
-    'exhibitions' => [
-        'title' => 'Exhibitions',
-        'route' => 'admin.exhibitions.exhibitions.index',
+    'whatson' => [
+        'title' => "What's on",
+        'route' => 'admin.whatson.exhibitions.index',
 
         'primary_navigation' => [
           'exhibitions' => [
             'title' => 'Exhibitions',
+            'module' => true,
+          ],
+          'events' => [
+            'title' => 'Events',
             'module' => true,
           ]
         ]
