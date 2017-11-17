@@ -11,7 +11,7 @@ $linksBarPrimary = array();
 array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
 array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
 @endphp
-@include('shared._nav-tabs', array('variation' => 'primary', 'linksPrimary' => $linksBarPrimary))
+@include('shared._links-bar', array('variation' => 'tabs', 'linksPrimary' => $linksBarPrimary))
 
 @php
 $linksBarPrimary = array();
@@ -20,7 +20,7 @@ array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' =
 $linksBarSecondary = array();
 array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
 @endphp
-@include('shared._nav-tabs', array('linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarSecondary))
+@include('shared._links-bar', array('linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarSecondary))
 
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@medium o-grid-listing--2-col@large o-grid-listing--2-col@xlarge o-grid-listing--2-col@xxlarge">
   @foreach ($featuredExhibitions as $exhibition)
@@ -50,7 +50,7 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
 $linksBarPrimary = array();
 array_push($linksBarPrimary, array('text' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary'));
 @endphp
-@include('shared._nav-tabs', array('variation' => 'buttons', 'linksPrimary' => $linksBarPrimary))
+@include('shared._links-bar', array('variation' => 'buttons', 'linksPrimary' => $linksBarPrimary))
 
 @php
 $titleBarLinks = array();

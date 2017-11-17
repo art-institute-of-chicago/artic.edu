@@ -8,14 +8,16 @@
   @endforeach
 </ul>
 
+@include('shared._intro-block', array('intro' => $intro))
+
 @php
-$introBlockActionsPrimary = array();
-array_push($introBlockActionsPrimary, array('text' => 'Plan your visit', 'href' => '#'));
-$introBlockActionsSecondary = array();
-array_push($introBlockActionsSecondary, array('text' => 'Hours and admission', 'href' => '#'));
-array_push($introBlockActionsSecondary, array('text' => 'Directions and parking', 'href' => '#'));
+$linksBarPrimary = array();
+array_push($linksBarPrimary, array('text' => 'Plan your visit', 'href' => '#'));
+$linksBarSecondary = array();
+array_push($linksBarSecondary, array('text' => 'Hours and admission', 'href' => '#', 'icon' => 'icon--arrow', 'variation' => 'arrow-link'));
+array_push($linksBarSecondary, array('text' => 'Directions and parking', 'href' => '#', 'icon' => 'icon--arrow', 'variation' => 'arrow-link'));
 @endphp
-@include('shared._intro-block', array('intro' => $intro, 'primaryActions' => $introBlockActionsPrimary, 'secondaryActions' => $introBlockActionsSecondary))
+@include('shared._links-bar', array('variation' => 'buttons', 'linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarSecondary))
 
 @php
 $titleBarLinks = array();

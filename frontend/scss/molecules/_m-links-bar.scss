@@ -1,0 +1,104 @@
+/***
+
+```
+<nav class="m-links-bar">
+  <ul class="m-links-bar__items-primary">
+    <li class="m-links-bar__item s-active"><span class="m-links-bar__item-trigger">Exhibitions</span></li>
+    <li class="m-links-bar__item"><a class="m-links-bar__item-trigger" href="#">Events</a></li>
+  </ul>
+</nav>
+<nav class="m-links-bar">
+  <ul class="m-links-bar__items-primary">
+    <li class="m-links-bar__item s-active"><span class="m-links-bar__item-trigger">Exhibitions</span></li>
+    <li class="m-links-bar__item"><a class="m-links-bar__item-trigger" href="#">Events</a></li>
+  </ul>
+  <ul class="m-links-bar__items-secondary">
+    <li class="m-links-bar__item"><span class="m-links-bar__item-trigger">Login</span></li>
+  </ul>
+</nav>
+<nav class="m-links-bar .m-links-bar--tabs">
+  <ul class="m-links-bar__items-primary">
+    <li class="m-links-bar__item s-active"><span class="m-links-bar__item-trigger">Exhibitions</span></li>
+    <li class="m-links-bar__item"><a class="m-links-bar__item-trigger" href="#">Events</a></li>
+  </ul>
+</nav>
+```
+
+***/
+
+.m-links-bar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid $color__rules--primary;
+
+  & + * {
+    margin-top: 40px;
+  }
+
+  .m-intro-block + & {
+    margin-top: 40px;
+    padding-top: 0;
+    border-top: 0 none;
+  }
+}
+
+.m-links-bar__items-primary,
+.m-links-bar__items-secondary {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row wrap;
+  margin-top: 0;
+}
+
+.m-links-bar__item {
+  flex: 0 0 auto;
+  margin-left: 32px;
+}
+
+.m-links-bar__items-primary .m-links-bar__item:first-child {
+  margin-left: 0;
+}
+
+.m-links-bar__item-trigger {
+  display: block;
+  text-decoration: none;
+}
+
+.m-links-bar__item-trigger:not([class*=btn]) {
+  color: $color__link--tab;
+}
+
+.m-links-bar__item-trigger:not([class*=btn]):hover,
+.m-links-bar__item-trigger:not([class*=btn]):focus {
+  color: $color__link--tab-hover;
+}
+
+.s-active > .m-links-bar__item-trigger:not([class*=btn]),
+.m-links-bar__item-trigger:not([class*=btn]):active {
+  color: $color__link--tab-active;
+}
+
+
+
+// Variant `.m-links-bar--tabs`
+
+.m-links-bar--tabs {
+  padding-top: 0;
+}
+
+.m-links-bar--tabs .m-links-bar__items-primary,
+.m-links-bar--tabs .m-links-bar__items-secondary {
+  margin-top: -1px;
+}
+
+.m-links-bar--tabs .m-links-bar__item-trigger {
+  height: 80px;
+  line-height: 80px;
+}
+
+.m-links-bar--tabs .s-active .m-links-bar__item-trigger {
+  border-top: 1px solid $color__rules--brand;
+}
