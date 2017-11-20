@@ -7,10 +7,10 @@
       <button type="submit" class="f-tag">Sign Up</button>
     </span>
     @if (isset($error) and $error)
-    <em class="m-aside-newsletter__msg m-aside-newsletter__msg--error f-buttons">Please enter a valid email address</em>
+    <em class="m-aside-newsletter__msg m-aside-newsletter__msg--error f-buttons">{{ $error }}</em>
     @endif
     @if (isset($success) and $success)
-    <em class="m-aside-newsletter__msg m-aside-newsletter__msg--success f-buttons">Successfully signed up to the newsletter</em>
+    <em class="m-aside-newsletter__msg m-aside-newsletter__msg--success f-buttons">{{ $success }}</em>
     @endif
   </fieldset>
 </form>

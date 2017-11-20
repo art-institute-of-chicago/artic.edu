@@ -1,0 +1,1 @@
+<a class="arrow-link{{ (isset($variation)) ? ' '.$variation : '' }}" href="#">{{ $slot }}<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a>

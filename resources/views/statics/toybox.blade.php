@@ -171,96 +171,97 @@
 </p>
 
 <div style="margin-top: 0; padding-top: 20px;">
-  <span aria-title="sort by" class="dropdown" data-behavior="dropdown">
-    <button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-    <ul class="f-secondary">
-      <li><a href="#">Option 1</a></li>
-      <li><a href="#">Option 2</a></li>
-      <li><a href="#">Option 3</a></li>
-      <li><a href="#">Option 4</a></li>
-      <li><a href="#">Option 5</a></li>
-      <li><a href="#">Option 6</a></li>
-      <li><a href="#">Option 7</a></li>
-      <li><a href="#">Option 8</a></li>
-      <li><a href="#">Option 9</a></li>
-      <li><a href="#">Option 10</a></li>
-    </ul>
-  </span>
+  @component('components.atoms._dropdown')
+    @slot('prompt', 'Dropdown')
+    @slot('ariaTitle', 'Filter by')
+    @slot('options', array(array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
+    Label
+  @endcomponent
 </div>
 <div style="margin-top: 0; padding-top: 20px;">
-  <span aria-title="sort by" class="dropdown" data-behavior="dropdown" data-dropdown-hoverable>
-    <button class="f-secondary">Dropdown Hoverable<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-    <ul class="f-secondary">
-      <li><a href="#">Newest</a></li>
-      <li><a href="#">Oldest</a></li>
-    </ul>
-  </span>
+  @component('components.atoms._dropdown')
+    @slot('prompt', 'Dropdown hoverable')
+    @slot('ariaTitle', 'Sort by')
+    @slot('hoverable', true)
+    @slot('options', array(array('href' => '#', 'label' => 'Newest'), array('href' => '#', 'label' => 'Oldest')))
+    Label
+  @endcomponent
 </div>
 <div style="margin-top: 0; padding-top: 20px;">
-  <span aria-title="sort by" class="dropdown dropdown--filter" data-behavior="dropdown">
-    <button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-    <ul class="f-secondary">
-      <li class="s-active"><a href="#">Dropdown</a></li>
-      <li><a href="#">Option 1</a></li>
-      <li><a href="#">Option 2</a></li>
-      <li><a href="#">Option 3</a></li>
-      <li><a href="#">Option 4</a></li>
-      <li><a href="#">Option 5</a></li>
-      <li><a href="#">Option 6</a></li>
-      <li><a href="#">Option 7</a></li>
-      <li><a href="#">Option 8</a></li>
-      <li><a href="#">Option 9</a></li>
-      <li><a href="#">Option 10</a></li>
-    </ul>
-  </span>
+  @component('components.atoms._dropdown')
+    @slot('prompt', 'Dropdown')
+    @slot('variation', 'dropdown--filter')
+    @slot('ariaTitle', 'Sort by')
+    @slot('options', array(array('href' => '#', 'label' => 'Dropdown', 'active' => true), array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
+    Label
+  @endcomponent
 </div>
 
 <p>
-  <a class="arrow-link" href="#">Forward<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
-  <a class="arrow-link arrow-link--back" href="#">Back<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
-  <a class="arrow-link arrow-link--up" href="#">Up<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
-  <a class="arrow-link arrow-link--down" href="#">Down<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a>
+    @component('components.atoms._arrow-link')
+        Forward
+    @endcomponent
+    <br>
+    @component('components.atoms._arrow-link')
+        @slot('variation','arrow-link--back')
+        Back
+    @endcomponent
+    <br>
+    @component('components.atoms._arrow-link')
+        @slot('variation','arrow-link--up')
+        Up
+    @endcomponent
+    <br>
+    @component('components.atoms._arrow-link')
+        @slot('variation','arrow-link--down')
+        Down
+    @endcomponent
 </p>
 
-@include('shared._intro-block', array('intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.'))
-
-@php
-$introBlockActionsPrimary = array();
-array_push($introBlockActionsPrimary, array('text' => 'Plan your visit', 'href' => '#'));
-$introBlockActionsSecondary = array();
-array_push($introBlockActionsSecondary, array('text' => 'Hours and admission', 'href' => '#'));
-array_push($introBlockActionsSecondary, array('text' => 'Directions and parking', 'href' => '#'));
-@endphp
-@include('shared._intro-block', array('intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.', 'primaryActions' => $introBlockActionsPrimary, 'secondaryActions' => $introBlockActionsSecondary))
+@component('components.molecules._m-intro-block')
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.
+@endcomponent
 
 @php
 $titleBarLinks = array();
 array_push($titleBarLinks, array('text' => 'Explore What&rsquo;s on', 'href' => '#'));
 @endphp
-@include('shared._title-bar', array('title' => 'What&rsquo;s on Today', 'links' => $titleBarLinks))
-
-@php
-$navTabPrimaryLinksPrimary = array();
-array_push($navTabPrimaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($navTabPrimaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
-@endphp
-@include('shared._links-bar', array('variation' => 'tabs', 'linksPrimary' => $navTabPrimaryLinksPrimary))
-
-@php
-$navTabPrimaryLinksPrimary = array();
-array_push($navTabPrimaryLinksPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($navTabPrimaryLinksPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
-$navTabPrimaryLinksSecondary = array();
-array_push($navTabPrimaryLinksSecondary, array('text' => 'Exhibitions', 'href' => '#'));
-@endphp
-@include('shared._links-bar', array('variation' => 'tabs', 'linksPrimary' => $navTabPrimaryLinksPrimary, 'linksSecondary' => $navTabPrimaryLinksSecondary))
+@component('components.molecules._m-title-bar')
+    @slot('links', $titleBarLinks)
+    What&rsquo;s on Today
+@endcomponent
 
 @php
 $linksBarPrimary = array();
 array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
 array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
 @endphp
-@include('shared._links-bar', array('linksPrimary' => $linksBarPrimary))
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'tabs')
+    @slot('linksPrimary', $linksBarPrimary)
+@endcomponent
+
+@php
+$linksBarPrimary = array();
+array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+$linksBarSecondary = array();
+array_push($linksBarSecondary, array('text' => 'Exhibitions', 'href' => '#'));
+@endphp
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'tabs')
+    @slot('linksPrimary', $linksBarPrimary)
+    @slot('linksSecondary', $linksBarSecondary)
+@endcomponent
+
+@php
+$linksBarPrimary = array();
+array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+@endphp
+@component('components.molecules._m-links-bar')
+    @slot('linksPrimary', $linksBarPrimary)
+@endcomponent
 
 @php
 $linksBarPrimary = array();
@@ -269,7 +270,10 @@ array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' =
 $linksBarPrimarySecondary = array();
 array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'));
 @endphp
-@include('shared._links-bar', array('linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarPrimarySecondary))
+@component('components.molecules._m-links-bar')
+    @slot('linksPrimary', $linksBarPrimary)
+    @slot('linksSecondary', $linksBarSecondary)
+@endcomponent
 
 @php
 $linksBarPrimary = array();
@@ -278,7 +282,10 @@ array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' =
 $linksBarPrimarySecondary = array();
 array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#', 'icon' => 'icon--arrow'));
 @endphp
-@include('shared._links-bar', array('linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarPrimarySecondary))
+@component('components.molecules._m-links-bar')
+    @slot('linksPrimary', $linksBarPrimary)
+    @slot('linksSecondary', $linksBarSecondary)
+@endcomponent
 
 @php
 $linksBarPrimary = array();
@@ -288,7 +295,10 @@ array_push($linksBarPrimary, array('text' => 'Btn 3', 'href' => '#', 'variation'
 array_push($linksBarPrimary, array('text' => 'Btn 4', 'href' => '#', 'variation' => 'btn--quaternary'));
 array_push($linksBarPrimary, array('text' => 'Btn 5', 'href' => '#', 'variation' => 'btn--secondary btn--w-icon', 'icon' => 'icon--new-window'));
 @endphp
-@include('shared._links-bar', array('variation' => 'buttons', 'linksPrimary' => $linksBarPrimary))
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'buttons')
+    @slot('linksPrimary', $linksBarPrimary)
+@endcomponent
 
 @php
 $linksBarPrimary = array();
@@ -296,67 +306,57 @@ array_push($linksBarPrimary, array('text' => 'Upcoming Exhibits', 'href' => '#',
 $linksBarPrimarySecondary = array();
 array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'));
 @endphp
-@include('shared._links-bar', array('variation' => 'buttons', 'linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarPrimarySecondary))
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'buttons')
+    @slot('linksPrimary', $linksBarPrimary)
+    @slot('linksSecondary', $linksBarPrimarySecondary)
+@endcomponent
 
 
-@include('shared._aside-newsletter')
-@include('shared._aside-newsletter', array('error' => true))
-@include('shared._aside-newsletter', array('success' => true))
+@component('components.molecules._m-aside-newsletter')
+@endcomponent
+@component('components.molecules._m-aside-newsletter')
+    @slot('error', 'Please enter a valid email address')
+@endcomponent
+@component('components.molecules._m-aside-newsletter')
+    @slot('success', 'Successfully signed up to the newsletter')
+@endcomponent
 
-<p class="f-body">Inline calendar</p>
-<div class="m-calendar m-calendar--inline" style="margin-top: 20px;" data-behavior="calendar" data-calendar-url="/events">
-  <b class="m-calendar__title f-caption" data-calendar-title></b>
-  <table>
-    <thead class="f-caption">
-      <tr>
-        <th title="Sunday">S</th>
-        <th title="Monday">M</th>
-        <th title="Tuesday">T</th>
-        <th title="Wednesday">W</th>
-        <th title="Thursday">T</th>
-        <th title="Friday">F</th>
-        <th title="Saturday">S</th>
-      </tr>
-    </thead>
-    <tbody class="f-secondary">
-    </tbody>
-  </table>
-  <button class="m-calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-  <button class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-</div>
-
-<p class="f-secondary">
-  <span class="date-select-trigger" data-behavior="selectDate">
-    <button class="date-select-trigger__open" data-selectDate-open>
-      <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
-      <span class="date-select-trigger__label f-buttons">Choose date</span>
-      <span class="date-select-trigger__selected-date f-buttons" data-selectDate-display></span>
-    </button>
-    <button class="date-select-trigger__clear" data-selectDate-clear><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
-    <input type="hidden">
-  </span>
+<p>
+    @component('components.atoms._date-select-trigger')
+        Go to date
+    @endcomponent
 </p>
 
-<p class="f-secondary">
-  <span class="date-select-trigger" data-behavior="selectDate" data-selectDate-range="true" data-selectDate-id="cal01" data-selectDate-role="start" data-selectDate-linkedId="cal02">
-    <button class="date-select-trigger__open" data-selectDate-open>
-      <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
-      <span class="date-select-trigger__label f-buttons">Start date</span>
-      <span class="date-select-trigger__selected-date f-buttons" data-selectDate-display></span>
-    </button>
-    <button class="date-select-trigger__clear" data-selectDate-clear><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
-    <input type="hidden">
-  </span>
-  <span class="date-select-trigger" data-behavior="selectDate" data-selectDate-range="true" data-selectDate-id="cal02" data-selectDate-role="end" data-selectDate-linkedId="cal01">
-    <button class="date-select-trigger__open" data-selectDate-open>
-      <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
-      <span class="date-select-trigger__label f-buttons">End date</span>
-      <span class="date-select-trigger__selected-date f-buttons" data-selectDate-display></span>
-    </button>
-    <button class="date-select-trigger__clear" data-selectDate-clear><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
-    <input type="hidden">
-  </span>
+<p>
+    @component('components.atoms._date-select-trigger')
+        @slot('hiddenInputName', 'date0')
+        @slot('hiddenInputId', 'date0')
+        Choose date
+    @endcomponent
 </p>
+
+<p>
+    @component('components.atoms._date-select-trigger')
+        @slot('hiddenInputName', 'dateStart')
+        @slot('hiddenInputId', 'dateStart')
+        @slot('range', true)
+        @slot('selectDateId', 'cal01')
+        @slot('selectDateRole', 'start')
+        @slot('selectDateLinkedId', 'cal02')
+        Start date
+    @endcomponent
+    @component('components.atoms._date-select-trigger')
+        @slot('hiddenInputName', 'dateEnd')
+        @slot('hiddenInputId', 'dateEnd')
+        @slot('range', true)
+        @slot('selectDateId', 'cal02')
+        @slot('selectDateRole', 'end')
+        @slot('selectDateLinkedId', 'cal01')
+        End date
+    @endcomponent
+</p>
+
 
 <hr class="hr--big-break">
 <p class="f-secondary">o-grid-listing, no cols</p>
