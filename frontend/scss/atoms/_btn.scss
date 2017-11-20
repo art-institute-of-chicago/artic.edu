@@ -18,7 +18,7 @@
   padding-left: 28px;
   border: 0;
   border-radius: $border-radius;
-  background-color: $color__link--brand;
+  background-color: $color__link--accent;
   color: $color__white;
   text-align: center;
   text-decoration: none;
@@ -32,11 +32,11 @@
 
   &:hover,
   &:focus {
-    background-color: $color__link--brand-hover;
+    background-color: $color__link--accent-hover;
   }
 
   &:active {
-    background-color: $color__link--brand-active;
+    background-color: $color__link--accent-active;
   }
 }
 

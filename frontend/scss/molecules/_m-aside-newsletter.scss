@@ -110,16 +110,16 @@
   border: 0 none;
   border-bottom: 1px solid $color__rules--secondary;
   background-color: transparent;
-  color: $color__link--brand;
+  color: $color__link--accent;
   text-align: right;
 
   &:hover,
   &:focus {
-    color: $color__link--brand-hover;
+    color: $color__link--accent-hover;
   }
 
   &:active {
-    color: $color__link--brand-active;
+    color: $color__link--accent-active;
   }
 }
 
