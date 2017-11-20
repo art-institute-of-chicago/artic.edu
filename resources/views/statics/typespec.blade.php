@@ -86,6 +86,13 @@
     <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
   </li>
   <li>
+    <p class="f-body-editorial-reference">f-body-editorial-reference</p>
+    <p class="f-body-editorial-reference">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-body-editorial-reference">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+  </li>
+  <li>
     <p class="f-buttons">f-buttons</p>
     <p class="f-buttons">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
     <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
@@ -93,7 +100,7 @@
     <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
   </li>
   <li>
-    <p class="f-secondary">f-secondary</p>
+    <p class="f-secondary">f-secondary (f-link)</p>
     <p class="f-secondary">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
     <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
     <p class="f-secondary">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
@@ -107,10 +114,31 @@
     <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
   </li>
   <li>
+    <p class="f-caption-title">f-caption-title</p>
+    <p class="f-caption-title">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-caption-title">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+  </li>
+  <li>
     <p class="f-caption">f-caption</p>
     <p class="f-caption">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
     <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
     <p class="f-caption">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+  </li>
+  <li>
+    <p class="f-list-5">f-list-5</p>
+    <p class="f-list-5">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-list-5">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+  </li>
+  <li>
+    <p class="f-list-4">f-list-4</p>
+    <p class="f-list-4">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
+    <p class="f-list-4">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
     <p class="f-body">The quick brown fox, <br>jumps over the lazy dog H<sub>2</sub>O<sup>2</sup></p>
   </li>
   <li>
