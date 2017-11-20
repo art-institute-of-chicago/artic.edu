@@ -58,14 +58,16 @@ $f-display-2: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 32, line-height: 40, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: .1em, push: 0),
-    'small+': (font-size: 40, line-height: 52, push: 0),
-    'medium+': (font-size: 68, line-height: 80, push: 0),
+    'xsmall': (font-size: 31, line-height: 36, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: .08em, push: 0),
+    'small+': (font-size: 51, line-height: 60, push: 0),
+    'medium+': (font-size: 58, line-height: 68, push: 0),
+    'large+': (font-size: 68, line-height: 80, push: 0),
    )
 );
 
 @mixin f-display-2() {
   @include font-styles($f-display-2);
+  font-feature-settings: "lnum" on;
 }
 
 %f-display-2,
@@ -88,15 +90,14 @@ $f-display-1: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 22, line-height: 28, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: .09em, push: 0),
-    'small+': (font-size: 27, line-height: 40, letter-spacing: .1em, push: 0),
-    'medium+': (font-size: 32, line-height: 48, letter-spacing: .01em, push: 0),
-    'xlarge+': (font-size: 38, line-height: 56, letter-spacing: .1em, push: 0),
+    'xsmall': (font-size: 26, line-height: 36, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: .08em, push: 0),
+    'small+': (font-size: 36, line-height: 48, push: 0)
    )
 );
 
 @mixin f-display-1() {
   @include font-styles($f-display-1);
+  font-feature-settings: "lnum" on;
 }
 
 %f-display-1,
@@ -119,10 +120,9 @@ $f-headline: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 24, line-height: 32, font-weight: 'lighter', letter-spacing: .01em, push: 0),
-    'small+': (font-size: 32, line-height: 40),
-    'medium+': (font-size: 36, line-height: 44),
-    'large+': (font-size: 38, line-height: 48),
+    'xsmall': (font-size: 28, line-height: 32, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+    'small+': (font-size: 34, line-height: 44),
+    'medium+': (font-size: 38, line-height: 48),
    )
 );
 
@@ -150,10 +150,9 @@ $f-headline-editorial: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 24, line-height: 32, letter-spacing: -.05em, push: 0),
-    'small+': (font-size: 32, line-height: 40, letter-spacing: .05em, push: 0),
-    'medium+': (font-size: 36, line-height: 44, letter-spacing: .01em, push: 0),
-    'large+': (font-size: 38, line-height: 48, letter-spacing: -.05em, push: 0),
+    'xsmall': (font-size: 28, line-height: 32, letter-spacing: -.01em, push: 0),
+    'small+': (font-size: 34, line-height: 44, push: 0),
+    'medium+': (font-size: 38, line-height: 48, push: 0),
    )
 );
 
@@ -181,10 +180,8 @@ $f-deck: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.05em, push: 0),
-    'small+': (font-size: 24, line-height: 32, push: 0),
-    'medium+': (font-size: 27, line-height: 36, push: 0),
-    'xlarge+': (font-size: 29, line-height: 40, push: 0),
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: 0),
+    'small+': (font-size: 28, line-height: 36, push: 0),
    )
 );
 
@@ -199,7 +196,7 @@ $f-deck: (
 
 /***
 
-f-module-title-2
+f-module-title-2 (f-sub-heading-2)
 
 ```
 <p class="f-module-title-2">The quick brown fox, <br>jumps over the lazy dog</p>
@@ -212,19 +209,20 @@ $f-module-title-2: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 15, line-height: 20, letter-spacing: .08em, push: 0),
-    'small+': (font-size: 17, line-height: 24, push: 0),
-    'medium+': (font-size: 19, line-height: 28, push: 0),
-    'xlarge+': (font-size: 21, line-height: 32, push: 0),
+    'xsmall': (font-size: 18, line-height: 24, letter-spacing: .08em, text-transform: 'uppercase', push: 0),
+    'small+': (font-size: 22, line-height: 28, push: 0),
    )
 );
 
 @mixin f-module-title-2() {
   @include font-styles($f-module-title-2);
+  font-feature-settings: "lnum" on;
 }
 
 %f-module-title-2,
-.f-module-title-2 {
+.f-module-title-2,
+%f-sub-heading-2,
+.f-sub-heading-2 {
   @include f-module-title-2;
 }
 
@@ -243,8 +241,7 @@ $f-module-title-1: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 16, line-height: 24, letter-spacing: .1em, text-transform: 'uppercase', push: 0),
-    'large+': (font-size: 17, line-height: 24, push: 0),
+    'xsmall': (font-size: 17, line-height: 24, letter-spacing: .01em, push: 0),
    )
 );
 
@@ -259,64 +256,35 @@ $f-module-title-1: (
 
 /***
 
-subheading
+f-sub-heading (f-sub-heading-1-editorial)
 
 ```
-<p class="f-subheading">The quick brown fox, <br>jumps over the lazy dog</p>
+<p class="f-sub-heading-1">The quick brown fox, <br>jumps over the lazy dog</p>
 ```
 
 ***/
 
-$f-subheading: (
+$f-sub-heading-1: (
   font-family: $sans-serif-font,
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 17, line-height: 24, letter-spacing: .01em, push: 0),
     'small+': (font-size: 18, line-height: 28, push: 0),
-    'medium+': (font-size: 19, line-height: 28, push: 0),
+    'xxlarge': (font-size: 19, line-height: 28, push: 0),
    )
 );
 
-@mixin f-subheading() {
-  @include font-styles($f-subheading);
+@mixin f-sub-heading-1() {
+  @include font-styles($f-sub-heading-1);
 }
 
-%f-subheading,
-.f-subheading {
-  @include f-subheading;
+%f-sub-heading-1,
+.f-sub-heading-1,
+%f-sub-heading-1-editorial,
+.f-sub-heading-1-editorial {
+  @include f-sub-heading-1;
 }
-
-/***
-
-subheading-editorial
-
-```
-<p class="f-subheading-editorial">The quick brown fox, <br>jumps over the lazy dog</p>
-```
-
-***/
-
-$f-subheading-editorial: (
-  font-family: $serif-font,
-  font-family-loaded: $serif-font--loaded,
-  font-loaded-class: $serif-font-loaded-class,
-  settings: (
-    'xsmall': (font-size: 17, line-height: 24, push: 0),
-    'small+': (font-size: 18, line-height: 28, push: 0),
-    'medium+': (font-size: 19, line-height: 28, push: 0),
-   )
-);
-
-@mixin f-subheading-editorial() {
-  @include font-styles($f-subheading-editorial);
-}
-
-%f-subheading-editorial,
-.f-subheading-editorial {
-  @include f-subheading-editorial;
-}
-
 
 /***
 
@@ -335,7 +303,7 @@ $f-body: (
   settings: (
     'xsmall': (font-size: 17, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 0),
     'small+': (font-size: 18, line-height: 28, push: 0),
-    'medium+': (font-size: 19, line-height: 28, push: 0),
+    'xxlarge': (font-size: 19, line-height: 28, push: 0),
    )
 );
 
