@@ -56,3 +56,46 @@ input[type=password],
 input[type=number] {
   @extend %input;
 }
+
+
+/***
+
+```
+<span class="input__io-container" data-behavior="textCount">
+  <input class="f-secondary" type="text" name="tinput2" id="tinput2" placeholder="Placeholder">
+  <output for="tinput2" class="f-secondary">0</output>
+</span>
+```
+
+***/
+
+.input__io-container {
+  display: block;
+  position: relative;
+
+  label + & {
+    margin-top: 16px;
+  }
+}
+
+.input__io-container input {
+  display: block;
+  width: 100%;
+  margin-top: 0;
+  padding-right: 100px;
+}
+
+.input__io-container output {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  color: $color__input-output;
+  text-align: right;
+  transform: translateY(-50%);
+
+  &::before,
+  &::after {
+    content: none;
+    display: none;
+  }
+}

@@ -6,7 +6,7 @@
         @endcomponent
     @endif
     @if (isset($textCount))
-    <span class="input-with-output" data-behavior="textCount">
+    <span class="input__io-container" data-behavior="textCount">
     @endif
     <input class="f-secondary" type="{{ $type ?? 'text'}}" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" {{ $disabled ?? '' }}>
     @if (isset($textCount))
