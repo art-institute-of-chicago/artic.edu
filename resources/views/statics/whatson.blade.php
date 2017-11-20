@@ -2,25 +2,36 @@
 
 @section('content')
 
-@include('shared._header-block', array('title' => "Exhibitions and Events"))
+@component('components.molecules._m-header-block')
+    Exhibitions and Events
+@endcomponent
 
-@include('shared._intro-block', array('intro' => $intro))
+@component('components.molecules._m-intro-block')
+    {{ $intro }}
+@endcomponent
 
 @php
 $linksBarPrimary = array();
 array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
 array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
 @endphp
-@include('shared._links-bar', array('variation' => 'tabs', 'linksPrimary' => $linksBarPrimary))
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'tabs')
+    @slot('linksPrimary', $linksBarPrimary)
+@endcomponent
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+array_push($linksBarPrimary, array('text' => 'Current', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('text' => 'Upcoming', 'href' => '#', 'active' => false));
 $linksBarSecondary = array();
 array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
 @endphp
-@include('shared._links-bar', array('linksPrimary' => $linksBarPrimary, 'linksSecondary' => $linksBarSecondary))
+
+@component('components.molecules._m-links-bar')
+    @slot('linksPrimary', $linksBarPrimary)
+    @slot('linksSecondary', $linksBarSecondary)
+@endcomponent
 
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@medium o-grid-listing--2-col@large o-grid-listing--2-col@xlarge o-grid-listing--2-col@xxlarge">
   @foreach ($featuredExhibitions as $exhibition)
@@ -36,7 +47,8 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
   @endforeach
 </ul>
 
-@include('shared._aside-newsletter')
+@component('components.molecules._m-aside-newsletter')
+@endcomponent
 
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--3-col@large o-grid-listing--3-col@xlarge o-grid-listing--3-col@xxlarge">
   @foreach ($exhibitions as $exhibition)
@@ -50,13 +62,19 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
 $linksBarPrimary = array();
 array_push($linksBarPrimary, array('text' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary'));
 @endphp
-@include('shared._links-bar', array('variation' => 'buttons', 'linksPrimary' => $linksBarPrimary))
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'buttons')
+    @slot('linksPrimary', $linksBarPrimary)
+@endcomponent
 
 @php
 $titleBarLinks = array();
 array_push($titleBarLinks, array('text' => 'Browse events', 'href' => '#'));
 @endphp
-@include('shared._title-bar', array('title' => 'Today&rsquo;s Events', 'links' => $titleBarLinks))
+@component('components.molecules._m-title-bar')
+    @slot('links', $titleBarLinks)
+    Today&rsquo;s Events
+@endcomponent
 
 <ul class="o-grid-listing">
 @foreach ($eventsByDay as $date)
