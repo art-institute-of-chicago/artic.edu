@@ -12,8 +12,10 @@ const selectDate = function(container) {
   const linkedSelectDate = document.querySelector('[data-selectDate-id=' + container.getAttribute('data-selectDate-linkedId') + ']') || false;
   const role = (linked) ? container.getAttribute('data-selectDate-role') : false;
   const dateSelectedClass = 's-date-selected';
+  const defaultMinDate = 'today';
 
   let calendarOpen = false;
+  let minDate = defaultMinDate;
 
   function _closeCalendar() {
     if (calendarOpen) {
@@ -29,7 +31,10 @@ const selectDate = function(container) {
     opener.blur();
     if (!calendarOpen) {
       document.documentElement.classList.add('s-calendar-active');
-      triggerCustomEvent(calendar, 'calendar:opener', { el: container });
+      triggerCustomEvent(calendar, 'calendar:opener', {
+        el: container,
+        minDate: minDate
+      });
       positionElementToTarget({
         element: calendar,
         target: container,
@@ -60,11 +65,11 @@ const selectDate = function(container) {
 
   function _dateSelected(event) {
     if (calendarOpen && event) {
-      if (hiddenInput && event.data.friendlyString) {
+      if (event.data.friendlyString) {
         display.textContent = event.data.friendlyString;
-        container.classList.add(dateSelectedClass);
       }
       if (hiddenInput && event.data.dateString) {
+        container.classList.add(dateSelectedClass);
         hiddenInput.value = event.data.dateString;
       }
       _closeCalendar();
@@ -79,6 +84,9 @@ const selectDate = function(container) {
           minDate: minDate
         });
       }
+      if (!linked && !hiddenInput && event.data.href) {
+        window.location.href = event.data.href;
+      }
     }
   }
 
@@ -86,8 +94,9 @@ const selectDate = function(container) {
     if (linked && linkedSelectDate && role && role === 'end' && event && event.data.minDate) {
       // if this is the end date selector and the start date has been selected
       // tell the calendar to update
+      minDate = event.data.minDate;
       triggerCustomEvent(calendar, 'calendar:minDate', {
-        minDate: event.data.minDate
+        minDate: minDate
       });
       _openCalendar(event);
     }
@@ -95,6 +104,7 @@ const selectDate = function(container) {
 
   function _startDateCleared(event) {
     _clearSelected(event);
+    minDate = defaultMinDate;
   }
 
   function _clicksOutside(event) {

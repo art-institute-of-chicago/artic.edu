@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent } from 'a17-helpers';
+import { purgeProperties, triggerCustomEvent, queryStringHandler } from 'a17-helpers';
 
 const calendar = function(container) {
 
@@ -6,7 +6,7 @@ const calendar = function(container) {
   const todayDate = today.getDate();
   const todayMonth = today.getMonth();
   const todayYear = today.getFullYear();
-  const searchUrl = container.getAttribute('data-calendar-url') || false;
+  const searchUrl = container.getAttribute('data-calendar-url') || '/';
 
   let minDate = today;
   let opener = false;
@@ -89,7 +89,8 @@ const calendar = function(container) {
           var urlMonth = (month + 1);
           urlMonth = (urlMonth < 10) ? '0' + urlMonth : urlMonth.toString();
           var urlDay = (currentDate < 10) ? '0' + currentDate : currentDate.toString();
-          thisDay = '<a href="'+ searchUrl + '?date=' + year.toString() + urlMonth + urlDay + '" data-date="' + year.toString() + urlMonth + urlDay + '" title="' + titleAttr + '">' + currentDate + '</a>';
+          var windowLocationHref = queryStringHandler.updateParameter(window.location.href, 'date', (year.toString() + urlMonth + urlDay));
+          thisDay = '<a href="'+ windowLocationHref + '" data-date="' + year.toString() + urlMonth + urlDay + '" title="' + titleAttr + '">' + currentDate + '</a>';
         } else {
           thisDay = currentDate;
         }
@@ -137,17 +138,16 @@ const calendar = function(container) {
       _normaliseYearMonth();
       _generateCalendar(currentYear, currentMonth);
     }
-    if (clicked.getAttribute('data-date') !== null) {
-      if (!searchUrl && opener) {
-        event.preventDefault();
-        event.stopPropagation();
-        let chosenDate = clicked.getAttribute('data-date');
-        triggerCustomEvent(opener, 'calendar:dateSelected', {
-          dateObj: new Date(parseInt(chosenDate.substring(0,4)), (parseInt(chosenDate.substring(4,6)) - 1), parseInt(chosenDate.substring(6,8))),
-          dateString: chosenDate,
-          friendlyString: clicked.getAttribute('title'),
-        });
-      }
+    if (clicked.getAttribute('data-date') !== null && opener) {
+      event.preventDefault();
+      event.stopPropagation();
+      let chosenDate = clicked.getAttribute('data-date');
+      triggerCustomEvent(opener, 'calendar:dateSelected', {
+        dateObj: new Date(parseInt(chosenDate.substring(0,4)), (parseInt(chosenDate.substring(4,6)) - 1), parseInt(chosenDate.substring(6,8))),
+        dateString: chosenDate,
+        friendlyString: clicked.getAttribute('title'),
+        href: clicked.href
+      });
     }
   }
 
@@ -155,10 +155,7 @@ const calendar = function(container) {
     if (event && event.data.el) {
       opener = event.data.el;
     }
-  }
-
-  function _minDateSent(event) {
-    if (event && event.data.minDate) {
+    if (event && event.data.minDate && event.data.minDate !== 'today') {
       minDate = event.data.minDate;
     } else {
       minDate = today;
@@ -170,7 +167,6 @@ const calendar = function(container) {
     // listen for clicks
     container.addEventListener('click', _handleClicks, false);
     container.addEventListener('calendar:opener', _openerSent, false);
-    container.addEventListener('calendar:minDate', _minDateSent, false);
     // draw initial calendar
     _generateCalendar(minDate.getFullYear(), minDate.getMonth());
   }
@@ -179,7 +175,6 @@ const calendar = function(container) {
     // remove specific event handlers
     container.removeEventListener('click', _handleClicks);
     container.removeEventListener('calendar:opener', _openerSent);
-    container.removeEventListener('calendar:minDate', _minDateSent);
 
     // remove properties of this behavior
     purgeProperties(this);
