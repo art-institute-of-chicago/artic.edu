@@ -40,10 +40,8 @@
   }
 }
 
-.btn[class*=f-]::before,
-.btn[class*=f-]::after {
-  content: none;
-  display: none;
+.btn[class*=f-] {
+  @include untuck;
 }
 
 .btn.f-buttons {
@@ -121,5 +119,30 @@
 
   &:active {
     background-color: $color__bg--primary;
+  }
+}
+
+.btn.s-loading {
+  position: relative;
+  color: transparent;
+}
+
+.btn.s-loading::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border: 4px solid rgba(0,0,0,.25);
+  border-top-color: rgba(0,0,0,1);
+  border-radius: 50%;
+  animation: loader 1.5s linear infinite;
+}
+
+@keyframes loader {
+  100% {
+    transform: rotate(360deg);
   }
 }

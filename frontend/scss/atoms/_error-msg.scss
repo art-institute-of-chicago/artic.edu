@@ -12,7 +12,13 @@
   font-style: normal;
 
   label + &,
-  input + & {
+  input + &,
+  .select__select + & {
     margin-top: 4px;
+  }
+
+  .checkbox label + &,
+  .radio label + & {
+    margin: 0;
   }
 }

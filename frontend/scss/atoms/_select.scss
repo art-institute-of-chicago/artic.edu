@@ -1,7 +1,7 @@
 /***
 
 ```
-<span class="select" data-behavior="formSelectFocus">
+<span class="select__select" data-behavior="formSelectFocus">
   <select name="select1" id="select1">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -15,7 +15,7 @@
 ***/
 
 
-.select {
+.select__select {
   @include styled-select;
   border: 1px solid $color__input-border;
   border-radius: $border-radius;
@@ -35,9 +35,13 @@
   .s-error & {
     border-color: $color__input-border--error;
   }
+
+  label + & {
+    margin-top: 16px;
+  }
 }
 
-.select select {
+.select__select select {
   height: 48px;
   padding: 0 35px 0 15px;
   border: 0 none;
@@ -56,27 +60,27 @@
   }
 }
 
-.select:hover select {
+.select__select:hover select {
   color: $color__input-text--hover;
 }
 
-.select select:focus {
+.select__select select:focus {
   outline: none;
 }
 
-.select select:disabled {
+.select__select select:disabled {
   opacity: .5;
   pointer-events: none;
 }
 
-.select option {
+.select__select option {
   font-weight: normal;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.select::after {
+.select__select::after {
   content: '';
   right: 15px;
   top: 50%;
@@ -87,11 +91,11 @@
   transform: translateY(-50%) rotate(90deg);
 }
 
-.select:hover::after {
+.select__select:hover::after {
   opacity: .9;
 }
 
-.select:focus::after,
-.select.s-focus::after {
+.select__select:focus::after,
+.select__select.s-focus::after {
   opacity: .9;
 }

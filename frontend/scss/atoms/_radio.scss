@@ -92,3 +92,7 @@ radio
   opacity: .5;
   pointer-events: none;
 }
+
+.radio.s-error label::before {
+  border-color: $color__input-border--error;
+}

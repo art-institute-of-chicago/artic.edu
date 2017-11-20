@@ -101,3 +101,8 @@
   opacity: .5;
   pointer-events: none;
 }
+
+
+.checkbox.s-error label::before {
+  border-color: $color__input-border--error;
+}
