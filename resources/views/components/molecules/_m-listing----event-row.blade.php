@@ -1,4 +1,4 @@
-<li class="m-listing m-listing--row{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
   <a href="{{ $event->slug }}" class="m-listing__link">
     <span class="m-listing__img">
         @component('components.atoms._img')
@@ -24,4 +24,4 @@
         @endcomponent
     </span>
   </a>
-</li>
+</{{ $tag ?? 'li' }}>

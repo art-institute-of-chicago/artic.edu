@@ -58,31 +58,23 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
   @endforeach
 </ul>
 
-@php
-$linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary'));
-@endphp
 @component('components.molecules._m-links-bar')
     @slot('variation', 'buttons')
-    @slot('linksPrimary', $linksBarPrimary)
+    @slot('linksPrimary', array(array('text' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary')))
 @endcomponent
 
-@php
-$titleBarLinks = array();
-array_push($titleBarLinks, array('text' => 'Browse events', 'href' => '#'));
-@endphp
 @component('components.molecules._m-title-bar')
-    @slot('links', $titleBarLinks)
+    @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
     Today&rsquo;s Events
 @endcomponent
 
-<ul class="o-grid-listing">
-@foreach ($eventsByDay as $date)
-    @component('components.molecules._m-date-listing')
-        @slot('date', $date)
-    @endcomponent
-@endforeach
-</ul>
+@component('components.organisms._o-row-listing')
+    @foreach ($eventsByDay as $date)
+        @component('components.molecules._m-date-listing')
+            @slot('date', $date)
+        @endcomponent
+    @endforeach
+@endcomponent
 
 
 @endsection

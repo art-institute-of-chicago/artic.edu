@@ -1,0 +1,12 @@
+
+.o-row-listing {
+  margin-top: 0;
+
+  & + & {
+    margin-top: 40px;
+  }
+}
+
+.o-row-listing > * {
+  margin-top: 28px;
+}
