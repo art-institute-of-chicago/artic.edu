@@ -78,30 +78,9 @@ array_push($titleBarLinks, array('text' => 'Browse events', 'href' => '#'));
 
 <ul class="o-grid-listing">
 @foreach ($eventsByDay as $date)
-  <li class="m-date-listing">
-    <h3 class="day">
-        <span class="day__date f-date-numeral">{{ $date['date']['date'] }}</span>
-        <span class="day__month f-tag">{{ $date['date']['month'] }}</span>
-        <span class="day__day f-tag">{{ $date['date']['day'] }}</span>
-    </h3>
-    <ul class="m-date-listing__items">
-    @foreach ($date['events'] as $event)
-        <li class="m-listing m-listing--row">
-          <a href="{{ $event->slug }}" class="m-listing__link">
-            <span class="m-listing__img">
-              <img src="{{ $event->image['src'] }}">
-            </span>
-            <span class="m-listing__meta">
-              @if ($event->exclusive)<em class="exclusive f-tag">Member Exclusive</em>@endif
-              <em class="type f-tag">{{ $event->type }}</em> <br>
-              <strong class="title f-list-2">{{ $event->title }}</strong> <br>
-              <span class="date f-secondary">{{ $event->timeStart }}-{{ $event->timeEnd }}</span>
-            </span>
-          </a>
-        </li>
-    @endforeach
-    </ul>
-  </li>
+    @component('components.molecules._m-date-listing')
+        @slot('date', $date)
+    @endcomponent
 @endforeach
 </ul>
 
