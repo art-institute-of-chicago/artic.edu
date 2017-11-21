@@ -1,1 +1,1 @@
-<label for="{{ $for ?? '' }}" class="f-secondary{{ $variation ?? '' }}">{{ $slot ?? '' }}</label>
+<label for="{{ $for ?? '' }}" class="{{ $font ?? 'f-secondary' }}{{ (isset($variation)) ? ' '.$variation : '' }}">{{ $slot ?? '' }}</label>

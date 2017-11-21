@@ -1,7 +1,7 @@
 @if (isset($range) and $range)
-<span class="date-select-trigger f-secondary" data-behavior="selectDate" data-selectDate-range="true" data-selectDate-id="{{ $selectDateId ?? '' }}" data-selectDate-role="{{ $selectDateRole ?? '' }}" data-selectDate-linkedId="{{ $selectDateLinkedId ?? '' }}">
+<span class="date-select-trigger {{ $font ?? 'f-secondary' }}{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="selectDate" data-selectDate-range="true" data-selectDate-id="{{ $selectDateId ?? '' }}" data-selectDate-role="{{ $selectDateRole ?? '' }}" data-selectDate-linkedId="{{ $selectDateLinkedId ?? '' }}">
 @else
-<span class="date-select-trigger f-secondary" data-behavior="selectDate">
+<span class="date-select-trigger {{ $font ?? 'f-secondary' }}{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="selectDate">
 @endif
   <button class="date-select-trigger__open" data-selectDate-open>
     <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>

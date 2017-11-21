@@ -1,1 +1,1 @@
-<em class="error-msg f-secondary">{{ $slot ?? '' }}</em>
+<em class="error-msg {{ $font ?? 'f-secondary' }}{{ (isset($variation)) ? ' '.$variation : '' }}">{{ $slot ?? '' }}</em>

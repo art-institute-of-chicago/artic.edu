@@ -1,1 +1,1 @@
-<a href="#" class="tag f-tag{{ $variation ?? '' }}">{{ $slot }}</a>
+<a href="#" class="tag {{ $font ?? 'f-tag' }}{{ (isset($variation)) ? ' '.$variation : '' }}">{{ $slot }}</a>
