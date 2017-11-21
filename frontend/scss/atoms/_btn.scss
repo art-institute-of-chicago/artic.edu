@@ -124,6 +124,8 @@
 
 .btn.s-loading {
   position: relative;
+  border: 1px solid $color__rules--secondary;
+  background-color: $color__white;
   color: transparent;
 }
 
@@ -132,13 +134,13 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 32px;
-  height: 32px;
-  margin: -16px 0 0 -16px;
-  border: 4px solid rgba(0,0,0,.25);
-  border-top-color: rgba(0,0,0,1);
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border: 2px solid $color__rules--primary;
+  border-top-color: $color__black--54;
   border-radius: 50%;
-  animation: loader 1.5s linear infinite;
+  animation: loader 1.25s linear infinite;
 }
 
 @keyframes loader {
