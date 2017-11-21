@@ -33,30 +33,53 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
     @slot('linksSecondary', $linksBarSecondary)
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@medium o-grid-listing--2-col@large o-grid-listing--2-col@xlarge o-grid-listing--2-col@xxlarge">
-  @foreach ($featuredExhibitions as $exhibition)
-    @include('shared._list-item-exhibition', array('exhibition' => $exhibition))
-  @endforeach
-</ul>
+@component('components.organisms._o-grid-listing')
+    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+    @slot('cols_medium','2')
+    @slot('cols_large','2')
+    @slot('cols_xlarge','2')
+    @slot('cols_xxlarge','2')
+    @foreach ($featuredExhibitions as $exhibition)
+        @component('components.molecules._m-listing----exhibition')
+            @slot('exhibition', $exhibition)
+        @endcomponent
+    @endforeach
+@endcomponent
 
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--3-col@large o-grid-listing--3-col@xlarge o-grid-listing--3-col@xxlarge">
-  @foreach ($exhibitions as $exhibition)
-    @if ($loop->index < 6)
-      @include('shared._list-item-exhibition', array('exhibition' => $exhibition))
-    @endif
-  @endforeach
-</ul>
+@component('components.organisms._o-grid-listing')
+    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+    @slot('cols_small','2')
+    @slot('cols_medium','3')
+    @slot('cols_large','3')
+    @slot('cols_xlarge','3')
+    @slot('cols_xxlarge','3')
+    @foreach ($exhibitions as $exhibition)
+        @if ($loop->index < 6)
+            @component('components.molecules._m-listing----exhibition')
+                @slot('exhibition', $exhibition)
+            @endcomponent
+        @endif
+    @endforeach
+@endcomponent
 
 @component('components.molecules._m-aside-newsletter')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--3-col@large o-grid-listing--3-col@xlarge o-grid-listing--3-col@xxlarge">
-  @foreach ($exhibitions as $exhibition)
-    @if ($loop->index > 5)
-      @include('shared._list-item-exhibition', array('exhibition' => $exhibition))
-    @endif
-  @endforeach
-</ul>
+@component('components.organisms._o-grid-listing')
+    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+    @slot('cols_small','2')
+    @slot('cols_medium','3')
+    @slot('cols_large','3')
+    @slot('cols_xlarge','3')
+    @slot('cols_xxlarge','3')
+    @foreach ($exhibitions as $exhibition)
+        @if ($loop->index > 5)
+            @component('components.molecules._m-listing----exhibition')
+                @slot('exhibition', $exhibition)
+            @endcomponent
+        @endif
+    @endforeach
+@endcomponent
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'buttons')
