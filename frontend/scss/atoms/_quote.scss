@@ -1,0 +1,21 @@
+
+
+.quote {
+  position: relative;
+  padding-top: 72px - 32px;
+  color: $color__text--title;
+
+  @include breakpoint('small+') {
+    padding-top: 72px - 36px;
+  }
+
+  @include breakpoint('medium+') {
+    padding-top: 72px - 40px;
+  }
+}
+
+.quote__icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+}

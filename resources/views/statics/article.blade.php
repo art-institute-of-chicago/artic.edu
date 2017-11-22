@@ -46,6 +46,9 @@
         @slot('captionTitle', 'Caption Title')
         @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
     @endcomponent
+    @component('components.atoms._quote')
+        In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.
+    @endcomponent
   </div>
 
   <div class="o-article__asides">
