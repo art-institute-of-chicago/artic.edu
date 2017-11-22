@@ -11,6 +11,7 @@
 <ul>
   <li><a href="/statics/home">home</a></li>
   <li><a href="/statics/whatson">whatson</a></li>
+  <li><a href="/statics/article">article</a></li>
 </ul>
 
 @endsection
