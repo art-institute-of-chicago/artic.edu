@@ -20,48 +20,32 @@
     <h4 class="f-module-title-2">Module title 2</h4>
     <h4 class="f-module-title-1">Module title 1</h4>
     <p class="f-body-editorial">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
-    <figure class="m-media m-media--s">
-        <span class="m-media__img">
-            @component('components.atoms._img')
-                @slot('src', 'http://placehold.dev.area17.com/image/600x400')
-            @endcomponent
-        </span>
-        <figcaption>
-            <strong class="f-caption-title">Caption title</strong> <br>
-            <span class="f-caption">In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.</span>
-            <button class="btn btn--tertiary btn--icon"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
-        </figcaption>
-    </figure>
-    <figure class="m-media m-media--s">
-        <span class="m-media__img m-media__img--video">
-            <video src="http://aic.dev.area17.com/images/feature-1.mp4" poster="http://aic.dev.area17.com/images/feature-1.jpg" autoplay loop muted></video>
-        </span>
-        <figcaption>
-            <strong class="f-caption-title">Caption title</strong> <br>
-            <span class="f-caption">In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.</span>
-            <button class="btn btn--tertiary btn--icon"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
-        </figcaption>
-    </figure>
-    <figure class="m-media m-media--m">
-        <span class="m-media__img m-media__img--video">
-            <video src="http://aic.dev.area17.com/images/feature-1.mp4" poster="http://aic.dev.area17.com/images/feature-1.jpg" autoplay loop muted></video>
-        </span>
-        <figcaption>
-            <strong class="f-caption-title">Caption title</strong> <br>
-            <span class="f-caption">In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.</span>
-            <button class="btn btn--tertiary btn--icon"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
-        </figcaption>
-    </figure>
-    <figure class="m-media m-media--l">
-        <span class="m-media__img m-media__img--video">
-            <video src="http://aic.dev.area17.com/images/feature-1.mp4" poster="http://aic.dev.area17.com/images/feature-1.jpg" autoplay loop muted></video>
-        </span>
-        <figcaption>
-            <strong class="f-caption-title">Caption title</strong> <br>
-            <span class="f-caption">In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.</span>
-            <button class="btn btn--tertiary btn--icon"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
-        </figcaption>
-    </figure>
+    @component('components.molecules._m-media')
+        @slot('type','image')
+        @slot('media', array('src' => 'http://placehold.dev.area17.com/image/600x400'))
+        @slot('captionTitle', 'Caption Title')
+        @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
+    @endcomponent
+    @component('components.molecules._m-media')
+        @slot('type','video')
+        @slot('media', array('src' => '/test/feature-1.mp4', 'poster' => '/test/feature-1.jpg'))
+        @slot('captionTitle', 'Caption Title')
+        @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
+    @endcomponent
+    @component('components.molecules._m-media')
+        @slot('variation','m')
+        @slot('type','video')
+        @slot('media', array('src' => '/test/feature-1.mp4', 'poster' => '/test/feature-1.jpg'))
+        @slot('captionTitle', 'Caption Title')
+        @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
+    @endcomponent
+    @component('components.molecules._m-media')
+        @slot('variation','l')
+        @slot('type','video')
+        @slot('media', array('src' => '/test/feature-1.mp4', 'poster' => '/test/feature-1.jpg'))
+        @slot('captionTitle', 'Caption Title')
+        @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
+    @endcomponent
   </div>
 
   <div class="o-article__asides">
