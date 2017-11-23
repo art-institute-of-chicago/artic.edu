@@ -31,27 +31,31 @@
     <p>
         @component('components.atoms._btn')
             @slot('variation', 'btn--full')
+            @slot('tag', 'a')
+            @slot('href', '#')
             Buy tickets
         @endcomponent
         <br>
         @component('components.atoms._btn')
             @slot('variation', 'btn--secondary btn--full')
+            @slot('tag', 'a')
+            @slot('href', '#')
             Become a member
         @endcomponent
     </p>
     <p class="f-secondary">Exhibitions are free with museum admission.</p>
   </div>
 
-  <div class="o-article__body">
+  <div class="o-article__body" data-behavior="articleBodyInViewport">
     <p class="f-deck">Deck sit amet, consectetur adipiscing elit. Curabitur magna neque, laoreet at tristique et, dignissim condimentum enim. Proin cursus diam nec nibh fermentum, eget consequat arcu efficitur</p>
-    <p class="f-body-editorial">Vivamus lobortis mauris felis, vel venenatis mi viverra sed. Aliquam fermentum eros quis odio gravida, ac vulputate felis pretium. Sed in pellentesque arcu. Pellentesque non nisi eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam eu justo at mi rutrum mattis. Proin cursus fermentum velit sit amet congue. Etiam consectetur ultricies nisi vel convallis. Ut auctor pellentesque efficitur.</p>
+    <p class="f-body">Vivamus lobortis mauris felis, vel venenatis mi viverra sed. Aliquam fermentum eros quis odio gravida, ac vulputate felis pretium. Sed in pellentesque arcu. Pellentesque non nisi eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam eu justo at mi rutrum mattis. Proin cursus fermentum velit sit amet congue. Etiam consectetur ultricies nisi vel convallis. Ut auctor pellentesque efficitur.</p>
     <h4 class="f-module-title-2">Module title 2</h4>
-    <p class="f-body-editorial">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
+    <p class="f-body">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
     <h4 class="f-module-title-1">Module title 1</h4>
-    <p class="f-body-editorial">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
+    <p class="f-body">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
     <h4 class="f-module-title-2">Module title 2</h4>
     <h4 class="f-module-title-1">Module title 1</h4>
-    <p class="f-body-editorial">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
+    <p class="f-body">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
     @component('components.molecules._m-media')
         @slot('type','image')
         @slot('media', array('src' => 'http://placehold.dev.area17.com/image/600x400'))
@@ -82,6 +86,37 @@
         In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.
     @endcomponent
   </div>
+
+  <div class="o-article__tertiary">
+    <p class="o-article__tertiary-titles f-body">
+        <strong>Making Place: the Architecture of David Adjaye</strong> <br>
+        September 19 2015 - January 3 2016
+    </p>
+    <p class="o-article__tertiary-actions">
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--full')
+            @slot('tag', 'a')
+            @slot('href', '#')
+            Buy tickets
+        @endcomponent
+        <br>
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--secondary btn--full')
+            @slot('tag', 'a')
+            @slot('href', '#')
+            Become a member
+        @endcomponent
+    </p>
+  </div>
+
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--icon arrow-link--up o-article__top-link')
+        @slot('font', '')
+        @slot('icon', 'icon--arrow')
+        @slot('behavior', 'behavior')
+        @slot('tag', 'a')
+        @slot('href', '#a17')
+    @endcomponent
 
 </article>
 

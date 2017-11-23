@@ -1,0 +1,27 @@
+
+
+.s-article-sticky-fixed.s-scroll-direction-down {
+
+  .o-article__tertiary {
+    @include breakpoint('medium+') {
+      top: 0;
+      transition-timing-function: $bezier--ease-out-circ;
+    }
+  }
+}
+
+
+.s-article-sticky-fixed.s-scroll-direction-up {
+
+  .o-article__top-link {
+
+    @include breakpoint('medium+') {
+      bottom: 84px;
+      transition-timing-function: $bezier--ease-out-circ;
+    }
+
+    @include breakpoint('large+') {
+      bottom: 30px;
+    }
+  }
+}

@@ -38,7 +38,9 @@ $breakpoints: (
 // zindexs
 $zindexs: (
   header: 10,
-  calendar: 11,
+  articleStickyHeader: 11,
+  articleTopLink: 11,
+  calendar: 12,
 );
 
 // Uniform border radius
@@ -49,4 +51,6 @@ $shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 2px 5px 0 rgba(0, 0, 0, .1);
 
 // Some easing functions
 $bezier--bounce: cubic-bezier(.5, -.6, .5, 1.6);
-$bezier--ease-in-out: cubic-bezier(.5, 0, .5, 0);
+$bezier--ease-in-out: cubic-bezier(.445, .05, .55, .95);
+$bezier--ease-out-circ: cubic-bezier(.075, .82, .165, 1);
+$bezier--ease-in-circ: cubic-bezier(.6, .04, .98, .335);
