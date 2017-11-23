@@ -10,6 +10,38 @@
     <h3 class="f-headline">Headline</h3>
   </header>
 
+  <div class="o-article__primary">
+    <p>
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--icon')
+            @slot('font', '')
+            @slot('icon', 'icon--share--24')
+        @endcomponent
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--secondary btn--icon')
+            @slot('font', '')
+            @slot('icon', 'icon--print--24')
+        @endcomponent
+    </p>
+    <hr>
+    <p class="f-secondary"><svg class="icon--location" aria-hidden="true"><use xlink:href="#icon--location" /></svg> Galleries 182-184</p>
+  </div>
+
+  <div class="o-article__secondary">
+    <p>
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--full')
+            Buy tickets
+        @endcomponent
+        <br>
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--secondary btn--full')
+            Become a member
+        @endcomponent
+    </p>
+    <p class="f-secondary">Exhibitions are free with museum admission.</p>
+  </div>
+
   <div class="o-article__body">
     <p class="f-deck">Deck sit amet, consectetur adipiscing elit. Curabitur magna neque, laoreet at tristique et, dignissim condimentum enim. Proin cursus diam nec nibh fermentum, eget consequat arcu efficitur</p>
     <p class="f-body-editorial">Vivamus lobortis mauris felis, vel venenatis mi viverra sed. Aliquam fermentum eros quis odio gravida, ac vulputate felis pretium. Sed in pellentesque arcu. Pellentesque non nisi eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam eu justo at mi rutrum mattis. Proin cursus fermentum velit sit amet congue. Etiam consectetur ultricies nisi vel convallis. Ut auctor pellentesque efficitur.</p>
@@ -49,18 +81,6 @@
     @component('components.atoms._quote')
         In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.
     @endcomponent
-  </div>
-
-  <div class="o-article__asides">
-    <p>
-        <button class="btn btn--icon"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
-        <button class="btn btn--quaternary btn--icon"><svg class="icon--print--24"><use xlink:href="#icon--print--24" /></svg></button>
-    </p>
-    <ul>
-        <li><a href="#" class="btn">Buy tickets</a></li>
-        <li><a href="#" class="btn btn--secondary">Become a member</a></li>
-    </ul>
-    <p class="f-secondary">Exhibitions are free with Museum admission</p>
   </div>
 
 </article>

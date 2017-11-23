@@ -9,7 +9,8 @@
 <button class="btn btn--disabled f-buttons">Action</button>
 <button class="btn f-buttons" disabled>Action</button>
 <button class="btn btn--icon"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
-<button class="btn btn--secondary btn--icon"><svg class="icon--print--24"><use xlink:href="#icon--print--24" /></svg></button>
+<button class="btn btn--secondary btn--icon"><svg class="icon--print--24"><use xlink:href="#icon--print--24" /></svg></button> <br>
+<button class="btn btn--full f-buttons">Action</button>
 ```
 
 ***/
@@ -170,4 +171,11 @@
   margin-top: 0;
   margin-right: 0;
   vertical-align: middle;
+}
+
+.btn.btn--full {
+  display: block;
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
 }
