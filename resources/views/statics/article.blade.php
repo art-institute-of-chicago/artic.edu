@@ -113,7 +113,7 @@
         @slot('variation', 'btn--icon arrow-link--up o-article__top-link')
         @slot('font', '')
         @slot('icon', 'icon--arrow')
-        @slot('behavior', 'behavior')
+        @slot('behavior', 'topLink')
         @slot('tag', 'a')
         @slot('href', '#a17')
     @endcomponent
