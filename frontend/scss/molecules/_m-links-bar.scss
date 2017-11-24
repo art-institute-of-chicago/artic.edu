@@ -87,11 +87,18 @@
 
 .m-links-bar--tabs {
   padding-top: 0;
+  border-top: 0 none;
+  border-bottom: 1px solid $color__rules--primary;
+
+  & + .m-links-bar {
+    margin-top: 0;
+    border-top: 0 none;
+  }
 }
 
 .m-links-bar--tabs .m-links-bar__items-primary,
 .m-links-bar--tabs .m-links-bar__items-secondary {
-  margin-top: -1px;
+  margin-bottom: -1px;
 }
 
 .m-links-bar--tabs .m-links-bar__item-trigger {
@@ -100,5 +107,5 @@
 }
 
 .m-links-bar--tabs .s-active .m-links-bar__item-trigger {
-  border-top: 1px solid $color__rules--brand;
+  border-bottom: 1px solid $color__rules--brand;
 }

@@ -45,7 +45,7 @@ class StaticsController extends Controller {
 
   public function whatson() {
     return view('statics/whatson', [
-      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
+      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'featuredExhibitions' => $this->getExhibitions(2),
       'exhibitions' => $this->getExhibitions(12),
       'eventsByDay' => $this->makeEventsByDates(1),
