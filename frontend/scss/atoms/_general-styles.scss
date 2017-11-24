@@ -116,14 +116,9 @@ pre code {
 hr,
 .hr {
   height: 0;
-  margin-top: 39px;
+  margin-top: 19px;
   border: 0;
   border-top: 1px solid $color__rules--primary;
-
-  &.hr--big-break {
-    margin-top: 80px;
-    border-top-color: transparent;
-  }
 }
 
 .js-hide {

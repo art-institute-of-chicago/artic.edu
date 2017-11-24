@@ -87,3 +87,13 @@
     display: none;
   }
 }
+
+.g-header__menu-link {
+  position: absolute;
+  right: 0;
+  top: 24px;
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}

@@ -4,13 +4,24 @@
 
 <article class="o-article">
 
-  <header class="o-article__header">
-    <h1 class="f-display-2">Display 2</h1>
-    <h2 class="f-display-1">Display 1</h2>
-    <h3 class="f-headline">Headline</h3>
+  <header class="o-article__header o-article__header--basic">
+    @component('components.atoms._title')
+        @slot('tag','h1')
+        @slot('font','f-display-1')
+        Making Place: the Architecture of David Adjaye
+    @endcomponent
+    @component('components.atoms._date')
+        @slot('tag','p')
+        September 19 2015 - January 3 2016
+    @endcomponent
+    @component('components.atoms._type')
+        @slot('tag','p')
+        Exhibition
+    @endcomponent
   </header>
 
   <div class="o-article__primary">
+    <hr>
     <p>
         @component('components.atoms._btn')
             @slot('variation', 'btn--icon')
@@ -28,6 +39,7 @@
   </div>
 
   <div class="o-article__secondary">
+    <hr class="u-hide@medium+">
     <p>
         @component('components.atoms._btn')
             @slot('variation', 'btn--full')
@@ -47,6 +59,7 @@
   </div>
 
   <div class="o-article__body" data-behavior="articleBodyInViewport">
+    <hr>
     <p class="f-deck">Deck sit amet, consectetur adipiscing elit. Curabitur magna neque, laoreet at tristique et, dignissim condimentum enim. Proin cursus diam nec nibh fermentum, eget consequat arcu efficitur</p>
     <p class="f-body">Vivamus lobortis mauris felis, vel venenatis mi viverra sed. Aliquam fermentum eros quis odio gravida, ac vulputate felis pretium. Sed in pellentesque arcu. Pellentesque non nisi eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam eu justo at mi rutrum mattis. Proin cursus fermentum velit sit amet congue. Etiam consectetur ultricies nisi vel convallis. Ut auctor pellentesque efficitur.</p>
     <h4 class="f-module-title-2">Module title 2</h4>
@@ -89,8 +102,14 @@
 
   <div class="o-article__tertiary">
     <p class="o-article__tertiary-titles f-body">
-        <strong>Making Place: the Architecture of David Adjaye</strong> <br>
-        September 19 2015 - January 3 2016
+        @component('components.atoms._date')
+            @slot('font','f-body')
+            Making Place: the Architecture of David Adjaye
+        @endcomponent
+        <br>
+        @component('components.atoms._date')
+            September 19 2015 - January 3 2016
+        @endcomponent
     </p>
     <p class="o-article__tertiary-actions">
         @component('components.atoms._btn')
