@@ -53,9 +53,9 @@
 
   @include breakpoint('medium+') {
     flex: 0 0 auto;
+    order: 4;
     width: colspan(18, medium);
     margin-left: colspan(2, medium);
-    order: 4;
   }
 
   @include breakpoint('large+') {
@@ -80,8 +80,8 @@
 
   @include breakpoint('medium+') {
     flex: 0 0 auto;
-    width: colspan(38, medium);
     order: 3;
+    width: colspan(38, medium);
   }
 
   @include breakpoint('large+') {
@@ -102,18 +102,50 @@
 .o-article__tertiary {
 
   @include breakpoint('medium+') {
+    display: flex;
     position: fixed;
-    z-index: map-get($zindexs,'articleStickyHeader');
+    z-index: map-get($zindexs, 'articleStickyHeader');
     left: 0;
     right: 0;
     top: -100%;
-    display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    background-color: rgba(255,255,255,.95);
-    background-clip: padding-box;
+    padding-right: map-get($outer-gutters, 'medium');
+    padding-left: map-get($outer-gutters, 'medium');
     transition: top .25s $bezier--ease-in-circ;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 100vw;
+      margin-left: -50vw;
+      border-bottom: 1px solid rgba(0,0,0,.1);
+      background-color: rgba(255,255,255,.95);
+      background-clip: padding-box;
+    }
+  }
+
+  @include breakpoint('large+') {
+    padding-right: map-get($outer-gutters, 'large');
+    padding-left: map-get($outer-gutters, 'large');
+  }
+
+  @include breakpoint('xlarge+') {
+    padding-right: map-get($outer-gutters, 'xlarge');
+    padding-left: map-get($outer-gutters, 'xlarge');
+  }
+
+  @include breakpoint('xxlarge') {
+    left: 50%;
+    right: auto;
+    width: map-get($main-col-widths, 'xxlarge');
+    margin-left: map-get($main-col-widths, 'xxlarge') / -2;
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 
@@ -130,6 +162,19 @@
 
   @include breakpoint('medium+') {
     flex: 0 0 auto;
+    width: colspan(18, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(18, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(13, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(13, xxlarge);
   }
 }
 
