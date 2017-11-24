@@ -67,6 +67,8 @@ Text colors:
   #767676 (54% black)</li>
   <li><span style="background:#999;"></span> `$color__text--contrast`
   #999 (42% black)</li>
+  <li><span style="background:#999;"></span> `$color__text--tertiary`
+  #999 (42% black)</li>
   <li><span style="background:#fff;"></span> `$color__text--title-contrast`
   #fff (white)</li>
   <li><span style="background:#b3b3b3;"></span> `$color__text--forms`
@@ -91,6 +93,7 @@ Text colors:
 $color__text--title: $color__black--90;
 $color__text: $color__black--80;
 $color__text--secondary: $color__black--54;
+$color__text--tertiary: $color__black--42;
 $color__text--contrast: $color__black--42;
 $color__text--title-contrast: $color__white;
 $color__text--forms: $color__black--30;

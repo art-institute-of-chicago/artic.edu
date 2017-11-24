@@ -68,6 +68,7 @@ $f-display-2: (
 @mixin f-display-2() {
   @include font-styles($f-display-2);
   font-feature-settings: "lnum" on;
+  color: $color__text--title;
 }
 
 %f-display-2,
@@ -98,6 +99,7 @@ $f-display-1: (
 @mixin f-display-1() {
   @include font-styles($f-display-1);
   font-feature-settings: "lnum" on;
+  color: $color__text--title;
 }
 
 %f-display-1,
@@ -128,6 +130,7 @@ $f-headline: (
 
 @mixin f-headline() {
   @include font-styles($f-headline);
+  color: $color__text--title;
 }
 
 %f-headline,
@@ -158,6 +161,7 @@ $f-headline-editorial: (
 
 @mixin f-headline-editorial() {
   @include font-styles($f-headline-editorial);
+  color: $color__text--title;
 }
 
 %f-headline-editorial,
@@ -187,6 +191,7 @@ $f-deck: (
 
 @mixin f-deck() {
   @include font-styles($f-deck);
+  color: $color__text--tertiary;
 }
 
 %f-deck,
@@ -217,6 +222,7 @@ $f-module-title-2: (
 @mixin f-module-title-2() {
   @include font-styles($f-module-title-2);
   font-feature-settings: "lnum" on;
+  color: $color__text--title;
 }
 
 %f-module-title-2,
@@ -247,6 +253,7 @@ $f-module-title-1: (
 
 @mixin f-module-title-1() {
   @include font-styles($f-module-title-1);
+  color: $color__text--title;
 }
 
 %f-module-title-1,
@@ -277,6 +284,7 @@ $f-sub-heading-1: (
 
 @mixin f-sub-heading-1() {
   @include font-styles($f-sub-heading-1);
+  color: $color__text--title;
 }
 
 %f-sub-heading-1,
@@ -438,6 +446,7 @@ $f-body-editorial-reference: (
 
 @mixin f-body-editorial-reference() {
   @include font-styles($f-body-editorial-reference);
+  color: $color__text--editorial;
 }
 
 %f-body-editorial-reference,
@@ -447,6 +456,13 @@ $f-body-editorial-reference: (
 %f-body-editorial sup,
 .f-body-editorial sup {
   @include f-body-editorial-reference;
+}
+
+%f-body-editorial sup,
+.f-body-editorial sub,
+%f-body-editorial sup,
+.f-body-editorial sup {
+  @include untuck;
 }
 
 /***
@@ -471,6 +487,7 @@ $f-buttons: (
 
 @mixin f-buttons() {
   @include font-styles($f-buttons);
+  color: $color__text--title;
 }
 
 %f-buttons,
@@ -500,6 +517,7 @@ $f-secondary: (
 
 @mixin f-secondary() {
   @include font-styles($f-secondary);
+  color: $color__text--secondary;
 }
 
 %f-secondary,
@@ -532,6 +550,7 @@ $f-tag: (
 @mixin f-tag() {
   @include font-styles($f-tag);
   font-feature-settings: "lnum" on;
+  color: $color__link;
 }
 
 %f-tag,
@@ -560,6 +579,7 @@ $f-caption-title: (
 
 @mixin f-caption-title() {
   @include font-styles($f-caption-title);
+  color: $color__text--title;
 }
 
 %f-caption-title,
@@ -619,6 +639,7 @@ $f-list-5: (
 
 @mixin f-list-5() {
   @include font-styles($f-list-5);
+  color: $color__text--title;
 }
 
 %f-list-5,
@@ -650,6 +671,7 @@ $f-list-4: (
 
 @mixin f-list-4() {
   @include font-styles($f-list-4);
+  color: $color__text--title;
 }
 
 %f-list-4,
@@ -685,6 +707,7 @@ $f-list-3: (
 %f-list-3,
 .f-list-3 {
   @include f-list-3;
+  color: $color__text--title;
 }
 
 
@@ -709,6 +732,7 @@ $f-list-2: (
 
 @mixin f-list-2() {
   @include font-styles($f-list-2);
+  color: $color__text--title;
 }
 
 %f-list-2,
@@ -737,6 +761,7 @@ $f-list-1: (
 
 @mixin f-list-1() {
   @include font-styles($f-list-1);
+  color: $color__text--title;
 }
 
 %f-list-1,
@@ -767,6 +792,7 @@ $f-quote: (
 
 @mixin f-quote() {
   @include font-styles($f-quote);
+  color: $color__text--title;
 }
 
 %f-quote,
@@ -797,6 +823,7 @@ $f-dropcap-editorial: (
 @mixin f-dropcap-editorial() {
   @include font-styles($f-dropcap-editorial);
   font-feature-settings: "lnum" on;
+  color: $color__text--title;
 }
 
 %f-dropcap-editorial,
@@ -806,15 +833,45 @@ $f-dropcap-editorial: (
 
 /***
 
-f-date-numeral
+f-numeral-secondary
 
 ```
-<p class="f-date-numeral">The quick brown fox, <br>jumps over the lazy dog</p>
+<p class="f-numeral-secondary">The quick brown fox, <br>jumps over the lazy dog</p>
 ```
 
 ***/
 
-$f-date-numeral: (
+$f-numeral-secondary: (
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 16, line-height: 24, letter-spacing: -.01em, push: 0),
+    'medium+': (font-size: 17, line-height: 28, push: 0),
+   )
+);
+
+@mixin f-numeral-secondary() {
+  @include font-styles($f-numeral-secondary);
+  color: $color__text--tertiary;
+}
+
+%f-numeral-secondary,
+.f-numeral-secondary {
+  @include f-numeral-secondary;
+}
+
+/***
+
+f-numeral-date
+
+```
+<p class="f-numeral-date">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-numeral-date: (
   font-family: $serif-font,
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
@@ -825,13 +882,13 @@ $f-date-numeral: (
    )
 );
 
-@mixin f-date-numeral() {
-  @include font-styles($f-date-numeral);
+@mixin f-numeral-date() {
+  @include font-styles($f-numeral-date);
 }
 
-%f-date-numeral,
-.f-date-numeral {
-  @include f-date-numeral;
+%f-numeral-date,
+.f-numeral-date {
+  @include f-numeral-date;
 }
 
 
