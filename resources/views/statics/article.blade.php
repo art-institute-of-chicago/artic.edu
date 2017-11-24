@@ -7,7 +7,7 @@
   <header class="o-article__header o-article__header--basic">
     @component('components.atoms._title')
         @slot('tag','h1')
-        @slot('font','f-display-1')
+        @slot('font','f-headline')
         Making Place: the Architecture of David Adjaye
     @endcomponent
     @component('components.atoms._date')

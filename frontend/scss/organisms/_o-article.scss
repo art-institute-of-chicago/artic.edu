@@ -197,7 +197,7 @@
 
   @include breakpoint('xlarge+') {
     justify-content: space-between;
-    min-height: 140px;
+    min-height: 180px;
     padding-right: colspan(15, xlarge);
     padding-left: colspan(15, xlarge);
   }
@@ -222,6 +222,7 @@
 .o-article__header--basic * {
   flex: 0 0 auto;
   order: 1;
+  margin-top: 0;
 }
 
 .o-article__header--basic .type {
@@ -230,7 +231,7 @@
   @include breakpoint('xlarge+') {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 12px;
   }
 }
 
