@@ -52,6 +52,12 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function article() {
+    return view('statics/article', [
+      'timelineEvents' => $this->getTimelineEvents(3),
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
@@ -186,6 +192,29 @@ class StaticsController extends Controller {
       array_push($products, $product);
     }
     return $products;
+  }
+
+
+
+
+  private function getTimelineEvent() {
+    $hour = $this->faker->numberBetween(10,19);
+
+    return new StaticObjectPresenter([
+      "title" => $this->faker->sentence(6, true),
+      "time" => $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30')),
+      "blurb" => $this->faker->paragraph(5),
+      "image" => ($this->faker->boolean()) ? $this->getImage() : null,
+    ]);
+  }
+
+  private function getTimelineEvents($num = 3) {
+    $events = array();
+    for ($i = 0; $i < $num; $i++) {
+      $event = $this->getTimelineEvent();
+      array_push($events, $event);
+    }
+    return $events;
   }
 
 }

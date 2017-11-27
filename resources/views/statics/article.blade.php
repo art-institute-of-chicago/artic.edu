@@ -98,6 +98,16 @@
     @component('components.atoms._quote')
         In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.
     @endcomponent
+
+    @component('components.organisms._o-row-listing')
+        @foreach ($timelineEvents as $date)
+            @component('components.molecules._m-listing----timeline')
+                @slot('date', $date)
+            @endcomponent
+        @endforeach
+    @endcomponent
+
+
   </div>
 
   <div class="o-article__tertiary">
