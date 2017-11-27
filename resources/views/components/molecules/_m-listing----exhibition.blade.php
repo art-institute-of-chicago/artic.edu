@@ -2,7 +2,7 @@
 $feature = isset($feature) ? $feature : false;
 $hero = isset($hero) ? $hero : false;
 @endphp
-<{{ $tag or 'li' }} class="m-listing{{ $feature ? " m-listing--feature" : "" }}{{ ($feature and $hero) ? " o-features__hero-100vw" : "" }}">
+<{{ $tag or 'li' }} class="m-listing{{ $feature ? " m-listing--feature" : "" }}{{ ($feature and $hero) ? " o-features__hero-100vw" : "" }}{{ $exhibition->closingSoon ? " m-listing--limited" : "" }}{{ $exhibition->nowOpen ? " m-listing--new" : "" }}{{ $exhibition->exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ $exhibition->slug }}" class="m-listing__link">
     <span class="m-listing__img">
         @component('components.atoms._img')
@@ -11,13 +11,24 @@ $hero = isset($hero) ? $hero : false;
     </span>
     <span class="m-listing__meta">
       <span class="m-listing__meta-top">
-        @component('components.atoms._type')
-            {{ $exhibition->type }}
-        @endcomponent
         @if ($exhibition->closingSoon)
             @component('components.atoms._type')
-                @slot('tag', 'span')
+                @slot('variation', 'type--limited')
                 Closing Soon
+            @endcomponent
+        @elseif ($exhibition->nowOpen)
+            @component('components.atoms._type')
+                @slot('variation', 'type--new')
+                Now Open
+            @endcomponent
+        @elseif ($exhibition->exclusive)
+            @component('components.atoms._type')
+                @slot('variation', 'type--membership')
+                Member Exclusive
+            @endcomponent
+        @else
+            @component('components.atoms._type')
+                {{ $exhibition->type }}
             @endcomponent
         @endif
         @if ($feature and $hero)
@@ -27,11 +38,7 @@ $hero = isset($hero) ? $hero : false;
         @endif
       </span><br>
         @component('components.atoms._title')
-            @if ($feature and $hero)
-                @slot('font','f-display-1')
-            @else
-                @slot('font','f-module-title-1')
-            @endif
+            @slot('font', $titleFont ?? 'f-list-3')
             {{ $exhibition->title }}
         @endcomponent
       @if (!$feature)

@@ -13,3 +13,8 @@
   color: $color__text--title;
   font-weight: normal;
 }
+
+a.title:hover,
+a:hover .title {
+  color: $color__text--secondary;
+}

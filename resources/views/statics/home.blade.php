@@ -8,6 +8,7 @@
             @slot('exhibition', $exhibition)
             @slot('feature', true)
             @slot('hero', $loop->first)
+            @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-module-title-2')
         @endcomponent
     @endforeach
 @endcomponent

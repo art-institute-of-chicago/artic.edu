@@ -102,6 +102,8 @@ class StaticsController extends Controller {
       "dateStart" => $this->getFormattedDateString(),
       "dateEnd" => $this->getFormattedDateString(),
       "closingSoon" => $this->faker->boolean(10),
+      "exclusive" => $this->faker->boolean(10),
+      "nowOpen" => $this->faker->boolean(10),
       "image" => $this->getImage(),
     ]);
   }

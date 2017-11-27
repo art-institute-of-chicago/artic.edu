@@ -107,6 +107,34 @@
   padding-bottom: 42.857%; // 21:9
 }
 
+.m-listing__img::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 4px;
+  background-color: $color__link;
+  transition: right .25s $bezier--ease-out-circ;
+
+  .m-listing--limited & {
+    background-color: $color__text--limited;
+  }
+
+  .m-listing--new & {
+    background-color: $color__text--new;
+  }
+
+  .m-listing--membership & {
+    background-color: $color__text--membership;
+  }
+
+  .m-listing__link:hover &,
+  .m-listing__link:focus & {
+    right: 0;
+  }
+}
+
 .m-listing__img img,
 .m-listing__img video {
   position: absolute;
@@ -123,7 +151,7 @@
   display: flex;
   flex: 1 0 auto;
   flex-flow: column nowrap;
-  min-height: 120px;
+  min-height: 160px;
   margin-top: 12px;
   padding-bottom: .02px;
 
@@ -234,32 +262,34 @@
 
 .m-listing--row .m-listing__img {
   align-self: flex-start;
-  width: colspan(14, xsmall);
+  width: colspan(13, xsmall);
 
   @include breakpoint('small+') {
-    width: colspan(14, small);
+    width: colspan(13, small);
   }
 
   @include breakpoint('medium+') {
-    width: colspan(14, medium);
+    width: colspan(13, medium);
   }
 
   @include breakpoint('large+') {
-    width: colspan(14, large);
+    width: colspan(13, large);
   }
 
   @include breakpoint('xlarge+') {
-    width: colspan(14, xlarge);
+    width: colspan(13, xlarge);
   }
 
   @include breakpoint('xxlarge') {
-    width: colspan(14, xxlarge);
+    width: colspan(13, xxlarge);
   }
 }
 
 .m-listing--row .m-listing__meta {
+  position: relative;
   flex: 1;
   width: auto;
+  min-height: 0;
   margin-top: 0;
   margin-left: colspan(2, xsmall);
 
@@ -277,9 +307,24 @@
 
   @include breakpoint('xlarge+') {
     margin-left: colspan(1, xlarge);
+    padding-right: colspan(10, xlarge);
   }
 
   @include breakpoint('xxlarge') {
     margin-left: colspan(1, xxlarge);
+    padding-right: colspan(10, xxlarge);
+  }
+}
+
+.m-listing--row .m-listing__meta .date {
+  @include breakpoint('xlarge+') {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: colspan(8, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(8, xxlarge);
   }
 }

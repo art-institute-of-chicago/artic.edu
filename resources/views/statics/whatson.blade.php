@@ -42,6 +42,7 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
     @foreach ($featuredExhibitions as $exhibition)
         @component('components.molecules._m-listing----exhibition')
             @slot('exhibition', $exhibition)
+            @slot('titleFont', 'f-list-4')
         @endcomponent
     @endforeach
 @endcomponent

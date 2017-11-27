@@ -7,13 +7,15 @@
     </span>
     <span class="m-listing__meta">
         @if ($event->exclusive)
-            @component('components.atoms._exclusive')
+            @component('components.atoms._type')
+                @slot('variation', 'type--membership')
                 Member Exclusive
             @endcomponent
+        @else
+            @component('components.atoms._type')
+                {{ $event->type }}
+            @endcomponent
         @endif
-        @component('components.atoms._type')
-            {{ $event->type }}
-        @endcomponent
         <br>
         @component('components.atoms._title')
             {{ $event->title }}
