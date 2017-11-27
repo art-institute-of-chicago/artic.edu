@@ -17,7 +17,8 @@ class Exhibition extends Model
         'header_copy',
         'start_date',
         'end_date',
-        'short_copy'
+        'short_copy',
+        'datahub_id'
     ];
 
     public $slugAttributes = [

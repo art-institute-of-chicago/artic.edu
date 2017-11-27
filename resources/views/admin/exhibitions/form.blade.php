@@ -18,6 +18,11 @@
                      'field_name' => 'End date',
                 ])
 
+                @formField('input', [
+                    'field' => 'datahub_id',
+                    'field_name' => 'Datahub ID',
+                ])
+
                 @formField('multi_select', [
                     'field' => 'site_tags',
                     'field_name' => 'Tags',

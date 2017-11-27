@@ -16,7 +16,7 @@ class Event extends Model
         'content',
         'title',
         'price',
-        'datahubID',
+        'datahub_id',
         'admission',
         'start_date',
         'end_date',
