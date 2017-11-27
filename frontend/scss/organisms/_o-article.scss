@@ -241,42 +241,61 @@
 
 .o-article__body {
 
+  // first num is spec, second is the type line height
+
   & > .f-deck {
-    margin-top: 56px - 36px;
+    margin-top: 56px - 28px;
+
+    @include breakpoint('small+') {
+      margin-top: 56px - 36px;
+    }
   }
 
   & > .f-module-title-2 {
-    margin-top: 72px - 28px;
-  }
+    margin-top: 68px - 24px;
 
-  & > .f-module-title-1 {
-    margin-top: 56px - 24px;
-  }
-
-    & > .f-module-title-2 + .f-module-title-1 {
-      margin-top: 64px - 24px;
+    @include breakpoint('small+') {
+      margin-top: 68px - 28px;
     }
+  }
 
+  & > .f-sub-heading-1 {
+    margin-top: 56px - 24px;
+
+    @include breakpoint('small+') {
+      margin-top: 56px - 28px;
+    }
+  }
 
 
   & > .f-body,
   & > .f-body-editorial {
-    margin-top: 56px - 28px;
+    margin-top: 56px - 24px;
+
+    @include breakpoint('small+') {
+      margin-top: 56px - 28px;
+    }
   }
 
-    & > .f-deck + .f-body,
-    & > .f-deck + .f-body-editorial {
-      margin-top: 72px - 28px;
+    & > .f-sub-heading-1 + .f-body,
+    & > .f-sub-heading-1 + .f-body-editorial {
+      margin-top: 0;
     }
 
-    & > .f-module-title-1 + .f-body,
-    & > .f-module-title-1 + .f-body-editorial {
-      margin-top: 0;
+    & > .m-media + .f-body,
+    & > .m-media + .f-body-editorial,
+    & > .quote + .f-body,
+    & > .quote + .f-body-editorial {
+      margin-top: 60px - 24px;
+
+      @include breakpoint('small+') {
+        margin-top: 60px - 28px;
+      }
     }
 
   .m-media,
   .quote {
-    margin-top: 72px;
+    margin-top: 60px;
   }
 
   .m-media--m,

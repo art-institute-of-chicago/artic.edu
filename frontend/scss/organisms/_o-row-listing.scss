@@ -9,4 +9,8 @@
 
 .o-row-listing > * {
   margin-top: 28px;
+
+  @include breakpoint('medium+') {
+    margin-top: 36px;
+  }
 }
