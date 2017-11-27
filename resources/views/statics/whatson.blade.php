@@ -35,6 +35,7 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
 
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+    @slot('cols_small','2')
     @slot('cols_medium','2')
     @slot('cols_large','2')
     @slot('cols_xlarge','2')

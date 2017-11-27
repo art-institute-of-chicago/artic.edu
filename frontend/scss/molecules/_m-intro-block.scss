@@ -25,6 +25,10 @@
 }
 
 .m-intro-block .f-deck {
-  max-width: 80%;
+
   color: $color__text--contrast;
+
+  @include breakpoint('medium+') {
+    max-width: 98%;
+  }
 }

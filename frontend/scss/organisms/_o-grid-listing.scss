@@ -8,31 +8,35 @@ Basic flexed set up
   position: relative;
   flex-flow: row wrap;
   margin-top: 0;
-
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      margin-left: colspan(2, #{$name}, 0, true);
-    }
-  }
-
-  & + & {
-    margin-top: 40px;
-  }
 }
 
 .o-grid-listing > * {
   position: relative;
   flex: 0 0 auto;
+  width: 100%;
+  margin-top: 28px;
+  padding-top: 20px;
+}
 
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      width: colspan(58, #{$name});
-      @if ($name == 'xsmall') {
-        margin-top: 28px;
-      } @else {
+// if this is in cols, adjust spacings
+@each $name, $point in $breakpoints {
+  @include breakpoint('#{$name}') {
+    .o-grid-listing[class*="col@#{$name}"] {
+      margin-left: colspan(2, #{$name}, 0, true);
+    }
+
+    .o-grid-listing + .o-grid-listing[class*="col@#{$name}"] {
+      margin-top: 40px;
+    }
+
+    .o-grid-listing[class*="col@#{$name}"] > * {
+      @if (str-index($name, 'large')) {
         margin-top: colspan(1, #{$name});
+      } @else {
+        margin-top: colspan(2, #{$name});
       }
       margin-left: colspan(2, #{$name});
+      border-top: 0 none;
     }
   }
 }
@@ -66,12 +70,18 @@ Variant: `o-listing--keyline-top` - draws a keyline top
 
 .o-grid-listing--keyline-top.o-grid-listing--gridlines-top::after,
 .o-grid-listing--keyline-top.o-grid-listing--gridlines-rows::after {
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      @if ($name == 'xsmall') {
-        top: colspan(2, #{$name});
-      } @else {
+  content: none;
+}
+
+@each $name, $point in $breakpoints {
+  @include breakpoint('#{$name}') {
+    .o-grid-listing--keyline-top.o-grid-listing--gridlines-top[class*="col@#{$name}"]::after,
+    .o-grid-listing--keyline-top.o-grid-listing--gridlines-rows[class*="col@#{$name}"]::after {
+      content: '';
+      @if (str-index($name, 'large')) {
         top: colspan(1, #{$name});
+      } @else {
+        top: colspan(2, #{$name});
       }
     }
   }
@@ -199,7 +209,7 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
   }
 
   .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@small:not(.o-grid-listing--gridlines-split-rows) > *:nth-child(2) ~ *::after {
-    top: colspan(1, small, 0, true);
+    top: colspan(2, small, 0, true);
   }
 }
 
@@ -213,7 +223,7 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
 
   .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@medium:not(.o-grid-listing--gridlines-split-rows) > *:nth-child(2) ~ *::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@medium:not(.o-grid-listing--gridlines-split-rows) > *:nth-child(3) ~ *::after {
-    top: colspan(1, medium, 0, true);
+    top: colspan(2, medium, 0, true);
   }
 }
 
@@ -287,16 +297,12 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 
 // draws the keylines using a pusedo block, which pushes the content below it down
 // spacing done by this psuedo block
-.o-grid-listing--gridlines-top > *,
-.o-grid-listing--gridlines-rows > *,
-.o-grid-listing--gridlines-split-rows > * {
-  @each $name, $point in $breakpoints {
-    @include breakpoint('#{$name}') {
-      @if ($name == 'xsmall') {
-        padding-top: 16px;
-      } @else {
-        padding-top: colspan(1, #{$name});
-      }
+@each $name, $point in $breakpoints {
+  @include breakpoint('#{$name}') {
+    .o-grid-listing--gridlines-top[class*="col@#{$name}"] > *,
+    .o-grid-listing--gridlines-rows[class*="col@#{$name}"] > *,
+    .o-grid-listing--gridlines-split-rows[class*="col@#{$name}"] > * {
+      padding-top: colspan(1, #{$name});
     }
   }
 }

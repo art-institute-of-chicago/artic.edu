@@ -151,13 +151,17 @@
   display: flex;
   flex: 1 0 auto;
   flex-flow: column nowrap;
-  min-height: 160px;
+  min-height: 100px;
   margin-top: 12px;
   padding-bottom: .02px;
 
   &:first-child {
     min-height: 0;
     margin-top: 0;
+  }
+
+  @include breakpoint('medium+') {
+    min-height: 160px;
   }
 }
 
@@ -245,26 +249,34 @@
 // variant `m-listing--row`
 
 .m-listing--row {
-  flex-flow: row nowrap;
-  max-width: 100%;
+  @include breakpoint('small+') {
+    flex-flow: row nowrap;
+    max-width: 100%;
+  }
 
   & + & {
     margin-top: 20px;
     padding-top: 19px;
     border-top: 1px solid $color__rules--primary;
+
+    @include breakpoint('large+') {
+      margin-top: 24px;
+      padding-top: 23px;
+    }
   }
 }
 
 .m-listing--row .m-listing__link {
-  flex-flow: row nowrap;
-  height: auto;
+  @include breakpoint('small+') {
+    flex-flow: row nowrap;
+    height: auto;
+  }
 }
 
 .m-listing--row .m-listing__img {
-  align-self: flex-start;
-  width: colspan(13, xsmall);
 
   @include breakpoint('small+') {
+    align-self: flex-start;
     width: colspan(13, small);
   }
 
@@ -286,23 +298,25 @@
 }
 
 .m-listing--row .m-listing__meta {
-  position: relative;
-  flex: 1;
-  width: auto;
-  min-height: 0;
-  margin-top: 0;
-  margin-left: colspan(2, xsmall);
 
   @include breakpoint('small+') {
-    margin-left: colspan(1, small);
+    position: relative;
+    flex: 1;
+    width: auto;
+    min-height: 0;
+    margin-top: 0;
+    margin-left: colspan(2, small);
+    padding-right: colspan(15, small);
   }
 
   @include breakpoint('medium+') {
-    margin-left: colspan(1, medium);
+    margin-left: colspan(2, medium);
+    padding-right: colspan(15, medium);
   }
 
   @include breakpoint('large+') {
     margin-left: colspan(1, large);
+    padding-right: colspan(10, large);
   }
 
   @include breakpoint('xlarge+') {
@@ -317,10 +331,22 @@
 }
 
 .m-listing--row .m-listing__meta .date {
-  @include breakpoint('xlarge+') {
+  @include breakpoint('small+') {
     position: absolute;
     right: 0;
     top: 0;
+    width: colspan(13, small);
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(13, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(8, large);
+  }
+
+  @include breakpoint('xlarge+') {
     width: colspan(8, xlarge);
   }
 

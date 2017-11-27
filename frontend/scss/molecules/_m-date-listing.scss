@@ -4,23 +4,20 @@
   padding-top: 15px;
   border-top: 1px solid $color__rules--primary;
 
-  @include breakpoint('medium+') {
+  @include breakpoint('large+') {
     display: flex;
     flex-flow: row nowrap;
+    padding-top: 23px;
   }
 }
 
 .m-date-listing .day {
   margin-top: 0;
 
-  @include breakpoint('medium+') {
+  @include breakpoint('large+') {
     flex: 0 0 auto;
     align-self: flex-start;
     width: 100%;
-    width: colspan(11, medium);
-  }
-
-  @include breakpoint('large+') {
     width: colspan(11, large);
   }
 
@@ -34,19 +31,14 @@
 }
 
 .m-date-listing__items {
+  padding-top: 19px;
+  border-top: 1px solid #e6e6e6;
 
-  @include breakpoint('medium+') {
+  @include breakpoint('large+') {
     flex: 1;
     width: auto;
     margin-top: 0;
-  }
-
-  @include breakpoint('large+') {
-  }
-
-  @include breakpoint('xlarge+') {
-  }
-
-  @include breakpoint('xxlarge') {
+    padding-top: 0;
+    border-top: 0 none;
   }
 }

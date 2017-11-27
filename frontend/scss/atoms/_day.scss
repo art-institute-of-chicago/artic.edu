@@ -12,14 +12,18 @@
 
 .day {
   position: relative;
-  height: 60px;
+  height: 32px;
   font-weight: normal;
+
+  @include breakpoint('large+') {
+    height: 40px;
+  }
 }
 
 .day::after {
   content: '';
   position: absolute;
-  left: 80px;
+  left: 72px;
   top: 0;
   bottom: 0;
   width: 1px;
@@ -27,60 +31,55 @@
 
   .m-date-listing & {
     top: -16px;
-  }
 
-  @include breakpoint('medium+') {
-    left: colspan(4, medium);
-  }
-
-  @include breakpoint('large+') {
-    left: colspan(4, large);
-  }
-
-  @include breakpoint('xlarge+') {
-    left: colspan(4, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    left: colspan(4, xxlarge);
+    @include breakpoint('large+') {
+      top: -24px;
+    }
   }
 }
 
 .day__date {
   position: absolute;
   left: 0;
-  top: 0;
+  top: -16px;
+  width: 50px;
+  text-align: right;
   color: $color__text--title;
+
+  @include breakpoint('small+') {
+    top: -28px;
+  }
+
+  @include breakpoint('large+') {
+    top: -24px;
+  }
 }
 
 .day__month {
-  top: 8px;
+  top: -8px;
   color: $color__text--title;
+
+
+  @include breakpoint('medium+') {
+    top: -4px;
+  }
 }
 
 .day__day {
-  top: 26px;
+  top: 12px;
   color: $color__text--secondary;
+
+  @include breakpoint('small+') {
+    top: 8px;
+  }
+
+  @include breakpoint('medium+') {
+    top: 16px;
+  }
 }
 
 .day__month,
 .day__day {
   position: absolute;
-  left: 100px;
-
-  @include breakpoint('medium+') {
-    left: colspan(5, medium);
-  }
-
-  @include breakpoint('large+') {
-    left: colspan(5, large);
-  }
-
-  @include breakpoint('xlarge+') {
-    left: colspan(5, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    left: colspan(5, xxlarge);
-  }
+  left: 92px;
 }
