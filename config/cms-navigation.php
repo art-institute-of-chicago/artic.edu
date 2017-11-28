@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'home' => [
+        'title' => 'Home',
+        'route' => 'admin.home',
+    ],
     'whatson' => [
         'title' => "What's on",
         'route' => 'admin.whatson.exhibitions.index',

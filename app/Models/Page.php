@@ -42,8 +42,8 @@ class Page extends Model
     //     return $this->belongsToMany('App\Models\Work', 'page_work_work')->withPivot('position')->orderBy('position');
     // }
 
-    // public function homeWorks()
-    // {
-    //     return $this->belongsToMany('App\Models\Work', 'page_home_work')->withPivot('position')->orderBy('position');
-    // }
+    public function homeExhibitions()
+    {
+        return $this->belongsToMany('App\Models\Exhibition', 'page_home_exhibition')->withPivot('position')->orderBy('position');
+    }
 }
