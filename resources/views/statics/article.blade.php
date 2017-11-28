@@ -100,11 +100,9 @@
         @endforeach
     @endcomponent
 
-    <ul class="m-link-list f-secondary">
-        <li><a href="#">Evening Event Program</a></li>
-        <li><a href="#">Evening Event Program<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a></li>
-        <li><a href="#">Evening Event Program<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a></li>
-    </ul>
+    @component('components.molecules._m-link-list')
+        @slot('links', array(array('text' => 'Quis finibus maximus', 'href' => '#'), array('text' => 'Ut fermentum est', 'href' => '#', 'icon' => 'icon--new-window'), array('text' => 'In tempor velit', 'href' => '#', 'icon' => 'icon--new-window')));
+    @endcomponent
   </div>
 
   <div class="o-article__tertiary">
