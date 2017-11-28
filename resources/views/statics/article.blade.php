@@ -69,27 +69,23 @@
     @component('components.molecules._m-media')
         @slot('type','image')
         @slot('media', array('src' => 'http://placehold.dev.area17.com/image/600x400'))
-        @slot('captionTitle', 'Caption Title')
         @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
     @endcomponent
     @component('components.molecules._m-media')
         @slot('type','video')
         @slot('media', array('src' => '/test/feature-1.mp4', 'poster' => '/test/feature-1.jpg'))
-        @slot('captionTitle', 'Caption Title')
         @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
     @endcomponent
     @component('components.molecules._m-media')
         @slot('variation','m')
         @slot('type','video')
         @slot('media', array('src' => '/test/feature-1.mp4', 'poster' => '/test/feature-1.jpg'))
-        @slot('captionTitle', 'Caption Title')
         @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
     @endcomponent
     @component('components.molecules._m-media')
         @slot('variation','l')
         @slot('type','video')
         @slot('media', array('src' => '/test/feature-1.mp4', 'poster' => '/test/feature-1.jpg'))
-        @slot('captionTitle', 'Caption Title')
         @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
     @endcomponent
     @component('components.atoms._quote')
@@ -104,7 +100,11 @@
         @endforeach
     @endcomponent
 
-
+    <ul class="m-link-list f-secondary">
+        <li><a href="#">Evening Event Program</a></li>
+        <li><a href="#">Evening Event Program<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a></li>
+        <li><a href="#">Evening Event Program<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg></a></li>
+    </ul>
   </div>
 
   <div class="o-article__tertiary">
