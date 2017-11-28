@@ -44,10 +44,10 @@
 }
 
 .m-media figcaption {
+  @include tucked-margin-top($f-caption, ('xsmall': 24));
   display: block;
   position: relative;
   min-height: 36px;
-  margin-top: 28px - 20px;
   padding-right: 60px;
 }
 
@@ -76,10 +76,5 @@
     display: block;
     position: static;
     margin-top: 24px;
-  }
-
-
-  .m-media--l figcaption {
-    margin-top: 32px - 20px;
   }
 }

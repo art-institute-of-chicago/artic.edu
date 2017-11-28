@@ -178,10 +178,6 @@
   margin-top: 0;
 }
 
-.m-listing__meta:first-child > *:first-child {
-  margin-top: 0;
-}
-
 .m-listing__meta > * {
   flex: 0 0 auto;
 }
@@ -201,6 +197,18 @@
 }
 
 
+
+.m-listing__meta .f-list-3 {
+  @include tucked-margin-top($f-list-3, ('xsmall': 44));
+}
+
+.m-listing__meta .f-body {
+  @include tucked-margin-top($f-body, ('xsmall': 48));
+}
+
+.m-listing__meta .f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 36));
+}
 
 
 // variant `m-listing--feature`
@@ -266,11 +274,6 @@
 
 .m-listing--keyline-top {
   position: relative;
-  padding-top: 12px;
-
-  @include breakpoint('medium+') {
-    padding-top: 16px;
-  }
 }
 
 .m-listing--keyline-top::after {
