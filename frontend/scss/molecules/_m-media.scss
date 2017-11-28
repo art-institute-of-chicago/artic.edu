@@ -68,13 +68,15 @@
 
 
 .o-article__body {
-  .m-media--m figcaption {
-    margin-top: 0;
-  }
+  @include breakpoint('xlarge+') {
+    .m-media--m figcaption {
+      margin-top: 0;
+    }
 
-  .m-media--m .m-media__share {
-    display: block;
-    position: static;
-    margin-top: 24px;
+    .m-media--m .m-media__share {
+      display: block;
+      position: static;
+      margin-top: 24px;
+    }
   }
 }

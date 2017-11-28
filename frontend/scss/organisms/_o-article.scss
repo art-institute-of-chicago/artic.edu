@@ -3,14 +3,9 @@
 .o-article {
   position: relative;
 
-  @include breakpoint('small+') {
-    padding-right: colspan(3, small);
-  }
-
   @include breakpoint('medium+') {
     display: flex;
     flex-flow: row wrap;
-    padding-right: 0;
   }
 }
 
@@ -104,6 +99,7 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     padding-right: map-get($outer-gutters, 'medium');
+    padding-bottom: 20px;
     padding-left: map-get($outer-gutters, 'medium');
     transition: top .25s $bezier--ease-in-circ;
 
@@ -144,6 +140,7 @@
 
 .o-article__tertiary-titles {
   display: none;
+  margin-top: 8px;
 
   @include breakpoint('medium+') {
     display: block;
@@ -151,7 +148,13 @@
   }
 }
 
+.o-article__tertiary-titles > br,
+.o-article__tertiary-actions > br {
+  display: none;
+}
+
 .o-article__tertiary-actions {
+  margin-top: 0;
 
   @include breakpoint('medium+') {
     flex: 0 0 auto;
@@ -169,6 +172,10 @@
   @include breakpoint('xxlarge') {
     width: colspan(13, xxlarge);
   }
+}
+
+.o-article__tertiary-actions .btn {
+  margin-top: 20px;
 }
 
 .o-article__top-link {
@@ -273,23 +280,34 @@
       @include tucked-margin-top($f-body, ('xsmall': 60));
     }
 
+  .o-gallery,
   .m-media,
   .quote,
   .m-link-list {
     margin-top: 60px;
   }
 
+  .o-gallery,
   .m-media--m,
   .m-media--l {
+    @include breakpoint('medium+') {
+      width: colspan(58, medium);
+      margin-right: colspan(20, medium, 0, true);
+    }
+
+    @include breakpoint('large+') {
+      width: colspan(58, large);
+      margin-right: colspan(20, large, 0, true);
+    }
 
     @include breakpoint('xlarge+') {
       width: colspan(58, xlarge);
-      margin-left: colspan(13, xlarge, 0, true);
+      margin-left: colspan(15, xlarge, 0, true);
     }
 
     @include breakpoint('xxlarge') {
       width: colspan(58, xxlarge);
-      margin-left: colspan(13, xxlarge, 0, true);
+      margin-left: colspan(15, xxlarge, 0, true);
     }
   }
 
