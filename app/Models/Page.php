@@ -22,15 +22,21 @@ class Page extends Model
 
     public static $types = [
         0 => 'Home',
-        1 => 'Exhibitions',
-        2 => 'Events'
+        1 => 'Exhibitions & Events',
+        2 => 'Art and Ideas'
     ];
 
     protected $fillable = [
         'published',
         'position',
         'type',
-        'title'
+        'title',
+
+        // Homepage
+        'home_intro',
+
+        // Exhibition
+        'exhibition_intro'
     ];
 
     public $slugAttributes = [

@@ -23,6 +23,7 @@ In case the system didn't update your /etc/hosts file automatically:
 - Generate your application key: `php artisan key:generate`
 - Migrate the database schema: `php artisan migrate`
 - Create a superadmin user: `php artisan cms-toolkit:superadmin`
+- Seed the database: `php artisan db:seed`
 - Access the CMS [here](http://admin.aic.dev.a17.io/login).
 - Access Templates Here [here](http://admin.aic.dev.a17.io/templates/home).
 
