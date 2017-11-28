@@ -2,8 +2,23 @@
 
 return [
     'home' => [
-        'title' => 'Home',
+        'title' => 'Homepage',
         'route' => 'admin.home',
+    ],
+    'landing' => [
+        'title' => "Landing Pages",
+        'route' => 'admin.landing.exhibitions',
+
+        'primary_navigation' => [
+          'exhibitions' => [
+            'title' => 'Exhibitions',
+            'route' => 'admin.landing.exhibitions',
+          ],
+          'art' => [
+            'title' => 'Art & Ideas',
+            'route' => 'admin.landing.art',
+          ]
+        ]
     ],
     'whatson' => [
         'title' => "What's on",

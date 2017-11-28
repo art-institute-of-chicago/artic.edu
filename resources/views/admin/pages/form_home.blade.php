@@ -1,3 +1,13 @@
+<section class="box">
+    <header class="header_small">
+        <h3><b>Homepage</b></h3>
+    </header>
+
+    @formField('input', [
+        'field' => 'home_intro',
+        'field_name' => 'Intro text',
+    ])
+</section>
 
 @formField('browser', [
     'routePrefix' => 'whatson',
@@ -10,4 +20,3 @@
     'hint' => 'Select which exhibition you want to feature on the homepage',
     'max' => 20
 ])
-

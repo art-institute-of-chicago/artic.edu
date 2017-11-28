@@ -22,7 +22,7 @@ class Page extends Model
 
     public static $types = [
         0 => 'Home',
-        1 => 'Exhibitions & Events',
+        1 => 'Exhibitions and Events',
         2 => 'Art and Ideas'
     ];
 
@@ -36,7 +36,10 @@ class Page extends Model
         'home_intro',
 
         // Exhibition
-        'exhibition_intro'
+        'exhibition_intro',
+
+        // Art and Ideas
+        'art_intro'
     ];
 
     public $slugAttributes = [
