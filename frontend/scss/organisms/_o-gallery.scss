@@ -96,12 +96,17 @@
   }
 }
 
+
+.o-gallery__media .m-media__img {
+  background-color: $color__black--93;
+}
+
 .o-gallery__caption .f-module-title-2 {
   @include tucked-margin-top($f-module-title-2, ('xsmall': 80));
 }
 
 .o-gallery__caption .f-caption {
-  @include tucked-margin-top($f-caption, ('xsmall': 20));
+  @include tucked-margin-top($f-caption, ('xsmall': 24));
 }
 
 
@@ -110,10 +115,10 @@
 .o-gallery--mosaic {
 
   .o-gallery__media {
-    @include breakpoint('medium+') {
+    @include breakpoint('small+') {
       padding-bottom: 84px - 48px;
       columns: 2;
-      column-gap: colspan(2, medium);
+      column-gap: colspan(2, small);
       column-fill: balance;
 
       &::after {
@@ -123,6 +128,10 @@
         height: 1px;
         column-span: all;
       }
+    }
+
+    @include breakpoint('medium+') {
+      column-gap: colspan(2, medium);
     }
 
     @include breakpoint('large+') {
@@ -142,11 +151,36 @@
   .o-gallery__media > * {
     margin-top: 48px;
 
-    @include breakpoint('medium+') {
+    @include breakpoint('small+') {
       display: block;
       margin-top: 0;
       margin-bottom: 48px;
       column-break-inside: avoid;
+    }
+  }
+
+  .m-media__img img {
+    max-height: calc(#{colspan(58, xsmall)} * 4/3);
+    object-fit: contain;
+
+    @include breakpoint('small+') {
+      max-height: calc(#{colspan(28, small)} * 4/3);
+    }
+
+    @include breakpoint('medium+') {
+      max-height: calc(#{colspan(28, medium)} * 4/3);
+    }
+
+    @include breakpoint('large+') {
+      max-height: calc(#{colspan(28, large)} * 4/3);
+    }
+
+    @include breakpoint('xlarge+') {
+      max-height: calc(#{colspan(21, xlarge)} * 4/3);
+    }
+
+    @include breakpoint('xxlarge') {
+      max-height: calc(#{colspan(21, xxlarge)} * 4/3);
     }
   }
 }
@@ -273,6 +307,31 @@
       &:first-child {
         margin-left: 0;
       }
+    }
+  }
+
+  .m-media__img img {
+    height: 400px;
+    object-fit: contain;
+
+    @include breakpoint('small+') {
+      height: 480px;
+    }
+
+    @include breakpoint('medium+') {
+      height: 480px;
+    }
+
+    @include breakpoint('large+') {
+      height: 420px;
+    }
+
+    @include breakpoint('xlarge+') {
+      height: calc(#{colspan(21, xlarge)} * 4/3);
+    }
+
+    @include breakpoint('xxlarge') {
+      height: calc(#{colspan(21, xxlarge)} * 4/3);
     }
   }
 }
