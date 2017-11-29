@@ -2,7 +2,6 @@
 .o-gallery {
   @include background-fill;
   padding-top: .02px;
-  padding-bottom: 84px;
   background-color: $color__bg--gallery;
   color: $color__text--contrast;
 
@@ -37,6 +36,7 @@
 .o-gallery__media {
   position: relative;
   margin-top: 40px;
+  padding-bottom: 84px;
 
   @include breakpoint('xlarge+') {
     flex: 0 0 auto;
@@ -111,7 +111,7 @@
 
   .o-gallery__media {
     @include breakpoint('medium+') {
-      margin-bottom: -48px;
+      padding-bottom: 84px - 48px;
       columns: 2;
       column-gap: colspan(2, medium);
       column-fill: balance;
@@ -155,12 +155,85 @@
 .o-gallery--slider {
 
   .o-gallery__media {
+    @extend %styled-scrollbars;
     display: flex;
     flex-flow: row nowrap;
-    padding-bottom: 84px;
-    margin-bottom: -84px;
+    margin-right: colspan(3, xsmall, 0, true);
+    margin-bottom: 12px;
+    margin-left: colspan(3, xsmall, 0, true);
+    padding-bottom: 72px;
+    padding-left: colspan(2, xsmall);
     overflow-x: auto;
     overflow-y: hidden;
+
+    @include breakpoint('small+') {
+      margin-right: colspan(3, small, 0, true);
+      margin-left: colspan(3, small, 0, true);
+      padding-left: colspan(2, small);
+    }
+
+    @include breakpoint('medium+') {
+      margin-right: colspan(3, medium, 0, true);
+      margin-left: colspan(3, medium, 0, true);
+      padding-left: colspan(2, medium);
+    }
+
+    @include breakpoint('large+') {
+      margin-right: colspan(3, large, 0, true);
+      margin-left: colspan(3, large, 0, true);
+      padding-left: colspan(2, large);
+    }
+
+    @include breakpoint('xlarge+') {
+      width: colspan(46, xlarge);
+      margin-right: colspan(3, xlarge, 0, true);
+      margin-left: colspan(2, xlarge);
+      padding-left: 0;
+    }
+
+    @include breakpoint('xxlarge') {
+      width: calc(#{colspan(43, xxlarge)} + ((100vw - #{map-get($main-col-widths, xxlarge)}) / 2));
+      margin-right: calc((100vw - #{map-get($main-col-widths, xxlarge)}) / -2);
+      margin-left: colspan(2, xxlarge);
+      padding-left: 0;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      flex: 0 0 auto;
+      width: colspan(3, xsmall);
+      height: 1px;
+
+      @include breakpoint('small+') {
+        width: colspan(3, small);
+      }
+
+      @include breakpoint('medium+') {
+        width: colspan(3, medium);
+      }
+
+      @include breakpoint('large+') {
+        width: colspan(3, large);
+      }
+
+      @include breakpoint('xlarge+') {
+        width: colspan(3, xlarge);
+      }
+
+      @include breakpoint('xxlarge') {
+        width: calc((100vw - #{map-get($main-col-widths, xxlarge)}) / 2);
+      }
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 4px solid $color__bg--gallery;
+      background-color: $color__white;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: $color__bg--gallery;
+    }
   }
 
   .o-gallery__media > * {
@@ -187,11 +260,19 @@
     @include breakpoint('xlarge+') {
       width: colspan(18, xlarge);
       margin-left: colspan(1, xlarge);
+
+      &:first-child {
+        margin-left: 0;
+      }
     }
 
     @include breakpoint('xxlarge') {
       width: colspan(18, xxlarge);
       margin-left: colspan(1, xxlarge);
+
+      &:first-child {
+        margin-left: 0;
+      }
     }
   }
 }
