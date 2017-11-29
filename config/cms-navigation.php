@@ -59,7 +59,11 @@ return [
         'segments' => [
           'title' => 'Segments',
           'module' => true,
-        ]
+        ],
+        'hours' => [
+          'title' => 'Hours',
+          'module' => true,
+        ],
       ]
     ]
 ];
