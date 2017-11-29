@@ -9,6 +9,9 @@ class Hour extends Model
 {
     use HasPresenter;
 
+    protected $presenter = 'App\Presenters\HoursPresenter';
+    protected $presenterAdmin = 'App\Presenters\HoursPresenter';
+
     static $days = array(
         0 => 'Sunday',
         1 => 'Monday',
@@ -18,9 +21,6 @@ class Hour extends Model
         5 => 'Friday',
         6 => 'Saturday'
     );
-
-    protected $presenter = 'App\Presenters\HoursPresenter';
-    protected $presenterAdmin = 'App\Presenters\HoursPresenter';
 
     protected $fillable = [
         'day_of_week',

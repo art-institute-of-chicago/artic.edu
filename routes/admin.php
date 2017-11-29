@@ -16,6 +16,7 @@ Route::group(['prefix' => 'whatson'], function () {
 
 Route::group(['prefix' => 'general'], function () {
   Route::module('hours');
+  Route::module('closures');
   Route::module('categories');
   Route::module('siteTags');
   Route::module('segments');

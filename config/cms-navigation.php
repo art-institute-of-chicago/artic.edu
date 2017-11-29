@@ -64,6 +64,10 @@ return [
           'title' => 'Hours',
           'module' => true,
         ],
+        'closures' => [
+          'title' => 'Closures',
+          'module' => true,
+        ],
       ]
     ]
 ];
