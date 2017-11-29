@@ -115,6 +115,12 @@
       border-bottom: 1px solid rgba(0,0,0,.1);
       background-color: rgba(255,255,255,.95);
       background-clip: padding-box;
+
+      @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+        background-color: rgba(255,255,255,.85);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+      }
     }
   }
 
