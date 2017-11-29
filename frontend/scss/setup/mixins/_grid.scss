@@ -22,77 +22,58 @@
       $this-multiplier: -1;
     }
 
-    @if ($number-of-columns >= 58) {
-      @if ($this-bp-main-col-width == 'fluid') {
-        @if (unit($this-bp-outer-gutter) == 'vw') {
-          $this-calc: 100vw - $this-bp-outer-gutter - $this-bp-outer-gutter;
-        } @else {
-          $this-calc: '100vw - #{2 * $this-bp-outer-gutter}';
+    @if ($this-bp-main-col-width == 'fluid') {
+      @if (unit($this-bp-outer-gutter) == 'vw') {
+        // outer gutters in vw
+        //
+        // whats the inner column?
+        $this-calc: 100vw - $this-bp-outer-gutter - $this-bp-outer-gutter;
+        // get 1/58th of that
+        $this-calc: $this-calc / 58;
+        @if ($number-of-columns >= 1) {
+          // multiple CSS columns?
+          $this-calc: $this-calc * $number-of-columns;
         }
-
-        @if($inverse) {
-          $this-calc: '(#{$this-calc}) * -1';
-        }
-
-        @return calc(#{$this-calc});
-      } @else {
-        @return $this-bp-main-col-width * $this-multiplier;
-      }
-    } @else {
-
-      @if ($this-bp-main-col-width == 'fluid') {
-        @if (unit($this-bp-outer-gutter) == 'vw') {
-          // outer gutters in vw
-          //
-          // whats the inner column?
-          $this-calc: 100vw - $this-bp-outer-gutter - $this-bp-outer-gutter;
-          // get 1/58th of that
-          $this-calc: $this-calc / 58;
-          @if ($number-of-columns >= 1) {
-            // multiple CSS columns?
-            $this-calc: $this-calc * $number-of-columns;
-          }
-          @if ($bump == 0) {
-            // if no bump, we can return just a vw number
-            @if($inverse) {
-              @return $this-calc * -1;
-            } @else {
-              @return $this-calc;
-            }
+        @if ($bump == 0) {
+          // if no bump, we can return just a vw number
+          @if($inverse) {
+            @return $this-calc * -1;
           } @else {
-            // if there is a bump, we need to return a calc
-            $this-calc: '(#{$this-calc} + #{$bump})';
-            @if($inverse) {
-              $this-calc: '(#{$this-calc}) * -1';
-            }
-            @return calc(#{$this-calc});
+            @return $this-calc;
           }
         } @else {
-          // outer gutters in px, means we always need to return a calc
-          // so lets build it
-          // firstly, lets double the outer gutter
-          $this-calc: $this-bp-outer-gutter + $this-bp-outer-gutter;
-          // and then remove it from 100vw and divide by our 58 CSS cols
-          $this-calc: '(100vw - #{$this-calc}) / 58';
-          // if we need to span multiple CSS cols
-          @if ($number-of-columns >= 1) {
-            $this-calc: '(#{$this-calc}) * #{$number-of-columns}';
-          }
-          // is there a bump to add?
-          @if($bump != 0) {
-            $this-calc: '(#{$this-calc}) + #{$bump}';
-          }
-          // do we need to inverse it?
+          // if there is a bump, we need to return a calc
+          $this-calc: '(#{$this-calc} + #{$bump})';
           @if($inverse) {
             $this-calc: '(#{$this-calc}) * -1';
           }
-          // return the calc
           @return calc(#{$this-calc});
         }
-
       } @else {
-        @return #{((($this-bp-main-col-width / 58) * $number-of-columns) + $bump) * $this-multiplier};
+        // outer gutters in px, means we always need to return a calc
+        // so lets build it
+        // firstly, lets double the outer gutter
+        $this-calc: $this-bp-outer-gutter + $this-bp-outer-gutter;
+        // and then remove it from 100vw and divide by our 58 CSS cols
+        $this-calc: '(100vw - #{$this-calc}) / 58';
+        // if we need to span multiple CSS cols
+        @if ($number-of-columns >= 1) {
+          $this-calc: '(#{$this-calc}) * #{$number-of-columns}';
+        }
+        // is there a bump to add?
+        @if($bump != 0) {
+          $this-calc: '(#{$this-calc}) + #{$bump}';
+        }
+        // do we need to inverse it?
+        @if($inverse) {
+          $this-calc: '(#{$this-calc}) * -1';
+        }
+        // return the calc
+        @return calc(#{$this-calc});
       }
+
+    } @else {
+      @return #{((($this-bp-main-col-width / 58) * $number-of-columns) + $bump) * $this-multiplier};
     }
   } @else {
     @warn "Unknown breakpoint `#{$breakpoints}` in $breakpoints-with-directions";
