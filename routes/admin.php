@@ -1,7 +1,13 @@
 <?php
 
-// Route::name('home')->get('/', 'ExhibitionController@index');
-Route::name('home')->get('/', '\A17\CmsToolkit\Http\Controllers\Admin\UserController@index');
+Route::name('home')->get('/', 'PageController@home');
+
+Route::module('pages');
+
+Route::group(['prefix' => 'landing'], function () {
+    Route::name('landing.exhibitions')->get('exhibitions', 'PageController@exhibitions');
+    Route::name('landing.art')->get('art', 'PageController@art');
+});
 
 Route::group(['prefix' => 'whatson'], function () {
     Route::module('events');
