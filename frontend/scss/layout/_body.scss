@@ -9,6 +9,7 @@ html {
   margin-left: -50vw;
   overflow-x: hidden;
   overflow-y: scroll;
+  -ms-overflow-style: scrollbar;
 }
 
 body {
@@ -24,6 +25,7 @@ body {
   font-variant-ligatures: common-ligatures;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
 
   &::after {
     position: absolute;
