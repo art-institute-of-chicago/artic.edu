@@ -6,3 +6,4 @@ export { default as calendar } from './calendar';
 export { default as selectDate } from './selectDate';
 export { default as articleBodyInViewport } from './articleBodyInViewport';
 export { default as topLink } from './topLink';
+export { default as dragScroll } from './dragScroll';

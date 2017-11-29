@@ -161,7 +161,7 @@
                 @slot('icon', 'icon--share--24')
             @endcomponent
         </div>
-        <div class="o-gallery__media">
+        <div class="o-gallery__media" data-behavior="dragScroll">
             @component('components.molecules._m-media')
                 @slot('type','image')
                 @slot('variation', 'gallery')
