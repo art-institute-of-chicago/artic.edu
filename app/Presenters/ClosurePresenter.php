@@ -10,11 +10,13 @@ class ClosurePresenter extends BasePresenter
 {
 
     public function presentStartDate() {
-        return (new Carbon($this->entity->start_date))->format('d M, Y');
+        if ($this->entity->date_start)
+            return $this->entity->date_start->format('d M, Y');
     }
 
     public function presentEndDate() {
-        return (new Carbon($this->entity->end_date))->format('d M, Y');
+        if ($this->entity->date_end)
+            return $this->entity->date_end->format('d M, Y');
     }
 
     public function presentType() {

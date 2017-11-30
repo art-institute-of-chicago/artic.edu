@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +14,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->registerMorphMap();
+    }
+
+    public function registerMorphMap()
+    {
+        Relation::morphMap([
+            'exhibitions' => 'App\Models\Exhibition',
+            'events' => 'App\Models\Event',
+        ]);
     }
 
     /**

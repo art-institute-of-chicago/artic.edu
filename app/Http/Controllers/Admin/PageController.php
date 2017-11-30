@@ -25,7 +25,7 @@ class PageController extends ModuleController
     public function home(PageRepository $pages)
     {
         abort_unless($homepage = $pages->byName('Home'), 500, "CMS home page doesn't exist, make sure to migrate the database first (php artisan migrate)");
-        Session::put("pages_back_link", route('admin.home'));
+        Session::put("pages_back_link", route('admin.landing.home'));
         return view('admin.pages.form', $this->form($homepage->id));
         // return view('admin.pages.form', $this->form($homepage->id) + ['liveSiteUrl' => route('home')]);
     }

@@ -10,11 +10,13 @@ class HoursPresenter extends BasePresenter
 {
 
     public function presentOpeningTime() {
-        return (new Carbon($this->entity->opening_time))->format('H:i');
+        if ($this->entity->opening_time)
+            return $this->entity->opening_time->format('H:i');
     }
 
     public function presentClosingTime() {
-        return (new Carbon($this->entity->closing_time))->format('H:i');
+        if ($this->entity->closing_time)
+            return $this->entity->closing_time->format('H:i');
     }
 
     public function dayOfWeek() {

@@ -11,6 +11,8 @@ class Event extends Model
 {
     use HasSlug, HasRevisions;
 
+    protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
+
     protected $fillable = [
         'published',
         'content',

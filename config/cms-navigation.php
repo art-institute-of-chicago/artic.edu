@@ -1,27 +1,38 @@
 <?php
 
 return [
-    'home' => [
-        'title' => 'Homepage',
-        'route' => 'admin.home',
-    ],
-    'landing' => [
-        'title' => "Landing Pages",
-        'route' => 'admin.landing.exhibitions',
+    'featured' => [
+        'title' => 'Features',
+        'route' => 'admin.featured.homepage',
 
         'primary_navigation' => [
-          'exhibitions' => [
-            'title' => 'Exhibitions',
-            'route' => 'admin.landing.exhibitions',
-          ],
-          'art' => [
-            'title' => 'Art & Ideas',
-            'route' => 'admin.landing.art',
-          ]
+            'homepage' => [
+                'title' => 'Homepage',
+                'route' => 'admin.featured.homepage',
+            ]
+        ]
+    ],
+    'landing' => [
+        'title' => "Pages",
+        'route' => 'admin.landing.home',
+
+        'primary_navigation' => [
+            'home' => [
+                'title' => 'Homepage',
+                'route' => 'admin.landing.home',
+            ],
+            'exhibitions' => [
+                'title' => 'Exhibitions',
+                'route' => 'admin.landing.exhibitions',
+            ],
+            'art' => [
+                'title' => 'Art & Ideas',
+                'route' => 'admin.landing.art',
+            ]
         ]
     ],
     'whatson' => [
-        'title' => "What's on",
+        'title' => "Content",
         'route' => 'admin.whatson.exhibitions.index',
 
         'primary_navigation' => [
@@ -35,13 +46,6 @@ return [
           ]
         ]
     ],
-
-    // 'users' => [
-    //     'can' => 'edit',
-    //     'title' => 'Users',
-    //     'module' => true,
-    //     'route' => 'index',
-    // ],
 
     'general' => [
       'title' => 'General Elements',

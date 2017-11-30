@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
-
 use App\Models\Exhibition;
 
 class ExhibitionRepository extends ModuleRepository

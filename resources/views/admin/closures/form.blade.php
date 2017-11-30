@@ -24,12 +24,23 @@
         @formField('date_picker', [
             'field' => 'date_start',
             'field_name' => 'Start Date',
+            'date_settings' => 'closures_date_settings'
         ])
 
         @formField('date_picker', [
             'field' => 'date_end',
             'field_name' => 'End Date',
+            'date_settings' => 'closures_date_settings'
         ])
-    </section>
 
+        <script>
+            var closures_date_settings = {
+                lang:'en',
+                format: 'm/d/Y',
+                datepicker: true,
+                timepicker: false,
+                dayOfWeekStart:1,
+            }
+        </script>
+    </section>
 @stop

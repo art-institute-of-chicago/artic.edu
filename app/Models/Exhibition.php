@@ -10,6 +10,8 @@ class Exhibition extends Model
 {
     use HasRevisions, HasSlug;
 
+    protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
+
     protected $fillable = [
         'published',
         'content',
