@@ -8,6 +8,11 @@
             <h3><b>{{$item->present()->presentType}} - {{$item->present()->dayOfWeek}}</b></h3>
         </header>
 
+        @formField('checkbox', [
+            'field' => 'closed',
+            'field_name' => 'Closed (dates will be ignored)',
+        ])
+
         @formField('date_picker', [
             'field' => 'opening_time',
             'field_name' => 'Opening Time',

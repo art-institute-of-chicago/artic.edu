@@ -5,7 +5,7 @@
     'delete' => false,
     'sort' => false,
     'search' => false,
-    'publish' => false,
+    'publish' => true,
     'columns' => [
         'type' => [
             'title' => 'Type',

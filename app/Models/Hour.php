@@ -26,7 +26,8 @@ class Hour extends Model
         'day_of_week',
         'opening_time',
         'closing_time',
-        'type'
+        'type',
+        'closed'
     ];
 
     public static $types = [
@@ -41,6 +42,6 @@ class Hour extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['closed'];
 
 }

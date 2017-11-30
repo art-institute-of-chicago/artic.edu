@@ -27,6 +27,8 @@ class ClosureController extends ModuleController
         'fType' => 'type'
     ];
 
+    protected $defaultOrders = ['date_start' => 'desc'];
+
     protected function indexData($request)
     {
         return [

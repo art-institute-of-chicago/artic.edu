@@ -27,4 +27,12 @@ class HoursPresenter extends BasePresenter
         return Hour::$types[$this->entity->type];
     }
 
+    public function presentClosed() {
+        if ($this->entity->closed) {
+            return 'Closed';
+        } else {
+            return 'Open';
+        }
+    }
+
 }

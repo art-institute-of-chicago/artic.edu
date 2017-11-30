@@ -19,6 +19,11 @@
             'field' => 'dayOfWeek',
             'edit_link' => true,
         ],
+        'closed' => [
+            'title' => 'Open/Closed',
+            'present' => true,
+            'field' => 'presentClosed',
+        ],
         'opening_time' => [
             'title' => 'Opening Time',
             'present' => true,
