@@ -70,22 +70,26 @@
   position: relative;
   min-width: 180px;
   height: 48px;
-  padding: 0 68px 0 15px;
+  padding-right: 68px;
+  padding-left: 15px;
   border: 1px solid $color__input-border;
   background: none;
   color: $color__input-text;
-  line-height: 48px;
   text-align: left;
   text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
   overflow: hidden;
+}
 
-  &::before,
-  &::after {
-    display: none;
-  }
+.dropdown > button[class*=f-] {
+  @include untuck;
+}
+
+.dropdown > button.f-secondary {
+  padding-top: 10px;
+  padding-bottom: 12px;
 }
 
 .dropdown > button:hover {
@@ -169,6 +173,7 @@
 }
 
 .dropdown--filter > button {
+  border-radius: 0;
   color: $color__link;
 }
 
@@ -184,13 +189,12 @@
 .dropdown--filter > button:hover,
 .dropdown--filter > button:focus,
 .dropdown--filter > button:active {
-  border-right: 0;
-  border-bottom: 0;
-  border-left: 0;
+  border-color: transparent;
   border-top-color: $color__rules--primary;
 }
 
-.dropdown--filter > button::before {
+.dropdown--filter > button::before,
+.dropdown--filter > button[class*=f-]::before {
   content: '';
   display: block;
   position: absolute;

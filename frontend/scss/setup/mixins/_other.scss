@@ -67,8 +67,10 @@
   $settings: false;
   $line-height: 0;
   $margin: 0;
+  $push: 0;
   $new-line-height: 0;
   $new-margin: 0;
+  $new-push: 0;
   @if $font-obj {
     $settings: map-get($font-obj, settings);
   }
@@ -80,15 +82,19 @@
         @if map-has-key($settings-at-breakpoint, line-height) {
           $new-line-height: map-get($settings-at-breakpoint, line-height);
         }
+        @if map-has-key($settings-at-breakpoint, push) {
+          $new-push: map-get($settings-at-breakpoint, push);
+        }
       }
       // now see if a margin was specified for this breakpoint
       @if map-has-key($distances, $name) {
         $new-margin: map-get($distances, $name);
       }
       // now set the margin top
-      @if (($new-margin != $margin or $new-line-height != $line-height)) {
+      @if ($new-margin != $margin or $new-line-height != $line-height or $new-push != $push) {
         $line-height: $new-line-height;
         $margin: $new-margin;
+        $push: $new-push;
         @if ($name == 'xsmall') {
           margin-top: #{$margin - $line-height}px;
         } @else {

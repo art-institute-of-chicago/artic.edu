@@ -131,7 +131,7 @@
     Label
   @endcomponent
 </p>
-<p>
+<p style="margin-top: 20px;">
     @component('components.atoms._btn')
       Action
     @endcomponent
@@ -170,7 +170,7 @@
     @endcomponent
 </p>
 
-<div style="margin-top: 0; padding-top: 20px;">
+<div style="margin-top: 20px;">
   @component('components.atoms._dropdown')
     @slot('prompt', 'Dropdown')
     @slot('ariaTitle', 'Filter by')
@@ -178,7 +178,7 @@
     Label
   @endcomponent
 </div>
-<div style="margin-top: 0; padding-top: 20px;">
+<div style="margin-top: 20px;">
   @component('components.atoms._dropdown')
     @slot('prompt', 'Dropdown hoverable')
     @slot('ariaTitle', 'Sort by')
@@ -187,7 +187,7 @@
     Label
   @endcomponent
 </div>
-<div style="margin-top: 0; padding-top: 20px;">
+<div style="margin-top: 20px;">
   @component('components.atoms._dropdown')
     @slot('prompt', 'Dropdown')
     @slot('variation', 'dropdown--filter')
@@ -222,12 +222,8 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.
 @endcomponent
 
-@php
-$titleBarLinks = array();
-array_push($titleBarLinks, array('text' => 'Explore What&rsquo;s on', 'href' => '#'));
-@endphp
 @component('components.molecules._m-title-bar')
-    @slot('links', $titleBarLinks)
+    @slot('links', array(array('text' => 'Explore What&rsquo;s on', 'href' => '#')))
     What&rsquo;s on Today
 @endcomponent
 

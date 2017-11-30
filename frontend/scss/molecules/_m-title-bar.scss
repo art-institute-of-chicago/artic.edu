@@ -19,6 +19,10 @@
   margin-top: 0;
 }
 
+.m-title-bar .title.f-module-title-1 {
+  @include tucked-margin-top($f-module-title-1, ('xsmall': 24));
+}
+
 .m-title-bar__links {
   display: flex;
   flex: 0 0 auto;

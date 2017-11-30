@@ -18,9 +18,9 @@
 
 .btn {
   display: inline-block;
-  padding-right: 28px;
-  padding-left: 28px;
-  border: 0;
+  padding-right: 27px;
+  padding-left: 27px;
+  border: 1px solid transparent;
   border-radius: $border-radius;
   background-color: $color__link--accent;
   color: $color__white;
@@ -51,21 +51,14 @@
 }
 
 .btn.f-buttons {
-  padding-top: 12px;
+  padding-top: 10px;
   padding-bottom: 12px;
 }
 
 .btn--secondary {
-  padding-right: 27px;
-  padding-left: 27px;
   border: 1px solid $color__rules--secondary;
   background-color: $color__white;
   color: $color__text--title;
-
-  &.f-buttons {
-    padding-top: 11px;
-    padding-bottom: 11px;
-  }
 
   &:hover,
   &:focus {

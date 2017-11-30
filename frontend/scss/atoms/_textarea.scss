@@ -12,8 +12,16 @@
   width: 100%;
   height: auto;
   min-height: 160px;
-  padding: 12px 20px 12px 16px;
+  padding: 8px 15px;
   resize: vertical;
+
+  &.f-secondary {
+    padding-top: 10px;
+
+    @include breakpoint('xlarge+') {
+      padding-top: 7px;
+    }
+  }
 }
 
 textarea {
