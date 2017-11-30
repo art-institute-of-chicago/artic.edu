@@ -214,7 +214,7 @@ $f-module-title-2: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 18, line-height: 24, letter-spacing: .08em, text-transform: 'uppercase', push: 0),
+    'xsmall': (font-size: 18, line-height: 24, letter-spacing: .08em, text-transform: 'uppercase', font-weight: 'normal', push: 0),
     'small+': (font-size: 22, line-height: 28, push: 0),
    )
 );

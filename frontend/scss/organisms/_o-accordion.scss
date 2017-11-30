@@ -1,0 +1,135 @@
+
+
+.o-accordion {
+}
+
+.o-accordion__trigger {
+  position: relative;
+  padding-right: 60px;
+  cursor: pointer;
+}
+
+.o-accordion__trigger:not(:first-child) {
+  margin-top: 30px;
+
+  @include breakpoint('small+') {
+    margin-top: 38px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 48px;
+  }
+}
+
+.o-accordion__trigger.f-module-title-2 {
+  padding-top: 44px - 24px - 1px;
+  border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('small+') {
+    padding-top: 48px - 28px - 1px;
+  }
+}
+
+.o-accordion__trigger:focus {
+  outline-color: Highlight;
+  outline-style: solid;
+  outline-width: 3px;
+}
+
+// WebKit gets its native focus styles.
+@media (-webkit-min-device-pixel-ratio:0) {
+  .o-accordion__trigger:focus {
+    outline-color: -webkit-focus-ring-color;
+    outline-style: auto;
+    outline-width: auto;
+  }
+}
+
+.o-accordion__trigger .icon--plus,
+.o-accordion__trigger .icon--minus {
+  position: absolute;
+  right: 8px;
+  top: 28px;
+
+  @include breakpoint('small+') {
+    right: 0;
+  }
+
+  @include breakpoint('medium+') {
+    top: 32px;
+  }
+}
+
+.o-accordion__trigger .icon--plus {
+  display: block;
+}
+
+.o-accordion__trigger .icon--minus {
+  display: none;
+}
+
+.o-accordion__trigger[aria-expanded="true"] .icon--plus {
+  display: none;
+}
+
+.o-accordion__trigger[aria-expanded="true"] .icon--minus {
+  display: block;
+}
+
+.o-accordion__panel {
+  height: 0;
+  overflow: hidden;
+  transition: height .2s $bezier--ease-in-out;
+
+  &[aria-hidden="false"] {
+    height: auto;
+  }
+}
+
+.o-accordion__panel-content {
+  position: relative;
+  padding-top: .02px;
+
+  @include breakpoint('small+') {
+    padding-right: colspan(3, small);
+    padding-bottom: 8px;
+  }
+
+  @include breakpoint('medium+') {
+    padding-right: colspan(3, medium);
+  }
+
+  @include breakpoint('large+') {
+    padding-right: colspan(3, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    padding-right: colspan(3, xlarge);
+  }
+
+  @include breakpoint('xxlarge+') {
+    padding-right: colspan(3, xxlarge);
+  }
+}
+
+.o-accordion__panel .f-sub-heading-1 {
+  @include tucked-margin-top($f-sub-heading-1, ('xsmall': 56));
+
+  &:first-child {
+    @include tucked-margin-top($f-sub-heading-1, ('xsmall': 48, 'small+': 56, 'medium+': 64));
+  }
+}
+
+.o-accordion__panel .f-body,
+.o-accordion__panel .f-body-editorial {
+  @include tucked-margin-top($f-body, ('xsmall': 56));
+
+  &:first-child {
+    @include tucked-margin-top($f-body, ('xsmall': 48, 'small+': 56, 'medium+': 64));
+  }
+}
+
+.o-accordion__panel .f-sub-heading-1 + .f-body,
+.o-accordion__panel .f-sub-heading-1 + .f-body-editorial {
+  margin-top: 0;
+}

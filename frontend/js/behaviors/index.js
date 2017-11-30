@@ -7,3 +7,4 @@ export { default as selectDate } from './selectDate';
 export { default as articleBodyInViewport } from './articleBodyInViewport';
 export { default as topLink } from './topLink';
 export { default as dragScroll } from './dragScroll';
+export { default as accordion } from './accordion';

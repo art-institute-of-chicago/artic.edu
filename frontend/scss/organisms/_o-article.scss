@@ -286,11 +286,31 @@
       @include tucked-margin-top($f-body, ('xsmall': 60));
     }
 
+  .o-accordion,
   .o-gallery,
   .m-media,
   .quote,
   .m-link-list {
     margin-top: 60px;
+  }
+
+  .o-gallery + .o-gallery,
+  .o-gallery + .o-accordion,
+  .o-gallery + .m-media,
+  .o-gallery + .m-link-list,
+  .o-accordion + .o-gallery,
+  .o-accordion + .o-accordion,
+  .o-accordion + .m-media,
+  .o-accordion + .m-link-list,
+  .m-media + .o-gallery,
+  .m-media + .o-accordion,
+  .m-media + .m-media,
+  .m-media + .m-link-list,
+  .m-link-list + .o-gallery,
+  .m-link-list + .o-accordion,
+  .m-link-list + .m-media,
+  .m-link-list + .m-link-list {
+    margin-top: 48px;
   }
 
   .o-gallery,

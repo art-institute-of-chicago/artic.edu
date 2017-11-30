@@ -195,6 +195,44 @@
             @endcomponent
         </div>
     </div>
+
+    <div class="o-accordion" role="tablist" multiselectable="true" data-behavior="accordion">
+        <h3 id="tab1" class="o-accordion__trigger f-module-title-2" aria-selected="true" aria-controls="panel1" aria-expanded="true" role="tab" tabindex="0">
+            Lorem Ipsum
+            <svg class="icon--plus"><use xlink:href="#icon--plus" /></svg>
+            <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>
+        </h3>
+        <div id="panel1" class="o-accordion__panel" aria-labelledby="tab1" aria-hidden="false" role="tabpanel">
+            <div class="o-accordion__panel-content">
+                <h4 class="f-sub-heading-1">Module title 1</h4>
+                <p class="f-body">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
+            </div>
+        </div>
+
+        <h3 id="tab2" class="o-accordion__trigger f-module-title-2" aria-selected="false" aria-controls="panel2" aria-expanded="false" role="tab" tabindex="0">
+            Morbi vitae ullamcorper tellus
+            <svg class="icon--plus"><use xlink:href="#icon--plus" /></svg>
+            <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>
+        </h3>
+        <div id="panel2" class="o-accordion__panel" aria-labelledby="tab2" aria-hidden="true" role="tabpanel">
+            <div class="o-accordion__panel-content">
+                <p class="f-body">In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
+                <p class="f-body">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. </p>
+            </div>
+        </div>
+
+        <h3 id="tab3" class="o-accordion__trigger f-module-title-2" aria-selected="false" aria-controls="panel3" aria-expanded="false" role="tab" tabindex="0">
+            Quisque id sollicitudin
+            <svg class="icon--plus"><use xlink:href="#icon--plus" /></svg>
+            <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>
+        </h3>
+        <div id="panel3" class="o-accordion__panel" aria-labelledby="tab3" aria-hidden="true" role="tabpanel">
+            <div class="o-accordion__panel-content">
+                <p class="f-body">Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
+            </div>
+        </div>
+    </div>
+
   </div>
 
   <div class="o-article__tertiary">
