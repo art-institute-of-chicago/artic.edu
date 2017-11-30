@@ -34,11 +34,13 @@
 
   @include breakpoint('medium+') {
     width: colspan(grid-cols-to-colspan(2), medium);
+    margin-top: 40px;
     margin-left: colspan(2, medium);
   }
 
   @include breakpoint('large+') {
     width: colspan(grid-cols-to-colspan(3), large);
+    margin-top: 80px;
     margin-left: colspan(2, large);
   }
 

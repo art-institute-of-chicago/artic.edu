@@ -22,7 +22,7 @@
 // https://code.area17.com/mike/a17-js-helpers/wikis/A17-Helpers-fontObservers
 
 // the fall back font family string. eg. Helvetica, Arial, sans-serif.
-$serif-font: 'Times New Roman', Times, Georgia, serif;
+$serif-font: 'Sabon', 'Times New Roman', Times, Georgia, serif;
 $sans-serif-font: "Ideal Sans A", "Ideal Sans B", Helvetica, Arial, sans-serif;
 // the font family string when the primary font is loaded (your primary font plus the fall back string)
 $serif-font--loaded: 'Sabon', #{$serif-font};
@@ -38,9 +38,9 @@ $cap-heights: (
   helvetica: .725,
   'Times New Roman': .67,
   'Roboto': .72,
-  'Ideal Sans A': .715,
-  'Ideal Sans B': .715,
-  'Sabon': .72,
+  'Ideal Sans A': .70804,
+  'Ideal Sans B': .70804,
+  'Sabon': .68404,
 );
 
 /***
@@ -92,7 +92,8 @@ $f-display-1: (
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 26, line-height: 36, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: .08em, push: 0),
-    'small+': (font-size: 36, line-height: 48, push: 0)
+    'small+': (font-size: 32, line-height: 44, push: 0),
+    'medium+': (font-size: 36, line-height: 48, push: 0),
    )
 );
 
@@ -184,7 +185,7 @@ $f-deck: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: 0),
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
     'small+': (font-size: 28, line-height: 36, push: 0),
    )
 );
@@ -201,7 +202,7 @@ $f-deck: (
 
 /***
 
-f-module-title-2 (f-sub-heading-2)
+f-module-title-2 (f-subheading-2)
 
 ```
 <p class="f-module-title-2">The quick brown fox, <br>jumps over the lazy dog</p>
@@ -214,8 +215,9 @@ $f-module-title-2: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 18, line-height: 24, letter-spacing: .08em, text-transform: 'uppercase', font-weight: 'normal', push: 0),
-    'small+': (font-size: 22, line-height: 28, push: 0),
+    'xsmall': (font-size: 17, line-height: 24, letter-spacing: .08em, text-transform: 'uppercase', font-weight: 'normal', push: 0),
+    'small+': (font-size: 20, line-height: 28, push: 0),
+    'medium+': (font-size: 21, line-height: 28, push: 0),
    )
 );
 
@@ -227,8 +229,8 @@ $f-module-title-2: (
 
 %f-module-title-2,
 .f-module-title-2,
-%f-sub-heading-2,
-.f-sub-heading-2 {
+%f-subheading-2,
+.f-subheading-2 {
   @include f-module-title-2;
 }
 
@@ -263,35 +265,35 @@ $f-module-title-1: (
 
 /***
 
-f-sub-heading-1 (f-sub-heading-1-editorial)
+f-subheading-1 (f-subheading-1-editorial)
 
 ```
-<p class="f-sub-heading-1">The quick brown fox, <br>jumps over the lazy dog</p>
+<p class="f-subheading-1">The quick brown fox, <br>jumps over the lazy dog</p>
 ```
 
 ***/
 
-$f-sub-heading-1: (
+$f-subheading-1: (
   font-family: $sans-serif-font,
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 17, line-height: 24, letter-spacing: .01em, push: 0),
     'small+': (font-size: 18, line-height: 28, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 0),
+    'xxlarge': (font-size: 19, line-height: 28, push: 1),
    )
 );
 
-@mixin f-sub-heading-1() {
-  @include font-styles($f-sub-heading-1);
+@mixin f-subheading-1() {
+  @include font-styles($f-subheading-1);
   color: $color__text--title;
 }
 
-%f-sub-heading-1,
-.f-sub-heading-1,
-%f-sub-heading-1-editorial,
-.f-sub-heading-1-editorial {
-  @include f-sub-heading-1;
+%f-subheading-1,
+.f-subheading-1,
+%f-subheading-1-editorial,
+.f-subheading-1-editorial {
+  @include f-subheading-1;
 }
 
 /***
@@ -309,9 +311,9 @@ $f-body: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 17, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+    'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 1),
     'small+': (font-size: 18, line-height: 28, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 0),
+    'xxlarge': (font-size: 19, line-height: 28, push: 1),
    )
 );
 
@@ -339,9 +341,9 @@ $f-body-emphasis: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 17, line-height: 24, font-weight: 'lighter', font-style: 'italic', letter-spacing: .01em, push: 0),
+    'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', font-style: 'italic', letter-spacing: .01em, push: 1),
     'small+': (font-size: 18, line-height: 28, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 0),
+    'xxlarge': (font-size: 19, line-height: 28, push: 1),
    )
 );
 
@@ -373,9 +375,9 @@ $f-body-editorial: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 17, line-height: 24, letter-spacing: 0.005em, push: 0),
-    'small+': (font-size: 18, line-height: 28, letter-spacing: 0, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 0),
+    'xsmall': (font-size: 17, line-height: 24, letter-spacing: 0.005em, font-weight: 500, push: -1),
+    'small+': (font-size: 18, line-height: 28, letter-spacing: 0, push: -2),
+    'large+': (font-size: 19, line-height: 28, push: -2),
    )
 );
 
@@ -404,9 +406,9 @@ $f-body-editorial-emphasis: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 17, line-height: 24, font-style: 'italic', letter-spacing: 0.005em, push: 0),
-    'small+': (font-size: 18, line-height: 28, letter-spacing: 0, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 0),
+    'xsmall': (font-size: 17, line-height: 24, font-style: 'italic', letter-spacing: 0.005em, push: -1),
+    'small+': (font-size: 18, line-height: 28, letter-spacing: 0, push: -2),
+    'large+': (font-size: 19, line-height: 28, push: -2),
    )
 );
 
@@ -415,7 +417,7 @@ $f-body-editorial-emphasis: (
 }
 
 %f-body-editorial-emphasis,
-.f-body-editoria-emphasis,
+.f-body-editorial-emphasis,
 %f-body-editorial em,
 .f-body-editorial em,
 %f-body-editorial i,
@@ -440,7 +442,7 @@ $f-body-editorial-reference: (
   settings: (
     'xsmall': (font-size: 17, line-height: 24, letter-spacing: 0.01em, font-weight: 'lighter', push: 0),
     'small+': (font-size: 18, line-height: 28, letter-spacing: 0, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 0),
+    'xxlarge': (font-size: 19, line-height: 28, push: 1),
    )
 );
 
@@ -450,7 +452,7 @@ $f-body-editorial-reference: (
 }
 
 %f-body-editorial-reference,
-.f-body-editoria-reference,
+.f-body-editorial-reference,
 %f-body-editorial sup,
 .f-body-editorial sub,
 %f-body-editorial sup,
@@ -480,7 +482,7 @@ $f-buttons: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 0),
+    'xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 1),
     'medium+': (font-size: 17, line-height: 24, push: 0),
    )
 );
@@ -510,7 +512,7 @@ $f-secondary: (
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+    'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 1),
     'large+': (font-size: 17, line-height: 28, push: 0),
    )
 );
@@ -630,8 +632,8 @@ $f-list-5: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: 0),
-    'medium+': (font-size: 24, line-height: 32, push: 0),
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
+    'medium+': (font-size: 24, line-height: 32, push: -2),
     'large+': (font-size: 31, line-height: 40, letter-spacing: -.01em, push: 0),
     'xxlarge': (font-size: 32, line-height: 40, push: 0),
    )
@@ -662,8 +664,8 @@ $f-list-4: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: 0),
-    'medium+': (font-size: 24, line-height: 32, push: 0),
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
+    'medium+': (font-size: 24, line-height: 32, push: -2),
     'large+': (font-size: 28, line-height: 36, push: 0),
     'xxlarge': (font-size: 29, line-height: 40, push: 0),
    )
@@ -694,7 +696,7 @@ $f-list-3: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: 0),
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
     'xlarge+': (font-size: 24, line-height: 32, push: 0),
     'xxlarge': (font-size: 25, line-height: 32, push: 0),
    )
@@ -726,7 +728,7 @@ $f-list-2: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: 0),
+    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
    )
 );
 
@@ -755,7 +757,7 @@ $f-list-1: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 19, line-height: 24, push: 0),
+    'xsmall': (font-size: 19, line-height: 24, push: -2),
    )
 );
 
@@ -785,7 +787,7 @@ $f-quote: (
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 24, line-height: 32, letter-spacing: -.015em, font-style: italic, push: 0),
-    'small+': (font-size: 27, line-height: 36, push: 0),
+    'small+': (font-size: 27, line-height: 36, push: 1),
     'medium+': (font-size: 30, line-height: 40, push: 0),
    )
 );
@@ -815,8 +817,8 @@ $f-dropcap-editorial: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 54, line-height: 60, text-transform: 'uppercase', push: 0),
-    'large+': (font-size: 100, line-height: 120, push: 0),
+    'xsmall': (font-size: 54, line-height: 60, text-transform: 'uppercase', push: 1),
+    'large+': (font-size: 100, line-height: 120, push: -1),
    )
 );
 
@@ -829,36 +831,6 @@ $f-dropcap-editorial: (
 %f-dropcap-editorial,
 .f-dropcap-editorial {
   @include f-dropcap-editorial;
-}
-
-/***
-
-f-numeral-secondary
-
-```
-<p class="f-numeral-secondary">The quick brown fox, <br>jumps over the lazy dog</p>
-```
-
-***/
-
-$f-numeral-secondary: (
-  font-family: $sans-serif-font,
-  font-family-loaded: $sans-serif-font--loaded,
-  font-loaded-class: $sans-serif-font-loaded-class,
-  settings: (
-    'xsmall': (font-size: 16, line-height: 24, letter-spacing: -.01em, push: 0),
-    'medium+': (font-size: 17, line-height: 28, push: 0),
-   )
-);
-
-@mixin f-numeral-secondary() {
-  @include font-styles($f-numeral-secondary);
-  color: $color__text--tertiary;
-}
-
-%f-numeral-secondary,
-.f-numeral-secondary {
-  @include f-numeral-secondary;
 }
 
 /***
@@ -877,8 +849,8 @@ $f-numeral-date: (
   font-loaded-class: $serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 38, line-height: 44, letter-spacing: -.04em, push: 0),
-    'small+': (font-size: 44, line-height: 56, push: 0),
-    'large+': (font-size: 50, line-height: 60, push: 0),
+    'small+': (font-size: 44, line-height: 56, push: 1),
+    'large+': (font-size: 50, line-height: 60, push: 1),
    )
 );
 
@@ -904,4 +876,15 @@ $f-numeral-date: (
 
 .f-body-editorial .f-dropcap-editorial {
   float: left;
+  margin-top: -17px;
+  margin-right: 4px;
+
+  @include breakpoint('small+') {
+    margin-top: -9px;
+  }
+
+  @include breakpoint('large+') {
+    margin-top: -33px;
+    margin-bottom: -4px;
+  }
 }

@@ -107,16 +107,16 @@
     padding-right: colspan(3, xlarge);
   }
 
-  @include breakpoint('xxlarge+') {
+  @include breakpoint('xxlarge') {
     padding-right: colspan(3, xxlarge);
   }
 }
 
-.o-accordion__panel .f-sub-heading-1 {
-  @include tucked-margin-top($f-sub-heading-1, ('xsmall': 56));
+.o-accordion__panel .f-subheading-1 {
+  @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
 
   &:first-child {
-    @include tucked-margin-top($f-sub-heading-1, ('xsmall': 48, 'small+': 56, 'medium+': 64));
+    @include tucked-margin-top($f-subheading-1, ('xsmall': 48, 'small+': 56, 'medium+': 64));
   }
 }
 
@@ -129,7 +129,7 @@
   }
 }
 
-.o-accordion__panel .f-sub-heading-1 + .f-body,
-.o-accordion__panel .f-sub-heading-1 + .f-body-editorial {
+.o-accordion__panel .f-subheading-1 + .f-body,
+.o-accordion__panel .f-subheading-1 + .f-body-editorial {
   margin-top: 0;
 }

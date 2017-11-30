@@ -264,8 +264,8 @@
     @include tucked-margin-top($f-module-title-2, ('xsmall': 68));
   }
 
-  & > .f-sub-heading-1 {
-    @include tucked-margin-top($f-sub-heading-1, ('xsmall': 56));
+  & > .f-subheading-1 {
+    @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
   }
 
 
@@ -274,8 +274,8 @@
     @include tucked-margin-top($f-body, ('xsmall': 56));
   }
 
-    & > .f-sub-heading-1 + .f-body,
-    & > .f-sub-heading-1 + .f-body-editorial {
+    & > .f-subheading-1 + .f-body,
+    & > .f-subheading-1 + .f-body-editorial {
       margin-top: 0;
     }
 
