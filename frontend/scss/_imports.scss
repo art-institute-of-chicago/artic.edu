@@ -1,5 +1,9 @@
 $include-icons: false; // see icons.scss!
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ load fonts
+
+@import 'setup/fonts';
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ reset
 
 @import 'setup/resets';
