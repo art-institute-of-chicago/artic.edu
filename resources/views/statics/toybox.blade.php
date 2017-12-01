@@ -133,7 +133,7 @@
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
-      Action
+        Action
     @endcomponent
     @component('components.atoms._btn')
         @slot('variation', 'btn--secondary')
@@ -148,10 +148,43 @@
         Action
     @endcomponent
     @component('components.atoms._btn')
+        @slot('variation', 'btn--quintinary')
+        Action
+    @endcomponent
+    @component('components.atoms._btn')
         @slot('variation', 'btn--secondary')
         @slot('icon', 'icon--new-window')
         Action
     @endcomponent
+</p>
+<p style="margin-top: 20px;">
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--secondary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--tertiary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--quaternary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--quintinary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+</p>
+<p style="margin-top: 20px;">
     @component('components.atoms._btn')
         @slot('disabled', true)
         Action
@@ -161,7 +194,7 @@
         Action
     @endcomponent
 </p>
-<p>
+<p style="margin-top: 20px;">
     @component('components.atoms._tag')
         Kanan Jarrus
     @endcomponent
@@ -334,7 +367,14 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 
 <p style="margin-top: 20px;">
     @component('components.molecules._m-date-select-range')
-
+        @slot('startLabel', 'Start date')
+        @slot('startId', 'cal01')
+        @slot('startHiddenInputName', 'dateStart01')
+        @slot('startHiddenInputId', 'dateStart01')
+        @slot('endLabel', 'End date')
+        @slot('endId', 'cal02')
+        @slot('endHiddenInputName', 'dateEnd01')
+        @slot('endHiddenInputId', 'dateEnd01')
     @endcomponent
 </p>
 
@@ -351,23 +391,15 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
     @slot('linksPrimary', array(array('text' => 'Exhibitions', 'href' => '#', 'active' => false)))
     @slot('linksSecondary', array(array('text' => 'Archive', 'href' => '#')))
 
-    @component('components.atoms._date-select-trigger')
-        @slot('hiddenInputName', 'dateStart')
-        @slot('hiddenInputId', 'dateStart')
-        @slot('range', true)
-        @slot('selectDateId', 'cal03')
-        @slot('selectDateRole', 'start')
-        @slot('selectDateLinkedId', 'cal04')
-        Start date
-    @endcomponent
-    @component('components.atoms._date-select-trigger')
-        @slot('hiddenInputName', 'dateEnd')
-        @slot('hiddenInputId', 'dateEnd')
-        @slot('range', true)
-        @slot('selectDateId', 'cal04')
-        @slot('selectDateRole', 'end')
-        @slot('selectDateLinkedId', 'cal03')
-        End date
+    @component('components.molecules._m-date-select-range')
+        @slot('startLabel', 'Start date')
+        @slot('startId', 'cal03')
+        @slot('startHiddenInputName', 'dateStart02')
+        @slot('startHiddenInputId', 'dateStart02')
+        @slot('endLabel', 'End date')
+        @slot('endId', 'cal04')
+        @slot('endHiddenInputName', 'dateEnd02')
+        @slot('endHiddenInputId', 'dateEnd02')
     @endcomponent
 @endcomponent
 

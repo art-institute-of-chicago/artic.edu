@@ -3,15 +3,21 @@
 ```
 <span class="checkbox f-secondary">
   <input type="checkbox" value="option1" id="option1" name="option1">
-  <label for="option1">Option</label>
+  <span class="f-secondary">
+    <label for="option1">Option 1</label>
+  </span>
 </span>
 <span class="checkbox f-secondary">
   <input type="checkbox" value="option2" id="option2" name="option2" checked>
-  <label for="option2">Option</label>
+  <span class="f-secondary">
+    <label for="option2">Option 2</label>
+  </span>
 </span>
 <span class="checkbox f-secondary">
   <input type="checkbox" value="option3" id="option3" name="option3" disabled>
-  <label for="option3">Disabled</label>
+  <span class="f-secondary">
+    <label for="option3">Option 3 disabled</label>
+  </span>
 </span>
 ```
 
@@ -39,11 +45,11 @@
 }
 
 .checkbox label:hover,
-.checkbox input[type=checkbox]:focus + label {
+.checkbox input[type=checkbox]:focus + span label {
   color: $color__input-text--focus;
 }
 
-.checkbox input[type=checkbox]:focus + label {
+.checkbox input[type=checkbox]:focus + span label {
   @extend %default-focus-style;
 }
 
@@ -51,19 +57,23 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 1px;
+  top: 3px;
   width: 16px;
   height: 16px;
   border: 1px solid $color__input-border;
   border-radius: $border-radius;
   background-color: $color__white;
+
+  @include breakpoint('large+') {
+    top: 6px;
+  }
 }
 
 .checkbox label::after {
   content: '';
   position: absolute;
   left: 6px;
-  top: 2px;
+  top: 4px;
   width: 5px;
   height: 12px;
   border: 1.5px solid $color__white;
@@ -73,9 +83,13 @@
   opacity: 0;
   transform: rotate(45deg) scale(.1);
   transition: all .15s $bezier__bounce;
+
+  @include breakpoint('large+') {
+    top: 7px;
+  }
 }
 
-.checkbox input[type=checkbox]:focus + label::before {
+.checkbox input[type=checkbox]:focus + span label::before {
   border-color: $color__input-border--focus;
 }
 
@@ -85,19 +99,19 @@
 
 
 
-.checkbox input[type=checkbox]:checked + label::before {
+.checkbox input[type=checkbox]:checked + span label::before {
   border-color: $color__input-border--checked;
   background-color: $color__input-border--checked;
 }
 
-.checkbox input[type=checkbox]:checked + label::after {
+.checkbox input[type=checkbox]:checked + span label::after {
   opacity: 1;
   transform: rotate(45deg) scale(1);
 }
 
 
 
-.checkbox input[type=checkbox]:disabled + label {
+.checkbox input[type=checkbox]:disabled + span label {
   opacity: .5;
   pointer-events: none;
 }

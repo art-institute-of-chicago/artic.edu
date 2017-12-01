@@ -53,6 +53,11 @@
 .btn.f-buttons {
   padding-top: 10px;
   padding-bottom: 12px;
+
+  @include breakpoint('medium+') {
+    padding-top: 9px;
+    padding-bottom: 13px;
+  }
 }
 
 .btn--secondary {

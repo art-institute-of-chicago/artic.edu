@@ -18,16 +18,16 @@
   @include background-fill;
   margin-top: 40px;
   background-color: $color__bg--secondary;
+
+  @include breakpoint('large+') {
+    min-height: 160px;
+  }
 }
 
 .m-aside-newsletter fieldset {
   display: block;
   margin: 0;
   padding: 0;
-
-  @include breakpoint('medium+') {
-    padding-left: colspan(25, medium);
-  }
 
   @include breakpoint('large+') {
     padding-left: colspan(29, large);
@@ -45,23 +45,15 @@
 .m-aside-newsletter legend {
   float: left;
 
-  @include breakpoint('medium+') {
+  @include breakpoint('large+') {
     position: absolute;
     left: 0;
-    top: 45px;
-  }
-
-  @include breakpoint('large+') {
-    top: 60px;
+    top: 0;
   }
 }
 
 .m-aside-newsletter legend .title {
   display: block;
-
-  @include breakpoint('medium+') {
-    width: colspan(23, medium);
-  }
 
   @include breakpoint('large+') {
     width: colspan(29, large);
@@ -77,7 +69,7 @@
 }
 
 .m-aside-newsletter legend .title.f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'small': 84));
+  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'small+': 84, 'xlarge+': 82, 'xxlarge': 84));
 }
 
 .m-aside-newsletter__field {
@@ -90,6 +82,12 @@
 
   @include breakpoint('small+') {
     flex-flow: row nowrap;
+    padding-top: 20px;
+  }
+
+  @include breakpoint('large+') {
+    padding-top: 52px;
+    padding-bottom: 60px;
   }
 }
 
@@ -104,7 +102,7 @@
 }
 
 .m-aside-newsletter label.f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small': 84));
+  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small': 28));
 }
 
 .m-aside-newsletter input {
@@ -151,6 +149,19 @@
   }
 }
 
+.m-aside-newsletter input:hover + button {
+  border-bottom-color: $color__input-border--hover;
+}
+
+.m-aside-newsletter input:focus + button {
+  border-bottom-color: $color__input-border--focus;
+}
+
+.m-aside-newsletter .s-error input,
+.m-aside-newsletter .s-error input + button {
+  border-bottom-color: $color__input-border--error;
+}
+
 .m-aside-newsletter__msg {
   @include untuck;
   @include background-fill;
@@ -158,10 +169,6 @@
   background-color: $color__link;
   color: $color__white;
   font-style: normal;
-
-  @include breakpoint('medium+') {
-    margin-left: colspan(25, medium, 0, true);
-  }
 
   @include breakpoint('large+') {
     margin-left: colspan(29, large, 0, true);
@@ -179,6 +186,11 @@
 .m-aside-newsletter__msg.f-buttons {
   padding-top: 11px;
   padding-bottom: 13px;
+
+  @include breakpoint('medium+') {
+    padding-top: 10px;
+    padding-bottom: 14px;
+  }
 }
 
 .m-aside-newsletter__msg--error {

@@ -90,6 +90,11 @@
 .dropdown > button.f-secondary {
   padding-top: 10px;
   padding-bottom: 12px;
+
+  @include breakpoint('large+') {
+    padding-top: 7px;
+    padding-bottom: 15px;
+  }
 }
 
 .dropdown > button:hover {
@@ -118,23 +123,19 @@
 }
 
 .dropdown > ul {
+  @include untuck;
   @extend %styled-scrollbars;
   display: none;
   position: absolute;
   left: calc(100% + 20px);
-  top: -1px;
+  top: 0;
   min-width: 100%;
-  max-height: 200px;
+  max-height: 220px;
   margin-top: 0;
   background-color: $color__white;
   box-shadow: $shadow;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-
-  &::before,
-  &::after {
-    display: none;
-  }
 }
 
 .dropdown.s-active > ul {
@@ -151,6 +152,16 @@
   background-color: $color__white;
   color: $color__text--secondary;
   text-decoration: none;
+}
+
+.dropdown > ul.f-secondary a:not([class]) {
+  padding-top: 11px;
+  padding-bottom: 12px;
+
+  @include breakpoint('large+') {
+    padding-top: 8px;
+    padding-bottom: 11px;
+  }
 }
 
 .dropdown > ul a:not([class]):hover {

@@ -18,6 +18,10 @@
   &.f-secondary {
     padding-top: 10px;
 
+    @include breakpoint('large+') {
+      padding-top: 11px;
+    }
+
     @include breakpoint('xlarge+') {
       padding-top: 7px;
     }

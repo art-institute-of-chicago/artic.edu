@@ -6,15 +6,21 @@ radio
 ```
 <span class="radio f-secondary">
   <input type="radio" value="option1" id="option1" name="options">
-  <label for="option1">Option 1</label>
+  <span class="f-secondary">
+    <label for="option1">Option 1</label>
+  </span>
 </span>
 <span class="radio f-secondary">
   <input type="radio" value="option2" id="option2" name="options" checked>
-  <label for="option2">Option 2</label>
+  <span class="f-secondary">
+    <label for="option2">Option 2</label>
+  </span>
 </span>
 <span class="radio f-secondary">
   <input type="radio" value="option3" id="option3" name="options" disabled>
-  <label for="option3">Disabled</label>
+  <span class="f-secondary">
+    <label for="option3">Option 3 disabled</label>
+  </span>
 </span>
 ```
 
@@ -42,11 +48,11 @@ radio
 }
 
 .radio label:hover,
-.radio input[type=radio]:focus + label {
+.radio input[type=radio]:focus + span label {
   color: $color__input-text--focus;
 }
 
-.radio input[type=radio]:focus + label {
+.radio input[type=radio]:focus + span label {
   @extend %default-focus-style;
 }
 
@@ -55,11 +61,15 @@ radio
   content: '';
   position: absolute;
   left: 0;
-  top: 1px;
+  top: 3px;
   width: 16px;
   height: 16px;
   border: 1px solid $color__input-border;
   border-radius: 50%;
+
+  @include breakpoint('large+') {
+    top: 6px;
+  }
 }
 
 .radio label::after {
@@ -70,7 +80,7 @@ radio
   transition: all .15s $bezier__bounce;
 }
 
-.radio input[type=radio]:focus + label::before {
+.radio input[type=radio]:focus + span label::before {
   border-color: $color__input-border--focus;
 }
 
@@ -78,17 +88,17 @@ radio
   border-color: $color__input-border--hover;
 }
 
-.radio input[type=radio]:checked + label::before {
+.radio input[type=radio]:checked + span label::before {
   border-color: $color__input-border--checked;
   background-color: $color__input-border--checked;
 }
 
-.radio input[type=radio]:checked + label::after {
+.radio input[type=radio]:checked + span label::after {
   opacity: 1;
   transform: scale(.375);
 }
 
-.radio input[type=radio]:disabled + label {
+.radio input[type=radio]:disabled + span label {
   opacity: .5;
   pointer-events: none;
 }

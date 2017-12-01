@@ -121,11 +121,11 @@
 }
 
 .m-links-bar--tabs  .m-links-bar__item-trigger.f-module-title-2 {
-  @include tucked-margin-top($f-module-title-2, ('xsmall': 12));
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 12, 'small': 16));
 }
 
 .m-links-bar--tabs  .m-links-bar__item-trigger.f-buttons {
-  @include tucked-margin-top($f-buttons, ('xsmall': 12));
+  @include tucked-margin-top($f-buttons, ('xsmall': 12, 'small': 16));
 }
 
 
