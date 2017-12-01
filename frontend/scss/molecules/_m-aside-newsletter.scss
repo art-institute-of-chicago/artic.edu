@@ -1,13 +1,36 @@
-
 /***
 
 ```
 <form class="m-aside-newsletter">
   <fieldset>
-    <legend><span class="title f-deck">Sign up to our newsletter and receive updates.</span></legend>
-    <input id="newsletterEmail" name="newsletterEmail">
-    <label for="newsletterEmail">Email address</label>
-    <button type="submit">Sign Up</button>
+    <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
+    <span class="m-aside-newsletter__field">
+      <label for="newsletterEmail" class="f-secondary">Email address</label>
+      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-buttons">
+      <button type="submit" class="f-tag">Sign Up</button>
+    </span>
+    </fieldset>
+</form>
+<form class="m-aside-newsletter">
+  <fieldset>
+    <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
+    <span class="m-aside-newsletter__field s-error">
+      <label for="newsletterEmail" class="f-secondary">Email address</label>
+      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-buttons">
+      <button type="submit" class="f-tag">Sign Up</button>
+    </span>
+    <em class="m-aside-newsletter__msg m-aside-newsletter__msg--error f-buttons">Please enter a valid email address</em>
+  </fieldset>
+</form>
+<form class="m-aside-newsletter">
+  <fieldset>
+    <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
+    <span class="m-aside-newsletter__field s-success">
+      <label for="newsletterEmail" class="f-secondary">Email address</label>
+      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-buttons">
+      <button type="submit" class="f-tag">Sign Up</button>
+    </span>
+    <em class="m-aside-newsletter__msg m-aside-newsletter__msg--success f-buttons">Successfully signed up to the newsletter</em>
   </fieldset>
 </form>
 ```

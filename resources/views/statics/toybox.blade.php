@@ -2,6 +2,31 @@
 
 @section('content')
 
+@component('components.molecules._m-notification')
+    <svg class="icon--info" aria-hidden="true"><use xlink:href="#icon--info" /></svg>Because of the weather conditions we're closed today. <a href="#">Learn More</a>
+@endcomponent
+@component('components.molecules._m-notification')
+    @slot('variation', 'm-notification--secondary')
+    <svg class="icon--alert" aria-hidden="true"><use xlink:href="#icon--alert" /></svg>Secondary notification with icon
+@endcomponent
+@component('components.molecules._m-notification')
+    @slot('variation', 'm-notification--tertiary')
+    <svg class="icon--alert" aria-hidden="true"><use xlink:href="#icon--alert" /></svg>Tertiary notification with icon
+@endcomponent
+@component('components.molecules._m-notification')
+    @slot('variation', 'm-notification--quaternary')
+    <svg class="icon--alert" aria-hidden="true"><use xlink:href="#icon--alert" /></svg>Quaternary notification with icon
+@endcomponent
+@component('components.molecules._m-notification')
+    @slot('variation', 'm-notification--error')
+    <svg class="icon--alert" aria-hidden="true"><use xlink:href="#icon--alert" /></svg>Error notification with icon
+@endcomponent
+@component('components.molecules._m-notification')
+    @slot('variation', 'm-notification--quinary')
+    @slot('title', 'Quinary with title')
+    Dictum consectetur nunc eu luctus lacus <a href="#">integer auctor</a> velit ac porttitor malesuada
+@endcomponent
+
 <p>
   @component('components.atoms._radio')
     @slot('id', 'roption1')

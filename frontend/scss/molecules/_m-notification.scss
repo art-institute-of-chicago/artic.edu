@@ -1,0 +1,132 @@
+/***
+
+```
+<div class="m-notification">
+    <p class="m-notification__text f-buttons">
+        <svg class="icon--info" aria-hidden="true"><use xlink:href="#icon--info" /></svg>Because of the weather conditions we're closed today. <a href="#">Learn More</a>
+    </p>
+    <button class="m-notification__close"><svg class="icon--close" aria-title="Close message"><use xlink:href="#icon--close" /></svg></button>
+</div>
+```
+
+***/
+
+
+.m-notification {
+  @include background-fill;
+  display: block;
+  padding-top: 16px;
+  padding-right: 48px;
+  padding-bottom: 20px;
+  background-color: $color__error;
+}
+
+.m-notification__text,
+.m-notification__title {
+  color: $color__text--title-contrast;
+}
+
+.m-notification__title.f-module-title-1 {
+  @include tucked-margin-top($f-module-title-1, ('xsmall': 12));
+}
+
+.m-notification__text.f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 12));
+
+  .m-notification__title + & {
+    @include tucked-margin-top($f-secondary, ('xsmall': 20));
+  }
+}
+
+.m-notification__text a {
+  color: $color__text--title-contrast;
+  text-decoration: underline;
+}
+
+.m-notification__text svg:not(:first-child) {
+  margin-left: 8px;
+}
+
+.m-notification__text svg:first-child {
+  margin-right: 8px;
+}
+
+.m-notification__close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border: 0 none;
+  border-radius: 0;
+  background: transparent;
+  color: $color__text--title-contrast;
+  cursor: pointer;
+}
+
+
+
+
+.m-notification--secondary {
+  background-color: $color__black--90;
+}
+
+.m-notification--tertiary {
+  background-color: $color__bg--primary;
+
+  .m-notification__title,
+  .m-notification__text,
+  .m-notification__text a,
+  .m-notification__close {
+    color: $color__text--secondary;
+  }
+}
+
+.m-notification--quaternary {
+  background-color: $color__grey--100;
+}
+
+.m-notification--quinary {
+  margin-top: 40px;
+  padding-left: 20px;
+  border: 1px solid $color__black--10;
+  background-color: transparent;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .m-notification__title {
+    color: $color__text;
+  }
+
+  .m-notification__text,
+  .m-notification__close {
+    color: $color__text--secondary;
+  }
+
+  .m-notification__text a {
+    color: $color__link;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $color__link--hover;
+    }
+
+    &:active {
+      color: $color__link--active;
+    }
+  }
+}
+
+.m-notification--error {
+  background-color: $color__bg--error;
+
+  .m-notification__title,
+  .m-notification__text,
+  .m-notification__text a,
+  .m-notification__close {
+    color: $color__text--error;
+  }
+}
