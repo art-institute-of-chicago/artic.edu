@@ -28,7 +28,7 @@
             @if (isset($captionTitle))<strong class="f-caption-title">{{ $captionTitle }}</strong> <br>@endif
             @if (isset($caption))<span class="f-caption">{{ $caption }}</span>@endif
             @component('components.atoms._btn')
-                @slot('variation', 'btn--quintinary btn--icon m-media__share')
+                @slot('variation', 'btn--quinary btn--icon m-media__share')
                 @slot('font', '')
                 @slot('icon', 'icon--share--24')
             @endcomponent

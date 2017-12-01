@@ -133,28 +133,58 @@
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
-        Action
+        Default
     @endcomponent
     @component('components.atoms._btn')
         @slot('variation', 'btn--secondary')
-        Action
+        Secondary
     @endcomponent
     @component('components.atoms._btn')
         @slot('variation', 'btn--tertiary')
-        Action
+        Tertiary
     @endcomponent
     @component('components.atoms._btn')
         @slot('variation', 'btn--quaternary')
-        Action
+        Quaternary
     @endcomponent
     @component('components.atoms._btn')
-        @slot('variation', 'btn--quintinary')
-        Action
+        @slot('variation', 'btn--quinary')
+        Quinary
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--senary')
+        Senary
+    @endcomponent
+</p>
+<p style="margin-top: 20px;">
+    @component('components.atoms._btn')
+        @slot('icon', 'icon--new-window')
+        Default
     @endcomponent
     @component('components.atoms._btn')
         @slot('variation', 'btn--secondary')
         @slot('icon', 'icon--new-window')
-        Action
+        Secondary
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--tertiary')
+        @slot('icon', 'icon--new-window')
+        Tertiary
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--quaternary')
+        @slot('icon', 'icon--new-window')
+        Quaternary
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--quinary')
+        @slot('icon', 'icon--new-window')
+        Quinary
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--senary')
+        @slot('icon', 'icon--new-window')
+        Senary
     @endcomponent
 </p>
 <p style="margin-top: 20px;">
@@ -179,7 +209,12 @@
         @slot('icon', 'icon--print--24')
     @endcomponent
     @component('components.atoms._btn')
-        @slot('variation', 'btn--quintinary btn--icon')
+        @slot('variation', 'btn--quinary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--senary btn--icon')
         @slot('font', '')
         @slot('icon', 'icon--print--24')
     @endcomponent
@@ -194,6 +229,38 @@
         Action
     @endcomponent
 </p>
+<div class="o-gallery" style="margin-top: 20px; padding: 20px 0;">
+    <p style="margin-top: 0;">
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--contrast')
+            Contrast
+        @endcomponent
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--contrast')
+            @slot('icon', 'icon--new-window')
+            With Icon
+        @endcomponent
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--contrast btn--icon')
+            @slot('font', '')
+            @slot('icon', 'icon--print--24')
+        @endcomponent
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--contrast-secondary')
+            Contrast secondary
+        @endcomponent
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--contrast-secondary')
+            @slot('icon', 'icon--new-window')
+            With Icon
+        @endcomponent
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--contrast-secondary btn--icon')
+            @slot('font', '')
+            @slot('icon', 'icon--print--24')
+        @endcomponent
+    </p>
+</div>
 <p style="margin-top: 20px;">
     @component('components.atoms._tag')
         Kanan Jarrus

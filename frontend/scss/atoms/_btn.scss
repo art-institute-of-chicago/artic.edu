@@ -5,7 +5,8 @@
 <button class="btn btn--secondary f-buttons">Action</button>
 <button class="btn btn--tertiary f-buttons">Action</button>
 <button class="btn btn--quaternary f-buttons">Action</button>
-<button class="btn btn--quintinary f-buttons">Action</button>
+<button class="btn btn--quinary f-buttons">Action</button>
+<button class="btn btn--senary f-buttons">Action</button>
 <button class="btn btn--secondary btn--w-icon f-buttons"><svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>Action</button>
 <button class="btn btn--disabled f-buttons">Action</button>
 <button class="btn f-buttons" disabled>Action</button>
@@ -15,6 +16,9 @@
 ```
 
 ***/
+
+
+// primary, secondary, tertiary, quaternary, quinary, senary, septenary, octonary, nonary, denary
 
 .btn {
   display: inline-block;
@@ -61,7 +65,7 @@
 }
 
 .btn--secondary {
-  border: 1px solid $color__rules--secondary;
+  border-color: $color__rules--secondary;
   background-color: $color__white;
   color: $color__text--title;
 
@@ -105,16 +109,70 @@
   }
 }
 
-.btn--quintinary {
-  background-color: $color__black--80;
+.btn--quinary {
+  background-color: $color__black--5;
+  color: $color__text--title;
 
   &:hover,
   &:focus {
-    background-color: $color__black;
+    background-color: $color__black--10;
+    color: $color__text--title;
   }
 
   &:active {
-    background-color: $color__black--75;
+    background-color: $color__black--5;
+    color: $color__text--title;
+  }
+}
+
+.btn--senary {
+  background-color: $color__blue;
+  color: $color__white;
+
+  &:hover,
+  &:focus {
+    background-color: $color__blue--hover;
+    color: $color__white;
+  }
+
+  &:active {
+    background-color: $color__blue--active;
+    color: $color__white;
+  }
+}
+
+.btn--contrast {
+  border-color: rgba($color__white, .2);
+  background-color: transparent;
+  color: $color__text--title-contrast;
+
+  &:hover,
+  &:focus {
+    border-color: rgba($color__white, .3);
+    background-color: transparent;
+    color: $color__text--title-contrast;
+  }
+
+  &:active {
+    border-color: rgba($color__white, .4);
+    background-color: transparent;
+    color: $color__text--title-contrast;
+  }
+}
+
+.btn--contrast-secondary {
+  background-color: rgba($color__white, .1);
+  color: $color__text--title-contrast;
+
+  &:hover,
+  &:focus {
+    background-color: rgba($color__white, .15);
+    color: $color__text--title-contrast;
+  }
+
+  &:active {
+    background-color: rgba($color__white, .2);
+    color: $color__text--title-contrast;
   }
 }
 
@@ -180,7 +238,7 @@
 
 .btn.btn--icon svg {
   display: inline-block;
-  margin-top: 0;
+  margin-top: -4px;
   margin-right: 0;
   vertical-align: middle;
 }

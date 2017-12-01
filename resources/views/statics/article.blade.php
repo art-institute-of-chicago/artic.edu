@@ -110,7 +110,7 @@
             <hr>
             <p class="f-caption">Morbi eleifend massa nibh, sit amet ultricies turpis convallis id. Vestibulum ac vehicula felis, id facilisis erat. Sed a condimentum libero, ut sodales mi.</p>
             @component('components.atoms._btn')
-                @slot('variation', 'btn--quintinary btn--icon o-gallery__share')
+                @slot('variation', 'btn--quinary btn--icon o-gallery__share')
                 @slot('font', '')
                 @slot('icon', 'icon--share--24')
             @endcomponent
@@ -156,7 +156,7 @@
             <hr>
             <p class="f-caption">Morbi eleifend massa nibh, sit amet ultricies turpis convallis id. Vestibulum ac vehicula felis, id facilisis erat. Sed a condimentum libero, ut sodales mi.</p>
             @component('components.atoms._btn')
-                @slot('variation', 'btn--quintinary btn--icon o-gallery__share')
+                @slot('variation', 'btn--quinary btn--icon o-gallery__share')
                 @slot('font', '')
                 @slot('icon', 'icon--share--24')
             @endcomponent
