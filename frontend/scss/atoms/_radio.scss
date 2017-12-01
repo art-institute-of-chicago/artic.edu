@@ -4,17 +4,17 @@ radio
 =============
 
 ```
-<span class="radio">
+<span class="radio f-secondary">
   <input type="radio" value="option1" id="option1" name="options">
-  <label for="option1" class="f-secondary">Option 1</label>
+  <label for="option1">Option 1</label>
 </span>
-<span class="radio">
+<span class="radio f-secondary">
   <input type="radio" value="option2" id="option2" name="options" checked>
-  <label for="option2" class="f-secondary">Option 2</label>
+  <label for="option2">Option 2</label>
 </span>
-<span class="radio">
+<span class="radio f-secondary">
   <input type="radio" value="option3" id="option3" name="options" disabled>
-  <label for="option3" class="f-secondary">Disabled</label>
+  <label for="option3">Disabled</label>
 </span>
 ```
 
@@ -55,7 +55,7 @@ radio
   content: '';
   position: absolute;
   left: 0;
-  top: 5px;
+  top: 1px;
   width: 16px;
   height: 16px;
   border: 1px solid $color__input-border;

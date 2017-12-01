@@ -21,20 +21,9 @@
 
 ***/
 
-
 .date-select-trigger {
-  display: inline-block;
+  display: inline;
   position: relative;
-
-  & + & {
-    margin-left: 16px;
-  }
-}
-
-.date-select-trigger .f-buttons::before,
-.date-select-trigger .f-buttons::after {
-  content: none;
-  display: none;
 }
 
 .date-select-trigger__selected-date,
@@ -43,13 +32,14 @@
 }
 
 .date-select-trigger button {
-  height: 24px;
   padding: 0;
   border: 0 none;
   background: none;
   color: $color__link;
-  line-height: 24px;
   cursor: pointer;
+
+  font: inherit;
+  line-height: 1;
 
   &:hover,
   &:focus {
@@ -62,7 +52,7 @@
 }
 
 .date-select-trigger svg {
-  vertical-align: text-bottom;
+  vertical-align: top;
 }
 
 .date-select-trigger .icon--calendar {

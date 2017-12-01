@@ -1,17 +1,17 @@
 /***
 
 ```
-<span class="checkbox">
+<span class="checkbox f-secondary">
   <input type="checkbox" value="option1" id="option1" name="option1">
-  <label for="option1" class="f-secondary">Option</label>
+  <label for="option1">Option</label>
 </span>
-<span class="checkbox">
+<span class="checkbox f-secondary">
   <input type="checkbox" value="option2" id="option2" name="option2" checked>
-  <label for="option2" class="f-secondary">Option</label>
+  <label for="option2">Option</label>
 </span>
-<span class="checkbox">
+<span class="checkbox f-secondary">
   <input type="checkbox" value="option3" id="option3" name="option3" disabled>
-  <label for="option3" class="f-secondary">Disabled</label>
+  <label for="option3">Disabled</label>
 </span>
 ```
 
@@ -51,7 +51,7 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 6px;
+  top: 1px;
   width: 16px;
   height: 16px;
   border: 1px solid $color__input-border;
@@ -63,7 +63,7 @@
   content: '';
   position: absolute;
   left: 6px;
-  top: 7px;
+  top: 2px;
   width: 5px;
   height: 12px;
   border: 1.5px solid $color__white;

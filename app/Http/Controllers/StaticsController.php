@@ -32,6 +32,12 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function toybox() {
+    return view('statics/toybox', [
+      'timelineEvents' => $this->getTimelineEvents(3),
+    ]);
+  }
+
   public function home() {
     return view('statics/home', [
       'contrastHeader' => true,

@@ -318,13 +318,13 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
     @slot('success', 'Successfully signed up to the newsletter')
 @endcomponent
 
-<p>
+<p style="margin-top: 20px;">
     @component('components.atoms._date-select-trigger')
         Go to date
     @endcomponent
 </p>
 
-<p>
+<p style="margin-top: 20px;">
     @component('components.atoms._date-select-trigger')
         @slot('hiddenInputName', 'date0')
         @slot('hiddenInputId', 'date0')
@@ -332,152 +332,43 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
     @endcomponent
 </p>
 
-<p>
+<p style="margin-top: 20px;">
+    @component('components.molecules._m-date-select-range')
+
+    @endcomponent
+</p>
+
+@component('components.molecules._m-links-bar')
+    @slot('linksPrimary', array(array('text' => 'Exhibitions', 'href' => '#', 'active' => false)))
+    @slot('linksSecondary', array(array('text' => 'Archive', 'href' => '#')))
+
+    @component('components.atoms._date-select-trigger')
+        Go to date
+    @endcomponent
+@endcomponent
+
+@component('components.molecules._m-links-bar')
+    @slot('linksPrimary', array(array('text' => 'Exhibitions', 'href' => '#', 'active' => false)))
+    @slot('linksSecondary', array(array('text' => 'Archive', 'href' => '#')))
+
     @component('components.atoms._date-select-trigger')
         @slot('hiddenInputName', 'dateStart')
         @slot('hiddenInputId', 'dateStart')
         @slot('range', true)
-        @slot('selectDateId', 'cal01')
+        @slot('selectDateId', 'cal03')
         @slot('selectDateRole', 'start')
-        @slot('selectDateLinkedId', 'cal02')
+        @slot('selectDateLinkedId', 'cal04')
         Start date
     @endcomponent
     @component('components.atoms._date-select-trigger')
         @slot('hiddenInputName', 'dateEnd')
         @slot('hiddenInputId', 'dateEnd')
         @slot('range', true)
-        @slot('selectDateId', 'cal02')
+        @slot('selectDateId', 'cal04')
         @slot('selectDateRole', 'end')
-        @slot('selectDateLinkedId', 'cal01')
+        @slot('selectDateLinkedId', 'cal03')
         End date
     @endcomponent
-</p>
-
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing, no cols</p>
-<ul class="o-grid-listing">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing, no cols, o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-top">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing, no cols, o-grid-listing--gridlines-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-rows">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing, no cols, o-grid-listing--gridlines-split-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-split-rows">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing, 2 cols at small, 3 cols at medium, 4 cols large+ (most examples follow this)</p>
-<ul class="o-grid-listing o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--keyline-top</p>
-<ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-right</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-cols</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-cols</p>
-<ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-right o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--keyline-top o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-split-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-split-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-split-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-split-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
-
-<hr class="hr--big-break">
-<p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-split-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-split-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
-  @include('shared._listitems')
-</ul>
+@endcomponent
 
 @endsection

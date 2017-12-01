@@ -10,15 +10,17 @@
   display: block;
   color: $color__text--error;
   font-style: normal;
+}
 
+.error-msg.f-secondary {
   label + &,
   input + &,
   .select__select + & {
-    margin-top: 4px;
+    @include tucked-margin-top($f-secondary, ('xsmall': 28));
   }
 
   .checkbox label + &,
   .radio label + & {
-    margin: 0;
+    @include tucked-margin-top($f-secondary, ('xsmall': 20));
   }
 }

@@ -49,8 +49,18 @@
 .m-links-bar__items-secondary {
   display: flex;
   flex: 0 0 auto;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
+  max-width: 100%;
   margin-top: 0;
+  overflow-x: auto;
+}
+
+.m-links-bar__items-secondary {
+  display: none;
+
+  @include breakpoint('small+') {
+    display: flex;
+  }
 }
 
 .m-links-bar__item {
@@ -91,6 +101,8 @@
 
   & + .m-links-bar:not(.m-links-bar--tabs) {
     margin-top: 0;
+    padding-top: 16px;
+    border-top: 0 none;
   }
 }
 

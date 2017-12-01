@@ -1,0 +1,12 @@
+.m-date-select-range {
+  display: flex;
+  flex-flow: row nowrap;
+
+  .date-select-trigger {
+    flex: 0 0 auto;
+  }
+
+  .date-select-trigger:not(:first-child) {
+    margin-left: 16px;
+  }
+}

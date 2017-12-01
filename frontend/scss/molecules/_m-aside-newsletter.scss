@@ -1,3 +1,4 @@
+
 /***
 
 ```
@@ -22,11 +23,9 @@
 .m-aside-newsletter fieldset {
   display: block;
   margin: 0;
-  padding: 40px 0;
+  padding: 0;
 
   @include breakpoint('medium+') {
-    padding-top: 60px;
-    padding-bottom: 60px;
     padding-left: colspan(25, medium);
   }
 
@@ -57,7 +56,7 @@
   }
 }
 
-.m-aside-newsletter legend span {
+.m-aside-newsletter legend .title {
   display: block;
 
   @include breakpoint('medium+') {
@@ -77,38 +76,67 @@
   }
 }
 
+.m-aside-newsletter legend .title.f-list-3 {
+  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'small': 84));
+}
+
 .m-aside-newsletter__field {
-  display: block;
+  display: flex;
   position: relative;
+  flex-flow: row wrap;
   clear: left;
-  padding-top: 20px;
+  padding-top: .02px;
+  padding-bottom: 20px;
+
+  @include breakpoint('small+') {
+    flex-flow: row nowrap;
+  }
 }
 
 .m-aside-newsletter label {
-  position: absolute;
-  left: -1px;
-  top: -1px;
-  clip: rect(1px, 1px, 1px, 1px);
-  overflow: hidden;
+  display: block;
+  flex: 0 0 auto;
+  width: 100%;
+
+  @include breakpoint('small+') {
+    width: auto;
+  }
+}
+
+.m-aside-newsletter label.f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small': 84));
 }
 
 .m-aside-newsletter input {
   display: block;
-  width: calc(100% - 60px);
+  flex: 1 1 auto;
+  width: auto;
+  padding-bottom: 3px;
+  padding-left: 0;
   border: 0 none;
   border-bottom: 1px solid $color__rules--secondary;
+  border-radius: 0;
   background-color: transparent;
+
+  @include breakpoint('small+') {
+    margin-left: 20px;
+  }
+}
+
+.m-aside-newsletter label + input {
+  margin-top: 0;
 }
 
 .m-aside-newsletter button {
   @include untuck;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  display: block;
+  flex: 0 0 auto;
   width: 60px;
-  padding: 0 0 4px;
+  margin: 0;
+  padding: 0;
   border: 0 none;
   border-bottom: 1px solid $color__rules--secondary;
+  border-radius: 0;
   background-color: transparent;
   color: $color__link--accent;
   text-align: right;
@@ -127,16 +155,11 @@
   @include untuck;
   @include background-fill;
   display: block;
-  margin-top: 20px;
-  margin-bottom: -40px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  background-color: green;
-  color: $color__text--title-contrast;
+  background-color: $color__link;
+  color: $color__white;
   font-style: normal;
 
   @include breakpoint('medium+') {
-    margin-bottom: -60px;
     margin-left: colspan(25, medium, 0, true);
   }
 
@@ -153,7 +176,11 @@
   }
 }
 
+.m-aside-newsletter__msg.f-buttons {
+  padding-top: 11px;
+  padding-bottom: 13px;
+}
+
 .m-aside-newsletter__msg--error {
-  background-color: $color__bg--error;
-  color: $color__text--error;
+  background-color: $color__error;
 }

@@ -1,9 +1,12 @@
 <span class="radio{{ (isset($variation)) ? ' '.$variation : '' }}{{ (isset($error)) ? ' s-error' : '' }}{{ (isset($disabled)) ? ' s-disabled' : '' }}">
   <input type="radio" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name ?? '' }}" {{ $checked ?? '' }} {{ $disabled ?? '' }}>
-  @component('components.atoms._label')
-    @slot('for', $id)
-    {{ $label ?? '' }}
-  @endcomponent
+  <span class="{{ $font ?? 'f-secondary' }}">
+    @component('components.atoms._label')
+      @slot('for', $id)
+      @slot('font', '')
+      {{ $label ?? '' }}
+    @endcomponent
+  </span>
   @if (isset($error))
       @component('components.atoms._error-msg')
           {{ $error ?? '' }}

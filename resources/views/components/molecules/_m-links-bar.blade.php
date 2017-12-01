@@ -15,6 +15,9 @@
         </a>
     </li>
     @endforeach
+    @if ($slot)
+        <li class="m-links-bar__item">{{ $slot }}</li>
+    @endif
   </ul>
 @endif
 @if (isset($linksSecondary) and $linksSecondary)
