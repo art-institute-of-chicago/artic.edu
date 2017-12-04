@@ -18,15 +18,15 @@ class PageRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        // $this->hydrateOrderedBelongsTomany($object, $fields, 'featuredWorks', 'position', 'Work');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeEvents', 'position', 'Event');
         return parent::hydrate($object, $fields);
     }
 
     public function afterSave($object, $fields)
     {
-        // $this->updateOrderedBelongsTomany($object, $fields, 'featuredWorks');
         $this->updateOrderedBelongsTomany($object, $fields, 'homeExhibitions');
+        $this->updateOrderedBelongsTomany($object, $fields, 'homeEvents');
         parent::afterSave($object, $fields);
     }
 

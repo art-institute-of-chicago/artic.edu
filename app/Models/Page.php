@@ -22,7 +22,7 @@ class Page extends Model
 
     public static $types = [
         0 => 'Home',
-        1 => 'Exhibitions and Events',
+        1 => 'ExhibitionsEvents and Events',
         2 => 'Art and Ideas'
     ];
 
@@ -54,5 +54,10 @@ class Page extends Model
     public function homeExhibitions()
     {
         return $this->belongsToMany('App\Models\Exhibition', 'page_home_exhibition')->withPivot('position')->orderBy('position');
+    }
+
+    public function homeEvents()
+    {
+        return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');
     }
 }

@@ -20,3 +20,15 @@
     'hint' => 'Select up to 4 exhibitions you want to feature on the homepage',
     'max' => 4
 ])
+
+@formField('browser', [
+    'routePrefix' => 'whatson',
+    'relationship' => 'homeEvents',
+    'module_name' => 'events',
+    'relationship_name' => 'featured events',
+    'custom_title_prefix' => 'Add',
+    'with_multiple' => true,
+    'with_sort' => true,
+    'hint' => 'Select events you want to feature on the homepage',
+    'max' => 20
+])
