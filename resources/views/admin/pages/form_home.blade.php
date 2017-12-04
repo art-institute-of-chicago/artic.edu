@@ -17,6 +17,6 @@
     'custom_title_prefix' => 'Add',
     'with_multiple' => true,
     'with_sort' => true,
-    'hint' => 'TO BE REMOVED: Select which exhibition you want to feature on the homepage',
-    'max' => 20
+    'hint' => 'Select up to 4 exhibitions you want to feature on the homepage',
+    'max' => 4
 ])
