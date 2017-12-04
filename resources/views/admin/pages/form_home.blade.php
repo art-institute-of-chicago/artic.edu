@@ -29,6 +29,6 @@
     'custom_title_prefix' => 'Add',
     'with_multiple' => true,
     'with_sort' => true,
-    'hint' => 'Select events you want to feature on the homepage',
-    'max' => 20
+    'hint' => 'Select up to 3 events you want to feature on the homepage',
+    'max' => 3
 ])
