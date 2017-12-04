@@ -19,6 +19,7 @@ Route::group(['prefix' => 'general'], function () {
   Route::module('categories');
   Route::module('siteTags');
   Route::module('segments');
+  Route::module('sponsors');
 });
 
 Route::get('/', function() {

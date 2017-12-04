@@ -72,6 +72,10 @@ return [
           'title' => 'Closures',
           'module' => true,
         ],
+        'sponsors' => [
+          'title' => 'Sponsors',
+          'module' => true,
+        ],
       ]
     ]
 ];

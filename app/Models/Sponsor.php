@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use A17\CmsToolkit\Models\Model;
+
+class Sponsor extends Model
+{
+    protected $fillable = [
+        'published',
+        'title',
+        'copy',
+    ];
+
+    // those fields get auto set to null if not submited
+    public $nullable = [];
+
+    // those fields get auto set to false if not submited
+    public $checkboxes = [];
+
+    // fill this in if you use the HasMedias traits
+    // public $mediasParams = [];
+}
