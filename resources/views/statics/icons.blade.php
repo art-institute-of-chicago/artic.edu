@@ -17,8 +17,10 @@
   <svg class="icon--location--24"><use xlink:href="#icon--location--24" /></svg>
   <svg class="icon--location"><use xlink:href="#icon--location" /></svg>
   <svg class="icon--logo--80"><use xlink:href="#icon--logo--80" /></svg>
+  <svg class="icon--logo--88"><use xlink:href="#icon--logo--88" /></svg>
   <svg class="icon--logo--92"><use xlink:href="#icon--logo--92" /></svg>
   <svg class="icon--logo--outline--80"><use xlink:href="#icon--logo--outline--80" /></svg>
+  <svg class="icon--logo--outline--88"><use xlink:href="#icon--logo--outline--88" /></svg>
   <svg class="icon--logo--outline--92"><use xlink:href="#icon--logo--outline--92" /></svg>
   <svg class="icon--minus--24"><use xlink:href="#icon--minus--24" /></svg>
   <svg class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
