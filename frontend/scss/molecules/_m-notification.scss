@@ -1,11 +1,44 @@
 /***
 
 ```
-<div class="m-notification">
-    <p class="m-notification__text f-buttons">
-        <svg class="icon--info" aria-hidden="true"><use xlink:href="#icon--info" /></svg>Because of the weather conditions we're closed today. <a href="#">Learn More</a>
+<div class="m-notification" data-behavior="notification">
+    <p class="m-notification__text f-secondary">
+        <svg class="icon--info" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--info"></use></svg>Because of the weather conditions we're closed today. <a href="#">Learn More</a>
     </p>
-    <button class="m-notification__close"><svg class="icon--close" aria-title="Close message"><use xlink:href="#icon--close" /></svg></button>
+    <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
+</div>
+<div class="m-notification m-notification--secondary" data-behavior="notification">
+    <p class="m-notification__text f-secondary">
+        <svg class="icon--alert" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--alert"></use></svg>Secondary notification with icon
+    </p>
+    <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
+</div>
+<div class="m-notification m-notification--tertiary" data-behavior="notification">
+    <p class="m-notification__text f-secondary">
+        <svg class="icon--alert" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--alert"></use></svg>Tertiary notification with icon
+    </p>
+    <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
+</div>
+<div class="m-notification m-notification--quaternary" data-behavior="notification">
+    <p class="m-notification__text f-secondary">
+        <svg class="icon--alert" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--alert"></use></svg>Quaternary notification with icon
+    </p>
+    <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
+</div>
+<div class="m-notification m-notification--error" data-behavior="notification">
+    <p class="m-notification__text f-secondary">
+        <svg class="icon--alert" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--alert"></use></svg>Error notification with icon
+    </p>
+    <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
+</div>
+<div class="m-notification m-notification--quinary" data-behavior="notification">
+    <p class="m-notification__title f-module-title-1">
+        Quinary with title
+    </p>
+    <p class="m-notification__text f-secondary">
+        Dictum consectetur nunc eu luctus lacus <a href="#">integer auctor</a> velit ac porttitor malesuada
+    </p>
+    <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
 </div>
 ```
 
@@ -19,7 +52,16 @@
   padding-right: 48px;
   padding-bottom: 20px;
   background-color: $color__error;
+  transition: all .1s linear;
 }
+
+.m-notification.s-hide {
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+}
+
 
 .m-notification__text,
 .m-notification__title {
