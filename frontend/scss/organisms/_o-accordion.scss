@@ -6,6 +6,7 @@
 .o-accordion__trigger {
   position: relative;
   padding-right: 60px;
+  color: $color__text--title;
   cursor: pointer;
 }
 
@@ -28,6 +29,10 @@
   @include breakpoint('small+') {
     padding-top: 48px - 28px - 1px;
   }
+}
+
+.o-accordion__trigger:hover {
+  color: $color__link--tab-hover;
 }
 
 .o-accordion__trigger:focus {
