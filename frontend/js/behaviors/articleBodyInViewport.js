@@ -81,7 +81,7 @@ const articleBodyInViewport = function(container) {
       window.removeEventListener('resized',_calcLockPositions);
       document.removeEventListener('fonts:loaded',_calcLockPositions);
       document.removeEventListener('page:updated',_calcLockPositions);
-      forEach(document.querySelectorAll('img'), function (index, img) {
+      forEach(document.querySelectorAll('img'), function(index, img) {
         img.removeEventListener('load', _calcLockPositions);
       });
       isSetUp = false;
