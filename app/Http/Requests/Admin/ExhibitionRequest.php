@@ -8,7 +8,10 @@ class ExhibitionRequest extends Request
 {
     public function rules()
     {
-        $rules = [];
+        $rules = [
+            'title' => 'required'
+        ];
+
         if (!empty($this->input('end_date'))) {
             $rules['start_date'] = 'date_format:m/d/Y H:i|before:end_date';
         } else {
@@ -16,7 +19,6 @@ class ExhibitionRequest extends Request
         }
 
         $rules['end_date'] = 'date_format:m/d/Y H:i';
-        $rules['title']    = 'required';
 
         return $rules;
     }

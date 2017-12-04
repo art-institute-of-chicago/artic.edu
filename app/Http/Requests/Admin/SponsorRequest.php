@@ -8,6 +8,10 @@ class SponsorRequest extends Request
 {
     public function rules()
     {
-        return [];
+        $rules = [
+            'title' => 'required'
+        ];
+
+        return $rules;
     }
 }

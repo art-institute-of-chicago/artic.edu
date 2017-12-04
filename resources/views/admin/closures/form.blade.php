@@ -16,21 +16,23 @@
             'placeholder' => 'Select a type',
         ])
 
-        @formField('input', [
-            'field' => 'closure_copy',
-            'field_name' => 'Closure Copy',
-        ])
-
         @formField('date_picker', [
             'field' => 'date_start',
             'field_name' => 'Start Date',
-            'date_settings' => 'closures_date_settings'
+            'date_settings' => 'closures_date_settings',
+            'required' => true
         ])
 
         @formField('date_picker', [
             'field' => 'date_end',
             'field_name' => 'End Date',
-            'date_settings' => 'closures_date_settings'
+            'date_settings' => 'closures_date_settings',
+            'required' => true
+        ])
+
+        @formField('input', [
+            'field' => 'closure_copy',
+            'field_name' => 'Closure Copy',
         ])
 
         <script>

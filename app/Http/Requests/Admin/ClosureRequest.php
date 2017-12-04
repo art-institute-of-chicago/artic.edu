@@ -8,6 +8,23 @@ class ClosureRequest extends Request
 {
     public function rules()
     {
-        return [];
+        $rules = [];
+
+        if (!empty($this->input('date_end'))) {
+            $rules['date_start'] = 'required|date_format:m/d/Y|before:date_end';
+        } else {
+            $rules['date_start'] = 'required|date_format:m/d/Y';
+        }
+
+        $rules['date_end'] = 'required|date_format:m/d/Y';
+
+        return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'date_start.before' => 'Start date must happen before ending date.'
+        ];
     }
 }

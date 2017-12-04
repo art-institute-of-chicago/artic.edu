@@ -10,7 +10,7 @@
 
         @formField('checkbox', [
             'field' => 'closed',
-            'field_name' => 'Closed (dates will be ignored)',
+            'field_name' => 'Closed (data below will be ignored)',
         ])
 
         @formField('date_picker', [

@@ -8,6 +8,14 @@ class EventRequest extends Request
 {
     public function rules()
     {
-        return [];
+        $rules = [
+            'title' => 'required'
+        ];
+
+        if (!empty($this->input('price'))) {
+            $rules['price'] = "required|regex:/^\d*(\.\d{1,2})?$/";
+        }
+
+        return $rules;
     }
 }
