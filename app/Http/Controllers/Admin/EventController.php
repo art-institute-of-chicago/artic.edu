@@ -17,7 +17,7 @@ class EventController extends ModuleController
     /*
      * Relations to eager load for the form view
      */
-    protected $formWith = ['revisions', 'siteTags'];
+    protected $formWith = ['revisions', 'siteTags', 'events'];
 
     /*
      * Filters mapping ('fFilterName' => 'filterColumn')

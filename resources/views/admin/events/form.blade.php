@@ -79,12 +79,18 @@
                     'field_name' => 'Longitude'
                 ])
             </section>
+
+            @formField('browser', [
+                'routePrefix' => 'whatson',
+                'relationship' => 'events',
+                'module_name' => 'events',
+                'relationship_name' => 'events',
+                'custom_title_prefix' => 'Add',
+                'with_multiple' => true,
+                'with_sort' => true,
+                'hint' => 'Select related events',
+                'max' => 20
+            ])
         </section>
     </section>
-
-    {{-- @formField('medias', ['media_role' => 'media_role'])
-    @formField('files', ['file_role' => 'file role', 'file_role_name' => 'Role name'])
-    @formField('block_editor', ['field_name' => 'content']) --}}
 @stop
-
-

@@ -51,4 +51,9 @@ class Event extends Model
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
+    }
 }

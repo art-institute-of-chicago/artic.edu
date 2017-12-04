@@ -17,9 +17,17 @@ class EventRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function hydrate($object, $fields)
+    {
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'events', 'position', 'Event');
+        return parent::hydrate($object, $fields);
+    }
+
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['site_tags'] ?? []);
+        $this->updateOrderedBelongsTomany($object, $fields, 'events');
+
         parent::afterSave($object, $fields);
     }
 
