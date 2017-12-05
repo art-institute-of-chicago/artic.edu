@@ -28,6 +28,10 @@ return [
             'art' => [
                 'title' => 'Art & Ideas',
                 'route' => 'admin.landing.art',
+            ],
+            'visit' => [
+                'title' => 'Visit',
+                'route' => 'admin.landing.visit',
             ]
         ]
     ],

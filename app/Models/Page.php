@@ -23,7 +23,8 @@ class Page extends Model
     public static $types = [
         0 => 'Home',
         1 => 'ExhibitionsEvents and Events',
-        2 => 'Art and Ideas'
+        2 => 'Art and Ideas',
+        3 => 'Visit'
     ];
 
     protected $fillable = [
@@ -39,17 +40,15 @@ class Page extends Model
         'exhibition_intro',
 
         // Art and Ideas
-        'art_intro'
+        'art_intro',
+
+        // Visit
+        'visit_intro'
     ];
 
     public $slugAttributes = [
         'title',
     ];
-
-    // public function featuredWorks()
-    // {
-    //     return $this->belongsToMany('App\Models\Work', 'page_work_work')->withPivot('position')->orderBy('position');
-    // }
 
     public function homeExhibitions()
     {
