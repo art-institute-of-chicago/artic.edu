@@ -23,7 +23,7 @@ class Page extends Model
 
     public static $types = [
         0 => 'Home',
-        1 => 'ExhibitionsEvents and Events',
+        1 => 'Exhibitions and Events',
         2 => 'Art and Ideas',
         3 => 'Visit'
     ];
