@@ -16,3 +16,10 @@
     ]) --}}
 
 </section>
+
+@formField('repeater', [
+    'moduleName' => 'admissions',
+    'title' => 'Free Admissions',
+    'routePrefix' => 'landing.visit',
+    'title_singular' => 'Free Admission'
+])

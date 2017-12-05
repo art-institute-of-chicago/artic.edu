@@ -6,6 +6,7 @@ use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
+use App\Models\Admission as Admission;
 // use Illuminate\Database\Eloquent\Builder;
 
 class Page extends Model
@@ -67,5 +68,10 @@ class Page extends Model
     public function homeEvents()
     {
         return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');
+    }
+
+    public function admissions()
+    {
+        return $this->hasMany(Admission::class)->orderBy('position');
     }
 }

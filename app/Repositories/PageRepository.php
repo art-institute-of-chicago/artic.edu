@@ -26,9 +26,22 @@ class PageRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
+        // Homepage
         $this->updateOrderedBelongsTomany($object, $fields, 'homeExhibitions');
         $this->updateOrderedBelongsTomany($object, $fields, 'homeEvents');
+
+        // Visits
+        $this->updateRepeater($object, $fields, 'admissions', 'Admission');
+
         parent::afterSave($object, $fields);
+    }
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+        $fields['admissions'] = $this->getFormFieldsForRepeater($object, 'admissions', 'Admission');
+
+        return $fields;
     }
 
     public function byName($name, $with = [])

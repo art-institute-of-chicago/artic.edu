@@ -10,6 +10,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::group(['prefix' => 'visit'], function () {
         Route::name('landing.visit.page')->get('page', 'PageController@visit');
         Route::module('questions');
+        Route::module('admissions');
     });
 });
 
