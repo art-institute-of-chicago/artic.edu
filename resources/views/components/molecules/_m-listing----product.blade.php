@@ -12,14 +12,14 @@
       <br>
       <span class="m-listing__meta-bottom">
         @if ($product->priceSale)
-            @component('components.atoms._date')
+            @component('components.atoms._price')
                 @slot('salePrice')
                     {{ $product->currency }}{{ $product->price }}
                 @endslot
                 {{ $product->currency }}{{ $product->priceSale }}
             @endcomponent
         @else
-            @component('components.atoms._date')
+            @component('components.atoms._price')
                 {{ $product->currency }}{{ $product->price }}
             @endcomponent
         @endif

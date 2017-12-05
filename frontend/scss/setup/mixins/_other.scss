@@ -63,7 +63,7 @@
   @return $string;
 }
 
-@mixin tucked-margin-top($font-obj, $distances) {
+@mixin tucked-margin-top($font-obj, $distances, $single-bp: false) {
   $settings: false;
   $line-height: 0;
   $margin: 0;

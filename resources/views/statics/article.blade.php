@@ -233,12 +233,35 @@
         </div>
     </div>
 
+    <p class="f-body">Some related exhibitions</p>
+
     @component('components.organisms._o-row-listing')
         @foreach ($relatedExhibitions as $exhibition)
-            @component('components.molecules._m-listing----exhibition')
+            @component('components.molecules._m-listing----exhibition-row')
                 @slot('variation', 'm-listing--inline')
-                @slot('titleFont', 'f-list-2');
                 @slot('exhibition', $exhibition)
+            @endcomponent
+        @endforeach
+    @endcomponent
+
+    <p class="f-body">Some related events</p>
+
+    @component('components.organisms._o-row-listing')
+        @foreach ($relatedEvents as $event)
+            @component('components.molecules._m-listing----event-row')
+                @slot('variation', 'm-listing--inline')
+                @slot('event', $event)
+            @endcomponent
+        @endforeach
+    @endcomponent
+
+    <p class="f-body">Some related products</p>
+
+    @component('components.organisms._o-row-listing')
+        @foreach ($relatedProducts as $product)
+            @component('components.molecules._m-listing----product-row')
+                @slot('variation', 'm-listing--inline m-listing--inline-feature')
+                @slot('product', $product)
             @endcomponent
         @endforeach
     @endcomponent
@@ -247,10 +270,9 @@
     <aside class="o-article__inline-aside">
         <hr>
         <h4 class="f-subheading-1">Related Exhibition</h4>
-        @component('components.molecules._m-listing----exhibition')
+        @component('components.molecules._m-listing----exhibition-row')
             @slot('tag', 'p')
             @slot('variation', 'm-listing--inline')
-            @slot('titleFont', 'f-list-2');
             @slot('exhibition', $relatedExhibition)
         @endcomponent
     </aside>
@@ -269,14 +291,30 @@
 
     <aside class="o-article__inline-aside">
         <hr>
-        <h4 class="f-subheading-1">Related Product</h4>
-        @component('components.molecules._m-listing----product')
+        <h4 class="f-subheading-1">Related Exhibitions</h4>
+        @component('components.organisms._o-row-listing')
+            @foreach ($relatedExhibitions as $exhibition)
+                @component('components.molecules._m-listing----exhibition-row')
+                    @slot('variation', 'm-listing--inline')
+                    @slot('exhibition', $exhibition)
+                @endcomponent
+            @endforeach
+        @endcomponent
+    </aside>
+
+    <p class="f-body-editorial">Nam quis lorem vitae ex imperdiet aliquet a eu quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer eget sem sit amet nibh luctus hendrerit eu et enim. Curabitur viverra elementum tempus. Praesent luctus lectus sit amet leo tempus, vel luctus metus cursus. Nullam sit amet dui a nibh elementum pulvinar ut egestas nisi. Donec hendrerit malesuada lectus, non viverra justo cursus ac. Nunc gravida, leo sit amet viverra varius, lacus arcu euismod lorem, varius iaculis odio lorem in ex. Cras dolor sapien, vehicula ut vulputate maximus, dapibus quis metus. Aenean molestie facilisis odio eu scelerisque. Praesent luctus ultrices turpis sed placerat. Curabitur sit amet urna iaculis, congue arcu faucibus, venenatis purus. Nunc nunc felis, ultricies facilisis suscipit a, venenatis eu tellus. Morbi tellus ipsum, ultrices et vehicula a, elementum at sapien. Quisque nec lorem tellus. Vestibulum dapibus non turpis sit amet tempor.</p>
+
+    <aside class="o-article__inline-aside">
+        <hr>
+        <h4 class="f-subheading-1">Featured Product</h4>
+        @component('components.molecules._m-listing----product-row')
             @slot('tag', 'p')
-            @slot('variation', 'm-listing--inline-product')
-            @slot('titleFont', 'f-list-2');
+            @slot('variation', 'm-listing--inline m-listing--inline-feature')
             @slot('product', $relatedProduct)
         @endcomponent
     </aside>
+
+    <p class="f-body-editorial">Ut et urna sagittis, efficitur velit at, mattis erat. Proin fringilla gravida pellentesque. Sed tortor odio, consequat eget urna quis, dapibus bibendum nisl. Phasellus quis dapibus leo, id sodales libero. Vivamus sodales ante non purus mattis, ac scelerisque tortor maximus. Donec tristique magna orci, ac sollicitudin leo molestie a. Duis mattis, massa laoreet tincidunt cursus, mi libero faucibus nibh, et porta tellus felis ut enim. Nunc dapibus venenatis leo, sit amet viverra ipsum cursus ut. Pellentesque pretium, ante non egestas facilisis, felis leo venenatis neque, nec pulvinar magna sapien non nibh. Donec at diam quam. Integer varius nulla urna, hendrerit semper velit pellentesque quis. Sed ut tristique urna, ut vulputate urna. Sed eu tincidunt orci. In aliquet gravida dolor quis placerat. Vestibulum a mauris in leo ornare elementum at sit amet augue.</p>
 
   </div>
 

@@ -63,7 +63,9 @@ class StaticsController extends Controller {
       'timelineEvents' => $this->getTimelineEvents(3),
       'relatedExhibitions' => $this->getExhibitions(3),
       'relatedExhibition' => $this->getExhibition(),
+      'relatedProducts' => $this->getProducts(3),
       'relatedProduct' => $this->getProduct(),
+      'relatedEvents' => $this->getEvents(3),
       'relatedEvent' => $this->getEvent(),
     ]);
   }
@@ -188,6 +190,7 @@ class StaticsController extends Controller {
       "id" => $this->faker->uuid,
       "slug" => "/statics/product",
       "title" => $this->faker->sentence(4, true),
+      "shortDesc" => $this->faker->paragraph(1, false),
       "image" => $this->getImage(),
       "price" => $price,
       "priceSale" => $priceSale,

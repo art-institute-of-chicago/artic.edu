@@ -64,6 +64,7 @@
 
 
 .o-article__body {
+  @include float-clear;
   position: relative;
 
   @include breakpoint('medium+') {
@@ -202,6 +203,7 @@
 
 .o-article__inline-aside {
   @include breakpoint('small') {
+    clear: both;
     float: left;
     width: colspan(23, small);
     margin-right: colspan(3, small);
@@ -214,9 +216,8 @@
 }
 
 .o-ariticle__inline-aside .f-subheading-1 {
-
+  @include tucked-margin-top($f-subheading-1, ('xsmall': 28));
 }
-
 
 .o-article__inline-aside .m-listing {
   margin-top: 28px;
