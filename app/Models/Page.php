@@ -4,6 +4,7 @@ namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
 // use Illuminate\Database\Eloquent\Builder;
 
@@ -49,6 +50,14 @@ class Page extends Model
     public $slugAttributes = [
         'title',
     ];
+
+    // // fill this in if you use the HasMedias traits
+    // public $mediasParams = [
+    //     'hero' => [
+    //             'default' => '16/9',
+    //             'square' => '1',
+    //         ],
+    // ];
 
     public function homeExhibitions()
     {

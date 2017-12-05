@@ -31,7 +31,18 @@ return [
             ],
             'visit' => [
                 'title' => 'Visit',
-                'route' => 'admin.landing.visit',
+                'route' => 'admin.landing.visit.page',
+
+                'secondary_navigation' => [
+                    'page' => [
+                        'title' => 'Visit Landing',
+                        'route' => 'admin.landing.visit.page',
+                    ],
+                    'questions' => [
+                        'title' => 'FAQ',
+                        'module' => true,
+                    ]
+                ]
             ]
         ]
     ],
