@@ -61,6 +61,10 @@ class StaticsController extends Controller {
   public function article() {
     return view('statics/article', [
       'timelineEvents' => $this->getTimelineEvents(3),
+      'relatedExhibitions' => $this->getExhibitions(3),
+      'relatedExhibition' => $this->getExhibition(),
+      'relatedProduct' => $this->getProduct(),
+      'relatedEvent' => $this->getEvent(),
     ]);
   }
 

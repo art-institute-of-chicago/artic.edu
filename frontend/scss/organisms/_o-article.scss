@@ -200,6 +200,34 @@
 
 
 
+.o-article__inline-aside {
+  @include breakpoint('small') {
+    float: left;
+    width: colspan(23, small);
+    margin-right: colspan(3, small);
+    margin-bottom: colspan(3, small);
+  }
+}
+
+.o-article__inline-aside hr {
+  margin-top: 0;
+}
+
+.o-ariticle__inline-aside .f-subheading-1 {
+
+}
+
+
+.o-article__inline-aside .m-listing {
+  margin-top: 28px;
+
+  @include breakpoint('medium+') {
+    margin-top: 40px;
+  }
+}
+
+
+
 
 
 .o-article__header--basic {
@@ -288,29 +316,33 @@
 
   .o-accordion,
   .o-gallery,
+  .o-row-listing,
+  .o-article__inline-aside,
   .m-media,
   .quote,
   .m-link-list {
-    margin-top: 60px;
-  }
+    clear: both;
+    margin-top: 32px;
 
-  .o-gallery + .o-gallery,
-  .o-gallery + .o-accordion,
-  .o-gallery + .m-media,
-  .o-gallery + .m-link-list,
-  .o-accordion + .o-gallery,
-  .o-accordion + .o-accordion,
-  .o-accordion + .m-media,
-  .o-accordion + .m-link-list,
-  .m-media + .o-gallery,
-  .m-media + .o-accordion,
-  .m-media + .m-media,
-  .m-media + .m-link-list,
-  .m-link-list + .o-gallery,
-  .m-link-list + .o-accordion,
-  .m-link-list + .m-media,
-  .m-link-list + .m-link-list {
-    margin-top: 48px;
+    @include breakpoint('small+') {
+      margin-top: 44px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 60px;
+    }
+
+    & + & {
+      margin-top: 24px;
+
+      @include breakpoint('small+') {
+        margin-top: 36px;
+      }
+
+      @include breakpoint('medium+') {
+        margin-top: 48px;
+      }
+    }
   }
 
   .o-gallery,

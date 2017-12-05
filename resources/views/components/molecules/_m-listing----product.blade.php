@@ -1,4 +1,4 @@
-<{{ $tag or 'li' }} class="m-listing">
+<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
   <a href="{{ $product->slug }}" class="m-listing__link">
     <span class="m-listing__img m-listing__img--square">
       @component('components.atoms._img')

@@ -233,6 +233,51 @@
         </div>
     </div>
 
+    @component('components.organisms._o-row-listing')
+        @foreach ($relatedExhibitions as $exhibition)
+            @component('components.molecules._m-listing----exhibition')
+                @slot('variation', 'm-listing--inline')
+                @slot('titleFont', 'f-list-2');
+                @slot('exhibition', $exhibition)
+            @endcomponent
+        @endforeach
+    @endcomponent
+
+    <p class="f-body-editorial"><span class="f-dropcap-editorial">S</span>it amet, consectetur adipiscing elit. Curabitur magna neque, laoreet at tristique et, dignissim condimentum enim. Proin cursus diam nec nibh fermentum, eget consequat arcu efficitur nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam eu justo at mi rutrum mattis.</p>
+    <aside class="o-article__inline-aside">
+        <hr>
+        <h4 class="f-subheading-1">Related Exhibition</h4>
+        @component('components.molecules._m-listing----exhibition')
+            @slot('tag', 'p')
+            @slot('variation', 'm-listing--inline')
+            @slot('titleFont', 'f-list-2');
+            @slot('exhibition', $relatedExhibition)
+        @endcomponent
+    </aside>
+    <p class="f-body-editorial">Vivamus lobortis mauris felis, vel venenatis mi viverra sed. Aliquam fermentum eros quis odio gravida, ac vulputate felis pretium. Sed in pellentesque arcu. Pellentesque non nisi eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam eu justo at mi rutrum mattis. Proin cursus fermentum velit sit amet congue. Etiam consectetur ultricies nisi vel convallis. Ut auctor pellentesque efficitur. Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
+    <aside class="o-article__inline-aside">
+        <hr>
+        <h4 class="f-subheading-1">Related Event</h4>
+        @component('components.molecules._m-listing----event-row')
+            @slot('tag', 'p')
+            @slot('variation', 'm-listing--inline')
+            @slot('titleFont', 'f-list-2');
+            @slot('event', $relatedEvent)
+        @endcomponent
+    </aside>
+    <p class="f-body-editorial">Vivamus lobortis mauris felis, vel venenatis mi viverra sed. Aliquam fermentum eros quis odio gravida, ac vulputate felis pretium. Sed in pellentesque arcu. Pellentesque non nisi eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam eu justo at mi rutrum mattis. Proin cursus fermentum velit sit amet congue. Etiam consectetur ultricies nisi vel convallis. Ut auctor pellentesque efficitur. Sed nulla leo, tempus id imperdiet a, porttitor vel neque. Morbi vitae ullamcorper tellus. Cras molestie tempor lorem sed aliquet. Proin quis purus in sem ultrices tempus a et tellus. In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris. Quisque id sollicitudin erat, non faucibus dolor. Praesent lobortis varius dignissim.</p>
+
+    <aside class="o-article__inline-aside">
+        <hr>
+        <h4 class="f-subheading-1">Related Product</h4>
+        @component('components.molecules._m-listing----product')
+            @slot('tag', 'p')
+            @slot('variation', 'm-listing--inline-product')
+            @slot('titleFont', 'f-list-2');
+            @slot('product', $relatedProduct)
+        @endcomponent
+    </aside>
+
   </div>
 
   <div class="o-article__tertiary">
