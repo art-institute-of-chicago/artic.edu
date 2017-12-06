@@ -304,6 +304,20 @@
       @include tucked-margin-top($f-body, ('xsmall': 60));
     }
 
+  & > .f-deck,
+  & > .f-body,
+  & > .f-body-editorial {
+    padding-right: colspan(2, xsmall);
+
+    @include breakpoint('small+') {
+      padding-right: colspan(3, small);
+    }
+
+    @include breakpoint('medium+') {
+      padding-right: 0;
+    }
+  }
+
   .o-accordion,
   .o-gallery,
   .o-row-listing,
