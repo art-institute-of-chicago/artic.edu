@@ -36,3 +36,7 @@
         ]
     ]
 ])
+
+{{-- Remove footer elements --}}
+@section('footer')
+@endsection
