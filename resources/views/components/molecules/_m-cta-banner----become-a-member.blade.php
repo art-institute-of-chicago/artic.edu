@@ -1,6 +1,6 @@
 <aside class="m-cta-banner">
     <div class="m-cta-banner__img">
-        <img src="http://placehold.dev.area17.com/image/2000x240">
+        <img src="http://placehold.dev.area17.com/image/2000x240?bg=333333&fg=444444">
     </div>
     <div class="m-cta-banner__txt">
         <p class="m-cta-banner__title f-module-title-2">Become a Member</p>

@@ -1,0 +1,112 @@
+
+.m-cta-banner {
+  position: relative;
+  height: 240px;
+
+  @include breakpoint('small+') {
+    height: 160px;
+  }
+}
+
+.m-cta-banner__img,
+.m-cta-banner__img img,
+.m-cta-banner__img video {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.m-cta-banner__img img,
+.m-cta-banner__img video {
+  object-fit: cover;
+}
+
+.m-cta-banner__txt {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 0;
+  bottom: 20px;
+
+  @include breakpoint('small+') {
+    left: colspan(3, small);
+    right: colspan(3, small);
+    padding-right: colspan(17, small);
+  }
+
+  @include breakpoint('medium+') {
+    left: colspan(3, medium);
+    right: colspan(3, medium);
+    padding-right: colspan(20, medium);
+  }
+
+  @include breakpoint('large+') {
+    left: colspan(3, large);
+    right: colspan(3, large);
+    padding-right: colspan(13, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    left: colspan(3, xlarge);
+    right: colspan(3, xlarge);
+    padding-right: colspan(11, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    left: colspan(3, xxlarge);
+    right: colspan(3, xxlarge);
+    padding-right: colspan(11, xxlarge);
+  }
+}
+
+.m-cta-banner__title,
+.m-cta-banner__msg {
+  color: $color__text--title-contrast;
+}
+
+.m-cta-banner__title.f-module-title-2 {
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 40, 'small+': 48, 'large+': 60));
+}
+
+.m-cta-banner__msg.f-list-2 {
+  @include tucked-margin-top($f-list-2, ('xsmall': 40, 'small+': 40, 'large+': 48));
+}
+
+.m-cta-banner__action {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  @include breakpoint('small+') {
+    left: auto;
+    top: 56px;
+    bottom: auto;
+    width: colspan(14, small);
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(14, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(10, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(8, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(8, xxlarge);
+  }
+}
+
+.m-cta-banner__action .btn {
+  display: block;
+  width: 100%;
+}
