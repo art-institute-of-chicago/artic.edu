@@ -320,8 +320,10 @@
   .o-row-listing,
   .o-article__inline-aside,
   .m-media,
-  .quote,
-  .m-link-list {
+  .m-link-list,
+  .m-cta-banner,
+  .m-aside-newsletter,
+  .quote {
     clear: both;
     margin-top: 32px;
 
@@ -348,7 +350,9 @@
 
   .o-gallery,
   .m-media--m,
-  .m-media--l {
+  .m-media--l,
+  .m-cta-banner,
+  .m-aside-newsletter {
     @include breakpoint('medium+') {
       width: colspan(58, medium);
       margin-right: colspan(20, medium, 0, true);

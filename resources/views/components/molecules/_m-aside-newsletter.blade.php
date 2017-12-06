@@ -1,4 +1,4 @@
-<form class="m-aside-newsletter">
+<form class="m-aside-newsletter{{ (isset($variation)) ? ' '.$variation : '' }}">
   <fieldset>
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
     <span class="m-aside-newsletter__field{{ (isset($error) and $error) ? ' s-error' : '' }}{{ (isset($success) and $success) ? ' s-success' : '' }}">
