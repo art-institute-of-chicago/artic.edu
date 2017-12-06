@@ -12,11 +12,6 @@ class FeeRepository
         $this->model = $model;
     }
 
-    // public function byKey($key)
-    // {
-    //     return $this->model->where('key', $key)->exists() ? $this->model->where('key', $key)->with('translations')->first()->value : null;
-    // }
-
     public function getFormFields()
     {
         $fields = ['price' => []];

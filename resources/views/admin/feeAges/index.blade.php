@@ -1,5 +1,5 @@
 @extends('cms-toolkit::layouts.resources.index', [
-    'title' => 'Admission Fees - Ages',
+    'title' => 'Admission Ages',
     'create' => true,
     'edit' => true,
     'delete' => true,

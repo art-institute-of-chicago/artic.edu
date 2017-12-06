@@ -43,15 +43,15 @@ return [
                         'module' => true,
                     ],
                     'fees' => [
-                        'title' => 'Fees values',
+                        'title' => 'Admission Fees',
                         'route' => 'admin.landing.visit.fees',
                     ],
                     'feeAges' => [
-                        'title' => 'Admission Fee (Ages)',
+                        'title' => 'Admission Ages',
                         'module' => true,
                     ],
                     'feeCategories' => [
-                        'title' => 'Admission Fee (Categories)',
+                        'title' => 'Admission Categories',
                         'module' => true,
                     ]
                 ]
