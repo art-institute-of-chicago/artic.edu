@@ -200,19 +200,8 @@
 
 
 
-
-.o-article__inline-aside {
-  @include breakpoint('small') {
-    clear: both;
-    float: left;
-    width: colspan(23, small);
-    margin-right: colspan(3, small);
-    margin-bottom: colspan(3, small);
-  }
-}
-
 .o-article__inline-aside hr {
-  margin-top: 0;
+  margin: 0 0 -1px;
 }
 
 .o-ariticle__inline-aside .f-subheading-1 {
@@ -322,7 +311,7 @@
   .m-media,
   .m-link-list,
   .m-cta-banner,
-  .m-aside-newsletter,
+  .m-aside-newsletter--wide,
   .quote {
     clear: both;
     margin-top: 32px;
@@ -352,7 +341,7 @@
   .m-media--m,
   .m-media--l,
   .m-cta-banner,
-  .m-aside-newsletter {
+  .m-aside-newsletter--wide {
     @include breakpoint('medium+') {
       width: colspan(58, medium);
       margin-right: colspan(20, medium, 0, true);
@@ -402,6 +391,16 @@
     @include breakpoint('xxlarge') {
       width: colspan(13, xxlarge);
       padding-right: colspan(2, xxlarge);
+    }
+  }
+
+  .o-article__inline-aside {
+    @include breakpoint('small') {
+      clear: both;
+      float: left;
+      width: colspan(23, small);
+      margin-right: colspan(3, small);
+      margin-bottom: colspan(3, small);
     }
   }
 }

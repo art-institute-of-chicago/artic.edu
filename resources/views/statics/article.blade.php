@@ -381,7 +381,23 @@
     @endcomponent
 
     @component('components.molecules._m-aside-newsletter')
-        @slot('variation','m-aside-newsletter--inline')
+        @slot('variation','m-aside-newsletter--wide')
+        @slot('btnFont','f-tag')
+    @endcomponent
+
+    @component('components.molecules._m-aside-newsletter')
+    @endcomponent
+
+    @component('components.blocks._inline-aside')
+        @component('components.molecules._m-aside-newsletter')
+            @slot('variation','m-aside-newsletter--inline')
+            @slot('placeholder','Email Address')
+        @endcomponent
+    @endcomponent
+
+    @component('components.blocks._text')
+        @slot('font','f-body-editorial')
+        Ut et urna sagittis, efficitur velit at, mattis erat. Proin fringilla gravida pellentesque. Sed tortor odio, consequat eget urna quis, dapibus bibendum nisl. Phasellus quis dapibus leo, id sodales libero. Vivamus sodales ante non purus mattis, ac scelerisque tortor maximus. Donec tristique magna orci, ac sollicitudin leo molestie a. Duis mattis, massa laoreet tincidunt cursus, mi libero faucibus nibh, et porta tellus felis ut enim. Nunc dapibus venenatis leo, sit amet viverra ipsum cursus ut. Pellentesque pretium, ante non egestas facilisis, felis leo venenatis neque, nec pulvinar magna sapien non nibh. Donec at diam quam. Integer varius nulla urna, hendrerit semper velit pellentesque quis. Sed ut tristique urna, ut vulputate urna. Sed eu tincidunt orci. In aliquet gravida dolor quis placerat. Vestibulum a mauris in leo ornare elementum at sit amet augue.
     @endcomponent
 
   </div>

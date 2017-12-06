@@ -6,28 +6,48 @@
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
     <span class="m-aside-newsletter__field">
       <label for="newsletterEmail" class="f-secondary">Email address</label>
-      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-buttons">
-      <button type="submit" class="f-tag">Sign Up</button>
+      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-secondary">
+      <button type="submit" class="f-secondary">Sign Up</button>
     </span>
     </fieldset>
 </form>
-<form class="m-aside-newsletter">
+<form class="m-aside-newsletter m-aside-newsletter--inline">
+  <fieldset>
+    <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
+    <span class="m-aside-newsletter__field">
+      <label for="newsletterEmail" class="f-secondary">Email address</label>
+      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-secondary">
+      <button type="submit" class="f-secondary">Sign Up</button>
+    </span>
+    </fieldset>
+</form>
+<form class="m-aside-newsletter m-aside-newsletter--wide">
+  <fieldset>
+    <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
+    <span class="m-aside-newsletter__field">
+      <label for="newsletterEmail" class="f-secondary">Email address</label>
+      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-secondary">
+      <button type="submit" class="f-secondary">Sign Up</button>
+    </span>
+    </fieldset>
+</form>
+<form class="m-aside-newsletter m-aside-newsletter--wide">
   <fieldset>
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
     <span class="m-aside-newsletter__field s-error">
       <label for="newsletterEmail" class="f-secondary">Email address</label>
-      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-buttons">
+      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-secondary">
       <button type="submit" class="f-tag">Sign Up</button>
     </span>
     <em class="m-aside-newsletter__msg m-aside-newsletter__msg--error f-buttons">Please enter a valid email address</em>
   </fieldset>
 </form>
-<form class="m-aside-newsletter">
+<form class="m-aside-newsletter m-aside-newsletter--wide">
   <fieldset>
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
     <span class="m-aside-newsletter__field s-success">
       <label for="newsletterEmail" class="f-secondary">Email address</label>
-      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-buttons">
+      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-secondary">
       <button type="submit" class="f-tag">Sign Up</button>
     </span>
     <em class="m-aside-newsletter__msg m-aside-newsletter__msg--success f-buttons">Successfully signed up to the newsletter</em>
@@ -38,61 +58,28 @@
 ***/
 
 .m-aside-newsletter {
-  @include background-fill;
+  position: relative;
   margin-top: 40px;
-  background-color: $color__bg--secondary;
-
-  @include breakpoint('large+') {
-    min-height: 160px;
-  }
 }
 
 .m-aside-newsletter fieldset {
   display: block;
   margin: 0;
   padding: 0;
-
-  @include breakpoint('large+') {
-    padding-left: colspan(29, large);
-  }
-
-  @include breakpoint('xlarge+') {
-    padding-left: colspan(29, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    padding-left: colspan(29, xxlarge);
-  }
 }
 
 .m-aside-newsletter legend {
   float: left;
-
-  @include breakpoint('large+') {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
 }
+
+
 
 .m-aside-newsletter legend .title {
   display: block;
-
-  @include breakpoint('large+') {
-    width: colspan(29, large);
-  }
-
-  @include breakpoint('xlarge+') {
-    width: colspan(29, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(29, xxlarge);
-  }
 }
 
 .m-aside-newsletter legend .title.f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'small+': 84, 'xlarge+': 82, 'xxlarge': 84));
+  @include tucked-margin-top($f-list-3, ('xsmall': 36, 'medium+': 40));
 }
 
 .m-aside-newsletter__field {
@@ -100,28 +87,12 @@
   position: relative;
   flex-flow: row wrap;
   clear: left;
-  padding-top: .02px;
-  padding-bottom: 20px;
-
-  @include breakpoint('small+') {
-    flex-flow: row nowrap;
-    padding-top: 20px;
-  }
-
-  @include breakpoint('large+') {
-    padding-top: 52px;
-    padding-bottom: 60px;
-  }
 }
 
 .m-aside-newsletter label {
   display: block;
   flex: 0 0 auto;
   width: 100%;
-
-  @include breakpoint('small+') {
-    width: auto;
-  }
 }
 
 .m-aside-newsletter label.f-secondary {
@@ -132,62 +103,58 @@
   display: block;
   flex: 1 1 auto;
   width: auto;
-  padding-bottom: 3px;
-  padding-left: 0;
-  border: 0 none;
-  border-bottom: 1px solid $color__rules--secondary;
   border-radius: 0;
   background-color: transparent;
-
-  @include breakpoint('small+') {
-    margin-left: 20px;
-  }
-}
-
-.m-aside-newsletter label + input {
-  margin-top: 0;
 }
 
 .m-aside-newsletter button {
   @include untuck;
   display: block;
   flex: 0 0 auto;
-  width: 60px;
-  margin: 0;
-  padding: 0;
-  border: 0 none;
-  border-bottom: 1px solid $color__rules--secondary;
+  width: 100%;
+  height: 48px;
+  margin: 16px 0 0 0;
+  padding: 0 20px;
+  border: 1px solid $color__rules--secondary;
   border-radius: 0;
   background-color: transparent;
-  color: $color__link--accent;
-  text-align: right;
+  color: $color__text--title;
+  cursor: pointer;
 
   &:hover,
   &:focus {
-    color: $color__link--accent-hover;
+    border-color: $color__black--30;
+    color: $color__text--title;
   }
 
   &:active {
-    color: $color__link--accent-active;
+    border-color: $color__black--42;
+    color: $color__text--title;
+  }
+
+  @include breakpoint('small+') {
+    width: auto;
+    margin-left: -1px;
   }
 }
 
-.m-aside-newsletter input:hover + button {
-  border-bottom-color: $color__input-border--hover;
-}
+@include breakpoint('medium+') {
+  .m-aside-newsletter input:hover + button {
+    border-color: $color__input-border--hover;
+  }
 
-.m-aside-newsletter input:focus + button {
-  border-bottom-color: $color__input-border--focus;
-}
+  .m-aside-newsletter input:focus + button {
+    border-color: $color__input-border--focus;
+  }
 
-.m-aside-newsletter .s-error input,
-.m-aside-newsletter .s-error input + button {
-  border-bottom-color: $color__input-border--error;
+  .m-aside-newsletter .s-error input,
+  .m-aside-newsletter .s-error input + button {
+    border-color: $color__input-border--error;
+  }
 }
 
 .m-aside-newsletter__msg {
   @include untuck;
-  @include background-fill;
   display: block;
   background-color: $color__link;
   color: $color__white;
@@ -218,4 +185,181 @@
 
 .m-aside-newsletter__msg--error {
   background-color: $color__error;
+}
+
+
+// variation `.m-aside-newsletter--inline
+
+.m-aside-newsletter--inline .m-aside-newsletter__field {
+  padding-top: 32px;
+}
+
+.m-aside-newsletter--inline label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin-top: -1px;
+  margin-left: -1px;
+  padding: 0;
+  border: 0 none;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+}
+
+.m-aside-newsletter--inline label + input {
+  margin-top: 0;
+}
+
+.m-aside-newsletter--inline button {
+  @include breakpoint('small+') {
+    margin-top: 0;
+  }
+}
+
+// variation `.m-aside-newsletter--inline` inside `.o-article__inline-aside`
+
+.o-article__inline-aside .m-aside-newsletter--inline {
+  margin-top: 0;
+}
+
+.o-article__inline-aside .m-aside-newsletter--inline legend .title.f-list-3 {
+  @include breakpoint('small') {
+    @include tucked-margin-top($f-list-3, ('small': 36));
+  }
+}
+
+.o-article__inline-aside .m-aside-newsletter--inline button {
+  @include breakpoint('small') {
+    width: 100%;
+    margin-top: 16px;
+    margin-left: 0;
+  }
+}
+
+// variation `.m-aside-newsletter--wide`
+
+.m-aside-newsletter--wide {
+  @include background-fill;
+  background-color: $color__bg--secondary;
+
+  @include breakpoint('large+') {
+    min-height: 160px;
+  }
+}
+
+.m-aside-newsletter--wide fieldset {
+  @include breakpoint('large+') {
+    padding-left: colspan(29, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    padding-left: colspan(29, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    padding-left: colspan(29, xxlarge);
+  }
+}
+
+.m-aside-newsletter--wide legend {
+  @include breakpoint('large+') {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.m-aside-newsletter--wide legend .title {
+
+  @include breakpoint('large+') {
+    width: colspan(29, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(29, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(29, xxlarge);
+  }
+}
+
+.m-aside-newsletter--wide legend .title.f-list-3 {
+  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'small+': 84, 'xlarge+': 82, 'xxlarge': 84));
+}
+
+.m-aside-newsletter--wide .m-aside-newsletter__field {
+  padding-top: .02px;
+  padding-bottom: 20px;
+
+  @include breakpoint('small+') {
+    flex-flow: row nowrap;
+    padding-top: 20px;
+  }
+
+  @include breakpoint('large+') {
+    padding-top: 52px;
+    padding-bottom: 60px;
+  }
+}
+
+.m-aside-newsletter--wide label {
+  @include breakpoint('small+') {
+    width: auto;
+  }
+}
+
+.m-aside-newsletter--wide label + input {
+  margin-top: 0;
+}
+
+.m-aside-newsletter--wide input {
+  padding-bottom: 3px;
+  padding-left: 0;
+  border-width: 0;
+  border-bottom-width: 1px;
+
+  @include breakpoint('small+') {
+    margin-left: 20px;
+  }
+}
+
+.m-aside-newsletter--wide button {
+  width: 60px;
+  margin-top: 0;
+  padding: 0;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-color: $color__rules--secondary;
+  border-radius: 0;
+  color: $color__link--accent;
+  text-align: right;
+
+  &:hover,
+  &:focus {
+    border-color: $color__rules--secondary;
+    color: $color__link--accent-hover;
+  }
+
+  &:active {
+    border-color: $color__rules--secondary;
+    color: $color__link--accent-active;
+  }
+}
+
+.m-aside-newsletter--wide input:hover + button {
+  border-color: $color__input-border--hover;
+}
+
+.m-aside-newsletter--wide input:focus + button {
+  border-color: $color__input-border--focus;
+}
+
+.m-aside-newsletter--wide .s-error input,
+.m-aside-newsletter--wide .s-error input + button {
+  border-color: $color__input-border--error;
+}
+
+.m-aside-newsletter--wide .m-aside-newsletter__msg {
+  @include background-fill;
 }
