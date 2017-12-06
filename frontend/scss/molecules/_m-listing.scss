@@ -540,8 +540,8 @@
   margin-right: 0;
 
   @include breakpoint('small+') {
-    margin-right: 0;
     margin-top: 0;
+    margin-right: 0;
     margin-left: colspan(3, small);
   }
 
@@ -661,7 +661,7 @@
 
 // variant `m-listing--inline` inside `.o-article__inline-aside`
 
-.o-article__inline-aside p.m-listing--inline {
+.o-article__inline-aside .m-listing--inline:first-child {
   padding-top: 0;
   border-top: 0 none;
 
