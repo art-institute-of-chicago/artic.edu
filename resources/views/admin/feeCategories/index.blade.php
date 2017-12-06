@@ -15,3 +15,9 @@
         ]
     ]
 ])
+
+{{-- Remove buttons when there're 5 or more Categories  --}}
+@if (count($items) >= 5)
+    @section('footer')
+    @stop
+@endif
