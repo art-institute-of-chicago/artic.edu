@@ -41,6 +41,14 @@ return [
                     'questions' => [
                         'title' => 'FAQ',
                         'module' => true,
+                    ],
+                    'feeAges' => [
+                        'title' => 'Admission Fee (Ages)',
+                        'module' => true,
+                    ],
+                    'feeCategories' => [
+                        'title' => 'Admission Fee (Categories)',
+                        'module' => true,
                     ]
                 ]
             ]

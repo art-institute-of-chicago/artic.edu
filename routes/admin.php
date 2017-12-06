@@ -11,6 +11,8 @@ Route::group(['prefix' => 'landing'], function () {
         Route::name('landing.visit.page')->get('page', 'PageController@visit');
         Route::module('questions');
         Route::module('admissions');
+        Route::module('feeAges');
+        Route::module('feeCategories');
     });
 });
 
