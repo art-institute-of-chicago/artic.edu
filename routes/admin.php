@@ -13,6 +13,9 @@ Route::group(['prefix' => 'landing'], function () {
         Route::module('admissions');
         Route::module('feeAges');
         Route::module('feeCategories');
+
+        Route::name('landing.visit.fees')->get('/fees', 'FeeController@index');
+        Route::name('landing.visit.fees.update')->post('/fees', 'FeeController@update');
     });
 });
 

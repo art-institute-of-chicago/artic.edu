@@ -42,6 +42,10 @@ return [
                         'title' => 'FAQ',
                         'module' => true,
                     ],
+                    'fees' => [
+                        'title' => 'Fees values',
+                        'route' => 'admin.landing.visit.fees',
+                    ],
                     'feeAges' => [
                         'title' => 'Admission Fee (Ages)',
                         'module' => true,
