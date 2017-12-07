@@ -17,7 +17,6 @@ const notification = function(container) {
   }
 
   function _init() {
-    console.log(closers);
     forEach(closers, function(index, closer) {
       closer.addEventListener('click', _handleClicks, false);
     });
