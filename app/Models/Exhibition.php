@@ -51,4 +51,9 @@ class Exhibition extends Model
     {
         return $query->whereLanding(true);
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(\App\Models\Event::class, 'event_exhibition', 'event_id', 'exhibition_id')->withPivot('position')->orderBy('position');
+    }
 }

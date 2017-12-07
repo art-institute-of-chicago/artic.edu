@@ -29,20 +29,6 @@
                     'list' => $siteTagsList,
                     'placeholder' => 'Select some tags',
                 ])
-
-                {{-- @formField('multi_select', [
-                    'field' => 'selected_sectors',
-                    'field_name' => 'Sectors',
-                    'list' => $sectorsList,
-                    'placeholder' => 'Select some sectors',
-                ]) --}}
-
-                {{-- @formField('multi_select', [
-                    'field' => 'selected_disciplines',
-                    'field_name' => 'Disciplines',
-                    'list' => $disciplinesList,
-                    'placeholder' => 'Select some disciplines',
-                ]) --}}
             </section>
         </section>
         <section class="col">
@@ -66,9 +52,15 @@
         </section>
     </section>
 
-    {{-- @formField('medias', ['media_role' => 'media_role'])
-    @formField('files', ['file_role' => 'file role', 'file_role_name' => 'Role name'])
-    @formField('block_editor', ['field_name' => 'content']) --}}
+    @formField('browser', [
+        'routePrefix' => 'whatson',
+        'relationship' => 'events',
+        'module_name' => 'events',
+        'relationship_name' => 'related events',
+        'custom_title_prefix' => 'Add',
+        'with_multiple' => true,
+        'with_sort' => true,
+        'hint' => 'Select related events',
+        'max' => 20
+    ])
 @stop
-
-
