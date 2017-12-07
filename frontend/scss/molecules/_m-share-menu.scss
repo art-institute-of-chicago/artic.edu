@@ -6,8 +6,8 @@
   display: none;
   position: absolute;
   z-index: map-get($zindexs, 'shareMenu');
-  width: 304px;
-  max-height: 220px;
+  width: 180px;
+  max-height: 248px;
   background-color: $color__white;
   box-shadow: $shadow;
   overflow-y: auto;
