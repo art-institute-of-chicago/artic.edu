@@ -14,6 +14,7 @@ class Exhibition extends Model
 
     protected $fillable = [
         'published',
+        'landing',
         'content',
         'title',
         'header_copy',
@@ -44,5 +45,10 @@ class Exhibition extends Model
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
+    }
+
+    public function scopeLanding($query)
+    {
+        return $query->whereLanding(true);
     }
 }

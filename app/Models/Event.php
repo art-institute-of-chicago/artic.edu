@@ -15,6 +15,7 @@ class Event extends Model
 
     protected $fillable = [
         'published',
+        'landing',
         'content',
         'title',
         'price',
@@ -55,5 +56,10 @@ class Event extends Model
     public function events()
     {
         return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
+    }
+
+    public function scopeLanding($query)
+    {
+        return $query->whereLanding(true);
     }
 }
