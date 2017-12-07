@@ -21,7 +21,15 @@
 
 .o-gallery__caption {
   position: relative;
-  margin-top: 40px;
+  margin-top: 32px;
+
+  @include breakpoint('small+') {
+    margin-top: 36px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 40px;
+  }
 
   @include breakpoint('xlarge+') {
     flex: 0 0 auto;
@@ -55,9 +63,9 @@
   color: $color__text--title-contrast;
 }
 
-.o-gallery hr,
-.o-gallery .hr {
+.o-gallery hr {
   margin-top: 0;
+  margin-bottom: -1px;
   border-top-color: $color__rules--contrast;
 }
 
@@ -101,8 +109,9 @@
   background-color: $color__black--93;
 }
 
-.o-gallery__caption .f-module-title-2 {
-  @include tucked-margin-top($f-module-title-2, ('xsmall': 80));
+
+.o-gallery__title.f-module-title-2 {
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 56, 'small+': 68, 'medium+': 80));
 }
 
 .o-gallery__caption .f-caption {
