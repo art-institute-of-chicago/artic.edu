@@ -17,7 +17,7 @@
     }
   }
 
-  @media print {
+  .s-print & {
     width: auto !important;
     padding-right: 0 !important;
     padding-left: 0 !important;

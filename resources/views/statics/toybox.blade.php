@@ -286,6 +286,16 @@
         @endcomponent
     </p>
 </div>
+<p class="f-body">Btns with actions</p>
+<p style="margin-top: 20px;">
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--secondary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+        @slot('behavior','printPage')
+    @endcomponent
+</p>
+<p class="f-body">Tags</p>
 <p style="margin-top: 20px;">
     @component('components.atoms._tag')
         Kanan Jarrus

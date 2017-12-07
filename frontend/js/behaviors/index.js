@@ -9,3 +9,4 @@ export { default as topLink } from './topLink';
 export { default as dragScroll } from './dragScroll';
 export { default as accordion } from './accordion';
 export { default as notification } from './notification';
+export { default as printPage } from './printPage';

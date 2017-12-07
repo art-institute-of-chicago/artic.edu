@@ -53,15 +53,13 @@ body {
   }
 }
 
-@media print {
-  html {
-    right: 0;
-    left: 0;
-    width: auto;
-    min-height: 0;
-    margin: 0;
-    overflow: auto;
-  }
+html.s-print {
+  right: 0;
+  left: 0;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  overflow: auto;
 }
 
 main {

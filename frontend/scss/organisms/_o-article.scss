@@ -18,6 +18,11 @@
 }
 
 .o-article__primary {
+
+  .s-print & {
+    display: none !important;
+  }
+
   @include breakpoint('medium+') {
     flex: 0 0 auto;
     width: colspan(58, medium);
@@ -38,6 +43,10 @@
 }
 
 .o-article__secondary {
+
+  .s-print & {
+    display: none !important;
+  }
 
   @include breakpoint('medium+') {
     flex: 0 0 auto;
@@ -86,9 +95,18 @@
     width: colspan(28, xxlarge);
     margin-left: colspan(2, xxlarge);
   }
+
+  .s-print & {
+    width: 100% !important;
+    margin: 0 !important;
+  }
 }
 
 .o-article__tertiary {
+
+  .s-print & {
+    display: none !important;
+  }
 
   @include breakpoint('medium+') {
     display: flex;
@@ -195,6 +213,10 @@
 
   @include breakpoint('medium+') {
     display: block;
+
+    .s-print & {
+      display: none;
+    }
   }
 }
 
@@ -316,6 +338,10 @@
     @include breakpoint('medium+') {
       padding-right: 0;
     }
+
+    .s-print & {
+      padding-right: 0 !important;
+    }
   }
 
   .o-accordion,
@@ -374,6 +400,11 @@
     @include breakpoint('xxlarge') {
       width: colspan(58, xxlarge);
       margin-left: colspan(15, xxlarge, 0, true);
+    }
+
+    .s-print & {
+      width: 100% !important;
+      margin-left: 0 !important;
     }
   }
 

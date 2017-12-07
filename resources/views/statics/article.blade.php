@@ -32,6 +32,7 @@
             @slot('variation', 'btn--secondary btn--icon')
             @slot('font', '')
             @slot('icon', 'icon--print--24')
+            @slot('behavior','printPage')
         @endcomponent
     </p>
     <hr>
