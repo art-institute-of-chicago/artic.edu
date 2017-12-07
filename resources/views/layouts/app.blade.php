@@ -44,6 +44,7 @@ $print = isset($_GET['print']);
 
   @include('layouts._footer')
   @include('layouts._calendar')
+  @include('layouts._share-menu')
 
   @if ( !app()->environment('production'))
     <span class="design-grid-toggle design-grid-toggle--baseline" onClick="this.nextElementSibling.classList.toggle('js-hide');">Toggle baseline grid</span>

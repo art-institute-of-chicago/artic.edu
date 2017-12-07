@@ -10,3 +10,5 @@ export { default as dragScroll } from './dragScroll';
 export { default as accordion } from './accordion';
 export { default as notification } from './notification';
 export { default as printPage } from './printPage';
+export { default as sharePage } from './sharePage';
+export { default as shareMenu } from './shareMenu';

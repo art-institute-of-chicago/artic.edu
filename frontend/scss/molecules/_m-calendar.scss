@@ -40,12 +40,6 @@
   .s-calendar-active & {
     display: block;
   }
-
-  &.js-positioned {
-    @include breakpoint('xxlarge') {
-      margin-left: calc( (100vw - #{map-get($main-col-widths, xxlarge)}) / -2 );
-    }
-  }
 }
 
 .m-calendar--inline {

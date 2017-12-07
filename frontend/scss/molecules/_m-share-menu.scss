@@ -1,0 +1,73 @@
+
+
+
+.m-share-menu {
+  @extend %styled-scrollbars;
+  display: none;
+  position: absolute;
+  z-index: map-get($zindexs, 'shareMenu');
+  width: 304px;
+  max-height: 220px;
+  background-color: $color__white;
+  box-shadow: $shadow;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  .s-shareMenu-active & {
+    display: block;
+  }
+}
+
+.m-share-menu--inline {
+  display: block;
+  position: relative;
+  border: 1px solid $color__rules--primary;
+  box-shadow: none;
+}
+
+.m-share-menu ul {
+  min-width: 100%;
+  margin-top: 0;
+}
+
+.m-share-menu li:not(:first-child) {
+  border-top: 1px solid $color__rules--tertiary;
+}
+
+.m-share-menu a,
+.m-share-menu button {
+  @include untuck;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 10px 16px;
+  border: 0 none;
+  background-color: $color__white;
+  color: $color__text--secondary;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.m-share-menu ul.f-secondary a,
+.m-share-menu ul.f-secondary button {
+  padding-top: 11px;
+  padding-bottom: 12px;
+
+  @include breakpoint('large+') {
+    padding-top: 8px;
+    padding-bottom: 11px;
+  }
+}
+
+.m-share-menu a:hover,
+.m-share-menu button:hover {
+  background-color: $color__bg--secondary;
+  color: $color__text--title;
+}
+
+.m-share-menu a:active,
+.m-share-menu button:active {
+  background-color: $color__bg--primary;
+  color: $color__text--title;
+}

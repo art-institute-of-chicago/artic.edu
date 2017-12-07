@@ -27,6 +27,7 @@
             @slot('variation', 'btn--icon')
             @slot('font', '')
             @slot('icon', 'icon--share--24')
+            @slot('behavior','sharePage')
         @endcomponent
         @component('components.atoms._btn')
             @slot('variation', 'btn--secondary btn--icon')

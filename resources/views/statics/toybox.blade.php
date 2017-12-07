@@ -289,7 +289,21 @@
 <p class="f-body">Btns with actions</p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
+        @slot('variation', 'btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--share--24')
+        @slot('behavior','sharePage')
+        @slot('dataAttributes','data-share-title=Hello World')
+    @endcomponent
+    @component('components.atoms._btn')
         @slot('variation', 'btn--secondary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--share--24')
+        @slot('behavior','sharePage')
+        @slot('dataAttributes',"data-share-title='AREA 17' data-share-url='http://www.area17.com'")
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--tertiary btn--icon')
         @slot('font', '')
         @slot('icon', 'icon--print--24')
         @slot('behavior','printPage')
