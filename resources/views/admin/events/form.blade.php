@@ -68,7 +68,7 @@
                 ])
                 @formField('input', [
                     'field' => 'location',
-                    'field_name' => 'Location'
+                    'field_name' => 'Meeting Location'
                 ])
                 @formField('input', [
                     'field' => 'latitude',
@@ -77,6 +77,10 @@
                 @formField('input', [
                     'field' => 'longitude',
                     'field_name' => 'Longitude'
+                ])
+                @formField('input', [
+                    'field' => 'rsvp_link',
+                    'field_name' => 'External RSVP Link'
                 ])
             </section>
 

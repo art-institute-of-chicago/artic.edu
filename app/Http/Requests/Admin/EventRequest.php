@@ -9,7 +9,8 @@ class EventRequest extends Request
     public function rules()
     {
         $rules = [
-            'title' => 'required'
+            'title' => 'required',
+            'rsvp_link' => 'url'
         ];
 
         if (!empty($this->input('price'))) {

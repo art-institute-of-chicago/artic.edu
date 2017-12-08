@@ -30,6 +30,7 @@ class Event extends Model
         'location',
         'latitude',
         'longitude',
+        'rsvp_link'
     ];
 
     public $slugAttributes = [
