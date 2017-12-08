@@ -43,6 +43,8 @@ $print = isset($_GET['print']);
   </main>
 
   @include('layouts._footer')
+
+  @include('layouts._mask')
   @include('layouts._calendar')
   @include('layouts._share-menu')
 

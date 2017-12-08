@@ -1,0 +1,19 @@
+
+
+.s-calendar-active {
+
+  .g-mask {
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+
+    @include breakpoint('medium+') {
+      opacity: 0;
+    }
+  }
+
+  .m-calendar {
+    display: block;
+  }
+
+}

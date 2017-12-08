@@ -8,10 +8,6 @@
   @include breakpoint('large+') {
     padding-bottom: 60px;
   }
-
-  .s-print & {
-    display: none;
-  }
 }
 
 .g-footer .o-grid-listing > *::before,

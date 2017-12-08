@@ -128,6 +128,7 @@ const selectDate = function(container) {
     container.addEventListener('calendar:dateSelected', _dateSelected, false);
     container.addEventListener('selectDate:startDateSelected', _startDateSelected, false);
     container.addEventListener('selectDate:startDateCleared', _startDateCleared, false);
+    document.addEventListener('selectDate:close', _closeCalendar, false);
     document.addEventListener('click', _clicksOutside, false);
     window.addEventListener('keyup', _escape, false);
   }
@@ -139,6 +140,7 @@ const selectDate = function(container) {
     container.removeEventListener('calendar:dateSelected', _dateSelected);
     container.removeEventListener('selectDate:startDateSelected', _startDateSelected);
     container.removeEventListener('selectDate:startDateCleared', _startDateCleared);
+    document.removeEventListener('selectDate:close', _closeCalendar);
     document.removeEventListener('click', _clicksOutside);
     window.removeEventListener('keyup', _escape);
 

@@ -36,10 +36,6 @@
   padding-bottom: 12px;
   background-color: $color__white;
   box-shadow: $shadow;
-
-  .s-calendar-active & {
-    display: block;
-  }
 }
 
 .m-calendar--inline {

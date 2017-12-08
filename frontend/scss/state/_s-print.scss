@@ -1,0 +1,46 @@
+
+
+.s-print {
+  right: 0;
+  left: 0;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  overflow: auto;
+
+  #a17 {
+    width: 100%;
+    padding-top: 0;
+  }
+
+  main {
+    padding-bottom: 0;
+  }
+
+  .g-header,
+  .g-footer,
+  .o-article__primary,
+  .o-article__secondary,
+  .o-article__tertiary,
+  .o-article__top-link,  {
+    display: none !important;
+  }
+
+  .o-article__body {
+    & > .f-deck,
+    & > .f-body,
+    & > .f-body-editorial {
+      padding-right: 0 !important;
+    }
+  }
+
+  .o-article__body,
+  .o-gallery,
+  .m-media--m,
+  .m-media--l,
+  .m-cta-banner,
+  .m-aside-newsletter--wide {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}

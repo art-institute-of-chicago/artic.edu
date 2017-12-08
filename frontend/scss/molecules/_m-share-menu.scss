@@ -12,10 +12,6 @@
   box-shadow: $shadow;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-
-  .s-shareMenu-active & {
-    display: block;
-  }
 }
 
 .m-share-menu--inline {

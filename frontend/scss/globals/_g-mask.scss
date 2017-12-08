@@ -1,0 +1,12 @@
+.g-mask {
+  position: fixed;
+  z-index: map-get($zindexs, 'mask');
+  left: 0;
+  right: 100%;
+  top: 0;
+  bottom: 100%;
+  background-color: rgba(0,0,0,.6);
+  opacity: 0;
+  transition: opacity .25s;
+  will-change: opacity, background-color, right, bottom;
+}
