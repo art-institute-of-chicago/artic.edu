@@ -24,8 +24,8 @@ class Event extends Model
         'start_date',
         'end_date',
         'recurring',
-        'recurring_start_date',
-        'recurring_end_date',
+        'recurring_start_time',
+        'recurring_end_time',
         'recurring_days',
         'location',
         'latitude',
@@ -41,6 +41,8 @@ class Event extends Model
 
     // those fields get auto set to false if not submited
     public $checkboxes = ['recurring'];
+
+    public $dates = ['start_date', 'end_date'];
 
     // fill this in if you use the HasMedias traits
     // public $mediasParams = [];

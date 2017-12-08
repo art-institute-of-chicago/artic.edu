@@ -30,13 +30,13 @@
                      'field_name' => 'Recurring event',
                 ])
 
-                @formField('date_picker', [
-                     'field' => 'recurring_start_date',
-                     'field_name' => 'Recurring Start date',
+                @formField('input', [
+                     'field' => 'recurring_start_time',
+                     'field_name' => 'Recurring Start time',
                 ])
-                @formField('date_picker', [
-                     'field' => 'recurring_end_date',
-                     'field_name' => 'Recurring end date',
+                @formField('input', [
+                     'field' => 'recurring_end_time',
+                     'field_name' => 'Recurring end time',
                 ])
 
                 @formField('input', [
