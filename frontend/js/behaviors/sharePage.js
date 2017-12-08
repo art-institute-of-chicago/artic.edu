@@ -6,9 +6,35 @@ const sharePage = function(container) {
   const shareMenu = document.getElementById('shareMenu');
   let shareOpen = false;
 
+  function _position() {
+    positionElementToTarget({
+      element: shareMenu,
+      target: container,
+      position: 'top left',
+      padding: {
+        top: 20
+      },
+      breakpoints: {
+        xsmall: false,
+        small: false,
+        medium: true,
+        large: true,
+        xlarge: true,
+        xxlarge: true,
+      }
+    });
+  }
+
+  function _reposition() {
+    if (shareOpen) {
+      setTimeout(_position, 100);
+    }
+  }
+
   function _closeShareMenu() {
     if (shareOpen) {
       document.documentElement.classList.remove('s-shareMenu-active');
+      shareMenu.removeAttribute('style');
       setFocusOnTarget(container.parentNode);
       shareOpen = false;
     }
@@ -24,14 +50,7 @@ const sharePage = function(container) {
         url: container.getAttribute('data-share-url'),
         title: container.getAttribute('data-share-title'),
       });
-      positionElementToTarget({
-        element: shareMenu,
-        target: container,
-        position: 'top left',
-        padding: {
-          top: 20
-        }
-      });
+      _position();
       setFocusOnTarget(shareMenu);
       shareOpen = true;
     } else {
@@ -72,6 +91,7 @@ const sharePage = function(container) {
     container.addEventListener('click', _handleClicks, false);
     document.addEventListener('shareMenu:close', _closeShareMenu, false);
     document.addEventListener('click', _clicksOutside, false);
+    window.addEventListener('resized', _reposition, false);
     window.addEventListener('keyup', _escape, false);
   }
 
@@ -80,6 +100,7 @@ const sharePage = function(container) {
     container.removeEventListener('click', _handleClicks);
     document.removeEventListener('shareMenu:close', _closeShareMenu);
     document.removeEventListener('click', _clicksOutside);
+    window.removeEventListener('resized', _reposition);
     window.removeEventListener('keyup', _escape);
 
     // remove properties of this behavior

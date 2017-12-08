@@ -9,6 +9,7 @@ const positionElementToTarget = function(options) {
   let target = options.target;
   let padding = (options.padding === undefined) ? { left: 0, top: 0 } : options.padding;
   let position = (options.position === undefined) ? 'bottom left' : options.position;
+  let breakpoints = options.breakpoints || false;
 
   padding.left = (options.padding === undefined || options.padding.left === undefined) ? 0 : padding.left;
   padding.top = (options.padding === undefined || options.padding.top === undefined) ? 0 : padding.top;
@@ -46,10 +47,14 @@ const positionElementToTarget = function(options) {
   }
 
   element.classList.add('js-positioned');
-  element.style.left = Math.round(left) + 'px';
-  element.style.top = Math.round(top) + 'px';
+  if (!breakpoints || (breakpoints && breakpoints[A17.currentMediaQuery])) {
+    element.style.left = Math.round(left) + 'px';
+    element.style.top = Math.round(top) + 'px';
+  } else {
+    element.style.left = '';
+    element.style.top = '';
+  }
   element.style.opacity = 1;
-
 };
 
 export default positionElementToTarget;

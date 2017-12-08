@@ -4,14 +4,28 @@
 .m-share-menu {
   @extend %styled-scrollbars;
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: map-get($zindexs, 'shareMenu');
-  width: 180px;
-  max-height: 248px;
+  left: 50%;
+  top: 50%;
+  width: colspan(58, xsmall);
   background-color: $color__white;
   box-shadow: $shadow;
   overflow-y: auto;
+  transform: translateX(-50%) translateY(-50%);
   -webkit-overflow-scrolling: touch;
+
+  @include breakpoint('small+') {
+    width: colspan(38, small);
+  }
+
+  @include breakpoint('medium+') {
+    position: absolute;
+    left: auto;
+    top: auto;
+    width: 180px;
+    transform: none;
+  }
 }
 
 .m-share-menu--inline {
@@ -21,17 +35,33 @@
   box-shadow: none;
 }
 
+.m-share-menu__title {
+  @include untuck;
+  padding: 18px 60px 18px 16px;
+  color: $color__text--title;
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
 .m-share-menu ul {
   min-width: 100%;
   margin-top: 0;
 }
 
-.m-share-menu li:not(:first-child) {
+.m-share-menu li {
   border-top: 1px solid $color__rules--tertiary;
 }
 
-.m-share-menu a,
-.m-share-menu button {
+.m-share-menu li:first-child {
+  @include breakpoint('medium+') {
+    border-top: 0 none;
+  }
+}
+
+.m-share-menu ul a,
+.m-share-menu ul button {
   @include untuck;
   display: block;
   width: 100%;
@@ -56,14 +86,31 @@
   }
 }
 
-.m-share-menu a:hover,
-.m-share-menu button:hover {
+.m-share-menu ul a:hover,
+.m-share-menu ul button:hover {
   background-color: $color__bg--secondary;
   color: $color__text--title;
 }
 
-.m-share-menu a:active,
-.m-share-menu button:active {
+.m-share-menu ul :active,
+.m-share-menu ul button:active {
   background-color: $color__bg--primary;
   color: $color__text--title;
+}
+
+.m-share-menu__close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60px;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  background: transparent;
+  color: $color__text--title;
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
 }
