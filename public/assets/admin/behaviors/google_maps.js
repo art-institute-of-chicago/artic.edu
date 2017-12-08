@@ -2,9 +2,16 @@ a17cms.Behaviors.google_maps = function(container){
   'use strict';
 
   var map, places, infoWindow,
-      markers = [],
       map_canvas = $('.map-canvas', container)[0],
-      latlng = container.data('latlng');
+      center     = container.data('latlng-center'),
+      zoom_level = container.data('zoom'),
+      markers    = [];
+
+  // Split string to create n markers (pls refactor)
+  container.data('latlng').split('|').forEach(function(points) {
+    var splitted = points.split(',');
+    markers.push([splitted[0], splitted[1]]);
+  });
 
   // Style to make the map gray
   var styles = [{"elementType":"geometry","stylers":[{"color":"#f5f5f5"}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"elementType":"labels.text.stroke","stylers":[{"color":"#f5f5f5"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.fill","stylers":[{"color":"#bdbdbd"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#eeeeee"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#e5e5e5"}]},{"featureType":"poi.park","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#dadada"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"color":"#e5e5e5"}]},{"featureType":"transit.station","elementType":"geometry","stylers":[{"color":"#eeeeee"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#c9c9c9"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]}];
@@ -12,10 +19,10 @@ a17cms.Behaviors.google_maps = function(container){
   initialize();
 
   function initialize() {
-    var latlng_split = latlng.split(',');
+    var latlng_split = center.split(',');
     var myOptions = {
-      zoom: 13,
-      center: new google.maps.LatLng(parseFloat(latlng_split[0]), parseFloat(latlng_split[1])),
+      zoom: zoom_level,
+      center: createPoint(latlng_split[0], latlng_split[1]),
       mapTypeControl: false,
       panControl: false,
       zoomControl: false,
@@ -25,19 +32,29 @@ a17cms.Behaviors.google_maps = function(container){
     map = new google.maps.Map(map_canvas, myOptions);
 
     // Add a marker at the center
-    addMarker(new google.maps.LatLng(parseFloat(latlng_split[0]), parseFloat(latlng_split[1])));
+    addMarker(createPoint(latlng_split[0], latlng_split[1]));
+
+    // Add a marker at the designed places
+    markers.forEach(function(marker) {
+      addMarker(createPoint(marker[0], marker[1]), '/images/marker.png');
+    });
   }
 
-  function addMarker(location) {
-    var marker = new google.maps.Marker({
+  function createPoint(lat, lng) {
+    return new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+  }
+
+  function addMarker(location, icon = null) {
+    var options = {
       position: location,
       map: map,
-      icon: new google.maps.MarkerImage('/images/marker.png', null, null, null, new google.maps.Size(30,30))
-    });
+    };
 
-    markers.push(marker);
+    if (icon) {
+      options.icon =  new google.maps.MarkerImage(icon, null, null, null, new google.maps.Size(30,30));
+    }
 
-    setLatLng(marker.position);
+    var marker = new google.maps.Marker(options);
   }
 
 };

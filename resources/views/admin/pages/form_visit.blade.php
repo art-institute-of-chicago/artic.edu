@@ -29,7 +29,7 @@
     'title_singular' => 'Free Admission'
 ])
 
-<section class="box" data-behavior="google_maps" data-latlng="41.8794774,-87.6222743">
+<section class="box" data-behavior="google_maps" data-zoom="15" data-latlng-center="41.8794774,-87.6222743" data-latlng="41.877486,-87.623285|41.881674,-87.621061">
     <header class="header_small">
         <h3><b>Map that will be shown at the FE</b></h3>
     </header>
