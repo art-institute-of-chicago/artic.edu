@@ -55,16 +55,16 @@
                     'field_name' => 'Title',
                 ])
                 @formField('input', [
+                    'field' => 'datahub_id',
+                    'field_name' => 'Datahub ID'
+                ])
+                @formField('input', [
                     'field' => 'admission',
                     'field_name' => 'Admission',
                 ])
                 @formField('input', [
                     'field' => 'price',
                     'field_name' => 'Price'
-                ])
-                @formField('input', [
-                    'field' => 'datahub_id',
-                    'field_name' => 'Datahub ID'
                 ])
                 @formField('input', [
                     'field' => 'location',

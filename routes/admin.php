@@ -22,6 +22,7 @@ Route::group(['prefix' => 'landing'], function () {
 Route::group(['prefix' => 'whatson'], function () {
     Route::module('events');
     Route::module('exhibitions');
+    Route::module('articles');
 });
 
 Route::group(['prefix' => 'general'], function () {

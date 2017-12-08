@@ -70,6 +70,10 @@ return [
           'events' => [
             'title' => 'Events',
             'module' => true,
+          ],
+          'articles' => [
+            'title' => 'Articles',
+            'module' => true,
           ]
         ]
     ],
