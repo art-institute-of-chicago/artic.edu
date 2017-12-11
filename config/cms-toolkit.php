@@ -57,6 +57,10 @@ return [
                             'module' => 'articles',
                             'name' => 'Articles',
                             'scopes' => ['published' => true],
+                        ],
+                        [
+                            'module' => 'artworks',
+                            'name' => 'Artworks'
                         ]
                     ],
                     'max_items' => 2,
@@ -67,6 +71,11 @@ return [
                         [
                             'module' => 'articles',
                             'name' => 'Articles',
+                            'scopes' => ['published' => true],
+                        ],
+                        [
+                            'module' => 'selections',
+                            'name' => 'Selections',
                             'scopes' => ['published' => true],
                         ],
                         [
