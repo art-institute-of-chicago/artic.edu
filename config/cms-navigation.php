@@ -82,6 +82,10 @@ return [
           'artworks' => [
             'title' => 'Artworks',
             'module' => true,
+          ],
+          'selections' => [
+            'title' => 'Selections',
+            'module' => true,
           ]
         ]
     ],
