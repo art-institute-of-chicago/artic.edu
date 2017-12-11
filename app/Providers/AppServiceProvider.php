@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'exhibitions' => 'App\Models\Exhibition',
             'events' => 'App\Models\Event',
+            'articles' => 'App\Models\Article',
         ]);
     }
 

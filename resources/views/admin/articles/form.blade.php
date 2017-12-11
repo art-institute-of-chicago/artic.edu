@@ -39,15 +39,27 @@
         </section>
     </section>
 
-    {{-- @formField('browser', [
+    @formField('browser', [
         'routePrefix' => 'whatson',
-        'relationship' => 'events',
-        'module_name' => 'events',
-        'relationship_name' => 'related events',
+        'relationship' => 'exhibitions',
+        'module_name' => 'exhibitions',
+        'relationship_name' => 'related exhibitions',
         'custom_title_prefix' => 'Add',
         'with_multiple' => true,
         'with_sort' => true,
-        'hint' => 'Select related events',
+        'hint' => 'Select related exhibitions',
         'max' => 20
-    ]) --}}
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'whatson',
+        'relationship' => 'articles',
+        'module_name' => 'articles',
+        'relationship_name' => 'related articles',
+        'custom_title_prefix' => 'Add',
+        'with_multiple' => true,
+        'with_sort' => true,
+        'hint' => 'Select related articles',
+        'max' => 20
+    ])
 @stop
