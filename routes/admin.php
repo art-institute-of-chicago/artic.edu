@@ -24,6 +24,7 @@ Route::group(['prefix' => 'whatson'], function () {
     Route::module('exhibitions');
     Route::module('articles');
     Route::module('artists');
+    Route::module('artworks');
 });
 
 Route::group(['prefix' => 'general'], function () {
