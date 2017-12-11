@@ -9,6 +9,8 @@ class Artwork extends Model
 {
     use HasSlug;
 
+    protected $presenterAdmin = 'App\Presenters\Admin\ArtworkPresenter';
+
     protected $fillable = [
         'title',
         'subtitle',

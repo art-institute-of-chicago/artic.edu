@@ -60,6 +60,21 @@ return [
                         ]
                     ],
                     'max_items' => 2,
+                ],
+                'home_art_and_ideas' => [
+                    'name' => 'Art and Ideas',
+                    'bucketables' => [
+                        [
+                            'module' => 'articles',
+                            'name' => 'Articles',
+                            'scopes' => ['published' => true],
+                        ],
+                        [
+                            'module' => 'artworks',
+                            'name' => 'Artworks'
+                        ]
+                    ],
+                    'max_items' => 6,
                 ]
             ]
         ]

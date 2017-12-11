@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
             'exhibitions' => 'App\Models\Exhibition',
             'events' => 'App\Models\Event',
             'articles' => 'App\Models\Article',
+            'artworks' => 'App\Models\Artwork',
         ]);
     }
 
