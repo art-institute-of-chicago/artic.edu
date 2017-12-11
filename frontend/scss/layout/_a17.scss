@@ -1,7 +1,11 @@
 #a17 {
   @extend %container;
   position: relative;
-  padding-top: 84px;
+  padding-top: 112px;
+
+  @include breakpoint('small+') {
+    padding-top: 128px;
+  }
 
   @include breakpoint('medium+') {
     padding-top: 160px;

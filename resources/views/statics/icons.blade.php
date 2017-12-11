@@ -22,6 +22,7 @@
   <svg class="icon--logo--outline--80"><use xlink:href="#icon--logo--outline--80" /></svg>
   <svg class="icon--logo--outline--88"><use xlink:href="#icon--logo--outline--88" /></svg>
   <svg class="icon--logo--outline--92"><use xlink:href="#icon--logo--outline--92" /></svg>
+  <svg class="icon--menu--24"><use xlink:href="#icon--menu--24" /></svg>
   <svg class="icon--minus--24"><use xlink:href="#icon--minus--24" /></svg>
   <svg class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
   <svg class="icon--play--48"><use xlink:href="#icon--play--48" /></svg>

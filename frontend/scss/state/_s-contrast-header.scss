@@ -3,18 +3,44 @@
 .s-contrast-header {
 
   #a17 {
+    padding-top: 0;
+
+    @include breakpoint('small+') {
+      padding-top: 0;
+    }
+
     @include breakpoint('medium+') {
       padding-top: 0;
     }
   }
 
+  .g-header::after {
+    content: none;
+    display: none;
+  }
+
   .g-header__nav-primary a {
+    color: $color__text--title-contrast;
+
+    @include breakpoint('small+') {
+      color: $color__text--title-contrast;
+    }
+  }
+
+  .g-header__logo,
+  .g-header__opening-hours,
+  .g-header__opening-hours a {
     color: $color__text--title-contrast;
   }
 
-  .g-header__opening-hours,
-  .g-header__nav-secondary a,
-  .g-header__opening-hours a {
-    color: $color__text--contrast;
+  .g-header__nav-secondary a {
+    color: rgba($color__text--title-contrast, .7);
+  }
+}
+
+.s-contrast-header.s-filled-logo {
+
+  .g-header__logo {
+    color: $color__link--accent;
   }
 }

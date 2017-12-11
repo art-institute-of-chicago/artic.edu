@@ -5,27 +5,49 @@
   right: 0;
   top: 0;
   height: 112px;
-}
 
-.g-header__opening-hours,
-.g-header nav {
-  display: none;
+  @include breakpoint('small+') {
+    height: 128px;
+  }
 
   @include breakpoint('medium+') {
-    display: block;
+    height: 140px;
+  }
+}
+
+.g-header::after {
+  content: '';
+  position: absolute;
+  left: colspan(3, xsmall, 0, true);
+  right: colspan(3, xsmall, 0, true);
+  bottom: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+
+  @include breakpoint('small+') {
+    left: 0;
+    right: 0;
   }
 }
 
 .g-header__logo {
   position: absolute;
   left: 0;
-  top: 20px;
-  width: 44px;
-  height: 44px;
+  top: 16px;
+  width: 80px;
+  height: 80px;
+  color: $color__black--54;
 
-  @include breakpoint('medium+') {
+  @include breakpoint('small+') {
+    top: 20px;
     width: 88px;
     height: 88px;
+  }
+
+  @include breakpoint('medium+') {
+    top: 24px;
+    width: 92px;
+    height: 92px;
   }
 }
 
@@ -34,12 +56,45 @@
   height: 100%;
 }
 
+.g-header__logo use {
+  display: none;
+
+  &:nth-child(1) {
+    display: block;
+
+    @include breakpoint('small+') {
+      display: none;
+    }
+  }
+
+  &:nth-child(2) {
+    @include breakpoint('small+') {
+      display: block;
+    }
+
+    @include breakpoint('medium+') {
+      display: none;
+    }
+  }
+
+  &:nth-child(3) {
+    @include breakpoint('medium+') {
+      display: block;
+    }
+  }
+}
+
 .g-header__opening-hours {
+  display: none;
   position: absolute;
-  left: 100px;
-  top: 20px;
+  left: 120px;
+  top: 12px;
   margin-top: 0;
   color: $color__text--secondary;
+
+  @include breakpoint('medium+') {
+    display: block;
+  }
 }
 
 .g-header nav ul {
@@ -56,21 +111,39 @@
 .g-header__nav-primary {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 13px;
+
+  @include breakpoint('small+') {
+    bottom: 16px;
+  }
 }
 
 .g-header__nav-primary a {
-  color: $color__text--title;
+  color: $color__text--secondary;
+
+  @include breakpoint('small+') {
+    color: $color__text--title;
+  }
 
   &:hover {
     text-decoration: underline;
   }
 }
 
+.g-header__nav-primary svg {
+  position: relative;
+  top: -1px;
+}
+
 .g-header__nav-secondary {
+  display: none;
   position: absolute;
   right: 0;
-  top: 20px;
+  top: 19px;
+
+  @include breakpoint('small+') {
+    display: block;
+  }
 }
 
 .g-header__nav-secondary a,
@@ -82,18 +155,34 @@
   }
 }
 
-.g-header__opening-hours br {
-  @include breakpoint('large+') {
+.g-header__menu-link {
+  @include untuck;
+  position: absolute;
+  right: 0;
+  top: 15px;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  background-color: transparent;
+  color: $color__text--title;
+  cursor: pointer;
+
+  @include breakpoint('small+') {
     display: none;
+  }
+
+  &:hover,
+  &:focus {
+    color: $color__text;
+  }
+
+  &:active {
+    color: $color__text--secondary;
   }
 }
 
-.g-header__menu-link {
-  position: absolute;
-  right: 0;
-  top: 24px;
-
-  @include breakpoint('medium+') {
-    display: none;
-  }
+.g-header__menu-link svg {
+  position: relative;
+  top: -1px;
+  margin-left: 4px;
 }
