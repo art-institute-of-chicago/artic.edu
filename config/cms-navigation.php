@@ -74,6 +74,10 @@ return [
           'articles' => [
             'title' => 'Articles',
             'module' => true,
+          ],
+          'artists' => [
+            'title' => 'Artists',
+            'module' => true,
           ]
         ]
     ],

@@ -23,6 +23,7 @@ Route::group(['prefix' => 'whatson'], function () {
     Route::module('events');
     Route::module('exhibitions');
     Route::module('articles');
+    Route::module('artists');
 });
 
 Route::group(['prefix' => 'general'], function () {
