@@ -12,11 +12,11 @@ $print = isset($_GET['print']);
   <title>AIC</title>
 
   <!-- Main Favicon -->
-  <link rel="shortcut icon" href="{{revAsset('favicon.ico')}}">
+  <link rel="shortcut icon" type="image/png" href="{{revAsset('images/favicon-16.png')}}">
   <!-- Apple Touch Icons (ipad/iphone standard+retina) -->
-  <link rel="apple-touch-icon" href="{{revAsset('favicon-152.png')}}"> <!-- General use iOS/Android icon, auto-downscaled by devices. -->
-  <link rel="apple-touch-icon" type="image/png" href="{{revAsset('favicon-120.png')}}" sizes="120x120"> <!-- iPhone retina touch icon -->
-  <link rel="apple-touch-icon" type="image/png" href="{{revAsset('favicon-76.png')}}" sizes="76x76"> <!-- iPad home screen icons -->
+  <link rel="apple-touch-icon-precomposed" href="{{revAsset('images/favicon-152.png')}}"> <!-- General use iOS/Android icon, auto-downscaled by devices. -->
+  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{revAsset('images/favicon-120.png')}}" sizes="120x120"> <!-- iPhone retina touch icon -->
+  <link rel="apple-touch-icon-precomposed" type="image/png" href="{{revAsset('images/favicon-76.png')}}" sizes="76x76"> <!-- iPad home screen icons -->
 
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
