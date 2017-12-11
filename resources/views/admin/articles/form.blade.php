@@ -62,4 +62,16 @@
         'hint' => 'Select related articles',
         'max' => 20
     ])
+
+    @formField('browser', [
+        'routePrefix' => 'whatson',
+        'relationship' => 'artists',
+        'module_name' => 'artists',
+        'relationship_name' => 'related artists',
+        'custom_title_prefix' => 'Add',
+        'with_multiple' => true,
+        'with_sort' => true,
+        'hint' => 'Select related artists',
+        'max' => 20
+    ])
 @stop

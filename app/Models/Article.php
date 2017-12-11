@@ -46,6 +46,11 @@ class Article extends Model
         return $this->belongsToMany('App\Models\Exhibition', 'article_exhibition')->withPivot('position')->orderBy('position');
     }
 
+    public function artists()
+    {
+        return $this->belongsToMany('App\Models\Artist', 'article_artist')->withPivot('position')->orderBy('position');
+    }
+
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
