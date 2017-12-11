@@ -17,4 +17,5 @@
   </table>
   <button class="m-calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
   <button class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+  <button class="m-calendar__close"><svg class="icon--close" aria-title="Close date select"><use xlink:href="#icon--close" /></svg></button>
 </div>

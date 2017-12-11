@@ -1,6 +1,15 @@
-
-
 .s-calendar-active {
+
+  @include breakpoint('small-') {
+    position: fixed;
+    overflow: hidden;
+
+    body {
+      position: fixed;
+      width: 100vw;
+      overflow: hidden;
+    }
+  }
 
   .g-mask {
     right: 0;

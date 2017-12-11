@@ -1,5 +1,5 @@
 import { setFocusOnTarget, purgeProperties, triggerCustomEvent } from 'a17-helpers';
-import { positionElementToTarget } from '../functions';
+import { positionElementToTarget, focusTrap } from '../functions';
 
 const sharePage = function(container) {
 
@@ -34,7 +34,9 @@ const sharePage = function(container) {
   function _closeShareMenu() {
     if (shareOpen) {
       document.documentElement.classList.remove('s-shareMenu-active');
+      triggerCustomEvent(document, 'body:unlock');
       shareMenu.removeAttribute('style');
+      triggerCustomEvent(document, 'focus:untrap');
       setFocusOnTarget(container.parentNode);
       shareOpen = false;
     }
@@ -50,8 +52,14 @@ const sharePage = function(container) {
         url: container.getAttribute('data-share-url'),
         title: container.getAttribute('data-share-title'),
       });
+      triggerCustomEvent(document, 'body:lock', {
+        breakpoints: 'xsmall small'
+      });
       _position();
       setFocusOnTarget(shareMenu);
+      triggerCustomEvent(document, 'focus:trap', {
+        element: shareMenu
+      });
       shareOpen = true;
     } else {
       _closeShareMenu();

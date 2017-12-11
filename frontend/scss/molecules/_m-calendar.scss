@@ -34,6 +34,7 @@
   z-index: map-get($zindexs, 'calendar');
   width: 304px;
   padding-bottom: 12px;
+    padding-bottom: 72px;
   background-color: $color__white;
   box-shadow: $shadow;
 }
@@ -199,5 +200,30 @@
 
   &:active {
     color: $color__white;
+  }
+}
+
+.m-calendar__close {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  background: transparent;
+  color: $color__text--title;
+
+  @include breakpoint('medium+') {
+    /*
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin-top: -1px;
+    margin-left: -1px;
+    clip: rect(1px, 1px, 1px, 1px);
+    overflow: hidden;
+    */
   }
 }

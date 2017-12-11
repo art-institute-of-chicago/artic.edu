@@ -20,6 +20,9 @@ const selectDate = function(container) {
   function _closeCalendar() {
     if (calendarOpen) {
       document.documentElement.classList.remove('s-calendar-active');
+      triggerCustomEvent(document, 'body:unlock');
+      calendar.removeAttribute('style');
+      triggerCustomEvent(document, 'focus:untrap');
       setFocusOnTarget(container.parentNode);
       calendarOpen = false;
     }
@@ -35,6 +38,9 @@ const selectDate = function(container) {
         el: container,
         minDate: minDate
       });
+      triggerCustomEvent(document, 'body:lock', {
+        breakpoints: 'xsmall small'
+      });
       positionElementToTarget({
         element: calendar,
         target: container,
@@ -44,6 +50,9 @@ const selectDate = function(container) {
         }
       });
       setFocusOnTarget(calendar);
+      triggerCustomEvent(document, 'focus:trap', {
+        element: calendar
+      });
       calendarOpen = true;
     } else {
       _closeCalendar();

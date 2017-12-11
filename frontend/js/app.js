@@ -1,5 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery } from 'a17-helpers';
 import * as Behaviors from './behaviors';
+import { lockBody, focusTrap } from './functions';
 
 /*
 
@@ -22,7 +23,10 @@ A17.currentMediaQuery = getCurrentMediaQuery();
 document.addEventListener('DOMContentLoaded', function(){
   // go go go
   manageBehaviors(Behaviors);
-
+  // listen for body lock requests
+  lockBody();
+  // listen for focus trap requests
+  focusTrap();
   // on resize, check
   resized();
 });
