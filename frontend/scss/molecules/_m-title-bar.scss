@@ -6,11 +6,16 @@
   justify-content: space-between;
   margin-top: 40px;
   padding-top: 19px;
-  border-top: 1px solid $color__rules--secondary;
+  border-top: 1px solid $color__rules--primary;
 
-  & + &,
-  & + .o-grid-listing {
+  & + & {
     margin-top: 40px;
+  }
+
+  hr + & {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
   }
 }
 
@@ -19,8 +24,8 @@
   margin-top: 0;
 }
 
-.m-title-bar .title.f-module-title-1 {
-  @include tucked-margin-top($f-module-title-1, ('xsmall': 24));
+.m-title-bar .title.f-module-title-2 {
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 68, 'medium': 80));
 }
 
 .m-title-bar__links {
@@ -31,6 +36,7 @@
 
   @include breakpoint('small+') {
     display: flex;
+    margin-top: 44px;
   }
 }
 

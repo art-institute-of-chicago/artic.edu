@@ -9,7 +9,7 @@ $hero = isset($hero) ? $hero : false;
             @slot('src', $exhibition->image['src'])
         @endcomponent
     </span>
-    <span class="m-listing__meta">
+    <span class="m-listing__meta m-listing__meta--l">
       <span class="m-listing__meta-top">
         @if ($exhibition->closingSoon)
             @component('components.atoms._type')

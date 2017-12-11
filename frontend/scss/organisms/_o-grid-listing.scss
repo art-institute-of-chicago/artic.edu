@@ -10,12 +10,26 @@ Basic flexed set up
   margin-top: 0;
 }
 
+$grid-padding-tops: (
+  xsmall: 2,
+  small: 1.5,
+  medium: 1.5,
+  large: 1.5,
+  xlarge: 1.5,
+  xxlarge: 1.5,
+);
+
 .o-grid-listing > * {
   position: relative;
   flex: 0 0 auto;
   width: 100%;
   margin-top: 28px;
-  padding-top: 20px;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+    }
+  }
 }
 
 // if this is in cols, adjust spacings
@@ -181,7 +195,7 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: $color__rules--primary;
+  background-color: $color__rules--tertiary;
   pointer-events: none;
 
   @each $name, $point in $breakpoints {
@@ -189,6 +203,10 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
       right: colspan(1, #{$name}, 0, true);
     }
   }
+}
+
+.o-grid-listing--gridlines-right > *::after {
+  bottom: 4px;
 }
 
 .o-grid-listing--keyline-top.o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::after {
@@ -302,7 +320,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
     .o-grid-listing--gridlines-top[class*="col@#{$name}"] > *,
     .o-grid-listing--gridlines-rows[class*="col@#{$name}"] > *,
     .o-grid-listing--gridlines-split-rows[class*="col@#{$name}"] > * {
-      padding-top: colspan(1, #{$name});
+      padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
     }
   }
 }

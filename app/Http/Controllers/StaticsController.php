@@ -38,6 +38,14 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function listings() {
+    return view('statics/listings', [
+        'exhibitions' => $this->getExhibitions(8),
+        'products' => $this->getProducts(5),
+        'eventsByDay' => $this->makeEventsByDates(3),
+    ]);
+  }
+
   public function home() {
     return view('statics/home', [
       'contrastHeader' => true,
@@ -190,6 +198,7 @@ class StaticsController extends Controller {
     return new StaticObjectPresenter([
       "id" => $this->faker->uuid,
       "slug" => "/statics/product",
+      "type" => 'Furnishings',
       "title" => $this->faker->sentence(4, true),
       "shortDesc" => $this->faker->paragraph(1, false),
       "image" => $this->getImage(),

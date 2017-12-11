@@ -6,6 +6,10 @@
       @endcomponent
     </span>
     <span class="m-listing__meta">
+      @component('components.atoms._type')
+          {{ $product->type }}
+      @endcomponent
+      <br>
       @component('components.atoms._title')
           {{ $product->title }}
       @endcomponent
