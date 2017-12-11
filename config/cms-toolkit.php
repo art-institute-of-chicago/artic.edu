@@ -32,6 +32,11 @@ return [
                             'name' => 'Events',
                             'scopes' => ['published' => true],
                         ],
+                        [
+                            'module' => 'articles',
+                            'name' => 'Articles',
+                            'scopes' => ['published' => true],
+                        ]
                     ],
                     'max_items' => 1,
                 ],
@@ -48,6 +53,11 @@ return [
                             'name' => 'Events',
                             'scopes' => ['published' => true],
                         ],
+                        [
+                            'module' => 'articles',
+                            'name' => 'Articles',
+                            'scopes' => ['published' => true],
+                        ]
                     ],
                     'max_items' => 2,
                 ]

@@ -10,6 +10,8 @@ class Article extends Model
 {
     use HasSlug, HasRevisions;
 
+    protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
+
     protected $fillable = [
         'published',
         'content',
