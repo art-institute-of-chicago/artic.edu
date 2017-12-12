@@ -16,6 +16,12 @@
             'field_name' => 'Title',
             'required' => true
         ])
+        @formField('multi_select', [
+            'field' => 'site_tags',
+            'field_name' => 'Tags',
+            'list' => $siteTagsList,
+            'placeholder' => 'Select some tags',
+        ])
         @formField('input', [
             'field' => 'subtitle',
             'field_name' => 'Subtitle',

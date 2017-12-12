@@ -15,71 +15,19 @@ class ArtworkRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    /**
-     *
-     * Custom filtering with helpers
-     *
-     * public function filter($query, array $scopes = [])
-     * {
-     *     return parent::filter($query, $scopes);
-     * }
-     *
-     */
+    public function afterSave($object, $fields)
+    {
+        $object->siteTags()->sync($fields['site_tags'] ?? []);
 
-    /**
-     *
-     * Custom ordering
-     *
-     * public function order($query, array $orders = [])
-     * {
-     *     return parent::order($query, $orders);
-     * }
-     *
-     */
+        parent::afterSave($object, $fields);
+    }
 
-    /**
-     *
-     * Custom form fields
-     *
-     * public function getFormFields($object)
-     * {
-     *     $fields = parent::getFormFields($object);
-     *
-     *     return $fields;
-     * }
-     *
-     */
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+        $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
 
-    /**
-     *
-     * Before create hook
-     *
-     * public function prepareFieldsBeforeCreate($fields)
-     * {
-     *     return parent::prepareFieldsBeforeCreate($fields);
-     * }
-     *
-     */
+        return $fields;
+    }
 
-    /**
-     *
-     * Before save hook
-     *
-     * public function prepareFieldsBeforeSave($object, $fields)
-     * {
-     *     return parent::prepareFieldsBeforeSave($object, $fields);
-     * }
-     *
-     */
-
-    /**
-     *
-     * After save hook
-     *
-     * public function afterSave($object, $fields)
-     * {
-     *     parent::afterSave($object, $fields);
-     * }
-     *
-     */
 }

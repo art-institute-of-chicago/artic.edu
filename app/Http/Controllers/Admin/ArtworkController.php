@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use App\Repositories\SiteTagRepository;
 
 class ArtworkController extends ModuleController
 {
@@ -16,7 +17,7 @@ class ArtworkController extends ModuleController
     /*
      * Relations to eager load for the form view
      */
-    protected $formWith = [];
+    protected $formWith = ['siteTags'];
 
     /*
      * Filters mapping ('fFilterName' => 'filterColumn')
@@ -31,7 +32,9 @@ class ArtworkController extends ModuleController
 
     protected function formData($request)
     {
-        return [];
+        return [
+            'siteTagsList'   => app(SiteTagRepository::class)->listAll('name')
+        ];
     }
 
 }
