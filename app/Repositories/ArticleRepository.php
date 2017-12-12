@@ -19,9 +19,10 @@ class ArticleRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['site_tags'] ?? []);
-        $this->updateOrderedBelongsTomany($object, $fields, 'exhibitions');
         $this->updateOrderedBelongsTomany($object, $fields, 'articles');
         $this->updateOrderedBelongsTomany($object, $fields, 'artists');
+        $this->updateOrderedBelongsTomany($object, $fields, 'exhibitions');
+        $this->updateOrderedBelongsTomany($object, $fields, 'selections');
 
         parent::afterSave($object, $fields);
     }
