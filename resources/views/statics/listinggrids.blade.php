@@ -139,13 +139,13 @@
   <?php endfor; ?>
 </ul>
 
-<div id="t" style="margin-top: 60px;"></div>
+<div style="margin-top: 60px;"></div>
 <p class="f-secondary">3 column list</p>
 <hr>
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--3-col@large o-grid-listing--3-col@xlarge o-grid-listing--3-col@xxlarge" data-behavior="dragScroll">
+<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--3-col@large o-grid-listing--3-col@xlarge o-grid-listing--3-col@xxlarge">
   <?php for ($i = 0; $i < 3; $i++): ?>
     <li class="m-listing m-listing--row@small m-listing--row@medium">
-      <a href="#t" class="m-listing__link">
+      <a href="#" class="m-listing__link">
         <span class="m-listing__img" style="height: 200px !important;">
           <img src="http://placehold.dev.area17.com/image/400x100" style="height: 200px !important;">
         </span>

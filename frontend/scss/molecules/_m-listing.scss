@@ -233,6 +233,10 @@
   @include tucked-margin-top($f-list-3, ('xsmall': 32));
 }
 
+.m-listing__meta .f-list-4 {
+  @include tucked-margin-top($f-list-4, ('xsmall': 32));
+}
+
 .m-listing__meta .f-body {
   @include tucked-margin-top($f-body, ('xsmall': 48));
 }
@@ -328,13 +332,18 @@
   }
 
   & + & {
-    margin-top: 20px;
-    padding-top: 19px;
+    margin-top: 24px;
+    padding-top: 16px;
     border-top: 1px solid $color__rules--primary;
 
-    @include breakpoint('large+') {
+    @include breakpoint('small+') {
+      margin-top: 20px;
+      padding-top: 20px;
+    }
+
+    @include breakpoint('medium+') {
       margin-top: 24px;
-      padding-top: 23px;
+      padding-top: 24px;
     }
   }
 }
@@ -426,6 +435,22 @@
   @include breakpoint('xxlarge') {
     width: colspan(8, xxlarge);
   }
+}
+
+.m-listing--row .m-listing__meta .title {
+  order: -1;
+}
+
+.m-listing--row .m-listing__meta .f-list-4 {
+  @include tucked-margin-top($f-list-4, ('xsmall': 32, 'small+': 20, 'large+': 24));
+}
+
+.m-listing--row .m-listing__meta .f-tag {
+  @include tucked-margin-top($f-tag, ('xsmall': 32, 'small+': 32));
+}
+
+.m-listing--row .m-listing__meta .f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 60, 'small+': 16, 'large+': 12));
 }
 
 // variant 'm-listing--row@small'

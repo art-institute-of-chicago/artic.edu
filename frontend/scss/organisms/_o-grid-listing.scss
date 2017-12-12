@@ -471,20 +471,11 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 
 ***/
 
-@each $name, $point in $breakpoints {
-  @include breakpoint('#{$name}') {
-    .o-grid-listing--gridlines-top > *,
-    .o-grid-listing--gridlines-rows > * {
-      padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
-    }
-  }
-}
-
 // draw a keyline at the top of each element
 .o-grid-listing--gridlines-top > *::before,
 .o-grid-listing--gridlines-rows > *::before {
   content: '';
-  display: block;
+  display: none;
   position: absolute;
   left: 0;
   right: 0;
@@ -495,7 +486,27 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 }
 
 .o-grid-listing--gridlines-top > *::before {
+  display: block;
   right: 0;
+}
+
+@each $name, $point in $breakpoints {
+  @include breakpoint('#{$name}') {
+    .o-grid-listing--gridlines-top > *,
+    .o-grid-listing--gridlines-rows > * {
+      padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+    }
+
+    .o-grid-listing--gridlines-top:not([class*=col\@#{$name}]) > *:first-child,
+    .o-grid-listing--gridlines-rows:not([class*=col\@#{$name}]) > *:first-child {
+      padding-top: 0;
+
+      &::before {
+        content: '';
+        display: none;
+      }
+    }
+  }
 }
 
 // start drawing a keyline at the top of the first item in each row

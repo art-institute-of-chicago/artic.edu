@@ -36,7 +36,7 @@
 
   @include breakpoint('small+') {
     display: flex;
-    margin-top: 44px;
+    margin-top: auto;
   }
 }
 

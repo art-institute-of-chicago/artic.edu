@@ -18,6 +18,7 @@
         @endif
         <br>
         @component('components.atoms._title')
+            @slot('font','f-list-4')
             {{ $event->title }}
         @endcomponent
         <br>

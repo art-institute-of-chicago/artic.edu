@@ -1,23 +1,34 @@
 
 
 .m-date-listing {
-  padding-top: 15px;
-  border-top: 1px solid $color__rules--primary;
+  position: relative;
 
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     display: flex;
     flex-flow: row nowrap;
-    padding-top: 23px;
   }
+}
+
+.m-date-listing::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
 }
 
 .m-date-listing .day {
   margin-top: 0;
 
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     flex: 0 0 auto;
     align-self: flex-start;
-    width: 100%;
+    width: colspan(11, medium);
+  }
+
+  @include breakpoint('large+') {
     width: colspan(11, large);
   }
 
@@ -31,14 +42,18 @@
 }
 
 .m-date-listing__items {
-  padding-top: 19px;
-  border-top: 1px solid #e6e6e6;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid $color__rules--primary;
 
-  @include breakpoint('large+') {
+  @include breakpoint('small+') {
+    padding-top: 19px;
+  }
+
+  @include breakpoint('medium+') {
     flex: 1;
     width: auto;
     margin-top: 0;
-    padding-top: 0;
-    border-top: 0 none;
+    padding-top: 23px;
   }
 }

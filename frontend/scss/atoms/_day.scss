@@ -2,7 +2,7 @@
 
 ```
 <h3 class="day">
-  <span class="day__date f-date-numeral">17</span>
+  <span class="day__date f-numeral-date">17</span>
   <span class="day__month f-tag">Oct</span>
   <span class="day__day f-tag">Tue</span>
 </h3>
@@ -12,70 +12,42 @@
 
 .day {
   position: relative;
-  height: 32px;
+  padding-top: .02px;
+  padding-bottom: .02px;
   font-weight: normal;
-
-  @include breakpoint('large+') {
-    height: 40px;
-  }
+  overflow: visible;
 }
 
 .day::after {
   content: '';
   position: absolute;
+  z-index: -1;
   left: 72px;
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: $color__rules--primary;
-
-  .m-date-listing & {
-    top: -16px;
-
-    @include breakpoint('large+') {
-      top: -24px;
-    }
-  }
+  background-color: $color__rules--tertiary;
 }
 
 .day__date {
-  position: absolute;
-  left: 0;
-  top: -16px;
+  display: block;
   width: 50px;
-  text-align: right;
   color: $color__text--title;
+  text-align: right;
+}
 
-  @include breakpoint('small+') {
-    top: -28px;
-  }
-
-  @include breakpoint('large+') {
-    top: -24px;
-  }
+.day__date.f-numeral-date {
+  @include tucked-margin-top($f-numeral-date, ('xsmall': 52));
 }
 
 .day__month {
-  top: -8px;
+  bottom: 4px;
   color: $color__text--title;
-
-
-  @include breakpoint('medium+') {
-    top: -4px;
-  }
 }
 
 .day__day {
-  top: 12px;
+  bottom: 21px;
   color: $color__text--secondary;
-
-  @include breakpoint('small+') {
-    top: 8px;
-  }
-
-  @include breakpoint('medium+') {
-    top: 16px;
-  }
 }
 
 .day__month,

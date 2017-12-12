@@ -40,7 +40,10 @@ class StaticsController extends Controller {
 
   public function listings() {
     return view('statics/listings', [
-        'exhibitions' => $this->getExhibitions(8),
+        'exhibitions8' => $this->getExhibitions(8),
+        'exhibitions4' => $this->getExhibitions(4),
+        'exhibitions6' => $this->getExhibitions(6),
+        'exhibitions3' => $this->getExhibitions(3),
         'products' => $this->getProducts(5),
         'eventsByDay' => $this->makeEventsByDates(3),
     ]);

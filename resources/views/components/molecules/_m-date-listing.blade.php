@@ -8,6 +8,7 @@
   @foreach ($date['events'] as $event)
       @component('components.molecules._m-listing----event-row')
           @slot('event', $event)
+
           @slot('variation', 'm-listing--row')
       @endcomponent
   @endforeach
