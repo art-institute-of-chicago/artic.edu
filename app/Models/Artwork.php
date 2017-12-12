@@ -38,4 +38,9 @@ class Artwork extends Model
         return $this->belongsToMany('App\Models\Selection', 'artwork_selection');
     }
 
+    public function exhibitions()
+    {
+        return $this->belongsToMany(\App\Models\Exhibition::class)->withPivot('position')->orderBy('position');
+    }
+
 }

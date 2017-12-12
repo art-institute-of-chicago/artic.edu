@@ -43,6 +43,18 @@
         'hint' => 'Select related selections',
         'max' => 20
     ])
+
+    @formField('browser', [
+        'routePrefix' => 'whatson',
+        'relationship' => 'exhibitions',
+        'module_name' => 'exhibitions',
+        'relationship_name' => 'related exhibitions',
+        'custom_title_prefix' => 'Add',
+        'with_multiple' => true,
+        'with_sort' => true,
+        'hint' => 'Select related exhibitions',
+        'max' => 20
+    ])
 @stop
 
 
