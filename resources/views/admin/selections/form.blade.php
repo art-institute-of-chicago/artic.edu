@@ -19,18 +19,29 @@
             'field' => 'short_copy',
             'field_name' => 'Short Intro copy',
         ])
-
-        @formField('browser', [
-            'routePrefix' => 'whatson',
-            'relationship' => 'artworks',
-            'module_name' => 'artworks',
-            'relationship_name' => 'related artworks',
-            'custom_title_prefix' => 'Add',
-            'with_multiple' => true,
-            'with_sort' => true,
-            'hint' => 'Select related artworks',
-            'max' => 20
-        ])
-
     </section>
+
+    @formField('browser', [
+        'routePrefix' => 'whatson',
+        'relationship' => 'artworks',
+        'module_name' => 'artworks',
+        'relationship_name' => 'related artworks',
+        'custom_title_prefix' => 'Add',
+        'with_multiple' => true,
+        'with_sort' => true,
+        'hint' => 'Select related artworks',
+        'max' => 20
+    ])
+
+     @formField('browser', [
+        'routePrefix' => 'whatson',
+        'relationship' => 'selections',
+        'module_name' => 'selections',
+        'relationship_name' => 'related selections',
+        'custom_title_prefix' => 'Add',
+        'with_multiple' => true,
+        'with_sort' => true,
+        'hint' => 'Select related selections',
+        'max' => 20
+    ])
 @stop

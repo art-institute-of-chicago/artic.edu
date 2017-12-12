@@ -18,6 +18,7 @@ class SelectionRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         $this->updateOrderedBelongsTomany($object, $fields, 'artworks');
+        $this->updateOrderedBelongsTomany($object, $fields, 'selections');
 
         parent::afterSave($object, $fields);
     }

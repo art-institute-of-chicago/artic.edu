@@ -32,4 +32,9 @@ class Selection extends Model
     {
         return $this->belongsToMany('App\Models\Artwork', 'artwork_selection')->withPivot('position')->orderBy('position');
     }
+
+    public function selections()
+    {
+        return $this->belongsToMany('App\Models\Selection', 'selection_selection', 'selection_id', 'related_selection_id')->withPivot('position')->orderBy('position');
+    }
 }
