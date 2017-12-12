@@ -728,7 +728,8 @@ $f-list-2: (
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
+    'xsmall': (font-size: 19, line-height: 24, push: -1),
+    'small+': (font-size: 22, line-height: 28, letter-spacing: -0.005em, push: 0),
    )
 );
 
@@ -861,6 +862,37 @@ $f-numeral-date: (
 %f-numeral-date,
 .f-numeral-date {
   @include f-numeral-date;
+}
+
+/***
+
+f-main-nav
+
+```
+<p class="f-main-nav">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-main-nav: (
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+    'small+': (font-size: 18, line-height: 24, letter-spacing: .015em, push: 0),
+    'medium+': (font-size: 19, line-height: 28, push: 0),
+   )
+);
+
+@mixin f-main-nav() {
+  @include font-styles($f-main-nav);
+  color: $color__text--title;
+}
+
+%f-main-nav,
+.f-main-nav {
+  @include f-main-nav;
 }
 
 
