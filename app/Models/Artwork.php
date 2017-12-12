@@ -33,4 +33,9 @@ class Artwork extends Model
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
     }
 
+    public function selections()
+    {
+        return $this->belongsToMany('App\Models\Selection', 'artwork_selection');
+    }
+
 }
