@@ -43,4 +43,9 @@ class Artwork extends Model
         return $this->belongsToMany(\App\Models\Exhibition::class)->withPivot('position')->orderBy('position');
     }
 
+    public function articles()
+    {
+        return $this->belongsToMany(\App\Models\Article::class)->withPivot('position')->orderBy('position');
+    }
+
 }
