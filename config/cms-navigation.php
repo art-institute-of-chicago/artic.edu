@@ -9,6 +9,10 @@ return [
             'homepage' => [
                 'title' => 'Homepage',
                 'route' => 'admin.featured.homepage',
+            ],
+            'art_and_ideas' => [
+                'title' => 'Art and Ideas',
+                'route' => 'admin.featured.art_and_ideas'
             ]
         ]
     ],

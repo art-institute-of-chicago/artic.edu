@@ -86,6 +86,23 @@ return [
                     'max_items' => 6,
                 ]
             ]
+        ],
+
+        'art_and_ideas' => [
+            'name' => 'Art and Ideas',
+            'buckets' => [
+                'art_and_ideas_main_features' => [
+                    'name' => 'Art and Ideas featured articles',
+                    'bucketables' => [
+                        [
+                            'module' => 'articles',
+                            'name' => 'Articles',
+                            'scopes' => ['published' => true],
+                        ]
+                    ],
+                    'max_items' => 2,
+                ]
+            ]
         ]
     ]
 ];
