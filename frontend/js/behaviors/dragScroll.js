@@ -8,7 +8,8 @@ const dragScroll = function(container) {
   let lastScrollTop = 0;
   let lastClientX = 0;
   let lastClientY = 0;
-  let pushed = false;
+  let dragging = false;
+  let allowClicks = true;
   let xVelocity = 0;
   let yVelocity = 0;
 
@@ -22,7 +23,7 @@ const dragScroll = function(container) {
   }
 
   function _momentum() {
-    if (!pushed) {
+    if (!dragging) {
       // if there is some velocity, shrink it, linear (no easing)
       if (Math.abs(xVelocity) > 0) {
         xVelocity = (xVelocity > 0) ? xVelocity - 1 : xVelocity + 1;
@@ -38,6 +39,13 @@ const dragScroll = function(container) {
     }
   }
 
+  function _clicks(event) {
+    if (!allowClicks) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }
+
   function _mouseDown(event) {
     event.preventDefault();
     // reset everything
@@ -48,20 +56,23 @@ const dragScroll = function(container) {
     lastClientX = event.clientX;
     lastClientY = event.clientY;
     // allow mouse move tracking
-    pushed = true;
+    dragging = true;
   }
 
   function _mouseUp(event) {
     // stop mouse move tracking
-    pushed = false;
+    dragging = false;
     // if we have some velocity, do momentum
     if (Math.abs(xVelocity) > 0 || Math.abs(yVelocity) > 0) {
       window.requestAnimationFrame(_momentum);
     }
+    setTimeout(function(){
+      allowClicks = true;
+    }, 50);
   }
 
   function _mouseMove(event) {
-    if (pushed) {
+    if (dragging) {
       // get the distance moved
       xVelocity = -lastClientX + event.clientX;
       yVelocity = -lastClientX + event.clientX;
@@ -70,10 +81,15 @@ const dragScroll = function(container) {
       // set so we can compare
       lastClientX = event.clientX;
       lastClientY = event.clientY;
+      // if it looks like the user is trying to scroll, block link clicks
+      if (Math.abs(xVelocity) > 2 || Math.abs(yVelocity) > 2) {
+        allowClicks = false;
+      }
     }
   }
 
   function _init() {
+    container.addEventListener('click', _clicks, false);
     container.addEventListener('mousedown', _mouseDown, false);
     window.addEventListener('mouseup', _mouseUp, false);
     window.addEventListener('mousemove', _mouseMove, false);
@@ -81,6 +97,7 @@ const dragScroll = function(container) {
 
   this.destroy = function() {
     // remove specific event handlers
+    container.removeEventListener('click', _clicks);
     container.removeEventListener('mousedown', _mouseDown);
     window.removeEventListener('mouseup', _mouseUp);
     window.removeEventListener('mousemove', _mouseMove);

@@ -95,9 +95,17 @@ pre code {
 hr,
 .hr {
   height: 0;
-  margin: 59px 0 0;
+  margin: 28px 0 -1px;
   border: 0;
   border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('small+') {
+    margin-top: 36px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 40px;
+  }
 }
 
 .js-hide {
