@@ -39,7 +39,7 @@
   }
 
   .m-intro-block + &:not(.m-links-bar--tabs) {
-    margin-top: 40px;
+    margin-top: 20px;
     padding-top: 0;
     border-top: 0 none;
   }
@@ -52,7 +52,10 @@
   flex-flow: row nowrap;
   max-width: 100%;
   margin-top: 0;
+  margin-bottom: -4px;
+  padding-bottom: 4px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .m-links-bar__items-secondary {
@@ -134,4 +137,38 @@
 
 .m-links-bar--buttons .m-links-bar__items-secondary .m-links-bar__item-trigger.f-buttons {
   @include tucked-margin-top($f-buttons, ('xsmall': 28));
+}
+
+
+// Variant `.m-links-bar--title-bar-companion`
+
+.m-links-bar--title-bar-companion {
+  display: block;
+  margin-top: 32px;
+  padding-top: 0;
+  border-top: 0 none;
+
+  @include breakpoint('small+') {
+    display: none;
+  }
+}
+
+.m-links-bar--title-bar-companion .m-links-bar__items-primary {
+  display: block;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  overflow: auto;
+}
+
+.m-links-bar--title-bar-companion .m-links-bar__item {
+  width: 100%;
+}
+
+.m-links-bar--title-bar-companion .m-links-bar__item:not(:first-child) {
+  margin-top: 20px;
+}
+
+.m-links-bar--title-bar-companion .m-links-bar__item-trigger {
+  display: block;
+  width: 100%;
 }
