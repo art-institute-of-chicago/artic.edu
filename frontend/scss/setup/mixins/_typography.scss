@@ -45,6 +45,80 @@ $f-ui: (
 }
 */
 
+@function get-primary-font-name($font) {
+  // check for a font family rather than a single font name
+  $font-family-comma-index: str-index("#{$font}", ',');
+  @if $font-family-comma-index {
+    // get the primary font from the font family
+    $font: str-slice(#{$font}, 0, $font-family-comma-index - 1);
+    $font: str-replace($font, '"', '');
+  }
+  @return $font;
+}
+
+@function calc-pull($font, $font-size, $line-height, $push) {
+  @if map-has-key($cap-heights, $font) {
+    // adjust cap height for this font size
+    $cap-height: $font-size * map-get($cap-heights, $font);
+    // check push isn't null
+    @if ($push == null) {
+      $push: 0;
+    }
+    // calc the push/pull
+    @return (($line-height - $cap-height) / 2) + $push;
+  } @else {
+    @warn "Unknown font `#{$font}` in $cap-heights.";
+    @return 0;
+  }
+}
+
+@function generate-font-obj($obj) {
+  $_obj: ();
+  $_settings: ();
+
+  @each $key, $value in $obj {
+    @if ($key != 'settings') {
+      $_obj: map-merge($_obj, ($key: $value));
+    }
+  }
+
+  $font-family: map-get($obj, font-family);
+  $font-family-loaded: map-get($obj, font-family-loaded);
+  $settings: map-get($obj, settings);
+  // work out the font string to use
+  $font: if($font-family-loaded, $font-family-loaded, $font-family);
+  // work out the primary font name (used in the cap heights map)
+  $font-name: get-primary-font-name($font);
+  // ok if we have settings
+  @if $settings {
+    // set some defaults, we we can keep track of changes so tuck calc doesn't get null values
+    $font-size: 0;
+    $line-height: 0;
+    $push: 0;
+    @each $breakpoint, $font-info in $settings {
+      // get font info for this breakpoint
+      @if map-has-key($font-info, font-size) {
+        // conditional here because this can inherit from earlier items in the map so that the tuck calculation can take place
+        $font-size: map-get($font-info, font-size);
+      }
+      @if map-has-key($font-info, line-height) {
+        $line-height: map-get($font-info, line-height);
+      }
+      @if map-has-key($font-info, push) {
+        $push: map-get($font-info, push);
+      }
+      // calc pull
+      $pull: calc-pull($font-name, $font-size, $line-height, $push);
+      // update
+      $font-info: map-merge($font-info, (pull: $pull));
+      $_settings: map-merge($_settings, (#{$breakpoint}: $font-info));
+    }
+  }
+  //
+  $_obj: map-merge($_obj, (settings: $_settings));
+  @return $_obj;
+}
+
 // This assumes that the font is vertically centered within the box so may require some tweaking
 // https://codepen.io/13twelve/pen/PJgqBN?editors=0100
 @mixin untuck($tuck-method: 'pseudo') {
@@ -60,57 +134,36 @@ $f-ui: (
   }
 }
 
-@mixin tuck($font: false, $font-size: false, $line-height: false, $tuck-method: 'pseudo', $pre-tucked: false, $push: 0) {
-  @if $font and $font-size and $line-height {
-    // check for a font family rather than a single font name
-    $font-family-comma-index: str-index("#{$font}", ',');
-    @if $font-family-comma-index {
-      // get the primary font from the font family
-      $font: str-slice(#{$font}, 0, $font-family-comma-index - 1);
-      $font: str-replace($font, '"', '');
+@mixin tuck($tuck-method: 'pseudo', $pre-tucked: false, $tuck-amount: 0) {
+  @if ($tuck-amount == null) {
+    $tuck-amount: 0;
+  }
+  // if the tuck method is using pseudo blocks
+  @if ($tuck-method == null or $tuck-method == 'pseudo') {
+    // add the psuedo-block if required
+    @if ($pre-tucked == false) {
+      &::before,
+      &::after {
+        content: '';
+        display: block;
+      }
     }
-    // get the appropriate cap height
-    @if map-has-key($cap-heights, $font) {
-      // adjust cap height for this font size
-      $cap-height: $font-size * map-get($cap-heights, $font);
-      // check push isn't null
-      @if ($push == null) {
-        $push: 0;
-      }
-      // calc the push/pull
-      $pull: (($line-height - $cap-height) / 2) + $push;
-      // if the tuck method is using pseudo blocks
-      @if ($tuck-method == null or $tuck-method == 'pseudo') {
-        // add the psuedo-block if required
-        @if ($pre-tucked == false) {
-          &::before,
-          &::after {
-            content: '';
-            display: block;
-          }
-        }
-        // set the push/pull tucks
-        &::before {
-          padding-top: $pull * 1px;
-        }
-        &::after {
-          margin-bottom: - $pull * 1px;
-        }
-      }
-      // if the tuck method is padding-top/margin-bottom
-      @if ($tuck-method == 'padding') {
-        padding-top: $pull * 1px;
-        margin-bottom: - $pull * 1px;
-      }
-    } @else {
-      @warn "Unknown font `#{$font}` in $cap-heights.";
+    // set the push/pull tucks
+    &::before {
+      padding-top: $tuck-amount * 1px;
     }
-  } @else {
-    @warn "Can't tuck without a font, font size and line-height.";
+    &::after {
+      margin-bottom: - $tuck-amount * 1px;
+    }
+  }
+  // if the tuck method is padding-top/margin-bottom
+  @if ($tuck-method == 'padding') {
+    padding-top: $tuck-amount * 1px;
+    margin-bottom: - $tuck-amount * 1px;
   }
 }
 
-@mixin font-style($font: false, $font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0) {
+@mixin font-style($font-size: false, $line-height: false, $font-weight: false, $font-style: false, $letter-spacing: false, $text-transform: false, $tuck: false, $pre-tucked: false, $tuck-method: 'pseudo', $push: 0, $tuck-amount: 0) {
   // set font settings
   @if $font-size {
     font-size: $font-size * 1px;
@@ -138,7 +191,7 @@ $f-ui: (
     @if ($line-height < 1) {
       @warn "Did you intend to set a line-height of 0? Perhaps no line-height has been defined in the font info object?";
     }
-    @include tuck($font, $font-size, $line-height, $tuck-method, $pre-tucked, $push);
+    @include tuck($tuck-method, $pre-tucked, $tuck-amount);
   }
 }
 
@@ -182,7 +235,8 @@ $f-ui: (
         $letter-spacing: map-get($font-info, letter-spacing);
         $text-transform: map-get($font-info, text-transform);
         $push: map-get($font-info, push);
-        $font: if($font-family-loaded, $font-family-loaded, $font-family);
+        $tuck-amount: map-get($font-info, pull);
+
         @if map-has-key($font-info, tuck-method) {
           // check if the new tuck method differs from the last
           $untuck: if(($tuck-method && $tuck-method != map-get($font-info, tuck-method)), $tuck-method, false);
@@ -194,7 +248,7 @@ $f-ui: (
         }
         // check if this is the smallest breakpoint (the default font setting)
         @if (index(map-keys($settings), $breakpoint) == 1) {
-          @include font-style($font, $font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push);
+          @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, false, $tuck-method, $push, $tuck-amount);
         } @else {
           @include breakpoint(#{$breakpoint}) {
             $pre-tucked: true;
@@ -202,7 +256,7 @@ $f-ui: (
               @include untuck($untuck);
               $pre-tucked: false;
             }
-            @include font-style($font, $font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, $pre-tucked, $tuck-method, $push);
+            @include font-style($font-size, $line-height, $font-weight, $font-style, $letter-spacing, $text-transform, true, $pre-tucked, $tuck-method, $push, $tuck-amount);
           }
         }
       } @else {
