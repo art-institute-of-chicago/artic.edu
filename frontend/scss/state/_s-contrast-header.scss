@@ -29,11 +29,15 @@
 
   .g-header__logo,
   .g-header__opening-hours,
-  .g-header__opening-hours a {
+  .g-header__opening-hours a,
+  .g-header__menu-link,
+  .g-header__menu-link:active {
     color: $color__text--title-contrast;
   }
 
-  .g-header__nav-secondary a {
+  .g-header__nav-secondary a,
+  .g-header__menu-link:hover,
+  .g-header__menu-link:focus {
     color: rgba($color__text--title-contrast, .7);
   }
 }

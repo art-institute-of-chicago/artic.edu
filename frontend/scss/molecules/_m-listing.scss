@@ -1,30 +1,6 @@
 /***
 
 ```
-<ul class="o-features">
-  <li class="m-listing m-listing--feature o-features__hero">
-    <a href="#" class="m-listing__link">
-      <span class="m-listing__img">
-        <img src="http://placehold.dev.area17.com/image/400x225">
-      </span>
-      <span class="m-listing__meta">
-        <em class="type f-tag">Now open</em> <span class="m-listing__bottom date f-secondary">Oct 29, 2017</span><br>
-        <strong class="title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong>
-      </span>
-    </a>
-  </li>
-  <li class="m-listing m-listing--feature">
-    <a href="#" class="m-listing__link">
-      <span class="m-listing__img">
-        <img src="http://placehold.dev.area17.com/image/400x225">
-      </span>
-      <span class="m-listing__meta">
-        <em class="type f-tag">Now open</em> <span class="m-listing__bottom date f-secondary">Oct 29, 2017</span><br>
-        <strong class="title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong>
-      </span>
-    </a>
-  </li>
-</ul>
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
   <li class="m-listing">
     <a href="#" class="m-listing__link">
@@ -32,9 +8,8 @@
         <img src="http://placehold.dev.area17.com/image/400x225">
       </span>
       <span class="m-listing__meta">
-        <span class="m-listing__meta-top">
-          <em class="type f-tag">Special Exhibition</em>
-        </span><br>
+        <em class="type f-tag">Special Exhibition</em>
+        <br>
         <strong class="title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong><br>
         <span class="m-listing__meta-bottom">
           <span class="date f-secondary">Through September 29, 2017</span>
@@ -75,6 +50,7 @@
 
 .m-listing {
   display: flex;
+  position: relative;
   flex-flow: column nowrap;
 }
 
@@ -177,17 +153,17 @@
   }
 }
 
-.m-listing__meta--l {
-  min-height: 168px;
+    .m-listing__meta--l {
+      min-height: 168px;
 
-  @include breakpoint('medium+') {
-    min-height: 176px;
-  }
+      @include breakpoint('medium+') {
+        min-height: 176px;
+      }
 
-  @include breakpoint('large+') {
-    min-height: 184px;
-  }
-}
+      @include breakpoint('large+') {
+        min-height: 184px;
+      }
+    }
 
 .m-listing__meta:first-child {
   min-height: 0;
@@ -199,11 +175,6 @@
 
 .m-listing__meta > br {
   display: none;
-}
-
-.m-listing__meta-top {
-  display: block;
-  padding-top: .02px;
 }
 
 .m-listing__meta-bottom {
@@ -237,6 +208,10 @@
   @include tucked-margin-top($f-list-4, ('xsmall': 32));
 }
 
+.m-listing__meta .f-list-5 {
+  @include tucked-margin-top($f-list-5, ('xsmall': 32, 'small+': 44, 'medium': 40, 'large': 48));
+}
+
 .m-listing__meta .f-body {
   @include tucked-margin-top($f-body, ('xsmall': 48));
 }
@@ -248,61 +223,179 @@
 
 // variant `m-listing--feature`
 
-.m-listing--feature .m-listing__link {
+@include breakpoint('small+') {
+  .m-listing--feature .m-listing__link {
+    display: block;
+    position: relative;
+    height: auto;
+  }
+
+  .m-listing--feature .m-listing__img {
+    display: block;
+    position: relative;
+    max-height: 95vh;
+    overflow: hidden;
+  }
+
+  .m-listing--feature .m-listing__img::before {
+    padding-bottom: percentage(9 / 16); // 16:9
+  }
+
+  .m-listing--feature .m-listing__img::after {
+    content: none;
+    display: none;
+  }
+
+  .m-listing--feature .m-listing__meta {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    min-height: 0;
+    padding: 20px;
+    background-color: rgba(0,0,0,.25);
+
+    @include breakpoint('large+') {
+      padding: 40px;
+    }
+  }
+
+  .m-listing--feature .m-listing__link:hover .m-listing__meta {
+    background-color: rgba(0,0,0,.3);
+  }
+
+  .m-listing--feature .type,
+  .m-listing--feature .title,
+  .m-listing--feature .date {
+    color: $color__text--title-contrast;
+  }
+
+  .m-listing--feature .m-listing__link:hover .title {
+    color: $color__text--title-contrast;
+    opacity: 1;
+  }
+}
+
+
+// variant `m-listing--hero`
+
+.m-listing--hero {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin-right: auto;
+  margin-left: -50vw;
+}
+
+.m-listing--hero .m-listing__link {
   display: block;
   position: relative;
   height: auto;
 }
 
-.m-listing--feature .m-listing__img {
+.m-listing--hero .m-listing__img {
   display: block;
   position: relative;
   max-height: 95vh;
   overflow: hidden;
 }
 
-.m-listing--feature .m-listing__img::before {
-  padding-bottom: 56.25%;
+.m-listing--hero .m-listing__img::before {
+  padding-bottom: 100%; // 1:1
+
+  @include breakpoint('medium+') {
+    padding-bottom: percentage(9 / 16); // 16:9
+  }
 }
 
-.m-listing--feature .m-listing__img::after {
+.m-listing--hero .m-listing__img::after {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
-  background-image: linear-gradient(to top, rgba(0,0,0,.3) 0%, rgba(0,0,0,.033) 20%, rgba(0,0,0,0) 50%);
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 80%, rgba(0,0,0,0) 100%);
+  transition: none;
 }
 
+.m-listing--hero .m-listing__img::after,
+.m-listing--hero .m-listing__link:hover .m-listing__img::after,
+.m-listing--hero .m-listing__link:focus .m-listing__img::after {
+  height: 220px;
 
-.o-features__hero-100vw.m-listing--feature .m-listing__img::after {
-  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 48px, rgba(0,0,0,0) 240px, rgba(0,0,0,0) calc(100% - 320px), rgba(0,0,0,.4) 100%);
-}
-
-.m-listing--feature .m-listing__meta {
-  position: absolute;
-  left: 20px;
-  right: 20%;
-  bottom: 20px;
-  min-height: 0;
-
-  @include breakpoint('large+') {
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
+  @include breakpoint('small+') {
+    height: 300px;
   }
 }
 
-.m-listing--feature .type,
-.m-listing--feature .title {
+.m-listing--hero .m-listing__meta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 0;
+  padding: 0.02px 20% 24px colspan(3, 'xsmall');
+  background-color: rgba(0,0,0,.25);
+
+  @include breakpoint('small+') {
+    padding-right: 40%;
+    padding-left: colspan(3, 'small');
+  }
+
+  @include breakpoint('medium+') {
+    left: 50%;
+    right: auto;
+    bottom: 32px;
+    width: colspan(28, medium);
+    margin-left: colspan(29, medium, 0, true);
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  @include breakpoint('large+') {
+    bottom: 40px;
+    width: colspan(28, large);
+    margin-left: colspan(29, large, 0, true);
+    padding-right: 40px;
+    padding-bottom: 28px;
+    padding-left: 40px;
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(28, xlarge);
+    margin-left: colspan(29, xlarge, 0, true);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(28, xxlarge);
+    margin-left: colspan(29, xxlarge, 0, true);
+  }
+}
+
+.m-listing--hero .m-listing__link:hover .m-listing__meta {
+  background-color: rgba(0,0,0,.3);
+}
+
+.m-listing--hero .type,
+.m-listing--hero .title,
+.m-listing--hero .date {
   color: $color__text--title-contrast;
 }
 
-.m-listing--feature .date {
-  color: $color__text--contrast;
+.m-listing--hero .m-listing__link:hover .title {
+  color: $color__text--title-contrast;
+  opacity: 1;
 }
 
+.m-listing--hero .m-listing__meta .f-tag {
+  @include tucked-margin-top($f-tag, ('xsmall': 40, 'small+': 56, 'large+': 92));
+}
+
+.m-listing--hero .m-listing__meta .f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small+': 56, 'large+': 92));
+}
 
 
 // variant 'm-listing--keyline-top'

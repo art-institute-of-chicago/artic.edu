@@ -4,24 +4,6 @@ Basic flexed set up
 
 ***/
 
-$grid-margin-tops: (
-  xsmall: 28,
-  small: 28,
-  medium: 28,
-  large: 32,
-  xlarge: 32,
-  xxlarge: 32,
-);
-
-$grid-padding-tops: (
-  xsmall: 2,
-  small: 1.5,
-  medium: 1.5,
-  large: 1.5,
-  xlarge: 1.5,
-  xxlarge: 1.5,
-);
-
 .o-grid-listing {
   display: flex;
   position: relative;

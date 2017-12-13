@@ -5,71 +5,118 @@
   flex-flow: row wrap;
   margin-top: 0;
 
+  @include breakpoint('small+') {
+    margin-right: colspan(2, small, 0, true);
+    margin-left: colspan(2, small, 0, true);
+  }
+
   @include breakpoint('medium+') {
-    margin-right: -2px;
-    margin-left: -2px;
+    margin-right: colspan(2, medium, 0, true);
+    margin-left: colspan(2, medium, 0, true);
+  }
+
+  @include breakpoint('large+') {
+    margin-right: colspan(2, large, 0, true);
+    margin-left: colspan(2, large, 0, true);
+  }
+
+  @include breakpoint('xlarge+') {
+    margin-right: colspan(2, xlarge, 0, true);
+    margin-left: colspan(2, xlarge, 0, true);
+  }
+
+  @include breakpoint('xxlarge') {
+    margin-right: colspan(2, xxlarge, 0, true);
+    margin-left: colspan(2, xxlarge, 0, true);
   }
 }
 
 .o-features > * {
   flex: 0 0 auto;
+}
+
+.o-features > *:not(.m-listing--hero) {
   width: 100%;
-  margin-top: 4px;
+  margin-top: #{map-get($grid-margin-tops, 'xsmall')}px;
+  padding-top: colspan(map-get($grid-padding-tops, 'xsmall'), 'xsmall');
 
-  @include breakpoint('medium+') {
-    width: calc(100% - 4px);
-    margin-right: 2px;
-    margin-left: 2px;
+  @include breakpoint('small+') {
+    width: colspan(grid-cols-to-colspan(2), 'small');
+    margin-top: colspan(2, small);
+    margin-left: colspan(2, small);
+    padding-top: 0;
   }
-}
-
-.o-features > *:first-child {
-  margin-top: 0;
-}
-
-.o-features > *:not(.o-features__hero-100vw) {
 
   @include breakpoint('medium+') {
-    width: calc(50% - 4px);
-  }
-}
-
-
-// child variant `o-features__hero-100vw`
-
-.o-features__hero-100vw {
-  @include breakpoint('medium+') {
-    position: relative;
-    left: 50%;
-    width: 100vw;
-    margin-right: auto;
-    margin-left: -50vw;
-  }
-}
-
-.o-features__hero-100vw.m-listing--feature .m-listing__meta {
-  @include breakpoint('medium+') {
-    left: 50%;
-    width: colspan(40, medium);
-    margin-left: colspan(29, medium, 0, true);
+    width: colspan(grid-cols-to-colspan(2), 'medium');
+    margin-top: colspan(2, medium);
   }
 
   @include breakpoint('large+') {
-    left: 50%;
-    bottom: 60px;
-    width: colspan(29, large);
-    margin-left: colspan(29, large, 0, true);
+    width: colspan(grid-cols-to-colspan(2), 'large');
+    margin-top: colspan(2, large);
   }
 
   @include breakpoint('xlarge+') {
-    left: 50%;
-    width: colspan(29, xlarge);
-    margin-left: colspan(29, xlarge, 0, true);
+    width: colspan(grid-cols-to-colspan(2), 'xlarge');
+    margin-top: colspan(2, xlarge);
   }
 
   @include breakpoint('xxlarge') {
-    left: 50%;
-    width: colspan(29, xxlarge);
-    margin-left: colspan(29, xxlarge, 0, true);
+    width: colspan(grid-cols-to-colspan(2), 'xxlarge');
+    margin-top: colspan(2, xxlarge);
+  }
+}
+
+.o-features > *:not(.m-listing--hero)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+  pointer-events: none;
+
+  @include breakpoint('small+') {
+    content: none;
+    display: none;
+  }
+}
+
+.o-features > .m-listing--hero {
+  @include breakpoint('small+') {
+    left: 0;
+    margin-right: colspan(1, small, 0, true);
+    margin-left: colspan(1, small, 0, true);
+  }
+
+  @include breakpoint('medium+') {
+    margin-right: colspan(1, medium, 0, true);
+    margin-left: colspan(1, medium, 0, true);
+  }
+
+  @include breakpoint('large+') {
+    margin-right: colspan(1, large, 0, true);
+    margin-left: colspan(1, large, 0, true);
+  }
+
+  @include breakpoint('xlarge+') {
+    margin-right: colspan(1, xlarge, 0, true);
+    margin-left: colspan(1, xlarge, 0, true);
+  }
+
+  @include breakpoint('xxlarge') {
+    margin-right: 0;
+    margin-left: calc(((100vw - #{map-get($main-col-widths, xxlarge)}) / -2) + #{colspan(2, xxlarge)});
+  }
+}
+
+.o-features > .m-listing--hero + * {
+  padding-top: 0;
+
+  &::before {
+    content: none;
+    display: none;
   }
 }

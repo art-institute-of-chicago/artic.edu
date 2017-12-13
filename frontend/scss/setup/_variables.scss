@@ -56,3 +56,23 @@ $bezier--bounce: cubic-bezier(.5, -.6, .5, 1.6);
 $bezier--ease-in-out: cubic-bezier(.445, .05, .55, .95);
 $bezier--ease-out-circ: cubic-bezier(.075, .82, .165, 1);
 $bezier--ease-in-circ: cubic-bezier(.6, .04, .98, .335);
+
+// grid spacing, used in `.o-grid-listing` and `.o-features`
+
+$grid-margin-tops: (
+  xsmall: 28,
+  small: 28,
+  medium: 28,
+  large: 32,
+  xlarge: 32,
+  xxlarge: 32,
+);
+
+$grid-padding-tops: (
+  xsmall: 2,
+  small: 1.5,
+  medium: 1.5,
+  large: 1.5,
+  xlarge: 1.5,
+  xxlarge: 1.5,
+);
