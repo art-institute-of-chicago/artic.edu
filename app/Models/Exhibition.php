@@ -5,10 +5,11 @@ namespace App\Models;
 use A17\CmsToolkit\Models\Model;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug;
+    use HasRevisions, HasSlug, HasMedias;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
 
@@ -36,11 +37,12 @@ class Exhibition extends Model
 
     public $dates = ['start_date', 'end_date'];
 
-    // fill this in if you use the HasMedias traits
-    // public $mediasParams = [];
-
-    // fill this in if you use the HasFiles traits
-    // public $filesParams = [];
+    public $mediasParams = [
+        'hero' => [
+            'default' => '16/9',
+            'square' => '1',
+        ]
+    ];
 
     public function siteTags()
     {

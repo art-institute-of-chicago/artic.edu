@@ -4,11 +4,12 @@ namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
+use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use App\Models\Exhibition;
 
 class ExhibitionRepository extends ModuleRepository
 {
-    use HandleRevisions;
+    use HandleRevisions, HandleMedias;
 
     public function __construct(Exhibition $model)
     {
