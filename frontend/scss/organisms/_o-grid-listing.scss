@@ -89,6 +89,8 @@ Variant: `o-listing--single-row` - limits to a single row
         margin-left: colspan(3, $name, 0, true);
         padding-left: colspan(1, $name);
       }
+      margin-bottom: -4px;
+      padding-bottom: 4px;
       overflow-x: auto;
       overflow-y: hidden;
       cursor: ew-resize;
@@ -125,8 +127,13 @@ Variant: `o-listing--single-row` - limits to a single row
           margin-left: 0;
         }
       }
-
     }
+
+    .o-grid-listing--gridlines-right.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:not(:last-child)::after,
+    .o-grid-listing--gridlines-cols.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:not(:last-child)::after {
+      display: block;
+    }
+
   }
 }
 
