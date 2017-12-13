@@ -189,7 +189,7 @@
 }
 
 .m-listing__link:hover .title {
-  opacity: .6;
+  opacity: .9;
 }
 
 .m-listing__meta .f-tag {
@@ -205,7 +205,7 @@
 }
 
 .m-listing__meta .f-list-4 {
-  @include tucked-margin-top($f-list-4, ('xsmall': 32));
+  @include tucked-margin-top($f-list-4, ('xsmall': 32, 'large': 40));
 }
 
 .m-listing__meta .f-list-5 {
@@ -218,6 +218,11 @@
 
 .m-listing__meta .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 36));
+}
+
+.m-listing__meta .f-secondary + br + .f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall':16));
+  color: $color__text--tertiary;
 }
 
 

@@ -56,7 +56,7 @@ class StaticsController extends Controller {
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'heroExhibitions' => $this->getExhibitions(3),
       'featuredExhibitions' => $this->getExhibitions(2),
-      'exhibitions' => $this->getExhibitions(4),
+      'events' => $this->getEvents(4),
       'products' => $this->getProducts(5),
     ]);
   }
@@ -155,6 +155,7 @@ class StaticsController extends Controller {
       "id" => $this->faker->uuid,
       "slug" => "/statics/event",
       "title" => $this->faker->sentence(6, true),
+      "dateFormatted" => $this->getFormattedDateString(),
       "timeStart" => $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30')),
       "timeEnd" => $this->makeEventTime(($hour+1), ($this->faker->boolean() ? '00' : '30')),
       "exclusive" => $this->faker->boolean(30),

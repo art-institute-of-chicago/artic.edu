@@ -30,33 +30,35 @@ array_push($linksBarSecondary, array('text' => 'Directions and parking', 'href' 
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Explore What&rsquo;s on', 'href' => '#')))
-    What&rsquo;s on Today
+    @slot('links', array(array('text' => 'Browse all current exhibitions', 'href' => '#')))
+    Exhibitions and Events
 @endcomponent
-
+<hr>
 @component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+    @slot('cols_small','2')
     @slot('cols_medium','2')
     @slot('cols_large','2')
     @slot('cols_xlarge','2')
     @slot('cols_xxlarge','2')
     @foreach ($featuredExhibitions as $exhibition)
         @component('components.molecules._m-listing----exhibition')
+            @slot('titleFont', 'f-list-4')
             @slot('exhibition', $exhibition)
         @endcomponent
     @endforeach
 @endcomponent
-
+<hr>
 @component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
-    @slot('cols_small','2')
+    @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
     @slot('cols_medium','3')
     @slot('cols_large','4')
     @slot('cols_xlarge','4')
     @slot('cols_xxlarge','4')
-    @foreach ($exhibitions as $exhibition)
-        @component('components.molecules._m-listing----exhibition')
-            @slot('exhibition', $exhibition)
+    @slot('behavior','dragScroll')
+    @foreach ($events as $event)
+        @component('components.molecules._m-listing----event')
+            @slot('event', $event)
         @endcomponent
     @endforeach
 @endcomponent
