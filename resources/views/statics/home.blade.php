@@ -13,20 +13,12 @@
 @endcomponent
 
 @component('components.molecules._m-intro-block')
+    @slot('links', array(array('text' => 'Plan your visit', 'href' => '#', 'variation' => 'btn')))
     {{ $intro }}
 @endcomponent
 
-@php
-$linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Plan your visit', 'href' => '#'));
-$linksBarSecondary = array();
-array_push($linksBarSecondary, array('text' => 'Hours and admission', 'href' => '#', 'icon' => 'icon--arrow', 'variation' => 'arrow-link'));
-array_push($linksBarSecondary, array('text' => 'Directions and parking', 'href' => '#', 'icon' => 'icon--arrow', 'variation' => 'arrow-link'));
-@endphp
 @component('components.molecules._m-links-bar')
-    @slot('variation', 'buttons')
-    @slot('linksPrimary', $linksBarPrimary)
-    @slot('linksSecondary', $linksBarSecondary)
+    @slot('linksPrimary', array(array('text' => 'Hours and admission fees', 'href' => '#', 'variation' => 'arrow-link', 'icon' => 'icon--arrow'), array('text' => 'Directions and parking', 'href' => '#', 'variation' => 'arrow-link', 'icon' => 'icon--arrow')))
 @endcomponent
 
 @component('components.molecules._m-title-bar')
@@ -61,6 +53,10 @@ array_push($linksBarSecondary, array('text' => 'Directions and parking', 'href' 
             @slot('event', $event)
         @endcomponent
     @endforeach
+@endcomponent
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'm-links-bar--title-bar-companion')
+    @slot('linksPrimary', array(array('text' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
 @component('components.molecules._m-title-bar')
