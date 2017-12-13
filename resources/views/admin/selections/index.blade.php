@@ -6,6 +6,14 @@
     'search' => true,
     'publish' => true,
     'columns' => [
+        'image' => [
+            'title' => 'Hero',
+            'thumb' => true,
+            'variant' => [
+                'role' => 'hero',
+                'crop' => 'square',
+            ],
+        ],
         'title' => [
             'title' => 'Title',
             'edit_link' => true,

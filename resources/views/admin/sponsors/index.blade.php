@@ -6,6 +6,14 @@
     'search' => true,
     'publish' => true,
     'columns' => [
+        'image' => [
+            'title' => 'Logo',
+            'thumb' => true,
+            'variant' => [
+                'role' => 'logo',
+                'crop' => 'default'
+            ],
+        ],
         'title' => [
             'title' => 'Title',
             'edit_link' => true,
