@@ -139,11 +139,12 @@ Variant: `o-listing--single-row` - limits to a single row
 
 /***
 
-Following a <hr>
+Following a <hr> or <tag class="hr"></tag>
 
 ***/
 
-hr + .o-grid-listing {
+hr + .o-grid-listing,
+.hr + .o-grid-listing {
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       margin-top: 0;
@@ -155,7 +156,9 @@ hr + .o-grid-listing {
 @each $name, $point in $breakpoints {
   @include breakpoint('#{$name}') {
     hr + .o-grid-listing--gridlines-top[class*="col@#{$name}"],
-    hr + .o-grid-listing--gridlines-rows[class*="col@#{$name}"] {
+    hr + .o-grid-listing--gridlines-rows[class*="col@#{$name}"],
+    .hr + .o-grid-listing--gridlines-top[class*="col@#{$name}"],
+    .hr + .o-grid-listing--gridlines-rows[class*="col@#{$name}"] {
       padding-top: 0;
     }
   }
@@ -349,7 +352,8 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
 }
 
 // if following a hr and no grid lines, tweak position
-hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::after {
+hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::after,
+.hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::after {
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       top: #{0 - map-get($grid-margin-tops, $name)}px;

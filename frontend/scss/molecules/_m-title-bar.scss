@@ -12,7 +12,8 @@
     margin-top: 40px;
   }
 
-  hr + & {
+  hr + &,
+  .hr + & {
     margin-top: 0;
     padding-top: 0;
     border-top: 0;

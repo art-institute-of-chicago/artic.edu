@@ -63,9 +63,9 @@
   color: $color__text--title-contrast;
 }
 
-.o-gallery hr {
+.o-gallery hr,
+.o-gallery .hr {
   margin-top: 0;
-  margin-bottom: -1px;
   border-top-color: $color__rules--contrast;
 }
 
