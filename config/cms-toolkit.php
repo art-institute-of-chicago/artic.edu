@@ -12,7 +12,9 @@ return [
 
     'enabled' => [
         'users-in-top-right-nav' => true,
-        'buckets' => true
+        'buckets' => true,
+        'media-library' => true,
+        'file-library' => true
     ],
 
     'buckets' => [
