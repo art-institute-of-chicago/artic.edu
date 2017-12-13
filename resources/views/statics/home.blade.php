@@ -25,7 +25,7 @@
     @slot('links', array(array('text' => 'Browse all current exhibitions', 'href' => '#')))
     Exhibitions and Events
 @endcomponent
-<hr>
+<span class="hr"></span>
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
     @slot('cols_small','2')
@@ -33,14 +33,14 @@
     @slot('cols_large','2')
     @slot('cols_xlarge','2')
     @slot('cols_xxlarge','2')
-    @foreach ($featuredExhibitions as $exhibition)
+    @foreach ($exhibitions as $exhibition)
         @component('components.molecules._m-listing----exhibition')
             @slot('titleFont', 'f-list-4')
             @slot('exhibition', $exhibition)
         @endcomponent
     @endforeach
 @endcomponent
-<hr>
+<span class="hr"></span>
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
     @slot('cols_medium','3')

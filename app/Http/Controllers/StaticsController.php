@@ -55,7 +55,7 @@ class StaticsController extends Controller {
       'filledLogo' => true,
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'heroExhibitions' => $this->getExhibitions(3),
-      'featuredExhibitions' => $this->getExhibitions(2),
+      'exhibitions' => $this->getExhibitions(2),
       'events' => $this->getEvents(4),
       'products' => $this->getProducts(5),
     ]);
