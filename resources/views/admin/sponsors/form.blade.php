@@ -19,5 +19,12 @@
             'field' => 'copy',
             'field_name' => 'Sponsor Copy',
         ])
+
+        @formField('medias', [
+            'media_role' => 'logo',
+            'media_role_name' => 'Logo',
+            'with_multiple' => false,
+            'no_crop' => false
+        ])
     </section>
 @stop

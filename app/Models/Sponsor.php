@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Model;
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 
 class Sponsor extends Model
 {
+    use HasMedias;
+
     protected $fillable = [
         'published',
         'title',
@@ -18,6 +21,9 @@ class Sponsor extends Model
     // those fields get auto set to false if not submited
     public $checkboxes = [];
 
-    // fill this in if you use the HasMedias traits
-    // public $mediasParams = [];
+    public $mediasParams = [
+        'logo' => [
+            'default' => '1',
+        ]
+    ];
 }
