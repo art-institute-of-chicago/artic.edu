@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
 
 class Selection extends Model
 {
-    use HasSlug;
+    use HasSlug, HasMedias;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
 
@@ -27,6 +28,13 @@ class Selection extends Model
 
     // those fields get auto set to false if not submited
     public $checkboxes = [];
+
+    public $mediasParams = [
+        'hero' => [
+            'default' => '16/9',
+            'square' => '1',
+        ]
+    ];
 
     public function artworks()
     {

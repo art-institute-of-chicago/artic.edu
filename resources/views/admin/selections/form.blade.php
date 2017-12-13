@@ -19,6 +19,14 @@
             'field' => 'short_copy',
             'field_name' => 'Short Intro copy',
         ])
+
+        @formField('medias', [
+            'media_role' => 'hero',
+            'media_role_name' => 'Hero',
+            'with_multiple' => true,
+            'no_crop' => false,
+            'max' => 2
+        ])
     </section>
 
     @formField('browser', [
