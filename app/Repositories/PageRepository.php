@@ -10,7 +10,7 @@ use App\Models\Page;
 
 class PageRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions;
+    use HandleSlugs, HandleRevisions, HandleMedias;
 
     public function __construct(Page $model)
     {

@@ -11,7 +11,7 @@ use App\Models\Admission as Admission;
 
 class Page extends Model
 {
-    use HasSlug, HasRevisions;
+    use HasSlug, HasRevisions, HasMedias;
 
     // protected static function boot()
     // {
@@ -52,13 +52,12 @@ class Page extends Model
         'title',
     ];
 
-    // // fill this in if you use the HasMedias traits
-    // public $mediasParams = [
-    //     'hero' => [
-    //             'default' => '16/9',
-    //             'square' => '1',
-    //         ],
-    // ];
+    public $mediasParams = [
+        'visit_hero' => [
+            'default' => '16/9',
+            'square' => '1',
+        ],
+    ];
 
     public function homeExhibitions()
     {
