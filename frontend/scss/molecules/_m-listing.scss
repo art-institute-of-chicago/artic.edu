@@ -540,7 +540,7 @@
 }
 
 .m-listing--row .m-listing__meta .f-list-4 {
-  @include tucked-margin-top($f-list-4, ('xsmall': 32, 'small+': 20, 'large+': 24));
+  @include tucked-align-top($f-list-4);
 }
 
 .m-listing--row .m-listing__meta .f-tag {
@@ -714,8 +714,8 @@
 }
 
 .m-listing--inline .m-listing__meta .type {
-  @include tucked-margin-top($f-tag, ('xsmall': 8));
   display: inline-block;
+  @include tucked-align-top($f-tag);
 }
 
 .m-listing--inline .m-listing__meta .f-list-2 {

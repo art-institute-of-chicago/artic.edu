@@ -95,11 +95,45 @@
         $line-height: $new-line-height;
         $margin: $new-margin;
         $push: $new-push;
-        @if ($name == 'xsmall') {
+        @if ($name == 'xsmall' or $single-bp) {
           margin-top: #{$margin - $line-height}px;
         } @else {
           @include breakpoint(#{$name}) {
             margin-top: #{$margin - $line-height}px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin tucked-align-top($font-obj, $single-bp: false) {
+  $settings: false;
+  $pull: 0;
+  $new-pull: 0;
+  @if $font-obj {
+    $settings: map-get($font-obj, settings);
+  }
+  @if $settings {
+    @each $name, $point in $breakpoints-with-directions {
+      // first see if font settings has a line height for this breakpoint
+      @if map-has-key($settings, $name) {
+        $settings-at-breakpoint: map-get($settings, $name);
+        @if map-has-key($settings-at-breakpoint, pull) {
+          $new-pull: map-get($settings-at-breakpoint, pull);
+        }
+      }
+      // now set the margin top
+      @if ($new-pull != $pull) {
+        $pull: $new-pull;
+        $base-height-into-pull: round($pull / $base-height); // round or floor? erm
+        // round will be closer but has the risk of drawing too much negative margin
+        $margin-top: 0 - ($base-height-into-pull * $base-height);
+        @if ($name == 'xsmall' or $single-bp) {
+          margin-top: #{$margin-top}px;
+        } @else {
+          @include breakpoint(#{$name}) {
+            margin-top: #{$margin-top}px;
           }
         }
       }
