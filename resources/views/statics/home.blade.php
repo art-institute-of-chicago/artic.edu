@@ -54,6 +54,7 @@
         @endcomponent
     @endforeach
 @endcomponent
+
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
     @slot('linksPrimary', array(array('text' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
@@ -65,17 +66,23 @@
 @endcomponent
 
 @component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
-    @slot('cols_small','2')
-    @slot('cols_medium','3')
-    @slot('cols_large','4')
+    @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
+    @slot('cols_medium','4')
+    @slot('cols_large','5')
     @slot('cols_xlarge','5')
     @slot('cols_xxlarge','5')
+    @slot('behavior','dragScroll')
     @foreach ($products as $product)
         @component('components.molecules._m-listing----product')
+            @slot('simple', true)
             @slot('product', $product)
         @endcomponent
     @endforeach
+@endcomponent
+
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'm-links-bar--title-bar-companion')
+    @slot('linksPrimary', array(array('text' => 'Explore the Shop', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
 @endsection
