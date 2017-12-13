@@ -9,7 +9,7 @@ use A17\CmsToolkit\Models\Model;
 
 class Event extends Model
 {
-    use HasSlug, HasRevisions;
+    use HasSlug, HasRevisions, HasMedias;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
 
@@ -45,8 +45,12 @@ class Event extends Model
 
     public $dates = ['start_date', 'end_date'];
 
-    // fill this in if you use the HasMedias traits
-    // public $mediasParams = [];
+    public $mediasParams = [
+        'hero' => [
+            'default' => '16/9',
+            'square' => '1',
+        ]
+    ];
 
     // fill this in if you use the HasFiles traits
     // public $filesParams = [];

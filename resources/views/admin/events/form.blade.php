@@ -58,6 +58,12 @@
                     'field' => 'datahub_id',
                     'field_name' => 'Datahub ID'
                 ])
+                @formField('medias', [
+                    'media_role' => 'hero',
+                    'media_role_name' => 'Hero',
+                    'with_multiple' => false,
+                    'no_crop' => false
+                ])
                 @formField('input', [
                     'field' => 'admission',
                     'field_name' => 'Admission',

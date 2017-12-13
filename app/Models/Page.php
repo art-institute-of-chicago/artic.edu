@@ -56,7 +56,7 @@ class Page extends Model
         'visit_hero' => [
             'default' => '16/9',
             'square' => '1',
-        ],
+        ]
     ];
 
     public function homeExhibitions()

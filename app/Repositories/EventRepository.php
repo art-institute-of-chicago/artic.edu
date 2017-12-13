@@ -10,7 +10,7 @@ use App\Models\Event;
 
 class EventRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions;
+    use HandleSlugs, HandleRevisions, HandleMedias;
 
     public function __construct(Event $model)
     {
