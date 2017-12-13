@@ -4,6 +4,11 @@
   position: relative;
   margin-top: 40px;
 
+  @include breakpoint('medium+') {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
   .m-header-block + &::before {
     content: '';
     position: absolute;
@@ -24,11 +29,50 @@
   }
 }
 
-.m-intro-block .f-deck {
-
+.m-intro-block__intro {
   color: $color__text--contrast;
 
   @include breakpoint('medium+') {
-    max-width: 98%;
+    flex: 1 1 auto;
   }
+}
+
+.m-intro-block__intro.f-deck {
+ @include tucked-align-top($f-deck);
+}
+
+
+.m-intro-block .m-intro-block__links {
+  margin-top: 40px;
+
+  @include breakpoint('medium+') {
+    flex: 0 0 auto;
+    width: colspan(15, medium);
+    margin-top: 0;
+    margin-left: colspan(5, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(15, large);
+    margin-left: colspan(5, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(15, xlarge);
+    margin-left: colspan(5, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(15, xxlarge);
+    margin-left: colspan(5, xxlarge);
+  }
+}
+
+.m-intro-block .m-intro-block__link:not(:first-child) {
+  margin-top: 20px;
+}
+
+.m-intro-block .m-intro-block__link-trigger {
+  display: block;
+  width: 100%;
 }
