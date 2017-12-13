@@ -27,6 +27,8 @@
     Dictum consectetur nunc eu luctus lacus <a href="#">integer auctor</a> velit ac porttitor malesuada
 @endcomponent
 
+<span class="hr"></span>
+<p class="f-quote">radio:</p>
 <p>
   @component('components.atoms._radio')
     @slot('id', 'roption1')
@@ -56,6 +58,8 @@
     @slot('error', 'Error message')
   @endcomponent
 </p>
+<span class="hr"></span>
+<p class="f-quote">checkbox:</p>
 <p>
   @component('components.atoms._checkbox')
     @slot('id', 'coption1')
@@ -85,6 +89,8 @@
     @slot('error', 'Error message')
   @endcomponent
 </p>
+<span class="hr"></span>
+<p class="f-quote">input:</p>
 <p>
   @component('components.atoms._input')
     @slot('id', 'tinput1')
@@ -129,6 +135,8 @@
       Label
     @endcomponent
 </p>
+<span class="hr"></span>
+<p class="f-quote">select:</p>
 <p>
     @component('components.atoms._select')
       @slot('id', 'select1')
@@ -156,6 +164,8 @@
     Label
   @endcomponent
 </p>
+<span class="hr"></span>
+<p class="f-quote">btn:</p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
         Default
@@ -309,7 +319,8 @@
         @slot('behavior','printPage')
     @endcomponent
 </p>
-<p class="f-body">Tags</p>
+<span class="hr"></span>
+<p class="f-quote">tag:</p>
 <p style="margin-top: 20px;">
     @component('components.atoms._tag')
         Kanan Jarrus
@@ -319,6 +330,8 @@
     @endcomponent
 </p>
 
+<span class="hr"></span>
+<p class="f-quote">dropdown:</p>
 <div style="margin-top: 20px;">
   @component('components.atoms._dropdown')
     @slot('prompt', 'Dropdown')
@@ -346,6 +359,8 @@
   @endcomponent
 </div>
 
+<span class="hr"></span>
+<p class="f-quote">arrow-link:</p>
 <p>
     @component('components.atoms._arrow-link')
         Forward
@@ -367,14 +382,33 @@
     @endcomponent
 </p>
 
+<span class="hr"></span>
+<p class="f-quote">m-intro-block:</p>
+
 @component('components.molecules._m-intro-block')
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.
 @endcomponent
+
+@component('components.molecules._m-intro-block')
+    @slot('links', array(array('text' => 'Plan your visit', 'href' => '#', 'variation' => 'btn')))
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.
+@endcomponent
+
+<span class="hr"></span>
+<p class="f-quote">m-title-bar:</p>
 
 @component('components.molecules._m-title-bar')
     @slot('links', array(array('text' => 'Explore What&rsquo;s on', 'href' => '#')))
     What&rsquo;s on Today
 @endcomponent
+
+@component('components.molecules._m-title-bar')
+    @slot('links', array(array('text' => 'Browse all current exhibitions', 'href' => '#')))
+    Exhibitions and Events
+@endcomponent
+
+<span class="hr"></span>
+<p class="f-quote">m-links-bar:</p>
 
 @php
 $linksBarPrimary = array();
@@ -422,8 +456,8 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true, 'icon' => 'icon--arrow'));
-array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false, 'icon' => 'icon--arrow'));
+array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'variation' => 'arrow-link', 'active' => true, 'icon' => 'icon--arrow'));
+array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'variation' => 'arrow-link', 'active' => false, 'icon' => 'icon--arrow'));
 $linksBarPrimarySecondary = array();
 array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#', 'icon' => 'icon--arrow'));
 @endphp
@@ -441,7 +475,7 @@ array_push($linksBarPrimary, array('text' => 'Btn 4', 'href' => '#', 'variation'
 array_push($linksBarPrimary, array('text' => 'Btn 5', 'href' => '#', 'variation' => 'btn--secondary btn--w-icon', 'icon' => 'icon--new-window'));
 @endphp
 @component('components.molecules._m-links-bar')
-    @slot('variation', 'buttons')
+    @slot('variation', 'm-links-bar--buttons')
     @slot('linksPrimary', $linksBarPrimary)
 @endcomponent
 
@@ -457,6 +491,13 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
     @slot('linksSecondary', $linksBarPrimarySecondary)
 @endcomponent
 
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'm-links-bar--title-bar-companion')
+    @slot('linksPrimary', array(array('text' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
+@endcomponent
+
+<span class="hr"></span>
+<p class="f-quote">m-aside-newsletter:</p>
 
 @component('components.molecules._m-aside-newsletter')
 @endcomponent
@@ -466,6 +507,9 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 @component('components.molecules._m-aside-newsletter')
     @slot('success', 'Successfully signed up to the newsletter')
 @endcomponent
+
+<span class="hr"></span>
+<p class="f-quote">date-select-trigger:</p>
 
 <p style="margin-top: 20px;">
     @component('components.atoms._date-select-trigger')
@@ -493,6 +537,9 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
         @slot('endHiddenInputId', 'dateEnd01')
     @endcomponent
 </p>
+
+<span class="hr"></span>
+<p class="f-quote">date-select-trigger in m-links-bar:</p>
 
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', array(array('text' => 'Exhibitions', 'href' => '#', 'active' => false)))
