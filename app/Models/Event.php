@@ -52,9 +52,6 @@ class Event extends Model
         ]
     ];
 
-    // fill this in if you use the HasFiles traits
-    // public $filesParams = [];
-
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');

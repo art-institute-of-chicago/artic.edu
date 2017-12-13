@@ -35,6 +35,12 @@
                     'field' => 'copy',
                     'field_name' => 'Short Copy'
                 ])
+                @formField('medias', [
+                    'media_role' => 'hero',
+                    'media_role_name' => 'Hero',
+                    'with_multiple' => false,
+                    'no_crop' => false
+                ])
             </section>
         </section>
     </section>

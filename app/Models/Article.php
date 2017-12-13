@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Model;
 
 class Article extends Model
 {
-    use HasSlug, HasRevisions;
+    use HasSlug, HasRevisions, HasMedias;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
 
@@ -32,11 +33,12 @@ class Article extends Model
 
     public $dates = ['date'];
 
-    // fill this in if you use the HasMedias traits
-    // public $mediasParams = [];
-
-    // fill this in if you use the HasFiles traits
-    // public $filesParams = [];
+    public $mediasParams = [
+        'hero' => [
+            'default' => '16/9',
+            'square' => '1',
+        ]
+    ];
 
     public function siteTags()
     {
