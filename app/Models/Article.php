@@ -64,4 +64,9 @@ class Article extends Model
     {
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
     }
+
+    public function shopItems()
+    {
+        return $this->morphToMany(\App\Models\ShopItem::class, 'shop_itemizable', 'shop_itemized');
+    }
 }

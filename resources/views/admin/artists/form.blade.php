@@ -18,6 +18,18 @@
             'field' => 'biography',
             'field_name' => 'Biography'
         ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'relationship' => 'shopItems',
+            'module_name' => 'shopItems',
+            'relationship_name' => 'Related Shop Items',
+            'custom_title_prefix' => 'Add',
+            'with_multiple' => true,
+            'with_sort' => true,
+            'hint' => 'Select related Shop Items',
+            'max' => 20
+        ])
     </section>
 @stop
 

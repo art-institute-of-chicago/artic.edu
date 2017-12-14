@@ -48,4 +48,9 @@ class Artwork extends Model
         return $this->belongsToMany(\App\Models\Article::class)->withPivot('position')->orderBy('position');
     }
 
+    public function shopItems()
+    {
+        return $this->morphToMany(\App\Models\ShopItem::class, 'shop_itemizable', 'shop_itemized');
+    }
+
 }

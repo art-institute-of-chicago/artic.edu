@@ -24,6 +24,7 @@ class ArticleRepository extends ModuleRepository
         $this->updateOrderedBelongsTomany($object, $fields, 'artists');
         $this->updateOrderedBelongsTomany($object, $fields, 'exhibitions');
         $this->updateOrderedBelongsTomany($object, $fields, 'selections');
+        $this->updateOrderedBelongsTomany($object, $fields, 'shopItems');
 
         parent::afterSave($object, $fields);
     }
