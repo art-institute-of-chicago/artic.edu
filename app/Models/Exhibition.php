@@ -58,4 +58,9 @@ class Exhibition extends Model
     {
         return $this->belongsToMany(\App\Models\Event::class, 'event_exhibition', 'event_id', 'exhibition_id')->withPivot('position')->orderBy('position');
     }
+
+    public function shopItems()
+    {
+        return $this->morphToMany(\App\Models\ShopItem::class, 'shop_itemizable', 'shop_itemized');
+    }
 }
