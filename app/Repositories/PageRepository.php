@@ -32,6 +32,7 @@ class PageRepository extends ModuleRepository
 
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
+        $this->updateRepeater($object, $fields, 'locations', 'Location');
 
         parent::afterSave($object, $fields);
     }
@@ -40,6 +41,7 @@ class PageRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
         $fields['admissions'] = $this->getFormFieldsForRepeater($object, 'admissions', 'Admission');
+        $fields['locations'] = $this->getFormFieldsForRepeater($object, 'locations', 'Location');
 
         return $fields;
     }

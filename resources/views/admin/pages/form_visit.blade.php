@@ -23,6 +23,13 @@
 </section>
 
 @formField('repeater', [
+    'moduleName' => 'locations',
+    'title' => 'Locations',
+    'routePrefix' => 'landing.visit',
+    'title_singular' => 'Locations'
+])
+
+@formField('repeater', [
     'moduleName' => 'admissions',
     'title' => 'Free Admissions',
     'routePrefix' => 'landing.visit',

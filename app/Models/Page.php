@@ -73,4 +73,9 @@ class Page extends Model
     {
         return $this->hasMany(Admission::class)->orderBy('position');
     }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class)->orderBy('position');
+    }
 }
