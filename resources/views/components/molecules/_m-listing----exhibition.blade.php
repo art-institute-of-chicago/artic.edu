@@ -1,8 +1,10 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $exhibition->closingSoon ? " m-listing--limited" : "" }}{{ $exhibition->nowOpen ? " m-listing--new" : "" }}{{ $exhibition->exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ $exhibition->slug }}" class="m-listing__link">
-    <span class="m-listing__img">
+    <span class="m-listing__img{{ (!isset($variation) or $variation !== 'm-listing--hero') ? ' m-listing__img__wide' : '' }}">
         @component('components.atoms._img')
             @slot('src', $exhibition->image['src'])
+            @slot('width', $exhibition->image['width'])
+            @slot('height', $exhibition->image['height'])
         @endcomponent
     </span>
     <span class="m-listing__meta">

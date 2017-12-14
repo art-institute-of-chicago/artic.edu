@@ -15,6 +15,8 @@
 <div class="m-listing__img">
     @component('components.atoms._img')
         @slot('src', $date->image['src'])
+        @slot('width', $date->image['width'])
+        @slot('height', $date->image['height'])
     @endcomponent
 </div>
 @endif

@@ -1,8 +1,10 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $event->closingSoon ? " m-listing--limited" : "" }}{{ $event->exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ $event->slug }}" class="m-listing__link">
-    <span class="m-listing__img">
+    <span class="m-listing__img m-listing__img--wide">
         @component('components.atoms._img')
             @slot('src', $event->image['src'])
+            @slot('width', $event->image['width'])
+            @slot('height', $event->image['height'])
         @endcomponent
     </span>
     <span class="m-listing__meta">

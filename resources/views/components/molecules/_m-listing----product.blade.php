@@ -3,6 +3,8 @@
     <span class="m-listing__img m-listing__img--square">
         @component('components.atoms._img')
             @slot('src', $product->image['src'])
+            @slot('width', $product->image['width'])
+            @slot('height', $product->image['height'])
         @endcomponent
     </span>
     <span class="m-listing__meta">
