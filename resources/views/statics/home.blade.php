@@ -69,18 +69,25 @@
     From the Collection
 @endcomponent
 <span class="hr"></span>
-<ul class="o-pinboard o-pinboard--2-col@small o-pinboard--3-col@medium o-pinboard--3-col@large o-pinboard--3-col@xlarge o-pinboard--3-col@xxlarge" data-behavior="pinboard" data-pinboard-maintain-order="false">
+@component('components.organisms._o-pinboard')
+    @slot('cols_small','2')
+    @slot('cols_medium','3')
+    @slot('cols_large','3')
+    @slot('cols_xlarge','3')
+    @slot('cols_xxlarge','3')
+    @slot('maintainOrder','false')
     @foreach ($theCollection as $item)
         @component('components.molecules._m-listing----'.$item->type)
             @slot($item->type, $item)
         @endcomponent
     @endforeach
-</ul>
+@endcomponent
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
     @slot('linksPrimary', array(array('text' => 'Explore the collection', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
+
 
 
 @component('components.molecules._m-title-bar')
