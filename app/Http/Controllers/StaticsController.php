@@ -58,6 +58,7 @@ class StaticsController extends Controller {
       'exhibitions' => $this->getExhibitions(2),
       'events' => $this->getEvents(4),
       'products' => $this->getProducts(5),
+      'theCollection' => $this->generateCollection(),
     ]);
   }
 
@@ -135,6 +136,7 @@ class StaticsController extends Controller {
       "exclusive" => $this->faker->boolean(10),
       "nowOpen" => $this->faker->boolean(10),
       "image" => $this->getImage(),
+      "type" => 'exhibition',
     ]);
   }
 
@@ -160,6 +162,7 @@ class StaticsController extends Controller {
       "timeEnd" => $this->makeEventTime(($hour+1), ($this->faker->boolean() ? '00' : '30')),
       "exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
+      "type" => 'event',
     ]);
   }
 
@@ -209,6 +212,7 @@ class StaticsController extends Controller {
       "price" => $price,
       "priceSale" => $priceSale,
       "currency" => "$",
+      "type" => 'product',
     ]);
   }
 
@@ -221,9 +225,6 @@ class StaticsController extends Controller {
     return $products;
   }
 
-
-
-
   private function getTimelineEvent() {
     $hour = $this->faker->numberBetween(10,19);
 
@@ -232,6 +233,7 @@ class StaticsController extends Controller {
       "time" => $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30')),
       "blurb" => $this->faker->paragraph(5),
       "image" => ($this->faker->boolean()) ? $this->getImage() : null,
+      "type" => 'timelineEvent',
     ]);
   }
 
@@ -244,4 +246,96 @@ class StaticsController extends Controller {
     return $events;
   }
 
+  private function getArtwork() {
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "sku" => $this->faker->year().'.'.$this->faker->numberBetween(99,249),
+      "slug" => "/statics/artwork",
+      "title" => $this->faker->sentence(3, true),
+      "artist" => $this->faker->firstName.' '.$this->faker->lastName,
+      "date" => $this->faker->year(),
+      "image" => $this->getImage(),
+      "type" => 'artwork',
+    ]);
+  }
+
+  private function getArtworks($num = 3) {
+    $artworks = array();
+    for ($i = 0; $i < $num; $i++) {
+      $artwork = $this->getArtwork();
+      array_push($artworks, $artwork);
+    }
+    return $artworks;
+  }
+
+  private function getArticle() {
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/article",
+      "title" => $this->faker->sentence(6, true),
+      "author" => $this->faker->firstName.' '.$this->faker->lastName,
+      "intro" => $this->faker->sentence(12, true),
+      "date" => $this->faker->date(),
+      "image" => $this->getImage(),
+      "type" => 'article',
+    ]);
+  }
+
+  private function getArticles($num = 3) {
+    $articles = array();
+    for ($i = 0; $i < $num; $i++) {
+      $article = $this->getArticle();
+      array_push($articles, $article);
+    }
+    return $articles;
+  }
+
+  private function getSelection() {
+    // make some images
+    $selectionImages = array();
+    for ($i = 0; $i < 5; $i++) {
+      $thisImage = $this->getImage();
+      array_push($selectionImages, $thisImage);
+    }
+
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/selection",
+      "title" => $this->faker->sentence(6, true),
+      "image" => $this->getImage(),
+      "type" => 'selection',
+    ]);
+  }
+
+  private function getSelections($num = 3) {
+    $selections = array();
+    for ($i = 0; $i < $num; $i++) {
+      $selection = $this->getSelection();
+      array_push($selections, $selection);
+    }
+    return $selections;
+  }
+
+  private function generateCollection($num = 6) {
+    $_items = array();
+    $items = array();
+    $numOfEach = round(($num + 3)/3);
+    for ($i = 0; $i < $numOfEach; $i++) {
+      $item = $this->getSelection();
+      array_push($_items, $item);
+    }
+    for ($i = 0; $i < $numOfEach; $i++) {
+      $item = $this->getArticle();
+      array_push($_items, $item);
+    }
+    for ($i = 0; $i < $numOfEach; $i++) {
+      $item = $this->getArtwork();
+      array_push($_items, $item);
+    }
+    $_items = $this->faker->shuffle($_items);
+    for ($i = 0; $i < $num; $i++) {
+      array_push($items, $_items[$i]);
+    }
+    return $items;
+  }
 }

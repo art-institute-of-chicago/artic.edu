@@ -70,11 +70,11 @@
 @endcomponent
 <span class="hr"></span>
 <ul class="o-pinboard o-pinboard--2-col@small o-pinboard--3-col@medium o-pinboard--3-col@large o-pinboard--3-col@xlarge o-pinboard--3-col@xxlarge" data-behavior="pinboard" data-pinboard-maintain-order="false">
-    <?php
-    for ($x = 0; $x <= 20; $x++) {
-        echo "<li style=\"padding-bottom: ".rand(100, 400)."px;\"></li>";
-    }
-    ?>
+    @foreach ($theCollection as $item)
+        @component('components.molecules._m-listing----'.$item->type)
+            @slot($item->type, $item)
+        @endcomponent
+    @endforeach
 </ul>
 
 @component('components.molecules._m-links-bar')
