@@ -4,8 +4,10 @@ const pinboard = function(container){
 
   let colCounts = {};
   let colCount = 0;
+  let colCurrent = 0;
   let cols;
   let active = false;
+  let maintainOrder = false;
   const re = /([0-9])-col@(\w*)/gi;
 
   function _getColCounts() {
@@ -20,10 +22,12 @@ const pinboard = function(container){
   }
 
   function _minOfArray(array) {
+    // return smallest number in array
     return Math.min.apply(Math, array);
   }
 
   function _maxOfArray(array) {
+    // return largest number in array
     return Math.max.apply(Math, array);
   }
 
@@ -54,9 +58,21 @@ const pinboard = function(container){
         // reset the blocks height
         block.style.height = 'auto';
         // work out which col to drop into and how far left this is
-        let smallestCol = _minOfArray(cols);
-        let smallestColIndex = cols.indexOf(smallestCol);
-        let leftPos = smallestColIndex * (colWidth + margin);
+        let smallestCol;
+        let smallestColIndex;
+        let leftPos;
+        if (maintainOrder) {
+          // always maintain DOM order
+          smallestCol = cols[colCurrent];
+          smallestColIndex = colCurrent;
+          leftPos = smallestColIndex * (colWidth + margin);
+          colCurrent = (colCurrent < cols.length - 1) ? colCurrent + 1 : 0;
+        } else {
+          // best position like pinterest/masonry
+          smallestCol = _minOfArray(cols);
+          smallestColIndex = cols.indexOf(smallestCol);
+          leftPos = smallestColIndex * (colWidth + margin);
+        }
         // now get blocks new height
         let newHeight = block.offsetHeight;
         // position
@@ -91,6 +107,7 @@ const pinboard = function(container){
   }
 
   function _init() {
+    maintainOrder = (container.getAttribute('data-pinboard-maintain-order') === 'true');
     _getColCounts();
     _setupBlocks();
     container.addEventListener('pinboard:contentAdded', _positionBlocks, false);
