@@ -13,3 +13,4 @@ export { default as printPage } from './printPage';
 export { default as sharePage } from './sharePage';
 export { default as shareMenu } from './shareMenu';
 export { default as mask } from './mask';
+export { default as pinboard } from './pinboard';

@@ -60,6 +60,29 @@
     @slot('linksPrimary', array(array('text' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
+@component('components.molecules._m-cta-banner----become-a-member')
+@endcomponent
+
+
+@component('components.molecules._m-title-bar')
+    @slot('links', array(array('text' => 'Explore the collection', 'href' => '#')))
+    From the Collection
+@endcomponent
+<span class="hr"></span>
+<ul class="o-pinboard o-pinboard--2-col@small o-pinboard--3-col@medium o-pinboard--3-col@large o-pinboard--3-col@xlarge o-pinboard--3-col@xxlarge" data-behavior="pinboard">
+    <?php
+    for ($x = 0; $x <= 20; $x++) {
+        echo "<li style=\"padding-bottom: ".rand(100, 400)."px;\"></li>";
+    }
+    ?>
+</ul>
+
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'm-links-bar--title-bar-companion')
+    @slot('linksPrimary', array(array('text' => 'Explore the collection', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
+@endcomponent
+
+
 @component('components.molecules._m-title-bar')
     @slot('links', array(array('text' => 'Explore the Shop', 'href' => '#')))
     From the Shop

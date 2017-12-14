@@ -1,0 +1,135 @@
+
+
+.o-pinboard {
+  position: relative;
+}
+
+.o-pinboard::before,
+.o-pinboard::after {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: $color__rules--tertiary;
+}
+
+@each $name, $point in $breakpoints {
+  @include breakpoint('#{$name}') {
+    .o-pinboard > * {
+      margin-top: #{map-get($grid-margin-tops, $name)}px;
+    }
+
+    .o-pinboard[class*="col@#{$name}"] {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .o-pinboard[class*="col@#{$name}"] > * {
+      left: 0;
+      top: 0;
+      flex: 0 0 auto;
+    }
+
+    .o-pinboard[class*="col@#{$name}"] > .s-positioned {
+      position: absolute;
+      flex: none;
+      transition: top .15s $bezier--ease-out-circ, left .15s $bezier--ease-out-circ, height .15s $bezier--ease-out-circ;
+    }
+  }
+}
+
+@include breakpoint('small') {
+  .o-pinboard--2-col\@small::before {
+    display: block;
+    left: colspan(29, small);
+  }
+
+  .o-pinboard--2-col\@small > * {
+    width: colspan(grid-cols-to-colspan(2), 'small');
+  }
+}
+
+@include breakpoint('medium') {
+  .o-pinboard--3-col\@medium::before {
+    display: block;
+    left: colspan(19, medium);
+  }
+
+  .o-pinboard--3-col\@medium::after {
+    display: block;
+    left: colspan(39, medium);
+  }
+
+  .o-pinboard--3-col\@medium > * {
+    width: colspan(grid-cols-to-colspan(3), 'medium');
+  }
+
+  .o-pinboard--3-col\@medium > * {
+    margin-top: #{map-get($grid-margin-tops, 'medium')}px;
+  }
+}
+
+@include breakpoint('large') {
+  .o-pinboard--3-col\@large::before {
+    display: block;
+    left: colspan(19, large);
+  }
+
+  .o-pinboard--3-col\@large::after {
+    display: block;
+    left: colspan(39, large);
+  }
+
+  .o-pinboard--3-col\@large > * {
+    width: colspan(grid-cols-to-colspan(3), 'large');
+  }
+
+  .o-pinboard--3-col\@large > * {
+    margin-top: #{map-get($grid-margin-tops, 'large')}px;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .o-pinboard--3-col\@xlarge::before {
+    display: block;
+    left: colspan(19, xlarge);
+  }
+
+  .o-pinboard--3-col\@xlarge::after {
+    display: block;
+    left: colspan(39, xlarge);
+  }
+
+  .o-pinboard--3-col\@xlarge > * {
+    width: colspan(grid-cols-to-colspan(3), 'xlarge');
+  }
+
+  .o-pinboard--3-col\@xlarge > * {
+    margin-top: #{map-get($grid-margin-tops, 'xlarge')}px;
+  }
+}
+
+@include breakpoint('xxlarge') {
+  .o-pinboard--3-col\@xxlarge::before {
+    display: block;
+    left: colspan(19, xxlarge);
+  }
+
+  .o-pinboard--3-col\@xxlarge::after {
+    display: block;
+    left: colspan(39, xxlarge);
+  }
+
+  .o-pinboard--3-col\@xxlarge > * {
+    width: colspan(grid-cols-to-colspan(3), 'xxlarge');
+  }
+
+  .o-pinboard--3-col\@xxlarge > * {
+    margin-top: #{map-get($grid-margin-tops, 'xxlarge')}px;
+  }
+}
+

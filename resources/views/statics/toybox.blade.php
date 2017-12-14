@@ -497,6 +497,12 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 @endcomponent
 
 <span class="hr"></span>
+<p class="f-quote">m-cta-banner:</p>
+
+@component('components.molecules._m-cta-banner----become-a-member')
+@endcomponent
+
+<span class="hr"></span>
 <p class="f-quote">m-aside-newsletter:</p>
 
 @component('components.molecules._m-aside-newsletter')
