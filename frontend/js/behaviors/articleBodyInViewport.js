@@ -32,29 +32,31 @@ const articleBodyInViewport = function(container) {
   }
 
   function _decidePos() {
-    var sT = document.documentElement.scrollTop || document.body.scrollTop;
-    if (tallEnough) {
-      if (sT >= lockBottom && position !== 'bottom') {
-        _posBottom();
-      } else if (sT >= lockTop && sT < lockBottom && position !== 'fixed') {
-        _posFixed();
-      } else if (sT < lockTop && position !== 'default') {
-        _posDefault();
+    if (isSetUp) {
+      var sT = document.documentElement.scrollTop || document.body.scrollTop;
+      if (tallEnough) {
+        if (sT >= lockBottom && position !== 'bottom') {
+          _posBottom();
+        } else if (sT >= lockTop && sT < lockBottom && position !== 'fixed') {
+          _posFixed();
+        } else if (sT < lockTop && position !== 'default') {
+          _posDefault();
+        }
       }
-    }
-    if (sT !== lastScrollTop) {
-      if (sT > lastScrollTop && scrollDirection !== 'down') {
-        scrollDirection = 'down';
-        dE.classList.remove('s-scroll-direction-up');
-        dE.classList.add('s-scroll-direction-down');
-      } else if (sT < lastScrollTop && scrollDirection !== 'up') {
-        scrollDirection = 'up';
-        dE.classList.remove('s-scroll-direction-down');
-        dE.classList.add('s-scroll-direction-up');
+      if (sT !== lastScrollTop) {
+        if (sT > lastScrollTop && scrollDirection !== 'down') {
+          scrollDirection = 'down';
+          dE.classList.remove('s-scroll-direction-up');
+          dE.classList.add('s-scroll-direction-down');
+        } else if (sT < lastScrollTop && scrollDirection !== 'up') {
+          scrollDirection = 'up';
+          dE.classList.remove('s-scroll-direction-down');
+          dE.classList.add('s-scroll-direction-up');
+        }
       }
+      lastScrollTop = sT;
+      window.requestAnimationFrame(_decidePos);
     }
-    lastScrollTop = sT;
-    window.requestAnimationFrame(_decidePos);
   }
 
   function _resetPos() {
