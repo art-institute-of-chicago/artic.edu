@@ -1,5 +1,5 @@
-<aside class="m-cta-banner">
-    <div class="m-cta-banner__img">
+<aside class="m-cta-banner m-cta-banner--parallax" data-behavior="bannerParallax">
+    <div class="m-cta-banner__img" data-parallax-img>
         <img src="http://placehold.dev.area17.com/image/2000x240?bg=333333&fg=444444">
     </div>
     <div class="m-cta-banner__txt">

@@ -2,6 +2,7 @@
 .m-cta-banner {
   position: relative;
   height: 240px;
+  overflow: hidden;
 
   @include breakpoint('small+') {
     height: 160px;
@@ -18,6 +19,15 @@
   bottom: 0;
   width: 100%;
   height: 100%;
+}
+
+.m-cta-banner--parallax .m-cta-banner__img {
+  top: -100px;
+  height: 340px;
+
+  @include breakpoint('small+') {
+    height: 260px;
+  }
 }
 
 .m-cta-banner__img img,
