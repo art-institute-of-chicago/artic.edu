@@ -515,6 +515,12 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 @endcomponent
 
 <span class="hr"></span>
+<p class="f-quote">m-image-stack:</p>
+@component('components.molecules._m-image-stack')
+    @slot('images', $stackImages)
+@endcomponent
+
+<span class="hr"></span>
 <p class="f-quote">date-select-trigger:</p>
 
 <p style="margin-top: 20px;">

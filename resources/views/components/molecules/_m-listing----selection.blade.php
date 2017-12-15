@@ -1,10 +1,8 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{{ $selection->slug }}" class="m-listing__link">
         <span class="m-listing__img m-listing__img--tall">
-            @component('components.atoms._img')
-                @slot('src', $selection->image['src'])
-                @slot('width', $selection->image['width'])
-                @slot('height', $selection->image['height'])
+            @component('components.molecules._m-image-stack')
+                @slot('images', $selection->images)
             @endcomponent
         </span>
         <span class="m-listing__meta">

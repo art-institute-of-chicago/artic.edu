@@ -33,8 +33,15 @@ class StaticsController extends Controller {
   }
 
   public function toybox() {
+    $stackImages = array();
+    for ($i = 0; $i < 3; $i++) {
+      $thisImage = $this->getImage();
+      array_push($stackImages, $thisImage);
+    }
+
     return view('statics/toybox', [
       'timelineEvents' => $this->getTimelineEvents(3),
+      'stackImages' => $stackImages,
     ]);
   }
 
