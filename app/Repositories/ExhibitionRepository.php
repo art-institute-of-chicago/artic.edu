@@ -27,6 +27,7 @@ class ExhibitionRepository extends ModuleRepository
         $object->siteTags()->sync($fields['site_tags'] ?? []);
         $this->updateOrderedBelongsTomany($object, $fields, 'events');
         $this->updateOrderedBelongsTomany($object, $fields, 'shopItems');
+        $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
 
         parent::afterSave($object, $fields);
     }

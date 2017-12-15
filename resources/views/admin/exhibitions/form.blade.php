@@ -81,4 +81,16 @@
         'hint' => 'Select related Shop Items',
         'max' => 20
     ])
+
+    @formField('browser', [
+        'routePrefix' => 'general',
+        'relationship' => 'sponsors',
+        'module_name' => 'sponsors',
+        'relationship_name' => 'Sponsors',
+        'custom_title_prefix' => 'Add',
+        'with_multiple' => true,
+        'with_sort' => true,
+        'hint' => 'Select Sponsors'
+        'max' => 20
+    ])
 @stop

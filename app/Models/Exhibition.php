@@ -63,4 +63,9 @@ class Exhibition extends Model
     {
         return $this->morphToMany(\App\Models\ShopItem::class, 'shop_itemizable', 'shop_itemized');
     }
+
+    public function sponsors()
+    {
+        return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
+    }
 }
