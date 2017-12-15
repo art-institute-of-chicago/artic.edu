@@ -88,21 +88,13 @@ class StaticsController extends Controller {
   // --------------------------------------------------------------------------------------------
 
   private function getImage() {
-    $images = array(
-      array("src" => "http://placehold.dev.area17.com/image/524x750", "width" => 524, "height" => 750),
-      array("src" => "http://placehold.dev.area17.com/image/516x750", "width" => 516, "height" => 750),
-      array("src" => "http://placehold.dev.area17.com/image/651x500", "width" => 651, "height" => 500),
-      array("src" => "http://placehold.dev.area17.com/image/1193x1547", "width" => 1193, "height" => 1547),
-      array("src" => "http://placehold.dev.area17.com/image/3868x2052", "width" => 3868, "height" => 2052),
-      array("src" => "http://placehold.dev.area17.com/image/1537x2029", "width" => 1537, "height" => 2029),
-      array("src" => "http://placehold.dev.area17.com/image/2272x2279", "width" => 2272, "height" => 2279),
-      array("src" => "http://placehold.dev.area17.com/image/1571x3000", "width" => 1571, "height" => 3000),
-      array("src" => "http://placehold.dev.area17.com/image/2978x3000", "width" => 2978, "height" => 3000),
-      array("src" => "http://placehold.dev.area17.com/image/2161x3000", "width" => 2161, "height" => 3000),
-      array("src" => "http://placehold.dev.area17.com/image/1768x2100", "width" => 1768, "height" => 2100),
-    );
+    $color = preg_replace('/#/i', '', $this->faker->hexcolor);
+    $width = $this->faker->numberBetween(300,700);
+    $height = $this->faker->numberBetween(300,700);
+    $src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
+    $image = array("src" => $src, "width" => $width, "height" => $height);
 
-    return $this->faker->randomElement($images);
+    return $image;
   }
 
   private function getExhibitionType($upcoming = false) {
@@ -293,7 +285,7 @@ class StaticsController extends Controller {
   private function getSelection() {
     // make some images
     $selectionImages = array();
-    for ($i = 0; $i < 5; $i++) {
+    for ($i = 0; $i < 3; $i++) {
       $thisImage = $this->getImage();
       array_push($selectionImages, $thisImage);
     }
@@ -303,6 +295,7 @@ class StaticsController extends Controller {
       "slug" => "/statics/selection",
       "title" => $this->faker->sentence(6, true),
       "image" => $this->getImage(),
+      "images" => $selectionImages,
       "type" => 'selection',
     ]);
   }
