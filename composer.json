@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "a17/laravel-cms-toolkit": "dev-master",
+        "a17/laravel-cms-toolkit": "dev-redesign",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
