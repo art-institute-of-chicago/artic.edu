@@ -130,6 +130,14 @@
   }
 }
 
+.g-header__nav-primary .s-current a {
+  color: $color__link--accent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .g-header__nav-primary svg {
   position: relative;
   top: -1px;
@@ -139,7 +147,7 @@
   display: none;
   position: absolute;
   right: 0;
-  top: 19px;
+  top: 20px;
 
   @include breakpoint('small+') {
     display: block;

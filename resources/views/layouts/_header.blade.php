@@ -20,8 +20,8 @@
     <ul class="f-secondary">
       <li class='u-hide@small+'><a href="#">Buy Tickets</a></li>
       <li><a href="#">Visit</a></li>
-      <li class="u-show@small+"><a href="#">Exhibitions and events</a></li>
-      <li class="u-show@small+"><a href="#">Art and ideas</a></li>
+      <li class="u-show@small+{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'exhibitions_and_events') ? ' s-current' : '' }}"><a href="#">Exhibitions and Events</a></li>
+      <li class="u-show@small+"><a href="#">Art and Ideas</a></li>
       <li class="u-show@small+"><a href="#"><svg class="icon--search--24" aria-label="Search site"><use xlink:href="#icon--search--24" /></svg></a></li>
     </ul>
   </nav>
@@ -29,7 +29,7 @@
     <ul class="f-secondary">
       <li><a href="#">Shop</a></li>
       <li><a href="#">Buy Tickets</a></li>
-      <li><a href="#">Become a member</a></li>
+      <li><a href="#">Become a Member</a></li>
     </ul>
   </nav>
   <p class="g-header__opening-hours f-secondary"><a href="#">Open daily 10:30&ndash;5:00, Thursdays until 8:00</a></p>

@@ -69,8 +69,9 @@ class StaticsController extends Controller {
     ]);
   }
 
-  public function whatson() {
-    return view('statics/whatson', [
+  public function exhibitions_and_events() {
+    return view('statics/exhibitions_and_events', [
+      'primaryNavCurrent' => 'exhibitions_and_events',
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'featuredExhibitions' => $this->getExhibitions(2),
       'exhibitions' => $this->getExhibitions(12),

@@ -10,27 +10,17 @@
     {!! $intro !!}
 @endcomponent
 
-@php
-$linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
-@endphp
 @component('components.molecules._m-links-bar')
-    @slot('variation', 'tabs')
-    @slot('linksPrimary', $linksBarPrimary)
+    @slot('variation', 'm-links-bar--tabs')
+    @slot('linksPrimary', array(array('text' => 'Exhibitions', 'href' => '#', 'active' => true), array('text' => 'Events', 'href' => '#', 'active' => false)))
 @endcomponent
 
-@php
-$linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Current', 'href' => '#', 'active' => true));
-array_push($linksBarPrimary, array('text' => 'Upcoming', 'href' => '#', 'active' => false));
-$linksBarSecondary = array();
-array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
-@endphp
-
 @component('components.molecules._m-links-bar')
-    @slot('linksPrimary', $linksBarPrimary)
-    @slot('linksSecondary', $linksBarSecondary)
+    @slot('linksPrimary', array(array('text' => 'Current', 'href' => '#', 'active' => true), array('text' => 'Upcoming', 'href' => '#', 'active' => false)))
+    @slot('linksSecondary', array(array('text' => 'Archive', 'href' => '#')))
+@endcomponent
+
+@component('components.atoms._hr')
 @endcomponent
 
 @component('components.organisms._o-grid-listing')
@@ -46,6 +36,9 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
             @slot('titleFont', 'f-list-4')
         @endcomponent
     @endforeach
+@endcomponent
+
+@component('components.atoms._hr')
 @endcomponent
 
 @component('components.organisms._o-grid-listing')
@@ -65,6 +58,10 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
 @endcomponent
 
 @component('components.molecules._m-aside-newsletter')
+    @slot('variation', 'm-aside-newsletter--wide')
+@endcomponent
+
+@component('components.atoms._hr')
 @endcomponent
 
 @component('components.organisms._o-grid-listing')
@@ -84,7 +81,7 @@ array_push($linksBarSecondary, array('text' => 'Archive', 'href' => '#'));
 @endcomponent
 
 @component('components.molecules._m-links-bar')
-    @slot('variation', 'buttons')
+    @slot('variation', 'm-links-bar--buttons')
     @slot('linksPrimary', array(array('text' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary')))
 @endcomponent
 
