@@ -3,7 +3,7 @@
 @section('content')
 
 @component('components.molecules._m-header-block')
-    Exhibitions and Events
+    {{ $title }}
 @endcomponent
 
 @component('components.molecules._m-intro-block')
