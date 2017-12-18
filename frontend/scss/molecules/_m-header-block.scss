@@ -8,7 +8,7 @@
     margin-top: 80px;
   }
 
-  &::before {
+  &:not(:first-child)::before {
     content: '';
     position: absolute;
     z-index: 1;

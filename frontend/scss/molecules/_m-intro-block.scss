@@ -9,6 +9,10 @@
     flex-flow: row nowrap;
   }
 
+  .m-header-block + & {
+    padding-top: 16px;
+  }
+
   .m-header-block + &::before {
     content: '';
     position: absolute;
@@ -34,6 +38,10 @@
 
   @include breakpoint('medium+') {
     flex: 1 1 auto;
+
+    &:only-child {
+      max-width: 80%;
+    }
   }
 }
 
