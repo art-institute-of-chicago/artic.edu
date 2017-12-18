@@ -13,6 +13,7 @@
 <ul class="f-body" style="margin-top: 40px;">
   <li><a href="/statics/home">home</a></li>
   <li><a href="/statics/exhibitions_and_events">exhibitions and events</a></li>
+  <li><a href="/statics/events">events</a></li>
   <li><a href="/statics/article">article</a></li>
 </ul>
 

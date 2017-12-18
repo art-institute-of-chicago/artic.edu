@@ -72,9 +72,19 @@ class StaticsController extends Controller {
   public function exhibitions_and_events() {
     return view('statics/exhibitions_and_events', [
       'primaryNavCurrent' => 'exhibitions_and_events',
+      'title' => 'Exhibitions and Events',
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'featuredExhibitions' => $this->getExhibitions(2),
       'exhibitions' => $this->getExhibitions(12),
+      'eventsByDay' => $this->makeEventsByDates(1),
+    ]);
+  }
+
+  public function events() {
+    return view('statics/events', [
+      'primaryNavCurrent' => 'exhibitions_and_events',
+      'title' => 'Exhibitions and Events',
+      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'eventsByDay' => $this->makeEventsByDates(1),
     ]);
   }
