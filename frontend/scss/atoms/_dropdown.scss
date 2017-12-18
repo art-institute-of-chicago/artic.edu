@@ -178,6 +178,13 @@
 
 // variation `dropdown--filter`
 
+.dropdown--filter {
+
+  .m-links-bar & {
+    overflow: visible;
+  }
+}
+
 .dropdown--filter.s-active::before {
   content: none;
   display: none;
@@ -186,6 +193,12 @@
 .dropdown--filter > button {
   border-radius: 0;
   color: $color__link;
+
+  .m-links-bar & {
+    height: auto;
+    padding-top: 5px;
+    overflow: visible;
+  }
 }
 
 .dropdown--filter > button:hover {
@@ -202,6 +215,10 @@
 .dropdown--filter > button:active {
   border-color: transparent;
   border-top-color: $color__rules--primary;
+
+  .m-links-bar & {
+    border-top-color: transparent;
+  }
 }
 
 .dropdown--filter > button::before,
@@ -216,6 +233,10 @@
   margin: 0 !important;
   padding: 0 !important;
   background-color: $color__rules--primary;
+
+  .m-links-bar & {
+    top: -8px;
+  }
 }
 
 .dropdown--filter.s-active > button > .icon--arrow {
