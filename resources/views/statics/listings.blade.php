@@ -8,13 +8,17 @@
     Listings
 @endcomponent
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 
 @component('components.molecules._m-title-bar')
     @slot('links', array(array('text' => 'Explore the Shop', 'href' => '#')))
     5 column scroll
 @endcomponent
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
     @slot('cols_medium','4')
@@ -33,7 +37,9 @@
     @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
     4 column stacked
 @endcomponent
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
     @slot('cols_small','2')
@@ -52,7 +58,9 @@
     @slot('links', array(array('text' => 'Explore the Shop', 'href' => '#')))
     4 column scroll
 @endcomponent
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
     @slot('cols_medium','3')
@@ -71,7 +79,9 @@
     @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
     3 column stacked
 @endcomponent
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
     @slot('cols_small','2')
@@ -90,7 +100,9 @@
     @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
     3 column list
 @endcomponent
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
     @slot('cols_large','3')
@@ -108,7 +120,9 @@
     @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
     2 column stacked
 @endcomponent
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
     @slot('cols_small','2')

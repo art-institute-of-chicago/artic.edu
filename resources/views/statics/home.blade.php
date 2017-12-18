@@ -25,7 +25,10 @@
     @slot('links', array(array('text' => 'Browse all current exhibitions', 'href' => '#')))
     Exhibitions and Events
 @endcomponent
-<span class="hr"></span>
+
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
     @slot('cols_small','2')
@@ -40,7 +43,10 @@
         @endcomponent
     @endforeach
 @endcomponent
-<span class="hr"></span>
+
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-grid-listing')
     @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
     @slot('cols_medium','3')
@@ -68,7 +74,10 @@
     @slot('links', array(array('text' => 'Explore the collection', 'href' => '#')))
     From the Collection
 @endcomponent
-<span class="hr"></span>
+
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-pinboard')
     @slot('cols_small','2')
     @slot('cols_medium','3')

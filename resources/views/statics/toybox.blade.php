@@ -27,7 +27,9 @@
     Dictum consectetur nunc eu luctus lacus <a href="#">integer auctor</a> velit ac porttitor malesuada
 @endcomponent
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">radio:</p>
 <p>
   @component('components.atoms._radio')
@@ -58,7 +60,9 @@
     @slot('error', 'Error message')
   @endcomponent
 </p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">checkbox:</p>
 <p>
   @component('components.atoms._checkbox')
@@ -89,7 +93,9 @@
     @slot('error', 'Error message')
   @endcomponent
 </p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">input:</p>
 <p>
   @component('components.atoms._input')
@@ -135,7 +141,9 @@
       Label
     @endcomponent
 </p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">select:</p>
 <p>
     @component('components.atoms._select')
@@ -164,7 +172,9 @@
     Label
   @endcomponent
 </p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">btn:</p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
@@ -319,7 +329,9 @@
         @slot('behavior','printPage')
     @endcomponent
 </p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">tag:</p>
 <p style="margin-top: 20px;">
     @component('components.atoms._tag')
@@ -330,7 +342,9 @@
     @endcomponent
 </p>
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">dropdown:</p>
 <div style="margin-top: 20px;">
   @component('components.atoms._dropdown')
@@ -359,7 +373,9 @@
   @endcomponent
 </div>
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">arrow-link:</p>
 <p>
     @component('components.atoms._arrow-link')
@@ -382,7 +398,9 @@
     @endcomponent
 </p>
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">m-intro-block:</p>
 
 @component('components.molecules._m-intro-block')
@@ -394,7 +412,9 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.
 @endcomponent
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">m-title-bar:</p>
 
 @component('components.molecules._m-title-bar')
@@ -407,7 +427,9 @@
     Exhibitions and Events
 @endcomponent
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">m-links-bar:</p>
 
 @php
@@ -496,13 +518,17 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
     @slot('linksPrimary', array(array('text' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">m-cta-banner:</p>
 
 @component('components.molecules._m-cta-banner----become-a-member')
 @endcomponent
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">m-aside-newsletter:</p>
 
 @component('components.molecules._m-aside-newsletter')
@@ -514,13 +540,17 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
     @slot('success', 'Successfully signed up to the newsletter')
 @endcomponent
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">m-image-stack:</p>
 @component('components.molecules._m-image-stack')
     @slot('images', $stackImages)
 @endcomponent
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">date-select-trigger:</p>
 
 <p style="margin-top: 20px;">
@@ -550,7 +580,9 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
     @endcomponent
 </p>
 
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">date-select-trigger in m-links-bar:</p>
 
 @component('components.molecules._m-links-bar')

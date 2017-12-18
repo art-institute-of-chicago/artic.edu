@@ -28,7 +28,9 @@
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <ul class="o-grid-listing o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
   @include('shared._listitems')
 </ul>
@@ -47,7 +49,9 @@
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-cols following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
   @include('shared._listitems')
 </ul>
@@ -60,7 +64,9 @@
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-top following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <ul class="o-grid-listing o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
   @include('shared._listitems')
 </ul>
@@ -79,7 +85,9 @@
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-top following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
   @include('shared._listitems')
 </ul>
@@ -98,7 +106,9 @@
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-top following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
   @include('shared._listitems')
 </ul>
@@ -111,7 +121,9 @@
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">5 column scroll</p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--4-col@medium o-grid-listing--5-col@large o-grid-listing--5-col@xlarge o-grid-listing--5-col@xxlarge" data-behavior="dragScroll">
   <?php for ($i = 0; $i < 5; $i++): ?>
     <li class="m-listing">
@@ -126,7 +138,9 @@
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">4 column scroll</p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge" data-behavior="dragScroll">
   <?php for ($i = 0; $i < 4; $i++): ?>
     <li class="m-listing">
@@ -141,7 +155,9 @@
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">3 column list</p>
-<span class="hr"></span>
+@component('components.atoms._hr')
+@endcomponent
+
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--3-col@large o-grid-listing--3-col@xlarge o-grid-listing--3-col@xxlarge">
   <?php for ($i = 0; $i < 3; $i++): ?>
     <li class="m-listing m-listing--row@small m-listing--row@medium">
