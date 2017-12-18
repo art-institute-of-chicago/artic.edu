@@ -6,7 +6,11 @@
     "a17-helpers": "git+https://code.area17.com/a17/a17-helpers.git"
   },
   "devDependencies": {
-    "a17-script": "git+https://code.area17.com/a17/a17-script.git#gulp"
+    "a17-script": "git+https://code.area17.com/a17/a17-script.git#gulp",
+    "cross-env": "^5.1",
+    "laravel-mix": "^1.0",
+    "watch": "^1.0.2",
+    "concurrently": "^3.5.0"
   },
   "scripts": {
     "init": "a17-script init",
