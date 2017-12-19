@@ -345,37 +345,6 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<p class="f-quote">dropdown:</p>
-<div style="margin-top: 20px;">
-  @component('components.atoms._dropdown')
-    @slot('prompt', 'Dropdown')
-    @slot('ariaTitle', 'Filter by')
-    @slot('options', array(array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
-    Label
-  @endcomponent
-</div>
-<div style="margin-top: 20px;">
-  @component('components.atoms._dropdown')
-    @slot('prompt', 'Dropdown hoverable')
-    @slot('ariaTitle', 'Sort by')
-    @slot('hoverable', true)
-    @slot('options', array(array('href' => '#', 'label' => 'Newest'), array('href' => '#', 'label' => 'Oldest')))
-    Label
-  @endcomponent
-</div>
-<div style="margin-top: 20px;">
-  @component('components.atoms._dropdown')
-    @slot('prompt', 'Dropdown')
-    @slot('variation', 'dropdown--filter')
-    @slot('ariaTitle', 'Sort by')
-    @slot('options', array(array('href' => '#', 'label' => 'Dropdown', 'active' => true), array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
-    Label
-  @endcomponent
-</div>
-
-@component('components.atoms._hr')
-@endcomponent
-
 <p class="f-quote">arrow-link:</p>
 <p>
     @component('components.atoms._arrow-link')
@@ -438,7 +407,7 @@ array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'acti
 array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
 @endphp
 @component('components.molecules._m-links-bar')
-    @slot('variation', 'tabs')
+    @slot('variation', 'm-links-bar--tabs')
     @slot('linksPrimary', $linksBarPrimary)
 @endcomponent
 
@@ -450,7 +419,7 @@ $linksBarSecondary = array();
 array_push($linksBarSecondary, array('text' => 'Exhibitions', 'href' => '#'));
 @endphp
 @component('components.molecules._m-links-bar')
-    @slot('variation', 'tabs')
+    @slot('variation', 'm-links-bar--tabs')
     @slot('linksPrimary', $linksBarPrimary)
     @slot('linksSecondary', $linksBarSecondary)
 @endcomponent
@@ -508,7 +477,7 @@ $linksBarPrimarySecondary = array();
 array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'));
 @endphp
 @component('components.molecules._m-links-bar')
-    @slot('variation', 'buttons')
+    @slot('variation', 'm-links-bar--buttons')
     @slot('linksPrimary', $linksBarPrimary)
     @slot('linksSecondary', $linksBarPrimarySecondary)
 @endcomponent
@@ -583,31 +552,65 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 @component('components.atoms._hr')
 @endcomponent
 
-<p class="f-quote">date-select-trigger in m-links-bar:</p>
+<p class="f-quote">dropdown:</p>
+<div style="margin-top: 20px;">
+  @component('components.atoms._dropdown')
+    @slot('prompt', 'Dropdown')
+    @slot('ariaTitle', 'Filter by')
+    @slot('options', array(array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
+  @endcomponent
+</div>
+<div style="margin-top: 20px;">
+  @component('components.atoms._dropdown')
+    @slot('prompt', 'Dropdown filter')
+    @slot('variation', 'dropdown--filter')
+    @slot('ariaTitle', 'Sort by')
+    @slot('options', array(array('href' => '#', 'label' => 'Dropdown', 'active' => true), array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
+  @endcomponent
+</div>{{-- 
+<div style="margin-top: 20px;">
+  @component('components.atoms._dropdown')
+    @slot('prompt', 'Dropdown filter hoverable')
+    @slot('variation', 'dropdown--filter')
+    @slot('ariaTitle', 'Sort by')
+    @slot('hoverable', true)
+    @slot('options', array(array('href' => '#', 'label' => 'Newest'), array('href' => '#', 'label' => 'Oldest')))
+  @endcomponent
+</div> --}}
 
-@component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('text' => 'Exhibitions', 'href' => '#', 'active' => false)))
-    @slot('linksSecondary', array(array('text' => 'Archive', 'href' => '#')))
-
-    @component('components.atoms._date-select-trigger')
-        Go to date
-    @endcomponent
+@component('components.atoms._hr')
 @endcomponent
 
-@component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('text' => 'Exhibitions', 'href' => '#', 'active' => false)))
-    @slot('linksSecondary', array(array('text' => 'Archive', 'href' => '#')))
+<p class="f-quote">mixed links bar:</p>
 
-    @component('components.molecules._m-date-select-range')
-        @slot('startLabel', 'Start date')
-        @slot('startId', 'cal03')
-        @slot('startHiddenInputName', 'dateStart02')
-        @slot('startHiddenInputId', 'dateStart02')
-        @slot('endLabel', 'End date')
-        @slot('endId', 'cal04')
-        @slot('endHiddenInputName', 'dateEnd02')
-        @slot('endHiddenInputId', 'dateEnd02')
-    @endcomponent
+@component('components.molecules._m-links-bar')
+    @slot('linksPrimary', array(array('text' => 'Today', 'href' => '#', 'active' => true), array('text' => 'Tomorrow', 'href' => '#'), array('text' => 'This weekend', 'href' => '#')))
+    @slot('primaryHtml')
+        <li class="m-links-bar__item">
+            @component('components.atoms._date-select-trigger')
+                Pick a date
+            @endcomponent
+        </li>
+    @endslot
+    @slot('secondaryHtml')
+        <li class="m-links-bar__item">
+            @component('components.atoms._dropdown')
+              @slot('prompt', 'All event types')
+              @slot('ariaTitle', 'Filter by')
+              @slot('variation','dropdown--filter f-buttons')
+              @slot('font', 'f-buttons')
+              @slot('options', array(
+                array('href' => '#', 'label' => 'All event types'),
+                array('href' => '#', 'label' => 'Classes and workshops'),
+                array('href' => '#', 'label' => 'Live Arts'),
+                array('href' => '#', 'label' => 'Screenings'),
+                array('href' => '#', 'label' => 'Special Events'),
+                array('href' => '#', 'label' => 'Talks'),
+                array('href' => '#', 'label' => 'Tours'),
+              ))
+            @endcomponent
+        </li>
+    @endslot
 @endcomponent
 
 @endsection

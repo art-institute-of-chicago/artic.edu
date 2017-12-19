@@ -26,13 +26,12 @@
 
 ***/
 
+$m-links-bar-descender-pad: 8px;
+
 .m-links-bar {
-  display: flex;
   position: relative;
-  flex-flow: row wrap;
-  justify-content: space-between;
   margin-top: 40px;
-  padding-top: .2px;
+  padding-top: 8px;
 
   & + * {
     margin-top: 40px;
@@ -58,55 +57,31 @@
   }
 }
 
+.m-links-bar__items {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: -$m-links-bar-descender-pad;
+  padding-bottom: $m-links-bar-descender-pad;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .m-links-bar__items-primary,
 .m-links-bar__items-secondary {
   display: flex;
-  position: relative;
   flex: 0 0 auto;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   max-width: 100%;
-  margin-top: -8px;
-}
-
-.m-links-bar__items-secondary {
-
-  @include breakpoint('large+') {
-    margin-left: auto;
-  }
-}
-
-.m-links-bar__items-secondary--row {
-  @include breakpoint('medium-') {
-    width: 100%;
-    margin-top: 16px;
-
-    &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 8px;
-      height: 1px;
-      background-color: $color__rules--primary;
-    }
-  }
 }
 
 .m-links-bar__item {
-  position: relative;
   flex: 0 0 auto;
-  margin-top: 16px;
   margin-left: 32px;
 }
 
-.m-links-bar__item:first-child {
+.m-links-bar__items-primary .m-links-bar__item:first-child {
   margin-left: 0;
-}
-
-.m-links-bar__items-secondary--row .m-links-bar__item:first-child {
-  @include breakpoint('medium-') {
-    margin-left: auto;
-  }
 }
 
 .m-links-bar__item-trigger {
@@ -132,6 +107,7 @@
 // Variant `.m-links-bar--tabs`
 
 .m-links-bar--tabs {
+  padding-top: 0;
 
   .m-intro-block + & {
     margin-top: 40px;
@@ -149,16 +125,11 @@
 
 .m-links-bar--tabs::before {
   top: auto;
-  bottom: 0;
-}
-
-.m-links-bar--tabs .m-links-bar__items-primary,
-.m-links-bar--tabs .m-links-bar__items-secondary {
-  margin-top: 0;
+  bottom: $m-links-bar-descender-pad;
 }
 
 .m-links-bar--tabs .m-links-bar__item {
-  margin-top: 0;
+  position: relative;
 }
 
 .m-links-bar--tabs .m-links-bar__item.s-active::before {
@@ -186,6 +157,10 @@
 
 
 // Variant `.m-links-bar--btns`
+
+.m-links-bar--buttons {
+  padding-top: 28px;
+}
 
 .m-links-bar--buttons .m-links-bar__items-secondary .m-links-bar__item-trigger.f-buttons {
   @include tucked-margin-top($f-buttons, ('xsmall': 28));

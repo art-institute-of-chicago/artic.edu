@@ -47,22 +47,6 @@
 
 .dropdown {
   display: inline-block;
-  position: relative;
-}
-
-.dropdown.s-active {
-  z-index: 2;
-}
-
-.dropdown.s-active::before {
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: -1px;
-  bottom: -1px;
-  width: 20px;
-  background-color: $color__white;
-  opacity: 0;
 }
 
 .dropdown > button {
@@ -127,9 +111,10 @@
   @extend %styled-scrollbars;
   display: none;
   position: absolute;
-  left: calc(100% + 20px);
-  top: 0;
-  min-width: 100%;
+  z-index: map-get($zindexs, 'dropdown');
+  left: -999px;
+  top: -999px;
+  max-width: 90vw;
   max-height: 220px;
   margin-top: 0;
   background-color: $color__white;
@@ -178,27 +163,15 @@
 
 // variation `dropdown--filter`
 
-.dropdown--filter {
-
-  .m-links-bar & {
-    overflow: visible;
-  }
-}
-
-.dropdown--filter.s-active::before {
-  content: none;
-  display: none;
-}
-
 .dropdown--filter > button {
+  min-width: 0;
+  height: auto;
+  padding-top: 0;
+  padding-right: 20px;
+  padding-bottom: 0;
+  border: 0 none;
   border-radius: 0;
   color: $color__link;
-
-  .m-links-bar & {
-    height: auto;
-    padding-top: 5px;
-    overflow: visible;
-  }
 }
 
 .dropdown--filter > button:hover {
@@ -209,41 +182,10 @@
   color: $color__link--active;
 }
 
-.dropdown--filter > button,
-.dropdown--filter > button:hover,
-.dropdown--filter > button:focus,
-.dropdown--filter > button:active {
-  border-color: transparent;
-  border-top-color: $color__rules--primary;
-
-  .m-links-bar & {
-    border-top-color: transparent;
-  }
-}
-
-.dropdown--filter > button::before,
-.dropdown--filter > button[class*=f-]::before {
-  content: '';
-  display: block;
-  position: absolute;
-  right: 48px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  margin: 0 !important;
-  padding: 0 !important;
-  background-color: $color__rules--primary;
-
-  .m-links-bar & {
-    top: -8px;
-  }
+.dropdown--filter > button > .icon--arrow {
+  right: 0;
 }
 
 .dropdown--filter.s-active > button > .icon--arrow {
   transform: rotate(90deg);
-}
-
-.dropdown--filter > ul {
-  left: 0;
-  top: 0;
 }

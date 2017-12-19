@@ -24,13 +24,12 @@
             @endcomponent
         </li>
     @endslot
-    @slot('secondaryVariation', 'm-links-bar__items-secondary--row')
     @slot('secondaryHtml')
         <li class="m-links-bar__item">
             @component('components.atoms._dropdown')
               @slot('prompt', 'All event types')
               @slot('ariaTitle', 'Filter by')
-              @slot('variation','dropdown--filter')
+              @slot('variation','dropdown--filter f-buttons')
               @slot('font', 'f-buttons')
               @slot('options', array(
                 array('href' => '#', 'label' => 'All event types'),
@@ -47,7 +46,7 @@
             @component('components.atoms._dropdown')
               @slot('prompt', 'All audiences')
               @slot('ariaTitle', 'Filter by')
-              @slot('variation','dropdown--filter')
+              @slot('variation','dropdown--filter f-buttons')
               @slot('font', 'f-buttons')
               @slot('options', array(
                 array('href' => '#', 'label' => 'All audiences'),
@@ -73,7 +72,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--buttons')
-    @slot('linksPrimary', array(array('text' => 'See upcoming events', 'href' => '#', 'variation' => 'btn--secondary')))
+    @slot('linksPrimary', array(array('text' => 'See more events', 'href' => '#', 'variation' => 'btn--secondary')))
 @endcomponent
 
 

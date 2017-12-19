@@ -1,15 +1,30 @@
-import { purgeProperties } from 'a17-helpers';
-import { setFocusOnTarget } from 'a17-helpers';
-import { triggerCustomEvent } from 'a17-helpers';
+import { purgeProperties, setFocusOnTarget, triggerCustomEvent, getOffset } from 'a17-helpers';
 
 const dropdown = function(container) {
 
   let active = false;
   let allow = true;
+  let $list;
   let hoverable = (container.getAttribute('data-dropdown-hoverable') !== null);
   let hovered = false;
   let hoverTimer;
   const hoverIntentTime = 250;
+
+  /*
+      Find a html element's position.
+      Adapted from Peter-Paul Koch of QuirksMode at   http://www.quirksmode.org/js/findpos.html
+  */
+  function _findScrollLeft(obj) {
+      var scrollLeft = 0;
+
+      while(obj && obj.parentNode)
+      {
+          scrollLeft += (obj.parentNode.scrollLeft) ? obj.parentNode.scrollLeft : 0;
+          obj = obj.parentNode;
+      }
+
+      return scrollLeft;
+  }
 
   function _ignore(el) {
     let ignore = false;
@@ -29,6 +44,15 @@ const dropdown = function(container) {
     if (event) {
       event.stopPropagation();
     }
+    var scrollLeft = _findScrollLeft(container);
+    if (container.classList.contains('dropdown--filter')) {
+      $list.style.top = Math.round(container.offsetTop - 4) + 'px';
+      $list.style.left = Math.round(container.offsetLeft - scrollLeft - 1) + 'px';
+    } else {
+      $list.style.top = Math.round(container.offsetTop) + 'px';
+      $list.style.left = Math.round(container.offsetLeft + container.offsetWidth + 20 - scrollLeft) + 'px';
+    }
+    $list.style.minWidth = Math.round(container.offsetWidth) + 'px';
     container.classList.add('s-active');
     setFocusOnTarget(container.querySelector('ul'));
     triggerCustomEvent(document, 'dropdown:closed', { el: container });
@@ -133,6 +157,7 @@ const dropdown = function(container) {
 
   function _init() {
     container.setAttribute('tabindex','0');
+    $list = container.querySelector('[data-dropdown-list]');
     active = container.classList.contains('s-active');
     document.addEventListener('focus', _focus, true);
     document.addEventListener('click', _clicks, false);
