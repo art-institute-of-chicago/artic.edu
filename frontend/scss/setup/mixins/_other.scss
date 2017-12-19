@@ -95,7 +95,7 @@
         $line-height: $new-line-height;
         $margin: $new-margin;
         $push: $new-push;
-        @if ($name == 'xsmall' or $single-bp) {
+        @if ($name == 'xsmall' or $single-bp == $name) {
           margin-top: #{$margin - $line-height}px;
         } @else {
           @include breakpoint(#{$name}) {
@@ -129,7 +129,7 @@
         $base-height-into-pull: round($pull / $base-height); // round or floor? erm
         // round will be closer but has the risk of drawing too much negative margin
         $margin-top: 0 - ($base-height-into-pull * $base-height);
-        @if ($name == 'xsmall' or $single-bp) {
+        @if ($name == 'xsmall' or $single-bp == $name) {
           margin-top: #{$margin-top}px;
         } @else {
           @include breakpoint(#{$name}) {

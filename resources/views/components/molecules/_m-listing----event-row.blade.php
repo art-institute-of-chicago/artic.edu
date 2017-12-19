@@ -24,9 +24,33 @@
             {{ $event->title }}
         @endcomponent
         <br>
-        @component('components.atoms._date')
-            {{ $event->timeStart }}-{{ $event->timeEnd }}
+        @component('components.atoms._short-description')
+            {{ $event->shortDesc }}
         @endcomponent
+        <br>
+        <span class="m-listing__meta-bottom">
+            @component('components.atoms._date')
+                {{ $event->timeStart }}-{{ $event->timeEnd }}
+            @endcomponent
+            <br>
+            @component('components.atoms._tag')
+                @slot('variation','tag--primary')
+                @slot('tag','span')
+                Primary
+            @endcomponent
+            <br>
+            @component('components.atoms._tag')
+                @slot('variation','tag--secondary')
+                @slot('tag','span')
+                Secondary
+            @endcomponent
+            <br>
+            @component('components.atoms._tag')
+                @slot('variation','tag--tertiary')
+                @slot('tag','span')
+                Tertiary
+            @endcomponent
+        </span>
     </span>
   </a>
 </{{ $tag ?? 'li' }}>

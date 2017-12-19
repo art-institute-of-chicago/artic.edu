@@ -167,6 +167,7 @@ class StaticsController extends Controller {
       "id" => $this->faker->uuid,
       "slug" => "/statics/event",
       "title" => $this->faker->sentence(6, true),
+      "shortDesc" => $this->faker->paragraph(1, false),
       "dateFormatted" => $this->getFormattedDateString(),
       "timeStart" => $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30')),
       "timeEnd" => $this->makeEventTime(($hour+1), ($this->faker->boolean() ? '00' : '30')),
