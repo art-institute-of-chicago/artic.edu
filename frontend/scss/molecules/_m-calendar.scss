@@ -5,7 +5,22 @@
 ```
 <div class="m-calendar m-calendar--inline" data-behavior="calendar" data-calendar-url="/events">
   <b class="m-calendar__title f-caption" data-calendar-title="">November 2017</b>
-  <table class="f-caption">
+  <table class="f-caption" data-calendar-table>
+    <thead>
+      <tr>
+        <th title="Sunday">S</th>
+        <th title="Monday">M</th>
+        <th title="Tuesday">T</th>
+        <th title="Wednesday">W</th>
+        <th title="Thursday">T</th>
+        <th title="Friday">F</th>
+        <th title="Saturday">S</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <table class="f-caption" data-calendar-table>
     <thead>
       <tr>
         <th title="Sunday">S</th>
@@ -32,22 +47,28 @@
   display: none;
   position: absolute;
   z-index: map-get($zindexs, 'calendar');
-  width: 304px;
+  flex-flow: row nowrap;
   padding-bottom: 12px;
-    padding-bottom: 72px;
   background-color: $color__white;
   box-shadow: $shadow;
 }
 
 .m-calendar--inline {
-  display: block;
+  display: flex;
   position: relative;
   border: 1px solid $color__rules--primary;
   box-shadow: none;
+
+  width: 608px;
 }
 
 .m-calendar a {
   text-decoration: none;
+}
+
+.m-calendar__calendar {
+  flex: 0 0 auto;
+  width: 304px;
 }
 
 .m-calendar__title {

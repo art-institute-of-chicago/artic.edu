@@ -8,6 +8,9 @@ const calendar = function(container) {
   const todayYear = today.getFullYear();
   const searchUrl = container.getAttribute('data-calendar-url') || '/';
 
+  let monthsVisible = 2;
+  let monthDivs = [];
+
   let minDate = today;
   let opener = false;
 
@@ -46,10 +49,20 @@ const calendar = function(container) {
   monthLengths[10] = 30;
   monthLengths[11] = 31;
 
-  function _generateCalendar(year, month) {
-    // update vars
-    currentMonth = month;
-    currentYear = year;
+  function _normaliseYearMonth(){
+    // if months over 11 (December), we must be wanting January a year later
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+    // if months under 0 (January), we must be wanting December last year
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
+  }
+
+  function _generateCalendar(el, year, month) {
     // JS this date
     var theDate = new Date(year, month);
     // is leap year?
@@ -102,20 +115,28 @@ const calendar = function(container) {
     // close that last tr
     daysHtml += '</tr>';
     // insert the html
-    container.querySelector('[data-calendar-title]').textContent = months[month] + ' ' + year;
-    container.querySelector('tbody').innerHTML = daysHtml;
+    el.querySelector('[data-calendar-title]').textContent = months[month] + ' ' + year;
+    el.querySelector('tbody').innerHTML = daysHtml;
   }
 
-  function _normaliseYearMonth(){
-    // if months over 11 (December), we must be wanting January a year later
-    if (currentMonth > 11) {
-      currentMonth = 0;
-      currentYear++;
+  function _generateCalendars(year, month) {
+    let template = container.querySelector('[data-calendar-month-template]');
+    if (monthDivs.length !== monthsVisible) {
+      // clone template, update and insert
+      for (let i = 0; i < monthsVisible; i++) {
+        let thisCopy = template.cloneNode(true);
+        thisCopy.removeAttribute('data-calendar-month-template');
+        thisCopy.removeAttribute('style');
+        container.insertBefore(thisCopy, template);
+        monthDivs.push(thisCopy);
+      }
     }
-    // if months under 0 (January), we must be wanting December last year
-    if (currentMonth < 0) {
-      currentMonth = 11;
-      currentYear--;
+    currentYear = year;
+    currentMonth = month;
+    for (let i = 0; i < monthsVisible; i++) {
+      currentMonth = currentMonth + i;
+      _normaliseYearMonth();
+      _generateCalendar(monthDivs[i], currentYear, currentMonth);
     }
   }
 
@@ -128,15 +149,15 @@ const calendar = function(container) {
       clicked.blur();
       currentMonth++;
       _normaliseYearMonth();
-      _generateCalendar(currentYear, currentMonth);
+      _generateCalendars(currentYear, currentMonth);
     }
     if (clicked.getAttribute('data-calendar-prev') !== null) {
       event.preventDefault();
       event.stopPropagation();
       clicked.blur();
-      currentMonth--;
+      currentMonth = currentMonth - monthsVisible - 1;
       _normaliseYearMonth();
-      _generateCalendar(currentYear, currentMonth);
+      _generateCalendars(currentYear, currentMonth);
     }
     if (clicked.getAttribute('data-date') !== null && opener) {
       event.preventDefault();
@@ -160,7 +181,7 @@ const calendar = function(container) {
     } else {
       minDate = today;
     }
-    _generateCalendar(minDate.getFullYear(), minDate.getMonth());
+    _generateCalendars(minDate.getFullYear(), minDate.getMonth());
   }
 
   function _init() {
@@ -168,7 +189,7 @@ const calendar = function(container) {
     container.addEventListener('click', _handleClicks, false);
     container.addEventListener('calendar:opener', _openerSent, false);
     // draw initial calendar
-    _generateCalendar(minDate.getFullYear(), minDate.getMonth());
+    _generateCalendars(minDate.getFullYear(), minDate.getMonth());
   }
 
   this.destroy = function() {
