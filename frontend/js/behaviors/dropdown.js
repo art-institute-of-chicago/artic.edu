@@ -47,12 +47,13 @@ const dropdown = function(container) {
     var scrollLeft = _findScrollLeft(container);
     if (container.classList.contains('dropdown--filter')) {
       $list.style.top = Math.round(container.offsetTop - 4) + 'px';
-      $list.style.left = Math.round(container.offsetLeft - scrollLeft - 1) + 'px';
+      $list.style.left = Math.round(container.offsetLeft - scrollLeft - 17) + 'px';
+      $list.style.minWidth = Math.round(container.offsetWidth + 32) + 'px';
     } else {
       $list.style.top = Math.round(container.offsetTop) + 'px';
       $list.style.left = Math.round(container.offsetLeft + container.offsetWidth + 20 - scrollLeft) + 'px';
+      $list.style.minWidth = Math.round(container.offsetWidth) + 'px';
     }
-    $list.style.minWidth = Math.round(container.offsetWidth) + 'px';
     container.classList.add('s-active');
     setFocusOnTarget(container.querySelector('ul'));
     triggerCustomEvent(document, 'dropdown:closed', { el: container });
