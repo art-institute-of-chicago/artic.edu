@@ -31,7 +31,6 @@ $m-links-bar-descender-pad: 8px;
 .m-links-bar {
   position: relative;
   margin-top: 40px;
-  padding-top: 8px;
 
   & + * {
     margin-top: 40px;
@@ -77,11 +76,29 @@ $m-links-bar-descender-pad: 8px;
 
 .m-links-bar__item {
   flex: 0 0 auto;
-  margin-left: 32px;
+  height: 56px;
+  margin-left: 24px;
+  padding-top: 8px;
+}
+
+.m-links-bar__item--primary {
+  padding-right: 23px;
+  padding-left: 23px;
+  border-right: 1px solid $color__rules--tertiary;
+  border-left: 1px solid $color__rules--tertiary;
+
+  & + & {
+    margin-left: -1px;
+  }
 }
 
 .m-links-bar__items-primary .m-links-bar__item:first-child {
   margin-left: 0;
+}
+
+.m-links-bar__items-secondary .m-links-bar__item--primary:last-child {
+  padding-right: 0;
+  border-right: 0 none;
 }
 
 .m-links-bar__item-trigger {
@@ -107,10 +124,9 @@ $m-links-bar-descender-pad: 8px;
 // Variant `.m-links-bar--tabs`
 
 .m-links-bar--tabs {
-  padding-top: 0;
 
   .m-intro-block + & {
-    margin-top: 40px;
+    margin-top: 60px;
   }
 
   & + .m-links-bar:not(.m-links-bar--tabs) {
@@ -130,6 +146,8 @@ $m-links-bar-descender-pad: 8px;
 
 .m-links-bar--tabs .m-links-bar__item {
   position: relative;
+  height: auto;
+  padding-top: 0;
 }
 
 .m-links-bar--tabs .m-links-bar__item.s-active::before {

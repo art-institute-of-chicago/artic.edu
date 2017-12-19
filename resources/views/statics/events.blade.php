@@ -18,14 +18,14 @@
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', array(array('text' => 'Today', 'href' => '#', 'active' => true), array('text' => 'Tomorrow', 'href' => '#'), array('text' => 'This weekend', 'href' => '#')))
     @slot('primaryHtml')
-        <li class="m-links-bar__item">
+        <li class="m-links-bar__item m-links-bar__item--primary">
             @component('components.atoms._date-select-trigger')
                 Pick a date
             @endcomponent
         </li>
     @endslot
     @slot('secondaryHtml')
-        <li class="m-links-bar__item">
+        <li class="m-links-bar__item m-links-bar__item--primary">
             @component('components.atoms._dropdown')
               @slot('prompt', 'All event types')
               @slot('ariaTitle', 'Filter by')
@@ -42,7 +42,7 @@
               ))
             @endcomponent
         </li>
-        <li class="m-links-bar__item">
+        <li class="m-links-bar__item m-links-bar__item--primary">
             @component('components.atoms._dropdown')
               @slot('prompt', 'All audiences')
               @slot('ariaTitle', 'Filter by')
