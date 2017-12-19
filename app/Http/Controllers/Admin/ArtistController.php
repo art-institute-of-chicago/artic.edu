@@ -8,6 +8,27 @@ class ArtistController extends ModuleController
 {
     protected $moduleName = 'artists';
 
+    protected $indexOptions = [
+        'publish' => false,
+    ];
+
+    protected $titleColumnKey = 'name';
+
+    protected $indexColumns = [
+        'name' => [
+            'title' => 'Name',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'name',
+        ],
+        'datahub_id' => [
+            'title' => 'Datahub ID',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'datahub_id',
+        ],
+    ];
+
     /*
      * Relations to eager load for the index view
      */

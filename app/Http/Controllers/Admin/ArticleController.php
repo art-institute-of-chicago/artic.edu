@@ -9,20 +9,33 @@ class ArticleController extends ModuleController
 {
     protected $moduleName = 'articles';
 
-    /*
-     * Relations to eager load for the index view
-     */
+    protected $indexColumns = [
+        'image' => [
+            'title' => 'Hero',
+            'thumb' => true,
+            'variant' => [
+                'role' => 'hero',
+                'crop' => 'square',
+            ],
+        ],
+        'title' => [
+            'title' => 'Title',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'title',
+        ],
+        'date' => [
+            'title' => 'Date',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'date',
+        ],
+    ];
+
     protected $indexWith = [];
 
-    /*
-     * Relations to eager load for the form view
-     */
     protected $formWith = ['revisions', 'siteTags', 'shopItems'];
 
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
     protected $filters = [];
 
     protected $formWithCount = ['revisions'];
@@ -36,8 +49,8 @@ class ArticleController extends ModuleController
     protected function formData($request)
     {
         return [
-            'siteTagsList'   => app(SiteTagRepository::class)->listAll('name'),
-            'with_revisions' => true
+            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+            'with_revisions' => true,
         ];
     }
 

@@ -1,106 +1,87 @@
-@extends('cms-toolkit::layouts.resources.form')
+@extends('cms-toolkit::layouts.form')
 
-@section('form')
-    {{ Form::model($form_fields, $form_options) }}
-    @formField('publish_status')
+@section('contentFields')
+    @formField('date_picker', [
+         'name' => 'start_date',
+         'label' => 'Start date',
+    ])
+    @formField('date_picker', [
+         'name' => 'end_date',
+         'label' => 'End date',
+    ])
 
-    <section class="columns with_right_sidebar">
-        <section class="col">
-            <section class="box">
-                @formField('versions', ['with_preview' => isset($item)])
+    @formField('multi_select', [
+        'name' => 'site_tags',
+        'label' => 'Tags',
+        'options' => $siteTagsList,
+        'placeholder' => 'Select some tags',
+    ])
 
-                @formField('date_picker', [
-                     'field' => 'start_date',
-                     'field_name' => 'Start date',
-                ])
-                @formField('date_picker', [
-                     'field' => 'end_date',
-                     'field_name' => 'End date',
-                ])
+    @formField('checkbox', [
+         'name' => 'recurring',
+         'label' => 'Recurring event',
+    ])
 
-                @formField('multi_select', [
-                    'field' => 'site_tags',
-                    'field_name' => 'Tags',
-                    'list' => $siteTagsList,
-                    'placeholder' => 'Select some tags',
-                ])
+    @formField('input', [
+         'name' => 'recurring_start_time',
+         'label' => 'Recurring Start time',
+    ])
+    @formField('input', [
+         'name' => 'recurring_end_time',
+         'label' => 'Recurring end time',
+    ])
 
-                @formField('checkbox', [
-                     'field' => 'recurring',
-                     'field_name' => 'Recurring event',
-                ])
-
-                @formField('input', [
-                     'field' => 'recurring_start_time',
-                     'field_name' => 'Recurring Start time',
-                ])
-                @formField('input', [
-                     'field' => 'recurring_end_time',
-                     'field_name' => 'Recurring end time',
-                ])
-
-                @formField('input', [
-                    'field' => 'recurring_days',
-                    'field_name' => 'Recurring days',
-                ])
-            </section>
-        </section>
-        <section class="col">
-            <section class="box">
-                <header class="header_small">
-                    <h3><b>{{ $form_fields['title'] or 'New item' }}</b></h3>
-                </header>
-                @formField('input', [
-                    'field' => 'title',
-                    'field_name' => 'Title',
-                ])
-                @formField('input', [
-                    'field' => 'datahub_id',
-                    'field_name' => 'Datahub ID'
-                ])
-                @formField('medias', [
-                    'media_role' => 'hero',
-                    'media_role_name' => 'Hero',
-                    'with_multiple' => false,
-                    'no_crop' => false
-                ])
-                @formField('input', [
-                    'field' => 'admission',
-                    'field_name' => 'Admission',
-                ])
-                @formField('input', [
-                    'field' => 'price',
-                    'field_name' => 'Price'
-                ])
-                @formField('input', [
-                    'field' => 'location',
-                    'field_name' => 'Meeting Location'
-                ])
-                @formField('input', [
-                    'field' => 'latitude',
-                    'field_name' => 'Latitude'
-                ])
-                @formField('input', [
-                    'field' => 'longitude',
-                    'field_name' => 'Longitude'
-                ])
-                @formField('input', [
-                    'field' => 'rsvp_link',
-                    'field_name' => 'External RSVP Link'
-                ])
-            </section>
-
-            @formField('browser', [
-                'routePrefix' => 'whatson',
-                'relationship' => 'events',
-                'module_name' => 'events',
-                'relationship_name' => 'events',
-                'custom_title_prefix' => 'Add',
-                'with_multiple' => true,
-                'with_sort' => true,
-                'hint' => 'Select related events',
-                'max' => 20
-            ])
-        </section>
-    </section>
+    @formField('input', [
+        'name' => 'recurring_days',
+        'label' => 'Recurring days',
+    ])
+    @formField('input', [
+        'name' => 'title',
+        'label' => 'Title',
+    ])
+    @formField('input', [
+        'name' => 'datahub_id',
+        'label' => 'Datahub ID'
+    ])
+    @formField('medias', [
+        'media_role' => 'hero',
+        'media_role_name' => 'Hero',
+        'with_multiple' => false,
+        'no_crop' => false
+    ])
+    @formField('input', [
+        'name' => 'admission',
+        'label' => 'Admission',
+    ])
+    @formField('input', [
+        'name' => 'price',
+        'label' => 'Price'
+    ])
+    @formField('input', [
+        'name' => 'location',
+        'label' => 'Meeting Location'
+    ])
+    @formField('input', [
+        'name' => 'latitude',
+        'label' => 'Latitude'
+    ])
+    @formField('input', [
+        'name' => 'longitude',
+        'label' => 'Longitude'
+    ])
+    @formField('input', [
+        'name' => 'rsvp_link',
+        'label' => 'External RSVP Link'
+    ])
+    @formField('browser', [
+        'routePrefix' => 'whatson',
+        'relationship' => 'events',
+        'module_name' => 'events',
+        'relationship_name' => 'events',
+        'custom_title_prefix' => 'Add',
+        'with_multiple' => true,
+        'with_sort' => true,
+        'hint' => 'Select related events',
+        'max' => 20
+    ])
 @stop

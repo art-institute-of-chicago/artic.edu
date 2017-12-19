@@ -9,6 +9,37 @@ class ClosureController extends ModuleController
 {
     protected $moduleName = 'closures';
 
+    protected $indexOptions = [
+        'delete' => false,
+    ];
+
+    protected $titleColumnKey = 'type';
+
+    protected $indexColumns = [
+        'type' => [
+            'title' => 'Type',
+            'present' => true,
+            'field' => 'presentType',
+            'edit_link' => true,
+        ],
+        'opening_time' => [
+            'title' => 'Start Date',
+            'present' => true,
+            'field' => 'presentStartDate',
+        ],
+        'closing_time' => [
+            'title' => 'End Date',
+            'present' => true,
+            'field' => 'presentEndDate',
+        ],
+        'title' => [
+            'title' => 'Closure Copy',
+            'edit_link' => true,
+            'sort' => false,
+            'field' => 'closure_copy',
+        ],
+    ];
+
     /*
      * Relations to eager load for the index view
      */
@@ -24,7 +55,7 @@ class ClosureController extends ModuleController
      * In the indexData function, name your lists with the filter name + List (fFilterNameList)
      */
     protected $filters = [
-        'fType' => 'type'
+        'fType' => 'type',
     ];
 
     protected $defaultOrders = ['date_start' => 'desc'];
@@ -39,7 +70,7 @@ class ClosureController extends ModuleController
     protected function formData($request)
     {
         return [
-            'typeList' => Closure::$types
+            'typeList' => Closure::$types,
         ];
     }
 

@@ -8,6 +8,21 @@ class QuestionController extends ModuleController
 {
     protected $moduleName = 'questions';
 
+    protected $titleColumnKey = 'question';
+
+    protected $indexColumns = [
+        'question' => [
+            'title' => 'Question',
+            'edit_link' => true,
+            'field' => 'question',
+        ],
+        'answer' => [
+            'title' => 'Answer',
+            'edit_link' => true,
+            'field' => 'answer',
+        ],
+    ];
+
     /*
      * Relations to eager load for the index view
      */

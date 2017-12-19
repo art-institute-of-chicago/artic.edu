@@ -1,33 +1,24 @@
-@extends('cms-toolkit::layouts.resources.form')
+@extends('cms-toolkit::layouts.form')
 
-@section('form')
-    {{ Form::model($form_fields, $form_options) }}
-    @formField('publish_status')
+@section('contentFields')
+    @formField('input', [
+        'name' => 'title',
+        'label' => 'Title',
+        'required' => true
+    ])
 
-    <section class="box">
-        <header class="header_small">
-            <h3><b>Selections</b></h3>
-        </header>
+    @formField('input', [
+        'name' => 'short_copy',
+        'label' => 'Short Intro copy',
+    ])
 
-        @formField('input', [
-            'field' => 'title',
-            'field_name' => 'Title',
-            'required' => true
-        ])
-
-        @formField('input', [
-            'field' => 'short_copy',
-            'field_name' => 'Short Intro copy',
-        ])
-
-        @formField('medias', [
-            'media_role' => 'hero',
-            'media_role_name' => 'Hero',
-            'with_multiple' => true,
-            'no_crop' => false,
-            'max' => 2
-        ])
-    </section>
+    @formField('medias', [
+        'media_role' => 'hero',
+        'media_role_name' => 'Hero',
+        'with_multiple' => true,
+        'no_crop' => false,
+        'max' => 2
+    ])
 
     @formField('browser', [
         'routePrefix' => 'whatson',

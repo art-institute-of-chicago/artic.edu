@@ -9,6 +9,24 @@ class EventController extends ModuleController
 {
     protected $moduleName = 'events';
 
+    protected $indexColumns = [
+        'image' => [
+            'title' => 'Hero',
+            'thumb' => true,
+            'variant' => [
+                'role' => 'hero',
+                'crop' => 'square',
+            ],
+        ],
+        'title' => [
+            'title' => 'Title',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'title',
+        ],
+    ];
+
+    protected $featureField = 'landing';
     /*
      * Relations to eager load for the index view
      */
@@ -36,8 +54,8 @@ class EventController extends ModuleController
     protected function formData($request)
     {
         return [
-            'siteTagsList'   => app(SiteTagRepository::class)->listAll('name'),
-            'with_revisions' => true
+            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+            'with_revisions' => true,
         ];
     }
 

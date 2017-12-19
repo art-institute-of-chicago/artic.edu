@@ -9,6 +9,20 @@ class CategoryController extends ModuleController
 {
     protected $moduleName = 'categories';
 
+    protected $indexOptions = [
+        'publish' => false,
+    ];
+
+    protected $titleColumnKey = 'name';
+
+    protected $indexColumns = [
+        'name' => [
+            'title' => 'Name',
+            'edit_link' => true,
+            'field' => 'name',
+        ],
+    ];
+
     /*
      * Relations to eager load for the index view
      */
@@ -36,6 +50,5 @@ class CategoryController extends ModuleController
     {
         return [];
     }
-
 
 }

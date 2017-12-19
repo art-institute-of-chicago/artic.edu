@@ -9,6 +9,31 @@ class ExhibitionController extends ModuleController
 {
     protected $moduleName = 'exhibitions';
 
+    protected $indexColumns = [
+        'image' => [
+            'title' => 'Hero',
+            'thumb' => true,
+            'variant' => [
+                'role' => 'hero',
+                'crop' => 'square',
+            ],
+        ],
+        'title' => [
+            'title' => 'Title',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'title',
+        ],
+        'short_copy' => [
+            'title' => 'Short Copy',
+            'short_copy' => 'Short Copy',
+            'edit_link' => true,
+            'field' => 'short_copy',
+        ],
+    ];
+
+    protected $featureField = 'landing';
+
     /*
      * Relations to eager load for the index view
      */
@@ -36,10 +61,9 @@ class ExhibitionController extends ModuleController
     protected function formData($request)
     {
         return [
-            'siteTagsList'   => app(SiteTagRepository::class)->listAll('name'),
-            'with_revisions' => true
+            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+            'with_revisions' => true,
         ];
     }
-
 
 }

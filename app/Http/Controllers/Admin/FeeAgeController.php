@@ -8,6 +8,19 @@ class FeeAgeController extends ModuleController
 {
     protected $moduleName = 'feeAges';
 
+    protected $indexOptions = [
+        'publish' => false,
+    ];
+
+    protected $indexColumns = [
+        'title' => [
+            'title' => 'Field title',
+            'edit_link' => true,
+            'sort' => false,
+            'field' => 'title',
+        ],
+    ];
+
     /*
      * Relations to eager load for the index view
      */

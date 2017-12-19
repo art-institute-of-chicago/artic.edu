@@ -1,49 +1,32 @@
-@extends('cms-toolkit::layouts.resources.form')
+@extends('cms-toolkit::layouts.form')
 
-@section('form')
-    {{ Form::model($form_fields, $form_options) }}
-    @formField('publish_status')
+@section('contentFields')
+    @formField('date_picker', [
+        'name' => 'date',
+        'label' => 'Publishing date',
+    ])
 
-    <section class="columns with_right_sidebar">
-        <section class="col">
-            <section class="box">
-                @formField('versions', ['with_preview' => isset($item)])
+    @formField('multi_select', [
+        'name' => 'site_tags',
+        'label' => 'Tags',
+        'options' => $siteTagsList,
+        'placeholder' => 'Select some tags',
+    ])
 
-                @formField('date_picker', [
-                     'field' => 'date',
-                     'field_name' => 'Publishing date',
-                ])
-
-                @formField('multi_select', [
-                    'field' => 'site_tags',
-                    'field_name' => 'Tags',
-                    'list' => $siteTagsList,
-                    'placeholder' => 'Select some tags',
-                ])
-            </section>
-        </section>
-        <section class="col">
-            <section class="box">
-                <header class="header_small">
-                    <h3><b>{{ $form_fields['title'] or 'New item' }}</b></h3>
-                </header>
-                @formField('input', [
-                    'field' => 'title',
-                    'field_name' => 'Title',
-                ])
-                @formField('textarea', [
-                    'field' => 'copy',
-                    'field_name' => 'Short Copy'
-                ])
-                @formField('medias', [
-                    'media_role' => 'hero',
-                    'media_role_name' => 'Hero',
-                    'with_multiple' => false,
-                    'no_crop' => false
-                ])
-            </section>
-        </section>
-    </section>
+    @formField('input', [
+        'name' => 'title',
+        'label' => 'Title',
+    ])
+    @formField('textarea', [
+        'name' => 'copy',
+        'label' => 'Short Copy'
+    ])
+    @formField('medias', [
+        'media_role' => 'hero',
+        'media_role_name' => 'Hero',
+        'with_multiple' => false,
+        'no_crop' => false
+    ])
 
     @formField('browser', [
         'routePrefix' => 'whatson',

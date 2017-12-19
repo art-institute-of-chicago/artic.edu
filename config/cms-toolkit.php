@@ -11,10 +11,9 @@ return [
     ],
 
     'enabled' => [
-        'users-in-top-right-nav' => true,
         'buckets' => true,
         'media-library' => true,
-        'file-library' => true
+        'file-library' => true,
     ],
 
     'buckets' => [
@@ -38,7 +37,7 @@ return [
                             'module' => 'articles',
                             'name' => 'Articles',
                             'scopes' => ['published' => true],
-                        ]
+                        ],
                     ],
                     'max_items' => 1,
                 ],
@@ -62,8 +61,8 @@ return [
                         ],
                         [
                             'module' => 'artworks',
-                            'name' => 'Artworks'
-                        ]
+                            'name' => 'Artworks',
+                        ],
                     ],
                     'max_items' => 2,
                 ],
@@ -82,12 +81,12 @@ return [
                         ],
                         [
                             'module' => 'artworks',
-                            'name' => 'Artworks'
-                        ]
+                            'name' => 'Artworks',
+                        ],
                     ],
                     'max_items' => 6,
-                ]
-            ]
+                ],
+            ],
         ],
 
         'art_and_ideas' => [
@@ -100,11 +99,11 @@ return [
                             'module' => 'articles',
                             'name' => 'Articles',
                             'scopes' => ['published' => true],
-                        ]
+                        ],
                     ],
                     'max_items' => 2,
-                ]
-            ]
-        ]
-    ]
+                ],
+            ],
+        ],
+    ],
 ];

@@ -1,36 +1,30 @@
-@extends('cms-toolkit::layouts.resources.form')
+@extends('cms-toolkit::layouts.form')
 
-@section('form')
-    {{ Form::model($form_fields, $form_options) }}
-    <section class="box">
-        <header class="header_small">
-            <h3><b>{{ $form_fields['title'] or 'New item' }}</b></h3>
-        </header>
-        @formField('input', [
-            'field' => 'datahub_id',
-            'field_name' => 'Datahub ID',
-            'required' => true
-        ])
-        @formField('input', [
-            'field' => 'title',
-            'field_name' => 'Title',
-            'required' => true
-        ])
-        @formField('multi_select', [
-            'field' => 'site_tags',
-            'field_name' => 'Tags',
-            'list' => $siteTagsList,
-            'placeholder' => 'Select some tags',
-        ])
-        @formField('input', [
-            'field' => 'subtitle',
-            'field_name' => 'Subtitle',
-        ])
-        @formField('textarea', [
-            'field' => 'copy',
-            'field_name' => 'Copy'
-        ])
-    </section>
+@section('contentFields')
+    @formField('input', [
+        'name' => 'datahub_id',
+        'label' => 'Datahub ID',
+        'required' => true
+    ])
+    @formField('input', [
+        'name' => 'title',
+        'label' => 'Title',
+        'required' => true
+    ])
+    @formField('multi_select', [
+        'name' => 'site_tags',
+        'label' => 'Tags',
+        'optionq' => $siteTagsList,
+        'placeholder' => 'Select some tags',
+    ])
+    @formField('input', [
+        'name' => 'subtitle',
+        'label' => 'Subtitle',
+    ])
+    @formField('textarea', [
+        'name' => 'copy',
+        'label' => 'Copy'
+    ])
 
     @formField('browser', [
         'routePrefix' => 'whatson',
@@ -80,5 +74,3 @@
         'max' => 20
     ])
 @stop
-
-

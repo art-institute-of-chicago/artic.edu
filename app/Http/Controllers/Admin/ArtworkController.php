@@ -9,6 +9,25 @@ class ArtworkController extends ModuleController
 {
     protected $moduleName = 'artworks';
 
+    protected $indexOptions = [
+        'publish' => false,
+    ];
+
+    protected $indexColumns = [
+        'title' => [
+            'title' => 'Title',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'title',
+        ],
+        'datahub_id' => [
+            'title' => 'Datahub ID',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'datahub_id',
+        ],
+    ];
+
     /*
      * Relations to eager load for the index view
      */
@@ -33,7 +52,7 @@ class ArtworkController extends ModuleController
     protected function formData($request)
     {
         return [
-            'siteTagsList'   => app(SiteTagRepository::class)->listAll('name')
+            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
         ];
     }
 

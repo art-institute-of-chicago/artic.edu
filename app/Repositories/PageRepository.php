@@ -2,15 +2,16 @@
 
 namespace App\Repositories;
 
+use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
+use A17\CmsToolkit\Repositories\Behaviors\HandleRepeaters;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
-use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Models\Page;
 
 class PageRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleRepeaters;
 
     public function __construct(Page $model)
     {
@@ -40,8 +41,8 @@ class PageRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields['admissions'] = $this->getFormFieldsForRepeater($object, 'admissions', 'Admission');
-        $fields['locations'] = $this->getFormFieldsForRepeater($object, 'locations', 'Location');
+        $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');
+        $fields = $this->getFormFieldsForRepeater($object, $fields, 'locations', 'Location');
 
         return $fields;
     }
