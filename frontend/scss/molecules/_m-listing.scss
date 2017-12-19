@@ -494,6 +494,28 @@
     width: colspan(13, xxlarge);
   }
 }
+  .m-listing--row.m-listing--secondary .m-listing__img {
+
+    @include breakpoint('small+') {
+      width: colspan(7, small);
+    }
+
+    @include breakpoint('medium+') {
+      width: colspan(7, medium);
+    }
+
+    @include breakpoint('large+') {
+      width: colspan(7, large);
+    }
+
+    @include breakpoint('xlarge+') {
+      width: colspan(7, xlarge);
+    }
+
+    @include breakpoint('xxlarge') {
+      width: colspan(7, xxlarge);
+    }
+  }
 
 .m-listing--row .m-listing__meta {
 

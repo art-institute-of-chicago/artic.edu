@@ -41,7 +41,7 @@
   }
 }
 
-.m-date-listing__items {
+.m-date-listing__listings {
   margin-top: 20px;
   padding-top: 16px;
   border-top: 1px solid $color__rules--primary;
@@ -55,5 +55,35 @@
     width: auto;
     margin-top: 0;
     padding-top: 23px;
+  }
+}
+
+.m-date-listing__listings-title {
+  margin-top: 24px;
+  padding-top: 8px;
+  border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('small+') {
+    margin-top: 20px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 24px;
+  }
+}
+
+.m-date-listing__items {
+  margin-top: 0;
+
+  .m-date-listing__listings-title + & {
+    margin-top: 36px;
+
+    @include breakpoint('small+') {
+      margin-top: 32px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 36px;
+    }
   }
 }

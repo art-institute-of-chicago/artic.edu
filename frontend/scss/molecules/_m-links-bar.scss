@@ -39,6 +39,18 @@ $m-links-bar-descender-pad: 8px;
   .m-intro-block + & {
     margin-top: 20px;
   }
+
+  .o-row-listing + & {
+    margin-top: 24px;
+
+    @include breakpoint('small+') {
+      margin-top: 20px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 24px;
+    }
+  }
 }
 
 .m-links-bar::before {

@@ -162,6 +162,20 @@ class StaticsController extends Controller {
   private function getEvent() {
     $hour = $this->faker->numberBetween(10,19);
 
+    $free = $this->faker->boolean(30);
+    $register = false;
+    $soldOut = false;
+
+    if (!$free) {
+        $register = $this->faker->boolean(30);
+    }
+    if ($register) {
+        $soldOut = $this->faker->boolean();
+    }
+    if ($soldOut) {
+        $register = false;
+    }
+
     return new StaticObjectPresenter([
       "type" => $this->getEventType(),
       "id" => $this->faker->uuid,
@@ -174,6 +188,9 @@ class StaticsController extends Controller {
       "exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
       "type" => 'event',
+      "free" => $free,
+      "register" => $register,
+      "soldOut" => $soldOut,
     ]);
   }
 
@@ -190,7 +207,15 @@ class StaticsController extends Controller {
     $dates = array();
     $date = strtotime($startDate);
     for ($i = 0; $i < $days; $i++) {
-      $thisDay = array('date' => array('date' => date('d', strtotime($startDate. ' + '.$i.' days')), 'month' => date('M', strtotime($startDate. ' + '.$i.' days')), 'day' => date('D', strtotime($startDate. ' + '.$i.' days'))), 'events' => $this->getEvents($this->faker->numberBetween(3,6)));
+      $thisDay = array(
+        'date' => array(
+            'date' => date('d', strtotime($startDate. ' + '.$i.' days')),
+            'month' => date('M', strtotime($startDate. ' + '.$i.' days')),
+            'day' => date('D', strtotime($startDate. ' + '.$i.' days'))
+        ),
+        'events' => $this->getEvents($this->faker->numberBetween(3,6)),
+        'ongoingEvents' => $this->getEvents($this->faker->numberBetween(1,3)),
+      );
       array_push($dates, $thisDay);
     }
     return $dates;
