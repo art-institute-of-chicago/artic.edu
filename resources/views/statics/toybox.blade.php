@@ -335,10 +335,27 @@
 <p class="f-quote">tag:</p>
 <p style="margin-top: 20px;">
     @component('components.atoms._tag')
+        @slot('href','#')
         Kanan Jarrus
     @endcomponent
     @component('components.atoms._tag')
+        @slot('href','#')
         Caleb Dume
+    @endcomponent
+    @component('components.atoms._tag')
+        @slot('variation','tag--primary')
+        @slot('href','#')
+        Primary
+    @endcomponent
+    @component('components.atoms._tag')
+        @slot('variation','tag--secondary')
+        @slot('href','#')
+        Secondary
+    @endcomponent
+    @component('components.atoms._tag')
+        @slot('variation','tag--tertiary')
+        @slot('href','#')
+        Tertiary
     @endcomponent
 </p>
 
@@ -567,7 +584,7 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
     @slot('ariaTitle', 'Sort by')
     @slot('options', array(array('href' => '#', 'label' => 'Dropdown', 'active' => true), array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
   @endcomponent
-</div>{{-- 
+</div>{{--
 <div style="margin-top: 20px;">
   @component('components.atoms._dropdown')
     @slot('prompt', 'Dropdown filter hoverable')

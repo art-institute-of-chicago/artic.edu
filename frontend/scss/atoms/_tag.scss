@@ -25,15 +25,15 @@
   & + & {
     margin-left: 10px;
   }
+}
 
-  &:hover,
-  &:focus {
-    background-color: $color__black--10;
-  }
+a.tag:hover,
+a.tag:focus {
+  background-color: $color__black--10;
+}
 
-  &:active {
-    background-color: $color__black--5;
-  }
+a.tag:active {
+  background-color: $color__black--5;
 }
 
 .tag[class*=f-]::before,
@@ -45,4 +45,67 @@
 .tag.f-tag {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+
+.tag--primary {
+  background-color: $color__link;
+  color: $color__white;
+}
+
+a.tag--primary:hover,
+a.tag--primary:focus {
+  background-color: $color__link--hover;
+  color: $color__white;
+}
+
+a.tag--primary:active {
+  background-color: $color__link--active;
+  color: $color__white;
+}
+
+
+
+.tag--secondary {
+  background-color: $color__black--5;
+  color: $color__text--title;
+}
+
+a.tag--secondary:hover,
+a.tag--secondary:focus {
+  background-color: $color__black--10;
+  color: $color__text--title;
+}
+
+a.tag--secondary:active {
+  background-color: $color__black--5;
+  color: $color__text--title;
+}
+
+
+
+.tag--tertiary {
+  padding-right: 11px;
+  padding-left: 11px;
+  border: 1px solid $color__rules--secondary;
+  background-color: $color__white;
+  color: $color__text--limited;
+}
+
+a.tag--tertiary:hover,
+a.tag--tertiary:focus {
+  border-color: $color__rules--primary;
+  background-color: $color__white;
+  color: $color__text--limited;
+}
+
+a.tag--tertiary:active {
+  border-color: $color__rules--secondary;
+  background-color: $color__white;
+  color: $color__text--limited;
+}
+
+.tag--tertiary.f-tag {
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
