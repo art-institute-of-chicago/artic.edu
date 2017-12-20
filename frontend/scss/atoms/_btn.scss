@@ -64,6 +64,16 @@
   }
 }
 
+.btn--sm.f-buttons {
+  padding-top: 6px;
+  padding-bottom: 8px;
+
+  @include breakpoint('medium+') {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+}
+
 .btn--secondary {
   border-color: $color__rules--secondary;
   background-color: $color__white;

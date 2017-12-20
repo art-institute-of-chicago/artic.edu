@@ -41,7 +41,10 @@ const positionElementToTarget = function(options) {
   }
 
   if (left + elementBoundingClientRect.width > window.innerWidth) {
-    left = window.innerWidth - elementBoundingClientRect.width - padding.left;
+    left -= 20;
+    while (left + elementBoundingClientRect.width > window.innerWidth) {
+      left -= 20;
+    }
   } else if (left < padding.left) {
     left = padding.left;
   }

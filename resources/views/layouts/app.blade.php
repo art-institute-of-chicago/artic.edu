@@ -44,18 +44,17 @@ $print = isset($_GET['print']);
 
   @include('layouts._footer')
 
-  @include('layouts._mask')
-  @include('layouts._calendar')
-  @include('layouts._share-menu')
-
   @if ( !app()->environment('production'))
     <span class="design-grid-toggle design-grid-toggle--baseline" onClick="this.nextElementSibling.classList.toggle('js-hide');">Toggle baseline grid</span>
     <span class="design-grid design-grid--baseline js-hide"></span>
     <span class="design-grid-toggle design-grid-toggle--columns" data-env="Development" onClick="this.nextElementSibling.classList.toggle('js-hide');">Toggle columns grid</span>
     <span class="design-grid design-grid--columns js-hide"></span>
   @endif
-
 </div>
+
+@include('layouts._mask')
+@include('layouts._calendar')
+@include('layouts._share-menu')
 
 @include('layouts._scripts')
 @if ($print)

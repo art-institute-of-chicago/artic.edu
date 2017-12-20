@@ -20,7 +20,7 @@
     @slot('primaryHtml')
         <li class="m-links-bar__item m-links-bar__item--primary">
             @component('components.atoms._date-select-trigger')
-                Pick a date
+                Select dates
             @endcomponent
         </li>
     @endslot

@@ -4,12 +4,11 @@ const calendar = function(container) {
 
   const searchUrl = container.getAttribute('data-calendar-url') || '/';
 
-  let today, todayDate, todayMonth, todayYear;
+  let today, todayDate, todayMonth, todayYear, minDate;
 
-  let monthsVisible = 2;
+  let monthsVisible = 0;
   let monthDivs = [];
 
-  let minDate = today;
   let opener = false;
 
   let currentMonth;
@@ -155,9 +154,9 @@ const calendar = function(container) {
       }
     }
     currentYear = year;
-    currentMonth = month;
+    currentMonth = month - 1;
     for (let i = 0; i < monthsVisible; i++) {
-      currentMonth = currentMonth + i;
+      currentMonth = currentMonth + 1;
       _normaliseYearMonth();
       _generateCalendar(monthDivs[i], currentYear, currentMonth);
     }
@@ -203,6 +202,19 @@ const calendar = function(container) {
     }
   }
 
+  function _datesSelected() {
+    if (Object.keys(datesSelected.start).length === 0) {
+      triggerCustomEvent(document, 'selectDate:close');
+    } else {
+      if (Object.keys(datesSelected.end).length === 0) {
+        datesSelected.end = datesSelected.start;
+      }
+      triggerCustomEvent(opener, 'calendar:datesSelected', {
+        dates: datesSelected,
+      });
+    }
+  }
+
   function _dateSelected(clicked) {
     let chosenDate = clicked.getAttribute('data-date');
     let dateObj = _parseDateString(chosenDate);
@@ -224,11 +236,20 @@ const calendar = function(container) {
       $end.textContent = 'To';
       _removedSelectedClasses('all');
       clicked.parentNode.classList.add('s-start');
+      triggerCustomEvent(opener, 'calendar:dateSelected', {
+        start: friendlyString,
+      });
     } else if (selecting === 'end') {
       $end.textContent = friendlyString;
       _removedSelectedClasses('end');
       clicked.parentNode.classList.add('s-end');
       _showDateRange(datesSelected.end.dateObj);
+      triggerCustomEvent(opener, 'calendar:dateSelected', {
+        end: friendlyString,
+      });
+      if (A17.currentMediaQuery.indexOf('small') < 0) {
+        _datesSelected();
+      }
     }
   }
 
@@ -279,8 +300,11 @@ const calendar = function(container) {
       _generateCalendars(currentYear, currentMonth);
     }
     if (clicked.getAttribute('data-calendar-prev') !== null) {
-      currentMonth = currentMonth - monthsVisible - 1;
-      _normaliseYearMonth();
+      // sequentially lower month, normalise each time to trap for going back a year
+      for (let i = 1; i < (monthsVisible * 2); i++) {
+        currentMonth = currentMonth - 1;
+        _normaliseYearMonth();
+      }
       _generateCalendars(currentYear, currentMonth);
     }
     if (clicked.getAttribute('data-calendar-start') !== null) {
@@ -298,16 +322,7 @@ const calendar = function(container) {
       triggerCustomEvent(document, 'selectDate:close');
     }
     if (clicked.getAttribute('data-calendar-done') !== null) {
-      if (Object.keys(datesSelected.start).length === 0) {
-        triggerCustomEvent(document, 'selectDate:close');
-      } else {
-        if (Object.keys(datesSelected.end).length === 0) {
-          datesSelected.end = datesSelected.start;
-        }
-        triggerCustomEvent(opener, 'calendar:datesSelected', {
-          dates: datesSelected,
-        });
-      }
+      _datesSelected();
     }
     if (clicked.getAttribute('data-date') !== null) {
       _dateSelected(clicked);
@@ -323,12 +338,21 @@ const calendar = function(container) {
   }
 
   function _openerSent(event) {
+    // resets
     today = new Date();
-    todayDate = today.getDate();
-    todayMonth = today.getMonth();
-    todayYear = today.getFullYear();
-    //
     today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    minDate = today;
+    currentMonth = today.getMonth();
+    currentYear = today.getFullYear();
+    monthsVisible = (A17.currentMediaQuery.indexOf('xsmall') < 0) ? 2 : 1;
+    daysHtml = '';
+    datesSelected.start = {};
+    datesSelected.end = {};
+    //
+    forEach(monthDivs, function(index, el) {
+      el.parentNode.removeChild(el);
+    });
+    monthDivs = [];
     //
     $monthsContainer = container.querySelector('[data-calendar-months]');
     $template = $monthsContainer.querySelector('[data-calendar-month-template]');

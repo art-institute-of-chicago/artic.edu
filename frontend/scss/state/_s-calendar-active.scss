@@ -1,5 +1,17 @@
 .s-calendar-active {
 
+  .g-mask {
+    right: 0;
+    bottom: 0;
+    background-color: $color__white;
+    opacity: 0;
+  }
+
+  .m-calendar:not(.m-calendar--inline) {
+    display: block;
+  }
+
+
   @include breakpoint('small-') {
     position: fixed;
     overflow: hidden;
@@ -9,20 +21,19 @@
       width: 100vw;
       overflow: hidden;
     }
-  }
 
-  .g-mask {
-    right: 0;
-    bottom: 0;
-    opacity: 1;
-
-    @include breakpoint('medium+') {
-      opacity: 0;
+    .g-mask {
+      opacity: 1;
     }
-  }
 
-  .m-calendar {
-    display: block;
+    .m-calendar:not(.m-calendar--inline) {
+      display: flex;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
   }
 
 }

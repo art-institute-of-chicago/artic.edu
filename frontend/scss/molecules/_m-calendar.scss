@@ -47,6 +47,7 @@
   display: none;
   position: absolute;
   z-index: map-get($zindexs, 'calendar');
+  flex-flow: column nowrap;
   background-color: $color__white;
   box-shadow: $shadow;
 }
@@ -56,32 +57,96 @@
   position: relative;
   border: 1px solid $color__rules--primary;
   box-shadow: none;
-
-  width: 609px;
 }
 
 .m-calendar a {
   text-decoration: none;
 }
 
-.m-calendar__header,
 .m-calendar__footer,
 .m-calendar__months {
   display: flex;
   position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
   flex-flow: row nowrap;
+}
+
+.m-calendar__months {
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+  padding-top: 64px;
+
+  @include breakpoint('small-') {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @include breakpoint('medium+') {
+    flex: none;
+    padding-top: 0;
+  }
+}
+
+.m-calendar__months::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: 64px;
+  height: 48px;
+  background-color: $color__black--90;
+
+  @include breakpoint('medium+') {
+    content: none;
+    display: none;
+  }
 }
 
 .m-calendar__month {
   position: relative;
   flex: 0 0 auto;
   width: 304px;
+  height: 100%;
   padding: 0 12px 12px;
+
+  @include breakpoint('medium+') {
+    height: auto;
+  }
+}
+
+.m-calendar__month:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: $color__rules--tertiary;
 }
 
 .m-calendar__header,
 .m-calendar__footer {
   padding: 12px;
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
+.m-calendar__header {
+  @include opaqueBg;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 64px;
+  padding-bottom: 11px;
 }
 
 .m-calendar__header .btn {
@@ -118,7 +183,7 @@
   right: 0;
   top: 0;
   width: 68px;
-  height: 72px;
+  height: 64px;
   margin: 0;
   padding: 0;
   border: 0 none;
@@ -162,12 +227,16 @@
 .m-calendar__next,
 .m-calendar__prev {
   position: absolute;
-  top: 0;
+  top: 64px;
   width: 64px;
   height: 48px;
   border: 0 none;
   background-color: transparent;
   cursor: pointer;
+
+  @include breakpoint('medium+') {
+    top: 0;
+  }
 
   &::after {
     content: '';

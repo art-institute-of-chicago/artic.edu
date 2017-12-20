@@ -1,7 +1,7 @@
 <div class="m-calendar" id="calendar" data-behavior="calendar">
     <div class="m-calendar__header">
-        <button class="btn btn--secondary f-buttons s-active" data-calendar-start>From</button>
-        <button class="btn btn--secondary f-buttons" data-calendar-end>To</button>
+        <button class="btn btn--sm btn--secondary f-buttons s-active" data-calendar-start>From</button>
+        <button class="btn btn--sm btn--secondary f-buttons" data-calendar-end>To</button>
         <button class="m-calendar__close" data-calendar-close><svg class="icon--close" aria-title="Close date select"><use xlink:href="#icon--close" /></svg></button>
     </div>
     <div class="m-calendar__months" data-calendar-months>
@@ -27,7 +27,7 @@
         <button class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
     </div>
     <div class="m-calendar__footer">
-        <button class="btn f-buttons" data-calendar-done>Done</button>
-        <button class="btn btn--secondary f-buttons" data-calendar-reset>Reset</button>
+        <button class="btn btn--sm f-buttons" data-calendar-done>Done</button>
+        <button class="btn btn--sm btn--secondary f-buttons" data-calendar-reset>Reset</button>
     </div>
 </div>
