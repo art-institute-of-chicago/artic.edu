@@ -539,54 +539,9 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 
 <p class="f-quote" id="test">date-select-trigger:</p>
 
-<div class="m-calendar m-calendar--inline" id="calendar" data-behavior="calendar">
-    <div class="m-calendar__calendar" style="display: none;" data-calendar-month-template>
-        <b class="m-calendar__title f-caption" data-calendar-title></b>
-        <table data-calendar-table>
-            <thead class="f-caption">
-              <tr>
-                <th title="Sunday">S</th>
-                <th title="Monday">M</th>
-                <th title="Tuesday">T</th>
-                <th title="Wednesday">W</th>
-                <th title="Thursday">T</th>
-                <th title="Friday">F</th>
-                <th title="Saturday">S</th>
-              </tr>
-            </thead>
-            <tbody class="f-secondary">
-            </tbody>
-        </table>
-    </div>
-    <button class="m-calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-    <button class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-    {{-- <button class="m-calendar__close"><svg class="icon--close" aria-title="Close date select"><use xlink:href="#icon--close" /></svg></button> --}}
-</div>
-
 <p style="margin-top: 20px;">
     @component('components.atoms._date-select-trigger')
-        Go to date
-    @endcomponent
-</p>
-
-<p style="margin-top: 20px;">
-    @component('components.atoms._date-select-trigger')
-        @slot('hiddenInputName', 'date0')
-        @slot('hiddenInputId', 'date0')
-        Choose date
-    @endcomponent
-</p>
-
-<p style="margin-top: 20px;">
-    @component('components.molecules._m-date-select-range')
-        @slot('startLabel', 'Start date')
-        @slot('startId', 'cal01')
-        @slot('startHiddenInputName', 'dateStart01')
-        @slot('startHiddenInputId', 'dateStart01')
-        @slot('endLabel', 'End date')
-        @slot('endId', 'cal02')
-        @slot('endHiddenInputName', 'dateEnd01')
-        @slot('endHiddenInputId', 'dateEnd01')
+        Select dates
     @endcomponent
 </p>
 

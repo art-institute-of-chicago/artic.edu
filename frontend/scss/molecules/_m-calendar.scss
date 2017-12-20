@@ -47,28 +47,95 @@
   display: none;
   position: absolute;
   z-index: map-get($zindexs, 'calendar');
-  flex-flow: row nowrap;
-  padding-bottom: 12px;
   background-color: $color__white;
   box-shadow: $shadow;
 }
 
 .m-calendar--inline {
-  display: flex;
+  display: block;
   position: relative;
   border: 1px solid $color__rules--primary;
   box-shadow: none;
 
-  width: 608px;
+  width: 609px;
 }
 
 .m-calendar a {
   text-decoration: none;
 }
 
-.m-calendar__calendar {
+.m-calendar__header,
+.m-calendar__footer,
+.m-calendar__months {
+  display: flex;
+  position: relative;
+  flex-flow: row nowrap;
+}
+
+.m-calendar__month {
   flex: 0 0 auto;
   width: 304px;
+  padding-bottom: 12px;
+}
+
+.m-calendar__header,
+.m-calendar__footer {
+  padding: 12px;
+}
+
+.m-calendar__header .btn {
+  min-width: 120px;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.m-calendar .btn--secondary {
+  color: $color__text--secondary;
+}
+
+.m-calendar .btn--secondary.s-has-date {
+  color: $color__text;
+}
+
+.m-calendar .btn--secondary.s-active {
+  border-color: $color__rules--brand;
+  color: $color__text--accent;
+}
+
+.m-calendar__footer {
+  flex-direction: row-reverse;
+  padding-top: 11px;
+  border-top: 1px solid $color__rules--primary;
+}
+
+.m-calendar__footer .btn {
+  margin-left: 12px;
+}
+
+.m-calendar__close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 68px;
+  height: 72px;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  background: transparent;
+  color: $color__text--title;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+.m-calendar__calendar:not(:first-child) {
+  border-left: 1px solid $color__rules--tertiary;
 }
 
 .m-calendar__title {
@@ -221,30 +288,5 @@
 
   &:active {
     color: $color__white;
-  }
-}
-
-.m-calendar__close {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 60px;
-  height: 60px;
-  margin: 0;
-  padding: 0;
-  border: 0 none;
-  background: transparent;
-  color: $color__text--title;
-
-  @include breakpoint('medium+') {
-    /*
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin-top: -1px;
-    margin-left: -1px;
-    clip: rect(1px, 1px, 1px, 1px);
-    overflow: hidden;
-    */
   }
 }
