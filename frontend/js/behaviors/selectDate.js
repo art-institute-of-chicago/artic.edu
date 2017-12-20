@@ -61,7 +61,7 @@ const selectDate = function(container) {
   function _datesSelected(event) {
     if (calendarOpen && event) {
       if (event && event.data && event.data.dates) {
-        if (event.data.dates.start === event.data.dates.end) {
+        if (event.data.dates.start.dateString === event.data.dates.end.dateString) {
           display.textContent = event.data.dates.start.dateFriendlyString;
         } else {
           display.textContent = event.data.dates.start.dateFriendlyString + ' - ' + event.data.dates.end.dateFriendlyString;
