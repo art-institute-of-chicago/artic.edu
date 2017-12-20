@@ -73,9 +73,10 @@
 }
 
 .m-calendar__month {
+  position: relative;
   flex: 0 0 auto;
   width: 304px;
-  padding-bottom: 12px;
+  padding: 0 12px 12px;
 }
 
 .m-calendar__header,
@@ -141,7 +142,7 @@
 .m-calendar__title {
   display: block;
   height: 48px;
-  margin: 0;
+  margin: 0 -12px;
   padding: 0 64px;
   background-color: $color__black--90;
   color: $color__white;
@@ -216,29 +217,21 @@
 
 
 .m-calendar table {
+  position: relative;
+  z-index: 1;
   width: 100%;
   color: $color__black--20;
   text-align: center;
   table-layout: fixed;
+  border-collapse: collapse;
 }
 
 .m-calendar th,
 .m-calendar td {
   width: 40px;
   height: 40px;
+  padding: 0;
   vertical-align: middle;
-}
-
-.m-calendar th:first-child,
-.m-calendar td:first-child {
-  width: 52px;
-  padding-left: 12px;
-}
-
-.m-calendar th:last-child,
-.m-calendar td:last-child {
-  width: 52px;
-  padding-right: 12px;
 }
 
 .m-calendar thead th {
@@ -273,7 +266,7 @@
 
   &:hover,
   &:focus {
-    background-color: $color__black--5;
+    background-color: $color__black--15;
     color: $color__black--90;
   }
 
@@ -284,9 +277,28 @@
 }
 
 .m-calendar table .m-calendar__today a {
-  color: $color__red--100;
+  color: $color__link--accent;
 
   &:active {
     color: $color__white;
+  }
+}
+
+.m-calendar table .s-range a,
+.m-calendar table .s-range.m-calendar__today a,
+.m-calendar table .s-range a,
+.m-calendar table .s-range.m-calendar__today a {
+  background-color: $color__black--5;
+}
+
+.m-calendar table .s-start a,
+.m-calendar table .s-start.m-calendar__today a,
+.m-calendar table .s-end a,
+.m-calendar table .s-end.m-calendar__today a {
+  background-color: $color__link--accent;
+  color: $color__white;
+
+  &:active {
+    background-color: $color__link--accent-active;
   }
 }

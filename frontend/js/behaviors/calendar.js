@@ -1,12 +1,10 @@
-import { purgeProperties, triggerCustomEvent, queryStringHandler } from 'a17-helpers';
+import { purgeProperties, triggerCustomEvent, queryStringHandler, forEach } from 'a17-helpers';
 
 const calendar = function(container) {
 
-  const today = new Date();
-  const todayDate = today.getDate();
-  const todayMonth = today.getMonth();
-  const todayYear = today.getFullYear();
   const searchUrl = container.getAttribute('data-calendar-url') || '/';
+
+  let today, todayDate, todayMonth, todayYear;
 
   let monthsVisible = 2;
   let monthDivs = [];
@@ -57,6 +55,10 @@ const calendar = function(container) {
   monthLengths[10] = 30;
   monthLengths[11] = 31;
 
+  function _parseDateString(str) {
+    return new Date(parseInt(str.substring(0,4)), (parseInt(str.substring(4,6)) - 1), parseInt(str.substring(6,8)));
+  }
+
   function _normaliseYearMonth(){
     // if months over 11 (December), we must be wanting January a year later
     if (currentMonth > 11) {
@@ -98,11 +100,25 @@ const calendar = function(container) {
       } else {
         // normalize date
         var currentDate = (i - firstDayOfMonth);
-        var istoday = (currentDate === todayDate && month === todayMonth && year === todayYear);
-        var beforeMinDate = (year < minDate.getFullYear() || (year === minDate.getFullYear() && month < minDate.getMonth()) || (year === minDate.getFullYear() && month === minDate.getMonth() && currentDate < minDate.getDate()));
-        // is this today?
+        var currentDateObj = new Date(year, month, currentDate);
+        var istoday = (currentDateObj.getTime() === today.getTime())
+        ;
+        var beforeMinDate = (currentDateObj.getTime() < minDate.getTime());
+        var isStartDate = (datesSelected.start.dateObj && currentDateObj.getTime() === datesSelected.start.dateObj.getTime());
+        var isEndDate = (datesSelected.end.dateObj && currentDateObj.getTime() === datesSelected.end.dateObj.getTime());
+        var isBetweenStartAndEnd = (datesSelected.start.dateObj && datesSelected.end.dateObj && !(currentDateObj.getTime() <= datesSelected.start.dateObj.getTime() || currentDateObj.getTime() >= datesSelected.end.dateObj.getTime()));
+        // now add some classes if we need
         if (istoday) {
           tdClassName = 'm-calendar__today';
+        }
+        if (isStartDate) {
+          tdClassName += ' s-start';
+        }
+        if (isEndDate) {
+          tdClassName += ' s-end';
+        }
+        if(isBetweenStartAndEnd) {
+          tdClassName += ' s-range';
         }
         // if today or after, add a link
         if (istoday || !beforeMinDate) {
@@ -147,9 +163,49 @@ const calendar = function(container) {
     }
   }
 
+  function _showDateRange(endDateObj) {
+    if (datesSelected.start.dateObj && endDateObj && (!datesSelected.end.dateObj || (datesSelected.end.dateObj.getTime() === endDateObj.getTime()))) {
+      forEach($monthsContainer.querySelectorAll('.s-range'), function(index, el) {
+        el.classList.remove('s-range');
+      });
+
+      let date = new Date(datesSelected.start.dateObj);
+      date.setDate(date.getDate() + 1);
+
+      while (date.getTime() < endDateObj.getTime()) {
+        let searchMonth = date.getMonth() + 1;
+        let searchDay = date.getDate();
+        //
+        searchMonth = (searchMonth < 10) ? '0' + searchMonth : searchMonth.toString();
+        searchDay = (searchDay < 10) ? '0' + searchDay : searchDay.toString();
+        //
+        forEach($monthsContainer.querySelectorAll('[data-date="' + date.getFullYear() + searchMonth + searchDay + '"]'), function(index, el) {
+          el.parentNode.classList.add('s-range');
+        });
+        date.setDate(date.getDate() + 1);
+      }
+    }
+  }
+
+  function _removedSelectedClasses(which) {
+    if (which === 'start' || which === 'all') {
+      forEach($monthsContainer.querySelectorAll('.s-start'), function(index, el) {
+        el.classList.remove('s-start');
+      });
+    }
+    if (which === 'end' || which === 'all') {
+      forEach($monthsContainer.querySelectorAll('.s-range'), function(index, el) {
+        el.classList.remove('s-range');
+      });
+      forEach($monthsContainer.querySelectorAll('.s-end'), function(index, el) {
+        el.classList.remove('s-end');
+      });
+    }
+  }
+
   function _dateSelected(clicked) {
     let chosenDate = clicked.getAttribute('data-date');
-    let dateObj = new Date(parseInt(chosenDate.substring(0,4)), (parseInt(chosenDate.substring(4,6)) - 1), parseInt(chosenDate.substring(6,8)));
+    let dateObj = _parseDateString(chosenDate);
     let friendlyString = clicked.getAttribute('title');
 
     datesSelected[selecting] = {
@@ -166,8 +222,13 @@ const calendar = function(container) {
       $start.textContent = friendlyString;
       $end.classList.add('s-active');
       $end.textContent = 'To';
+      _removedSelectedClasses('all');
+      clicked.parentNode.classList.add('s-start');
     } else if (selecting === 'end') {
       $end.textContent = friendlyString;
+      _removedSelectedClasses('end');
+      clicked.parentNode.classList.add('s-end');
+      _showDateRange(datesSelected.end.dateObj);
     }
   }
 
@@ -191,7 +252,18 @@ const calendar = function(container) {
       $end.classList.remove('s-active');
       $end.classList.remove('s-has-date');
       $end.textContent = 'To';
+      //
+      let $startDate = $monthsContainer.querySelector('.s-start');
+      if ($startDate) {
+        $startDate.classList.remove('s-start');
+      }
+      let $endDate = $monthsContainer.querySelector('.s-end');
+      if ($endDate) {
+        $endDate.classList.remove('s-end');
+      }
     }
+
+    _removedSelectedClasses(which);
   }
 
   function _handleClicks(event) {
@@ -224,7 +296,6 @@ const calendar = function(container) {
     }
     if (clicked.getAttribute('data-calendar-close') !== null) {
       triggerCustomEvent(document, 'selectDate:close');
-      _reset('all');
     }
     if (clicked.getAttribute('data-calendar-done') !== null) {
       if (Object.keys(datesSelected.start).length === 0) {
@@ -237,14 +308,33 @@ const calendar = function(container) {
           dates: datesSelected,
         });
       }
-      _reset('all');
     }
     if (clicked.getAttribute('data-date') !== null) {
       _dateSelected(clicked);
     }
   }
 
+  function _mouseOver(event) {
+    if (event.target.getAttribute('data-date') !== null) {
+      let chosenDate = event.target.getAttribute('data-date');
+      let dateObj = _parseDateString(chosenDate);
+      _showDateRange(dateObj);
+    }
+  }
+
   function _openerSent(event) {
+    today = new Date();
+    todayDate = today.getDate();
+    todayMonth = today.getMonth();
+    todayYear = today.getFullYear();
+    //
+    today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    //
+    $monthsContainer = container.querySelector('[data-calendar-months]');
+    $template = $monthsContainer.querySelector('[data-calendar-month-template]');
+    $start = container.querySelector('[data-calendar-start]');
+    $end = container.querySelector('[data-calendar-end]');
+    _reset('all');
     if (event && event.data.el) {
       opener = event.data.el;
     }
@@ -257,20 +347,16 @@ const calendar = function(container) {
   }
 
   function _init() {
-    $monthsContainer = container.querySelector('[data-calendar-months]');
-    $template = $monthsContainer.querySelector('[data-calendar-month-template]');
-    $start = container.querySelector('[data-calendar-start]');
-    $end = container.querySelector('[data-calendar-end]');
     // listen for clicks
     container.addEventListener('click', _handleClicks, false);
+    container.addEventListener('mouseover', _mouseOver, false);
     container.addEventListener('calendar:opener', _openerSent, false);
-    // draw initial calendar
-    _generateCalendars(minDate.getFullYear(), minDate.getMonth());
   }
 
   this.destroy = function() {
     // remove specific event handlers
     container.removeEventListener('click', _handleClicks);
+    container.removeEventListener('mouseover', _mouseOver);
     container.removeEventListener('calendar:opener', _openerSent);
 
     // remove properties of this behavior
