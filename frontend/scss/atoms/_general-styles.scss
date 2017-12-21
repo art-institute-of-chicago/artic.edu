@@ -107,6 +107,10 @@ hr,
   @include breakpoint('medium+') {
     margin-top: 40px;
   }
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 .js-hide {

@@ -1,0 +1,13 @@
+
+
+.m-inline-aside .f-subheading-1 {
+  @include tucked-margin-top($f-subheading-1, ('xsmall': 28));
+}
+
+.m-inline-aside .m-listing {
+  margin-top: 28px;
+
+  @include breakpoint('medium+') {
+    margin-top: 40px;
+  }
+}

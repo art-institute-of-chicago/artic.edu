@@ -4,7 +4,7 @@
 
 <article class="o-article">
 
-  <header class="o-article__header o-article__header--basic">
+  <header class="o-article__header m-article-header">
     @component('components.atoms._title')
         @slot('tag','h1')
         @slot('font','f-headline')
@@ -20,8 +20,66 @@
     @endcomponent
   </header>
 
+  <header class="o-article__header m-article-header m-article-header--feature">
+    <div class="m-article-header__img">
+        @component('components.atoms._img')
+            @slot('src', 'http://placehold.dev.area17.com/image/652x585/?bg=660000&amp;text=')
+            @slot('width', '652')
+            @slot('height', '585')
+        @endcomponent
+    </div>
+    <div class="m-article-header__text">
+        @component('components.atoms._title')
+            @slot('tag','h1')
+            @slot('font','f-headline')
+            Making Place: the Architecture of David Adjaye
+        @endcomponent
+        @component('components.atoms._date')
+            @slot('tag','p')
+            September 19 2015 - January 3 2016
+        @endcomponent
+        @component('components.atoms._type')
+            @slot('tag','p')
+            Exhibition
+        @endcomponent
+    </div>
+  </header>
+
+  <header class="o-article__header m-article-header m-article-header--hero">
+    <div class="m-article-header__img">
+        @component('components.atoms._img')
+            @slot('src', 'http://placehold.dev.area17.com/image/652x585/?bg=006600&amp;text=')
+            @slot('width', '652')
+            @slot('height', '585')
+        @endcomponent
+    </div>
+    <div class="m-article-header__text">
+        @component('components.atoms._title')
+            @slot('tag','h1')
+            @slot('font','f-display-2')
+            Making Place: the Architecture of David Adjaye
+        @endcomponent
+        @component('components.atoms._date')
+            @slot('tag','p')
+            September 19 2015 - January 3 2016
+        @endcomponent
+        @component('components.atoms._type')
+            @slot('tag','p')
+            Special Exhibition
+        @endcomponent
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font','f-deck')
+            @slot('variation', 'm-article-header__intro')
+            Deck sit amet, consectetur adipiscing elit. Curabitur magna neque, laoreet at tristique et, dignissim condimentum enim. Proin cursus diam nec nibh fermentum, eget consequat arcu efficitur
+        @endcomponent
+    </div>
+  </header>
+
   <div class="o-article__primary">
-    <hr>
+    @component('components.atoms._hr')
+    @endcomponent
     <p>
         @component('components.atoms._btn')
             @slot('variation', 'btn--icon')
@@ -41,7 +99,9 @@
   </div>
 
   <div class="o-article__secondary">
-    <hr class="u-hide@medium+">
+    @component('components.atoms._hr')
+        @slot('variation', 'u-hide@medium+')
+    @endcomponent
     <p>
         @component('components.atoms._btn')
             @slot('variation', 'btn--full')
@@ -61,7 +121,9 @@
   </div>
 
   <div class="o-article__body" data-behavior="articleBodyInViewport">
-    <hr>
+    @component('components.atoms._hr')
+    @endcomponent
+
     @component('components.blocks._text')
         @slot('font','f-deck')
         Deck sit amet, consectetur adipiscing elit. Curabitur magna neque, laoreet at tristique et, dignissim condimentum enim. Proin cursus diam nec nibh fermentum, eget consequat arcu efficitur
