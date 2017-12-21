@@ -77,6 +77,42 @@
     </div>
   </header>
 
+  <header class="o-article__header m-article-header m-article-header--generic">
+    <div class="m-article-header__img">
+        @component('components.atoms._img')
+            @slot('src', 'http://placehold.dev.area17.com/image/652x585/?bg=000066&amp;text=')
+            @slot('width', '652')
+            @slot('height', '585')
+        @endcomponent
+    </div>
+    <div class="m-article-header__text">
+        @component('components.atoms._title')
+            @slot('tag','h1')
+            @slot('font','f-headline')
+            Students
+        @endcomponent
+        <ul class="m-article-header__breadcrumb">
+            <li class="f-secondary">
+                @component('components.atoms._arrow-link')
+                    @slot('font','f-null')
+                    @slot('href','#')
+                    Visit
+                @endcomponent
+            </li>
+            <li class="f-secondary">
+                @component('components.atoms._arrow-link')
+                    @slot('font','f-null')
+                    @slot('href','#')
+                    Group Visits
+                @endcomponent
+            </li>
+            <li class="f-secondary">
+                Students
+            </li>
+        </ul>
+    </div>
+  </header>
+
   <div class="o-article__primary">
     @component('components.atoms._hr')
     @endcomponent
