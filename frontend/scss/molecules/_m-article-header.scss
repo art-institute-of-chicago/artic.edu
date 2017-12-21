@@ -67,7 +67,7 @@
   margin-left: -50vw;
 }
 
-.m-article-header--feature .m-article-header__img::after {
+.m-article-header--feature .m-article-header__img::before {
   content: '';
   position: absolute;
   left: 0;
@@ -91,6 +91,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: bottom center;
 }
 
 .m-article-header--feature .m-article-header__text {
@@ -123,10 +124,20 @@
     padding-right: colspan(15, xxlarge);
     padding-left: colspan(15, xxlarge);
   }
+
+  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+    background-size: 1px 1px;
+    background-repeat: no-repeat;
+    background-position: -1px -1px;
+  }
+
+  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+    background: none !important;
+  }
 }
 
 .m-article-header--feature .m-article-header__text::before {
-  @include opaqueBg(rgba(0,0,0,.4), rgba(0,0,0,.25));
+  //@include opaqueBg(rgba(0,0,0,.4), rgba(0,0,0,.25));
   content: '';
   position: absolute;
   z-index: -1;
@@ -135,20 +146,44 @@
   bottom: 0;
   width: 100vw;
   margin-left: -50vw;
+
+  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+    background-color: none;
+    background-image: inherit;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    background-position: bottom center;
+    //top: auto;
+    //height: 100vh;
+    filter: blur(3px);
+    clip: rect(0, auto, auto, auto);
+  }
+
+  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+    background-color: rgba(0,0,0,.25);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
 }
 
 .m-article-header--feature .m-article-header__text::after {
   content: '';
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   left: 50%;
   bottom: 100%;
   height: 124px;
   width: 100vw;
   margin-left: -50vw;
   background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.03) 20%, rgba(0,0,0,.3) 100%);
-}
 
+  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+    bottom: 0;
+    height: calc(100% + 124px);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.03) 20%, rgba(0,0,0,.3) 124px, rgba(0,0,0,.5) 124px, rgba(0,0,0,.5) 100%);
+  }
+}
 
 .m-article-header--feature .m-article-header__text > * {
   flex: 0 0 auto;
@@ -333,6 +368,7 @@
   padding-top: 0;
 
   @include breakpoint('xlarge+') {
+    min-height: auto;
     padding-top: 0;
     padding-right: 0;
     padding-left: 0;
@@ -364,6 +400,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 0;
 }
 
 .m-article-header--generic .m-article-header__text {
@@ -399,7 +436,18 @@
   left: 0;
   right: 0;
   top: 0;
+  bottom: 0;
   flex-flow: row wrap;
+
+  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+    background-size: 1px 1px;
+    background-repeat: no-repeat;
+    background-position: -1px -1px;
+  }
+
+  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+    background: none !important;
+  }
 
   @include breakpoint('small+') {
     display: flex;
@@ -407,7 +455,7 @@
 }
 
 .m-article-header__breadcrumb::before {
-  @include opaqueBg(rgba(0,0,0,.4), rgba(0,0,0,.25));
+  //@include opaqueBg(rgba(0,0,0,.4), rgba(0,0,0,.25));
   content: '';
   position: absolute;
   z-index: -1;
@@ -416,6 +464,25 @@
   width: 100vw;
   height: 48px;
   margin-left: -50vw;
+  background-color: rgba(0,0,0,.4);
+
+  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+    background-color: none;
+    background-image: inherit;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0;
+    height: 100%;
+    filter: blur(2px) brightness(.8);
+    clip: rect(0, auto, 48px, auto);
+  }
+
+  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+    background-color: rgba(0,0,0,.25);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
 }
 
 .m-article-header__breadcrumb li {

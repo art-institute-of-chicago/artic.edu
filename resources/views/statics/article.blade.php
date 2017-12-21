@@ -23,12 +23,12 @@
   <header class="o-article__header m-article-header m-article-header--feature">
     <div class="m-article-header__img">
         @component('components.atoms._img')
-            @slot('src', 'http://placeimg.com/900/600/nature')
-            @slot('width', '300')
-            @slot('height', '600')
+            @slot('src', $headerImage['src'])
+            @slot('width', $headerImage['width'])
+            @slot('height', $headerImage['height'])
         @endcomponent
     </div>
-    <div class="m-article-header__text">
+    <div class="m-article-header__text" style="background-image: url({{ $headerImage['src'] }});">
         @component('components.atoms._title')
             @slot('tag','h1')
             @slot('font','f-headline')
@@ -48,9 +48,9 @@
   <header class="o-article__header m-article-header m-article-header--hero">
     <div class="m-article-header__img">
         @component('components.atoms._img')
-            @slot('src', 'http://placeimg.com/900/600/nature')
-            @slot('width', '300')
-            @slot('height', '600')
+            @slot('src', $headerImage['src'])
+            @slot('width', $headerImage['width'])
+            @slot('height', $headerImage['height'])
         @endcomponent
     </div>
     <div class="m-article-header__text">
@@ -80,9 +80,9 @@
   <header class="o-article__header m-article-header m-article-header--generic">
     <div class="m-article-header__img">
         @component('components.atoms._img')
-            @slot('src', 'http://placeimg.com/2000/240/nature')
-            @slot('width', '2000')
-            @slot('height', '240')
+            @slot('src', $headerImage['src'])
+            @slot('width', $headerImage['width'])
+            @slot('height', $headerImage['height'])
         @endcomponent
     </div>
     <div class="m-article-header__text">
@@ -91,7 +91,7 @@
             @slot('font','f-headline')
             Students
         @endcomponent
-        <ul class="m-article-header__breadcrumb">
+        <ul class="m-article-header__breadcrumb" style="background-image: url({{ $headerImage['src'] }});">
             <li class="f-secondary">
                 @component('components.atoms._arrow-link')
                     @slot('font','f-null')

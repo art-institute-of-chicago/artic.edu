@@ -7,9 +7,9 @@
   <header class="o-article__header m-article-header m-article-header--generic">
     <div class="m-article-header__img">
         @component('components.atoms._img')
-            @slot('src', 'http://placeimg.com/2000/240/nature')
-            @slot('width', '2000')
-            @slot('height', '240')
+            @slot('src', $headerImage['src'])
+            @slot('width', $headerImage['width'])
+            @slot('height', $headerImage['height'])
         @endcomponent
     </div>
     <div class="m-article-header__text">
@@ -18,7 +18,7 @@
             @slot('font','f-headline')
             Students
         @endcomponent
-        <ul class="m-article-header__breadcrumb">
+        <ul class="m-article-header__breadcrumb" style="background-image: url({{ $headerImage['src'] }});">
             <li class="f-secondary">
                 @component('components.atoms._arrow-link')
                     @slot('font','f-null')
@@ -76,8 +76,6 @@
   </div>
 
   <div class="o-article__body" data-behavior="articleBodyInViewport">
-    @component('components.atoms._hr')
-    @endcomponent
 
     @component('components.blocks._text')
         Lorem sit amet, consectetur adipiscing elit. Curabitur magna neque, laoreet at tristique et, dignissim condimentum enim. Proin cursus diam nec nibh fermentum, eget consequat arcu efficitur
