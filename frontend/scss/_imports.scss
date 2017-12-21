@@ -39,11 +39,6 @@ $include-icons: false; // see icons.scss!
 
 @import 'setup/placeholders';
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ utilities */
-
-@import 'utilities/u-hide@x';
-@import 'utilities/u-show@x';
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ atoms */
 
 @import 'atoms/general-styles';
@@ -110,6 +105,11 @@ $include-icons: false; // see icons.scss!
 @import 'globals/g-header';
 @import 'globals/g-footer';
 @import 'globals/g-mask';
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ utilities */
+
+@import 'utilities/u-hide@x';
+@import 'utilities/u-show@x';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ styleguide */
 
