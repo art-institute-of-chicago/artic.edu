@@ -24,9 +24,12 @@
 .u-show\@xxlarge,
 .u-show\@small\-,
 .u-show\@medium\-,
+.u-show\@large\-,
+.u-show\@xlarge\-,
 .u-show\@small\+,
 .u-show\@medium\+,
-.u-show\@medium\+ {
+.u-show\@large\+,
+.u-show\@xlarge\+ {
   display: none;
 }
 
@@ -78,6 +81,18 @@
   }
 }
 
+@include breakpoint('large-') {
+  .u-show\@large\- {
+    display: block;
+  }
+}
+
+@include breakpoint('xlarge-') {
+  .u-show\@xlarge\- {
+    display: block;
+  }
+}
+
 @include breakpoint('small+') {
   .u-show\@small\+ {
     display: block;
@@ -92,6 +107,12 @@
 
 @include breakpoint('large+') {
   .u-show\@large\+ {
+    display: block;
+  }
+}
+
+@include breakpoint('xlarge+') {
+  .u-show\@xlarge\+ {
     display: block;
   }
 }

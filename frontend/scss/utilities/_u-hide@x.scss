@@ -68,6 +68,18 @@
   }
 }
 
+@include breakpoint('large-') {
+  .u-hide\@large\- {
+    display: none;
+  }
+}
+
+@include breakpoint('xlarge-') {
+  .u-hide\@xlarge\- {
+    display: none;
+  }
+}
+
 @include breakpoint('small+') {
   .u-hide\@small\+ {
     display: none;
@@ -82,6 +94,12 @@
 
 @include breakpoint('large+') {
   .u-hide\@large\+ {
+    display: none;
+  }
+}
+
+@include breakpoint('xlarge+') {
+  .u-hide\@xlarge\+ {
     display: none;
   }
 }
