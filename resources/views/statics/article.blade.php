@@ -23,9 +23,9 @@
   <header class="o-article__header m-article-header m-article-header--feature">
     <div class="m-article-header__img">
         @component('components.atoms._img')
-            @slot('src', 'http://placehold.dev.area17.com/image/652x585/?bg=660000&amp;text=')
-            @slot('width', '652')
-            @slot('height', '585')
+            @slot('src', 'http://placeimg.com/900/600/nature')
+            @slot('width', '300')
+            @slot('height', '600')
         @endcomponent
     </div>
     <div class="m-article-header__text">
@@ -48,9 +48,9 @@
   <header class="o-article__header m-article-header m-article-header--hero">
     <div class="m-article-header__img">
         @component('components.atoms._img')
-            @slot('src', 'http://placehold.dev.area17.com/image/652x585/?bg=006600&amp;text=')
-            @slot('width', '652')
-            @slot('height', '585')
+            @slot('src', 'http://placeimg.com/900/600/nature')
+            @slot('width', '300')
+            @slot('height', '600')
         @endcomponent
     </div>
     <div class="m-article-header__text">
@@ -80,9 +80,9 @@
   <header class="o-article__header m-article-header m-article-header--generic">
     <div class="m-article-header__img">
         @component('components.atoms._img')
-            @slot('src', 'http://placehold.dev.area17.com/image/652x585/?bg=000066&amp;text=')
-            @slot('width', '652')
-            @slot('height', '585')
+            @slot('src', 'http://placeimg.com/2000/240/nature')
+            @slot('width', '2000')
+            @slot('height', '240')
         @endcomponent
     </div>
     <div class="m-article-header__text">

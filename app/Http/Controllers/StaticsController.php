@@ -101,6 +101,11 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function generic_landing() {
+    return view('statics/generic-landing', [
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
@@ -109,7 +114,8 @@ class StaticsController extends Controller {
     $color = preg_replace('/#/i', '', $this->faker->hexcolor);
     $width = $this->faker->numberBetween(300,700);
     $height = $this->faker->numberBetween(300,700);
-    $src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
+    //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
+    $src = "http://placeimg.com/".$width."/".$height."/nature";
     $image = array("src" => $src, "width" => $width, "height" => $height);
 
     return $image;
