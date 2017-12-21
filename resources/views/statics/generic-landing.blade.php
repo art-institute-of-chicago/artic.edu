@@ -40,8 +40,19 @@
     </div>
   </header>
 
-  <div class="o-article__primary">
-    <p>MENU MENU MENU</p>
+  <div class="o-article__primary o-article__primary--sub-nav">
+    @component('components.atoms._dropdown')
+      @slot('prompt', 'Scheduling a tour')
+      @slot('variation', 'dropdown--filter u-hide@xlarge+')
+      @slot('ariaTitle', 'Sub navigation')
+      @slot('options', $subNav)
+    @endcomponent
+
+    @component('components.molecules._m-link-list')
+        @slot('font', 'f-module-title-1')
+        @slot('variation','u-show@xlarge+')
+        @slot('links', $nav);
+    @endcomponent
   </div>
 
   <div class="o-article__secondary">

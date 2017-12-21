@@ -15,11 +15,22 @@
   margin-top: 0;
 }
 
-.m-link-list li {
-  position: relative;
+.m-link-list__sub-list {
+  margin-top: 16px;
+  padding-left: 20px;
 }
 
-.m-link-list li::after {
+.m-link-list__item {
+  position: relative;
+  margin-top: 16px;
+  padding-top: 8px;
+}
+
+.m-link-list__item:first-child {
+  margin-top: 0;
+}
+
+.m-link-list__item::after {
   content: '';
   position: absolute;
   z-index: 1;
@@ -30,23 +41,76 @@
   background-color: $color__rules--primary;
 }
 
-.m-link-list a {
-  display: block;
-  position: relative;
-  padding-right: 32px
+.m-link-list__item.s-active::after {
+  background-color: $color__rules--secondary;
 }
 
-.m-link-list.f-secondary a {
-  padding-top: 12px;
-  padding-bottom: 12px;
+.m-link-list__sub-list .m-link-list__item::after {
+  background-color: $color__rules--tertiary;
+}
 
-  @include breakpoint('large+') {
-    padding-top: 10px;
-    padding-bottom: 10px;
+.m-link-list__trigger {
+  display: block;
+  position: relative;
+  padding-right: 32px;
+}
+
+.m-link-list__trigger.f-module-title-1 {
+  @include tucked-align-top($f-module-title-1);
+  color: $color__text--title;
+}
+
+a.m-link-list__trigger.f-module-title-1 {
+  &:hover,
+  &:focus {
+    color: $color__link--hover;
+  }
+
+  &:active {
+    color: $color__link--accent;
   }
 }
 
-.m-link-list svg {
+.m-link-list__trigger.f-secondary {
+  @include tucked-align-top($f-secondary);
+  color: $color__link;
+}
+
+a.m-link-list__trigger.f-secondary {
+
+  &:hover,
+  &:focus {
+    color: $color__link--hover;
+  }
+
+  &:active {
+    color: $color__link--active;
+  }
+}
+
+.m-link-list__item.s-active > .m-link-list__trigger.f-module-title-1,
+.m-link-list__item.s-active > .m-link-list__trigger.f-secondary {
+  color: $color__text--accent;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color__text--accent;
+  }
+}
+
+.m-link-list__sub-list .m-link-list__item.s-active > .m-link-list__trigger.f-module-title-1,
+.m-link-list__sub-list .m-link-list__item.s-active > .m-link-list__trigger.f-secondary {
+  color: $color__text;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color__text;
+  }
+}
+
+.m-link-list__trigger svg {
   position: absolute;
   right: 0;
   top: 17px;

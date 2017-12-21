@@ -98,11 +98,28 @@ class StaticsController extends Controller {
       'relatedProduct' => $this->getProduct(),
       'relatedEvents' => $this->getEvents(3),
       'relatedEvent' => $this->getEvent(),
+      'headerImage' => $this->getImage(1600,900),
     ]);
   }
 
   public function generic_landing() {
+    $subNav = array(
+        array('href' => '#', 'label' => 'Scheduling a tour', 'active' => true),
+        array('href' => '#', 'label' => 'Tours'),
+        array('href' => '#', 'label' => 'Preparing for a museum visit'),
+        array('href' => '#', 'label' => 'Bus scholarship'),
+        array('href' => '#', 'label' => 'For tour companies'),
+    );
+    $nav = array(
+        array('label' => 'Adults and university', 'href' => '#'),
+        array('label' => 'Students', 'href' => '#', 'active' => 'true', 'links' => $subNav),
+        array('label' => 'Group FAQs', 'href' => '#',),
+    );
+
     return view('statics/generic-landing', [
+        'subNav' => $subNav,
+        'nav' => $nav,
+        'headerImage' => $this->getImage(2000,240),
     ]);
   }
 

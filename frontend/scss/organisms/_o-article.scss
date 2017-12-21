@@ -66,6 +66,23 @@
 }
 
 
+.o-article__primary--sub-nav {
+  @include background-fill;
+  margin-top: 0;
+  background-color: $color__bg--primary;
+
+  @include breakpoint('xlarge+') {
+    margin-top: 40px;
+    background-color: transparent;
+
+    &::before {
+      content: none;
+      display: none;
+    }
+  }
+}
+
+
 .o-article__body {
   @include float-clear;
   position: relative;

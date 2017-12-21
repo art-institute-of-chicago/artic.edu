@@ -218,7 +218,11 @@
     @endcomponent
 
     @component('components.molecules._m-link-list')
-        @slot('links', array(array('text' => 'Quis finibus maximus', 'href' => '#'), array('text' => 'Ut fermentum est', 'href' => '#', 'icon' => 'icon--new-window'), array('text' => 'In tempor velit', 'href' => '#', 'icon' => 'icon--new-window')));
+        @slot('links', array(
+            array('label' => 'Quis finibus maximus', 'href' => '#'),
+            array('label' => 'Ut fermentum est', 'href' => '#', 'icon' => 'icon--new-window'),
+            array('label' => 'In tempor velit', 'href' => '#', 'icon' => 'icon--new-window')
+        ));
     @endcomponent
 
     <div class="o-gallery o-gallery--mosaic">
