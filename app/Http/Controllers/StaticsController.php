@@ -110,10 +110,10 @@ class StaticsController extends Controller {
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
 
-  private function getImage() {
-    $color = preg_replace('/#/i', '', $this->faker->hexcolor);
-    $width = $this->faker->numberBetween(300,700);
-    $height = $this->faker->numberBetween(300,700);
+  private function getImage($width = false, $height = false) {
+    //$color = preg_replace('/#/i', '', $this->faker->hexcolor);
+    $width = isset($width) ? $width : $this->faker->numberBetween(300,700);
+    $height = isset($height) ? $height : $this->faker->numberBetween(300,700);
     //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
     $src = "http://placeimg.com/".$width."/".$height."/nature";
     $image = array("src" => $src, "width" => $width, "height" => $height);
