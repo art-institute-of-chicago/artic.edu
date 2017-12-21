@@ -1,0 +1,57 @@
+
+.ratio-img {
+  display: block;
+  position: relative;
+}
+
+.ratio-img::before {
+  content: '';
+  display: block;
+  height: 0;
+  padding-bottom: 100%; // defaults to a square
+}
+
+.ratio-img--1\:1 {
+  padding-bottom: 100%;
+}
+
+.ratio-img--3\:2 {
+  padding-bottom: percentage(2 / 3);
+}
+
+.ratio-img--4\:3 {
+  padding-bottom: percentage(4 / 3);
+}
+
+.ratio-img--16\:10 {
+  padding-bottom: percentage(10 / 16);
+}
+
+.ratio-img--16\:9 {
+  padding-bottom: percentage(9 / 16);
+}
+
+.ratio-img--21\:9 {
+  padding-bottom: percentage(9 / 21);
+}
+
+.ratio-img img,
+.ratio-img video {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ratio-img--cover img,
+.ratio-img--cover video {
+  object-fit: cover;
+}
+
+.ratio-img--contain img,
+.ratio-img--contain video {
+  object-fit: contain;
+}
