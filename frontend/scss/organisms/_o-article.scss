@@ -223,20 +223,43 @@
 
   & > .f-deck {
     @include tucked-margin-top($f-deck, ('xsmall': 56));
+
+    &:first-child {
+      @include tucked-align-top($f-deck);
+    }
   }
 
   & > .f-module-title-2 {
     @include tucked-margin-top($f-module-title-2, ('xsmall': 68));
+
+    &:first-child {
+      @include tucked-align-top($f-module-title-2);
+    }
   }
 
   & > .f-subheading-1 {
     @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
+
+    &:first-child {
+      @include tucked-align-top($f-subheading-1);
+    }
   }
 
 
-  & > .f-body,
-  & > .f-body-editorial {
+  & > .f-body {
     @include tucked-margin-top($f-body, ('xsmall': 56));
+
+    &:first-child {
+      @include tucked-align-top($f-body);
+    }
+  }
+
+  & > .f-body-editorial {
+    @include tucked-margin-top($f-body-editorial, ('xsmall': 56));
+
+    &:first-child {
+      @include tucked-align-top($f-body-editorial);
+    }
   }
 
     & > .f-subheading-1 + .f-body,
@@ -334,23 +357,23 @@
   .m-media--m .m-media__img {
     @include breakpoint('xlarge+') {
       flex: 0 0 auto;
-      width: colspan(45, xlarge);
+      width: colspan(43, xlarge);
     }
 
     @include breakpoint('xxlarge') {
-      width: colspan(45, xxlarge);
+      width: colspan(43, xxlarge);
     }
   }
 
   .m-media--m figcaption {
     @include breakpoint('xlarge+') {
       flex: 0 0 auto;
-      width: colspan(13, xlarge);
+      width: colspan(15, xlarge);
       padding-right: colspan(2, xlarge);
     }
 
     @include breakpoint('xxlarge') {
-      width: colspan(13, xxlarge);
+      width: colspan(15, xxlarge);
       padding-right: colspan(2, xxlarge);
     }
   }
