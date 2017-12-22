@@ -104,8 +104,8 @@ class StaticsController extends Controller {
 
   public function generic_landing() {
     $subNav = array(
-        array('href' => '#', 'label' => 'Scheduling a tour', 'active' => true),
         array('href' => '#', 'label' => 'Tours'),
+        array('href' => '#', 'label' => 'Scheduling a tour'),
         array('href' => '#', 'label' => 'Preparing for a museum visit'),
         array('href' => '#', 'label' => 'Bus scholarship'),
         array('href' => '#', 'label' => 'For tour companies'),
@@ -179,11 +179,137 @@ class StaticsController extends Controller {
         "content" => $this->faker->paragraph(12, false)
     ));
 
-    return view('statics/generic-landing', [
+    return view('statics/generic', [
         'subNav' => $subNav,
         'nav' => $nav,
         'headerImage' => $this->getImage(2000,240),
         "title" => "Students",
+        "breadcrumb" => $breadcrumb,
+        "blocks" => $blocks,
+    ]);
+  }
+
+  public function generic_detail() {
+    $subNav = array(
+        array('href' => '#', 'label' => 'Tours'),
+        array('href' => '#', 'label' => 'Scheduling a tour', 'active' => true),
+        array('href' => '#', 'label' => 'Preparing for a museum visit'),
+        array('href' => '#', 'label' => 'Bus scholarship'),
+        array('href' => '#', 'label' => 'For tour companies'),
+    );
+    $nav = array(
+        array('label' => 'Adults and university', 'href' => '#'),
+        array('label' => 'Students', 'href' => '#', 'links' => $subNav),
+        array('label' => 'Group FAQs', 'href' => '#',),
+    );
+    $breadcrumb = array(
+        array('label' => 'Visit', 'href' => '#'),
+        array('label' => 'Group Visits', 'href' => '#',),
+        array('label' => 'Students', 'href' => '#',),
+    );
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'intro',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas consequat egestas est, in luctus urna porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'heading-1',
+        "content" => $this->faker->sentence(6)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'hr',
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'heading-2',
+        "content" => $this->faker->sentence(6)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'quote',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'image',
+            'size' => 's',
+            'media' => $this->getImage(640,480),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'image',
+            'size' => 'm',
+            'media' => $this->getImage(480,640),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'image',
+            'size' => 'l',
+            'media' => $this->getImage(640,640),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'video',
+            'size' => 's',
+            'media' => $this->getVideo(),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 's',
+            'media' => $this->getEmbed(),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'become-a-member',
+    ));
+    array_push($blocks, array(
+        "type" => 'newsletter-sign-up',
+    ));
+    array_push($blocks, array(
+        "type" => 'newsletter-sign-up',
+        "variation" => 'm-aside-newsletter--inline',
+    ));
+    array_push($blocks, array(
+        "type" => 'newsletter-sign-up',
+        "variation" => 'm-aside-newsletter--wide',
+    ));
+
+
+
+
+    return view('statics/generic', [
+        'subNav' => $subNav,
+        'nav' => $nav,
+        'headerImage' => $this->getImage(2000,240),
+        "title" => "Scheduling a tour",
         "breadcrumb" => $breadcrumb,
         "blocks" => $blocks,
     ]);
@@ -199,9 +325,26 @@ class StaticsController extends Controller {
     $height = isset($height) ? $height : $this->faker->numberBetween(300,700);
     //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
     $src = "http://placeimg.com/".$width."/".$height."/nature";
+    //$src = $this->faker->imageUrl($width, $height, 'nature');
+    //$src = str_replace('https://', 'http://', $src);
     $image = array("src" => $src, "width" => $width, "height" => $height);
 
     return $image;
+  }
+
+  private function getVideo() {
+    $video = array(
+        'src' => '/test/feature-1.mp4',
+        'poster' => '/test/feature-1.jpg',
+    );
+    return $video;
+  }
+
+  private function getEmbed() {
+    $embed = array(
+        'embed' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
+    );
+    return $embed;
   }
 
   private function getExhibitionType($upcoming = false) {

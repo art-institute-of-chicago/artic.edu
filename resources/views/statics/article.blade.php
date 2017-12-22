@@ -194,13 +194,13 @@
         @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
     @endcomponent
     @component('components.molecules._m-media')
-        @slot('variation','m')
+        @slot('size','m')
         @slot('type','video')
         @slot('media', array('src' => '/test/feature-1.mp4', 'poster' => '/test/feature-1.jpg'))
         @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
     @endcomponent
     @component('components.molecules._m-media')
-        @slot('variation','l')
+        @slot('size','l')
         @slot('type','video')
         @slot('media', array('src' => '/test/feature-1.mp4', 'poster' => '/test/feature-1.jpg'))
         @slot('caption', 'In tempor, velit quis finibus maximus, felis magna rutrum arcu, ut fermentum est libero sed mauris.')
