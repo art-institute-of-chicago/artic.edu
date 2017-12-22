@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
 use A17\CmsToolkit\Models\Behaviors\HasPresenter;
+use A17\CmsToolkit\Models\Model;
 
 class Closure extends Model
 {
@@ -17,20 +17,18 @@ class Closure extends Model
         'date_start',
         'date_end',
         'closure_copy',
-        'type'
+        'type',
     ];
 
     public static $types = [
         0 => 'Museum',
         1 => 'Shop',
-        2 => 'Library'
+        2 => 'Library',
     ];
 
-    // those fields get auto set to null if not submited
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 
     public $dates = ['date_start', 'date_end'];
 }

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Admission as Admission;
+
 // use Illuminate\Database\Eloquent\Builder;
 
 class Page extends Model
@@ -26,7 +27,7 @@ class Page extends Model
         0 => 'Home',
         1 => 'Exhibitions and Events',
         2 => 'Art and Ideas',
-        3 => 'Visit'
+        3 => 'Visit',
     ];
 
     protected $fillable = [
@@ -45,18 +46,20 @@ class Page extends Model
         'art_intro',
 
         // Visit
-        'visit_intro'
+        'visit_intro',
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
+    public $checkboxes = ['published'];
+
     public $mediasParams = [
         'visit_hero' => [
             'default' => '16/9',
             'square' => '1',
-        ]
+        ],
     ];
 
     public function homeExhibitions()

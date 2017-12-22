@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasApiSource;
+use A17\CmsToolkit\Models\Model;
 
 class Exhibition extends Model
 {
@@ -25,26 +25,34 @@ class Exhibition extends Model
         'start_date',
         'end_date',
         'short_copy',
-        'datahub_id'
+        'datahub_id',
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
-    // those fields get auto set to null if not submited
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 
     public $dates = ['start_date', 'end_date'];
 
     public $mediasParams = [
         'hero' => [
-            'default' => '16/9',
-            'square' => '1',
-        ]
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
     ];
 
     public function siteTags()
@@ -70,5 +78,10 @@ class Exhibition extends Model
     public function sponsors()
     {
         return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
+    }
+
+    public function getTitleInBucketAttribute()
+    {
+        return $this->title;
     }
 }

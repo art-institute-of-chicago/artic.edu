@@ -1,78 +1,75 @@
 @extends('cms-toolkit::layouts.form')
 
 @section('contentFields')
-    @formField('date_picker', [
-         'name' => 'start_date',
-         'label' => 'Start date',
-    ])
-    @formField('date_picker', [
-         'name' => 'end_date',
-         'label' => 'End date',
-    ])
-
-    @formField('input', [
-        'name' => 'datahub_id',
-        'label' => 'Datahub ID',
-    ])
-
-    @formField('multi_select', [
-        'name' => 'site_tags',
-        'label' => 'Tags',
-        'options' => $siteTagsList,
-        'placeholder' => 'Select some tags',
-    ])
     @formField('input', [
         'name' => 'title',
-        'label' => 'Title',
+        'label' => 'Title'
     ])
     @formField('input', [
         'name' => 'header_copy',
-        'label' => 'Header'
+        'label' => 'Header',
     ])
-    @formField('textarea', [
+    @formField('input', [
         'name' => 'short_copy',
-        'label' => 'Short Copy'
+        'label' => 'Short Copy',
+        'type' => 'textarea'
     ])
     @formField('medias', [
-        'media_role' => 'hero',
-        'media_role_name' => 'Hero',
-        'with_multiple' => false,
-        'no_crop' => false
+        'name' => 'hero',
+        'label' => 'Hero',
     ])
+@stop
 
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'relationship' => 'events',
-        'module_name' => 'events',
-        'relationship_name' => 'related events',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related events',
-        'max' => 20
-    ])
+@section('fieldsets')
+    <a17-fieldset id="attributes" title="Attributes">
+        @formField('date_picker', [
+             'name' => 'start_date',
+             'label' => 'Start date',
+        ])
 
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'relationship' => 'shopItems',
-        'module_name' => 'shopItems',
-        'relationship_name' => 'Related Shop Items',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related Shop Items',
-        'max' => 20
-    ])
+        @formField('date_picker', [
+             'name' => 'end_date',
+             'label' => 'End date',
+        ])
 
-    @formField('browser', [
-        'routePrefix' => 'general',
-        'relationship' => 'sponsors',
-        'module_name' => 'sponsors',
-        'relationship_name' => 'Sponsors',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select Sponsors',
-        'max' => 20
-    ])
+        @formField('input', [
+            'name' => 'datahub_id',
+            'label' => 'Datahub ID',
+        ])
+
+        @formField('multi_select', [
+            'name' => 'site_tags',
+            'label' => 'Tags',
+            'options' => $siteTagsList,
+            'placeholder' => 'Select some tags',
+        ])
+    </a17-fieldset>
+    <a17-fieldset id="related" title="Related">
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'moduleName' => 'events',
+            'name' => 'events',
+            'label' => 'Related events',
+            'note' => 'Select related events',
+            'max' => 20
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'moduleName' => 'shopItems',
+            'name' => 'shopItems',
+            'label' => 'Related Shop Items',
+            'note' => 'Select related Shop Items',
+            'max' => 20
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'general',
+            'moduleName' => 'sponsors',
+            'name' => 'sponsors',
+            'label' => 'Sponsors',
+            'note' => 'Select Sponsors',
+            'max' => 20
+        ])
+    </a17-fieldset>
 @stop

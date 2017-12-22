@@ -6,14 +6,12 @@ use App\Presenters\BasePresenter;
 
 class ExhibitionPresenter extends BasePresenter
 {
-
-    public function titleInBucket()
+    public function startDate()
     {
-        if ($this->entity->title) {
-            return $this->entity->title;
+        if ($this->entity->start_date) {
+            return $this->entity->start_date->format('d M, Y');
         }
 
-        return 'No title';
     }
 
 }

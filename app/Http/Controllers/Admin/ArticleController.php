@@ -50,7 +50,6 @@ class ArticleController extends ModuleController
     {
         return [
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
-            'with_revisions' => true,
         ];
     }
 

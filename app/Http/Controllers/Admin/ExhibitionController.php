@@ -9,6 +9,11 @@ class ExhibitionController extends ModuleController
 {
     protected $moduleName = 'exhibitions';
 
+    protected $indexOptions = [
+        'feature' => true,
+        'bulkFeature' => true,
+    ];
+
     protected $indexColumns = [
         'image' => [
             'title' => 'Hero',
@@ -20,38 +25,33 @@ class ExhibitionController extends ModuleController
         ],
         'title' => [
             'title' => 'Title',
-            'edit_link' => true,
-            'sort' => true,
             'field' => 'title',
+            'sort' => true,
+        ],
+        'startDate' => [
+            'title' => 'Start date',
+            'field' => 'startDate',
+            'present' => true,
+            'sort' => true,
+            'sortKey' => 'start_date',
         ],
         'short_copy' => [
-            'title' => 'Short Copy',
-            'short_copy' => 'Short Copy',
-            'edit_link' => true,
+            'title' => 'Short copy',
             'field' => 'short_copy',
         ],
     ];
 
     protected $featureField = 'landing';
 
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
+    protected $indexWith = ['medias'];
 
-    /*
-     * Relations to eager load for the form view
-     */
     protected $formWith = ['revisions', 'siteTags', 'shopItems'];
 
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
-    protected $filters = [];
+    protected $defaultFilters = ['search' => '%title'];
 
-    protected $formWithCount = ['revisions'];
     protected $defaultOrders = ['start_date' => 'desc'];
+
+    protected $filters = [];
 
     protected function indexData($request)
     {
@@ -62,7 +62,6 @@ class ExhibitionController extends ModuleController
     {
         return [
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
-            'with_revisions' => true,
         ];
     }
 

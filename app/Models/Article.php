@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
+use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
 class Article extends Model
@@ -18,18 +18,16 @@ class Article extends Model
         'content',
         'title',
         'date',
-        'copy'
+        'copy',
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
-    // those fields get auto set to null if not submited
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 
     public $dates = ['date'];
 
@@ -37,7 +35,7 @@ class Article extends Model
         'hero' => [
             'default' => '16/9',
             'square' => '1',
-        ]
+        ],
     ];
 
     public function siteTags()

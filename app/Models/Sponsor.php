@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
+use A17\CmsToolkit\Models\Model;
 
 class Sponsor extends Model
 {
@@ -19,11 +19,11 @@ class Sponsor extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 
     public $mediasParams = [
         'logo' => [
             'default' => '1',
-        ]
+        ],
     ];
 }

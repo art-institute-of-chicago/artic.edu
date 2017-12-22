@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
+use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
 class Event extends Model
@@ -30,7 +30,7 @@ class Event extends Model
         'location',
         'latitude',
         'longitude',
-        'rsvp_link'
+        'rsvp_link',
     ];
 
     public $slugAttributes = [
@@ -41,7 +41,7 @@ class Event extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = ['recurring'];
+    public $checkboxes = ['recurring', 'published'];
 
     public $dates = ['start_date', 'end_date'];
 
@@ -49,7 +49,7 @@ class Event extends Model
         'hero' => [
             'default' => '16/9',
             'square' => '1',
-        ]
+        ],
     ];
 
     public function siteTags()

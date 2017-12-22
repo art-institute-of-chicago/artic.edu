@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
+use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
 class Selection extends Model
@@ -27,13 +27,13 @@ class Selection extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 
     public $mediasParams = [
         'hero' => [
             'default' => '16/9',
             'square' => '1',
-        ]
+        ],
     ];
 
     public function artworks()

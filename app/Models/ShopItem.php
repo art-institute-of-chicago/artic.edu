@@ -9,12 +9,12 @@ class ShopItem extends Model
     protected $fillable = [
         'published',
         'name',
-        'datahub_id'
+        'datahub_id',
     ];
 
     // those fields get auto set to null if not submited
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 }

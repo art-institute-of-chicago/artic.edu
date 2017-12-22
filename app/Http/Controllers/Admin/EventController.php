@@ -9,6 +9,11 @@ class EventController extends ModuleController
 {
     protected $moduleName = 'events';
 
+    protected $indexOptions = [
+        'feature' => true,
+        'bulkFeature' => true,
+    ];
+
     protected $indexColumns = [
         'image' => [
             'title' => 'Hero',
@@ -27,23 +32,13 @@ class EventController extends ModuleController
     ];
 
     protected $featureField = 'landing';
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
 
-    /*
-     * Relations to eager load for the form view
-     */
+    protected $indexWith = ['medias'];
+
     protected $formWith = ['revisions', 'siteTags', 'events'];
 
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
     protected $filters = [];
 
-    protected $formWithCount = ['revisions'];
     protected $defaultOrders = ['start_date' => 'desc'];
 
     protected function indexData($request)
@@ -55,7 +50,6 @@ class EventController extends ModuleController
     {
         return [
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
-            'with_revisions' => true,
         ];
     }
 

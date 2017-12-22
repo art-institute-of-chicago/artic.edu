@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
 use A17\CmsToolkit\Models\Behaviors\HasPosition;
+use A17\CmsToolkit\Models\Model;
 
 class Question extends Model
 {
@@ -13,12 +13,12 @@ class Question extends Model
         'published',
         'question',
         'answer',
-        'position'
+        'position',
     ];
 
     // those fields get auto set to null if not submited
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 }
