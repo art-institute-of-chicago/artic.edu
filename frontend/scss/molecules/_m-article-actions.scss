@@ -1,0 +1,22 @@
+.m-article-actions {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 40px;
+}
+
+.m-article-actions:first-child {
+  margin-top: 0;
+}
+
+.m-article-actions--keyline-top {
+  padding-top: 7px;
+  border-top: 1px solid $color__rules--primary;
+}
+
+.m-article-actions__action {
+  flex: 0 0 auto;
+}
+
+.m-article-actions__action:not(:first-child) {
+  margin-left: 4px;
+}
