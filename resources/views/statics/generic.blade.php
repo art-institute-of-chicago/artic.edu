@@ -14,7 +14,7 @@
 
   <div class="o-article__primary o-article__primary--sub-nav">
     @component('components.atoms._dropdown')
-      @slot('prompt', 'Scheduling a tour')
+      @slot('prompt', $title)
       @slot('variation', 'dropdown--filter u-hide@xlarge+')
       @slot('ariaTitle', 'Sub navigation')
       @slot('options', $subNav)
@@ -28,28 +28,17 @@
   </div>
 
   <div class="o-article__secondary">
-    @component('components.atoms._hr')
-        @slot('variation', 'u-hide@medium+')
+    @component('components.molecules._m-article-actions')
+        @slot('variation','m-article-actions--keyline-top')
     @endcomponent
-    <p>
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--icon')
-            @slot('font', '')
-            @slot('icon', 'icon--share--24')
-            @slot('behavior','sharePage')
-        @endcomponent
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--secondary btn--icon')
-            @slot('font', '')
-            @slot('icon', 'icon--print--24')
-            @slot('behavior','printPage')
-        @endcomponent
-    </p>
   </div>
 
   <div class="o-article__body">
     @component('components.blocks._blocks')
         @slot('blocks', $blocks)
+    @endcomponent
+    @component('components.molecules._m-article-actions')
+        @slot('variation','m-article-actions--keyline-top')
     @endcomponent
   </div>
 
