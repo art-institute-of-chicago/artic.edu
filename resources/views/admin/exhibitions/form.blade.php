@@ -18,6 +18,7 @@
         'name' => 'hero',
         'label' => 'Hero',
     ])
+    @formField('block_editor')
 @stop
 
 @section('fieldsets')

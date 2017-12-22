@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
@@ -10,7 +11,7 @@ use A17\CmsToolkit\Models\Model;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias; # , HasApiSource;
+    use HasRevisions, HasSlug, HasMedias, HasBlocks;# , HasApiSource;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
 

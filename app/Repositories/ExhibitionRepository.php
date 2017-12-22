@@ -2,14 +2,15 @@
 
 namespace App\Repositories;
 
-use A17\CmsToolkit\Repositories\ModuleRepository;
-use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
+use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
+use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
+use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Models\Exhibition;
 
 class ExhibitionRepository extends ModuleRepository
 {
-    use HandleRevisions, HandleMedias;
+    use HandleRevisions, HandleMedias, HandleBlocks;
 
     public function __construct(Exhibition $model)
     {

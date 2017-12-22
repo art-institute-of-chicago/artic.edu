@@ -16,6 +16,42 @@ return [
         'file-library' => true,
     ],
 
+    'block_editor' => [
+        'blocks' => [
+            'text' => [
+                'title' => 'Text',
+                'icon' => 'text',
+                'component' => 'a17-block-text',
+            ],
+            'quote' => [
+                'title' => 'Quote',
+                'icon' => 'text',
+                'component' => 'a17-block-quote',
+            ],
+            'image' => [
+                'title' => 'Image',
+                'icon' => 'image',
+                'component' => 'a17-block-image',
+            ],
+        ],
+        'crops' => [
+            'image' => [
+                'desktop' => [
+                    [
+                        'name' => 'desktop',
+                        'ratio' => 16 / 9,
+                    ],
+                ],
+                'mobile' => [
+                    [
+                        'name' => 'mobile',
+                        'ratio' => 1,
+                    ],
+                ],
+            ],
+        ],
+    ],
+
     'buckets' => [
         'homepage' => [
             'name' => 'Home',
