@@ -130,6 +130,54 @@ class StaticsController extends Controller {
         "type" => 'text',
         "content" => $this->faker->paragraph(12, false)
     ));
+    array_push($blocks, array(
+        "type" => 'accordion',
+        "content" => array(
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                ),
+            ),
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
 
     return view('statics/generic-landing', [
         'subNav' => $subNav,

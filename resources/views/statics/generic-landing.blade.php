@@ -4,39 +4,13 @@
 
 <article class="o-article">
 
-  <header class="o-article__header m-article-header m-article-header--generic">
-    <div class="m-article-header__img">
-        @component('components.atoms._img')
-            @slot('src', $headerImage['src'])
-            @slot('width', $headerImage['width'])
-            @slot('height', $headerImage['height'])
-        @endcomponent
-    </div>
-    <div class="m-article-header__text">
-        @component('components.atoms._title')
-            @slot('tag','h1')
-            @slot('font','f-headline')
-            {{ $title }}
-        @endcomponent
-        <ul class="m-article-header__breadcrumb" style="background-image: url({{ $headerImage['src'] }});">
-            @foreach ($breadcrumb as $link)
-                @if ($loop->last)
-                    <li class="f-secondary">
-                        {{ $link['label'] }}
-                    </li>
-                @else
-                    <li class="f-secondary">
-                        @component('components.atoms._arrow-link')
-                            @slot('font','f-null')
-                            @slot('href',$link['href'])
-                            {{ $link['label'] }}
-                        @endcomponent
-                    </li>
-                @endif
-            @endforeach
-        </ul>
-    </div>
-  </header>
+    @component('components.molecules._m-article-header')
+      @slot('headerType', 'generic')
+      @slot('variation', 'o-article__header')
+      @slot('title', $title)
+      @slot('img', $headerImage)
+      @slot('breadcrumb', $breadcrumb)
+    @endcomponent
 
   <div class="o-article__primary o-article__primary--sub-nav">
     @component('components.atoms._dropdown')
@@ -73,28 +47,10 @@
     </p>
   </div>
 
-  <div class="o-article__body" data-behavior="articleBodyInViewport">
-
-    @foreach ($blocks as $block)
-        @if ($block['type'] === 'text')
-            @php
-                $font = false;
-                $variation = false;
-                $tag = false;
-                //
-                if (isset($block['subtype'])) {
-                    $font = ($block['subtype'] === 'intro') ? 'f-deck' : $font;
-                }
-            @endphp
-            @component('components.blocks._text')
-                @slot('tag', ($tag ? $tag : null))
-                @slot('variation', ($variation ? $variation : null))
-                @slot('font', ($font ? $font : null))
-                {{ $block['content'] }}
-            @endcomponent
-        @endif
-    @endforeach
-
+  <div class="o-article__body">
+    @component('components.blocks._blocks')
+        @slot('blocks', $blocks)
+    @endcomponent
   </div>
 
 </article>
