@@ -99,17 +99,6 @@ a.m-link-list__trigger.f-secondary {
   }
 }
 
-.m-link-list__sub-list .m-link-list__item.s-active > .m-link-list__trigger.f-module-title-1,
-.m-link-list__sub-list .m-link-list__item.s-active > .m-link-list__trigger.f-secondary {
-  color: $color__text;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: $color__text;
-  }
-}
-
 .m-link-list__trigger svg {
   position: absolute;
   right: 0;
