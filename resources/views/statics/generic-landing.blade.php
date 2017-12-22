@@ -16,26 +16,24 @@
         @component('components.atoms._title')
             @slot('tag','h1')
             @slot('font','f-headline')
-            Students
+            {{ $title }}
         @endcomponent
         <ul class="m-article-header__breadcrumb" style="background-image: url({{ $headerImage['src'] }});">
-            <li class="f-secondary">
-                @component('components.atoms._arrow-link')
-                    @slot('font','f-null')
-                    @slot('href','#')
-                    Visit
-                @endcomponent
-            </li>
-            <li class="f-secondary">
-                @component('components.atoms._arrow-link')
-                    @slot('font','f-null')
-                    @slot('href','#')
-                    Group Visits
-                @endcomponent
-            </li>
-            <li class="f-secondary">
-                Students
-            </li>
+            @foreach ($breadcrumb as $link)
+                @if ($loop->last)
+                    <li class="f-secondary">
+                        {{ $link['label'] }}
+                    </li>
+                @else
+                    <li class="f-secondary">
+                        @component('components.atoms._arrow-link')
+                            @slot('font','f-null')
+                            @slot('href',$link['href'])
+                            {{ $link['label'] }}
+                        @endcomponent
+                    </li>
+                @endif
+            @endforeach
         </ul>
     </div>
   </header>
@@ -77,9 +75,25 @@
 
   <div class="o-article__body" data-behavior="articleBodyInViewport">
 
-    @component('components.blocks._text')
-        Lorem sit amet, consectetur adipiscing elit. Curabitur magna neque, laoreet at tristique et, dignissim condimentum enim. Proin cursus diam nec nibh fermentum, eget consequat arcu efficitur
-    @endcomponent
+    @foreach ($blocks as $block)
+        @if ($block['type'] === 'text')
+            @php
+                $font = false;
+                $variation = false;
+                $tag = false;
+                //
+                if (isset($block['subtype'])) {
+                    $font = ($block['subtype'] === 'intro') ? 'f-deck' : $font;
+                }
+            @endphp
+            @component('components.blocks._text')
+                @slot('tag', ($tag ? $tag : null))
+                @slot('variation', ($variation ? $variation : null))
+                @slot('font', ($font ? $font : null))
+                {{ $block['content'] }}
+            @endcomponent
+        @endif
+    @endforeach
 
   </div>
 

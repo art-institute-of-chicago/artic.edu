@@ -115,11 +115,29 @@ class StaticsController extends Controller {
         array('label' => 'Students', 'href' => '#', 'active' => 'true', 'links' => $subNav),
         array('label' => 'Group FAQs', 'href' => '#',),
     );
+    $breadcrumb = array(
+        array('label' => 'Visit', 'href' => '#'),
+        array('label' => 'Group Visits', 'href' => '#',),
+        array('label' => 'Students', 'href' => '#',),
+    );
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'intro',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
 
     return view('statics/generic-landing', [
         'subNav' => $subNav,
         'nav' => $nav,
         'headerImage' => $this->getImage(2000,240),
+        "title" => "Students",
+        "breadcrumb" => $breadcrumb,
+        "blocks" => $blocks,
     ]);
   }
 
