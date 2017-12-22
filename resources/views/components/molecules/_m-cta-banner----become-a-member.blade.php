@@ -1,6 +1,6 @@
 <aside class="m-cta-banner m-cta-banner--parallax" data-behavior="bannerParallax">
     <div class="m-cta-banner__img" data-parallax-img>
-        <img src="http://placehold.dev.area17.com/image/2000x240?bg=333333&fg=444444">
+        <img src="http://placeimg.com/2000/240/nature/grayscale">
     </div>
     <div class="m-cta-banner__txt">
         <p class="m-cta-banner__title f-module-title-2">Become a Member</p>
