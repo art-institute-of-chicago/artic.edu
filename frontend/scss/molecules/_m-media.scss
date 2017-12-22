@@ -32,7 +32,10 @@
 
 .m-media--m .m-media__img img,
 .m-media--l .m-media__img img,
-.m-media__img video {
+.m-media__img video,
+.m-media__img embed,
+.m-media__img iframe,
+.m-media__img object {
   position: absolute;
   left: 0;
   right: 0;
@@ -70,7 +73,7 @@
 .o-article__body {
   @include breakpoint('xlarge+') {
     .m-media--m figcaption {
-      margin-top: 0;
+      @include tucked-align-top($f-caption);
     }
 
     .m-media--m .m-media__share {
