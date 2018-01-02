@@ -14,7 +14,9 @@
   <li><a href="/statics/home">home</a></li>
   <li><a href="/statics/exhibitions_and_events">exhibitions and events</a></li>
   <li><a href="/statics/events">events</a></li>
-  <li><a href="/statics/article">article</a> (to split into blocks)</li>
+  <li><a href="/statics/article">article, standard header</a></li>
+  <li><a href="/statics/article_feature">article, feature header</a></li>
+  <li><a href="/statics/article_hero">article, hero header</a></li>
   <li><a href="/statics/generic_landing">generic landing</a></li>
   <li><a href="/statics/generic_detail">generic detail</a></li>
 </ul>
