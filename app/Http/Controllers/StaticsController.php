@@ -301,6 +301,111 @@ class StaticsController extends Controller {
         "type" => 'newsletter-sign-up',
         "variation" => 'm-aside-newsletter--wide',
     ));
+    array_push($blocks, array(
+        "type" => 'listing',
+        "subtype" => 'exhibition',
+        "items" => $this->getExhibitions(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'listing',
+        "subtype" => 'event',
+        "items" => $this->getEvents(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'listing',
+        "subtype" => 'product',
+        "items" => $this->getProducts(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'event',
+        "items" => $this->getEvents(1),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'event',
+        "items" => $this->getEvents(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'exhibition',
+        "items" => $this->getExhibitions(1),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'exhibition',
+        "items" => $this->getExhibitions(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'product',
+        "items" => $this->getProducts(1),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'product',
+        "items" => $this->getProducts(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'time-line',
+        "items" => $this->getTimelineEvents(3)
+    ));
+    array_push($blocks, array(
+        "type" => 'link-list',
+        "links" => array(
+              array('label' => 'Quis finibus maximus', 'href' => '#'),
+              array('label' => 'Ut fermentum est', 'href' => '#', 'icon' => 'icon--new-window'),
+              array('label' => 'In tempor velit', 'href' => '#', 'icon' => 'icon--new-window')
+          )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
 
 
 
@@ -321,8 +426,8 @@ class StaticsController extends Controller {
 
   private function getImage($width = false, $height = false) {
     //$color = preg_replace('/#/i', '', $this->faker->hexcolor);
-    $width = isset($width) ? $width : $this->faker->numberBetween(300,700);
-    $height = isset($height) ? $height : $this->faker->numberBetween(300,700);
+    $width = isset($width) && $width ? $width : $this->faker->numberBetween(300,700);
+    $height = isset($height) && $height ? $height : $this->faker->numberBetween(300,700);
     //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
     $src = "http://placeimg.com/".$width."/".$height."/nature";
     //$src = $this->faker->imageUrl($width, $height, 'nature');

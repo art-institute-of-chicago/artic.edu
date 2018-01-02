@@ -20,13 +20,24 @@
                         break;
                 }
             }
+            $content = $block['content'];
         @endphp
         @component('components.blocks._text')
             @slot('tag', ($tag ? $tag : null))
             @slot('variation', ($variation ? $variation : null))
             @slot('font', ($font ? $font : null))
             @slot('loopIndex', $loop->iteration)
-            {{ $block['content'] }}
+
+            @if (isset($editorial) and $editorial and $loop->first) {
+                @component('components.blocks._text')
+                    @slot('font','f-dropcap-editorial')
+                    @slot('tag','span')
+                    @php echo substr($content, 0, 1) @endphp
+                @endcomponent
+                @php echo substr($content, 1) @endphp
+            @else
+                {!! $content !!}
+            @endif
         @endcomponent
     @endif
 
@@ -62,6 +73,60 @@
     @if ($block['type'] === 'newsletter-sign-up')
         @component('components.molecules._m-aside-newsletter')
             @slot('variation', (isset($block['variation']) && $block['variation'] ? $block['variation'] : null))
+        @endcomponent
+    @endif
+
+    @if ($block['type'] === 'time-line')
+        @component('components.organisms._o-row-listing')
+            @foreach ($block['items'] as $item)
+                @component('components.molecules._m-listing----timeline')
+                    @slot('date', $item)
+                @endcomponent
+            @endforeach
+        @endcomponent
+    @endif
+
+    @if ($block['type'] === 'listing')
+        @if (isset($block['subtype']) and $block['subtype'])
+            @component('components.organisms._o-row-listing')
+                @foreach ($block['items'] as $item)
+                    @component('components.molecules._m-listing----'.$block["subtype"].'-row')
+                        @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
+                        @slot($block["subtype"], $item)
+                    @endcomponent
+                @endforeach
+            @endcomponent
+        @endif
+    @endif
+
+    @if ($block['type'] === 'aside')
+        @if (isset($block['subtype']) and $block['subtype'])
+            @component('components.blocks._inline-aside')
+                @if (sizeof($block["items"]) === 1)
+                    @slot('title', 'Related '.ucfirst($block["subtype"]))
+                    @component('components.molecules._m-listing----'.$block["subtype"].'-row')
+                        @slot('tag', 'p')
+                        @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
+                        @slot($block["subtype"], $block["items"][0])
+                    @endcomponent
+                @else
+                    @slot('title', 'Related '.ucfirst($block["subtype"]).'s')
+                    @component('components.organisms._o-row-listing')
+                        @foreach ($block['items'] as $item)
+                            @component('components.molecules._m-listing----'.$block["subtype"].'-row')
+                                @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
+                                @slot($block["subtype"], $item)
+                            @endcomponent
+                        @endforeach
+                    @endcomponent
+                @endif
+            @endcomponent
+        @endif
+    @endif
+
+    @if ($block['type'] === 'link-list')
+        @component('components.molecules._m-link-list')
+            @slot('links', $block['links']);
         @endcomponent
     @endif
 @endforeach
