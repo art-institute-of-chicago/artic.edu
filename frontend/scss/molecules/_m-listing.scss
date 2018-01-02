@@ -914,9 +914,9 @@
 }
 
 
-// variant `m-listing--inline` inside `.o-article__inline-aside`
+// variant `m-listing--inline` inside `.m-inline-aside`
 
-.o-article__inline-aside .m-listing--inline:first-child {
+.m-inline-aside .m-listing--inline:first-child {
   padding-top: 0;
   border-top: 0 none;
 
@@ -925,19 +925,19 @@
   }
 }
 
-.o-article__inline-aside .m-listing--inline,
-.o-article__inline-aside .m-listing--inline .m-listing__link,
-.o-article__inline-aside .m-listing--inline-feature,
-.o-article__inline-aside .m-listing--inline-feature .m-listing__link {
+.m-inline-aside .m-listing--inline,
+.m-inline-aside .m-listing--inline .m-listing__link,
+.m-inline-aside .m-listing--inline-feature,
+.m-inline-aside .m-listing--inline-feature .m-listing__link {
   @include breakpoint('small') {
     flex-direction: column;
   }
 }
 
-.o-article__inline-aside .m-listing--inline .m-listing__img,
-.o-article__inline-aside .m-listing--inline .m-listing__meta,
-.o-article__inline-aside .m-listing--inline-feature .m-listing__img,
-.o-article__inline-aside .m-listing--inline-feature .m-listing__meta {
+.m-inline-aside .m-listing--inline .m-listing__img,
+.m-inline-aside .m-listing--inline .m-listing__meta,
+.m-inline-aside .m-listing--inline-feature .m-listing__img,
+.m-inline-aside .m-listing--inline-feature .m-listing__meta {
   @include breakpoint('small') {
     width: 100%;
     margin-right: 0;
@@ -952,13 +952,13 @@
   }
 }
 
-.o-article__inline-aside .m-listing--inline .m-listing__meta .type:first-child {
+.m-inline-aside .m-listing--inline .m-listing__meta .type:first-child {
   @include breakpoint('small') {
     @include tucked-margin-top($f-tag, ('small': 28), 'small');
   }
 }
 
-.o-article__inline-aside .m-listing--inline .m-listing__meta .f-list-2:first-child {
+.m-inline-aside .m-listing--inline .m-listing__meta .f-list-2:first-child {
   @include breakpoint('small') {
     @include tucked-margin-top($f-list-2, ('small': 36), 'small');
   }

@@ -1,5 +1,5 @@
-<aside class="o-article__inline-aside">
-    <hr>
+<aside class="m-inline-aside">
+    <span class="hr"></span>
     @if (isset($title))
         @component('components.blocks._text')
             @slot('font', ($titleFont ?? 'f-subheading-1'))
