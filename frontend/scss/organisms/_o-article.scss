@@ -387,4 +387,19 @@
       margin-bottom: colspan(3, small);
     }
   }
+
+
+  & > .f-body a,
+  & > .f-body-editorial a {
+    color: $color__link--accent;
+
+    &:hover,
+    &:focus {
+      color: $color__link--accent-hover;
+    }
+
+    &:active {
+      color: $color__link--accent-active;
+    }
+  }
 }
