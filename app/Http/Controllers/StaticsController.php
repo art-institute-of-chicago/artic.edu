@@ -124,58 +124,6 @@ class StaticsController extends Controller {
     array_push($blocks, array(
         "type" => 'text',
         "subtype" => 'intro',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(12, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'accordion',
-        "content" => array(
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                ),
-            ),
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                ),
-            ),
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                ),
-            ),
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
         "content" => $this->faker->paragraph(12, false)
     ));
 
@@ -403,10 +351,75 @@ class StaticsController extends Controller {
         "content" => $this->faker->paragraph(6, false)
     ));
     array_push($blocks, array(
+        "type" => 'accordion',
+        "content" => array(
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                ),
+            ),
+        )
+    ));
+    array_push($blocks, array(
         "type" => 'text',
         "content" => $this->faker->paragraph(6, false)
     ));
-
+    array_push($blocks, array(
+        "type" => 'gallery',
+        "subtype" => 'mosaic',
+        "title" => 'Mosaic Gallery',
+        "caption" => $this->faker->paragraph(3, false),
+        "items" => $this->getGalleryImages(6),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'gallery',
+        "subtype" => 'slider',
+        "title" => 'Slider Gallery',
+        "caption" => $this->faker->paragraph(3, false),
+        "items" => $this->getGalleryImages(6),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
 
 
 
@@ -435,6 +448,29 @@ class StaticsController extends Controller {
     $image = array("src" => $src, "width" => $width, "height" => $height);
 
     return $image;
+  }
+
+  private function getImages($num = 3) {
+    $images = array();
+    for ($i = 0; $i < $num; $i++) {
+      $image = $this->getImage();
+      array_push($images, $image);
+    }
+    return $images;
+  }
+
+  private function getGalleryImages($num = 6) {
+    $images = array();
+    for ($i = 0; $i < $num; $i++) {
+      array_push($images, array(
+            'type' => 'image',
+            'size' => 'gallery',
+            'media' => $this->getImage(),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+      );
+    }
+    return $images;
   }
 
   private function getVideo() {

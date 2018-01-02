@@ -225,103 +225,11 @@
         ));
     @endcomponent
 
-    <div class="o-gallery o-gallery--mosaic">
-        <h3 class="o-gallery__title f-module-title-2">Mosaic Gallery</h3>
-        <div class="o-gallery__caption">
-            <hr>
-            @component('components.blocks._text')
-                @slot('font','f-caption')
-                Morbi eleifend massa nibh, sit amet ultricies turpis convallis id. Vestibulum ac vehicula felis, id facilisis erat. Sed a condimentum libero, ut sodales mi.
-            @endcomponent
-            @component('components.atoms._btn')
-                @slot('variation', 'btn--quinary btn--icon o-gallery__share')
-                @slot('font', '')
-                @slot('icon', 'icon--share--24')
-            @endcomponent
-        </div>
-        <div class="o-gallery__media">
-            @component('components.molecules._m-media')
-                @slot('type','image')
-                @slot('variation', 'gallery')
-                @slot('media', array('src' => 'http://placehold.dev.area17.com/image/600x400', "width" => 600, "height" => 400))
-                @slot('captionTitle', 'In tempor')
-                @slot('caption', 'Velit quis finibus maximus.')
-            @endcomponent
+    @component('components.organisms._o-gallery----mosaic')
+    @endcomponent
 
-            @component('components.molecules._m-media')
-                @slot('type','image')
-                @slot('variation', 'gallery')
-                @slot('media', array('src' => 'http://placehold.dev.area17.com/image/400x600', "width" => 400, "height" => 600)))
-                @slot('captionTitle', 'Felis magna rutrum')
-                @slot('caption', 'Fermentum est libero sed mauris.')
-            @endcomponent
-
-            @component('components.molecules._m-media')
-                @slot('type','image')
-                @slot('variation', 'gallery')
-                @slot('media', array("src" => "http://placehold.dev.area17.com/image/524x750", "width" => 524, "height" => 750))
-                @slot('captionTitle', 'In tempor')
-                @slot('caption', 'Velit quis finibus maximus.')
-            @endcomponent
-
-            @component('components.molecules._m-media')
-                @slot('type','image')
-                @slot('variation', 'gallery')
-                @slot('media', array("src" => "http://placehold.dev.area17.com/image/651x500", "width" => 651, "height" => 500))
-                @slot('captionTitle', 'Felis magna rutrum')
-                @slot('caption', 'Fermentum est libero sed mauris.')
-            @endcomponent
-        </div>
-    </div>
-
-    <div class="o-gallery o-gallery--slider">
-        <h3 class="o-gallery__title f-module-title-2">Slider Gallery</h3>
-        <div class="o-gallery__caption">
-            <hr>
-            @component('components.blocks._text')
-                @slot('font','f-caption')
-                Morbi eleifend massa nibh, sit amet ultricies turpis convallis id. Vestibulum ac vehicula felis, id facilisis erat. Sed a condimentum libero, ut sodales mi.
-            @endcomponent
-            @component('components.atoms._btn')
-                @slot('variation', 'btn--quinary btn--icon o-gallery__share')
-                @slot('font', '')
-                @slot('icon', 'icon--share--24')
-            @endcomponent
-        </div>
-        <div class="o-gallery__media" data-behavior="dragScroll">
-            @component('components.molecules._m-media')
-                @slot('type','image')
-                @slot('variation', 'gallery')
-                @slot('media', array('src' => 'http://placehold.dev.area17.com/image/600x400', "width" => 600, "height" => 400))
-                @slot('captionTitle', 'In tempor')
-                @slot('caption', 'Velit quis finibus maximus.')
-            @endcomponent
-
-            @component('components.molecules._m-media')
-                @slot('type','image')
-                @slot('variation', 'gallery')
-                @slot('media', array('src' => 'http://placehold.dev.area17.com/image/400x600', "width" => 400, "height" => 600)))
-                @slot('captionTitle', 'Felis magna rutrum')
-                @slot('caption', 'Fermentum est libero sed mauris.')
-            @endcomponent
-
-            @component('components.molecules._m-media')
-                @slot('type','image')
-                @slot('variation', 'gallery')
-                @slot('media', array("src" => "http://placehold.dev.area17.com/image/524x750", "width" => 524, "height" => 750))
-                @slot('captionTitle', 'In tempor')
-                @slot('caption', 'Velit quis finibus maximus.')
-            @endcomponent
-
-            @component('components.molecules._m-media')
-                @slot('type','image')
-                @slot('variation', 'gallery')
-                @slot('media', array("src" => "http://placehold.dev.area17.com/image/651x500", "width" => 651, "height" => 500))
-                @slot('captionTitle', 'Felis magna rutrum')
-                @slot('caption', 'Fermentum est libero sed mauris.')
-            @endcomponent
-        </div>
-    </div>
+    @component('components.organisms._o-gallery----slider')
+    @endcomponent
 
     <div class="o-accordion" role="tablist" multiselectable="true" data-behavior="accordion">
         <h3 id="tab1" class="o-accordion__trigger f-module-title-2" aria-selected="true" aria-controls="panel1" aria-expanded="true" role="tab" tabindex="0">

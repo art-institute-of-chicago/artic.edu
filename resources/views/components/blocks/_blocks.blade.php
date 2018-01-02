@@ -129,4 +129,15 @@
             @slot('links', $block['links']);
         @endcomponent
     @endif
+
+    @if ($block['type'] === 'gallery')
+        @if (isset($block['subtype']) and $block['subtype'])
+            @component('components.organisms._o-gallery----'.$block["subtype"])
+                @slot('title', $block['title']);
+                @slot('caption', $block['caption']);
+                @slot('items', $block['items']);
+            @endcomponent
+        @endif
+    @endif
+
 @endforeach
