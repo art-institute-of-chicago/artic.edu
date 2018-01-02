@@ -71,9 +71,18 @@
     @endif
 
     @if ($block['type'] === 'newsletter-sign-up')
-        @component('components.molecules._m-aside-newsletter')
-            @slot('variation', (isset($block['variation']) && $block['variation'] ? $block['variation'] : null))
-        @endcomponent
+        @if (isset($block['subtype']) and $block['subtype'] === 'inline')
+            @component('components.blocks._inline-aside')
+                @component('components.molecules._m-aside-newsletter')
+                    @slot('variation','m-aside-newsletter--inline')
+                    @slot('placeholder','Email Address')
+                @endcomponent
+            @endcomponent
+        @else
+            @component('components.molecules._m-aside-newsletter')
+                @slot('variation', (isset($block['subtype']) && $block['subtype'] ? 'm-aside-newsletter--'.$block['subtype'] : null))
+            @endcomponent
+        @endif
     @endif
 
     @if ($block['type'] === 'time-line')

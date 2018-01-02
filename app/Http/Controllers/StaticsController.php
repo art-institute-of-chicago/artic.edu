@@ -90,346 +90,58 @@ class StaticsController extends Controller {
   }
 
   public function article() {
+
+    $article = $this->getArticle();
+
     return view('statics/article', [
-      'timelineEvents' => $this->getTimelineEvents(3),
-      'relatedExhibitions' => $this->getExhibitions(3),
-      'relatedExhibition' => $this->getExhibition(),
-      'relatedProducts' => $this->getProducts(3),
-      'relatedProduct' => $this->getProduct(),
-      'relatedEvents' => $this->getEvents(3),
-      'relatedEvent' => $this->getEvent(),
       'headerImage' => $this->getImage(1600,900),
+      'blocks' => $this->generateBlocks('all'),
+    ]);
+  }
+
+  public function article__feature() {
+
+    $article = $this->getArticle();
+
+    return view('statics/article', [
+      'headerImage' => $this->getImage(1600,900),
+      'blocks' => $this->generateBlocks('all'),
+    ]);
+  }
+
+  public function article__hero() {
+
+    $article = $this->getArticle();
+
+    return view('statics/article', [
+      'headerImage' => $this->getImage(1600,900),
+      'blocks' => $this->generateBlocks('all'),
     ]);
   }
 
   public function generic_landing() {
-    $subNav = array(
-        array('href' => '#', 'label' => 'Tours'),
-        array('href' => '#', 'label' => 'Scheduling a tour'),
-        array('href' => '#', 'label' => 'Preparing for a museum visit'),
-        array('href' => '#', 'label' => 'Bus scholarship'),
-        array('href' => '#', 'label' => 'For tour companies'),
-    );
-    $nav = array(
-        array('label' => 'Adults and university', 'href' => '#'),
-        array('label' => 'Students', 'href' => '#', 'active' => 'true', 'links' => $subNav),
-        array('label' => 'Group FAQs', 'href' => '#',),
-    );
-    $breadcrumb = array(
-        array('label' => 'Visit', 'href' => '#'),
-        array('label' => 'Group Visits', 'href' => '#',),
-        array('label' => 'Students', 'href' => '#',),
-    );
-    $blocks = array();
-    array_push($blocks, array(
-        "type" => 'text',
-        "subtype" => 'intro',
-        "content" => $this->faker->paragraph(12, false)
-    ));
+    $navs = $this->generateGenericNav('landing');
 
     return view('statics/generic', [
-        'subNav' => $subNav,
-        'nav' => $nav,
+        'subNav' => $navs['subNav'],
+        'nav' => $navs['nav'],
         'headerImage' => $this->getImage(2000,240),
         "title" => "Students",
-        "breadcrumb" => $breadcrumb,
-        "blocks" => $blocks,
+        "breadcrumb" => $this->generateGenericBreadcrumb(),
+        "blocks" => $this->generateBlocks(3),
     ]);
   }
 
   public function generic_detail() {
-    $subNav = array(
-        array('href' => '#', 'label' => 'Tours'),
-        array('href' => '#', 'label' => 'Scheduling a tour', 'active' => true),
-        array('href' => '#', 'label' => 'Preparing for a museum visit'),
-        array('href' => '#', 'label' => 'Bus scholarship'),
-        array('href' => '#', 'label' => 'For tour companies'),
-    );
-    $nav = array(
-        array('label' => 'Adults and university', 'href' => '#'),
-        array('label' => 'Students', 'href' => '#', 'links' => $subNav),
-        array('label' => 'Group FAQs', 'href' => '#',),
-    );
-    $breadcrumb = array(
-        array('label' => 'Visit', 'href' => '#'),
-        array('label' => 'Group Visits', 'href' => '#',),
-        array('label' => 'Students', 'href' => '#',),
-    );
-    $blocks = array();
-    array_push($blocks, array(
-        "type" => 'text',
-        "subtype" => 'intro',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas consequat egestas est, in luctus urna porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "subtype" => 'heading-1',
-        "content" => $this->faker->sentence(6)
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(12, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'hr',
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "subtype" => 'heading-2',
-        "content" => $this->faker->sentence(6)
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(12, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'quote',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'media',
-        "content" => array(
-            'type' => 'image',
-            'size' => 's',
-            'media' => $this->getImage(640,480),
-            'caption' => $this->faker->paragraph(3, false)
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'media',
-        "content" => array(
-            'type' => 'image',
-            'size' => 'm',
-            'media' => $this->getImage(480,640),
-            'caption' => $this->faker->paragraph(3, false)
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'media',
-        "content" => array(
-            'type' => 'image',
-            'size' => 'l',
-            'media' => $this->getImage(640,640),
-            'caption' => $this->faker->paragraph(3, false)
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'media',
-        "content" => array(
-            'type' => 'video',
-            'size' => 's',
-            'media' => $this->getVideo(),
-            'caption' => $this->faker->paragraph(3, false)
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'media',
-        "content" => array(
-            'type' => 'embed',
-            'size' => 's',
-            'media' => $this->getEmbed(),
-            'caption' => $this->faker->paragraph(3, false)
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'become-a-member',
-    ));
-    array_push($blocks, array(
-        "type" => 'newsletter-sign-up',
-    ));
-    array_push($blocks, array(
-        "type" => 'newsletter-sign-up',
-        "variation" => 'm-aside-newsletter--inline',
-    ));
-    array_push($blocks, array(
-        "type" => 'newsletter-sign-up',
-        "variation" => 'm-aside-newsletter--wide',
-    ));
-    array_push($blocks, array(
-        "type" => 'listing',
-        "subtype" => 'exhibition',
-        "items" => $this->getExhibitions(3),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'listing',
-        "subtype" => 'event',
-        "items" => $this->getEvents(3),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'listing',
-        "subtype" => 'product',
-        "items" => $this->getProducts(3),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'aside',
-        "subtype" => 'event',
-        "items" => $this->getEvents(1),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'aside',
-        "subtype" => 'event',
-        "items" => $this->getEvents(3),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'aside',
-        "subtype" => 'exhibition',
-        "items" => $this->getExhibitions(1),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'aside',
-        "subtype" => 'exhibition',
-        "items" => $this->getExhibitions(3),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'aside',
-        "subtype" => 'product',
-        "items" => $this->getProducts(1),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'aside',
-        "subtype" => 'product',
-        "items" => $this->getProducts(3),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'time-line',
-        "items" => $this->getTimelineEvents(3)
-    ));
-    array_push($blocks, array(
-        "type" => 'link-list',
-        "links" => array(
-              array('label' => 'Quis finibus maximus', 'href' => '#'),
-              array('label' => 'Ut fermentum est', 'href' => '#', 'icon' => 'icon--new-window'),
-              array('label' => 'In tempor velit', 'href' => '#', 'icon' => 'icon--new-window')
-          )
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'accordion',
-        "content" => array(
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                ),
-            ),
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                ),
-            ),
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                ),
-            ),
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'gallery',
-        "subtype" => 'mosaic',
-        "title" => 'Mosaic Gallery',
-        "caption" => $this->faker->paragraph(3, false),
-        "items" => $this->getGalleryImages(6),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'gallery',
-        "subtype" => 'slider',
-        "title" => 'Slider Gallery',
-        "caption" => $this->faker->paragraph(3, false),
-        "items" => $this->getGalleryImages(6),
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-
-
+    $navs = $this->generateGenericNav('detail');
 
     return view('statics/generic', [
-        'subNav' => $subNav,
-        'nav' => $nav,
+        'subNav' => $navs['subNav'],
+        'nav' => $navs['nav'],
         'headerImage' => $this->getImage(2000,240),
         "title" => "Scheduling a tour",
-        "breadcrumb" => $breadcrumb,
-        "blocks" => $blocks,
+        "breadcrumb" => $this->generateGenericBreadcrumb(),
+        "blocks" => $this->generateBlocks(3),
     ]);
   }
 
@@ -747,5 +459,313 @@ class StaticsController extends Controller {
       array_push($items, $_items[$i]);
     }
     return $items;
+  }
+
+  private function generateGenericNav($state = 'landing') {
+    $subNav = array(
+        array('href' => '#', 'label' => 'Tours'),
+        array('href' => '#', 'label' => 'Scheduling a tour', 'active' => ($state === 'detail')),
+        array('href' => '#', 'label' => 'Preparing for a museum visit'),
+        array('href' => '#', 'label' => 'Bus scholarship'),
+        array('href' => '#', 'label' => 'For tour companies'),
+    );
+    $nav = array(
+        array('label' => 'Adults and university', 'href' => '#'),
+        array('label' => 'Students', 'href' => '#', 'links' => $subNav, 'active' => ($state === 'landing')),
+        array('label' => 'Group FAQs', 'href' => '#',),
+    );
+
+    return array('nav' => $nav, 'subNav' => $subNav);
+  }
+
+  private function generateGenericBreadcrumb() {
+    return array(
+        array('label' => 'Visit', 'href' => '#'),
+        array('label' => 'Group Visits', 'href' => '#',),
+        array('label' => 'Students', 'href' => '#',),
+    );
+  }
+
+  private function generateBlocks($num = 3) {
+
+    $blocks = array();
+
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'intro',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas consequat egestas est, in luctus urna porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'heading-1',
+        "content" => $this->faker->sentence(6)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'hr',
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'heading-2',
+        "content" => $this->faker->sentence(6)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'quote',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'image',
+            'size' => 's',
+            'media' => $this->getImage(640,480),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'image',
+            'size' => 'm',
+            'media' => $this->getImage(480,640),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'image',
+            'size' => 'l',
+            'media' => $this->getImage(640,640),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'video',
+            'size' => 's',
+            'media' => $this->getVideo(),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 's',
+            'media' => $this->getEmbed(),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'become-a-member',
+    ));
+    array_push($blocks, array(
+        "type" => 'newsletter-sign-up',
+    ));
+    array_push($blocks, array(
+        "type" => 'newsletter-sign-up',
+        "subtype" => 'wide',
+    ));
+    array_push($blocks, array(
+        "type" => 'newsletter-sign-up',
+        "subtype" => 'inline',
+    ));
+    array_push($blocks, array(
+        "type" => 'listing',
+        "subtype" => 'exhibition',
+        "items" => $this->getExhibitions(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'listing',
+        "subtype" => 'event',
+        "items" => $this->getEvents(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'listing',
+        "subtype" => 'product',
+        "items" => $this->getProducts(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'event',
+        "items" => $this->getEvents(1),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'event',
+        "items" => $this->getEvents(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'exhibition',
+        "items" => $this->getExhibitions(1),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'exhibition',
+        "items" => $this->getExhibitions(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'product',
+        "items" => $this->getProducts(1),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'aside',
+        "subtype" => 'product',
+        "items" => $this->getProducts(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'time-line',
+        "items" => $this->getTimelineEvents(3)
+    ));
+    array_push($blocks, array(
+        "type" => 'link-list',
+        "links" => array(
+              array('label' => 'Quis finibus maximus', 'href' => '#'),
+              array('label' => 'Ut fermentum est', 'href' => '#', 'icon' => 'icon--new-window'),
+              array('label' => 'In tempor velit', 'href' => '#', 'icon' => 'icon--new-window')
+          )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'accordion',
+        "content" => array(
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8, false)
+                    ),
+                ),
+            ),
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'gallery',
+        "subtype" => 'mosaic',
+        "title" => 'Mosaic Gallery',
+        "caption" => $this->faker->paragraph(3, false),
+        "items" => $this->getGalleryImages(6),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'gallery',
+        "subtype" => 'slider',
+        "title" => 'Slider Gallery',
+        "caption" => $this->faker->paragraph(3, false),
+        "items" => $this->getGalleryImages(6),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+
+    if ($num === 'all') {
+      return $blocks;
+    } else {
+      $generatedBlocks = array();
+      for ($i = 0; $i < $num; $i++) {
+        array_push($generatedBlocks, array(
+          "type" => 'text',
+          "content" => $this->faker->paragraph(6, false)
+        ));
+      }
+      return $generatedBlocks;
+    }
   }
 }
