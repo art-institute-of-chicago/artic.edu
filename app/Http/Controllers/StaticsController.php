@@ -92,30 +92,39 @@ class StaticsController extends Controller {
   public function article() {
 
     $article = $this->getArticle();
+    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('blocks', $this->generateBlocks('all'));
 
     return view('statics/article', [
-      'headerImage' => $this->getImage(1600,900),
-      'blocks' => $this->generateBlocks('all'),
+      'contrastHeader' => ($article->headerType === 'hero'),
+      'article' => $article,
     ]);
   }
 
-  public function article__feature() {
+  public function article_feature() {
 
     $article = $this->getArticle();
+    $article->push('headerType', 'feature');
+    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('blocks', $this->generateBlocks('all'));
 
     return view('statics/article', [
-      'headerImage' => $this->getImage(1600,900),
-      'blocks' => $this->generateBlocks('all'),
+      'contrastHeader' => ($article->headerType === 'hero'),
+      'article' => $article,
     ]);
   }
 
-  public function article__hero() {
+  public function article_hero() {
 
     $article = $this->getArticle();
+    $article->push('headerType', 'hero');
+    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('blocks', $this->generateBlocks('all'));
+    $article->push('intro', $this->faker->paragraph(6, false));
 
     return view('statics/article', [
-      'headerImage' => $this->getImage(1600,900),
-      'blocks' => $this->generateBlocks('all'),
+      'contrastHeader' => ($article->headerType === 'hero'),
+      'article' => $article,
     ]);
   }
 
@@ -396,7 +405,7 @@ class StaticsController extends Controller {
       "title" => $this->faker->sentence(6, true),
       "author" => $this->faker->firstName.' '.$this->faker->lastName,
       "intro" => $this->faker->sentence(12, true),
-      "date" => $this->faker->date(),
+      "date" => $this->getFormattedDateString(),
       "image" => $this->getImage(),
       "type" => 'article',
     ]);

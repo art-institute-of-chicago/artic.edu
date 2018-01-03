@@ -4,13 +4,13 @@
 
 <article class="o-article">
 
-    @component('components.molecules._m-article-header')
-      @slot('headerType', 'generic')
-      @slot('variation', 'o-article__header')
-      @slot('title', $title)
-      @slot('img', $headerImage)
-      @slot('breadcrumb', $breadcrumb)
-    @endcomponent
+  @component('components.molecules._m-article-header')
+    @slot('headerType', 'generic')
+    @slot('variation', 'o-article__header')
+    @slot('title', $title)
+    @slot('img', $headerImage)
+    @slot('breadcrumb', $breadcrumb)
+  @endcomponent
 
   <div class="o-article__primary o-article__primary--sub-nav">
     @component('components.atoms._dropdown')

@@ -1,4 +1,4 @@
-<{{ $tag or 'header' }} class="m-article-header m-article-hero--hero{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag or 'header' }} class="m-article-header m-article-header--hero{{ (isset($variation)) ? ' '.$variation : '' }}">
   <div class="m-article-header__img">
       @if (isset($img))
         @component('components.atoms._img')
@@ -12,7 +12,7 @@
       @if (isset($title))
         @component('components.atoms._title')
             @slot('tag','h1')
-            @slot('font','f-headline')
+            @slot('font','f-display-2')
             {{ $title }}
         @endcomponent
       @endif

@@ -27,4 +27,9 @@ class StaticObjectPresenter
 
         return $this->entity[$property] ?? '';
     }
+
+    public function push($index, $value)
+    {
+        $this->entity[$index] = $value;
+    }
 }
