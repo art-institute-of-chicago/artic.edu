@@ -39,6 +39,10 @@
   }
 }
 
+.o-article__primary > *:not(:first-child) {
+  margin-top: 56px;
+}
+
 .o-article__secondary {
   margin-top: 40px;
 
@@ -109,6 +113,31 @@
   }
 }
 
+/*
+
+<div class="o-article__tertiary">
+    <p class="o-article__tertiary-titles">
+        @component('components.atoms._title')
+            @slot('font','f-body')
+            Making Place: the Architecture of David Adjaye
+        @endcomponent
+        <br>
+        @component('components.atoms._date')
+            September 19 2015 - January 3 2016
+        @endcomponent
+    </p>
+    <p class="o-article__tertiary-actions">
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--full')
+            @slot('tag', 'a')
+            @slot('href', '#')
+            Buy tickets
+        @endcomponent
+    </p>
+  </div>
+
+*/
+/*
 .o-article__tertiary {
 
   @include breakpoint('medium+') {
@@ -199,6 +228,7 @@
 .o-article__tertiary-actions .btn {
   margin-top: 20px;
 }
+*/
 
 .o-article__top-link {
   display: none;

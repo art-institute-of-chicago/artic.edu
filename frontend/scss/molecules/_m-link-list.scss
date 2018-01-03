@@ -76,6 +76,10 @@ a.m-link-list__trigger.f-module-title-1 {
   color: $color__link;
 }
 
+.m-link-list__trigger.f-secondary.closing-soon {
+  color: $color__text--limited;
+}
+
 a.m-link-list__trigger.f-secondary {
 
   &:hover,
@@ -100,7 +104,9 @@ a.m-link-list__trigger.f-secondary {
 }
 
 .m-link-list__trigger svg {
-  position: absolute;
-  right: 0;
-  top: 17px;
+  //position: absolute;
+  //right: 0;
+  //top: 17px;
+  display: inline-block;
+  vertical-align: middle;
 }

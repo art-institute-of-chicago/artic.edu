@@ -1,0 +1,27 @@
+/***
+
+```
+<ul class="m-ticket-actions">
+    <li class="m-ticket-actions__action">
+        <a class="btn f-buttons btn--full" href="#">Buy tickets</a>
+    </li>
+    <li class="m-ticket-actions__action">
+        <a class="btn f-buttons btn--secondary btn--full" href="#">Become a member</a>
+    </li>
+    <li class="m-ticket-actions__note f-secondary">Exhibitions are free with museum admission.</li>
+</ul>
+```
+
+***/
+
+.m-ticket-actions {
+  margin-top: 0;
+}
+
+.m-ticket-actions__action:not(:first-child) {
+  margin-top: 20px;
+}
+
+.m-ticket-actions__note {
+  margin-top: 10px;
+}

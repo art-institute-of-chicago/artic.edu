@@ -154,6 +154,36 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function exhibition() {
+    // make some left rail links
+    $locationLink = array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location');
+    $relatedEventsLink = array('label' => '12 related events', 'href' => '#related_events', 'iconBefore' => 'calendar');
+    $closingSoon = array('label' => 'Closing Soon', 'variation' => 'closing-soon');
+    // make left rail nav array
+    $nav = array();
+    array_push($nav, $locationLink);
+    array_push($nav, $relatedEventsLink);
+    array_push($nav, $closingSoon);
+    // get an exhibition
+    $article = $this->getExhibition();
+    // update and add some items (I ran into memory issues doing this in the main getExhibition func..)
+    $article->push('articleType', 'exhibition');
+    $article->push('closingSoon', true);
+    $article->push('headerType', 'hero');
+    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('blocks', $this->generateBlocks());
+    $article->push('intro', $this->faker->paragraph(6, false));
+    $article->push('relatedEventsCount', 12);
+    $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
+    $article->push('relatedExhibitions', $this->getExhibitions(4));
+    $article->push('nav', $nav);
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'hero'),
+      'article' => $article,
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
@@ -250,7 +280,7 @@ class StaticsController extends Controller {
     return new StaticObjectPresenter([
       "type" => $this->getExhibitionType($upcoming),
       "id" => $this->faker->uuid,
-      "slug" => "/statics/event",
+      "slug" => "/statics/exhibition",
       "title" => $this->faker->sentence(6, true),
       "dateStart" => $this->getFormattedDateString(),
       "dateEnd" => $this->getFormattedDateString(),
@@ -258,7 +288,6 @@ class StaticsController extends Controller {
       "exclusive" => $this->faker->boolean(10),
       "nowOpen" => $this->faker->boolean(10),
       "image" => $this->getImage(),
-      "type" => 'exhibition',
     ]);
   }
 
@@ -703,13 +732,13 @@ class StaticsController extends Controller {
         "type" => 'link-list',
         "links" => array(
               array('label' => 'Quis finibus maximus', 'href' => '#'),
-              array('label' => 'Ut fermentum est', 'href' => '#', 'icon' => 'icon--new-window'),
-              array('label' => 'In tempor velit', 'href' => '#', 'icon' => 'icon--new-window')
+              array('label' => 'Ut fermentum est', 'href' => '#', 'iconAfter' => 'icon--new-window'),
+              array('label' => 'In tempor velit', 'href' => '#', 'iconAfter' => 'icon--new-window')
           )
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->faker->paragraph(6)
     ));
     array_push($blocks, array(
         "type" => 'accordion',
@@ -719,24 +748,11 @@ class StaticsController extends Controller {
                 'blocks' => array(
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
+                        "content" => $this->faker->paragraph(8)
                     ),
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                ),
-            ),
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
+                        "content" => $this->faker->paragraph(8)
                     ),
                 ),
             ),
@@ -745,11 +761,24 @@ class StaticsController extends Controller {
                 'blocks' => array(
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
+                        "content" => $this->faker->paragraph(8)
                     ),
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(8, false)
+                        "content" => $this->faker->paragraph(8)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8)
                     ),
                 ),
             ),
@@ -757,7 +786,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->faker->paragraph(6)
     ));
     array_push($blocks, array(
         "type" => 'gallery',
@@ -768,7 +797,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->faker->paragraph(6)
     ));
     array_push($blocks, array(
         "type" => 'gallery',
@@ -779,7 +808,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->faker->paragraph(6)
     ));
 
     if ($num === 'all') {
@@ -789,7 +818,7 @@ class StaticsController extends Controller {
       for ($i = 0; $i < $num; $i++) {
         array_push($generatedBlocks, array(
           "type" => 'text',
-          "content" => $this->faker->paragraph(6, false)
+          "content" => $this->faker->paragraph(10)
         ));
       }
       return $generatedBlocks;

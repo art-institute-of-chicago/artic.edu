@@ -19,32 +19,22 @@
         @slot('variation','m-article-actions--keyline-top')
     @endcomponent
 
-    @component('components.atoms._hr')
-    @endcomponent
-
-    <p class="f-secondary"><svg class="icon--location" aria-hidden="true"><use xlink:href="#icon--location" /></svg> Galleries 182-184</p>
+    @if ($article->nav)
+        @component('components.molecules._m-link-list')
+            @slot('links', $article->nav);
+        @endcomponent
+    @endif
   </div>
 
   <div class="o-article__secondary">
     @component('components.atoms._hr')
         @slot('variation', 'u-hide@medium+')
     @endcomponent
-    <p>
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--full')
-            @slot('tag', 'a')
-            @slot('href', '#')
-            Buy tickets
+
+    @if ($article->articleType === 'exhibition')
+        @component('components.molecules._m-ticket-actions----exhibition')
         @endcomponent
-        <br>
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--secondary btn--full')
-            @slot('tag', 'a')
-            @slot('href', '#')
-            Become a member
-        @endcomponent
-    </p>
-    <p class="f-secondary">Exhibitions are free with museum admission.</p>
+    @endif
   </div>
 
   <div class="o-article__body" data-behavior="articleBodyInViewport">
@@ -56,36 +46,56 @@
     @endcomponent
   </div>
 
-  <div class="o-article__tertiary">
-    <p class="o-article__tertiary-titles">
-        @component('components.atoms._date')
-            @slot('font','f-body')
-            Making Place: the Architecture of David Adjaye
-        @endcomponent
-        <br>
-        @component('components.atoms._date')
-            September 19 2015 - January 3 2016
-        @endcomponent
-    </p>
-    <p class="o-article__tertiary-actions">
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--full')
-            @slot('tag', 'a')
-            @slot('href', '#')
-            Buy tickets
-        @endcomponent
-    </p>
-  </div>
-
-    @component('components.atoms._btn')
-        @slot('variation', 'btn--icon arrow-link--up o-article__top-link')
-        @slot('font', '')
-        @slot('icon', 'icon--arrow')
-        @slot('behavior', 'topLink')
-        @slot('tag', 'a')
-        @slot('href', '#a17')
-    @endcomponent
+  @component('components.atoms._btn')
+      @slot('variation', 'btn--icon arrow-link--up o-article__top-link')
+      @slot('font', '')
+      @slot('icon', 'icon--arrow')
+      @slot('behavior', 'topLink')
+      @slot('tag', 'a')
+      @slot('href', '#a17')
+  @endcomponent
 
 </article>
+
+@if ($article->relatedEventsByDay)
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(array('text' => 'See all events', 'href' => '#')))
+        Related Events
+    @endcomponent
+
+    @component('components.organisms._o-row-listing')
+        @foreach ($article->relatedEventsByDay as $date)
+            @component('components.molecules._m-date-listing')
+                @slot('date', $date)
+            @endcomponent
+        @endforeach
+    @endcomponent
+
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--buttons')
+        @slot('linksPrimary', array(array('text' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary')))
+    @endcomponent
+@endif
+
+@if ($article->relatedExhibitions)
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(array('text' => 'See all exhibitions', 'href' => '#')))
+        Related Exhibitions
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+        @slot('cols_xxlarge','4')
+        @slot('behavior','dragScroll')
+        @foreach ($article->relatedExhibitions as $exhibition)
+            @component('components.molecules._m-listing----exhibition')
+                @slot('exhibition', $exhibition)
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
 
 @endsection
