@@ -161,35 +161,34 @@
     margin-top: 48px;
 
     @include breakpoint('small+') {
-      display: block;
-      margin-top: 0;
-      margin-bottom: 48px;
+      display: inline-block;
+      margin: 0 0 48px;
       column-break-inside: avoid;
     }
   }
 
   .m-media__img img {
-    max-height: calc(#{colspan(58, xsmall)} * 4/3);
+    max-height: #{colspan(58, xsmall) * 4/3};
     object-fit: contain;
 
     @include breakpoint('small+') {
-      max-height: calc(#{colspan(28, small)} * 4/3);
+      max-height: #{colspan(28, small) * 4/3};
     }
 
     @include breakpoint('medium+') {
-      max-height: calc(#{colspan(28, medium)} * 4/3);
+      max-height: #{colspan(28, medium) * 4/3};
     }
 
     @include breakpoint('large+') {
-      max-height: calc(#{colspan(28, large)} * 4/3);
+      max-height: #{colspan(28, large) * 4/3};
     }
 
     @include breakpoint('xlarge+') {
-      max-height: calc(#{colspan(21, xlarge)} * 4/3);
+      max-height: #{colspan(21, xlarge) * 4/3};
     }
 
     @include breakpoint('xxlarge') {
-      max-height: calc(#{colspan(21, xxlarge)} * 4/3);
+      max-height: #{colspan(21, xxlarge) * 4/3};
     }
   }
 }
@@ -317,9 +316,10 @@
     }
   }
 
-  .m-media__img img {
+  .m-media__img::before {
+    content: '';
+    display: block;
     height: 400px;
-    object-fit: contain;
 
     @include breakpoint('small+') {
       height: 480px;
@@ -334,11 +334,41 @@
     }
 
     @include breakpoint('xlarge+') {
-      height: calc(#{colspan(21, xlarge)} * 4/3);
+      height: #{colspan(21, xlarge) * 4/3};
     }
 
     @include breakpoint('xxlarge') {
-      height: calc(#{colspan(21, xxlarge)} * 4/3);
+      height: #{colspan(21, xxlarge) * 4/3};
+    }
+  }
+
+  .m-media__img video,
+  .m-media__img embed,
+  .m-media__img iframe,
+  .m-media__img object {
+    top: 50%;
+    bottom: auto;
+    height: colspan(50, xsmall) * 9/16;
+    transform: translateY(-50%);
+
+    @include breakpoint('small+') {
+      height: colspan(35, small) * 9/16;
+    }
+
+    @include breakpoint('medium+') {
+      height: colspan(23, medium) * 9/16;
+    }
+
+    @include breakpoint('large+') {
+      height: colspan(23, medium) * 9/16;
+    }
+
+    @include breakpoint('xlarge+') {
+      height: #{colspan(18, xlarge) * 9/16};
+    }
+
+    @include breakpoint('xxlarge') {
+      height: #{colspan(18, xxlarge) * 9/16};
     }
   }
 }

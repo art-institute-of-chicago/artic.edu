@@ -3,7 +3,7 @@
     $size = isset($item['size']) ? $item['size'] : 's';
     $media = $item['media'];
 @endphp
-<figure class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}">
+<figure data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}">
     <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}">
         @if ($type == 'image')
             @component('components.atoms._img')
@@ -19,6 +19,7 @@
             @component('components.atoms._video')
                 @slot('src', $media['src'] ?? '')
                 @slot('poster', $media['poster'] ?? '')
+                @slot('controls', true)
             @endcomponent
         @endif
     </span>

@@ -73,7 +73,7 @@
       }
 
     } @else {
-      @return #{((($this-bp-main-col-width / 58) * $number-of-columns) + $bump) * $this-multiplier};
+      @return ((($this-bp-main-col-width / 58) * $number-of-columns) + $bump) * $this-multiplier;
     }
   } @else {
     @warn "Unknown breakpoint `#{$breakpoints}` in $breakpoints-with-directions";

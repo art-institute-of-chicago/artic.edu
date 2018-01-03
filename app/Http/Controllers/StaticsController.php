@@ -180,20 +180,6 @@ class StaticsController extends Controller {
     return $images;
   }
 
-  private function getGalleryImages($num = 6) {
-    $images = array();
-    for ($i = 0; $i < $num; $i++) {
-      array_push($images, array(
-            'type' => 'image',
-            'size' => 'gallery',
-            'media' => $this->getImage(),
-            'caption' => $this->faker->paragraph(3, false)
-        )
-      );
-    }
-    return $images;
-  }
-
   private function getVideo() {
     $video = array(
         'src' => '/test/feature-1.mp4',
@@ -207,6 +193,38 @@ class StaticsController extends Controller {
         'embed' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
     );
     return $embed;
+  }
+
+  private function getGalleryImages($num = 6) {
+    $images = array();
+    for ($i = 0; $i < $num; $i++) {
+      if ($i == 2) {
+        array_push($images, array(
+              'type' => 'video',
+              'size' => 'gallery',
+              'media' => $this->getVideo(),
+              'caption' => $this->faker->paragraph(3, false)
+          )
+        );
+      } else if ($i == 5) {
+        array_push($images, array(
+              'type' => 'embed',
+              'size' => 'gallery',
+              'media' => $this->getEmbed(),
+              'caption' => $this->faker->paragraph(3, false)
+          )
+        );
+      } else {
+        array_push($images, array(
+              'type' => 'image',
+              'size' => 'gallery',
+              'media' => $this->getImage(),
+              'caption' => $this->faker->paragraph(3, false)
+          )
+        );
+      }
+    }
+    return $images;
   }
 
   private function getExhibitionType($upcoming = false) {
