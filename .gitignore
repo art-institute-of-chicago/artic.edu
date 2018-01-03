@@ -21,3 +21,6 @@ yarn-error.log
 /public/styleguide
 /public/storage
 /public/test
+/recipes/playbook.retry
+/recipes/ansible.cfg
+.vault_pass

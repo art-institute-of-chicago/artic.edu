@@ -56,3 +56,61 @@ To generate UI toolkit pages:
 ```
 $ gulp toolkit
 ```
+
+### Deployment (staging only for now)
+
+**Install Laravel Envoy**
+  ```shell
+  $ composer global require "laravel/envoy=~1.0"
+  ```
+
+**Add in your `~/.ssh/config`**
+
+```
+Host aic.stage.a17.io
+    Hostname 54.235.230.99
+    User web
+    IdentityFile ~/.ssh/id_rsa
+```
+
+**…then…**
+
+```
+$ envoy run deploy
+```
+
+On your first deploy, make sure you ran `npm run production` locally at least once.
+
+If you just provisioned a new server, a few preliminary steps are necessary on the server before being able to deploy with Envoy:
+
+- creating a .env file for your Laravel application
+```shell
+# @ /home/web/www/aic.stage.a17.io/shared/
+$ touch .env
+# edit it with your favorite cli editor
+# leave APP_KEY empty
+```
+
+- creating a robots.txt file
+```shell
+# @ /home/web/www/aic.stage.a17.io/shared/
+$ touch robots.txt
+# edit it with your favorite cli editor and add:
+# User-agent: *
+# Disallow: /
+# Remove the / once live on prod
+```
+
+After you first deploy with Envoy (locally), ssh into the server and run:
+```shell
+# @ /home/web/www/aic.stage.a17.io/current/
+$ php artisan key:generate
+```
+
+Redeploy to clear config caches and you should be all set.
+
+To create the superadmin user for the CMS, ssh into the server and run:
+```shell
+# @ /home/web/www/aic.stage.a17.io/current/
+$ php artisan cms-toolkit:superadmin
+```
