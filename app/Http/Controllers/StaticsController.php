@@ -177,8 +177,8 @@ class StaticsController extends Controller {
     $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
     $article->push('relatedExhibitions', $this->getExhibitions(4));
     $article->push('featuredRelated', array(
-      'type' => 'article', 
-      'items' => $this->getArticles(1), 
+      'type' => 'media', 
+      'items' => $this->getMedias(1), 
     ));
     $article->push('nav', $nav);
     // now push to a view
@@ -332,7 +332,6 @@ class StaticsController extends Controller {
       "timeEnd" => $this->makeEventTime(($hour+1), ($this->faker->boolean() ? '00' : '30')),
       "exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
-      "type" => 'event',
       "free" => $free,
       "register" => $register,
       "soldOut" => $soldOut,
@@ -404,6 +403,26 @@ class StaticsController extends Controller {
       array_push($products, $product);
     }
     return $products;
+  }
+
+  private function getMedia() {
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/media",
+      "title" => $this->faker->sentence(6, true),
+      "image" => $this->getImage(),
+      "timeStamp" => $this->faker->time(),
+      "type" => 'media',
+    ]);
+  }
+
+  private function getMedias($num = 3) {
+    $medias = array();
+    for ($i = 0; $i < $num; $i++) {
+      $media = $this->getMedia();
+      array_push($medias, $media);
+    }
+    return $medias;
   }
 
   private function getTimelineEvent() {
@@ -825,12 +844,6 @@ class StaticsController extends Controller {
           "content" => $this->faker->paragraph(10)
         ));
       }
-      array_push($generatedBlocks, array(
-          "type" => 'aside',
-          "subtype" => 'article',
-          "items" => $this->getArticles(1),
-          "itemsVariation" => 'm-listing-inline'
-      ));
       return $generatedBlocks;
     }
   }
