@@ -10,4 +10,12 @@
   @include breakpoint('medium+') {
     margin-top: 40px;
   }
+
+  .o-article__secondary & {
+    margin-top: 16px;
+
+    @include breakpoint('medium+') {
+      margin-top: 24px;
+    }
+  }
 }

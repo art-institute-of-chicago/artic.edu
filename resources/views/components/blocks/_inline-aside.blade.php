@@ -1,4 +1,5 @@
 @component('components.molecules._m-inline-aside')
+    @slot('variation', $variation ?? null)
     @if (sizeof($items) === 1)
         @slot('title', 'Related '.ucfirst($type))
         @component('components.molecules.'.$itemsMolecule)

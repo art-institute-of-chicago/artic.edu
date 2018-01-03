@@ -1,4 +1,4 @@
-<aside class="m-inline-aside">
+<aside class="m-inline-aside{{ (isset($variation)) ? ' '.$variation : '' }}">
     <span class="hr"></span>
     @if (isset($title))
         @component('components.blocks._text')

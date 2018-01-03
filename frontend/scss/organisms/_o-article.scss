@@ -11,27 +11,28 @@
 
 .o-article__header {
   @include breakpoint('medium+') {
-    flex: 0 0 100%;
     width: 100%;
-    order: 1;
   }
 }
 
 .o-article__primary {
-  margin-top: 40px;
+  position: relative;
+  margin-top: 8px;
 
   @include breakpoint('medium+') {
     flex: 0 0 auto;
-    width: colspan(58, medium);
-    order: 2;
+    width: colspan(38, medium);
+    margin-top: 12px;
   }
 
   @include breakpoint('large+') {
-    width: colspan(58, large);
+    width: colspan(38, large);
   }
 
   @include breakpoint('xlarge+') {
     width: colspan(13, xlarge);
+    margin-top: 40px;
+    order: 2;
   }
 
   @include breakpoint('xxlarge') {
@@ -39,12 +40,89 @@
   }
 }
 
+.o-article__primary::before {
+
+  @include breakpoint('xlarge+') {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background-color: $color__rules--primary;
+  }
+}
+
+.o-article__primary--sub-nav {
+  @include breakpoint('large-') {
+    @include background-fill;
+    margin-top: 0;
+    background-color: $color__bg--primary;
+
+    & ~ .o-article__secondary {
+      margin-top: 8px;
+    }
+
+    & ~ .o-article__body {
+      margin-top: 20px;
+    }
+  }
+
+  @include breakpoint('medium') {
+    width: colspan(58, medium);
+
+    & ~ .o-article__secondary {
+      margin-top: 28px;
+      order: 4;
+    }
+
+    & ~ .o-article__body {
+      margin-top: 28px;
+      order: 3;
+    }
+  }
+
+  @include breakpoint('large') {
+    width: colspan(58, large);
+
+    & ~ .o-article__secondary {
+      margin-top: 28px;
+      order: 4;
+    }
+
+    & ~ .o-article__body {
+      margin-top: 28px;
+      order: 3;
+    }
+  }
+}
+
+.o-article__primary > *:not(:first-child) {
+  margin-top: 8px;
+
+  @include breakpoint('xlarge+') {
+    margin-top: 52px;
+  }
+}
+
+.o-article__primary > .m-article-actions {
+  @include breakpoint('xlarge+') {
+    margin-top: 8px;
+  }
+}
+
+.o-article__primary--sub-nav > .m-link-list.u-show\@xlarge\+ {
+  @include breakpoint('xlarge+') {
+    margin-top: 0;
+  }
+}
+
 .o-article__secondary {
-  margin-top: 40px;
+  position: relative;
+  margin-top: 28px;
 
   @include breakpoint('medium+') {
     flex: 0 0 auto;
-    order: 4;
     width: colspan(18, medium);
     margin-left: colspan(2, medium);
   }
@@ -56,7 +134,9 @@
 
   @include breakpoint('xlarge+') {
     width: colspan(13, xlarge);
+    margin-top: 40px;
     margin-left: colspan(2, xlarge);
+    order: 4;
   }
 
   @include breakpoint('xxlarge') {
@@ -65,25 +145,65 @@
   }
 }
 
-.o-article__primary > *:not(:first-child),
-.o-article__secondary > *:not(:first-child) {
-  margin-top: 52px;
+.o-article__primary--sub-nav ~ .o-article__secondary::before {
+
+  @include breakpoint('medium+') {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background-color: $color__rules--primary;
+  }
 }
 
+.o-article__secondary > *:not(:first-child) {
+  margin-top: 8px;
 
-.o-article__primary--sub-nav {
-  @include background-fill;
-  margin-top: 0;
-  background-color: $color__bg--primary;
+  @include breakpoint('medium+') {
+    margin-top: 52px;
+  }
+}
+
+.o-article__primary--sub-nav ~ .o-article__secondary > .m-article-actions {
+  @include breakpoint('medium+') {
+    margin-top: 8px;
+  }
+}
+
+.o-article__tertiary {
+  margin-top: 28px;
+
+  @include breakpoint('medium+') {
+    flex: 0 0 auto;
+    width: colspan(18, medium);
+    margin-top: 52px;
+    margin-left: colspan(2, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(18, large);
+    margin-left: colspan(2, large);
+  }
 
   @include breakpoint('xlarge+') {
-    margin-top: 40px;
-    background-color: transparent;
+    width: colspan(13, xlarge);
+    margin-left: colspan(2, xlarge);
+    order: 5;
+  }
 
-    &::before {
-      content: none;
-      display: none;
-    }
+  @include breakpoint('xxlarge') {
+    width: colspan(13, xxlarge);
+    margin-left: colspan(2, xxlarge);
+  }
+}
+
+.o-article__tertiary > *:not(:first-child) {
+  margin-top: 8px;
+
+  @include breakpoint('medium+') {
+    margin-top: 52px;
   }
 }
 
@@ -95,17 +215,19 @@
 
   @include breakpoint('medium+') {
     flex: 0 0 auto;
-    order: 3;
     width: colspan(38, medium);
+    margin-top: 0;
   }
 
   @include breakpoint('large+') {
     width: colspan(38, large);
+    margin-top: 40px;
   }
 
   @include breakpoint('xlarge+') {
     width: colspan(28, xlarge);
     margin-left: colspan(2, xlarge);
+    order: 3;
   }
 
   @include breakpoint('xxlarge') {
@@ -114,10 +236,25 @@
   }
 }
 
+.o-article__body::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+
+  @include breakpoint('small+') {
+    content: none;
+    display: none;
+  }
+}
+
 /*
 
-<div class="o-article__tertiary">
-    <p class="o-article__tertiary-titles">
+<div class="o-article__quaternary">
+    <p class="o-article__quaternary-titles">
         @component('components.atoms._title')
             @slot('font','f-body')
             Making Place: the Architecture of David Adjaye
@@ -127,7 +264,7 @@
             September 19 2015 - January 3 2016
         @endcomponent
     </p>
-    <p class="o-article__tertiary-actions">
+    <p class="o-article__quaternary-actions">
         @component('components.atoms._btn')
             @slot('variation', 'btn--full')
             @slot('tag', 'a')
@@ -139,7 +276,7 @@
 
 */
 /*
-.o-article__tertiary {
+.o-article__quaternary {
 
   @include breakpoint('medium+') {
     display: flex;
@@ -190,7 +327,7 @@
   }
 }
 
-.o-article__tertiary-titles {
+.o-article__quaternary-titles {
   display: none;
   margin-top: 8px;
 
@@ -200,12 +337,12 @@
   }
 }
 
-.o-article__tertiary-titles > br,
-.o-article__tertiary-actions > br {
+.o-article__quaternary-titles > br,
+.o-article__quaternary-actions > br {
   display: none;
 }
 
-.o-article__tertiary-actions {
+.o-article__quaternary-actions {
   margin-top: 0;
 
   @include breakpoint('medium+') {
@@ -226,7 +363,7 @@
   }
 }
 
-.o-article__tertiary-actions .btn {
+.o-article__quaternary-actions .btn {
   margin-top: 20px;
 }
 */
@@ -245,6 +382,22 @@
 }
 
 
+
+.o-article > .m-inline-aside.u-show\@small {
+  @include breakpoint('small') {
+    float: right;
+    width: colspan(23, small);
+    margin-top: 48px;
+    margin-left: colspan(3, small);
+    margin-bottom: colspan(3, small);
+  }
+}
+
+.o-article > .o-article__primary--sub-nav ~ .m-inline-aside.u-show\@small {
+  @include breakpoint('small') {
+    margin-top: 28px;
+  }
+}
 
 
 
@@ -418,7 +571,6 @@
       margin-bottom: colspan(3, small);
     }
   }
-
 
   & > .f-body a,
   & > .f-body-editorial a {

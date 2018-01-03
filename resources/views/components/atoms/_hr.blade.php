@@ -1,2 +1,2 @@
-<span class="hr"></span>
+<span class="hr{{ (isset($variation)) ? ' '.$variation : '' }}"></span>
 

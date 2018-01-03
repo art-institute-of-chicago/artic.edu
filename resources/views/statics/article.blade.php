@@ -15,8 +15,8 @@
   @endcomponent
 
   <div class="o-article__primary">
+
     @component('components.molecules._m-article-actions')
-        @slot('variation','m-article-actions--keyline-top')
     @endcomponent
 
     @if ($article->nav)
@@ -27,14 +27,44 @@
   </div>
 
   <div class="o-article__secondary">
-    @component('components.atoms._hr')
-        @slot('variation', 'u-hide@medium+')
-    @endcomponent
 
     @if ($article->articleType === 'exhibition')
         @component('components.molecules._m-ticket-actions----exhibition')
         @endcomponent
     @endif
+
+    @if ($article->featuredRelated)
+        @component('components.blocks._inline-aside')
+            @slot('variation', 'u-show@xlarge+')
+            @slot('type', $article->featuredRelated['type'])
+            @slot('items', $article->featuredRelated['items'])
+            @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
+        @endcomponent
+    @endif
+
+  </div>
+
+  @if ($article->featuredRelated)
+      @component('components.blocks._inline-aside')
+          @slot('variation', 'u-show@small')
+          @slot('type', $article->featuredRelated['type'])
+          @slot('items', $article->featuredRelated['items'])
+          @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
+      @endcomponent
+  @endif
+
+  <div class="o-article__body" data-behavior="articleBodyInViewport">
+
+    @component('components.blocks._blocks')
+        @slot('blocks', $article->blocks)
+    @endcomponent
+
+    @component('components.molecules._m-article-actions')
+        @slot('variation','m-article-actions--keyline-top')
+    @endcomponent
+  </div>
+
+  <div class="o-article__tertiary u-show@medium+">
 
     @if ($article->featuredRelated)
         @component('components.blocks._inline-aside')
@@ -44,19 +74,6 @@
         @endcomponent
     @endif
 
-  </div>
-
-  <div class="o-article__body" data-behavior="articleBodyInViewport">
-    @component('components.atoms._hr')
-    @endcomponent
-
-    @component('components.blocks._blocks')
-        @slot('blocks', $article->blocks)
-    @endcomponent
-
-    @component('components.molecules._m-article-actions')
-        @slot('variation','m-article-actions--keyline-top')
-    @endcomponent
   </div>
 
   @component('components.atoms._btn')

@@ -29,9 +29,26 @@
 
   <div class="o-article__secondary">
     @component('components.molecules._m-article-actions')
-        @slot('variation','m-article-actions--keyline-top')
     @endcomponent
+
+    @if ($featuredRelated)
+        @component('components.blocks._inline-aside')
+            @slot('variation', 'u-show@medium+')
+            @slot('type', $featuredRelated['type'])
+            @slot('items', $featuredRelated['items'])
+            @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
+        @endcomponent
+    @endif
   </div>
+
+  @if ($featuredRelated)
+      @component('components.blocks._inline-aside')
+          @slot('variation', 'u-show@small')
+          @slot('type', $featuredRelated['type'])
+          @slot('items', $featuredRelated['items'])
+          @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
+      @endcomponent
+  @endif
 
   <div class="o-article__body">
     @component('components.blocks._blocks')

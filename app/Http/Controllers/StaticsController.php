@@ -138,6 +138,10 @@ class StaticsController extends Controller {
         "title" => "Students",
         "breadcrumb" => $this->generateGenericBreadcrumb(),
         "blocks" => $this->generateBlocks(3),
+        'featuredRelated' => array(
+          'type' => 'media', 
+          'items' => $this->getMedias(1), 
+        ),
     ]);
   }
 
@@ -151,6 +155,10 @@ class StaticsController extends Controller {
         "title" => "Scheduling a tour",
         "breadcrumb" => $this->generateGenericBreadcrumb(),
         "blocks" => $this->generateBlocks(3),
+        'featuredRelated' => array(
+          'type' => 'media', 
+          'items' => $this->getMedias(1), 
+        ),
     ]);
   }
 
@@ -171,7 +179,7 @@ class StaticsController extends Controller {
     $article->push('closingSoon', true);
     $article->push('headerType', 'hero');
     $article->push('headerImage', $this->getImage(1600,900));
-    $article->push('blocks', $this->generateBlocks());
+    $article->push('blocks', $this->generateBlocks(10));
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('relatedEventsCount', 12);
     $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
