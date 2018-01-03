@@ -176,6 +176,10 @@ class StaticsController extends Controller {
     $article->push('relatedEventsCount', 12);
     $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
     $article->push('relatedExhibitions', $this->getExhibitions(4));
+    $article->push('featuredRelated', array(
+      'type' => 'article', 
+      'items' => $this->getArticles(1), 
+    ));
     $article->push('nav', $nav);
     // now push to a view
     return view('statics/article', [
@@ -821,6 +825,12 @@ class StaticsController extends Controller {
           "content" => $this->faker->paragraph(10)
         ));
       }
+      array_push($generatedBlocks, array(
+          "type" => 'aside',
+          "subtype" => 'article',
+          "items" => $this->getArticles(1),
+          "itemsVariation" => 'm-listing-inline'
+      ));
       return $generatedBlocks;
     }
   }

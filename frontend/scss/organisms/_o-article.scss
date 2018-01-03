@@ -39,10 +39,6 @@
   }
 }
 
-.o-article__primary > *:not(:first-child) {
-  margin-top: 56px;
-}
-
 .o-article__secondary {
   margin-top: 40px;
 
@@ -67,6 +63,11 @@
     width: colspan(13, xxlarge);
     margin-left: colspan(2, xxlarge);
   }
+}
+
+.o-article__primary > *:not(:first-child),
+.o-article__secondary > *:not(:first-child) {
+  margin-top: 52px;
 }
 
 

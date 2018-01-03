@@ -111,24 +111,10 @@
     @if ($block['type'] === 'aside')
         @if (isset($block['subtype']) and $block['subtype'])
             @component('components.blocks._inline-aside')
-                @if (sizeof($block["items"]) === 1)
-                    @slot('title', 'Related '.ucfirst($block["subtype"]))
-                    @component('components.molecules._m-listing----'.$block["subtype"].'-row')
-                        @slot('tag', 'p')
-                        @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
-                        @slot($block["subtype"], $block["items"][0])
-                    @endcomponent
-                @else
-                    @slot('title', 'Related '.ucfirst($block["subtype"]).'s')
-                    @component('components.organisms._o-row-listing')
-                        @foreach ($block['items'] as $item)
-                            @component('components.molecules._m-listing----'.$block["subtype"].'-row')
-                                @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
-                                @slot($block["subtype"], $item)
-                            @endcomponent
-                        @endforeach
-                    @endcomponent
-                @endif
+                @slot('type', $block['subtype'])
+                @slot('items', $block['items'])
+                @slot('itemsMolecule', '_m-listing----'.$block['subtype'].'-row')
+                @slot('itemsVariation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
             @endcomponent
         @endif
     @endif

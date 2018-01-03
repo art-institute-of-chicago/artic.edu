@@ -1,11 +1,20 @@
-<aside class="m-inline-aside">
-    <span class="hr"></span>
-    @if (isset($title))
-        @component('components.blocks._text')
-            @slot('font', ($titleFont ?? 'f-subheading-1'))
-            @slot('tag', ($titleTag ?? 'h4'))
-            {{ $title }}
+@component('components.molecules._m-inline-aside')
+    @if (sizeof($items) === 1)
+        @slot('title', 'Related '.ucfirst($type))
+        @component('components.molecules.'.$itemsMolecule)
+            @slot('tag', 'p')
+            @slot('variation', $itemsVariation ?? null)
+            @slot($type, $items[0])
+        @endcomponent
+    @else
+        @slot('title', 'Related '.ucfirst($type).'s')
+        @component('components.organisms._o-row-listing')
+            @foreach ($items as $item)
+                @component('components.molecules.'.$itemsMolecule)
+                    @slot('variation', $itemsVariation ?? null)
+                    @slot($type, $item)
+                @endcomponent
+            @endforeach
         @endcomponent
     @endif
-    {{ $slot }}
-</aside>
+@endcomponent

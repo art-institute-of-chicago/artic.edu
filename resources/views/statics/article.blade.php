@@ -35,6 +35,15 @@
         @component('components.molecules._m-ticket-actions----exhibition')
         @endcomponent
     @endif
+
+    @if ($article->featuredRelated)
+        @component('components.blocks._inline-aside')
+            @slot('type', $article->featuredRelated['type'])
+            @slot('items', $article->featuredRelated['items'])
+            @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
+        @endcomponent
+    @endif
+
   </div>
 
   <div class="o-article__body" data-behavior="articleBodyInViewport">
@@ -43,6 +52,10 @@
 
     @component('components.blocks._blocks')
         @slot('blocks', $article->blocks)
+    @endcomponent
+
+    @component('components.molecules._m-article-actions')
+        @slot('variation','m-article-actions--keyline-top')
     @endcomponent
   </div>
 

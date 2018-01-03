@@ -1,4 +1,4 @@
-<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $exhibition->closingSoon ? " m-listing--limited" : "" }}{{ $exhibition->nowOpen ? " m-listing--new" : "" }}{{ $exhibition->exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ $exhibition->slug }}" class="m-listing__link">
     <span class="m-listing__img m-listing__img--wide">
         @component('components.atoms._img')
