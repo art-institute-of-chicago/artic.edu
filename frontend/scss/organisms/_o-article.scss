@@ -57,7 +57,7 @@
     }
   }
 
-  .o-article__primary-actions > .m-article-actions {
+  .o-article__primary-actions > .m-article-actions:first-child {
     @include breakpoint('xlarge+') {
       margin-top: 8px;
     }
@@ -118,6 +118,12 @@
 
     @include breakpoint('medium+') {
       margin-top: 52px;
+    }
+  }
+
+  .o-article__secondary-actions > .m-article-actions:first-child {
+    @include breakpoint('medium+') {
+      margin-top: 8px;
     }
   }
 
@@ -238,7 +244,6 @@
 }
 
 
-/*
 .o-article--generic-page {
 
   .o-article__primary-actions {
@@ -261,12 +266,10 @@
 
       & ~ .o-article__secondary-actions {
         margin-top: 28px;
-        order: 4;
       }
 
       & ~ .o-article__body {
         margin-top: 28px;
-        order: 3;
       }
     }
 
@@ -275,14 +278,16 @@
 
       & ~ .o-article__secondary-actions {
         margin-top: 28px;
-        order: 4;
       }
 
       & ~ .o-article__body {
         margin-top: 28px;
-        order: 3;
       }
     }
+  }
+
+  .o-article__primary-actions .m-link-list {
+    margin-top: 0;
   }
 
   .o-article__secondary-actions::before {
@@ -303,4 +308,3 @@
     }
   }
 }
-*/
