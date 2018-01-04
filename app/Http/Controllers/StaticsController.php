@@ -91,19 +91,7 @@ class StaticsController extends Controller {
 
   public function article() {
 
-    $article = $this->getExhibition();
-    $article->push('articleType', 'exhibition');
-    $article->push('headerImage', $this->getImage(1600,900));
-    $article->push('intro', $this->faker->paragraph(6, false));
-    $article->push('blocks', $this->generateBlocks('all'));
-    $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
-    $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
-    $article->push('relatedExhibitions', $this->getExhibitions(4));
-    $article->push('relatedEvents', $this->getEvents(4));
-    $article->push('featuredRelated', array(
-       'type' => 'event', 
-       'items' => $this->getEvents(1), 
-    ));
+    $article = $this->generateAllBlocksArticle();
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
@@ -113,10 +101,7 @@ class StaticsController extends Controller {
 
   public function article_feature() {
 
-    $article = $this->getArticle();
-    $article->push('headerType', 'feature');
-    $article->push('headerImage', $this->getImage(1600,900));
-    $article->push('blocks', $this->generateBlocks('all'));
+    $article = $this->generateAllBlocksArticle();
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
@@ -126,11 +111,7 @@ class StaticsController extends Controller {
 
   public function article_hero() {
 
-    $article = $this->getArticle();
-    $article->push('headerType', 'hero');
-    $article->push('headerImage', $this->getImage(1600,900));
-    $article->push('blocks', $this->generateBlocks('all'));
-    $article->push('intro', $this->faker->paragraph(6, false));
+    $article = $this->generateAllBlocksArticle();
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
@@ -224,7 +205,7 @@ class StaticsController extends Controller {
     // get an event
     $article = $this->getEvent();
     $article->push('articleType', 'event');
-    $article->push('headerType', 'feature');
+    //$article->push('headerType', 'feature');
     $article->push('headerImage', $this->getImage(1600,900));
     $article->push('blocks', $this->generateBlocks(6));
     $article->push('intro', $this->faker->paragraph(6, false));
@@ -232,6 +213,26 @@ class StaticsController extends Controller {
     $article->push('ticketLink', $ticketLink);
     $article->push('nav', $nav);
     $article->push('ticketPrices', $ticketPrices);
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'hero'),
+      'article' => $article,
+    ]);
+  }
+
+  public function editorial() {
+    // get an event
+    $article = $this->getArticle();
+    $article->push('articleType', 'editorial');
+    $article->push('headerType', 'feature');
+    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('blocks', $this->generateBlocks(6));
+    $article->push('intro', $this->faker->paragraph(6, false));
+    $article->push('relatedArticles', $this->getArticles(4));
+    $article->push('featuredRelated', array(
+      'type' => 'event', 
+      'items' => $this->getEvents(1), 
+    ));
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
@@ -620,6 +621,24 @@ class StaticsController extends Controller {
         array('label' => 'Group Visits', 'href' => '#',),
         array('label' => 'Students', 'href' => '#',),
     );
+  }
+
+  private function generateAllBlocksArticle() {
+    $article = $this->getExhibition();
+    $article->push('articleType', 'exhibition');
+    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('intro', $this->faker->paragraph(6, false));
+    $article->push('blocks', $this->generateBlocks('all'));
+    $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
+    $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
+    $article->push('relatedExhibitions', $this->getExhibitions(4));
+    $article->push('relatedEvents', $this->getEvents(4));
+    $article->push('relatedArticles', $this->getArticles(4));
+    $article->push('featuredRelated', array(
+       'type' => 'event', 
+       'items' => $this->getEvents(1), 
+    ));
+    return $article;
   }
 
   private function generateBlocks($num = 3) {

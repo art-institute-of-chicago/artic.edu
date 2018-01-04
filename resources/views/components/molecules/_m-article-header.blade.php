@@ -1,6 +1,11 @@
+@php
+    $variation = isset($variation) ? $variation : '';
+    $variation = (isset($editorial) and $editorial) ? $variation.' m-article-header--editorial' : $variation;
+@endphp
 @if (isset($headerType) and $headerType === 'feature')
     {{-- Feature header --}}
     @component('components.molecules._m-article-header----feature')
+        @slot('editorial', $editorial ?? null)
         @slot('variation', $variation ?? null)
         @slot('title', $title ?? null)
         @slot('date', $date ?? null)
@@ -10,6 +15,7 @@
 @elseif (isset($headerType) and $headerType === 'hero')
     {{-- Hero header --}}
     @component('components.molecules._m-article-header----hero')
+        @slot('editorial', $editorial ?? null)
         @slot('variation', $variation ?? null)
         @slot('title', $title ?? null)
         @slot('date', $date ?? null)
@@ -20,6 +26,7 @@
 @elseif (isset($headerType) and $headerType === 'generic')
     {{-- Generic header --}}
     @component('components.molecules._m-article-header----generic')
+        @slot('editorial', $editorial ?? null)
         @slot('variation', $variation ?? null)
         @slot('title', $title ?? null)
         @slot('img', $img ?? null)
@@ -28,6 +35,7 @@
 @else
     {{-- Default header --}}
     @component('components.molecules._m-article-header----default')
+        @slot('editorial', $editorial ?? null)
         @slot('variation', $variation ?? null)
         @slot('title', $title ?? null)
         @slot('date', $date ?? null)

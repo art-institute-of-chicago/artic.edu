@@ -826,7 +826,7 @@ $f-dropcap-editorial: generate-font-obj((
 @mixin f-dropcap-editorial() {
   @include font-styles($f-dropcap-editorial);
   font-feature-settings: "lnum" on;
-  color: $color__text--title;
+  color: $color__text--editorial;
 }
 
 %f-dropcap-editorial,

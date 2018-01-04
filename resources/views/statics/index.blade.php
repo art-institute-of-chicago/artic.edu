@@ -20,10 +20,11 @@
   <li><br><a href="/statics/generic_landing">generic landing</a></li>
   <li><a href="/statics/generic_detail">generic detail</a></li>
   <li><br>header image info missing</li>
-  <li>blocks missing: speakers, sponsors, further support, references</li>
+  <li>blocks missing: speakers, sponsors, further support, references, comments</li>
   <li>Icon missing: pencil</li>
   <li><br><a href="/statics/exhibition">exhibition, hero header</a></li>
-  <li><a href="/statics/event">event, feature header</a></li>
+  <li><a href="/statics/event">event, standard header</a></li>
+  <li><a href="/statics/editorial">editorial, feature header</a></li>
 </ul>
 
 @endsection

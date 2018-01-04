@@ -2,11 +2,13 @@
 
 @section('content')
 
-<article class="o-article">
+<article class="o-article{{ ($article->articleType === 'editorial') ? ' o-article--editorial' : '' }}">
 
   @component('components.molecules._m-article-header')
+    @slot('editorial', ($article->articleType === 'editorial'))
     @slot('headerType', ($article->headerType ?? null))
-    @slot('variation', 'o-article__header')
+    @slot('variation', ($article->headerVariation ?? null))
+    @slot('variation', 'mike')
     @slot('title', $article->title)
     @slot('date', $article->date)
     @slot('type', $article->type)
@@ -16,6 +18,7 @@
 
   <div class="o-article__primary-actions">
     @component('components.molecules._m-article-actions')
+        @slot('editorial', ($article->articleType === 'editorial'))
     @endcomponent
 
     @if ($article->nav)
@@ -88,6 +91,7 @@
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
+        @slot('editorial', ($article->articleType === 'editorial'))
     @endcomponent
   </div>
 
@@ -159,6 +163,26 @@
         @foreach ($article->relatedEvents as $event)
             @component('components.molecules._m-listing----event')
                 @slot('event', $event)
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
+
+@if ($article->relatedArticles)
+    @component('components.molecules._m-title-bar')
+        Further Reading
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+        @slot('cols_xxlarge','4')
+        @slot('behavior','dragScroll')
+        @foreach ($article->relatedArticles as $editorial)
+            @component('components.molecules._m-listing----article')
+                @slot('article', $editorial)
             @endcomponent
         @endforeach
     @endcomponent

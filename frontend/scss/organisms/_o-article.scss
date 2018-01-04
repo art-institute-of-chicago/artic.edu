@@ -3,22 +3,33 @@
 .o-article {
   @include float-clear;
   position: relative;
+
+  @include breakpoint('xsmall') {
+    display: flex;
+    flex-flow: column nowrap;
+  }
 }
 
-.o-article__header {
+.o-article .m-article-header {
+
+  @include breakpoint('xsmall') {
+    flex: 0 0 auto;
+    width: 100%;
+  }
 
   @include breakpoint('xlarge+') {
-    &.m-article-header--generic,
-    &.m-article-header--hero,
-    &.m-article-header--feature {
-      margin-bottom: 48px;
-    }
+    margin-bottom: 48px;
   }
 }
 
 .o-article__primary-actions {
   position: relative;
   margin-top: 8px;
+
+  @include breakpoint('xsmall') {
+    flex: 0 0 auto;
+    width: 100%;
+  }
 
   @include breakpoint('medium+') {
     margin-top: 12px;
@@ -68,6 +79,11 @@
   position: relative;
   margin-top: 8px;
 
+  @include breakpoint('xsmall') {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
   @include breakpoint('medium+') {
     float: left;
     width: colspan(38, medium);
@@ -88,6 +104,11 @@
 .o-article__secondary-actions {
   position: relative;
   margin-top: 28px;
+
+  @include breakpoint('xsmall') {
+    flex: 0 0 auto;
+    width: 100%;
+  }
 
   @include breakpoint('medium+') {
     float: right;
@@ -130,10 +151,14 @@
 
 
 .o-article__related {
-  display: none;
+  @include breakpoint('xsmall') {
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 28px;
+    order: 1;
+  }
 
   @include breakpoint('small+') {
-    display: block;
     float: right;
     clear: right;
     width: colspan(23, small);
@@ -152,6 +177,11 @@
 .o-article__intro {
   position: relative;
   margin-top: 28px;
+
+  @include breakpoint('xsmall') {
+    flex: 0 0 auto;
+    width: 100%;
+  }
 
   @include breakpoint('medium+') {
     float: left;
@@ -185,6 +215,11 @@
   @include float-clear;
   position: relative;
   margin-top: 28px;
+
+  @include breakpoint('xsmall') {
+    flex: 0 0 auto;
+    width: 100%;
+  }
 
   @include breakpoint('medium+') {
     float: left;

@@ -168,9 +168,9 @@
     }
   }
 
-  & > .f-body a,
-  & > .f-body-editorial a {
+  & > .f-body a {
     color: $color__link--accent;
+    text-decoration: underline;
 
     &:hover,
     &:focus {
@@ -179,6 +179,20 @@
 
     &:active {
       color: $color__link--accent-active;
+    }
+  }
+
+  & > .f-body-editorial a {
+    color: $color__link--editorial;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: $color__link--editorial-hover;
+    }
+
+    &:active {
+      color: $color__link--editorial-active;
     }
   }
 }

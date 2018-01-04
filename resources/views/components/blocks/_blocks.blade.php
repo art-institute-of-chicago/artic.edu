@@ -29,7 +29,7 @@
                 @slot('font', ($font ? $font : null))
                 @slot('loopIndex', $loop->iteration)
 
-                @if (isset($editorial) and $editorial and $loop->first) {
+                @if (isset($editorial) and $editorial and $loop->first)
                     @component('components.blocks._text')
                         @slot('font','f-dropcap-editorial')
                         @slot('tag','span')

@@ -2,7 +2,7 @@
   @if (isset($title))
     @component('components.atoms._title')
         @slot('tag','h1')
-        @slot('font','f-headline')
+        @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
         {{ $title }}
     @endcomponent
   @endif
