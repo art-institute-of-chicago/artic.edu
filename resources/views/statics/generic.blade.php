@@ -55,7 +55,7 @@
 
   <div class="o-article__body o-blocks">
     @component('components.blocks._blocks')
-        @slot('blocks', $blocks)
+        @slot('blocks', $blocks ?? null)
     @endcomponent
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')

@@ -42,6 +42,13 @@
         @endcomponent
     @endif
 
+    @if ($article->articleType === 'event')
+        @component('components.molecules._m-ticket-actions----event')
+            @slot('ticketPrices', $article->ticketPrices);
+            @slot('ticketLink', $article->ticketLink);
+        @endcomponent
+    @endif
+
     @if ($article->featuredRelated)
       {{-- dupe 😢 - shows medium+ --}}
       @component('components.blocks._inline-aside')
@@ -75,7 +82,8 @@
 
   <div class="o-article__body o-blocks" data-behavior="articleBodyInViewport">
     @component('components.blocks._blocks')
-        @slot('blocks', $article->blocks)
+        @slot('editorial', ($article->articleType === 'editorial'))
+        @slot('blocks', $article->blocks ?? null)
     @endcomponent
 
     @component('components.molecules._m-article-actions')
@@ -130,6 +138,27 @@
         @foreach ($article->relatedExhibitions as $exhibition)
             @component('components.molecules._m-listing----exhibition')
                 @slot('exhibition', $exhibition)
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
+
+@if ($article->relatedEvents)
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(array('text' => 'See all events', 'href' => '#')))
+        Related Events
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+        @slot('cols_xxlarge','4')
+        @slot('behavior','dragScroll')
+        @foreach ($article->relatedEvents as $event)
+            @component('components.molecules._m-listing----event')
+                @slot('event', $event)
             @endcomponent
         @endforeach
     @endcomponent
