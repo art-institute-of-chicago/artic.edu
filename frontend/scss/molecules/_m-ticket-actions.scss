@@ -35,13 +35,13 @@
 }
 
 @include breakpoint('small') {
-  .o-article__secondary .m-ticket-actions {
+  .o-article__secondary-actions .m-ticket-actions {
     display: flex;
     flex-flow: row wrap;
     margin-left: colspan(2, small, 0, true);
   }
 
-  .o-article__secondary .m-ticket-actions__action {
+  .o-article__secondary-actions .m-ticket-actions__action {
     flex: 0 0 auto;
     width: colspan(28, small);
     margin-top: 12px;
@@ -54,8 +54,8 @@
     margin-left: colspan(2, small);
   }
 
-  .o-article__secondary .m-ticket-actions__action:nth-child(1),
-  .o-article__secondary .m-ticket-actions__action:nth-child(2) {
+  .o-article__secondary-actions .m-ticket-actions__action:nth-child(1),
+  .o-article__secondary-actions .m-ticket-actions__action:nth-child(2) {
     margin-top: 0;
   }
 }

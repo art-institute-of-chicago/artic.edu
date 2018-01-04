@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article class="o-article">
+<article class="o-article o-article--generic-page">
 
   @component('components.molecules._m-article-header')
     @slot('headerType', 'generic')
@@ -12,7 +12,7 @@
     @slot('breadcrumb', $breadcrumb)
   @endcomponent
 
-  <div class="o-article__primary o-article__primary--sub-nav">
+  <div class="o-article__primary">
     @component('components.atoms._dropdown')
       @slot('prompt', $title)
       @slot('variation', 'dropdown--filter u-hide@xlarge+')
@@ -30,10 +30,11 @@
   <div class="o-article__secondary">
     @component('components.molecules._m-article-actions')
     @endcomponent
+  </div>
 
+  <div class="o-article__related">
     @if ($featuredRelated)
         @component('components.blocks._inline-aside')
-            @slot('variation', 'u-show@medium+')
             @slot('type', $featuredRelated['type'])
             @slot('items', $featuredRelated['items'])
             @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
@@ -41,16 +42,7 @@
     @endif
   </div>
 
-  @if ($featuredRelated)
-      @component('components.blocks._inline-aside')
-          @slot('variation', 'u-show@small')
-          @slot('type', $featuredRelated['type'])
-          @slot('items', $featuredRelated['items'])
-          @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
-      @endcomponent
-  @endif
-
-  <div class="o-article__body">
+  <div class="o-article__body o-blocks">
     @component('components.blocks._blocks')
         @slot('blocks', $blocks)
     @endcomponent

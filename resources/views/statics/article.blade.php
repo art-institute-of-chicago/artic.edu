@@ -14,11 +14,21 @@
     @slot('img', $article->headerImage)
   @endcomponent
 
-  <div class="o-article__primary">
-
+  <div class="o-article__primary-actions">
     @component('components.molecules._m-article-actions')
     @endcomponent
 
+    @if ($article->nav)
+        {{-- dupe 😢 - shows xlarge+ --}}
+        @component('components.molecules._m-link-list')
+            @slot('variation', 'u-show@xlarge+')
+            @slot('links', $article->nav);
+        @endcomponent
+    @endif
+  </div>
+
+  {{-- dupe 😢 - hides xlarge+ --}}
+  <div class="o-article__meta">
     @if ($article->nav)
         @component('components.molecules._m-link-list')
             @slot('links', $article->nav);
@@ -26,35 +36,44 @@
     @endif
   </div>
 
-  <div class="o-article__secondary">
-
+  <div class="o-article__secondary-actions">
     @if ($article->articleType === 'exhibition')
         @component('components.molecules._m-ticket-actions----exhibition')
         @endcomponent
     @endif
 
     @if ($article->featuredRelated)
-        @component('components.blocks._inline-aside')
-            @slot('variation', 'u-show@xlarge+')
-            @slot('type', $article->featuredRelated['type'])
-            @slot('items', $article->featuredRelated['items'])
-            @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
-        @endcomponent
-    @endif
-
-  </div>
-
-  @if ($article->featuredRelated)
+      {{-- dupe 😢 - shows medium+ --}}
       @component('components.blocks._inline-aside')
-          @slot('variation', 'u-show@small')
+          @slot('variation', 'u-show@medium+')
           @slot('type', $article->featuredRelated['type'])
           @slot('items', $article->featuredRelated['items'])
           @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
       @endcomponent
+    @endif
+  </div>
+
+  @if ($article->intro and $article->headerType !== 'hero')
+  <div class="o-article__intro">
+    @component('components.blocks._text')
+        @slot('font', 'f-deck')
+        {{ $article->intro }}
+    @endcomponent
+  </div>
   @endif
 
-  <div class="o-article__body" data-behavior="articleBodyInViewport">
+  @if ($article->featuredRelated)
+  {{-- dupe 😢 - hidden medium+ --}}
+  <div class="o-article__related">
+    @component('components.blocks._inline-aside')
+        @slot('type', $article->featuredRelated['type'])
+        @slot('items', $article->featuredRelated['items'])
+        @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
+    @endcomponent
+  </div>
+  @endif
 
+  <div class="o-article__body o-blocks" data-behavior="articleBodyInViewport">
     @component('components.blocks._blocks')
         @slot('blocks', $article->blocks)
     @endcomponent
@@ -62,18 +81,6 @@
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
     @endcomponent
-  </div>
-
-  <div class="o-article__tertiary u-show@medium+">
-
-    @if ($article->featuredRelated)
-        @component('components.blocks._inline-aside')
-            @slot('type', $article->featuredRelated['type'])
-            @slot('items', $article->featuredRelated['items'])
-            @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
-        @endcomponent
-    @endif
-
   </div>
 
   @component('components.atoms._btn')

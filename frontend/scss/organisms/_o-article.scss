@@ -1,26 +1,75 @@
 
 
 .o-article {
+  @include float-clear;
   position: relative;
-
-  @include breakpoint('medium+') {
-    display: flex;
-    flex-flow: row wrap;
-  }
 }
 
 .o-article__header {
-  @include breakpoint('medium+') {
-    width: 100%;
+
+  @include breakpoint('xlarge+') {
+    &.m-article-header--generic,
+    &.m-article-header--hero,
+    &.m-article-header--feature {
+      margin-bottom: 48px;
+    }
   }
 }
 
-.o-article__primary {
+.o-article__primary-actions {
   position: relative;
   margin-top: 8px;
 
   @include breakpoint('medium+') {
-    flex: 0 0 auto;
+    margin-top: 12px;
+  }
+
+  @include breakpoint('xlarge+') {
+    float: left;
+    width: colspan(13, xlarge);
+    margin-top: 0;
+    margin-right: colspan(2, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(13, xxlarge);
+    margin-right: colspan(2, xxlarge);
+  }
+}
+
+  .o-article__primary-actions::before {
+    @include breakpoint('xlarge+') {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background-color: $color__rules--primary;
+    }
+  }
+
+  .o-article__primary-actions > *:not(:first-child) {
+    margin-top: 8px;
+
+    @include breakpoint('xlarge+') {
+      margin-top: 52px;
+    }
+  }
+
+  .o-article__primary-actions > .m-article-actions {
+    @include breakpoint('xlarge+') {
+      margin-top: 8px;
+    }
+  }
+
+
+.o-article__meta {
+  position: relative;
+  margin-top: 8px;
+
+  @include breakpoint('medium+') {
+    float: left;
     width: colspan(38, medium);
     margin-top: 12px;
   }
@@ -30,100 +79,20 @@
   }
 
   @include breakpoint('xlarge+') {
-    width: colspan(13, xlarge);
-    margin-top: 40px;
-    order: 2;
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
+    display: none;
   }
 }
 
-.o-article__primary::before {
 
-  @include breakpoint('xlarge+') {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 1px;
-    background-color: $color__rules--primary;
-  }
-}
 
-.o-article__primary--sub-nav {
-  @include breakpoint('large-') {
-    @include background-fill;
-    margin-top: 0;
-    background-color: $color__bg--primary;
-
-    & ~ .o-article__secondary {
-      margin-top: 8px;
-    }
-
-    & ~ .o-article__body {
-      margin-top: 20px;
-    }
-  }
-
-  @include breakpoint('medium') {
-    width: colspan(58, medium);
-
-    & ~ .o-article__secondary {
-      margin-top: 28px;
-      order: 4;
-    }
-
-    & ~ .o-article__body {
-      margin-top: 28px;
-      order: 3;
-    }
-  }
-
-  @include breakpoint('large') {
-    width: colspan(58, large);
-
-    & ~ .o-article__secondary {
-      margin-top: 28px;
-      order: 4;
-    }
-
-    & ~ .o-article__body {
-      margin-top: 28px;
-      order: 3;
-    }
-  }
-}
-
-.o-article__primary > *:not(:first-child) {
-  margin-top: 8px;
-
-  @include breakpoint('xlarge+') {
-    margin-top: 52px;
-  }
-}
-
-.o-article__primary > .m-article-actions {
-  @include breakpoint('xlarge+') {
-    margin-top: 8px;
-  }
-}
-
-.o-article__primary--sub-nav > .m-link-list.u-show\@xlarge\+ {
-  @include breakpoint('xlarge+') {
-    margin-top: 0;
-  }
-}
-
-.o-article__secondary {
+.o-article__secondary-actions {
   position: relative;
   margin-top: 28px;
 
   @include breakpoint('medium+') {
-    flex: 0 0 auto;
+    float: right;
     width: colspan(18, medium);
+    margin-top: 12px;
     margin-left: colspan(2, medium);
   }
 
@@ -134,9 +103,8 @@
 
   @include breakpoint('xlarge+') {
     width: colspan(13, xlarge);
-    margin-top: 40px;
+    margin-top: 0;
     margin-left: colspan(2, xlarge);
-    order: 4;
   }
 
   @include breakpoint('xxlarge') {
@@ -145,78 +113,76 @@
   }
 }
 
-.o-article__primary--sub-nav ~ .o-article__secondary::before {
-
-  @include breakpoint('medium+') {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 1px;
-    background-color: $color__rules--primary;
-  }
-}
-
-.o-article__secondary > *:not(:first-child) {
-  margin-top: 8px;
-
-  @include breakpoint('medium+') {
-    margin-top: 52px;
-  }
-}
-
-.o-article__primary--sub-nav ~ .o-article__secondary > .m-article-actions {
-  @include breakpoint('medium+') {
+  .o-article__secondary-actions > *:not(:first-child) {
     margin-top: 8px;
+
+    @include breakpoint('medium+') {
+      margin-top: 52px;
+    }
+  }
+
+
+
+.o-article__related {
+  display: none;
+
+  @include breakpoint('small+') {
+    display: block;
+    float: right;
+    clear: right;
+    width: colspan(23, small);
+    margin-top: 48px;
+    margin-bottom: colspan(3, small);
+    margin-left: colspan(3, small);
+  }
+
+  @include breakpoint('medium+') {
+    display: none;
   }
 }
 
-.o-article__tertiary {
+
+
+.o-article__intro {
+  position: relative;
   margin-top: 28px;
 
   @include breakpoint('medium+') {
-    flex: 0 0 auto;
-    width: colspan(18, medium);
-    margin-top: 52px;
-    margin-left: colspan(2, medium);
+    float: left;
+    width: colspan(38, medium);
   }
 
   @include breakpoint('large+') {
-    width: colspan(18, large);
-    margin-left: colspan(2, large);
+    width: colspan(38, medium);
   }
 
   @include breakpoint('xlarge+') {
-    width: colspan(13, xlarge);
-    margin-left: colspan(2, xlarge);
-    order: 5;
+    float: none;
+    width: colspan(28, xlarge);
+    margin-top: 0;
+    margin-left: colspan(15, xlarge);
   }
 
   @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
-    margin-left: colspan(2, xxlarge);
+    width: colspan(28, xxlarge);
+    margin-left: colspan(15, xxlarge);
   }
 }
 
-.o-article__tertiary > *:not(:first-child) {
-  margin-top: 8px;
-
-  @include breakpoint('medium+') {
-    margin-top: 52px;
+  .o-article__intro .f-deck:first-child {
+    @include tucked-align-top($f-deck);
   }
-}
+
 
 
 .o-article__body {
   @include float-clear;
   position: relative;
-  margin-top: 40px;
+  margin-top: 28px;
 
   @include breakpoint('medium+') {
-    flex: 0 0 auto;
+    float: left;
     width: colspan(38, medium);
-    margin-top: 0;
   }
 
   @include breakpoint('large+') {
@@ -225,148 +191,38 @@
   }
 
   @include breakpoint('xlarge+') {
+    float: none;
     width: colspan(28, xlarge);
-    margin-left: colspan(2, xlarge);
-    order: 3;
+    margin-top: 0;
+    margin-left: colspan(15, xlarge);
+
+    .o-article__intro ~ & {
+      margin-top: 28px;
+    }
   }
 
   @include breakpoint('xxlarge') {
     width: colspan(28, xxlarge);
-    margin-left: colspan(2, xxlarge);
+    margin-left: colspan(15, xxlarge);
   }
 }
 
-.o-article__body::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 1px;
-  background-color: $color__rules--primary;
-
-  @include breakpoint('small+') {
-    content: none;
-    display: none;
-  }
-}
-
-/*
-
-<div class="o-article__quaternary">
-    <p class="o-article__quaternary-titles">
-        @component('components.atoms._title')
-            @slot('font','f-body')
-            Making Place: the Architecture of David Adjaye
-        @endcomponent
-        <br>
-        @component('components.atoms._date')
-            September 19 2015 - January 3 2016
-        @endcomponent
-    </p>
-    <p class="o-article__quaternary-actions">
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--full')
-            @slot('tag', 'a')
-            @slot('href', '#')
-            Buy tickets
-        @endcomponent
-    </p>
-  </div>
-
-*/
-/*
-.o-article__quaternary {
-
-  @include breakpoint('medium+') {
-    display: flex;
-    position: fixed;
-    z-index: map-get($zindexs, 'articleStickyHeader');
+  .o-article__body:not(.o-article__intro ~ .o-article__body)::before {
+    content: '';
+    position: absolute;
     left: 0;
     right: 0;
-    top: -100%;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    padding-right: map-get($outer-gutters, 'medium');
-    padding-bottom: 20px;
-    padding-left: map-get($outer-gutters, 'medium');
-    transition: top .25s $bezier--ease-in-circ;
+    top: 0;
+    height: 1px;
+    background-color: $color__rules--primary;
 
-    &::before {
-      @include opaqueBg(rgba(255,255,255,.95), rgba(255,255,255,.85));
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 100vw;
-      margin-left: -50vw;
-      border-bottom: 1px solid rgba(0,0,0,.1);
-      background-clip: padding-box;
+    @include breakpoint('small+') {
+      content: none;
+      display: none;
     }
   }
 
-  @include breakpoint('large+') {
-    padding-right: map-get($outer-gutters, 'large');
-    padding-left: map-get($outer-gutters, 'large');
-  }
 
-  @include breakpoint('xlarge+') {
-    padding-right: map-get($outer-gutters, 'xlarge');
-    padding-left: map-get($outer-gutters, 'xlarge');
-  }
-
-  @include breakpoint('xxlarge') {
-    left: 50%;
-    right: auto;
-    width: map-get($main-col-widths, 'xxlarge');
-    margin-left: map-get($main-col-widths, 'xxlarge') / -2;
-    padding-right: 0;
-    padding-left: 0;
-  }
-}
-
-.o-article__quaternary-titles {
-  display: none;
-  margin-top: 8px;
-
-  @include breakpoint('medium+') {
-    display: block;
-    flex: 0 0 auto;
-  }
-}
-
-.o-article__quaternary-titles > br,
-.o-article__quaternary-actions > br {
-  display: none;
-}
-
-.o-article__quaternary-actions {
-  margin-top: 0;
-
-  @include breakpoint('medium+') {
-    flex: 0 0 auto;
-    width: colspan(18, medium);
-  }
-
-  @include breakpoint('large+') {
-    width: colspan(18, large);
-  }
-
-  @include breakpoint('xlarge+') {
-    width: colspan(13, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
-  }
-}
-
-.o-article__quaternary-actions .btn {
-  margin-top: 20px;
-}
-*/
 
 .o-article__top-link {
   display: none;
@@ -382,207 +238,69 @@
 }
 
 
+/*
+.o-article--generic-page {
 
-.o-article > .m-inline-aside.u-show\@small {
-  @include breakpoint('small') {
-    float: right;
-    width: colspan(23, small);
-    margin-top: 48px;
-    margin-left: colspan(3, small);
-    margin-bottom: colspan(3, small);
-  }
-}
-
-.o-article > .o-article__primary--sub-nav ~ .m-inline-aside.u-show\@small {
-  @include breakpoint('small') {
-    margin-top: 28px;
-  }
-}
-
-
-
-.o-article__body {
-
-  // first num is spec, second is the type line height
-
-  & > .f-deck {
-    @include tucked-margin-top($f-deck, ('xsmall': 56));
-
-    &:first-child {
-      @include tucked-align-top($f-deck);
-    }
-  }
-
-  & > .f-module-title-2 {
-    @include tucked-margin-top($f-module-title-2, ('xsmall': 68));
-
-    &:first-child {
-      @include tucked-align-top($f-module-title-2);
-    }
-  }
-
-  & > .f-subheading-1 {
-    @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
-
-    &:first-child {
-      @include tucked-align-top($f-subheading-1);
-    }
-  }
-
-
-  & > .f-body {
-    @include tucked-margin-top($f-body, ('xsmall': 56));
-
-    &:first-child {
-      @include tucked-align-top($f-body);
-    }
-  }
-
-  & > .f-body-editorial {
-    @include tucked-margin-top($f-body-editorial, ('xsmall': 56));
-
-    &:first-child {
-      @include tucked-align-top($f-body-editorial);
-    }
-  }
-
-    & > .f-subheading-1 + .f-body,
-    & > .f-subheading-1 + .f-body-editorial {
+  .o-article__primary-actions {
+    @include breakpoint('large-') {
+      @include background-fill;
       margin-top: 0;
-    }
+      background-color: $color__bg--primary;
 
-    & > .m-media + .f-body,
-    & > .m-media + .f-body-editorial,
-    & > .quote + .f-body,
-    & > .quote + .f-body-editorial {
-      @include tucked-margin-top($f-body, ('xsmall': 60));
-    }
-
-  & > .f-deck,
-  & > .f-body,
-  & > .f-body-editorial {
-    padding-right: colspan(2, xsmall);
-
-    @include breakpoint('small+') {
-      padding-right: colspan(3, small);
-    }
-
-    @include breakpoint('medium+') {
-      padding-right: 0;
-    }
-  }
-
-  .o-accordion,
-  .o-gallery,
-  .o-row-listing,
-  .m-inline-aside,
-  .m-media,
-  .m-link-list,
-  .m-cta-banner,
-  .m-aside-newsletter--wide,
-  .quote {
-    clear: both;
-    margin-top: 32px;
-
-    @include breakpoint('small+') {
-      margin-top: 44px;
-    }
-
-    @include breakpoint('medium+') {
-      margin-top: 60px;
-    }
-
-    & + & {
-      margin-top: 24px;
-
-      @include breakpoint('small+') {
-        margin-top: 36px;
+      & ~ .o-article__secondary-actions {
+        margin-top: 8px;
       }
 
-      @include breakpoint('medium+') {
-        margin-top: 48px;
+      & ~ .o-article__body {
+        margin-top: 20px;
       }
     }
-  }
 
-  .o-gallery,
-  .m-media--m,
-  .m-media--l,
-  .m-cta-banner,
-  .m-aside-newsletter--wide {
-    @include breakpoint('medium+') {
+    @include breakpoint('medium') {
       width: colspan(58, medium);
-      margin-right: colspan(20, medium, 0, true);
+
+      & ~ .o-article__secondary-actions {
+        margin-top: 28px;
+        order: 4;
+      }
+
+      & ~ .o-article__body {
+        margin-top: 28px;
+        order: 3;
+      }
     }
 
-    @include breakpoint('large+') {
+    @include breakpoint('large') {
       width: colspan(58, large);
-      margin-right: colspan(20, large, 0, true);
-    }
 
-    @include breakpoint('xlarge+') {
-      width: colspan(58, xlarge);
-      margin-left: colspan(15, xlarge, 0, true);
-    }
+      & ~ .o-article__secondary-actions {
+        margin-top: 28px;
+        order: 4;
+      }
 
-    @include breakpoint('xxlarge') {
-      width: colspan(58, xxlarge);
-      margin-left: colspan(15, xxlarge, 0, true);
-    }
-  }
-
-  .m-media--m {
-    @include breakpoint('xlarge+') {
-      display: flex;
-      flex-flow: row-reverse nowrap;
+      & ~ .o-article__body {
+        margin-top: 28px;
+        order: 3;
+      }
     }
   }
 
-  .m-media--m .m-media__img {
-    @include breakpoint('xlarge+') {
-      flex: 0 0 auto;
-      width: colspan(43, xlarge);
-    }
-
-    @include breakpoint('xxlarge') {
-      width: colspan(43, xxlarge);
-    }
-  }
-
-  .m-media--m figcaption {
-    @include breakpoint('xlarge+') {
-      flex: 0 0 auto;
-      width: colspan(15, xlarge);
-      padding-right: colspan(2, xlarge);
-    }
-
-    @include breakpoint('xxlarge') {
-      width: colspan(15, xxlarge);
-      padding-right: colspan(2, xxlarge);
+  .o-article__secondary-actions::before {
+    @include breakpoint('medium+') {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background-color: $color__rules--primary;
     }
   }
 
-  .m-inline-aside {
+  .o-article__related {
     @include breakpoint('small') {
-      clear: both;
-      float: left;
-      width: colspan(23, small);
-      margin-right: colspan(3, small);
-      margin-bottom: colspan(3, small);
-    }
-  }
-
-  & > .f-body a,
-  & > .f-body-editorial a {
-    color: $color__link--accent;
-
-    &:hover,
-    &:focus {
-      color: $color__link--accent-hover;
-    }
-
-    &:active {
-      color: $color__link--accent-active;
+      margin-top: 28px;
     }
   }
 }
+*/
