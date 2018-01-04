@@ -44,6 +44,8 @@
 
         @if ($block['type'] === 'quote')
             @component('components.atoms._quote')
+                @slot('variation', (isset($editorial) and $editorial) ? 'quote--editorial' : false)
+                @slot('font', (isset($editorial) and $editorial) ? 'f-deck' : null)
                 {{ $block['content'] }}
             @endcomponent
         @endif

@@ -358,6 +358,7 @@ $f-body-emphasis: generate-font-obj((
 %f-body i,
 .f-body i {
   @include f-body-emphasis;
+  @include untuck;
 }
 
 /***
@@ -423,6 +424,7 @@ $f-body-editorial-emphasis: generate-font-obj((
 %f-body-editorial i,
 .f-body-editorial i {
   @include f-body-editorial-emphasis;
+  @include untuck;
 }
 
 /***

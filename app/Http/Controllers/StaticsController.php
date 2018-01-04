@@ -221,12 +221,21 @@ class StaticsController extends Controller {
   }
 
   public function editorial() {
+    $blocks = $this->generateBlocks(3);
+    array_push($blocks, array(
+        "type" => 'quote',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+    ));
     // get an event
     $article = $this->getArticle();
     $article->push('articleType', 'editorial');
     $article->push('headerType', 'feature');
     $article->push('headerImage', $this->getImage(1600,900));
-    $article->push('blocks', $this->generateBlocks(6));
+    $article->push('blocks', $blocks);
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('relatedArticles', $this->getArticles(4));
     $article->push('featuredRelated', array(
@@ -647,7 +656,7 @@ class StaticsController extends Controller {
 
     array_push($blocks, array(
         "type" => 'text',
-        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas consequat egestas est, in luctus urna porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
     ));
     array_push($blocks, array(
         "type" => 'text',

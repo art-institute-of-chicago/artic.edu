@@ -2,20 +2,57 @@
 
 .quote {
   position: relative;
-  padding-top: 72px - 32px;
+  padding-top: 80px;
   color: $color__text--title;
+}
 
-  @include breakpoint('small+') {
-    padding-top: 72px - 36px;
-  }
-
-  @include breakpoint('medium+') {
-    padding-top: 72px - 40px;
-  }
+.quote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
 }
 
 .quote__icon {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 20px;
+  color: $color__text--accent;
+}
+
+.quote .f-quote:first-child {
+  @include tucked-align-top($f-quote);
+}
+
+.quote .f-deck:first-child {
+  @include tucked-align-top($f-deck);
+}
+
+
+.quote--editorial {
+  padding: 20px 20px 80px;
+  border-radius: $border-radius;
+  background-color: $color__bg--editorial;
+}
+
+.quote--editorial::before {
+  content: none;
+  display: none;
+}
+
+.quote--editorial .f-deck {
+  font-style: italic;
+  color: $color__text--title;
+}
+
+.quote--editorial .quote__icon {
+  position: absolute;
+  left: auto;
+  right: 20px;
+  top: auto;
+  bottom: 20px;
+  color: $color__text--editorial;
 }
