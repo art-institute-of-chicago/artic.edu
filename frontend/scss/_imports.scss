@@ -89,6 +89,7 @@ $include-icons: false; // see icons.scss!
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
+@import 'organisms/o-blocks';
 @import 'organisms/o-features';
 @import 'organisms/o-grid-listing';
 @import 'organisms/o-row-listing';

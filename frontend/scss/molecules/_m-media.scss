@@ -76,7 +76,7 @@
 
 
 
-.o-article__body {
+.o-blocks {
   @include breakpoint('xlarge+') {
     .m-media--m figcaption {
       @include tucked-align-top($f-caption);
