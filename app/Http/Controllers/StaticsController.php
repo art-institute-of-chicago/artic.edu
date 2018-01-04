@@ -91,9 +91,19 @@ class StaticsController extends Controller {
 
   public function article() {
 
-    $article = $this->getArticle();
+    $article = $this->getExhibition();
+    $article->push('articleType', 'exhibition');
     $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('blocks', $this->generateBlocks('all'));
+    $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
+    $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
+    $article->push('relatedExhibitions', $this->getExhibitions(4));
+    $article->push('relatedEvents', $this->getEvents(4));
+    $article->push('featuredRelated', array(
+       'type' => 'event', 
+       'items' => $this->getEvents(1), 
+    ));
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
@@ -179,7 +189,7 @@ class StaticsController extends Controller {
     $article->push('closingSoon', true);
     $article->push('headerType', 'hero');
     $article->push('headerImage', $this->getImage(1600,900));
-    $article->push('blocks', $this->generateBlocks(10));
+    $article->push('blocks', $this->generateBlocks(6));
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('relatedEventsCount', 12);
     $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
@@ -189,6 +199,39 @@ class StaticsController extends Controller {
       'items' => $this->getMedias(1), 
     ));
     $article->push('nav', $nav);
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'hero'),
+      'article' => $article,
+    ]);
+  }
+
+  public function event() {
+    // make some left rail links
+    $locationLink = array('label' => 'Rubloff Auditorium', 'href' => '#', 'iconBefore' => 'location');
+    $ticketLink = '#';
+    $registrationLink = array('label' => 'Registration required', 'href' => $ticketLink, 'iconBefore' => 'user');
+    // make left rail nav array
+    $nav = array();
+    array_push($nav, $locationLink);
+    array_push($nav, $registrationLink);
+    // set ticket prices
+    $ticketPrices = array(
+      array('price' => '$10', 'label' => 'students'),
+      array('price' => '$15', 'label' => 'members'),
+      array('price' => '$20', 'label' => 'nonmembers'),
+    );
+    // get an event
+    $article = $this->getEvent();
+    $article->push('articleType', 'event');
+    $article->push('headerType', 'feature');
+    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('blocks', $this->generateBlocks(6));
+    $article->push('intro', $this->faker->paragraph(6, false));
+    $article->push('relatedEvents', $this->getEvents(4));
+    $article->push('ticketLink', $ticketLink);
+    $article->push('nav', $nav);
+    $article->push('ticketPrices', $ticketPrices);
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
@@ -329,15 +372,21 @@ class StaticsController extends Controller {
         $register = false;
     }
 
+    $dateFormatted = $this->getFormattedDateString();
+    $timeStart = $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30'));
+    $timeEnd = $this->makeEventTime($hour + 1, ($this->faker->boolean() ? '00' : '30'));
+    $date = $dateFormatted.', '.$timeStart.' - '.$timeEnd;
+
     return new StaticObjectPresenter([
       "type" => $this->getEventType(),
       "id" => $this->faker->uuid,
       "slug" => "/statics/event",
       "title" => $this->faker->sentence(6, true),
       "shortDesc" => $this->faker->paragraph(1, false),
-      "dateFormatted" => $this->getFormattedDateString(),
-      "timeStart" => $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30')),
-      "timeEnd" => $this->makeEventTime(($hour+1), ($this->faker->boolean() ? '00' : '30')),
+      "dateFormatted" => $dateFormatted,
+      "timeStart" => $timeStart,
+      "timeEnd" => $timeEnd,
+      "date" => $date, 
       "exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
       "free" => $free,
@@ -579,11 +628,6 @@ class StaticsController extends Controller {
 
     array_push($blocks, array(
         "type" => 'text',
-        "subtype" => 'intro',
-        "content" => $this->faker->paragraph(6, false)
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
         "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas consequat egestas est, in luctus urna porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
     ));
     array_push($blocks, array(
@@ -602,6 +646,15 @@ class StaticsController extends Controller {
         "type" => 'text',
         "subtype" => 'heading-2',
         "content" => $this->faker->sentence(6)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'intro',
+        "content" => $this->faker->paragraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'text',
