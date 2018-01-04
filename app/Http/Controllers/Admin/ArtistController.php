@@ -29,6 +29,8 @@ class ArtistController extends ModuleController
         ],
     ];
 
+    protected $defaultOrders = ['name' => 'asc'];
+
     /*
      * Relations to eager load for the index view
      */

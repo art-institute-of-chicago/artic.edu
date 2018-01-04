@@ -18,28 +18,28 @@
         <div class="col">
             @formField('input', [
                 'repeater' => true,
-                'field' => 'title',
-                'field_name' => 'Title',
+                'name' => 'title',
+                'label' => 'Title',
                 'required' => true
             ])
 
             @formField('date_picker', [
                 'repeater' => true,
-                'field' => 'date',
-                'field_name' => 'Date',
+                'name' => 'date',
+                'label' => 'Date',
                 'date_settings' => 'admissions_date_settings',
                 'required' => true
             ])
             @formField('input', [
                 'repeater' => true,
-                'field' => 'time_start',
-                'field_name' => 'Opening time',
+                'name' => 'time_start',
+                'label' => 'Opening time',
                 'required' => true
             ])
             @formField('input', [
                 'repeater' => true,
-                'field' => 'time_end',
-                'field_name' => 'Closing time',
+                'name' => 'time_end',
+                'label' => 'Closing time',
                 'required' => true
             ])
         </div>
@@ -47,8 +47,8 @@
         <div class="col">
             @formField('textarea', [
                 'repeater' => true,
-                'field' => 'copy',
-                'field_name' => 'Copy',
+                'name' => 'copy',
+                'label' => 'Copy',
                 'required' => true
             ])
         </div>

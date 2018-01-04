@@ -33,6 +33,8 @@ class CategoryController extends ModuleController
      */
     protected $formWith = ['segments'];
 
+    protected $defaultOrders = ['name' => 'ASC'];
+
     /*
      * Filters mapping ('fFilterName' => 'filterColumn')
      * In the indexData function, name your lists with the filter name + List (fFilterNameList)

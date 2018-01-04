@@ -56,9 +56,19 @@ class Page extends Model
     public $checkboxes = ['published'];
 
     public $mediasParams = [
-        'visit_hero' => [
-            'default' => '16/9',
-            'square' => '1',
+        'hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ],
         ],
     ];
 

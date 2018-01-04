@@ -13,34 +13,23 @@
     ])
 
     @formField('medias', [
-        'media_role' => 'hero',
-        'media_role_name' => 'Hero',
-        'with_multiple' => true,
-        'no_crop' => false,
-        'max' => 2
+        'name' => 'hero',
+        'label' => 'Hero Image',
+        'max' => 2,
     ])
 
     @formField('browser', [
         'routePrefix' => 'whatson',
-        'relationship' => 'artworks',
-        'module_name' => 'artworks',
-        'relationship_name' => 'related artworks',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related artworks',
+        'name' => 'artworks',
+        'label' => 'Artworks',
         'max' => 20
     ])
 
      @formField('browser', [
         'routePrefix' => 'whatson',
         'relationship' => 'selections',
-        'module_name' => 'selections',
-        'relationship_name' => 'related selections',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related selections',
+        'name' => 'selections',
+        'label' => 'Selections',
         'max' => 20
     ])
 @stop

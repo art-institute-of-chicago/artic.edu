@@ -34,6 +34,20 @@ return [
                 'component' => 'a17-block-image',
             ],
         ],
+        'repeaters' => [
+            'admissions' => [
+                'title' => 'Admission',
+                'trigger' => 'Add admission',
+                'component' => 'a17-block-admissions',
+                'max' => 10,
+            ],
+            'locations' => [
+                'title' => 'Locations',
+                'trigger' => 'Add locations',
+                'component' => 'a17-block-locations',
+                'max' => 10,
+            ],
+        ],
         'crops' => [
             'image' => [
                 'desktop' => [

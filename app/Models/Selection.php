@@ -31,8 +31,18 @@ class Selection extends Model
 
     public $mediasParams = [
         'hero' => [
-            'default' => '16/9',
-            'square' => '1',
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ],
         ],
     ];
 

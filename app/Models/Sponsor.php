@@ -22,8 +22,11 @@ class Sponsor extends Model
     public $checkboxes = ['published'];
 
     public $mediasParams = [
-        'logo' => [
-            'default' => '1',
+        'profile' => [
+            'default' => [
+                'name' => 'default',
+                'ratio' => 1,
+            ],
         ],
     ];
 }

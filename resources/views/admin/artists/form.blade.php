@@ -9,20 +9,16 @@
         'name' => 'name',
         'label' => 'Name',
     ])
-    @formField('textarea', [
+    @formField('input', [
         'name' => 'biography',
-        'label' => 'Biography'
+        'label' => 'Biography',
+        'type' => 'textarea'
     ])
-
     @formField('browser', [
         'routePrefix' => 'whatson',
-        'relationship' => 'shopItems',
-        'module_name' => 'shopItems',
-        'relationship_name' => 'Related Shop Items',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related Shop Items',
+        'moduleName' => 'shopItems',
+        'name' => 'shopItems',
+        'label' => 'Related shop items',
         'max' => 20
     ])
 @stop
