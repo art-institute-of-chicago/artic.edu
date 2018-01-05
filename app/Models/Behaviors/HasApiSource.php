@@ -16,6 +16,13 @@ trait HasApiSource
     private $apiFilled = false;
 
     /**
+     * Store the API fields information
+     *
+     * @var bool
+     */
+    private $apiFields = [];
+
+    /**
      * Refresh the model with API values in case it's not done yet.
      * TODO: Solve the collision cases. Probably using an identity array.
      *
@@ -44,6 +51,7 @@ trait HasApiSource
                 // Something like ['id' => 'datahub_id']
             } else {
                 $this->setAttribute($key, $value);
+                array_push($this->apiFields, $key);
             }
         }
 
@@ -86,6 +94,16 @@ trait HasApiSource
         $response = $client->request('GET', $this->getEndpoint(), $params);
 
         return $response->data;
+    }
+
+    public function getApiField($field) {
+        return $this->getApiFields[$field];
+    }
+
+    public function getApiFields() {
+        return (object) array_reduce($this->apiFields, function($result, $field) {
+            $result[$field] = $this->$field; return $result;
+        }, array());
     }
 
 }

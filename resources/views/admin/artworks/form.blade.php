@@ -14,16 +14,17 @@
     @formField('multi_select', [
         'name' => 'site_tags',
         'label' => 'Tags',
-        'optionq' => $siteTagsList,
+        'options' => $siteTagsList,
         'placeholder' => 'Select some tags',
     ])
     @formField('input', [
         'name' => 'subtitle',
         'label' => 'Subtitle',
     ])
-    @formField('textarea', [
+    @formField('input', [
         'name' => 'copy',
-        'label' => 'Copy'
+        'label' => 'Copy',
+        'type' => 'textarea'
     ])
 
     @formField('browser', [

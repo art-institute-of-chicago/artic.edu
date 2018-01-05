@@ -69,4 +69,15 @@
             'max' => 20
         ])
     </a17-fieldset>
+
+    <a17-fieldset id="related" title="Api Fields">
+        @foreach($item->getApiFields() as $field => $value)
+            @formField('input', [
+                'name' => $field,
+                'label' => $field,
+                'disabled' => true
+            ])
+        @endforeach
+    </a17-fieldset>
+
 @stop

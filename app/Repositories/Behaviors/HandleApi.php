@@ -64,4 +64,13 @@ trait HandleApi
         return $results;
     }
 
+    public function getById($id, $with = [], $withCount = [])
+    {
+        $resource = parent::getById($id, $with, $withCount);
+        if ($resource)
+            $resource->refreshApi();
+
+        return $resource;
+    }
+
 }
