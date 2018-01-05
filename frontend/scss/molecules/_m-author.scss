@@ -1,0 +1,103 @@
+/***
+
+```
+```
+
+***/
+
+
+.m-author {
+  position: relative;
+  padding-left: 52px;
+
+  @include breakpoint('xlarge+') {
+    padding-left: 0;
+  }
+}
+
+.m-author---keyline-top {
+  padding-top: 16px;
+}
+
+.m-author---keyline-top::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
+
+
+.m-author__img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+
+  .m-author---keyline-top & {
+    top: 16px;
+  }
+
+  @include breakpoint('xlarge+') {
+    position: relative;
+    width: 88px;
+    height: 88px;
+
+    .m-author---keyline-top & {
+      top: 0;
+    }
+  }
+}
+
+.m-author__img img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.m-author .f-secondary {
+  margin-top: -12px;
+
+  @include breakpoint('large+') {
+    margin-top: -16px;
+  }
+
+  @include breakpoint('xlarge+') {
+    margin-top: 0;
+  }
+}
+
+.m-author a {
+  color: $color__link--accent;
+
+  &:hover,
+  &:focus {
+    color: $color__link--accent-hover;
+  }
+
+  &:active {
+    color: $color__link--accent-active;
+  }
+}
+
+.m-author--editorial a {
+  color: $color__link--editorial;
+
+  &:hover,
+  &:focus {
+    color: $color__link--editorial-hover;
+  }
+
+  &:active {
+    color: $color__link--editorial-active;
+  }
+}

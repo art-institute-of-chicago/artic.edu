@@ -21,6 +21,17 @@
         @slot('editorial', ($article->articleType === 'editorial'))
     @endcomponent
 
+    @if ($article->author)
+        @component('components.molecules._m-author')
+            @slot('variation', 'm-author---keyline-top')
+            @slot('editorial', ($article->articleType === 'editorial'))
+            @slot('img', $article->author['img'] ?? null);
+            @slot('name', $article->author['name'] ?? null);
+            @slot('link', $article->author['link'] ?? null);
+            @slot('date', $article->date ?? null);
+        @endcomponent
+    @endif
+
     @if ($article->nav)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.molecules._m-link-list')
@@ -103,6 +114,7 @@
 
     @if ($article->futherSupport)
         @component('components.molecules._m-row-block')
+            @slot('variation', 'm-row-block---keyline-top')
             @slot('title', $article->futherSupport['title'] ?? null)
             @slot('img', $article->futherSupport['logo'] ?? null)
             @slot('text', $article->futherSupport['text'] ?? null)

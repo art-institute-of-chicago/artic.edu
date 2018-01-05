@@ -558,7 +558,7 @@ class StaticsController extends Controller {
       "slug" => "/statics/article",
       "title" => $this->faker->sentence(6, true),
       "author" => array(
-        'image' => $this->getImage(320,320),
+        'img' => $this->getImage(320,320),
         'name' => $this->faker->firstName.' '.$this->faker->lastName,
         'link' => '#',
       ),
