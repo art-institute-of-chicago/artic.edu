@@ -1,4 +1,4 @@
-<div class="m-row-block m-row-block---keyline-top">
+<div class="m-row-block{{ (isset($variation)) ? ' '.$variation : '' }}">
     @if (isset($title))
         @component('components.blocks._text')
             @slot('font', 'f-module-title-1')
