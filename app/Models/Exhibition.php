@@ -6,12 +6,16 @@ use A17\CmsToolkit\Models\Model;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
+use App\Models\Behaviors\HasApiSource;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias;
+    use HasRevisions, HasSlug, HasMedias, HasApiSource;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
+
+    // Move these to configuration files and implement ID replacement
+    protected $endpoint = '/api/v1/exhibitions/{datahub_id}';
 
     protected $fillable = [
         'published',
