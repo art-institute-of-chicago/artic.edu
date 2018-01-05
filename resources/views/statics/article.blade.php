@@ -89,20 +89,55 @@
         @slot('blocks', $article->blocks ?? null)
     @endcomponent
 
+    @if ($article->sponsors)
+        @component('components.blocks._text')
+            @slot('font', 'f-module-title-2')
+            @slot('tag', 'h4')
+            Sponsors
+        @endcomponent
+        @component('components.blocks._blocks')
+            @slot('editorial', ($article->articleType === 'editorial'))
+            @slot('blocks', $article->sponsors ?? null)
+        @endcomponent
+    @endif
+
+    @if ($article->futherSupport)
+        <div class="m-row-block m-row-block---keyline-top">
+            @component('components.blocks._text')
+                @slot('font', 'f-module-title-1')
+                @slot('variation', 'm-row-block__title')
+                @slot('tag', 'h4')
+                {{ $article->futherSupport['title'] }}
+            @endcomponent
+            <div class="m-row-block__img">
+                @component('components.atoms._img')
+                    @slot('src', $article->futherSupport['logo']['src'] ?? '')
+                    @slot('srcset', $article->futherSupport['logo']['srcset'] ?? '')
+                    @slot('sizes', $article->futherSupport['logo']['sizes'] ?? '')
+                    @slot('width', $article->futherSupport['logo']['width'] ?? '')
+                    @slot('height', $article->futherSupport['logo']['height'] ?? '')
+                @endcomponent
+            </div>
+            <div class="m-row-block__text">
+                @component('components.blocks._text')
+                    @slot('font', 'f-secondary')
+                    {{ $article->futherSupport['text'] }}
+                @endcomponent
+            </div>
+        </div>
+    @endif
+
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
         @slot('editorial', ($article->articleType === 'editorial'))
     @endcomponent
   </div>
 
-  @component('components.atoms._btn')
-      @slot('variation', 'btn--icon arrow-link--up o-article__top-link')
-      @slot('font', '')
-      @slot('icon', 'icon--arrow')
-      @slot('behavior', 'topLink')
-      @slot('tag', 'a')
-      @slot('href', '#a17')
-  @endcomponent
+  <button class="o-article__top-link" data-behavior="topLink" href="#a17">
+    <svg class="icon--arrow" aria-label="top of page">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow">
+    </svg>
+  </button>
 
 </article>
 

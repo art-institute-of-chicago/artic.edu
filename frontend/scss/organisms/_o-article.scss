@@ -269,13 +269,39 @@
   display: none;
   position: fixed;
   z-index: 2;
-  right: 30px;
+  right: 40px;
   bottom: -32px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0 none;
+  border-radius: $border-radius;
+  background-color: rgba($color__black, .7);
+  color: $color__white;
+  transform: rotate(-90deg);
   transition: bottom .25s $bezier--ease-in-circ;
+  text-align: center;
+  cursor: pointer;
 
   @include breakpoint('medium+') {
     display: block;
   }
+}
+
+.o-article__top-link svg {
+  position: relative;
+  right: 3px;
+  vertical-align: middle;
+}
+
+.o-article__top-link::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  bottom: 16px;
+  width: 1.5px;
+  background-color: $color__white;
 }
 
 

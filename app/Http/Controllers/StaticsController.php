@@ -130,8 +130,8 @@ class StaticsController extends Controller {
         "breadcrumb" => $this->generateGenericBreadcrumb(),
         "blocks" => $this->generateBlocks(3),
         'featuredRelated' => array(
-          'type' => 'media', 
-          'items' => $this->getMedias(1), 
+          'type' => 'media',
+          'items' => $this->getMedias(1),
         ),
     ]);
   }
@@ -147,8 +147,8 @@ class StaticsController extends Controller {
         "breadcrumb" => $this->generateGenericBreadcrumb(),
         "blocks" => $this->generateBlocks(3),
         'featuredRelated' => array(
-          'type' => 'media', 
-          'items' => $this->getMedias(1), 
+          'type' => 'media',
+          'items' => $this->getMedias(1),
         ),
     ]);
   }
@@ -172,12 +172,17 @@ class StaticsController extends Controller {
     $article->push('headerImage', $this->getImage(1600,900));
     $article->push('blocks', $this->generateBlocks(6));
     $article->push('intro', $this->faker->paragraph(6, false));
-    $article->push('relatedEventsCount', 12);
+    $article->push('sponsors', $this->generateBlocks(2));
+    $article->push('futherSupport', array(
+      'logo' => $this->getImage(320,320),
+      'title' => "Further support has been provided by",
+      'text' => $this->faker->paragraph(5),
+    ));
     $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
     $article->push('relatedExhibitions', $this->getExhibitions(4));
     $article->push('featuredRelated', array(
-      'type' => 'media', 
-      'items' => $this->getMedias(1), 
+      'type' => 'media',
+      'items' => $this->getMedias(1),
     ));
     $article->push('nav', $nav);
     // now push to a view
@@ -239,8 +244,8 @@ class StaticsController extends Controller {
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('relatedArticles', $this->getArticles(4));
     $article->push('featuredRelated', array(
-      'type' => 'event', 
-      'items' => $this->getEvents(1), 
+      'type' => 'event',
+      'items' => $this->getEvents(1),
     ));
     // now push to a view
     return view('statics/article', [
@@ -396,7 +401,7 @@ class StaticsController extends Controller {
       "dateFormatted" => $dateFormatted,
       "timeStart" => $timeStart,
       "timeEnd" => $timeEnd,
-      "date" => $date, 
+      "date" => $date,
       "exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
       "free" => $free,
@@ -644,8 +649,8 @@ class StaticsController extends Controller {
     $article->push('relatedEvents', $this->getEvents(4));
     $article->push('relatedArticles', $this->getArticles(4));
     $article->push('featuredRelated', array(
-       'type' => 'event', 
-       'items' => $this->getEvents(1), 
+       'type' => 'event',
+       'items' => $this->getEvents(1),
     ));
     return $article;
   }
