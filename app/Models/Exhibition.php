@@ -10,7 +10,7 @@ use App\Models\Behaviors\HasApiSource;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias, HasApiSource;
+    use HasRevisions, HasSlug, HasMedias; # , HasApiSource;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
 
