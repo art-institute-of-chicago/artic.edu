@@ -214,6 +214,19 @@ class StaticsController extends Controller {
     $article->push('headerImage', $this->getImage(1600,900));
     $article->push('blocks', $this->generateBlocks(6));
     $article->push('intro', $this->faker->paragraph(6, false));
+    $article->push('speakers', array(
+        array(
+          'img' => $this->getImage(320,320),
+          'title' => $this->faker->firstName.' '.$this->faker->lastName,
+          'text' => $this->faker->paragraph(5),
+        ),
+        array(
+          'img' => $this->getImage(320,320),
+          'title' => $this->faker->firstName.' '.$this->faker->lastName,
+          'text' => $this->faker->paragraph(5),
+        ),
+      )
+    );
     $article->push('sponsors', $this->generateBlocks(2));
     $article->push('futherSupport', array(
       'logo' => $this->getImage(320,320),

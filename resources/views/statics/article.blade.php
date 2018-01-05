@@ -100,6 +100,22 @@
         @slot('blocks', $article->blocks ?? null)
     @endcomponent
 
+    @if ($article->speakers)
+        @component('components.blocks._text')
+            @slot('font', 'f-module-title-2')
+            @slot('tag', 'h4')
+            Speaker{{ sizeof($article->speakers) > 1 ? 's' : '' }}
+        @endcomponent
+        @foreach ($article->speakers as $speaker)
+            @component('components.molecules._m-row-block')
+                @slot('variation', 'm-row-block--inline-title m-row-block--keyline-top')
+                @slot('title', $speaker['title'] ?? null)
+                @slot('img', $speaker['img'] ?? null)
+                @slot('text', $speaker['text'] ?? null)
+            @endcomponent
+        @endforeach
+    @endif
+
     @if ($article->sponsors)
         @component('components.blocks._text')
             @slot('font', 'f-module-title-2')
@@ -114,7 +130,7 @@
 
     @if ($article->futherSupport)
         @component('components.molecules._m-row-block')
-            @slot('variation', 'm-row-block---keyline-top')
+            @slot('variation', 'm-row-block--keyline-top')
             @slot('title', $article->futherSupport['title'] ?? null)
             @slot('img', $article->futherSupport['logo'] ?? null)
             @slot('text', $article->futherSupport['text'] ?? null)

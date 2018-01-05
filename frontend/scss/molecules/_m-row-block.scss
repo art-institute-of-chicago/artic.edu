@@ -20,20 +20,6 @@
   flex-flow: row wrap;
 }
 
-.m-row-block---keyline-top {
-  padding-top: 8px;
-}
-
-.m-row-block---keyline-top::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 1px;
-  background-color: $color__rules--primary;
-}
-
 .m-row-block__title {
   flex: 0 0 auto;
   width: 100%;
@@ -88,4 +74,70 @@
 
 .m-row-block .f-secondary:first-child {
   @include tucked-align-top($f-secondary);
+}
+
+
+
+
+.m-row-block--keyline-top {
+  padding-top: 8px;
+}
+
+.m-row-block--keyline-top::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
+
+
+
+
+.m-row-block--inline-title {
+  flex-direction: row-reverse;
+
+  &.m-row-block--keyline-top {
+    padding-top: 20px;
+  }
+}
+
+.m-row-block--inline-title .m-row-block__img {
+  margin-right: 0;
+  margin-left: colspan(2, xsmall);
+
+  @include breakpoint('small+') {
+    margin-right: 0;
+    margin-left: colspan(2, small);
+  }
+
+  @include breakpoint('medium+') {
+    margin-right: 0;
+    margin-left: colspan(2, medium);
+  }
+
+  @include breakpoint('large+') {
+    margin-right: 0;
+    margin-left: colspan(2, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    margin-right: 0;
+    margin-left: colspan(2, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    margin-right: 0;
+    margin-left: colspan(2, xxlarge);
+  }
+}
+
+.m-row-block--inline-title .m-row-block__text {
+  align-self: auto;
+}
+
+.m-row-block--inline-title .f-module-title-1 {
+  margin-bottom: 0;
 }

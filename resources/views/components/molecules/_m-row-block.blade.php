@@ -1,5 +1,5 @@
-<div class="m-row-block{{ (isset($variation)) ? ' '.$variation : '' }}">
-    @if (isset($title))
+<{{ $tag or 'div' }} class="m-row-block{{ (isset($variation)) ? ' '.$variation : '' }}">
+    @if (isset($title) && isset($variation) && !strrpos($variation, "inline-title"))
         @component('components.blocks._text')
             @slot('font', 'f-module-title-1')
             @slot('variation', 'm-row-block__title')
@@ -18,12 +18,20 @@
             @endcomponent
         </div>
     @endif
-    @if (isset($text))
-        <div class="m-row-block__text">
+    <div class="m-row-block__text">
+        @if (isset($title) && isset($variation) && strrpos($variation, "inline-title"))
+            @component('components.blocks._text')
+                @slot('font', 'f-module-title-1')
+                @slot('variation', 'm-row-block__title')
+                @slot('tag', 'h4')
+                {{ $title }}
+            @endcomponent
+        @endif
+        @if (isset($text))
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')
                 {{ $text }}
             @endcomponent
-        </div>
-    @endif
-</div>
+        @endif
+    </div>
+</{{ $tag or 'div' }}>
