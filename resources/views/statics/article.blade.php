@@ -102,29 +102,11 @@
     @endif
 
     @if ($article->futherSupport)
-        <div class="m-row-block m-row-block---keyline-top">
-            @component('components.blocks._text')
-                @slot('font', 'f-module-title-1')
-                @slot('variation', 'm-row-block__title')
-                @slot('tag', 'h4')
-                {{ $article->futherSupport['title'] }}
-            @endcomponent
-            <div class="m-row-block__img">
-                @component('components.atoms._img')
-                    @slot('src', $article->futherSupport['logo']['src'] ?? '')
-                    @slot('srcset', $article->futherSupport['logo']['srcset'] ?? '')
-                    @slot('sizes', $article->futherSupport['logo']['sizes'] ?? '')
-                    @slot('width', $article->futherSupport['logo']['width'] ?? '')
-                    @slot('height', $article->futherSupport['logo']['height'] ?? '')
-                @endcomponent
-            </div>
-            <div class="m-row-block__text">
-                @component('components.blocks._text')
-                    @slot('font', 'f-secondary')
-                    {{ $article->futherSupport['text'] }}
-                @endcomponent
-            </div>
-        </div>
+        @component('components.molecules._m-row-block')
+            @slot('title', $article->futherSupport['title'] ?? null)
+            @slot('img', $article->futherSupport['logo'] ?? null)
+            @slot('text', $article->futherSupport['text'] ?? null)
+        @endcomponent
     @endif
 
     @component('components.molecules._m-article-actions')

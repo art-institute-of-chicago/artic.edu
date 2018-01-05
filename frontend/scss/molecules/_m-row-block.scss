@@ -1,4 +1,18 @@
+/***
 
+```
+<div class="m-row-block m-row-block---keyline-top">
+    <h4 class="f-module-title-1 m-row-block__title">Further support has been provided by</h4>
+    <div class="m-row-block__img">
+        <img alt="" class="" src="http://placeimg.com/320/320/nature" sizes="" srcset="" width="320" height="320">
+    </div>
+    <div class="m-row-block__text">
+        <p class="f-secondary">Ut minima eius reiciendis modi est. Magni distinctio deleniti qui ab. Voluptatibus dolore veritatis sint optio tenetur aliquid. Pariatur cum et optio soluta. Omnis vel dolorem dolor optio distinctio illo consequatur pariatur.</p>
+    </div>
+</div>
+```
+
+***/
 
 .m-row-block {
   display: flex;
@@ -29,25 +43,31 @@
 .m-row-block__img {
   flex: 0 0 auto;
   width: colspan(13, xsmall);
+  margin-right: colspan(2, xsmall);
 
   @include breakpoint('small+') {
     width: colspan(13, small);
+    margin-right: colspan(2, small);
   }
 
   @include breakpoint('medium+') {
     width: colspan(8, medium);
+    margin-right: colspan(2, medium);
   }
 
   @include breakpoint('large+') {
     width: colspan(8, large);
+    margin-right: colspan(2, large);
   }
 
   @include breakpoint('xlarge+') {
     width: colspan(8, xlarge);
+    margin-right: colspan(2, xlarge);
   }
 
   @include breakpoint('xxlarge') {
     width: colspan(8, xxlarge);
+    margin-right: colspan(2, xxlarge);
   }
 }
 
@@ -59,28 +79,7 @@
 
 .m-row-block__text {
   flex: 1;
-  margin-left: colspan(2, xsmall);
   align-self: center;
-
-  @include breakpoint('small+') {
-    margin-left: colspan(2, small);
-  }
-
-  @include breakpoint('medium+') {
-    margin-left: colspan(2, medium);
-  }
-
-  @include breakpoint('large+') {
-    margin-left: colspan(2, large);
-  }
-
-  @include breakpoint('xlarge+') {
-    margin-left: colspan(2, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    margin-left: colspan(2, xxlarge);
-  }
 }
 
 .m-row-block .f-module-title-1:first-child {

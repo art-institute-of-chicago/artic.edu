@@ -214,6 +214,12 @@ class StaticsController extends Controller {
     $article->push('headerImage', $this->getImage(1600,900));
     $article->push('blocks', $this->generateBlocks(6));
     $article->push('intro', $this->faker->paragraph(6, false));
+    $article->push('sponsors', $this->generateBlocks(2));
+    $article->push('futherSupport', array(
+      'logo' => $this->getImage(320,320),
+      'title' => "Further support has been provided by",
+      'text' => $this->faker->paragraph(5),
+    ));
     $article->push('relatedEvents', $this->getEvents(4));
     $article->push('ticketLink', $ticketLink);
     $article->push('nav', $nav);
@@ -242,6 +248,12 @@ class StaticsController extends Controller {
     $article->push('headerImage', $this->getImage(1600,900));
     $article->push('blocks', $blocks);
     $article->push('intro', $this->faker->paragraph(6, false));
+    $article->push('sponsors', $this->generateBlocks(2));
+    $article->push('futherSupport', array(
+      'logo' => $this->getImage(320,320),
+      'title' => "Further support has been provided by",
+      'text' => $this->faker->paragraph(5),
+    ));
     $article->push('relatedArticles', $this->getArticles(4));
     $article->push('featuredRelated', array(
       'type' => 'event',
@@ -545,7 +557,11 @@ class StaticsController extends Controller {
       "id" => $this->faker->uuid,
       "slug" => "/statics/article",
       "title" => $this->faker->sentence(6, true),
-      "author" => $this->faker->firstName.' '.$this->faker->lastName,
+      "author" => array(
+        'image' => $this->getImage(320,320),
+        'name' => $this->faker->firstName.' '.$this->faker->lastName,
+        'link' => '#',
+      ),
       "intro" => $this->faker->sentence(12, true),
       "date" => $this->getFormattedDateString(),
       "image" => $this->getImage(),
