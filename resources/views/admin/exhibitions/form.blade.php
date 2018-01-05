@@ -90,7 +90,7 @@
         'custom_title_prefix' => 'Add',
         'with_multiple' => true,
         'with_sort' => true,
-        'hint' => 'Select Sponsors'
+        'hint' => 'Select Sponsors',
         'max' => 20
     ])
 @stop
