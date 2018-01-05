@@ -14,7 +14,6 @@ class Exhibition extends Model
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
 
-    // Move these to configuration files and implement ID replacement
     protected $endpoint = '/api/v1/exhibitions/{datahub_id}';
 
     protected $fillable = [
