@@ -26,20 +26,29 @@ trait HasApiSource
         if (!$this->apiFilled) {
 
             // Load the API endpoint and setup all fields
-            $apiFields = $this->request($params);
+            $dataObject = $this->request($params);
 
-            foreach($apiFields as $key => $value) {
-                if ($this->hasAttribute($key)) {
-                    // TODO: If the attribute already exists un-tie with a mapping array and set the attr.
-                    // Something like ['id' => 'datahub_id']
-                } else {
-                    $this->setAttribute($key, $value);
-                }
-            }
+            // Augment the entity with the object fields
+            $this->augmentEntity($dataObject);
 
+            // Mark the entity as augmented to avoid double calls
             $this->apiFilled = true;
         }
         return $this;
+    }
+
+    public function augmentEntity($dataObject) {
+        foreach($dataObject as $key => $value) {
+            if ($this->hasAttribute($key)) {
+                // TODO: If the attribute already exists un-tie with a mapping array and set the attr.
+                // Something like ['id' => 'datahub_id']
+            } else {
+                $this->setAttribute($key, $value);
+            }
+        }
+
+        // Mark the entity as augmented to avoid double calls
+        $this->apiFilled = true;
     }
 
     public function hasAttribute($attr)
@@ -76,12 +85,7 @@ trait HasApiSource
         $client = \App::make('ApiClient');
         $response = $client->request('GET', $this->getEndpoint(), $params);
 
-        $body = json_decode($response->getBody()->getContents());
-
-        // TODO: Perform some error controls
-        $statusCode = $response->getStatusCode();
-
-        return $body->data;
+        return $response->data;
     }
 
 }

@@ -1,10 +1,8 @@
 <?php
 
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
-
 namespace App\Providers;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use App\Services\GuzzleApiConsumer;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -37,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('ApiClient', function($app)
         {
-            return new \GuzzleHttp\Client(['base_uri' => config('api.base_uri')]);
+            return new GuzzleApiConsumer(['base_uri' => config('api.base_uri')]);
         });
     }
 

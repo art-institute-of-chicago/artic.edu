@@ -2,10 +2,6 @@
 
 @section('contentFields')
     @formField('input', [
-        'name' => 'title',
-        'label' => 'Title'
-    ])
-    @formField('input', [
         'name' => 'header_copy',
         'label' => 'Header',
     ])

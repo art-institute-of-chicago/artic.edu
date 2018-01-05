@@ -11,7 +11,7 @@ use A17\CmsToolkit\Models\Model;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias, HasBlocks;# , HasApiSource;
+    use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiSource;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
 
