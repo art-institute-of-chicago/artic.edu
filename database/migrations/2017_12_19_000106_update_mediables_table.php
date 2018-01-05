@@ -21,6 +21,7 @@ class UpdateMediablesTable extends Migration
             $table->integer('crop_x2')->nullable();
             $table->integer('crop_y2')->nullable();
             $table->string('background_position', 20)->default('top');
+            $table->dropColumn('metadatas');
         });
 
     }
