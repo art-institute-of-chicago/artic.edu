@@ -6,7 +6,16 @@ use A17\CmsToolkit\Http\Requests\Admin\Request;
 
 class ExhibitionRequest extends Request
 {
-    public function rules()
+    public function rulesForCreate()
+    {
+        $rules = [
+            'title' => 'required',
+        ];
+
+        return $rules;
+    }
+
+    public function rulesForUpdate()
     {
         $rules = [
             'title' => 'required',
@@ -20,4 +29,5 @@ class ExhibitionRequest extends Request
 
         return $rules;
     }
+
 }
