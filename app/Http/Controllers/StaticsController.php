@@ -247,7 +247,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+        "content" => 'Curabitur velit libero<sup id="ref_cite-1"><a href="#ref_note-1">[1]</a></sup>, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia<sup id="ref_cite-2"><a href="#ref_note-2">[2]</a></sup> sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique<sup id="ref_cite-3"><a href="#ref_note-3">[3]</a></sup>, tincidunt risus vel, gravida justo.'
     ));
     // get an event
     $article = $this->getArticle();
@@ -267,6 +267,37 @@ class StaticsController extends Controller {
       'type' => 'event',
       'items' => $this->getEvents(1),
     ));
+    $article->push('topics', array(
+        array(
+          'href' => '#',
+          'label' => $this->faker->sentence(2),
+        ),
+        array(
+          'href' => '#',
+          'label' => $this->faker->sentence(2),
+        ),
+        array(
+          'href' => '#',
+          'label' => $this->faker->sentence(2),
+        ),
+      )
+    );
+    $article->push('references', array(
+      array(
+        'id' => '1',
+        'reference' => $this->faker->sentence(9),
+      ),
+      array(
+        'id' => '2',
+        'reference' => $this->faker->sentence(9),
+      ),
+      array(
+        'id' => '3',
+        'reference' => $this->faker->sentence(9),
+      ),
+    ));
+    $article->push('citation', $this->faker->paragraph(5));
+    $article->push('comments', '<p class="f-secondary">comments embed code</p>');
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
@@ -707,6 +738,26 @@ class StaticsController extends Controller {
     array_push($blocks, array(
         "type" => 'text',
         "content" => $this->faker->paragraph(12, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'unorderedList',
+        "items" => array(
+          $this->faker->sentence(6),
+          $this->faker->sentence(6),
+          $this->faker->sentence(6),
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'orderedList',
+        "items" => array(
+          $this->faker->sentence(6),
+          $this->faker->sentence(6),
+          $this->faker->sentence(6),
+        )
     ));
     array_push($blocks, array(
         "type" => 'text',

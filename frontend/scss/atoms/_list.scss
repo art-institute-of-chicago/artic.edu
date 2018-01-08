@@ -1,0 +1,46 @@
+/***
+
+Basic styles to both `ul` and `ol`
+
+```
+<ul class="a-list">
+  <li>Check your spelling</li>
+  <li>Try searching for fewer terms to broaden your results.</li>
+</ul>
+<ol class="a-list">
+  <li>Check your spelling</li>
+  <li>Try searching for fewer terms to broaden your results.</li>
+</ol>
+<ul class="a-list">
+  <li>Check your spelling</li>
+  <li>
+    Try searching for fewer terms to broaden your results.
+    <ol class="a-list">
+      <li>Check your spelling</li>
+      <li>
+        Try searching for fewer terms to broaden your results.
+        <ul class="listf-body">
+          <li>Check your spelling</li>
+          <li>Try searching for fewer terms to broaden your results.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+```
+
+***/
+
+.list {
+  padding-left: 1.1em;
+}
+
+ul.list > li {
+  list-style-type: disc;
+}
+
+
+ol.list > li {
+  list-style-type: decimal;
+}

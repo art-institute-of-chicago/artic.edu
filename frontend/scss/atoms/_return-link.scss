@@ -1,0 +1,43 @@
+/***
+
+```
+<a class="return-link" href="#ref_cite-1"><svg class="icon--return" aria-label="back to reference"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--return"></use></svg></a>
+```
+
+***/
+
+.return-link {
+  position: relative;
+  color: $color__link--accent;
+
+  &:hover,
+  &:focus {
+    color: $color__link--accent-hover;
+  }
+
+  &:active {
+    color: $color__link--accent-active;
+  }
+}
+
+.return-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.o-article--editorial .return-link {
+  color: $color__link--editorial;
+
+  &:hover,
+  &:focus {
+    color: $color__link--editorial-hover;
+  }
+
+  &:active {
+    color: $color__link--editorial-active;
+  }
+}

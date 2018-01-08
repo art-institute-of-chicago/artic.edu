@@ -278,14 +278,22 @@
   border-radius: $border-radius;
   background-color: rgba($color__black, .7);
   color: $color__white;
+  text-align: center;
+  line-height: 45px;
+  cursor: pointer;
   transform: rotate(-90deg);
   transition: bottom .25s $bezier--ease-in-circ;
-  text-align: center;
-  cursor: pointer;
 
   @include breakpoint('medium+') {
     display: block;
   }
+}
+
+.o-article__top-link:hover,
+.o-article__top-link:focus,
+.o-article__top-link:active {
+  background-color: rgba($color__black, .9);
+  color: $color__white;
 }
 
 .o-article__top-link svg {
@@ -303,7 +311,6 @@
   width: 1.5px;
   background-color: $color__white;
 }
-
 
 .o-article--generic-page {
 

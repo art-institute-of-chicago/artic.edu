@@ -2,7 +2,7 @@
 
 .o-blocks {
   & > .f-deck {
-    @include tucked-margin-top($f-deck, ('xsmall': 56));
+    @include tucked-margin-top($f-deck, ('xsmall': 68));
 
     &:first-child {
       @include tucked-align-top($f-deck);
@@ -42,6 +42,14 @@
     }
   }
 
+  & > .f-secondary {
+    @include tucked-margin-top($f-secondary, ('xsmall': 48));
+
+    &:first-child {
+      @include tucked-align-top($f-secondary);
+    }
+  }
+
     & > .f-subheading-1 + .f-body,
     & > .f-subheading-1 + .f-body-editorial {
       margin-top: 0;
@@ -72,7 +80,12 @@
 
   $blockClassesCompiled: '';
   @each $blockClass in $blockClasses {
-    $blockClassesCompiled: "#{$blockClassesCompiled}, .#{$blockClass}"
+    $i: index($blockClasses, $blockClass);
+    @if ($i > 1) {
+      $blockClassesCompiled: "#{$blockClassesCompiled}, .#{$blockClass}"
+    } @else {
+      $blockClassesCompiled: ".#{$blockClass}"
+    }
   }
 
   #{$blockClassesCompiled} {
@@ -198,5 +211,12 @@
     &:active {
       color: $color__link--editorial-active;
     }
+  }
+
+  & > .f-body sub a,
+  & > .f-body sup a,
+  & > .f-body-editorial sub a,
+  & > .f-body-editorial sup a {
+    text-decoration: none;
   }
 }

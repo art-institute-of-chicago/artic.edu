@@ -1,0 +1,27 @@
+/***
+
+Spaces and wraps
+
+```
+<ul class="m-inline-list">
+    <li class="m-inline-list__item"><a class="tag f-tag" href="#">Laborum voluptas rem.</a></li>
+    <li class="m-inline-list__item"><a class="tag f-tag" href="#">Quia facere quidem.</a></li>
+    <li class="m-inline-list__item"><a class="tag f-tag" href="#">Est minus.</a></li>
+</ul>
+```
+
+
+***/
+
+.m-inline-list {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 16px 0 0 -12px;
+}
+
+.m-inline-list__item {
+  flex: 0 0 auto;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+

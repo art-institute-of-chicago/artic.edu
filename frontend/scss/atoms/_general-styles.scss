@@ -47,15 +47,23 @@ mark {
   outline: 3px solid $color__black;
 }
 
-sub {
-  font-size: 76.5%;
-  vertical-align: sub;
-}
-
+sub,
 sup {
   font-size: 76.5%;
-  vertical-align: super;
+  vertical-align: sub;
+
+  *[class*=f-] & {
+    font-size: 60%;
+  }
 }
+
+  sub {
+    vertical-align: sub;
+  }
+
+  sup {
+    vertical-align: super;
+  }
 
 pre,
 code {

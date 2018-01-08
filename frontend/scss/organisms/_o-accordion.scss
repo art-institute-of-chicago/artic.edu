@@ -1,6 +1,10 @@
 
 
 .o-accordion {
+
+  .o-article + & {
+    margin-top: 40px;
+  }
 }
 
 .o-accordion__trigger {
@@ -95,6 +99,10 @@
   position: relative;
   padding-top: .02px;
 
+  .o-accordion--section & {
+    padding-top: 28px;
+  }
+
   @include breakpoint('small+') {
     padding-right: colspan(3, small);
     padding-bottom: 8px;
@@ -110,6 +118,10 @@
 
   @include breakpoint('xlarge+') {
     padding-right: colspan(3, xlarge);
+
+    .o-accordion--section & {
+      padding-top: 36px;
+    }
   }
 
   @include breakpoint('xxlarge') {

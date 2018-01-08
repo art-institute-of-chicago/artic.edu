@@ -29,7 +29,7 @@
                 @slot('font', ($font ? $font : null))
                 @slot('loopIndex', $loop->iteration)
 
-                @if (isset($editorial) and $editorial and $loop->first)
+                @if (isset($editorial) and $editorial and $loop->first and !$loop->parent and isset($dropCapFirstPara) and $dropCapFirstPara)
                     @component('components.blocks._text')
                         @slot('font','f-dropcap-editorial')
                         @slot('tag','span')
@@ -136,6 +136,34 @@
                     @slot('items', $block['items']);
                 @endcomponent
             @endif
+        @endif
+
+        @if ($block['type'] === 'unorderedList')
+            <ul class="list {{ ((isset($editorial) and $editorial) ? 'f-body-editorial' : 'f-body') }}">
+            @foreach ($block['items'] as $item)
+                <li>{{ $item }}</li>
+            @endforeach
+            </ul>
+        @endif
+
+        @if ($block['type'] === 'orderedList')
+            <ol class="list {{ ((isset($editorial) and $editorial) ? 'f-body-editorial' : 'f-body') }}">
+            @foreach ($block['items'] as $item)
+                <li>{{ $item }}</li>
+            @endforeach
+            </ol>
+        @endif
+
+        @if ($block['type'] === 'references')
+            <ol class="list f-secondary">
+            @foreach ($block['items'] as $item)
+                <li id="ref_note-{{ $item['id'] }}">{{ $item['reference'] }} <a class="return-link" href="#ref_cite-{{ $item['id'] }}"><svg class="icon--return" aria-label="back to reference"><use xlink:href="#icon--return"></use></svg></a></li>
+            @endforeach
+            </ol>
+        @endif
+
+        @if ($block['type'] === 'embed')
+            {!! $block['content'] !!}
         @endif
 
     @endforeach

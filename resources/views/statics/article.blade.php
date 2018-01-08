@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article class="o-article{{ ($article->articleType === 'editorial') ? ' o-article--editorial' : '' }}">
+<article class="o-article{{ ($article->articleType === 'editorial') ? ' o-article--editorial' : '' }}" data-behavior="articleInternalLinks">
 
   @component('components.molecules._m-article-header')
     @slot('editorial', ($article->articleType === 'editorial'))
@@ -98,6 +98,7 @@
     @component('components.blocks._blocks')
         @slot('editorial', ($article->articleType === 'editorial'))
         @slot('blocks', $article->blocks ?? null)
+        @slot('dropCapFirstPara', ($article->articleType === 'editorial'))
     @endcomponent
 
     @if ($article->speakers)
@@ -139,26 +140,92 @@
         @endcomponent
     @endif
 
+    @if ($article->citation)
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-subheading-1')
+            @slot('tag', 'h4')
+            Citation
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-secondary')
+            {{ $article->citation }}
+        @endcomponent
+    @endif
+
+    @if ($article->references)
+        @component('components.organisms._o-accordion')
+            @slot('variation', 'o-accordion--section')
+            @slot('items', array(
+                array(
+                    'title' => "References",
+                    'active' => true,
+                    'blocks' => array(
+                        array(
+                            "type" => 'references',
+                            "items" => $article->references
+                        ),
+                    ),
+                ),
+            ))
+            @slot('loopIndex', 'references')
+        @endcomponent
+    @endif
+
+    @if ($article->topics)
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-subheading-1')
+            @slot('tag', 'h4')
+            Topics
+        @endcomponent
+        <ul class="m-inline-list">
+        @foreach ($article->topics as $topic)
+            <li class="m-inline-list__item"><a class="tag f-tag" href="{{ $topic['href'] }}">{{ $topic['label'] }}</a></li>
+        @endforeach
+        </ul>
+    @endif
+
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
         @slot('editorial', ($article->articleType === 'editorial'))
     @endcomponent
   </div>
 
-  <button class="o-article__top-link" data-behavior="topLink" href="#a17">
+  <a class="o-article__top-link" href="#a17">
     <svg class="icon--arrow" aria-label="top of page">
       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow">
     </svg>
-  </button>
+  </a>
 
 </article>
+
+@if ($article->comments)
+    @component('components.organisms._o-accordion')
+        @slot('variation', 'o-accordion--section')
+        @slot('items', array(
+            array(
+                'title' => "Comments",
+                'blocks' => array(
+                    array(
+                        "type" => 'embed',
+                        "content" => $article->comments
+                    ),
+                ),
+            ),
+        ))
+        @slot('loopIndex', 'references')
+    @endcomponent
+@endif
 
 @if ($article->relatedEventsByDay)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('text' => 'See all events', 'href' => '#')))
+        @slot('id', 'related_events')
         Related Events
     @endcomponent
-
     @component('components.organisms._o-row-listing')
         @foreach ($article->relatedEventsByDay as $date)
             @component('components.molecules._m-date-listing')
@@ -166,7 +233,6 @@
             @endcomponent
         @endforeach
     @endcomponent
-
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--buttons')
         @slot('linksPrimary', array(array('text' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary')))
@@ -178,7 +244,6 @@
         @slot('links', array(array('text' => 'See all exhibitions', 'href' => '#')))
         Related Exhibitions
     @endcomponent
-
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
         @slot('cols_medium','3')
@@ -199,7 +264,6 @@
         @slot('links', array(array('text' => 'See all events', 'href' => '#')))
         Related Events
     @endcomponent
-
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
         @slot('cols_medium','3')
@@ -219,7 +283,6 @@
     @component('components.molecules._m-title-bar')
         Further Reading
     @endcomponent
-
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
         @slot('cols_medium','3')
