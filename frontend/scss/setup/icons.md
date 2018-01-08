@@ -25,6 +25,7 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--close"><use xlink:href="#icon--close" /></svg>
   <svg class="icon--info--24"><use xlink:href="#icon--info--24" /></svg>
   <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+  <svg class="icon--info-i"><use xlink:href="#icon--info-i" /></svg>
   <svg class="icon--location--24"><use xlink:href="#icon--location--24" /></svg>
   <svg class="icon--location"><use xlink:href="#icon--location" /></svg>
   <svg class="icon--logo--80"><use xlink:href="#icon--logo--80" /></svg>

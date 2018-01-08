@@ -32,5 +32,13 @@
             {{ $type }}
         @endcomponent
       @endif
+      @if (isset($img) and isset($img['info']))
+      <button class="m-article-header__info-trigger" id="image-info-trigger" aria-selected="false" aria-controls="image-info" aria-expanded="false" data-behavior="imageInfo">
+        <svg class="icon--info-i" aria-label="Image info"><use xlink:href="#icon--info-i" /></svg>
+      </button>
+      <div class="m-article-header__info" id="image-info" aria-labelledby="image-info-trigger" aria-hidden="true" role="Tooltip">
+        <p class="f-caption">{{ $img['info'] }}</p>
+      </div>
+      @endif
   </div>
 </{{ $tag or 'header' }}>

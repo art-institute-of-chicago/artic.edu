@@ -15,3 +15,4 @@ export { default as mask } from './mask';
 export { default as pinboard } from './pinboard';
 export { default as bannerParallax } from './bannerParallax';
 export { default as articleInternalLinks } from './articleInternalLinks';
+export { default as imageInfo } from './imageInfo';

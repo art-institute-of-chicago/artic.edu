@@ -240,6 +240,8 @@ class StaticsController extends Controller {
   }
 
   public function editorial() {
+    $headerImage = $this->getImage(1600,900);
+    $headerImage["info"] = $this->faker->sentence(10);
     $blocks = $this->generateBlocks(3);
     array_push($blocks, array(
         "type" => 'quote',
@@ -253,7 +255,7 @@ class StaticsController extends Controller {
     $article = $this->getArticle();
     $article->push('articleType', 'editorial');
     $article->push('headerType', 'feature');
-    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('headerImage', $headerImage);
     $article->push('blocks', $blocks);
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('sponsors', $this->generateBlocks(2));

@@ -42,6 +42,81 @@
   }
 }
 
+.m-article-header__info-trigger {
+  display: block;
+  position: absolute;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0 none;
+  border-radius: 50%;
+  background-color: rgba($color__black, .7);
+  color: $color__white;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity .15s;
+
+  &[aria-expanded="true"] {
+    opacity: .25;
+  }
+}
+
+.m-article-header__info-trigger:hover,
+.m-article-header__info-trigger:focus,
+.m-article-header__info-trigger:active {
+  background-color: rgba($color__black, .9);
+  color: $color__white;
+}
+
+.m-article-header__info-trigger::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.m-article-header__info-trigger svg {
+  position: relative;
+  top: -1px;
+}
+
+.m-article-header__info {
+  position: absolute;
+  right: 0;
+  width: 250px;
+  padding: 12px 16px 16px;
+  border: 0 none;
+  border-radius: $border-radius;
+  background-color: rgba($color__black, .7);
+  transition: opacity .15s;
+  overflow: hidden;
+
+  &[aria-hidden="true"] {
+    height: 0;
+    width: 0;
+    padding: 0;
+    opacity: 0;
+  }
+
+  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+
+  @include breakpoint('medium+') {
+    width: 300px;
+    padding: 16px 20px 20px;
+  }
+}
+
+.m-article-header__info .f-caption {
+  @include tucked-align-top($f-caption);
+  color: $color__white;
+}
 
 
 .m-article-header--feature {
@@ -240,6 +315,11 @@
   }
 
 
+.m-article-header--feature .m-article-header__info-trigger,
+.m-article-header--feature .m-article-header__info {
+  bottom: 100%;
+  margin-bottom: 28px;
+}
 
 
 
@@ -380,7 +460,18 @@
 
 .m-article-header--hero .m-article-header__intro {
   @include tucked-margin-top($f-deck, ('xsmall': 36));
+  padding-right: 32px;
+
+  @include breakpoint('medium+') {
+    padding-right: 0;
+  }
 }
+
+.m-article-header--hero .m-article-header__info-trigger,
+.m-article-header--hero .m-article-header__info {
+  bottom: 28px;
+}
+
 
 
 
