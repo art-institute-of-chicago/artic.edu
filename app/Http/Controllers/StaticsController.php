@@ -220,11 +220,6 @@ class StaticsController extends Controller {
           'title' => $this->faker->firstName.' '.$this->faker->lastName,
           'text' => $this->faker->paragraph(5),
         ),
-        array(
-          'img' => $this->getImage(320,320),
-          'title' => $this->faker->firstName.' '.$this->faker->lastName,
-          'text' => $this->faker->paragraph(5),
-        ),
       )
     );
     $article->push('sponsors', $this->generateBlocks(2));

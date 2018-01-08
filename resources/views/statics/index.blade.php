@@ -20,7 +20,7 @@
   <li><br><a href="/statics/generic_landing">generic landing</a></li>
   <li><a href="/statics/generic_detail">generic detail</a></li>
   <li><br>header image info missing</li>
-  <li>blocks missing: speakers, references, comments</li>
+  <li>blocks missing: references, comments</li>
   <li>Icon missing: pencil</li>
   <li><br><a href="/statics/exhibition">exhibition, hero header</a></li>
   <li><a href="/statics/event">event, standard header</a></li>

@@ -112,6 +112,8 @@
                 @slot('title', $speaker['title'] ?? null)
                 @slot('img', $speaker['img'] ?? null)
                 @slot('text', $speaker['text'] ?? null)
+                @slot('titleFont', 'f-subheading-1')
+                @slot('textFont', ($article->articleType === 'editorial') ? 'f-body-editorial' : 'f-body')
             @endcomponent
         @endforeach
     @endif

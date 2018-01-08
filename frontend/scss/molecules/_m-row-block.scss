@@ -76,6 +76,18 @@
   @include tucked-align-top($f-secondary);
 }
 
+.m-row-block .f-subheading-1:first-child {
+  @include tucked-align-top($f-subheading-1);
+}
+
+.m-row-block .f-body:first-child {
+  @include tucked-align-top($f-body);
+}
+
+.m-row-block .f-body-editorial:first-child {
+  @include tucked-align-top($f-body-editorial);
+}
+
 
 
 
@@ -134,10 +146,10 @@
   }
 }
 
-.m-row-block--inline-title .m-row-block__text {
-  align-self: auto;
+.m-row-block--inline-title .m-row-block__title {
+  margin-bottom: 0;
 }
 
-.m-row-block--inline-title .f-module-title-1 {
-  margin-bottom: 0;
+.m-row-block--inline-title .m-row-block__text {
+  align-self: auto;
 }
