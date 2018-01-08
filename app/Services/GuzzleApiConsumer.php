@@ -13,27 +13,19 @@ class GuzzleApiConsumer
         $this->client = new \GuzzleHttp\Client($options);
     }
 
-
-
-
     /**
-     * Add your functions here to extend the API consumer
+     * Intercept the Guzzle request and return a cleaner object
      *
      */
-
-
-
-
-
     public function request($method, $uri = '', array $options = [])
     {
         $response = $this->client->request($method, $uri, $options);
-
-        //TODO: Add error controls
-
         $body = json_decode($response->getBody()->getContents());
 
-        return (object) ['data' => $body->data, 'status' => 200];
+        return (object) [
+            'body'       => $body,
+            'status'     => $response->getStatusCode()
+        ];
     }
 
     /**

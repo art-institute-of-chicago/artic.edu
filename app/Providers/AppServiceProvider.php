@@ -35,7 +35,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('ApiClient', function($app)
         {
-            return new GuzzleApiConsumer(['base_uri' => config('api.base_uri')]);
+            return new GuzzleApiConsumer([
+                'base_uri'   => config('api.base_uri'),
+                'exceptions' => false
+            ]);
         });
     }
 

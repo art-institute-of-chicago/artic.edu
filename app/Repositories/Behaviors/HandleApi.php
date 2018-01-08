@@ -37,7 +37,7 @@ trait HandleApi
         $client = \App::make('ApiClient');
         $response = $client->request('GET', $this->getEndpoint(), $params);
 
-        return $response->data;
+        return $response;
     }
 
 
@@ -49,16 +49,23 @@ trait HandleApi
         $ids = join(array_filter($results->pluck('datahub_id')->toArray()), ',');
 
         // Call the API
-        $apiResults = $this->request(['query' => ['ids' => $ids]]);
+        $params = ['query' => ['ids' => $ids]];
+        $apiResults = $this->request($params);
 
-        // Augment models
-        foreach($results as &$item) {
-            foreach($apiResults as $apiItem) {
-                if ($apiItem->id == $item->datahub_id) {
-                    $item->augmentEntity($apiItem);
-                    break;
+        if ($apiResults->status == 200) {
+            // Augment models
+            foreach($results as &$item) {
+                foreach($apiResults as $apiItem) {
+                    if ($apiItem->id == $item->datahub_id) {
+                        $item->augmentEntity($apiItem);
+                        break;
+                    }
                 }
             }
+        } else {
+            $message = $this->getEndpoint() . ' - Parameters: '. json_encode($params) . ' Status: ' . $apiResults->body->status . " \n";
+            $message .= get_class($this) . " - " . $apiResults->body->detail;
+            \Log::error($message);
         }
 
         return $results;

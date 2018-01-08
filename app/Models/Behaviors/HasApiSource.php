@@ -23,27 +23,52 @@ trait HasApiSource
     private $apiFields = [];
 
     /**
-     * Refresh the model with API values in case it's not done yet.
-     * TODO: Solve the collision cases. Probably using an identity array.
+     * Indicates if there was any error while loading the API
      *
      * @var bool
+     */
+    private $apiError = false;
+
+    /**
+     * Refresh the model with API values in case it's not done yet.
+     *
+     * @var array
      */
     public function refreshApi($params = [])
     {
         if (!$this->apiFilled) {
+            if ($this->hasAllApiParameters()) {
+                // Load the API endpoint and setup all fields
+                $dataObject = $this->request($params);
 
-            // Load the API endpoint and setup all fields
-            $dataObject = $this->request($params);
+                if ($dataObject->status == 200) {
+                    // Augment the entity with the object fields
+                    $this->augmentEntity($dataObject->body->data);
 
-            // Augment the entity with the object fields
-            $this->augmentEntity($dataObject);
+                    // Mark the entity as augmented to avoid double calls
+                    $this->apiFilled = true;
+                } else {
+                    $this->apiError = true;
+                    $message = $this->getEndpoint() . ' - Status: ' . $dataObject->body->status . " \n";
+                    $message .= get_class($this) . " with ID: " . $this->id . ". " . $dataObject->body->detail;
+                    \Log::error($message);
+                }
+            } else {
+                $this->apiError = true;
 
-            // Mark the entity as augmented to avoid double calls
-            $this->apiFilled = true;
+                $message = get_class($this) . " with ID: " . $this->id . " doesn't have all API parameters filled. Check the endpoint and needed fields";
+                \Log::error($message);
+            }
         }
         return $this;
     }
 
+    /**
+     * Augment the entity with the values coming from the API.
+     * TODO: Solve name collisions
+     *
+     * @object
+     */
     public function augmentEntity($dataObject) {
         foreach($dataObject as $key => $value) {
             if ($this->hasAttribute($key)) {
@@ -83,6 +108,24 @@ trait HasApiSource
     }
 
     /**
+     * Detect all parameters are present to avoid calls to a wrong API endpoint
+     *
+     * @return boolean
+     */
+    protected function hasAllApiParameters()
+    {
+        $allParameters = true;
+        preg_replace_callback('!\{(\w+)\}!', function($matches) use(&$allParameters) {
+            $name = $matches[1];
+            if (empty($this->$name) || ctype_space($this->$name)) {
+                $allParameters = false;
+            }
+            return true;
+        }, $this->endpoint);
+        return $allParameters;
+    }
+
+    /**
      * Perform a request to the API client.
      * TODO: Add error controls and more configurations
      *
@@ -93,13 +136,22 @@ trait HasApiSource
         $client = \App::make('ApiClient');
         $response = $client->request('GET', $this->getEndpoint(), $params);
 
-        return $response->data;
+        return $response;
+    }
+
+    public function hasApiFields() {
+        return $this->apiError;
     }
 
     public function getApiField($field) {
         return $this->getApiFields[$field];
     }
 
+    /**
+     * Get API fields and its values stored at the object
+     *
+     * @return object
+     */
     public function getApiFields() {
         return (object) array_reduce($this->apiFields, function($result, $field) {
             $result[$field] = $this->$field; return $result;
