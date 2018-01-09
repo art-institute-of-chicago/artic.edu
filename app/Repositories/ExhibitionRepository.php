@@ -7,11 +7,11 @@ use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Models\Exhibition;
-use App\Repositories\Behaviors\HandleApi;
+use App\Repositories\Admin\AugmentedApiRepository;
 
-class ExhibitionRepository extends ModuleRepository
+class ExhibitionRepository extends AugmentedApiRepository
 {
-    use HandleRevisions, HandleMedias, HandleBlocks, HandleApi;
+    use HandleRevisions, HandleMedias, HandleBlocks;
 
     protected $endpoint = '/api/v1/exhibitions';
 

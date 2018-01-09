@@ -8,18 +8,19 @@ use App\Repositories\SegmentRepository;
 class SiteTagController extends ModuleController
 {
     protected $moduleName = 'siteTags';
+    protected $modelName  = 'SiteTagApi';
 
     protected $indexOptions = [
         'publish' => false,
     ];
 
-    protected $titleColumnKey = 'name';
+    protected $titleColumnKey = 'title';
 
     protected $indexColumns = [
-        'name' => [
-            'title' => 'Name',
+        'title' => [
+            'title' => 'Title',
             'edit_link' => true,
-            'field' => 'name',
+            'field' => 'title',
         ],
     ];
 
