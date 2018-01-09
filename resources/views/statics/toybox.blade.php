@@ -200,6 +200,10 @@
         @slot('variation', 'btn--senary')
         Senary
     @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--septenary')
+        Septenary
+    @endcomponent
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
@@ -231,6 +235,11 @@
         @slot('icon', 'icon--new-window')
         Senary
     @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--septenary')
+        @slot('icon', 'icon--new-window')
+        Septenary
+    @endcomponent
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
@@ -260,6 +269,48 @@
     @endcomponent
     @component('components.atoms._btn')
         @slot('variation', 'btn--senary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--septenary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+</p>
+<p style="margin-top: 20px;">
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--icon-sq')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--secondary btn--icon-sq')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--tertiary btn--icon-sq')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--quaternary btn--icon-sq')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--quinary btn--icon-sq')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--senary btn--icon-sq')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--septenary btn--icon-sq')
         @slot('font', '')
         @slot('icon', 'icon--print--24')
     @endcomponent

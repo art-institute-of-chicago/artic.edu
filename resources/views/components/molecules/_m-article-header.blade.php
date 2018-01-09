@@ -32,6 +32,12 @@
         @slot('img', $img ?? null)
         @slot('breadcrumb', $breadcrumb ?? null)
     @endcomponent
+@elseif (isset($headerType) and $headerType === 'gallery')
+    {{-- Generic header --}}
+    @component('components.molecules._m-article-header----gallery')
+        @slot('editorial', $editorial ?? null)
+        @slot('variation', $variation ?? null)
+    @endcomponent
 @else
     {{-- Default header --}}
     @component('components.molecules._m-article-header----default')

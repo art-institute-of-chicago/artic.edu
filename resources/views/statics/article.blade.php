@@ -8,7 +8,6 @@
     @slot('editorial', ($article->articleType === 'editorial'))
     @slot('headerType', ($article->headerType ?? null))
     @slot('variation', ($article->headerVariation ?? null))
-    @slot('variation', 'mike')
     @slot('title', $article->title)
     @slot('date', $article->date)
     @slot('type', $article->type)

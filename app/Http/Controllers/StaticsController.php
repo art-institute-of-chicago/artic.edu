@@ -307,6 +307,68 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function artwork() {
+    // make some left rail links
+    $locationLink = array('label' => 'European Painting and Sculpture, Galleries 239', 'href' => '#', 'iconBefore' => 'location');
+    // make left rail nav array
+    $nav = array();
+    array_push($nav, $locationLink);
+    // get an artwork
+    $article = $this->getArtwork();
+    // update and add some items (I ran into memory issues doing this in the main getartwork func..)
+    $article->push('articleType', 'artwork');
+    $article->push('headerType', 'gallery');
+    $article->push('blocks', $this->generateBlocks(6));
+    $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
+    $article->push('exploreFuther', array(
+      'items' => $this->getArtworks(8),
+      'nav' => array(
+        array(
+          'href' => '#',
+          'label' => "Renaissance",
+        ),
+        array(
+          'href' => '#',
+          'label' => "Arms",
+          'active' => true,
+        ),
+        array(
+          'href' => '#',
+          'label' => "Northern Italy",
+        ),
+        array(
+          'href' => '#',
+          'label' => "All tags",
+        ),
+      ),
+    ));
+    $article->push('recentlyViewedArtworks', $this->getArtworks(6));
+    $article->push('interestedThemes', array(
+      array(
+        'href' => '#',
+        'label' => "Picasso",
+      ),
+      array(
+        'href' => '#',
+        'label' => "Modern Art",
+      ),
+      array(
+        'href' => '#',
+        'label' => "European Art",
+      ),
+    ));
+    $article->push('featuredRelated', array(
+      'type' => 'article',
+      'items' => $this->getArticles(1),
+    ));
+    $article->push('nav', $nav);
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'hero'),
+      'article' => $article,
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
@@ -576,7 +638,8 @@ class StaticsController extends Controller {
       "id" => $this->faker->uuid,
       "sku" => $this->faker->year().'.'.$this->faker->numberBetween(99,249),
       "slug" => "/statics/artwork",
-      "title" => $this->faker->sentence(3, true),
+      "title" => $this->faker->sentence(5, true),
+      "subtitle" => $this->faker->sentence(5, true),
       "artist" => $this->faker->firstName.' '.$this->faker->lastName,
       "date" => $this->faker->year(),
       "image" => $this->getImage(),

@@ -151,6 +151,22 @@
   }
 }
 
+.btn--septenary {
+  background-color: rgba($color__black, .5);
+  color: $color__white;
+
+  &:hover,
+  &:focus {
+    background-color: rgba($color__black, .75);
+    color: $color__white;
+  }
+
+  &:active {
+    background-color: rgba($color__black, .5);
+    color: $color__white;
+  }
+}
+
 .btn--contrast {
   border-color: rgba($color__white, .2);
   background-color: transparent;
@@ -246,7 +262,17 @@
   text-align: center;
 }
 
-.btn.btn--icon svg {
+.btn.btn--icon-sq {
+  width: 48px;
+  height: 48px;
+  padding-right: 0;
+  padding-left: 0;
+  line-height: 46px;
+  text-align: center;
+}
+
+.btn.btn--icon svg,
+.btn.btn--icon-sq svg {
   display: inline-block;
   margin-top: -4px;
   margin-right: 0;
