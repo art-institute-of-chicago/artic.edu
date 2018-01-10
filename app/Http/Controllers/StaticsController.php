@@ -319,7 +319,6 @@ class StaticsController extends Controller {
     $article->push('articleType', 'artwork');
     $article->push('headerType', 'gallery');
     $article->push('blocks', $this->generateBlocks(6));
-    $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
     $article->push('exploreFuther', array(
       'items' => $this->getArtworks(8),
       'nav' => array(

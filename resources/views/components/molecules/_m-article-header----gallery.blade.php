@@ -1,28 +1,57 @@
-<{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery">
 
   <div class="m-article-header__img">
-      <div class="m-article-header__img-container">
+      {{-- <ul class="m-article-header__imgs">
+        <li class="s-active">
+          <span class="m-article-header__img-container">
+            @component('components.atoms._img')
+                @slot('src', "http://placeimg.com/900/1600/nature")
+                @slot('width', 900)
+                @slot('height', 1600)
+            @endcomponent
+          </span>
+        </li>
+        <li>
+          <span class="m-article-header__img-container">
+            @component('components.atoms._img')
+                @slot('src', "http://placeimg.com/900/900/nature")
+                @slot('width', 900)
+                @slot('height', 900)
+            @endcomponent
+          </span>
+        </li>
+        <li>
+          <span class="m-article-header__img-container">
+            @component('components.atoms._img')
+                @slot('src', "http://placeimg.com/1600/900/nature")
+                @slot('width', 1600)
+                @slot('height', 900)
+            @endcomponent
+          </span>
+        </li>
+      </ul> --}}
+      <div class="m-article-header__img-container" data-gallery-hero>
         @component('components.atoms._img')
             @slot('src', "http://placeimg.com/900/1600/nature")
             @slot('width', 900)
             @slot('height', 1600)
         @endcomponent
       </div>
-      <span class="m-article-header__img-copyright f-secondary">&copy; Art Institute of Chicago</span>
+      <span class="m-article-header__img-copyright f-secondary" data-gallery-credit>&copy; Art Institute of Chicago</span>
       <ul class="m-article-header__img-nav">
         <li class="m-article-header__img-nav-next-img">
-          <button></button>
+          <button data-gallery-next></button>
         </li>
         <li class="m-article-header__img-nav-prev-img">
-          <button></button>
+          <button data-gallery-previous></button>
         </li>
         <li class="m-article-header__img-nav-next-artwork">
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
                   @slot('src', "http://placeimg.com/90/160/nature")
-                  @slot('width', 900)
-                  @slot('height', 1600)
+                  @slot('width', 90)
+                  @slot('height', 160)
               @endcomponent
             </span>
             <span class="f-caption">
@@ -36,9 +65,9 @@
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('src', "http://placeimg.com/90/160/nature")
-                  @slot('width', 900)
-                  @slot('height', 1600)
+                  @slot('src', "http://placeimg.com/160/90/nature")
+                  @slot('width', 160)
+                  @slot('height', 90)
               @endcomponent
             </span>
             <span class="f-caption">
@@ -55,6 +84,7 @@
               @slot('variation', 'btn--septenary btn--icon-sq')
               @slot('font', '')
               @slot('icon', 'icon--zoom--24')
+              @slot('dataAttributes', 'data-gallery-fullscreen')
           @endcomponent
         </li>
         <li>
@@ -62,6 +92,7 @@
               @slot('variation', 'btn--septenary btn--icon-sq')
               @slot('font', '')
               @slot('icon', 'icon--arrow')
+              @slot('dataAttributes', 'data-gallery-download')
           @endcomponent
         </li>
         <li>
@@ -69,32 +100,59 @@
               @slot('variation', 'btn--septenary btn--icon-sq')
               @slot('font', '')
               @slot('icon', 'icon--share--24')
+              @slot('dataAttributes', 'data-gallery-share')
+              @slot('behavior', 'sharePage')
           @endcomponent
         </li>
       </ul>
   </div>
 
-  <ul class="m-article-header__imgs">
-    <li class="s-active">
+  <ul class="m-article-header__img-thumbs" data-gallery-thumbs>
+    <li>
       @component('components.atoms._img')
           @slot('src', "http://placeimg.com/900/1600/nature")
           @slot('width', 900)
           @slot('height', 1600)
       @endcomponent
+      <button
+        data-gallery-img-srcset="http://placeimg.com/900/1600/nature 900w"
+        data-gallery-img-credit="&copy; Art Institute of Chicago"
+        data-gallery-img-share-url="#"
+        data-gallery-img-share-title="Nature"
+        data-gallery-img-download-url="http://placeimg.com/900/1600/nature"
+        data-gallery-img-download-name="Nature"
+        disabled
+      >Show this image</button>
     </li>
     <li>
       @component('components.atoms._img')
-          @slot('src', "http://placeimg.com/300/300/nature")
-          @slot('width', 300)
-          @slot('height', 300)
+          @slot('src', "http://placeimg.com/900/900/nature")
+          @slot('width', 900)
+          @slot('height', 900)
       @endcomponent
+      <button
+        data-gallery-img-srcset="http://placeimg.com/900/900/nature 900w"
+        data-gallery-img-credit="&copy; AREA 17"
+        data-gallery-img-share-url="#"
+        data-gallery-img-share-title="Nature"
+        data-gallery-img-download-url="http://placeimg.com/900/900/nature"
+        data-gallery-img-download-name="Nature"
+      >Show this image</button>
     </li>
     <li>
       @component('components.atoms._img')
-          @slot('src', "http://placeimg.com/533/300/nature")
-          @slot('width', 533)
-          @slot('height', 300)
+          @slot('src', "http://placeimg.com/1600/900/nature")
+          @slot('width', 1600)
+          @slot('height', 900)
       @endcomponent
+      <button
+        data-gallery-img-srcset="http://placeimg.com/1600/900/nature 1600w"
+        data-gallery-img-credit="Courtesy of Tate London"
+        data-gallery-img-share-url="#"
+        data-gallery-img-share-title="Nature"
+        data-gallery-img-download-url="http://placeimg.com/1600/900/nature"
+        data-gallery-img-download-name="Nature"
+      >Show this image</button>
     </li>
   </ul>
 
