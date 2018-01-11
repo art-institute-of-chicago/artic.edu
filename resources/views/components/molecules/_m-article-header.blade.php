@@ -37,6 +37,9 @@
     @component('components.molecules._m-article-header----gallery')
         @slot('editorial', $editorial ?? null)
         @slot('variation', $variation ?? null)
+        @slot('images', $galleryImages ?? null)
+        @slot('nextArticle', $nextArticle ?? null)
+        @slot('prevArticle', $prevArticle ?? null)
     @endcomponent
 @else
     {{-- Default header --}}

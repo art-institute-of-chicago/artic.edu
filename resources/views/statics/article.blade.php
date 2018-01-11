@@ -13,6 +13,9 @@
     @slot('type', $article->type)
     @slot('intro', $article->intro)
     @slot('img', $article->headerImage)
+    @slot('galleryImages', $article->galleryImages)
+    @slot('nextArticle', $article->nextArticle)
+    @slot('prevArticle', $article->prevArticle)
   @endcomponent
 
   <div class="o-article__primary-actions">

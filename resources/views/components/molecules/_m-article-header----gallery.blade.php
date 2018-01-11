@@ -1,14 +1,17 @@
+@if (isset($images) and $images)
+
 <{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery">
 
-  <div class="m-article-header__img">
+<div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
         @component('components.atoms._img')
-            @slot('src', "http://placeimg.com/900/1600/nature")
-            @slot('width', 900)
-            @slot('height', 1600)
+            @slot('src', $images[0]['src'])
+            @slot('srcset', $images[0]['srcset'])
+            @slot('width', $images[0]['width'])
+            @slot('height', $images[0]['height'])
         @endcomponent
       </div>
-      <span class="m-article-header__img-copyright f-secondary" data-gallery-credit>&copy; Art Institute of Chicago</span>
+      <span class="m-article-header__img-copyright f-secondary" data-gallery-credit>{{ $images[0]['credit'] }}</span>
       <ul class="m-article-header__img-nav">
         <li class="m-article-header__img-nav-next-img">
           <button data-gallery-next></button>
@@ -16,38 +19,46 @@
         <li class="m-article-header__img-nav-prev-img">
           <button data-gallery-previous></button>
         </li>
+        @if ($nextArticle)
         <li class="m-article-header__img-nav-next-artwork">
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('src', "http://placeimg.com/90/160/nature")
-                  @slot('width', 90)
-                  @slot('height', 160)
+                  @slot('src', $nextArticle->image['src'])
+                  @slot('srcset', $nextArticle->image['srcset'])
+                  @slot('width', $nextArticle->image['width'])
+                  @slot('height', $nextArticle->image['height'])
+                  @slot('sizes', '120px')
               @endcomponent
             </span>
             <span class="f-caption">
-              <strong>Head of an Apostle</strong> <br>
-              French, Paris, 1312
+              <strong>{{ str_limit($nextArticle->title, 18) }}</strong> <br>
+              {{ str_limit($nextArticle->subtitle, 25) }}
             </span>
             <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
           </a>
         </li>
+        @endif
+        @if ($prevArticle)
         <li class="m-article-header__img-nav-prev-artwork">
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('src', "http://placeimg.com/160/90/nature")
-                  @slot('width', 160)
-                  @slot('height', 90)
+                  @slot('src', $prevArticle->image['src'])
+                  @slot('srcset', $prevArticle->image['srcset'])
+                  @slot('width', $prevArticle->image['width'])
+                  @slot('height', $prevArticle->image['height'])
+                  @slot('sizes', '120px')
               @endcomponent
             </span>
             <span class="f-caption">
-              <strong>Head of an Apostle</strong> <br>
-              French, Paris, 1312
+              <strong>{{ str_limit($prevArticle->title, 18) }}</strong> <br>
+              {{ str_limit($prevArticle->subtitle, 25) }}
             </span>
             <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
           </a>
         </li>
+        @endif
       </ul>
       <ul class="m-article-header__img-actions">
         <li>
@@ -79,58 +90,29 @@
   </div>
 
   <ul class="m-article-header__img-thumbs" data-gallery-thumbs>
-    <li>
-      @component('components.atoms._img')
-          @slot('src', "http://placeimg.com/900/1600/nature")
-          @slot('width', 900)
-          @slot('height', 1600)
-      @endcomponent
-      <button
-        data-gallery-img-srcset="http://placeimg.com/900/1600/nature 900w"
-        data-gallery-img-credit="&copy; Art Institute of Chicago"
-        data-gallery-img-share-url="#"
-        data-gallery-img-share-title="Nature"
-        data-gallery-img-download-url="http://placeimg.com/900/1600/nature"
-        data-gallery-img-download-name="Nature"
-        data-gallery-img-width="900"
-        data-gallery-img-height="1600"
-        disabled
-      >Show this image</button>
-    </li>
-    <li>
-      @component('components.atoms._img')
-          @slot('src', "http://placeimg.com/900/900/nature")
-          @slot('width', 900)
-          @slot('height', 900)
-      @endcomponent
-      <button
-        data-gallery-img-srcset="http://placeimg.com/900/900/nature 900w"
-        data-gallery-img-credit="&copy; AREA 17"
-        data-gallery-img-share-url="#"
-        data-gallery-img-share-title="Nature"
-        data-gallery-img-download-url="http://placeimg.com/900/900/nature"
-        data-gallery-img-download-name="Nature"
-        data-gallery-img-width="900"
-        data-gallery-img-height="900"
-      >Show this image</button>
-    </li>
-    <li>
-      @component('components.atoms._img')
-          @slot('src', "http://placeimg.com/1600/900/nature")
-          @slot('width', 1600)
-          @slot('height', 900)
-      @endcomponent
-      <button
-        data-gallery-img-srcset="http://placeimg.com/1600/900/nature 1600w"
-        data-gallery-img-credit="Courtesy of Tate London"
-        data-gallery-img-share-url="#"
-        data-gallery-img-share-title="Nature"
-        data-gallery-img-download-url="http://placeimg.com/1600/900/nature"
-        data-gallery-img-download-name="Nature"
-        data-gallery-img-width="1600"
-        data-gallery-img-height="900"
-      >Show this image</button>
-    </li>
+      @foreach ($images as $image)
+        <li>
+          @component('components.atoms._img')
+              @slot('src', $image['src'])
+              @slot('srcset', $image['srcset'])
+              @slot('width', $image['width'])
+              @slot('height', $image['height'])
+          @endcomponent
+          <button
+            data-gallery-img-srcset="{{ $image['srcset'] }}"
+            data-gallery-img-credit="{{ $image['credit'] }}"
+            data-gallery-img-share-url="{{ $image['shareUrl'] }}"
+            data-gallery-img-share-title="{{ $image['shareTitle'] }}"
+            data-gallery-img-download-url="{{ $image['downloadUrl'] }}"
+            data-gallery-img-download-name="{{ $image['downloadName'] }}"
+            data-gallery-img-width="{{ $image['width'] }}"
+            data-gallery-img-height="{{ $image['height'] }}"
+            disabled
+          >Show this image</button>
+        </li>
+      @endforeach
   </ul>
 
 </{{ $tag or 'header' }}>
+
+@endif

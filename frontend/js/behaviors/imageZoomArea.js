@@ -8,7 +8,7 @@ const imageZoomArea = function(container) {
 
   let active = false;
 
-  let btnZoomIn, btnZoomOut, img;
+  let btnZoomIn, btnZoomOut, btnClose, btnShare, img;
 
   let currentZoomLevel = 0;
   let zoomFactor = 0;
@@ -292,6 +292,9 @@ const imageZoomArea = function(container) {
     img.setAttribute('height', initImgHeight);
     img.setAttribute('srcset', event.data.img.srcset);
 
+    btnShare.setAttribute('data-share-url', event.data.img.shareUrl);
+    btnShare.setAttribute('data-share-title', event.data.img.shareTitle);
+
     _handleResized();
 
     active = true;
@@ -302,12 +305,15 @@ const imageZoomArea = function(container) {
 
     btnZoomIn = container.querySelector('[data-fullscreen-zoom-in]');
     btnZoomOut = container.querySelector('[data-fullscreen-zoom-out]');
+    btnClose = container.querySelector('[data-fullscreen-close]');
+    btnShare = container.querySelector('[data-fullscreen-share]');
 
     btnZoomIn.disabled = false;
     btnZoomOut.disabled = true;
 
     btnZoomIn.addEventListener('click', _zoomIn, false);
     btnZoomOut.addEventListener('click', _zoomOut, false);
+    btnClose.addEventListener('click', _close, false);
     document.addEventListener('resized', _handleResized);
     document.addEventListener('fullScreenImage:open', _open, false);
     document.addEventListener('fullScreenImage:close', _close, false);
@@ -319,6 +325,7 @@ const imageZoomArea = function(container) {
     // remove specific event handlers
     btnZoomIn.removeEventListener('click', _zoomIn);
     btnZoomOut.removeEventListener('click', _zoomOut);
+    btnClose.removeEventListener('click', _close);
     document.removeEventListener('resized', _handleResized);
     document.removeEventListener('fullScreenImage:open', _open);
     document.removeEventListener('fullScreenImage:close', _close);

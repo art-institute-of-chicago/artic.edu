@@ -17,7 +17,7 @@
             @slot('dataAttributes', 'data-fullscreen-zoom-out')
         @endcomponent
       </li>
-      {{-- <li>
+      <li>
         @component('components.atoms._btn')
             @slot('variation', 'btn--septenary btn--icon-sq')
             @slot('font', '')
@@ -25,6 +25,12 @@
             @slot('dataAttributes', 'data-fullscreen-share')
             @slot('behavior', 'sharePage')
         @endcomponent
-      </li> --}}
+      </li>
     </ul>
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--septenary btn--icon-sq o-fullscreen-image__close')
+        @slot('font', '')
+        @slot('icon', 'icon--close')
+        @slot('dataAttributes', 'data-fullscreen-close')
+    @endcomponent
 </div>

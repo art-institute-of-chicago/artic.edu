@@ -313,9 +313,22 @@ class StaticsController extends Controller {
     // make left rail nav array
     $nav = array();
     array_push($nav, $locationLink);
+    // make some artwork gallery images
+    $images = array();
+    for ($i = 0; $i < $this->faker->numberBetween(1,5); $i++) {
+      $image = $this->getImage();
+      $image['credit'] = $this->faker->boolean() ? $this->faker->sentence(3) : null;
+      $image['shareUrl'] = '#';
+      $image['shareTitle'] = $this->faker->sentence(5);
+      $image['downloadUrl'] = $image['src'];
+      $image['downloadName'] = $this->faker->word();
+      array_push($images, $image);
+    }
     // get an artwork
     $article = $this->getArtwork();
     // update and add some items (I ran into memory issues doing this in the main getartwork func..)
+    $article->push('nextArticle', $this->getArtwork());
+    $article->push('prevArticle', $this->getArtwork());
     $article->push('articleType', 'artwork');
     $article->push('headerType', 'gallery');
     $article->push('blocks', $this->generateBlocks(6));
@@ -341,6 +354,7 @@ class StaticsController extends Controller {
         ),
       ),
     ));
+    $article->push('galleryImages', $images);
     $article->push('recentlyViewedArtworks', $this->getArtworks(6));
     $article->push('interestedThemes', array(
       array(
@@ -378,9 +392,10 @@ class StaticsController extends Controller {
     $height = isset($height) && $height ? $height : $this->faker->numberBetween(300,700);
     //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
     $src = "http://placeimg.com/".$width."/".$height."/nature";
+    $srcset = "http://placeimg.com/".$width."/".$height."/nature ".$width."w";
     //$src = $this->faker->imageUrl($width, $height, 'nature');
     //$src = str_replace('https://', 'http://', $src);
-    $image = array("src" => $src, "width" => $width, "height" => $height);
+    $image = array("src" => $src, "srcset" => $srcset, "width" => $width, "height" => $height);
 
     return $image;
   }
