@@ -17,3 +17,4 @@ export { default as bannerParallax } from './bannerParallax';
 export { default as articleInternalLinks } from './articleInternalLinks';
 export { default as imageInfo } from './imageInfo';
 export { default as headerGallery } from './headerGallery';
+export { default as imageZoomArea } from './imageZoomArea';

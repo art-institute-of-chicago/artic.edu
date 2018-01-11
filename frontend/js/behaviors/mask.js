@@ -6,6 +6,7 @@ const mask = function(container) {
     container.blur();
     triggerCustomEvent(document, 'shareMenu:close');
     triggerCustomEvent(document, 'selectDate:close');
+    triggerCustomEvent(document, 'fullScreenImage:close');
   }
 
   function _init() {

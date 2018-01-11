@@ -1,4 +1,4 @@
-import { purgeProperties, forEach, getIndex } from 'a17-helpers';
+import { purgeProperties, forEach, getIndex, triggerCustomEvent } from 'a17-helpers';
 
 const headerGallery = function(container) {
 
@@ -14,6 +14,8 @@ const headerGallery = function(container) {
       }
       data[index] = {
         srcset: button.getAttribute('data-gallery-img-srcset') || button.previousElementSibling.getAttribute('srcset'),
+        width: button.getAttribute('data-gallery-img-width') || button.previousElementSibling.getAttribute('width'),
+        height: button.getAttribute('data-gallery-img-height') || button.previousElementSibling.getAttribute('height'),
         credit: button.getAttribute('data-gallery-img-credit') || '',
         shareUrl: button.getAttribute('data-gallery-img-share-url') || '',
         shareTitle: button.getAttribute('data-gallery-img-share-title') || '',
@@ -82,6 +84,13 @@ const headerGallery = function(container) {
     document.body.removeChild(a);
   }
 
+  function _fullscreen(event) {
+    event.preventDefault();
+    triggerCustomEvent(document, 'fullScreenImage:open', {
+      img: data[activeIndex],
+    });
+  }
+
   function _init() {
     //input.addEventListener('input', _updateOutput, false);
     nodes.hero = container.querySelector('[data-gallery-hero]') || false;
@@ -100,6 +109,7 @@ const headerGallery = function(container) {
     nodes.next.addEventListener('click', _nextClick, false);
     nodes.previous.addEventListener('click', _previousClick, false);
     nodes.download.addEventListener('click', _downloadClick, false);
+    nodes.fullscreen.addEventListener('click', _fullscreen, false);
     //
     _update();
   }
@@ -112,6 +122,7 @@ const headerGallery = function(container) {
     nodes.next.removeEventListener('click', _nextClick);
     nodes.previous.removeEventListener('click', _previousClick);
     nodes.download.removeEventListener('click', _downloadClick);
+    nodes.fullscreen.removeEventListener('click', _fullscreen);
 
     // remove properties of this behavior
     purgeProperties(this);

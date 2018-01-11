@@ -1,35 +1,6 @@
 <{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery">
 
   <div class="m-article-header__img">
-      {{-- <ul class="m-article-header__imgs">
-        <li class="s-active">
-          <span class="m-article-header__img-container">
-            @component('components.atoms._img')
-                @slot('src', "http://placeimg.com/900/1600/nature")
-                @slot('width', 900)
-                @slot('height', 1600)
-            @endcomponent
-          </span>
-        </li>
-        <li>
-          <span class="m-article-header__img-container">
-            @component('components.atoms._img')
-                @slot('src', "http://placeimg.com/900/900/nature")
-                @slot('width', 900)
-                @slot('height', 900)
-            @endcomponent
-          </span>
-        </li>
-        <li>
-          <span class="m-article-header__img-container">
-            @component('components.atoms._img')
-                @slot('src', "http://placeimg.com/1600/900/nature")
-                @slot('width', 1600)
-                @slot('height', 900)
-            @endcomponent
-          </span>
-        </li>
-      </ul> --}}
       <div class="m-article-header__img-container" data-gallery-hero>
         @component('components.atoms._img')
             @slot('src', "http://placeimg.com/900/1600/nature")
@@ -121,6 +92,8 @@
         data-gallery-img-share-title="Nature"
         data-gallery-img-download-url="http://placeimg.com/900/1600/nature"
         data-gallery-img-download-name="Nature"
+        data-gallery-img-width="900"
+        data-gallery-img-height="1600"
         disabled
       >Show this image</button>
     </li>
@@ -137,6 +110,8 @@
         data-gallery-img-share-title="Nature"
         data-gallery-img-download-url="http://placeimg.com/900/900/nature"
         data-gallery-img-download-name="Nature"
+        data-gallery-img-width="900"
+        data-gallery-img-height="900"
       >Show this image</button>
     </li>
     <li>
@@ -152,6 +127,8 @@
         data-gallery-img-share-title="Nature"
         data-gallery-img-download-url="http://placeimg.com/1600/900/nature"
         data-gallery-img-download-name="Nature"
+        data-gallery-img-width="1600"
+        data-gallery-img-height="900"
       >Show this image</button>
     </li>
   </ul>

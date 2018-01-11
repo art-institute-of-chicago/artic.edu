@@ -211,18 +211,19 @@
 
 .btn--disabled,
 .btn[disabled] {
-  background-color: $color__bg--primary;
-  color: $color__black--30;
+  // background-color: $color__bg--primary;
+  // color: $color__black--30;
+  opacity: .5;
   pointer-events: none;
 
-  &:hover,
-  &:focus {
-    background-color: $color__bg--primary;
-  }
+  // &:hover,
+  // &:focus {
+  //   background-color: $color__bg--primary;
+  // }
 
-  &:active {
-    background-color: $color__bg--primary;
-  }
+  // &:active {
+  //   background-color: $color__bg--primary;
+  // }
 }
 
 .btn.s-loading {

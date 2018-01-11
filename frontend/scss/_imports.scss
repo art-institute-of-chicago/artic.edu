@@ -102,6 +102,7 @@ $include-icons: false; // see icons.scss!
 @import 'organisms/o-gallery';
 @import 'organisms/o-accordion';
 @import 'organisms/o-pinboard';
+@import 'organisms/o-fullscreen-image';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 
@@ -131,4 +132,5 @@ $include-icons: false; // see icons.scss!
 @import 'state/s-article-sticky-xxxx';
 @import 'state/s-shareMenu-active';
 @import 'state/s-calendar-active';
+@import 'state/s-fullscreenImage-active';
 @import 'state/s-print';
