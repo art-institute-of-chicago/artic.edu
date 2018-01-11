@@ -18,10 +18,12 @@
     @slot('prevArticle', $article->prevArticle)
   @endcomponent
 
-  <div class="o-article__primary-actions">
-    @component('components.molecules._m-article-actions')
-        @slot('editorial', ($article->articleType === 'editorial'))
-    @endcomponent
+  <div class="o-article__primary-actions{{ ($article->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@xlarge+' : '' }}">
+    @if ($article->articleType !== 'artwork')
+        @component('components.molecules._m-article-actions')
+            @slot('editorial', ($article->articleType === 'editorial'))
+        @endcomponent
+    @endif
 
     @if ($article->author)
         @component('components.molecules._m-author')
@@ -41,9 +43,26 @@
             @slot('links', $article->nav);
         @endcomponent
     @endif
+
+    @if ($article->onView)
+        {{-- dupe 😢 - shows xlarge+ --}}
+        @component('components.atoms._title')
+            @slot('variation', 'u-show@xlarge+')
+            @slot('tag','p')
+            @slot('font', 'f-module-title-1')
+            On View
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('variation', 'u-show@xlarge+')
+            @slot('tag','p')
+            @slot('font', 'f-secondary')
+            <a href="{{ $article->onView['href'] }}">{{ $article->onView['label'] }}</a>
+        @endcomponent
+    @endif
   </div>
 
   {{-- dupe 😢 - hides xlarge+ --}}
+  @if ($article->nav)
   <div class="o-article__meta">
     @if ($article->nav)
         @component('components.molecules._m-link-list')
@@ -51,8 +70,9 @@
         @endcomponent
     @endif
   </div>
+  @endif
 
-  <div class="o-article__secondary-actions">
+  <div class="o-article__secondary-actions{{ ($article->headerType === 'gallery') ? ' o-article__secondary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@medium+' : '' }}">
     @if ($article->articleType === 'exhibition')
         @component('components.molecules._m-ticket-actions----exhibition')
         @endcomponent
@@ -75,6 +95,27 @@
       @endcomponent
     @endif
   </div>
+
+  @if ($article->headerType === 'gallery')
+  <div class="o-article__inline-header">
+    @if ($article->title)
+      @component('components.atoms._title')
+          @slot('tag','h1')
+          @slot('font', 'f-headline-editorial')
+          @slot('variation', 'o-article__inline-header-title')
+          {{ $article->title }}
+      @endcomponent
+    @endif
+    @if ($article->subtitle)
+      @component('components.atoms._title')
+          @slot('tag','p')
+          @slot('font', 'f-secondary')
+          @slot('variation', 'o-article__inline-header-subtitle')
+          {{ $article->subtitle }}
+      @endcomponent
+    @endif
+  </div>
+  @endif
 
   @if ($article->intro and $article->headerType !== 'hero')
   <div class="o-article__intro">

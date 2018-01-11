@@ -88,8 +88,7 @@
         </li>
       </ul>
   </div>
-
-  <ul class="m-article-header__img-thumbs" data-gallery-thumbs>
+  <ul class="m-article-header__img-thumbs{{ (sizeof($images) === 1) ? ' m-article-header__img-thumbs--single-img' : ''}}" data-gallery-thumbs>
       @foreach ($images as $image)
         <li>
           @component('components.atoms._img')

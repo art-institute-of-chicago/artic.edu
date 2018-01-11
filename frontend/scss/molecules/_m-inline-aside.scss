@@ -4,6 +4,11 @@
   @include tucked-margin-top($f-subheading-1, ('xsmall': 28));
 }
 
+.m-inline-aside .f-module-title-1 {
+  @include tucked-margin-top($f-module-title-1, ('xsmall': 32));
+}
+
+
 .m-inline-aside .m-listing {
   margin-top: 28px;
 

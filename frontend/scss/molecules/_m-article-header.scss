@@ -912,15 +912,20 @@ $thumbTease: 4px;
   display: flex;
   flex-flow: row no-wrap;
   justify-content: center;
-  margin-top: 0;
+  margin-bottom: -24px;
   padding-top: 24px;
   padding-bottom: 24px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
   @include breakpoint('small+') {
+    margin-bottom: -40px;
     padding-top: 40px;
     padding-bottom: 40px;
+  }
+
+  &.m-article-header__img-thumbs--single-img {
+    display: none;
   }
 }
 

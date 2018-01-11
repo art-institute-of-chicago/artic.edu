@@ -308,11 +308,6 @@ class StaticsController extends Controller {
   }
 
   public function artwork() {
-    // make some left rail links
-    $locationLink = array('label' => 'European Painting and Sculpture, Galleries 239', 'href' => '#', 'iconBefore' => 'location');
-    // make left rail nav array
-    $nav = array();
-    array_push($nav, $locationLink);
     // make some artwork gallery images
     $images = array();
     for ($i = 0; $i < $this->faker->numberBetween(1,5); $i++) {
@@ -331,6 +326,7 @@ class StaticsController extends Controller {
     $article->push('prevArticle', $this->getArtwork());
     $article->push('articleType', 'artwork');
     $article->push('headerType', 'gallery');
+    $article->push('onView', array('label' => 'European Painting and Sculpture, Galleries 239', 'href' => '#'));
     $article->push('blocks', $this->generateBlocks(6));
     $article->push('exploreFuther', array(
       'items' => $this->getArtworks(8),
@@ -374,7 +370,6 @@ class StaticsController extends Controller {
       'type' => 'article',
       'items' => $this->getArticles(1),
     ));
-    $article->push('nav', $nav);
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
