@@ -106,14 +106,14 @@
     .f-module-title-2 + .#{$blockClass},
     .f-subheading-1 + .#{$blockClass},
     .#{$blockClass} + .#{$blockClass} {
-      margin-top: 24px;
+      //margin-top: 24px;
 
       @include breakpoint('small+') {
-        margin-top: 36px;
+        //margin-top: 36px;
       }
 
       @include breakpoint('medium+') {
-        margin-top: 48px;
+        //margin-top: 48px;
       }
     }
   }
