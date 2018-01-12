@@ -11,7 +11,11 @@
             @slot('height', $images[0]['height'])
         @endcomponent
       </div>
-      <span class="m-article-header__img-copyright f-secondary" data-gallery-credit>{{ $images[0]['credit'] }}</span>
+      <span class="m-article-header__img-copyright f-secondary" data-gallery-copyright>
+        @if ($images[0]['copyright'])
+          &copy;{{ $images[0]['copyright'] }}
+        @endif
+      </span>
       <ul class="m-article-header__img-nav">
         <li class="m-article-header__img-nav-next-img">
           <button data-gallery-next></button>
@@ -99,7 +103,7 @@
           @endcomponent
           <button
             data-gallery-img-srcset="{{ $image['srcset'] }}"
-            data-gallery-img-credit="{{ $image['credit'] }}"
+            data-gallery-img-copyright="{{ $image['copyright'] }}"
             data-gallery-img-share-url="{{ $image['shareUrl'] }}"
             data-gallery-img-share-title="{{ $image['shareTitle'] }}"
             data-gallery-img-download-url="{{ $image['downloadUrl'] }}"

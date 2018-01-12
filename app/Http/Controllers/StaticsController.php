@@ -312,7 +312,7 @@ class StaticsController extends Controller {
     $images = array();
     for ($i = 0; $i < $this->faker->numberBetween(1,5); $i++) {
       $image = $this->getImage();
-      $image['credit'] = $this->faker->boolean() ? $this->faker->sentence(3) : null;
+      $image['copyright'] = $this->faker->boolean() ? $this->faker->sentence(3) : null;
       $image['shareUrl'] = '#';
       $image['shareTitle'] = $this->faker->sentence(5);
       $image['downloadUrl'] = $image['src'];
@@ -998,8 +998,8 @@ class StaticsController extends Controller {
         "type" => 'link-list',
         "links" => array(
               array('label' => 'Quis finibus maximus', 'href' => '#'),
-              array('label' => 'Ut fermentum est', 'href' => '#', 'iconAfter' => 'icon--new-window'),
-              array('label' => 'In tempor velit', 'href' => '#', 'iconAfter' => 'icon--new-window')
+              array('label' => 'Ut fermentum est', 'href' => '#', 'iconAfter' => 'new-window'),
+              array('label' => 'In tempor velit', 'href' => '#', 'iconAfter' => 'new-window')
           )
     ));
     array_push($blocks, array(

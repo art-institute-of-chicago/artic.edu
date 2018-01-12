@@ -16,7 +16,7 @@ const headerGallery = function(container) {
         srcset: button.getAttribute('data-gallery-img-srcset') || button.previousElementSibling.getAttribute('srcset'),
         width: button.getAttribute('data-gallery-img-width') || button.previousElementSibling.getAttribute('width'),
         height: button.getAttribute('data-gallery-img-height') || button.previousElementSibling.getAttribute('height'),
-        credit: button.getAttribute('data-gallery-img-credit') || '',
+        copyright: button.getAttribute('data-gallery-img-copyright') || '',
         shareUrl: button.getAttribute('data-gallery-img-share-url') || '',
         shareTitle: button.getAttribute('data-gallery-img-share-title') || '',
         downloadUrl: button.getAttribute('data-gallery-img-download-url') || '',
@@ -50,7 +50,7 @@ const headerGallery = function(container) {
       }
     });
     nodes.hero.querySelector('img').setAttribute('srcset', data[activeIndex].srcset);
-    nodes.credit.textContent = data[activeIndex].credit;
+    nodes.copyright.innerHtml = '&copy;' + data[activeIndex].copyright;
     nodes.share.setAttribute('data-share-url', data[activeIndex].shareUrl);
     nodes.share.setAttribute('data-share-title', data[activeIndex].shareTitle);
   }
@@ -94,7 +94,7 @@ const headerGallery = function(container) {
   function _init() {
     //input.addEventListener('input', _updateOutput, false);
     nodes.hero = container.querySelector('[data-gallery-hero]') || false;
-    nodes.credit = container.querySelector('[data-gallery-credit]') || false;
+    nodes.copyright = container.querySelector('[data-gallery-copyright]') || false;
     nodes.next = container.querySelector('[data-gallery-next]') || false;
     nodes.previous = container.querySelector('[data-gallery-previous]') || false;
     nodes.fullscreen = container.querySelector('[data-gallery-fullscreen]') || false;
