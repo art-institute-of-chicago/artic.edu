@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use App\Services\GuzzleApiConsumer;
+use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 
 use Illuminate\Support\ServiceProvider;
 

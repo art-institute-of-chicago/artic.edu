@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Libraries\Api\Consumers;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
-class GuzzleApiConsumer
+class GuzzleApiConsumer implements ApiConsumerInterface
 {
 
     private $client;
@@ -26,6 +26,16 @@ class GuzzleApiConsumer
             'body'       => $body,
             'status'     => $response->getStatusCode()
         ];
+    }
+
+    /**
+     * Adapt raw parameters to be implemented correctly by the client library.
+     * You can send parameters directly, or adapt them manually.
+     * This method should be defined for each consumer to ease configuration.
+     *
+     */
+    public function adaptParameters($params) {
+        return ['query' => $params];
     }
 
     /**

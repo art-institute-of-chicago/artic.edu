@@ -34,7 +34,7 @@ trait HandleApi
      */
     protected function request($params = [])
     {
-        $client = \App::make('ApiClient');
+        $client  = \App::make('ApiClient');
         $response = $client->request('GET', $this->getEndpoint(), $params);
 
         return $response;

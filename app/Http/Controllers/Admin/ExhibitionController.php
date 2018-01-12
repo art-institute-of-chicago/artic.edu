@@ -28,6 +28,11 @@ class ExhibitionController extends ModuleController
             'field' => 'title',
             'sort' => true,
         ],
+        'lake_guid' => [
+            'title' => 'lake_guid',
+            'field' => 'lake_guid',
+            'sort' => true,
+        ],
         'startDate' => [
             'title' => 'Start date',
             'field' => 'startDate',

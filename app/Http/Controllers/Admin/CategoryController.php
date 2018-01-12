@@ -8,20 +8,21 @@ use App\Repositories\SegmentRepository;
 class CategoryController extends ModuleController
 {
     protected $moduleName = 'categories';
+    protected $modelName  = 'CategoryApi';
 
     protected $indexOptions = [
         'publish' => false,
     ];
 
-    protected $titleColumnKey = 'name';
+    // protected $titleColumnKey = 'name';
 
-    protected $indexColumns = [
-        'name' => [
-            'title' => 'Name',
-            'edit_link' => true,
-            'field' => 'name',
-        ],
-    ];
+    // protected $indexColumns = [
+    //     'name' => [
+    //         'title' => 'Name',
+    //         'edit_link' => true,
+    //         'field' => 'name',
+    //     ],
+    // ];
 
     /*
      * Relations to eager load for the index view
@@ -33,7 +34,7 @@ class CategoryController extends ModuleController
      */
     protected $formWith = ['segments'];
 
-    protected $defaultOrders = ['name' => 'ASC'];
+    // protected $defaultOrders = ['name' => 'ASC'];
 
     /*
      * Filters mapping ('fFilterName' => 'filterColumn')
@@ -49,6 +50,11 @@ class CategoryController extends ModuleController
     }
 
     protected function indexData($request)
+    {
+        return [];
+    }
+
+    public function getIndexTableMainFilters($items)
     {
         return [];
     }

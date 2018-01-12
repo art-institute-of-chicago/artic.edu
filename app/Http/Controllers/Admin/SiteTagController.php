@@ -8,19 +8,18 @@ use App\Repositories\SegmentRepository;
 class SiteTagController extends ModuleController
 {
     protected $moduleName = 'siteTags';
-    protected $modelName  = 'SiteTagApi';
 
     protected $indexOptions = [
         'publish' => false,
     ];
 
-    protected $titleColumnKey = 'title';
+    protected $titleColumnKey = 'name';
 
     protected $indexColumns = [
-        'title' => [
-            'title' => 'Title',
+        'name' => [
+            'title' => 'Name',
             'edit_link' => true,
-            'field' => 'title',
+            'field' => 'name',
         ],
     ];
 
@@ -39,6 +38,10 @@ class SiteTagController extends ModuleController
      * In the indexData function, name your lists with the filter name + List (fFilterNameList)
      */
     protected $filters = [];
+
+    protected $defaultOrders = [
+        'name' => 'asc',
+    ];
 
     protected function indexData($request)
     {

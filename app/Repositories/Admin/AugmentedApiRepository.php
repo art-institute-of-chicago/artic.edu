@@ -28,7 +28,7 @@ class AugmentedApiRepository extends ModuleRepository
         if ($apiResults->status == 200) {
             // Augment models
             foreach($results as &$item) {
-                foreach($apiResults as $apiItem) {
+                foreach($apiResults->body->data as $apiItem) {
                     if ($apiItem->id == $item->datahub_id) {
                         $item->augmentEntity($apiItem);
                         break;

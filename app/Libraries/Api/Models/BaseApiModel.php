@@ -1,6 +1,13 @@
 <?php
 
-namespace App\Models;
+/**
+ * Pretty much a port from an Eloquent model to a class without a backend
+ * Based/copied from https://github.com/jenssegers/model
+ *
+ */
+
+
+namespace App\Libraries\Api\Models;
 
 use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
@@ -10,14 +17,12 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Collection as BaseCollection;
 use JsonSerializable;
 
-abstract class ApiBaseModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
-{
+use App\Libraries\Api\Models\Behaviors\HasApiCalls;
 
-    /**
-     * The model's attributes.
-     *
-     * @var array
-     */
+abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
+{
+    use HasApiCalls;
+
     protected $attributes = [];
 
     /**
@@ -84,6 +89,28 @@ abstract class ApiBaseModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     protected static $mutatorCache = [];
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = [];
+
+    /**
+     * Endpoint for this entity
+     *
+     * @var array
+     */
+    protected $endpoint = '';
+
+    /**
+     * The number of entities to return for pagination.
+     *
+     * @var int
+     */
+    protected $perPage = 15;
+
+
+    /**
      * Create a new Eloquent model instance.
      *
      * @param  array  $attributes
@@ -100,7 +127,7 @@ abstract class ApiBaseModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @param  array  $attributes
      * @return $this
      *
-     * @throws \Jenssegers\Model\MassAssignmentException
+     * @throws MassAssignmentException
      */
     public function fill(array $attributes)
     {
@@ -836,6 +863,17 @@ abstract class ApiBaseModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     }
 
     /**
+     * Create a new Eloquent Collection instance.
+     *
+     * @param  array  $models
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function newCollection(array $models = [])
+    {
+        return new BaseCollection($models);
+    }
+
+    /**
      * Dynamically retrieve attributes on the model.
      *
      * @param  string  $key
@@ -904,6 +942,30 @@ abstract class ApiBaseModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     }
 
     /**
+     * Get the number of models to return per page.
+     *
+     * @return int
+     */
+    public function getPerPage()
+    {
+        return $this->perPage;
+    }
+
+
+    /**
+     * Set the number of models to return per page.
+     *
+     * @param  int  $perPage
+     * @return $this
+     */
+    public function setPerPage($perPage)
+    {
+        $this->perPage = $perPage;
+
+        return $this;
+    }
+
+    /**
      * Determine if an attribute exists on the model.
      *
      * @param  string  $key
@@ -949,4 +1011,5 @@ abstract class ApiBaseModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     {
         return $this->toJson();
     }
+
 }
