@@ -45,6 +45,39 @@ $cap-heights: (
 
 /***
 
+f-display-3
+
+```
+<p class="f-display-3">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-display-3: generate-font-obj((
+  font-family: $serif-font,
+  font-family-loaded: $serif-font--loaded,
+  font-loaded-class: $serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 31, line-height: 36, text-transform: 'uppercase', letter-spacing: .1em, push: 0),
+    'small+': (font-size: 51, line-height: 60, push: 0),
+    'medium+': (font-size: 58, line-height: 68, push: 0),
+    'large+': (font-size: 68, line-height: 80, push: 0),
+   )
+));
+
+@mixin f-display-3() {
+  @include font-styles($f-display-3);
+  font-feature-settings: "lnum" on;
+  color: $color__text--title;
+}
+
+%f-display-3,
+.f-display-3 {
+  @include f-display-3;
+}
+
+/***
+
 f-display-2
 
 ```
@@ -131,6 +164,7 @@ $f-headline: generate-font-obj((
 
 @mixin f-headline() {
   @include font-styles($f-headline);
+  font-feature-settings: "lnum" on;
   color: $color__text--title;
 }
 
@@ -249,12 +283,14 @@ $f-module-title-1: generate-font-obj((
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 17, line-height: 24, letter-spacing: .01em, push: 0),
+    'xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 0),
+    'small+': (font-size: 17, line-height: 24, push: 0),
    )
 ));
 
 @mixin f-module-title-1() {
   @include font-styles($f-module-title-1);
+  font-feature-settings: "lnum" on;
   color: $color__text--title;
 }
 
@@ -286,6 +322,7 @@ $f-subheading-1: generate-font-obj((
 
 @mixin f-subheading-1() {
   @include font-styles($f-subheading-1);
+  font-feature-settings: "lnum" on;
   color: $color__text--title;
 }
 
@@ -319,6 +356,7 @@ $f-body: generate-font-obj((
 
 @mixin f-body() {
   @include font-styles($f-body);
+  font-feature-settings: "lnum" on;
 }
 
 %f-body,
@@ -349,6 +387,7 @@ $f-body-emphasis: generate-font-obj((
 
 @mixin f-body-emphasis() {
   @include font-styles($f-body-emphasis);
+  font-feature-settings: "lnum" on;
 }
 
 %f-body-emphasis,
@@ -521,6 +560,7 @@ $f-secondary: generate-font-obj((
 
 @mixin f-secondary() {
   @include font-styles($f-secondary);
+  font-feature-settings: "lnum" on;
   color: $color__text--secondary;
 }
 
@@ -530,6 +570,39 @@ $f-secondary: generate-font-obj((
 .f-link {
   @include f-secondary;
 }
+
+/***
+
+f-tag-2
+
+```
+<p class="f-tag-2">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-tag-2: generate-font-obj((
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 12, line-height: 16, letter-spacing: .14em, text-transform: 'uppercase', push: 0),
+    'medium+': (font-size: 13, line-height: 16, push: 0),
+   )
+));
+
+@mixin f-tag-2() {
+  @include font-styles($f-tag-2);
+  font-feature-settings: "lnum" on;
+  color: $color__text--title;
+}
+
+%f-tag-2,
+.f-tag-2 {
+  @include f-tag-2;
+}
+
+
 
 /***
 
@@ -583,6 +656,7 @@ $f-caption-title: generate-font-obj((
 
 @mixin f-caption-title() {
   @include font-styles($f-caption-title);
+  font-feature-settings: "lnum" on;
   color: $color__text--title;
 }
 
@@ -612,6 +686,7 @@ $f-caption: generate-font-obj((
 
 @mixin f-caption() {
   @include font-styles($f-caption);
+  font-feature-settings: "lnum" on;
 }
 
 %f-caption,
@@ -760,7 +835,7 @@ $f-list-1: generate-font-obj((
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 19, line-height: 24, push: -2),
+    'xsmall': (font-size: 20, line-height: 28, push: -2),
    )
 ));
 
@@ -797,6 +872,7 @@ $f-quote: generate-font-obj((
 
 @mixin f-quote() {
   @include font-styles($f-quote);
+  font-feature-settings: "lnum" on;
   color: $color__text--title;
 }
 
@@ -859,6 +935,7 @@ $f-numeral-date: generate-font-obj((
 
 @mixin f-numeral-date() {
   @include font-styles($f-numeral-date);
+  font-feature-settings: "lnum" on;
 }
 
 %f-numeral-date,
@@ -889,6 +966,7 @@ $f-main-nav: generate-font-obj((
 
 @mixin f-main-nav() {
   @include font-styles($f-main-nav);
+  font-feature-settings: "lnum" on;
   color: $color__text--title;
 }
 
