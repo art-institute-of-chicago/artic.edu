@@ -11,11 +11,6 @@
             @slot('height', $images[0]['height'])
         @endcomponent
       </div>
-      <span class="m-article-header__img-copyright f-secondary" data-gallery-copyright>
-        @if ($images[0]['copyright'])
-          &copy;{{ $images[0]['copyright'] }}
-        @endif
-      </span>
       <ul class="m-article-header__img-nav">
         <li class="m-article-header__img-nav-next-img">
           <button data-gallery-next></button>
@@ -64,6 +59,15 @@
         </li>
         @endif
       </ul>
+    @if ($images[0]['creditUrl'])
+        <a href="{{ $images[0]['creditUrl'] }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
+            {{ $images[0]['credit'] }}
+        </a>
+    @else
+        <span class="m-article-header__img-credit f-secondary" data-gallery-credit>
+            {{ $images[0]['credit'] }}
+        </span>
+    @endif
       <ul class="m-article-header__img-actions">
         <li>
           @component('components.atoms._btn')
@@ -103,7 +107,8 @@
           @endcomponent
           <button
             data-gallery-img-srcset="{{ $image['srcset'] }}"
-            data-gallery-img-copyright="{{ $image['copyright'] }}"
+            data-gallery-img-credit="{{ $image['credit'] }}"
+            data-gallery-img-credit-url="{{ $image['creditUrl'] }}"
             data-gallery-img-share-url="{{ $image['shareUrl'] }}"
             data-gallery-img-share-title="{{ $image['shareTitle'] }}"
             data-gallery-img-download-url="{{ $image['downloadUrl'] }}"

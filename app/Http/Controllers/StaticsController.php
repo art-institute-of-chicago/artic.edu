@@ -308,17 +308,6 @@ class StaticsController extends Controller {
   }
 
   public function artwork() {
-    // make some artwork gallery images
-    $images = array();
-    for ($i = 0; $i < $this->faker->numberBetween(1,5); $i++) {
-      $image = $this->getImage();
-      $image['copyright'] = $this->faker->boolean() ? $this->faker->sentence(3) : null;
-      $image['shareUrl'] = '#';
-      $image['shareTitle'] = $this->faker->sentence(5);
-      $image['downloadUrl'] = $image['src'];
-      $image['downloadName'] = $this->faker->word();
-      array_push($images, $image);
-    }
     // get an artwork
     $article = $this->getArtwork();
     // update and add some items (I ran into memory issues doing this in the main getartwork func..)
@@ -350,7 +339,7 @@ class StaticsController extends Controller {
         ),
       ),
     ));
-    $article->push('galleryImages', $images);
+    $article->push('galleryImages', $this->getImages($this->faker->numberBetween(1,5)));
     $article->push('recentlyViewedArtworks', $this->getArtworks(6));
     $article->push('interestedThemes', array(
       array(
@@ -390,7 +379,22 @@ class StaticsController extends Controller {
     $srcset = "http://placeimg.com/".$width."/".$height."/nature ".$width."w";
     //$src = $this->faker->imageUrl($width, $height, 'nature');
     //$src = str_replace('https://', 'http://', $src);
-    $image = array("src" => $src, "srcset" => $srcset, "width" => $width, "height" => $height);
+
+    $credit = $this->faker->boolean() ? $this->faker->sentence(3) : null;
+    $creditUrl = ($credit && $this->faker->boolean()) ? '#' : null;
+
+    $image = array(
+        "src" => $src,
+        "srcset" => $srcset,
+        "width" => $width,
+        "height" => $height,
+        "shareUrl" => '#',
+        "shareTitle" => $this->faker->sentence(5),
+        "downloadUrl" => $src,
+        "downloadName" => $this->faker->word(),
+        "credit" => $credit,
+        "creditUrl" => $creditUrl,
+    );
 
     return $image;
   }
