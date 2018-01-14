@@ -17,6 +17,7 @@
   <li><br><a href="/statics/article">all blocks, standard header</a></li>
   <li><a href="/statics/article_feature">all blocks, feature header</a></li>
   <li><a href="/statics/article_hero">all blocks, hero header</a></li>
+  <li><a href="/statics/article_superhero">all blocks, super hero header</a></li>
   <li><br><a href="/statics/generic_landing">generic landing</a></li>
   <li><a href="/statics/generic_detail">generic detail</a></li>
   <li><br><a href="/statics/exhibition">exhibition, hero header</a></li>

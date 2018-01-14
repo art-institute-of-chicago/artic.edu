@@ -102,6 +102,8 @@ class StaticsController extends Controller {
   public function article_feature() {
 
     $article = $this->generateAllBlocksArticle();
+    $article->push('headerType', 'feature');
+    $article->push('headerImage', $this->getImage(1600,900));
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
@@ -112,6 +114,20 @@ class StaticsController extends Controller {
   public function article_hero() {
 
     $article = $this->generateAllBlocksArticle();
+    $article->push('headerType', 'hero');
+    $article->push('headerImage', $this->getImage(1600,900));
+
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'hero'),
+      'article' => $article,
+    ]);
+  }
+
+  public function article_superhero() {
+
+    $article = $this->generateAllBlocksArticle();
+    $article->push('headerType', 'super-hero');
+    $article->push('headerImage', $this->getImage(1600,900));
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),

@@ -324,7 +324,9 @@
 
 
 
+
 .m-article-header--hero {
+  min-height: 90vh;
   padding-top: 0;
 
   @include breakpoint('xlarge+') {
@@ -355,11 +357,14 @@
   left: 0;
   right: 0;
   top: 0;
-  height: 220px;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 80%, rgba(0,0,0,0) 100%);
+  //height: 220px;
+  //background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 80%, rgba(0,0,0,0) 100%);
+  bottom: 0;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 176px, rgba(0,0,0,.2) 220px, rgba(0,0,0,.2) 100%);
 
   @include breakpoint('small+') {
-    height: 300px;
+    //height: 300px;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 240px, rgba(0,0,0,.2) 300px, rgba(0,0,0,.2) 100%);
   }
 }
 
@@ -376,6 +381,86 @@
 }
 
 .m-article-header--hero .m-article-header__text {
+  display: flex;
+  position: relative;
+  flex: 1;
+  z-index: 2;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.m-article-header--hero .m-article-header__text .title {
+  text-align: center;
+  color: $color__text--title-contrast;
+}
+
+.m-article-header--hero .m-article-header__text .f-tag-2 {
+  @include tucked-align-top($f-tag-2);
+}
+
+.m-article-header--hero .m-article-header__text .f-display-3 {
+  @include tucked-margin-top($f-display-3, ('xsmall': 60, 'small+': 100));
+}
+
+
+
+
+
+.m-article-header--super-hero {
+  padding-top: 0;
+
+  @include breakpoint('xlarge+') {
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  @include breakpoint('xxlarge') {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.m-article-header--super-hero .m-article-header__img {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  margin-left: -50vw;
+}
+
+.m-article-header--super-hero .m-article-header__img::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  //height: 220px;
+  //background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 80%, rgba(0,0,0,0) 100%);
+  bottom: 0;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 176px, rgba(0,0,0,.2) 220px, rgba(0,0,0,.2) 100%);
+
+  @include breakpoint('small+') {
+    //height: 300px;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 240px, rgba(0,0,0,.2) 300px, rgba(0,0,0,.2) 100%);
+  }
+}
+
+.m-article-header--super-hero .m-article-header__img img,
+.m-article-header--super-hero .m-article-header__img video {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.m-article-header--super-hero .m-article-header__text {
   display: flex;
   position: relative;
   z-index: 2;
@@ -409,25 +494,25 @@
   }
 }
 
-.m-article-header--hero .title,
-.m-article-header--hero .date,
-.m-article-header--hero .type,
-.m-article-header--hero .m-article-header__intro {
+.m-article-header--super-hero .title,
+.m-article-header--super-hero .date,
+.m-article-header--super-hero .type,
+.m-article-header--super-hero .m-article-header__intro {
   color: $color__text--title-contrast;
   text-shadow: 0 0 25px rgba(0, 0, 0, 1);
   order: 1;
 }
 
-.m-article-header--hero .title {
+.m-article-header--super-hero .title {
   @include tucked-align-top($f-display-2);
   color: $color__text--title-contrast;
 }
 
-.m-article-header--hero .date {
+.m-article-header--super-hero .date {
   @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small+': 60, 'medium+': 80));
 }
 
-.m-article-header--hero .type {
+.m-article-header--super-hero .type {
   order: 0;
   padding-bottom: 20px;
 
@@ -437,7 +522,7 @@
   }
 }
 
-.m-article-header--hero .hr {
+.m-article-header--super-hero .hr {
   border-top-color: $color__text--title-contrast;
   order: 1;
 
@@ -458,7 +543,7 @@
   }
 }
 
-.m-article-header--hero .m-article-header__intro {
+.m-article-header--super-hero .m-article-header__intro {
   @include tucked-margin-top($f-deck, ('xsmall': 36));
   padding-right: 32px;
 
@@ -467,8 +552,8 @@
   }
 }
 
-.m-article-header--hero .m-article-header__info-trigger,
-.m-article-header--hero .m-article-header__info {
+.m-article-header--super-hero .m-article-header__info-trigger,
+.m-article-header--super-hero .m-article-header__info {
   bottom: 28px;
 }
 

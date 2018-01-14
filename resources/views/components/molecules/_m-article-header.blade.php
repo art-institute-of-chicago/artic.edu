@@ -12,15 +12,24 @@
         @slot('type', $type ?? null)
         @slot('img', $img ?? null)
     @endcomponent
-@elseif (isset($headerType) and $headerType === 'hero')
-    {{-- Hero header --}}
-    @component('components.molecules._m-article-header----hero')
+@elseif (isset($headerType) and $headerType === 'super-hero')
+    {{-- Super Hero header --}}
+    @component('components.molecules._m-article-header----super-hero')
         @slot('editorial', $editorial ?? null)
         @slot('variation', $variation ?? null)
         @slot('title', $title ?? null)
         @slot('date', $date ?? null)
         @slot('type', $type ?? null)
         @slot('intro', $intro ?? null)
+        @slot('img', $img ?? null)
+    @endcomponent
+@elseif (isset($headerType) and $headerType === 'hero')
+    {{-- Hero header --}}
+    @component('components.molecules._m-article-header----hero')
+        @slot('editorial', $editorial ?? null)
+        @slot('variation', $variation ?? null)
+        @slot('title', $title ?? null)
+        @slot('articleType', $type ?? null)
         @slot('img', $img ?? null)
     @endcomponent
 @elseif (isset($headerType) and $headerType === 'generic')
