@@ -317,7 +317,7 @@ class ApiQueryBuilder {
 
         $results = $this->runGet();
 
-        $this->paginationData = $results->body->pagination;
+        $this->paginationData = $results->body->pagination ?? null;
 
         $this->columns = $original;
         return collect($results->body->data);
