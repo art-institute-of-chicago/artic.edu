@@ -1,5 +1,5 @@
 @component('components.molecules._m-listing----media')
-    @slot('tag', $tag)
-    @slot('variation', $variation)
+    @slot('tag', $tag ?? null)
+    @slot('variation', $variation ?? null)
     @slot('media', $media)
 @endcomponent

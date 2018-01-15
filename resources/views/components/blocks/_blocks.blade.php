@@ -11,6 +11,9 @@
                         case 'intro':
                             $font = 'f-deck';
                             break;
+                        case 'secondary':
+                            $font = 'f-secondary';
+                            break;
                         case 'heading-1':
                             $font = 'f-module-title-2';
                             $tag = 'h4';
@@ -44,7 +47,7 @@
 
         @if ($block['type'] === 'quote')
             @component('components.atoms._quote')
-                @slot('variation', (isset($editorial) and $editorial) ? 'quote--editorial' : false)
+                @slot('variation', (isset($editorial) and $editorial) ? 'quote--editorial o-blocks__block' : 'o-blocks__block')
                 @slot('font', (isset($editorial) and $editorial) ? 'f-deck' : null)
                 {{ $block['content'] }}
             @endcomponent
@@ -57,6 +60,7 @@
 
         @if ($block['type'] === 'accordion')
             @component('components.organisms._o-accordion')
+                @slot('variation', 'o-blocks__block')
                 @slot('items', $block['content'])
                 @slot('loopIndex', $loop->iteration)
             @endcomponent
@@ -64,12 +68,14 @@
 
         @if ($block['type'] === 'media')
             @component('components.molecules._m-media')
+                @slot('variation', 'o-blocks__block')
                 @slot('item', $block['content'])
             @endcomponent
         @endif
 
         @if ($block['type'] === 'become-a-member')
             @component('components.molecules._m-cta-banner----become-a-member')
+                @slot('variation', 'o-blocks__block')
             @endcomponent
         @endif
 
@@ -77,19 +83,20 @@
             @if (isset($block['subtype']) and $block['subtype'] === 'inline')
                 @component('components.molecules._m-inline-aside')
                     @component('components.molecules._m-aside-newsletter')
-                        @slot('variation','m-aside-newsletter--inline')
+                        @slot('variation','m-aside-newsletter--inline o-blocks__block')
                         @slot('placeholder','Email Address')
                     @endcomponent
                 @endcomponent
             @else
                 @component('components.molecules._m-aside-newsletter')
-                    @slot('variation', (isset($block['subtype']) && $block['subtype'] ? 'm-aside-newsletter--'.$block['subtype'] : null))
+                    @slot('variation', (isset($block['subtype']) && $block['subtype'] ? 'm-aside-newsletter--'.$block['subtype'].' o-blocks__block' : 'o-blocks__block'))
                 @endcomponent
             @endif
         @endif
 
         @if ($block['type'] === 'time-line')
             @component('components.organisms._o-row-listing')
+                @slot('variation', 'o-blocks__block')
                 @foreach ($block['items'] as $item)
                     @component('components.molecules._m-listing----timeline')
                         @slot('date', $item)
@@ -101,6 +108,7 @@
         @if ($block['type'] === 'listing')
             @if (isset($block['subtype']) and $block['subtype'])
                 @component('components.organisms._o-row-listing')
+                    @slot('variation', 'o-blocks__block')
                     @foreach ($block['items'] as $item)
                         @component('components.molecules._m-listing----'.$block["subtype"].'-row')
                             @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
@@ -114,6 +122,7 @@
         @if ($block['type'] === 'aside')
             @if (isset($block['subtype']) and $block['subtype'])
                 @component('components.blocks._inline-aside')
+                    @slot('variation', 'o-blocks__block')
                     @slot('type', $block['subtype'])
                     @slot('items', $block['items'])
                     @slot('itemsMolecule', '_m-listing----'.$block['subtype'].'-row')
@@ -124,6 +133,7 @@
 
         @if ($block['type'] === 'link-list')
             @component('components.molecules._m-link-list')
+                @slot('variation', 'o-blocks__block')
                 @slot('links', $block['links']);
             @endcomponent
         @endif
@@ -131,6 +141,7 @@
         @if ($block['type'] === 'gallery')
             @if (isset($block['subtype']) and $block['subtype'])
                 @component('components.organisms._o-gallery----'.$block["subtype"])
+                    @slot('variation', 'o-blocks__block')
                     @slot('title', $block['title']);
                     @slot('caption', $block['caption']);
                     @slot('items', $block['items']);
@@ -163,7 +174,19 @@
         @endif
 
         @if ($block['type'] === 'embed')
+            @slot('variation', 'o-blocks__block')
             {!! $block['content'] !!}
+        @endif
+
+        @if ($block['type'] === 'deflist')
+            <dl class="deflist o-blocks__block">
+            @foreach ($block['items'] as $item)
+                <div class="deflist__row">
+                <dt class="f-module-title-1">{{ $item['key'] }}</dt>
+                    <dd class="f-secondary">{{ $item['value'] }}</dd>
+                </div>
+            @endforeach
+            </dl>
         @endif
 
     @endforeach

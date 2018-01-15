@@ -325,13 +325,15 @@ class StaticsController extends Controller {
   public function artwork() {
     // get an artwork
     $article = $this->getArtwork();
+    // generate some blocks
+    $blocks = $this->generateArtworkBlocks();
     // update and add some items (I ran into memory issues doing this in the main getartwork func..)
     $article->push('nextArticle', $this->getArtwork());
     $article->push('prevArticle', $this->getArtwork());
     $article->push('articleType', 'artwork');
     $article->push('headerType', 'gallery');
     $article->push('onView', array('label' => 'European Painting and Sculpture, Galleries 239', 'href' => '#'));
-    $article->push('blocks', $this->generateBlocks(6));
+    $article->push('blocks', $blocks);
     $article->push('exploreFuther', array(
       'items' => $this->getArtworks(8),
       'nav' => array(
@@ -804,6 +806,116 @@ class StaticsController extends Controller {
     return $article;
   }
 
+  public function generateArtworkBlocks() {
+
+    $blocks = $this->generateBlocks(2);
+
+    array_push($blocks, array(
+      "type" => 'deflist',
+      "items" => array(
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+      )
+    ));
+
+    array_push($blocks, array(
+        "type" => 'accordion',
+        "content" => array(
+            array(
+                'title' => 'Publication History',
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->sentence(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->sentence(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->sentence(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->sentence(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->sentence(8)
+                    ),
+                ),
+            ),
+            array(
+                'title' => 'Exhibition History',
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->sentence(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->sentence(8)
+                    ),
+                ),
+            ),
+            array(
+                'title' => 'Provenance',
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(12)
+                    ),
+                ),
+            ),
+            array(
+                'title' => 'Catalogue Raisonne',
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(12)
+                    ),
+                ),
+            ),
+            array(
+                'title' => 'Multimedia',
+                'blocks' => array(
+                    array(
+                        "type" => 'listing',
+                        "subtype" => 'media',
+                        "items" => $this->getMedias(2),
+                    ),
+                ),
+            ),
+            array(
+                'title' => 'Classroom Resources',
+                'blocks' => array(
+                    array(
+                        "type" => 'link-list',
+                        "links" => array(
+                              array('label' => $this->faker->sentence(8), 'href' => '#', 'iconAfter' => 'new-window'),
+                              array('label' => $this->faker->sentence(8), 'href' => '#'),
+                              array('label' => $this->faker->sentence(8), 'href' => '#'),
+                          )
+                    ),
+                ),
+            ),
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'hr',
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        'subtype' => 'secondary',
+        "content" => $this->faker->paragraph()
+    ));
+    return $blocks;
+  }
+
   private function generateBlocks($num = 3) {
 
     $blocks = array();
@@ -929,6 +1041,15 @@ class StaticsController extends Controller {
         "type" => 'listing',
         "subtype" => 'exhibition',
         "items" => $this->getExhibitions(3),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'listing',
+        "subtype" => 'media',
+        "items" => $this->getMedias(3),
     ));
     array_push($blocks, array(
         "type" => 'text',
@@ -1091,6 +1212,20 @@ class StaticsController extends Controller {
         "title" => 'Slider Gallery',
         "caption" => $this->faker->paragraph(3, false),
         "items" => $this->getGalleryImages(6),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6)
+    ));
+    array_push($blocks, array(
+      "type" => 'deflist',
+      "items" => array(
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+      )
     ));
     array_push($blocks, array(
         "type" => 'text',

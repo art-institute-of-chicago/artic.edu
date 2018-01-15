@@ -76,19 +76,7 @@
     }
   }
 
-  $blockClasses: o-accordion, o-gallery, o-row-listing, m-inline-aside, m-media, m-link-list, m-cta-banner, m-aside-newsletter--wide, m-row-block, quote;
-
-  $blockClassesCompiled: '';
-  @each $blockClass in $blockClasses {
-    $i: index($blockClasses, $blockClass);
-    @if ($i > 1) {
-      $blockClassesCompiled: "#{$blockClassesCompiled}, .#{$blockClass}"
-    } @else {
-      $blockClassesCompiled: ".#{$blockClass}"
-    }
-  }
-
-  #{$blockClassesCompiled} {
+  .o-blocks__block {
     clear: both;
     margin-top: 32px;
 
@@ -101,20 +89,29 @@
     }
   }
 
-  // this produces ALOT of CSS..
-  @each $blockClass in $blockClasses {
-    .f-module-title-2 + .#{$blockClass},
-    .f-subheading-1 + .#{$blockClass},
-    .#{$blockClass} + .#{$blockClass} {
-      //margin-top: 24px;
+  .o-blocks__block:first-child {
+    margin-top: 0;
 
-      @include breakpoint('small+') {
-        //margin-top: 36px;
-      }
+    @include breakpoint('small+') {
+      margin-top: 0;
+    }
 
-      @include breakpoint('medium+') {
-        //margin-top: 48px;
-      }
+    @include breakpoint('medium+') {
+      margin-top: 0;
+    }
+  }
+
+  .f-module-title-2 + .o-blocks__block,
+  .f-subheading-1 + .o-blocks__block,
+  .o-blocks__block + .o-blocks__block {
+    margin-top: 24px;
+
+    @include breakpoint('small+') {
+      margin-top: 36px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 48px;
     }
   }
 

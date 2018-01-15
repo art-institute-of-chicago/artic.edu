@@ -104,8 +104,23 @@
   }
 
   @include breakpoint('small+') {
-    padding-right: colspan(3, small);
     padding-bottom: 8px;
+  }
+
+  @include breakpoint('xlarge+') {
+
+    .o-accordion--section & {
+      padding-top: 36px;
+    }
+  }
+}
+
+.o-accordion__panel-content.o-blocks > .f-body,
+.o-accordion__panel-content.o-blocks > .f-body-editorial {
+  @include tucked-margin-top($f-body, ('xsmall': 56));
+
+  @include breakpoint('small+') {
+    padding-right: colspan(3, small);
   }
 
   @include breakpoint('medium+') {
@@ -118,10 +133,6 @@
 
   @include breakpoint('xlarge+') {
     padding-right: colspan(3, xlarge);
-
-    .o-accordion--section & {
-      padding-top: 36px;
-    }
   }
 
   @include breakpoint('xxlarge') {
@@ -129,24 +140,26 @@
   }
 }
 
-.o-accordion__panel .f-subheading-1 {
+.o-accordion__panel-content.o-blocks > .f-module-title-2 {
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 56));
+}
+
+.o-accordion__panel-content.o-blocks > .f-subheading-1 {
   @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
-
-  &:first-child {
-    @include tucked-margin-top($f-subheading-1, ('xsmall': 48, 'small+': 56, 'medium+': 64));
-  }
 }
 
-.o-accordion__panel .f-body,
-.o-accordion__panel .f-body-editorial {
-  @include tucked-margin-top($f-body, ('xsmall': 56));
-
-  &:first-child {
-    @include tucked-margin-top($f-body, ('xsmall': 48, 'small+': 56, 'medium+': 64));
-  }
+.o-accordion__panel-content.o-blocks > .f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 56));
 }
 
-.o-accordion__panel .f-subheading-1 + .f-body,
-.o-accordion__panel .f-subheading-1 + .f-body-editorial {
-  margin-top: 0;
+.o-accordion__panel-content.o-blocks > .o-blocks__block:first-child {
+  margin-top: 28px;
+
+  @include breakpoint('small+') {
+    margin-top: 44px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 60px;
+  }
 }

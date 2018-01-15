@@ -1,0 +1,83 @@
+/***
+
+```
+<dl class="deflist">
+  <dt class="f-h7">Lorem ipsum dolor sit amet</dt>
+    <dd class="f-body--sm">Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</dd>
+  <dt class="f-h7">Lorem ipsum dolor sit amet</dt>
+    <dd class="f-body--sm">Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</dd>
+  <dt class="f-h7">Lorem ipsum dolor sit amet</dt>
+    <dd class="f-body--sm">Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</dd>
+</dl>
+```
+
+***/
+
+.deflist {
+  margin-top: 0;
+}
+
+.deflist__row {
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+}
+
+.deflist__row:not(:first-child) {
+  margin-top: 16px;
+}
+
+.deflist__row::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
+
+.deflist dt {
+  flex: 0 0 auto;
+  width: 100%;
+  padding-right: 20px;
+  color: $color__text--title;
+
+  @include breakpoint('small+') {
+    width: colspan(20, small);
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(15, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(15, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(9, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(9, xxlarge);
+  }
+}
+
+.deflist dd {
+  flex: 1;
+  width: 100%;
+
+  @include breakpoint('small+') {
+    width: auto;
+  }
+}
+
+.deflist dt.f-module-title-1 {
+  @include tucked-margin-top($f-module-title-1, ('xsmall': 32));
+}
+
+.deflist dd.f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 32));
+}
