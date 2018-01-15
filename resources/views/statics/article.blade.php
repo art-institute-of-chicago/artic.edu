@@ -21,7 +21,7 @@
   <div class="o-article__primary-actions{{ ($article->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@xlarge+' : '' }}">
     @if ($article->articleType !== 'artwork')
         @component('components.molecules._m-article-actions')
-            @slot('editorial', ($article->articleType === 'editorial'))
+            @slot('articleType', $article->articleType)
         @endcomponent
     @endif
 
@@ -233,7 +233,7 @@
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
-        @slot('editorial', ($article->articleType === 'editorial'))
+        @slot('articleType', $article->articleType)
     @endcomponent
   </div>
 
