@@ -287,30 +287,24 @@ $f-ui: (
 /*
   @mixin text-underline
 
-  Inserts vendor prefixed box shadows
+  Does "medium" style underlines with "iOS" style descender shadows
 
   Parameters:
-  $off - color
-  $on - color for hover
+  $underline - color
+  $background - color
   $pos - vertical position
 */
-@mixin text-underline($pos: 14,$off: $color__white,$on: $color__black--93) {
-  text-decoration: none;
+@mixin text-underline($pos: .85em, $underline: $color__text, $background: $color__white) {
   background: {
-    image: linear-gradient(to bottom, rgba($off, 0) 50%, rgba($off, 1) 50%);
+    image: linear-gradient(to bottom, rgba($underline, 0) 50%, rgba($underline, 1) 50%);
     repeat: repeat-x;
     size: 2px 2px;
-    position: 0 $pos*1px;
+    position: 0 $pos;
   }
-  // to draw the lines below the regular height of the box...
-  //padding-bottom: 3px;
-  //margin-bottom: -3px;
-
-  &:hover,
-  &:focus {
-    background-image: linear-gradient(to bottom, rgba($on, 0) 50%, rgba($on, 1) 50%);
-  }
+  text-decoration: none;
+  text-shadow: 0 .08em 0 $background, 0 -.08em 0 $background, .08em 0 0 $background, -.08em 0 0 $background;
 }
+
 
 
 /*
