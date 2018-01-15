@@ -142,6 +142,15 @@
   object-fit: cover;
 }
 
+.m-listing__img--contain img,
+.m-listing__img--contain video {
+  object-fit: contain;
+}
+  .m-listing__img--tall.m-listing__img--contain img,
+  .m-listing__img--tall.m-listing__img--contain video {
+    object-position: center top;
+  }
+
 .m-listing__meta {
   display: flex;
   flex: 1 0 auto;
