@@ -1,0 +1,26 @@
+/***
+
+```
+<p class="f-list-2 interests-list">It seems it you could also be interested in <a href="#">Picasso</a>, <a href="#">Modern Art</a> and <a href="#">European Art</a>.</p>
+```
+
+***/
+
+.interests-list {
+  color: $color__text--title;
+}
+
+.interests-list.f-list-2 {
+  @include tucked-margin-top($f-list-2, ('xsmall': 52));
+}
+
+.interests-list a {
+  @include text-underline(.8em, $color__text--title);
+  color: $color__text--title;
+  text-decoration: none;
+}
+
+.interests-list a:hover {
+  @include text-underline(.8em, $color__text--secondary);
+  color: $color__text--secondary;
+}
