@@ -2,9 +2,10 @@
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $media = $item['media'];
+    $tag = (isset($item['url']) && $item['url'] && $type !== 'embed' && $type !== 'video') ? 'a' : 'span';
 @endphp
 <figure data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}">
-    <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}">
+    <{{ $tag }}{{ ($tag === 'a') ? ' href="'.$item['url'].'"' : '' }} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}">
         @if ($type == 'image')
             @component('components.atoms._img')
                 @slot('src', $media['src'] ?? '')
@@ -22,7 +23,7 @@
                 @slot('controls', true)
             @endcomponent
         @endif
-    </span>
+    </{{ $tag }}>
     <figcaption>
         @if ($size == 'gallery')
             @if (isset($item['captionTitle']))<strong class="f-caption">{{ $item['captionTitle'] }}</strong> <br>@endif

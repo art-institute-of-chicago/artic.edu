@@ -446,7 +446,7 @@ class StaticsController extends Controller {
               'type' => 'video',
               'size' => 'gallery',
               'media' => $this->getVideo(),
-              'caption' => $this->faker->paragraph(3, false)
+              'caption' => $this->faker->paragraph(3, false),
           )
         );
       } else if ($i == 5) {
@@ -454,7 +454,7 @@ class StaticsController extends Controller {
               'type' => 'embed',
               'size' => 'gallery',
               'media' => $this->getEmbed(),
-              'caption' => $this->faker->paragraph(3, false)
+              'caption' => $this->faker->paragraph(3, false),
           )
         );
       } else {
@@ -462,7 +462,8 @@ class StaticsController extends Controller {
               'type' => 'image',
               'size' => 'gallery',
               'media' => $this->getImage(),
-              'caption' => $this->faker->paragraph(3, false)
+              'caption' => $this->faker->paragraph(3, false),
+              'url' => $this->faker->boolean() ? '#' : null,
           )
         );
       }
