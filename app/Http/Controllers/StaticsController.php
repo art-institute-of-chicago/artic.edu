@@ -357,7 +357,7 @@ class StaticsController extends Controller {
       ),
     ));
     $article->push('galleryImages', $this->getImages($this->faker->numberBetween(1,5)));
-    $article->push('recentlyViewedArtworks', $this->getArtworks(6));
+    $article->push('recentlyViewedArtworks', $this->getArtworks($this->faker->numberBetween(6,20)));
     $article->push('interestedThemes', array(
       array(
         'href' => '#',

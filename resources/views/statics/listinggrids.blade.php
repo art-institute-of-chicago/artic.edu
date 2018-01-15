@@ -154,6 +154,40 @@
 </ul>
 
 <div style="margin-top: 60px;"></div>
+<p class="f-secondary">6 column with scroll at medium-</p>
+@component('components.atoms._hr')
+@endcomponent
+
+<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols o-grid-listing--6-col@large o-grid-listing--6-col@xlarge o-grid-listing--6-col@xxlarge" data-behavior="dragScroll">
+  <?php for ($i = 0; $i < 6; $i++): ?>
+    <li class="m-listing">
+      <a href="#t" class="m-listing__link">
+        <span class="m-listing__img" style="height: 200px !important;">
+          <img src="http://placehold.dev.area17.com/image/400x100" style="height: 200px !important;">
+        </span>
+      </a>
+    </li>
+  <?php endfor; ?>
+</ul>
+
+<div style="margin-top: 60px;"></div>
+<p class="f-secondary">12 column with scroll at medium-</p>
+@component('components.atoms._hr')
+@endcomponent
+
+<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols o-grid-listing--12-col@large o-grid-listing--12-col@xlarge o-grid-listing--12-col@xxlarge" data-behavior="dragScroll">
+  <?php for ($i = 0; $i < 12; $i++): ?>
+    <li class="m-listing">
+      <a href="#t" class="m-listing__link">
+        <span class="m-listing__img" style="height: 200px !important;">
+          <img src="http://placehold.dev.area17.com/image/400x100" style="height: 200px !important;">
+        </span>
+      </a>
+    </li>
+  <?php endfor; ?>
+</ul>
+
+<div style="margin-top: 60px;"></div>
 <p class="f-secondary">3 column list</p>
 @component('components.atoms._hr')
 @endcomponent
