@@ -27,7 +27,7 @@
 </ul>
 
 <div style="margin-top: 60px;"></div>
-<p class="f-secondary">o-grid-listing following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
+<p class="f-secondary">o-grid-listing following a <code>&lt;span class="hr"&gt;&lt;/span&gt;</code></p>
 @component('components.atoms._hr')
 @endcomponent
 
@@ -48,7 +48,7 @@
 </ul>
 
 <div style="margin-top: 60px;"></div>
-<p class="f-secondary">o-grid-listing--gridlines-cols following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
+<p class="f-secondary">o-grid-listing--gridlines-cols following a <code>&lt;span class="hr"&gt;&lt;/span&gt;</code></p>
 @component('components.atoms._hr')
 @endcomponent
 
@@ -63,7 +63,7 @@
 </ul>
 
 <div style="margin-top: 60px;"></div>
-<p class="f-secondary">o-grid-listing--gridlines-top following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
+<p class="f-secondary">o-grid-listing--gridlines-top following a <code>&lt;span class="hr"&gt;&lt;/span&gt;</code></p>
 @component('components.atoms._hr')
 @endcomponent
 
@@ -84,7 +84,7 @@
 </ul>
 
 <div style="margin-top: 60px;"></div>
-<p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-top following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
+<p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-top following a <code>&lt;span class="hr"&gt;&lt;/span&gt;</code></p>
 @component('components.atoms._hr')
 @endcomponent
 
@@ -105,7 +105,7 @@
 </ul>
 
 <div style="margin-top: 60px;"></div>
-<p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-top following a <code>&lt;span class="hr"&gt;lt;/span&gt;</code></p>
+<p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-top following a <code>&lt;span class="hr"&gt;&lt;/span&gt;</code></p>
 @component('components.atoms._hr')
 @endcomponent
 
