@@ -1,0 +1,21 @@
+hr,
+.hr {
+  display: block;
+  height: 0;
+  margin: 28px 0 -1px;
+  border: 0;
+  border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('small+') {
+    margin-top: 36px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 40px;
+  }
+
+  &:first-child,
+  &.hr--flush-top {
+    margin-top: 0;
+  }
+}
