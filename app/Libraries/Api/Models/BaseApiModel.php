@@ -18,10 +18,11 @@ use Illuminate\Support\Collection as BaseCollection;
 use JsonSerializable;
 
 use App\Libraries\Api\Models\Behaviors\HasApiCalls;
+use App\Libraries\Api\Models\Behaviors\HasAugmentedModel;
 
 abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 {
-    use HasApiCalls;
+    use HasApiCalls, HasAugmentedModel;
 
     protected $attributes = [];
 

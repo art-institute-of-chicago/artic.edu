@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 use App\Repositories\SiteTagRepository;
+
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\Request;
 use Route;
+use Session;
 
 class EventController extends ModuleController
 {
@@ -27,9 +31,11 @@ class EventController extends ModuleController
     protected $indexColumns = [
         'title' => [
             'title' => 'Title',
-            'edit_link' => true,
-            'sort' => true,
             'field' => 'title',
+        ],
+        'augmented' => [
+            'title' => 'Augmented?',
+            'field' => 'augmented',
         ],
     ];
 
@@ -79,15 +85,18 @@ class EventController extends ModuleController
         return $this->app->make("$this->namespace\Repositories\\" . $this->localModelName . "Repository");
     }
 
+    protected function validateFormRequest()
+    {
+        return $this->app->make("$this->namespace\Http\Requests\Admin\\" . $this->localModelName . "Request");
+    }
+
     protected function form($id)
     {
         $item = $this->getLocalRepository()->getById($id, $this->formWith, $this->formWithCount);
 
-        // Load API data
+        // Load API data into the Local DB Object just to show it
         $item->refreshApi();
 
-
-        // Simplify the next items
         $fullRoutePrefix = 'admin.' . ($this->routePrefix ? $this->routePrefix . '.' : '') . $this->moduleName . '.';
         $previewRouteName = $fullRoutePrefix . 'preview';
         $restoreRouteName = $fullRoutePrefix . 'restore';
@@ -150,7 +159,7 @@ class EventController extends ModuleController
 
             if (($item->isLockable() == false) || ($item->isLocked() && $item->isLockedByCurrentUser())) {
                 // check the lock?
-                $this->repository->update($id, $formRequest->all());
+                $this->getLocalRepository()->update($id, $formRequest->all());
                 return $this->respondWithSuccess('Content saved. All good!');
             } else {
                 abort(403);
@@ -161,6 +170,46 @@ class EventController extends ModuleController
     public function getIndexTableMainFilters($items)
     {
         return [];
+    }
+
+    public function getIndexTableData($items)
+    {
+        // Make a call to obtain all augmented models included on this list
+        $ids = $items->pluck('id')->toArray();
+        $localElements = $this->getLocalRepository()->get([], ['datahub_id' => $ids], [], -1);
+
+        return $items->map(function ($item) use ($localElements) {
+            // If the element has an augmented model the edit URL will change
+            // So it will create automatically a model to be edited and so follow
+            // Our CMS guidelines
+            if ($element = $localElements->where('datahub_id', $item->id)->first()) {
+                $item->setAugmentedModel($element);
+                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'edit', $element->id);
+            } else {
+                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $item->id);
+            }
+
+            $columnsData = collect($this->indexColumns)->mapWithKeys(function ($column) use ($item) {
+                return $this->getItemColumnData($item, $column);
+            })->toArray();
+
+            $name = $columnsData[$this->titleColumnKey];
+            unset($columnsData[$this->titleColumnKey]);
+
+            $itemIsTrashed = method_exists($item, 'trashed') && $item->trashed();
+
+            return [
+                'id' => $item->id,
+                'name' => $name,
+                'edit' => $editRoute,
+                'delete' => moduleRoute($this->moduleName, $this->routePrefix, 'destroy', $item->id),
+                'publish_start_date' => $item->publish_start_date,
+                'publish_end_date' => $item->publish_end_date,
+            ] + $columnsData
+                 + ($this->getIndexOption('publish') ? ['published' => $item->published] : [])
+                 + ($this->getIndexOption('feature') ? ['featured' => $item->{$this->featureField}] : [])
+                 + (($this->getIndexOption('restore') && $itemIsTrashed) ? ['deleted' => true] : []);
+        })->toArray();
     }
 
 }

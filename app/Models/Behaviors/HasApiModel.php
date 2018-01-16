@@ -49,7 +49,8 @@ trait HasApiModel
         return $this;
     }
 
-    public function getApiModel() {
+    public function getApiModel()
+    {
         return $this->apiModel::query()->find($this->datahub_id);
     }
 
@@ -59,7 +60,8 @@ trait HasApiModel
      *
      * @object
      */
-    public function augmentEntity($dataObject) {
+    public function augmentEntity($dataObject)
+    {
         foreach($dataObject as $key => $value) {
             if ($this->hasAttribute($key)) {
                 // TODO: If the attribute already exists un-tie with a mapping array and set the attr.
@@ -79,7 +81,8 @@ trait HasApiModel
         return array_key_exists($attr, $this->attributes);
     }
 
-    public function getApiField($field) {
+    public function getApiField($field)
+    {
         return $this->getApiFields[$field];
     }
 
@@ -88,7 +91,8 @@ trait HasApiModel
      *
      * @return object
      */
-    public function getApiFields() {
+    public function getApiFields()
+    {
         return (object) array_reduce($this->apiFields, function($result, $field) {
             $result[$field] = $this->$field; return $result;
         }, array());
