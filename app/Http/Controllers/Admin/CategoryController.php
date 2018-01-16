@@ -10,8 +10,20 @@ class CategoryController extends ModuleController
     protected $moduleName = 'categories';
     protected $modelName  = 'CategoryApi';
 
-    protected $indexOptions = [
+    /*
+     * Options of the index view
+     */
+    protected $defaultIndexOptions = [
+        'create' => true,
         'publish' => false,
+        'bulkPublish' => false,
+        'feature' => false,
+        'bulkFeature' => false,
+        'restore' => false,
+        'bulkRestore' => false,
+        'bulkDelete' => false,
+        'reorder' => false,
+        'permalink' => false,
     ];
 
     // protected $titleColumnKey = 'name';
@@ -58,5 +70,4 @@ class CategoryController extends ModuleController
     {
         return [];
     }
-
 }

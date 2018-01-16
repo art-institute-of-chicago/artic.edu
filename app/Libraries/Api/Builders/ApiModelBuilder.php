@@ -18,7 +18,7 @@ class ApiModelBuilder
     /**
      * The model being queried.
      *
-     * @var \Illuminate\Database\Eloquent\Model
+     * @var \App\Libraries\Api\Models\BaseApiModel
      */
     protected $model;
 
@@ -30,20 +30,11 @@ class ApiModelBuilder
     protected $eagerLoad = [];
 
     /**
-     * A replacement for the typical delete function.
-     *
-     * @var \Closure
-     */
-    protected $onDelete;
-
-    /**
      * The methods that should be returned from query builder.
      *
      * @var array
      */
-    // protected $passthru = [
-    //     'count'
-    // ];
+    protected $passthru = [];
 
     /**
      * Applied global scopes.
@@ -73,7 +64,7 @@ class ApiModelBuilder
     /**
      * Set a model instance for the model being queried.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  \App\Libraries\Api\Models\BaseApiModel
      * @return $this
      */
     public function setModel($model)
@@ -251,7 +242,7 @@ class ApiModelBuilder
     /**
      * Get the model instance being queried.
      *
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return \App\Libraries\Api\Models\BaseApiModel
      */
     public function getEndpoint($name, $params = [])
     {
@@ -269,6 +260,14 @@ class ApiModelBuilder
     }
 
     /**
+     * TODO: Apply scopes before running a passthrough
+     */
+    public function toBase()
+    {
+        return $this;
+    }
+
+    /**
      * Dynamically handle calls into the query instance.
      *
      * @param  string  $method
@@ -281,9 +280,9 @@ class ApiModelBuilder
             return $this->callScope([$this->model, $scope], $parameters);
         }
 
-        // if (in_array($method, $this->passthru)) {
-        //     return $this->toBase()->{$method}(...$parameters);
-        // }
+        if (in_array($method, $this->passthru)) {
+            return $this->toBase()->{$method}(...$parameters);
+        }
 
         $this->query->{$method}(...$parameters);
 

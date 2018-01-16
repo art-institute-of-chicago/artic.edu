@@ -32,6 +32,11 @@ class AicConnection implements ApiConnectionInterface
         return $this->queryGrammar;
     }
 
+    public function setQueryGrammar($queryGrammar)
+    {
+        return $this->queryGrammar = $queryGrammar;
+    }
+
     /**
      * Run a get statement against the API.
      *

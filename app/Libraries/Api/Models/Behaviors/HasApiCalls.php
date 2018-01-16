@@ -2,9 +2,6 @@
 
 namespace App\Libraries\Api\Models\Behaviors;
 
-// TODO: Redefine how to load these libraries in a configurable way
-// Also setup a system to deal with different endpoints.
-
 use App\Libraries\Api\Builders\Connection\AicConnection;
 use App\Libraries\Api\Builders\ApiModelBuilder;
 use App\Libraries\Api\Builders\ApiQueryBuilder;
@@ -15,8 +12,8 @@ trait HasApiCalls
     /**
      * Begin querying a model with eager loading.
      *
-     * @param  array|string  $relations
-     * @return \Illuminate\Database\Eloquent\Builder|static
+     * @param  array|string $relations
+     * @return App\Libraries\Api\Builders\ApiModelBuilder
      */
     public static function with($relations)
     {
@@ -28,7 +25,7 @@ trait HasApiCalls
     /**
      * Begin querying the model.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return App\Libraries\Api\Builders\ApiModelBuilder
      */
     public static function query()
     {
@@ -38,7 +35,7 @@ trait HasApiCalls
     /**
      * Get a new query builder for the model's table.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return App\Libraries\Api\Builders\ApiModelBuilder
      */
     public function newQuery()
     {
@@ -48,7 +45,7 @@ trait HasApiCalls
     /**
      * Get a new query builder that doesn't have any global scopes.
      *
-     * @return \Illuminate\Database\Eloquent\Builder|static
+     * @return App\Libraries\Api\Builders\ApiModelBuilder|static
      */
     public function newQueryWithoutScopes()
     {
