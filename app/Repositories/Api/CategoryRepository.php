@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Api;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 
-use App\Models\CategoryApi;
+use App\Models\Api\Category;
 
-class CategoryApiRepository extends ModuleRepository
+class CategoryRepository extends ModuleRepository
 {
     use HandleSlugs;
 
-    public function __construct(CategoryApi $model)
+    public function __construct(Category $model)
     {
         $this->model = $model;
     }

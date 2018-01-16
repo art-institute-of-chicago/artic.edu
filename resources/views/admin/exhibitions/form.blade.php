@@ -69,15 +69,4 @@
             'max' => 20
         ])
     </a17-fieldset>
-
-    <a17-fieldset id="related" title="Api Fields {{$item->hasApiFields() ? ' - ERROR while loading API data. Check your logs' : ''}}">
-        @foreach($item->getApiFields() as $field => $value)
-            @formField('input', [
-                'name' => $field,
-                'label' => $field,
-                'disabled' => true
-            ])
-        @endforeach
-    </a17-fieldset>
-
 @stop

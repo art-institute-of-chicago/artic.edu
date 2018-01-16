@@ -7,26 +7,24 @@ use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
+use App\Models\Behaviors\HasApiModel;
+
 class Event extends Model
 {
-    use HasSlug, HasRevisions, HasMedias;
+    use HasSlug, HasRevisions, HasMedias, HasApiModel;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
+    protected $apiModel = 'App\Models\Api\Event';
 
     protected $fillable = [
+        'title',
+        'datahub_id',
+
         'published',
         'landing',
         'content',
-        'title',
         'price',
-        'datahub_id',
         'admission',
-        'start_date',
-        'end_date',
-        'recurring',
-        'recurring_start_time',
-        'recurring_end_time',
-        'recurring_days',
         'location',
         'latitude',
         'longitude',
@@ -41,9 +39,9 @@ class Event extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = ['recurring', 'published'];
+    public $checkboxes = ['published'];
 
-    public $dates = ['start_date', 'end_date'];
+    public $dates = [];
 
     public $mediasParams = [
         'hero' => [

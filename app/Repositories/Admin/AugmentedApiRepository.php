@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * DEPRECATED:
+ * To be replaced with the opposite. Load API listings and replace them with
+ * augmented elements
+ *
+ */
+
+
 namespace App\Repositories\Admin;
 
 use A17\CmsToolkit\Repositories\ModuleRepository;

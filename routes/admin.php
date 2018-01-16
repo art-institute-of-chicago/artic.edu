@@ -11,6 +11,8 @@ Route::group(['prefix' => 'landing'], function () {
 
 Route::group(['prefix' => 'whatson'], function () {
     Route::module('events');
+    Route::name('events.augment')->get('events/augment/{datahub_id}', 'EventController@augment');
+
     Route::module('exhibitions');
     Route::module('articles');
     Route::module('artists');

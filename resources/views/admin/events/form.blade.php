@@ -1,13 +1,14 @@
 @extends('cms-toolkit::layouts.form')
 
 @section('contentFields')
-    @formField('date_picker', [
-         'name' => 'start_date',
-         'label' => 'Start date',
+    @formField('input', [
+        'name' => 'title',
+        'label' => 'Title',
     ])
-    @formField('date_picker', [
-         'name' => 'end_date',
-         'label' => 'End date',
+
+    @formField('input', [
+        'name' => 'datahub_id',
+        'label' => 'Datahub ID'
     ])
 
     @formField('multi_select', [
@@ -17,37 +18,14 @@
         'placeholder' => 'Select some tags',
     ])
 
-    @formField('checkbox', [
-         'name' => 'recurring',
-         'label' => 'Recurring event',
-    ])
-
-    @formField('input', [
-         'name' => 'recurring_start_time',
-         'label' => 'Recurring Start time',
-    ])
-    @formField('input', [
-         'name' => 'recurring_end_time',
-         'label' => 'Recurring end time',
-    ])
-
-    @formField('input', [
-        'name' => 'recurring_days',
-        'label' => 'Recurring days',
-    ])
-    @formField('input', [
-        'name' => 'title',
-        'label' => 'Title',
-    ])
-    @formField('input', [
-        'name' => 'datahub_id',
-        'label' => 'Datahub ID'
-    ])
     @formField('medias', [
         'media_role' => 'hero',
         'media_role_name' => 'Hero',
         'with_multiple' => false,
-        'no_crop' => false
+        'no_crop' => false,
+        'label' => 'Hero Image',
+        'name' => 'Hero Image'
+
     ])
     @formField('input', [
         'name' => 'admission',
@@ -82,6 +60,19 @@
         'with_multiple' => true,
         'with_sort' => true,
         'hint' => 'Select related events',
-        'max' => 20
+        'max' => 20,
+        'name' => 'Related events'
     ])
 @stop
+
+@section('fieldsets')
+    <a17-fieldset id="related" title="API Fields">
+        @foreach($item->getApiFields() as $field => $value)
+            @formField('input', [
+                'name' => $field,
+                'label' => $field,
+                'disabled' => true
+            ])
+        @endforeach
+    </a17-fieldset>
+@endsection

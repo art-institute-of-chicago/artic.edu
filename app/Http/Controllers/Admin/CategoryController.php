@@ -8,7 +8,7 @@ use App\Repositories\SegmentRepository;
 class CategoryController extends ModuleController
 {
     protected $moduleName = 'categories';
-    protected $modelName  = 'CategoryApi';
+    protected $modelName  = 'Api\Category';
 
     /*
      * Options of the index view

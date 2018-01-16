@@ -6,16 +6,13 @@ use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use App\Models\Behaviors\HasApiSource;
 use A17\CmsToolkit\Models\Model;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiSource;
+    use HasRevisions, HasSlug, HasMedias, HasBlocks;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
-
-    protected $endpoint = '/api/v1/exhibitions/{datahub_id}';
 
     protected $fillable = [
         'published',
