@@ -33,6 +33,41 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-image',
             ],
+            'accordion_item' => [
+                'title' => 'Accordion Item',
+                'icon' => 'accordion_item',
+                'component' => 'a17-block-accordion_item',
+            ],
+            'gallery' => [
+                'title' => 'Gallery',
+                'icon' => 'image',
+                'component' => 'a17-block-gallery',
+            ],
+            'list_item' => [
+                'title' => 'List Item',
+                'icon' => 'text',
+                'component' => 'a17-block-list_item',
+            ],
+            'media_embed' => [
+                'title' => 'Media Embed',
+                'icon' => 'text',
+                'component' => 'a17-block-media_embed',
+            ],
+            'membership_banner' => [
+                'title' => 'Membership Banner',
+                'icon' => 'text',
+                'component' => 'a17-block-membership_banner',
+            ],
+            'offer' => [
+                'title' => 'Offer',
+                'icon' => 'text',
+                'component' => 'a17-block-offer',
+            ],
+            'paragraph' => [
+                'title' => 'Paragraph',
+                'icon' => 'text',
+                'component' => 'a17-block-paragraph',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
@@ -45,6 +80,24 @@ return [
                 'title' => 'Locations',
                 'trigger' => 'Add locations',
                 'component' => 'a17-block-locations',
+                'max' => 10,
+            ],
+            'accordions' => [
+                'title' => 'Accordions',
+                'trigger' => 'Add accordions',
+                'component' => 'a17-block-accordion',
+                'max' => 10,
+            ],
+            'list' => [
+                'title' => 'Lists',
+                'trigger' => 'Add lists',
+                'component' => 'a17-block-list',
+                'max' => 10,
+            ],
+            'related_offers' => [
+                'title' => 'Related Offers',
+                'trigger' => 'Add related offers',
+                'component' => 'a17-block-related_offers',
                 'max' => 10,
             ],
         ],
