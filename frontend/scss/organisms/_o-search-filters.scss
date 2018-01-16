@@ -1,0 +1,35 @@
+
+
+.o-search-filters {
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  z-index: map-get($zindexs, 'searchFilters');
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  padding: 20px;
+  border-right: 1px solid $color__rules--primary;
+  background: $color__bg;
+}
+
+.o-search-filters__active-filters {
+  flex: 0 0 auto;
+}
+
+.o-search-filters__filters {
+  flex: 1;
+  margin: 0 -20px;
+  padding: 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+.o-search-filters__close {
+  flex: 0 0 auto;
+  margin: 20px -20px -20px;
+  padding: 19px 20px 20px;
+  border-top: 1px solid $color__rules--primary;
+}

@@ -1,0 +1,59 @@
+
+.m-quick-search-links {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row nowrap;
+  margin-top: 40px;
+  margin-bottom: -16px;
+  padding-bottom: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.m-quick-search-links > li {
+  flex: 0 0 auto;
+  margin-left: 20px;
+}
+
+.m-quick-search-links > li:first-child {
+  margin-left: 0;
+}
+
+.m-quick-search-links a {
+  @include untuck;
+  display: block;
+  position: relative;
+  height: 40px;
+  padding-right: 8px;
+  padding-left: 48px;
+  border: 1px solid $color__rules--primary;
+  line-height: 40px;
+}
+
+.m-quick-search-links img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+}
+
+
+.o-search-form .m-quick-search-links {
+  flex-flow: row wrap;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: default;
+}
+
+.o-search-form .m-quick-search-links > li {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  margin-left: 0;
+}
+
+.o-search-form .m-quick-search-links a {
+  padding-right: 4px;
+  padding-left: 4px;
+}

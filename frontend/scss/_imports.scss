@@ -94,6 +94,10 @@ $include-icons: false; // see icons.scss!
 @import 'molecules/m-inline-list';
 @import 'molecules/m-row-block';
 @import 'molecules/m-author';
+@import 'molecules/m-active-filters';
+@import 'molecules/m-search-triggers';
+@import 'molecules/m-quick-search-links';
+@import 'molecules/m-search-actions';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
@@ -107,6 +111,8 @@ $include-icons: false; // see icons.scss!
 @import 'organisms/o-pinboard';
 @import 'organisms/o-fullscreen-image';
 @import 'organisms/o-feature-plus-4';
+@import 'organisms/o-search-filters';
+@import 'organisms/o-search-form';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 

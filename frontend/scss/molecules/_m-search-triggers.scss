@@ -1,0 +1,41 @@
+
+
+.m-search-triggers {
+  display: flex;
+  position: fixed;
+  z-index: map-get($zindexs, 'searchTriggers');
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.m-search-triggers li {
+  flex: 0 0 auto;
+}
+
+.m-search-triggers li:not(:first-child) {
+  margin-left: 12px;
+}
+
+.m-search-triggers button {
+  display: block;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid $color__rules--primary;
+  border-radius: $border-radius;
+  background: $color__bg;
+  color: $color__text;
+  box-shadow: $shadow;
+}
+
+.m-search-triggers svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+.m-search-triggers span {
+  display: inline-block;
+}

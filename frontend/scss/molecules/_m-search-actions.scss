@@ -1,0 +1,29 @@
+
+.m-search-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row nowrap;
+  margin-top: 40px;
+}
+
+.m-search-actions > li {
+  flex: 0 0 auto;
+  margin-left: 20px;
+}
+
+.m-search-actions > li:first-child {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.m-search-actions button {
+  padding: 0;
+  border: 0 none;
+  background: transparent;
+}
+
+.m-search-actions svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}

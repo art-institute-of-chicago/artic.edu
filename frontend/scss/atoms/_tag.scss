@@ -109,3 +109,22 @@ a.tag--tertiary:active {
   padding-top: 7px;
   padding-bottom: 7px;
 }
+
+
+
+
+.tag--quaternary {
+  background-color: $color__black--80;
+  color: $color__white;
+}
+
+a.tag--quaternary:hover,
+a.tag--quaternary:focus {
+  background-color: $color__black--90;
+  color: $color__white;
+}
+
+a.tag--quaternary:active {
+  background-color: $color__black--80;
+  color: $color__white;
+}

@@ -337,7 +337,7 @@
 .o-article__top-link {
   display: none;
   position: fixed;
-  z-index: 2;
+  z-index: map-get($zindexs, 'articleTopLink');
   right: 40px;
   bottom: -32px;
   width: 48px;

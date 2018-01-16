@@ -384,22 +384,30 @@ class StaticsController extends Controller {
   }
 
   public function collection() {
+    $quickSearchLinks = array();
+    for ($i = 0; $i < 20; $i++) {
+      array_push($quickSearchLinks,
+        array(
+          'href' => '#',
+          'label' => $this->faker->word(),
+          'image' => $this->getImage(40,40),
+        )
+      );
+    }
     // now push to a view
     return view('statics/collection', [
       'primaryNavCurrent' => 'the_collection',
       'title' => 'The Collection',
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
-      'quickSearchLinks' => array(
-        array(
-          'href' => '#',
-          'label' => $this->faker->word(),
-          'img' => $this->getImage(50,50),
-        ),
-      ),
+      'quickSearchLinks' => $quickSearchLinks,
       'activeFilters' => array(
         array(
           'href' => '#',
           'label' => "Arms",
+        ),
+        array(
+          'href' => '#',
+          'label' => "Legs",
         ),
       ),
       'artworks' => $this->getArtworks(20),
