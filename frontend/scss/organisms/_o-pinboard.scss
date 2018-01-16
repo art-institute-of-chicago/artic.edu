@@ -2,6 +2,7 @@
 
 .o-pinboard {
   position: relative;
+  box-shadow: 0 1px 0 $color__rules--primary inset;
 }
 
 .o-pinboard::before,
@@ -9,10 +10,12 @@
   content: '';
   display: none;
   position: absolute;
+  z-index: 0;
   top: 0;
   bottom: 0;
   width: 1px;
   background-color: $color__rules--tertiary;
+  pointer-events: none;
 }
 
 @each $name, $point in $breakpoints {
@@ -32,13 +35,29 @@
       left: 0;
       top: 0;
       flex: 0 0 auto;
+      margin-top: #{map-get($grid-margin-tops, $name)}px;
+      padding-top: #{map-get($grid-margin-tops, $name) - 1}px;
+      border-top: 1px solid $color__rules--primary;
     }
 
     .o-pinboard[class*="col@#{$name}"] > .s-positioned {
       position: absolute;
+      z-index: 1;
       flex: none;
+      margin-top: 0;
       transition: top .15s $bezier--ease-out-circ, left .15s $bezier--ease-out-circ, height .15s $bezier--ease-out-circ;
     }
+  }
+}
+
+@include breakpoint('xsmall') {
+  .o-pinboard--2-col\@xsmall::before {
+    display: block;
+    left: colspan(29, xsmall);
+  }
+
+  .o-pinboard--2-col\@xsmall > * {
+    width: colspan(grid-cols-to-colspan(2), 'xsmall');
   }
 }
 
@@ -67,10 +86,6 @@
   .o-pinboard--3-col\@medium > * {
     width: colspan(grid-cols-to-colspan(3), 'medium');
   }
-
-  .o-pinboard--3-col\@medium > * {
-    margin-top: #{map-get($grid-margin-tops, 'medium')}px;
-  }
 }
 
 @include breakpoint('large') {
@@ -88,8 +103,22 @@
     width: colspan(grid-cols-to-colspan(3), 'large');
   }
 
-  .o-pinboard--3-col\@large > * {
-    margin-top: #{map-get($grid-margin-tops, 'large')}px;
+  .o-pinboard--4-col\@large::before {
+    display: block;
+    left: colspan(14, large);
+    width: colspan(15, large);
+    border-right: 1px solid $color__rules--tertiary;
+    border-left: 1px solid $color__rules--tertiary;
+    background: transparent;
+  }
+
+  .o-pinboard--4-col\@large::after {
+    display: block;
+    left: colspan(44, large);
+  }
+
+  .o-pinboard--4-col\@large > * {
+    width: colspan(grid-cols-to-colspan(4), 'large');
   }
 }
 
@@ -108,8 +137,22 @@
     width: colspan(grid-cols-to-colspan(3), 'xlarge');
   }
 
-  .o-pinboard--3-col\@xlarge > * {
-    margin-top: #{map-get($grid-margin-tops, 'xlarge')}px;
+  .o-pinboard--4-col\@xlarge::before {
+    display: block;
+    left: colspan(14, xlarge);
+    width: colspan(15, xlarge);
+    border-right: 1px solid $color__rules--tertiary;
+    border-left: 1px solid $color__rules--tertiary;
+    background: transparent;
+  }
+
+  .o-pinboard--4-col\@xlarge::after {
+    display: block;
+    left: colspan(44, xlarge);
+  }
+
+  .o-pinboard--4-col\@xlarge > * {
+    width: colspan(grid-cols-to-colspan(4), 'xlarge');
   }
 }
 
@@ -128,8 +171,22 @@
     width: colspan(grid-cols-to-colspan(3), 'xxlarge');
   }
 
-  .o-pinboard--3-col\@xxlarge > * {
-    margin-top: #{map-get($grid-margin-tops, 'xxlarge')}px;
+  .o-pinboard--4-col\@xxlarge::before {
+    display: block;
+    left: colspan(14, xxlarge);
+    width: colspan(15, xxlarge);
+    border-right: 1px solid $color__rules--tertiary;
+    border-left: 1px solid $color__rules--tertiary;
+    background: transparent;
+  }
+
+  .o-pinboard--4-col\@xxlarge::after {
+    display: block;
+    left: colspan(44, xxlarge);
+  }
+
+  .o-pinboard--4-col\@xxlarge > * {
+    width: colspan(grid-cols-to-colspan(4), 'xxlarge');
   }
 }
 

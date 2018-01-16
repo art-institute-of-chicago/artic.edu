@@ -63,6 +63,7 @@
 }
 
 .m-listing__img {
+  display: block;
   position: relative;
   margin-top: 28px;
 
@@ -146,10 +147,12 @@
 .m-listing__img--contain video {
   object-fit: contain;
 }
+
   .m-listing__img--tall.m-listing__img--contain img,
   .m-listing__img--tall.m-listing__img--contain video {
     object-position: center top;
   }
+
 
 .m-listing__meta {
   display: flex;
@@ -971,4 +974,28 @@
   @include breakpoint('small') {
     @include tucked-margin-top($f-list-2, ('small': 36), 'small');
   }
+}
+
+
+
+// variant `m-listing` inside `.o-pinboard`
+
+.o-pinboard__item.m-listing--variable-height .m-listing__img {
+  overflow: hidden;
+}
+
+.o-pinboard__item.m-listing--variable-height .m-listing__img::before,
+.o-pinboard__item.m-listing--variable-height .m-listing__img::after {
+  content: '';
+  display: none;
+}
+
+.o-pinboard__item.m-listing--variable-height img {
+  display: block;
+  position: static;
+  object-fit: contain;
+}
+
+.o-pinboard__item .m-listing__meta {
+  min-height: 0;
 }

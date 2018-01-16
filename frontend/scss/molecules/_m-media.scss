@@ -6,8 +6,8 @@
 .m-media__img {
   display: block;
   position: relative;
-  overflow: hidden;
   background-color: $color__bg--secondary;
+  overflow: hidden;
 
   .m-media--m &::before,
   .m-media--l &::before,
