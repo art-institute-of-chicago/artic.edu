@@ -383,6 +383,46 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function collection() {
+    // now push to a view
+    return view('statics/collection', [
+      'primaryNavCurrent' => 'the_collection',
+      'title' => 'The Collection',
+      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
+      'quickSearchLinks' => array(
+        array(
+          'href' => '#',
+          'label' => $this->faker->word(),
+          'img' => $this->getImage(50,50),
+        ),
+      ),
+      'activeFilters' => array(
+        array(
+          'href' => '#',
+          'label' => "Arms",
+        ),
+      ),
+      'artworks' => $this->getArtworks(20),
+      'recentlyViewedArtworks' => $this->getArtworks($this->faker->numberBetween(6,20)),
+      'interestedThemes' => array(
+        array(
+          'href' => '#',
+          'label' => "Picasso",
+        ),
+        array(
+          'href' => '#',
+          'label' => "Modern Art",
+        ),
+        array(
+          'href' => '#',
+          'label' => "European Art",
+        ),
+      ),
+      'featuredArticlesHero' => $this->getArticle(),
+      'featuredArticles' => $this->getArticles(4),
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
@@ -393,6 +433,7 @@ class StaticsController extends Controller {
     $height = isset($height) && $height ? $height : $this->faker->numberBetween(300,700);
     //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
     $src = "http://placeimg.com/".$width."/".$height."/nature";
+    //$src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
     $srcset = "http://placeimg.com/".$width."/".$height."/nature ".$width."w";
     //$src = $this->faker->imageUrl($width, $height, 'nature');
     //$src = str_replace('https://', 'http://', $src);
