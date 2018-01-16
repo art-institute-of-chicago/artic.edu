@@ -12,7 +12,9 @@
             <br>
             <strong class="title {{ $titleFont ?? 'f-list-3' }}">{{ $article->title }}</strong>
             <br>
-            <span class="intro {{ $captionFont ?? 'f-caption' }}">{{ $article->intro }}</span>
+            <span class="m-listing__meta-bottom">
+                <span class="intro f-caption">{{ $article->date }}</span>
+            </span>
         </span>
     </a>
 </{{ $tag or 'li' }}>

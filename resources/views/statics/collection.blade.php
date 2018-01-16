@@ -32,6 +32,41 @@
 @endcomponent
 
 
+@if ($featuredArticles)
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(array('label' => 'See all articles', 'href' => '#')))
+        Featured
+    @endcomponent
+    @component('components.atoms._hr')
+    @endcomponent
+    <div class="o-feature-plus-4">
+        @component('components.molecules._m-listing----article')
+            @slot('tag', 'p')
+            @slot('titleFont', 'f-list-5')
+            @slot('captionFont', 'f-body-editorial')
+            @slot('variation', 'o-feature-plus-4__feature')
+            @slot('article', $featuredArticlesHero)
+        @endcomponent
+        <ul class="o-feature-plus-4__items-1">
+        @foreach ($featuredArticles as $editorial)
+            @if ($loop->index < 2)
+                @component('components.molecules._m-listing----article-minimal')
+                    @slot('article', $editorial)
+                @endcomponent
+            @endif
+        @endforeach
+        </ul>
+        <ul class="o-feature-plus-4__items-2">
+        @foreach ($featuredArticles as $editorial)
+            @if ($loop->index > 1)
+                @component('components.molecules._m-listing----article-minimal')
+                    @slot('article', $editorial)
+                @endcomponent
+            @endif
+        @endforeach
+        </ul>
+    </div>
+@endif
 
 @if ($recentlyViewedArtworks)
     @component('components.molecules._m-title-bar')
@@ -53,7 +88,7 @@
         @endforeach
     @endcomponent
     @component('components.atoms._hr')
-        @slot('variation','hr--flush-top')
+        @slot('variation','hr--flush-topp')
     @endcomponent
 @endif
 

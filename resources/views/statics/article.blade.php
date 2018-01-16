@@ -388,7 +388,7 @@
         @endforeach
     @endcomponent
     @component('components.atoms._hr')
-        @slot('variation','hr--flush-top')
+        @slot('variation','hr--flush-topp')
     @endcomponent
 @endif
 

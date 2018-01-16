@@ -742,6 +742,7 @@ class StaticsController extends Controller {
       "date" => $this->getFormattedDateString(),
       "image" => $this->getImage(),
       "type" => 'article',
+      "subtype" => $this->faker->word(),
     ]);
   }
 

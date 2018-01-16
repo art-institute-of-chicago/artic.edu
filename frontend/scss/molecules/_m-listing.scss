@@ -255,6 +255,10 @@
   @include tucked-margin-top($f-caption, ('xsmall': 36));
 }
 
+.m-listing__meta .f-body-editorial {
+  @include tucked-margin-top($f-body-editorial, ('xsmall': 40));
+  color: $color__text;
+}
 
 // variant `m-listing--feature`
 
@@ -998,4 +1002,24 @@
 
 .o-pinboard__item .m-listing__meta {
   min-height: 0;
+}
+
+
+
+// variant `m-listing` thats also a `.o-feature-plus-4__feature`
+
+.o-feature-plus-4__feature .m-listing__meta {
+  text-align: center;
+}
+
+.o-feature-plus-4__feature .m-listing__meta .f-tag {
+  @include tucked-margin-top($f-tag, ('xsmall': 44, 'small+': 52, 'medium+': 60));
+}
+
+.o-feature-plus-4__feature .f-list-5 {
+  @include tucked-margin-top($f-list-5, ('xsmall': 40, 'small+': 60, 'medium+': 52, 'large': 60));
+}
+
+.o-feature-plus-4__feature .m-listing__meta .f-body-editorial {
+  @include tucked-margin-top($f-body-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 56));
 }
