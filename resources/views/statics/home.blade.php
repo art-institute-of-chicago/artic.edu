@@ -13,16 +13,16 @@
 @endcomponent
 
 @component('components.molecules._m-intro-block')
-    @slot('links', array(array('text' => 'Plan your visit', 'href' => '#', 'variation' => 'btn')))
+    @slot('links', array(array('label' => 'Plan your visit', 'href' => '#', 'variation' => 'btn')))
     {{ $intro }}
 @endcomponent
 
 @component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('text' => 'Hours and admission fees', 'href' => '#', 'variation' => 'arrow-link', 'icon' => 'icon--arrow'), array('text' => 'Directions and parking', 'href' => '#', 'variation' => 'arrow-link', 'icon' => 'icon--arrow')))
+    @slot('linksPrimary', array(array('label' => 'Hours and admission fees', 'href' => '#', 'variation' => 'arrow-link', 'icon' => 'icon--arrow'), array('label' => 'Directions and parking', 'href' => '#', 'variation' => 'arrow-link', 'icon' => 'icon--arrow')))
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Browse all current exhibitions', 'href' => '#')))
+    @slot('links', array(array('label' => 'Browse all current exhibitions', 'href' => '#')))
     Exhibitions and Events
 @endcomponent
 
@@ -63,7 +63,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('text' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
+    @slot('linksPrimary', array(array('label' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
 @component('components.molecules._m-cta-banner----become-a-member')
@@ -71,7 +71,7 @@
 
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Explore the collection', 'href' => '#')))
+    @slot('links', array(array('label' => 'Explore the collection', 'href' => '#')))
     From the Collection
 @endcomponent
 
@@ -87,6 +87,7 @@
     @slot('maintainOrder','false')
     @foreach ($theCollection as $item)
         @component('components.molecules._m-listing----'.$item->type)
+            @slot('variation', 'o-pinboard__item')
             @slot($item->type, $item)
         @endcomponent
     @endforeach
@@ -94,13 +95,13 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('text' => 'Explore the collection', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
+    @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
 
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Explore the Shop', 'href' => '#')))
+    @slot('links', array(array('label' => 'Explore the Shop', 'href' => '#')))
     From the Shop
 @endcomponent
 
@@ -121,7 +122,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('text' => 'Explore the Shop', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
+    @slot('linksPrimary', array(array('label' => 'Explore the Shop', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
 @endsection

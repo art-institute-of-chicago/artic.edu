@@ -13,7 +13,7 @@
 
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Explore the Shop', 'href' => '#')))
+    @slot('links', array(array('label' => 'Explore the Shop', 'href' => '#')))
     5 column scroll
 @endcomponent
 @component('components.atoms._hr')
@@ -34,7 +34,7 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
+    @slot('links', array(array('label' => 'Browse events', 'href' => '#')))
     4 column stacked
 @endcomponent
 @component('components.atoms._hr')
@@ -55,7 +55,7 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Explore the Shop', 'href' => '#')))
+    @slot('links', array(array('label' => 'Explore the Shop', 'href' => '#')))
     4 column scroll
 @endcomponent
 @component('components.atoms._hr')
@@ -76,7 +76,7 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
+    @slot('links', array(array('label' => 'Browse events', 'href' => '#')))
     3 column stacked
 @endcomponent
 @component('components.atoms._hr')
@@ -97,7 +97,7 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
+    @slot('links', array(array('label' => 'Browse events', 'href' => '#')))
     3 column list
 @endcomponent
 @component('components.atoms._hr')
@@ -117,7 +117,7 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
+    @slot('links', array(array('label' => 'Browse events', 'href' => '#')))
     2 column stacked
 @endcomponent
 @component('components.atoms._hr')
@@ -138,7 +138,7 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Upcoming events', 'href' => '#')))
+    @slot('links', array(array('label' => 'Upcoming events', 'href' => '#')))
     Date listing
 @endcomponent
 @component('components.organisms._o-row-listing')
@@ -150,7 +150,7 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
+    @slot('links', array(array('label' => 'Browse events', 'href' => '#')))
     Row listing
 @endcomponent
 @component('components.organisms._o-row-listing')

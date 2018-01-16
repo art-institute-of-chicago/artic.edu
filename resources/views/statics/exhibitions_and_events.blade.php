@@ -12,12 +12,12 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
-    @slot('linksPrimary', array(array('text' => 'Exhibitions', 'href' => '#', 'active' => true), array('text' => 'Events', 'href' => '#', 'active' => false)))
+    @slot('linksPrimary', array(array('label' => 'Exhibitions', 'href' => '#', 'active' => true), array('label' => 'Events', 'href' => '#', 'active' => false)))
 @endcomponent
 
 @component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('text' => 'Current', 'href' => '#', 'active' => true), array('text' => 'Upcoming', 'href' => '#', 'active' => false)))
-    @slot('linksSecondary', array(array('text' => 'Archive', 'href' => '#')))
+    @slot('linksPrimary', array(array('label' => 'Current', 'href' => '#', 'active' => true), array('label' => 'Upcoming', 'href' => '#', 'active' => false)))
+    @slot('linksSecondary', array(array('label' => 'Archive', 'href' => '#')))
 @endcomponent
 
 @component('components.atoms._hr')
@@ -82,11 +82,11 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--buttons')
-    @slot('linksPrimary', array(array('text' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary')))
+    @slot('linksPrimary', array(array('label' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary')))
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Browse events', 'href' => '#')))
+    @slot('links', array(array('label' => 'Browse events', 'href' => '#')))
     Today&rsquo;s Events
 @endcomponent
 

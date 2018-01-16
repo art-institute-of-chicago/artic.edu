@@ -265,7 +265,7 @@
 
 @if ($article->relatedEventsByDay)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('text' => 'See all events', 'href' => '#')))
+        @slot('links', array(array('label' => 'See all events', 'href' => '#')))
         @slot('id', 'related_events')
         Related Events
     @endcomponent
@@ -278,13 +278,13 @@
     @endcomponent
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--buttons')
-        @slot('linksPrimary', array(array('text' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary')))
+        @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary')))
     @endcomponent
 @endif
 
 @if ($article->relatedExhibitions)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('text' => 'See all exhibitions', 'href' => '#')))
+        @slot('links', array(array('label' => 'See all exhibitions', 'href' => '#')))
         Related Exhibitions
     @endcomponent
     @component('components.organisms._o-grid-listing')
@@ -304,7 +304,7 @@
 
 @if ($article->relatedEvents)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('text' => 'See all events', 'href' => '#')))
+        @slot('links', array(array('label' => 'See all events', 'href' => '#')))
         Related Events
     @endcomponent
     @component('components.organisms._o-grid-listing')

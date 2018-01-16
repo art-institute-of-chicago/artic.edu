@@ -445,7 +445,7 @@
 @endcomponent
 
 @component('components.molecules._m-intro-block')
-    @slot('links', array(array('text' => 'Plan your visit', 'href' => '#', 'variation' => 'btn')))
+    @slot('links', array(array('label' => 'Plan your visit', 'href' => '#', 'variation' => 'btn')))
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor.
 @endcomponent
 
@@ -455,12 +455,12 @@
 <p class="f-quote">m-title-bar:</p>
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Explore What&rsquo;s on', 'href' => '#')))
+    @slot('links', array(array('label' => 'Explore What&rsquo;s on', 'href' => '#')))
     What&rsquo;s on Today
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('text' => 'Browse all current exhibitions', 'href' => '#')))
+    @slot('links', array(array('label' => 'Browse all current exhibitions', 'href' => '#')))
     Exhibitions and Events
 @endcomponent
 
@@ -471,8 +471,8 @@
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+array_push($linksBarPrimary, array('label' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' => false));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
@@ -481,10 +481,10 @@ array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' =
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+array_push($linksBarPrimary, array('label' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' => false));
 $linksBarSecondary = array();
-array_push($linksBarSecondary, array('text' => 'Exhibitions', 'href' => '#'));
+array_push($linksBarSecondary, array('label' => 'Exhibitions', 'href' => '#'));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
@@ -494,8 +494,8 @@ array_push($linksBarSecondary, array('text' => 'Exhibitions', 'href' => '#'));
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+array_push($linksBarPrimary, array('label' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' => false));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', $linksBarPrimary)
@@ -503,10 +503,10 @@ array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' =
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'active' => true));
-array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'active' => false));
+array_push($linksBarPrimary, array('label' => 'Exhibitions', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' => false));
 $linksBarPrimarySecondary = array();
-array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'));
+array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#'));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', $linksBarPrimary)
@@ -515,10 +515,10 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Exhibitions', 'href' => '#', 'variation' => 'arrow-link', 'active' => true, 'icon' => 'icon--arrow'));
-array_push($linksBarPrimary, array('text' => 'Events', 'href' => '#', 'variation' => 'arrow-link', 'active' => false, 'icon' => 'icon--arrow'));
+array_push($linksBarPrimary, array('label' => 'Exhibitions', 'href' => '#', 'variation' => 'arrow-link', 'active' => true, 'icon' => 'icon--arrow'));
+array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'variation' => 'arrow-link', 'active' => false, 'icon' => 'icon--arrow'));
 $linksBarPrimarySecondary = array();
-array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#', 'icon' => 'icon--arrow'));
+array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#', 'icon' => 'icon--arrow'));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', $linksBarPrimary)
@@ -527,11 +527,11 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#', 
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Btn 1', 'href' => '#', 'variation' => ''));
-array_push($linksBarPrimary, array('text' => 'Btn 2', 'href' => '#', 'variation' => 'btn--secondary'));
-array_push($linksBarPrimary, array('text' => 'Btn 3', 'href' => '#', 'variation' => 'btn--tertiary'));
-array_push($linksBarPrimary, array('text' => 'Btn 4', 'href' => '#', 'variation' => 'btn--quaternary'));
-array_push($linksBarPrimary, array('text' => 'Btn 5', 'href' => '#', 'variation' => 'btn--secondary btn--w-icon', 'icon' => 'icon--new-window'));
+array_push($linksBarPrimary, array('label' => 'Btn 1', 'href' => '#', 'variation' => ''));
+array_push($linksBarPrimary, array('label' => 'Btn 2', 'href' => '#', 'variation' => 'btn--secondary'));
+array_push($linksBarPrimary, array('label' => 'Btn 3', 'href' => '#', 'variation' => 'btn--tertiary'));
+array_push($linksBarPrimary, array('label' => 'Btn 4', 'href' => '#', 'variation' => 'btn--quaternary'));
+array_push($linksBarPrimary, array('label' => 'Btn 5', 'href' => '#', 'variation' => 'btn--secondary btn--w-icon', 'icon' => 'icon--new-window'));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--buttons')
@@ -540,9 +540,9 @@ array_push($linksBarPrimary, array('text' => 'Btn 5', 'href' => '#', 'variation'
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('text' => 'Upcoming Exhibits', 'href' => '#', 'variation' => ''));
+array_push($linksBarPrimary, array('label' => 'Upcoming Exhibits', 'href' => '#', 'variation' => ''));
 $linksBarPrimarySecondary = array();
-array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'));
+array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#'));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--buttons')
@@ -552,7 +552,7 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('text' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
+    @slot('linksPrimary', array(array('label' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
 @component('components.atoms._hr')
@@ -631,7 +631,7 @@ array_push($linksBarPrimarySecondary, array('text' => 'Archive', 'href' => '#'))
 <p class="f-quote">mixed links bar:</p>
 
 @component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('text' => 'Today', 'href' => '#', 'active' => true), array('text' => 'Tomorrow', 'href' => '#'), array('text' => 'This weekend', 'href' => '#')))
+    @slot('linksPrimary', array(array('label' => 'Today', 'href' => '#', 'active' => true), array('label' => 'Tomorrow', 'href' => '#'), array('label' => 'This weekend', 'href' => '#')))
     @slot('primaryHtml')
         <li class="m-links-bar__item">
             @component('components.atoms._date-select-trigger')

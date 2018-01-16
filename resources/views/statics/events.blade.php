@@ -12,11 +12,11 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
-    @slot('linksPrimary', array(array('text' => 'Exhibitions', 'href' => '#', 'active' => false), array('text' => 'Events', 'href' => '#', 'active' => true)))
+    @slot('linksPrimary', array(array('label' => 'Exhibitions', 'href' => '#', 'active' => false), array('label' => 'Events', 'href' => '#', 'active' => true)))
 @endcomponent
 
 @component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('text' => 'Today', 'href' => '#', 'active' => true), array('text' => 'Tomorrow', 'href' => '#'), array('text' => 'This weekend', 'href' => '#')))
+    @slot('linksPrimary', array(array('label' => 'Today', 'href' => '#', 'active' => true), array('label' => 'Tomorrow', 'href' => '#'), array('label' => 'This weekend', 'href' => '#')))
     @slot('primaryHtml')
         <li class="m-links-bar__item m-links-bar__item--primary">
             @component('components.atoms._date-select-trigger')
@@ -72,7 +72,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--buttons')
-    @slot('linksPrimary', array(array('text' => 'See more events', 'href' => '#', 'variation' => 'btn--secondary')))
+    @slot('linksPrimary', array(array('label' => 'See more events', 'href' => '#', 'variation' => 'btn--secondary')))
 @endcomponent
 
 
