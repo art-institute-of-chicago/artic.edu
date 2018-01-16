@@ -6,5 +6,9 @@ use App\Libraries\Api\Models\BaseApiModel;
 
 class CategoryApi extends BaseApiModel
 {
-    protected $endpoint = '/api/v1/categories';
+    protected $endpoints = [
+        'collection' => '/api/v1/categories',
+        'resource'   => '/api/v1/categories/{id}',
+        'search'     => '/api/v1/categories/search'
+    ];
 }

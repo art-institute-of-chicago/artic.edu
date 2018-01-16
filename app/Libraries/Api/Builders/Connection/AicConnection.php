@@ -7,7 +7,6 @@ class AicConnection implements ApiConnectionInterface
 {
 
     protected $client;
-    protected $endpoint = '';
     protected $defaultGrammar = 'App\Libraries\Api\Builders\Grammar\AicGrammar';
 
     /**
@@ -16,11 +15,10 @@ class AicConnection implements ApiConnectionInterface
      * @param  $endpoint
      * @return void
      */
-    public function __construct($endpoint)
+    public function __construct()
     {
         // Todo: to be changed when we allow to configure things
         $this->client = \App::make('ApiClient');
-        $this->endpoint = $endpoint;
         $this->useDefaultQueryGrammar();
     }
 
@@ -40,9 +38,10 @@ class AicConnection implements ApiConnectionInterface
      * @param  array  $params
      * @return object
      */
-    public function get($params)
+    public function get($endpoint, $params)
     {
-        $response = $this->execute('GET', $this->endpoint, $params);
+        $response = $this->execute('GET', $endpoint, $params);
+
         return $response;
     }
 

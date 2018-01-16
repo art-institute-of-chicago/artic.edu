@@ -26,6 +26,16 @@ trait HasApiCalls
     }
 
     /**
+     * Begin querying the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function query()
+    {
+        return (new static)->newQuery();
+    }
+
+    /**
      * Get a new query builder for the model's table.
      *
      * @return \Illuminate\Database\Eloquent\Builder
@@ -71,25 +81,25 @@ trait HasApiCalls
     public function getConnection()
     {
         // TODO: Manage this to be changed dynamically
-        return new AicConnection($this->endpoint);
+        return new AicConnection();
     }
 
     /**
-     * Get API endpoint. Replace brackets {name} with the 'name' attribute value (usually datahub_id)
+     * Parse API endpoint. Replace brackets {name} with the 'name' attribute value (usually datahub_id)
      *
      * This way you can define an endpoint like:
      * protected $endpoint = '/api/v1/exhibitions/{datahub_id}/artwork/{id}';
      *
-     * And the elements will be dinamically replaced with eloquent values
+     * And the elements will be dinamically replaced with the params values passed
      *
      * @return string
      */
-    public function getEndpoint()
+    public function parseEndpoint($type, $params = [])
     {
-        return preg_replace_callback('!\{(\w+)\}!', function($matches) {
+        return preg_replace_callback('!\{(\w+)\}!', function($matches) use ($params) {
             $name = $matches[1];
-            return $this->$name;
-        }, $this->endpoint);
+            return $params[$name];
+        }, $this->getEndpoint($type));
     }
 
 }

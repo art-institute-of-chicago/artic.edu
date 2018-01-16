@@ -307,7 +307,7 @@ class ApiQueryBuilder {
      * @param array $columns
      * @return \Illuminate\Support\Collection
      */
-    public function get($columns = [])
+    public function get($columns = [], $endpoint = null)
     {
         $original = $this->columns;
 
@@ -315,12 +315,18 @@ class ApiQueryBuilder {
             $this->columns = $columns;
         }
 
-        $results = $this->runGet();
+        $results = $this->runGet($endpoint);
 
         $this->paginationData = $results->body->pagination ?? null;
 
         $this->columns = $original;
-        return collect($results->body->data);
+
+        // If it's a single element return as a collection with 1 element
+        if (is_array($results->body->data)) {
+            return collect($results->body->data);
+        } else {
+            return collect([$results->body->data]);
+        }
     }
 
     public function getPaginationData() {
@@ -332,9 +338,9 @@ class ApiQueryBuilder {
      *
      * @return array
      */
-    protected function runGet()
+    protected function runGet($endpoint)
     {
-        return $this->connection->get($this->resolveParameters());
+        return $this->connection->get($endpoint, $this->resolveParameters());
     }
 
 

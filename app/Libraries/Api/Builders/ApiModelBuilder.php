@@ -135,10 +135,38 @@ class ApiModelBuilder
     }
 
     /**
-     * Execute the query as a "select" statement.
+     * Find a model by its primary key.
+     *
+     * @param  mixed  $id
+     * @param  array  $columns
+     */
+    public function find($id, $columns = [])
+    {
+        if (is_array($id) || $id instanceof Arrayable) {
+            return $this->findMany($id, $columns);
+        }
+
+        return $this->findSingle($id, $columns);
+    }
+
+    public function findSingle($id, $columns = [])
+    {
+        return $this->getSingle($id, $columns);
+    }
+
+    public function findMany($ids, $columns = [])
+    {
+        if (empty($ids)) {
+            return $this->model->newCollection();
+        }
+
+        return $this->ids($ids)->get($columns);
+    }
+
+    /**
+     * Execute the query and return a collection of results
      *
      * @param  array  $columns
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function get($columns = [])
     {
@@ -151,6 +179,36 @@ class ApiModelBuilder
         $models = $builder->getModels($columns);
 
         return $builder->getModel()->newCollection($models);
+    }
+
+    /**
+     * Get the hydrated models
+     *
+     * @param  array  $columns
+     */
+    public function getModels($columns = [])
+    {
+        return $this->model->hydrate(
+            $this->query->get($columns, $this->getEndpoint('collection'))->all()
+        );
+    }
+
+    /**
+     * Execute the query and return a single element
+     *
+     * @param  array  $columns
+     */
+    public function getSingle($id, $columns = [])
+    {
+        $builder = clone $this;
+
+        $endpoint = $this->getEndpoint('resource', ['id' => $id]);
+
+        $result = $this->model->hydrate(
+            $this->query->get($columns, $endpoint)->all()
+        );
+
+        return $result[0];
     }
 
     /**
@@ -191,22 +249,19 @@ class ApiModelBuilder
     }
 
     /**
-     * Get the hydrated models without eager loading.
+     * Get the model instance being queried.
      *
-     * @param  array  $columns
-     * @return \Illuminate\Database\Eloquent\Model[]
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    public function getModels($columns = [])
+    public function getEndpoint($name, $params = [])
     {
-        return $this->model->hydrate(
-            $this->query->get($columns)->all()
-        );
+        return $this->model->parseEndpoint($name, $params);
     }
 
     /**
      * Get the model instance being queried.
      *
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return \App\Libraries\Api\Models\BaseApiModel;
      */
     public function getModel()
     {

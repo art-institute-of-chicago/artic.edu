@@ -96,11 +96,15 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     protected $with = [];
 
     /**
-     * Endpoint for this entity
+     * Endpoints for this entity
      *
      * @var array
      */
-    protected $endpoint = '';
+    protected $endpoints = [
+        'collection' => '',
+        'resource'   => '',
+        'search'     => ''
+    ];
 
     /**
      * The number of entities to return for pagination.
@@ -963,6 +967,16 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         $this->perPage = $perPage;
 
         return $this;
+    }
+
+    /**
+     * Get the endpoint
+     *
+     * @return string endpoint
+     */
+    public function getEndpoint($type)
+    {
+        return $this->endpoints[$type];
     }
 
     /**
