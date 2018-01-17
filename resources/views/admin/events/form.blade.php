@@ -8,7 +8,8 @@
 
     @formField('input', [
         'name' => 'datahub_id',
-        'label' => 'Datahub ID'
+        'label' => 'Datahub ID',
+        'disabled' => true
     ])
 
     @formField('multi_select', [
@@ -19,12 +20,10 @@
     ])
 
     @formField('medias', [
-        'media_role' => 'hero',
-        'media_role_name' => 'Hero',
         'with_multiple' => false,
         'no_crop' => false,
         'label' => 'Hero Image',
-        'name' => 'Hero Image'
+        'name' => 'hero'
 
     ])
     @formField('input', [
@@ -53,15 +52,10 @@
     ])
     @formField('browser', [
         'routePrefix' => 'whatson',
-        'relationship' => 'events',
-        'module_name' => 'events',
-        'relationship_name' => 'events',
-        'custom_title_prefix' => 'Add',
         'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related events',
         'max' => 20,
-        'name' => 'Related events'
+        'name' => 'events',
+        'label' => 'Related events'
     ])
 @stop
 

@@ -67,7 +67,7 @@ class Event extends Model
 
     public function events()
     {
-        return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'events');
     }
 
     public function scopeLanding($query)

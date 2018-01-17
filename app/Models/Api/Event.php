@@ -12,6 +12,5 @@ class Event extends BaseApiModel
         'search'     => '/api/v1/events/search'
     ];
 
-    // TODO:
-    // Include an augmented model and bypass not found functions to it.
+    protected $augmentedModelClass = 'App\Models\Event';
 }

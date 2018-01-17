@@ -12,10 +12,9 @@ use Session;
 
 class BaseApiController extends ModuleController
 {
-    protected $moduleName = 'events';
-
-    protected $modelName  = 'Event';
-    protected $apiModelName  = 'Api\Event';
+    protected $moduleName = '';
+    protected $modelName  = '';
+    protected $apiModelName  = '';
 
     // Remove CMS toolkit table filters.
     public function getIndexTableMainFilters($items)

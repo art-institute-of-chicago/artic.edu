@@ -38,7 +38,7 @@ trait HasApiModel
     {
         if (!$this->apiFilled) {
             // Load the API model and setup all fields
-            $dataObject = $this->getApiModel();
+            $dataObject = $this->getApiModelFilled();
 
             // Augment the entity with the object fields
             $this->augmentEntity($dataObject->toArray());
@@ -49,9 +49,14 @@ trait HasApiModel
         return $this;
     }
 
-    public function getApiModel()
+    public function getApiModelFilled()
     {
         return $this->apiModel::query()->find($this->datahub_id);
+    }
+
+    public function getApiModel()
+    {
+        return $this->apiModel;
     }
 
     /**

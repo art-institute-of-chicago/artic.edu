@@ -6,7 +6,6 @@ use App\Repositories\SiteTagRepository;
 class EventController extends BaseApiController
 {
     protected $moduleName = 'events';
-
     protected $modelName  = 'Event';
     protected $apiModelName  = 'Api\Event';
 

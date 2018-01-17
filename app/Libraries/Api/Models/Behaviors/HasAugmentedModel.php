@@ -7,6 +7,7 @@ trait HasAugmentedModel
     public $augmented = false;
 
     protected $augmentedModel;
+    protected $augmentedModelClass;
 
     public function setAugmentedModel($model)
     {
@@ -17,6 +18,14 @@ trait HasAugmentedModel
     public function getAugmentedModel()
     {
         return $this->augmentedModel;
+    }
+
+    public function getAugmentedModelLoaded()
+    {
+        if ($this->augmentedModel)
+            return $this->augmentedModel;
+
+        return $this->augmentedModelClass::where('datahub_id', $this->id)->first();
     }
 
     public function hasAugmentedModel()
