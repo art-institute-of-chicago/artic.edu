@@ -1,4 +1,22 @@
+/***
 
+```
+<script>
+var dateRangeValues = ['8000BC','7000BC','6000BC','5000BC','4000BC','3000BC','2000BC','1000BC','1AD','500AD','1000AD','1200AD','1400AD','1600AD','1700AD','1800AD','1900AD','1910AD','1920AD','1930AD','1940AD','1950AD','1960AD','1970AD','1980AD','1990AD','2000AD','2010AD','Present'];
+</script>
+<div class="range-slider" data-behavior="rangeSlider" data-param="date" data-range-values="dateRangeValues">
+  <em class="range-slider__display f-secondary">
+    <span data-range-min-display></span> - <span data-range-max-display></span>
+  </em>
+  <div class="range-slider__slider" data-range-slider>
+    <span class="range-slider__range" data-range-bar></span>
+    <span class="range-slider__thumb range-slider__thumb--min" data-range-thumb-min></span>
+    <span class="range-slider__thumb range-slider__thumb--max" data-range-thumb-max></span>
+  </div>
+</div>
+```
+
+***/
 
 .range-slider {
   position: relative;
@@ -9,7 +27,6 @@
   height: 4px;
   margin: 16px 8px 0;
   background-color: $color__black--10;
-
   /* autoprefixer: off */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -19,32 +36,32 @@
   user-select: none;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     left: -8px;
     right: -8px;
-    bottom: 0;
     top: 0;
+    bottom: 0;
     background-color: $color__black--10;
   }
 }
 
 .range-slider__range {
   position: absolute;
+  left: 0;
   top: 0;
   bottom: 0;
-  left: 0;
   width: 100%;
   background-color: $color__black--40;
 
-  .range-slider__slider:hover & {
+  .s-dragging & {
     background-color: $color__black--80;
   }
 }
 
 .range-slider__thumb {
   position: absolute;
-  z-index: 10;
+  z-index: 2;
   width: 16px;
   height: 16px;
   margin-top: -6px;
@@ -62,12 +79,22 @@
     border-color: $color__black--80;
   }
 
+  .s-dragging &:hover {
+    border-color: $color__black--20;
+  }
+
   &.s-dragging {
+    z-index: 3;
+    border-color: $color__black--80;
     /* autoprefixer: off */
     cursor: move;
     cursor: -webkit-grabbing;
     cursor: -moz-grabbing;
     cursor: grabbing;
+  }
+
+  .s-dragging &.s-dragging:hover {
+    border-color: $color__black--80;
   }
 
   &.range-slider__thumb--min {

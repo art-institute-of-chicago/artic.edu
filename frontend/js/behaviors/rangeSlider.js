@@ -1,146 +1,213 @@
-import { purgeProperties } from 'a17-helpers';
+import { purgeProperties, queryStringHandler, forEach, getUrlParameterByName } from 'a17-helpers';
 
 const rangeSlider = function(container){
 
+  // get range values
+  const rangeValues = window[container.getAttribute('data-range-values')];
+
+  if (!rangeValues) {
+    return;
+  }
+
   // objects
-  var $slideTrack = $(".range-slider",container);
-  var $min = $(".thumb--min",container);
-  var $max = $(".thumb--max",container);
-  var $range = $(".range-slider__range",container);
-  var $minDisplay = $("[data-min-val-target]",container);
-  var $maxDisplay = $("[data-max-val-target]",container);
-
+  const $slideTrack = container.querySelector('[data-range-slider]');
+  const $min = container.querySelector('[data-range-thumb-min]');
+  const $max = container.querySelector('[data-range-thumb-max]');
+  const $range = container.querySelector('[data-range-bar]');
+  const $minDisplay = container.querySelector('[data-range-min-display]');
+  const $maxDisplay = container.querySelector('[data-range-max-display]');
+  // get param to update
+  const param = container.getAttribute('data-param');
   // defaults
-  var rangeMin = parseInt(container.getAttribute("data-min")) || 0;
-  var rangeMax = parseInt(container.getAttribute("data-max"));
-  var increment = parseInt(container.getAttribute("data-increment")) || 0;
-  var min = parseInt(container.getAttribute("data-min-default"));
-  var max = parseInt(container.getAttribute("data-max-default"));
-  var prefix = container.getAttribute("data-prefix");
-  var suffix = container.getAttribute("data-suffix");
-  var param = container.getAttribute("data-param");
+  let maxIncrements = rangeValues.length;
+  let minIncrementIndex = 0;
+  let maxIncrementIndex = maxIncrements - 1;
+  // what values does the range start on? these update as the sliders move
+  let minThumbInitIncrementIndex = minIncrementIndex;
+  let maxThumbInitIncrementIndex = maxIncrementIndex;
+  // vars so we can convert the left positions to an increment index
+  let singleIncrementSizeInPixels;
+  // the left position of the thumbs
+  let minThumbCurrentLeftPositionInPixels, maxThumbCurrentLeftPositionInPixels;
+  // drag differences
+  let xDown, xDiff, leftDragPosInit;
+  // halt duplicate drags
+  let dragging = false;
+  // update timer to trigger page load when finished dragging around
+  let draggingTimer;
 
-  // values will be filled in by calcValues();
-  var trackWidth, singleIncrement, minLeftPos, maxLeftPos;
-
-  // lets update the display
-  updateDisplay();
-  $(document).on('resized',updateDisplay);
-
-  // set up dragging
-  $min.on("mousedown",setupDrag);
-  $max.on("mousedown",setupDrag);
-  $min.on("touchstart",setupDrag);
-  $max.on("touchstart",setupDrag);
-
-  //
-  function setupDrag(event) {
-    var $thumb = $(this);
-    var thumbName = $thumb.attr("data-thumb");
-    var isMin = (thumbName === "min");
-    var isTouch = (event.type === "touchstart");
-    // initial positions
-    var currentPos = (isTouch) ? event.touches[0].clientX : getMouseX(event);
-    var currentLeftPos = (isMin) ? minLeftPos : maxLeftPos;
-    // change cursor
-    $thumb.addClass("thumb--dragging");
-    // moving
-    $(document).on("mousemove",dragging);
-    $(document).on("touchmove",dragging);
-    // finished
-    $(document).on("mouseup",dragend);
-    $(document).on("touchend",dragend);
-    //
-    function dragging(event){
-      // figure out new positions
-      var newPos = (isTouch) ? event.touches[0].clientX : getMouseX(event);
-      var newLeft = currentLeftPos - (currentPos - newPos);
-      // normalize out of bounds
-      if (isMin) {
-        newLeft = (newLeft >= maxLeftPos) ? maxLeftPos : newLeft;
-      } else {
-        newLeft = (newLeft <= minLeftPos) ? minLeftPos : newLeft;
+  function _findInArray(array, value) {
+    let returnIndex = -1;
+    forEach(array, function(index, item) {
+      if (item === value) {
+        returnIndex = index;
       }
-      newLeft = (newLeft < 0) ? 0 : newLeft;
-      newLeft = (newLeft > trackWidth) ? trackWidth : newLeft;
-      // work out new value and update position vars
-      if (isMin) {
-        min = roundNum(minLeftPos/singleIncrement);
-        minLeftPos = newLeft;
-      } else {
-        max = roundNum(maxLeftPos/singleIncrement);
-        maxLeftPos = newLeft;
-      }
-      // update display
-      setPositions();
-      updateDisplayValues();
-    }
-    function dragend(){
-      // tell page
-      $(document).trigger("range_update",{
-        param: param,
-        min: min,
-        max: max
-      });
-      // stop watching for movement
-      $(this).off("mousemove");
-      $(this).off("mouseup");
-      $(this).off("touchmove");
-      $(this).off("touchend");
-      // reset cursor
-      $thumb.removeClass("thumb--dragging");
-    }
-  }
-
-  // where should the thumbs live based on the values?
-  function calcValues(){
-    trackWidth = parseInt($slideTrack.css("width"));
-    singleIncrement = trackWidth / (rangeMax - rangeMin);
-    minLeftPos = Math.floor(min*singleIncrement);
-    maxLeftPos = Math.floor(max*singleIncrement);
-  }
-  // normalise returning of mouse position
-  function getMouseX(event) {
-    return (document.all) ? window.event.clientX : event.pageX;
-  }
-  // round to the nearest increment value
-  function roundNum(num) {
-    if (increment > 0) {
-      return Math.round(num/increment) * increment;
-    }
-    return Math.round(num);
-  }
-  // update the thumbs/range display
-  function setPositions() {
-    $min.css("left", minLeftPos + "px");
-    $max.css("left", maxLeftPos + "px");
-    $range.css({
-      width: (maxLeftPos - minLeftPos) + "px",
-      left: minLeftPos + "px"
     });
+    return returnIndex;
   }
-  // update the displayed values
-  function updateDisplayValues() {
-    if ($minDisplay && $maxDisplay) {
-      var top = (max === rangeMax) ? "+" : "";
-      $minDisplay[0].textContent = prefix + min + suffix;
-      $maxDisplay[0].textContent = prefix + max + suffix + top;
+
+  function _triggerPageLoad() {
+    // todo: replace with ajax call
+    var windowLocationHref = queryStringHandler.updateParameter(window.location.href, param+'-start', rangeValues[minThumbInitIncrementIndex]);
+    windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, param+'-end', rangeValues[maxThumbInitIncrementIndex]);
+    //
+    window.location.href = windowLocationHref;
+  }
+
+  function convertPixelsToIncrementIndex(left) {
+    return Math.floor((left / $slideTrack.offsetWidth) * (maxIncrementIndex));
+  }
+
+  function convertIncrementIndexToPixels(index) {
+    return Math.round(index * singleIncrementSizeInPixels);
+  }
+
+  function _checkOutOfBounds(left) {
+    let isMinThumb = (dragging.getAttribute('data-range-thumb-min') !== null);
+
+    if (isMinThumb) {
+      if (left > maxThumbCurrentLeftPositionInPixels - singleIncrementSizeInPixels) {
+        left = maxThumbCurrentLeftPositionInPixels - singleIncrementSizeInPixels;
+      }
+      if (left < 0) {
+        left = 0;
+      }
+      minThumbCurrentLeftPositionInPixels = left;
+      minThumbInitIncrementIndex = convertPixelsToIncrementIndex(minThumbCurrentLeftPositionInPixels);
+    } else {
+      let maxLeft = Math.floor(maxIncrementIndex * singleIncrementSizeInPixels);
+      if (left > maxLeft) {
+        left = maxLeft;
+      }
+      if (left < minThumbCurrentLeftPositionInPixels + singleIncrementSizeInPixels) {
+        left = minThumbCurrentLeftPositionInPixels + singleIncrementSizeInPixels;
+      }
+      maxThumbCurrentLeftPositionInPixels = left;
+      maxThumbInitIncrementIndex = convertPixelsToIncrementIndex(maxThumbCurrentLeftPositionInPixels);
     }
   }
-  // update the visible components
-  function updateDisplay() {
-    calcValues();
-    setPositions();
-    updateDisplayValues();
+
+  function _updateDisplay() {
+    $min.style.left = minThumbCurrentLeftPositionInPixels + 'px';
+    $max.style.left = maxThumbCurrentLeftPositionInPixels + 'px';
+    $range.style.width = (maxThumbCurrentLeftPositionInPixels - minThumbCurrentLeftPositionInPixels) + 'px';
+    $range.style.left = minThumbCurrentLeftPositionInPixels + 'px';
+    if ($minDisplay && $maxDisplay) {
+      $minDisplay.textContent = rangeValues[minThumbInitIncrementIndex];
+      $maxDisplay.textContent = rangeValues[maxThumbInitIncrementIndex];
+    }
+  }
+
+  function _calcValues(){
+    singleIncrementSizeInPixels = $slideTrack.offsetWidth / maxIncrementIndex;
+    //
+    minThumbCurrentLeftPositionInPixels = convertIncrementIndexToPixels(minThumbInitIncrementIndex);
+    maxThumbCurrentLeftPositionInPixels = convertIncrementIndexToPixels(maxThumbInitIncrementIndex);
+    //
+    _updateDisplay();
+  }
+
+  function _onDraggingStart(event) {
+    if (!dragging) {
+      dragging = event.target;
+      leftDragPosInit = parseInt(event.target.style.left);
+      dragging.classList.add('s-dragging');
+      container.classList.add('s-dragging');
+      try {
+        clearTimeout(draggingTimer);
+      } catch(err) {}
+    }
+  }
+
+  function _onDragging(event, xNow) {
+    if (dragging) {
+      if (!xDown) {
+        return;
+      }
+      // diffs
+      xDiff = xDown - xNow;
+      // new values
+      let leftDragPos = leftDragPosInit - xDiff;
+      // stop dragging off the screen
+      leftDragPos = _checkOutOfBounds(leftDragPos);
+      // update position
+      _updateDisplay();
+    }
+  }
+
+  function _onDraggingEnd(event) {
+    if (dragging) {
+      dragging.classList.remove('s-dragging');
+      container.classList.remove('s-dragging');
+      dragging = false;
+      // reset
+      xDown = undefined;
+      xDiff = undefined;
+      //
+      draggingTimer = setTimeout(_triggerPageLoad, 500);
+    }
+  }
+
+  function _setUpDragging(el) {
+    // dragging
+    el.addEventListener('mousedown', function(event){
+      event.preventDefault();
+      if (event.which === 1) {
+        xDown = event.pageX;
+        _onDraggingStart(event);
+      }
+    }, false);
+
+    document.addEventListener('mousemove', function(event){
+      _onDragging(event, event.pageX);
+    }, false);
+
+    document.addEventListener('mouseup', function(event){
+      _onDraggingEnd(event);
+    }, false);
+
+    // touch versions
+    el.addEventListener('touchstart', function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      xDown = event.touches[0].clientX;
+      _onDraggingStart(event);
+    }, false);
+
+    document.addEventListener('touchmove', function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      _onDragging(event, event.changedTouches[0].clientX);
+    }, false);
+
+    document.addEventListener('touchend', function(event){
+      _onDraggingEnd(event);
+    }, false);
   }
 
   function _init() {
-    //input.addEventListener('input', _whittleDown, false);
+    // grab init positions from URL
+    let initStart = getUrlParameterByName(param+'-start', window.location.search);
+    let initEnd = getUrlParameterByName(param+'-end', window.location.search);
+    if (initStart) {
+      minThumbInitIncrementIndex = _findInArray(rangeValues, initStart) || minIncrementIndex;
+    }
+    if (initEnd) {
+      maxThumbInitIncrementIndex = _findInArray(rangeValues, initEnd) || maxIncrementIndex;
+    }
+
+    // set up dragging
+    _setUpDragging($min);
+    _setUpDragging($max);
+
+    // go go go
+    document.addEventListener('resized', _calcValues, false);
+    _calcValues();
   }
 
   this.destroy = function() {
     // remove specific event handlers
-    //input.removeEventListener('input', _whittleDown);
+    document.removeEventListener('resized', _calcValues);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
