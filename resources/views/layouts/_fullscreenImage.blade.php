@@ -5,7 +5,7 @@
         @component('components.atoms._btn')
             @slot('variation', 'btn--septenary btn--icon-sq')
             @slot('font', '')
-            @slot('icon', 'icon--plus--24')
+            @slot('icon', 'icon--zoom-in--24')
             @slot('dataAttributes', 'data-fullscreen-zoom-in')
         @endcomponent
       </li>
@@ -13,7 +13,7 @@
         @component('components.atoms._btn')
             @slot('variation', 'btn--septenary btn--icon-sq')
             @slot('font', '')
-            @slot('icon', 'icon--minus--24')
+            @slot('icon', 'icon--zoom-out--24')
             @slot('dataAttributes', 'data-fullscreen-zoom-out')
         @endcomponent
       </li>

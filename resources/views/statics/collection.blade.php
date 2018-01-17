@@ -39,7 +39,7 @@
 <ul class="m-search-actions">
     <li>
         <button class="f-secondary">
-            <svg class="icon--search-24"><use xlink:href="#icon--close" /></svg>
+            <svg class="icon--filter--24"><use xlink:href="#icon--filter--24" /></svg>
             Show Filters
         </button>
     </li>
@@ -72,13 +72,13 @@
 <ul class="m-search-triggers">
     <li>
         <button>
-            <svg class="icon--search-24"><use xlink:href="#icon--close" /></svg>
+            <svg class="icon--filter--24"><use xlink:href="#icon--filter--24" /></svg>
             <span class="f-buttons">Filter (1)</span>
         </button>
     </li>
     <li>
         <button class="f-buttons">
-            <svg class="icon--search-24"><use xlink:href="#icon--close" /></svg>
+            <svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
         </button>
     </li>
 </ul>
@@ -205,7 +205,6 @@
         </div>
 
     </div>
-
 
     <p class="o-search-filters__close">
         <button>Close Filters</button>

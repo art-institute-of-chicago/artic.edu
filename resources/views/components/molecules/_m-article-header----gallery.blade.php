@@ -81,7 +81,7 @@
           @component('components.atoms._btn')
               @slot('variation', 'btn--septenary btn--icon-sq')
               @slot('font', '')
-              @slot('icon', 'icon--arrow')
+              @slot('icon', 'icon--download--24')
               @slot('dataAttributes', 'data-gallery-download')
           @endcomponent
         </li>
