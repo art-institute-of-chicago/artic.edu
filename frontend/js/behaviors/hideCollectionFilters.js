@@ -1,24 +1,19 @@
 import { purgeProperties, triggerCustomEvent } from 'a17-helpers';
 
-const mask = function(container) {
+const hideCollectionFilters = function(container) {
 
-  function _handleClicks() {
-    container.blur();
-    triggerCustomEvent(document, 'shareMenu:close');
-    triggerCustomEvent(document, 'selectDate:close');
-    triggerCustomEvent(document, 'fullScreenImage:close');
-    triggerCustomEvent(document, 'collectionSearch:close');
+  function _handleClicks(event) {
+    event.preventDefault();
     triggerCustomEvent(document, 'collectionFilters:close');
+    container.blur();
   }
 
   function _init() {
-    container.addEventListener('touchend', _handleClicks, false);
     container.addEventListener('click', _handleClicks, false);
   }
 
   this.destroy = function() {
     // remove specific event handlers
-    container.removeEventListener('touchend', _handleClicks);
     container.removeEventListener('click', _handleClicks);
 
     // remove properties of this behavior
@@ -30,4 +25,4 @@ const mask = function(container) {
   };
 };
 
-export default mask;
+export default hideCollectionFilters;

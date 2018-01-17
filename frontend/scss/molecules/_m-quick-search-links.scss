@@ -39,7 +39,7 @@
 }
 
 
-.o-search-form .m-quick-search-links {
+.o-collection-search .m-quick-search-links {
   flex-flow: row wrap;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -47,13 +47,13 @@
   -webkit-overflow-scrolling: default;
 }
 
-.o-search-form .m-quick-search-links > li {
+.o-collection-search .m-quick-search-links > li {
   margin-right: 4px;
   margin-bottom: 4px;
   margin-left: 0;
 }
 
-.o-search-form .m-quick-search-links a {
+.o-collection-search .m-quick-search-links a {
   padding-right: 4px;
   padding-left: 4px;
 }

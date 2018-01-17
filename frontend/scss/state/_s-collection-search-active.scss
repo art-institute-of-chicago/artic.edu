@@ -1,0 +1,20 @@
+.s-collection-search-active {
+  position: fixed;
+  overflow: hidden;
+
+  body {
+    position: fixed;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .o-collection-search {
+    display: block;
+  }
+
+  .g-mask {
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+  }
+}

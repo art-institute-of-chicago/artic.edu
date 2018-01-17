@@ -38,7 +38,7 @@
 
 <ul class="m-search-actions">
     <li>
-        <button class="f-secondary">
+        <button class="f-secondary" data-behavior="showCollectionFilters">
             <svg class="icon--filter--24"><use xlink:href="#icon--filter--24" /></svg>
             Show Filters
         </button>
@@ -71,19 +71,19 @@
 
 <ul class="m-search-triggers">
     <li>
-        <button>
+        <button data-behavior="showCollectionFilters">
             <svg class="icon--filter--24"><use xlink:href="#icon--filter--24" /></svg>
             <span class="f-buttons">Filter (1)</span>
         </button>
     </li>
     <li>
-        <button class="f-buttons">
+        <button class="f-buttons" data-behavior="showCollectionSearch">
             <svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
         </button>
     </li>
 </ul>
 
-<div class="o-search-form">
+<div class="o-collection-search" data-behavior="collectionSearch">
     <form>
         <label for="search">Search</label>
         <input name="search" placeholder="Search by keyword, artist or reference">
@@ -99,10 +99,13 @@
         </li>
     @endforeach
     </ul>
+    <p class="o-collection-search__close">
+        <button data-behavior="hideCollectionSearch">Close Search</button>
+    </p>
 </div>
 
-<div class="o-search-filters">
-    <div class="m-active-filters o-search-filters__active-filters">
+<div class="o-collection-filters" data-behavior="collectionFilters">
+    <div class="m-active-filters o-collection-filters__active-filters">
         <ul class="m-active-filters__items">
         @foreach ($activeFilters as $filter)
             <li class="m-active-filters__item">
@@ -119,7 +122,7 @@
     </div>
 
 
-    <div class="o-accordion o-accordion--filters o-search-filters__filters" role="tablist" multiselectable="true" data-behavior="accordion">
+    <div class="o-accordion o-accordion--filters o-collection-filters__filters" role="tablist" multiselectable="true" data-behavior="accordion">
 
         <p id="filters_trigger_01" class="o-accordion__trigger f-tag-2" aria-selected="true" aria-controls="filters_01" aria-expanded="true" role="tab" tabindex="0">
             With search
@@ -206,8 +209,8 @@
 
     </div>
 
-    <p class="o-search-filters__close">
-        <button>Close Filters</button>
+    <p class="o-collection-filters__close">
+        <button data-behavior="hideCollectionFilters">Close Filters</button>
     </p>
 </div>
 

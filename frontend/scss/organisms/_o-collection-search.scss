@@ -1,0 +1,27 @@
+
+.o-collection-search {
+  display: none;
+  position: fixed;
+  z-index: map-get($zindexs, 'searchForm');
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  padding: 0 20px 80px;
+  border-right: 1px solid $color__rules--primary;
+  background: $color__bg;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+.o-collection-search__close {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  padding: 19px 20px 20px;
+  border-top: 1px solid $color__rules--primary;
+  border-right: 1px solid $color__rules--primary;
+  background: $color__bg;
+}

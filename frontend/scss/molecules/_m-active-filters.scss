@@ -43,19 +43,19 @@
 
 
 
-.o-search-filters .m-active-filters {
+.o-collection-filters .m-active-filters {
   display: block;
   margin: -20px -20px 0;
   padding: 20px;
   background: $color__bg--primary;
 }
 
-.o-search-filters .m-active-filters::before {
+.o-collection-filters .m-active-filters::before {
   content: none;
   display: none;
 }
 
-.o-search-filters .m-active-filters__items {
+.o-collection-filters .m-active-filters__items {
   flex-flow: row wrap;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -63,12 +63,12 @@
   -webkit-overflow-scrolling: default;
 }
 
-.o-search-filters .m-active-filters__item {
+.o-collection-filters .m-active-filters__item {
   margin-right: 4px;
   margin-bottom: 4px;
   margin-left: 0;
 }
 
-.o-search-filters .m-active-filters__clear {
+.o-collection-filters .m-active-filters__clear {
   margin-left: 0;
 }
