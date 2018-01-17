@@ -17,6 +17,7 @@ const collectionFilters = function(container) {
     triggerCustomEvent(document, 'focus:trap', {
       element: container
     });
+    triggerCustomEvent(document, 'collectionFilters:visible');
     active = true;
   }
 
@@ -28,6 +29,7 @@ const collectionFilters = function(container) {
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     setFocusOnTarget(document.getElementById('a17'));
+    triggerCustomEvent(document, 'collectionFilters:hidden');
     active = false;
   }
 

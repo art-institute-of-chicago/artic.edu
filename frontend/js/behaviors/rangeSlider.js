@@ -202,12 +202,14 @@ const rangeSlider = function(container){
 
     // go go go
     document.addEventListener('resized', _calcValues, false);
+    document.addEventListener('collectionFilters:visible', _calcValues, false);
     _calcValues();
   }
 
   this.destroy = function() {
     // remove specific event handlers
     document.removeEventListener('resized', _calcValues);
+    document.removeEventListener('collectionFilters:visible', _calcValues);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
