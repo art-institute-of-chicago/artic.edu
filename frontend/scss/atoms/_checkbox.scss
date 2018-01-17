@@ -19,6 +19,7 @@
     <label for="option3">Option 3 disabled</label>
   </span>
 </span>
+<a href="#" class="checkbox f-secondary">Lorem <i>(1312)</i></a>
 ```
 
 
@@ -36,16 +37,24 @@
   overflow: hidden;
 }
 
-.checkbox label {
+.checkbox label,
+a.checkbox {
   display: block;
   position: relative;
-  padding-left: 34px;
+  padding-left: 32px;
   color: $color__input-text;
   cursor: pointer;
 }
 
+.checkbox label em,
+a.checkbox em {
+  color: $color__text--forms;
+  font-style: normal;
+}
+
 .checkbox label:hover,
-.checkbox input[type=checkbox]:focus + span label {
+.checkbox input[type=checkbox]:focus + span label,
+a.checkbox:hover {
   color: $color__input-text--focus;
 }
 
@@ -53,7 +62,8 @@
   @extend %default-focus-style;
 }
 
-.checkbox label::before {
+.checkbox label::before,
+a.checkbox::before {
   content: '';
   position: absolute;
   left: 0;
@@ -69,7 +79,8 @@
   }
 }
 
-.checkbox label::after {
+.checkbox label::after,
+a.checkbox::after {
   content: '';
   position: absolute;
   left: 6px;
@@ -89,34 +100,40 @@
   }
 }
 
-.checkbox input[type=checkbox]:focus + span label::before {
+.checkbox input[type=checkbox]:focus + span label::before,
+a.checkbox:focus::before {
   border-color: $color__input-border--focus;
 }
 
-.checkbox label:hover::before {
+.checkbox label:hover::before,
+a.checkbox:hover::before {
   border-color: $color__input-border--hover;
 }
 
 
 
-.checkbox input[type=checkbox]:checked + span label::before {
+.checkbox input[type=checkbox]:checked + span label::before,
+a.checkbox.s-checked::before {
   border-color: $color__input-border--checked;
   background-color: $color__input-border--checked;
 }
 
-.checkbox input[type=checkbox]:checked + span label::after {
+.checkbox input[type=checkbox]:checked + span label::after,
+a.checkbox.s-checked::after {
   opacity: 1;
   transform: rotate(45deg) scale(1);
 }
 
 
 
-.checkbox input[type=checkbox]:disabled + span label {
+.checkbox input[type=checkbox]:disabled + span label,
+a.checkbox:disabled {
   opacity: .5;
   pointer-events: none;
 }
 
 
-.checkbox.s-error label::before {
+.checkbox.s-error label::before,
+a.checkbox.s-error::before {
   border-color: $color__input-border--error;
 }

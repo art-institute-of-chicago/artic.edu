@@ -119,7 +119,7 @@
     </div>
 
 
-    <div class="o-accordion o-search-filters__filters" role="tablist" multiselectable="true" data-behavior="accordion">
+    <div class="o-accordion o-accordion--filters o-search-filters__filters" role="tablist" multiselectable="true" data-behavior="accordion">
 
         <p id="filters_trigger_01" class="o-accordion__trigger f-tag-2" aria-selected="true" aria-controls="filters_01" aria-expanded="true" role="tab" tabindex="0">
             With search
@@ -127,28 +127,18 @@
             <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>
         </p>
         <div id="filters_01" class="o-accordion__panel" aria-labelledby="filters_trigger_01" aria-hidden="false" role="tabpanel">
-            <div class="o-accordion__panel-content">
-                <form>
+            <div class="o-accordion__panel-content m-filters">
+                <form class="m-filters__whittle-down" data-behavior="filterWhittleDown">
                     <label>Find Location</label>
-                    <input placeholder="Find location">
+                    <input type="text" class="f-secondary" placeholder="Find location">
                     <button><svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg></button>
                 </form>
-                <ul>
+                <ul class="m-filters__list">
+                    @foreach ($filters as $filter)
                     <li>
-                        <a href="#" class="checkbox f-secondary">Africa <i>(5156)</i></a>
+                        <a href="{{ $filter['href'] }}" class="checkbox f-secondary">{{ $filter['label'] }} <em>({{ $filter['count'] }})</em></a>
                     </li>
-                    <li>
-                        <a href="#" class="checkbox f-secondary">Asia <i>(5156)</i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="checkbox f-secondary">Europe <i>(5156)</i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="checkbox f-secondary">Roman Empire <i>(5156)</i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="checkbox f-secondary">United States <i>(5156)</i></a>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -159,15 +149,18 @@
             <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>
         </p>
         <div id="filters_02" class="o-accordion__panel" aria-labelledby="filters_trigger_02" aria-hidden="false" role="tabpanel">
-            <div class="o-accordion__panel-content">
-                <ul class="s-capped">
-                    <?php for ($i = 0; $i < 20; $i++): ?>
+            <div class="o-accordion__panel-content m-filters">
+                <ul class="m-filters__list s-capped">
+                    @foreach ($filters as $filter)
                     <li>
-                        <a href="#" class="checkbox f-secondary">Lorem <i>(1312)</i></a>
+                        <a href="{{ $filter['href'] }}" class="checkbox f-secondary">{{ $filter['label'] }} <em>({{ $filter['count'] }})</em></a>
                     </li>
-                    <?php endfor; ?>
+                    @endforeach
                 </ul>
-                <button class="f-secondary">Show more</button>
+                <button class="m-filters__show-more-toggle f-secondary" data-behavior="filterToggleShowMore">
+                    <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+                    <span>Show more</span>
+                </button>
             </div>
         </div>
 
@@ -179,13 +172,13 @@
         <div id="filters_03" class="o-accordion__panel" aria-labelledby="filters_trigger_03" aria-hidden="false" role="tabpanel">
             <div class="o-accordion__panel-content">
                 <div class="range-slider" data-behavior="rangeSlider" data-param="price">
-                  <em class="range-slider__display">
+                  <em class="range-slider__display f-secondary">
                     <span data-min-val-target></span> - <span data-max-val-target></span>
                   </em>
                   <div class="range-slider__slider">
                     <span class="range-slider__range"></span>
-                    <span class="range-slider__thumb thumb--min" data-thumb="min"></span>
-                    <span class="range-slider__thumb thumb--max" data-thumb="max"></span>
+                    <span class="range-slider__thumb range-slider__thumb--min" data-thumb="min"></span>
+                    <span class="range-slider__thumb range-slider__thumb--max" data-thumb="max"></span>
                   </div>
                 </div>
             </div>
@@ -197,11 +190,11 @@
             <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>
         </p>
         <div id="filters_04" class="o-accordion__panel" aria-labelledby="filters_trigger_04" aria-hidden="true" role="tabpanel">
-            <div class="o-accordion__panel-content">
-                <ul>
+            <div class="o-accordion__panel-content m-filters">
+                <ul class="m-filters__list">
                     <?php for ($i = 0; $i < 4; $i++): ?>
                     <li>
-                        <a href="#" class="checkbox f-secondary">Lorem <i>(1312)</i></a>
+                        <a href="#" class="checkbox f-secondary">Lorem <em>(1312)</em></a>
                     </li>
                     <?php endfor; ?>
                 </ul>

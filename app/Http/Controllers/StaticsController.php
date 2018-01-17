@@ -394,12 +394,24 @@ class StaticsController extends Controller {
         )
       );
     }
+
+    $filters = array();
+    for ($i = 0; $i < 20; $i++) {
+      array_push($filters,
+        array(
+          'href' => '#',
+          'label' => $this->faker->word(),
+          'count' => $this->faker->numberBetween(13,1312),
+        )
+      );
+    }
     // now push to a view
     return view('statics/collection', [
       'primaryNavCurrent' => 'the_collection',
       'title' => 'The Collection',
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'quickSearchLinks' => $quickSearchLinks,
+      'filters' => $filters,
       'activeFilters' => array(
         array(
           'href' => '#',

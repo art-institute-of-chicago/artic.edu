@@ -69,6 +69,7 @@ $include-icons: false; // see icons.scss!
 @import 'atoms/date-select-trigger';
 @import 'atoms/return-link';
 @import 'atoms/interests-list';
+@import 'atoms/range-slider';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ molecules */
 
@@ -98,6 +99,7 @@ $include-icons: false; // see icons.scss!
 @import 'molecules/m-search-triggers';
 @import 'molecules/m-quick-search-links';
 @import 'molecules/m-search-actions';
+@import 'molecules/m-filters-list';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 

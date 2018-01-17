@@ -1,0 +1,97 @@
+
+
+.m-filters__whittle-down {
+  position: relative;
+}
+
+.m-filters__whittle-down label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin-top: -1px;
+  margin-left: -1px;
+  padding: 0;
+  border: 0 none;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+}
+
+.m-filters__whittle-down input[type=text] {
+  padding-right: 48px;
+}
+
+.m-filters__whittle-down button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  border: 0 none;
+  background: transparent;
+  color: $color__text--secondary;
+}
+
+
+
+.m-filters__list {
+  margin-top: 0;
+
+  form + & {
+    padding-top: 4px;
+  }
+}
+
+.m-filters__list > li {
+  margin-top: 4px;
+}
+
+.m-filters__list.s-capped > li:nth-child(5) ~ li,
+.m-filters__whittle-down:not(.s-whittling) + .m-filters__list > li:nth-child(5) ~ li {
+  display: none;
+}
+
+.m-filters__whittle-down.s-whittling + .m-filters__list > li {
+  display: none;
+}
+
+.m-filters__whittle-down.s-whittling + .m-filters__list > li.s-visible {
+  display: block;
+}
+
+
+
+.m-filters__show-more-toggle {
+  @include untuck;
+  display: block;
+  position: relative;
+  margin: 8px 0 0;
+  padding: 0 0 0 32px;
+  border: 0 none;
+  background: transparent;
+  text-align: left;
+  color: $color__link;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $color__link--hover;
+  }
+
+  &:active {
+    color: $color__link--active;
+  }
+}
+
+.m-filters__show-more-toggle svg {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  transform: rotate(-90deg);
+  transform-origin: 8px 8px;
+
+  .m-filters__list.s-capped + & {
+    transform: rotate(90deg);
+  }
+}
