@@ -28,6 +28,9 @@ class ExhibitionRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['site_tags'] ?? []);
+
+        $this->updateBrowserApiRelated($object, $fields, 'exhibitions');
+
         $this->updateOrderedBelongsTomany($object, $fields, 'events');
         $this->updateOrderedBelongsTomany($object, $fields, 'shopItems');
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
@@ -39,6 +42,8 @@ class ExhibitionRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
         $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
+
+        $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'whatson');
 
         return $fields;
     }

@@ -27,6 +27,14 @@
     <a17-fieldset id="related" title="Related">
         @formField('browser', [
             'routePrefix' => 'whatson',
+            'with_multiple' => true,
+            'max' => 5,
+            'name' => 'exhibitions',
+            'label' => 'Related Exhibitions'
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Related events',
