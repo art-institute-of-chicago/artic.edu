@@ -4,7 +4,11 @@ import { findAncestorByTagName, ajaxableLink } from '../functions';
 const ajaxPageLoad = function() {
 
   var ajaxActive = false;
-  var failSafe = false;
+  var failSafe = false; // true in production, false in dev
+
+  var ajaxing = false;
+  var ajaxTimeOutTime = 3500;
+  var ajaxTimer;
 
   var docContent;
   var documentContent;
@@ -55,6 +59,12 @@ const ajaxPageLoad = function() {
       return false;
     }
 
+    if (ajaxing) {
+      return;
+    }
+
+    ajaxing = true;
+
     triggerCustomEvent(document, 'modal:hide', { opener: options.opener });
     triggerCustomEvent(document, 'navPrimary:hide', { opener: options.opener });
     triggerCustomEvent(document, 'shareMenu:close');
@@ -85,6 +95,9 @@ const ajaxPageLoad = function() {
       ],
       onSuccess: function(data){
         try {
+          clearTimeout(ajaxTimer);
+        } catch(err) {}
+        try {
           // parse returned page
           var parser = new DOMParser();
           var doc = parser.parseFromString(data, 'text/html');
@@ -101,14 +114,17 @@ const ajaxPageLoad = function() {
               defaultComplete(options, doc);
           }
           // fix images
-          //picturefill();
+          picturefill();
           // tell the page and hide the loaders
           triggerCustomEvent(document, 'page:updated');
           triggerCustomEvent(document, 'loader:complete');
           triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
+          //
+          ajaxing = false;
         } catch (err) {
           triggerCustomEvent(document, 'loader:error');
           triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
+          ajaxing = false;
           if (failSafe) {
             location.href = options.href;
           } else {
@@ -117,8 +133,10 @@ const ajaxPageLoad = function() {
         }
       },
       onError: function(data){
+        clearTimeout(ajaxTimer);
         triggerCustomEvent(document, 'loader:error');
         triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
+        ajaxing = false;
         if (failSafe) {
           location.href = options.href;
         } else {
@@ -126,6 +144,10 @@ const ajaxPageLoad = function() {
         }
       }
     });
+
+    ajaxTimer = setTimeout(function(){
+      location.href = options.href;
+    }, ajaxTimeOutTime);
   }
 
   function popstate(event) {
