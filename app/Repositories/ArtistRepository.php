@@ -15,20 +15,4 @@ class ArtistRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
-    {
-        // $this->updateOrderedBelongsTomany($object, $fields, 'shopItems');
-        $this->updateBrowser($object, $fields, 'shopItems');
-
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-        $fields['browsers']['shopItems'] = $this->getFormFieldsForBrowser($object, 'shopItems', 'whatson');
-
-        return $fields;
-    }
-
 }

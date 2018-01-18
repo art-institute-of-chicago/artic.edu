@@ -116,6 +116,10 @@ return [
                 'title' => 'FAQ',
                 'module' => true,
             ],
+            'shopItems' => [
+                'title' => 'Shop',
+                'module' => true,
+            ],
         ],
     ],
 ];

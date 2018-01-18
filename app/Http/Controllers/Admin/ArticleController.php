@@ -34,7 +34,7 @@ class ArticleController extends ModuleController
 
     protected $indexWith = [];
 
-    protected $formWith = ['revisions', 'siteTags', 'shopItems'];
+    protected $formWith = ['revisions', 'siteTags'];
 
     protected $filters = [];
 

@@ -20,7 +20,6 @@ Route::group(['prefix' => 'whatson'], function () {
     Route::module('artists');
     Route::module('artworks');
     Route::module('selections');
-    Route::module('shopItems');
 });
 
 Route::group(['prefix' => 'general'], function () {
@@ -33,6 +32,7 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('questions');
     Route::module('admissions');
     Route::module('locations');
+    Route::module('shopItems');
     Route::module('feeAges');
     Route::module('feeCategories');
     Route::name('general.fees')->get('/fees', 'FeeController@index');

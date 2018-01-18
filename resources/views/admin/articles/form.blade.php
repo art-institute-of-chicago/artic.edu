@@ -64,12 +64,4 @@
         'max' => 20,
         'label' => 'Related Selections',
     ])
-
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'name' => 'shopItems',
-        'moduleName' => 'shopItems',
-        'max' => 20,
-        'label' => 'Related Shop Items',
-    ])
 @stop

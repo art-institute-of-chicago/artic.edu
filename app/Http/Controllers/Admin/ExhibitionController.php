@@ -42,11 +42,9 @@ class ExhibitionController extends BaseApiController
         ],
     ];
 
-    protected $featureField = 'landing';
-
     protected $indexWith = ['medias'];
 
-    protected $formWith = ['revisions', 'siteTags', 'shopItems'];
+    protected $formWith = ['revisions', 'siteTags'];
 
     protected $defaultFilters = ['search' => '%title'];
 

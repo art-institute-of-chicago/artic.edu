@@ -32,7 +32,6 @@ class ExhibitionRepository extends ModuleRepository
         $this->updateBrowserApiRelated($object, $fields, 'exhibitions');
 
         $this->updateOrderedBelongsTomany($object, $fields, 'events');
-        $this->updateOrderedBelongsTomany($object, $fields, 'shopItems');
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
 
         parent::afterSave($object, $fields);

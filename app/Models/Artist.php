@@ -24,9 +24,4 @@ class Artist extends Model
 
     // those fields get auto set to false if not submited
     public $checkboxes = [];
-
-    public function shopItems()
-    {
-        return $this->morphToMany(\App\Models\ShopItem::class, 'shop_itemizable', 'shop_itemized');
-    }
 }

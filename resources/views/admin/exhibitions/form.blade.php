@@ -34,24 +34,6 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'whatson',
-            'moduleName' => 'events',
-            'name' => 'events',
-            'label' => 'Related events',
-            'note' => 'Select related events',
-            'max' => 20
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'whatson',
-            'moduleName' => 'shopItems',
-            'name' => 'shopItems',
-            'label' => 'Related Shop Items',
-            'note' => 'Select related Shop Items',
-            'max' => 20
-        ])
-
-        @formField('browser', [
             'routePrefix' => 'general',
             'moduleName' => 'sponsors',
             'name' => 'sponsors',

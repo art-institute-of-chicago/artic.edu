@@ -14,11 +14,4 @@
         'label' => 'Biography',
         'type' => 'textarea'
     ])
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'moduleName' => 'shopItems',
-        'name' => 'shopItems',
-        'label' => 'Related shop items',
-        'max' => 20
-    ])
 @stop
