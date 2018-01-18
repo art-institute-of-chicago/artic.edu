@@ -1,12 +1,206 @@
-
 .g-footer {
   @include background-fill;
+  padding-top: 56px;
   padding-bottom: 44px;
   background-color: $color__bg--footer;
-  color: $color__text--contrast;
+  color: $color__text--footer;
 
-  @include breakpoint('large+') {
-    padding-bottom: 60px;
+  @include breakpoint('medium+') {
+    padding-top: 76px;
+    padding-bottom: 35px;
+  }
+}
+
+.g-footer__top-link {
+  @include untuck;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: inherit;
+  line-height: 48px;
+}
+
+.g-footer__top-link span {
+  color: $color__white;
+
+  @include breakpoint('medium+') {
+    display: inline-block;
+    margin-left: 14px;
+    padding-left: 16px;
+    border-left: 1px solid $color__rules--contrast;
+  }
+}
+
+.g-footer__inner {
+  border-top: 1px solid $color__rules--contrast;
+}
+
+.g-footer__logo {
+  display: inline-block;
+  // margin-top: 8px;
+  color: $color__white;
+}
+
+.g-footer__logo svg {
+  width: 92px;
+  height: 92px;
+}
+
+.g-footer__link-list,
+.g-footer .f-secondary {
+  color: $color__white;
+}
+
+.g-footer__link-list a,
+.g-footer .f-secondary a {
+  color: $color__text--footer;
+}
+
+.g-footer__link-list {
+  @extend %f-secondary;
+  margin-top: 16px;
+}
+
+.g-footer__link-list li {
+  margin-top: 4px;
+}
+
+.g-footer__link-list--spaced li {
+  margin-top: 16px;
+}
+
+.g-footer__link-list li:first-child {
+  margin-top: 0;
+}
+
+.g-footer__grid {
+  display: flex;
+  position: relative;
+  flex-flow: row wrap;
+  height: 100%;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-left: colspan(2, $name, 0, true);
+    }
+  }
+}
+
+.g-footer__grid > li {
+  position: relative;
+  padding-top: 40px;
+
+  @include breakpoint('medium+') {
+    padding-top: 26px;
+  }
+
+  // @each $name, $point in $breakpoints {
+  //   @include breakpoint('#{$name}') {
+  //     width: colspan(grid-cols-to-colspan(2, 28), $name);
+  //     margin-left: colspan(2, $name);
+  //   }
+  // }
+
+  @include breakpoint('xsmall') {
+    width: colspan(grid-cols-to-colspan(1, 58), 'xsmall');
+    margin-left: colspan(2, 'xsmall');
+  }
+
+  @include breakpoint('small') {
+    width: colspan(grid-cols-to-colspan(1, 58), 'small');
+    margin-left: colspan(2, 'small');
+  }
+
+  @include breakpoint('medium') {
+    width: colspan(grid-cols-to-colspan(2, 58), 'medium');
+    margin-left: colspan(2, 'medium');
+  }
+
+  @include breakpoint('large') {
+    width: colspan(grid-cols-to-colspan(2, 58), 'large');
+    margin-left: colspan(2, 'large');
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(grid-cols-to-colspan(4, 58), 'xlarge');
+    margin-left: colspan(2, 'xlarge');
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(grid-cols-to-colspan(4, 58), 'xxlarge');
+    margin-left: colspan(2, 'xxlarge');
+  }
+}
+
+.g-footer__grid > li:first-child {
+  padding-top: 26px;
+}
+
+.g-footer__grid > li:nth-child(1),
+.g-footer__grid > li:nth-child(2) {
+  @include breakpoint('medium+') {
+    min-height: 334px;
+  }
+}
+
+.g-footer__grid > li:nth-child(3),
+.g-footer__grid > li:nth-child(4) {
+}
+
+.g-footer__grid > li h3 {
+  margin-top: -8px;
+}
+
+.g-footer__grid > li:first-child,
+.g-footer__grid > li:nth-child(2n+1) {
+  // margin-left: 0;
+}
+
+.g-footer__grid > li::after {
+  content: '';
+  // display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: $color__rules--contrast;
+  pointer-events: none;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      right: colspan(1, #{$name}, 0, true);
+    }
+  }
+}
+
+.g-footer__grid > li:nth-child(2n)::after {
+  @include breakpoint('medium+') {
+    display: none;
+  }
+
+  @include breakpoint('xlarge+') {
+    display: block;
+  }
+}
+
+.g-footer__grid > li:last-child::after {
+  display: none;
+}
+
+.g-footer__grid__group {
+  padding-top: 26px;
+  padding-bottom: 40px;
+  border-top: 1px solid $color__rules--contrast;
+
+  @include breakpoint('medium+') {
+    padding-bottom: 98px;
+  }
+}
+
+.g-footer__grid__group:first-child {
+  @include breakpoint('xlarge+') {
+    padding-top: 0;
+    border-top: 0;
   }
 }
 
@@ -16,18 +210,12 @@
 }
 
 .g-footer .o-grid-listing > *:first-child::after {
-  display: none;
-  content: none;
+  // display: none;
+  // content: none;
 }
 
 .g-footer .o-grid-listing > * > *:first-child {
   margin-top: 0;
-}
-
-@include breakpoint('medium+') {
-  .g-footer .o-grid-listing > *:nth-child(2) {
-    padding-top: 48px;
-  }
 }
 
 @include breakpoint('medium-') {
@@ -87,22 +275,21 @@
 
 .g-footer figure img {
   display: block;
-  width: 100%;
-  height: auto;
+  max-width: 100%;
 }
 
 .g-footer__legals {
-  padding-top: 19px;
+  padding-top: 15px;
   border-top: 1px solid $color__rules--contrast;
 
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     display: flex;
     flex-flow: row wrap;
   }
 }
 
 .g-footer__legals li {
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     flex: 0 0 auto;
     margin-left: 16px;
 
@@ -111,7 +298,6 @@
     }
   }
 }
-
 
 .g-footer__credit {
   position: absolute;
