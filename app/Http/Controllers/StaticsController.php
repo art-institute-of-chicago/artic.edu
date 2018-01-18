@@ -412,6 +412,7 @@ class StaticsController extends Controller {
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'quickSearchLinks' => $quickSearchLinks,
       'filters' => $filters,
+      'filterCategories' => $this->generateCollectionFilterCategories(),
       'activeFilters' => array(
         array(
           'href' => '#',
@@ -1306,5 +1307,96 @@ class StaticsController extends Controller {
       }
       return $generatedBlocks;
     }
+  }
+
+  private function generateFilterList($num = 20) {
+    $filters = array();
+    for ($i = 0; $i < $num; $i++) {
+      array_push($filters,
+        array(
+          'href' => '#',
+          'label' => $this->faker->word(),
+          'count' => $this->faker->numberBetween(13,1312),
+        )
+      );
+    }
+    return $filters;
+  }
+
+  private function generateCollectionFilterCategories() {
+
+    $filtersCategories = array();
+
+    array_push($filtersCategories, array(
+        'type' => 'dropdown',
+        'collapsible' => false,
+        'title' => 'Sort By',
+        'active' => true,
+        'list' => $this->generateFilterList(5),
+    ));
+
+    array_push($filtersCategories, array(
+        'type' => 'date',
+        'title' => 'Date',
+        'active' => true,
+    ));
+
+    array_push($filtersCategories, array(
+        'type' => 'list',
+        'title' => 'Geography',
+        'active' => true,
+        'listSearch' => true,
+        'list' => $this->generateFilterList(40),
+    ));
+
+    array_push($filtersCategories, array(
+        'type' => 'list',
+        'title' => 'Object Type',
+        'active' => true,
+        'list' => $this->generateFilterList(40),
+    ));
+
+    array_push($filtersCategories, array(
+        'type' => 'list',
+        'title' => 'Artist',
+        'active' => true,
+        'listSearch' => true,
+        'list' => $this->generateFilterList(40),
+    ));
+
+    array_push($filtersCategories, array(
+        'type' => 'list',
+        'title' => 'Classification',
+        'list' => $this->generateFilterList(40),
+    ));
+
+    array_push($filtersCategories, array(
+        'type' => 'list',
+        'title' => 'Subject',
+        'list' => $this->generateFilterList(5),
+    ));
+
+    array_push($filtersCategories, array(
+        'type' => 'list',
+        'title' => 'Medium',
+        'list' => $this->generateFilterList(10),
+    ));
+
+    array_push($filtersCategories, array(
+        'type' => 'list',
+        'title' => 'Department',
+        'list' => $this->generateFilterList(5),
+    ));
+
+    array_push($filtersCategories, array(
+        'type' => 'list',
+        'collapsible' => false,
+        'title' => 'Show Only',
+        'active' => true,
+        'list' => $this->generateFilterList(5),
+    ));
+
+    return $filtersCategories;
+
   }
 }

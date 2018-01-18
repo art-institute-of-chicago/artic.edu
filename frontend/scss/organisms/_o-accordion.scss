@@ -14,6 +14,10 @@
   cursor: pointer;
 }
 
+.o-accordion__trigger.s-inactive {
+  cursor: default;
+}
+
 .o-accordion__trigger:not(:first-child) {
   margin-top: 30px;
 
@@ -35,11 +39,16 @@
   }
 }
 
-.o-accordion__trigger:hover {
+.o-accordion__trigger.f-tag-2 {
+  padding-bottom: 16px - 1px;
+  border-bottom: 1px solid $color__rules--primary;
+}
+
+.o-accordion__trigger:not(.s-inactive):hover {
   color: $color__link--tab-hover;
 }
 
-.o-accordion__trigger:focus {
+.o-accordion__trigger:not(.s-inactive):focus {
   outline-color: Highlight;
   outline-style: solid;
   outline-width: 3px;
@@ -47,7 +56,7 @@
 
 // WebKit gets its native focus styles.
 @media (-webkit-min-device-pixel-ratio:0) {
-  .o-accordion__trigger:focus {
+  .o-accordion__trigger:not(.s-inactive):focus {
     outline-color: -webkit-focus-ring-color;
     outline-style: auto;
     outline-width: auto;
@@ -69,6 +78,15 @@
   }
 }
 
+.o-accordion__trigger .icon--arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -10px;
+  transform: rotate(90deg);
+  transform-origin: 8px 8px;
+}
+
 .o-accordion__trigger .icon--plus {
   display: block;
 }
@@ -85,6 +103,10 @@
   display: block;
 }
 
+.o-accordion__trigger[aria-expanded="true"] .icon--arrow {
+  transform: rotate(90deg) scaleX(-1);
+}
+
 .o-accordion__panel {
   height: 0;
   overflow: hidden;
@@ -92,6 +114,12 @@
 
   &[aria-hidden="false"] {
     height: auto;
+  }
+
+  &.s-inactive {
+    height: auto;
+    overflow: visible;
+    transition: none;
   }
 }
 
@@ -161,32 +189,5 @@
 
   @include breakpoint('medium+') {
     margin-top: 60px;
-  }
-}
-
-
-
-
-
-// variant `o-accordion--filters`
-
-.o-accordion--filters {
-
-  .o-accordion__trigger {
-    margin-top: 24px;
-  }
-
-  .o-accordion__panel {
-    position: relative;
-    margin-top: 24px;
-  }
-
-  .o-accordion__trigger .icon--plus,
-  .o-accordion__trigger .icon--minus {
-    top: 0;
-
-    @include breakpoint('medium+') {
-      top: 0;
-    }
   }
 }

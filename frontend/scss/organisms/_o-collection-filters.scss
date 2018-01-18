@@ -15,7 +15,27 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.o-collection-filters__active-filters {
+.o-collection-filters .o-accordion__trigger:not(:first-child) {
+  margin-top: 12px;
+}
+
+.o-collection-filters .o-accordion__trigger.s-inactive:not(:first-child) {
+  margin-top: 24px;
+}
+
+.o-collection-filters .o-accordion__panel-content {
+  padding-bottom: 20px;
+}
+
+.o-collection-filters .dropdown {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.o-collection-filters .dropdown button {
+  display: block;
+  width: 100%;
 }
 
 .o-collection-filters__filters {
