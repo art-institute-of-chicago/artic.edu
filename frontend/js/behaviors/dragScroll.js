@@ -66,6 +66,7 @@ const dragScroll = function(container) {
     if (Math.abs(xVelocity) > 0 || Math.abs(yVelocity) > 0) {
       window.requestAnimationFrame(_momentum);
     }
+    container.classList.remove('s-dragging');
     setTimeout(function(){
       allowClicks = true;
     }, 50);
@@ -85,6 +86,8 @@ const dragScroll = function(container) {
       if (Math.abs(xVelocity) > 2 || Math.abs(yVelocity) > 2) {
         allowClicks = false;
       }
+      //
+      container.classList.add('s-dragging');
     }
   }
 

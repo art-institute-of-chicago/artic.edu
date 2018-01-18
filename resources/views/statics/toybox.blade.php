@@ -408,6 +408,30 @@
         @slot('href','#')
         Tertiary
     @endcomponent
+    @component('components.atoms._tag')
+        @slot('variation','tag--quaternary')
+        @slot('href','#')
+        Quaternary
+    @endcomponent
+</p>
+<p style="margin-top: 20px;">
+    @component('components.atoms._tag')
+        @slot('font', 'f-tag-2')
+        @slot('href','#')
+        f-tag-2
+    @endcomponent
+</p>
+<p style="margin-top: 20px;">
+    @component('components.atoms._tag')
+        @slot('variation', 'tag--w-image')
+        @slot('href','#')
+        @component('components.atoms._img')
+            @slot('src', 'http://placehold.dev.area17.com/image/60x60')
+            @slot('width', '60')
+            @slot('height', '60')
+        @endcomponent
+        With Image
+    @endcomponent
 </p>
 
 @component('components.atoms._hr')

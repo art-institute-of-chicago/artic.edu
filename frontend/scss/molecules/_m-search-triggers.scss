@@ -20,22 +20,49 @@
 }
 
 .m-search-triggers button {
+  @include untuck;
   display: block;
+  min-width: 48px;
+  height: 48px;
   margin: 0;
-  padding: 4px;
+  padding: 0 8px;
   border: 1px solid $color__rules--primary;
   border-radius: $border-radius;
   background: $color__bg;
-  color: $color__text;
+  color: $color__link;
+  line-height: 44px;
+  cursor: pointer;
   box-shadow: $shadow;
+
+  &:hover,
+  &:focus {
+    background-color: $color__bg--secondary;
+    color: $color__link--hover;
+  }
+}
+
+.m-search-triggers button em {
+  color: $color__text--secondary;
+  font-style: normal;
 }
 
 .m-search-triggers svg {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
 }
 
-.m-search-triggers span {
-  display: inline-block;
+.m-search-triggers button .icon--filter--24 {
+  position: relative;
+  top: -2px;
+  margin-right: 4px;
+}
+
+.m-search-triggers button .icon--search--24 {
+  color: $color__text--title;
+}
+
+.m-search-triggers button:hover .icon--search--24 ,
+.m-search-triggers button:focus .icon--search--24  {
+  color: $color__text--title;
 }

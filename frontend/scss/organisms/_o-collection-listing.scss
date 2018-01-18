@@ -1,0 +1,57 @@
+
+
+.o-collection-listing {
+
+  .m-header-block + .m-intro-block {
+    margin-top: 24px;
+
+    @include breakpoint('medium+') {
+      margin-top: 32px;
+    }
+
+    @include breakpoint('large+') {
+      margin-top: 40px;
+    }
+
+  }
+
+  & > .m-collection-search,
+  & > .m-quick-search-links,
+  & > .m-search-actions,
+  & > .m-active-filters {
+
+    @include breakpoint('small-') {
+      display: none;
+    }
+  }
+
+  & > .m-search-triggers {
+
+    @include breakpoint('medium+') {
+      display: none;
+    }
+  }
+
+  .o-pinboard {
+    margin-top: 16px;
+
+    @include breakpoint('small-') {
+      box-shadow: 0 1px 0 $color__white inset;
+      margin-top: 0;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: auto;
+        width: 100%;
+        height: 1px;
+        background: $color__white;
+      }
+    }
+  }
+}

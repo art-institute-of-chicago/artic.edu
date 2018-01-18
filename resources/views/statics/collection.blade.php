@@ -2,6 +2,8 @@
 
 @section('content')
 
+<section class="o-collection-listing">
+
 @component('components.molecules._m-header-block')
     {{ $title }}
 @endcomponent
@@ -15,26 +17,30 @@
     @slot('linksPrimary', array(array('label' => 'Artworks', 'href' => '#', 'active' => true), array('label' => 'Articles &amp; Publications', 'href' => '#'), array('label' => 'Research', 'href' => '#')))
 @endcomponent
 
-<form>
-    <label for="search">Search</label>
-    <input name="search" placeholder="Search by keyword, artist or reference">
+<form class="m-collection-search">
+    <label for="collection-search">Search</label>
+    <input class="f-secondary" id="collection-search" name="collection-search" placeholder="Search by keyword, artist or reference" type="text">
     <button><svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg></button>
 </form>
 
-<ul class="m-quick-search-links">
-@foreach ($quickSearchLinks as $filter)
-    <li>
-        <a href="{{ $filter['href'] }}" class="f-tag-2">
-            @component('components.atoms._img')
-                @slot('src', $filter['image']['src'])
-                @slot('width', $filter['image']['width'])
-                @slot('height', $filter['image']['height'])
+<div class="m-quick-search-links">
+    <ul class="m-quick-search-links__links" data-behavior="dragScroll">
+    @foreach ($quickSearchLinks as $filter)
+        <li>
+            @component('components.atoms._tag')
+                @slot('variation', 'tag--w-image')
+                @slot('href', $filter['href'])
+                @component('components.atoms._img')
+                    @slot('src', $filter['image']['src'])
+                    @slot('width', $filter['image']['width'])
+                    @slot('height', $filter['image']['height'])
+                @endcomponent
+                {{ $filter['label'] }}
             @endcomponent
-            {{ $filter['label'] }}
-        </a>
-    </li>
-@endforeach
-</ul>
+        </li>
+    @endforeach
+    </ul>
+</div>
 
 <ul class="m-search-actions">
     <li>
@@ -53,14 +59,17 @@
     </li>
 </ul>
 
-<div class="m-active-filters">
-    <ul class="m-active-filters__items">
+<div class="m-active-filters u-hide@small-">
+    <ul class="m-active-filters__items" data-behavior="dragScroll">
     @foreach ($activeFilters as $filter)
         <li class="m-active-filters__item">
-            <a href="{{ $filter['href'] }}" class="tag tag--quaternary f-tag">
+            @component('components.atoms._tag')
+                @slot('font', 'f-tag-2')
+                @slot('variation', 'tag--quaternary tag--l')
+                @slot('href', $filter['href'])
                 {{ $filter['label'] }}
                 <svg class="icon--close"><use xlink:href="#icon--close" /></svg>
-            </a>
+            @endcomponent
         </li>
     @endforeach
     </ul>
@@ -71,9 +80,9 @@
 
 <ul class="m-search-triggers">
     <li>
-        <button data-behavior="showCollectionFilters">
+        <button class="f-buttons" data-behavior="showCollectionFilters">
             <svg class="icon--filter--24"><use xlink:href="#icon--filter--24" /></svg>
-            <span class="f-buttons">Filter (1)</span>
+            Filter <em>(1)</em>
         </button>
     </li>
     <li>
@@ -317,5 +326,7 @@
         {!! $themeString !!}
     @endcomponent
 @endif
+
+</section>
 
 @endsection

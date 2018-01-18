@@ -1,0 +1,54 @@
+
+.m-collection-search {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.m-collection-search label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin-top: -1px;
+  margin-left: -1px;
+  padding: 0;
+  border: 0 none;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+}
+
+.m-collection-search input[type=text] {
+  flex: 1;
+  height: 56px;
+  margin: 0;
+  border: 0 none;
+  border-radius: 0;
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+  background: $color__bg--primary;
+  color: $color__text--title;
+
+  @include placeholder() {
+    color: $color__text--secondary;
+  }
+}
+
+.m-collection-search button {
+  display: block;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  border-radius: 0;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  background: $color__bg--tertiary;
+  color: $color__white;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: $color__black;
+  }
+}

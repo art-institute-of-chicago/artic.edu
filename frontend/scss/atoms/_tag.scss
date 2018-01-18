@@ -3,6 +3,11 @@
 ```
 <a href="#" class="tag f-tag">Kanan Jarrus</a>
 <a href="#" class="tag f-tag">Caleb Dume</a>
+<a href="#" class="tag tag--secondary f-tag">Caleb Dume</a>
+<a href="#" class="tag tag--tertiary f-tag">Caleb Dume</a>
+<a href="#" class="tag tag--quaternary f-tag">Caleb Dume</a> <br>
+<a href="#" class="tag f-tag-2">Ezra</a> <br>
+<a href="#" class="tag tag--w-image f-tag">Sabine</a>
 ```
 
 ***/
@@ -42,9 +47,16 @@ a.tag:active {
   display: none;
 }
 
-.tag.f-tag {
+.tag.f-tag,
+.tag.f-tag-2 {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+.tag--l.f-tag,
+.tag--l.f-tag-2 {
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 
@@ -127,4 +139,65 @@ a.tag--quaternary:focus {
 a.tag--quaternary:active {
   background-color: $color__black--80;
   color: $color__white;
+}
+
+
+
+.tag--w-image {
+  position: relative;
+  height: 40px;
+  padding-right: 16px;
+  padding-left: 56px;
+  background: transparent;
+  color: $color__text--secondary;
+  line-height: 40px;
+}
+
+.tag--w-image[class*=f-]::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: 1px solid $color__rules--secondary;
+  border-radius: $border-radius;
+}
+
+.tag--w-image.f-tag,
+.tag--w-image.f-tag-2 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.tag--w-image img {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+a.tag--w-image:hover,
+a.tag--w-image:focus {
+  background-color: transparent;
+  color: $color__text--secondary;
+
+  &::before {
+    border-color: $color__text--secondary;
+  }
+}
+
+a.tag--w-image:active {
+  background-color: transparent;
+  color: $color__text--secondary;
+
+  &::before {
+    border-color: $color__rules--secondary;
+  }
 }

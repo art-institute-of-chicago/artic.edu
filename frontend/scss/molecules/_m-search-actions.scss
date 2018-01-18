@@ -3,7 +3,8 @@
   display: flex;
   flex: 0 0 auto;
   flex-flow: row nowrap;
-  margin-top: 40px;
+  margin-top: 32px;
+  color: $color__text--secondary;
 }
 
 .m-search-actions > li {
@@ -16,14 +17,42 @@
   margin-right: auto;
 }
 
+.m-search-actions button,
+.m-search-actions a,
+.m-search-actions span {
+  display: block;
+}
+
+.m-search-actions span,
 .m-search-actions button {
+  @include untuck;
   padding: 0;
   border: 0 none;
   background: transparent;
 }
 
+.m-search-actions a,
+.m-search-actions button {
+  color: $color__link;
+
+  &:hover,
+  &:focus {
+    color: $color__link--hover;
+  }
+
+  &:active {
+    color: $color__link--active;
+  }
+}
+
 .m-search-actions svg {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+}
+
+.m-search-actions .icon--filter--24 {
+  position: relative;
+  top: -2px;
 }

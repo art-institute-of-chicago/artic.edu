@@ -116,6 +116,8 @@ Backgrounds:
   #f3f3f3 (5% black)</li>
   <li><span style="background:#f8f8f8;"></span> `$color__bg--secondary`
   #f8f8f8 (3% black)</li>
+  <li><span style="background:#767676;"></span> `$color__bg--tertiary`
+  #767676 (54% black)</li>
   <li><span style="background:#333;"></span> `$color__bg--footer`
   #333 (80% black)</li>
   <li><span style="background:#1a1a1a;"></span> `$color__bg--gallery`
@@ -130,6 +132,7 @@ Backgrounds:
 $color__bg: $color__white;
 $color__bg--primary: $color__black--5;
 $color__bg--secondary: $color__black--3;
+$color__bg--tertiary: $color__black--54;
 $color__bg--footer: $color__black--80;
 $color__bg--gallery: $color__black--90;
 $color__bg--editorial: $color__cold-white;
