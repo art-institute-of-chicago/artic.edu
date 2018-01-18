@@ -64,19 +64,3 @@
 .m-quick-search-links__links > li:first-child {
   margin-left: 0;
 }
-
-
-
-.o-collection-search .m-quick-search-links {
-  flex-flow: row wrap;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: default;
-}
-
-.o-collection-search .m-quick-search-links > li {
-  margin-right: 4px;
-  margin-bottom: 4px;
-  margin-left: 0;
-}

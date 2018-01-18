@@ -1,14 +1,13 @@
 <div class="o-collection-search" data-behavior="collectionSearch">
-    <form>
-        <label for="search">Search</label>
-        <input name="search" placeholder="Search by keyword, artist or reference">
-        <button><svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg></button>
-    </form>
-    <p class="f-tag-2">Quick Search</p>
-    <ul class="m-quick-search-links">
+    @component('components.molecules._m-collection-search')
+        @slot('placeholder','Search...')
+    @endcomponent
+
+    <p class="o-collection-search__title f-tag-2">Quick Search</p>
+    <ul class="o-collection-search__quick-search-links">
     @foreach ($links as $link)
         <li>
-            <a href="{{ $link['href'] }}" class="f-tag-2">
+            <a href="{{ $link['href'] }}" class="tag tag--quinary f-tag">
                 {{ $link['label'] }}
             </a>
         </li>

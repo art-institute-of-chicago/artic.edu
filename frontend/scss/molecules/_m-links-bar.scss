@@ -36,6 +36,10 @@ $m-links-bar-descender-pad: 8px;
     margin-top: 40px;
   }
 
+  & + .m-collection-search {
+    margin-top: 24px;
+  }
+
   .m-intro-block + & {
     margin-top: 20px;
   }

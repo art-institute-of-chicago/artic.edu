@@ -6,6 +6,7 @@
 <a href="#" class="tag tag--secondary f-tag">Caleb Dume</a>
 <a href="#" class="tag tag--tertiary f-tag">Caleb Dume</a>
 <a href="#" class="tag tag--quaternary f-tag">Caleb Dume</a> <br>
+<a href="#" class="tag tag--quinary f-tag">Caleb Dume</a> <br>
 <a href="#" class="tag f-tag-2">Ezra</a> <br>
 <a href="#" class="tag tag--w-image f-tag">Sabine</a>
 ```
@@ -139,6 +140,34 @@ a.tag--quaternary:focus {
 a.tag--quaternary:active {
   background-color: $color__black--80;
   color: $color__white;
+}
+
+
+
+.tag--quinary {
+  padding-right: 11px;
+  padding-left: 11px;
+  border: 1px solid $color__rules--secondary;
+  background-color: $color__white;
+  color: $color__text--secondary;
+}
+
+a.tag--quinary:hover,
+a.tag--quinary:focus {
+  border-color: $color__text--secondary;
+  background-color: $color__white;
+  color: $color__text--secondary;
+}
+
+a.tag--quinary:active {
+  border-color: $color__rules--secondary;
+  background-color: $color__white;
+  color: $color__text--secondary;
+}
+
+.tag--quinary.f-tag {
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 

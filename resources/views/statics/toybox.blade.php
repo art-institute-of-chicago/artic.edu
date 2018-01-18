@@ -413,6 +413,11 @@
         @slot('href','#')
         Quaternary
     @endcomponent
+    @component('components.atoms._tag')
+        @slot('variation','tag--quinary')
+        @slot('href','#')
+        Quinary
+    @endcomponent
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._tag')

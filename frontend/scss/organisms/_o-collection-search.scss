@@ -14,6 +14,39 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.o-collection-search .m-collection-search {
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.o-collection-search .m-collection-search button {
+  background-color: $color__bg--primary;
+  color: $color__text--title;
+
+  &:hover,
+  &:focus {
+    background-color: $color__bg--primary;
+    color: $color__text--title;
+  }
+}
+
+.o-collection-search__title {
+  margin-top: 20px;
+}
+
+.o-collection-search__quick-search-links {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 20px;
+}
+
+.o-collection-search__quick-search-links > li {
+  flex: 0 0 auto;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  margin-left: 0;
+}
+
 
 .o-collection-search__close {
   position: fixed;

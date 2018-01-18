@@ -18,6 +18,7 @@
 @endcomponent
 
 @component('components.molecules._m-collection-search')
+    @slot('placeholder','Search by keyword, artist or reference')
 @endcomponent
 
 @component('components.molecules._m-quick-search-links----collection')
