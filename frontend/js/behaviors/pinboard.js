@@ -118,18 +118,22 @@ const pinboard = function(container){
     }
   }
 
+  function _resized() {
+    setTimeout(_setupBlocks, 100);
+  }
+
   function _init() {
     maintainOrder = (container.getAttribute('data-pinboard-maintain-order') === 'true');
     _getColCounts();
     _setupBlocks();
     container.addEventListener('pinboard:contentAdded', _positionBlocks, false);
-    document.addEventListener('resized', _setupBlocks, false);
+    document.addEventListener('resized', _resized, false);
   }
 
   this.destroy = function() {
     // remove specific event handlers
     container.removeEventListener('pinboard:contentAdded', _positionBlocks);
-    document.removeEventListener('resized', _setupBlocks);
+    document.removeEventListener('resized', _resized);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
