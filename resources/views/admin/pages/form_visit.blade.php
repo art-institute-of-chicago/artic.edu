@@ -1,6 +1,6 @@
 @push('extra_js')
     <script src="https://maps.googleapis.com/maps/api/js?key={!! env('GOOGLE_API_KEY') !!}&maptype=roadmap"></script>
-    <script src="/assets/admin/behaviors/google_maps.js"></script>
+    <script src="{{ mix('/assets/admin/behaviors/google_maps.js') }}"></script>
 @endpush
 
 @formField('input', [
@@ -10,23 +10,21 @@
 ])
 
 @formField('medias', [
-    'name' => 'Hero Image',
-    'media_role' => 'visit_hero',
+    'name' => 'visit_hero',
     'label' => 'Hero Image',
-    'media_role_name' => 'Hero Image',
     'with_multiple' => false,
     'no_crop' => false
 ])
 
 @formField('repeater', [
-    'moduleName' => 'locations',
+    'type' => 'locations',
     'title' => 'Locations',
     'routePrefix' => 'landing.visit',
     'title_singular' => 'Locations'
 ])
 
 @formField('repeater', [
-    'moduleName' => 'admissions',
+    'type' => 'admissions',
     'title' => 'Free Admissions',
     'routePrefix' => 'landing.visit',
     'title_singular' => 'Free Admission'

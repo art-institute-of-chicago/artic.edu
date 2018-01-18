@@ -1,22 +1,19 @@
-{{-- @formField('publish_status', ['repeater' => true])
-
-<div class="columns">
     <div class="col">
         @formField('input', [
-            'repeater' => true,
+            'type' => 'text',
             'name' => 'name',
             'field_name' => 'Name',
             'label' => 'Name',
             'required' => true
         ])
         @formField('input', [
-            'repeater' => true,
+            'type' => 'text',
             'name' => 'street',
             'field_name' => 'Street',
             'label' => 'Street',
         ])
         @formField('input', [
-            'repeater' => true,
+            'type' => 'text',
             'name' => 'address',
             'field_name' => 'Address',
             'label' => 'Address',
@@ -25,23 +22,21 @@
 
     <div class="col">
         @formField('input', [
-            'repeater' => true,
+            'type' => 'text',
             'name' => 'city',
             'field_name' => 'City',
             'label' => 'City',
         ])
         @formField('input', [
-            'repeater' => true,
+            'type' => 'text',
             'name' => 'state',
             'field_name' => 'State',
             'label' => 'State',
         ])
         @formField('input', [
-            'repeater' => true,
+            'type' => 'text',
             'name' => 'zip',
             'field_name' => 'ZIP code',
             'label' => 'ZIP code',
         ])
     </div>
-</div>
- --}}
