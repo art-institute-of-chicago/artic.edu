@@ -81,11 +81,13 @@ const selectDate = function(container) {
           display.textContent = event.data.dates.start.dateFriendlyString + ' - ' + event.data.dates.end.dateFriendlyString;
         }
         container.classList.add(dateSelectedClass);
-        // todo: replace with ajax call
+        //
         var windowLocationHref = queryStringHandler.updateParameter(window.location.href, 'start', event.data.dates.start.dateString);
         windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, 'end', event.data.dates.end.dateString);
-        //
-        window.location.href = windowLocationHref;
+        // trigger ajax call
+        triggerCustomEvent(document, 'ajax:getPage', {
+          url: windowLocationHref,
+        });
       }
       _closeCalendar(true);
     }

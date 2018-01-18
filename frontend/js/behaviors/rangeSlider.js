@@ -1,4 +1,4 @@
-import { purgeProperties, queryStringHandler, forEach, getUrlParameterByName } from 'a17-helpers';
+import { purgeProperties, queryStringHandler, forEach, getUrlParameterByName, triggerCustomEvent } from 'a17-helpers';
 
 const rangeSlider = function(container){
 
@@ -47,11 +47,12 @@ const rangeSlider = function(container){
   }
 
   function _triggerPageLoad() {
-    // todo: replace with ajax call
     var windowLocationHref = queryStringHandler.updateParameter(window.location.href, param+'-start', rangeValues[minThumbInitIncrementIndex]);
     windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, param+'-end', rangeValues[maxThumbInitIncrementIndex]);
-    //
-    window.location.href = windowLocationHref;
+    // trigger ajax call
+    triggerCustomEvent(document, 'ajax:getPage', {
+      url: windowLocationHref,
+    });
   }
 
   function convertPixelsToIncrementIndex(left) {

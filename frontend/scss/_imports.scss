@@ -70,6 +70,7 @@ $include-icons: false; // see icons.scss!
 @import 'atoms/return-link';
 @import 'atoms/interests-list';
 @import 'atoms/range-slider';
+@import 'atoms/progress-bar';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ molecules */
 
@@ -147,4 +148,5 @@ $include-icons: false; // see icons.scss!
 @import 'state/s-fullscreenImage-active';
 @import 'state/s-collection-filters-active';
 @import 'state/s-collection-search-active';
+@import 'state/s-ajaxPageLoadMask-active';
 @import 'state/s-print';

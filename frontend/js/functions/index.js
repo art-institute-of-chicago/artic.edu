@@ -1,3 +1,9 @@
 export { default as positionElementToTarget } from './positionElementToTarget';
 export { default as lockBody } from './lockBody';
 export { default as focusTrap } from './focusTrap';
+export { default as historyProxy } from './historyProxy';
+export { default as ajaxPageLoad } from './ajaxPageLoad';
+export { default as ajaxPageLoadMaskToggle } from './ajaxPageLoadMaskToggle';
+export { default as findAncestorByTagName } from './findAncestorByTagName';
+export { default as ajaxableLink } from './ajaxableLink';
+export { default as loadProgressBar } from './loadProgressBar';

@@ -1,0 +1,43 @@
+/***
+
+Used for ajax loads:
+
+```
+<div class="progress-bar"><span></span></div>
+<div class="progress-bar progress-bar--standalone"><span></span></div>
+```
+
+***/
+
+
+.progress-bar {
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+}
+
+.progress-bar span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  background-color: $color__red--100;
+  transition: all .25s $bezier--ease-out-circ;
+}
+
+.progress-bar--standalone {
+  position: relative;
+  max-width: 300px;
+  height: 4px;
+  margin: 24px auto 0;
+  background-color: $color__rules--primary;
+}
+
+
+div > #a17 .progress-bar span {
+  width: 13%;
+}

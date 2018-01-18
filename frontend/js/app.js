@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery } from 'a17-helpers';
 import * as Behaviors from './behaviors';
-import { lockBody, focusTrap } from './functions';
+import { lockBody, focusTrap, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar } from './functions';
 
 /*
 
@@ -27,6 +27,11 @@ document.addEventListener('DOMContentLoaded', function(){
   lockBody();
   // listen for focus trap requests
   focusTrap();
+  // listen for ajax page load type events
+  ajaxPageLoad();
+  ajaxPageLoadMaskToggle();
+  historyProxy();
+  loadProgressBar();
   // on resize, check
   resized();
 });

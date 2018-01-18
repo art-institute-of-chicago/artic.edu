@@ -51,6 +51,36 @@
   }
 }
 
+/***
+
+## mixin loader
+
+Creates a load spinner.
+
+***/
+
+@mixin ajax-loader() {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: $color__red--100;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: 20px 20px;
+  animation: ajax-loader .9s linear infinite;
+}
+
+@keyframes ajax-loader {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+
 @mixin opaqueBg($bg1, $bg2) {
   background-color: $bg1;
 
