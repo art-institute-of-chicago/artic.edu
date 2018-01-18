@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
@@ -11,7 +12,7 @@ use App\Models\Behaviors\HasApiModel;
 
 class Event extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasApiModel;
+    use HasSlug, HasRevisions, HasMedias, HasBlocks, HasApiModel;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
     protected $apiModel = 'App\Models\Api\Event';

@@ -4,11 +4,11 @@ namespace App\Repositories\Api;
 
 use A17\CmsToolkit\Repositories\ModuleRepository;
 
-use App\Models\Api\Event;
+use App\Models\Api\Exhibition;
 
-class EventRepository extends ModuleRepository
+class ExhibitionRepository extends ModuleRepository
 {
-    public function __construct(Event $model)
+    public function __construct(Exhibition $model)
     {
         $this->model = $model;
     }

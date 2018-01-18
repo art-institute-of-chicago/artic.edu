@@ -8,11 +8,14 @@ use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
+use App\Models\Behaviors\HasApiModel;
+
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias, HasBlocks;
+    use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiModel;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
+    protected $apiModel = 'App\Models\Api\Exhibition';
 
     protected $fillable = [
         'published',

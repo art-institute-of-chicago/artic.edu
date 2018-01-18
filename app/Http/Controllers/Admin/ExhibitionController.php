@@ -2,47 +2,43 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 use App\Repositories\SiteTagRepository;
 
-class ExhibitionController extends ModuleController
+class ExhibitionController extends BaseApiController
 {
     protected $moduleName = 'exhibitions';
+    protected $modelName  = 'Exhibition';
+    protected $modelNameApi  = 'Api\Exhibition';
+    protected $hasAugmentedModel = true;
 
     protected $indexOptions = [
-        'feature' => true,
-        'bulkFeature' => true,
+        'publish' => false,
+        'bulkPublish' => false,
+        'feature' => false,
+        'bulkFeature' => false,
+        'restore' => false,
+        'bulkRestore' => false,
+        'bulkDelete' => false,
+        'reorder' => false,
+        'permalink' => false,
     ];
 
     protected $indexColumns = [
-        'image' => [
-            'title' => 'Hero',
-            'thumb' => true,
-            'variant' => [
-                'role' => 'hero',
-                'crop' => 'square',
-            ],
-        ],
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-            'sort' => true,
         ],
-        'lake_guid' => [
-            'title' => 'lake_guid',
-            'field' => 'lake_guid',
-            'sort' => true,
+        'augmented' => [
+            'title' => 'Augmented?',
+            'field' => 'augmented',
         ],
-        // 'startDate' => [
-        //     'title' => 'Start date',
-        //     'field' => 'startDate',
-        //     'present' => true,
-        //     'sort' => true,
-        //     'sortKey' => 'start_date',
-        // ],
-        'short_copy' => [
-            'title' => 'Short copy',
-            'field' => 'short_copy',
+        'dates' => [
+            'title' => 'Dates field',
+            'field' => 'dates'
+        ],
+        'header_copy' => [
+            'title' => 'Header copy',
+            'field' => 'header_copy',
         ],
     ];
 

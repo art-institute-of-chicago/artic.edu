@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
+use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\ModuleRepository;
@@ -11,7 +12,7 @@ use App\Models\Event;
 
 class EventRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleApi;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApi;
 
     public function __construct(Event $model)
     {

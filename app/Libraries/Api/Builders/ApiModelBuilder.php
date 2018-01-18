@@ -4,6 +4,7 @@ namespace App\Libraries\Api\Builders;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ApiModelBuilder
 {
@@ -94,6 +95,18 @@ class ApiModelBuilder
     }
 
     /**
+     * Return counting data from the request.
+     * TODO: Implement it for the API. Bypassing for the moment.
+     *
+     * @param  mixed  $relations
+     * @return $this
+     */
+    public function withCount($relations)
+    {
+        return $this;
+    }
+
+    /**
      * Add a basic where clause to the query.
      *
      * @param  string|array|\Closure  $column
@@ -138,6 +151,29 @@ class ApiModelBuilder
         }
 
         return $this->findSingle($id, $columns);
+    }
+
+    /**
+     * Find a model by its primary key, return exception if empty.
+     *
+     * @param  mixed  $id
+     * @param  array  $columns
+     */
+    public function findOrFail($id, $columns = [])
+    {
+        $result = $this->find($id, $columns);
+
+        if (is_array($id)) {
+            if (count($result) == count(array_unique($id))) {
+                return $result;
+            }
+        } elseif (! is_null($result)) {
+            return $result;
+        }
+
+        throw (new ModelNotFoundException)->setModel(
+            get_class($this->model), $id
+        );
     }
 
     public function findSingle($id, $columns = [])
