@@ -7,7 +7,8 @@ class EventController extends BaseApiController
 {
     protected $moduleName = 'events';
     protected $modelName  = 'Event';
-    protected $apiModelName  = 'Api\Event';
+    protected $modelNameApi  = 'Api\Event';
+    protected $hasAugmentedModel = true;
 
     protected $indexOptions = [
         'publish' => false,

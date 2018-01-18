@@ -16,13 +16,9 @@ class Exhibition extends Model
 
     protected $fillable = [
         'published',
-        'landing',
         'content',
-        'title',
         'header_copy',
-        'start_date',
-        'end_date',
-        'short_copy',
+        'title',
         'datahub_id',
     ];
 
@@ -30,11 +26,7 @@ class Exhibition extends Model
         'title',
     ];
 
-    public $nullable = [];
-
     public $checkboxes = ['published'];
-
-    public $dates = ['start_date', 'end_date'];
 
     public $mediasParams = [
         'hero' => [
@@ -56,11 +48,6 @@ class Exhibition extends Model
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
-    }
-
-    public function scopeLanding($query)
-    {
-        return $query->whereLanding(true);
     }
 
     public function events()

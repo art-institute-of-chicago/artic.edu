@@ -33,13 +33,13 @@ class ExhibitionController extends ModuleController
             'field' => 'lake_guid',
             'sort' => true,
         ],
-        'startDate' => [
-            'title' => 'Start date',
-            'field' => 'startDate',
-            'present' => true,
-            'sort' => true,
-            'sortKey' => 'start_date',
-        ],
+        // 'startDate' => [
+        //     'title' => 'Start date',
+        //     'field' => 'startDate',
+        //     'present' => true,
+        //     'sort' => true,
+        //     'sortKey' => 'start_date',
+        // ],
         'short_copy' => [
             'title' => 'Short copy',
             'field' => 'short_copy',
@@ -54,7 +54,7 @@ class ExhibitionController extends ModuleController
 
     protected $defaultFilters = ['search' => '%title'];
 
-    protected $defaultOrders = ['start_date' => 'desc'];
+    protected $defaultOrders = ['title' => 'desc'];
 
     protected $filters = [];
 

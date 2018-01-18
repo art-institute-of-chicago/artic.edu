@@ -25,7 +25,8 @@ trait HasAugmentedModel
         if ($this->augmentedModel)
             return $this->augmentedModel;
 
-        return $this->augmentedModelClass::where('datahub_id', $this->id)->first();
+        return $this->augmentedModel =
+            $this->augmentedModelClass::where('datahub_id', $this->id)->first();
     }
 
     public function hasAugmentedModel()

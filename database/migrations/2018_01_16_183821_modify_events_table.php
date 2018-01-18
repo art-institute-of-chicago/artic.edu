@@ -32,6 +32,12 @@ class ModifyEventsTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             $table->string('title')->nullable();
+            $table->boolean('recurring');
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
+            $table->dateTime('recurring_start_date')->nullable();
+            $table->dateTime('recurring_end_date')->nullable();
+            $table->string('recurring_days')->nullable();
         });
     }
 }

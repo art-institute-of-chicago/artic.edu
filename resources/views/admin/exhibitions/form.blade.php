@@ -5,33 +5,16 @@
         'name' => 'header_copy',
         'label' => 'Header',
     ])
-    @formField('input', [
-        'name' => 'short_copy',
-        'label' => 'Short Copy',
-        'type' => 'textarea'
-    ])
-    @formField('medias', [
-        'name' => 'hero',
-        'label' => 'Hero',
-    ])
+
     @formField('block_editor')
 @stop
 
 @section('fieldsets')
     <a17-fieldset id="attributes" title="Attributes">
-        @formField('date_picker', [
-             'name' => 'start_date',
-             'label' => 'Start date',
-        ])
-
-        @formField('date_picker', [
-             'name' => 'end_date',
-             'label' => 'End date',
-        ])
-
         @formField('input', [
             'name' => 'datahub_id',
             'label' => 'Datahub ID',
+            'disabled' => true
         ])
 
         @formField('multi_select', [

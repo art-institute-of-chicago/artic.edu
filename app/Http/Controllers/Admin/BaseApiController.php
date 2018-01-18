@@ -14,7 +14,10 @@ class BaseApiController extends ModuleController
 {
     protected $moduleName = '';
     protected $modelName  = '';
-    protected $apiModelName  = '';
+    protected $modelNameApi  = '';
+
+    // Option to setup links and the possibility of augmenting a model
+    protected $hasAugmentedModel = false;
 
     // Remove CMS toolkit table filters.
     public function getIndexTableMainFilters($items)
@@ -43,7 +46,7 @@ class BaseApiController extends ModuleController
 
     protected function getApiRepository()
     {
-        return $this->app->make("$this->namespace\Repositories\\" . $this->apiModelName . "Repository");
+        return $this->app->make("$this->namespace\Repositories\\" . $this->modelNameApi . "Repository");
     }
 
     public function getIndexItems($scopes = [], $forcePagination = false)
@@ -55,18 +58,25 @@ class BaseApiController extends ModuleController
     public function getIndexTableData($items)
     {
         // Make a call to obtain all augmented models included on this list
-        $ids = $items->pluck('id')->toArray();
-        $localElements = $this->repository->get([], ['datahub_id' => $ids], [], -1);
+        $localElements = [];
+        if ($this->hasAugmentedModel) {
+            $ids = $items->pluck('id')->toArray();
+            $localElements = $this->repository->get([], ['datahub_id' => $ids], [], -1);
+        }
 
         return $items->map(function ($item) use ($localElements) {
             // If the element has an augmented model the edit URL will change
             // So it will create automatically a model to be edited and so follow
             // Our CMS guidelines
-            if ($element = $localElements->where('datahub_id', $item->id)->first()) {
-                $item->setAugmentedModel($element);
-                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'edit', $element->id);
+            if ($this->hasAugmentedModel) {
+                if ($element = $localElements->where('datahub_id', $item->id)->first()) {
+                    $item->setAugmentedModel($element);
+                    $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'edit', $element->id);
+                } else {
+                    $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $item->id);
+                }
             } else {
-                $editRoute = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $item->id);
+                $editRoute = null;
             }
 
             $columnsData = collect($this->indexColumns)->mapWithKeys(function ($column) use ($item) {
