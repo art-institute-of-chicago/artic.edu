@@ -47,12 +47,12 @@ trait HandleApi
      * This way we don't have to redesign the browser.
      *
      */
-    public function getFormFieldsForBrowserApi($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
+    public function getFormFieldsForBrowserApi($object, $relation, $apiModel, $routePrefix = null, $titleKey = 'title', $moduleName = null)
     {
         // Get all datahub_id's
         $ids = $object->$relation->pluck('datahub_id')->toArray();
         // Use those to load API records
-        $apiElements = $this->model->getApiModel()::query()->ids($ids)->get();
+        $apiElements = $apiModel::query()->ids($ids)->get();
 
         return $object->$relation->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName, $apiElements) {
             $data = [];

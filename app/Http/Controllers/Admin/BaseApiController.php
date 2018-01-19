@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * WIP.
+ *
+ * TODO: Refactor this controller so we don't have dependencies to update
+ * When we are updating the CMS.
+ *
+ * Right now the relationship between model and modelApi, redefinition of forms, and it's harcoded nature
+ * doesn't scale in a maintenance window.
+ *
+ */
+
 namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;

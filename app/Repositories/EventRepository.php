@@ -38,7 +38,7 @@ class EventRepository extends ModuleRepository
         $fields = parent::getFormFields($object);
         $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
 
-        $fields['browsers']['events'] = $this->getFormFieldsForBrowserApi($object, 'events', 'whatson');
+        $fields['browsers']['events'] = $this->getFormFieldsForBrowserApi($object, 'events', 'App\Models\Api\Event', 'whatson');
 
         return $fields;
     }

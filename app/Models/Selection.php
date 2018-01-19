@@ -48,7 +48,7 @@ class Selection extends Model
 
     public function artworks()
     {
-        return $this->belongsToMany('App\Models\Artwork', 'artwork_selection')->withPivot('position')->orderBy('position');
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'artworks');
     }
 
     public function selections()

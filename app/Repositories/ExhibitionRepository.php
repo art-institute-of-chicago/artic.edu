@@ -31,7 +31,7 @@ class ExhibitionRepository extends ModuleRepository
 
         $this->updateBrowserApiRelated($object, $fields, 'exhibitions');
 
-        $this->updateOrderedBelongsTomany($object, $fields, 'events');
+        // $this->updateOrderedBelongsTomany($object, $fields, 'events');
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
 
         parent::afterSave($object, $fields);
@@ -42,7 +42,7 @@ class ExhibitionRepository extends ModuleRepository
         $fields = parent::getFormFields($object);
         $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
 
-        $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'whatson');
+        $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
 
         return $fields;
     }

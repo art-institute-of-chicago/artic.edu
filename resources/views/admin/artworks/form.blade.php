@@ -28,38 +28,47 @@
     ])
 
     @formField('browser', [
+        'label' => 'Selections',
         'routePrefix' => 'whatson',
-        'relationship' => 'selections',
-        'module_name' => 'selections',
-        'relationship_name' => 'related selections',
+        'name' => 'selections',
+        'moduleName' => 'selections',
         'custom_title_prefix' => 'Add',
         'with_multiple' => true,
         'with_sort' => false,
-        'hint' => 'Select related selections',
         'max' => 20
     ])
 
     @formField('browser', [
+        'label' => 'Exhibitions',
         'routePrefix' => 'whatson',
-        'relationship' => 'exhibitions',
-        'module_name' => 'exhibitions',
-        'relationship_name' => 'related exhibitions',
+        'name' => 'exhibitions',
+        'moduleName' => 'exhibitions',
         'custom_title_prefix' => 'Add',
         'with_multiple' => true,
         'with_sort' => true,
-        'hint' => 'Select related exhibitions',
         'max' => 20
     ])
 
     @formField('browser', [
+        'label' => 'Articles',
         'routePrefix' => 'whatson',
-        'relationship' => 'articles',
-        'module_name' => 'articles',
-        'relationship_name' => 'related articles',
+        'name' => 'articles',
+        'moduleName' => 'articles',
         'custom_title_prefix' => 'Add',
         'with_multiple' => true,
         'with_sort' => true,
-        'hint' => 'Select related articles',
         'max' => 20
     ])
 @stop
+
+@section('fieldsets')
+    <a17-fieldset id="related" title="API Fields">
+        @foreach($item->getApiFields() as $field => $value)
+            @formField('input', [
+                'name' => $field,
+                'label' => $field,
+                'disabled' => true
+            ])
+        @endforeach
+    </a17-fieldset>
+@endsection
