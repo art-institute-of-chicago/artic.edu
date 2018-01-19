@@ -1,4 +1,4 @@
-<div class="o-gallery o-gallery--slider">
+<div class="o-gallery o-gallery--slider{{ (isset($variation)) ? ' '.$variation : '' }}">
     @if (isset($title))
         <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif

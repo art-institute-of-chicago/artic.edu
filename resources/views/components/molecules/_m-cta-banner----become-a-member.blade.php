@@ -1,4 +1,4 @@
-<aside class="m-cta-banner m-cta-banner--parallax" data-behavior="bannerParallax">
+<aside class="m-cta-banner m-cta-banner--parallax{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="bannerParallax">
     <div class="m-cta-banner__img" data-parallax-img>
         <img src="http://placeimg.com/2000/240/nature/grayscale">
     </div>
