@@ -4,7 +4,7 @@
     $media = $item['media'];
     $tag = (isset($item['url']) && $item['url'] && $type !== 'embed' && $type !== 'video') ? 'a' : 'span';
 @endphp
-<figure data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}">
+<figure data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <{{ $tag }}{{ ($tag === 'a') ? ' href="'.$item['url'].'"' : '' }} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}">
         @if ($type == 'image')
             @component('components.atoms._img')
@@ -24,6 +24,7 @@
             @endcomponent
         @endif
     </{{ $tag }}>
+    @if (!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption']))
     <figcaption>
         @if ($size == 'gallery')
             @if (isset($item['captionTitle']))<strong class="f-caption">{{ $item['captionTitle'] }}</strong> <br>@endif
@@ -39,4 +40,5 @@
             @endcomponent
         @endif
     </figcaption>
+    @endif
 </figure>

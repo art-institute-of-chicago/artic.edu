@@ -25,6 +25,7 @@
   <li><a href="/statics/editorial">editorial, feature header</a></li>
   <li><br><a href="/statics/artwork">artwork, images header</a></li>
   <li><br><a href="/statics/collection">collection</a></li>
+  <li><br><a href="/statics/visit">visit</a></li>
 </ul>
 
 @endsection

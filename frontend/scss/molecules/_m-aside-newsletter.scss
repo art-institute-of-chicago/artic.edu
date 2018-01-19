@@ -155,22 +155,11 @@
 
 .m-aside-newsletter__msg {
   @include untuck;
+  @include background-fill;
   display: block;
   background-color: $color__link;
   color: $color__white;
   font-style: normal;
-
-  @include breakpoint('large+') {
-    margin-left: colspan(29, large, 0, true);
-  }
-
-  @include breakpoint('xlarge+') {
-    margin-left: colspan(29, xlarge, 0, true);
-  }
-
-  @include breakpoint('xxlarge') {
-    margin-left: colspan(29, xxlarge, 0, true);
-  }
 }
 
 .m-aside-newsletter__msg.f-buttons {

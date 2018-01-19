@@ -25,6 +25,37 @@
     }
   }
 
+  & > .f-list-2 {
+    @include tucked-margin-top($f-list-2, ('xsmall': 56));
+
+    &:first-child {
+      @include tucked-align-top($f-list-2);
+    }
+  }
+
+  & > .f-list-3 {
+    @include tucked-margin-top($f-list-3, ('xsmall': 56));
+
+    &:first-child {
+      @include tucked-align-top($f-list-3);
+    }
+  }
+
+  & > .f-list-4 {
+    @include tucked-margin-top($f-list-4, ('xsmall': 56));
+
+    &:first-child {
+      @include tucked-align-top($f-list-4);
+    }
+  }
+
+  & > .f-list-5 {
+    @include tucked-margin-top($f-list-5, ('xsmall': 56));
+
+    &:first-child {
+      @include tucked-align-top($f-list-5);
+    }
+  }
 
   & > .f-body {
     @include tucked-margin-top($f-body, ('xsmall': 56));

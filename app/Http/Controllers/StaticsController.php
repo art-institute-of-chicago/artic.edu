@@ -407,7 +407,7 @@ class StaticsController extends Controller {
     }
     // now push to a view
     return view('statics/collection', [
-      'primaryNavCurrent' => 'the_collection',
+      'primaryNavCurrent' => 'collection',
       'title' => 'The Collection',
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'quickSearchLinks' => $quickSearchLinks,
@@ -441,6 +441,101 @@ class StaticsController extends Controller {
       ),
       'featuredArticlesHero' => $this->getArticle(),
       'featuredArticles' => $this->getArticles(4),
+    ]);
+  }
+
+  public function visit() {
+    // now push to a view
+    return view('statics/visit', [
+      'primaryNavCurrent' => 'visit',
+      'contrastHeader' => true,
+      'filledLogo' => true,
+      'headerMedia' => array(
+        'type' => 'image',
+        'size' => 'hero',
+        'media' => $this->getImage(1600,900),
+        'hideCaption' => true,
+       ),
+      'title' => 'Plan Your Visit',
+      'hours' => array(
+        'media' => array(
+            'type' => 'image',
+            'size' => 's',
+            'media' => $this->getImage(800,450),
+            'hideCaption' => true,
+        ),
+        'primary' => $this->faker->sentence(8),
+        'secondary' => $this->faker->sentence(8),
+        'sections' => array(
+            array(
+                'title' => $this->faker->sentence(3),
+                'link' => '#',
+                'text' => $this->faker->sentence(8),
+            ),
+            array(
+                'title' => $this->faker->sentence(3),
+                'link' => '#',
+                'text' => $this->faker->sentence(8),
+            ),
+            array(
+                'title' => $this->faker->sentence(3),
+                'link' => '#',
+                'text' => $this->faker->sentence(8),
+            ),
+         )
+       ),
+      'admission' => array(
+        'text' => $this->faker->paragraph(3),
+        'cityPass' => array(
+            'title' => 'CityPass',
+            'text' => $this->faker->sentence(8),
+            'image' => $this->getImage(400,225),
+            'link' => array(
+                'label' => 'Get CityPass',
+                'href' => '#',
+            ),
+        ),
+        'ageGroups' => array(
+            array(
+                'title' => 'Adults',
+                'prices' => array(
+                    'generalAdmission' => '$25',
+                    'chicagoResidents' => '$20',
+                    'illonoisResidents' => '$20',
+                    'fastPass' => '$35',
+                ),
+            ),
+            array(
+                'title' => 'Seniors',
+                'subtitle' => '65+',
+                'prices' => array(
+                    'generalAdmission' => '$19',
+                    'chicagoResidents' => '$14',
+                    'illonoisResidents' => '$16',
+                    'fastPass' => '$29',
+                ),
+            ),
+            array(
+                'title' => 'Students',
+                'prices' => array(
+                    'generalAdmission' => '$19',
+                    'chicagoResidents' => '$14',
+                    'illonoisResidents' => '$16',
+                    'fastPass' => '$29',
+                ),
+            ),
+            array(
+                'title' => 'Teens',
+                'subtitle' => '14-17',
+                'prices' => array(
+                    'generalAdmission' => '$19',
+                    'chicagoResidents' => 'Free',
+                    'illonoisResidents' => '$16',
+                    'fastPass' => '$19',
+                ),
+            ),
+        ),
+       ),
     ]);
   }
 
