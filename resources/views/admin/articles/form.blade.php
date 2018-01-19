@@ -1,6 +1,7 @@
 @extends('cms-toolkit::layouts.form')
 
 @section('contentFields')
+    @formField('block_editor')
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Publishing date',
@@ -65,5 +66,4 @@
         'label' => 'Related Selections',
     ])
 
-    @formField('block_editor')
 @stop
