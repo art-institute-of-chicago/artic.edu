@@ -93,6 +93,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-sponsor',
             ],
+            'footnote' => [
+                'title' => 'Footnote',
+                'icon' => 'text',
+                'component' => 'a17-block-footnote',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
