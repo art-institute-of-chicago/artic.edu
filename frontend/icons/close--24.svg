@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <title>icon_close_24</title>
+  <g id="bg">
+    <rect x="-1120" y="-1228" width="1400" height="2440" fill="none"/>
+  </g>
+  <g id="icons">
+    <g>
+      <line x1="5" y1="5" x2="19" y2="19" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.4"/>
+      <line x1="19" y1="5" x2="5" y2="19" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.4"/>
+    </g>
+  </g>
+</svg>

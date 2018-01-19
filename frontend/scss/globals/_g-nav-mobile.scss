@@ -1,0 +1,265 @@
+.g-nav-mobile {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9998;
+  background-color: $color__bg;
+  overflow: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s $bezier--ease-in-out, visibility 0s 0.2s $bezier--ease-in-out;
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
+.js-mobile-nav-open .g-nav-mobile {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s $bezier--ease-in-out;
+}
+
+.g-nav-mobile__inner {
+  position: relative;
+}
+
+.g-nav-mobile__container {
+  @extend %container;
+  padding-bottom: 60px; // stop the nav from hitting the bottom of the window on scroll
+}
+
+.g-nav-mobile__close {
+  position: absolute;
+  top: 16px;
+  right: map-get($outer-gutters, 'xsmall');
+  z-index: 10;
+}
+
+.js-subnav-open .g-nav-mobile__close {
+  color: $color__text--title-contrast;
+}
+
+.g-nav-mobile .g-header {
+  position: relative;
+}
+
+.g-nav-mobile__search {
+  @include background-fill();
+  position: relative;
+  background-color: $color__bg--primary;
+}
+
+.g-nav-mobile__search input {
+  @extend %f-secondary;
+  @include untuck();
+  width: 100%;
+  height: 48px;
+  border: 0;
+  background-color: transparent;
+  line-height: 48px;
+
+  @include placeholder() {
+    color: $color__text--secondary;
+  }
+}
+
+.g-nav-mobile__search button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: $color__text--secondary;
+  transform: translateY(-50%);
+}
+
+.g-nav-mobile__nav-wrapper {
+  // @include keyline-full(top, $color__rules--primary);
+  margin-right: - map-get($outer-gutters, 'xsmall');
+  margin-left: - map-get($outer-gutters, 'xsmall');
+  padding-right: map-get($outer-gutters, 'xsmall');
+  padding-left: map-get($outer-gutters, 'xsmall');
+  border-top: 1px solid $color__rules--primary;
+}
+
+.g-nav-mobile__nav-wrapper li > a {
+  @extend %f-secondary;
+  position: relative;
+  color: inherit;
+}
+
+.g-nav-mobile__nav {
+}
+
+.g-nav-mobile__nav li {
+  // @include keyline-full(bottom, $color__rules--tertiary);
+  margin-right: - map-get($outer-gutters, 'xsmall');
+  margin-left: - map-get($outer-gutters, 'xsmall');
+  padding-right: map-get($outer-gutters, 'xsmall');
+  padding-left: map-get($outer-gutters, 'xsmall');
+  border-bottom: 1px solid $color__rules--tertiary;
+  color: $color__text--title;
+}
+
+.g-nav-mobile__nav > li:last-child {
+  // @include keyline-full(bottom, $color__rules--primary);
+  border-bottom-color: $color__rules--primary;
+}
+
+.g-nav-mobile__nav li > a {
+  @include untuck();
+  line-height: 48px;
+}
+
+.g-nav-mobile__nav li > a > .icon--arrow {
+  position: absolute;
+  right: 3px;
+  top: 16px;
+}
+
+.g-nav-mobile__nav .g-nav-mobile__nav--muted {
+  color: $color__text--secondary;
+}
+
+.g-nav-mobile__nav a {
+  display: block;
+  color: inherit;
+}
+
+.g-nav-mobile__nav .g-nav-mobile__back {
+  @extend %f-tag;
+  @include untuck;
+  position: relative;
+  margin-right: - map-get($outer-gutters, 'xsmall');
+  margin-left: - map-get($outer-gutters, 'xsmall');
+  padding-right: map-get($outer-gutters, 'xsmall');
+  padding-left: map-get($outer-gutters, 'xsmall');
+  background-color: $color__bg--footer;
+  color: $color__text--title-contrast;
+  line-height: 56px;
+  text-align: center;
+}
+
+.g-nav-mobile__nav .g-nav-mobile__back svg {
+  position: absolute;
+  top: 20px;
+  left: 16px;
+}
+
+.g-nav-mobile__subnav {
+  @extend %container;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 0;
+  padding-right: map-get($outer-gutters, 'xsmall');
+  padding-left: map-get($outer-gutters, 'xsmall');
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: $color__bg;
+  transform: translateX(100%);
+  transition: transform 0.2s $bezier--ease-in-out;
+}
+
+.g-nav-mobile__nav-secondary {
+  display: flex;
+  position: relative;
+  flex-flow: row wrap;
+  height: 100%;
+
+  @include breakpoint('xsmall') {
+    margin-left: colspan(2, 'xsmall', 0, true);
+  }
+
+  @include breakpoint('small') {
+    margin-left: colspan(2, 'small', 0, true);
+  }
+}
+
+.g-nav-mobile__legals,
+.g-nav-mobile__social {
+  @include breakpoint('xsmall') {
+    width: colspan(grid-cols-to-colspan(2, 58), 'xsmall');
+    margin-left: colspan(2, 'xsmall');
+  }
+
+  @include breakpoint('small') {
+    width: colspan(grid-cols-to-colspan(2, 58), 'small');
+    margin-left: colspan(2, 'small');
+  }
+}
+
+.g-nav-mobile__legals li,
+.g-nav-mobile__social li {
+  margin-top: 16px;
+  color: $color__text--secondary;
+}
+
+.g-footer-nav__expander-trigger {
+}
+
+.g-footer-nav__expander-trigger.nav-is-open {
+  margin-top: -1px; // to cover the bottom border on the previous list item
+  border-top: 1px solid $color__rules--secondary;
+  border-bottom: 1px solid $color__rules--primary;
+  color: $color__text--accent;
+}
+
+.g-footer-nav__expander-trigger.nav-is-open .icon--arrow {
+  right: map-get($outer-gutters, 'xsmall');
+  margin-right: 3px;
+}
+
+.g-nav-mobile__expander,
+.g-footer-nav__expander-trigger.nav-is-open {
+  margin-right: - map-get($outer-gutters, 'xsmall');
+  margin-left: - map-get($outer-gutters, 'xsmall');
+  padding-right: map-get($outer-gutters, 'xsmall');
+  padding-left: map-get($outer-gutters, 'xsmall');
+  background: $color__bg--secondary;
+  transition: max-height 0.2s $bezier--ease-in-out;
+}
+
+.g-nav-mobile__expander {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.g-nav-mobile__expander ul {
+}
+
+.g-nav-mobile__nav .g-nav-mobile__expander li {
+  border-bottom-color: $color__rules--primary;
+}
+
+.g-nav-mobile__expander a {
+  display: block;
+}
+
+.nav-is-open + .g-nav-mobile__expander {
+  max-height: 1000px;
+  margin-bottom: -1px;
+}
+
+.nav-is-open .icon--plus--large {
+  opacity: 0;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.nav-is-open .icon--minus--large {
+  opacity: 1;
+  transform: translateY(-50%) rotate(0deg);
+}
+
+.nav-is-open + .g-nav-mobile__subnav {
+  transform: translateX(0);
+}
