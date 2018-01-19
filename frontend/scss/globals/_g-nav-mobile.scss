@@ -1,17 +1,17 @@
 .g-nav-mobile {
   position: fixed;
+  z-index: map-get($zindexs, 'mobileNav');
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 9998;
   background-color: $color__bg;
   overflow: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s $bezier--ease-in-out, visibility 0s 0.2s $bezier--ease-in-out;
+  transition: opacity .2s $bezier--ease-in-out, visibility 0s .2s $bezier--ease-in-out;
 
   @include breakpoint('medium+') {
     display: none;
@@ -21,7 +21,7 @@
 .js-mobile-nav-open .g-nav-mobile {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.2s $bezier--ease-in-out;
+  transition: opacity .2s $bezier--ease-in-out;
 }
 
 .g-nav-mobile__inner {
@@ -35,9 +35,9 @@
 
 .g-nav-mobile__close {
   position: absolute;
-  top: 16px;
-  right: map-get($outer-gutters, 'xsmall');
   z-index: 10;
+  right: map-get($outer-gutters, 'xsmall');
+  top: 16px;
 }
 
 .js-subnav-open .g-nav-mobile__close {
@@ -56,7 +56,7 @@
 
 .g-nav-mobile__search input {
   @extend %f-secondary;
-  @include untuck();
+  @include untuck;
   width: 100%;
   height: 48px;
   border: 0;
@@ -148,18 +148,18 @@
 
 .g-nav-mobile__nav .g-nav-mobile__back svg {
   position: absolute;
-  top: 20px;
   left: 16px;
+  top: 20px;
 }
 
 .g-nav-mobile__subnav {
   @extend %container;
   position: absolute;
-  top: 0;
-  bottom: 0;
+  z-index: 10;
   left: 0;
   right: 0;
-  z-index: 10;
+  top: 0;
+  bottom: 0;
   margin: 0;
   padding-right: map-get($outer-gutters, 'xsmall');
   padding-left: map-get($outer-gutters, 'xsmall');
@@ -167,7 +167,7 @@
   overflow-y: scroll;
   background: $color__bg;
   transform: translateX(100%);
-  transition: transform 0.2s $bezier--ease-in-out;
+  transition: transform .2s $bezier--ease-in-out;
 }
 
 .g-nav-mobile__nav-secondary {
@@ -226,7 +226,7 @@
   padding-right: map-get($outer-gutters, 'xsmall');
   padding-left: map-get($outer-gutters, 'xsmall');
   background: $color__bg--secondary;
-  transition: max-height 0.2s $bezier--ease-in-out;
+  transition: max-height .2s $bezier--ease-in-out;
 }
 
 .g-nav-mobile__expander {
