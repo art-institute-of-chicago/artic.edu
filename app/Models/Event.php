@@ -8,14 +8,11 @@ use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
-use App\Models\Behaviors\HasApiModel;
-
 class Event extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasBlocks, HasApiModel;
+    use HasSlug, HasRevisions, HasMedias, HasBlocks;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
-    protected $apiModel = 'App\Models\Api\Event';
 
     protected $fillable = [
         'title',
@@ -64,11 +61,6 @@ class Event extends Model
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
-    }
-
-    public function events()
-    {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'events');
     }
 
     public function scopeLanding($query)

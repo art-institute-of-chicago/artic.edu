@@ -10,16 +10,14 @@ Route::group(['prefix' => 'landing'], function () {
 });
 
 Route::group(['prefix' => 'whatson'], function () {
-    Route::module('events');
-    Route::name('whatson.events.augment')->get('events/augment/{datahub_id}', 'EventController@augment');
-
     Route::module('exhibitions');
     Route::name('whatson.exhibitions.augment')->get('exhibitions/augment/{datahub_id}', 'ExhibitionController@augment');
-
-    Route::module('articles');
-    Route::module('artists');
     Route::module('artworks');
     Route::name('whatson.artworks.augment')->get('artworks/augment/{datahub_id}', 'ArtworkController@augment');
+
+    Route::module('events');
+    Route::module('articles');
+    Route::module('artists');
     Route::module('selections');
 });
 

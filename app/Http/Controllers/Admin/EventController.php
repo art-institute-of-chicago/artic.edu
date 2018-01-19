@@ -3,41 +3,29 @@
 namespace App\Http\Controllers\Admin;
 use App\Repositories\SiteTagRepository;
 
-class EventController extends BaseApiController
+use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+
+class EventController extends ModuleController
 {
     protected $moduleName = 'events';
-    protected $modelName  = 'Event';
-    protected $modelNameApi  = 'Api\Event';
-    protected $hasAugmentedModel = true;
 
     protected $indexOptions = [
-        'publish' => false,
-        'bulkPublish' => false,
-        'feature' => false,
-        'bulkFeature' => false,
-        'restore' => false,
-        'bulkRestore' => false,
-        'bulkDelete' => false,
-        'reorder' => false,
-        'permalink' => false,
+        'publish' => true,
+        'bulkPublish' => true,
     ];
 
     protected $indexColumns = [
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-        ],
-        'augmented' => [
-            'title' => 'Augmented?',
-            'field' => 'augmented',
-        ],
+        ]
     ];
 
     protected $featureField = 'landing';
 
     protected $indexWith = ['medias'];
 
-    protected $formWith = ['revisions', 'siteTags', 'events'];
+    protected $formWith = ['revisions', 'siteTags'];
 
     protected $filters = [];
 

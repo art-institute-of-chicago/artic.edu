@@ -50,23 +50,11 @@
         'name' => 'rsvp_link',
         'label' => 'External RSVP Link'
     ])
-    @formField('browser', [
+    {{-- @formField('browser', [
         'routePrefix' => 'whatson',
         'with_multiple' => true,
         'max' => 20,
         'name' => 'events',
         'label' => 'Related events'
-    ])
+    ]) --}}
 @stop
-
-@section('fieldsets')
-    <a17-fieldset id="related" title="API Fields">
-        @foreach($item->getApiFields() as $field => $value)
-            @formField('input', [
-                'name' => $field,
-                'label' => $field,
-                'disabled' => true
-            ])
-        @endforeach
-    </a17-fieldset>
-@endsection
