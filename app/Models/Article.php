@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
@@ -9,7 +10,7 @@ use A17\CmsToolkit\Models\Model;
 
 class Article extends Model
 {
-    use HasSlug, HasRevisions, HasMedias;
+    use HasSlug, HasRevisions, HasMedias, HasBlocks;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
 

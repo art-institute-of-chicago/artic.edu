@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
+use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\ModuleRepository;
@@ -10,7 +11,7 @@ use App\Models\Article;
 
 class ArticleRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks;
 
     public function __construct(Article $model)
     {

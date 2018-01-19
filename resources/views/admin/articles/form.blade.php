@@ -64,4 +64,6 @@
         'max' => 20,
         'label' => 'Related Selections',
     ])
+
+    @formField('block_editor')
 @stop

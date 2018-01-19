@@ -78,6 +78,21 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-link',
             ],
+            'plan_your_visit' => [
+                'title' => 'Plan Your Visit',
+                'icon' => 'text',
+                'component' => 'a17-block-plan_your_visit',
+            ],
+            'newsletter_signup_footer' => [
+                'title' => 'Newsletter Signup Footer',
+                'icon' => 'text',
+                'component' => 'a17-block-newsletter_signup_footer',
+            ],
+            'sponsor' => [
+                'title' => 'Sponsor',
+                'icon' => 'text',
+                'component' => 'a17-block-sponsor',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
@@ -92,9 +107,9 @@ return [
                 'component' => 'a17-block-locations',
                 'max' => 10,
             ],
-            'accordions' => [
-                'title' => 'Accordions',
-                'trigger' => 'Add accordions',
+            'accordion' => [
+                'title' => 'Accordion',
+                'trigger' => 'Add accordion',
                 'component' => 'a17-block-accordion',
                 'max' => 10,
             ],
