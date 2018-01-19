@@ -1,0 +1,40 @@
+.info-button-trigger {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0 none;
+  background: transparent;
+  color: $color__text--tertiary;
+  cursor: pointer;
+  vertical-align: text-bottom;
+
+  &:hover,
+  &:focus {
+    color: $color__text--secondary;
+  }
+
+  &:active {
+    color: $color__text--tertiary;
+  }
+}
+
+.info-button-trigger span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin-top: -1px;
+  margin-left: -1px;
+  padding: 0;
+  border: 0 none;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+}
+
+.info-button-trigger svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+

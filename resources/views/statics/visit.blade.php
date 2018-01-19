@@ -90,82 +90,117 @@
       Admission
   @endcomponent
 
-  @component('components.atoms._hr')
-  @endcomponent
-
-  <table>
-    <thead>
-      <tr>
-        <td>&nbsp;</td>
-        <th><span class="f-module-title-1">General Admission</span></th>
-        <th><span class="f-module-title-1">Chicago Residents</span></th>
-        <th><span class="f-module-title-1">Illinois Residents</span></th>
-        <th><span class="f-module-title-1">Fast Pass</span></th>
-      </tr>
-    </thead>
-    <tbody>
-      @foreach ($admission['ageGroups'] as $ageGroup)
-      <tr>
-        <th>
-          @component('components.atoms._title')
-              @slot('font', 'f-module-title-1')
-              @slot('tag','span')
-              {{ $ageGroup['title'] }}
-          @endcomponent
-          @if (isset($ageGroup['subtitle']))
+  <div class="m-table">
+    <table>
+      <thead>
+        <tr>
+          <td>&nbsp;</td>
+          <th>
             @component('components.blocks._text')
-                @slot('font', 'f-secondary')
-                @slot('tag','em')
-                {{ $ageGroup['subtitle'] }}
+                @slot('font', 'f-module-title-1')
+                @slot('tag','span')
+                General Admission
             @endcomponent
-          @endif
-        </th>
-        @foreach (['generalAdmission', 'chicagoResidents', 'illonoisResidents', 'fastPass'] as $ageGroupPrice)
-          <td>
-            @if (strtolower($ageGroup['prices'][$ageGroupPrice]) === 'free')
-              @component('components.atoms._type')
-                  @slot('tag','span')
-                  Free
-              @endcomponent
-            @else
+          </th>
+          <th>
+            @component('components.blocks._text')
+                @slot('font', 'f-module-title-1')
+                @slot('tag','span')
+                Chicago Residents
+            @endcomponent
+            &nbsp;
+            @component('components.atoms._info-button-trigger')
+                A valid photo ID with a resident address is required for Chicago and Illinois resident admission prices. Discount only available at museum admission desks.
+            @endcomponent
+          </th>
+          <th>
+            @component('components.blocks._text')
+                @slot('font', 'f-module-title-1')
+                @slot('tag','span')
+                Illinois Residents
+            @endcomponent
+            &nbsp;
+            @component('components.atoms._info-button-trigger')
+                A valid photo ID with a resident address is required for Chicago and Illinois resident admission prices. Discount only available at museum admission desks.
+            @endcomponent
+          </th>
+          <th>
+            @component('components.blocks._text')
+                @slot('font', 'f-module-title-1')
+                @slot('tag','span')
+                Fast Pass
+            @endcomponent
+            &nbsp;
+            @component('components.atoms._info-button-trigger')
+                A valid photo ID with a resident address is required for Chicago and Illinois resident admission prices. Discount only available at museum admission desks.
+            @endcomponent
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($admission['ageGroups'] as $ageGroup)
+        <tr>
+          <th>
+            @component('components.blocks._text')
+                @slot('font', 'f-module-title-1')
+                @slot('tag','span')
+                {{ $ageGroup['title'] }}
+            @endcomponent
+            @if (isset($ageGroup['subtitle']))
               @component('components.blocks._text')
                   @slot('font', 'f-secondary')
-                  @slot('tag','span')
-                  {{ $ageGroup['prices'][$ageGroupPrice] }}
+                  @slot('tag','em')
+                  &nbsp;({{ $ageGroup['subtitle'] }})
               @endcomponent
             @endif
-          </td>
+          </th>
+          @foreach (['generalAdmission', 'chicagoResidents', 'illonoisResidents', 'fastPass'] as $ageGroupPrice)
+            <td>
+              @if (strtolower($ageGroup['prices'][$ageGroupPrice]) === 'free')
+                @component('components.blocks._text')
+                    @slot('font','f-tag')
+                    @slot('tag','span')
+                    Free
+                @endcomponent
+              @else
+                @component('components.blocks._text')
+                    @slot('font', 'f-secondary')
+                    @slot('tag','span')
+                    {{ $ageGroup['prices'][$ageGroupPrice] }}
+                @endcomponent
+              @endif
+            </td>
+          @endforeach
+        </tr>
         @endforeach
-      </tr>
-      @endforeach
-      <tr>
-        <th>
-          @component('components.atoms._title')
-              @slot('font', 'f-module-title-1')
-              @slot('tag','span')
-              Children
-          @endcomponent
-        </th>
-        <td rowspan="2" colspan="4">
-          <span>
-            @component('components.atoms._type')
+        <tr>
+          <th>
+            @component('components.blocks._text')
+                @slot('font', 'f-module-title-1')
+                @slot('tag','span')
+                Children
+            @endcomponent
+          </th>
+          <td rowspan="2" colspan="4">
+            @component('components.blocks._text')
+                @slot('font','f-tag')
                 @slot('tag','span')
                 Free
             @endcomponent
-          </span>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          @component('components.atoms._title')
-              @slot('font', 'f-module-title-1')
-              @slot('tag','span')
-              Members
-          @endcomponent
-        </th>
-      </tr>
-    </tbody>
-  </table>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            @component('components.blocks._text')
+                @slot('font', 'f-module-title-1')
+                @slot('tag','span')
+                Members
+            @endcomponent
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   @component('components.organisms._o-grid-listing')
       @slot('variation', 'o-grid-listing--gridlines-rowss')

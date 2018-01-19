@@ -1,0 +1,112 @@
+/***
+
+Intended for very simple m-tables..
+
+```
+<table class="m-table">
+  <thead>
+    <tr>
+      <td>&nbsp;</td>
+      <th><span class="f-module-title-1">General Admission</span></th>
+      <th><span class="f-module-title-1">Chicago Residents</span></th>
+      <th><span class="f-module-title-1">Illinois Residents</span></th>
+      <th><span class="f-module-title-1">Fast Pass</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><span class="title f-module-title-1">Adults</span></th>
+      <td><span class="f-secondary">$25</span></td>
+      <td><span class="f-secondary">$20</span></td>
+      <td><span class="f-secondary">$20</span></td>
+      <td><span class="f-secondary">$35</span></td>
+    </tr>
+    <tr>
+      <th><span class="title f-module-title-1">Seniors</span> <em class="f-secondary">65+</em></th>
+      <td><span class="f-secondary">$19</span></td>
+      <td><span class="f-secondary">$14</span></td>
+      <td><span class="f-secondary">$16</span></td>
+      <td><span class="f-secondary">$29</span></td>
+    </tr>
+    <tr>
+      <th><span class="title f-module-title-1">Students</span></th>
+      <td><span class="f-secondary">$19</span></td>
+      <td><span class="f-secondary">$14</span></td>
+      <td><span class="f-secondary">$16</span></td>
+      <td><span class="f-secondary">$29</span></td>
+    </tr>
+    <tr>
+      <th><span class="title f-module-title-1">Teens</span> <em class="f-secondary">14-17</em></th>
+      <td><span class="f-secondary">$19</span></td>
+      <td><span class="type f-tag">Free</span></td>
+      <td><span class="f-secondary">$16</span></td>
+      <td><span class="f-secondary">$19</span></td>
+    </tr>
+    <tr>
+      <th><span class="title f-module-title-1">Children</span></th>
+      <td colspan="4" rowspan="2"><span><span class="type f-tag">Free</span></span></td>
+    </tr>
+    <tr>
+      <th><span class="title f-module-title-1">Members</span></th>
+    </tr>
+  </tbody>
+</table>
+```
+
+***/
+
+.m-table {
+  margin-top: 40px;
+  margin-bottom: -16px;
+  padding-bottom: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.m-table table {
+  width: 100%;
+  min-width: 500px;
+  border-collapse: collapse;
+}
+
+.m-table th,
+.m-table td {
+  padding: 15px 12px 23px;
+  border-top: 1px solid $color__rules--primary;
+  border-bottom: 1px solid $color__rules--primary;
+  font-weight: normal;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.m-table th:first-child,
+.m-table td:first-child {
+  padding-left: 0;
+}
+
+.m-table td[rowspan],
+.m-table td[colspan] {
+  background: $color__bg--primary;
+  text-align: left;
+  vertical-align: middle;
+
+  @include breakpoint('small+') {
+    text-align: center;
+  }
+}
+
+.m-table .f-module-title-1 {
+  @include tucked-align-top($f-module-title-1);
+  display: inline-block;
+}
+
+.m-table .f-secondary {
+  @include tucked-align-top($f-secondary);
+  display: inline-block;
+  font-style: normal;
+}
+
+.m-table .f-tag {
+  @include tucked-align-top($f-tag);
+  display: inline-block;
+}

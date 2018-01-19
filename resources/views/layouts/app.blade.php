@@ -56,6 +56,7 @@ $print = isset($_GET['print']);
 @include('layouts._calendar')
 @include('layouts._fullscreenImage')
 @include('layouts._share-menu')
+@include('layouts._info-button-info')
 @include('layouts._nav-mobile')
 
 @include('layouts._scripts')

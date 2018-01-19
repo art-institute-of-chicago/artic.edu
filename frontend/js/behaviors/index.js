@@ -27,3 +27,4 @@ export { default as showCollectionSearch } from './showCollectionSearch';
 export { default as hideCollectionFilters } from './hideCollectionFilters';
 export { default as hideCollectionSearch } from './hideCollectionSearch';
 export { default as navMobile } from './navMobile';
+export { default as infoButtonTrigger } from './infoButtonTrigger';

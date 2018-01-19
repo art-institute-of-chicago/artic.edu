@@ -9,6 +9,7 @@ const mask = function(container) {
     triggerCustomEvent(document, 'fullScreenImage:close');
     triggerCustomEvent(document, 'collectionSearch:close');
     triggerCustomEvent(document, 'collectionFilters:close');
+    triggerCustomEvent(document, 'infoButtonInfo:close');
   }
 
   function _init() {
