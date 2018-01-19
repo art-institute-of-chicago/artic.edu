@@ -4,11 +4,12 @@ namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\ModuleRepository;
+use App\Repositories\Behaviors\HandleApi;
 use App\Models\Artwork;
 
 class ArtworkRepository extends ModuleRepository
 {
-    use HandleSlugs;
+    use HandleSlugs, HandleApi;
 
     public function __construct(Artwork $model)
     {

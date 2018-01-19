@@ -5,44 +5,46 @@ namespace App\Http\Controllers\Admin;
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 use App\Repositories\SiteTagRepository;
 
-class ArtworkController extends ModuleController
+class ArtworkController extends BaseApiController
 {
     protected $moduleName = 'artworks';
+    protected $modelName  = 'Artwork';
+    protected $modelNameApi  = 'Api\Artwork';
+    protected $hasAugmentedModel = true;
 
     protected $indexOptions = [
         'publish' => false,
+        'bulkPublish' => false,
+        'feature' => false,
+        'bulkFeature' => false,
+        'restore' => false,
+        'bulkRestore' => false,
+        'bulkDelete' => false,
+        'reorder' => false,
+        'permalink' => false,
     ];
 
     protected $indexColumns = [
         'title' => [
             'title' => 'Title',
             'edit_link' => true,
-            'sort' => true,
             'field' => 'title',
+        ],
+        'augmented' => [
+            'title' => 'Augmented?',
+            'field' => 'augmented',
         ],
         'datahub_id' => [
             'title' => 'Datahub ID',
             'edit_link' => true,
-            'sort' => true,
-            'field' => 'datahub_id',
+            'field' => 'id',
         ],
     ];
-
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
 
     /*
      * Relations to eager load for the form view
      */
     protected $formWith = ['siteTags'];
-
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
-    protected $filters = [];
 
     protected function indexData($request)
     {

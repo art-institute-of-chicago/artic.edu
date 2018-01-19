@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "git@code.area17.com:a17/laravel-cms-toolkit.git",
-                "reference": "ad096f86c958f5c6c4ebba347d823f51c01241e7"
+                "reference": "b3a4137ec5dd8dabd873dc0416019fd352071b96"
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.0.1",
@@ -83,20 +83,20 @@
                 "cms-toolkit",
                 "laravel"
             ],
-            "time": "2018-01-16T23:27:58+00:00"
+            "time": "2018-01-19T17:00:29+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.48.14",
+            "version": "3.51.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "22f5faa06b5ca1a9f375ba02f5164b64fd4f37f5"
+                "reference": "a932a76e110dc2c65c216de21a1aa65e151d21ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/22f5faa06b5ca1a9f375ba02f5164b64fd4f37f5",
-                "reference": "22f5faa06b5ca1a9f375ba02f5164b64fd4f37f5",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a932a76e110dc2c65c216de21a1aa65e151d21ef",
+                "reference": "a932a76e110dc2c65c216de21a1aa65e151d21ef",
                 "shasum": ""
             },
             "require": {
@@ -163,7 +163,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-01-15T23:32:14+00:00"
+            "time": "2018-01-19T20:32:42+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1028,16 +1028,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.31",
+            "version": "v5.5.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a47b50a5981c0cf0139939dfaea4191784b65acb"
+                "reference": "254e4c3e133f5bc8d6068cdf28ea062abc10adf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a47b50a5981c0cf0139939dfaea4191784b65acb",
-                "reference": "a47b50a5981c0cf0139939dfaea4191784b65acb",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/254e4c3e133f5bc8d6068cdf28ea062abc10adf2",
+                "reference": "254e4c3e133f5bc8d6068cdf28ea062abc10adf2",
                 "shasum": ""
             },
             "require": {
@@ -1158,7 +1158,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-01-16T15:39:45+00:00"
+            "time": "2018-01-18T13:27:23+00:00"
         },
         {
             "name": "laravel/tinker",

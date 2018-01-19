@@ -5,11 +5,14 @@ namespace App\Models;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
+use App\Models\Behaviors\HasApiModel;
+
 class Artwork extends Model
 {
-    use HasSlug;
+    use HasSlug, HasApiModel;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ArtworkPresenter';
+    protected $apiModel = 'App\Models\Api\Artwork';
 
     protected $fillable = [
         'title',

@@ -19,6 +19,7 @@ Route::group(['prefix' => 'whatson'], function () {
     Route::module('articles');
     Route::module('artists');
     Route::module('artworks');
+    Route::name('whatson.artworks.augment')->get('artworks/augment/{datahub_id}', 'ArtworkController@augment');
     Route::module('selections');
 });
 
