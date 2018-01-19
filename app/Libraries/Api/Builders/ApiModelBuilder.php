@@ -252,7 +252,8 @@ class ApiModelBuilder
             // this will generate N + 1 calls in total
             // improve later using real eager loading to
             // reduce the number of calls to 1 + relationships_number
-            $model->setRelation($name, $relation->getEager());
+            if ($relation)
+                $model->setRelation($name, $relation->getEager());
         }
 
         return $models;

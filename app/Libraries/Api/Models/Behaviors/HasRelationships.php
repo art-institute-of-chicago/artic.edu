@@ -39,11 +39,18 @@ trait HasRelationships
     {
         $queryInstance = $related::query();
 
-        return $this->newHasMany(
-            $queryInstance,
-            $this,
-            $localKey
-        );
+        // If we have no data in our localKey we ignore the relationship to
+        // avoid calling to an endpoint with no data
+        if (empty($this->$localKey)) {
+            return;
+        } else {
+            return $this->newHasMany(
+                $queryInstance,
+                $this,
+                $localKey
+            );
+        }
+
     }
 
     /**

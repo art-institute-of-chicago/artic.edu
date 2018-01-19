@@ -13,4 +13,9 @@ class Event extends BaseApiModel
     ];
 
     protected $augmentedModelClass = 'App\Models\Event';
+
+    public function exhibitions()
+    {
+        return $this->hasMany(\App\Models\Api\Exhibition::class, 'exhibition_ids');
+    }
 }
