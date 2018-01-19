@@ -6,7 +6,6 @@
  *
  */
 
-
 namespace App\Libraries\Api\Models;
 
 use ArrayAccess;
@@ -19,10 +18,11 @@ use JsonSerializable;
 
 use App\Libraries\Api\Models\Behaviors\HasApiCalls;
 use App\Libraries\Api\Models\Behaviors\HasAugmentedModel;
+use App\Libraries\Api\Models\Behaviors\HasRelationships;
 
 abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 {
-    use HasApiCalls, HasAugmentedModel;
+    use HasApiCalls, HasAugmentedModel, HasRelationships;
 
     protected $attributes = [];
 
@@ -587,7 +587,12 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function getAttribute($key)
     {
-        return $this->getAttributeValue($key);
+        if (array_key_exists($key, $this->attributes) ||
+            $this->hasGetMutator($key)) {
+            return $this->getAttributeValue($key);
+        }
+
+        return $this->getRelationValue($key);
     }
 
     /**

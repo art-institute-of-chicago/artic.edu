@@ -199,11 +199,9 @@ class ApiModelBuilder
     {
         $builder = clone $this;
 
-        // if (count($models = $builder->getModels($columns)) > 0) {
-        //     $models = $builder->eagerLoadRelations($models);
-        // }
-
-        $models = $builder->getModels($columns);
+        if (count($models = $builder->getModels($columns)) > 0) {
+            $models = $builder->eagerLoadRelations($models);
+        }
 
         return $builder->getModel()->newCollection($models);
     }
@@ -218,6 +216,46 @@ class ApiModelBuilder
         return $this->model->hydrate(
             $this->query->get($columns, $this->getEndpoint('collection'))->all()
         );
+    }
+
+    /**
+     * Eager load the relationships for the models.
+     * On this case just a flat include, not nested queries because
+     * we get all id's to be loaded on the first request to the parent model
+     *
+     * @param  array  $models
+     * @return array
+     */
+    public function eagerLoadRelations(array $models)
+    {
+        foreach ($this->eagerLoad as $name) {
+            $models = $this->eagerLoadRelation($models, $name);
+        }
+
+        return $models;
+    }
+
+    /**
+     * Eagerly load the relationship on a set of models.
+     *
+     * @param  array  $models
+     * @param  string  $name
+     * @return array
+     */
+    protected function eagerLoadRelation(array $models, $name)
+    {
+        foreach ($models as $model) {
+            // For each model get the relationship
+            $relation = $model->{$name}();
+
+            // Set the relationship loading the data from the API
+            // this will generate N + 1 calls in total
+            // improve later using real eager loading to
+            // reduce the number of calls to 1 + relationships_number
+            $model->setRelation($name, $relation->getEager());
+        }
+
+        return $models;
     }
 
     /**

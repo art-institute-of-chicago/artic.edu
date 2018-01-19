@@ -11,7 +11,4 @@ class Category extends BaseApiModel
         'resource'   => '/api/v1/categories/{id}',
         'search'     => '/api/v1/categories/search'
     ];
-
-    // TODO:
-    // Include an augmented model and bypass not found functions to it.
 }

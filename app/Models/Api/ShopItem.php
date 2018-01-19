@@ -12,4 +12,8 @@ class ShopItem extends BaseApiModel
         'search'     => '/api/v1/products/search'
     ];
 
+    public function categories()
+    {
+        return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');
+    }
 }
