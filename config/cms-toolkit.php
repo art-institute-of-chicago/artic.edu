@@ -68,6 +68,16 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-paragraph',
             ],
+            'timeline' => [
+                'title' => 'Timeline',
+                'icon' => 'text',
+                'component' => 'a17-block-timeline',
+            ],
+            'link' => [
+                'title' => 'link',
+                'icon' => 'text',
+                'component' => 'a17-block-link',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
