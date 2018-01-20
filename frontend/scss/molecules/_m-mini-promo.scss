@@ -1,0 +1,112 @@
+
+.m-mini-promo {
+  position: relative;
+  margin-top: 60px;
+  padding-top: .2px;
+
+  @include breakpoint('small') {
+    margin-top: 40px;
+  }
+
+  @include breakpoint('small+') {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+
+.m-mini-promo::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
+
+.m-mini-promo img,
+.m-mini-promo video {
+  float: right;
+  width: colspan(23, xsmall);
+  height: auto;
+  margin-top: 20px;
+  margin-left: colspan(3, xsmall);
+
+  @include breakpoint('small+') {
+    flex: 0 0 auto;
+    width: colspan(13, small);
+    margin-top: 40px;
+    margin-right: colspan(2, small);
+    margin-left: 0;
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(13, medium);
+    margin-right: colspan(2, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(13, large);
+    margin-right: colspan(2, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(13, xlarge);
+    margin-right: colspan(2, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(13, xxlarge);
+    margin-right: colspan(2, xxlarge);
+  }
+}
+
+.m-mini-promo__text {
+  @include breakpoint('small+') {
+    flex: 1;
+  }
+}
+
+.m-mini-promo .title {
+  @include tucked-margin-top($f-module-title-1, ('xsmall': 32, 'small+': 52, 'medium+': 56));
+}
+
+.m-mini-promo .f-secondary {
+  @include tucked-align-top($f-secondary);
+}
+
+.m-mini-promo .btn {
+  display: block;
+  clear: both;
+  width: 100%;
+  margin-top: 28px;
+
+  @include breakpoint('small+') {
+    flex: 0 0 auto;
+    width: colspan(13, small);
+    margin-top: 40px;
+    margin-left: colspan(2, small);
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(13, medium);
+    margin-left: colspan(2, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(13, large);
+    margin-left: colspan(2, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(13, xlarge);
+    margin-left: colspan(2, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(13, xxlarge);
+    margin-left: colspan(2, xxlarge);
+  }
+}

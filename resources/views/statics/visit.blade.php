@@ -237,9 +237,6 @@
       </div>
   @endcomponent
 
-  @component('components.atoms._hr')
-  @endcomponent
-
   <div class="m-mini-promo">
     @component('components.atoms._img')
         @slot('src', $admission['cityPass']['image']['src'] ?? '')
@@ -248,15 +245,17 @@
         @slot('width', $admission['cityPass']['image']['width'] ?? '')
         @slot('height', $admission['cityPass']['image']['height'] ?? '')
     @endcomponent
-    @component('components.atoms._title')
-        @slot('font', 'f-module-title-1')
-        @slot('tag','h4')
-        {{ $admission['cityPass']['title'] }}
-    @endcomponent
-    @component('components.blocks._text')
-        @slot('font', 'f-secondary')
-        {{ $admission['cityPass']['text'] }}
-    @endcomponent
+    <div class="m-mini-promo__text">
+      @component('components.atoms._title')
+          @slot('font', 'f-module-title-1')
+          @slot('tag','h4')
+          {{ $admission['cityPass']['title'] }}
+      @endcomponent
+      @component('components.blocks._text')
+          @slot('font', 'f-secondary')
+          {{ $admission['cityPass']['text'] }}
+      @endcomponent
+    </div>
     @component('components.atoms._btn')
         @slot('variation', 'btn--tertiary')
         @slot('tag', 'a')

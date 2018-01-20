@@ -105,6 +105,7 @@ $include-icons: false; // see icons.scss!
 @import 'molecules/m-collection-search';
 @import 'molecules/m-filters-list';
 @import 'molecules/m-table';
+@import 'molecules/m-mini-promo';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
@@ -121,6 +122,7 @@ $include-icons: false; // see icons.scss!
 @import 'organisms/o-collection-filters';
 @import 'organisms/o-collection-search';
 @import 'organisms/o-collection-listing';
+@import 'organisms/o-visit';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 

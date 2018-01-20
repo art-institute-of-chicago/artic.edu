@@ -1,0 +1,56 @@
+
+.o-visit {
+}
+
+
+.o-visit .m-ticket-actions {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+}
+
+.o-visit .m-ticket-actions__action {
+  flex: 0 0 auto;
+
+  @include breakpoint('small+') {
+    width: colspan(28, small);
+    margin-top: 0;
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(13, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(13, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(13, xlarge);
+  }
+
+  @include breakpoint('xxlarge+') {
+    width: colspan(13, xxlarge);
+  }
+}
+
+.o-visit .m-ticket-actions__action:not(:first-child) {
+  @include breakpoint('small+') {
+    margin-right: colspan(2, small);
+  }
+
+  @include breakpoint('medium+') {
+    margin-right: colspan(2, medium);
+  }
+
+  @include breakpoint('large+') {
+    margin-right: colspan(2, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    margin-right: colspan(2, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    margin-right: colspan(2, xxlarge);
+  }
+}
