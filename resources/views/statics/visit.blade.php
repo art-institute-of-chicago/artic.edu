@@ -264,6 +264,43 @@
     @endcomponent
   </div>
 
+  @component('components.molecules._m-title-bar')
+      @slot('id', 'directions')
+      Directions
+  @endcomponent
+
+  @component('components.atoms._hr')
+  @endcomponent
+
+  @component('components.molecules._m-intro-block')
+      {{ $directions['intro'] }}
+  @endcomponent
+
+  <div class="">
+    <div class="">
+      @component('components.molecules._m-media')
+        @slot('item', $directions['image'])
+      @endcomponent
+    </div>
+    <div class="o-blocks">
+      @component('components.blocks._blocks')
+          @slot('blocks', $directions['text'] ?? null)
+      @endcomponent
+    </div>
+    <div class="o-blocks">
+      <ul class="f-secondary">
+        @foreach ($directions['links'] as $link)
+        <li>
+          <a href="{{ $link['href'] }}">
+            {{ $link['label'] }}
+            <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+          </a>
+        </li>
+        @endforeach
+      </ul>
+    </div>
+  </div>
+
 </section>
 
 @endsection

@@ -488,7 +488,7 @@ class StaticsController extends Controller {
         'text' => $this->faker->paragraph(3),
         'cityPass' => array(
             'title' => 'CityPass',
-            'text' => $this->faker->sentence(8),
+            'text' => $this->faker->paragraph(3),
             'image' => $this->getImage(400,225),
             'link' => array(
                 'label' => 'Get CityPass',
@@ -533,6 +533,37 @@ class StaticsController extends Controller {
                     'illonoisResidents' => '$16',
                     'fastPass' => '$19',
                 ),
+            ),
+        ),
+       ),
+      'directions' => array(
+        'intro' => $this->faker->paragraph(),
+        'image' => array(
+            'type' => 'image',
+            'size' => 's',
+            'media' => $this->getImage(800,800),
+            'hideCaption' => true,
+        ),
+        'text' => array(
+            array(
+                "type" => 'text',
+                "subtype" => 'secondary',
+                "content" => $this->faker->paragraph()
+            ), 
+            array(
+                "type" => 'text',
+                "subtype" => 'secondary',
+                "content" => $this->faker->paragraph()
+            ), 
+        ),
+        'links' => array(
+            array(
+              'href' => '#',
+              'label' => $this->faker->sentence(2),
+            ),
+            array(
+              'href' => '#',
+              'label' => $this->faker->sentence(2),
             ),
         ),
        ),
