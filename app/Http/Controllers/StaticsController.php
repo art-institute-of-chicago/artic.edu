@@ -567,6 +567,29 @@ class StaticsController extends Controller {
             ),
         ),
        ),
+      'dining' => array(
+        'options' => $this->generateDiningOptions(),
+      ),
+      'faq' => array(
+        'questions' => array(
+            array(
+              'href' => '#',
+              'label' => $this->faker->sentence(2),
+            ),
+            array(
+              'href' => '#',
+              'label' => $this->faker->sentence(2),
+            ),
+            array(
+              'href' => '#',
+              'label' => $this->faker->sentence(2),
+            ),
+            array(
+              'href' => '#',
+              'label' => $this->faker->sentence(2),
+            ),
+        ),
+      ),
     ]);
   }
 
@@ -950,6 +973,19 @@ class StaticsController extends Controller {
       array_push($items, $_items[$i]);
     }
     return $items;
+  }
+
+  private function generateDiningOptions($num = 3) {
+    $options = array();
+    for ($i = 0; $i < $num; $i++) {
+      $option = array(
+        "title" => $this->faker->sentence(),
+        "text" => $this->faker->paragraph(),
+        "image" => $this->getImage(),
+      );
+      array_push($options, $option);
+    }
+    return $options;
   }
 
   private function generateGenericNav($state = 'landing') {
