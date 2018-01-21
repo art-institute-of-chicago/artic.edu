@@ -1,0 +1,93 @@
+
+.m-directions-block {
+  @include float-clear;
+  margin-top: 32px;
+  padding-top: 19px;
+  border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('small+') {
+    margin-top: 52px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 72px;
+  }
+}
+
+.m-directions-block__map {
+
+  @include breakpoint('large+') {
+    float: left;
+    width: colspan(38, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(38, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(38, xxlarge);
+  }
+}
+
+.m-directions-block__text {
+  margin-top: 20px;
+  padding-top: .02px;
+
+  @include breakpoint('small+') {
+    float: left;
+    width: colspan(28, small);
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(28, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(18, large);
+    margin-top: 0;
+    margin-left: colspan(2, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(18, xlarge);
+    margin-left: colspan(2, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(18, xxlarge);
+    margin-left: colspan(2, xxlarge);
+  }
+}
+
+.m-directions-block__links {
+  margin-top: 20px;
+  padding-top: .02px;
+
+  @include breakpoint('small+') {
+    float: left;
+    width: colspan(28, small);
+    margin-left: colspan(2, small);
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(28, medium);
+    margin-left: colspan(2, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(18, large);
+    margin-top: 32px;
+    margin-left: colspan(2, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    width: colspan(18, xlarge);
+    margin-left: colspan(2, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    width: colspan(18, xxlarge);
+    margin-left: colspan(2, xxlarge);
+  }
+}

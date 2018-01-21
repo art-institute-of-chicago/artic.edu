@@ -216,18 +216,34 @@
 
 .m-listing__meta .f-list-2 {
   @include tucked-margin-top($f-list-2, ('xsmall': 32));
+
+  &:first-child {
+    @include tucked-margin-top($f-list-2, ('xsmall': 40));
+  }
 }
 
 .m-listing__meta .f-list-3 {
   @include tucked-margin-top($f-list-3, ('xsmall': 32));
+
+  &:first-child {
+    @include tucked-margin-top($f-list-3, ('xsmall': 40));
+  }
 }
 
 .m-listing__meta .f-list-4 {
   @include tucked-margin-top($f-list-4, ('xsmall': 32, 'large': 40));
+
+  &:first-child {
+    @include tucked-margin-top($f-list-4, ('xsmall': 40, 'large': 48));
+  }
 }
 
 .m-listing__meta .f-list-5 {
   @include tucked-margin-top($f-list-5, ('xsmall': 32, 'small+': 44, 'medium': 40, 'large': 48));
+
+  &:first-child {
+    @include tucked-margin-top($f-list-5, ('xsmall': 40, 'small+': 52, 'medium': 48, 'large': 56));
+  }
 }
 
 .m-listing__meta .f-subheading-1 {
@@ -249,6 +265,15 @@
 .m-listing__meta .f-secondary + br + .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall':16));
   color: $color__text--tertiary;
+}
+
+.m-listing__meta .f-link {
+  @include tucked-margin-top($f-secondary, ('xsmall': 28));
+}
+
+.m-listing__meta .f-list-3 + br + .f-link,
+.m-listing__meta .f-secondary + br + .f-link {
+  @include tucked-margin-top($f-secondary, ('xsmall': 36));
 }
 
 .m-listing__meta .f-caption {

@@ -150,6 +150,8 @@ Rules:
   #ccc (20% black)</li>
   <li><span style="background:#f3f3f3;"></span> `$color__rules--tertiary`
   #f3f3f3 (5% black)</li>
+  <li><span style="background:#b3b3b3;"></span> `$color__rules--quaternary`
+  #b3b3b3 (30% black)</li>
   <li><span style="background:#404040;"></span> `$color__rules--contrast`
   #404040 (75% black)</li>
   <li><span style="background:#b50938;"></span> `$color__rules--brand`
@@ -160,6 +162,7 @@ Rules:
 $color__rules--primary: $color__black--10;
 $color__rules--secondary: $color__black--20;
 $color__rules--tertiary: $color__black--5;
+$color__rules--quaternary: $color__black--30;
 $color__rules--contrast: $color__black--75;
 $color__rules--brand: $color__red--100;
 

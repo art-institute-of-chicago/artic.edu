@@ -279,25 +279,25 @@
       {{ $directions['intro'] }}
   @endcomponent
 
-  <div class="">
-    <div class="">
+  <div class="m-directions-block">
+    <div class="m-directions-block__map">
       @component('components.molecules._m-media')
         @slot('item', $directions['image'])
       @endcomponent
     </div>
-    <div class="o-blocks">
+    <div class="m-directions-block__text o-blocks">
       @component('components.blocks._blocks')
           @slot('blocks', $directions['text'] ?? null)
       @endcomponent
     </div>
-    <div class="o-blocks">
+    <div class="m-directions-block__links o-blocks">
       <ul class="f-secondary">
         @foreach ($directions['links'] as $link)
         <li>
-          <a href="{{ $link['href'] }}">
-            {{ $link['label'] }}
-            <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
-          </a>
+          @component('components.atoms._arrow-link')
+              @slot('href', $link['href'])
+              {{ $link['label'] }}
+          @endcomponent
         </li>
         @endforeach
       </ul>
@@ -310,17 +310,27 @@
       Dining
   @endcomponent
 
+  @component('components.atoms._hr')
+  @endcomponent
+
   @component('components.organisms._o-grid-listing')
       @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
       @slot('cols_large','3')
       @slot('cols_xlarge','3')
       @slot('cols_xxlarge','3')
       @foreach ($dining['options'] as $diningOption)
-          @component('components.molecules._m-listing----dining-option')
+          @component('components.molecules._m-listing----multi-links')
               @slot('variation', 'm-listing--row@small m-listing--row@medium')
               @slot('item', $diningOption)
           @endcomponent
       @endforeach
+  @endcomponent
+
+  @component('components.molecules._m-links-bar')
+      @slot('variation', 'm-links-bar--title-bar-companion')
+      @slot('linksPrimary', array(
+        array('label' => 'Explore all dining', 'href' => '#'),
+      ))
   @endcomponent
 
   @component('components.molecules._m-title-bar')
@@ -336,9 +346,20 @@
       @slot('links', $faq['questions']);
   @endcomponent
 
+  @component('components.molecules._m-links-bar')
+      @slot('variation', 'm-links-bar--title-bar-companion')
+      @slot('linksPrimary', array(
+        array('label' => 'Accessibility information', 'href' => '#'),
+        array('label' => 'More FAQ\'s and guidelines', 'href' => '#')
+      ))
+  @endcomponent
+
   @component('components.molecules._m-title-bar')
       @slot('id', 'tours')
       Tours
+  @endcomponent
+
+  @component('components.atoms._hr')
   @endcomponent
 
   @component('components.organisms._o-grid-listing')
@@ -346,33 +367,12 @@
       @slot('cols_large','3')
       @slot('cols_xlarge','3')
       @slot('cols_xxlarge','3')
-      @foreach ($dining['options'] as $item)
-
-                <li class="m-listing m-listing--row@small m-listing--row@medium">
-
-                    <span class="m-listing__img m-listing__img--wide">
-                        @component('components.atoms._img')
-                            @slot('src', $item['image']['src'])
-                            @slot('width', $item['image']['width'])
-                            @slot('height', $item['image']['height'])
-                        @endcomponent
-                    </span>
-                    <span class="m-listing__meta">
-                        @component('components.atoms._title')
-                            @slot('font', $titleFont ?? 'f-list-3')
-                            <a href="#">{{ 'title' }}</a>
-                        @endcomponent
-                        <br>
-                        @component('components.blocks._text')
-                            @slot('font', 'f-link')
-                            @slot('tag', 'span')
-                            <a href="#">{{ 'link' }}</a>
-                        @endcomponent
-                    </span>
-
-                </li>
-
-            @endforeach
+      @foreach ($tours as $item)
+          @component('components.molecules._m-listing----multi-links')
+              @slot('variation', 'm-listing--row@small m-listing--row@medium')
+              @slot('item', $item)
+          @endcomponent
+      @endforeach
   @endcomponent
 
   @component('components.molecules._m-title-bar')
@@ -380,43 +380,19 @@
       Families, Teens &amp; Educators
   @endcomponent
 
+  @component('components.atoms._hr')
+  @endcomponent
+
   @component('components.organisms._o-grid-listing')
       @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
       @slot('cols_large','3')
       @slot('cols_xlarge','3')
       @slot('cols_xxlarge','3')
-      @foreach ($dining['options'] as $item)
-
-          <li class="m-listing m-listing--row@small m-listing--row@medium">
-
-              <span class="m-listing__img m-listing__img--wide">
-                  @component('components.atoms._img')
-                      @slot('src', $item['image']['src'])
-                      @slot('width', $item['image']['width'])
-                      @slot('height', $item['image']['height'])
-                  @endcomponent
-              </span>
-              <span class="m-listing__meta">
-                  @component('components.atoms._title')
-                      @slot('font', $titleFont ?? 'f-list-3')
-                      <a href="#">{{ 'title' }}</a>
-                  @endcomponent
-                  <br>
-                  @component('components.blocks._text')
-                      @slot('font', 'f-secondary')
-                      @slot('tag', 'span')
-                      {{ 'text' }}
-                  @endcomponent
-                  <br>
-                  @component('components.blocks._text')
-                      @slot('font', 'f-link')
-                      @slot('tag', 'span')
-                      <a href="#">{{ 'link' }}</a>
-                  @endcomponent
-              </span>
-
-          </li>
-
+      @foreach ($familiesTeensEducators as $item)
+          @component('components.molecules._m-listing----multi-links')
+              @slot('variation', 'm-listing--row@small m-listing--row@medium')
+              @slot('item', $item)
+          @endcomponent
       @endforeach
   @endcomponent
 

@@ -564,11 +564,33 @@ $f-secondary: generate-font-obj((
   color: $color__text--secondary;
 }
 
+@mixin f-link() {
+  @include font-styles($f-secondary);
+  font-feature-settings: "lnum" on;
+  color: $color__link;
+}
+
 %f-secondary,
-.f-secondary,
+.f-secondary {
+  @include f-secondary;
+}
+
 %f-link,
 .f-link {
-  @include f-secondary;
+  @include f-link;
+}
+
+a.f-link {
+  color: $color__link;
+
+  &:hover,
+  &:focus {
+    color: $color__link--hover;
+  }
+
+  &:active {
+    color: $color__link--active;
+  }
 }
 
 /***

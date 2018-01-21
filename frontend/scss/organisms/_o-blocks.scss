@@ -93,6 +93,10 @@
       @include tucked-margin-top($f-body, ('xsmall': 60));
     }
 
+  & > *[class*=f-] .f-link {
+    @include untuck;
+  }
+
   & > .f-deck,
   & > .f-body,
   & > .f-body-editorial {

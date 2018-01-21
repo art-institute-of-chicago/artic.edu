@@ -2,6 +2,29 @@
 .o-visit {
 }
 
+.o-visit .m-title-bar {
+  margin-top: 52px;
+
+  @include breakpoint('medium+') {
+    margin-top: 60px;
+  }
+
+  @include breakpoint('large+') {
+    margin-top: 72px;
+  }
+}
+
+.o-visit .m-header-block + .m-title-bar {
+  margin-top: 32px;
+
+  @include breakpoint('medium+') {
+    margin-top: 52px;
+  }
+
+  @include breakpoint('large+') {
+    margin-top: 52px;
+  }
+}
 
 .o-visit .m-ticket-actions {
   display: flex;
@@ -28,7 +51,7 @@
     width: colspan(13, xlarge);
   }
 
-  @include breakpoint('xxlarge+') {
+  @include breakpoint('xxlarge') {
     width: colspan(13, xxlarge);
   }
 }
@@ -53,4 +76,29 @@
   @include breakpoint('xxlarge') {
     margin-right: colspan(2, xxlarge);
   }
+}
+
+.o-visit .m-link-list {
+  margin-top: 24px;
+
+  @include breakpoint('small+') {
+    margin-top: 36px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 40px;
+  }
+
+  @include breakpoint('large+') {
+    margin-top: 44px;
+  }
+}
+
+.o-visit .m-link-list__item {
+  margin-top: 24px;
+  padding-top: 16px;
+}
+
+.o-visit .m-link-list__item:first-child {
+  margin-top: 0;
 }

@@ -29,3 +29,20 @@
   transform: rotate(90deg);
   transform-origin: 8px 8px;
 }
+
+
+.arrow-link.title {
+  display: block;
+  position: relative;
+  padding-right: 32px;
+}
+
+.arrow-link.title svg {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.arrow-link.title.f-list-3 svg {
+  top: 8px;
+}

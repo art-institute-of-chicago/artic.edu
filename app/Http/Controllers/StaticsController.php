@@ -590,6 +590,103 @@ class StaticsController extends Controller {
             ),
         ),
       ),
+      'tours' => array(
+            array(
+                'title' => $this->faker->sentence(2), 
+                'titleLink' => '#', 
+                'image' => $this->getImage(400,225),
+                'links' => array(
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                )
+            ),
+            array(
+                'title' => $this->faker->sentence(2), 
+                'titleLink' => '#', 
+                'image' => $this->getImage(400,225),
+                'links' => array(
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                )
+            ),
+            array(
+                'title' => $this->faker->sentence(2), 
+                'titleLink' => '#', 
+                'image' => $this->getImage(400,225),
+                'links' => array(
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                )
+            ),
+       ), 
+      'familiesTeensEducators' => array(
+            array(
+                'title' => $this->faker->sentence(2), 
+                'titleLink' => '#', 
+                'image' => $this->getImage(400,225),
+                'text' => $this->faker->paragraph(3), 
+                'links' => array(
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                )
+            ),
+            array(
+                'title' => $this->faker->sentence(2), 
+                'titleLink' => '#', 
+                'image' => $this->getImage(400,225),
+                'text' => $this->faker->paragraph(3), 
+                'links' => array(
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                )
+            ),
+            array(
+                'title' => $this->faker->sentence(2), 
+                'titleLink' => '#', 
+                'image' => $this->getImage(400,225),
+                'text' => $this->faker->paragraph(3), 
+                'links' => array(
+                    array(
+                      'href' => '#',
+                      'label' => $this->faker->sentence(2),
+                    ),
+                )
+            ),
+       ),
     ]);
   }
 
