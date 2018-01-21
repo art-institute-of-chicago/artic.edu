@@ -18,6 +18,11 @@
     height: 1px;
     background-color: $color__rules--primary;
   }
+
+  .m-links-bar + &::before {
+    content: none;
+    display: none;
+  }
 }
 
 .m-header-block .title {

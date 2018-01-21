@@ -584,6 +584,37 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
     @slot('linksPrimary', array(array('label' => 'Browse all current exhibitions', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'm-links-bar--nav-bar')
+    @slot('linksPrimary', array(
+      array('label' => 'Hours', 'href' => '#hours'),
+      array('label' => 'Admission', 'href' => '#admission'),
+      array('label' => 'Directions', 'href' => '#directions'),
+      array('label' => 'Dining', 'href' => '#dining'),
+      array('label' => 'FAQ', 'href' => '#faq'),
+      array('label' => 'Tours', 'href' => '#tours'),
+      array('label' => 'Families, Teens &amp; Educators', 'href' => '#familes_teens_educators'),
+    ))
+    @slot('secondaryHtml')
+        <li class="m-links-bar__item">
+            @component('components.atoms._dropdown')
+              @slot('prompt', 'Select language')
+              @slot('ariaTitle', 'Select language')
+              @slot('variation','dropdown--filter f-buttons')
+              @slot('font', 'f-buttons')
+              @slot('options', array(
+                array('href' => '#', 'label' => 'English'),
+                array('href' => '#', 'label' => 'Español'),
+                array('href' => '#', 'label' => 'Français'),
+                array('href' => '#', 'label' => 'Deutsch'),
+                array('href' => '#', 'label' => '日本語'),
+                array('href' => '#', 'label' => 'Português'),
+              ))
+            @endcomponent
+        </li>
+    @endslot
+@endcomponent
+
 @component('components.atoms._hr')
 @endcomponent
 

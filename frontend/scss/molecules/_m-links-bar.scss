@@ -233,3 +233,30 @@ $m-links-bar-descender-pad: 8px;
   display: block;
   width: 100%;
 }
+
+
+// Variant `.m-links-bar--nav-bar`
+
+.m-links-bar--nav-bar::before {
+  z-index: -1;
+  left: 50%;
+  right: auto;
+  bottom: 8px;
+  width: 100vw;
+  height: auto;
+  margin-left: -50vw;
+  background-color: $color__bg--primary;
+}
+
+.m-links-bar--nav-bar .m-links-bar__item-trigger:not([class*=btn]) {
+  color: $color__text;
+
+  &:hover,
+  &:focus {
+    color: $color__text--title;
+  }
+
+  &:focus {
+    color: $color__text;
+  }
+}
