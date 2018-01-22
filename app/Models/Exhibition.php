@@ -77,4 +77,9 @@ class Exhibition extends Model
     {
         return $this->title;
     }
+
+    public function events()
+    {
+        return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
+    }
 }

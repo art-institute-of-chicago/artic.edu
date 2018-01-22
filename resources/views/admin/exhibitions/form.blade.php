@@ -57,8 +57,7 @@
     <a17-fieldset id="related" title="Related">
         @formField('browser', [
             'routePrefix' => 'whatson',
-            'with_multiple' => true,
-            'max' => 5,
+            'max' => 4,
             'name' => 'exhibitions',
             'label' => 'Related Exhibitions'
         ])
@@ -69,6 +68,15 @@
             'name' => 'sponsors',
             'label' => 'Sponsors',
             'note' => 'Select Sponsors',
+            'max' => 20
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'moduleName' => 'events',
+            'name' => 'events',
+            'label' => 'Related events',
+            'note' => 'Select related events',
             'max' => 20
         ])
     </a17-fieldset>
