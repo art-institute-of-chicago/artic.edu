@@ -15,7 +15,12 @@ class Exhibition extends BaseApiModel
         'search'     => '/api/v1/exhibitions/search'
     ];
 
-    protected $augmentedModelClass = 'App\Models\Exhibition';
+    protected $casts = [
+        'is_active'    => 'boolean',
+        'last_updated' => 'datetime'
+    ];
 
-    protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
+    protected $augmentedModelClass = 'App\Models\Exhibition';
+    protected $presenterAdmin      = 'App\Presenters\Admin\ExhibitionPresenter';
+
 }

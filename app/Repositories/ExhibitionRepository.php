@@ -47,4 +47,8 @@ class ExhibitionRepository extends ModuleRepository
         return $fields;
     }
 
+    public function getExhibitionTypesList() {
+        return collect($this->model::$exhibitionTypes);
+    }
+
 }

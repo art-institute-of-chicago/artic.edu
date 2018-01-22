@@ -57,6 +57,7 @@ class ExhibitionController extends BaseApiController
     {
         return [
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+            'exhibitionTypesList' => $this->repository->getExhibitionTypesList()
         ];
     }
 

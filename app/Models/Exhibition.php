@@ -23,7 +23,10 @@ class Exhibition extends Model
         'header_copy',
         'title',
         'datahub_id',
-        'is_visible'
+        'is_visible',
+        'exhibition_message',
+        'sponsors_description',
+        'cms_exhibition_type'
     ];
 
     public $slugAttributes = [
@@ -40,13 +43,19 @@ class Exhibition extends Model
                     'ratio' => 16 / 9,
                 ],
             ],
-            'square' => [
+            'special' => [
                 [
-                    'name' => 'square',
-                    'ratio' => 1,
+                    'name' => 'special',
+                    'ratio' => 9 / 16,
                 ],
             ],
         ],
+    ];
+
+    public static $exhibitionTypes = [
+        0 => 'Basic',
+        1 => 'Large Feature',
+        2 => 'Special Exhibition'
     ];
 
     public function exhibitions()

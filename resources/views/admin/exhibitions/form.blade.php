@@ -1,9 +1,34 @@
 @extends('cms-toolkit::layouts.form')
 
 @section('contentFields')
+    @formField('select', [
+        'name' => 'cms_exhibition_type',
+        'label' => 'CMS Exhibition type',
+        'options' => $exhibitionTypesList,
+        'default' => '0'
+    ])
+
+    @formField('medias', [
+        'with_multiple' => false,
+        'no_crop' => false,
+        'label' => 'Hero Image',
+        'name' => 'hero'
+    ])
+
     @formField('input', [
         'name' => 'header_copy',
         'label' => 'Header',
+    ])
+
+    @formField('input', [
+        'name' => 'exhibition_message',
+        'label' => 'Exhibitions related message under buttons',
+    ])
+
+    @formField('input', [
+        'name' => 'sponsors_description',
+        'label' => 'Sponsors section description',
+        'type' => 'textarea'
     ])
 
     @formField('block_editor')
