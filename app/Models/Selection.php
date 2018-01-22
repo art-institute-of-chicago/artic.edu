@@ -51,6 +51,11 @@ class Selection extends Model
         return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'artworks');
     }
 
+    public function articles()
+    {
+        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
+    }
+
     public function selections()
     {
         return $this->belongsToMany('App\Models\Selection', 'selection_selection', 'selection_id', 'related_selection_id')->withPivot('position')->orderBy('position');

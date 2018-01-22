@@ -23,14 +23,21 @@
         'name' => 'artworks',
         'moduleName' => 'artworks',
         'label' => 'Artworks',
-        'max' => 20
+        'max' => 500
     ])
 
      @formField('browser', [
         'routePrefix' => 'whatson',
-        'relationship' => 'selections',
         'name' => 'selections',
+        'moduleName' => 'selections',
         'label' => 'Selections',
         'max' => 20
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'whatson',
+        'moduleName' => 'articles',
+        'name' => 'articles',
+        'label' => 'Article'
     ])
 @stop

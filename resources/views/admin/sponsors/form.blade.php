@@ -13,8 +13,8 @@
     ])
 
     @formField('medias', [
-        'media_role' => 'logo',
-        'media_role_name' => 'Logo',
+        'name' => 'logo',
+        'label' => 'Logo',
         'with_multiple' => false,
         'no_crop' => false
     ])

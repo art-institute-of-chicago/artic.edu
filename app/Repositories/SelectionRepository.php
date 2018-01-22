@@ -21,6 +21,7 @@ class SelectionRepository extends ModuleRepository
     {
         $this->updateBrowserApiRelated($object, $fields, 'artworks');
         $this->updateBrowser($object, $fields, 'selections');
+        $this->updateBrowser($object, $fields, 'articles');
 
         parent::afterSave($object, $fields);
     }
@@ -31,7 +32,9 @@ class SelectionRepository extends ModuleRepository
         $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
 
         $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'whatson');
+
         $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'whatson');
+        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');
 
         return $fields;
     }
