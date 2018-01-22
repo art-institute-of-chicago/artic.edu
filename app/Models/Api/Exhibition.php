@@ -3,9 +3,12 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
+use A17\CmsToolkit\Models\Behaviors\HasPresenter;
 
 class Exhibition extends BaseApiModel
 {
+    use HasPresenter;
+
     protected $endpoints = [
         'collection' => '/api/v1/exhibitions',
         'resource'   => '/api/v1/exhibitions/{id}',
@@ -13,4 +16,6 @@ class Exhibition extends BaseApiModel
     ];
 
     protected $augmentedModelClass = 'App\Models\Exhibition';
+
+    protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
 }

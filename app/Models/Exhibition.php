@@ -23,14 +23,14 @@ class Exhibition extends Model
         'header_copy',
         'title',
         'datahub_id',
-        'visible'
+        'is_visible'
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
-    public $checkboxes = ['published', 'visible'];
+    public $checkboxes = ['published', 'is_visible'];
 
     public $mediasParams = [
         'hero' => [

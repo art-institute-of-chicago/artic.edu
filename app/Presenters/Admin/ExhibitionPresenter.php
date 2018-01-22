@@ -13,5 +13,4 @@ class ExhibitionPresenter extends BasePresenter
         }
 
     }
-
 }

@@ -18,7 +18,7 @@
         ])
 
         @formField('checkbox', [
-            'name' => 'visible',
+            'name' => 'is_visible',
             'label' => 'Is Visible?',
         ])
 

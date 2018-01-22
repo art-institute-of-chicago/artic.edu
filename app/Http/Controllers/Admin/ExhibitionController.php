@@ -35,11 +35,7 @@ class ExhibitionController extends BaseApiController
         'dates' => [
             'title' => 'Dates field',
             'field' => 'dates'
-        ],
-        'header_copy' => [
-            'title' => 'Header copy',
-            'field' => 'header_copy',
-        ],
+        ]
     ];
 
     protected $indexWith = ['medias'];

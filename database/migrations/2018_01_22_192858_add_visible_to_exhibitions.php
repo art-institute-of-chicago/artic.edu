@@ -14,7 +14,7 @@ class AddVisibleToExhibitions extends Migration
     public function up()
     {
         Schema::table('exhibitions', function (Blueprint $table) {
-            $table->boolean('visible')->default(true);
+            $table->boolean('is_visible')->default(true)->index();
         });
     }
 
@@ -26,7 +26,7 @@ class AddVisibleToExhibitions extends Migration
     public function down()
     {
         Schema::table('exhibitions', function (Blueprint $table) {
-            $table->boolean('visible')->default(true);
+            $table->dropColumn('is_visible');
         });
     }
 }
