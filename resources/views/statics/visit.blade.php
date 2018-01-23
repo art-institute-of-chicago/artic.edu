@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="o-visit">
+<section class="o-visit" data-behavior="internalLinksScroll">
 
   @component('components.molecules._m-media')
     @slot('item', $headerMedia)

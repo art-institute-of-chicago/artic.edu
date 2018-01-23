@@ -1,6 +1,6 @@
 import { purgeProperties, setFocusOnTarget, scrollToY, getOffset } from 'a17-helpers';
 
-const articleInternalLinks = function(container) {
+const internalLinksScroll = function(container) {
 
   function _handleClicks(event) {
     let hash = event.target.href;
@@ -39,4 +39,4 @@ const articleInternalLinks = function(container) {
   };
 };
 
-export default articleInternalLinks;
+export default internalLinksScroll;
