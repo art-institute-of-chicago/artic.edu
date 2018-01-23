@@ -116,12 +116,18 @@ class AicGrammar
 
     protected function compileLimit($query, $limit)
     {
-        return ['limit' => $limit];
+        return [
+            'limit' => $limit,
+            'size'  => $limit   // Elasticsearch search parameter for limiting
+        ];
     }
 
     protected function compileOffset($query, $offset)
     {
-        return ['offset' => $offset];
+        return [
+            'offset' => $offset,
+            'from'   => $offset // Elasticsearch search parameter for offset
+        ];
     }
 
     protected function compilePage($query, $page)
