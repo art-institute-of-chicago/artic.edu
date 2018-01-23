@@ -549,12 +549,12 @@ class StaticsController extends Controller {
                 "type" => 'text',
                 "subtype" => 'secondary',
                 "content" => $this->faker->paragraph()
-            ), 
+            ),
             array(
                 "type" => 'text',
                 "subtype" => 'secondary',
                 "content" => $this->faker->paragraph()
-            ), 
+            ),
         ),
         'links' => array(
             array(
@@ -592,8 +592,8 @@ class StaticsController extends Controller {
       ),
       'tours' => array(
             array(
-                'title' => $this->faker->sentence(2), 
-                'titleLink' => '#', 
+                'title' => $this->faker->sentence(2),
+                'titleLink' => '#',
                 'image' => $this->getImage(400,225),
                 'links' => array(
                     array(
@@ -615,8 +615,8 @@ class StaticsController extends Controller {
                 )
             ),
             array(
-                'title' => $this->faker->sentence(2), 
-                'titleLink' => '#', 
+                'title' => $this->faker->sentence(2),
+                'titleLink' => '#',
                 'image' => $this->getImage(400,225),
                 'links' => array(
                     array(
@@ -630,8 +630,8 @@ class StaticsController extends Controller {
                 )
             ),
             array(
-                'title' => $this->faker->sentence(2), 
-                'titleLink' => '#', 
+                'title' => $this->faker->sentence(2),
+                'titleLink' => '#',
                 'image' => $this->getImage(400,225),
                 'links' => array(
                     array(
@@ -648,13 +648,13 @@ class StaticsController extends Controller {
                     ),
                 )
             ),
-       ), 
+       ),
       'familiesTeensEducators' => array(
             array(
-                'title' => $this->faker->sentence(2), 
-                'titleLink' => '#', 
+                'title' => $this->faker->sentence(2),
+                'titleLink' => '#',
                 'image' => $this->getImage(400,225),
-                'text' => $this->faker->paragraph(3), 
+                'text' => $this->faker->paragraph(3),
                 'links' => array(
                     array(
                       'href' => '#',
@@ -663,10 +663,10 @@ class StaticsController extends Controller {
                 )
             ),
             array(
-                'title' => $this->faker->sentence(2), 
-                'titleLink' => '#', 
+                'title' => $this->faker->sentence(2),
+                'titleLink' => '#',
                 'image' => $this->getImage(400,225),
-                'text' => $this->faker->paragraph(3), 
+                'text' => $this->faker->paragraph(3),
                 'links' => array(
                     array(
                       'href' => '#',
@@ -675,10 +675,10 @@ class StaticsController extends Controller {
                 )
             ),
             array(
-                'title' => $this->faker->sentence(2), 
-                'titleLink' => '#', 
+                'title' => $this->faker->sentence(2),
+                'titleLink' => '#',
                 'image' => $this->getImage(400,225),
-                'text' => $this->faker->paragraph(3), 
+                'text' => $this->faker->paragraph(3),
                 'links' => array(
                     array(
                       'href' => '#',
@@ -687,6 +687,15 @@ class StaticsController extends Controller {
                 )
             ),
        ),
+    ]);
+  }
+
+  public function exhibition_history() {
+    // now push to a view
+    return view('statics/exhibition_history', [
+      'primaryNavCurrent' => 'exhibitions_and_events',
+      'title' => 'Plan Your Visit',
+      'intro' => 'ASDF'
     ]);
   }
 

@@ -26,6 +26,7 @@
   <li><br><a href="/statics/artwork">artwork, images header</a></li>
   <li><br><a href="/statics/collection">collection</a></li>
   <li><br><a href="/statics/visit">visit</a></li>
+  <li><br><a href="/statics/exhibition_history">exhibition history</a></li>
 </ul>
 
 @endsection
