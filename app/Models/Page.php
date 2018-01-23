@@ -8,20 +8,9 @@ use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Admission as Admission;
 
-// use Illuminate\Database\Eloquent\Builder;
-
 class Page extends Model
 {
     use HasSlug, HasRevisions, HasMedias;
-
-    // protected static function boot()
-    // {
-    //     parent::boot();
-
-    //     static::addGlobalScope('type', function (Builder $builder) {
-    //         $builder->orderBy('type');
-    //     });
-    // }
 
     public static $types = [
         0 => 'Home',
@@ -74,7 +63,12 @@ class Page extends Model
 
     public function homeExhibitions()
     {
-        return $this->belongsToMany('App\Models\Exhibition', 'page_home_exhibition')->withPivot('position')->orderBy('position');
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'homeExhibitions');
+    }
+
+    public function exhibitionsExhibitions()
+    {
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'exhibitionsExhibitions');
     }
 
     public function homeEvents()

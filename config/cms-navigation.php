@@ -26,7 +26,7 @@ return [
                 'route' => 'admin.landing.home',
             ],
             'exhibitions' => [
-                'title' => 'Exhibitions',
+                'title' => 'Exhibitions & Events',
                 'route' => 'admin.landing.exhibitions',
             ],
             'art' => [

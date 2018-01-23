@@ -5,18 +5,17 @@
 
 @formField('browser', [
     'routePrefix' => 'whatson',
+    'max' => 4,
     'moduleName' => 'exhibitions',
     'name' => 'homeExhibitions',
-    'label' => 'Featured exhibitions',
-    'note' => 'Select up to 4 exhibitions you want to feature on the homepage',
-    'max' => 4
+    'label' => 'Related Exhibitions'
 ])
 
 @formField('browser', [
     'routePrefix' => 'whatson',
+    'max' => 4,
     'moduleName' => 'events',
     'name' => 'homeEvents',
-    'label' => 'Featured events',
-    'note' => 'Select up to 3 events you want to feature on the homepage',
-    'max' => 3
+    'label' => 'Related Events',
+    'note' => 'Select up to 3 events you want to feature on the homepage'
 ])

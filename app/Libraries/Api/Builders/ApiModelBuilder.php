@@ -339,7 +339,7 @@ class ApiModelBuilder
     /**
      * Get the model instance being queried.
      *
-     * @return \App\Libraries\Api\Models\BaseApiModel
+     * @return string
      */
     public function getEndpoint($name, $params = [])
     {
@@ -350,7 +350,7 @@ class ApiModelBuilder
      * Resolve endpoint. Because search and listing contains different ones
      * We will check if we are calling a search, and use that endpoint in that case
      *
-     * @return \App\Libraries\Api\Models\BaseApiModel
+     * @return string
      */
     public function resolveCollectionEndpoint()
     {

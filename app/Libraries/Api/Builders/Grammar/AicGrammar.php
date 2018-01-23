@@ -39,7 +39,6 @@ class AicGrammar
 
         $query->columns = $original;
 
-        // dd($compiled);
         return $compiled;
     }
 
