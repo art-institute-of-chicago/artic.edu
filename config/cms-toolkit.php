@@ -88,6 +88,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-newsletter_signup_footer',
             ],
+            'newsletter_signup_inline' => [
+                'title' => 'Newsletter Signup Inline',
+                'icon' => 'text',
+                'component' => 'a17-block-newsletter_signup_inline',
+            ],
             'sponsor' => [
                 'title' => 'Sponsor',
                 'icon' => 'text',
