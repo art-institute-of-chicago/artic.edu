@@ -16,9 +16,13 @@
 @endcomponent
 
 @component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('label' => 'Today', 'href' => '#', 'active' => true), array('label' => 'Tomorrow', 'href' => '#'), array('label' => 'This weekend', 'href' => '#')))
+    @slot('linksPrimary', array(
+        array('label' => 'Today', 'href' => '#', 'active' => true),
+        array('label' => 'Tomorrow', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium"),
+        array('label' => 'This weekend', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small")
+    ))
     @slot('primaryHtml')
-        <li class="m-links-bar__item m-links-bar__item--primary">
+        <li class="m-links-bar__item">
             @component('components.atoms._date-select-trigger')
                 Select dates
             @endcomponent

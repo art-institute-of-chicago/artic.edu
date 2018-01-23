@@ -16,8 +16,11 @@
 @endcomponent
 
 @component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('label' => 'Current', 'href' => '#', 'active' => true), array('label' => 'Upcoming', 'href' => '#', 'active' => false)))
-    @slot('linksSecondary', array(array('label' => 'Archive', 'href' => '#')))
+    @slot('linksPrimary', array(
+        array('label' => 'Current', 'href' => '#', 'active' => true),
+        array('label' => 'Upcoming', 'href' => '#'),
+        array('label' => 'Archive', 'href' => '#', 'liVariation' => 'm-links-bar__item--push')
+    ))
 @endcomponent
 
 @component('components.atoms._hr')

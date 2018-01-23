@@ -75,9 +75,6 @@
     From the Collection
 @endcomponent
 
-@component('components.atoms._hr')
-@endcomponent
-
 @component('components.organisms._o-pinboard')
     @slot('cols_small','2')
     @slot('cols_medium','3')

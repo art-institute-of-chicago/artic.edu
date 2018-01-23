@@ -130,11 +130,17 @@
   border-top: 1px solid $color__rules--tertiary;
 }
 
+.dropdown > ul > li.s-hidden {
+  display: none;
+}
+
 .dropdown > ul a:not([class]) {
   display: block;
   padding: 10px 16px;
   background-color: $color__white;
   color: $color__text--secondary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-decoration: none;
 }
 

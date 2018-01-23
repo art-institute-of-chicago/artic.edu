@@ -510,9 +510,25 @@ array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' 
 
 @php
 $linksBarPrimary = array();
+array_push($linksBarPrimary, array('label' => 'Lorem', 'href' => '#', 'active' => true));
+array_push($linksBarPrimary, array('label' => 'Ipsum', 'href' => '#', 'active' => false));
+array_push($linksBarPrimary, array('label' => 'Aenean', 'href' => '#', 'active' => false));
+array_push($linksBarPrimary, array('label' => 'Consectetur', 'href' => '#', 'active' => false));
+array_push($linksBarPrimary, array('label' => 'Sollicitudin', 'href' => '#', 'active' => false));
+array_push($linksBarPrimary, array('label' => 'Rurpis', 'href' => '#', 'active' => false));
+@endphp
+@component('components.molecules._m-links-bar')
+    @slot('overflow', true)
+    @slot('variation', 'm-links-bar--tabs')
+    @slot('linksPrimary', $linksBarPrimary)
+@endcomponent
+
+@php
+$linksBarPrimary = array();
 array_push($linksBarPrimary, array('label' => 'Exhibitions', 'href' => '#', 'active' => true));
 array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' => false));
 $linksBarSecondary = array();
+array_push($linksBarSecondary, array('label' => 'Exhibitions', 'href' => '#'));
 array_push($linksBarSecondary, array('label' => 'Exhibitions', 'href' => '#'));
 @endphp
 @component('components.molecules._m-links-bar')
@@ -534,24 +550,21 @@ array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' 
 $linksBarPrimary = array();
 array_push($linksBarPrimary, array('label' => 'Exhibitions', 'href' => '#', 'active' => true));
 array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' => false));
-$linksBarPrimarySecondary = array();
-array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#'));
+array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' => false, 'liVariation' => 'm-links-bar__item--push'));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', $linksBarPrimary)
-    @slot('linksSecondary', $linksBarSecondary)
 @endcomponent
 
 @php
 $linksBarPrimary = array();
 array_push($linksBarPrimary, array('label' => 'Exhibitions', 'href' => '#', 'variation' => 'arrow-link', 'active' => true, 'icon' => 'icon--arrow'));
 array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'variation' => 'arrow-link', 'active' => false, 'icon' => 'icon--arrow'));
-$linksBarPrimarySecondary = array();
-array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#', 'icon' => 'icon--arrow'));
+array_push($linksBarPrimary, array('label' => 'Archive', 'href' => '#', 'active' => false, 'liVariation' => 'm-links-bar__item--push'));
+array_push($linksBarPrimary, array('label' => 'All', 'href' => '#', 'active' => false, 'liVariation' => 'm-links-bar__item--push'));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', $linksBarPrimary)
-    @slot('linksSecondary', $linksBarSecondary)
 @endcomponent
 
 @php
@@ -585,6 +598,7 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
 @endcomponent
 
 @component('components.molecules._m-links-bar')
+    @slot('overflow', true)
     @slot('variation', 'm-links-bar--nav-bar')
     @slot('linksPrimary', array(
       array('label' => 'Hours', 'href' => '#hours'),
@@ -596,7 +610,7 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
       array('label' => 'Families, Teens &amp; Educators', 'href' => '#familes_teens_educators'),
     ))
     @slot('secondaryHtml')
-        <li class="m-links-bar__item">
+        <li class="m-links-bar__item  m-links-bar__item--primary">
             @component('components.atoms._dropdown')
               @slot('prompt', 'Select language')
               @slot('ariaTitle', 'Select language')
@@ -691,7 +705,11 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
 <p class="f-quote">mixed links bar:</p>
 
 @component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('label' => 'Today', 'href' => '#', 'active' => true), array('label' => 'Tomorrow', 'href' => '#'), array('label' => 'This weekend', 'href' => '#')))
+    @slot('linksPrimary', array(
+        array('label' => 'Today', 'href' => '#', 'active' => true),
+        array('label' => 'Tomorrow', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium"),
+        array('label' => 'This weekend', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small")
+    ))
     @slot('primaryHtml')
         <li class="m-links-bar__item">
             @component('components.atoms._date-select-trigger')
@@ -700,7 +718,7 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
         </li>
     @endslot
     @slot('secondaryHtml')
-        <li class="m-links-bar__item">
+        <li class="m-links-bar__item  m-links-bar__item--primary">
             @component('components.atoms._dropdown')
               @slot('prompt', 'All event types')
               @slot('ariaTitle', 'Filter by')

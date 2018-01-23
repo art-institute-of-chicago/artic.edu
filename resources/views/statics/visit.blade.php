@@ -9,6 +9,7 @@
   @endcomponent
 
   @component('components.molecules._m-links-bar')
+      @slot('overflow', true)
       @slot('variation', 'm-links-bar--nav-bar')
       @slot('linksPrimary', array(
         array('label' => 'Hours', 'href' => '#hours'),
@@ -20,7 +21,7 @@
         array('label' => 'Families, Teens &amp; Educators', 'href' => '#familes_teens_educators'),
       ))
       @slot('secondaryHtml')
-          <li class="m-links-bar__item">
+          <li class="m-links-bar__item m-links-bar__item--primary">
               @component('components.atoms._dropdown')
                 @slot('prompt', 'Select language')
                 @slot('ariaTitle', 'Select language')
