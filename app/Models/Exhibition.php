@@ -26,6 +26,7 @@ class Exhibition extends Model
         'is_visible',
         'exhibition_message',
         'sponsors_description',
+        'sponsors_sub_copy',
         'cms_exhibition_type'
     ];
 
