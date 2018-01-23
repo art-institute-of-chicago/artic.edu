@@ -9,9 +9,12 @@
             @endcomponent
         </span>
         <span class="m-listing__meta">
-            <em class="type f-tag">{{ $artwork->sku }}</em>
-            <br>
-            <strong class="title f-subheading-1">{{ $artwork->title }}</strong>
+            @if ( !empty( $artwork->sku ) )
+                <em class="type f-tag">{{ $artwork->sku }}</em>
+                <br>
+            @endif
+
+            <strong class="title f-list-2">{{ $artwork->title }}</strong>
             <br>
             <span class="subtitle f-body">{{ $artwork->artist }}, {{ $artwork->date }}</span>
         </span>

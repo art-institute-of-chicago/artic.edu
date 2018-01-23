@@ -699,6 +699,127 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function artist_tag() {
+    return view('statics/artist_tag', [
+        'title' => 'Rembrandt Harmenszoon Van Rijn',
+        'bio' => (object)[
+            'image' => $this->getImage(700, 395),
+            'caption' => 'Old Man with a Gold Chain<br>Rembrandt Harmensz. van Rijn, 1631',
+            'data' => (object)[
+                'aka' => 'Rembrant',
+                'dob' => strtotime('July 15, 1606'),
+                'dod' => strtotime('October 4 1669'),
+            ],
+            'body' => '<p>Rembrandt never went abroad, but he was considerably influenced by the work of the <a href="#">Italian masters</a> and the Netherlandish artists who had studied in Italy, like Pieter Lastman, the Utrecht Caravaggists, and Flemish Baroque <a href="#">Peter Paul Rubens</a>. Having achieved youthful success as a portrait painer, Rembrandt’s later years were marked by personal tragedy and financial hardships. Yet his etchings and paintings were popular throughout his lifetime, his reputation as an artist remained high, and for twenty years he taught many important <a href="#">Dutch painters</a></p>',
+            'tags' => [
+                'Baroque',
+                'Dutch Painters'
+            ]
+        ],
+        'interestedThemes' => [
+          [
+            'href' => '#',
+            'label' => "Picasso",
+          ],
+          [
+            'href' => '#',
+            'label' => "Modern Art",
+          ],
+          [
+            'href' => '#',
+            'label' => "European Art",
+          ],
+        ],
+        'artworks' => [
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 310),
+                'title' => 'Self-Portrait Etching at a Window',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1648'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 318),
+                'title' => 'Seated Female Nude',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1668'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 140),
+                'title' => 'Reclining Female Nude',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1658'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 330),
+                'title' => 'A Scholar in His Study',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1668'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 155),
+                'title' => 'The Bridge at Klein Kostverloren on the Amstel',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1645'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 335),
+                'title' => 'Clement de Jonghe, Printseller',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1651'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 310),
+                'title' => 'Jan Cornelius Sylvius',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1663'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 315),
+                'title' => 'Young Man in a Turban',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1650'
+            ],
+        ],
+        'artworksMoreLink' => (object)[
+            'url' => '#',
+            'text' => 'See all 341 artworks'
+        ],
+        'recentlyViewedArtworks' => $this->getArtworks($this->faker->numberBetween(6,20)),
+        'relatedArticles' => $this->getArticles(3),
+        'exhibitions' => $this->getExhibitions(2),
+        'exploreFuther' => [
+          'items' => $this->getArtworks(8),
+          'nav' => [
+            [
+              'href' => '#',
+              'label' => "European Painting and Sculpture",
+              'active' => true,
+            ],
+            [
+              'href' => '#',
+              'label' => "Prints and Drawings",
+            ],
+            [
+              'href' => '#',
+              'label' => "All tags",
+            ],
+          ],
+        ],
+        'exploreMoreLink' => (object)[
+            'url' => '#',
+            'text' => 'See all 2,348 artworks'
+        ],
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------

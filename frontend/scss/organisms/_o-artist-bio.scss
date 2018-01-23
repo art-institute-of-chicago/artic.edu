@@ -1,0 +1,160 @@
+$bioBreakpoints: (
+  large,
+  xlarge,
+  xxlarge
+);
+
+.o-artist-bio {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid $color__rules--primary;
+}
+
+.o-artist-bio__inner {
+  display: flex;
+  position: relative;
+  flex-flow: row wrap;
+
+  @each $name, $point in $bioBreakpoints {
+    @include breakpoint('#{$name}') {
+      margin-left: colspan(2, $name, 0, true);
+    }
+  }
+}
+
+.o-artist-bio__main,
+.o-artist-bio__image {
+  @each $name, $point in $bioBreakpoints {
+    @include breakpoint('#{$name}') {
+      width: colspan(grid-cols-to-colspan(2), $name);
+      margin-left: colspan(2, #{$name});
+    }
+  }
+}
+
+.o-artist-bio__image {
+}
+
+.o-artist-bio__image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.o-artist-bio__image figcaption {
+  @extend %f-caption;
+  margin-top: 8px;
+  color: $color__text--secondary;
+}
+
+.o-artist-bio__main {
+}
+
+.o-artist-bio__main dl {
+  display: flex;
+  position: relative;
+  flex-flow: row wrap;
+  margin-top: 24px;
+
+  @include breakpoint('small+') {
+    margin-top: 28px;
+  }
+
+  @include breakpoint('large+') {
+    margin-top: -18px;
+  }
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-left: colspan(2, $name, 0, true);
+    }
+  }
+}
+
+.o-artist-bio__main dt,
+.o-artist-bio__main dd {
+  margin-top: 4px;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-left: colspan(2, $name);
+    }
+  }
+}
+
+.o-artist-bio__main dt {
+  @extend %f-subheading-1;
+  width: colspan(18, xsmall);
+
+  @include breakpoint(small) {
+    width: colspan(18, small);
+  }
+
+  @include breakpoint(medium) {
+    width: colspan(13, medium);
+  }
+
+  @include breakpoint(large) {
+    width: colspan(8, large);
+  }
+
+  @include breakpoint(xlarge) {
+    width: colspan(8, xlarge);
+  }
+
+  @include breakpoint(xxlarge) {
+    width: colspan(8, xxlarge);
+  }
+}
+
+.o-artist-bio__main dd {
+  @extend %f-secondary;
+  width: colspan(38, small);
+
+  @include breakpoint(small) {
+    width: colspan(38, small);
+  }
+
+  @include breakpoint(medium) {
+    width: colspan(13, medium);
+  }
+
+  @include breakpoint(large) {
+    width: colspan(18, large);
+  }
+
+  @include breakpoint(xlarge) {
+    width: colspan(18, xlarge);
+  }
+
+  @include breakpoint(xxlarge) {
+    width: colspan(18, xxlarge);
+  }
+}
+
+.o-artist-bio__body p {
+  @extend %f-body;
+}
+
+.o-artist-bio__body a {
+  @include text-underline(20px, $color__rules--primary);
+  padding-bottom: 1px;
+  color: $color__text--accent;
+}
+
+.o-artist-bio__body a:hover,
+.o-artist-bio__body a:focus {
+  @include text-underline(20px, $color__rules--brand);
+}
+
+.o-artist-bio__main dl + .o-artist-bio__body {
+  margin-top: 36px;
+
+  @include breakpoint('small+') {
+    margin-top: 40px;
+  }
+}
+
+.o-artist-bio__tags {
+  margin-top: 40px;
+}

@@ -6,6 +6,10 @@
   box-shadow: 0 1px 0 $color__rules--primary inset;
 }
 
+.m-links-bar + .o-pinboard {
+  margin-top: 14px; // 40px from link baseline
+}
+
 .o-pinboard::before,
 .o-pinboard::after {
   content: '';
@@ -17,6 +21,16 @@
   width: 1px;
   background-color: $color__rules--tertiary;
   pointer-events: none;
+}
+
+.o-pinboard__footer {
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('small+') {
+    margin-top: 0;
+  }
 }
 
 @each $name, $point in $breakpoints {

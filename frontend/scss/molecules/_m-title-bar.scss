@@ -18,6 +18,11 @@
     padding-top: 0;
     border-top: 0;
   }
+
+  &.m-title-bar--secondary {
+    margin-top: 75px;
+    border-top-color: $color__rules--quaternary;
+  }
 }
 
 .m-title-bar .title {

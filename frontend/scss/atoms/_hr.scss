@@ -18,4 +18,12 @@ hr,
   &.hr--flush-top {
     margin-top: 0;
   }
+
+  &.hr--dark {
+    border-top-color: $color__rules--quaternary;
+
+    @include breakpoint('medium+') {
+      margin-top: 75px;
+    }
+  }
 }
