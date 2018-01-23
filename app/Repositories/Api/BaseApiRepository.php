@@ -1,12 +1,31 @@
 <?php
 
-namespace App\Repositories\Behaviors;
+namespace App\Repositories\Api;
 
+use A17\CmsToolkit\Repositories\ModuleRepository;
 use Illuminate\Support\Facades\App;
 use App\Models\ApiRelation;
 
-trait HandleApi
+abstract class BaseApiRepository extends ModuleRepository
 {
+    public function filter($query, array $scopes = [])
+    {
+        // Perform a search first and then filter.
+        // Because endpoints are different is preferable to acknoledge a search before
+        // computing the rest of the filters
+        $this->searchIn($query, $scopes, 'search', []);
+
+        return parent::filter($query, $scopes);
+    }
+
+    public function searchIn($query, &$scopes, $scopeField, $orFields = [])
+    {
+        if (isset($scopes[$scopeField]) && is_string($scopes[$scopeField])) {
+            $query->search($scopes[$scopeField]);
+            unset($scopes[$scopeField]);
+        }
+    }
+
     public function updateBrowserApiRelated($object, $fields, $relationship, $positionAttribute = 'position')
     {
         $this->updateOrderedBelongsTomanyApiRelated($object, $fields, $relationship, $positionAttribute);

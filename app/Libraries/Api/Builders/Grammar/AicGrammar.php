@@ -15,7 +15,8 @@ class AicGrammar
         'page',
         'orders',
         'ids',
-        'columns'
+        'columns',
+        'searchText'
     ];
 
     /**
@@ -101,6 +102,11 @@ class AicGrammar
     protected function compileIds($query, $ids)
     {
         return empty($ids) ? [] : ['ids' => join(',', $ids)];
+    }
+
+    protected function compileSearchText($query, $text)
+    {
+        return ['q' => $text];
     }
 
     protected function compileOrders($query, $order)

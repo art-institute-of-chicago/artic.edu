@@ -74,6 +74,13 @@ class ApiQueryBuilder {
      */
     public $wheres = [];
 
+    /**
+     * Search constraints for the query.
+     *
+     * @var string
+     */
+    public $searchText;
+
 
     public function __construct($connection, $grammar = null)
     {
@@ -299,7 +306,18 @@ class ApiQueryBuilder {
         return $this;
     }
 
+    /**
+     * Perform a search
+     *
+     * @param  string  $search
+     * @return $this
+     */
+    public function search($search)
+    {
+        $this->searchText = $search;
 
+        return $this;
+    }
 
     /**
      * Execute a get query and setup pagination data

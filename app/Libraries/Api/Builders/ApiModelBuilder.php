@@ -38,6 +38,14 @@ class ApiModelBuilder
     protected $passthru = [];
 
     /**
+     * Flag to indicate if we are performing a search action.
+     * Endpoints are different between listings and search.
+     *
+     * @var array
+     */
+    protected $performSearch = false;
+
+    /**
      * Applied global scopes.
      *
      * @var array
@@ -118,6 +126,20 @@ class ApiModelBuilder
     public function where($column, $operator = null, $value = null, $boolean = 'and')
     {
         $this->query->where(...func_get_args());
+
+        return $this;
+    }
+
+    /**
+     * Perform a search
+     *
+     * @param  string  $search
+     * @return $this
+     */
+    public function search($search)
+    {
+        $this->query->search(...func_get_args());
+        $this->performSearch = true;
 
         return $this;
     }
@@ -214,7 +236,7 @@ class ApiModelBuilder
     public function getModels($columns = [])
     {
         return $this->model->hydrate(
-            $this->query->get($columns, $this->getEndpoint('collection'))->all()
+            $this->query->get($columns, $this->getEndpoint($this->resolveCollectionEndpoint()))->all()
         );
     }
 
@@ -322,6 +344,17 @@ class ApiModelBuilder
     public function getEndpoint($name, $params = [])
     {
         return $this->model->parseEndpoint($name, $params);
+    }
+
+    /**
+     * Resolve endpoint. Because search and listing contains different ones
+     * We will check if we are calling a search, and use that endpoint in that case
+     *
+     * @return \App\Libraries\Api\Models\BaseApiModel
+     */
+    public function resolveCollectionEndpoint()
+    {
+        return $this->performSearch ? 'search' : 'collection';
     }
 
     /**

@@ -7,12 +7,12 @@ use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\ModuleRepository;
-use App\Repositories\Behaviors\HandleApi;
 use App\Models\Exhibition;
+use App\Repositories\Api\BaseApiRepository;
 
-class ExhibitionRepository extends ModuleRepository
+class ExhibitionRepository extends BaseApiRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApi;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks;
 
     public function __construct(Exhibition $model)
     {

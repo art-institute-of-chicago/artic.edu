@@ -30,6 +30,10 @@ class BaseApiController extends ModuleController
     // Option to setup links and the possibility of augmenting a model
     protected $hasAugmentedModel = false;
 
+    protected $defaultFilters = [
+        'search' => 'search',
+    ];
+
     // Remove CMS toolkit table filters.
     public function getIndexTableMainFilters($items)
     {
