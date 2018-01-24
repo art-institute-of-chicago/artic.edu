@@ -67,9 +67,11 @@
               ))
             @endcomponent
         </li>
-        <li class="m-links-bar__item m-links-bar__item--primary">
-            @component('components.molecules._m-collection-search')
-                @slot('placeholder','Search by keyword, artist or reference')
+        <li class="m-links-bar__item m-links-bar__item--search">
+            @component('components.molecules._m-search-bar')
+                @slot('variation', 'm-search-bar--subtle')
+                @slot('placeholder','Keyword')
+                @slot('name', 'exhibition-history-search')
             @endcomponent
         </li>
 

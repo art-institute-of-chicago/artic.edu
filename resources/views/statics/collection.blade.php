@@ -17,8 +17,9 @@
     @slot('linksPrimary', array(array('label' => 'Artworks', 'href' => '#', 'active' => true), array('label' => 'Articles &amp; Publications', 'href' => '#'), array('label' => 'Research', 'href' => '#')))
 @endcomponent
 
-@component('components.molecules._m-collection-search')
+@component('components.molecules._m-search-bar')
     @slot('placeholder','Search by keyword, artist or reference')
+    @slot('name', 'collection-search')
 @endcomponent
 
 @component('components.molecules._m-quick-search-links----collection')

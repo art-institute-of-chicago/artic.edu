@@ -1,6 +1,7 @@
 <div class="o-collection-search" data-behavior="collectionSearch">
-    @component('components.molecules._m-collection-search')
+    @component('components.molecules._m-search-bar')
         @slot('placeholder','Search...')
+        @slot('name', 'collection-search')
     @endcomponent
 
     <p class="o-collection-search__title f-tag-2">Quick Search</p>

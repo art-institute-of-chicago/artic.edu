@@ -1,10 +1,10 @@
 
-.m-collection-search {
+.m-search-bar {
   display: flex;
   flex-flow: row nowrap;
 }
 
-.m-collection-search label {
+.m-search-bar label {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -16,7 +16,7 @@
   overflow: hidden;
 }
 
-.m-collection-search input[type=text] {
+.m-search-bar input[type=text] {
   flex: 1;
   height: 56px;
   margin: 0;
@@ -32,7 +32,7 @@
   }
 }
 
-.m-collection-search button {
+.m-search-bar button {
   display: block;
   flex: 0 0 auto;
   width: 56px;
@@ -50,5 +50,24 @@
   &:hover,
   &:focus {
     background-color: $color__black;
+  }
+}
+
+
+
+
+.m-search-bar--subtle input[type=text],
+.m-search-bar--subtle button {
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.m-search-bar--subtle button {
+  color: $color__text--secondary;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: $color__black;
   }
 }
