@@ -3,7 +3,6 @@
     'label' => 'Intro text',
 ])
 
-
 @formField('browser', [
     'routePrefix' => 'whatson',
     'max' => 2,

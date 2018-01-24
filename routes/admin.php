@@ -7,6 +7,7 @@ Route::group(['prefix' => 'landing'], function () {
     Route::name('landing.exhibitions')->get('exhibitions', 'PageController@exhibitions');
     Route::name('landing.art')->get('art', 'PageController@art');
     Route::name('landing.visit')->get('visit', 'PageController@visit');
+    Route::name('landing.articles')->get('articles', 'PageController@articles');
 });
 
 Route::group(['prefix' => 'whatson'], function () {

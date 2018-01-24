@@ -39,6 +39,9 @@ class PageRepository extends ModuleRepository
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
         $this->updateRepeater($object, $fields, 'locations', 'Location');
 
+        // Articles
+        $this->updateBrowser($object, $fields, 'articlesArticles');
+
         parent::afterSave($object, $fields);
     }
 
@@ -56,6 +59,9 @@ class PageRepository extends ModuleRepository
         // Visits
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'locations', 'Location');
+
+        // Articles
+        $fields['browsers']['articlesArticles'] = $this->getFormFieldsForBrowser($object, 'articlesArticles', 'whatson', 'title', 'articles');
 
         return $fields;
     }

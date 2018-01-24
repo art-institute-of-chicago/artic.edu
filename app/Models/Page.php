@@ -17,6 +17,7 @@ class Page extends Model
         1 => 'Exhibitions and Events',
         2 => 'Art and Ideas',
         3 => 'Visit',
+        4 => 'Articles'
     ];
 
     protected $fillable = [
@@ -84,5 +85,10 @@ class Page extends Model
     public function locations()
     {
         return $this->hasMany(Location::class)->orderBy('position');
+    }
+
+    public function articlesArticles()
+    {
+        return $this->belongsToMany('App\Models\Article', 'page_article_article')->withPivot('position')->orderBy('position');
     }
 }

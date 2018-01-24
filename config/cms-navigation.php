@@ -37,6 +37,10 @@ return [
                 'title' => 'Visit',
                 'route' => 'admin.landing.visit',
             ],
+            'articles' => [
+                'title' => 'Articles',
+                'route' => 'admin.landing.articles',
+            ],
         ],
     ],
     'whatson' => [
