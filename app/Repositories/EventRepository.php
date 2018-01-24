@@ -18,15 +18,10 @@ class EventRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function hydrate($object, $fields)
-    {
-        // $this->hydrateOrderedBelongsTomany($object, $fields, 'events', 'position', 'Event');
-        return parent::hydrate($object, $fields);
-    }
-
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['site_tags'] ?? []);
+        $this->updateBrowser($object, $fields, 'sponsors');
         parent::afterSave($object, $fields);
     }
 
@@ -34,6 +29,8 @@ class EventRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
         $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
+
+        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'general');
 
         return $fields;
     }

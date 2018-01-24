@@ -28,10 +28,9 @@ class Event extends Model
         'rsvp_link',
         'start_date',
         'end_date',
-
         'location',
-
-        'landing',
+        'sponsors_description',
+        'sponsors_sub_copy',
         'content',
     ];
 
@@ -77,6 +76,11 @@ class Event extends Model
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
+    }
+
+    public function sponsors()
+    {
+        return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
     }
 
     public function scopeLanding($query)

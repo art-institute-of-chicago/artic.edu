@@ -28,6 +28,8 @@ class AddFieldsToEventsTableCmsMod extends Migration
             $table->boolean('is_free')->default(false);
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
+            $table->text('sponsors_description')->nullable();
+            $table->text('sponsors_sub_copy')->nullable();
         });
     }
 
@@ -41,6 +43,8 @@ class AddFieldsToEventsTableCmsMod extends Migration
         Schema::table('events', function (Blueprint $table) {
             $table->string('datahub_id');
             $table->dropColumn('type');
+            $table->dropColumn('sponsors_description');
+            $table->dropColumn('sponsors_sub_copy');
             $table->dropColumn('short_description');
             $table->dropColumn('description');
             $table->dropColumn('hero_caption');

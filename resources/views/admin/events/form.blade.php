@@ -64,6 +64,27 @@
         'label' => 'External RSVP Link'
     ])
 
+    @formField('input', [
+        'name' => 'sponsors_description',
+        'label' => 'Sponsors section description',
+        'type' => 'textarea'
+    ])
+
+    @formField('input', [
+        'name' => 'sponsors_sub_copy',
+        'label' => 'Sponsors sub copy',
+        'note' => 'E.G. further support provided by'
+    ])
+
+    @formField('browser', [
+            'routePrefix' => 'general',
+            'moduleName' => 'sponsors',
+            'name' => 'sponsors',
+            'label' => 'Sponsors',
+            'note' => 'Select Sponsors',
+            'max' => 20
+        ])
+
     {{-- @formField('browser', [
         'routePrefix' => 'whatson',
         'with_multiple' => true,
