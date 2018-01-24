@@ -16,17 +16,33 @@ class Event extends Model
 
     protected $fillable = [
         'title',
-        'datahub_id',
-
         'published',
+        'type',
+        'short_description',
+        'description',
+        'hero_caption',
+        'is_private',
+        'is_after_hours',
+        'is_ticketed',
+        'is_free',
+        'rsvp_link',
+        'start_date',
+        'end_date',
+
+        'location',
+
         'landing',
         'content',
-        'price',
-        'admission',
-        'location',
-        'latitude',
-        'longitude',
-        'rsvp_link',
+    ];
+
+    public static $eventTypes = [
+        0 => 'Classes and workshops',
+        1 => 'Live arts',
+        2 => 'Screenings',
+        3 => 'Special Events',
+        4 => 'Talks',
+        5 => 'Tours',
+        6 => 'Member Exclusive'
     ];
 
     public $slugAttributes = [
@@ -37,9 +53,9 @@ class Event extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = ['published'];
+    public $checkboxes = ['published', 'is_private', 'is_after_hours', 'is_ticketed', 'is_free'];
 
-    public $dates = [];
+    public $dates = ['start_date', 'end_date'];
 
     public $mediasParams = [
         'hero' => [

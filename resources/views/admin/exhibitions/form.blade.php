@@ -1,6 +1,11 @@
 @extends('cms-toolkit::layouts.form')
 
 @section('contentFields')
+    @formField('checkbox', [
+        'name' => 'is_visible',
+        'label' => 'Is Visible?',
+    ])
+
     @formField('select', [
         'name' => 'cms_exhibition_type',
         'label' => 'CMS Exhibition type',
@@ -46,11 +51,6 @@
             'name' => 'datahub_id',
             'label' => 'Datahub ID',
             'disabled' => true
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_visible',
-            'label' => 'Is Visible?',
         ])
 
         @formField('multi_select', [
