@@ -843,6 +843,120 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function artist_tag_no_intro() {
+    return view('statics/artist_tag_no_intro', [
+        'title' => 'Rembrandt Harmenszoon Van Rijn',
+        'bio' => (object)[
+            'data' => (object)[
+                'aka' => 'Rembrant',
+                'dob' => strtotime('July 15, 1606'),
+                'dod' => strtotime('October 4 1669'),
+            ],
+        ],
+        'interestedThemes' => [
+          [
+            'href' => '#',
+            'label' => "Picasso",
+          ],
+          [
+            'href' => '#',
+            'label' => "Modern Art",
+          ],
+          [
+            'href' => '#',
+            'label' => "European Art",
+          ],
+        ],
+        'artworks' => [
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 310),
+                'title' => 'Self-Portrait Etching at a Window',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1648'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 318),
+                'title' => 'Seated Female Nude',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1668'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 140),
+                'title' => 'Reclining Female Nude',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1658'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 330),
+                'title' => 'A Scholar in His Study',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1668'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 155),
+                'title' => 'The Bridge at Klein Kostverloren on the Amstel',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1645'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 335),
+                'title' => 'Clement de Jonghe, Printseller',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1651'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 310),
+                'title' => 'Jan Cornelius Sylvius',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1663'
+            ],
+            (object)[
+                'slug' => '#',
+                'image' => $this->getImage(260, 315),
+                'title' => 'Young Man in a Turban',
+                'artist' => 'Rembrandt van Rijn',
+                'date' => '1650'
+            ],
+        ],
+        'artworksMoreLink' => (object)[
+            'url' => '#',
+            'text' => 'See all 341 artworks'
+        ],
+        'recentlyViewedArtworks' => $this->getArtworks($this->faker->numberBetween(6,20)),
+        'relatedArticles' => $this->getArticles(3),
+        'exhibitions' => $this->getExhibitions(2),
+        'exploreFuther' => [
+          'items' => $this->getArtworks(8),
+          'nav' => [
+            [
+              'href' => '#',
+              'label' => "European Painting and Sculpture",
+              'active' => true,
+            ],
+            [
+              'href' => '#',
+              'label' => "Prints and Drawings",
+            ],
+            [
+              'href' => '#',
+              'label' => "All tags",
+            ],
+          ],
+        ],
+        'exploreMoreLink' => (object)[
+            'url' => '#',
+            'text' => 'See all 2,348 artworks'
+        ],
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------

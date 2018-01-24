@@ -53,7 +53,7 @@ $bioBreakpoints: (
   display: flex;
   position: relative;
   flex-flow: row wrap;
-  margin-top: 24px;
+  margin-top: 14px;
 
   @include breakpoint('small+') {
     margin-top: 28px;
@@ -72,7 +72,9 @@ $bioBreakpoints: (
 
 .o-artist-bio__main dt,
 .o-artist-bio__main dd {
-  margin-top: 4px;
+  @include breakpoint('small+') {
+    margin-top: 4px;
+  }
 
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
@@ -83,14 +85,18 @@ $bioBreakpoints: (
 
 .o-artist-bio__main dt {
   @extend %f-subheading-1;
-  width: colspan(18, xsmall);
+  width: colspan(58, xsmall);
+
+  @include breakpoint(xsmall) {
+    margin-top: 12px;
+  }
 
   @include breakpoint(small) {
     width: colspan(18, small);
   }
 
   @include breakpoint(medium) {
-    width: colspan(13, medium);
+    width: colspan(18, medium);
   }
 
   @include breakpoint(large) {
@@ -102,16 +108,23 @@ $bioBreakpoints: (
   }
 }
 
+.o-artist-bio__main dt:first-child {
+  @include breakpoint(xsmall) {
+    margin-top: 0;
+  }
+}
+
 .o-artist-bio__main dd {
-  @extend %f-secondary;
-  width: colspan(38, small);
+  @extend %f-body;
+  color: $color__text--secondary;
+  width: colspan(58, small);
 
   @include breakpoint(small) {
     width: colspan(38, small);
   }
 
   @include breakpoint(medium) {
-    width: colspan(13, medium);
+    width: colspan(33, medium);
   }
 
   @include breakpoint(large) {
@@ -139,7 +152,7 @@ $bioBreakpoints: (
 }
 
 .o-artist-bio__main dl + .o-artist-bio__body {
-  margin-top: 36px;
+  margin-top: 20px;
 
   @include breakpoint('small+') {
     margin-top: 40px;
