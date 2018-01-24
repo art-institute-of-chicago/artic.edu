@@ -25,6 +25,7 @@ class Event extends Model
         'is_after_hours',
         'is_ticketed',
         'is_free',
+        'hidden',
         'rsvp_link',
         'start_date',
         'end_date',
@@ -32,6 +33,7 @@ class Event extends Model
         'sponsors_description',
         'sponsors_sub_copy',
         'content',
+        'layout_type'
     ];
 
     public static $eventTypes = [
@@ -44,6 +46,11 @@ class Event extends Model
         6 => 'Member Exclusive'
     ];
 
+    public static $eventLayouts = [
+        0 => 'Basic',
+        1 => 'Large Feature',
+    ];
+
     public $slugAttributes = [
         'title',
     ];
@@ -52,7 +59,7 @@ class Event extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = ['published', 'is_private', 'is_after_hours', 'is_ticketed', 'is_free'];
+    public $checkboxes = ['published', 'is_private', 'is_after_hours', 'is_ticketed', 'is_free', 'hidden'];
 
     public $dates = ['start_date', 'end_date'];
 

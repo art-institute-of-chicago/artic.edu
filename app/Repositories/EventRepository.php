@@ -41,4 +41,8 @@ class EventRepository extends ModuleRepository
         return collect($this->model::$eventTypes);
     }
 
+    public function getEventLayoutsList() {
+        return collect($this->model::$eventLayouts);
+    }
+
 }

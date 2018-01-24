@@ -13,6 +13,11 @@
         'default' => '0'
     ])
 
+    @formField('checkbox', [
+        'name' => 'hidden',
+        'label' => 'Hidden from listings?',
+    ])
+
     @formField('date_picker', [
         'name' => 'start_date',
         'label' => 'Start date',
@@ -21,6 +26,13 @@
     @formField('date_picker', [
         'name' => 'end_date',
         'label' => 'End date'
+    ])
+
+    @formField('select', [
+        'name' => 'layout_type',
+        'label' => 'Event layout',
+        'options' => $eventLayoutsList,
+        'default' => '0'
     ])
 
     @formField('medias', [
