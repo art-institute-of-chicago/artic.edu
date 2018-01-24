@@ -16,7 +16,7 @@
     width: 100%;
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     margin-bottom: 48px;
 
     &.m-article-header--gallery {
@@ -38,20 +38,25 @@
     margin-top: 12px;
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     float: left;
-    width: colspan(13, xlarge);
+    width: colspan(13, large);
     margin-top: 0;
-    margin-right: colspan(2, xlarge);
+    margin-right: colspan(2, large);
 
     &.o-article__primary-actions--inline-header {
       margin-top: 40px;
     }
   }
+
+  @include breakpoint('xlarge') {
+    width: colspan(13, xlarge);
+    margin-right: colspan(2, xlarge);
+  }
 }
 
   .o-article__primary-actions::before {
-    @include breakpoint('xlarge') {
+    @include breakpoint('large+') {
       content: '';
       position: absolute;
       left: 0;
@@ -65,7 +70,7 @@
   .o-article__primary-actions > *:not(:first-child):not([class*=f-]) {
     margin-top: 8px;
 
-    @include breakpoint('xlarge') {
+    @include breakpoint('large+') {
       margin-top: 52px;
     }
   }
@@ -75,7 +80,7 @@
   }
 
   .o-article__primary-actions > .m-article-actions:first-child {
-    @include breakpoint('xlarge') {
+    @include breakpoint('large+') {
       margin-top: 8px;
     }
   }
@@ -97,10 +102,6 @@
   }
 
   @include breakpoint('large+') {
-    width: colspan(38, large);
-  }
-
-  @include breakpoint('xlarge') {
     display: none;
   }
 }
@@ -128,18 +129,18 @@
   }
 
   @include breakpoint('large+') {
-    width: colspan(18, large);
-    margin-left: colspan(2, large);
-  }
-
-  @include breakpoint('xlarge') {
-    width: colspan(13, xlarge);
+    width: colspan(13, large);
     margin-top: 0;
-    margin-left: colspan(2, xlarge);
+    margin-left: colspan(2, large);
 
     &.o-article__secondary-actions--inline-header {
       margin-top: 40px;
     }
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(13, xlarge);
+    margin-left: colspan(2, xlarge);
   }
 }
 
@@ -203,13 +204,14 @@
   }
 
   @include breakpoint('large+') {
-    width: colspan(38, medium);
+    float: none;
+    width: colspan(28, large);
+    margin-top: 0;
+    margin-left: colspan(15, large);
   }
 
   @include breakpoint('xlarge') {
-    float: none;
     width: colspan(28, xlarge);
-    margin-top: 0;
     margin-left: colspan(15, xlarge);
   }
 }
@@ -219,7 +221,7 @@
   padding-top: .02px;
   padding-bottom: 28px;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     margin-top: 40px;
     margin-bottom: 12px;
   }
@@ -281,19 +283,19 @@
   }
 
   @include breakpoint('large+') {
-    width: colspan(38, large);
-    margin-top: 40px;
-  }
-
-  @include breakpoint('xlarge') {
     float: none;
-    width: colspan(28, xlarge);
+    width: colspan(28, large);
     margin-top: 0;
-    margin-left: colspan(15, xlarge);
+    margin-left: colspan(15, large);
 
     .o-article__intro ~ & {
       margin-top: 28px;
     }
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(28, xlarge);
+    margin-left: colspan(15, xlarge);
   }
 }
 
@@ -364,7 +366,7 @@
 .o-article--generic-page {
 
   .o-article__primary-actions {
-    @include breakpoint('large-') {
+    @include breakpoint('medium-') {
       @include background-fill;
       margin-top: 0;
       background-color: $color__bg--primary;
@@ -390,6 +392,7 @@
       }
     }
 
+    /*
     @include breakpoint('large') {
       width: colspan(58, large);
 
@@ -401,6 +404,7 @@
         margin-top: 28px;
       }
     }
+    */
   }
 
   .o-article__primary-actions .m-link-list {

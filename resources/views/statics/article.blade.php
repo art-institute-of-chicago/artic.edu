@@ -18,7 +18,7 @@
     @slot('prevArticle', $article->prevArticle)
   @endcomponent
 
-  <div class="o-article__primary-actions{{ ($article->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@xlarge+' : '' }}">
+  <div class="o-article__primary-actions{{ ($article->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@large+' : '' }}">
     @if ($article->articleType !== 'artwork')
         @component('components.molecules._m-article-actions')
             @slot('articleType', $article->articleType)
@@ -39,7 +39,7 @@
     @if ($article->nav)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.molecules._m-link-list')
-            @slot('variation', 'u-show@xlarge+')
+            @slot('variation', 'u-show@large+')
             @slot('links', $article->nav);
         @endcomponent
     @endif
@@ -47,13 +47,13 @@
     @if ($article->onView)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.atoms._title')
-            @slot('variation', 'u-show@xlarge+')
+            @slot('variation', 'u-show@large+')
             @slot('tag','p')
             @slot('font', 'f-module-title-1')
             On View
         @endcomponent
         @component('components.blocks._text')
-            @slot('variation', 'u-show@xlarge+')
+            @slot('variation', 'u-show@large+')
             @slot('tag','p')
             @slot('font', 'f-secondary')
             <a href="{{ $article->onView['href'] }}">{{ $article->onView['label'] }}</a>

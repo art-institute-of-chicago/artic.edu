@@ -15,14 +15,14 @@
   <div class="o-article__primary-actions">
     @component('components.atoms._dropdown')
       @slot('prompt', $title)
-      @slot('variation', 'dropdown--filter u-hide@xlarge+')
+      @slot('variation', 'dropdown--filter u-hide@large+')
       @slot('ariaTitle', 'Sub navigation')
       @slot('options', $subNav)
     @endcomponent
 
     @component('components.molecules._m-link-list')
         @slot('font', 'f-module-title-1')
-        @slot('variation','u-show@xlarge+')
+        @slot('variation','u-show@large+')
         @slot('links', $nav);
     @endcomponent
   </div>

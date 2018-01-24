@@ -4,10 +4,15 @@
   flex-flow: column nowrap;
   padding-top: 12px;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     justify-content: space-between;
     min-height: 180px;
     padding-top: .02px;
+    padding-right: colspan(15, large);
+    padding-left: colspan(15, large);
+  }
+
+  @include breakpoint('xlarge') {
     padding-right: colspan(15, xlarge);
     padding-left: colspan(15, xlarge);
   }
@@ -30,7 +35,7 @@
   @include tucked-align-top($f-tag);
   order: 0;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     position: absolute;
     left: 0;
     top: 12px;
@@ -117,7 +122,7 @@
 .m-article-header--feature {
   padding-top: 0;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     padding-top: 0;
     padding-right: 0;
     padding-left: 0;
@@ -178,6 +183,11 @@
   @include breakpoint('medium+') {
     min-height: 180px;
     padding-bottom: 28px;
+  }
+
+  @include breakpoint('large+') {
+    padding-right: colspan(15, large);
+    padding-left: colspan(15, large);
   }
 
   @include breakpoint('xlarge') {
@@ -289,7 +299,7 @@
     bottom: calc(100% + 24px);
   }
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     top: 20px;
     bottom: auto;
     text-shadow: none;
@@ -314,7 +324,7 @@
   min-height: 90vh;
   padding-top: 0;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     padding-top: 0;
     padding-right: 0;
     padding-left: 0;
@@ -389,7 +399,7 @@
 .m-article-header--super-hero {
   padding-top: 0;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     padding-top: 0;
     padding-right: 0;
     padding-left: 0;
@@ -453,12 +463,13 @@
   }
 
   @include breakpoint('large+') {
-    padding-bottom: 100px;
+    padding-right: colspan(15, large);
+    padding-bottom: 140px;
+    padding-left: colspan(15, large);
   }
 
   @include breakpoint('xlarge') {
     padding-right: colspan(15, xlarge);
-    padding-bottom: 140px;
     padding-left: colspan(15, xlarge);
   }
 }
@@ -485,7 +496,7 @@
   order: 0;
   padding-bottom: 20px;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     top: calc(25vh + 16px);
     padding-bottom: 0;
   }
@@ -501,6 +512,10 @@
 
   @include breakpoint('medium+') {
     margin-top: 72px;
+  }
+
+  @include breakpoint('large+') {
+    margin-right: colspan(15, large, 0, true);
   }
 
   @include breakpoint('xlarge') {
@@ -528,7 +543,7 @@
 .m-article-header--generic {
   padding-top: 0;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     min-height: auto;
     padding-top: 0;
     padding-right: 0;
@@ -567,6 +582,11 @@
   @include breakpoint('small+') {
     padding-top: 48px;
     padding-bottom: 80px;
+  }
+
+  @include breakpoint('large+') {
+    padding-right: colspan(15, large);
+    padding-left: colspan(15, large);
   }
 
   @include breakpoint('xlarge') {
@@ -664,7 +684,7 @@ $thumbTease: 4px;
   display: block;
   padding-top: 0;
 
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     min-height: 0;
     padding: 0;
   }
