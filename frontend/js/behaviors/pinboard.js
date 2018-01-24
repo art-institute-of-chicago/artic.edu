@@ -119,7 +119,7 @@ const pinboard = function(container){
   }
 
   function _resized() {
-    setTimeout(_setupBlocks, 100);
+    setTimeout(_setupBlocks, 300);
   }
 
   function _init() {
