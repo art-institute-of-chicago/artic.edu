@@ -22,6 +22,7 @@ class EventRepository extends ModuleRepository
     {
         $object->siteTags()->sync($fields['site_tags'] ?? []);
         $this->updateBrowser($object, $fields, 'sponsors');
+        $this->updateBrowser($object, $fields, 'events');
         parent::afterSave($object, $fields);
     }
 
@@ -31,6 +32,7 @@ class EventRepository extends ModuleRepository
         $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
 
         $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'general');
+        $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'whatson');
 
         return $fields;
     }

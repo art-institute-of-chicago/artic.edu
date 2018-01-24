@@ -87,4 +87,9 @@ class Event extends Model
     {
         return $query->whereLanding(true);
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
+    }
 }

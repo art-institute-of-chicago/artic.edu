@@ -77,21 +77,23 @@
     ])
 
     @formField('browser', [
-            'routePrefix' => 'general',
-            'moduleName' => 'sponsors',
-            'name' => 'sponsors',
-            'label' => 'Sponsors',
-            'note' => 'Select Sponsors',
-            'max' => 20
-        ])
+        'routePrefix' => 'general',
+        'moduleName' => 'sponsors',
+        'name' => 'sponsors',
+        'label' => 'Sponsors',
+        'note' => 'Select Sponsors',
+        'max' => 20
+    ])
 
-    {{-- @formField('browser', [
+
+    @formField('browser', [
         'routePrefix' => 'whatson',
-        'with_multiple' => true,
-        'max' => 20,
+        'moduleName' => 'events',
         'name' => 'events',
-        'label' => 'Related events'
-    ]) --}}
+        'label' => 'Related Events',
+        'note' => 'Select events',
+        'max' => 4
+    ])
 @stop
 
 @section('fieldsets')
