@@ -10,7 +10,7 @@ $main-col-widths: (
   small: 'fluid',
   medium: 'fluid',
   large: 'fluid',
-  xlarge: 1360px,
+  xlarge: 1500px,
 );
 
 // Outer gutters, in px or vw, of each breakpoint
@@ -28,8 +28,8 @@ $breakpoints: (
   xsmall: (start: null, end: 599),
   small: (start: 600, end: 899),
   medium: (start: 900, end: 1199),
-  large: (start: 1200, end: 1499),
-  xlarge: (start: 1500, end: null),
+  large: (start: 1200, end: 1639),
+  xlarge: (start: 1640, end: null),
 );
 
 // zindexs
