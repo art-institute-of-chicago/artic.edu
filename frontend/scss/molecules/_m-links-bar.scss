@@ -26,8 +26,6 @@
 
 ***/
 
-$m-links-bar-descender-pad: 8px;
-
 .m-links-bar {
   display: flex;
   position: relative;
@@ -141,6 +139,11 @@ $m-links-bar-descender-pad: 8px;
 .m-links-bar__item--primary:last-child {
   padding-right: 0;
   border-right: 0 none;
+}
+
+.m-links-bar__items-primary .m-links-bar__item--primary {
+  padding-left: 0;
+  border-left: 0 none;
 }
 
 .m-links-bar__items-secondary .m-links-bar__item:last-child {

@@ -695,7 +695,30 @@ class StaticsController extends Controller {
     return view('statics/exhibition_history', [
       'primaryNavCurrent' => 'exhibitions_and_events',
       'title' => 'Plan Your Visit',
-      'intro' => 'ASDF'
+      'intro' => $this->faker->sentence(20, false),
+      'media' => array(
+        'type' => 'image',
+        'size' => 's',
+        'media' => $this->getImage(800,450),
+        'hideCaption' => true,
+       ),
+      'blocks' => $this->generateBlocks(1),
+      'exhibitions' => $this->getExhibitions(10),
+      'recentlyViewedArtworks' => $this->getArtworks($this->faker->numberBetween(6,20)),
+      'interestedThemes' => array(
+        array(
+          'href' => '#',
+          'label' => "Picasso",
+        ),
+        array(
+          'href' => '#',
+          'label' => "Modern Art",
+        ),
+        array(
+          'href' => '#',
+          'label' => "European Art",
+        ),
+      ),
     ]);
   }
 

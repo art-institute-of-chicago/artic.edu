@@ -33,9 +33,17 @@
             {{ $exhibition->title }}
         @endcomponent
         <br>
-        @component('components.atoms._date')
-            Through {{ $exhibition->dateEnd }}
-        @endcomponent
+        @if (isset($variation) && !strrpos($variation, "--row"))
+            @component('components.atoms._date')
+                Through {{ $exhibition->dateEnd }}
+            @endcomponent
+        @else
+            <span class="m-listing__meta-bottom">
+                @component('components.atoms._date')
+                    {{ $exhibition->dateStart }} - {{ $exhibition->dateEnd }}
+                @endcomponent
+            </span>
+        @endif
     </span>
   </a>
 </{{ $tag ?? 'li' }}>

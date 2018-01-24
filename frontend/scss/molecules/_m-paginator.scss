@@ -1,0 +1,199 @@
+/***
+
+m-paginator
+===========
+
+```
+<nav class="m-paginator">
+  <ul class="m-paginator__prev-next">
+    <li><a href="#" class="a-btn a-btn--simple">Next</a></li>
+    <li class="s-disabled"><a href="#" class="a-btn a-btn--simple">Prev</a></li>
+  </ul>
+  <ul class="m-paginator__pages">
+    <li class="s-active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><span>&hellip;</span></li>
+    <li><a href="#">99</a></li>
+  </ul>
+</nav>
+```
+
+
+***/
+
+.m-paginator {
+  position: relative;
+  margin-top: 20px;
+
+  @include breakpoint('medium+') {
+    margin-top: 16px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 20px;
+  }
+}
+
+.m-paginator::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
+
+.m-paginator .f-buttons {
+  @include untuck;
+}
+
+.m-paginator a,
+.m-paginator__prev-next li > span,
+.m-paginator__pages span {
+  display: block;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+}
+
+.m-paginator a {
+  color: $color__text--title;
+
+  &:hover,
+  &:focus {
+    color: $color__text--secondary;
+  }
+
+  &:active {
+    color: $color__text--title;
+  }
+}
+
+.m-paginator__prev-next {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0;
+}
+
+.m-paginator__prev-next li {
+  flex: 0 0 auto;
+}
+
+.m-paginator__prev-next li:first-child {
+  border-left: 1px solid $color__rules--primary;
+}
+
+.m-paginator__prev-next li:last-child {
+  border-right: 1px solid $color__rules--primary;
+}
+
+.m-paginator__prev-next a,
+.m-paginator__prev-next li > span {
+  width: 48px;
+  text-align: center;
+
+  @include breakpoint('medium+') {
+    width: auto;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+.m-paginator__prev-next li > span {
+  color: $color__text--tertiary;
+}
+
+.m-paginator__prev-next a span,
+.m-paginator__prev-next span span {
+  display: none;
+
+  @include breakpoint('medium+') {
+    display: inline;
+  }
+}
+
+.m-paginator__prev-next svg {
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
+.m-paginator__prev-next svg:first-child {
+  transform: rotate(180deg);
+  transform-origin: 8px 8px;
+}
+
+
+.m-paginator__current-page {
+  position: absolute;
+  left: 48px;
+  right: 48px;
+  top: 0;
+  height: 48px;
+  margin-top: 0;
+  line-height: 48px;
+  text-align: center;
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
+.m-paginator__pages {
+  display: none;
+
+  @include breakpoint('medium+') {
+    display: flex;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    left: colspan(8, medium);
+    right: colspan(8, medium);
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  @include breakpoint('large+') {
+    left: colspan(8, large);
+    right: colspan(8, large);
+  }
+
+  @include breakpoint('xlarge+') {
+    left: colspan(8, xlarge);
+    right: colspan(8, xlarge);
+  }
+
+  @include breakpoint('xxlarge') {
+    left: colspan(8, xxlarge);
+    right: colspan(8, xxlarge);
+  }
+}
+
+.m-paginator__pages > li {
+  flex: 0 0 auto;
+}
+
+.m-paginator__pages a,
+.m-paginator__pages span {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-top: 1px solid transparent;
+}
+
+.m-paginator__pages a:hover {
+  border-top-color: $color__bg--tertiary;
+}
+
+.m-paginator__pages .s-active a,
+.m-paginator__pages .s-active a:hover {
+  border-top-color: $color__rules--brand;
+}
