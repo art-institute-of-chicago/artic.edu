@@ -129,5 +129,17 @@
             'name' => 'is_free',
             'label' => 'Free Event?'
         ])
+
+        @formField('input', [
+            'name' => 'buy_button_text',
+            'label' => 'Buy Tickets button text',
+            'note' => 'E.G. Buy Tickets'
+        ])
+
+        @formField('input', [
+            'name' => 'buy_button_caption',
+            'label' => 'Copy below Buy Button text',
+            'type' => 'textarea'
+        ])
     </a17-fieldset>
 @endsection

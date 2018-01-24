@@ -33,7 +33,9 @@ class Event extends Model
         'sponsors_description',
         'sponsors_sub_copy',
         'content',
-        'layout_type'
+        'layout_type',
+        'buy_button_text',
+        'buy_button_caption'
     ];
 
     public static $eventTypes = [
