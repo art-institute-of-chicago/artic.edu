@@ -10,7 +10,7 @@
   position: relative;
   padding-left: 52px;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-left: 0;
   }
 }
@@ -41,7 +41,7 @@
     top: 16px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     position: relative;
     width: 88px;
     height: 88px;
@@ -71,7 +71,7 @@
     margin-top: -16px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-top: 0;
   }
 }

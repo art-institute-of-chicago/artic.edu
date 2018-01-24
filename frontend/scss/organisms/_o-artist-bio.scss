@@ -1,7 +1,6 @@
 $bioBreakpoints: (
   large,
-  xlarge,
-  xxlarge
+  xlarge
 );
 
 .o-artist-bio {
@@ -101,10 +100,6 @@ $bioBreakpoints: (
   @include breakpoint(xlarge) {
     width: colspan(8, xlarge);
   }
-
-  @include breakpoint(xxlarge) {
-    width: colspan(8, xxlarge);
-  }
 }
 
 .o-artist-bio__main dd {
@@ -125,10 +120,6 @@ $bioBreakpoints: (
 
   @include breakpoint(xlarge) {
     width: colspan(18, xlarge);
-  }
-
-  @include breakpoint(xxlarge) {
-    width: colspan(18, xxlarge);
   }
 }
 

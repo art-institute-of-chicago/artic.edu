@@ -21,7 +21,7 @@
 .m-ticket-actions__action:not(:first-child) {
   margin-top: 12px;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-top: 20px;
   }
 }
@@ -30,7 +30,7 @@
 .m-ticket-actions__inline-list {
   margin-top: 4px;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-top: 12px;
   }
 }

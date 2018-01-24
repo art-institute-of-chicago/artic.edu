@@ -60,16 +60,10 @@
     padding-right: colspan(13, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     left: colspan(3, xlarge);
     right: colspan(3, xlarge);
     padding-right: colspan(11, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    left: colspan(3, xxlarge);
-    right: colspan(3, xxlarge);
-    padding-right: colspan(11, xxlarge);
   }
 }
 
@@ -107,12 +101,8 @@
     width: colspan(10, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(8, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(8, xxlarge);
   }
 }
 

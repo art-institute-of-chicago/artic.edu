@@ -1,5 +1,5 @@
 <div class="m-title-bar {{ $variation ?? '' }}"{!! isset($id) ? ' id="'.$id.'"' : '' !!}>
-  <h2 class="title f-module-title-2">{{ $slot }}</h2>
+  <h2 class="title {{ $titleFont ?? 'f-module-title-2' }}">{{ $slot }}</h2>
   @if (isset($links) and $links)
   <ul class="m-title-bar__links">
     @foreach ($links as $link)

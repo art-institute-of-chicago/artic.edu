@@ -15,7 +15,6 @@
         @slot('cols_medium','2')
         @slot('cols_large','2')
         @slot('cols_xlarge','2')
-        @slot('cols_xxlarge','2')
         @slot('tag', 'div')
 
         <div class="o-blocks">
@@ -105,10 +104,9 @@
         @component('components.atoms._hr')
         @endcomponent
         @component('components.organisms._o-grid-listing')
-            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--scroll@large o-grid-listing--scroll@xlarge o-grid-listing--scroll@xxlarge o-grid-listing--gridlines-cols')
+            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--scroll@large o-grid-listing--scroll@xlarge  o-grid-listing--gridlines-cols')
             @slot('cols_large',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
             @slot('cols_xlarge',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
-            @slot('cols_xxlarge',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
             @slot('behavior','dragScroll')
             @foreach ($recentlyViewedArtworks as $artwork)
                 @component('components.molecules._m-listing----artwork-minimal')

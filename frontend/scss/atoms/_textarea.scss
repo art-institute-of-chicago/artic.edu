@@ -22,7 +22,7 @@
       padding-top: 11px;
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       padding-top: 7px;
     }
   }

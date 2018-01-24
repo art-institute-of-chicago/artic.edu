@@ -56,12 +56,8 @@
     width: colspan(15, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(9, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(9, xxlarge);
   }
 }
 

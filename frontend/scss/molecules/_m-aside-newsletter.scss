@@ -241,12 +241,8 @@
     padding-left: colspan(29, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-left: colspan(29, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    padding-left: colspan(29, xxlarge);
   }
 }
 
@@ -264,17 +260,13 @@
     width: colspan(29, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(29, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(29, xxlarge);
   }
 }
 
 .m-aside-newsletter--wide legend .title.f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'small+': 84, 'xlarge+': 82, 'xxlarge': 84));
+  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'small+': 84, 'large+': 82, 'xlarge': 84));
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__field {

@@ -4,17 +4,12 @@
   flex-flow: column nowrap;
   padding-top: 12px;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     justify-content: space-between;
     min-height: 180px;
     padding-top: .02px;
     padding-right: colspan(15, xlarge);
     padding-left: colspan(15, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    padding-right: colspan(15, xxlarge);
-    padding-left: colspan(15, xxlarge);
   }
 }
 
@@ -35,7 +30,7 @@
   @include tucked-align-top($f-tag);
   order: 0;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     position: absolute;
     left: 0;
     top: 12px;
@@ -122,13 +117,8 @@
 .m-article-header--feature {
   padding-top: 0;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-top: 0;
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  @include breakpoint('xxlarge') {
     padding-right: 0;
     padding-left: 0;
   }
@@ -190,14 +180,9 @@
     padding-bottom: 28px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-right: colspan(15, xlarge);
     padding-left: colspan(15, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    padding-right: colspan(15, xxlarge);
-    padding-left: colspan(15, xxlarge);
   }
 
   @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
@@ -304,7 +289,7 @@
     bottom: calc(100% + 24px);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     top: 20px;
     bottom: auto;
     text-shadow: none;
@@ -329,13 +314,8 @@
   min-height: 90vh;
   padding-top: 0;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-top: 0;
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  @include breakpoint('xxlarge') {
     padding-right: 0;
     padding-left: 0;
   }
@@ -409,13 +389,8 @@
 .m-article-header--super-hero {
   padding-top: 0;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-top: 0;
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  @include breakpoint('xxlarge') {
     padding-right: 0;
     padding-left: 0;
   }
@@ -481,16 +456,10 @@
     padding-bottom: 100px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-right: colspan(15, xlarge);
     padding-bottom: 140px;
     padding-left: colspan(15, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    padding-right: colspan(15, xxlarge);
-    padding-bottom: 180px;
-    padding-left: colspan(15, xxlarge);
   }
 }
 
@@ -516,7 +485,7 @@
   order: 0;
   padding-bottom: 20px;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     top: calc(25vh + 16px);
     padding-bottom: 0;
   }
@@ -534,12 +503,8 @@
     margin-top: 72px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-right: colspan(15, xlarge, 0, true);
-  }
-
-  @include breakpoint('xxlarge') {
-    margin-right: colspan(15, xxlarge, 0, true);
   }
 }
 
@@ -563,14 +528,9 @@
 .m-article-header--generic {
   padding-top: 0;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     min-height: auto;
     padding-top: 0;
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  @include breakpoint('xxlarge') {
     padding-right: 0;
     padding-left: 0;
   }
@@ -609,14 +569,9 @@
     padding-bottom: 80px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-right: colspan(15, xlarge);
     padding-left: colspan(15, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    padding-right: colspan(15, xxlarge);
-    padding-left: colspan(15, xxlarge);
   }
 }
 
@@ -709,12 +664,8 @@ $thumbTease: 4px;
   display: block;
   padding-top: 0;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     min-height: 0;
-    padding: 0;
-  }
-
-  @include breakpoint('xxlarge') {
     padding: 0;
   }
 }

@@ -32,12 +32,8 @@
     width: colspan(11, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(11, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(11, xxlarge);
   }
 }
 

@@ -54,7 +54,6 @@
       @slot('cols_medium','2')
       @slot('cols_large','2')
       @slot('cols_xlarge','2')
-      @slot('cols_xxlarge','2')
       @slot('tag', 'div')
 
       <div class="o-blocks">
@@ -82,7 +81,6 @@
         @slot('cols_medium','2')
         @slot('cols_large','2')
         @slot('cols_xlarge','2')
-        @slot('cols_xxlarge','2')
         @slot('tag', 'div')
 
         <div class="o-blocks">
@@ -228,7 +226,6 @@
       @slot('cols_medium','2')
       @slot('cols_large','2')
       @slot('cols_xlarge','2')
-      @slot('cols_xxlarge','2')
       @slot('tag', 'div')
 
       <div class="o-blocks">
@@ -336,7 +333,6 @@
       @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
       @slot('cols_large','3')
       @slot('cols_xlarge','3')
-      @slot('cols_xxlarge','3')
       @foreach ($dining['options'] as $diningOption)
           @component('components.molecules._m-listing----multi-links')
               @slot('variation', 'm-listing--row@small m-listing--row@medium')
@@ -385,7 +381,6 @@
       @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
       @slot('cols_large','3')
       @slot('cols_xlarge','3')
-      @slot('cols_xxlarge','3')
       @foreach ($tours as $item)
           @component('components.molecules._m-listing----multi-links')
               @slot('variation', 'm-listing--row@small m-listing--row@medium')
@@ -406,7 +401,6 @@
       @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
       @slot('cols_large','3')
       @slot('cols_xlarge','3')
-      @slot('cols_xxlarge','3')
       @foreach ($familiesTeensEducators as $item)
           @component('components.molecules._m-listing----multi-links')
               @slot('variation', 'm-listing--row@small m-listing--row@medium')

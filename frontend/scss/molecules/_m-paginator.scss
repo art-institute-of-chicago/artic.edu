@@ -166,14 +166,9 @@ m-paginator
     right: colspan(8, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     left: colspan(8, xlarge);
     right: colspan(8, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    left: colspan(8, xxlarge);
-    right: colspan(8, xxlarge);
   }
 }
 

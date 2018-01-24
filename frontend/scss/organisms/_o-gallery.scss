@@ -5,7 +5,7 @@
   background-color: $color__bg--gallery;
   color: $color__text--contrast;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
@@ -13,7 +13,7 @@
 }
 
 .o-gallery__title {
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: 100%;
   }
@@ -31,13 +31,9 @@
     margin-top: 40px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: colspan(13, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
   }
 }
 
@@ -46,15 +42,10 @@
   margin-top: 40px;
   padding-bottom: 84px;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: colspan(43, xlarge);
     margin-left: colspan(2, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(43, xxlarge);
-    margin-left: colspan(2, xxlarge);
   }
 }
 
@@ -82,7 +73,7 @@
     padding-right: colspan(28, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-right: 0;
   }
 }
@@ -98,7 +89,7 @@
     margin-top: 0;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     position: static;
     margin-top: 24px;
   }
@@ -147,12 +138,8 @@
       column-gap: colspan(2, large);
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       column-gap: colspan(1, xlarge);
-    }
-
-    @include breakpoint('xxlarge') {
-      column-gap: colspan(1, xxlarge);
     }
   }
 
@@ -183,12 +170,8 @@
       max-height: #{colspan(28, large) * 4/3};
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       max-height: #{colspan(21, xlarge) * 4/3};
-    }
-
-    @include breakpoint('xxlarge') {
-      max-height: #{colspan(21, xxlarge) * 4/3};
     }
   }
 }
@@ -233,17 +216,10 @@
       padding-left: colspan(2, large);
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       width: colspan(46, xlarge);
       margin-right: colspan(3, xlarge, 0, true);
       margin-left: colspan(2, xlarge);
-      padding-left: 0;
-    }
-
-    @include breakpoint('xxlarge') {
-      width: calc(#{colspan(43, xxlarge)} + ((100vw - #{map-get($main-col-widths, xxlarge)}) / 2));
-      margin-right: calc((100vw - #{map-get($main-col-widths, xxlarge)}) / -2);
-      margin-left: colspan(2, xxlarge);
       padding-left: 0;
     }
 
@@ -266,12 +242,9 @@
         width: colspan(3, large);
       }
 
-      @include breakpoint('xlarge+') {
-        width: colspan(3, xlarge);
-      }
-
-      @include breakpoint('xxlarge') {
-        width: calc((100vw - #{map-get($main-col-widths, xxlarge)}) / 2);
+      @include breakpoint('xlarge') {
+        //width: colspan(3, xlarge);
+        width: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
       }
     }
   }
@@ -297,18 +270,9 @@
       margin-left: colspan(1, large);
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       width: colspan(18, xlarge);
       margin-left: colspan(1, xlarge);
-
-      &:first-child {
-        margin-left: 0;
-      }
-    }
-
-    @include breakpoint('xxlarge') {
-      width: colspan(18, xxlarge);
-      margin-left: colspan(1, xxlarge);
 
       &:first-child {
         margin-left: 0;
@@ -333,12 +297,8 @@
       height: 420px;
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       height: #{colspan(21, xlarge) * 4/3};
-    }
-
-    @include breakpoint('xxlarge') {
-      height: #{colspan(21, xxlarge) * 4/3};
     }
   }
 
@@ -363,12 +323,8 @@
       height: colspan(23, medium) * 9/16;
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       height: #{colspan(18, xlarge) * 9/16};
-    }
-
-    @include breakpoint('xxlarge') {
-      height: #{colspan(18, xxlarge) * 9/16};
     }
   }
 }

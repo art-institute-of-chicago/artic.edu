@@ -135,7 +135,7 @@
     padding-bottom: 8px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
 
     .o-accordion--section & {
       padding-top: 36px;
@@ -159,12 +159,8 @@
     padding-right: colspan(3, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-right: colspan(3, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    padding-right: colspan(3, xxlarge);
   }
 }
 

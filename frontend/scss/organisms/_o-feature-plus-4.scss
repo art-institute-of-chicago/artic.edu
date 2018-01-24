@@ -18,12 +18,8 @@
     width: colspan(28, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(28, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(28, xxlarge);
   }
 }
 
@@ -197,38 +193,6 @@
     content: '';
     position: absolute;
     left: colspan(1, xlarge, 0, true);
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-color: $color__rules--primary;
-    pointer-events: none;
-  }
-}
-
-@include breakpoint('xxlarge') {
-  .o-feature-plus-4__items-1,
-  .o-feature-plus-4__items-2 {
-    width: colspan(13, xxlarge);
-    margin-left: colspan(2, xxlarge)
-  }
-
-  .o-feature-plus-4__items-1 > *:first-child,
-  .o-feature-plus-4__items-2 > *:first-child {
-    margin-top: 0;
-    padding-top: 0;
-  }
-
-  .o-feature-plus-4__items-1 > *:first-child::before,
-  .o-feature-plus-4__items-2 > *:first-child::before {
-    content: none;
-    display: none;
-  }
-
-  .o-feature-plus-4__items-1::after,
-  .o-feature-plus-4__items-2::after {
-    content: '';
-    position: absolute;
-    left: colspan(1, xxlarge, 0, true);
     top: 0;
     bottom: 0;
     width: 1px;

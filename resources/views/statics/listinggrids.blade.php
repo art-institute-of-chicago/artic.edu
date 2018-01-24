@@ -22,7 +22,7 @@
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing, 2 cols at small, 3 cols at medium, 4 cols large+ (most examples follow this)</p>
-<ul class="o-grid-listing o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
@@ -31,19 +31,19 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-right</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-cols</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
@@ -52,13 +52,13 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
@@ -67,19 +67,19 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
@@ -88,19 +88,19 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-right o-grid-listing--gridlines-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-right o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-top</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
@@ -109,13 +109,13 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
 <div style="margin-top: 60px;"></div>
 <p class="f-secondary">o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows</p>
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   @include('shared._listitems')
 </ul>
 
@@ -124,7 +124,7 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--4-col@medium o-grid-listing--5-col@large o-grid-listing--5-col@xlarge o-grid-listing--5-col@xxlarge" data-behavior="dragScroll">
+<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--4-col@medium o-grid-listing--5-col@large o-grid-listing--5-col@xlarge" data-behavior="dragScroll">
   <?php for ($i = 0; $i < 5; $i++): ?>
     <li class="m-listing">
       <a href="#t" class="m-listing__link">
@@ -141,7 +141,7 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge" data-behavior="dragScroll">
+<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge" data-behavior="dragScroll">
   <?php for ($i = 0; $i < 4; $i++): ?>
     <li class="m-listing">
       <a href="#" class="m-listing__link">
@@ -158,7 +158,7 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols o-grid-listing--6-col@large o-grid-listing--6-col@xlarge o-grid-listing--6-col@xxlarge" data-behavior="dragScroll">
+<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols o-grid-listing--6-col@large o-grid-listing--6-col@xlarge" data-behavior="dragScroll">
   <?php for ($i = 0; $i < 6; $i++): ?>
     <li class="m-listing">
       <a href="#t" class="m-listing__link">
@@ -175,7 +175,7 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols o-grid-listing--12-col@large o-grid-listing--12-col@xlarge o-grid-listing--12-col@xxlarge" data-behavior="dragScroll">
+<ul class="o-grid-listing o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols o-grid-listing--12-col@large o-grid-listing--12-col@xlarge" data-behavior="dragScroll">
   <?php for ($i = 0; $i < 12; $i++): ?>
     <li class="m-listing">
       <a href="#t" class="m-listing__link">
@@ -192,7 +192,7 @@
 @component('components.atoms._hr')
 @endcomponent
 
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--3-col@large o-grid-listing--3-col@xlarge o-grid-listing--3-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--3-col@large o-grid-listing--3-col@xlarge">
   <?php for ($i = 0; $i < 3; $i++): ?>
     <li class="m-listing m-listing--row@small m-listing--row@medium">
       <a href="#" class="m-listing__link">

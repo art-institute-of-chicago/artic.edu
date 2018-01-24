@@ -264,7 +264,7 @@ const imageZoomArea = function(container) {
 
     document.documentElement.classList.add('s-fullscreenImage-active');
     triggerCustomEvent(document, 'body:lock', {
-      breakpoints: 'xsmall small medium large xlarge xxlarge'
+      breakpoints: 'xsmall small medium large xlarge'
     });
     setFocusOnTarget(container);
     triggerCustomEvent(document, 'focus:trap', {

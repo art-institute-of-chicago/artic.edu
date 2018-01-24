@@ -20,7 +20,6 @@ const infoButtonTrigger = function(container) {
         medium: true,
         large: true,
         xlarge: true,
-        xxlarge: true,
       }
     });
   }

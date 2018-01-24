@@ -125,11 +125,6 @@
     width: colspan(grid-cols-to-colspan(4, 58), 'xlarge');
     margin-left: colspan(2, 'xlarge');
   }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(grid-cols-to-colspan(4, 58), 'xxlarge');
-    margin-left: colspan(2, 'xxlarge');
-  }
 }
 
 .g-footer__grid > li:first-child {
@@ -178,7 +173,7 @@
     display: none;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     display: block;
   }
 }
@@ -198,7 +193,7 @@
 }
 
 .g-footer__grid__group:first-child {
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     padding-top: 0;
     border-top: 0;
   }

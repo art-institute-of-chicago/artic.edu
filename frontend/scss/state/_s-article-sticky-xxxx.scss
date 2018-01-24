@@ -89,16 +89,11 @@
     padding-left: map-get($outer-gutters, 'large');
   }
 
-  @include breakpoint('xlarge+') {
-    padding-right: map-get($outer-gutters, 'xlarge');
-    padding-left: map-get($outer-gutters, 'xlarge');
-  }
-
-  @include breakpoint('xxlarge') {
+  @include breakpoint('xlarge') {
     left: 50%;
     right: auto;
-    width: map-get($main-col-widths, 'xxlarge');
-    margin-left: map-get($main-col-widths, 'xxlarge') / -2;
+    width: map-get($main-col-widths, 'xlarge');
+    margin-left: map-get($main-col-widths, 'xlarge') / -2;
     padding-right: 0;
     padding-left: 0;
   }
@@ -131,13 +126,10 @@
     width: colspan(18, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(13, xlarge);
   }
 
-  @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
-  }
 }
 
 .o-article__sticky-actions .btn {

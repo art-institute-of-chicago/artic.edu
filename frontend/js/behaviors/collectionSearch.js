@@ -11,7 +11,7 @@ const collectionSearch = function(container) {
     }
     document.documentElement.classList.add('s-collection-search-active');
     triggerCustomEvent(document, 'body:lock', {
-      breakpoints: 'xsmall small medium large xlarge xxlarge'
+      breakpoints: 'xsmall small medium large xlarge'
     });
     setFocusOnTarget(container);
     triggerCustomEvent(document, 'focus:trap', {

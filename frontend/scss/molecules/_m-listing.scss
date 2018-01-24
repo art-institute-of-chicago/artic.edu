@@ -1,7 +1,7 @@
 /***
 
 ```
-<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge o-grid-listing--4-col@xxlarge">
+<ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge">
   <li class="m-listing">
     <a href="#" class="m-listing__link">
       <span class="m-listing__img">
@@ -427,14 +427,9 @@
     padding-left: 40px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(28, xlarge);
     margin-left: colspan(29, xlarge, 0, true);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(28, xxlarge);
-    margin-left: colspan(29, xxlarge, 0, true);
   }
 }
 
@@ -527,12 +522,8 @@
     width: colspan(13, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(13, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
   }
 }
   .m-listing--row.m-listing--secondary .m-listing__img {
@@ -549,12 +540,8 @@
       width: colspan(7, large);
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       width: colspan(7, xlarge);
-    }
-
-    @include breakpoint('xxlarge') {
-      width: colspan(7, xxlarge);
     }
   }
 
@@ -580,14 +567,9 @@
     padding-right: colspan(10, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-left: colspan(1, xlarge);
     padding-right: colspan(10, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    margin-left: colspan(1, xxlarge);
-    padding-right: colspan(10, xxlarge);
   }
 }
 
@@ -607,12 +589,8 @@
     width: colspan(8, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(8, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(8, xxlarge);
   }
 }
 
@@ -744,12 +722,8 @@
     width: colspan(8, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(8, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(8, xxlarge);
   }
 }
 
@@ -781,12 +755,8 @@
     margin-right: colspan(1, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-right: colspan(1, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    margin-right: colspan(1, xxlarge);
   }
 }
 
@@ -851,14 +821,9 @@
     margin-left: colspan(2, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-right: 0;
     margin-left: colspan(2, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    margin-right: 0;
-    margin-left: colspan(2, xxlarge);
   }
 }
 
@@ -882,12 +847,8 @@
     width: colspan(13, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(13, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
   }
 }
 
@@ -935,22 +896,13 @@
     height: colspan(9, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     left: colspan(2, xlarge);
     right: colspan(2, xlarge);
     top: colspan(2, xlarge);
     bottom: colspan(2, xlarge);
     width: colspan(9, xlarge);
     height: colspan(9, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    left: colspan(2, xxlarge);
-    right: colspan(2, xxlarge);
-    top: colspan(2, xxlarge);
-    bottom: colspan(2, xxlarge);
-    width: colspan(9, xxlarge);
-    height: colspan(9, xxlarge);
   }
 }
 

@@ -86,7 +86,7 @@ pre {
   padding: 4px 5px;
   overflow: auto;
 
-  @include breakpoint('xxlarge') {
+  @include breakpoint('xlarge') {
     width: 100%;
   }
 }

@@ -65,14 +65,9 @@
     margin-left: colspan(5, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(15, xlarge);
     margin-left: colspan(5, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(15, xxlarge);
-    margin-left: colspan(5, xxlarge);
   }
 }
 

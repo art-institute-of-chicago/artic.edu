@@ -16,12 +16,8 @@
     margin-left: colspan(2, large, 0, true);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-left: colspan(2, xlarge, 0, true);
-  }
-
-  @include breakpoint('xxlarge') {
-    margin-left: colspan(2, xxlarge, 0, true);
   }
 }
 
@@ -44,14 +40,9 @@
     margin-left: colspan(2, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(grid-cols-to-colspan(3), xlarge);
     margin-left: colspan(2, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(grid-cols-to-colspan(3), xxlarge);
-    margin-left: colspan(2, xxlarge);
   }
 }
 

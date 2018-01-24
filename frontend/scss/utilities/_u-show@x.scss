@@ -6,7 +6,6 @@
 <span class="u-show@medium">u-show@medium</span>
 <span class="u-show@large">u-show@large</span>
 <span class="u-show@xlarge">u-show@xlarge</span>
-<span class="u-show@xxlarge">u-show@xxlarge</span>
 <span class="u-show@small-">u-show@small-</span>
 <span class="u-show@medium-">u-show@medium-</span>
 <span class="u-show@small+">u-show@small+</span>
@@ -21,7 +20,6 @@
 .u-show\@medium,
 .u-show\@large,
 .u-show\@xlarge,
-.u-show\@xxlarge,
 .u-show\@small\-,
 .u-show\@medium\-,
 .u-show\@large\-,
@@ -29,7 +27,7 @@
 .u-show\@small\+,
 .u-show\@medium\+,
 .u-show\@large\+,
-.u-show\@xlarge\+ {
+.u-show\@xlarge {
   display: none;
 }
 
@@ -63,11 +61,6 @@
   }
 }
 
-@include breakpoint('xxlarge') {
-  .u-show\@xxlarge {
-    display: block;
-  }
-}
 
 @include breakpoint('small-') {
   .u-show\@small\- {
@@ -83,12 +76,6 @@
 
 @include breakpoint('large-') {
   .u-show\@large\- {
-    display: block;
-  }
-}
-
-@include breakpoint('xlarge-') {
-  .u-show\@xlarge\- {
     display: block;
   }
 }
@@ -111,8 +98,8 @@
   }
 }
 
-@include breakpoint('xlarge+') {
-  .u-show\@xlarge\+ {
+@include breakpoint('xlarge') {
+  .u-show\@xlarge {
     display: block;
   }
 }

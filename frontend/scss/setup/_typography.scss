@@ -316,7 +316,7 @@ $f-subheading-1: generate-font-obj((
   settings: (
     'xsmall': (font-size: 17, line-height: 24, letter-spacing: .01em, push: 0),
     'small+': (font-size: 18, line-height: 28, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 1),
+    'xlarge': (font-size: 19, line-height: 28, push: 1),
    )
 ));
 
@@ -350,7 +350,7 @@ $f-body: generate-font-obj((
   settings: (
     'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 1),
     'small+': (font-size: 18, line-height: 28, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 1),
+    'xlarge': (font-size: 19, line-height: 28, push: 1),
    )
 ));
 
@@ -381,7 +381,7 @@ $f-body-emphasis: generate-font-obj((
   settings: (
     'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', font-style: 'italic', letter-spacing: .01em, push: 1),
     'small+': (font-size: 18, line-height: 28, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 1),
+    'xlarge': (font-size: 19, line-height: 28, push: 1),
    )
 ));
 
@@ -483,7 +483,7 @@ $f-body-editorial-reference: generate-font-obj((
   settings: (
     'xsmall': (font-size: 17, line-height: 24, letter-spacing: 0.01em, font-weight: 'lighter', push: 0),
     'small+': (font-size: 18, line-height: 28, letter-spacing: 0, push: 0),
-    'xxlarge': (font-size: 19, line-height: 28, push: 1),
+    'xlarge': (font-size: 19, line-height: 28, push: 1),
    )
 ));
 
@@ -764,7 +764,7 @@ $f-list-5: generate-font-obj((
     'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
     'medium+': (font-size: 24, line-height: 32, push: -2),
     'large+': (font-size: 31, line-height: 40, letter-spacing: -.01em, push: 0),
-    'xxlarge': (font-size: 32, line-height: 40, push: 0),
+    'xlarge': (font-size: 32, line-height: 40, push: 0),
    )
 ));
 
@@ -796,7 +796,7 @@ $f-list-4: generate-font-obj((
     'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
     'medium+': (font-size: 24, line-height: 32, push: -2),
     'large+': (font-size: 28, line-height: 36, push: 0),
-    'xxlarge': (font-size: 29, line-height: 40, push: 0),
+    'xlarge': (font-size: 29, line-height: 40, push: 0),
    )
 ));
 
@@ -826,8 +826,8 @@ $f-list-3: generate-font-obj((
   font-loaded-class: $serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
-    'xlarge+': (font-size: 24, line-height: 32, push: 0),
-    'xxlarge': (font-size: 25, line-height: 32, push: 0),
+    'large': (font-size: 24, line-height: 32, push: 0),
+    'xlarge': (font-size: 25, line-height: 32, push: 0),
    )
 ));
 

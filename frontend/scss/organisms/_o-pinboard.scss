@@ -171,37 +171,3 @@
   }
 }
 
-@include breakpoint('xxlarge') {
-  .o-pinboard--3-col\@xxlarge::before {
-    display: block;
-    left: colspan(19, xxlarge);
-  }
-
-  .o-pinboard--3-col\@xxlarge::after {
-    display: block;
-    left: colspan(39, xxlarge);
-  }
-
-  .o-pinboard--3-col\@xxlarge > * {
-    width: colspan(grid-cols-to-colspan(3), 'xxlarge');
-  }
-
-  .o-pinboard--4-col\@xxlarge::before {
-    display: block;
-    left: colspan(14, xxlarge);
-    width: colspan(15, xxlarge);
-    border-right: 1px solid $color__rules--tertiary;
-    border-left: 1px solid $color__rules--tertiary;
-    background: transparent;
-  }
-
-  .o-pinboard--4-col\@xxlarge::after {
-    display: block;
-    left: colspan(44, xxlarge);
-  }
-
-  .o-pinboard--4-col\@xxlarge > * {
-    width: colspan(grid-cols-to-colspan(4), 'xxlarge');
-  }
-}
-

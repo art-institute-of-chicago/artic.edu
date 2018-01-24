@@ -48,12 +48,8 @@
     width: colspan(13, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(13, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
   }
 }
 
@@ -70,12 +66,8 @@
     margin-right: colspan(2, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-right: colspan(2, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    margin-right: colspan(2, xxlarge);
   }
 }
 

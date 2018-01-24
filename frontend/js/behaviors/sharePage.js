@@ -20,7 +20,6 @@ const sharePage = function(container) {
         medium: true,
         large: true,
         xlarge: true,
-        xxlarge: true,
       }
     });
   }

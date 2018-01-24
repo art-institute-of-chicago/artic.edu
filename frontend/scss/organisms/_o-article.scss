@@ -16,7 +16,7 @@
     width: 100%;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-bottom: 48px;
 
     &.m-article-header--gallery {
@@ -38,7 +38,7 @@
     margin-top: 12px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     float: left;
     width: colspan(13, xlarge);
     margin-top: 0;
@@ -48,15 +48,10 @@
       margin-top: 40px;
     }
   }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
-    margin-right: colspan(2, xxlarge);
-  }
 }
 
   .o-article__primary-actions::before {
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       content: '';
       position: absolute;
       left: 0;
@@ -70,7 +65,7 @@
   .o-article__primary-actions > *:not(:first-child):not([class*=f-]) {
     margin-top: 8px;
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       margin-top: 52px;
     }
   }
@@ -80,7 +75,7 @@
   }
 
   .o-article__primary-actions > .m-article-actions:first-child {
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       margin-top: 8px;
     }
   }
@@ -105,7 +100,7 @@
     width: colspan(38, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     display: none;
   }
 }
@@ -137,7 +132,7 @@
     margin-left: colspan(2, large);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     width: colspan(13, xlarge);
     margin-top: 0;
     margin-left: colspan(2, xlarge);
@@ -145,11 +140,6 @@
     &.o-article__secondary-actions--inline-header {
       margin-top: 40px;
     }
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(13, xxlarge);
-    margin-left: colspan(2, xxlarge);
   }
 }
 
@@ -216,16 +206,11 @@
     width: colspan(38, medium);
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     float: none;
     width: colspan(28, xlarge);
     margin-top: 0;
     margin-left: colspan(15, xlarge);
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(28, xxlarge);
-    margin-left: colspan(15, xxlarge);
   }
 }
 
@@ -234,7 +219,7 @@
   padding-top: .02px;
   padding-bottom: 28px;
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     margin-top: 40px;
     margin-bottom: 12px;
   }
@@ -300,7 +285,7 @@
     margin-top: 40px;
   }
 
-  @include breakpoint('xlarge+') {
+  @include breakpoint('xlarge') {
     float: none;
     width: colspan(28, xlarge);
     margin-top: 0;
@@ -309,11 +294,6 @@
     .o-article__intro ~ & {
       margin-top: 28px;
     }
-  }
-
-  @include breakpoint('xxlarge') {
-    width: colspan(28, xxlarge);
-    margin-left: colspan(15, xxlarge);
   }
 }
 
