@@ -15,4 +15,19 @@ class ArtistRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function afterSave($object, $fields)
+    {
+        $object->siteTags()->sync($fields['siteTags'] ?? []);
+        $this->updateBrowser($object, $fields, 'articles');
+        parent::afterSave($object, $fields);
+    }
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+        $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
+        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');
+        return $fields;
+    }
+
 }

@@ -29,6 +29,7 @@ class ArticleController extends ModuleController
             'edit_link' => true,
             'sort' => true,
             'field' => 'date',
+            'present' => true
         ],
     ];
 

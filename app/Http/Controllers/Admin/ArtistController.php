@@ -1,51 +1,45 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Repositories\SiteTagRepository;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-
-class ArtistController extends ModuleController
+class ArtistController extends BaseApiController
 {
     protected $moduleName = 'artists';
+    protected $modelName  = 'Artist';
+    protected $modelNameApi  = 'Api\Artist';
+    protected $hasAugmentedModel = true;
 
     protected $indexOptions = [
         'publish' => false,
+        'bulkPublish' => false,
+        'feature' => false,
+        'bulkFeature' => false,
+        'restore' => false,
+        'bulkRestore' => false,
+        'bulkDelete' => false,
+        'reorder' => false,
+        'permalink' => false,
     ];
 
-    protected $titleColumnKey = 'name';
+    protected $titleColumnKey = 'title';
 
     protected $indexColumns = [
-        'name' => [
+        'title' => [
             'title' => 'Name',
-            'edit_link' => true,
-            'sort' => true,
-            'field' => 'name',
+            'field' => 'title',
+        ],
+        'augmented' => [
+            'title' => 'Augmented?',
+            'field' => 'augmented',
         ],
         'datahub_id' => [
             'title' => 'Datahub ID',
-            'edit_link' => true,
-            'sort' => true,
             'field' => 'datahub_id',
         ],
     ];
 
-    protected $defaultOrders = ['name' => 'asc'];
-
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
-
-    /*
-     * Relations to eager load for the form view
-     */
-    protected $formWith = [];
-
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
-    protected $filters = [];
+    protected $formWith = ['siteTags'];
 
     protected function indexData($request)
     {
@@ -54,7 +48,9 @@ class ArtistController extends ModuleController
 
     protected function formData($request)
     {
-        return [];
+        return [
+            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+        ];
     }
 
 }

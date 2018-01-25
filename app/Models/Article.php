@@ -71,11 +71,6 @@ class Article extends Model
         return $this->belongsToMany('App\Models\Category', 'article_category');
     }
 
-    public function artists()
-    {
-        return $this->belongsToMany('App\Models\Artist', 'article_artist')->withPivot('position')->orderBy('position');
-    }
-
     public function selections()
     {
         return $this->belongsToMany('App\Models\Selection')->withPivot('position')->orderBy('position');

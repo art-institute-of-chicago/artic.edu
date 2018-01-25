@@ -26,7 +26,6 @@ class ArticleRepository extends ModuleRepository
         $this->updateBrowserApiRelated($object, $fields, 'artworks');
         $this->updateBrowserApiRelated($object, $fields, 'exhibitions');
         $this->updateBrowser($object, $fields, 'articles');
-        $this->updateBrowser($object, $fields, 'artists');
         $this->updateBrowser($object, $fields, 'selections');
 
         parent::afterSave($object, $fields);
@@ -39,8 +38,8 @@ class ArticleRepository extends ModuleRepository
 
         $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'whatson');
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
+
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');
-        $fields['browsers']['artists'] = $this->getFormFieldsForBrowser($object, 'artists', 'whatson');
         $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'whatson');
 
         return $fields;

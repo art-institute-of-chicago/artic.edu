@@ -89,13 +89,5 @@
             'label' => 'Related Exhibitions',
         ])
 
-        @formField('browser', [
-            'routePrefix' => 'whatson',
-            'name' => 'artists',
-            'moduleName' => 'artists',
-            'max' => 20,
-            'label' => 'Related Artists',
-        ])
-
     </a17-fieldset>
 @endsection
