@@ -29,58 +29,60 @@
         </div>
     @endcomponent
 
-
-    <nav class="m-links-bar">
-      <ul class="m-links-bar__items-primary">
-
-        <li class="m-links-bar__item m-links-bar__item--primary">
-            @component('components.atoms._dropdown')
-              @slot('prompt', 'Decade: 2010-2017')
-              @slot('ariaTitle', 'Select decade')
-              @slot('variation','dropdown--filter f-buttons')
-              @slot('font', 'f-buttons')
-              @slot('options', array(
-                array('href' => '#', 'label' => '2010-2017'),
-                array('href' => '#', 'label' => '2000-2009'),
-                array('href' => '#', 'label' => '1990-1999'),
-                array('href' => '#', 'label' => '1980-1989'),
-                array('href' => '#', 'label' => '1970-1979'),
-                array('href' => '#', 'label' => '1960-1969'),
-              ))
-            @endcomponent
-        </li>
-        <li class="m-links-bar__item m-links-bar__item--primary">
-            @component('components.atoms._dropdown')
-              @slot('prompt', 'Year: 2017')
-              @slot('ariaTitle', 'Select decade')
-              @slot('variation','dropdown--filter f-buttons')
-              @slot('font', 'f-buttons')
-              @slot('options', array(
-                array('href' => '#', 'label' => '2017'),
-                array('href' => '#', 'label' => '2016'),
-                array('href' => '#', 'label' => '2015'),
-                array('href' => '#', 'label' => '2014'),
-                array('href' => '#', 'label' => '2013'),
-                array('href' => '#', 'label' => '2012'),
-                array('href' => '#', 'label' => '2011'),
-                array('href' => '#', 'label' => '2010'),
-              ))
-            @endcomponent
-        </li>
-        <li class="m-links-bar__item m-links-bar__item--search">
-            @component('components.molecules._m-search-bar')
-                @slot('variation', 'm-search-bar--subtle')
-                @slot('placeholder','Keyword')
-                @slot('name', 'exhibition-history-search')
-            @endcomponent
-        </li>
-
-      </ul>
-    </nav>
+    @component('components.molecules._m-links-bar')
+        @slot('variation','m-links-bar--filters')
+        @slot('primaryHtml')
+            <li class="m-links-bar__item m-links-bar__item--primary">
+                @component('components.atoms._dropdown')
+                  @slot('prompt', 'Decade: 2010-2017')
+                  @slot('ariaTitle', 'Select decade')
+                  @slot('variation','dropdown--filter f-buttons')
+                  @slot('font', 'f-buttons')
+                  @slot('options', array(
+                    array('href' => '#', 'label' => '2010-2017', 'active' => true),
+                    array('href' => '#', 'label' => '2000-2009'),
+                    array('href' => '#', 'label' => '1990-1999'),
+                    array('href' => '#', 'label' => '1980-1989'),
+                    array('href' => '#', 'label' => '1970-1979'),
+                    array('href' => '#', 'label' => '1960-1969'),
+                  ))
+                @endcomponent
+            </li>
+            <li class="m-links-bar__item m-links-bar__item--primary">
+                @component('components.atoms._dropdown')
+                  @slot('prompt', 'Year: 2016')
+                  @slot('ariaTitle', 'Select decade')
+                  @slot('variation','dropdown--filter f-buttons')
+                  @slot('font', 'f-buttons')
+                  @slot('options', array(
+                    array('href' => '#', 'label' => '2017'),
+                    array('href' => '#', 'label' => '2016', 'active' => true),
+                    array('href' => '#', 'label' => '2015'),
+                    array('href' => '#', 'label' => '2014'),
+                    array('href' => '#', 'label' => '2013'),
+                    array('href' => '#', 'label' => '2012'),
+                    array('href' => '#', 'label' => '2011'),
+                    array('href' => '#', 'label' => '2010'),
+                  ))
+                @endcomponent
+            </li>
+            <li class="m-links-bar__item m-links-bar__item--search">
+                @component('components.molecules._m-search-bar')
+                    @slot('variation', 'm-search-bar--subtle')
+                    @slot('placeholder','Keyword')
+                    @slot('name', 'keyword')
+                    @slot('action', '/statics/exhibition_history')
+                    @slot('clearLink', '/statics/exhibition_history')
+                    @slot('value', $_GET['keyword'] ?? null)
+                @endcomponent
+            </li>
+        @endslot
+    @endcomponent
 
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'Showing 10 out of 23 Exhibitions', 'href' => '#')))
-        2017
+        @slot('titleFont', 'f-numeral-date')
+        2016
     @endcomponent
 
     @component('components.atoms._hr')

@@ -3,7 +3,7 @@
     $isTabs = (isset($variation) and $variation === 'm-links-bar--tabs');
     $linksPrimaryFontClass = (isset($variation) and $variation === 'm-links-bar--buttons') ? ' btn f-buttons' : $linksPrimaryFontClass;
     $linksPrimaryFontClass = ($isTabs) ? ' f-module-title-2' : $linksPrimaryFontClass;
-    $activePrimaryLink = array_search(true, array_column($linksPrimary, 'active'));
+    $activePrimaryLink = isset($linksPrimary) ? array_search(true, array_column($linksPrimary, 'active')) : false;
 @endphp
 <nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{{ (isset($overflow) and $overflow) ? ' data-behavior=linksBar' : '' }}>
   @if ((isset($linksPrimary) and $linksPrimary) or (isset($primaryHtml) and $primaryHtml))

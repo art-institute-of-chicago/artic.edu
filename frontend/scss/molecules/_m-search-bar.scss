@@ -32,7 +32,8 @@
   }
 }
 
-.m-search-bar button {
+.m-search-bar__submit,
+.m-search-bar__clear {
   display: block;
   flex: 0 0 auto;
   width: 56px;
@@ -45,6 +46,8 @@
   border-bottom-right-radius: $border-radius;
   background: $color__bg--tertiary;
   color: $color__white;
+  line-height: 56px;
+  text-align: center;
   cursor: pointer;
 
   &:hover,
@@ -53,16 +56,38 @@
   }
 }
 
+.m-search-bar__clear {
+  display: none;
+}
+
+// juggle if there is a value on load
+.m-search-bar .s-populated ~ .m-search-bar__submit {
+  display: none;
+}
+
+.m-search-bar .s-populated ~ .m-search-bar__clear {
+  display: inline-block;
+}
+
+.m-search-bar__submit svg,
+.m-search-bar__clear svg {
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+}
 
 
 
 .m-search-bar--subtle input[type=text],
-.m-search-bar--subtle button {
+.m-search-bar__submit,
+.m-search-bar__clear {
   border-radius: 0;
   background-color: transparent;
 }
 
-.m-search-bar--subtle button {
+.m-search-bar__submit,
+.m-search-bar__clear {
   color: $color__text--secondary;
 
   &:hover,

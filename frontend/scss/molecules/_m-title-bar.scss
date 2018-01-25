@@ -13,7 +13,8 @@
   }
 
   hr + &,
-  .hr + & {
+  .hr + &,
+  .m-links-bar--filters + & {
     margin-top: 0;
     padding-top: 0;
     border-top: 0;
@@ -32,6 +33,10 @@
 
 .m-title-bar .title.f-module-title-2 {
   @include tucked-margin-top($f-module-title-2, ('xsmall': 68, 'medium': 80));
+}
+
+.m-title-bar .title.f-numeral-date {
+  @include tucked-margin-top($f-numeral-date, ('xsmall': 68, 'medium': 80));
 }
 
 .m-title-bar__links {
