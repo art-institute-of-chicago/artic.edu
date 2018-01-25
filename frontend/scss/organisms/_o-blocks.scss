@@ -25,6 +25,10 @@
     }
   }
 
+  & > .hr + .f-subheading-1 {
+    @include tucked-margin-top($f-subheading-1, ('xsmall': 28));
+  }
+
   & > .f-list-2 {
     @include tucked-margin-top($f-list-2, ('xsmall': 56));
 

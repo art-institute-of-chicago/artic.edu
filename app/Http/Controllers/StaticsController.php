@@ -734,6 +734,8 @@ class StaticsController extends Controller {
     $article->push('relatedExhibitions', $this->getExhibitions(4));
     $article->push('catalogues', $this->generateFiles($this->faker->numberBetween(1,3)));
 
+    $article->push('otherResources', $this->generateFiles($this->faker->numberBetween(2,5)));
+
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
       'article' => $article,
@@ -1334,8 +1336,8 @@ class StaticsController extends Controller {
   private function generateFile() {
     return array(
         'thumb' => $this->getImage(210,290),
-        'name' => 'AIC1970PandS69thAn_comb.pdf',
-        'extension' => 'PDF',
+        'name' => 'AIC1970PandS69thAn_comb',
+        'extension' => 'pdf',
         'size' => '2.1MB',
         'link' => '#',
     );

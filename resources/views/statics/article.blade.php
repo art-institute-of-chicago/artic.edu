@@ -159,6 +159,20 @@
         @endforeach
     @endif
 
+    @if ($article->otherResources)
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-subheading-1')
+            @slot('tag', 'h4')
+            Other Resource{{ sizeof($article->otherResources) > 1 ? 's' : '' }}
+        @endcomponent
+        @component('components.molecules._m-link-list')
+            @slot('variation', 'm-link-list--download')
+            @slot('links', $article->otherResources);
+        @endcomponent
+    @endif
+
     @if ($article->speakers)
         @component('components.blocks._text')
             @slot('font', 'f-module-title-2')

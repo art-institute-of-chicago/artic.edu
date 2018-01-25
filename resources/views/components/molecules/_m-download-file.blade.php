@@ -11,13 +11,11 @@
     @endif
     <span class="m-download-file__meta f-secondary">
         @if (isset($file['name']))
-            {{ $file['name'] }}<br>
+            {{ $file['name'] }}@if (isset($file['extension'])).{{ strtolower($file['extension']) }}@endif
         @endif
+        <br>
         @if (isset($file['extension']))
-            {{ strtoupper($file['extension']) }}
-        @endif
-        @if (isset($file['extension']) and isset($file['size']))
-            {{ ', '}}
+            {{ strtoupper($file['extension']) }}@if (isset($file['size'])){{ ', '}}@endif
         @endif
         @if (isset($file['size']))
             {{ $file['size'] }}
