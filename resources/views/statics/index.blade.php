@@ -27,6 +27,7 @@
   <li><br><a href="/statics/collection">collection</a></li>
   <li><br><a href="/statics/visit">visit</a></li>
   <li><br><a href="/statics/exhibition_history">exhibition history</a></li>
+  <li><a href="/statics/exhibition_history_detail">exhibition history details</a></li>
 </ul>
 
 @endsection

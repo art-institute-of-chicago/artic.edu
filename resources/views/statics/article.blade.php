@@ -285,7 +285,7 @@
 @if ($article->relatedExhibitions)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all exhibitions', 'href' => '#')))
-        Related Exhibitions
+        {{ $article->relatedExhibitionsTitle ? $article->relatedExhibitionsTitle : "Related Exhibitions" }}
     @endcomponent
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')

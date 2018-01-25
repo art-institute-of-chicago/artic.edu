@@ -90,7 +90,7 @@
 
     @component('components.organisms._o-row-listing')
         @foreach ($exhibitions as $exhibition)
-            @component('components.molecules._m-listing----exhibition-row')
+            @component('components.molecules._m-listing----exhibition-history-row')
                 @slot('variation', 'm-listing--row')
                 @slot('exhibition', $exhibition)
             @endcomponent

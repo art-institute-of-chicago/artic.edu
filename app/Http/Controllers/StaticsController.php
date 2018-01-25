@@ -703,7 +703,7 @@ class StaticsController extends Controller {
         'hideCaption' => true,
        ),
       'blocks' => $this->generateBlocks(1),
-      'exhibitions' => $this->getExhibitions(10),
+      'exhibitions' => $this->getExhibitionHistoryDetails(10),
       'recentlyViewedArtworks' => $this->getArtworks($this->faker->numberBetween(6,20)),
       'interestedThemes' => array(
         array(
@@ -719,6 +719,23 @@ class StaticsController extends Controller {
           'label' => "European Art",
         ),
       ),
+    ]);
+  }
+
+  public function exhibition_history_detail() {
+
+    $blocks = array();
+
+    $article = $this->getExhibitionHistoryDetail();
+    $article->push('articleType', 'exhibitionHistory');
+    $article->push('blocks', $blocks);
+    $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
+    $article->push('relatedExhibitionsTitle', 'On View');
+    $article->push('relatedExhibitions', $this->getExhibitions(4));
+
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'hero'),
+      'article' => $article,
     ]);
   }
 
@@ -1089,6 +1106,30 @@ class StaticsController extends Controller {
       array_push($exhibitions, $exhibition);
     }
     return $exhibitions;
+  }
+
+  private function getExhibitionHistoryDetail() {
+
+    $boolean = $this->faker->boolean();
+
+    return new StaticObjectPresenter([
+      "type" => "exhibition",
+      "id" => $this->faker->uuid,
+      "slug" => $boolean ? "/statics/exhibition_history_detail" : null,
+      "title" => $this->faker->sentence(6, true),
+      "date" => $this->getFormattedDateString().' - '.$this->getFormattedDateString(),
+      "image" => $boolean ? $this->getImage() : null,
+      'intro' => $this->faker->paragraph(6, false),
+    ]);
+  }
+
+  private function getExhibitionHistoryDetails($num = 3) {
+    $items = array();
+    for ($i = 0; $i < $num; $i++) {
+      $item = $this->getExhibitionHistoryDetail();
+      array_push($items, $item);
+    }
+    return $items;
   }
 
   private function getEvent() {

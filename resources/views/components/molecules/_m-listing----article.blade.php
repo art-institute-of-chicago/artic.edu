@@ -10,7 +10,10 @@
         <span class="m-listing__meta">
             <em class="type f-tag">{{ $article->subtype }}</em>
             <br>
-            <strong class="title {{ $titleFont ?? 'f-list-3' }}">{{ $article->title }}</strong>
+            @component('components.atoms._title')
+                @slot('font', $titleFont ?? 'f-list-3')
+                {{ $article->title }}
+            @endcomponent
             <br>
             <span class="intro {{ $captionFont ?? 'f-caption' }}">{{ $article->intro }}</span>
         </span>
