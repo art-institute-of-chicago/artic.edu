@@ -3,10 +3,10 @@
 namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
-use A17\CmsToolkit\Repositories\ModuleRepository;
+use App\Repositories\Api\BaseApiRepository;
 use App\Models\Artist;
 
-class ArtistRepository extends ModuleRepository
+class ArtistRepository extends BaseApiRepository
 {
     use HandleSlugs;
 

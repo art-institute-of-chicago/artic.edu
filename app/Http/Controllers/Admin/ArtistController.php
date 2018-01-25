@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Repositories\SiteTagRepository;
 
 class ArtistController extends BaseApiController
@@ -35,7 +36,7 @@ class ArtistController extends BaseApiController
         ],
         'datahub_id' => [
             'title' => 'Datahub ID',
-            'field' => 'datahub_id',
+            'field' => 'id',
         ],
     ];
 
