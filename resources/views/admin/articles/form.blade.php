@@ -56,13 +56,6 @@
 
 @section('fieldsets')
     <a17-fieldset id="attributes" title="Related">
-        @formField('browser', [
-            'routePrefix' => 'whatson',
-            'name' => 'exhibitions',
-            'moduleName' => 'exhibitions',
-            'max' => 20,
-            'label' => 'Related Exhibitions',
-        ])
 
         @formField('browser', [
             'routePrefix' => 'whatson',
@@ -74,18 +67,35 @@
 
         @formField('browser', [
             'routePrefix' => 'whatson',
+            'name' => 'selections',
+            'moduleName' => 'selections',
+            'max' => 20,
+            'label' => 'Related Selections',
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'name' => 'artworks',
+            'moduleName' => 'artworks',
+            'label' => 'Artworks',
+            'max' => 500
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'name' => 'exhibitions',
+            'moduleName' => 'exhibitions',
+            'max' => 20,
+            'label' => 'Related Exhibitions',
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
             'name' => 'artists',
             'moduleName' => 'artists',
             'max' => 20,
             'label' => 'Related Artists',
         ])
 
-        @formField('browser', [
-            'routePrefix' => 'whatson',
-            'name' => 'selections',
-            'moduleName' => 'selections',
-            'max' => 20,
-            'label' => 'Related Selections',
-        ])
     </a17-fieldset>
 @endsection

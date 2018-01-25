@@ -8,10 +8,11 @@ use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Models\Article;
+use App\Repositories\Behaviors\HandleApiRelations;
 
 class ArticleRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiRelations;
 
     public function __construct(Article $model)
     {
@@ -22,7 +23,8 @@ class ArticleRepository extends ModuleRepository
     {
         $object->categories()->sync($fields['categories'] ?? []);
 
-        $this->updateBrowser($object, $fields, 'exhibitions');
+        $this->updateBrowserApiRelated($object, $fields, 'artworks');
+        $this->updateBrowserApiRelated($object, $fields, 'exhibitions');
         $this->updateBrowser($object, $fields, 'articles');
         $this->updateBrowser($object, $fields, 'artists');
         $this->updateBrowser($object, $fields, 'selections');
@@ -35,7 +37,8 @@ class ArticleRepository extends ModuleRepository
         $fields = parent::getFormFields($object);
         $fields = $this->getFormFieldsForMultiSelect($fields, 'categories', 'id');
 
-        $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowser($object, 'exhibitions', 'whatson');
+        $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'whatson');
+        $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');
         $fields['browsers']['artists'] = $this->getFormFieldsForBrowser($object, 'artists', 'whatson');
         $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'whatson');
