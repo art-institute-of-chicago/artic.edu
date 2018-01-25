@@ -18,7 +18,7 @@ class ArtworkRepository extends BaseApiRepository
 
     public function afterSave($object, $fields)
     {
-        $object->siteTags()->sync($fields['site_tags'] ?? []);
+        $object->siteTags()->sync($fields['siteTags'] ?? []);
         $this->updateOrderedBelongsTomany($object, $fields, 'articles');
         $this->updateOrderedBelongsTomany($object, $fields, 'exhibitions');
 
@@ -28,7 +28,7 @@ class ArtworkRepository extends BaseApiRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
+        $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
 
         return $fields;
     }

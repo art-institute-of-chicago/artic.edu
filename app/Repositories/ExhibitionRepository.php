@@ -27,7 +27,7 @@ class ExhibitionRepository extends BaseApiRepository
 
     public function afterSave($object, $fields)
     {
-        $object->siteTags()->sync($fields['site_tags'] ?? []);
+        $object->siteTags()->sync($fields['siteTags'] ?? []);
 
         $this->updateBrowserApiRelated($object, $fields, 'exhibitions');
         $this->updateBrowser($object, $fields, 'events');
@@ -40,7 +40,7 @@ class ExhibitionRepository extends BaseApiRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
+        $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
 
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'whatson');

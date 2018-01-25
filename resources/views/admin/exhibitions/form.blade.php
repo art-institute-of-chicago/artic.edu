@@ -54,7 +54,7 @@
         ])
 
         @formField('multi_select', [
-            'name' => 'site_tags',
+            'name' => 'siteTags',
             'label' => 'Tags',
             'options' => $siteTagsList,
             'placeholder' => 'Select some tags',
