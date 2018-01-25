@@ -159,10 +159,14 @@
   color: $color__text--title;
 }
 
-.dropdown > ul a:not([class]):active,
-.dropdown > ul .s-active a:not([class]) {
+.dropdown > ul a:not([class]):active {
   background-color: $color__bg--primary;
   color: $color__text--title;
+}
+
+.dropdown > ul .s-active a:not([class]) {
+  background-color: $color__black--90;
+  color: $color__text--title-contrast;
 }
 
 
