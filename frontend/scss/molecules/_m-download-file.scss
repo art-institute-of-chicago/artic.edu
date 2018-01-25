@@ -1,0 +1,52 @@
+/***
+
+```
+<p class="m-download-file">
+            <img alt="" class="m-download-file__img" src="http://placeimg.com/210/290/nature" sizes="" srcset="http://placeimg.com/210/290/nature 210w" width="210" height="290">
+        <span class="m-download-file__meta f-secondary">
+                    AIC1970PandS69thAn_comb.pdf<br>
+                            PDF
+                            ,
+                            2.1MB
+            </span>
+    <a class="btn  btn--secondary btn--icon-sq m-download-file__button" href="#" download="">
+      <svg class="icon--download--24" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--download--24"></use></svg>
+    </a>
+</p>
+```
+
+***/
+
+.m-download-file {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  margin-top: 40px;
+  border: 1px solid $color__rules--primary;
+
+  & + & {
+    margin-top: -1px;
+  }
+}
+
+.m-download-file__img {
+  flex: 0 0 auto;
+  width: 120px;
+  height: auto;
+  margin: 20px;
+}
+
+.m-download-file__meta {
+  flex: 0 0 auto;
+  margin-bottom: 80px;
+}
+
+.m-download-file__meta.f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 38));
+}
+
+.m-download-file__button {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}

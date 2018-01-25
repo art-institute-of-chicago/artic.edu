@@ -144,6 +144,21 @@
         @slot('dropCapFirstPara', ($article->articleType === 'editorial'))
     @endcomponent
 
+    @if ($article->catalogues)
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-subheading-1')
+            @slot('tag', 'h4')
+            Catalogue{{ sizeof($article->catalogues) > 1 ? 's' : '' }}
+        @endcomponent
+        @foreach ($article->catalogues as $catalogue)
+            @component('components.molecules._m-download-file')
+                @slot('file', $catalogue)
+            @endcomponent
+        @endforeach
+    @endif
+
     @if ($article->speakers)
         @component('components.blocks._text')
             @slot('font', 'f-module-title-2')

@@ -732,6 +732,7 @@ class StaticsController extends Controller {
     $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
     $article->push('relatedExhibitionsTitle', 'On View');
     $article->push('relatedExhibitions', $this->getExhibitions(4));
+    $article->push('catalogues', $this->generateFiles($this->faker->numberBetween(1,3)));
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
@@ -1328,6 +1329,25 @@ class StaticsController extends Controller {
       array_push($articles, $article);
     }
     return $articles;
+  }
+
+  private function generateFile() {
+    return array(
+        'thumb' => $this->getImage(210,290),
+        'name' => 'AIC1970PandS69thAn_comb.pdf',
+        'extension' => 'PDF',
+        'size' => '2.1MB',
+        'link' => '#',
+    );
+  }
+
+  private function generateFiles($num = 3) {
+    $files = array();
+    for ($i = 0; $i < $num; $i++) {
+      $file = $this->generateFile();
+      array_push($files, $file);
+    }
+    return $files;
   }
 
   private function getSelection() {
