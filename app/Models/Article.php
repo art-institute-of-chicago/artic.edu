@@ -16,14 +16,23 @@ class Article extends Model
 
     protected $fillable = [
         'published',
+        'date',
         'content',
         'title',
-        'date',
+        'heading',
         'copy',
+        'type',
+        'citation',
+        'layout_type'
     ];
 
     public $slugAttributes = [
         'title',
+    ];
+
+    public static $articleLayouts = [
+        0 => 'Basic',
+        1 => 'Large Feature',
     ];
 
     public $nullable = [];
@@ -47,6 +56,14 @@ class Article extends Model
                 ],
             ],
         ],
+        'author' => [
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ]
+        ]
     ];
 
     public function categories()

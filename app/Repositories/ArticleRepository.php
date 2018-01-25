@@ -42,4 +42,8 @@ class ArticleRepository extends ModuleRepository
 
         return $fields;
     }
+
+    public function getArticleLayoutsList() {
+        return collect($this->model::$articleLayouts);
+    }
 }

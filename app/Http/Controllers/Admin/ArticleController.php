@@ -50,7 +50,7 @@ class ArticleController extends ModuleController
     {
         return [
             'categoriesList' => app(CategoryRepository::class)->listAll('name'),
+            'articleLayoutsList' => $this->repository->getArticleLayoutsList()
         ];
     }
-
 }
