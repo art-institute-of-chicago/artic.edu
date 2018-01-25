@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-use App\Repositories\SiteTagRepository;
+use App\Repositories\CategoryRepository;
 
 class ArticleController extends ModuleController
 {
@@ -34,7 +34,7 @@ class ArticleController extends ModuleController
 
     protected $indexWith = [];
 
-    protected $formWith = ['revisions', 'siteTags'];
+    protected $formWith = ['revisions', 'categories'];
 
     protected $filters = [];
 
@@ -49,7 +49,7 @@ class ArticleController extends ModuleController
     protected function formData($request)
     {
         return [
-            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+            'categoriesList' => app(CategoryRepository::class)->listAll('name'),
         ];
     }
 

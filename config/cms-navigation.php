@@ -93,15 +93,11 @@ return [
                 'module' => true,
             ],
             'categories' => [
-                'title' => 'Categories',
+                'title' => 'Article Categories',
                 'module' => true,
             ],
             'siteTags' => [
                 'title' => 'Tags',
-                'module' => true,
-            ],
-            'segments' => [
-                'title' => 'Segments',
                 'module' => true,
             ],
             'hours' => [

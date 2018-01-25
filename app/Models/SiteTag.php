@@ -16,9 +16,4 @@ class SiteTag extends Model
     public $slugAttributes = [
         'name',
     ];
-
-    public function segments()
-    {
-        return $this->morphToMany(\App\Models\Segment::class, 'segmentable');
-    }
 }

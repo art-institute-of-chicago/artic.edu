@@ -8,10 +8,10 @@
     ])
 
     @formField('multi_select', [
-        'name' => 'siteTags',
-        'label' => 'Tags',
-        'options' => $siteTagsList,
-        'placeholder' => 'Select some tags',
+        'name' => 'categories',
+        'label' => 'Categories',
+        'options' => $categoriesList,
+        'placeholder' => 'Select some categories',
     ])
 
     @formField('input', [

@@ -49,9 +49,9 @@ class Article extends Model
         ],
     ];
 
-    public function siteTags()
+    public function categories()
     {
-        return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
+        return $this->belongsToMany('App\Models\Category', 'article_category');
     }
 
     public function exhibitions()

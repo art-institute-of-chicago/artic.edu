@@ -20,7 +20,7 @@ class ArticleRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $object->siteTags()->sync($fields['siteTags'] ?? []);
+        $object->categories()->sync($fields['categories'] ?? []);
 
         $this->updateBrowser($object, $fields, 'exhibitions');
         $this->updateBrowser($object, $fields, 'articles');
@@ -33,7 +33,7 @@ class ArticleRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
+        $fields = $this->getFormFieldsForMultiSelect($fields, 'categories', 'id');
 
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowser($object, 'exhibitions', 'whatson');
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');
