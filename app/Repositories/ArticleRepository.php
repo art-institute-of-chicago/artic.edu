@@ -23,8 +23,7 @@ class ArticleRepository extends ModuleRepository
     {
         $object->categories()->sync($fields['categories'] ?? []);
 
-        $this->updateBrowserApiRelated($object, $fields, 'artworks');
-        $this->updateBrowserApiRelated($object, $fields, 'exhibitions');
+        $this->updateBrowserApiRelated($object, $fields, ['artworks', 'exhibitions']);
         $this->updateBrowser($object, $fields, 'articles');
         $this->updateBrowser($object, $fields, 'selections');
 

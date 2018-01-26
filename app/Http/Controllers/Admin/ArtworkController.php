@@ -7,9 +7,9 @@ use App\Repositories\SiteTagRepository;
 class ArtworkController extends BaseApiController
 {
     protected $moduleName = 'artworks';
-    protected $modelName  = 'Artwork';
+    protected $modelName  = 'Api\Artwork';
     protected $modelNameApi  = 'Api\Artwork';
-    protected $hasAugmentedModel = true;
+    protected $hasAugmentedModel = false;
 
     protected $indexOptions = [
         'publish' => false,
@@ -26,16 +26,10 @@ class ArtworkController extends BaseApiController
     protected $indexColumns = [
         'title' => [
             'title' => 'Title',
-            'edit_link' => true,
             'field' => 'title',
-        ],
-        'augmented' => [
-            'title' => 'Augmented?',
-            'field' => 'augmented',
         ],
         'datahub_id' => [
             'title' => 'Datahub ID',
-            'edit_link' => true,
             'field' => 'id',
         ],
     ];

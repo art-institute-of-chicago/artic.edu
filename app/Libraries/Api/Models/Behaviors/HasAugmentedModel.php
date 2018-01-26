@@ -4,7 +4,7 @@ namespace App\Libraries\Api\Models\Behaviors;
 
 trait HasAugmentedModel
 {
-    public $augmented = false;
+    protected $augmented = false;
 
     protected $augmentedModel;
     protected $augmentedModelClass;
@@ -17,11 +17,6 @@ trait HasAugmentedModel
 
     public function getAugmentedModel()
     {
-        return $this->augmentedModel;
-    }
-
-    public function getAugmentedModelLoaded()
-    {
         if ($this->augmentedModel)
             return $this->augmentedModel;
 
@@ -31,7 +26,7 @@ trait HasAugmentedModel
 
     public function hasAugmentedModel()
     {
-        return empty($this->augmentedModel);
+        return $this->augmented;
     }
 
     /**

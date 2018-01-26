@@ -28,12 +28,11 @@ class PageRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        // Homepage
-        $this->updateBrowserApiRelated($object, $fields, 'homeExhibitions');
-        $this->updateBrowser($object, $fields, 'homeEvents');
+        // General
+        $this->updateBrowserApiRelated($object, $fields, ['homeExhibitions', 'exhibitionsExhibitions']);
 
-        // Exhibitions & Events
-        $this->updateBrowserApiRelated($object, $fields, 'exhibitionsExhibitions');
+        // Homepage
+        $this->updateBrowser($object, $fields, 'homeEvents');
 
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');

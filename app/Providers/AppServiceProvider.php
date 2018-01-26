@@ -23,10 +23,8 @@ class AppServiceProvider extends ServiceProvider
     public function registerMorphMap()
     {
         Relation::morphMap([
-            'exhibitions' => 'App\Models\Exhibition',
             'events' => 'App\Models\Event',
             'articles' => 'App\Models\Article',
-            'artworks' => 'App\Models\Artwork',
             'selections' => 'App\Models\Selection',
             'artists' => 'App\Models\Artist'
         ]);

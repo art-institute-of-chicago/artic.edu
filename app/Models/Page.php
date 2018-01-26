@@ -62,14 +62,19 @@ class Page extends Model
         ],
     ];
 
+    public function apiElements()
+    {
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
+    }
+
     public function homeExhibitions()
     {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'homeExhibitions');
+        return $this->apiElements()->where('relation', 'homeExhibitions');
     }
 
     public function exhibitionsExhibitions()
     {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'exhibitionsExhibitions');
+        return $this->apiElements()->where('relation', 'exhibitionsExhibitions');
     }
 
     public function homeEvents()

@@ -20,7 +20,9 @@ class Exhibition extends BaseApiModel
         'last_updated' => 'datetime'
     ];
 
+    protected $augmented = true;
     protected $augmentedModelClass = 'App\Models\Exhibition';
+
     protected $presenterAdmin      = 'App\Presenters\Admin\ExhibitionPresenter';
 
 }

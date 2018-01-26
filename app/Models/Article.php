@@ -20,6 +20,7 @@ class Article extends Model
         'content',
         'title',
         'heading',
+        'author',
         'copy',
         'type',
         'citation',
@@ -81,13 +82,18 @@ class Article extends Model
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
     }
 
+    public function apiElements()
+    {
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
+    }
+
     public function artworks()
     {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'artworks');
+        return $this->apiElements()->where('relation', 'artworks');
     }
 
     public function exhibitions()
     {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'exhibitions');
+        return $this->apiElements()->where('relation', 'exhibitions');
     }
 }

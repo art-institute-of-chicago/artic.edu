@@ -46,9 +46,14 @@ class Selection extends Model
         ],
     ];
 
+    public function apiElements()
+    {
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
+    }
+
     public function artworks()
     {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position')->where('relation', 'artworks');
+        return $this->apiElements()->where('relation', 'artworks');
     }
 
     public function articles()

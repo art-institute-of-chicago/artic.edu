@@ -29,7 +29,7 @@ class ExhibitionRepository extends BaseApiRepository
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
 
-        $this->updateBrowserApiRelated($object, $fields, 'exhibitions');
+        $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
         $this->updateBrowser($object, $fields, 'events');
 
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
@@ -43,7 +43,9 @@ class ExhibitionRepository extends BaseApiRepository
         $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
 
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
+
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'whatson');
+        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'general');
 
         return $fields;
     }

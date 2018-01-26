@@ -5,8 +5,9 @@ namespace App\Repositories\Api;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 
 use App\Models\Api\Exhibition;
+use App\Repositories\Api\BaseApiRepository;
 
-class ExhibitionRepository extends ModuleRepository
+class ExhibitionRepository extends BaseApiRepository
 {
     public function __construct(Exhibition $model)
     {

@@ -19,7 +19,7 @@ class SelectionRepository extends BaseApiRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateBrowserApiRelated($object, $fields, 'artworks');
+        $this->updateBrowserApiRelated($object, $fields, ['artworks']);
         $this->updateBrowser($object, $fields, 'selections');
         $this->updateBrowser($object, $fields, 'articles');
 

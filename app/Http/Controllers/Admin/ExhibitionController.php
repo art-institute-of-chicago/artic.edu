@@ -42,8 +42,6 @@ class ExhibitionController extends BaseApiController
 
     protected $formWith = ['revisions', 'siteTags'];
 
-    protected $defaultFilters = ['search' => '%title'];
-
     protected $defaultOrders = ['title' => 'desc'];
 
     protected $filters = [];

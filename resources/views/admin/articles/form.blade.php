@@ -33,7 +33,7 @@
     ])
 
     @formField('input', [
-        'name' => 'headline',
+        'name' => 'heading',
         'label' => 'Headline',
         'rows' => 3,
         'type' => 'textarea'

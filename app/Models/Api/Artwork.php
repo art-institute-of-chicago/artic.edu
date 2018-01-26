@@ -11,6 +11,4 @@ class Artwork extends BaseApiModel
         'resource'   => '/api/v1/artworks/{id}',
         'search'     => '/api/v1/artworks/search'
     ];
-
-    protected $augmentedModelClass = 'App\Models\Artwork';
 }
