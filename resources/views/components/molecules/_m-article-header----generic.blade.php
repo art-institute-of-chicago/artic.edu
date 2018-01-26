@@ -1,13 +1,13 @@
-<{{ $tag or 'header' }} class="m-article-header m-article-header--generic{{ (isset($variation)) ? ' '.$variation : '' }}">
-  <div class="m-article-header__img">
-      @if (isset($img))
+<{{ $tag or 'header' }} class="m-article-header m-article-header--generic{{ (isset($img)) ? ' m-article-header--generic-w-img' : ''}}{{ (isset($variation)) ? ' '.$variation : '' }}">
+    @if (isset($img))
+    <div class="m-article-header__img">
         @component('components.atoms._img')
             @slot('src', $img['src'])
             @slot('width', $img['width'])
             @slot('height', $img['height'])
         @endcomponent
-      @endif
-  </div>
+    </div>
+    @endif
   <div class="m-article-header__text">
       @if (isset($title))
         @component('components.atoms._title')

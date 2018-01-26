@@ -28,6 +28,7 @@
   <li><br><a href="/statics/visit">visit</a></li>
   <li><br><a href="/statics/exhibition_history">exhibition history</a></li>
   <li><a href="/statics/exhibition_history_detail">exhibition history details</a></li>
+  <li><br><a href="/statics/generic_listing">generic listing</a></li>
 </ul>
 
 @endsection

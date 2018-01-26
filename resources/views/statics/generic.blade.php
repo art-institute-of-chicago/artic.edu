@@ -8,8 +8,8 @@
     @slot('headerType', 'generic')
     @slot('variation', 'o-article__header')
     @slot('title', $title)
-    @slot('img', $headerImage)
-    @slot('breadcrumb', $breadcrumb)
+    @slot('img', $headerImage ?? null)
+    @slot('breadcrumb', $breadcrumb ?? null)
   @endcomponent
 
   <div class="o-article__primary-actions">
@@ -31,7 +31,7 @@
     @component('components.molecules._m-article-actions')
     @endcomponent
 
-    @if ($featuredRelated)
+    @if (isset($featuredRelated) and $featuredRelated)
         {{-- dupe 😢 - shows medium+ --}}
         @component('components.blocks._inline-aside')
             @slot('variation', 'u-show@medium+')
@@ -42,7 +42,7 @@
     @endif
   </div>
 
-  @if ($featuredRelated)
+  @if (isset($featuredRelated) and $featuredRelated)
     {{-- dupe 😢 - hidden medium+ --}}
     <div class="o-article__related">
         @component('components.blocks._inline-aside')

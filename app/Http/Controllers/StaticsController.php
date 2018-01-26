@@ -977,6 +977,17 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function generic_listing() {
+    $navs = $this->generateGenericNav('landing');
+    // now push to a view
+    return view('statics/generic', [
+      'title' => 'Press Releases',
+      'subNav' => $navs['subNav'],
+      'nav' => $navs['nav'],
+      "breadcrumb" => $this->generateGenericBreadcrumb(),
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
