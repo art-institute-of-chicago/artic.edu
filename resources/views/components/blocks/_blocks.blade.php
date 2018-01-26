@@ -60,7 +60,8 @@
 
         @if ($block['type'] === 'accordion')
             @component('components.organisms._o-accordion')
-                @slot('variation', 'o-blocks__block')
+                @slot('variation', 'o-blocks__block '.($block['variation'] ?? ''))
+                @slot('titleFont', $block['titleFont'] ?? null)
                 @slot('items', $block['content'])
                 @slot('loopIndex', $loop->iteration)
             @endcomponent

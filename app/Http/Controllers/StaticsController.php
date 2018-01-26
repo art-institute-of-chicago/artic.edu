@@ -985,6 +985,67 @@ class StaticsController extends Controller {
       'subNav' => $navs['subNav'],
       'nav' => $navs['nav'],
       "breadcrumb" => $this->generateGenericBreadcrumb(),
+      'wideBody' => true,
+    ]);
+  }
+
+  public function faq() {
+    $navs = $this->generateGenericNav('landing');
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'accordion',
+        "variation" => 'o-accordion--alt',
+        "titleFont" => 'f-list-4',
+        "content" => array(
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->faker->paragraph(8)
+                    ),
+                ),
+            ),
+        )
+    ));
+    // now push to a view
+    return view('statics/generic', [
+      'title' => 'FAQ',
+      'subNav' => $navs['subNav'],
+      'nav' => $navs['nav'],
+      "breadcrumb" => $this->generateGenericBreadcrumb(),
+      'wideBody' => true,
+      "blocks" => $blocks,
     ]);
   }
 
