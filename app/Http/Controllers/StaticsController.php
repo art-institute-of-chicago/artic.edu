@@ -1049,6 +1049,119 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function research_landing() {
+    return view('statics/research_landing', [
+        'title' => 'The Collection',
+        'intro' => 'Explore <em>over 100,000 artworks</em> and information about works of art from all areas in our online encyclopedic collections.',
+        'linksBar' => [
+            [
+              'href' => '#',
+              'label' => 'Artworks',
+            ],
+            [
+              'href' => '#',
+              'label' => 'Articles & Publications',
+            ],
+            [
+              'href' => '#',
+              'label' => 'Research & Resources',
+              'active' => true,
+            ],
+        ],
+        'gridHero' => (object)[
+            'image' => $this->getImage(890,505),
+            'primary' => $this->faker->sentence(8),
+            'secondary' => $this->faker->sentence(8),
+        ],
+        'gridItems1' => [
+            [
+                'image' => $this->getImage(360, 205),
+                'title' => 'Libraries',
+                'titleLink' => '#',
+                'text' => 'The Ryerson & Burnham Libraries constitute a major art and architecure research collection service The Art Institute of Chicago...',
+                'links' => [
+                    [
+                        'href' => '#',
+                        'label' => 'Library Catalog',
+                        'external' => true,
+                    ],
+                    [
+                        'href' => '#',
+                        'label' => 'Library Catalog Help',
+                    ]
+                ]
+            ],
+            [
+                'image' => $this->getImage(360, 205),
+                'title' => 'Art & Architecture Archives',
+                'titleLink' => '#',
+                'text' => 'The Archives’ collections are notably strong in late 19th- and 20th-century American architecture, with particular depth...',
+            ],
+            [
+                'image' => $this->getImage(360, 205),
+                'title' => 'Research Guides',
+                'titleLink' => '#',
+                'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
+                'links' => [
+                    [
+                        'href' => '#',
+                        'label' => 'Researching Art or Artists',
+                    ],
+                    [
+                        'href' => '#',
+                        'label' => 'Researching a Work from the Collections',
+                    ],
+                    [
+                        'href' => '#',
+                        'label' => 'Find the Value of a Work of Art',
+                    ],
+                    [
+                        'href' => '#',
+                        'label' => 'Find the Value of a Book',
+                    ]
+                ]
+            ],
+        ],
+        'gridItems2' => [
+            [
+                'image' => $this->getImage(360, 205),
+                'title' => 'Scholarly Initiatives',
+                'titleLink' => '#',
+                'text' => 'The Ryerson & Burnham Libraries constitute a major art and architecure research collection service The Art Institute of Chicago...',
+            ],
+            [
+                'image' => $this->getImage(360, 205),
+                'title' => 'Educator Resources',
+                'titleLink' => '#',
+                'text' => 'The Archives’ collections are notably strong in late 19th- and 20th-century American architecture, with particular depth...',
+            ],
+            [
+                'image' => $this->getImage(360, 205),
+                'title' => 'Provenance',
+                'titleLink' => '#',
+                'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
+            ],
+        ],
+        'gridItems3' => [
+            [
+                'title' => 'Prints and Drawings',
+                'titleLink' => '#',
+                'text' => 'The Ryerson & Burnham Libraries constitute a major art and architecure research collection service The Art Institute of Chicago...',
+            ],
+            [
+                'title' => 'Photography',
+                'titleLink' => '#',
+                'text' => 'The Archives’ collections are notably strong in late 19th- and 20th-century American architecture, with particular depth...',
+            ],
+            [
+                'title' => 'Ryerson Special Collections',
+                'titleLink' => '#',
+                'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
+            ],
+        ]
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------

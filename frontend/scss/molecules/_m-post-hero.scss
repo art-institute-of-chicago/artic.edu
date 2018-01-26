@@ -1,0 +1,57 @@
+.m-post-hero {
+}
+
+.m-post-hero__inner {
+  display: flex;
+  position: relative;
+  flex-flow: row wrap;
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-left: colspan(2, #{$name}, 0, true);
+    }
+  }
+}
+
+.m-post-hero__image,
+.m-post-hero__main {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-left: colspan(2, #{$name});
+    }
+  }
+}
+
+.m-post-hero__image {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      width: colspan(38, $name);
+    }
+  }
+}
+
+.m-post-hero__image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.m-post-hero__main {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      width: colspan(18, $name);
+    }
+  }
+}
+
+.m-post-hero__main .f-list-4 {
+  @include tucked-margin-top($f-list-4, ('xsmall': 68));
+
+  &:first-child {
+    @include tucked-align-top($f-list-4);
+  }
+}
+
+.m-post-hero__main .f-body {
+  margin-top: 20px;
+}

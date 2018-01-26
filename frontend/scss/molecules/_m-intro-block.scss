@@ -28,7 +28,7 @@
     margin-top: 60px;
   }
 
-  .m-header-block + & {
+  .m-header-block + &:not(.m-intro-block--tight) {
     margin-top: 120px;
   }
 }

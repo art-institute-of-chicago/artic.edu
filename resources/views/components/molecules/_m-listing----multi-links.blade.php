@@ -1,12 +1,15 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
 
-    <span class="m-listing__img m-listing__img--wide">
-        @component('components.atoms._img')
-            @slot('src', $item['image']['src'])
-            @slot('width', $item['image']['width'])
-            @slot('height', $item['image']['height'])
-        @endcomponent
-    </span>
+    @if ( !empty( $item['image'] ) )
+        <span class="m-listing__img m-listing__img--wide">
+            @component('components.atoms._img')
+                @slot('src', $item['image']['src'])
+                @slot('width', $item['image']['width'])
+                @slot('height', $item['image']['height'])
+            @endcomponent
+        </span>
+    @endif
+
     <span class="m-listing__meta">
         @if (isset($item['title']) and $item['title'])
             @if (isset($item['titleLink']) and $item['titleLink'])
