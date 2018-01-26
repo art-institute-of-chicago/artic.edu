@@ -88,9 +88,13 @@ class ApiQueryBuilder {
         $this->grammar = $grammar ?: $connection->getQueryGrammar();
     }
 
+    /**
+     * Bypass whereNotIn function until it's implemented on the API
+     *
+     */
     public function whereNotIn($column, $values, $boolean = 'and')
     {
-        throw new \Exception("whereNotIn function has not been defined for this Query Builder");
+        return $this;
     }
 
     public function whereIn($column, $values, $boolean = 'and', $not = false)
