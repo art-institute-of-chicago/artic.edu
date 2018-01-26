@@ -33,6 +33,16 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-image',
             ],
+            'image_with_caption' => [
+                'title' => 'Image with caption',
+                'icon' => 'image',
+                'component' => 'a17-block-image_with_caption',
+            ],
+            'video_with_caption' => [
+                'title' => 'Video with caption',
+                'icon' => 'image',
+                'component' => 'a17-block-video_with_caption',
+            ],
             'accordion' => [
                 'title' => 'Accordion',
                 'icon' => 'text',

@@ -1,6 +1,7 @@
 @formField('medias', [
     'name' => 'image',
-    'label' => 'Image'
+    'label' => 'Image',
+    'max' => 100
 ])
 
 @formField('select', [

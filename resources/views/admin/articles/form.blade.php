@@ -51,7 +51,11 @@
         'name' => 'hero'
     ])
 
-    @formField('block_editor')
+    @formField('block_editor', [
+        'blocks' => [
+            'text', 'image_with_caption', 'video_with_caption', 'gallery'
+        ]
+    ])
 @stop
 
 @section('fieldsets')
