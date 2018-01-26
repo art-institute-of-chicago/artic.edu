@@ -159,6 +159,22 @@
         @endforeach
     @endif
 
+    @if ($article->pictures)
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-subheading-1')
+            @slot('tag', 'h4')
+            Picture{{ sizeof($article->pictures) > 1 ? 's' : '' }}
+        @endcomponent
+        @foreach ($article->pictures as $picture)
+            @component('components.molecules._m-media')
+                @slot('variation', 'o-blocks__block')
+                @slot('item', $picture)
+            @endcomponent
+        @endforeach
+    @endif
+
     @if ($article->otherResources)
         @component('components.atoms._hr')
         @endcomponent

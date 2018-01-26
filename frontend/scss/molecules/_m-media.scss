@@ -53,6 +53,12 @@
   object-fit: cover;
 }
 
+.m-media__download-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
 .m-media figcaption {
   @include tucked-margin-top($f-caption, ('xsmall': 24));
   display: block;

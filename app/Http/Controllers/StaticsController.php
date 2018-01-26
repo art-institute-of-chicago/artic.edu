@@ -733,7 +733,7 @@ class StaticsController extends Controller {
     $article->push('relatedExhibitionsTitle', 'On View');
     $article->push('relatedExhibitions', $this->getExhibitions(4));
     $article->push('catalogues', $this->generateFiles($this->faker->numberBetween(1,3)));
-
+    $article->push('pictures', $this->generatePictures($this->faker->numberBetween(2,5)));
     $article->push('otherResources', $this->generateFiles($this->faker->numberBetween(2,5)));
 
     return view('statics/article', [
@@ -986,9 +986,9 @@ class StaticsController extends Controller {
     $width = isset($width) && $width ? $width : $this->faker->numberBetween(300,700);
     $height = isset($height) && $height ? $height : $this->faker->numberBetween(300,700);
     //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
-    $src = "http://placeimg.com/".$width."/".$height."/nature";
+    $src = "//placeimg.com/".$width."/".$height."/nature";
     //$src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
-    $srcset = "http://placeimg.com/".$width."/".$height."/nature ".$width."w";
+    $srcset = "//placeimg.com/".$width."/".$height."/nature ".$width."w";
     //$src = $this->faker->imageUrl($width, $height, 'nature');
     //$src = str_replace('https://', 'http://', $src);
 
@@ -1350,6 +1350,25 @@ class StaticsController extends Controller {
       array_push($files, $file);
     }
     return $files;
+  }
+
+  private function generatePicture() {
+    return array(
+        'type' => 'image',
+        'size' => 's',
+        'media' => $this->getImage(),
+        'hideCaption' => true,
+        'downloadable' => true,
+    );
+  }
+
+  private function generatePictures($num = 3) {
+    $pictures = array();
+    for ($i = 0; $i < $num; $i++) {
+      $picture = $this->generatePicture();
+      array_push($pictures, $picture);
+    }
+    return $pictures;
   }
 
   private function getSelection() {

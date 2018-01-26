@@ -280,6 +280,43 @@
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
+        @slot('variation', 'btn--icon btn--icon-circle-48')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--secondary btn--icon btn--icon-circle-48')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--tertiary btn--icon btn--icon-circle-48')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--quaternary btn--icon btn--icon-circle-48')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--quinary btn--icon btn--icon-circle-48')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--senary btn--icon btn--icon-circle-48')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--septenary btn--icon btn--icon-circle-48')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+</p>
+<p style="margin-top: 20px;">
+    @component('components.atoms._btn')
         @slot('variation', 'btn--icon-sq')
         @slot('font', '')
         @slot('icon', 'icon--print--24')
