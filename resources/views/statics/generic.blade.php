@@ -2,6 +2,10 @@
 
 @section('content')
 
+@php
+    $isWideBody = (isset($wideBody) && $wideBody);
+@endphp
+
 <article class="o-article o-article--generic-page">
 
   @component('components.molecules._m-article-header')
@@ -27,30 +31,33 @@
     @endcomponent
   </div>
 
-  <div class="o-article__secondary-actions">
-    @component('components.molecules._m-article-actions')
-    @endcomponent
-
-    @if (isset($featuredRelated) and $featuredRelated)
-        {{-- dupe 😢 - shows medium+ --}}
-        @component('components.blocks._inline-aside')
-            @slot('variation', 'u-show@medium+')
-            @slot('type', $featuredRelated['type'])
-            @slot('items', $featuredRelated['items'])
-            @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
+  @if (!$isWideBody)
+      <div class="o-article__secondary-actions">
+        @component('components.molecules._m-article-actions')
         @endcomponent
-    @endif
-  </div>
 
-  @if (isset($featuredRelated) and $featuredRelated)
-    {{-- dupe 😢 - hidden medium+ --}}
-    <div class="o-article__related">
-        @component('components.blocks._inline-aside')
-            @slot('type', $featuredRelated['type'])
-            @slot('items', $featuredRelated['items'])
-            @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
-        @endcomponent
-    </div>
+        @if (isset($featuredRelated) and $featuredRelated)
+            {{-- dupe 😢 - shows medium+ --}}
+            @component('components.blocks._inline-aside')
+                @slot('variation', 'u-show@medium+')
+                @slot('type', $featuredRelated['type'])
+                @slot('items', $featuredRelated['items'])
+                @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
+            @endcomponent
+        @endif
+      </div>
+
+
+      @if (isset($featuredRelated) and $featuredRelated)
+        {{-- dupe 😢 - hidden medium+ --}}
+        <div class="o-article__related">
+            @component('components.blocks._inline-aside')
+                @slot('type', $featuredRelated['type'])
+                @slot('items', $featuredRelated['items'])
+                @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
+            @endcomponent
+        </div>
+      @endif
   @endif
 
   <div class="o-article__body o-blocks">
