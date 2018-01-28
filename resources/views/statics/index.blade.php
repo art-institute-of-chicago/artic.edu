@@ -29,6 +29,7 @@
   <li><br><a href="/statics/exhibition_history">exhibition history</a></li>
   <li><a href="/statics/exhibition_history_detail">exhibition history details</a></li>
   <li><br><a href="/statics/generic_listing">generic listing</a></li>
+  <li><br><a href="/statics/faq">faq</a></li>
   <li><br><a href="/statics/artist_tag">artist tag</a></li>
   <li><br><a href="/statics/research_landing">research landing</a></li>
 </ul>
