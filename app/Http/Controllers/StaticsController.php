@@ -991,52 +991,31 @@ class StaticsController extends Controller {
 
   public function faq() {
     $navs = $this->generateGenericNav('landing');
+    $questionsAndAnswers = array();
+    for ($i = 0; $i < 5; $i++) {
+        array_push($questionsAndAnswers, array(
+            "type" => 'text',
+            "subtype" => 'heading-2',
+            "content" => $this->faker->sentence(6)
+        ));
+        array_push($questionsAndAnswers, array(
+            "type" => 'text',
+            "content" => $this->faker->paragraph(3)
+        ));
+    }
+    $accordion = array();
+    for ($i = 0; $i < 10; $i++) {
+        array_push($accordion, array(
+            'title' => $this->faker->sentence(6),
+            'blocks' => $questionsAndAnswers,
+        ));
+    }
     $blocks = array();
     array_push($blocks, array(
         "type" => 'accordion',
         "variation" => 'o-accordion--alt',
         "titleFont" => 'f-list-4',
-        "content" => array(
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
-                    ),
-                ),
-            ),
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
-                    ),
-                ),
-            ),
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
-                    ),
-                ),
-            ),
-        )
+        "content" => $accordion,
     ));
     // now push to a view
     return view('statics/generic', [

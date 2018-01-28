@@ -18,28 +18,7 @@
   cursor: default;
 }
 
-.o-accordion__trigger:not(:first-child) {
-  margin-top: 30px;
-
-  @include breakpoint('small+') {
-    margin-top: 38px;
-  }
-
-  @include breakpoint('medium+') {
-    margin-top: 48px;
-  }
-}
-
 .o-accordion__trigger.f-module-title-2 {
-  padding-top: 44px - 24px - 1px;
-  border-top: 1px solid $color__rules--primary;
-
-  @include breakpoint('small+') {
-    padding-top: 48px - 28px - 1px;
-  }
-}
-
-.o-accordion__trigger.f-list-4 {
   padding-top: 44px - 24px - 1px;
   border-top: 1px solid $color__rules--primary;
 
@@ -51,6 +30,48 @@
 .o-accordion__trigger.f-tag-2 {
   padding-bottom: 16px - 1px;
   border-bottom: 1px solid $color__rules--primary;
+}
+
+.o-accordion__trigger.f-module-title-2:not(:first-child),
+.o-accordion__trigger.f-tag-2:not(:first-child) {
+  margin-top: 30px;
+
+  @include breakpoint('small+') {
+    margin-top: 38px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 48px;
+  }
+}
+
+.o-accordion__trigger.f-list-4 {
+  padding-top: 16px - 1px;
+  border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('small+') {
+    padding-top: 28px - 1px;
+  }
+
+  @include breakpoint('medium+') {
+    padding-top: 32px - 1px;
+  }
+
+  &[aria-expanded="true"] {
+    border-top-color: $color__rules--quaternary;
+  }
+}
+
+.o-accordion__trigger.f-list-4:not(:first-child) {
+  margin-top: 24px;
+
+  @include breakpoint('small+') {
+    margin-top: 32px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 36px;
+  }
 }
 
 .o-accordion__trigger:not(.s-inactive):hover {
@@ -72,8 +93,7 @@
   }
 }
 
-.o-accordion__trigger .icon--plus,
-.o-accordion__trigger .icon--minus {
+.o-accordion__trigger-icon {
   position: absolute;
   right: 8px;
   top: 28px;
@@ -84,6 +104,26 @@
 
   @include breakpoint('medium+') {
     top: 32px;
+  }
+
+  .o-accordion--alt & {
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+    border: 1px solid $color__rules--primary;
+    border-radius: 50%;
+
+    @include breakpoint('small+') {
+      width: 40px;
+      height: 40px;
+      padding: 11px;
+    }
+  }
+
+  .o-accordion--alt .o-accordion__trigger[aria-expanded="true"] & {
+    border-color: $color__black--90;
+    background-color: $color__black--90;
+    color: $color__bg;
   }
 }
 
@@ -171,6 +211,11 @@
   @include breakpoint('xlarge') {
     padding-right: colspan(3, xlarge);
   }
+}
+
+.o-accordion__panel-content.o-blocks > .f-subheading-1 + .f-body,
+.o-accordion__panel-content.o-blocks > .f-subheading-1 + .f-body-editorial {
+  margin-top: 0;
 }
 
 .o-accordion__panel-content.o-blocks > .f-module-title-2 {
