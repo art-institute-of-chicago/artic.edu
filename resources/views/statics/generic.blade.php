@@ -61,6 +61,24 @@
   @endif
 
   <div class="o-article__body o-blocks">
+    @if (isset($filters) && $filters)
+        @component('components.molecules._m-links-bar')
+            @slot('variation','m-links-bar--filters')
+            @slot('primaryHtml')
+                @foreach ($filters as $filter)
+                    <li class="m-links-bar__item m-links-bar__item--primary">
+                        @component('components.atoms._dropdown')
+                          @slot('prompt', $filter['prompt'].': '.$filter['links'][array_search(true, array_column($filter['links'], 'active'))]['label'])
+                          @slot('ariaTitle', 'Select decade')
+                          @slot('variation','dropdown--filter f-buttons')
+                          @slot('font', 'f-buttons')
+                          @slot('options', $filter['links'])
+                        @endcomponent
+                    </li>
+                @endforeach
+            @endslot
+        @endcomponent
+    @endif
     @component('components.blocks._blocks')
         @slot('blocks', $blocks ?? null)
     @endcomponent

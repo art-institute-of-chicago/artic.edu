@@ -777,6 +777,19 @@ class StaticsController extends Controller {
 
   public function generic_listing() {
     $navs = $this->generateGenericNav('landing');
+    $filters = array(
+        array(
+            'prompt' => 'Months',
+            'links' => array(
+                array('href' => '#', 'label' => 'All', 'active' => true),
+                array('href' => '#', 'label' => 'December'),
+                array('href' => '#', 'label' => 'November'),
+                array('href' => '#', 'label' => 'October'),
+                array('href' => '#', 'label' => 'September'),
+                array('href' => '#', 'label' => 'August'),
+            ),
+        ),
+    );
     // now push to a view
     return view('statics/generic', [
       'title' => 'Press Releases',
@@ -784,6 +797,7 @@ class StaticsController extends Controller {
       'nav' => $navs['nav'],
       "breadcrumb" => $this->generateGenericBreadcrumb(),
       'wideBody' => true,
+      'filters' => $filters,
     ]);
   }
 
