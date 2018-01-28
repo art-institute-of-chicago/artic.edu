@@ -14,11 +14,12 @@ const accordion = function(container) {
   }
 
   function _toggle(event) {
-    if (event.target.classList.contains('o-accordion__trigger')) {
+    console.log(event.target.parentNode);
+    if (event.target.classList.contains('o-accordion__trigger') || event.target.parentNode.classList.contains('o-accordion__trigger')) {
       event.preventDefault();
       event.stopPropagation();
       //
-      let trigger = event.target;
+      let trigger = event.target.classList.contains('o-accordion__trigger') ? event.target : event.target.parentNode;
       let target = trigger.nextElementSibling;
       let validTarget = (target.classList.contains('o-accordion__panel'));
       //

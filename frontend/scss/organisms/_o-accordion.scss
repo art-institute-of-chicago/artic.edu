@@ -106,6 +106,15 @@
     top: 32px;
   }
 
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
   .o-accordion--alt & {
     width: 32px;
     height: 32px;
@@ -117,6 +126,23 @@
       width: 40px;
       height: 40px;
       padding: 11px;
+    }
+  }
+
+  .o-accordion--alt .o-accordion__trigger.f-list-4 & {
+    right: 0;
+    top: 16px;
+
+    @include breakpoint('small+') {
+      top: 24px;
+    }
+
+    @include breakpoint('medium+') {
+      top: 28px;
+    }
+
+    @include breakpoint('large+') {
+      top: 32px;
     }
   }
 
