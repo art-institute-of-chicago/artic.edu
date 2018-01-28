@@ -606,7 +606,7 @@
 .m-listing--row .m-listing__meta .m-listing__meta-bottom .tag {
   margin-top: 4px;
 }
-
+/*
 .m-listing--row .m-listing__meta .f-list-1 {
   @include tucked-align-top($f-list-1);
 }
@@ -626,15 +626,15 @@
 .m-listing--row .m-listing__meta .f-list-5 {
   @include tucked-align-top($f-list-5);
 }
-
+*/
 .m-listing--row .m-listing__meta .f-tag {
   @include tucked-align-top($f-tag);
 }
-
+/*
 .m-listing--row .m-listing__meta .date.f-secondary {
   @include tucked-align-top($f-secondary);
 }
-
+*/
 // variant 'm-listing--row@small'
 // variant 'm-listing--row@medium'
 @include breakpoint('small') {
