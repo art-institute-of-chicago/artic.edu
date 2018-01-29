@@ -7,6 +7,13 @@
         'required' => true
     ])
 
+    @formField('multi_select', [
+        'name' => 'siteTags',
+        'label' => 'Tags',
+        'options' => $siteTagsList,
+        'placeholder' => 'Select some tags',
+    ])
+
     @formField('input', [
         'name' => 'short_copy',
         'label' => 'Short Intro copy',

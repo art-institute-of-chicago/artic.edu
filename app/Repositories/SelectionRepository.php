@@ -19,6 +19,8 @@ class SelectionRepository extends BaseApiRepository
 
     public function afterSave($object, $fields)
     {
+        $object->siteTags()->sync($fields['siteTags'] ?? []);
+
         $this->updateBrowserApiRelated($object, $fields, ['artworks']);
         $this->updateBrowser($object, $fields, 'selections');
         $this->updateBrowser($object, $fields, 'articles');
@@ -29,6 +31,8 @@ class SelectionRepository extends BaseApiRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
+
+        $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
 
         $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'whatson');
         $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'whatson');

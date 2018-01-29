@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\SiteTagRepository;
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 
 class SelectionController extends ModuleController
@@ -54,7 +55,9 @@ class SelectionController extends ModuleController
 
     protected function formData($request)
     {
-        return [];
+        return [
+            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+        ];
     }
 
 }

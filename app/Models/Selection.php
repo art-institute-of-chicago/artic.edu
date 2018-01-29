@@ -46,6 +46,11 @@ class Selection extends Model
         ],
     ];
 
+    public function siteTags()
+    {
+        return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
+    }
+
     public function apiElements()
     {
         return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
