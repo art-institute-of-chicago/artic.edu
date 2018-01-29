@@ -88,27 +88,36 @@
         'note' => 'E.G. further support provided by'
     ])
 
-    @formField('browser', [
-        'routePrefix' => 'general',
-        'moduleName' => 'sponsors',
-        'name' => 'sponsors',
-        'label' => 'Sponsors',
-        'note' => 'Select Sponsors',
-        'max' => 20
-    ])
-
-
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'moduleName' => 'events',
-        'name' => 'events',
-        'label' => 'Related Events',
-        'note' => 'Select events',
-        'max' => 4
+    @formField('block_editor', [
+        'blocks' => [
+            'paragraph', 'image_with_caption', 'video_with_caption', 'gallery',
+            'media_embed', 'quote', 'list', 'related_offets', 'newsletter_signup_inline',
+            'sponsor', 'timeline', 'link'
+        ]
     ])
 @stop
 
 @section('fieldsets')
+    <a17-fieldset id="related_elements" title="Related elements">
+        @formField('browser', [
+            'routePrefix' => 'general',
+            'moduleName' => 'sponsors',
+            'name' => 'sponsors',
+            'label' => 'Sponsors',
+            'note' => 'Select Sponsors',
+            'max' => 20
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'moduleName' => 'events',
+            'name' => 'events',
+            'label' => 'Related Events',
+            'note' => 'Select events',
+            'max' => 4
+        ])
+    </a17-fieldset>
+
     <a17-fieldset id="attributes" title="Attributes">
         @formField('input', [
             'name' => 'location',

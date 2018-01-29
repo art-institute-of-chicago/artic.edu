@@ -100,12 +100,27 @@
             'disabled' => true
         ])
         @formField('input', [
+            'name' => 'start_at',
+            'label' => 'Start at',
+            'disabled' => true
+        ])
+        @formField('input', [
+            'name' => 'end_at',
+            'label' => 'End at',
+            'disabled' => true
+        ])
+        @formField('input', [
+            'name' => 'status',
+            'label' => 'Status',
+            'disabled' => true
+        ])
+        @formField('input', [
             'name' => 'lake_guid',
             'label' => 'Lake GUID',
             'disabled' => true
         ])
         @formField('input', [
-            'name' => 'department',
+            'name' => 'department_title',
             'label' => 'Department',
             'disabled' => true
         ])
@@ -115,7 +130,7 @@
             'disabled' => true
         ])
         @formField('input', [
-            'name' => 'gallery',
+            'name' => 'gallery_title',
             'label' => 'Gallery',
             'disabled' => true
         ])
@@ -153,12 +168,6 @@
             'name' => 'event_ids',
             'label' => 'Event IDs',
             'disabled' => true
-        ])
-        @formField('input', [
-            'name' => 'is_active',
-            'label' => 'Is Active',
-            'disabled' => true,
-            'type' => 'checkbox'
         ])
     </a17-fieldset>
 @stop
