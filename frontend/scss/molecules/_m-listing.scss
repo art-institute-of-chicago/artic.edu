@@ -225,34 +225,18 @@
 
 .m-listing__meta .f-list-2 {
   @include tucked-margin-top($f-list-2, ('xsmall': 32));
-
-  &:first-child {
-    @include tucked-margin-top($f-list-2, ('xsmall': 40));
-  }
 }
 
 .m-listing__meta .f-list-3 {
   @include tucked-margin-top($f-list-3, ('xsmall': 32));
-
-  &:first-child {
-    @include tucked-margin-top($f-list-3, ('xsmall': 40));
-  }
 }
 
 .m-listing__meta .f-list-4 {
   @include tucked-margin-top($f-list-4, ('xsmall': 32, 'large': 40));
-
-  &:first-child {
-    @include tucked-margin-top($f-list-4, ('xsmall': 40, 'large': 48));
-  }
 }
 
 .m-listing__meta .f-list-5 {
   @include tucked-margin-top($f-list-5, ('xsmall': 32, 'small+': 44, 'medium': 40, 'large': 48));
-
-  &:first-child {
-    @include tucked-margin-top($f-list-5, ('xsmall': 40, 'small+': 52, 'medium': 48, 'large': 56));
-  }
 }
 
 .m-listing__meta .f-subheading-1 {
@@ -271,18 +255,8 @@
   @include tucked-margin-top($f-secondary, ('xsmall': 36));
 }
 
-.m-listing__meta .f-secondary + br + .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall':16));
-  color: $color__text--tertiary;
-}
-
 .m-listing__meta .f-link {
   @include tucked-margin-top($f-secondary, ('xsmall': 28));
-}
-
-.m-listing__meta .f-list-3 + br + .f-link,
-.m-listing__meta .f-secondary + br + .f-link {
-  @include tucked-margin-top($f-secondary, ('xsmall': 36));
 }
 
 .m-listing__meta .f-caption {
@@ -292,6 +266,47 @@
 .m-listing__meta .f-body-editorial {
   @include tucked-margin-top($f-body-editorial, ('xsmall': 40));
   color: $color__text;
+}
+
+
+@each $name, $point in $breakpoints {
+  @if ($name != 'xsmall') {
+    @include breakpoint('#{$name}') {
+      .m-listing--row .m-listing__meta .f-list-1:first-child {
+        @include tucked-align-top($f-list-1, $name);
+      }
+
+      .m-listing--row .m-listing__meta .f-list-2:first-child {
+        @include tucked-align-top($f-list-2, $name);
+      }
+
+      .m-listing--row .m-listing__meta .f-list-3:first-child {
+        @include tucked-align-top($f-list-3, $name);
+      }
+
+      .m-listing--row .m-listing__meta .f-list-4:first-child {
+        @include tucked-align-top($f-list-4, $name);
+      }
+
+      .m-listing--row .m-listing__meta .f-list-5:first-child {
+        @include tucked-align-top($f-list-5, $name);
+      }
+
+      .m-listing--row .m-listing__meta .f-tag:first-child {
+        @include tucked-align-top($f-tag, $name);
+      }
+    }
+  }
+}
+
+
+.m-listing__meta .f-secondary + br + .f-secondary {
+  color: $color__text--tertiary;
+}
+
+.m-listing__meta .f-list-3 + br + .f-link,
+.m-listing__meta .f-secondary + br + .f-link {
+  @include tucked-margin-top($f-secondary, ('xsmall': 36));
 }
 
 // variant `m-listing--feature`
@@ -554,6 +569,17 @@
     }
   }
 
+  .m-listing--row.m-listing--generic .m-listing__img {
+
+    @include breakpoint('large+') {
+      width: colspan(10, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(10, xlarge);
+    }
+  }
+
 .m-listing--row .m-listing__meta {
 
   @include breakpoint('small+') {
@@ -603,38 +629,7 @@
   }
 }
 
-.m-listing--row .m-listing__meta .m-listing__meta-bottom .tag {
-  margin-top: 4px;
-}
-/*
-.m-listing--row .m-listing__meta .f-list-1 {
-  @include tucked-align-top($f-list-1);
-}
 
-.m-listing--row .m-listing__meta .f-list-2 {
-  @include tucked-align-top($f-list-2);
-}
-
-.m-listing--row .m-listing__meta .f-list-3 {
-  @include tucked-align-top($f-list-3);
-}
-
-.m-listing--row .m-listing__meta .f-list-4 {
-  @include tucked-align-top($f-list-4);
-}
-
-.m-listing--row .m-listing__meta .f-list-5 {
-  @include tucked-align-top($f-list-5);
-}
-*/
-.m-listing--row .m-listing__meta .f-tag {
-  @include tucked-align-top($f-tag);
-}
-/*
-.m-listing--row .m-listing__meta .date.f-secondary {
-  @include tucked-align-top($f-secondary);
-}
-*/
 // variant 'm-listing--row@small'
 // variant 'm-listing--row@medium'
 @include breakpoint('small') {
