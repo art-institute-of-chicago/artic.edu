@@ -25,6 +25,7 @@ class Event extends Model
         'is_after_hours',
         'is_ticketed',
         'is_free',
+        'is_member_exclusive',
         'hidden',
         'rsvp_link',
         'start_date',
@@ -44,8 +45,7 @@ class Event extends Model
         2 => 'Screenings',
         3 => 'Special Events',
         4 => 'Talks',
-        5 => 'Tours',
-        6 => 'Member Exclusive'
+        5 => 'Tours'
     ];
 
     public static $eventLayouts = [
@@ -61,7 +61,9 @@ class Event extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = ['published', 'is_private', 'is_after_hours', 'is_ticketed', 'is_free', 'hidden'];
+    public $checkboxes = [
+        'published', 'is_private', 'is_after_hours',
+        'is_ticketed', 'is_free', 'hidden', 'is_member_exclusive'];
 
     public $dates = ['start_date', 'end_date'];
 

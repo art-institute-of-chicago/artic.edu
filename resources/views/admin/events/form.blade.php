@@ -116,6 +116,11 @@
         ])
 
         @formField('checkbox', [
+            'name' => 'is_member_exclusive',
+            'label' => 'Members exclusive event?'
+        ])
+
+        @formField('checkbox', [
             'name' => 'is_after_hours',
             'label' => 'After Hours?'
         ])
