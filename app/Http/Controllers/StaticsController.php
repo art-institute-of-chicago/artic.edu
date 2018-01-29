@@ -842,6 +842,16 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function articles() {
+    // now push to a view
+    return view('statics/articles', [
+      'title' => 'Articles',
+      'heroArticle' => $this->getArticle(),
+      'featuredArticles' => $this->getArticles(2),
+      'articles' => $this->getArticles(20),
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------

@@ -481,6 +481,45 @@
 }
 
 
+
+.m-listing--hero-editorial .m-listing__meta {
+  @include opaqueBg(rgba($color__bg--editorial, .85), rgba($color__bg--editorial, .85));
+
+  @include breakpoint('large+') {
+    padding-bottom: 40px;
+  }
+}
+
+.m-listing--hero-editorial .m-listing__link:hover .m-listing__meta {
+  background-color: $color__bg--editorial;
+}
+
+.m-listing--hero-editorial .type {
+  color: $color__text--type;
+}
+
+.m-listing--hero-editorial .title {
+  color: $color__text--title;
+}
+
+.m-listing--hero .m-listing__link:hover .title {
+  color: $color__text--title;
+  opacity: 1;
+}
+
+.m-listing--hero-editorial .date {
+  color: $color__text--secondary;
+}
+
+.m-listing--hero-editorial .m-listing__meta .f-tag {
+  @include tucked-margin-top($f-tag, ('xsmall': 48, 'small+': 48, 'large+': 48));
+}
+
+.m-listing--hero-editorial .m-listing__meta .f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 48, 'small+': 48, 'large+': 48));
+}
+
+
 // variant 'm-listing--keyline-top'
 
 .m-listing--keyline-top {

@@ -60,6 +60,7 @@
         <h4 class="title f-subheading-1">Batch 04</h4>
         <ul class="list f-body">
           <li><a href="/statics/research_landing">research landing</a></li>
+          <li><a href="/statics/articles">articles</a></li>
         </ul>
     </div>
 </article>

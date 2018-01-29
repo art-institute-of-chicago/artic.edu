@@ -16,6 +16,10 @@
             @endcomponent
             <br>
             <span class="intro {{ $captionFont ?? 'f-caption' }}">{{ $item->intro }}</span>
+            <br>
+            <span class="m-listing__meta-bottom">
+                <span class="date f-secondary">{{ $item->date }}</span>
+            </span>
         </span>
     </a>
 </{{ $tag or 'li' }}>
