@@ -798,6 +798,8 @@ class StaticsController extends Controller {
       "breadcrumb" => $this->generateGenericBreadcrumb(),
       'wideBody' => true,
       'filters' => $filters,
+      'listingCountText' => 'Showing 1-10 press releases',
+      'listingItems' => $this->getPressReleases(10),
     ]);
   }
 
@@ -1194,6 +1196,27 @@ class StaticsController extends Controller {
       array_push($articles, $article);
     }
     return $articles;
+  }
+
+  private function getPressRelease() {
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/article",
+      "title" => $this->faker->sentence(6, true),
+      "shortDesc" => $this->faker->sentence(12, true),
+      "date" => $this->getFormattedDateString(),
+      "image" => $this->getImage(),
+      "type" => 'generic',
+    ]);
+  }
+
+  private function getPressReleases($num = 3) {
+    $items = array();
+    for ($i = 0; $i < $num; $i++) {
+      $item = $this->getPressRelease();
+      array_push($items, $item);
+    }
+    return $items;
   }
 
   private function generateFile() {

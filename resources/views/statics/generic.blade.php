@@ -82,6 +82,27 @@
     @component('components.blocks._blocks')
         @slot('blocks', $blocks ?? null)
     @endcomponent
+
+    @if (isset($listingItems) and $listingItems)
+        @if (isset($listingCountText) and $listingCountText)
+            @component('components.molecules._m-listing-header')
+                @slot('count', $listingCountText)
+            @endcomponent
+        @endif
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.organisms._o-row-listing')
+            @foreach ($listingItems as $item)
+                @component('components.molecules._m-listing----generic-row')
+                    @slot('variation', 'm-listing--generic m-listing--row')
+                    @slot('item', $item)
+                @endcomponent
+            @endforeach
+        @endcomponent
+        @component('components.molecules._m-paginator')
+        @endcomponent
+    @endif
+
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
     @endcomponent

@@ -19,6 +19,10 @@ hr,
     margin-top: 0;
   }
 
+  .m-listing-header + & {
+    margin-top: 16px;
+  }
+
   &.hr--dark {
     border-top-color: $color__rules--quaternary;
 

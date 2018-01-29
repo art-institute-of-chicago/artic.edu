@@ -533,6 +533,15 @@
 @component('components.atoms._hr')
 @endcomponent
 
+<p class="f-quote">m-listing-header:</p>
+
+@component('components.molecules._m-listing-header')
+    @slot('count', 'Showing 1-10 press releases')
+@endcomponent
+
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">m-links-bar:</p>
 
 @php

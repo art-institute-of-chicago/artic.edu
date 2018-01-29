@@ -1,0 +1,21 @@
+/***
+
+```
+<div class="m-listing-header">
+    <p class="m-listing-header__count f-secondary">Showing 1-10 press releases</p>
+</div>
+```
+
+***/
+
+.m-listing-header {
+  margin-top: 40px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.m-listing-header__count {
+  text-align: right;
+}

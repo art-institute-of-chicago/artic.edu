@@ -27,7 +27,7 @@
     @slot('behavior','dragScroll')
     @foreach ($products as $item)
         @component('components.molecules._m-listing----product')
-            @slot('product', $item)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -136,9 +136,9 @@
     Date listing
 @endcomponent
 @component('components.organisms._o-row-listing')
-    @foreach ($eventsByDay as $item)
+    @foreach ($eventsByDay as $date)
         @component('components.molecules._m-date-listing')
-            @slot('item', $item)
+            @slot('date', $date)
         @endcomponent
     @endforeach
 @endcomponent
