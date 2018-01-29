@@ -1,12 +1,14 @@
 @extends('cms-toolkit::layouts.form')
 
 @section('contentFields')
-    @formField('textarea', [
+    @formField('input', [
         'name' => 'question',
-        'label' => 'Question'
+        'label' => 'Question',
+        'type' => 'textarea'
     ])
-    @formField('textarea', [
+    @formField('input', [
         'name' => 'answer',
-        'label' => 'Answer'
+        'label' => 'Answer',
+        'type' => 'textarea'
     ])
 @stop
