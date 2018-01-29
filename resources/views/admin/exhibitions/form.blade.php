@@ -30,6 +30,13 @@
         'label' => 'Exhibitions related message under buttons',
     ])
 
+    @formField('block_editor', [
+        'blocks' => [
+            'event', 'paragraph', 'image_with_caption', 'video_with_caption', 'gallery',
+            'media_embed', 'quote', 'list', 'accordion', 'related_offers', 'newsletter_signup_inline'
+        ]
+    ])
+
     @formField('input', [
         'name' => 'sponsors_description',
         'label' => 'Sponsors section description',
@@ -42,11 +49,13 @@
         'note' => 'E.G. further support provided by'
     ])
 
-    @formField('block_editor', [
-        'blocks' => [
-            'event', 'paragraph', 'image_with_caption', 'video_with_caption', 'gallery',
-            'media_embed', 'quote', 'list', 'accordion', 'related_offers', 'newsletter_signup_inline'
-        ]
+    @formField('browser', [
+        'routePrefix' => 'general',
+        'moduleName' => 'sponsors',
+        'name' => 'sponsors',
+        'label' => 'Sponsors',
+        'note' => 'Select Sponsors',
+        'max' => 20
     ])
 @stop
 
@@ -71,15 +80,6 @@
             'max' => 4,
             'name' => 'exhibitions',
             'label' => 'Related Exhibitions'
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'general',
-            'moduleName' => 'sponsors',
-            'name' => 'sponsors',
-            'label' => 'Sponsors',
-            'note' => 'Select Sponsors',
-            'max' => 20
         ])
 
         @formField('browser', [
