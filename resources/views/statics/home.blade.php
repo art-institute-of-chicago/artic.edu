@@ -3,9 +3,9 @@
 @section('content')
 
 @component('components.organisms._o-features')
-    @foreach ($heroExhibitions as $exhibition)
+    @foreach ($heroExhibitions as $item)
         @component('components.molecules._m-listing----exhibition')
-            @slot('exhibition', $exhibition)
+            @slot('item', $item)
             @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
             @slot('titleFont', ($loop->first) ? 'f-list-5' : 'f-list-3')
         @endcomponent
@@ -35,10 +35,10 @@
     @slot('cols_medium','2')
     @slot('cols_large','2')
     @slot('cols_xlarge','2')
-    @foreach ($exhibitions as $exhibition)
+    @foreach ($exhibitions as $item)
         @component('components.molecules._m-listing----exhibition')
             @slot('titleFont', 'f-list-4')
-            @slot('exhibition', $exhibition)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -52,9 +52,9 @@
     @slot('cols_large','4')
     @slot('cols_xlarge','4')
     @slot('behavior','dragScroll')
-    @foreach ($events as $event)
+    @foreach ($events as $item)
         @component('components.molecules._m-listing----event')
-            @slot('event', $event)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -82,7 +82,7 @@
     @foreach ($theCollection as $item)
         @component('components.molecules._m-listing----'.$item->type)
             @slot('variation', 'o-pinboard__item')
-            @slot($item->type, $item)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -105,10 +105,10 @@
     @slot('cols_large','5')
     @slot('cols_xlarge','5')
     @slot('behavior','dragScroll')
-    @foreach ($products as $product)
+    @foreach ($products as $item)
         @component('components.molecules._m-listing----product')
             @slot('simple', true)
-            @slot('product', $product)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent

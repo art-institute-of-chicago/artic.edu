@@ -32,9 +32,9 @@
     @slot('cols_medium','2')
     @slot('cols_large','2')
     @slot('cols_xlarge','2')
-    @foreach ($featuredExhibitions as $exhibition)
+    @foreach ($featuredExhibitions as $item)
         @component('components.molecules._m-listing----exhibition')
-            @slot('exhibition', $exhibition)
+            @slot('item', $item)
             @slot('titleFont', 'f-list-4')
         @endcomponent
     @endforeach
@@ -49,10 +49,10 @@
     @slot('cols_medium','3')
     @slot('cols_large','3')
     @slot('cols_xlarge','3')
-    @foreach ($exhibitions as $exhibition)
+    @foreach ($exhibitions as $item)
         @if ($loop->index < 6)
             @component('components.molecules._m-listing----exhibition')
-                @slot('exhibition', $exhibition)
+               @slot('item', $item)
             @endcomponent
         @endif
     @endforeach
@@ -71,10 +71,10 @@
     @slot('cols_medium','3')
     @slot('cols_large','3')
     @slot('cols_xlarge','3')
-    @foreach ($exhibitions as $exhibition)
+    @foreach ($exhibitions as $item)
         @if ($loop->index > 5)
             @component('components.molecules._m-listing----exhibition')
-                @slot('exhibition', $exhibition)
+                @slot('item', $item)
             @endcomponent
         @endif
     @endforeach

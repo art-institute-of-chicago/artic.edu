@@ -1,46 +1,46 @@
-<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $exhibition->closingSoon ? " m-listing--limited" : "" }}{{ $exhibition->nowOpen ? " m-listing--new" : "" }}{{ $exhibition->exclusive ? " m-listing--membership" : "" }}">
-  <a href="{{ $exhibition->slug }}" class="m-listing__link">
+<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->nowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
+  <a href="{{ $item->slug }}" class="m-listing__link">
     <span class="m-listing__img m-listing__img--wide">
         @component('components.atoms._img')
-            @slot('src', $exhibition->image['src'])
-            @slot('width', $exhibition->image['width'])
-            @slot('height', $exhibition->image['height'])
+            @slot('src', $item->image['src'])
+            @slot('width', $item->image['width'])
+            @slot('height', $item->image['height'])
         @endcomponent
     </span>
     <span class="m-listing__meta">
-        @if ($exhibition->closingSoon)
+        @if ($item->closingSoon)
             @component('components.atoms._type')
                 @slot('variation', 'type--limited')
                 Closing Soon
             @endcomponent
-        @elseif ($exhibition->nowOpen)
+        @elseif ($item->nowOpen)
             @component('components.atoms._type')
                 @slot('variation', 'type--new')
                 Now Open
             @endcomponent
-        @elseif ($exhibition->exclusive)
+        @elseif ($item->exclusive)
             @component('components.atoms._type')
                 @slot('variation', 'type--membership')
                 Member Exclusive
             @endcomponent
         @else
             @component('components.atoms._type')
-                {{ $exhibition->type }}
+                {{ $item->type }}
             @endcomponent
         @endif
         <br>
         @component('components.atoms._title')
-            {{ $exhibition->title }}
+            {{ $item->title }}
         @endcomponent
         <br>
         @if (isset($variation) && !strrpos($variation, "--row"))
             @component('components.atoms._date')
-                Through {{ $exhibition->dateEnd }}
+                Through {{ $item->dateEnd }}
             @endcomponent
         @else
             <span class="m-listing__meta-bottom">
                 @component('components.atoms._date')
-                    {{ $exhibition->dateStart }} - {{ $exhibition->dateEnd }}
+                    {{ $item->dateStart }} - {{ $item->dateEnd }}
                 @endcomponent
             </span>
         @endif

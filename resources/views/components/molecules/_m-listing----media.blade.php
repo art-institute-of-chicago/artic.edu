@@ -1,17 +1,17 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <a href="{{ $media->slug }}" class="m-listing__link">
+    <a href="{{ $item->slug }}" class="m-listing__link">
         <span class="m-listing__img m-listing__img--wide">
             @component('components.atoms._img')
-                @slot('src', $media->image['src'])
-                @slot('width', $media->image['width'])
-                @slot('height', $media->image['height'])
+                @slot('src', $item->image['src'])
+                @slot('width', $item->image['width'])
+                @slot('height', $item->image['height'])
             @endcomponent
         </span>
         <span class="m-listing__meta">
-            <strong class="title {{ $titleFont ?? 'f-list-3' }}">{{ $media->title }}</strong>
-            @if ($media->timeStamp)
+            <strong class="title {{ $titleFont ?? 'f-list-3' }}">{{ $item->title }}</strong>
+            @if ($item->timeStamp)
             <br>
-            <span class="subtitle f-secondary">{{ $media->timeStamp }}</span>
+            <span class="subtitle f-secondary">{{ $item->timeStamp }}</span>
             @endif
         </span>
     </a>

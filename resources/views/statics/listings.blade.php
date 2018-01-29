@@ -25,9 +25,9 @@
     @slot('cols_large','5')
     @slot('cols_xlarge','5')
     @slot('behavior','dragScroll')
-    @foreach ($products as $product)
+    @foreach ($products as $item)
         @component('components.molecules._m-listing----product')
-            @slot('product', $product)
+            @slot('product', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -45,9 +45,9 @@
     @slot('cols_medium','3')
     @slot('cols_large','4')
     @slot('cols_xlarge','4')
-    @foreach ($exhibitions8 as $exhibition)
+    @foreach ($exhibitions8 as $item)
         @component('components.molecules._m-listing----exhibition')
-            @slot('exhibition', $exhibition)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -65,9 +65,9 @@
     @slot('cols_large','4')
     @slot('cols_xlarge','4')
     @slot('behavior','dragScroll')
-    @foreach ($exhibitions4 as $exhibition)
+    @foreach ($exhibitions4 as $item)
         @component('components.molecules._m-listing----exhibition')
-            @slot('exhibition', $exhibition)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -85,9 +85,9 @@
     @slot('cols_medium','3')
     @slot('cols_large','3')
     @slot('cols_xlarge','3')
-    @foreach ($exhibitions6 as $exhibition)
+    @foreach ($exhibitions6 as $item)
         @component('components.molecules._m-listing----exhibition')
-            @slot('exhibition', $exhibition)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -103,10 +103,10 @@
     @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
     @slot('cols_large','3')
     @slot('cols_xlarge','3')
-    @foreach ($exhibitions3 as $exhibition)
+    @foreach ($exhibitions3 as $item)
         @component('components.molecules._m-listing----exhibition')
             @slot('variation', 'm-listing--row@small m-listing--row@medium')
-            @slot('exhibition', $exhibition)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -124,9 +124,9 @@
     @slot('cols_medium','2')
     @slot('cols_large','2')
     @slot('cols_xlarge','2')
-    @foreach ($exhibitions4 as $exhibition)
+    @foreach ($exhibitions4 as $item)
         @component('components.molecules._m-listing----exhibition')
-            @slot('exhibition', $exhibition)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -136,9 +136,9 @@
     Date listing
 @endcomponent
 @component('components.organisms._o-row-listing')
-    @foreach ($eventsByDay as $date)
+    @foreach ($eventsByDay as $item)
         @component('components.molecules._m-date-listing')
-            @slot('date', $date)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -148,10 +148,10 @@
     Row listing
 @endcomponent
 @component('components.organisms._o-row-listing')
-    @foreach ($exhibitions4 as $exhibition)
+    @foreach ($exhibitions4 as $item)
         @component('components.molecules._m-listing----exhibition-row')
             @slot('variation', 'm-listing--inline')
-            @slot('exhibition', $exhibition)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent

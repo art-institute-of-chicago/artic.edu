@@ -1,45 +1,45 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $exhibition->closingSoon ? " m-listing--limited" : "" }}{{ $exhibition->nowOpen ? " m-listing--new" : "" }}{{ $exhibition->exclusive ? " m-listing--membership" : "" }}">
-  <a href="{{ $exhibition->slug }}" class="m-listing__link">
+<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->nowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
+  <a href="{{ $item->slug }}" class="m-listing__link">
     <span class="m-listing__img{{ (!isset($variation) or $variation !== 'm-listing--hero') ? ' m-listing__img__wide' : '' }}">
         @component('components.atoms._img')
-            @slot('src', $exhibition->image['src'])
-            @slot('width', $exhibition->image['width'])
-            @slot('height', $exhibition->image['height'])
+            @slot('src', $item->image['src'])
+            @slot('width', $item->image['width'])
+            @slot('height', $item->image['height'])
         @endcomponent
     </span>
     <span class="m-listing__meta">
     @if (!isset($variation) or $variation !== 'm-listing--hero')
-        @if ($exhibition->exclusive)
+        @if ($item->exclusive)
             @component('components.atoms._type')
                 @slot('variation', 'type--membership')
                 Member Exclusive
             @endcomponent
         @else
             @component('components.atoms._type')
-                {{ $exhibition->type }}
+                {{ $item->type }}
             @endcomponent
         @endif
       <br>
     @endif
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-3')
-            {{ $exhibition->title }}
+            {{ $item->title }}
         @endcomponent
       <br>
       <span class="m-listing__meta-bottom">
-        @if ($exhibition->closingSoon)
+        @if ($item->closingSoon)
             @component('components.atoms._type')
                 @slot('variation', 'type--limited')
                 Closing Soon
             @endcomponent
-        @elseif ($exhibition->nowOpen)
+        @elseif ($item->nowOpen)
             @component('components.atoms._type')
                 @slot('variation', 'type--new')
                 Now Open
             @endcomponent
         @else
             @component('components.atoms._date')
-                {{ $exhibition->dateStart }} - {{ $exhibition->dateEnd }}
+                {{ $item->dateStart }} - {{ $item->dateEnd }}
             @endcomponent
         @endif
       </span>

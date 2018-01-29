@@ -338,9 +338,9 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($article->relatedExhibitions as $exhibition)
+        @foreach ($article->relatedExhibitions as $item)
             @component('components.molecules._m-listing----exhibition')
-                @slot('exhibition', $exhibition)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent
@@ -357,9 +357,9 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($article->relatedEvents as $event)
+        @foreach ($article->relatedEvents as $item)
             @component('components.molecules._m-listing----event')
-                @slot('event', $event)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent
@@ -375,9 +375,9 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($article->relatedArticles as $editorial)
+        @foreach ($article->relatedArticles as $item)
             @component('components.molecules._m-listing----article')
-                @slot('article', $editorial)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent
@@ -403,7 +403,7 @@
         @foreach ($article->exploreFuther['items'] as $item)
             @component('components.molecules._m-listing----'.$item->type)
                 @slot('variation', 'o-pinboard__item')
-                @slot($item->type, $item)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent
@@ -421,9 +421,9 @@
         @slot('cols_large',(sizeof($article->recentlyViewedArtworks) > 6) ? '12' : '6')
         @slot('cols_xlarge',(sizeof($article->recentlyViewedArtworks) > 6) ? '12' : '6')
         @slot('behavior','dragScroll')
-        @foreach ($article->recentlyViewedArtworks as $artwork)
+        @foreach ($article->recentlyViewedArtworks as $item)
             @component('components.molecules._m-listing----artwork-minimal')
-                @slot('artwork', $artwork)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent

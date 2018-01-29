@@ -89,10 +89,10 @@
     @endcomponent
 
     @component('components.organisms._o-row-listing')
-        @foreach ($exhibitions as $exhibition)
+        @foreach ($exhibitions as $item)
             @component('components.molecules._m-listing----exhibition-history-row')
                 @slot('variation', 'm-listing--row')
-                @slot('exhibition', $exhibition)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent
@@ -112,9 +112,9 @@
             @slot('cols_large',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
             @slot('cols_xlarge',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
             @slot('behavior','dragScroll')
-            @foreach ($recentlyViewedArtworks as $artwork)
+            @foreach ($recentlyViewedArtworks as $item)
                 @component('components.molecules._m-listing----artwork-minimal')
-                    @slot('artwork', $artwork)
+                    @slot('item', $item)
                 @endcomponent
             @endforeach
         @endcomponent

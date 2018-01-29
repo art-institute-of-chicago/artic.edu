@@ -57,7 +57,7 @@
     @foreach ($artworks as $item)
         @component('components.molecules._m-listing----'.$item->type)
             @slot('variation', 'o-pinboard__item')
-            @slot($item->type, $item)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -76,22 +76,22 @@
             @slot('titleFont', 'f-list-5')
             @slot('captionFont', 'f-body-editorial')
             @slot('variation', 'o-feature-plus-4__feature')
-            @slot('article', $featuredArticlesHero)
+            @slot('item', $featuredArticlesHero)
         @endcomponent
         <ul class="o-feature-plus-4__items-1">
-        @foreach ($featuredArticles as $editorial)
+        @foreach ($featuredArticles as $item)
             @if ($loop->index < 2)
                 @component('components.molecules._m-listing----article-minimal')
-                    @slot('article', $editorial)
+                    @slot('item', $item)
                 @endcomponent
             @endif
         @endforeach
         </ul>
         <ul class="o-feature-plus-4__items-2">
-        @foreach ($featuredArticles as $editorial)
+        @foreach ($featuredArticles as $item)
             @if ($loop->index > 1)
                 @component('components.molecules._m-listing----article-minimal')
-                    @slot('article', $editorial)
+                    @slot('item', $item)
                 @endcomponent
             @endif
         @endforeach
@@ -111,9 +111,9 @@
         @slot('cols_large',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
         @slot('cols_xlarge',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
         @slot('behavior','dragScroll')
-        @foreach ($recentlyViewedArtworks as $artwork)
+        @foreach ($recentlyViewedArtworks as $item)
             @component('components.molecules._m-listing----artwork-minimal')
-                @slot('artwork', $artwork)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent

@@ -58,7 +58,7 @@
 </div>
 
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows o-grid-listing--2-col@small o-grid-listing--3-col@medium o-grid-listing--4-col@large o-grid-listing--5-col@xlarge">
-  @foreach ($products as $product)
+  @foreach ($products as $item)
     @include('shared._list-item-product', array('product' => $product))
   @endforeach
 </ul>

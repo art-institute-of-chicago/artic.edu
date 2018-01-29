@@ -22,10 +22,10 @@
     @slot('cols_xlarge','4')
     @slot('maintainOrder','true')
     @slot('moreLink',$artworksMoreLink)
-    @foreach ($artworks as $artwork)
+    @foreach ($artworks as $item)
         @component('components.molecules._m-listing----artwork')
             @slot('variation', 'o-pinboard__item')
-            @slot('artwork', $artwork)
+            @slot('item', $item)
         @endcomponent
     @endforeach
 @endcomponent
@@ -47,9 +47,9 @@
         @slot('cols_medium','3')
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
-        @foreach ($relatedArticles as $article)
+        @foreach ($relatedArticles as $item)
             @component('components.molecules._m-listing----article')
-                @slot('article', $article)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent
@@ -75,7 +75,7 @@
         @foreach ($exploreFuther['items'] as $item)
             @component('components.molecules._m-listing----'.$item->type)
                 @slot('variation', 'o-pinboard__item')
-                @slot($item->type, $item)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent
@@ -98,9 +98,9 @@
         @slot('cols_medium','3')
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
-        @foreach ($exhibitions as $exhibition)
+        @foreach ($exhibitions as $item)
             @component('components.molecules._m-listing----exhibition')
-                @slot('exhibition', $exhibition)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent
@@ -120,9 +120,9 @@
         @slot('cols_large',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
         @slot('cols_xlarge',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
         @slot('behavior','dragScroll')
-        @foreach ($recentlyViewedArtworks as $artwork)
+        @foreach ($recentlyViewedArtworks as $item)
             @component('components.molecules._m-listing----artwork-minimal')
-                @slot('artwork', $artwork)
+                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent

@@ -1,40 +1,40 @@
-<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $event->closingSoon ? " m-listing--limited" : "" }}{{ $event->exclusive ? " m-listing--membership" : "" }}">
-  <a href="{{ $event->slug }}" class="m-listing__link">
+<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
+  <a href="{{ $item->slug }}" class="m-listing__link">
     <span class="m-listing__img m-listing__img--wide">
         @component('components.atoms._img')
-            @slot('src', $event->image['src'])
-            @slot('width', $event->image['width'])
-            @slot('height', $event->image['height'])
+            @slot('src', $item->image['src'])
+            @slot('width', $item->image['width'])
+            @slot('height', $item->image['height'])
         @endcomponent
     </span>
     <span class="m-listing__meta">
-        @if ($event->exclusive)
+        @if ($item->exclusive)
             @component('components.atoms._type')
                 @slot('variation', 'type--membership')
                 Member Exclusive
             @endcomponent
         @else
             @component('components.atoms._type')
-                {{ $event->type }}
+                {{ $item->type }}
             @endcomponent
         @endif
         <br>
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-4')
-            {{ $event->title }}
+            {{ $item->title }}
         @endcomponent
         @if (!isset($hideShortDesc) or !$hideShortDesc)
         <br>
         @component('components.atoms._short-description')
-            {{ $event->shortDesc }}
+            {{ $item->shortDesc }}
         @endcomponent
         @endif
         <br>
         <span class="m-listing__meta-bottom">
             @component('components.atoms._date')
-                {{ $event->timeStart }}-{{ $event->timeEnd }}
+                {{ $item->timeStart }}-{{ $item->timeEnd }}
             @endcomponent
-            @if ($event->free)
+            @if ($item->free)
             <br>
             @component('components.atoms._tag')
                 @slot('variation','tag--primary')
@@ -42,7 +42,7 @@
                 Free
             @endcomponent
             @endif
-            @if ($event->register)
+            @if ($item->register)
             <br>
             @component('components.atoms._tag')
                 @slot('variation','tag--secondary')
@@ -50,7 +50,7 @@
                 Register
             @endcomponent
             @endif
-            @if ($event->soldOut)
+            @if ($item->soldOut)
             <br>
             @component('components.atoms._tag')
                 @slot('variation','tag--tertiary')

@@ -5,7 +5,7 @@
         @component('components.molecules.'.$itemsMolecule)
             @slot('tag', 'p')
             @slot('variation', $itemsVariation ?? null)
-            @slot($type, $items[0])
+            @slot('item', $items[0])
         @endcomponent
     @else
         @slot('title', 'Related '.ucfirst($type).'s')
@@ -13,7 +13,7 @@
             @foreach ($items as $item)
                 @component('components.molecules.'.$itemsMolecule)
                     @slot('variation', $itemsVariation ?? null)
-                    @slot($type, $item)
+                    @slot('item', $item)
                 @endcomponent
             @endforeach
         @endcomponent

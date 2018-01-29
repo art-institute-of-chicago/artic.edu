@@ -100,7 +100,7 @@
                 @slot('variation', 'o-blocks__block')
                 @foreach ($block['items'] as $item)
                     @component('components.molecules._m-listing----timeline')
-                        @slot('date', $item)
+                        @slot('item', $item)
                     @endcomponent
                 @endforeach
             @endcomponent
@@ -113,7 +113,7 @@
                     @foreach ($block['items'] as $item)
                         @component('components.molecules._m-listing----'.$block["subtype"].'-row')
                             @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
-                            @slot($block["subtype"], $item)
+                            @slot('item', $item)
                         @endcomponent
                     @endforeach
                 @endcomponent

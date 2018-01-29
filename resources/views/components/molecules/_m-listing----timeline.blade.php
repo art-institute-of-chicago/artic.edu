@@ -2,21 +2,21 @@
 <div class="m-listing__meta">
     @component('components.atoms._date')
         @slot('tag','p')
-        {{ $date->time }}
+        {{ $item->time }}
     @endcomponent
     @component('components.atoms._title')
         @slot('tag','h4')
         @slot('font','f-list-3')
-        {{ $date->title }}
+        {{ $item->title }}
     @endcomponent
-    <p class="f-body">{{ $date->blurb }}</p>
+    <p class="f-body">{{ $item->blurb }}</p>
 </div>
-@if ($date->image)
+@if ($item->image)
 <div class="m-listing__img">
     @component('components.atoms._img')
-        @slot('src', $date->image['src'])
-        @slot('width', $date->image['width'])
-        @slot('height', $date->image['height'])
+        @slot('src', $item->image['src'])
+        @slot('width', $item->image['width'])
+        @slot('height', $item->image['height'])
     @endcomponent
 </div>
 @endif

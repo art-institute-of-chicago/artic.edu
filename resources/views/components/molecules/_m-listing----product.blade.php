@@ -1,35 +1,35 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-<a href="{{ $product->slug }}" class="m-listing__link">
+<a href="{{ $item->slug }}" class="m-listing__link">
     <span class="m-listing__img m-listing__img--square">
         @component('components.atoms._img')
-            @slot('src', $product->image['src'])
-            @slot('width', $product->image['width'])
-            @slot('height', $product->image['height'])
+            @slot('src', $item->image['src'])
+            @slot('width', $item->image['width'])
+            @slot('height', $item->image['height'])
         @endcomponent
     </span>
     <span class="m-listing__meta">
         @if (!isset($simple) or !$simple)
             @component('components.atoms._type')
-                {{ $product->type }}
+                {{ $item->type }}
             @endcomponent
             <br>
         @endif
         @component('components.atoms._title')
-            {{ $product->title }}
+            {{ $item->title }}
         @endcomponent
         @if (!isset($simple) or !$simple)
             <br>
             <span class="m-listing__meta-bottom">
-                @if ($product->priceSale)
+                @if ($item->priceSale)
                     @component('components.atoms._price')
                         @slot('salePrice')
-                            {{ $product->currency }}{{ $product->price }}
+                            {{ $item->currency }}{{ $item->price }}
                         @endslot
-                        {{ $product->currency }}{{ $product->priceSale }}
+                        {{ $item->currency }}{{ $item->priceSale }}
                     @endcomponent
                 @else
                     @component('components.atoms._price')
-                        {{ $product->currency }}{{ $product->price }}
+                        {{ $item->currency }}{{ $item->price }}
                     @endcomponent
                 @endif
             </span>
