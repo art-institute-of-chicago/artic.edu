@@ -17,12 +17,12 @@
     @formField('input', [
         'name' => 'short_copy',
         'label' => 'Short Intro copy',
+        'type' => 'textarea'
     ])
 
     @formField('medias', [
         'name' => 'hero',
-        'label' => 'Hero Image',
-        'max' => 2,
+        'label' => 'Hero Image'
     ])
 
     @formField('browser', [
