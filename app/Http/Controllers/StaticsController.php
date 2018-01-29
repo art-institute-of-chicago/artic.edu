@@ -184,7 +184,7 @@ class StaticsController extends Controller {
     // update and add some items (I ran into memory issues doing this in the main getExhibition func..)
     $article->push('articleType', 'exhibition');
     $article->push('closingSoon', true);
-    $article->push('headerType', 'hero');
+    $article->push('headerType', 'super-hero');
     $article->push('headerImage', $this->getImage(1600,900));
     $article->push('blocks', $this->generateBlocks(6));
     $article->push('intro', $this->faker->paragraph(6, false));
