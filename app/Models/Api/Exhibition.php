@@ -26,7 +26,7 @@ class Exhibition extends BaseApiModel
     protected $presenterAdmin      = 'App\Presenters\Admin\ExhibitionPresenter';
 
     // Solve this using casts. Because it returns an object it can't be used on the CMS
-    // Add a value option
+    // A value option could be added when showing
     public function getStartAtAttribute($value) {
         return $this->asDateTime($value)->format("Y-m-d h:m:s T");
     }

@@ -91,7 +91,7 @@
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image_with_caption', 'video_with_caption', 'gallery',
-            'media_embed', 'quote', 'list', 'related_offets', 'newsletter_signup_inline',
+            'media_embed', 'quote', 'list', 'related_offers', 'newsletter_signup_inline',
             'sponsor', 'timeline', 'link'
         ]
     ])

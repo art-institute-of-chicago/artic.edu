@@ -113,6 +113,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-footnote',
             ],
+            'event' => [
+                'title' => 'Event',
+                'icon' => 'text',
+                'component' => 'a17-block-event',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
@@ -161,6 +166,9 @@ return [
                     ],
                 ],
             ],
+        ],
+        'browser_route_prefixes' => [
+            'events' => 'whatson',
         ],
     ],
 
