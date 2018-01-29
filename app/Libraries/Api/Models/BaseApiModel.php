@@ -13,6 +13,8 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+use DateTime;
 use Illuminate\Support\Collection as BaseCollection;
 use JsonSerializable;
 
@@ -739,6 +741,8 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
                 return $this->fromJson($value);
             case 'collection':
                 return new BaseCollection($this->fromJson($value));
+            case 'datetime':
+                return $this->asDateTime($value);
             default:
                 return $value;
         }
@@ -791,6 +795,46 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     protected function asJson($value)
     {
         return json_encode($value);
+    }
+
+    /**
+     * Return a timestamp as DateTime object.
+     *
+     * @param  mixed  $value
+     * @return \Illuminate\Support\Carbon
+     */
+    protected function asDateTime($value)
+    {
+        if ($value instanceof Carbon) {
+            return $value;
+        }
+
+        if ($value instanceof DateTimeInterface) {
+            return new Carbon(
+                $value->format('Y-m-d H:i:s.u'), $value->getTimezone()
+            );
+        }
+
+        if (is_numeric($value)) {
+            return Carbon::createFromTimestamp($value);
+        }
+
+        if ($this->isStandardDateFormat($value)) {
+            return Carbon::createFromFormat('Y-m-d', $value)->startOfDay();
+        }
+
+        return new Carbon($value);
+    }
+
+    /**
+     * Determine if the given value is a standard date format.
+     *
+     * @param  string  $value
+     * @return bool
+     */
+    protected function isStandardDateFormat($value)
+    {
+        return preg_match('/^(\d{4})-(\d{1,2})-(\d{1,2})$/', $value);
     }
 
     /**
