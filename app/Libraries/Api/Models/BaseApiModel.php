@@ -8,14 +8,15 @@
 
 namespace App\Libraries\Api\Models;
 
-use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
-use DateTime;
 use Illuminate\Support\Collection as BaseCollection;
+
+use ArrayAccess;
+use DateTime;
 use JsonSerializable;
 
 use App\Libraries\Api\Models\Behaviors\HasApiCalls;

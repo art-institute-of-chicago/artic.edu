@@ -7,8 +7,6 @@ use App\Repositories\SiteTagRepository;
 class ArtistController extends BaseApiController
 {
     protected $moduleName = 'artists';
-    protected $modelName  = 'Artist';
-    protected $modelNameApi  = 'Api\Artist';
     protected $hasAugmentedModel = true;
 
     protected $indexOptions = [

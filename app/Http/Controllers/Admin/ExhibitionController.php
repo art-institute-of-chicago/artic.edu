@@ -7,8 +7,6 @@ use App\Repositories\SiteTagRepository;
 class ExhibitionController extends BaseApiController
 {
     protected $moduleName = 'exhibitions';
-    protected $modelName  = 'Exhibition';
-    protected $modelNameApi  = 'Api\Exhibition';
     protected $hasAugmentedModel = true;
 
     protected $indexOptions = [
@@ -20,6 +18,7 @@ class ExhibitionController extends BaseApiController
         'bulkRestore' => false,
         'bulkDelete' => false,
         'reorder' => false,
+
         'permalink' => false,
     ];
 

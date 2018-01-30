@@ -14,19 +14,11 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-use App\Repositories\SiteTagRepository;
-
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 use Route;
-use Session;
 
 class BaseApiController extends ModuleController
 {
-    protected $moduleName = '';
-    protected $modelName  = '';
-    protected $modelNameApi  = '';
-
     // Option to setup links and the possibility of augmenting a model
     protected $hasAugmentedModel = false;
 
@@ -59,9 +51,18 @@ class BaseApiController extends ModuleController
         return $this->redirectToForm($item->id);
     }
 
+    protected function getRepository()
+    {
+        if ($this->hasAugmentedModel) {
+            return parent::getRepository();
+        } else {
+            return $this->getApiRepository();
+        }
+    }
+
     protected function getApiRepository()
     {
-        return $this->app->make("$this->namespace\Repositories\\" . $this->modelNameApi . "Repository");
+        return $this->app->make("$this->namespace\Repositories\\Api\\" . $this->modelName . "Repository");
     }
 
     public function getIndexItems($scopes = [], $forcePagination = false)

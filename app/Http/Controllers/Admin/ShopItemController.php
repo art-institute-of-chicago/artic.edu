@@ -7,8 +7,7 @@ use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 class ShopItemController extends BaseApiController
 {
     protected $moduleName = 'shopItems';
-    protected $modelName  = 'Api\ShopItem';
-    protected $modelNameApi  = 'Api\ShopItem';
+    protected $hasAugmentedModel = false;
 
     protected $indexOptions = [
         'publish' => false,
