@@ -210,6 +210,14 @@
                 @endcomponent
             @endif
 
+            @if ($block['type'] === 'label')
+                @component('components.atoms._label')
+                  @slot('optional', $block['$optional'] ?? null)
+                  @slot('hint', $block['$hint'] ?? null)
+                  {!! $block['label'] !!}
+                @endcomponent
+            @endif
+
             @if ($block['type'] === 'input')
                 @component('components.atoms._input')
                     @slot('variation', $block['variation'] ?? null)
@@ -255,6 +263,49 @@
                 @endcomponent
             @endif
 
+            @if ($block['type'] === 'checkbox')
+                @component('components.atoms._checkbox')
+                    @slot('variation', $block['variation'] ?? null)
+                    @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('error', $block['error'] ?? null)
+                    @slot('optional', $block['optional'] ?? null)
+                    @slot('hint', $block['hint'] ?? null)
+                    @slot('disabled', $block['disabled'] ?? false)
+                    @slot('label', $block['label'] ?? false)
+                    @slot('checked', $block['checked'] ?? false)
+                @endcomponent
+            @endif
+
+            @if ($block['type'] === 'radio')
+                @component('components.atoms._radio')
+                    @slot('variation', $block['variation'] ?? null)
+                    @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('name', $block['name'] ?? 'i_'.$loop->iteration)
+                    @slot('error', $block['error'] ?? null)
+                    @slot('optional', $block['optional'] ?? null)
+                    @slot('hint', $block['hint'] ?? null)
+                    @slot('disabled', $block['disabled'] ?? false)
+                    @slot('label', $block['label'] ?? false)
+                    @slot('checked', $block['checked'] ?? false)
+                @endcomponent
+            @endif
+
+            @if ($block['type'] === 'date-select')
+                @component('components.atoms._date-select-input')
+                    @slot('variation', $block['variation'] ?? null)
+                    @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('placeholder', $block['placeholder'] ?? null)
+                    @slot('textCount', $block['textCount'] ?? false)
+                    @slot('value', $block['value'] ?? null)
+                    @slot('error', $block['error'] ?? null)
+                    @slot('optional', $block['optional'] ?? null)
+                    @slot('hint', $block['hint'] ?? null)
+                    @slot('disabled', $block['disabled'] ?? false)
+                    {!! $block['label'] !!}
+                @endcomponent
+            @endif
 
         @else
             @php

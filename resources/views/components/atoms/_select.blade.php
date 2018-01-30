@@ -4,7 +4,7 @@
             @slot('for', $id)
             @slot('optional', $optional ?? null)
             @slot('hint', $hint ?? null)
-            {{ $slot }}
+            {!! $slot !!}
         @endcomponent
     @endif
     <span class="select__select" data-behavior="formSelectFocus">

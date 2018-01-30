@@ -2099,7 +2099,7 @@ class StaticsController extends Controller {
               'error' => null,
               'optional' => null,
               'hint' => null,
-              'disabled' => true,
+              'disabled' => 'disabled',
               'label' => 'Disabled input',
             ),
         ),
@@ -2206,7 +2206,7 @@ class StaticsController extends Controller {
         'blocks' => array(
             array(
               "type" => 'textarea',
-              'variation' => 'm-fieldset__input-narrow',
+              'variation' => null,
               'id' => 'tinput9',
               'placeholder' => 'placeholder text',
               'value' => null,
@@ -2215,6 +2215,22 @@ class StaticsController extends Controller {
               'hint' => null,
               'disabled' => false,
               'label' => 'Basic',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'textarea',
+              'variation' => null,
+              'id' => 'tinput10',
+              'placeholder' => 'placeholder text',
+              'value' => null,
+              'error' => null,
+              'optional' => null,
+              'hint' => 'Hint for textarea',
+              'disabled' => false,
+              'label' => 'With hint',
             ),
         ),
     ));
@@ -2249,7 +2265,7 @@ class StaticsController extends Controller {
             array(
               "type" => 'input',
               'variation' => 'm-fieldset__input-narrow',
-              'id' => 'tinput10',
+              'id' => 'tinput11',
               'placeholder' => 'placeholder text',
               'textCount' => false,
               'value' => null,
@@ -2261,6 +2277,158 @@ class StaticsController extends Controller {
             ),
         ),
     ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'checkbox',
+              'variation' => '',
+              'id' => 'coption1',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 1',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'checkbox',
+              'variation' => '',
+              'id' => 'coption2',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 2',
+            ),
+        ),
+    ));
+
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'label',
+              'variation' => 'm-fieldset__group-label',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'label' => 'Group of checkboxes',
+            ),
+            array(
+              "type" => 'checkbox',
+              'variation' => '',
+              'id' => 'coption3',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => 'checked',
+              'label' => 'Option 3, checked by default',
+            ),
+            array(
+              "type" => 'checkbox',
+              'variation' => '',
+              'id' => 'coption4',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 4',
+            ),
+        ),
+    ));
+
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'radio',
+              'variation' => '',
+              'name' => 'roptions1',
+              'id' => 'roption1',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 1',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'radio',
+              'variation' => '',
+              'name' => 'roptions1',
+              'id' => 'roption2',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 2',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'label',
+              'variation' => 'm-fieldset__group-label',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'label' => 'Group of radios',
+            ),
+            array(
+              "type" => 'radio',
+              'variation' => '',
+              'name' => 'roptions2',
+              'id' => 'roption3',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => 'checked',
+              'label' => 'Option 3, checked by default',
+            ),
+            array(
+              "type" => 'radio',
+              'variation' => '',
+              'name' => 'roptions2',
+              'id' => 'roption4',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 4',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'date-select',
+              'variation' => null,
+              'id' => 'tinput99',
+              'placeholder' => 'dd/mm/yy',
+              'value' => null,
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'label' => 'Date selector',
+            ),
+        ),
+    ));
+
+
 
     // build form blocks
     array_push($formBlocks, array(

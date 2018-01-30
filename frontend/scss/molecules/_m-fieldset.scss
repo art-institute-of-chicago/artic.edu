@@ -41,12 +41,17 @@
 .m-fieldset__field {
   display: flex;
   flex-flow: row wrap;
-  margin-top: 20px;
+  margin-top: 24px;
+  padding-top: .02px;
+  padding-bottom: .02px;
 }
 
 .m-fieldset__field .input,
 .m-fieldset__field .textarea,
-.m-fieldset__field .select {
+.m-fieldset__field .select,
+.m-fieldset__field .checkbox,
+.m-fieldset__field .radio,
+.m-fieldset__group-label {
   width: 100%;
 }
 

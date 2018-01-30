@@ -4,7 +4,9 @@
     @component('components.atoms._label')
       @slot('for', $id)
       @slot('font', '')
-      {{ $label ?? '' }}
+      @slot('optional', $optional ?? null)
+      @slot('hint', $hint ?? null)
+      {!! $label ?? '' !!}
     @endcomponent
   </span>
   @if (isset($error))
