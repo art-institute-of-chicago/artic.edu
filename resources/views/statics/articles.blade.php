@@ -5,7 +5,7 @@
 <section class="o-articles">
 
     @component('components.organisms._o-features')
-        @component('components.molecules._m-listing----article')
+        @component('components.molecules._m-listing----article-hero')
             @slot('item', $heroArticle)
             @slot('variation', 'm-listing--hero m-listing--hero-editorial')
             @slot('titleFont', 'f-headline-editorial')
@@ -44,6 +44,7 @@
   @endcomponent
 
   @component('components.atoms._hr')
+    @slot('variation', 'hr--flush-top')
   @endcomponent
 
   @component('components.organisms._o-grid-listing')

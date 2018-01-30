@@ -8,14 +8,22 @@
             @endcomponent
         </span>
         <span class="m-listing__meta">
-            <em class="type f-tag">{{ $item->subtype }}</em>
-            <br>
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
                 {{ $item->title }}
             @endcomponent
             <br>
             <span class="intro {{ $captionFont ?? 'f-caption' }}">{{ $item->intro }}</span>
+            <br>
+            <span class="m-listing__meta-bottom">
+                @component('components.atoms._type')
+                    {{ $item->subtype }}
+                @endcomponent
+                <br>
+                @component('components.atoms._date')
+                    {{ $item->date }}
+                @endcomponent
+            </span>
         </span>
     </a>
 </{{ $tag or 'li' }}>

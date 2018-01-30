@@ -29,11 +29,11 @@ m-paginator
   margin-top: 20px;
 
   @include breakpoint('medium+') {
-    margin-top: 16px;
+    margin-top: 28px;
   }
 
-  @include breakpoint('medium+') {
-    margin-top: 20px;
+  @include breakpoint('large+') {
+    margin-top: 40px;
   }
 }
 
