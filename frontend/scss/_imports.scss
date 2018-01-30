@@ -111,6 +111,7 @@ $include-icons: false; // see icons.scss!
 @import 'molecules/m-download-file';
 @import 'molecules/m-post-hero';
 @import 'molecules/m-listing-header';
+@import 'molecules/m-fieldset';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
@@ -129,6 +130,7 @@ $include-icons: false; // see icons.scss!
 @import 'organisms/o-collection-listing';
 @import 'organisms/o-visit';
 @import 'organisms/o-artist-bio';
+@import 'organisms/o-form';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 

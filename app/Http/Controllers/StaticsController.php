@@ -852,6 +852,18 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function generic_form() {
+    $navs = $this->generateGenericNav('landing');
+    // now push to a view
+    return view('statics/generic', [
+        'subNav' => $navs['subNav'],
+        'nav' => $navs['nav'],
+        'title' => $this->faker->sentence(),
+        "breadcrumb" => $this->generateGenericBreadcrumb(),
+        "blocks" => $this->generateGenericForm(),
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
@@ -2016,5 +2028,183 @@ class StaticsController extends Controller {
             'text' => 'See all 2,348 artworks'
         ],
     ];
+  }
+
+  private function generateGenericForm() {
+    $blocks = array();
+    $formBlocks = array();
+    $formFields = array();
+
+    // build form fields
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'input',
+              'variation' => null,
+              'id' => 'tinput1',
+              'placeholder' => 'placeholder text',
+              'textCount' => false,
+              'value' => null,
+              'error' => null,
+              'disabled' => false,
+              'label' => 'Basic',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'input',
+              'variation' => null,
+              'id' => 'tinput2',
+              'placeholder' => 'placeholder text',
+              'textCount' => true,
+              'value' => null,
+              'error' => null,
+              'disabled' => false,
+              'label' => 'With text counter',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'input',
+              'variation' => null,
+              'id' => 'tinput3',
+              'placeholder' => 'placeholder text',
+              'textCount' => false,
+              'value' => null,
+              'error' => null,
+              'disabled' => true,
+              'label' => 'Disabled input',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'input',
+              'variation' => null,
+              'id' => 'tinput4',
+              'placeholder' => 'placeholder text',
+              'textCount' => false,
+              'value' => null,
+              'error' => "Error message",
+              'disabled' => false,
+              'label' => 'With error',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'input',
+              'variation' => null,
+              'id' => 'tinput5',
+              'placeholder' => 'placeholder text',
+              'textCount' => false,
+              'value' => "Existing value",
+              'error' => null,
+              'disabled' => false,
+              'label' => 'Pre-populated',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'input',
+              'variation' => 'm-fieldset__input-narrow',
+              'id' => 'tinput6',
+              'placeholder' => 'placeholder text',
+              'textCount' => false,
+              'value' => null,
+              'error' => null,
+              'disabled' => false,
+              'label' => 'Basic',
+            ),
+        ),
+    ));
+    array_push($formFields, array(
+        'blocks' => array(
+            array(
+              "type" => 'input',
+              'variation' => 'm-fieldset__input-narrow',
+              'id' => 'tinput7',
+              'placeholder' => 'placeholder text',
+              'textCount' => false,
+              'value' => null,
+              'error' => null,
+              'disabled' => false,
+              'label' => 'Basic',
+            ),
+            array(
+              "type" => 'input',
+              'variation' => 'm-fieldset__input-narrow',
+              'id' => 'tinput8',
+              'placeholder' => 'placeholder text',
+              'textCount' => false,
+              'value' => null,
+              'error' => null,
+              'disabled' => false,
+              'label' => 'Basic',
+            ),
+        ),
+    ));
+
+    // build form blocks
+    array_push($formBlocks, array(
+      "type" => 'fieldset',
+      'variation' => null,
+      'fields' => $formFields,
+      'legend' => 'Contact Information',
+    ));
+    array_push($formBlocks, array(
+      "type" => 'fieldset',
+      'variation' => null,
+      'fields' => $formFields,
+      'legend' => 'Visit Information',
+    ));
+
+    // build page blocks
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'image',
+            'size' => 's',
+            'media' => $this->getImage(640,480),
+            'hideCaption' => true,
+        )
+    ));
+    array_push($blocks, array(
+      "type" => 'text',
+      "content" => $this->faker->paragraph(5)
+    ));
+    array_push($blocks, array(
+      "type" => 'text',
+      "content" => $this->faker->paragraph(5)
+    ));
+    array_push($blocks, array(
+        "type" => 'form',
+        'variation' => null,
+        'action' => '/statics/',
+        'method' => 'GET',
+        "blocks" => $formBlocks,
+        "actions" => array(
+            array(
+                'variation' => null,
+                'type' => 'submit',
+                'label' => "Send",
+            ),
+            array(
+                'variation' => 'btn--secondary',
+                'type' => 'reset',
+                'label' => "Cancel",
+            ),
+        )
+    ));
+
+    return $blocks;
   }
 }

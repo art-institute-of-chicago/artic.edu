@@ -61,6 +61,7 @@
         <ul class="list f-body">
           <li><a href="/statics/research_landing">research landing</a></li>
           <li><a href="/statics/articles">articles</a></li>
+          <li><a href="/statics/generic_form">generic form</a></li>
         </ul>
     </div>
 </article>

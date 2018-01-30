@@ -1,0 +1,55 @@
+
+
+.m-fieldset {
+  position: relative;
+
+  & + & {
+    margin-top: 40px;
+  }
+}
+
+.m-fieldset::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
+
+.m-fieldset__legend {
+  float: left;
+}
+
+.m-fieldset__legend > span {
+  display: block;
+  width: 100%;
+}
+
+.m-fieldset__legend + * {
+  clear: both;
+}
+
+.m-fieldset__fields {
+
+  .m-fieldset__legend + & {
+    padding-top: .02px;
+  }
+}
+
+.m-fieldset__field {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 20px;
+}
+
+.m-fieldset__field .input {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.m-fieldset__field .input.m-fieldset__input-narrow {
+  width: 25%;
+  margin-right: 20px;
+}

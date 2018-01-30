@@ -1,0 +1,27 @@
+
+.o-form {
+}
+
+
+.o-form__actions {
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  margin-top: 40px;
+}
+
+.o-form__actions::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
+
+.o-form__action {
+  flex: 0 0 auto;
+  margin-top: 20px;
+  margin-right: 20px;
+}

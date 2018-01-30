@@ -300,11 +300,21 @@
 
     @include breakpoint('large+') {
       width: colspan(28, large);
-      margin-left: colspan(15, large);
+      //margin-left: colspan(15, large);
     }
 
     @include breakpoint('xlarge') {
       width: colspan(28, xlarge);
+      //margin-left: colspan(15, xlarge);
+    }
+  }
+
+  .o-article__secondary-actions ~ .o-article__intro ~ .o-article__body {
+    @include breakpoint('large+') {
+      margin-left: colspan(15, large);
+    }
+
+    @include breakpoint('xlarge') {
       margin-left: colspan(15, xlarge);
     }
   }
