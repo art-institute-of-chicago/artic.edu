@@ -1,10 +1,8 @@
 <?php
 
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
-
 namespace App\Providers;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -25,11 +23,10 @@ class AppServiceProvider extends ServiceProvider
     public function registerMorphMap()
     {
         Relation::morphMap([
-            'exhibitions' => 'App\Models\Exhibition',
             'events' => 'App\Models\Event',
             'articles' => 'App\Models\Article',
-            'artworks' => 'App\Models\Artwork',
-            'selections' => 'App\Models\Selection'
+            'selections' => 'App\Models\Selection',
+            'artists' => 'App\Models\Artist'
         ]);
     }
 
@@ -37,7 +34,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('ApiClient', function($app)
         {
-            return new \GuzzleHttp\Client(['base_uri' => config('api.base_uri')]);
+            return new GuzzleApiConsumer([
+                'base_uri'   => config('api.base_uri'),
+                'exceptions' => false
+            ]);
         });
     }
 

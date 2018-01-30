@@ -3,10 +3,10 @@
 namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
-use A17\CmsToolkit\Repositories\ModuleRepository;
+use App\Repositories\Api\BaseApiRepository;
 use App\Models\Artist;
 
-class ArtistRepository extends ModuleRepository
+class ArtistRepository extends BaseApiRepository
 {
     use HandleSlugs;
 
@@ -17,9 +17,17 @@ class ArtistRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateOrderedBelongsTomany($object, $fields, 'shopItems');
-
+        $object->siteTags()->sync($fields['siteTags'] ?? []);
+        $this->updateBrowser($object, $fields, 'articles');
         parent::afterSave($object, $fields);
+    }
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+        $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
+        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');
+        return $fields;
     }
 
 }

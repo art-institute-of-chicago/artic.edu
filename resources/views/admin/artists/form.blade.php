@@ -1,36 +1,39 @@
-@extends('cms-toolkit::layouts.resources.form')
+@extends('cms-toolkit::layouts.form')
 
-@section('form')
-    {{ Form::model($form_fields, $form_options) }}
-    <section class="box">
-        <header class="header_small">
-            <h3><b>{{ $form_fields['title'] or 'New item' }}</b></h3>
-        </header>
-        @formField('input', [
-            'field' => 'datahub_id',
-            'field_name' => 'Datahub ID'
-        ])
-        @formField('input', [
-            'field' => 'name',
-            'field_name' => 'Name',
-        ])
-        @formField('textarea', [
-            'field' => 'biography',
-            'field_name' => 'Biography'
-        ])
+@section('contentFields')
+    @formField('input', [
+        'name' => 'datahub_id',
+        'label' => 'Datahub ID',
+        'disabled' => true
+    ])
+    @formField('input', [
+        'name' => 'also_known_as',
+        'label' => 'Also known as...',
+    ])
+    @formField('input', [
+        'name' => 'intro_copy',
+        'label' => 'Intro Copy',
+        'type' => 'textarea'
+    ])
+
+    @formField('multi_select', [
+        'name' => 'siteTags',
+        'label' => 'Tags',
+        'options' => $siteTagsList,
+        'placeholder' => 'Select some tags',
+    ])
+@stop
+
+@section('fieldsets')
+    <a17-fieldset id="attributes" title="Related">
 
         @formField('browser', [
             'routePrefix' => 'whatson',
-            'relationship' => 'shopItems',
-            'module_name' => 'shopItems',
-            'relationship_name' => 'Related Shop Items',
-            'custom_title_prefix' => 'Add',
-            'with_multiple' => true,
-            'with_sort' => true,
-            'hint' => 'Select related Shop Items',
-            'max' => 20
+            'name' => 'articles',
+            'moduleName' => 'articles',
+            'max' => 4,
+            'label' => 'Related Articles',
         ])
-    </section>
-@stop
 
-
+    </a17-fieldset>
+@endsection

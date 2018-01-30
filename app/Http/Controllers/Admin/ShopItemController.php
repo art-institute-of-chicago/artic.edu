@@ -4,34 +4,33 @@ namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 
-class ShopItemController extends ModuleController
+class ShopItemController extends BaseApiController
 {
     protected $moduleName = 'shopItems';
+    protected $modelName  = 'Api\ShopItem';
+    protected $modelNameApi  = 'Api\ShopItem';
 
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
+    protected $indexOptions = [
+        'publish' => false,
+        'bulkPublish' => false,
+        'feature' => false,
+        'bulkFeature' => false,
+        'restore' => false,
+        'bulkRestore' => false,
+        'bulkDelete' => false,
+        'reorder' => false,
+        'permalink' => false,
+    ];
 
-    /*
-     * Relations to eager load for the form view
-     */
-    protected $formWith = [];
-
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
-    protected $filters = [];
-
-    protected function indexData($request)
-    {
-        return [];
-    }
-
-    protected function formData($request)
-    {
-        return [];
-    }
+    protected $indexColumns = [
+        'title' => [
+            'title' => 'Title',
+            'field' => 'title',
+        ],
+        'description' => [
+            'title' => 'Description',
+            'field' => 'description',
+        ]
+    ];
 
 }

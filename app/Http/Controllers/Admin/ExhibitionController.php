@@ -2,31 +2,49 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 use App\Repositories\SiteTagRepository;
 
-class ExhibitionController extends ModuleController
+class ExhibitionController extends BaseApiController
 {
     protected $moduleName = 'exhibitions';
+    protected $modelName  = 'Exhibition';
+    protected $modelNameApi  = 'Api\Exhibition';
+    protected $hasAugmentedModel = true;
 
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
+    protected $indexOptions = [
+        'publish' => false,
+        'bulkPublish' => false,
+        'feature' => false,
+        'bulkFeature' => false,
+        'restore' => false,
+        'bulkRestore' => false,
+        'bulkDelete' => false,
+        'reorder' => false,
+        'permalink' => false,
+    ];
 
-    /*
-     * Relations to eager load for the form view
-     */
-    protected $formWith = ['revisions', 'siteTags', 'shopItems'];
+    protected $indexColumns = [
+        'title' => [
+            'title' => 'Title',
+            'field' => 'title',
+        ],
+        'augmented' => [
+            'title' => 'Augmented?',
+            'field' => 'augmented',
+        ],
+        'dates' => [
+            'title' => 'Dates field',
+            'field' => 'dates'
+        ]
+    ];
 
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
+    protected $indexWith = ['medias'];
+
+    protected $formWith = ['revisions', 'siteTags'];
+
+    protected $defaultOrders = ['title' => 'desc'];
+
     protected $filters = [];
-
-    protected $formWithCount = ['revisions'];
-    protected $defaultOrders = ['start_date' => 'desc'];
 
     protected function indexData($request)
     {
@@ -36,10 +54,9 @@ class ExhibitionController extends ModuleController
     protected function formData($request)
     {
         return [
-            'siteTagsList'   => app(SiteTagRepository::class)->listAll('name'),
-            'with_revisions' => true
+            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+            'exhibitionTypesList' => $this->repository->getExhibitionTypesList()
         ];
     }
-
 
 }

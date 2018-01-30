@@ -2,31 +2,22 @@
 
 namespace App\Models;
 
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Admission as Admission;
-// use Illuminate\Database\Eloquent\Builder;
 
 class Page extends Model
 {
     use HasSlug, HasRevisions, HasMedias;
 
-    // protected static function boot()
-    // {
-    //     parent::boot();
-
-    //     static::addGlobalScope('type', function (Builder $builder) {
-    //         $builder->orderBy('type');
-    //     });
-    // }
-
     public static $types = [
         0 => 'Home',
         1 => 'Exhibitions and Events',
         2 => 'Art and Ideas',
-        3 => 'Visit'
+        3 => 'Visit',
+        4 => 'Articles'
     ];
 
     protected $fillable = [
@@ -45,23 +36,45 @@ class Page extends Model
         'art_intro',
 
         // Visit
-        'visit_intro'
+        'visit_intro',
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
+    public $checkboxes = ['published'];
+
     public $mediasParams = [
-        'visit_hero' => [
-            'default' => '16/9',
-            'square' => '1',
-        ]
+        'hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
     ];
+
+    public function apiElements()
+    {
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
+    }
 
     public function homeExhibitions()
     {
-        return $this->belongsToMany('App\Models\Exhibition', 'page_home_exhibition')->withPivot('position')->orderBy('position');
+        return $this->apiElements()->where('relation', 'homeExhibitions');
+    }
+
+    public function exhibitionsExhibitions()
+    {
+        return $this->apiElements()->where('relation', 'exhibitionsExhibitions');
     }
 
     public function homeEvents()
@@ -77,5 +90,10 @@ class Page extends Model
     public function locations()
     {
         return $this->hasMany(Location::class)->orderBy('position');
+    }
+
+    public function articlesArticles()
+    {
+        return $this->belongsToMany('App\Models\Article', 'page_article_article')->withPivot('position')->orderBy('position');
     }
 }

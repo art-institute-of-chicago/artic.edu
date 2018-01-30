@@ -2,35 +2,55 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
+use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
+use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
 class Event extends Model
 {
-    use HasSlug, HasRevisions, HasMedias;
+    use HasSlug, HasRevisions, HasMedias, HasBlocks;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
 
     protected $fillable = [
-        'published',
-        'landing',
-        'content',
         'title',
-        'price',
-        'datahub_id',
-        'admission',
+        'published',
+        'type',
+        'short_description',
+        'description',
+        'hero_caption',
+        'is_private',
+        'is_after_hours',
+        'is_ticketed',
+        'is_free',
+        'is_member_exclusive',
+        'hidden',
+        'rsvp_link',
         'start_date',
         'end_date',
-        'recurring',
-        'recurring_start_time',
-        'recurring_end_time',
-        'recurring_days',
         'location',
-        'latitude',
-        'longitude',
-        'rsvp_link'
+        'sponsors_description',
+        'sponsors_sub_copy',
+        'content',
+        'layout_type',
+        'buy_button_text',
+        'buy_button_caption'
+    ];
+
+    public static $eventTypes = [
+        0 => 'Classes and workshops',
+        1 => 'Live arts',
+        2 => 'Screenings',
+        3 => 'Special Events',
+        4 => 'Talks',
+        5 => 'Tours'
+    ];
+
+    public static $eventLayouts = [
+        0 => 'Basic',
+        1 => 'Large Feature',
     ];
 
     public $slugAttributes = [
@@ -41,15 +61,27 @@ class Event extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = ['recurring'];
+    public $checkboxes = [
+        'published', 'is_private', 'is_after_hours',
+        'is_ticketed', 'is_free', 'hidden', 'is_member_exclusive'];
 
     public $dates = ['start_date', 'end_date'];
 
     public $mediasParams = [
         'hero' => [
-            'default' => '16/9',
-            'square' => '1',
-        ]
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
     ];
 
     public function siteTags()
@@ -57,13 +89,18 @@ class Event extends Model
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
     }
 
-    public function events()
+    public function sponsors()
     {
-        return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
     }
 
     public function scopeLanding($query)
     {
         return $query->whereLanding(true);
+    }
+
+    public function events()
+    {
+        return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
     }
 }

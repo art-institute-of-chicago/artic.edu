@@ -1,106 +1,159 @@
-@extends('cms-toolkit::layouts.resources.form')
+@extends('cms-toolkit::layouts.form')
 
-@section('form')
-    {{ Form::model($form_fields, $form_options) }}
-    @formField('publish_status')
+@section('contentFields')
+    {{-- @formField('input', [
+        'name' => 'title',
+        'label' => 'Title',
+    ]) --}}
 
-    <section class="columns with_right_sidebar">
-        <section class="col">
-            <section class="box">
-                @formField('versions', ['with_preview' => isset($item)])
+    @formField('select', [
+        'name' => 'type',
+        'label' => 'Event type',
+        'options' => $eventTypesList,
+        'default' => '0'
+    ])
 
-                @formField('date_picker', [
-                     'field' => 'start_date',
-                     'field_name' => 'Start date',
-                ])
-                @formField('date_picker', [
-                     'field' => 'end_date',
-                     'field_name' => 'End date',
-                ])
+    @formField('checkbox', [
+        'name' => 'hidden',
+        'label' => 'Hidden from listings?',
+    ])
 
-                @formField('multi_select', [
-                    'field' => 'site_tags',
-                    'field_name' => 'Tags',
-                    'list' => $siteTagsList,
-                    'placeholder' => 'Select some tags',
-                ])
+    @formField('date_picker', [
+        'name' => 'start_date',
+        'label' => 'Start date',
+    ])
 
-                @formField('checkbox', [
-                     'field' => 'recurring',
-                     'field_name' => 'Recurring event',
-                ])
+    @formField('date_picker', [
+        'name' => 'end_date',
+        'label' => 'End date'
+    ])
 
-                @formField('input', [
-                     'field' => 'recurring_start_time',
-                     'field_name' => 'Recurring Start time',
-                ])
-                @formField('input', [
-                     'field' => 'recurring_end_time',
-                     'field_name' => 'Recurring end time',
-                ])
+    @formField('select', [
+        'name' => 'layout_type',
+        'label' => 'Event layout',
+        'options' => $eventLayoutsList,
+        'default' => '0'
+    ])
 
-                @formField('input', [
-                    'field' => 'recurring_days',
-                    'field_name' => 'Recurring days',
-                ])
-            </section>
-        </section>
-        <section class="col">
-            <section class="box">
-                <header class="header_small">
-                    <h3><b>{{ $form_fields['title'] or 'New item' }}</b></h3>
-                </header>
-                @formField('input', [
-                    'field' => 'title',
-                    'field_name' => 'Title',
-                ])
-                @formField('input', [
-                    'field' => 'datahub_id',
-                    'field_name' => 'Datahub ID'
-                ])
-                @formField('medias', [
-                    'media_role' => 'hero',
-                    'media_role_name' => 'Hero',
-                    'with_multiple' => false,
-                    'no_crop' => false
-                ])
-                @formField('input', [
-                    'field' => 'admission',
-                    'field_name' => 'Admission',
-                ])
-                @formField('input', [
-                    'field' => 'price',
-                    'field_name' => 'Price'
-                ])
-                @formField('input', [
-                    'field' => 'location',
-                    'field_name' => 'Meeting Location'
-                ])
-                @formField('input', [
-                    'field' => 'latitude',
-                    'field_name' => 'Latitude'
-                ])
-                @formField('input', [
-                    'field' => 'longitude',
-                    'field_name' => 'Longitude'
-                ])
-                @formField('input', [
-                    'field' => 'rsvp_link',
-                    'field_name' => 'External RSVP Link'
-                ])
-            </section>
+    @formField('medias', [
+        'with_multiple' => false,
+        'no_crop' => false,
+        'label' => 'Hero Image',
+        'name' => 'hero'
+    ])
 
-            @formField('browser', [
-                'routePrefix' => 'whatson',
-                'relationship' => 'events',
-                'module_name' => 'events',
-                'relationship_name' => 'events',
-                'custom_title_prefix' => 'Add',
-                'with_multiple' => true,
-                'with_sort' => true,
-                'hint' => 'Select related events',
-                'max' => 20
-            ])
-        </section>
-    </section>
+    @formField('input', [
+        'name' => 'hero_caption',
+        'label' => 'Hero Image Caption'
+    ])
+
+    @formField('input', [
+        'name' => 'short_description',
+        'label' => 'Short description',
+        'note' => 'Used at the landing page and SEO'
+    ])
+
+    @formField('input', [
+        'name' => 'description',
+        'label' => 'Description',
+        'type' => 'textarea'
+    ])
+
+    @formField('multi_select', [
+        'name' => 'siteTags',
+        'label' => 'Tags',
+        'options' => $siteTagsList,
+        'placeholder' => 'Select some tags',
+    ])
+
+    @formField('checkbox', [
+        'name' => 'is_private',
+        'label' => 'Is Private?',
+    ])
+
+    @formField('input', [
+        'name' => 'rsvp_link',
+        'label' => 'External RSVP Link'
+    ])
+
+    @formField('input', [
+        'name' => 'sponsors_description',
+        'label' => 'Sponsors section description',
+        'type' => 'textarea'
+    ])
+
+    @formField('input', [
+        'name' => 'sponsors_sub_copy',
+        'label' => 'Sponsors sub copy',
+        'note' => 'E.G. further support provided by'
+    ])
+
+    @formField('block_editor', [
+        'blocks' => [
+            'paragraph', 'image_with_caption', 'video_with_caption', 'gallery',
+            'media_embed', 'quote', 'list', 'related_offers', 'newsletter_signup_inline',
+            'sponsor', 'timeline', 'link'
+        ]
+    ])
 @stop
+
+@section('fieldsets')
+    <a17-fieldset id="related_elements" title="Related elements">
+        @formField('browser', [
+            'routePrefix' => 'general',
+            'moduleName' => 'sponsors',
+            'name' => 'sponsors',
+            'label' => 'Sponsors',
+            'note' => 'Select Sponsors',
+            'max' => 20
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'moduleName' => 'events',
+            'name' => 'events',
+            'label' => 'Related Events',
+            'note' => 'Select events',
+            'max' => 4
+        ])
+    </a17-fieldset>
+
+    <a17-fieldset id="attributes" title="Attributes">
+        @formField('input', [
+            'name' => 'location',
+            'label' => 'Location'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_member_exclusive',
+            'label' => 'Members exclusive event?'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_after_hours',
+            'label' => 'After Hours?'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_ticketed',
+            'label' => 'Ticketed Event?'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_free',
+            'label' => 'Free Event?'
+        ])
+
+        @formField('input', [
+            'name' => 'buy_button_text',
+            'label' => 'Buy Tickets button text',
+            'note' => 'E.G. Buy Tickets'
+        ])
+
+        @formField('input', [
+            'name' => 'buy_button_caption',
+            'label' => 'Copy below Buy Button text',
+            'type' => 'textarea'
+        ])
+    </a17-fieldset>
+@endsection

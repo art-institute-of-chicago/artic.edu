@@ -8,6 +8,29 @@ class SponsorController extends ModuleController
 {
     protected $moduleName = 'sponsors';
 
+    protected $indexColumns = [
+        'image' => [
+            'title' => 'Logo',
+            'thumb' => true,
+            'variant' => [
+                'role' => 'logo',
+                'crop' => 'default',
+            ],
+        ],
+        'title' => [
+            'title' => 'Title',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'title',
+        ],
+        'copy' => [
+            'title' => 'Sponsor Copy',
+            'copy' => 'Sponsor Copy',
+            'edit_link' => true,
+            'field' => 'copy',
+        ],
+    ];
+
     /*
      * Relations to eager load for the index view
      */

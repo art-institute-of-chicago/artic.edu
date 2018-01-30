@@ -3,26 +3,40 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-use App\Repositories\SiteTagRepository;
+use App\Repositories\CategoryRepository;
 
 class ArticleController extends ModuleController
 {
     protected $moduleName = 'articles';
 
-    /*
-     * Relations to eager load for the index view
-     */
+    protected $indexColumns = [
+        'image' => [
+            'title' => 'Hero',
+            'thumb' => true,
+            'variant' => [
+                'role' => 'hero',
+                'crop' => 'square',
+            ],
+        ],
+        'title' => [
+            'title' => 'Title',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'title',
+        ],
+        'date' => [
+            'title' => 'Date',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'date',
+            'present' => true
+        ],
+    ];
+
     protected $indexWith = [];
 
-    /*
-     * Relations to eager load for the form view
-     */
-    protected $formWith = ['revisions', 'siteTags', 'shopItems'];
+    protected $formWith = ['revisions', 'categories'];
 
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
     protected $filters = [];
 
     protected $formWithCount = ['revisions'];
@@ -36,9 +50,8 @@ class ArticleController extends ModuleController
     protected function formData($request)
     {
         return [
-            'siteTagsList'   => app(SiteTagRepository::class)->listAll('name'),
-            'with_revisions' => true
+            'categoriesList' => app(CategoryRepository::class)->listAll('name'),
+            'articleLayoutsList' => $this->repository->getArticleLayoutsList()
         ];
     }
-
 }

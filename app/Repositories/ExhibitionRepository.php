@@ -2,14 +2,17 @@
 
 namespace App\Repositories;
 
-use A17\CmsToolkit\Repositories\ModuleRepository;
-use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
+use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
+use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
+use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
+use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Models\Exhibition;
+use App\Repositories\Api\BaseApiRepository;
 
-class ExhibitionRepository extends ModuleRepository
+class ExhibitionRepository extends BaseApiRepository
 {
-    use HandleRevisions, HandleMedias;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks;
 
     public function __construct(Exhibition $model)
     {
@@ -24,9 +27,11 @@ class ExhibitionRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $object->siteTags()->sync($fields['site_tags'] ?? []);
-        $this->updateOrderedBelongsTomany($object, $fields, 'events');
-        $this->updateOrderedBelongsTomany($object, $fields, 'shopItems');
+        $object->siteTags()->sync($fields['siteTags'] ?? []);
+
+        $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
+        $this->updateBrowser($object, $fields, 'events');
+
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
 
         parent::afterSave($object, $fields);
@@ -35,9 +40,18 @@ class ExhibitionRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getFormFieldsForMultiSelect($fields, 'site_tags', 'id');
+        $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
+
+        $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
+
+        $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'whatson');
+        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'general');
 
         return $fields;
+    }
+
+    public function getExhibitionTypesList() {
+        return collect($this->model::$exhibitionTypes);
     }
 
 }

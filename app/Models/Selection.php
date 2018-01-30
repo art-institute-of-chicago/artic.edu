@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
+use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
 class Selection extends Model
@@ -27,18 +27,43 @@ class Selection extends Model
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 
     public $mediasParams = [
         'hero' => [
-            'default' => '16/9',
-            'square' => '1',
-        ]
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
     ];
+
+    public function siteTags()
+    {
+        return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
+    }
+
+    public function apiElements()
+    {
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
+    }
 
     public function artworks()
     {
-        return $this->belongsToMany('App\Models\Artwork', 'artwork_selection')->withPivot('position')->orderBy('position');
+        return $this->apiElements()->where('relation', 'artworks');
+    }
+
+    public function articles()
+    {
+        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
     }
 
     public function selections()

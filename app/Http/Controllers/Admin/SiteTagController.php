@@ -3,38 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-use App\Repositories\SegmentRepository;
 
 class SiteTagController extends ModuleController
 {
     protected $moduleName = 'siteTags';
 
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
+    protected $indexOptions = [
+        'publish' => false,
+    ];
 
-    /*
-     * Relations to eager load for the form view
-     */
-    protected $formWith = ['segments'];
+    protected $titleColumnKey = 'name';
 
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
-    protected $filters = [];
+    protected $indexColumns = [
+        'name' => [
+            'title' => 'Name',
+            'edit_link' => true,
+            'field' => 'name',
+        ],
+    ];
 
-    protected function indexData($request)
-    {
-        return [];
-    }
-
-    protected function formData($request)
-    {
-        return [
-            'segmentsList' => app(SegmentRepository::class)->listAll('name'),
-        ];
-    }
-
+    protected $defaultOrders = [
+        'name' => 'asc',
+    ];
 }

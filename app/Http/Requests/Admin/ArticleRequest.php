@@ -12,7 +12,7 @@ class ArticleRequest extends Request
             'title' => 'required'
         ];
 
-        $rules['date'] = 'date_format:m/d/Y H:i';
+        // $rules['date'] = 'date_format:m/d/Y H:i';
 
         return $rules;
     }

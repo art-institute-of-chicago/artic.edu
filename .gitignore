@@ -1,3 +1,4 @@
+.studio
 .sass-cache
 dist
 toolkit
@@ -24,3 +25,7 @@ yarn-error.log
 /recipes/playbook.retry
 /recipes/ansible.cfg
 .vault_pass
+/public/assets/admin
+/public/assets/vendor
+/public/mix-manifest.json
+studio.json

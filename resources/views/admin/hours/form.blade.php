@@ -1,27 +1,18 @@
-@extends('cms-toolkit::layouts.resources.form')
+@extends('cms-toolkit::layouts.form')
 
-@section('form')
-    {{ Form::model($form_fields, $form_options) }}
+@section('contentFields')
+    @formField('checkbox', [
+        'name' => 'closed',
+        'label' => 'Closed (data below will be ignored)',
+    ])
 
-    <section class="box">
-        <header class="header_small">
-            <h3><b>{{$item->present()->presentType}} - {{$item->present()->dayOfWeek}}</b></h3>
-        </header>
+    @formField('date_picker', [
+        'name' => 'opening_time',
+        'label' => 'Opening Time',
+    ])
 
-        @formField('checkbox', [
-            'field' => 'closed',
-            'field_name' => 'Closed (data below will be ignored)',
-        ])
-
-        @formField('date_picker', [
-            'field' => 'opening_time',
-            'field_name' => 'Opening Time',
-        ])
-
-        @formField('date_picker', [
-            'field' => 'closing_time',
-            'field_name' => 'Closing Time',
-        ])
-    </section>
-
+    @formField('date_picker', [
+        'name' => 'closing_time',
+        'label' => 'Closing Time',
+    ])
 @stop

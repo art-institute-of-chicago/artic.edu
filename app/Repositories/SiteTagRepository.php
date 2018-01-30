@@ -16,18 +16,4 @@ class SiteTagRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function afterSave($object, $fields)
-    {
-        $object->segments()->sync($fields['selected_segments'] ?? []);
-        parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-        $fields = $this->getFormFieldsForMultiSelect($fields, 'segments', 'id', 'selected_segments');
-
-        return $fields;
-    }
-
 }

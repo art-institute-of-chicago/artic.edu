@@ -15,4 +15,12 @@ class ArticlePresenter extends BasePresenter
         return 'No title';
     }
 
+    public function date()
+    {
+        if ($this->entity->date) {
+            return $this->entity->date->format('d M, Y');
+        }
+
+    }
+
 }

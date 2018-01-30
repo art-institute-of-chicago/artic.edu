@@ -2,57 +2,74 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
+use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
+use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
 class Article extends Model
 {
-    use HasSlug, HasRevisions, HasMedias;
+    use HasSlug, HasRevisions, HasMedias, HasBlocks;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
 
     protected $fillable = [
         'published',
+        'date',
         'content',
         'title',
-        'date',
-        'copy'
+        'heading',
+        'author',
+        'copy',
+        'type',
+        'citation',
+        'layout_type'
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
-    // those fields get auto set to null if not submited
+    public static $articleLayouts = [
+        0 => 'Basic',
+        1 => 'Large Feature',
+    ];
+
     public $nullable = [];
 
-    // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 
     public $dates = ['date'];
 
     public $mediasParams = [
         'hero' => [
-            'default' => '16/9',
-            'square' => '1',
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
+        'author' => [
+            'square' => [
+                [
+                    'name' => 'square',
+                    'ratio' => 1,
+                ],
+            ]
         ]
     ];
 
-    public function siteTags()
+    public function categories()
     {
-        return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
-    }
-
-    public function exhibitions()
-    {
-        return $this->belongsToMany('App\Models\Exhibition', 'article_exhibition')->withPivot('position')->orderBy('position');
-    }
-
-    public function artists()
-    {
-        return $this->belongsToMany('App\Models\Artist', 'article_artist')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\Category', 'article_category');
     }
 
     public function selections()
@@ -65,8 +82,18 @@ class Article extends Model
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
     }
 
-    public function shopItems()
+    public function apiElements()
     {
-        return $this->morphToMany(\App\Models\ShopItem::class, 'shop_itemizable', 'shop_itemized');
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
+    }
+
+    public function artworks()
+    {
+        return $this->apiElements()->where('relation', 'artworks');
+    }
+
+    public function exhibitions()
+    {
+        return $this->apiElements()->where('relation', 'exhibitions');
     }
 }

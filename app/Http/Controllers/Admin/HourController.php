@@ -9,6 +9,44 @@ class HourController extends ModuleController
 {
     protected $moduleName = 'hours';
 
+    protected $indexOptions = [
+        'publish' => false,
+        'delete' => false,
+        'create' => false,
+    ];
+
+    protected $titleColumnKey = 'type';
+
+    protected $indexColumns = [
+        'type' => [
+            'title' => 'Type',
+            'present' => true,
+            'field' => 'presentType',
+            'edit_link' => true,
+        ],
+        'day_of_week' => [
+            'title' => 'Day of Week',
+            'present' => true,
+            'field' => 'dayOfWeek',
+            'edit_link' => true,
+        ],
+        'closed' => [
+            'title' => 'Open/Closed',
+            'present' => true,
+            'field' => 'presentClosed',
+        ],
+        'opening_time' => [
+            'title' => 'Opening Time',
+            'present' => true,
+            'field' => 'presentOpeningTime',
+        ],
+        'closing_time' => [
+            'title' => 'Closing Time',
+            'present' => true,
+            'field' => 'presentClosingTime',
+        ],
+    ];
+
     /*
      * Relations to eager load for the index view
      */
@@ -24,7 +62,7 @@ class HourController extends ModuleController
      * In the indexData function, name your lists with the filter name + List (fFilterNameList)
      */
     protected $filters = [
-        'fType' => 'type'
+        'fType' => 'type',
     ];
 
     protected $defaultOrders = ['type' => 'asc'];

@@ -2,27 +2,45 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use App\Repositories\SiteTagRepository;
 
-class ArtistController extends ModuleController
+class ArtistController extends BaseApiController
 {
     protected $moduleName = 'artists';
+    protected $modelName  = 'Artist';
+    protected $modelNameApi  = 'Api\Artist';
+    protected $hasAugmentedModel = true;
 
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
+    protected $indexOptions = [
+        'publish' => false,
+        'bulkPublish' => false,
+        'feature' => false,
+        'bulkFeature' => false,
+        'restore' => false,
+        'bulkRestore' => false,
+        'bulkDelete' => false,
+        'reorder' => false,
+        'permalink' => false,
+    ];
 
-    /*
-     * Relations to eager load for the form view
-     */
-    protected $formWith = [];
+    protected $titleColumnKey = 'title';
 
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
-    protected $filters = [];
+    protected $indexColumns = [
+        'title' => [
+            'title' => 'Name',
+            'field' => 'title',
+        ],
+        'augmented' => [
+            'title' => 'Augmented?',
+            'field' => 'augmented',
+        ],
+        'datahub_id' => [
+            'title' => 'Datahub ID',
+            'field' => 'id',
+        ],
+    ];
+
+    protected $formWith = ['siteTags'];
 
     protected function indexData($request)
     {
@@ -31,7 +49,9 @@ class ArtistController extends ModuleController
 
     protected function formData($request)
     {
-        return [];
+        return [
+            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+        ];
     }
 
 }

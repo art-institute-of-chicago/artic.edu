@@ -1,107 +1,97 @@
-@extends('cms-toolkit::layouts.resources.form')
+@extends('cms-toolkit::layouts.form')
 
-@section('form')
-    {{ Form::model($form_fields, $form_options) }}
-    @formField('publish_status')
-
-    <section class="columns with_right_sidebar">
-        <section class="col">
-            <section class="box">
-                @formField('versions', ['with_preview' => isset($item)])
-
-                @formField('date_picker', [
-                     'field' => 'date',
-                     'field_name' => 'Publishing date',
-                ])
-
-                @formField('multi_select', [
-                    'field' => 'site_tags',
-                    'field_name' => 'Tags',
-                    'list' => $siteTagsList,
-                    'placeholder' => 'Select some tags',
-                ])
-            </section>
-        </section>
-        <section class="col">
-            <section class="box">
-                <header class="header_small">
-                    <h3><b>{{ $form_fields['title'] or 'New item' }}</b></h3>
-                </header>
-                @formField('input', [
-                    'field' => 'title',
-                    'field_name' => 'Title',
-                ])
-                @formField('textarea', [
-                    'field' => 'copy',
-                    'field_name' => 'Short Copy'
-                ])
-                @formField('medias', [
-                    'media_role' => 'hero',
-                    'media_role_name' => 'Hero',
-                    'with_multiple' => false,
-                    'no_crop' => false
-                ])
-            </section>
-        </section>
-    </section>
-
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'relationship' => 'exhibitions',
-        'module_name' => 'exhibitions',
-        'relationship_name' => 'related exhibitions',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related exhibitions',
-        'max' => 20
+@section('contentFields')
+    @formField('date_picker', [
+        'name' => 'date',
+        'label' => 'Publishing date',
     ])
 
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'relationship' => 'articles',
-        'module_name' => 'articles',
-        'relationship_name' => 'related articles',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related articles',
-        'max' => 20
+    @formField('select', [
+        'name' => 'layout_type',
+        'label' => 'Article layout',
+        'options' => $articleLayoutsList,
+        'default' => '0'
     ])
 
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'relationship' => 'artists',
-        'module_name' => 'artists',
-        'relationship_name' => 'related artists',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related artists',
-        'max' => 20
+    @formField('medias', [
+        'with_multiple' => false,
+        'no_crop' => false,
+        'label' => 'Hero Image',
+        'name' => 'hero'
     ])
 
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'relationship' => 'selections',
-        'module_name' => 'selections',
-        'relationship_name' => 'related selections',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related selections',
-        'max' => 20
+    @formField('multi_select', [
+        'name' => 'categories',
+        'label' => 'Categories',
+        'options' => $categoriesList,
+        'placeholder' => 'Select some categories',
     ])
 
-    @formField('browser', [
-        'routePrefix' => 'whatson',
-        'relationship' => 'shopItems',
-        'module_name' => 'shopItems',
-        'relationship_name' => 'Related Shop Items',
-        'custom_title_prefix' => 'Add',
-        'with_multiple' => true,
-        'with_sort' => true,
-        'hint' => 'Select related Shop Items',
-        'max' => 20
+    @formField('input', [
+        'name' => 'type',
+        'label' => 'Article Type'
+    ])
+
+    @formField('input', [
+        'name' => 'heading',
+        'label' => 'Headline',
+        'rows' => 3,
+        'type' => 'textarea'
+    ])
+
+    @formField('input', [
+        'name' => 'author',
+        'label' => 'Author'
+    ])
+
+    @formField('medias', [
+        'with_multiple' => false,
+        'no_crop' => false,
+        'label' => 'Author Thumbnail',
+        'name' => 'hero'
+    ])
+
+    @formField('block_editor', [
+        'blocks' => [
+            'text', 'image_with_caption', 'video_with_caption', 'gallery'
+        ]
     ])
 @stop
+
+@section('fieldsets')
+    <a17-fieldset id="attributes" title="Related">
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'name' => 'articles',
+            'moduleName' => 'articles',
+            'max' => 20,
+            'label' => 'Related Articles',
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'name' => 'selections',
+            'moduleName' => 'selections',
+            'max' => 20,
+            'label' => 'Related Selections',
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'name' => 'artworks',
+            'moduleName' => 'artworks',
+            'label' => 'Artworks',
+            'max' => 500
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'name' => 'exhibitions',
+            'moduleName' => 'exhibitions',
+            'max' => 20,
+            'label' => 'Related Exhibitions',
+        ])
+
+    </a17-fieldset>
+@endsection

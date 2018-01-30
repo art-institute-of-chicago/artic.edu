@@ -2,73 +2,91 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
+use A17\CmsToolkit\Models\Behaviors\HasBlocks;
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use App\Models\Behaviors\HasApiSource;
+use A17\CmsToolkit\Models\Model;
+
+use App\Models\Behaviors\HasApiModel;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias; # , HasApiSource;
+    use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiModel;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
-
-    protected $endpoint = '/api/v1/exhibitions/{datahub_id}';
+    protected $apiModel = 'App\Models\Api\Exhibition';
 
     protected $fillable = [
         'published',
-        'landing',
         'content',
-        'title',
         'header_copy',
-        'start_date',
-        'end_date',
-        'short_copy',
-        'datahub_id'
+        'title',
+        'datahub_id',
+        'is_visible',
+        'exhibition_message',
+        'sponsors_description',
+        'sponsors_sub_copy',
+        'cms_exhibition_type'
     ];
 
     public $slugAttributes = [
         'title',
     ];
 
-    // those fields get auto set to null if not submited
-    public $nullable = [];
-
-    // those fields get auto set to false if not submited
-    public $checkboxes = [];
-
-    public $dates = ['start_date', 'end_date'];
+    public $checkboxes = ['published', 'is_visible'];
 
     public $mediasParams = [
         'hero' => [
-            'default' => '16/9',
-            'square' => '1',
-        ]
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+            'special' => [
+                [
+                    'name' => 'special',
+                    'ratio' => 9 / 16,
+                ],
+            ],
+        ],
     ];
+
+    public static $exhibitionTypes = [
+        0 => 'Basic',
+        1 => 'Large Feature',
+        2 => 'Special Exhibition'
+    ];
+
+
+    public function apiElements()
+    {
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
+    }
+
+    public function exhibitions()
+    {
+        return $this->apiElements()->where('relation', 'exhibitions');
+    }
 
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
     }
 
-    public function scopeLanding($query)
+    public function sponsors()
     {
-        return $query->whereLanding(true);
+        return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
+    }
+
+    public function getTitleInBucketAttribute()
+    {
+        return $this->title;
     }
 
     public function events()
     {
-        return $this->belongsToMany(\App\Models\Event::class, 'event_exhibition', 'event_id', 'exhibition_id')->withPivot('position')->orderBy('position');
-    }
-
-    public function shopItems()
-    {
-        return $this->morphToMany(\App\Models\ShopItem::class, 'shop_itemizable', 'shop_itemized');
-    }
-
-    public function sponsors()
-    {
-        return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
     }
 }

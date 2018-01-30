@@ -2,11 +2,35 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\SiteTagRepository;
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 
 class SelectionController extends ModuleController
 {
     protected $moduleName = 'selections';
+
+    protected $indexColumns = [
+        'image' => [
+            'title' => 'Hero',
+            'thumb' => true,
+            'variant' => [
+                'role' => 'hero',
+                'crop' => 'square',
+            ],
+        ],
+        'title' => [
+            'title' => 'Title',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'title',
+        ],
+        'artworksCount' => [
+            'title' => 'Artworks count',
+            'edit_link' => true,
+            'field' => 'artworksCount',
+            'present' => true,
+        ],
+    ];
 
     /*
      * Relations to eager load for the index view
@@ -31,7 +55,9 @@ class SelectionController extends ModuleController
 
     protected function formData($request)
     {
-        return [];
+        return [
+            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+        ];
     }
 
 }
