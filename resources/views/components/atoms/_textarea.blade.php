@@ -2,6 +2,8 @@
     @if ($slot != '')
         @component('components.atoms._label')
             @slot('for', $id)
+            @slot('optional', $optional ?? null)
+            @slot('hint', $hint ?? null)
             {{ $slot }}
         @endcomponent
     @endif

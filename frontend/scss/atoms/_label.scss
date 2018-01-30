@@ -1,17 +1,27 @@
 /***
 
 ```
-<label for="tinput1" class="f-secondary">Label</label>
+<label for="tinput1" class="label f-secondary">Label</label>
 ```
 
 ***/
 
 
-label {
-  display: block;
+.label {
+  display: flex;
+  flex-flow: row nowrap;
   color: $color__text;
+}
 
-  .s-error > & {
-    color: $color__text--error;
-  }
+
+.label__optional {
+  color: $color__text--tertiary;
+  font-style: normal;
+}
+
+.label__hint {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: $color__text--tertiary;
+  font-style: normal;
 }

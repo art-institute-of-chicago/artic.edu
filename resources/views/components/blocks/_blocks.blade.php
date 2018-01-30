@@ -219,6 +219,37 @@
                     @slot('textCount', $block['textCount'] ?? false)
                     @slot('value', $block['value'] ?? null)
                     @slot('error', $block['error'] ?? null)
+                    @slot('optional', $block['optional'] ?? null)
+                    @slot('hint', $block['hint'] ?? null)
+                    @slot('disabled', $block['disabled'] ?? false)
+                    {!! $block['label'] !!}
+                @endcomponent
+            @endif
+
+            @if ($block['type'] === 'textarea')
+                @component('components.atoms._textarea')
+                    @slot('variation', $block['variation'] ?? null)
+                    @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('placeholder', $block['placeholder'] ?? null)
+                    @slot('value', $block['value'] ?? null)
+                    @slot('error', $block['error'] ?? null)
+                    @slot('optional', $block['optional'] ?? null)
+                    @slot('hint', $block['hint'] ?? null)
+                    @slot('disabled', $block['disabled'] ?? false)
+                    {!! $block['label'] !!}
+                @endcomponent
+            @endif
+
+            @if ($block['type'] === 'select')
+                @component('components.atoms._select')
+                    @slot('variation', $block['variation'] ?? null)
+                    @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('options', $block['options'] ?? null)
+                    @slot('error', $block['error'] ?? null)
+                    @slot('optional', $block['optional'] ?? null)
+                    @slot('hint', $block['hint'] ?? null)
                     @slot('disabled', $block['disabled'] ?? false)
                     {!! $block['label'] !!}
                 @endcomponent
