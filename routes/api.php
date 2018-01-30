@@ -13,6 +13,27 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::get('/', function () {
+    return redirect('/api/v1');
+});
+
+
+Route::group(['prefix' => 'v1'], function()
+{
+
+    Route::get('/', function () {
+        return "API";
+    });
+
+    Route::get('tags', 'API\TagsController@index');
+    Route::get('tags/{id}', 'API\TagsController@show');
+
+    Route::get('locations', 'API\LocationsController@index');
+    Route::get('locations/{id}', 'API\LocationsController@show');
+
 });
