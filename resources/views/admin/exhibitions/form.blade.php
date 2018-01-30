@@ -32,7 +32,7 @@
 
     @formField('block_editor', [
         'blocks' => [
-            'event', 'paragraph', 'image_with_caption', 'video_with_caption', 'gallery',
+            'text', 'event', 'paragraph', 'image_with_caption', 'video_with_caption', 'gallery',
             'media_embed', 'quote', 'list', 'accordion', 'related_offers', 'newsletter_signup_inline'
         ]
     ])

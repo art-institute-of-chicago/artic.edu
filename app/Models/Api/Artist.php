@@ -7,9 +7,9 @@ use App\Libraries\Api\Models\BaseApiModel;
 class Artist extends BaseApiModel
 {
     protected $endpoints = [
-        'collection' => '/api/v1/artists',
-        'resource'   => '/api/v1/artists/{id}',
-        'search'     => '/api/v1/artists/search'
+        'collection' => '/api/v1/agents',
+        'resource'   => '/api/v1/agents/{id}',
+        'search'     => '/api/v1/agents/search'
     ];
 
     protected $augmentedModelClass = 'App\Models\Artist';
