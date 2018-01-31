@@ -20,7 +20,7 @@
   @component('components.molecules._m-links-bar')
       @slot('overflow', true)
       @slot('linksPrimary', array(
-        array('label' => 'All', 'href' => '#hours', 'active' => true),
+        array('label' => 'All', 'href' => '#', 'active' => true),
         array('label' => 'Collection', 'href' => '#'),
         array('label' => 'Exhibitions', 'href' => '#'),
         array('label' => 'People', 'href' => '#'),

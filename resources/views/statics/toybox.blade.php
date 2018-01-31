@@ -647,7 +647,7 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
     @slot('overflow', true)
     @slot('variation', 'm-links-bar--nav-bar')
     @slot('linksPrimary', array(
-      array('label' => 'Hours', 'href' => '#hours'),
+      array('label' => 'Hours', 'href' => '#'),
       array('label' => 'Admission', 'href' => '#admission'),
       array('label' => 'Directions', 'href' => '#directions'),
       array('label' => 'Dining', 'href' => '#dining'),

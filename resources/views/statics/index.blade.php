@@ -64,6 +64,7 @@
           <li><a href="/statics/articles">articles</a></li>
           <li><a href="/statics/generic_form">generic form</a></li>
           <li><a href="/statics/contact">contact</a></li>
+          <li><a href="/statics/search_results">search results</a></li>
         </ul>
     </div>
 </article>

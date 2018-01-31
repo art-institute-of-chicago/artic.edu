@@ -80,14 +80,14 @@
 
 
 .m-search-bar--subtle input[type=text],
-.m-search-bar__submit,
-.m-search-bar__clear {
+.m-search-bar--subtle .m-search-bar__submit,
+.m-search-bar--subtle .m-search-bar__clear {
   border-radius: 0;
   background-color: transparent;
 }
 
-.m-search-bar__submit,
-.m-search-bar__clear {
+.m-search-bar--subtle .m-search-bar__submit,
+.m-search-bar--subtle .m-search-bar__clear {
   color: $color__text--secondary;
 
   &:hover,

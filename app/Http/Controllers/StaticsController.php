@@ -1104,6 +1104,13 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function search_results() {
+    // now push to a view
+    return view('statics/search_results', [
+        'title' => "Search Results",
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
