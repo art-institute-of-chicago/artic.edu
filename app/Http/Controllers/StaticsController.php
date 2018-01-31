@@ -2033,10 +2033,12 @@ class StaticsController extends Controller {
   private function generateGenericForm() {
     $blocks = array();
     $formBlocks = array();
-    $formFields = array();
+    $formFields1 = array();
+    $formFields2 = array();
 
     // build form fields
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2053,7 +2055,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2070,7 +2073,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2087,7 +2091,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2104,7 +2109,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2121,7 +2127,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2138,7 +2145,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2155,7 +2163,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2172,7 +2181,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2202,7 +2212,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'textarea',
@@ -2218,7 +2229,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'textarea',
@@ -2234,7 +2246,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'select',
@@ -2249,7 +2262,74 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--checkbox',
+        'blocks' => array(
+            array(
+              "type" => 'checkbox',
+              'variation' => '',
+              'id' => 'coption1',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 1',
+            ),
+        ),
+    ));
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--checkbox',
+        'blocks' => array(
+            array(
+              "type" => 'checkbox',
+              'variation' => '',
+              'id' => 'coption2',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 2',
+            ),
+        ),
+    ));
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--radio',
+        'blocks' => array(
+            array(
+              "type" => 'radio',
+              'variation' => '',
+              'name' => 'roptions1',
+              'id' => 'roption1',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 1',
+            ),
+        ),
+    ));
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--radio',
+        'blocks' => array(
+            array(
+              "type" => 'radio',
+              'variation' => '',
+              'name' => 'roptions1',
+              'id' => 'roption2',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 2',
+            ),
+        ),
+    ));
+    array_push($formFields2, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'select',
@@ -2277,38 +2357,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
-        'blocks' => array(
-            array(
-              "type" => 'checkbox',
-              'variation' => '',
-              'id' => 'coption1',
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => 'Option 1',
-            ),
-        ),
-    ));
-    array_push($formFields, array(
-        'blocks' => array(
-            array(
-              "type" => 'checkbox',
-              'variation' => '',
-              'id' => 'coption2',
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => 'Option 2',
-            ),
-        ),
-    ));
-
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--group',
         'blocks' => array(
             array(
               "type" => 'label',
@@ -2342,40 +2392,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-
-    array_push($formFields, array(
-        'blocks' => array(
-            array(
-              "type" => 'radio',
-              'variation' => '',
-              'name' => 'roptions1',
-              'id' => 'roption1',
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => 'Option 1',
-            ),
-        ),
-    ));
-    array_push($formFields, array(
-        'blocks' => array(
-            array(
-              "type" => 'radio',
-              'variation' => '',
-              'name' => 'roptions1',
-              'id' => 'roption2',
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => 'Option 2',
-            ),
-        ),
-    ));
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--group',
         'blocks' => array(
             array(
               "type" => 'label',
@@ -2411,7 +2429,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'date-select',
@@ -2434,13 +2453,13 @@ class StaticsController extends Controller {
     array_push($formBlocks, array(
       "type" => 'fieldset',
       'variation' => null,
-      'fields' => $formFields,
+      'fields' => $formFields1,
       'legend' => 'Contact Information',
     ));
     array_push($formBlocks, array(
       "type" => 'fieldset',
       'variation' => null,
-      'fields' => $formFields,
+      'fields' => $formFields2,
       'legend' => 'Visit Information',
     ));
 
