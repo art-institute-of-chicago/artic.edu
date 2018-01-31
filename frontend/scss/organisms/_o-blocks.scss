@@ -208,11 +208,13 @@
   }
 
   & > .f-body a {
+    @include text-underline(1.02em, $color__text--tertiary);
     color: $color__link--accent;
-    text-decoration: underline;
+    text-decoration: none;
 
     &:hover,
     &:focus {
+      @include text-underline(1.02em, $color__text--secondary);
       color: $color__link--accent-hover;
     }
 
@@ -222,16 +224,34 @@
   }
 
   & > .f-body-editorial a {
+    @include text-underline(1.02em, $color__text--tertiary);
     color: $color__link--editorial;
-    text-decoration: underline;
+    text-decoration: none;
 
     &:hover,
     &:focus {
+      @include text-underline(1.02em, $color__text--secondary);
       color: $color__link--editorial-hover;
     }
 
     &:active {
       color: $color__link--editorial-active;
+    }
+  }
+
+  & > .f-deck a {
+    @include text-underline(.82em, $color__text--tertiary);
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      @include text-underline(.82em, $color__text--secondary);
+      color: $color__text;
+    }
+
+    &:active {
+      color: $color__text;
     }
   }
 
