@@ -63,6 +63,7 @@
           <li><a href="/statics/articles_publications_landing">articles publications landing</a></li>
           <li><a href="/statics/articles">articles</a></li>
           <li><a href="/statics/generic_form">generic form</a></li>
+          <li><a href="/statics/contact">contact</a></li>
         </ul>
     </div>
 </article>

@@ -12,7 +12,7 @@ use App\Models\Behaviors\HasApiModel;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiModel;
+    use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiModel, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
     protected $apiModel = 'App\Models\Api\Exhibition';
@@ -89,4 +89,65 @@ class Exhibition extends Model
     {
         return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
     }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'published',
+                "doc" => "Published",
+                "type" => "boolean",
+                "value" => function() { return $this->published; }
+            ],
+            [
+                "name" => 'header_copy',
+                "doc" => "Header Copy",
+                "type" => "string",
+                "value" => function() { return $this->header_copy; }
+            ],
+            [
+                "name" => 'content',
+                "doc" => "Content",
+                "type" => "string",
+                "value" => function() { return $this->content; }
+            ],
+            [
+                "name" => 'datahub_id',
+                "doc" => "Type",
+                "type" => "string",
+                "value" => function() { return $this->datahub_id; }
+            ],
+            [
+                "name" => 'is_visible',
+                "doc" => "Visible",
+                "type" => "boolean",
+                "value" => function() { return $this->is_visible; }
+            ],
+            [
+                "name" => 'exhibition_message',
+                "doc" => "Message",
+                "type" => "string",
+                "value" => function() { return $this->exhibition_message; }
+            ],
+            [
+                "name" => 'sponsors_description',
+                "doc" => "Description",
+                "type" => "string",
+                "value" => function() { return $this->sponsors_description; }
+            ],
+            [
+                "name" => 'cms_exhibition_type',
+                "doc" => "CMS Type",
+                "type" => "number",
+                "value" => function() { return $this->cms_exhibition_type; }
+            ],
+            [
+                "name" => 'sponsors_sub_copy',
+                "doc" => "Sub Copy",
+                "type" => "string",
+                "value" => function() { return $this->sponsors_sub_copy; }
+            ],
+        ];
+    }
+
 }

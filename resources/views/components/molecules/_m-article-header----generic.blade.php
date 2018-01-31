@@ -1,4 +1,4 @@
-<{{ $tag or 'header' }} class="m-article-header m-article-header--generic{{ (isset($img)) ? ' m-article-header--generic-w-img' : ''}}{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag or 'header' }} class="m-article-header m-article-header--generic{{ (isset($img)) ? ' m-article-header--generic-w-img' : ''}}{{ (!isset($breadcrumb)) ? ' m-article-header--generic-no-breadcrumb' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     @if (isset($img))
     <div class="m-article-header__img">
         @component('components.atoms._img')

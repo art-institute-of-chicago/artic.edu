@@ -20,6 +20,7 @@ const calendar = function(container) {
   let $monthsContainer, $template, $start, $end;
 
   let datesSelected = {};
+  let mode = 'single'; // range or single
   let selecting = 'start';
 
   datesSelected.start = {};
@@ -219,11 +220,17 @@ const calendar = function(container) {
     let chosenDate = clicked.getAttribute('data-date');
     let dateObj = _parseDateString(chosenDate);
     let friendlyString = clicked.getAttribute('title');
+    let isoDate = dateObj.toISOString().substr(0, 10);
+    let shortDate = (('0'+dateObj.getDate()).slice(-2))+'/'+(('0'+(dateObj.getMonth()+1)).slice(-2))+'/'+dateObj.getFullYear().toString().slice(-2);
+    let shortDateUS = (('0'+(dateObj.getMonth()+1))+'/'+(('0'+dateObj.getDate()).slice(-2)).slice(-2))+'/'+dateObj.getFullYear().toString().slice(-2)
 
     datesSelected[selecting] = {
-      dateString: chosenDate,
+      string: chosenDate,
       dateObj: dateObj,
-      dateFriendlyString: friendlyString,
+      friendlyString: friendlyString,
+      iso: isoDate,
+      short: shortDate,
+      shortUS: shortDateUS,
     };
 
     if (selecting === 'start') {
@@ -237,15 +244,18 @@ const calendar = function(container) {
       _removedSelectedClasses('all');
       clicked.parentNode.classList.add('s-start');
       triggerCustomEvent(opener, 'calendar:dateSelected', {
-        start: friendlyString,
+        start: datesSelected.start,
       });
+      if (mode === 'single' && A17.currentMediaQuery.indexOf('small') < 0) {
+        _datesSelected();
+      }
     } else if (selecting === 'end') {
       $end.textContent = friendlyString;
       _removedSelectedClasses('end');
       clicked.parentNode.classList.add('s-end');
       _showDateRange(datesSelected.end.dateObj);
       triggerCustomEvent(opener, 'calendar:dateSelected', {
-        end: friendlyString,
+        end: datesSelected.end,
       });
       if (A17.currentMediaQuery.indexOf('small') < 0) {
         _datesSelected();
@@ -366,6 +376,11 @@ const calendar = function(container) {
       minDate = event.data.minDate;
     } else {
       minDate = today;
+    }
+    if (event && event.data.mode) {
+      mode = (event.data.mode === 'range') ? 'range' : 'single';
+    } else {
+      mode = 'single';
     }
     _generateCalendars(minDate.getFullYear(), minDate.getMonth());
   }

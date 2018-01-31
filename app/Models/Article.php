@@ -10,7 +10,7 @@ use A17\CmsToolkit\Models\Model;
 
 class Article extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasBlocks;
+    use HasSlug, HasRevisions, HasMedias, HasBlocks, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
 
@@ -95,5 +95,29 @@ class Article extends Model
     public function exhibitions()
     {
         return $this->apiElements()->where('relation', 'exhibitions');
+    }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'published',
+                "doc" => "Published",
+                "type" => "boolean",
+                "value" => function() { return $this->published; }
+            ],
+            [
+                "name" => 'date',
+                "doc" => "Date",
+                "type" => "date",
+                "value" => function() { return $this->date; }
+            ],
+            [
+                "name" => 'copy',
+                "doc" => "Copy",
+                "type" => "text",
+                "value" => function() { return $this->copy; }
+            ]
+        ];
     }
 }

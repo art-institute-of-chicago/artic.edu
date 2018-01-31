@@ -18,6 +18,11 @@
         'label' => 'Hidden from listings?',
     ])
 
+    @formField('checkbox', [
+        'name' => 'is_ongoing',
+        'label' => 'Ongoing Event?'
+    ])
+
     @formField('date_picker', [
         'name' => 'start_date',
         'label' => 'Start date',

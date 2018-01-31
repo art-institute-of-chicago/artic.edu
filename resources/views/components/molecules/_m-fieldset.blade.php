@@ -5,7 +5,7 @@
     @if (isset($fields))
     <ol class="m-fieldset__fields">
         @foreach ($fields as $field)
-            <li class="m-fieldset__field o-blocks">
+            <li class="m-fieldset__field o-blocks{{ (isset($field['variation'])) ? ' '.$field['variation'] : '' }}">
                 @component('components.blocks._blocks')
                     @slot('blocks', $field['blocks'])
                 @endcomponent

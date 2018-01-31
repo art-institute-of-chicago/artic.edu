@@ -7,7 +7,7 @@ use A17\CmsToolkit\Models\Behaviors\HasPresenter;
 
 class Hour extends Model
 {
-    use HasPresenter;
+    use HasPresenter, Transformable;
 
     protected $presenter = 'App\Presenters\HoursPresenter';
     protected $presenterAdmin = 'App\Presenters\HoursPresenter';
@@ -44,4 +44,39 @@ class Hour extends Model
     // those fields get auto set to false if not submited
     public $checkboxes = ['closed'];
 
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'opening_time',
+                "doc" => "Opening Time",
+                "type" => "datetime",
+                "value" => function() { return $this->opening_time; }
+            ],
+            [
+                "name" => 'closing_time',
+                "doc" => "Closing Time",
+                "type" => "datetime",
+                "value" => function() { return $this->closing_time; }
+            ],
+            [
+                "name" => 'type',
+                "doc" => "Type",
+                "type" => "number",
+                "value" => function() { return $this->type; }
+            ],
+            [
+                "name" => 'day_of_week',
+                "doc" => "Day of Week",
+                "type" => "number",
+                "value" => function() { return $this->day_of_week; }
+            ],
+            [
+                "name" => 'closed',
+                "doc" => "Closed",
+                "type" => "boolean",
+                "value" => function() { return $this->closed; }
+            ]
+        ];
+    }
 }

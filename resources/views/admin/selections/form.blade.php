@@ -47,4 +47,10 @@
         'name' => 'articles',
         'label' => 'Article'
     ])
+
+    @formField('block_editor', [
+        'blocks' => [
+            'image', 'image_with_caption', 'gallery', 'media_embed', 'paragraph'
+        ]
+    ])
 @stop

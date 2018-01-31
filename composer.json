@@ -8,15 +8,20 @@
         {
             "type": "git",
             "url": "git@code.area17.com:a17/laravel-cms-toolkit.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/art-institute-of-chicago/data-hub-foundation.git"
         }
     ],
     "require": {
         "php": ">=7.0.0",
         "a17/laravel-cms-toolkit": "dev-redesign",
+        "aic/data-hub-foundation": "dev-master",
         "fideloper/proxy": "~3.3",
+        "guzzlehttp/guzzle": "6.3.0",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0",
-        "guzzlehttp/guzzle": "6.3.0"
+        "laravel/tinker": "~1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

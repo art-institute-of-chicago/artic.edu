@@ -1,7 +1,7 @@
 /***
 
 ```
-<span class="date-select-trigger">
+<span class="date-select-trigger" data-behavior="selectDate" data-selectDate-mode="range">
   <button class="date-select-trigger__open">
     <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
     <span class="date-select-trigger__label">Select date</span>
@@ -9,7 +9,7 @@
   </button>
   <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
 </span>
-<span class="date-select-trigger s-date-selected">
+<span class="date-select-trigger s-date-selected" data-behavior="selectDate" data-selectDate-mode="range">
   <button class="date-select-trigger__open">
     <svg class="icon--calendar"><use xlink:href="#icon--calendar" /></svg>
     <span class="date-select-trigger__label f-buttons">Select date</span>

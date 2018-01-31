@@ -595,6 +595,13 @@
   }
 }
 
+.m-article-header--generic-no-breadcrumb .m-article-header__text {
+  @include breakpoint('small+') {
+    padding-top: 4px;
+    padding-bottom: 52px;
+  }
+}
+
 .m-article-header--generic .title {
   @include tucked-margin-top($f-headline, ('xsmall': 40));
 }

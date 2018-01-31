@@ -1040,6 +1040,70 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function contact() {
+    $nav = array(
+        array('label' => 'Contact Us', 'href' => '#', 'active' => true),
+    );
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'image',
+            'size' => 's',
+            'media' => $this->getImage(640,480),
+            'hideCaption' => true,
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'intro',
+        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
+    ));
+    array_push($blocks, array(
+        "type" => 'info-bar',
+        "icon" => 'icon--info',
+        "blocks" => array(
+            array(
+                "type" => 'text',
+                "content" => $this->faker->paragraph(2)
+            ),
+        ),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'heading-2',
+        "content" => $this->faker->sentence(6)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'heading-2',
+        "content" => $this->faker->sentence(6)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
+    ));
+
+    // now push to a view
+    return view('statics/generic', [
+        'nav' => $nav,
+        'title' => "Contact Us",
+        "blocks" => $blocks,
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
@@ -1730,8 +1794,40 @@ class StaticsController extends Controller {
         "content" => $this->faker->paragraph(12, false)
     ));
     array_push($blocks, array(
+      "type" => 'deflist',
+      "items" => array(
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+      )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
+    array_push($blocks, array(
         "type" => 'quote',
         "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
+    ));
+    array_push($blocks, array(
+        "type" => 'info-bar',
+        "icon" => 'icon--info',
+        "blocks" => array(
+            array(
+                "type" => 'text',
+                "content" => $this->faker->paragraph(2)
+            ),
+        ),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
     ));
     array_push($blocks, array(
         "type" => 'media',
@@ -1972,20 +2068,14 @@ class StaticsController extends Controller {
         "type" => 'text',
         "content" => $this->faker->paragraph(6)
     ));
-    array_push($blocks, array(
-      "type" => 'deflist',
-      "items" => array(
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-      )
-    ));
+
+    $blocks = array_merge($blocks, $this->generateGenericForm());
+
     array_push($blocks, array(
         "type" => 'text',
         "content" => $this->faker->paragraph(6)
     ));
+
 
     if ($num === 'all') {
       return $blocks;
@@ -2209,10 +2299,12 @@ class StaticsController extends Controller {
   private function generateGenericForm() {
     $blocks = array();
     $formBlocks = array();
-    $formFields = array();
+    $formFields1 = array();
+    $formFields2 = array();
 
     // build form fields
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2229,7 +2321,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2246,7 +2339,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2263,7 +2357,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2280,7 +2375,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2297,7 +2393,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2314,7 +2411,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2331,7 +2429,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2348,7 +2447,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'input',
@@ -2378,7 +2478,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'textarea',
@@ -2394,7 +2495,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields1, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'textarea',
@@ -2410,7 +2512,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'select',
@@ -2425,7 +2528,74 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--checkbox',
+        'blocks' => array(
+            array(
+              "type" => 'checkbox',
+              'variation' => '',
+              'id' => 'coption1',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 1',
+            ),
+        ),
+    ));
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--checkbox',
+        'blocks' => array(
+            array(
+              "type" => 'checkbox',
+              'variation' => '',
+              'id' => 'coption2',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 2',
+            ),
+        ),
+    ));
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--radio',
+        'blocks' => array(
+            array(
+              "type" => 'radio',
+              'variation' => '',
+              'name' => 'roptions1',
+              'id' => 'roption1',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 1',
+            ),
+        ),
+    ));
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--radio',
+        'blocks' => array(
+            array(
+              "type" => 'radio',
+              'variation' => '',
+              'name' => 'roptions1',
+              'id' => 'roption2',
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => 'Option 2',
+            ),
+        ),
+    ));
+    array_push($formFields2, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'select',
@@ -2453,38 +2623,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
-        'blocks' => array(
-            array(
-              "type" => 'checkbox',
-              'variation' => '',
-              'id' => 'coption1',
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => 'Option 1',
-            ),
-        ),
-    ));
-    array_push($formFields, array(
-        'blocks' => array(
-            array(
-              "type" => 'checkbox',
-              'variation' => '',
-              'id' => 'coption2',
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => 'Option 2',
-            ),
-        ),
-    ));
-
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--group',
         'blocks' => array(
             array(
               "type" => 'label',
@@ -2518,40 +2658,8 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-
-    array_push($formFields, array(
-        'blocks' => array(
-            array(
-              "type" => 'radio',
-              'variation' => '',
-              'name' => 'roptions1',
-              'id' => 'roption1',
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => 'Option 1',
-            ),
-        ),
-    ));
-    array_push($formFields, array(
-        'blocks' => array(
-            array(
-              "type" => 'radio',
-              'variation' => '',
-              'name' => 'roptions1',
-              'id' => 'roption2',
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => 'Option 2',
-            ),
-        ),
-    ));
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => 'm-fieldset__field--group',
         'blocks' => array(
             array(
               "type" => 'label',
@@ -2587,11 +2695,12 @@ class StaticsController extends Controller {
             ),
         ),
     ));
-    array_push($formFields, array(
+    array_push($formFields2, array(
+        'variation' => null,
         'blocks' => array(
             array(
               "type" => 'date-select',
-              'variation' => null,
+              'variation' => 'm-fieldset__input-narrow',
               'id' => 'tinput99',
               'placeholder' => 'dd/mm/yy',
               'value' => null,
@@ -2610,13 +2719,13 @@ class StaticsController extends Controller {
     array_push($formBlocks, array(
       "type" => 'fieldset',
       'variation' => null,
-      'fields' => $formFields,
+      'fields' => $formFields1,
       'legend' => 'Contact Information',
     ));
     array_push($formBlocks, array(
       "type" => 'fieldset',
       'variation' => null,
-      'fields' => $formFields,
+      'fields' => $formFields2,
       'legend' => 'Visit Information',
     ));
 
