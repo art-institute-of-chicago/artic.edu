@@ -25,6 +25,7 @@ class Event extends Model
         'is_after_hours',
         'is_ticketed',
         'is_free',
+        'is_ongoing',
         'is_member_exclusive',
         'hidden',
         'rsvp_link',
@@ -62,8 +63,15 @@ class Event extends Model
 
     // those fields get auto set to false if not submited
     public $checkboxes = [
-        'published', 'is_private', 'is_after_hours',
-        'is_ticketed', 'is_free', 'hidden', 'is_member_exclusive'];
+        'published',
+        'hidden',
+        'is_private',
+        'is_after_hours',
+        'is_ticketed',
+        'is_free',
+        'is_member_exclusive',
+        'is_ongoing'
+    ];
 
     public $dates = ['start_date', 'end_date'];
 
