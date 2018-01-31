@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
 class Selection extends Model
 {
-    use HasSlug, HasMedias, Transformable;
+    use HasSlug, HasMedias, HasBlocks, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
 
