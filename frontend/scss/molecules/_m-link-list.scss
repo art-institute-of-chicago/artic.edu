@@ -30,6 +30,7 @@
   margin-top: 0;
 }
 
+.m-link-list__item:only-child::before,
 .m-link-list__item::after {
   content: '';
   position: absolute;
@@ -39,6 +40,11 @@
   top: 0;
   height: 1px;
   background-color: $color__rules--primary;
+}
+
+.m-link-list__item:only-child::before {
+  top: auto;
+  bottom: -12px;
 }
 
 .m-link-list__item.s-active::after {

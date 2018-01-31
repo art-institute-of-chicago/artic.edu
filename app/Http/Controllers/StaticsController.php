@@ -864,6 +864,70 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function contact() {
+    $nav = array(
+        array('label' => 'Contact Us', 'href' => '#', 'active' => true),
+    );
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'image',
+            'size' => 's',
+            'media' => $this->getImage(640,480),
+            'hideCaption' => true,
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'intro',
+        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
+    ));
+    array_push($blocks, array(
+        "type" => 'info-bar',
+        "icon" => 'icon--info',
+        "blocks" => array(
+            array(
+                "type" => 'text',
+                "content" => $this->faker->paragraph(2)
+            ),
+        ),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'heading-2',
+        "content" => $this->faker->sentence(6)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "subtype" => 'heading-2',
+        "content" => $this->faker->sentence(6)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
+    ));
+
+    // now push to a view
+    return view('statics/generic', [
+        'nav' => $nav,
+        'title' => "Contact Us",
+        "blocks" => $blocks,
+    ]);
+  }
+
   // --------------------------------------------------------------------------------------------
   // Make some fake datas
   // --------------------------------------------------------------------------------------------

@@ -193,6 +193,13 @@
                 </dl>
             @endif
 
+            @if ($block['type'] === 'info-bar')
+                @component('components.molecules._m-info-bar')
+                    @slot('variation', 'o-blocks__block '.($block['variation'] ?? ''))
+                    @slot('blocks', $block['blocks'] ?? null)
+                    @slot('icon', $block['icon'] ?? null)
+                @endcomponent
+            @endif
 
             @if ($block['type'] === 'form')
                 @component('components.organisms._o-form')

@@ -17,18 +17,22 @@
   @endcomponent
 
   <div class="o-article__primary-actions">
-    @component('components.atoms._dropdown')
-      @slot('prompt', $title)
-      @slot('variation', 'dropdown--filter u-hide@large+')
-      @slot('ariaTitle', 'Sub navigation')
-      @slot('options', $subNav)
-    @endcomponent
+    @if (isset($subNav))
+        @component('components.atoms._dropdown')
+          @slot('prompt', $title)
+          @slot('variation', 'dropdown--filter u-hide@large+')
+          @slot('ariaTitle', 'Sub navigation')
+          @slot('options', $subNav)
+        @endcomponent
+    @endif
 
-    @component('components.molecules._m-link-list')
-        @slot('font', 'f-module-title-1')
-        @slot('variation','u-show@large+')
-        @slot('links', $nav);
-    @endcomponent
+    @if (isset($nav))
+        @component('components.molecules._m-link-list')
+            @slot('font', 'f-module-title-1')
+            @slot('variation','u-show@large+')
+            @slot('links', $nav);
+        @endcomponent
+    @endif
   </div>
 
   @if (!$isWideBody)
