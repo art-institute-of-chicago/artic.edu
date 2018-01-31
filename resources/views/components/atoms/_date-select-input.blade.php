@@ -1,4 +1,4 @@
-<span class="input input--date-select{{ (isset($variation)) ? ' '.$variation : '' }}{{ (isset($error)) ? ' s-error' : '' }}{{ (isset($disabled)) ? ' s-disabled' : '' }}">
+<span class="input{{ (isset($variation)) ? ' '.$variation : '' }}{{ (isset($error)) ? ' s-error' : '' }}{{ (isset($disabled)) ? ' s-disabled' : '' }}">
     @if ($slot != '')
         @component('components.atoms._label')
             @slot('for', $id)
@@ -7,12 +7,15 @@
             {!! $slot !!}
         @endcomponent
     @endif
-    <input class="f-secondary" type="{{ $type ?? 'text'}}" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" {{ $disabled ?? '' }}>
-
-    @component('components.atoms._date-select-trigger')
-        Select Date
-    @endcomponent
-
+    <span class="input__date-select-container" data-behavior="selectDate" data-selectDate-mode="single" data-selectDate-displayFormat="short">
+        <input class="f-secondary" type="{{ $type ?? 'text'}}" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" {{ $disabled ?? '' }} data-selectDate-display>
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--secondary btn--icon-sq')
+            @slot('font', '')
+            @slot('icon', 'icon--calendar')
+            @slot('dataAttributes', 'data-selectDate-open')
+        @endcomponent
+    </span>
     @if (isset($error))
         @component('components.atoms._error-msg')
             {{ $error ?? '' }}

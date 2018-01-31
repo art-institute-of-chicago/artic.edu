@@ -4,6 +4,8 @@ import { positionElementToTarget } from '../functions';
 const selectDate = function(container) {
 
   const calendar = document.getElementById('calendar');
+  const mode = (container.getAttribute('data-selectDate-mode') === 'range') ? 'range' : 'single';
+  const displayFormat = container.getAttribute('data-selectDate-displayFormat') || 'short';
   const opener = container.querySelector('[data-selectDate-open]');
   const display = container.querySelector('[data-selectDate-display]');
   const dateSelectedClass = 's-date-selected';
@@ -11,10 +13,20 @@ const selectDate = function(container) {
 
   let calendarOpen = false;
   let minDate = defaultMinDate;
+  let displayStr = '';
+
+  function _updateDisplay() {
+    if (display.tagName.toLowerCase() === 'input') {
+      display.value = displayStr;
+    } else {
+      display.textContent = displayStr;
+    }
+  }
 
   function _closeCalendar(datesSelected) {
     if (!datesSelected) {
-      display.textContent = '';
+      displayStr = '';
+      _updateDisplay();
       container.classList.remove(dateSelectedClass);
     }
     if (calendarOpen) {
@@ -35,7 +47,8 @@ const selectDate = function(container) {
       document.documentElement.classList.add('s-calendar-active');
       triggerCustomEvent(calendar, 'calendar:opener', {
         el: container,
-        minDate: minDate
+        minDate: minDate,
+        mode: mode,
       });
       triggerCustomEvent(document, 'body:lock', {
         breakpoints: 'xsmall small'
@@ -61,33 +74,40 @@ const selectDate = function(container) {
   }
 
   function _dateSelected(event) {
-    if (event && event.data) {
+    if (event && event.data && mode === 'range') {
       if (event.data.start) {
-        display.textContent = event.data.start;
+        displayStr = event.data.start[displayFormat];
       }
       if (event.data.end) {
-        display.textContent += ' - ' + event.data.end;
+        displayStr += ' - ' + event.data.end[displayFormat];
       }
-      container.classList.add(dateSelectedClass);
+      if (event.data.start || event.data.end) {
+        _updateDisplay();
+        container.classList.add(dateSelectedClass);
+      }
     }
   }
 
   function _datesSelected(event) {
     if (calendarOpen && event) {
       if (event && event.data && event.data.dates) {
-        if (event.data.dates.start.dateString === event.data.dates.end.dateString) {
-          display.textContent = event.data.dates.start.dateFriendlyString;
+        displayStr = event.data.dates.start[displayFormat];
+        if (event.data.dates.start.string !== event.data.dates.end.string) {
+          displayStr = event.data.dates.start[displayFormat] + ' - ' + event.data.dates.end[displayFormat];
         } else {
-          display.textContent = event.data.dates.start.dateFriendlyString + ' - ' + event.data.dates.end.dateFriendlyString;
+          displayStr = event.data.dates.start[displayFormat];
         }
+        _updateDisplay();
         container.classList.add(dateSelectedClass);
         //
-        var windowLocationHref = queryStringHandler.updateParameter(window.location.href, 'start', event.data.dates.start.dateString);
-        windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, 'end', event.data.dates.end.dateString);
-        // trigger ajax call
-        triggerCustomEvent(document, 'ajax:getPage', {
-          url: windowLocationHref,
-        });
+        if (display.tagName.toLowerCase() !== 'input') {
+          var windowLocationHref = queryStringHandler.updateParameter(window.location.href, 'start', event.data.dates.start.iso);
+          windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, 'end', event.data.dates.end.iso);
+          // trigger ajax call
+          triggerCustomEvent(document, 'ajax:getPage', {
+            url: windowLocationHref,
+          });
+        }
       }
       _closeCalendar(true);
     }

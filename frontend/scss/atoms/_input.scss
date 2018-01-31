@@ -100,3 +100,44 @@ input[type=number] {
     display: none;
   }
 }
+
+
+
+
+
+/***
+
+```
+<span class="input__date-select-container" data-behavior="selectDate" data-selectdate-mode="single" data-selectdate-displayformat="short">
+  <input class="f-secondary" type="text" value="" id="tinput99" name="tinput99" placeholder="dd/mm/yy" data-selectdate-display>
+  <button class="btn  btn--secondary btn--icon-sq" data-selectdate-open>
+    <svg class="icon--calendar" aria-label="Select date"><use xlink:href="#icon--calendar"></use></svg>
+  </button>
+</span>
+```
+
+***/
+
+.input__date-select-container {
+  display: flex;
+  flex-flow: row nowrap;
+
+  label + & {
+    margin-top: 16px;
+  }
+}
+
+.input__date-select-container input {
+  flex: 0 0 auto;
+  width: calc(100% - 48px);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+
+.input__date-select-container .btn {
+  flex: 0 0 auto;
+  border-left: 0 none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

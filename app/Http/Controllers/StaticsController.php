@@ -2415,7 +2415,7 @@ class StaticsController extends Controller {
         'blocks' => array(
             array(
               "type" => 'date-select',
-              'variation' => null,
+              'variation' => 'm-fieldset__input-narrow',
               'id' => 'tinput99',
               'placeholder' => 'dd/mm/yy',
               'value' => null,
