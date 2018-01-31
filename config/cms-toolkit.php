@@ -180,11 +180,6 @@ return [
                     'name' => 'Home main feature',
                     'bucketables' => [
                         [
-                            'module' => 'exhibitions',
-                            'name' => 'Exhibitions',
-                            'scopes' => ['published' => true],
-                        ],
-                        [
                             'module' => 'events',
                             'name' => 'Events',
                             'scopes' => ['published' => true],
@@ -201,11 +196,6 @@ return [
                     'name' => 'Home secondary features',
                     'bucketables' => [
                         [
-                            'module' => 'exhibitions',
-                            'name' => 'Exhibitions',
-                            'scopes' => ['published' => true],
-                        ],
-                        [
                             'module' => 'events',
                             'name' => 'Events',
                             'scopes' => ['published' => true],
@@ -214,11 +204,7 @@ return [
                             'module' => 'articles',
                             'name' => 'Articles',
                             'scopes' => ['published' => true],
-                        ],
-                        [
-                            'module' => 'artworks',
-                            'name' => 'Artworks',
-                        ],
+                        ]
                     ],
                     'max_items' => 2,
                 ],
@@ -234,11 +220,7 @@ return [
                             'module' => 'selections',
                             'name' => 'Selections',
                             'scopes' => ['published' => true],
-                        ],
-                        [
-                            'module' => 'artworks',
-                            'name' => 'Artworks',
-                        ],
+                        ]
                     ],
                     'max_items' => 6,
                 ],
