@@ -1,0 +1,33 @@
+/***
+
+```
+<div class="m-info-bar o-blocks o-blocks__block">
+    <p class="f-body">Quia molestiae molestiae temporibus reprehenderit. Est omnis molestiae soluta non et iure quis est. Aut omnis omnis quas laudantium labore.</p>
+</div>
+<div class="m-info-bar o-blocks o-blocks__block  m-info-bar--w-icon">
+    <svg class="m-info-bar__icon icon--info" aria-hidden="true"><use xlink:href="#icon--info"></use></svg>
+    <p class="f-body">Quia molestiae molestiae temporibus reprehenderit. Est omnis molestiae soluta non et iure quis est. Aut omnis omnis quas laudantium labore.</p>
+</div>
+```
+
+***/
+
+
+.m-info-bar {
+  position: relative;
+  padding: 12px 24px 24px;
+  background-color: $color__bg--primary;
+}
+
+.m-info-bar--w-icon {
+  padding-left: 48px;
+}
+
+.m-info-bar__icon {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 16px;
+  height: 16px;
+  color: $color__text--secondary;
+}
