@@ -35,7 +35,7 @@ class ApiModelBuilder
      *
      * @var array
      */
-    protected $passthru = [];
+    protected $passthru = ['runGet'];
 
     /**
      * Flag to indicate if we are performing a search action.
@@ -241,6 +241,33 @@ class ApiModelBuilder
     }
 
     /**
+     * Get a plain search request
+     *
+     * @param  array  $columns
+     */
+    public function getSearch($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    {
+        $builder = clone $this;
+
+        $page    = $page ?: Paginator::resolveCurrentPage($pageName);
+        $perPage = $perPage ?: $this->model->getPerPage();
+
+        $results        = $this->forPage($page, $perPage)->get($columns);
+        $paginationData = $this->query->getPaginationData();
+
+        // Extract IDS
+        $ids = $results->pluck('id')->toArray();
+
+        // Load the actual models using the IDS returned by search
+        $models = $this->model->newQuery()->ids($ids)->get();
+
+        return $this->paginator($models, $paginationData->total, $perPage, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => $pageName,
+        ]);
+    }
+
+    /**
      * Eager load the relationships for the models.
      * On this case just a flat include, not nested queries because
      * we get all id's to be loaded on the first request to the parent model
@@ -389,12 +416,23 @@ class ApiModelBuilder
         }
 
         if (in_array($method, $this->passthru)) {
-            return $this->toBase()->{$method}(...$parameters);
+            return $this->query->{$method}(...$parameters);
         }
 
         $this->query->{$method}(...$parameters);
 
         return $this;
+    }
+
+    /**
+     * Dynamically retrieve attributes on the model.
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    public function __get($key)
+    {
+        return $this->query->$key;
     }
 
 

@@ -27,4 +27,17 @@ abstract class BaseApiRepository extends ModuleRepository
         }
     }
 
+    public function forSearchQuery($string, $perPage = null, $columns = [], $pageName = 'page', $page = null )
+    {
+        $search  = $this->model->search($string);
+        $results = $search->getSearch($perPage, $columns, $pageName, $page);
+
+        return [
+            'pagination'   => $search->paginationData,
+            'aggregations' => $search->aggregationsData,
+            'suggestions'  => $search->suggestionsData,
+            'items'        => $results
+        ];
+    }
+
 }

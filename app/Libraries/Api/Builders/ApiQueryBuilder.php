@@ -81,6 +81,21 @@ class ApiQueryBuilder {
      */
     public $searchText;
 
+    /**
+     * Pagination data saved after a request
+     */
+    public $paginationData;
+
+    /**
+     * Aggregation data saved after a request
+     */
+    public $aggregationsData;
+
+    /**
+     * Suggestion data saved after a request
+     */
+    public $suggestionsData;
+
 
     public function __construct($connection, $grammar = null)
     {
@@ -340,6 +355,8 @@ class ApiQueryBuilder {
         $results = $this->runGet($endpoint);
 
         $this->paginationData = $results->body->pagination ?? null;
+        $this->aggregationsData = $results->body->aggregations ?? null;
+        $this->suggestionsData = $results->body->suggest ?? null;
 
         $this->columns = $original;
 
@@ -360,7 +377,7 @@ class ApiQueryBuilder {
      *
      * @return array
      */
-    protected function runGet($endpoint)
+    public function runGet($endpoint)
     {
         return $this->connection->get($endpoint, $this->resolveParameters());
     }
