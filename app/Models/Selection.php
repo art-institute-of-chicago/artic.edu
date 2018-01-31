@@ -8,7 +8,7 @@ use A17\CmsToolkit\Models\Model;
 
 class Selection extends Model
 {
-    use HasSlug, HasMedias;
+    use HasSlug, HasMedias, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
 
@@ -70,4 +70,35 @@ class Selection extends Model
     {
         return $this->belongsToMany('App\Models\Selection', 'selection_selection', 'selection_id', 'related_selection_id')->withPivot('position')->orderBy('position');
     }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'published',
+                "doc" => "Published",
+                "type" => "boolean",
+                "value" => function() { return $this->published; }
+            ],
+            [
+                "name" => 'updated_at',
+                "doc" => "Updated",
+                "type" => "date",
+                "value" => function() { return $this->updated_at; }
+            ],
+            [
+                "name" => 'content',
+                "doc" => "Content",
+                "type" => "text",
+                "value" => function() { return $this->copy; }
+            ],
+            [
+                "name" => 'short_copy',
+                "doc" => "Short Copy",
+                "type" => "text",
+                "value" => function() { return $this->short_copy; }
+            ]
+        ];
+    }
+
 }

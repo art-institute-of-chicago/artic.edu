@@ -8,7 +8,7 @@ use App\Models\Behaviors\HasApiModel;
 
 class Artist extends Model
 {
-    use HasSlug, HasApiModel;
+    use HasSlug, HasApiModel, Transformable;
 
     protected $apiModel = 'App\Models\Api\Artist';
 
@@ -38,4 +38,29 @@ class Artist extends Model
     {
         return $this->belongsToMany('App\Models\Article', 'article_artist')->withPivot('position')->orderBy('position');
     }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'also_known_as',
+                "doc" => "Also Known As",
+                "type" => "string",
+                "value" => function() { return $this->also_known_as; }
+            ],
+            [
+                "name" => 'intro_copy',
+                "doc" => "Intro Copy",
+                "type" => "string",
+                "value" => function() { return $this->intro_copy; }
+            ],
+            [
+                "name" => 'datahub_id',
+                "doc" => "Type",
+                "type" => "string",
+                "value" => function() { return $this->datahub_id; }
+            ]
+        ];
+    }
+
 }
