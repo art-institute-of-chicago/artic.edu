@@ -1554,8 +1554,40 @@ class StaticsController extends Controller {
         "content" => $this->faker->paragraph(12, false)
     ));
     array_push($blocks, array(
+      "type" => 'deflist',
+      "items" => array(
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
+      )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(12, false)
+    ));
+    array_push($blocks, array(
         "type" => 'quote',
         "content" => $this->faker->paragraph(6, false)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
+    ));
+    array_push($blocks, array(
+        "type" => 'info-bar',
+        "icon" => 'icon--info',
+        "blocks" => array(
+            array(
+                "type" => 'text',
+                "content" => $this->faker->paragraph(2)
+            ),
+        ),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(2)
     ));
     array_push($blocks, array(
         "type" => 'media',
@@ -1796,20 +1828,14 @@ class StaticsController extends Controller {
         "type" => 'text',
         "content" => $this->faker->paragraph(6)
     ));
-    array_push($blocks, array(
-      "type" => 'deflist',
-      "items" => array(
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-        array('key' => $this->faker->sentence(3), 'value' => $this->faker->paragraph(5)),
-      )
-    ));
+
+    $blocks = array_merge($blocks, $this->generateGenericForm());
+
     array_push($blocks, array(
         "type" => 'text',
         "content" => $this->faker->paragraph(6)
     ));
+
 
     if ($num === 'all') {
       return $blocks;
