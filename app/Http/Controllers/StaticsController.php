@@ -915,6 +915,7 @@ class StaticsController extends Controller {
 
   public function articles_publications_landing() {
       return view('statics/articles_publications_landing', [
+          'primaryNavCurrent' => 'collection',
           'title' => 'The Collection',
           'intro' => 'Explore <em>over 100,000 artworks</em> and information about works of art from all areas in our online encyclopedic collections.',
           'linksBar' => [
@@ -935,41 +936,11 @@ class StaticsController extends Controller {
           'featureHero' => $this->getArticle(),
           'features' => $this->getArticles(4),
           'digitalCatalogs' => [
-              'items' => [
-                  [
-                      "title" => $this->faker->sentence(),
-                      "image" => $this->getImage(),
-                  ],
-                  [
-                      "title" => $this->faker->sentence(),
-                      "image" => $this->getImage(),
-                  ],
-                  [
-                      "title" => $this->faker->sentence(),
-                      "image" => $this->getImage(),
-                  ]
-              ]
+              'items' => $this->getCatalogs(3),
           ],
           'printedCatalogs' => [
               'intro' => $this->faker->paragraph(),
-              'items' => [
-                  [
-                      "title" => $this->faker->sentence(),
-                      "image" => $this->getImage(),
-                  ],
-                  [
-                      "title" => $this->faker->sentence(),
-                      "image" => $this->getImage(),
-                  ],
-                  [
-                      "title" => $this->faker->sentence(),
-                      "image" => $this->getImage(),
-                  ],
-                  [
-                      "title" => $this->faker->sentence(),
-                      "image" => $this->getImage(),
-                  ]
-              ]
+              'items' => $this->getCatalogs(4),
           ],
           'journalHero' => $this->getArticle(),
           'journals' => $this->getArticles(4),
@@ -978,6 +949,7 @@ class StaticsController extends Controller {
 
   public function research_landing() {
       return view('statics/research_landing', [
+          'primaryNavCurrent' => 'collection',
           'title' => 'The Collection',
           'intro' => 'Explore <em>over 100,000 artworks</em> and information about works of art from all areas in our online encyclopedic collections.',
           'linksBar' => [
@@ -1416,6 +1388,25 @@ class StaticsController extends Controller {
       array_push($artists, $artist);
     }
     return $artists;
+  }
+
+  private function getCatalog() {
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/catalog",
+      "title" => $this->faker->sentence(),
+      "image" => $this->getImage(),
+      "type" => 'catalog',
+    ]);
+  }
+
+  private function getCatalogs($num = 3) {
+    $catalogs = array();
+    for ($i = 0; $i < $num; $i++) {
+      $catalog = $this->getCatalog();
+      array_push($catalogs, $catalog);
+    }
+    return $catalogs;
   }
 
   private function getTimelineEvent() {

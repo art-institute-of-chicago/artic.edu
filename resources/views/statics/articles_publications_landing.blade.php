@@ -74,7 +74,7 @@
                 @slot('cols_large','3')
                 @slot('cols_xlarge','3')
                 @foreach ($digitalCatalogs['items'] as $item)
-                    @component('components.molecules._m-listing----multi-links')
+                    @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
                     @endcomponent
@@ -103,7 +103,7 @@
                 @slot('cols_large','4')
                 @slot('cols_xlarge','4')
                 @foreach ($printedCatalogs['items'] as $item)
-                    @component('components.molecules._m-listing----multi-links')
+                    @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
                     @endcomponent
