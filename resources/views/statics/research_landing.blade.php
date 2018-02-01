@@ -17,11 +17,12 @@
 
         @component('components.molecules._m-links-bar')
             @slot('variation', 'm-links-bar--tabs')
+            @slot('overflow', true)
             @slot('linksPrimary', $linksBar)
         @endcomponent
 
         @component('components.molecules._m-post-hero')
-            @slot('post', $gridHero)
+            @slot('post', $hero)
         @endcomponent
 
         @component('components.organisms._o-grid-listing')
@@ -35,27 +36,10 @@
         @endcomponent
 
         @component('components.organisms._o-grid-listing')
-            @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+            @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
             @slot('cols_large','3')
             @slot('cols_xlarge','3')
-
-            @foreach ($gridItems1 as $item)
-                @component('components.molecules._m-listing----multi-links')
-                    @slot('variation', 'm-listing--row@small m-listing--row@medium')
-                    @slot('item', $item)
-                @endcomponent
-            @endforeach
-        @endcomponent
-
-        @component('components.atoms._hr')
-        @endcomponent
-
-        @component('components.organisms._o-grid-listing')
-            @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-            @slot('cols_large','3')
-            @slot('cols_xlarge','3')
-
-            @foreach ($gridItems2 as $item)
+            @foreach ($items as $item)
                 @component('components.molecules._m-listing----multi-links')
                     @slot('variation', 'm-listing--row@small m-listing--row@medium')
                     @slot('item', $item)
@@ -77,7 +61,7 @@
                 @slot('cols_large','3')
                 @slot('cols_xlarge','3')
 
-                @foreach ($gridItems3 as $item)
+                @foreach ($studyRooms as $item)
                     @component('components.molecules._m-listing----multi-links')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
@@ -86,6 +70,5 @@
             @endcomponent
         </section>
     </article>
-
 
 @endsection

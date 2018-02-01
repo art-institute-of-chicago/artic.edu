@@ -995,12 +995,12 @@ class StaticsController extends Controller {
                 'active' => true,
               ],
           ],
-          'gridHero' => (object)[
+          'hero' => (object)[
               'image' => $this->getImage(890,505),
               'primary' => $this->faker->sentence(8),
               'secondary' => $this->faker->sentence(8),
           ],
-          'gridItems1' => [
+          'items' => [
               [
                   'image' => $this->getImage(360, 205),
                   'title' => 'Libraries',
@@ -1048,8 +1048,6 @@ class StaticsController extends Controller {
                       ]
                   ]
               ],
-          ],
-          'gridItems2' => [
               [
                   'image' => $this->getImage(360, 205),
                   'title' => 'Scholarly Initiatives',
@@ -1069,7 +1067,7 @@ class StaticsController extends Controller {
                   'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
               ],
           ],
-          'gridItems3' => [
+          'studyRooms' => [
               [
                   'title' => 'Prints and Drawings',
                   'titleLink' => '#',
