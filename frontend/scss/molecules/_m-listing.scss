@@ -229,18 +229,34 @@
 
 .m-listing__meta .f-list-2 {
   @include tucked-margin-top($f-list-2, ('xsmall': 32));
+
+  &:first-child {
+    @include tucked-margin-top($f-list-2, ('xsmall': 44));
+  }
 }
 
 .m-listing__meta .f-list-3 {
   @include tucked-margin-top($f-list-3, ('xsmall': 32));
+
+  &:first-child {
+    @include tucked-margin-top($f-list-3, ('xsmall': 44));
+  }
 }
 
 .m-listing__meta .f-list-4 {
   @include tucked-margin-top($f-list-4, ('xsmall': 32, 'large+': 40));
+
+  &:first-child {
+    @include tucked-margin-top($f-list-4, ('xsmall': 44, 'large+': 48));
+  }
 }
 
 .m-listing__meta .f-list-5 {
   @include tucked-margin-top($f-list-5, ('xsmall': 32, 'small+': 44, 'medium+': 40, 'large+': 48));
+
+  &:first-child {
+    @include tucked-margin-top($f-list-5, ('xsmall': 44, 'small+': 52, 'medium+': 48, 'large+': 56));
+  }
 }
 
 .m-listing__meta .f-subheading-1 {
@@ -759,6 +775,10 @@
       min-height: 0;
       margin-top: 0;
       margin-left: colspan(2, small);
+
+      &:first-child {
+        margin-left: 0;
+      }
     }
 
     .m-listing__meta-bottom {
@@ -767,6 +787,26 @@
 
     .m-listing__meta .f-tag {
       @include tucked-margin-top($f-tag, ('small': 12), 'small');
+    }
+
+    .m-listing__meta .f-tag:first-child {
+      @include tucked-align-top($f-tag, 'small');
+    }
+
+    .m-listing__meta .f-list-2:first-child {
+      @include tucked-align-top($f-list-2, 'small');
+    }
+
+    .m-listing__meta .f-list-3:first-child {
+      @include tucked-align-top($f-list-3, 'small');
+    }
+
+    .m-listing__meta .f-list-4:first-child {
+      @include tucked-align-top($f-list-4, 'small');
+    }
+
+    .m-listing__meta .f-list-5:first-child {
+      @include tucked-align-top($f-list-5, 'small');
     }
   }
 }
@@ -793,6 +833,10 @@
       min-height: 0;
       margin-top: 0;
       margin-left: colspan(2, medium);
+
+      &:first-child {
+        margin-left: 0;
+      }
     }
 
     .m-listing__meta-bottom {
@@ -801,6 +845,26 @@
 
     .m-listing__meta .f-tag {
       @include tucked-margin-top($f-tag, ('medium': 12), 'medium');
+    }
+
+    .m-listing__meta .f-tag:first-child {
+      @include tucked-align-top($f-tag, 'medium');
+    }
+
+    .m-listing__meta .f-list-2:first-child {
+      @include tucked-align-top($f-list-2, 'medium');
+    }
+
+    .m-listing__meta .f-list-3:first-child {
+      @include tucked-align-top($f-list-3, 'medium');
+    }
+
+    .m-listing__meta .f-list-4:first-child {
+      @include tucked-align-top($f-list-4, 'medium');
+    }
+
+    .m-listing__meta .f-list-5:first-child {
+      @include tucked-align-top($f-list-5, 'medium');
     }
   }
 }
