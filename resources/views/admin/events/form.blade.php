@@ -165,5 +165,10 @@
             'label' => 'Copy below Buy Button text',
             'type' => 'textarea'
         ])
+
+        @formField('checkbox', [
+            'name' => 'is_boosted',
+            'label' => 'Boost this Article on search results'
+        ])
     </a17-fieldset>
 @endsection

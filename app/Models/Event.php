@@ -26,6 +26,7 @@ class Event extends Model
         'is_ticketed',
         'is_sold_out',
         'is_free',
+        'is_boosted',
         'is_ongoing',
         'is_member_exclusive',
         'hidden',
@@ -72,7 +73,8 @@ class Event extends Model
         'is_free',
         'is_member_exclusive',
         'is_ongoing',
-        'is_sold_out'
+        'is_sold_out',
+        'is_boosted'
     ];
 
     public $dates = ['start_date', 'end_date'];
