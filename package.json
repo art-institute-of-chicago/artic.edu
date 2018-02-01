@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "a17-script": "git+https://code.area17.com/a17/a17-script.git#gulp",
+    "@antoine_a17/a17-node-sassdown": "1.0.7",
     "cross-env": "^5.1",
     "laravel-mix": "^1.0",
     "watch": "^1.0.2",
