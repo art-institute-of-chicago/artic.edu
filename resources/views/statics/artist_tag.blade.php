@@ -3,38 +3,46 @@
 @section('content')
 
 @component('components.molecules._m-header-block')
-    {{ $title }}
+    {{ $article->title }}
 @endcomponent
 
-@component('components.organisms._o-artist-bio', [ 'bio' => $bio ])
+@component('components.organisms._o-artist-bio')
+    @slot('bio', $article->bio)
 @endcomponent
 
 @component('components.molecules._m-title-bar')
     @slot('variation', 'm-title-bar--secondary')
-
     Artworks
 @endcomponent
 
-@component('components.organisms._o-pinboard')
-    @slot('cols_small','2')
-    @slot('cols_medium','3')
-    @slot('cols_large','4')
-    @slot('cols_xlarge','4')
-    @slot('maintainOrder','true')
-    @slot('moreLink',$artworksMoreLink)
-    @foreach ($artworks as $item)
-        @component('components.molecules._m-listing----artwork')
-            @slot('variation', 'o-pinboard__item')
-            @slot('item', $item)
-        @endcomponent
-    @endforeach
-@endcomponent
+@if ($article->artworks)
+    @component('components.organisms._o-pinboard')
+        @slot('cols_small','2')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+        @slot('maintainOrder','true')
+        @foreach ($article->artworks as $item)
+            @component('components.molecules._m-listing----artwork')
+                @slot('variation', 'o-pinboard__item')
+                @slot('item', $item)
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
 
+@if ($article->artworksMoreLink)
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--buttons')
+        @slot('linksPrimary', array(
+            $article->artworksMoreLink
+        ));
+    @endcomponent
+@endif
 
-@if ($relatedArticles)
+@if ($article->relatedArticles)
     @component('components.molecules._m-title-bar')
         @slot('variation', 'm-title-bar--secondary')
-
         Related
     @endcomponent
 
@@ -47,7 +55,7 @@
         @slot('cols_medium','3')
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
-        @foreach ($relatedArticles as $item)
+        @foreach ($article->relatedArticles as $item)
             @component('components.molecules._m-listing----article')
                 @slot('item', $item)
             @endcomponent
@@ -55,15 +63,14 @@
     @endcomponent
 @endif
 
-@if ($exploreFuther)
+@if ($article->exploreFuther)
     @component('components.molecules._m-title-bar')
         @slot('variation', 'm-title-bar--secondary')
-
         Explore Further
     @endcomponent
     @component('components.molecules._m-links-bar')
         @slot('variation', '')
-        @slot('linksPrimary', $exploreFuther['nav'])
+        @slot('linksPrimary', $article->exploreFuther['nav'])
     @endcomponent
     @component('components.organisms._o-pinboard')
         @slot('cols_small','2')
@@ -71,8 +78,8 @@
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
         @slot('maintainOrder','false')
-        @slot('moreLink',$exploreMoreLink)
-        @foreach ($exploreFuther['items'] as $item)
+        @slot('moreLink',$article->exploreMoreLink)
+        @foreach ($article->exploreFuther['items'] as $item)
             @component('components.molecules._m-listing----'.$item->type)
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
@@ -81,11 +88,9 @@
     @endcomponent
 @endif
 
-
-@if ($exhibitions)
+@if ($article->exhibitions)
     @component('components.molecules._m-title-bar')
         @slot('variation', 'm-title-bar--secondary')
-
         Exhibitions
     @endcomponent
 
@@ -98,7 +103,7 @@
         @slot('cols_medium','3')
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
-        @foreach ($exhibitions as $item)
+        @foreach ($article->exhibitions as $item)
             @component('components.molecules._m-listing----exhibition')
                 @slot('item', $item)
             @endcomponent
@@ -107,7 +112,7 @@
 @endif
 
 
-@if ($recentlyViewedArtworks)
+@if ($article->recentlyViewedArtworks)
     @component('components.molecules._m-title-bar')
         @slot('variation', 'm-title-bar--secondary')
         @slot('links', array(array('label' => 'Clear your history', 'href' => '#')))
@@ -117,10 +122,10 @@
     @endcomponent
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--scroll@large o-grid-listing--scroll@xlarge  o-grid-listing--gridlines-cols')
-        @slot('cols_large',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
-        @slot('cols_xlarge',(sizeof($recentlyViewedArtworks) > 6) ? '12' : '6')
+        @slot('cols_large',(sizeof($article->recentlyViewedArtworks) > 6) ? '12' : '6')
+        @slot('cols_xlarge',(sizeof($article->recentlyViewedArtworks) > 6) ? '12' : '6')
         @slot('behavior','dragScroll')
-        @foreach ($recentlyViewedArtworks as $item)
+        @foreach ($article->recentlyViewedArtworks as $item)
             @component('components.molecules._m-listing----artwork-minimal')
                 @slot('item', $item)
             @endcomponent
@@ -131,12 +136,12 @@
     @endcomponent
 @endif
 
-@if ($interestedThemes)
+@if ($article->interestedThemes)
     @php
-        $themeString = 'You may also like ';
-        $themesLength = sizeof($interestedThemes);
+        $themeString = 'It seems it you could also be interested in ';
+        $themesLength = sizeof($article->interestedThemes);
         $themesIndex = 1;
-        foreach ($interestedThemes as $theme) {
+        foreach ($article->interestedThemes as $theme) {
             if ($themesIndex > 1 && $themesIndex < $themesLength) {
                 $themeString .= ', ';
             }

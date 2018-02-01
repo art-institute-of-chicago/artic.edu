@@ -743,36 +743,21 @@ class StaticsController extends Controller {
   }
 
   public function artist_tag() {
-    $tag = $this->getArtistTag();
-    $tag['bio'] = (object)[
-        'image' => $this->getImage(700, 395),
-        'caption' => 'Old Man with a Gold Chain<br>Rembrandt Harmensz. van Rijn, 1631',
-        'data' => (object)[
-            'aka' => 'Rembrant',
-            'dob' => strtotime('July 15, 1606'),
-            'dod' => strtotime('October 4 1669'),
-        ],
-        'body' => '<p>Rembrandt never went abroad, but he was considerably influenced by the work of the <a href="#">Italian masters</a> and the Netherlandish artists who had studied in Italy, like Pieter Lastman, the Utrecht Caravaggists, and Flemish Baroque <a href="#">Peter Paul Rubens</a>. Having achieved youthful success as a portrait painer, Rembrandt’s later years were marked by personal tragedy and financial hardships. Yet his etchings and paintings were popular throughout his lifetime, his reputation as an artist remained high, and for twenty years he taught many important <a href="#">Dutch painters</a></p>',
-        'tags' => [
-            'Baroque',
-            'Dutch Painters'
-        ]
-    ];
+    $article = $this->getArtistTag(true);
 
-    return view('statics/artist_tag', $tag);
+    // now push to a view
+    return view('statics/artist_tag', [
+      "article" => $article,
+    ]);
   }
 
   public function artist_tag_no_intro() {
-    $tag = $this->getArtistTag();
-    $tag['bio'] = (object)[
-        'data' => (object)[
-            'aka' => 'Rembrant',
-            'dob' => strtotime('July 15, 1606'),
-            'dod' => strtotime('October 4 1669'),
-        ]
-    ];
+    $article = $this->getArtistTag();
 
-    return view('statics/artist_tag', $tag);
+    // now push to a view
+    return view('statics/artist_tag', [
+      "article" => $article,
+    ]);
   }
 
   public function generic_listing() {
@@ -864,182 +849,6 @@ class StaticsController extends Controller {
     ]);
   }
 
-  public function articles_publications_landing() {
-    return view('statics/articles_publications_landing', [
-        'title' => 'The Collection',
-        'intro' => 'Explore <em>over 100,000 artworks</em> and information about works of art from all areas in our online encyclopedic collections.',
-        'linksBar' => [
-            [
-              'href' => '#',
-              'label' => 'Artworks',
-            ],
-            [
-              'href' => '#',
-              'label' => 'Articles & Publications',
-              'active' => true,
-            ],
-            [
-              'href' => '#',
-              'label' => 'Research & Resources',
-            ],
-        ],
-        'featureHero' => $this->getArticle(),
-        'features' => $this->getArticles(4),
-        'digitalCatalogs' => [
-            'items' => [
-                [
-                    "title" => $this->faker->sentence(),
-                    "image" => $this->getImage(),
-                ],
-                [
-                    "title" => $this->faker->sentence(),
-                    "image" => $this->getImage(),
-                ],
-                [
-                    "title" => $this->faker->sentence(),
-                    "image" => $this->getImage(),
-                ]
-            ]
-        ],
-        'printedCatalogs' => [
-            'intro' => $this->faker->paragraph(),
-            'items' => [
-                [
-                    "title" => $this->faker->sentence(),
-                    "image" => $this->getImage(),
-                ],
-                [
-                    "title" => $this->faker->sentence(),
-                    "image" => $this->getImage(),
-                ],
-                [
-                    "title" => $this->faker->sentence(),
-                    "image" => $this->getImage(),
-                ],
-                [
-                    "title" => $this->faker->sentence(),
-                    "image" => $this->getImage(),
-                ]
-            ]
-        ],
-        'journalHero' => $this->getArticle(),
-        'journals' => $this->getArticles(4),
-    ]);
-  }
-
-  public function research_landing() {
-    return view('statics/research_landing', [
-        'title' => 'The Collection',
-        'intro' => 'Explore <em>over 100,000 artworks</em> and information about works of art from all areas in our online encyclopedic collections.',
-        'linksBar' => [
-            [
-              'href' => '#',
-              'label' => 'Artworks',
-            ],
-            [
-              'href' => '#',
-              'label' => 'Articles & Publications',
-            ],
-            [
-              'href' => '#',
-              'label' => 'Research & Resources',
-              'active' => true,
-            ],
-        ],
-        'gridHero' => (object)[
-            'image' => $this->getImage(890,505),
-            'primary' => $this->faker->sentence(8),
-            'secondary' => $this->faker->sentence(8),
-        ],
-        'gridItems1' => [
-            [
-                'image' => $this->getImage(360, 205),
-                'title' => 'Libraries',
-                'titleLink' => '#',
-                'text' => 'The Ryerson & Burnham Libraries constitute a major art and architecure research collection service The Art Institute of Chicago...',
-                'links' => [
-                    [
-                        'href' => '#',
-                        'label' => 'Library Catalog',
-                        'external' => true,
-                    ],
-                    [
-                        'href' => '#',
-                        'label' => 'Library Catalog Help',
-                    ]
-                ]
-            ],
-            [
-                'image' => $this->getImage(360, 205),
-                'title' => 'Art & Architecture Archives',
-                'titleLink' => '#',
-                'text' => 'The Archives’ collections are notably strong in late 19th- and 20th-century American architecture, with particular depth...',
-            ],
-            [
-                'image' => $this->getImage(360, 205),
-                'title' => 'Research Guides',
-                'titleLink' => '#',
-                'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
-                'links' => [
-                    [
-                        'href' => '#',
-                        'label' => 'Researching Art or Artists',
-                    ],
-                    [
-                        'href' => '#',
-                        'label' => 'Researching a Work from the Collections',
-                    ],
-                    [
-                        'href' => '#',
-                        'label' => 'Find the Value of a Work of Art',
-                    ],
-                    [
-                        'href' => '#',
-                        'label' => 'Find the Value of a Book',
-                    ]
-                ]
-            ],
-        ],
-        'gridItems2' => [
-            [
-                'image' => $this->getImage(360, 205),
-                'title' => 'Scholarly Initiatives',
-                'titleLink' => '#',
-                'text' => 'The Ryerson & Burnham Libraries constitute a major art and architecure research collection service The Art Institute of Chicago...',
-            ],
-            [
-                'image' => $this->getImage(360, 205),
-                'title' => 'Educator Resources',
-                'titleLink' => '#',
-                'text' => 'The Archives’ collections are notably strong in late 19th- and 20th-century American architecture, with particular depth...',
-            ],
-            [
-                'image' => $this->getImage(360, 205),
-                'title' => 'Provenance',
-                'titleLink' => '#',
-                'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
-            ],
-        ],
-        'gridItems3' => [
-            [
-                'title' => 'Prints and Drawings',
-                'titleLink' => '#',
-                'text' => 'The Ryerson & Burnham Libraries constitute a major art and architecure research collection service The Art Institute of Chicago...',
-            ],
-            [
-                'title' => 'Photography',
-                'titleLink' => '#',
-                'text' => 'The Archives’ collections are notably strong in late 19th- and 20th-century American architecture, with particular depth...',
-            ],
-            [
-                'title' => 'Ryerson Special Collections',
-                'titleLink' => '#',
-                'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
-            ],
-        ]
-    ]);
-  }
-
   public function contact() {
     $nav = array(
         array('label' => 'Contact Us', 'href' => '#', 'active' => true),
@@ -1108,6 +917,7 @@ class StaticsController extends Controller {
     // now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
+        'artists' => $this->getArtists(6),
     ]);
   }
 
@@ -1394,6 +1204,44 @@ class StaticsController extends Controller {
       array_push($medias, $media);
     }
     return $medias;
+  }
+
+  private function getArtist($intro = false) {
+    $bio = array();
+
+    $bio['data'] = array(
+      'aka' => 'Rembrant',
+      'dob' => strtotime('July 15, 1606'),
+      'dod' => strtotime('October 4 1669'),
+    );
+
+    if ($intro) {
+        $bio['image'] = $this->getImage(700, 395);
+        $bio['caption'] = $this->faker->sentence();
+        $bio['body'] = $this->generateBlocks(2);
+        $bio['tags'] = array(
+            array('label' => 'Baroque', 'href' => '#'),
+            array('label' => 'Dutch Painters', 'href' => '#'),
+        );
+    }
+
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/artist",
+      "title" => $this->faker->name(),
+      "image" => $this->getImage(120,120),
+      "bio" => $bio,
+      "type" => 'artist',
+    ]);
+  }
+
+  private function getArtists($num = 3) {
+    $artists = array();
+    for ($i = 0; $i < $num; $i++) {
+      $artist = $this->getArtist();
+      array_push($artists, $artist);
+    }
+    return $artists;
   }
 
   private function getTimelineEvent() {
@@ -2189,118 +2037,59 @@ class StaticsController extends Controller {
 
   }
 
-  function getArtistTag() {
-    return [
-        'title' => 'Rembrandt Harmenszoon Van Rijn',
-        'bio' => (object)[
-            'data' => (object)[
-                'aka' => 'Rembrant',
-                'dob' => strtotime('July 15, 1606'),
-                'dod' => strtotime('October 4 1669'),
-            ],
-        ],
-        'interestedThemes' => [
-          [
-            'href' => '#',
-            'label' => "Picasso",
-          ],
-          [
-            'href' => '#',
-            'label' => "Modern Art",
-          ],
-          [
-            'href' => '#',
-            'label' => "European Art",
-          ],
-        ],
-        'artworks' => [
-            (object)[
-                'slug' => '#',
-                'image' => $this->getImage(260, 310),
-                'title' => 'Self-Portrait Etching at a Window',
-                'artist' => 'Rembrandt van Rijn',
-                'date' => '1648'
-            ],
-            (object)[
-                'slug' => '#',
-                'image' => $this->getImage(260, 318),
-                'title' => 'Seated Female Nude',
-                'artist' => 'Rembrandt van Rijn',
-                'date' => '1668'
-            ],
-            (object)[
-                'slug' => '#',
-                'image' => $this->getImage(260, 140),
-                'title' => 'Reclining Female Nude',
-                'artist' => 'Rembrandt van Rijn',
-                'date' => '1658'
-            ],
-            (object)[
-                'slug' => '#',
-                'image' => $this->getImage(260, 330),
-                'title' => 'A Scholar in His Study',
-                'artist' => 'Rembrandt van Rijn',
-                'date' => '1668'
-            ],
-            (object)[
-                'slug' => '#',
-                'image' => $this->getImage(260, 155),
-                'title' => 'The Bridge at Klein Kostverloren on the Amstel',
-                'artist' => 'Rembrandt van Rijn',
-                'date' => '1645'
-            ],
-            (object)[
-                'slug' => '#',
-                'image' => $this->getImage(260, 335),
-                'title' => 'Clement de Jonghe, Printseller',
-                'artist' => 'Rembrandt van Rijn',
-                'date' => '1651'
-            ],
-            (object)[
-                'slug' => '#',
-                'image' => $this->getImage(260, 310),
-                'title' => 'Jan Cornelius Sylvius',
-                'artist' => 'Rembrandt van Rijn',
-                'date' => '1663'
-            ],
-            (object)[
-                'slug' => '#',
-                'image' => $this->getImage(260, 315),
-                'title' => 'Young Man in a Turban',
-                'artist' => 'Rembrandt van Rijn',
-                'date' => '1650'
-            ],
-        ],
-        'artworksMoreLink' => (object)[
-            'url' => '#',
-            'text' => 'See all 341 artworks'
-        ],
-        'recentlyViewedArtworks' => $this->getArtworks($this->faker->numberBetween(6,20)),
-        'relatedArticles' => $this->getArticles(3),
-        'exhibitions' => $this->getExhibitions(2),
-        'exploreFuther' => [
-          'items' => $this->getArtworks(8),
-          'nav' => [
-            [
-              'href' => '#',
-              'label' => "European Painting and Sculpture",
-              'active' => true,
-            ],
-            [
-              'href' => '#',
-              'label' => "Prints and Drawings",
-            ],
-            [
-              'href' => '#',
-              'label' => "All tags",
-            ],
-          ],
-        ],
-        'exploreMoreLink' => (object)[
-            'url' => '#',
-            'text' => 'See all 2,348 artworks'
-        ],
-    ];
+  function getArtistTag($intro = false) {
+    $article = $this->getArtist($intro);
+    $article->push('interestedThemes', array(
+      array(
+        'href' => '#',
+        'label' => "Picasso",
+      ),
+      array(
+        'href' => '#',
+        'label' => "Modern Art",
+      ),
+      array(
+        'href' => '#',
+        'label' => "European Art",
+      ),
+    ));
+    $article->push('artworks', $this->getArtworks(6));
+    $article->push('artworksMoreLink', array(
+        'href' => '#',
+        'label' => 'See all 341 artworks',
+        'variation' => 'btn--secondary',
+    ));
+    $article->push('exhibitions', $this->getExhibitions(2));
+    $article->push('recentlyViewedArtworks', $this->getArtworks($this->faker->numberBetween(6,20)));
+    $article->push('exploreFuther', array(
+      'items' => $this->getArtworks(8),
+      'nav' => array(
+        array(
+          'href' => '#',
+          'label' => "Renaissance",
+        ),
+        array(
+          'href' => '#',
+          'label' => "Arms",
+          'active' => true,
+        ),
+        array(
+          'href' => '#',
+          'label' => "Northern Italy",
+        ),
+        array(
+          'href' => '#',
+          'label' => "All tags",
+        ),
+      ),
+    ));
+    $article->push('exploreMoreLink', array(
+        'href' => '#',
+        'label' => 'See all 2,348 artworks',
+    ));
+    $article->push('relatedArticles', $this->getArticles(3));
+
+    return $article;
   }
 
   private function generateGenericForm() {

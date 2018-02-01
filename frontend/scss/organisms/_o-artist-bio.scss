@@ -160,5 +160,18 @@ $bioBreakpoints: (
 }
 
 .o-artist-bio__tags {
-  margin-top: 40px;
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 32px;
+  padding-top: .02px;
+}
+
+.o-artist-bio__tags > li {
+  flex: 0 0 auto;
+  margin-top: 8px;
+  margin-right: 20px;
+}
+
+.o-artist-bio__tags .tag {
+  display: block;
 }
