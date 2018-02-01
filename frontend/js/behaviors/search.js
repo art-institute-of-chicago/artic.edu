@@ -9,6 +9,7 @@ const search = function(container) {
   var autocomplete = container.querySelector('[data-autocomplete]');
   var stateKlass ='s-search-active';
   var autocompleteKlass = 's-search-active--autocomplete';
+  var loaderKlass = 's-search-active--loader';
   var s = '';
   var ajaxTimer;
 
@@ -31,6 +32,8 @@ const search = function(container) {
   // handle search input
   function _handleInput() {
     s = textInput.value;
+
+    _showLoader();
 
     if( s.length >= 3 ){
       // do ajax
@@ -64,8 +67,7 @@ const search = function(container) {
         ],
         onSuccess: function(data){
           try {
-            document.documentElement.classList.add(autocompleteKlass);
-            autocomplete.innerHTML = data;
+            _showAutocomplete(data);
           } catch (err) {
             console.error('Error updating autocomplete: '+ err);
           }
@@ -78,10 +80,30 @@ const search = function(container) {
     }, 250);
   }
 
+  function _showLoader() {
+    document.documentElement.classList.add(loaderKlass);
+  }
+
+  function _hideLoader() {
+    document.documentElement.classList.remove(loaderKlass);
+  }
+
+  // show autocomplete
+  function _showAutocomplete(content) {
+    document.documentElement.classList.add(autocompleteKlass);
+
+    autocomplete.innerHTML = content;
+
+    _hideLoader();
+  }
+
   // hide autocomplete
   function _hideAutocomplete() {
     document.documentElement.classList.remove(autocompleteKlass);
+
     autocomplete.innerHTML = '';
+
+    _hideLoader();
   }
 
   function _lockBody(){

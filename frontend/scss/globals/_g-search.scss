@@ -59,6 +59,7 @@ $f-autocomplete: generate-font-obj((
   @include font-styles($f-search-input);
   width: 100%;
   padding-bottom: 15px;
+  padding-right: 40px;
   border: 0;
   border-bottom: 1px solid rgba($color__rules--tertiary, 0.5);
   background-color: transparent;
@@ -94,6 +95,17 @@ $f-autocomplete: generate-font-obj((
 
 .g-search__submit:hover {
   color: $color__white;
+}
+
+.g-search__loader {
+  @extend %a-loader;
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 2;
+  margin-top: -7.5px;
+  transform: translateY(-50%);
 }
 
 .g-search__suggested {
@@ -136,24 +148,23 @@ $f-autocomplete: generate-font-obj((
 }
 
 .g-search__autocomplete li {
-  position: relative;
-  // min-height: 52px;
-  padding: 6px 0 6px 55px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .g-search__autocomplete li:first-child {
-  // padding-top: 0;
 }
 
 .g-search__autocomplete li a {
   @extend %f-buttons;
+  position: relative;
   display: block;
-  min-height: 46px;
+  min-height: 52px;
+  padding: 6px 0 6px 55px;
   color: $color__text--search;
 }
 
 .g-search__autocomplete li a:hover {
+  background-color: rgba(0,0,0,0.2);
   color: $color__white;
 }
 

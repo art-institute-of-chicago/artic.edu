@@ -7,6 +7,8 @@
                 <button type="submit" class="g-search__submit">
                     <svg aria-label="Search" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
                 </button>
+
+                <span class="g-search__loader"></span>
             </form>
 
             <div class="g-search__suggested">

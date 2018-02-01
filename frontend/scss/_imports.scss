@@ -42,6 +42,7 @@ $include-icons: false; // see icons.scss!
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ atoms */
 
 @import 'atoms/general-styles';
+@import 'atoms/loader';
 @import 'atoms/ratio-img';
 @import 'atoms/arrow-link';
 @import 'atoms/btn';

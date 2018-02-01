@@ -35,3 +35,13 @@
     // background-color: rgba($color__black--90, 0.96);
   }
 }
+
+.s-search-active--loader {
+  .g-search__loader {
+    display: block;
+  }
+
+  .g-search__submit {
+    display: none;
+  }
+}

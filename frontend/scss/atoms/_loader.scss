@@ -1,0 +1,26 @@
+%a-loader,
+.a-loader {
+  position: relative;
+  min-width: 28px;
+  min-height: 28px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 2px solid $color__rules--primary;
+    border-top-color: $color__black--54;
+    border-radius: 50%;
+    animation: loader 1.25s linear infinite;
+  }
+}
+
+@keyframes loader {
+  100% {
+    transform: rotate(360deg);
+  }
+}
