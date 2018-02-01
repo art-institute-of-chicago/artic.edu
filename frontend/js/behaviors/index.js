@@ -29,3 +29,4 @@ export { default as hideCollectionSearch } from './hideCollectionSearch';
 export { default as navMobile } from './navMobile';
 export { default as infoButtonTrigger } from './infoButtonTrigger';
 export { default as linksBar } from './linksBar';
+export { default as search } from './search';

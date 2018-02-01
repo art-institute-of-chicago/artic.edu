@@ -69,6 +69,55 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function autocomplete($slug) {
+    return view('layouts/_autocomplete', [
+        'term' => $slug,
+        'resultCount' => $this->faker->numerify('#,###'),
+        'items' => [
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+        ]
+    ]);
+  }
+
   public function exhibitions_and_events() {
     return view('statics/exhibitions_and_events', [
       'primaryNavCurrent' => 'exhibitions_and_events',

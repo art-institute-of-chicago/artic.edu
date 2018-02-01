@@ -55,6 +55,20 @@ class AppServiceProvider extends ServiceProvider
     {
       view()->composer('layouts.*', function ($view) {
         $view->with([
+            'search' => [
+                'suggested' => [
+                    'Chicago',
+                    'Landscapes',
+                    'Impressionism',
+                    'Jewelry',
+                    'Animals',
+                    'Furniture',
+                    'Art Deco',
+                    'Mythology',
+                    'Chicago',
+                    'Landscapes',
+                ]
+            ],
             'mobileNav' => [
                 [
                     'name' => 'Visit',

@@ -1,0 +1,37 @@
+.s-search-active {
+  position: fixed;
+  overflow: hidden;
+
+  body {
+    position: fixed;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .g-search {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .2s $bezier--ease-in-out;
+  }
+
+  .g-mask {
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    background-color: rgba(255,255,255,0.95);
+  }
+}
+
+.s-search-active--autocomplete {
+  .g-search__suggested {
+    display: none;
+  }
+
+  .g-search__scroll {
+    height: 100vh;
+  }
+
+  .g-mask {
+    // background-color: rgba($color__black--90, 0.96);
+  }
+}

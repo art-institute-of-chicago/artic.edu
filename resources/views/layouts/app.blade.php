@@ -58,6 +58,7 @@ $print = isset($_GET['print']);
 @include('layouts._share-menu')
 @include('layouts._info-button-info')
 @include('layouts._nav-mobile')
+@include('layouts._search')
 
 @include('layouts._scripts')
 @if ($print)

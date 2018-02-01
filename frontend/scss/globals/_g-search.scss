@@ -1,0 +1,171 @@
+$f-search-input: generate-font-obj((
+  font-family: $serif-font,
+  font-family-loaded: $serif-font--loaded,
+  font-loaded-class: $serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 28, line-height: 32, letter-spacing: -.01em, push: 0),
+    'small+': (font-size: 35, line-height: 40, push: 0),
+    'medium+': (font-size: 38, line-height: 44, push: 0),
+   )
+));
+
+$f-autocomplete: generate-font-obj((
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 0),
+    'small+': (font-size: 17, line-height: 24, push: 0),
+   )
+));
+
+.g-search {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background-color: rgba($color__black--90, 0.96);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s $bezier--ease-in-out, visibility 0s .2s $bezier--ease-in-out;
+}
+
+.g-search__scroll {
+  overflow: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.g-search__inner {
+  @extend %container;
+  position: relative;
+  padding: 84px 0 45px;
+  transform: translateZ(0);
+}
+
+.g-search__close {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  color: $color__white;
+}
+
+.g-search__form {
+  position: relative;
+}
+
+.g-search__input {
+  @include font-styles($f-search-input);
+  width: 100%;
+  padding-bottom: 15px;
+  border: 0;
+  border-bottom: 1px solid rgba($color__rules--tertiary, 0.5);
+  background-color: transparent;
+  color: $color__text--search;
+  -webkit-appearance: none;
+  outline: 0;
+
+  @include placeholder(){
+    color: $color__text--search;
+  }
+}
+
+.g-search__input:focus {
+  border-bottom-color: $color__rules--tertiary;
+  color: $color__white;
+}
+
+.g-search__submit {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 2;
+  margin-top: -7.5px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: $color__text--search;
+  transform: translateY(-50%);
+  -webkit-appearance: none;
+  cursor: pointer;
+  outline: 0;
+}
+
+.g-search__submit:hover {
+  color: $color__white;
+}
+
+.g-search__suggested {
+  margin-top: 68px;
+}
+
+.g-search__suggested-title {
+  @extend %f-tag;
+  color: $color__text--title-contrast;
+}
+
+.g-search__suggested ul {
+  margin-top: 28px;
+  font-size: 0;
+}
+
+.g-search__suggested li {
+  @extend %f-tag;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.g-search__suggested li a {
+  display: block;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: $color__text--title-contrast;
+}
+
+.g-search__suggested li a:hover {
+  border-color: $color__text--title-contrast;
+}
+
+.g-search__autocomplete {
+  margin-top: 64px;
+}
+
+.g-search__autocomplete ul {
+}
+
+.g-search__autocomplete li {
+  position: relative;
+  // min-height: 52px;
+  padding: 6px 0 6px 55px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.g-search__autocomplete li:first-child {
+  // padding-top: 0;
+}
+
+.g-search__autocomplete li a {
+  @extend %f-buttons;
+  display: block;
+  min-height: 46px;
+  color: $color__text--search;
+}
+
+.g-search__autocomplete li a:hover {
+  color: $color__white;
+}
+
+.g-search__autocomplete li img {
+  position: absolute;
+  top: 6px;
+  left: 0;
+}
+
+.g-search__autocomplete-all {
+  @extend %f-buttons;
+  display: inline-block;
+  margin-top: 10px;
+  color: $color__grey--130;
+}
