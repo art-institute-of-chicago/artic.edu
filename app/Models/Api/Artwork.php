@@ -11,4 +11,9 @@ class Artwork extends BaseApiModel
         'resource'   => '/api/v1/artworks/{id}',
         'search'     => '/api/v1/artworks/search'
     ];
+
+    public function artists()
+    {
+        return $this->hasMany(\App\Models\Api\Artist::class, 'artist_ids');
+    }
 }

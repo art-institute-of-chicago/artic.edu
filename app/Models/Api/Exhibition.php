@@ -34,4 +34,14 @@ class Exhibition extends BaseApiModel
     public function getEndAtAttribute($value) {
         return $this->asDateTime($value)->format("Y-m-d h:m:s T");
     }
+
+    public function artworks()
+    {
+        return $this->hasMany(\App\Models\Api\Artwork::class, 'artwork_ids');
+    }
+
+    public function artists()
+    {
+        return $this->hasMany(\App\Models\Api\Artist::class, 'artist_ids');
+    }
 }
