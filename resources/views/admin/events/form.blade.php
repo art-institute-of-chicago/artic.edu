@@ -145,6 +145,11 @@
         ])
 
         @formField('checkbox', [
+            'name' => 'is_sold_out',
+            'label' => 'Sold Out?',
+        ])
+
+        @formField('checkbox', [
             'name' => 'is_free',
             'label' => 'Free Event?'
         ])

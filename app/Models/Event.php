@@ -24,6 +24,7 @@ class Event extends Model
         'is_private',
         'is_after_hours',
         'is_ticketed',
+        'is_sold_out',
         'is_free',
         'is_ongoing',
         'is_member_exclusive',
@@ -70,7 +71,8 @@ class Event extends Model
         'is_ticketed',
         'is_free',
         'is_member_exclusive',
-        'is_ongoing'
+        'is_ongoing',
+        'is_sold_out'
     ];
 
     public $dates = ['start_date', 'end_date'];
