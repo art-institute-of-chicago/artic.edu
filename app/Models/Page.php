@@ -17,7 +17,8 @@ class Page extends Model
         1 => 'Exhibitions and Events',
         2 => 'Art and Ideas',
         3 => 'Visit',
-        4 => 'Articles'
+        4 => 'Articles',
+        5 => 'Exhibition History'
     ];
 
     protected $fillable = [
@@ -61,6 +62,10 @@ class Page extends Model
             ],
         ],
     ];
+
+    public function scopeForType($query, $type) {
+        return $query->where('type', array_flip(self::$types)[$type]);
+    }
 
     public function apiElements()
     {

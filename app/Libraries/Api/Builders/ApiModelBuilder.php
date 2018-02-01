@@ -200,7 +200,14 @@ class ApiModelBuilder
 
     public function findSingle($id, $columns = [])
     {
-        return $this->getSingle($id, $columns);
+        $builder = clone $this;
+
+        // Eager load relationships
+        if ($result = $builder->getSingle($id, $columns)) {
+            $result = $builder->eagerLoadRelations([$result]);
+        }
+
+        return $builder->getModel()->newCollection($result)->first();
     }
 
     public function findMany($ids, $columns = [])

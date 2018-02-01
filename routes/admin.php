@@ -28,7 +28,6 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('closures');
     Route::module('categories');
     Route::module('siteTags');
-    Route::module('segments');
     Route::module('sponsors');
     Route::module('questions');
     Route::module('admissions');
