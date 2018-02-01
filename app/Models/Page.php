@@ -101,4 +101,9 @@ class Page extends Model
     {
         return $this->belongsToMany('App\Models\Article', 'page_article_article')->withPivot('position')->orderBy('position');
     }
+
+    public function artArticles()
+    {
+        return $this->belongsToMany('App\Models\Article', 'page_art_article')->withPivot('position')->orderBy('position');
+    }
 }
