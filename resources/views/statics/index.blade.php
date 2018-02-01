@@ -56,10 +56,10 @@
           <li><a href="/statics/faq">faq</a></li>
           <li><a href="/statics/artist_tag">artist tag</a></li>
           <li><a href="/statics/artist_tag_no_intro">artist tag no intro</a></li>
+          <li><a href="/statics/research_landing">research landing</a></li>
         </ul>
         <h4 class="title f-subheading-1">Batch 04</h4>
         <ul class="list f-body">
-          <li><a href="/statics/research_landing">research landing</a></li>
           <li><a href="/statics/articles_publications_landing">articles publications landing</a></li>
           <li><a href="/statics/articles">articles</a></li>
           <li><a href="/statics/generic_form">generic form</a></li>
