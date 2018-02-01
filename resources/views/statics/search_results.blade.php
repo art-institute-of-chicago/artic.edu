@@ -121,6 +121,7 @@
         @slot('cols_xlarge','4')
         @foreach ($articlesAndPublications as $item)
             @component('components.molecules._m-listing----'.$item->type)
+                @slot('imgVariation','')
                 @slot('item', $item)
             @endcomponent
         @endforeach

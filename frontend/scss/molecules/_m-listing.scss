@@ -84,7 +84,7 @@
   }
 }
 
-.m-listing__img--tall--no-bg {
+.m-listing__img--no-bg {
   background: none;
 }
 
@@ -138,6 +138,10 @@
     height: 4px;
   }
 }
+  .m-listing__img--no-bg::after {
+    content: none;
+    display: none;
+  }
 
 .m-listing__img img,
 .m-listing__img video {

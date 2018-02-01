@@ -1,6 +1,6 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{{ $item->slug }}" class="m-listing__link">
-        <span class="m-listing__img m-listing__img--tall m-listing__img--tall--no-bg">
+        <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--tall' }}">
             @component('components.molecules._m-image-stack')
                 @slot('images', $item->images)
             @endcomponent
