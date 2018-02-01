@@ -3,9 +3,16 @@
     $isTabs = (isset($variation) and $variation === 'm-links-bar--tabs');
     $linksPrimaryFontClass = (isset($variation) and $variation === 'm-links-bar--buttons') ? ' btn f-buttons' : $linksPrimaryFontClass;
     $linksPrimaryFontClass = ($isTabs) ? ' f-module-title-2' : $linksPrimaryFontClass;
-    $activePrimaryLink = isset($linksPrimary) ? array_search(true, array_column($linksPrimary, 'active')) : false;
+    $activePrimaryLink = false;
+    if (isset($linksPrimary)) {
+        for ($i = 0; $i < count($linksPrimary); $i++) {
+            if (isset($linksPrimary[$i]['active']) && $linksPrimary[$i]['active']) {
+                $activePrimaryLink = $i;
+            }
+        }
+    }
 @endphp
-<nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{{ (isset($overflow) and $overflow) ? ' data-behavior=linksBar' : '' }}>
+<nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{!! (isset($overflow) and $overflow) ? ' data-behavior="linksBar"' : '' !!}>
   @if ((isset($linksPrimary) and $linksPrimary) or (isset($primaryHtml) and $primaryHtml))
     <ul class="m-links-bar__items-primary{{ (isset($primaryVariation) and $primaryVariation) ? ' '.$primaryVariation : '' }}" data-links-bar-primary>
       @if (isset($linksPrimary) and $linksPrimary)
