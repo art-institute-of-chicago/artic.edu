@@ -1060,10 +1060,41 @@ class StaticsController extends Controller {
   }
 
   public function search_results() {
+    $eventsAndExhibitions = array();
+    for ($i = 0; $i < 2; $i++) {
+      $event = $this->getEvent();
+      $event->push('listingType','event');
+      array_push($eventsAndExhibitions, $event);
+    }
+    for ($i = 0; $i < 2; $i++) {
+      $exhibition = $this->getExhibition();
+      $exhibition->push('listingType','exhibition');
+      array_push($eventsAndExhibitions, $exhibition);
+    }
+    $eventsAndExhibitions = $this->faker->shuffle($eventsAndExhibitions);
+
+    $articlesAndPublications = array();
+    for ($i = 0; $i < 2; $i++) {
+      $article = $this->getArticle();
+      $article->push('listingType','article');
+      array_push($articlesAndPublications, $article);
+    }
+    for ($i = 0; $i < 1; $i++) {
+      $selection = $this->getSelection();
+      $selection->push('listingType','selection');
+      array_push($articlesAndPublications, $selection);
+    }
+    $articlesAndPublications = $this->faker->shuffle($articlesAndPublications);
+
     // now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
         'artists' => $this->getArtists(6),
+        'pages' => $this->getPages(3),
+        'artworks' => $this->getArtworks(8),
+        'eventsAndExhibitions' => $eventsAndExhibitions,
+        'articlesAndPublications' => $articlesAndPublications,
+        'researchAndResources' => $this->getPages(3),
     ]);
   }
 
@@ -1353,30 +1384,23 @@ class StaticsController extends Controller {
   }
 
   private function getArtist($intro = false) {
-    $bio = array();
-
-    $bio['data'] = array(
-      'aka' => 'Rembrant',
-      'dob' => strtotime('July 15, 1606'),
-      'dod' => strtotime('October 4 1669'),
-    );
-
-    if ($intro) {
-        $bio['image'] = $this->getImage(700, 395);
-        $bio['caption'] = $this->faker->sentence();
-        $bio['body'] = $this->generateBlocks(2);
-        $bio['tags'] = array(
-            array('label' => 'Baroque', 'href' => '#'),
-            array('label' => 'Dutch Painters', 'href' => '#'),
-        );
-    }
+    $nationalities = array('American','French','Spanish','British','German','Dutch','Swiss');
 
     return new StaticObjectPresenter([
       "id" => $this->faker->uuid,
       "slug" => "/statics/artist",
       "title" => $this->faker->name(),
-      "image" => $this->getImage(120,120),
-      "bio" => $bio,
+      "image" => ($intro) ? $this->getImage() : null,
+      'caption' => ($intro) ? $this->faker->sentence() : null,
+      'aka' => 'Rembrant',
+      'dob' => strtotime('July 15, 1606'),
+      'dod' => strtotime('October 4 1669'),
+      'nationality' => $this->faker->randomElement($nationalities),
+      'blocks' => ($intro) ? $this->generateBlocks(2) : null,
+      'tags' => ($intro) ? array(
+        array('label' => 'Baroque', 'href' => '#'),
+        array('label' => 'Dutch Painters', 'href' => '#'),
+       ) : null,
       "type" => 'artist',
     ]);
   }
@@ -1384,7 +1408,7 @@ class StaticsController extends Controller {
   private function getArtists($num = 3) {
     $artists = array();
     for ($i = 0; $i < $num; $i++) {
-      $artist = $this->getArtist();
+      $artist = $this->getArtist( $this->faker->boolean() );
       array_push($artists, $artist);
     }
     return $artists;
@@ -1407,6 +1431,30 @@ class StaticsController extends Controller {
       array_push($catalogs, $catalog);
     }
     return $catalogs;
+  }
+
+  private function getPage() {
+
+    $types = array('Musuem Spaces', 'Press Releases', 'About');
+
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "slug" => "/statics/page",
+      "title" => $this->faker->sentence(),
+      "image" => $this->faker->boolean() ? $this->getImage() : null,
+      "shortDesc" => $this->faker->sentence(12, true),
+      "subtype" => $this->faker->randomElement($types),
+      "type" => 'page',
+    ]);
+  }
+
+  private function getPages($num = 3) {
+    $pages = array();
+    for ($i = 0; $i < $num; $i++) {
+      $page = $this->getPage();
+      array_push($pages, $page);
+    }
+    return $pages;
   }
 
   private function getTimelineEvent() {

@@ -7,7 +7,7 @@
 @endcomponent
 
 @component('components.organisms._o-artist-bio')
-    @slot('bio', $article->bio)
+    @slot('item', $article)
 @endcomponent
 
 @component('components.molecules._m-title-bar')

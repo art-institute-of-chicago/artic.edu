@@ -892,6 +892,10 @@
       margin-top: 40px;
     }
   }
+
+  .o-grid-listing & {
+    border-top: 0;
+  }
 }
 
 .m-listing--inline .m-listing__link {
@@ -920,11 +924,23 @@
   }
 }
 
-.m-listing--inline .m-listing__img::before {
-  padding-bottom: 100%;
+.m-listing--inline-narrow-image .m-listing__img {
+  width: colspan(10, xsmall);
 
   @include breakpoint('small+') {
-    padding-bottom: percentage(9 / 16);
+    width: colspan(8, small);
+  }
+
+  @include breakpoint('medium+') {
+    width: colspan(5, medium);
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(4, large);
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(4, xlarge);
   }
 }
 
