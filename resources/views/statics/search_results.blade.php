@@ -8,6 +8,9 @@
     {{ $title }}
 @endcomponent
 
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.molecules._m-search-bar')
     @slot('placeholder','Search by keyword, artist or reference')
     @slot('value', 'Picasso')

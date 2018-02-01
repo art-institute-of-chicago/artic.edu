@@ -4,12 +4,12 @@
   @endif
     <span class="m-listing__img m-listing__img--wide">
         @if ($item->image)
-        @component('components.atoms._img')
-            @slot('src', $item->image['src'])
-            @slot('srcset', $item->image['srcset'])
-            @slot('width', $item->image['width'])
-            @slot('height', $item->image['height'])
-        @endcomponent
+            @component('components.atoms._img')
+                @slot('src', $item->image['src'])
+                @slot('srcset', $item->image['srcset'])
+                @slot('width', $item->image['width'])
+                @slot('height', $item->image['height'])
+            @endcomponent
         @endif
     </span>
     <span class="m-listing__meta">
