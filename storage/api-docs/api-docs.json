@@ -1,0 +1,343 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "AIC CMS API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/v1/tags": {
+            "get": {
+                "tags": [
+                    "tags"
+                ],
+                "summary": "List all tags",
+                "operationId": "getTags",
+                "responses": {
+                    "200": {
+                        "description": "List all tags"
+                    }
+                }
+            }
+        },
+        "/api/v1/tags/{id}": {
+            "get": {
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Fetch tag details",
+                "operationId": "getTag",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific tag"
+                    }
+                }
+            }
+        },
+        "/api/v1/locations": {
+            "get": {
+                "tags": [
+                    "locations"
+                ],
+                "summary": "List all locations",
+                "operationId": "getLocations",
+                "responses": {
+                    "200": {
+                        "description": "List all locations"
+                    }
+                }
+            }
+        },
+        "/api/v1/locations/{id}": {
+            "get": {
+                "tags": [
+                    "locations"
+                ],
+                "summary": "Fetch location details",
+                "operationId": "getLocation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific location"
+                    }
+                }
+            }
+        },
+        "/api/v1/hours": {
+            "get": {
+                "tags": [
+                    "hours"
+                ],
+                "summary": "List all hours",
+                "operationId": "getHours",
+                "responses": {
+                    "200": {
+                        "description": "List all hours"
+                    }
+                }
+            }
+        },
+        "/api/v1/hours/{id}": {
+            "get": {
+                "tags": [
+                    "hours"
+                ],
+                "summary": "Fetch hours details",
+                "operationId": "getHour",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific hours entry"
+                    }
+                }
+            }
+        },
+        "/api/v1/closures": {
+            "get": {
+                "tags": [
+                    "closures"
+                ],
+                "summary": "List all closures",
+                "operationId": "getClosures",
+                "responses": {
+                    "200": {
+                        "description": "List all closures"
+                    }
+                }
+            }
+        },
+        "/api/v1/closures/{id}": {
+            "get": {
+                "tags": [
+                    "closures"
+                ],
+                "summary": "Fetch closures details",
+                "operationId": "getClosure",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific closure"
+                    }
+                }
+            }
+        },
+        "/api/v1/exhibitions": {
+            "get": {
+                "tags": [
+                    "exhibitions"
+                ],
+                "summary": "List all exhibitions",
+                "operationId": "getExhibitions",
+                "responses": {
+                    "200": {
+                        "description": "List all exhibitions"
+                    }
+                }
+            }
+        },
+        "/api/v1/exhibitions/{id}": {
+            "get": {
+                "tags": [
+                    "exhibitions"
+                ],
+                "summary": "Fetch exhibitions details",
+                "operationId": "getExhibition",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific exhibition"
+                    }
+                }
+            }
+        },
+        "/api/v1/events": {
+            "get": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "List all events",
+                "operationId": "getEvents",
+                "responses": {
+                    "200": {
+                        "description": "List all events"
+                    }
+                }
+            }
+        },
+        "/api/v1/events/{id}": {
+            "get": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "Fetch events details",
+                "operationId": "getEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific event"
+                    }
+                }
+            }
+        },
+        "/api/v1/articles": {
+            "get": {
+                "tags": [
+                    "articles"
+                ],
+                "summary": "List all articles",
+                "operationId": "getArticles",
+                "responses": {
+                    "200": {
+                        "description": "List all articles"
+                    }
+                }
+            }
+        },
+        "/api/v1/articles/{id}": {
+            "get": {
+                "tags": [
+                    "articles"
+                ],
+                "summary": "Fetch articles details",
+                "operationId": "getArticle",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific article"
+                    }
+                }
+            }
+        },
+        "/api/v1/selections": {
+            "get": {
+                "tags": [
+                    "selections"
+                ],
+                "summary": "List all selections",
+                "operationId": "getSelections",
+                "responses": {
+                    "200": {
+                        "description": "List all selections"
+                    }
+                }
+            }
+        },
+        "/api/v1/selections/{id}": {
+            "get": {
+                "tags": [
+                    "selections"
+                ],
+                "summary": "Fetch selections details",
+                "operationId": "getSelection",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific selection"
+                    }
+                }
+            }
+        },
+        "/api/v1/artists": {
+            "get": {
+                "tags": [
+                    "artists"
+                ],
+                "summary": "List all artists",
+                "operationId": "getArtists",
+                "responses": {
+                    "200": {
+                        "description": "List all artists"
+                    }
+                }
+            }
+        },
+        "/api/v1/artists/{id}": {
+            "get": {
+                "tags": [
+                    "artists"
+                ],
+                "summary": "Fetch artists details",
+                "operationId": "getArtist",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific artist"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}

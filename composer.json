@@ -18,6 +18,7 @@
         "php": ">=7.0.0",
         "a17/laravel-cms-toolkit": "dev-redesign",
         "aic/data-hub-foundation": "dev-master",
+        "darkaonline/l5-swagger": "5.5.*",
         "fideloper/proxy": "~3.3",
         "guzzlehttp/guzzle": "6.3.0",
         "laravel/framework": "5.5.*",
