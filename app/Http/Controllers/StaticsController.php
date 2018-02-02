@@ -493,6 +493,18 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function collectionsAutocomplete(){
+    $items = [];
+
+    for ($i = 0; $i < 5; $i++) {
+      $items[] = $this->faker->words(3, true);
+    }
+
+    return view('components/molecules/_m-search-bar__autocomplete', [
+        'items' => $items
+    ]);
+  }
+
   public function visit() {
     // now push to a view
     return view('statics/visit', [
