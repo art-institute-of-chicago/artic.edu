@@ -40,7 +40,7 @@
             @slot('title', 'Featured Result')
             @component('components.molecules._m-listing----'.$featuredResults[0]['type'])
                 @slot('tag', 'p')
-                @slot('variation', 'm-listing--row')
+                @slot('variation', 'm-listing--row m-listing--tertiary')
                 @slot('imgVariation', 'm-listing__img--square')
                 @slot('item', $featuredResults[0]['item'])
             @endcomponent
@@ -49,7 +49,7 @@
             @component('components.organisms._o-row-listing')
                 @foreach ($featuredResults as $featuredResult)
                     @component('components.molecules._m-listing----'.$featuredResult['type'])
-                        @slot('variation', 'm-listing--row')
+                        @slot('variation', 'm-listing--row m-listing--tertiary')
                         @slot('imgVariation', 'm-listing__img--square')
                         @slot('item', $featuredResult['item'])
                     @endcomponent
@@ -121,7 +121,7 @@
 @if (isset($eventsAndExhibitions))
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all 6 events and exhibitions', 'href' => '#')))
-        Artworks
+        Events and Exhibitions
     @endcomponent
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')

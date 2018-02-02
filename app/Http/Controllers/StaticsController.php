@@ -1137,16 +1137,17 @@ class StaticsController extends Controller {
 
     $featuredResults = array();
     array_push($featuredResults, array(
+        'type' => 'artist',
+        'item' => $this->getArtist($this->faker->boolean()),
+    ));
+    /*
+    array_push($featuredResults, array(
         'type' => 'event',
         'item' => $this->getEvent(),
     ));
     array_push($featuredResults, array(
         'type' => 'exhibition',
         'item' => $this->getExhibition(),
-    ));
-    array_push($featuredResults, array(
-        'type' => 'artist',
-        'item' => $this->getArtist(),
     ));
     array_push($featuredResults, array(
         'type' => 'page',
@@ -1164,6 +1165,7 @@ class StaticsController extends Controller {
         'type' => 'selection',
         'item' => $this->getSelection(),
     ));
+    */
 
     // now push to a view
     return view('statics/search_results', [
