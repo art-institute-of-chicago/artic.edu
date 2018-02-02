@@ -1170,13 +1170,208 @@ class StaticsController extends Controller {
     // now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
+        'searchTerm' => 'Picasso',
+        'searchResultsTypeLinks' => $this->searchResultsNavLinks('all'),
         'featuredResults' => $featuredResults,
-        'artists' => $this->getArtists(6),
-        'pages' => $this->getPages(3),
-        'artworks' => $this->getArtworks(8),
-        'eventsAndExhibitions' => $eventsAndExhibitions,
-        'articlesAndPublications' => $articlesAndPublications,
-        'researchAndResources' => $this->getPages(3),
+        'artists' => array(
+          'results' => $this->getArtists(6),
+          'totalResults' => '124',
+          'allResultsHref' => '/statics/search_results_artists',
+          'pagination' => null,
+          'allResultsView' => null,
+        ),
+        'pages' => array(
+          'results' => $this->getPages(3),
+          'totalResults' => '6',
+          'allResultsHref' => '/statics/search_results_pages',
+          'pagination' => null,
+          'allResultsView' => null,
+        ),
+        'artworks' => array(
+          'results' => $this->getArtworks(8),
+          'totalResults' => '1,242',
+          'allResultsHref' => '/statics/search_results_artworks',
+          'pagination' => null,
+          'allResultsView' => null,
+        ),
+        'eventsAndExhibitions' => array(
+          'results' => $eventsAndExhibitions,
+          'totalResults' => '6',
+          'allResultsHref' => '/statics/search_results_events_and_exhibitions',
+          'pagination' => null,
+          'allResultsView' => null,
+        ),
+        'articlesAndPublications' => array(
+          'results' => $articlesAndPublications,
+          'totalResults' => '6',
+          'allResultsHref' => '/statics/search_results_articles_and_publications',
+          'pagination' => null,
+          'allResultsView' => null,
+        ),
+        'researchAndResources' => array(
+          'results' => $this->getPages(3),
+          'totalResults' => '11',
+          'allResultsHref' => '/statics/search_results_research_and_resources',
+          'pagination' => null,
+          'allResultsView' => null,
+        ),
+    ]);
+  }
+
+  public function search_results_artists() {
+
+    // now push to a view
+    return view('statics/search_results', [
+        'title' => "Search Results",
+        'searchTerm' => 'Picasso',
+        'searchResultsTypeLinks' => $this->searchResultsNavLinks('artists'),
+        'artists' => array(
+          'results' => $this->getArtists(33),
+          'totalResults' => null,
+          'allResultsHref' => null,
+          'pagination' => true,
+          'allResultsView' => true,
+        ),
+    ]);
+  }
+
+  public function search_results_pages() {
+
+    $boolean = $this->faker->boolean() ? true : false;
+
+    // now push to a view
+    return view('statics/search_results', [
+        'title' => "Search Results",
+        'searchTerm' => 'Picasso',
+        'searchResultsTypeLinks' => $this->searchResultsNavLinks('pages'),
+        'pages' => array(
+          'results' => $boolean ? $this->getPages(24) : $this->getPages(6),
+          'totalResults' => null,
+          'allResultsHref' => null,
+          'pagination' => $boolean,
+          'allResultsView' => true,
+        ),
+    ]);
+  }
+
+  public function search_results_artworks() {
+
+    // now push to a view
+    return view('statics/search_results', [
+        'title' => "Search Results",
+        'searchTerm' => 'Picasso',
+        'searchResultsTypeLinks' => $this->searchResultsNavLinks('artworks'),
+        'artworks' => array(
+          'results' => $this->getArtworks(24),
+          'totalResults' => null,
+          'allResultsHref' => null,
+          'pagination' => true,
+          'allResultsView' => true,
+          'activeFilters' => array(
+              array(
+                'href' => '#',
+                'label' => "Arms",
+              ),
+              array(
+                'href' => '#',
+                'label' => "Legs",
+              ),
+              array(
+                'href' => '#',
+                'label' => "Arms",
+              ),
+              array(
+                'href' => '#',
+                'label' => "Legs",
+              ),
+              array(
+                'href' => '#',
+                'label' => "Arms",
+              ),
+              array(
+                'href' => '#',
+                'label' => "Legs",
+              ),
+            ),
+            'filterCategories' => $this->generateCollectionFilterCategories(),
+        ),
+    ]);
+  }
+
+  public function search_results_events_and_exhibitions() {
+    $eventsAndExhibitions = array();
+    for ($i = 0; $i < 12; $i++) {
+      $event = $this->getEvent();
+      $event->push('listingType','event');
+      array_push($eventsAndExhibitions, $event);
+    }
+    for ($i = 0; $i < 12; $i++) {
+      $exhibition = $this->getExhibition();
+      $exhibition->push('listingType','exhibition');
+      array_push($eventsAndExhibitions, $exhibition);
+    }
+    $eventsAndExhibitions = $this->faker->shuffle($eventsAndExhibitions);
+
+    // now push to a view
+    return view('statics/search_results', [
+        'title' => "Search Results",
+        'searchTerm' => 'Picasso',
+        'searchResultsTypeLinks' => $this->searchResultsNavLinks('exhibitionsAndEvents'),
+        'eventsAndExhibitions' => array(
+          'results' => $eventsAndExhibitions,
+          'totalResults' => null,
+          'allResultsHref' => null,
+          'pagination' => true,
+          'allResultsView' => true,
+        ),
+    ]);
+  }
+
+  public function search_results_articles_and_publications() {
+    $articlesAndPublications = array();
+    for ($i = 0; $i < 18; $i++) {
+      $article = $this->getArticle();
+      $article->push('listingType','article');
+      array_push($articlesAndPublications, $article);
+    }
+    for ($i = 0; $i < 6; $i++) {
+      $selection = $this->getSelection();
+      $selection->push('listingType','selection');
+      array_push($articlesAndPublications, $selection);
+    }
+    $articlesAndPublications = $this->faker->shuffle($articlesAndPublications);
+
+    // now push to a view
+    return view('statics/search_results', [
+        'title' => "Search Results",
+        'searchTerm' => 'Picasso',
+        'searchResultsTypeLinks' => $this->searchResultsNavLinks('articlesAndPublications'),
+        'articlesAndPublications' => array(
+          'results' => $articlesAndPublications,
+          'totalResults' => null,
+          'allResultsHref' => null,
+          'pagination' => true,
+          'allResultsView' => true,
+        ),
+    ]);
+  }
+
+  public function search_results_research_and_resources() {
+
+    $boolean = $this->faker->boolean() ? true : false;
+
+    // now push to a view
+    return view('statics/search_results', [
+        'title' => "Search Results",
+        'searchTerm' => 'Picasso',
+        'searchResultsTypeLinks' => $this->searchResultsNavLinks('researchAndResources'),
+        'researchAndResources' => array(
+          'results' => $boolean ? $this->getPages(24) : $this->getPages(6),
+          'totalResults' => null,
+          'allResultsHref' => null,
+          'pagination' => $boolean,
+          'allResultsView' => true,
+        ),
     ]);
   }
 
@@ -2859,5 +3054,17 @@ class StaticsController extends Controller {
     ));
 
     return $blocks;
+  }
+
+  private function searchResultsNavLinks($active = 'all') {
+    return array(
+      array('label' => 'All (1,312)', 'href' => '#', 'active' => ($active === 'all')),
+      array('label' => 'Artists (124)', 'href' => '#', 'active' => ($active === 'artists')),
+      array('label' => 'Pages (6)', 'href' => '#', 'active' => ($active === 'pages')),
+      array('label' => 'Artworks (1,242)', 'href' => '#', 'active' => ($active === 'artworks')),
+      array('label' => 'Exhibitions &amp; Events (6)', 'href' => '#', 'active' => ($active === 'exhibitionsAndEvents')),
+      array('label' => 'Articles &amp; Publications (3)', 'href' => '#', 'active' => ($active === 'articlesAndPublications')),
+      array('label' => 'Research &amp; Resources (11)', 'href' => '#', 'active' => ($active === 'researchAndResources')),
+    );
   }
 }
