@@ -14,6 +14,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
+    @slot('overflow', true)
     @slot('linksPrimary', array(array('label' => 'Artworks', 'href' => '#', 'active' => true), array('label' => 'Articles &amp; Publications', 'href' => '#'), array('label' => 'Research', 'href' => '#')))
 @endcomponent
 
@@ -26,7 +27,7 @@
     @slot('links', $quickSearchLinks)
 @endcomponent
 
-@component('components.molecules._m-quick-search-actions----collection')
+@component('components.molecules._m-search-actions----collection')
 @endcomponent
 
 @component('components.molecules._m-active-filters')

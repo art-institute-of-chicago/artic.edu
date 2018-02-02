@@ -10,6 +10,10 @@
   margin-top: 14px; // 40px from link baseline
 }
 
+.m-search-actions + .o-pinboard {
+  margin-top: 20px;
+}
+
 .o-pinboard::before,
 .o-pinboard::after {
   content: '';

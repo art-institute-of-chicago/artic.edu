@@ -65,6 +65,7 @@
           <li><a href="/statics/generic_form">generic form</a></li>
           <li><a href="/statics/contact">contact</a></li>
           <li><a href="/statics/search_results">search results</a></li>
+          <li><a href="/statics/search_results_artists">search results artists</a></li>
         </ul>
     </div>
 </article>

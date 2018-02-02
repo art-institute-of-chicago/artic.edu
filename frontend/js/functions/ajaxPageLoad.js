@@ -3,7 +3,7 @@ import { findAncestorByTagName, ajaxableLink } from '../functions';
 
 const ajaxPageLoad = function() {
 
-  var ajaxActive = false;
+  var ajaxActive = true;
   var failSafe = false; // true in production, false in dev
 
   var ajaxing = false;

@@ -4,6 +4,7 @@ Route::name('home')->get('/', 'HomeController@index');
 
 if (!app()->environment('production')) {
   Route::get('/autocomplete/{slug?}', 'StaticsController@autocomplete');
+  Route::get('/collections/search/{slug?}', 'StaticsController@collectionsAutocomplete');
   Route::get('/statics/{slug?}', 'StaticsController@index');
 }
 

@@ -33,8 +33,6 @@ const search = function(container) {
   function _handleInput() {
     s = textInput.value;
 
-    _showLoader();
-
     if( s.length >= 3 ){
       // do ajax
       _doAjax();
@@ -55,6 +53,8 @@ const search = function(container) {
   function _doAjax() {
     clearTimeout(ajaxTimer);
 
+    _showLoader();
+
     ajaxTimer = setTimeout(function(){
       ajaxRequest({
         url: '/autocomplete/'+ s,
@@ -71,10 +71,13 @@ const search = function(container) {
           } catch (err) {
             console.error('Error updating autocomplete: '+ err);
           }
+
+          _hideLoader();
         },
         onError: function(data){
-          clearTimeout(ajaxTimer);
           console.error('Error: '+ data);
+
+          _hideLoader();
         }
       });
     }, 250);
@@ -93,8 +96,6 @@ const search = function(container) {
     document.documentElement.classList.add(autocompleteKlass);
 
     autocomplete.innerHTML = content;
-
-    _hideLoader();
   }
 
   // hide autocomplete
