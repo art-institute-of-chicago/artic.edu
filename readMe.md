@@ -114,3 +114,17 @@ To create the superadmin user for the CMS, ssh into the server and run:
 # @ /home/web/www/aic.stage.a17.io/current/
 $ php artisan cms-toolkit:superadmin
 ```
+
+#### API Documentation setup
+
+API is documented via Swagger. Annotations in the source code are parsed and used to generate the Swagger documentation.
+
+**Regenerating the Swagger documentation**
+
+```shell
+# @ /home/web/www/aic.stage.a17.io/current/
+$ ./vendor/bin/swagger -o storage/api-docs/api-docs.json -e vendor,node_modules
+```
+
+Swagger is accessible at:
+https://admin.aic.stage.a17.io/api/documentation
