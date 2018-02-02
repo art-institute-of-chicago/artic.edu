@@ -2,8 +2,22 @@
     "swagger": "2.0",
     "info": {
         "title": "AIC CMS API",
+        "description": "REST API",
+        "termsOfService": "terms",
+        "contact": {
+            "name": "call@me.com"
+        },
+        "license": {
+            "name": "proprietary"
+        },
         "version": "1.0"
     },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
     "paths": {
         "/api/v1/tags": {
             "get": {
@@ -339,5 +353,116 @@
             }
         }
     },
-    "definitions": {}
+    "definitions": {
+        "Tag": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Tag",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of Tag",
+                    "type": "string"
+                },
+                "last_updated": {
+                    "description": "Last Updated At",
+                    "type": "datetime"
+                }
+            },
+            "type": "object"
+        },
+        "Location": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Location",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of Location",
+                    "type": "string"
+                },
+                "street": {
+                    "description": "Street of Location",
+                    "type": "string"
+                },
+                "address": {
+                    "description": "Address of Location",
+                    "type": "string"
+                },
+                "city": {
+                    "description": "City of Location",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "State of Location",
+                    "type": "string"
+                },
+                "zip": {
+                    "description": "Zip of Location",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Location",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "Hour": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Location",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "opening_time": {
+                    "description": "Opening Time",
+                    "type": "datetime"
+                },
+                "closing_time": {
+                    "description": "Closing Time",
+                    "type": "datetime"
+                },
+                "type": {
+                    "description": "Type",
+                    "type": "integer"
+                },
+                "day_of_week": {
+                    "description": "City of Location",
+                    "type": "integer"
+                },
+                "closed": {
+                    "description": "Closed?",
+                    "type": "boolean"
+                },
+                "last_updated": {
+                    "description": "Last Updated At",
+                    "type": "datetime"
+                }
+            },
+            "type": "object"
+        }
+    }
 }

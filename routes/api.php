@@ -23,11 +23,62 @@ Route::get('/', function () {
 });
 
 
+/**
+ * @SWG\Swagger(
+ *      produces={"application/json"},
+ *      consumes={"application/json"},
+ *      @SWG\Info(
+ *          title="AIC CMS API", version="1.0",
+ *          description="REST API",
+ *          version="1.0",
+ *          termsOfService="terms",
+ *          @SWG\Contact(name="call@me.com"),
+ *          @SWG\License(name="proprietary")
+ *      ),
+ *
+ *     @SWG\Definition(
+ *        definition="Tag",
+ *        type="object",
+ *        required={"id", "name"},
+ *        @SWG\Property(property="id", type="string", description="ID of Tag"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="name", type="string", description="Name of Tag"),
+ *        @SWG\Property(property="last_updated", type="datetime", description="Last Updated At"),
+ *     ),
+
+ *     @SWG\Definition(
+ *        definition="Location",
+ *        type="object",
+ *        required={"id", "name"},
+ *        @SWG\Property(property="id", type="string", description="ID of Location"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="name", type="string", description="Name of Location"),
+ *        @SWG\Property(property="street", type="string", description="Street of Location"),
+ *        @SWG\Property(property="address", type="string", description="Address of Location"),
+ *        @SWG\Property(property="city", type="string", description="City of Location"),
+ *        @SWG\Property(property="state", type="string", description="State of Location"),
+ *        @SWG\Property(property="zip", type="string", description="Zip of Location"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State of Location"),
+ *     ),
+
+ *     @SWG\Definition(
+ *        definition="Hour",
+ *        type="object",
+ *        required={"id"},
+ *        @SWG\Property(property="id", type="string", description="ID of Location"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="opening_time", type="datetime", description="Opening Time"),
+ *        @SWG\Property(property="closing_time", type="datetime", description="Closing Time"),
+ *        @SWG\Property(property="type", type="integer", description="Type"),
+ *        @SWG\Property(property="day_of_week", type="integer", description="City of Location"),
+ *        @SWG\Property(property="closed", type="boolean", description="Closed?"),
+ *        @SWG\Property(property="last_updated", type="datetime", description="Last Updated At"),
+ *     ),
+ * )
+ */
+
 Route::group(['prefix' => 'v1'], function()
 {
-    /**
-     * @SWG\Info(title="AIC CMS API", version="1.0")
-     */
 
     Route::get('/', function () {
         return "API";
