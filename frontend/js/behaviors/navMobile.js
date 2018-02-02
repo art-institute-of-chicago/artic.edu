@@ -1,4 +1,5 @@
-import { purgeProperties, triggerCustomEvent, forEach } from 'a17-helpers';
+import { purgeProperties, setFocusOnTarget, forEach, triggerCustomEvent, ajaxRequest } from 'a17-helpers';
+import { focusTrap } from '../functions';
 
 const navMobile = function(container) {
 
@@ -6,18 +7,22 @@ const navMobile = function(container) {
   var navClose = document.querySelector('[data-nav-mobile-close]');
   var openTriggers = container.querySelectorAll('[data-nav-trigger]');
   var backTriggers = container.querySelectorAll('[data-nav-back]');
-  var klass = 'js-mobile-nav-open';
+  var klass = 's-nav-mobile-active';
   var subnavKlass = 'js-subnav-open';
   var navLevel = 0;
 
   function _openNav(e){
     document.documentElement.classList.add(klass);
 
+    _lockBody();
+
     e.preventDefault();
   }
 
   function _closeNav(e){
     document.documentElement.classList.remove(klass);
+
+    _unlockBody();
 
     e.preventDefault();
   }
@@ -50,6 +55,22 @@ const navMobile = function(container) {
     }else{
       container.classList.remove(subnavKlass);
     }
+  }
+
+  function _lockBody(){
+    triggerCustomEvent(document, 'body:lock', {
+      breakpoints: 'xsmall small medium large xlarge'
+    });
+    setFocusOnTarget(container);
+    triggerCustomEvent(document, 'focus:trap', {
+      element: container
+    });
+  }
+
+  function _unlockBody(){
+    triggerCustomEvent(document, 'body:unlock');
+    triggerCustomEvent(document, 'focus:untrap');
+    setFocusOnTarget(document.getElementById('a17'));
   }
 
   function _init() {
