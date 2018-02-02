@@ -1,0 +1,34 @@
+
+.m-featured-results {
+  margin-top: 40px;
+}
+
+.m-featured-results__title.f-tag {
+  @include tucked-align-top($f-tag);
+}
+
+.m-featured-results .m-listing--row {
+  margin-top: 0;
+  padding: 20px;
+  border-top: 1px solid $color__rules--primary;
+  background: $color__bg--secondary;
+
+  & + & {
+    margin-top: 0;
+
+    @include breakpoint('small+') {
+      margin-top: 0;
+      padding-top: 20px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 0;
+      padding-top: 20px;
+    }
+  }
+}
+
+.m-featured-results p.m-listing--row,
+.m-featured-results .o-row-listing {
+  margin-top: 16px;
+}

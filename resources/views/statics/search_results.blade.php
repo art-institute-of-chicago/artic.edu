@@ -31,7 +31,33 @@
 @endcomponent
 
 @component('components.atoms._hr')
+    @slot('variation','hr--flush-top')
 @endcomponent
+
+@if (isset($featuredResults))
+    @component('components.molecules._m-featured-results')
+        @if (sizeof($featuredResults) === 1)
+            @slot('title', 'Featured Result')
+            @component('components.molecules._m-listing----'.$featuredResults[0]['type'])
+                @slot('tag', 'p')
+                @slot('variation', 'm-listing--row')
+                @slot('imgVariation', 'm-listing__img--square')
+                @slot('item', $featuredResults[0]['item'])
+            @endcomponent
+        @else
+            @slot('title', 'Featured Results')
+            @component('components.organisms._o-row-listing')
+                @foreach ($featuredResults as $featuredResult)
+                    @component('components.molecules._m-listing----'.$featuredResult['type'])
+                        @slot('variation', 'm-listing--row')
+                        @slot('imgVariation', 'm-listing__img--square')
+                        @slot('item', $featuredResult['item'])
+                    @endcomponent
+                @endforeach
+            @endcomponent
+        @endif
+    @endcomponent
+@endif
 
 @if (isset($artists))
     @component('components.molecules._m-title-bar')

@@ -1135,9 +1135,40 @@ class StaticsController extends Controller {
     }
     $articlesAndPublications = $this->faker->shuffle($articlesAndPublications);
 
+    $featuredResults = array();
+    array_push($featuredResults, array(
+        'type' => 'event',
+        'item' => $this->getEvent(),
+    ));
+    array_push($featuredResults, array(
+        'type' => 'exhibition',
+        'item' => $this->getExhibition(),
+    ));
+    array_push($featuredResults, array(
+        'type' => 'artist',
+        'item' => $this->getArtist(),
+    ));
+    array_push($featuredResults, array(
+        'type' => 'page',
+        'item' => $this->getPage(),
+    ));
+    array_push($featuredResults, array(
+        'type' => 'artwork',
+        'item' => $this->getArtwork(),
+    ));
+    array_push($featuredResults, array(
+        'type' => 'article',
+        'item' => $this->getArticle(),
+    ));
+    array_push($featuredResults, array(
+        'type' => 'selection',
+        'item' => $this->getSelection(),
+    ));
+
     // now push to a view
     return view('statics/search_results', [
         'title' => "Search Results",
+        'featuredResults' => $featuredResults,
         'artists' => $this->getArtists(6),
         'pages' => $this->getPages(3),
         'artworks' => $this->getArtworks(8),
