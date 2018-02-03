@@ -149,6 +149,7 @@ $include-icons: false; // see icons.scss!
 @import 'globals/g-mask';
 @import 'globals/g-nav-mobile';
 @import 'globals/g-search';
+@import 'globals/g-modal';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ utilities */
 
@@ -174,3 +175,4 @@ $include-icons: false; // see icons.scss!
 @import 'state/s-print';
 @import 'state/s-search-active';
 @import 'state/s-nav-mobile-active';
+@import 'state/s-modal-active';

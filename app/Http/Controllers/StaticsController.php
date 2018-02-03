@@ -57,7 +57,33 @@ class StaticsController extends Controller {
   }
 
   public function home() {
-    return view('statics/home', [
+    return view('statics/home', $this->getHomepageItems());
+  }
+
+  public function modal1() {
+    $items = $this->getHomepageItems();
+    $items['modal'] = [
+        'title' => 'Avoid the crowds and save 20%',
+        'intro' => $this->faker->paragraph(),
+        'image' => false
+    ];
+
+    return view('statics/home', $items);
+  }
+
+  public function modal2() {
+    $items = $this->getHomepageItems();
+    $items['modal'] = [
+        'title' => 'Enjoy Exclusing Access Today',
+        'intro' => $this->faker->paragraph(),
+        'image' => $this->getImage(400, 600)
+    ];
+
+    return view('statics/home', $items);
+  }
+
+  public function getHomepageItems(){
+    return [
       'contrastHeader' => true,
       'filledLogo' => true,
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
@@ -66,7 +92,7 @@ class StaticsController extends Controller {
       'events' => $this->getEvents(4),
       'products' => $this->getProducts(5),
       'theCollection' => $this->generateCollection(),
-    ]);
+    ];
   }
 
   public function autocomplete($slug) {

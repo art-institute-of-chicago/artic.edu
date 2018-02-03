@@ -10,6 +10,7 @@ const mask = function(container) {
     triggerCustomEvent(document, 'collectionSearch:close');
     triggerCustomEvent(document, 'collectionFilters:close');
     triggerCustomEvent(document, 'infoButtonInfo:close');
+    triggerCustomEvent(document, 'modal:close');
   }
 
   function _init() {

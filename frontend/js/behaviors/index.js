@@ -31,3 +31,4 @@ export { default as infoButtonTrigger } from './infoButtonTrigger';
 export { default as linksBar } from './linksBar';
 export { default as search } from './search';
 export { default as autocomplete } from './autocomplete';
+export { default as modal } from './modal';

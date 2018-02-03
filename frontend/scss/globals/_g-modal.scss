@@ -1,0 +1,136 @@
+.g-modal {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s $bezier--ease-in-out, visibility 0s .2s $bezier--ease-in-out;
+  transform: translateY(-50%);
+}
+
+.g-modal__inner {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.g-modal__image {
+  display: none;
+  position: relative;
+  overflow: hidden;
+
+  @include breakpoint('medium+') {
+    display: block
+  }
+
+  @include breakpoint('medium') {
+    width: colspan(25, 'medium');
+  }
+
+  @include breakpoint('large') {
+    width: colspan(20, 'large');
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(20, 'xlarge');
+  }
+}
+
+.g-modal__image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.g-modal__main {
+  position: relative;
+  padding: 16px 40px 40px;
+  background-color: $color__bg;
+
+  @include breakpoint('xsmall') {
+    width: colspan(58, 'xsmall');
+  }
+
+  @include breakpoint('small') {
+    width: colspan(58, 'small');
+  }
+
+  @include breakpoint('medium') {
+    width: colspan(33, 'medium');
+  }
+
+  @include breakpoint('large') {
+    width: colspan(28, 'large');
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(28, 'xlarge');
+  }
+}
+
+.g-modal__close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  color: $color__text--forms;
+}
+
+.g-modal__title {
+  @extend %f-display-1;
+}
+
+.g-modal__intro {
+  @extend %f-module-title-1;
+  margin-top: 24px;
+  color: $color__text--secondary;
+}
+
+.g-modal__form {
+  margin-top: 44px;
+}
+
+.g-modal__form-row {
+  margin-top: 16px;
+}
+
+.g-modal__form-row:first-child {
+  margin-top: 0;
+}
+
+.g-modal__form-row p {
+}
+
+.g-modal__form-row--split {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.g-modal__form-row--split p {
+  width: 100%;
+  margin-left: 20px;
+}
+
+.g-modal__form-row--split p:first-child {
+  margin-left: 0;
+}
+
+.g-modal__form-row--submit {
+  margin-top: 24px;
+}
+
+.g-modal__form-row--submit button {
+  width: 100%;
+}
+
+.g-modal__form-note {
+  @extend %f-caption;
+  margin-top: 32px;
+  color: $color__text--secondary;
+}

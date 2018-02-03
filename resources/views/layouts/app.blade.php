@@ -2,7 +2,7 @@
 $print = isset($_GET['print']);
 @endphp
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US" class="no-js{{ (isset($contrastHeader) and $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-print' : '' }}">
+<html dir="ltr" lang="en-US" class="no-js{{ (isset($contrastHeader) and $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-print' : '' }}  {{ !empty($modal) ? 's-modal-active' : '' }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,6 +59,11 @@ $print = isset($_GET['print']);
 @include('layouts._info-button-info')
 @include('layouts._nav-mobile')
 @include('layouts._search')
+
+@if ( !empty($modal) )
+    @component('layouts._modal', [ 'modal' => $modal])
+    @endcomponent
+@endif
 
 @include('layouts._scripts')
 @if ($print)
