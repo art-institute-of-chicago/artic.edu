@@ -107,8 +107,9 @@
     <a17-fieldset id="dates" title="Date Rules">
         @formField('input', [
             'name' => 'all_dates',
-            'label' => 'All dates',
-            'note' => 'Dates built by the rules below.'
+            'label' => 'All computed dates',
+            'note' => 'Dates built using all rules below.',
+            'disabled' => true
         ])
 
         @formField('repeater', [

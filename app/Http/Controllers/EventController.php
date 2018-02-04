@@ -13,7 +13,7 @@ class EventController extends Controller
         $events = $repository->getByRange(request('start_date'), request('end_date'));
 
         foreach($events as $event) {
-            echo "{$event->date} - {$event->title} <br>";
+            echo "{$event->date->format('Y-m-d')} - {$event->title} <br>";
         }
 
         die();

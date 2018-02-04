@@ -8,7 +8,7 @@ trait HandleRecurrence
     {
         $rules = $object->getRules();
 
-        // TODO: Delete all EventMeta elements
+        // Delete all EventMeta elements
         $object->eventMetas()->delete();
 
         // Create dates in all ocurrences
@@ -25,8 +25,8 @@ trait HandleRecurrence
         $query = $this->model->rightJoin('event_metas', function ($join) {
             $join->on('events.id', '=', 'event_metas.event_id');
         });
-        $query->where('event_metas.date', '>', $startDate);
-        $query->where('event_metas.date', '<', $endDate);
+        $query->where('event_metas.date', '>=', $startDate);
+        $query->where('event_metas.date', '<=', $endDate);
         $query->orderBy('event_metas.date', 'ASC');
 
         return $query->get();

@@ -80,7 +80,7 @@ class Event extends Model
         'is_boosted'
     ];
 
-    public $dates = ['start_date', 'end_date'];
+    public $dates = ['start_date', 'end_date', 'date'];
 
     public $mediasParams = [
         'hero' => [
