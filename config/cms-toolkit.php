@@ -144,6 +144,12 @@ return [
                 'component' => 'a17-block-list_item',
                 'max' => 10,
             ],
+            'dateRules' => [
+                'title' => 'Date Rule',
+                'trigger' => 'Add Date Rule',
+                'component' => 'a17-block-date_rule',
+                'max' => 10,
+            ],
             'offer' => [
                 'title' => 'Offer',
                 'trigger' => 'Add offer',

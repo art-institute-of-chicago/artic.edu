@@ -103,6 +103,20 @@
 @stop
 
 @section('fieldsets')
+
+    <a17-fieldset id="dates" title="Date Rules">
+        @formField('input', [
+            'name' => 'all_dates',
+            'label' => 'All dates',
+            'note' => 'Dates built by the rules below.'
+        ])
+
+        @formField('repeater', [
+            'type' => 'dateRules',
+            'title' => 'Date Rule',
+        ])
+    </a17-fieldset>
+
     <a17-fieldset id="related_elements" title="Related elements">
         @formField('browser', [
             'routePrefix' => 'general',

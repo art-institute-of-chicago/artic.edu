@@ -7,12 +7,15 @@ use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
+use App\Models\Behaviors\HasRecurrentDates;
 
 class Event extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasBlocks, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasBlocks, HasRecurrentDates, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
+
+    protected $appends = ['all_dates', 'date'];
 
     protected $fillable = [
         'title',
@@ -115,7 +118,6 @@ class Event extends Model
     {
         return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
     }
-
 
     protected function transformMappingInternal()
     {

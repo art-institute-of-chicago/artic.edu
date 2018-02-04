@@ -11,6 +11,9 @@ if (!app()->environment('production')) {
 // Search routes
 Route::name('search')->get('/search', 'SearchController@index');
 
+// Events routes
+Route::name('events')->get('/events', 'EventController@index');
+
 // Exhibition history routes
 Route::resource('exhibitionHistory', 'ExhibitionHistoryController', ['only' => ['index', 'show']]);
 
