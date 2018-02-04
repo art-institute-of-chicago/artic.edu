@@ -64,9 +64,14 @@ trait HasRecurrentDates
         $options = [
             'FREQ'     => \RRule\RRule::DAILY,
             'INTERVAL' => $ruleObject->every,
-            'DTSTART'  => $ruleObject->start_date,
-            'UNTIL'    => $ruleObject->end_date
+            'DTSTART'  => $ruleObject->start_date
         ];
+
+        if ($ruleObject->ocurrencies) {
+             $options['COUNT'] = $ruleObject->ocurrencies;
+        } else {
+             $options['UNTIL'] = $ruleObject->end_date;
+        }
 
         // Options for weekly repeated events
         if ($ruleObject->getRecurringType() == 'WEEKLY') {

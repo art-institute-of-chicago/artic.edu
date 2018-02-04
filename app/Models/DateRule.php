@@ -11,6 +11,7 @@ class DateRule extends Model
         'type',
         'recurring_type',
         'every',
+        'ocurrencies',
         'monthly_repeat_pattern',
         'monday',
         'tuesday',

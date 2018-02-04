@@ -32,6 +32,7 @@ class CreateDateRulesTable extends Migration
             $table->boolean('sunday')->default(false);
 
             $table->integer('event_id')->unsigned()->index();
+            $table->integer('ocurrencies')->unsigned()->nullable();
             $table->integer('every')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
