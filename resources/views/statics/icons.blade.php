@@ -15,9 +15,6 @@
   <svg class="icon--calendar">
     <use xlink:href="#icon--calendar"></use>
   </svg>
-  <svg class="icon--caret">
-    <use xlink:href="#icon--caret"></use>
-  </svg>
   <svg class="icon--check">
     <use xlink:href="#icon--check"></use>
   </svg>
@@ -131,9 +128,6 @@
   </svg>
   <svg class="icon--share--24">
     <use xlink:href="#icon--share--24"></use>
-  </svg>
-  <svg class="icon--user">
-    <use xlink:href="#icon--user"></use>
   </svg>
   <svg class="icon--zoom--24">
     <use xlink:href="#icon--zoom--24"></use>

@@ -28,9 +28,6 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--calendar">
     <use xlink:href="#icon--calendar"></use>
   </svg>
-  <svg class="icon--caret">
-    <use xlink:href="#icon--caret"></use>
-  </svg>
   <svg class="icon--check">
     <use xlink:href="#icon--check"></use>
   </svg>
@@ -145,9 +142,6 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--share--24">
     <use xlink:href="#icon--share--24"></use>
   </svg>
-  <svg class="icon--user">
-    <use xlink:href="#icon--user"></use>
-  </svg>
   <svg class="icon--zoom--24">
     <use xlink:href="#icon--zoom--24"></use>
   </svg>
@@ -178,11 +172,6 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
 }
 
 .icon--calendar {
-  width: 16px;
-  height: 16px;
-}
-
-.icon--caret {
   width: 16px;
   height: 16px;
 }
@@ -375,11 +364,6 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
 .icon--share--24 {
   width: 24px;
   height: 24px;
-}
-
-.icon--user {
-  width: 16px;
-  height: 16px;
 }
 
 .icon--zoom--24 {

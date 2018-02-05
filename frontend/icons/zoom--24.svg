@@ -1,10 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <line x1="16.5" y1="7.5" x2="22.5" y2="1.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
-    <line x1="16.5" y1="16.5" x2="22.5" y2="22.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
-    <line x1="7.5" y1="16.5" x2="1.5" y2="22.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
-    <line x1="7.5" y1="7.5" x2="1.5" y2="1.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
-    <polyline points="1.5 7 1.5 1.5 7 1.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
-    <polyline points="7 22.5 1.5 22.5 1.5 17" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
-    <polyline points="22.5 17 22.5 22.5 17 22.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
-    <polyline points="17 1.5 22.5 1.5 22.5 7" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+<svg width="24" height="24" viewBox="0 0 24 24">
+  <g>
+    <line x1="9.5" y1="9.5" x2="4.5" y2="4.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+    <polyline points="4.5 9 4.5 4.5 9 4.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+  </g>
+  <g>
+    <line x1="9.5" y1="14.5" x2="4.5" y2="19.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+    <polyline points="9 19.5 4.5 19.5 4.5 15" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+  </g>
+  <g>
+    <line x1="14.5" y1="14.5" x2="19.5" y2="19.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+    <polyline points="19.5 15 19.5 19.5 15 19.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+  </g>
+  <g>
+    <line x1="14.5" y1="9.5" x2="19.5" y2="4.5" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+    <polyline points="15 4.5 19.5 4.5 19.5 9" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+      </g>
 </svg>
