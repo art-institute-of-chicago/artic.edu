@@ -10,14 +10,17 @@
     @endcomponent
 
     <div class="o-article__primary-actions o-blocks">
-        <h4 class="title f-subheading-1">Utility</h4>
+        <h4 class="title f-subheading-1">From specs</h4>
         <ul class="list f-body">
           <li><a href="/statics/typespec">typespec</a></li>
-          <li><a href="/statics/typetest">typetest</a></li>
           <li><a href="/statics/icons">icons</a></li>
-          <li><a href="/statics/listinggrids">listinggrids</a></li>
           <li><a href="/statics/listings">listings</a></li>
-          <li><a href="/statics/toybox">toybox</a></li>
+        </ul>
+        <h4 class="title f-subheading-1">Utility</h4>
+        <ul class="list f-body">
+          <li><a href="/statics/typetest">typetest</a></li>
+          <li><a href="/statics/listinggrids">variants of o-grid-listing</a></li>
+          <li><a href="/statics/toybox">toy box</a></li>
         </ul>
     </div>
     <div class="o-article__body o-blocks">
