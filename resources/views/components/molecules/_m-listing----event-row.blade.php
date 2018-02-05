@@ -35,7 +35,7 @@
         <br>
         <span class="m-listing__meta-bottom">
             @component('components.atoms._date')
-                {{ $item->timeStart }}-{{ $item->timeEnd }}
+                {{ $item->timeStart }} &ndash; {{ $item->timeEnd }}
             @endcomponent
             @if ($item->free)
             <br>

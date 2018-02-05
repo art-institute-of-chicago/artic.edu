@@ -38,12 +38,12 @@
         <br>
         @if (isset($variation) && !strrpos($variation, "--row"))
             @component('components.atoms._date')
-                Through {{ $item->dateEnd }}
+                Through {{ date( 'F j, Y', $item->dateEnd) }}
             @endcomponent
         @else
             <span class="m-listing__meta-bottom">
                 @component('components.atoms._date')
-                    {{ $item->dateStart }} - {{ $item->dateEnd }}
+                    {{ date( 'M j, Y', intval($item->dateStart)) }} &ndash; {{ date( 'M j, Y', intval($item->dateEnd)) }}
                 @endcomponent
             </span>
         @endif

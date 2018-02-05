@@ -16,7 +16,7 @@
             <strong class="title {{ $titleFont ?? 'f-list-3' }}">{{ $item->title }}</strong>
             <br>
             <span class="m-listing__meta-bottom">
-                <span class="intro f-caption">{{ $item->date }}</span>
+                <span class="intro f-caption">{{ date( 'F j, Y', intval($item->date)) }}</span>
             </span>
         </span>
     </a>

@@ -1518,19 +1518,14 @@ class StaticsController extends Controller {
     return $hour.':'.$minute.($hour > 11 ? 'pm' : 'am');
   }
 
-  private function getFormattedDateString() {
-    return $this->faker->monthName().' '.$this->faker->numberBetween(1,30).', '.$this->faker->year();
-  }
-
-
   private function getExhibition($upcoming = false) {
     return new StaticObjectPresenter([
       "type" => $this->getExhibitionType($upcoming),
       "id" => $this->faker->uuid,
       "slug" => "/statics/exhibition",
       "title" => $this->faker->sentence(6, true),
-      "dateStart" => $this->getFormattedDateString(),
-      "dateEnd" => $this->getFormattedDateString(),
+      "dateStart" => $this->faker->unixTime(),
+      "dateEnd" => $this->faker->unixTime(),
       "closingSoon" => $this->faker->boolean(10),
       "exclusive" => $this->faker->boolean(10),
       "nowOpen" => $this->faker->boolean(10),
@@ -1556,7 +1551,8 @@ class StaticsController extends Controller {
       "id" => $this->faker->uuid,
       "slug" => $boolean ? "/statics/exhibition_history_detail" : null,
       "title" => $this->faker->sentence(6, true),
-      "date" => $this->getFormattedDateString().' - '.$this->getFormattedDateString(),
+      "dateStart" => $this->faker->unixTime(),
+      "dateEnd" => $this->faker->unixTime(),
       "image" => $boolean ? $this->getImage() : null,
       'intro' => $this->faker->paragraph(6, false),
     ]);
@@ -1588,10 +1584,8 @@ class StaticsController extends Controller {
         $register = false;
     }
 
-    $dateFormatted = $this->getFormattedDateString();
     $timeStart = $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30'));
     $timeEnd = $this->makeEventTime($hour + 1, ($this->faker->boolean() ? '00' : '30'));
-    $date = $dateFormatted.', '.$timeStart.' - '.$timeEnd;
 
     return new StaticObjectPresenter([
       "type" => $this->getEventType(),
@@ -1599,10 +1593,9 @@ class StaticsController extends Controller {
       "slug" => "/statics/event",
       "title" => $this->faker->sentence(6, true),
       "shortDesc" => $this->faker->paragraph(1, false),
-      "dateFormatted" => $dateFormatted,
       "timeStart" => $timeStart,
       "timeEnd" => $timeEnd,
-      "date" => $date,
+      "date" => $this->faker->unixTime(),
       "exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
       "free" => $free,
@@ -1801,7 +1794,7 @@ class StaticsController extends Controller {
       "title" => $this->faker->sentence(5, true),
       "subtitle" => $this->faker->sentence(5, true),
       "artist" => $this->faker->firstName.' '.$this->faker->lastName,
-      "date" => $this->faker->year(),
+      "year" => $this->faker->year(),
       "image" => $this->getImage(),
       "type" => 'artwork',
     ]);
@@ -1827,7 +1820,7 @@ class StaticsController extends Controller {
         'link' => '#',
       ),
       "intro" => $this->faker->sentence(12, true),
-      "date" => $this->getFormattedDateString(),
+      "date" => $this->faker->unixTime(),
       "image" => $this->getImage(),
       "type" => 'article',
       "subtype" => $this->faker->word(),
@@ -1849,7 +1842,7 @@ class StaticsController extends Controller {
       "slug" => "/statics/article",
       "title" => $this->faker->sentence(6, true),
       "shortDesc" => $this->faker->sentence(12, true),
-      "date" => $this->getFormattedDateString(),
+      "date" => $this->faker->unixTime(),
       "image" => $this->getImage(),
       "type" => 'generic',
     ]);

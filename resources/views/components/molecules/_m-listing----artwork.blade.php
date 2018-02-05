@@ -18,7 +18,7 @@
 
             <strong class="title f-list-2">{{ $item->title }}</strong>
             <br>
-            <span class="subtitle f-body">{{ $item->artist }}, {{ $item->date }}</span>
+            <span class="subtitle f-body">{{ $item->artist }}, {{ $item->year }}</span>
         </span>
     </a>
 </{{ $tag or 'li' }}>

@@ -42,7 +42,7 @@
             @endcomponent
         @else
             @component('components.atoms._date')
-                {{ $item->dateStart }} - {{ $item->dateEnd }}
+                {{ date( 'M j, Y', intval($item->dateStart)) }} &ndash; {{ date( 'M j, Y', intval($item->dateEnd)) }}
             @endcomponent
         @endif
       </span>

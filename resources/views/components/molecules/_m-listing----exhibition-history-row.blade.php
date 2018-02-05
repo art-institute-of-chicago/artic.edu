@@ -22,7 +22,7 @@
         <br>
         <span class="m-listing__meta-bottom">
             @component('components.atoms._date')
-                {{ $item->date }}
+                {{ date( 'F j, Y', intval($item->date)) }}
             @endcomponent
         </span>
     </span>

@@ -9,6 +9,8 @@
         @slot('variation', $variation ?? null)
         @slot('title', $title ?? null)
         @slot('date', $date ?? null)
+        @slot('dateStart', $dateStart ?? null)
+        @slot('dateEnd', $dateEnd ?? null)
         @slot('type', $type ?? null)
         @slot('img', $img ?? null)
     @endcomponent
@@ -19,6 +21,8 @@
         @slot('variation', $variation ?? null)
         @slot('title', $title ?? null)
         @slot('date', $date ?? null)
+        @slot('dateStart', $dateStart ?? null)
+        @slot('dateEnd', $dateEnd ?? null)
         @slot('type', $type ?? null)
         @slot('intro', $intro ?? null)
         @slot('img', $img ?? null)
@@ -57,6 +61,8 @@
         @slot('variation', $variation ?? null)
         @slot('title', $title ?? null)
         @slot('date', $date ?? null)
+        @slot('dateStart', $dateStart ?? null)
+        @slot('dateEnd', $dateEnd ?? null)
         @slot('type', $type ?? null)
     @endcomponent
 @endif

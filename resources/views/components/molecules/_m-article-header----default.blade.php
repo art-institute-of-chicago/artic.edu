@@ -6,10 +6,14 @@
         {{ $title }}
     @endcomponent
   @endif
-  @if (isset($date))
+  @if (isset($dateStart) and isset($dateEnd))
+    @component('components.atoms._date')
+        {{ date('M j, Y', intval($dateStart)) }} &ndash; {{ date('M j, Y', intval($dateEnd)) }}
+    @endcomponent
+  @elseif (isset($date))
     @component('components.atoms._date')
         @slot('tag','p')
-        {{ $date }}
+        {{ date('F j, Y', intval($date)) }}
     @endcomponent
   @endif
   @if (isset($type))

@@ -31,11 +31,11 @@
       <br>
       <span class="m-listing__meta-bottom">
         @component('components.atoms._date')
-            {{ $item->dateFormatted }}
+            {{ date( 'F j, Y', intval($item->date)) }}
         @endcomponent
         <br>
         @component('components.atoms._date')
-            {{ $item->timeStart }}-{{ $item->timeEnd }}
+            {{ $item->timeStart }} &ndash; {{ $item->timeEnd }}
         @endcomponent
       </span>
     </span>
