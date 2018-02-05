@@ -82,15 +82,15 @@
         @slot('cols_large','2')
         @slot('cols_xlarge','2')
         @slot('tag', 'div')
-
         <div class="o-blocks">
           @component('components.blocks._text')
               @slot('font','f-list-3')
               @slot('tag','h3')
-              <a href="{{ $section['link'] }}">
-                {{ $section['title'] }}
-                <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
-              </a>
+              @component('components.atoms._arrow-link')
+                  @slot('font','f-null')
+                  @slot('href', $section['link'])
+                  {{ $section['title'] }}
+              @endcomponent
           @endcomponent
         </div>
         <div class="o-blocks">

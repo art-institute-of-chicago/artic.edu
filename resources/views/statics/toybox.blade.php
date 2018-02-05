@@ -482,20 +482,24 @@
 <p class="f-quote">arrow-link:</p>
 <p>
     @component('components.atoms._arrow-link')
+        @slot('href', '#')
         Forward
     @endcomponent
     <br>
     @component('components.atoms._arrow-link')
+        @slot('href', '#')
         @slot('variation','arrow-link--back')
         Back
     @endcomponent
     <br>
     @component('components.atoms._arrow-link')
+        @slot('href', '#')
         @slot('variation','arrow-link--up')
         Up
     @endcomponent
     <br>
     @component('components.atoms._arrow-link')
+        @slot('href', '#')
         @slot('variation','arrow-link--down')
         Down
     @endcomponent
@@ -604,8 +608,8 @@ array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' 
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('label' => 'Exhibitions', 'href' => '#', 'variation' => 'arrow-link', 'active' => true, 'icon' => 'icon--arrow'));
-array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'variation' => 'arrow-link', 'active' => false, 'icon' => 'icon--arrow'));
+array_push($linksBarPrimary, array('label' => 'Exhibitions &rsaquo;', 'href' => '#', 'variation' => 'arrow-link', 'active' => true));
+array_push($linksBarPrimary, array('label' => 'Events &rsaquo;', 'href' => '#', 'variation' => 'arrow-link', 'active' => false));
 array_push($linksBarPrimary, array('label' => 'Archive', 'href' => '#', 'active' => false, 'liVariation' => 'm-links-bar__item--push'));
 array_push($linksBarPrimary, array('label' => 'All', 'href' => '#', 'active' => false, 'liVariation' => 'm-links-bar__item--push'));
 @endphp

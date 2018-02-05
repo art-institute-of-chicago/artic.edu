@@ -3,7 +3,7 @@
   @if (isset($links) and $links)
   <ul class="m-title-bar__links">
     @foreach ($links as $link)
-    <li><a href="{{ $link['href'] }}" class="f-buttons">{{ $link['label'] }}<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></li>
+    <li><a href="{{ $link['href'] }}" class="f-buttons">{!! $link['label'] !!} &rsaquo;</a></li>
     @endforeach
   </ul>
   @endif

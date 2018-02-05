@@ -18,7 +18,10 @@
 @endcomponent
 
 @component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(array('label' => 'Hours and admission fees', 'href' => '#', 'variation' => 'arrow-link', 'icon' => 'icon--arrow'), array('label' => 'Directions and parking', 'href' => '#', 'variation' => 'arrow-link', 'icon' => 'icon--arrow')))
+    @slot('linksPrimary', array(
+        array('label' => 'Hours and admission fees &rsaquo;', 'href' => '#', 'variation' => 'arrow-link'),
+        array('label' => 'Directions and parking &rsaquo;', 'href' => '#', 'variation' => 'arrow-link')
+    ))
 @endcomponent
 
 @component('components.molecules._m-title-bar')

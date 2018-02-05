@@ -20,7 +20,7 @@
           <li class="m-links-bar__item{{ (isset($link['liVariation']) and $link['liVariation']) ? ' '.$link['liVariation'] : '' }}{{ (isset($link['active']) and $link['active']) ? ' s-active' : '' }}">
               <a class="m-links-bar__item-trigger{{ $linksPrimaryFontClass }}{{ (isset($link['variation']) and $link['variation']) ? ' '.$link['variation'] : '' }}" href="{{ $link['href'] }}">
                 @if (isset($link['icon']) and $link['icon'] and isset($variation) and $variation === 'm-links-bar--buttons')<svg aria-hidden="true" class="{{ $link['icon'] }}"><use xlink:href="#{{ $link['icon'] }}" /></svg>@endif
-                {{ $link['label'] }}
+                {!! $link['label'] !!}
                 @if (isset($link['icon']) and $link['icon'] and (!isset($variation) or $variation !== 'm-links-bar--buttons'))<svg aria-hidden="true" class="{{ $link['icon'] }}"><use xlink:href="#{{ $link['icon'] }}" /></svg>@endif
               </a>
           </li>
@@ -47,7 +47,7 @@
       @if (isset($linksSecondary) and $linksSecondary)
           @foreach ($linksSecondary as $link)
           <li class="m-links-bar__item{{ (isset($link['active']) and $link['active']) ? ' s-active' : '' }}">
-              <a class="m-links-bar__item-trigger{{ (isset($link['variation']) and $link['variation']) ? ' '.$link['variation'] : ' f-buttons' }}" href="{{ $link['href'] }}">{{ $link['label'] }}@if (isset($link['icon']) and $link['icon'])<svg aria-hidden="true" class="{{ $link['icon'] }}"><use xlink:href="#{{ $link['icon'] }}" /></svg>@endif</a>
+              <a class="m-links-bar__item-trigger{{ (isset($link['variation']) and $link['variation']) ? ' '.$link['variation'] : ' f-buttons' }}" href="{{ $link['href'] }}">{!! $link['label'] !!}@if (isset($link['icon']) and $link['icon'])<svg aria-hidden="true" class="{{ $link['icon'] }}"><use xlink:href="#{{ $link['icon'] }}" /></svg>@endif</a>
           </li>
           @endforeach
       @endif
