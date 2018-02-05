@@ -17,7 +17,8 @@
     "styles": "scss/",
     "scripts": "js/",
     "dist": "public/dist/",
-    "toolkit": "toolkit/"
+    "toolkit": "toolkit/",
+    "iconsTemplate": "frontend/iconsTemplate.scss"
   },
   "config": {
     "devUrl": "http://aic.dev.a17.io",
