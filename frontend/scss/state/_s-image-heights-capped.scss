@@ -1,0 +1,35 @@
+.s-image-heights-capped {
+
+  .m-listing__img,
+  .m-listing__img::before,
+  .m-listing__img img,
+  .m-media__img img,
+  .m-row-block__img img,
+  .o-gallery--mosaic .m-media__img img {
+    height: 200px !important;
+    padding-bottom: 0 !important;
+  }
+
+  .m-article-header--feature .m-article-header__img,
+  .m-article-header--generic .m-article-header__img,
+  .m-article-header--hero {
+    height: 600px !important;
+    padding-bottom: 0 !important;
+  }
+
+  .m-article-header--gallery .m-article-header__img {
+    height: 200px !important;
+
+    @include breakpoint('small+') {
+      height: 400px !important;
+    }
+
+    @include breakpoint('medium+') {
+      height: 600px !important;
+    }
+  }
+
+  .m-download-file__img {
+    height: 120px !important;
+  }
+}

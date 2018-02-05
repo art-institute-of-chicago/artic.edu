@@ -1,33 +1,27 @@
-.design-grid-toggle {
+.design-grid-toggles {
   position: fixed;
   z-index: 9999;
-  left: 0;
-  bottom: 0;
-  padding: 5px 8px;
-  background: $color__black;
-  color: $color__white;
-  font-size: 11px;
-  cursor: pointer;
-}
-
-.design-grid-toggle--columns {
-  left: auto;
   right: 0;
+  bottom: 0;
+  font-size: 0;
 
   &::before,
   &::after {
     display: block;
     position: absolute;
-    right: 8px;
+    right: 5px;
     bottom: 100%;
     color: #00a449;
+    font-size: 11px;
     font-weight: bold;
-    text-align: right;
     text-transform: uppercase;
+    text-align: right;
     white-space: nowrap;
   }
 
   &::before {
+    margin-bottom: 3px;
+
     @each $name, $point in $breakpoints {
       @include breakpoint('#{$name}') {
         content: '#{$name}';
@@ -37,10 +31,30 @@
 
   &::after {
     content: attr(data-env);
-    margin-bottom: 14px;
+    margin-bottom: 17px;
   }
 }
 
+.design-grid-toggle {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 10px 15px;
+  background: #000;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+.design-grid-toggle.js-active {
+  background-color: #f00;
+}
+
+.design-grid-toggle svg {
+  display: block;
+  width: 10px;
+  height: 10px;
+}
 
 .design-grid--baseline {
   display: block;
