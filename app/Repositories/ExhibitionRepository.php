@@ -40,7 +40,6 @@ class ExhibitionRepository extends BaseApiRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
 
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
 

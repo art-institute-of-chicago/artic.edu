@@ -40,7 +40,7 @@ class SelectionController extends ModuleController
     /*
      * Relations to eager load for the form view
      */
-    protected $formWith = [];
+    protected $formWith = ['siteTags'];
 
     /*
      * Filters mapping ('fFilterName' => 'filterColumn')

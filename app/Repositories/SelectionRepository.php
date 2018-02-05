@@ -33,8 +33,6 @@ class SelectionRepository extends BaseApiRepository
     {
         $fields = parent::getFormFields($object);
 
-        $fields = $this->getFormFieldsForMultiSelect($fields, 'siteTags', 'id');
-
         $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'whatson');
         $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'whatson');
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');

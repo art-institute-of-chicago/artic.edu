@@ -33,7 +33,6 @@ class ArticleRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getFormFieldsForMultiSelect($fields, 'categories', 'id');
 
         $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'whatson');
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
