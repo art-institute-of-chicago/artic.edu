@@ -23,16 +23,6 @@
         'label' => 'Ongoing Event?'
     ])
 
-    @formField('date_picker', [
-        'name' => 'start_date',
-        'label' => 'Start date',
-    ])
-
-    @formField('date_picker', [
-        'name' => 'end_date',
-        'label' => 'End date'
-    ])
-
     @formField('select', [
         'name' => 'layout_type',
         'label' => 'Event layout',
@@ -109,7 +99,9 @@
             'name' => 'all_dates',
             'label' => 'All computed dates',
             'note' => 'Dates built using all rules below.',
-            'disabled' => true
+            'type' => 'textarea',
+            'disabled' => true,
+            'rows' => 2
         ])
 
         @formField('repeater', [

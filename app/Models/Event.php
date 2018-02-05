@@ -34,8 +34,6 @@ class Event extends Model
         'is_member_exclusive',
         'hidden',
         'rsvp_link',
-        'start_date',
-        'end_date',
         'location',
         'sponsors_description',
         'sponsors_sub_copy',
@@ -80,7 +78,7 @@ class Event extends Model
         'is_boosted'
     ];
 
-    public $dates = ['start_date', 'end_date', 'date'];
+    public $dates = ['date'];
 
     public $mediasParams = [
         'hero' => [
@@ -196,23 +194,17 @@ class Event extends Model
             ],
             [
                 "name" => "rsvp_link",
-                "doc" => "RSVP ink",
+                "doc" => "RSVP Link",
                 "type" => "string",
                 "value" => function() { return $this->rsvp_link; }
             ],
             [
-                "name" => "start_date",
-                "doc" => "start_date",
-                "type" => "date",
-                "value" => function() { return $this->start_date; }
+                "name" => "all_dates",
+                "doc" => "Dates",
+                "type" => "array",
+                "value" => function() { return $this->all_dates; }
             ],
-                    [
-                "name" => "end_date",
-                "doc" => "end_date",
-                "type" => "date",
-                "value" => function() { return $this->end_date; }
-            ],
-                    [
+            [
                 "name" => "location",
                 "doc" => "Location",
                 "type" => "string",
