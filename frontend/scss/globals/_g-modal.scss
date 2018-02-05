@@ -1,16 +1,36 @@
 .g-modal {
   position: fixed;
-  top: 50%;
+  // top: 50%;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 9999;
+  display:table;
+  height: 100%;
+  width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
   opacity: 0;
   visibility: hidden;
   transition: opacity .2s $bezier--ease-in-out, visibility 0s .2s $bezier--ease-in-out;
-  transform: translateY(-50%);
+  // transform: translateY(-50%);
 }
 
 .g-modal__inner {
+  display: table-cell;
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.g-modal__scroll {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.g-modal__content {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -107,17 +127,25 @@
 }
 
 .g-modal__form-row--split {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  @include breakpoint('medium+') {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
 }
 
 .g-modal__form-row--split p {
   width: 100%;
-  margin-left: 20px;
+  margin-top: 16px;
+
+  @include breakpoint('medium+') {
+    margin-left: 20px;
+    margin-top: 0;
+  }
 }
 
 .g-modal__form-row--split p:first-child {
+  margin-top: 0;
   margin-left: 0;
 }
 
