@@ -20,8 +20,7 @@ class DateRule extends Model
         'friday',
         'saturday',
         'sunday',
-        'event_id'
-
+        'event_id',
     ];
 
     public static $ruleTypes = [

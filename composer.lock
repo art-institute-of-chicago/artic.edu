@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbfd67f96b1120b2125e0ad4a86a8c3d",
+    "content-hash": "b8afa4eb698101d1e357c0a07c436b08",
     "packages": [
         {
             "name": "a17/laravel-cms-toolkit",
-            "version": "dev-redesign",
+            "version": "dev-pre-1.0-sprint",
             "source": {
                 "type": "git",
                 "url": "git@code.area17.com:a17/laravel-cms-toolkit.git",
-                "reference": "b63722a3e1927a7849cb57d019c95dde0dae0509"
+                "reference": "e7b5cfd2db83bf817e9c44c274ad9a38a95f89a9"
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.0.1",
@@ -83,7 +83,7 @@
                 "cms-toolkit",
                 "laravel"
             ],
-            "time": "2018-02-02T17:22:11+00:00"
+            "time": "2018-02-05T13:18:40+00:00"
         },
         {
             "name": "aic/data-hub-foundation",

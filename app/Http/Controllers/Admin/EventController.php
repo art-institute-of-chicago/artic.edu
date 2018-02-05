@@ -25,7 +25,7 @@ class EventController extends ModuleController
 
     protected $indexWith = ['medias'];
 
-    protected $formWith = ['revisions', 'siteTags'];
+    protected $formWith = ['revisions', 'siteTags', 'dateRules'];
 
     protected $filters = [];
 

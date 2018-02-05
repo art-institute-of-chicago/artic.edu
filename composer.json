@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "a17/laravel-cms-toolkit": "dev-redesign",
+        "a17/laravel-cms-toolkit": "dev-pre-1.0-sprint",
         "aic/data-hub-foundation": "dev-master",
         "darkaonline/l5-swagger": "5.5.*",
         "fideloper/proxy": "~3.3",
