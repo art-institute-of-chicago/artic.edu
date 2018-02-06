@@ -146,13 +146,13 @@
 
 <p class="f-quote">select:</p>
 <p>
-    @component('components.atoms._select')
-      @slot('id', 'select1')
-      @slot('name', 'select1')
-      @slot('options', array(array('value' => '1', 'label' => 'Option 1'), array('value' => '2', 'label' => 'Option 2'), array('value' => '3', 'label' => 'Option 3')))
-      @slot('error', 'Error message')
-      Label
-    @endcomponent
+  @component('components.atoms._select')
+    @slot('id', 'select1')
+    @slot('name', 'select1')
+    @slot('options', array(array('value' => '1', 'label' => 'Option 1'), array('value' => '2', 'label' => 'Option 2'), array('value' => '3', 'label' => 'Option 3')))
+    @slot('disabled', true)
+    Label
+  @endcomponent
 </p>
 <p>
     @component('components.atoms._select')
@@ -162,15 +162,6 @@
       @slot('error', 'Error message')
       Label
     @endcomponent
-</p>
-<p>
-  @component('components.atoms._select')
-    @slot('id', 'select1')
-    @slot('name', 'select1')
-    @slot('options', array(array('value' => '1', 'label' => 'Option 1'), array('value' => '2', 'label' => 'Option 2'), array('value' => '3', 'label' => 'Option 3')))
-    @slot('disabled', true)
-    Label
-  @endcomponent
 </p>
 @component('components.atoms._hr')
 @endcomponent

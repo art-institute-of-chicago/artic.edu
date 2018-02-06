@@ -59,7 +59,7 @@ a.checkbox:hover {
 }
 
 .checkbox input[type=checkbox]:focus + span label {
-  @extend %default-focus-style;
+  //@extend %default-focus-style;
 }
 
 .checkbox label::before,

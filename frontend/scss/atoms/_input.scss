@@ -27,13 +27,11 @@
   &:hover {
     border-color: $color__input-border--hover;
     color: $color__input-text--hover;
-    outline: 0 none;
   }
 
-  &:focus:hover {
+  &:focus {
     border-color: $color__input-border--focus;
     color: $color__input-text--focus;
-    outline: 0 none;
   }
 
   &:disabled {

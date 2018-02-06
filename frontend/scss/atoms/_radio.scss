@@ -53,7 +53,7 @@ radio
 }
 
 .radio input[type=radio]:focus + span label {
-  @extend %default-focus-style;
+  //@extend %default-focus-style;
 }
 
 .radio label::before,

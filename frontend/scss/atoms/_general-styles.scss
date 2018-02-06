@@ -2,10 +2,15 @@
   outline: 3px solid rgba(131, 192, 253, .5);
   outline-offset: 1px;
 
-  &[data-focus-method="mouse"],
-  &[data-focus-method="touch"] {
-    outline: none;
-  }
+
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+:focus[data-focus-method="mouse"],
+:focus[data-focus-method="touch"] {
+  outline: none;
 }
 
 ul
