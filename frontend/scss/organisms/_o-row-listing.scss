@@ -8,9 +8,11 @@
 }
 
 .o-row-listing > * {
-  margin-top: 28px;
 
-  @include breakpoint('medium+') {
-    margin-top: 36px;
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      //margin-top: #{map-get($grid-margin-tops, $name)}px;
+      margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+    }
   }
 }

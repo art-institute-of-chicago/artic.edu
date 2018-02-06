@@ -38,7 +38,8 @@ Basic flexed set up
 
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      margin-top: #{map-get($grid-margin-tops, $name)}px;
+      //margin-top: #{map-get($grid-margin-tops, $name)}px;
+      margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
     }
   }
 }
@@ -55,12 +56,20 @@ Basic flexed set up
 @each $name, $point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-grid-listing[class*="col@#{$name}"] {
-      margin-left: colspan(2, #{$name}, 0, true);
+      @if ($name == 'xsmall') {
+        margin-left: colspan(4, #{$name}, 0, true);
+      } @else {
+        margin-left: colspan(2, #{$name}, 0, true);
+      }
     }
 
     .o-grid-listing[class*="col@#{$name}"] > * {
       margin-top: 0;
-      margin-left: colspan(2, #{$name});
+      @if ($name == 'xsmall') {
+        margin-left: colspan(4, #{$name});
+      } @else {
+        margin-left: colspan(2, #{$name});
+      }
       border-top: 0 none;
     }
   }
@@ -85,6 +94,10 @@ Variant: `o-listing--single-row` - limits to a single row
         margin-right: 0;
         margin-left: -50vw;
         padding-left: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
+      } @elseif ($name == 'xsmall') {
+        margin-right: colspan(5, $name, 0, true);
+        margin-left: colspan(5, $name, 0, true);
+        padding-left: colspan(1, $name);
       } @else {
         margin-right: colspan(3, $name, 0, true);
         margin-left: colspan(3, $name, 0, true);
@@ -111,6 +124,8 @@ Variant: `o-listing--single-row` - limits to a single row
       flex: 0 0 auto;
       @if ($name == 'xlarge') {
         width: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
+      } @elseif ($name == 'xsmall') {
+        width: colspan(5, $name);
       } @else {
         width: colspan(3, $name);
       }
@@ -120,7 +135,11 @@ Variant: `o-listing--single-row` - limits to a single row
     .o-grid-listing--single-row[class*="scroll@#{$name}"] > * {
       width: 216px;
       margin-top: 0;
-      margin-left: colspan(2, #{$name});
+      @if ($name == 'xsmall') {
+        margin-left: colspan(4, #{$name});
+      } @else {
+        margin-left: colspan(2, #{$name});
+      }
       border-top: 0 none;
 
       @if ($name == 'xlarge') {
@@ -155,7 +174,8 @@ hr + .o-grid-listing,
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       margin-top: 0;
-      padding-top: #{map-get($grid-margin-tops, $name)}px;
+      //padding-top: #{map-get($grid-margin-tops, $name)}px;
+      padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
     }
   }
 }
@@ -193,7 +213,8 @@ X cols at XXXXX breakpoint
 
   .o-grid-listing--2-col\@small:not(.o-grid-listing--single-row) > *:nth-child(2) ~ *,
   .o-grid-listing--3-col\@small:not(.o-grid-listing--single-row) > *:nth-child(3) ~ * {
-    margin-top: #{map-get($grid-margin-tops, 'small')}px;
+    //margin-top: #{map-get($grid-margin-tops, 'small')}px;
+    margin-top: colspan(map-get($grid-padding-tops, 'small'), 'small');
   }
 
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@small.o-grid-listing--2-col\@small > *:nth-child(2) ~ *,
@@ -219,7 +240,8 @@ X cols at XXXXX breakpoint
   .o-grid-listing--2-col\@medium:not(.o-grid-listing--single-row) > *:nth-child(2) ~ *,
   .o-grid-listing--3-col\@medium:not(.o-grid-listing--single-row) > *:nth-child(3) ~ *,
   .o-grid-listing--4-col\@medium:not(.o-grid-listing--single-row) > *:nth-child(4) ~ * {
-    margin-top: #{map-get($grid-margin-tops, 'medium')}px;
+    //margin-top: #{map-get($grid-margin-tops, 'medium')}px;
+    margin-top: colspan(map-get($grid-padding-tops, 'medium'), 'medium');
   }
 
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@medium.o-grid-listing--2-col\@medium > *:nth-child(2) ~ *,
@@ -262,7 +284,8 @@ X cols at XXXXX breakpoint
   .o-grid-listing--5-col\@large:not(.o-grid-listing--single-row) > *:nth-child(5) ~ *,
   .o-grid-listing--6-col\@large:not(.o-grid-listing--single-row) > *:nth-child(6) ~ *,
   .o-grid-listing--12-col\@large:not(.o-grid-listing--single-row) > *:nth-child(12) ~ * {
-    margin-top: #{map-get($grid-margin-tops, 'large')}px;
+    //margin-top: #{map-get($grid-margin-tops, 'large')}px;
+    margin-top: colspan(map-get($grid-padding-tops, 'large'), 'large');
   }
 
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@large.o-grid-listing--2-col\@large > *:nth-child(2) ~ *,
@@ -308,7 +331,8 @@ X cols at XXXXX breakpoint
   .o-grid-listing--5-col\@xlarge:not(.o-grid-listing--single-row) > *:nth-child(5) ~ *,
   .o-grid-listing--4-col\@xlarge:not(.o-grid-listing--single-row) > *:nth-child(6) ~ *,
   .o-grid-listing--5-col\@xlarge:not(.o-grid-listing--single-row) > *:nth-child(12) ~ * {
-    margin-top: #{map-get($grid-margin-tops, 'xlarge')}px;
+    //margin-top: #{map-get($grid-margin-tops, 'xlarge')}px;
+    margin-top: colspan(map-get($grid-padding-tops, 'xlarge'), 'xlarge');
   }
 
   .o-grid-listing--single-row.o-grid-listing--hide-extra\@xlarge.o-grid-listing--2-col\@xlarge > *:nth-child(2) ~ *,
@@ -345,7 +369,11 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
 
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      right: colspan(1, #{$name}, 0, true);
+      @if ($name == 'xsmall') {
+        right: colspan(2, #{$name}, 0, true);
+      } @else {
+        right: colspan(1, #{$name}, 0, true);
+      }
     }
   }
 }
@@ -360,7 +388,8 @@ hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::af
 .hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::after {
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      top: #{0 - map-get($grid-margin-tops, $name)}px;
+      //top: #{0 - map-get($grid-margin-tops, $name)}px;
+      top: colspan(map-get($grid-padding-tops, $name), #{$name}, 0, true);
     }
   }
 }
@@ -377,7 +406,8 @@ hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::af
   }
 
   .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@small > *:nth-child(2) ~ *::after {
-    top: #{0 - map-get($grid-margin-tops, small)}px;
+    //top: #{0 - map-get($grid-margin-tops, small)}px;
+    top: colspan(map-get($grid-padding-tops, 'small'), 'small', 0, true);
   }
 }
 
@@ -395,7 +425,8 @@ hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::af
   .o-grid-listing--gridlines-cols.o-grid-listing--2-col\@medium > *:nth-child(2) ~ *::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--3-col\@medium > *:nth-child(3) ~ *::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@medium > *:nth-child(6) ~ *::after {
-    top: #{0 - map-get($grid-margin-tops, medium)}px;
+    //top: #{0 - map-get($grid-margin-tops, medium)}px;
+    top: colspan(map-get($grid-padding-tops, 'medium'), 'medium', 0, true);
   }
 }
 
@@ -421,7 +452,8 @@ hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::af
   .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@large > *:nth-child(5) ~ *::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@large > *:nth-child(6) ~ *::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@large > *:nth-child(12) ~ *::after {
-    top: #{0 - map-get($grid-margin-tops, large)}px;
+    //top: #{0 - map-get($grid-margin-tops, large)}px;
+    top: colspan(map-get($grid-padding-tops, 'large'), 'large', 0, true);
   }
 }
 
@@ -447,7 +479,8 @@ hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::af
   .o-grid-listing--gridlines-cols.o-grid-listing--5-col\@xlarge > *:nth-child(5) ~ *::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--6-col\@xlarge > *:nth-child(6) ~ *::after,
   .o-grid-listing--gridlines-cols.o-grid-listing--12-col\@xlarge > *:nth-child(12) ~ *::after {
-    top: #{0 - map-get($grid-margin-tops, xlarge)}px;
+    //top: #{0 - map-get($grid-margin-tops, xlarge)}px;
+    top: colspan(map-get($grid-padding-tops, 'xlarge'), 'xlarge', 0, true);
   }
 }
 
@@ -569,7 +602,8 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 .o-grid-listing--gridlines-cols.o-grid-listing--gridlines-rows > *::after {
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
-      bottom: #{0 - map-get($grid-margin-tops, $name)}px;
+      //bottom: #{0 - map-get($grid-margin-tops, $name)}px;
+      bottom: colspan(map-get($grid-padding-tops, $name), #{$name}, 0, true);
     }
   }
 }
