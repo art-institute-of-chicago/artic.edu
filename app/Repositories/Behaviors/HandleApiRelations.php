@@ -54,7 +54,12 @@ trait HandleApiRelations
         // Use those to load API records
         $apiElements = $apiModel::query()->ids($ids)->get();
 
-        return $object->$relation->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName, $apiElements) {
+        // Find locally selected objects
+        $localApiMapping = $object->$relation->filter(function($relatedElement) use($apiElements) {
+            return $apiElements->where('id', $relatedElement->datahub_id)->first();
+        });
+
+        return $localApiMapping->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName, $apiElements) {
             $data = [];
             // Get the API elements and use them to build the browser elements
             $apiElement = $apiElements->where('id', $relatedElement->datahub_id)->first();
