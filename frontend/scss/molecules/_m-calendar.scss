@@ -341,7 +341,7 @@
     color: $color__black--90;
   }
 
-  &:active {
+  &:active:hover {
     background-color: $color__red--100;
     color: $color__white;
   }
@@ -350,7 +350,7 @@
 .m-calendar table .m-calendar__today a {
   color: $color__link--accent;
 
-  &:active {
+  &:active:hover {
     color: $color__white;
   }
 }
@@ -369,7 +369,7 @@
   background-color: $color__link--accent;
   color: $color__white;
 
-  &:active {
+  &:active:hover {
     background-color: $color__link--accent-active;
   }
 }

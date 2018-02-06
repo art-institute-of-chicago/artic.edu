@@ -78,7 +78,7 @@
     color: $color__link--hover;
   }
 
-  &:active {
+  &:active:hover {
     color: $color__link--active;
   }
 }

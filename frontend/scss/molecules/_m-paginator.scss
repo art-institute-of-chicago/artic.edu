@@ -69,7 +69,7 @@ m-paginator
     color: $color__text--secondary;
   }
 
-  &:active {
+  &:active:hover {
     color: $color__text--title;
   }
 }

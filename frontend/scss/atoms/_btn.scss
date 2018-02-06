@@ -44,7 +44,7 @@
     color: $color__white;
   }
 
-  &:active {
+  &:active:hover {
     background-color: $color__link--accent-active;
     color: $color__white;
   }
@@ -81,13 +81,13 @@
 
   &:hover,
   &:focus:hover {
-    border-color: $color__black--30;
+    border-color: $color__input-border--hover;
     background-color: $color__white;
     color: $color__text--title;
   }
 
-  &:active {
-    border-color: $color__black--42;
+  &:active:hover {
+    border-color: $color__input-border--focus;
     background-color: $color__white;
     color: $color__text--title;
   }
@@ -101,7 +101,7 @@
     background-color: $color__link--hover;
   }
 
-  &:active {
+  &:active:hover {
     background-color: $color__link--active;
   }
 }
@@ -114,7 +114,7 @@
     background-color: $color__black--80;
   }
 
-  &:active {
+  &:active:hover {
     background-color: $color__black--90;
   }
 }
@@ -129,7 +129,7 @@
     color: $color__text--title;
   }
 
-  &:active {
+  &:active:hover {
     background-color: $color__black--5;
     color: $color__text--title;
   }
@@ -145,7 +145,7 @@
     color: $color__white;
   }
 
-  &:active {
+  &:active:hover {
     background-color: $color__blue--active;
     color: $color__white;
   }
@@ -161,7 +161,7 @@
     color: $color__white;
   }
 
-  &:active {
+  &:active:hover {
     background-color: rgba($color__black, .5);
     color: $color__white;
   }
@@ -179,7 +179,7 @@
     color: $color__text--title-contrast;
   }
 
-  &:active {
+  &:active:hover {
     border-color: rgba($color__white, .4);
     background-color: transparent;
     color: $color__text--title-contrast;
@@ -196,7 +196,7 @@
     color: $color__text--title-contrast;
   }
 
-  &:active {
+  &:active:hover {
     background-color: rgba($color__white, .2);
     color: $color__text--title-contrast;
   }
@@ -221,7 +221,7 @@
   //   background-color: $color__bg--primary;
   // }
 
-  // &:active {
+  // &:active:hover {
   //   background-color: $color__bg--primary;
   // }
 }

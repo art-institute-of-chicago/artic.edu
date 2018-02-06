@@ -15,7 +15,7 @@
     color: $color__link--accent-hover;
   }
 
-  &:active {
+  &:active:hover {
     color: $color__link--accent-active;
   }
 }
@@ -37,7 +37,7 @@
     color: $color__link--editorial-hover;
   }
 
-  &:active {
+  &:active:hover {
     color: $color__link--editorial-active;
   }
 }

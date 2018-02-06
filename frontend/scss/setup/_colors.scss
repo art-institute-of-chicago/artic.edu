@@ -9,11 +9,17 @@ $color__grey--100: #8e847d;
 $color__grey--110: #807770;
 $color__grey--120: #726a64;
 $color__grey--130: #7e746d;
+// blues
+$color__blue--100: #083f6e;
+$color__blue--110: #063258;
+$color__blue--120: #052642;
+// plum
+$color__plum--100: #6f2562;
 // other
-$color__plum: #6f2562;
-$color__blue: #083f6e;
-$color__blue--hover: #073963;
-$color__blue--active: #063258;
+$color__plum: $color__plum--100;
+$color__blue: $color__blue--100;
+$color__blue--hover: $color__blue--110;
+$color__blue--active: $color__blue--120;
 $color__cold-white: #f3f6f8;
 $color__teal: #008085;
 $color__teal--hover: #007378;
@@ -253,10 +259,10 @@ Forms:
   #999 (42% black)</li>
   <li><span style="background:#ccc;"></span> `$color__input-border`
   #ccc (20% black)</li>
-  <li><span style="background:#b3b3b3;"></span> `$color__input-border--hover
-  #b3b3b3 (30% black)</li>
-  <li><span style="background:#999;"></span> `$color__input-border--focus`
+  <li><span style="background:#999;"></span> `$color__input-border--hover
   #999 (42% black)</li>
+  <li><span style="background:#333;"></span> `$color__input-border--focus`
+  #333 (80% black)</li>
   <li><span style="background:#b50938;"></span> `$color__input-border--error`
   #b50938 (red 100)</li>
   <li><span style="background:1a1a1a;"></span> `$color__input-border--checked`
@@ -269,7 +275,7 @@ $color__input-text--hover: $color__black--54;
 $color__input-text--focus: $color__black--90;
 $color__input-output: $color__black--42;
 $color__input-border: $color__black--20;
-$color__input-border--hover: $color__black--30;
-$color__input-border--focus: $color__black--42;
+$color__input-border--hover: $color__black--42;
+$color__input-border--focus: $color__black--80;
 $color__input-border--error: $color__red--100;
 $color__input-border--checked: $color__black--90;

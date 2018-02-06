@@ -127,7 +127,7 @@
     color: $color__text--title;
   }
 
-  &:active {
+  &:active:hover {
     border-color: $color__black--42;
     color: $color__text--title;
   }
@@ -322,7 +322,7 @@
     color: $color__link--accent-hover;
   }
 
-  &:active {
+  &:active:hover {
     border-color: $color__rules--secondary;
     color: $color__link--accent-active;
   }
