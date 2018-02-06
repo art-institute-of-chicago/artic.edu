@@ -4,6 +4,7 @@
   padding-top: .02px;
   background-color: $color__bg--gallery;
   color: $color__text--contrast;
+  transform: translateZ(0);
 
   @include breakpoint('xlarge') {
     display: flex;
