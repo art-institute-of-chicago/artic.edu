@@ -80,6 +80,7 @@ m-paginator
   justify-content: space-between;
   width: 100%;
   margin-top: 0;
+  margin-left: 0;
 }
 
 .m-paginator__prev-next li {
@@ -87,11 +88,9 @@ m-paginator
 }
 
 .m-paginator__prev-next li:first-child {
-  border-left: 1px solid $color__rules--primary;
 }
 
 .m-paginator__prev-next li:last-child {
-  border-right: 1px solid $color__rules--primary;
 }
 
 .m-paginator__prev-next a,
@@ -106,8 +105,28 @@ m-paginator
   }
 }
 
+.m-paginator__prev-next a {
+  position: relative;
+  z-index: 1;
+  border: 1px solid transparent;
+}
+
+.m-paginator__prev-next li:first-child a,
+.m-paginator__prev-next li:first-child > span {
+  border-left: 1px solid $color__rules--primary;
+}
+
+.m-paginator__prev-next li:last-child a,
+.m-paginator__prev-next li:last-child > span {
+  border-right: 1px solid $color__rules--primary;
+}
+
+.m-paginator__prev-next li a:hover {
+  border-color: $color__black--42;
+}
+
 .m-paginator__prev-next li > span {
-  color: $color__text--tertiary;
+  color: $color__text--disabled;
 }
 
 .m-paginator__prev-next a span,
@@ -178,17 +197,27 @@ m-paginator
 
 .m-paginator__pages a,
 .m-paginator__pages span {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 48px;
   height: 48px;
-  border-top: 1px solid transparent;
+  margin-left: -1px;
+  border: 1px solid transparent;
+  border-left-color: $color__rules--primary;
+  border-right-color: $color__rules--primary;
 }
 
-.m-paginator__pages a:hover {
-  border-top-color: $color__bg--tertiary;
+.m-paginator__pages a:hover,
+.m-paginator__pages a:active {
+  z-index: 2;
+  border-color: $color__black--42;
 }
 
-.m-paginator__pages .s-active a,
-.m-paginator__pages .s-active a:hover {
+.m-paginator__pages a:active {
+  border-color: $color__black--80;
+}
+
+.m-paginator__pages .s-active a {
   border-top-color: $color__rules--brand;
 }
