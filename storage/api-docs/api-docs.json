@@ -362,7 +362,7 @@
             "properties": {
                 "id": {
                     "description": "ID of Tag",
-                    "type": "string"
+                    "type": "integer"
                 },
                 "title": {
                     "description": "Title",
@@ -387,7 +387,7 @@
             "properties": {
                 "id": {
                     "description": "ID of Location",
-                    "type": "string"
+                    "type": "integer"
                 },
                 "title": {
                     "description": "Title",
@@ -430,8 +430,8 @@
             ],
             "properties": {
                 "id": {
-                    "description": "ID of Location",
-                    "type": "string"
+                    "description": "ID of Hour",
+                    "type": "integer"
                 },
                 "title": {
                     "description": "Title",
@@ -460,6 +460,278 @@
                 "last_updated": {
                     "description": "Last Updated At",
                     "type": "datetime"
+                }
+            },
+            "type": "object"
+        },
+        "Closure": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Closure",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Location",
+                    "type": "boolean"
+                },
+                "date_start": {
+                    "description": "Closure Start",
+                    "type": "datetime"
+                },
+                "date_end": {
+                    "description": "Closure End",
+                    "type": "datetime"
+                },
+                "closure_copy": {
+                    "description": "Copy",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Type",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "Exhibition": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Exhibition",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Location",
+                    "type": "boolean"
+                },
+                "header_copy": {
+                    "description": "Header Copy",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "string"
+                },
+                "datahub_id": {
+                    "description": "Datahub ID",
+                    "type": "string"
+                },
+                "is_visible": {
+                    "description": "Type",
+                    "type": "boolean"
+                },
+                "exhibition_message": {
+                    "description": "Message",
+                    "type": "string"
+                },
+                "cms_exhibition_type": {
+                    "description": "Type",
+                    "type": "integer"
+                },
+                "sponsors_sub_copy": {
+                    "description": "Sub Copy",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Event": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Event",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Event",
+                    "type": "boolean"
+                },
+                "type": {
+                    "description": "Header Copy",
+                    "type": "string"
+                },
+                "short_description": {
+                    "description": "Short Description",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description",
+                    "type": "string"
+                },
+                "hero_caption": {
+                    "description": "Hero Caption",
+                    "type": "string"
+                },
+                "is_private": {
+                    "description": "Is Private?",
+                    "type": "boolean"
+                },
+                "is_after_hours": {
+                    "description": "Is After Hours?",
+                    "type": "boolean"
+                },
+                "is_ticketed": {
+                    "description": "Is Tickted?",
+                    "type": "boolean"
+                },
+                "is_free": {
+                    "description": "Is Free?",
+                    "type": "boolean"
+                },
+                "is_member_exclusive": {
+                    "description": "Is Member Exclusive?",
+                    "type": "boolean"
+                },
+                "hidden": {
+                    "description": "Hidden?",
+                    "type": "boolean"
+                },
+                "rsvp_link": {
+                    "description": "RSVP Link",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "Start Date",
+                    "type": "datetime"
+                },
+                "end_date": {
+                    "description": "End Date",
+                    "type": "datetime"
+                },
+                "location": {
+                    "description": "Location",
+                    "type": "string"
+                },
+                "sponsors_description": {
+                    "description": "Sponsors Description",
+                    "type": "string"
+                },
+                "sponsors_sub_copy": {
+                    "description": "Sub Copy",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "string"
+                },
+                "layout_type": {
+                    "description": "Layout Type",
+                    "type": "integer"
+                },
+                "buy_button_text": {
+                    "description": "Buy Button Text",
+                    "type": "string"
+                },
+                "buy_button_caption": {
+                    "description": "Buy Button Caption",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Article": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Article",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Article",
+                    "type": "boolean"
+                },
+                "date": {
+                    "description": "Date",
+                    "type": "string"
+                },
+                "copy": {
+                    "description": "Copy",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Selection": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Selection",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Article",
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "datetime"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "string"
+                },
+                "short_copy": {
+                    "description": "Short Copy",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Artist": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Artist",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "also_known_as": {
+                    "description": "Also Known As",
+                    "type": "boolean"
+                },
+                "intro_copy": {
+                    "description": "Intro Copy",
+                    "type": "datetime"
+                },
+                "datahub_id": {
+                    "description": "datahub_id",
+                    "type": "string"
                 }
             },
             "type": "object"
