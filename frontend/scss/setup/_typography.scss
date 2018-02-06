@@ -124,7 +124,7 @@ $f-display-1: generate-font-obj((
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 26, line-height: 36, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: .08em, push: 0),
+    'xsmall': (font-size: 26, line-height: 32, font-weight: 'lighter', text-transform: 'uppercase', letter-spacing: .08em, push: 0),
     'small+': (font-size: 32, line-height: 44, push: 0),
     'medium+': (font-size: 36, line-height: 48, push: 0),
    )
