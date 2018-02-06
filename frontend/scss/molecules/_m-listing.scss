@@ -92,7 +92,7 @@
   content: '';
   display: block;
   height: 0;
-  padding-bottom: percentage(2 / 3); // 3:2
+  padding-bottom: percentage(9 / 16); // 16:9
 }
 
 .m-listing__img--square::before {
@@ -101,14 +101,6 @@
 
 .m-listing__img--tall::before {
   padding-bottom: percentage(4 / 3); // 3:4
-}
-
-.m-listing__img--wide::before {
-  padding-bottom: percentage(9 / 16); // 16:9
-}
-
-.m-listing__img--extra-wide::before {
-  padding-bottom: percentage(9 / 21); // 21:9
 }
 
 .m-listing__img::after {

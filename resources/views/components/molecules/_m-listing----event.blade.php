@@ -1,6 +1,6 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ $item->slug }}" class="m-listing__link">
-    <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--wide' }}">
+    <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
         @if ($item->image)
             @component('components.atoms._img')
                 @slot('src', $item->image['src'])
