@@ -13,6 +13,7 @@ Route::name('search')->get('/search', 'SearchController@index');
 
 // Events routes
 Route::name('events')->get('/events', 'EventController@index');
+Route::name('events')->get('/events/{id}', 'EventController@show');
 
 // Exhibition history routes
 Route::resource('exhibitionHistory', 'ExhibitionHistoryController', ['only' => ['index', 'show']]);

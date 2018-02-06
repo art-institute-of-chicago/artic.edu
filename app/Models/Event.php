@@ -97,6 +97,15 @@ class Event extends Model
         ],
     ];
 
+    // Generates the id-slug type of URL
+    public function getRouteKeyName() {
+        return 'id_slug';
+    }
+
+    public function getIdSlugAttribute() {
+        return join([$this->id, $this->getSlug()], '-');
+    }
+
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
@@ -248,5 +257,4 @@ class Event extends Model
             ]
         ];
     }
-
 }

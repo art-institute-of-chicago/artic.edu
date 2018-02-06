@@ -1,383 +1,225 @@
-/***
-
-Icons
-=====
-
-Icons are combined into one SVG as symbols by the Gulp task. This also generates a SCSS file detailing the dimensions of each icon with a corresponding CSS class name. The compiled symbols SVG is ajax'd into the document in the head.js.
-
-Read more about our suggested accessibility approaches [here](https://code.area17.com/a17/fe-boilerplate/wikis/svg-sprite).
-
-Default icon size is 16 x 16 px. If the icon's width/height is larger than this than specify the box size in the file name. Eg:
-
-* `location.svg` is a 16px square SVG
-* `location--24.svg` is a 24px square SVG
-
-More variants maybe added later, so anything thats not a 16px square SVG needs a dimension modifier.
-
-```
-<div class="sg-icons">
-  <svg class="icon--alert">
-    <use xlink:href="#icon--alert"></use>
-  </svg>
-  <svg class="icon--arrow">
-    <use xlink:href="#icon--arrow"></use>
-  </svg>
-  <svg class="icon--arrow--24">
-    <use xlink:href="#icon--arrow--24"></use>
-  </svg>
-  <svg class="icon--calendar">
-    <use xlink:href="#icon--calendar"></use>
-  </svg>
-  <svg class="icon--check">
-    <use xlink:href="#icon--check"></use>
-  </svg>
-  <svg class="icon--clock">
-    <use xlink:href="#icon--clock"></use>
-  </svg>
-  <svg class="icon--close">
-    <use xlink:href="#icon--close"></use>
-  </svg>
-  <svg class="icon--close--24">
-    <use xlink:href="#icon--close--24"></use>
-  </svg>
-  <svg class="icon--close-circle">
-    <use xlink:href="#icon--close-circle"></use>
-  </svg>
-  <svg class="icon--close-dark">
-    <use xlink:href="#icon--close-dark"></use>
-  </svg>
-  <svg class="icon--download--24">
-    <use xlink:href="#icon--download--24"></use>
-  </svg>
-  <svg class="icon--filter--24">
-    <use xlink:href="#icon--filter--24"></use>
-  </svg>
-  <svg class="icon--footer_map_120x92">
-    <use xlink:href="#icon--footer_map_120x92"></use>
-  </svg>
-  <svg class="icon--info">
-    <use xlink:href="#icon--info"></use>
-  </svg>
-  <svg class="icon--info--24">
-    <use xlink:href="#icon--info--24"></use>
-  </svg>
-  <svg class="icon--info--32">
-    <use xlink:href="#icon--info--32"></use>
-  </svg>
-  <svg class="icon--info-i">
-    <use xlink:href="#icon--info-i"></use>
-  </svg>
-  <svg class="icon--location">
-    <use xlink:href="#icon--location"></use>
-  </svg>
-  <svg class="icon--location--24">
-    <use xlink:href="#icon--location--24"></use>
-  </svg>
-  <svg class="icon--logo--80">
-    <use xlink:href="#icon--logo--80"></use>
-  </svg>
-  <svg class="icon--logo--88">
-    <use xlink:href="#icon--logo--88"></use>
-  </svg>
-  <svg class="icon--logo--92">
-    <use xlink:href="#icon--logo--92"></use>
-  </svg>
-  <svg class="icon--logo--outline--80">
-    <use xlink:href="#icon--logo--outline--80"></use>
-  </svg>
-  <svg class="icon--logo--outline--88">
-    <use xlink:href="#icon--logo--outline--88"></use>
-  </svg>
-  <svg class="icon--logo--outline--92">
-    <use xlink:href="#icon--logo--outline--92"></use>
-  </svg>
-  <svg class="icon--menu--24">
-    <use xlink:href="#icon--menu--24"></use>
-  </svg>
-  <svg class="icon--minus">
-    <use xlink:href="#icon--minus"></use>
-  </svg>
-  <svg class="icon--minus--24">
-    <use xlink:href="#icon--minus--24"></use>
-  </svg>
-  <svg class="icon--new-window">
-    <use xlink:href="#icon--new-window"></use>
-  </svg>
-  <svg class="icon--no-image">
-    <use xlink:href="#icon--no-image"></use>
-  </svg>
-  <svg class="icon--play--48">
-    <use xlink:href="#icon--play--48"></use>
-  </svg>
-  <svg class="icon--play--64">
-    <use xlink:href="#icon--play--64"></use>
-  </svg>
-  <svg class="icon--play--96">
-    <use xlink:href="#icon--play--96"></use>
-  </svg>
-  <svg class="icon--plus">
-    <use xlink:href="#icon--plus"></use>
-  </svg>
-  <svg class="icon--plus--24">
-    <use xlink:href="#icon--plus--24"></use>
-  </svg>
-  <svg class="icon--print--24">
-    <use xlink:href="#icon--print--24"></use>
-  </svg>
-  <svg class="icon--quote--48">
-    <use xlink:href="#icon--quote--48"></use>
-  </svg>
-  <svg class="icon--quote--68">
-    <use xlink:href="#icon--quote--68"></use>
-  </svg>
-  <svg class="icon--quote--76">
-    <use xlink:href="#icon--quote--76"></use>
-  </svg>
-  <svg class="icon--return">
-    <use xlink:href="#icon--return"></use>
-  </svg>
-  <svg class="icon--search--24">
-    <use xlink:href="#icon--search--24"></use>
-  </svg>
-  <svg class="icon--share--24">
-    <use xlink:href="#icon--share--24"></use>
-  </svg>
-  <svg class="icon--zoom--24">
-    <use xlink:href="#icon--zoom--24"></use>
-  </svg>
-  <svg class="icon--zoom-in--24">
-    <use xlink:href="#icon--zoom-in--24"></use>
-  </svg>
-  <svg class="icon--zoom-out--24">
-    <use xlink:href="#icon--zoom-out--24"></use>
-  </svg>
-</div>
-```
-
-***/
-
 .icon--alert {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--arrow {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--arrow--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--calendar {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--check {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--clock {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--close {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--close--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--close-circle {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--close-dark {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--download--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--filter--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--footer_map_120x92 {
-  width: 120px;
-  height: 92px;
+	width: 120px;
+	height: 92px;
 }
 
 .icon--info {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--info--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--info--32 {
-  width: 32px;
-  height: 32px;
+	width: 32px;
+	height: 32px;
 }
 
 .icon--info-i {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--location {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--location--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--logo--80 {
-  width: 80px;
-  height: 80px;
+	width: 80px;
+	height: 80px;
 }
 
 .icon--logo--88 {
-  width: 88px;
-  height: 88px;
+	width: 88px;
+	height: 88px;
 }
 
 .icon--logo--92 {
-  width: 92px;
-  height: 92px;
+	width: 92px;
+	height: 92px;
 }
 
 .icon--logo--outline--80 {
-  width: 80px;
-  height: 80px;
+	width: 80px;
+	height: 80px;
 }
 
 .icon--logo--outline--88 {
-  width: 88px;
-  height: 88px;
+	width: 88px;
+	height: 88px;
 }
 
 .icon--logo--outline--92 {
-  width: 92px;
-  height: 92px;
+	width: 92px;
+	height: 92px;
 }
 
 .icon--menu--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--minus {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--minus--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--new-window {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--no-image {
-  width: 80px;
-  height: 56px;
+	width: 80px;
+	height: 56px;
 }
 
 .icon--play--48 {
-  width: 48px;
-  height: 48px;
+	width: 48px;
+	height: 48px;
 }
 
 .icon--play--64 {
-  width: 64px;
-  height: 64px;
+	width: 64px;
+	height: 64px;
 }
 
 .icon--play--96 {
-  width: 96px;
-  height: 96px;
+	width: 96px;
+	height: 96px;
 }
 
 .icon--plus {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--plus--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--print--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--quote--48 {
-  width: 48px;
-  height: 29px;
+	width: 48px;
+	height: 29px;
 }
 
 .icon--quote--68 {
-  width: 68px;
-  height: 40px;
+	width: 68px;
+	height: 40px;
 }
 
 .icon--quote--76 {
-  width: 76px;
-  height: 44px;
+	width: 76px;
+	height: 44px;
 }
 
 .icon--return {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .icon--search--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--share--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--zoom--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--zoom-in--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
 .icon--zoom-out--24 {
-  width: 24px;
-  height: 24px;
+	width: 24px;
+	height: 24px;
 }
 
