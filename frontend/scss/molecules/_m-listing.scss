@@ -171,17 +171,20 @@
   }
 }
 
-    .m-listing__meta--l {
-      min-height: 152px;
+.m-listing__meta--l,
+.o-grid-listing--2-col\@xlarge .m-listing__meta,
+.o-grid-listing--3-col\@xlarge .m-listing__meta,
+.o-grid-listing--4-col\@xlarge .m-listing__meta {
+  min-height: 152px;
 
-      @include breakpoint('small') {
-        min-height: 168px;
-      }
+  @include breakpoint('small') {
+    min-height: 168px;
+  }
 
-      @include breakpoint('medium+') {
-        min-height: 184px;
-      }
-    }
+  @include breakpoint('medium+') {
+    min-height: 184px;
+  }
+}
 
 .m-listing__meta:first-child {
   min-height: 0;
