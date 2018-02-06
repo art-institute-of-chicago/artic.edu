@@ -67,11 +67,6 @@ class Selection extends Model
         return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
     }
 
-    public function selections()
-    {
-        return $this->belongsToMany('App\Models\Selection', 'selection_selection', 'selection_id', 'related_selection_id')->withPivot('position')->orderBy('position');
-    }
-
     protected function transformMappingInternal()
     {
         return [

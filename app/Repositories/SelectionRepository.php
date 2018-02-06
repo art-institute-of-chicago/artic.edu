@@ -23,7 +23,6 @@ class SelectionRepository extends BaseApiRepository
         $object->siteTags()->sync($fields['siteTags'] ?? []);
 
         $this->updateBrowserApiRelated($object, $fields, ['artworks']);
-        $this->updateBrowser($object, $fields, 'selections');
         $this->updateBrowser($object, $fields, 'articles');
 
         parent::afterSave($object, $fields);
@@ -34,7 +33,6 @@ class SelectionRepository extends BaseApiRepository
         $fields = parent::getFormFields($object);
 
         $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'whatson');
-        $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'whatson');
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');
 
         return $fields;

@@ -33,14 +33,6 @@
         'max' => 500
     ])
 
-     @formField('browser', [
-        'routePrefix' => 'whatson',
-        'name' => 'selections',
-        'moduleName' => 'selections',
-        'label' => 'Selections',
-        'max' => 20
-    ])
-
     @formField('browser', [
         'routePrefix' => 'whatson',
         'moduleName' => 'articles',
