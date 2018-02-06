@@ -1,6 +1,7 @@
 export { default as positionElementToTarget } from './positionElementToTarget';
 export { default as lockBody } from './lockBody';
 export { default as focusTrap } from './focusTrap';
+export { default as focusDisplayHandler } from './focusDisplayHandler';
 export { default as historyProxy } from './historyProxy';
 export { default as ajaxPageLoad } from './ajaxPageLoad';
 export { default as ajaxPageLoadMaskToggle } from './ajaxPageLoadMaskToggle';

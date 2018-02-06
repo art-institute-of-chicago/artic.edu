@@ -1,3 +1,13 @@
+:focus {
+  outline: 3px solid rgba(131, 192, 253, .5);
+  outline-offset: 1px;
+
+  &[data-focus-method="mouse"],
+  &[data-focus-method="touch"] {
+    outline: none;
+  }
+}
+
 ul
 li {
   list-style-type: none;
@@ -12,7 +22,7 @@ a {
   text-decoration: none;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__link--hover;
   }
 

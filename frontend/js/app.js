@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery } from 'a17-helpers';
 import * as Behaviors from './behaviors';
-import { lockBody, focusTrap, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar } from './functions';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar } from './functions';
 
 /*
 
@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function(){
   lockBody();
   // listen for focus trap requests
   focusTrap();
+  // workout focus type
+  focusDisplayHandler();
   // listen for ajax page load type events
   ajaxPageLoad();
   ajaxPageLoadMaskToggle();
