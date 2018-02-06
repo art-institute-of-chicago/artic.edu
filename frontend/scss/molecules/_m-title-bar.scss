@@ -2,14 +2,18 @@
 
 .m-title-bar {
   display: flex;
+  position: relative;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin-top: 40px;
-  padding-top: 19px;
-  border-top: 1px solid $color__rules--quaternary;
+  margin-top: 48px;
+  padding-top: .02px;
 
-  & + & {
-    margin-top: 40px;
+  @include breakpoint('small+') {
+    margin-top: 60px;
+  }
+
+  @include breakpoint('large+') {
+    margin-top: 72px;
   }
 
   &.m-title-bar--no-hr,
@@ -18,14 +22,22 @@
   .m-links-bar--filters + &,
   .o-features + & {
     margin-top: 0;
-    padding-top: 0;
-    border-top: 0;
-  }
 
-  &.m-title-bar--secondary {
-    margin-top: 75px;
-    border-top-color: $color__rules--quaternary;
+    &::before {
+      content: none;
+      display: none;
+    }
   }
+}
+
+.m-title-bar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--quaternary;
 }
 
 .m-title-bar .title {
@@ -34,11 +46,11 @@
 }
 
 .m-title-bar .title.f-module-title-2 {
-  @include tucked-margin-top($f-module-title-2, ('xsmall': 68, 'medium': 80));
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 60, 'small+': 68, 'medium+': 80));
 }
 
 .m-title-bar .title.f-numeral-date {
-  @include tucked-margin-top($f-numeral-date, ('xsmall': 68, 'medium': 80));
+  @include tucked-margin-top($f-numeral-date, ('xsmall': 60, 'small+': 68, 'medium+': 80));
 }
 
 .m-title-bar__links {

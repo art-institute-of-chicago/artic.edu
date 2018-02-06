@@ -11,7 +11,6 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('variation', 'm-title-bar--secondary')
     Artworks
 @endcomponent
 
@@ -42,7 +41,6 @@
 
 @if ($article->relatedArticles)
     @component('components.molecules._m-title-bar')
-        @slot('variation', 'm-title-bar--secondary')
         Related
     @endcomponent
 
@@ -65,7 +63,6 @@
 
 @if ($article->exploreFuther)
     @component('components.molecules._m-title-bar')
-        @slot('variation', 'm-title-bar--secondary')
         Explore Further
     @endcomponent
     @component('components.molecules._m-links-bar')
@@ -90,7 +87,6 @@
 
 @if ($article->exhibitions)
     @component('components.molecules._m-title-bar')
-        @slot('variation', 'm-title-bar--secondary')
         Exhibitions
     @endcomponent
 
@@ -114,7 +110,6 @@
 
 @if ($article->recentlyViewedArtworks)
     @component('components.molecules._m-title-bar')
-        @slot('variation', 'm-title-bar--secondary')
         @slot('links', array(array('label' => 'Clear your history', 'href' => '#')))
         Recently Viewed
     @endcomponent
