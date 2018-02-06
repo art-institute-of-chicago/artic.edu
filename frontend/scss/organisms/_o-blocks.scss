@@ -213,7 +213,7 @@
     text-decoration: none;
 
     &:hover,
-    &:focus {
+    &:focus:hover {
       @include text-underline(1.02em, $color__text--secondary);
       color: $color__link--accent-hover;
     }
@@ -229,7 +229,7 @@
     text-decoration: none;
 
     &:hover,
-    &:focus {
+    &:focus:hover {
       @include text-underline(1.02em, $color__text--secondary);
       color: $color__link--editorial-hover;
     }
@@ -245,7 +245,7 @@
     text-decoration: none;
 
     &:hover,
-    &:focus {
+    &:focus:hover {
       @include text-underline(.82em, $color__text--secondary);
       color: $color__text;
     }

@@ -42,7 +42,7 @@
   line-height: 1;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__link--hover;
   }
 

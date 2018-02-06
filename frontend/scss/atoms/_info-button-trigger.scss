@@ -11,7 +11,7 @@
   vertical-align: text-bottom;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__text--secondary;
   }
 

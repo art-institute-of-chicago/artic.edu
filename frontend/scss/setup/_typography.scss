@@ -585,7 +585,7 @@ a.f-link {
   color: $color__link;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__link--hover;
   }
 

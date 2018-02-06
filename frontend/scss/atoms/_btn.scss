@@ -39,7 +39,7 @@
   }
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: $color__link--accent-hover;
     color: $color__white;
   }
@@ -80,7 +80,7 @@
   color: $color__text--title;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     border-color: $color__black--30;
     background-color: $color__white;
     color: $color__text--title;
@@ -97,7 +97,7 @@
   background-color: $color__link;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: $color__link--hover;
   }
 
@@ -110,7 +110,7 @@
   background-color: $color__black--90;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: $color__black--80;
   }
 
@@ -124,7 +124,7 @@
   color: $color__text--title;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: $color__black--10;
     color: $color__text--title;
   }
@@ -140,7 +140,7 @@
   color: $color__white;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: $color__blue--hover;
     color: $color__white;
   }
@@ -156,7 +156,7 @@
   color: $color__white;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: rgba($color__black, .75);
     color: $color__white;
   }
@@ -173,7 +173,7 @@
   color: $color__text--title-contrast;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     border-color: rgba($color__white, .3);
     background-color: transparent;
     color: $color__text--title-contrast;
@@ -191,7 +191,7 @@
   color: $color__text--title-contrast;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: rgba($color__white, .15);
     color: $color__text--title-contrast;
   }
@@ -217,7 +217,7 @@
   pointer-events: none;
 
   // &:hover,
-  // &:focus {
+  // &:focus:hover {
   //   background-color: $color__bg--primary;
   // }
 

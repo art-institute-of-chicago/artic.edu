@@ -65,7 +65,7 @@ m-paginator
   color: $color__text--title;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__text--secondary;
   }
 

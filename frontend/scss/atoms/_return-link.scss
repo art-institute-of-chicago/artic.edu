@@ -11,7 +11,7 @@
   color: $color__link--accent;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__link--accent-hover;
   }
 
@@ -33,7 +33,7 @@
   color: $color__link--editorial;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__link--editorial-hover;
   }
 

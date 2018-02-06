@@ -35,7 +35,7 @@
   box-shadow: $shadow;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: $color__bg--secondary;
     color: $color__link--hover;
   }

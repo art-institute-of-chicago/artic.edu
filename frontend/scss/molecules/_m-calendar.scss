@@ -336,7 +336,7 @@
   vertical-align: middle;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: $color__black--15;
     color: $color__black--90;
   }

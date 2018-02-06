@@ -305,7 +305,7 @@
   }
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__text--title-contrast;
   }
 

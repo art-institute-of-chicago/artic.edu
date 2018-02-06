@@ -475,11 +475,11 @@
   color: $color__text;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__text--title;
   }
 
-  &:focus {
+  &:focus:hover {
     color: $color__text;
   }
 }

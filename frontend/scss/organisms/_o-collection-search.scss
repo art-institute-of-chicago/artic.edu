@@ -24,7 +24,7 @@
   color: $color__text--title;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     background-color: $color__bg--primary;
     color: $color__text--title;
   }

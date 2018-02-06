@@ -68,7 +68,7 @@
 
 a.m-link-list__trigger.f-module-title-1 {
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__link--hover;
   }
 
@@ -89,7 +89,7 @@ a.m-link-list__trigger.f-module-title-1 {
 a.m-link-list__trigger.f-secondary {
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__link--hover;
   }
 
@@ -103,7 +103,7 @@ a.m-link-list__trigger.f-secondary {
   color: $color__text--accent;
 
   &:hover,
-  &:focus,
+  &:focus:hover,
   &:active {
     color: $color__text--accent;
   }

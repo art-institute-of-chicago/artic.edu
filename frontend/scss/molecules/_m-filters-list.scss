@@ -73,7 +73,7 @@
   cursor: pointer;
 
   &:hover,
-  &:focus {
+  &:focus:hover {
     color: $color__link--hover;
   }
 
