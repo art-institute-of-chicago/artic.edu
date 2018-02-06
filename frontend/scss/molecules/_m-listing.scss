@@ -167,22 +167,18 @@
   padding-bottom: .02px;
 
   @include breakpoint('medium+') {
-    min-height: 132px;
-  }
-
-  @include breakpoint('large+') {
     min-height: 144px;
   }
 }
 
     .m-listing__meta--l {
-      min-height: 168px;
+      min-height: 152px;
 
-      @include breakpoint('medium+') {
-        min-height: 176px;
+      @include breakpoint('small') {
+        min-height: 168px;
       }
 
-      @include breakpoint('large+') {
+      @include breakpoint('medium+') {
         min-height: 184px;
       }
     }
