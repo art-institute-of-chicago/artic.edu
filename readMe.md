@@ -68,7 +68,7 @@ $ gulp toolkit
 
 ```
 Host aic.stage.a17.io
-    Hostname 54.235.230.99
+    Hostname 34.239.185.137
     User web
     IdentityFile ~/.ssh/id_rsa
 ```
