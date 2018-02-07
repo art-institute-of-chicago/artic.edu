@@ -111,7 +111,7 @@
   position: absolute;
   right: 3px;
   top: 16px;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.1s ease-in-out;
 }
 
 .g-nav-mobile__nav .g-nav-mobile__nav--muted {
@@ -270,6 +270,10 @@
 .g-nav-mobile .g-header__inner {
   margin-left: 0;
   margin-right: 0;
+}
+
+.g-nav-mobile .g-header__logo {
+  color: $color__grey--100;
 }
 
 .g-nav-mobile .g-header__logo:hover {
