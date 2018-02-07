@@ -214,28 +214,26 @@
 
     &:hover,
     &:focus:hover {
-      @include text-underline(1.02em, $color__text--secondary);
-      color: $color__link--accent-hover;
+      @include text-underline(1.02em, $color__link--accent);
     }
 
     &:active:hover {
-      color: $color__link--accent-active;
+      @include text-underline(1.02em, $color__rules--secondary);
     }
   }
 
   & > .f-body-editorial a {
-    @include text-underline(1.02em, $color__text--tertiary);
+    @include text-underline(.82em, $color__text--tertiary);
     color: $color__link--editorial;
     text-decoration: none;
 
     &:hover,
     &:focus:hover {
-      @include text-underline(1.02em, $color__text--secondary);
-      color: $color__link--editorial-hover;
+      @include text-underline(.82em, $color__link--editorial);
     }
 
     &:active:hover {
-      color: $color__link--editorial-active;
+      @include text-underline(.82em, $color__rules--secondary);
     }
   }
 

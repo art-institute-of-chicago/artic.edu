@@ -138,7 +138,12 @@
   }
 
   &:hover {
-    text-decoration: underline;
+    @include text-underline(1.12em, $color__text--title);
+  }
+
+  &:active {
+    background-image: none;
+    text-shadow: 0;
   }
 }
 
@@ -146,7 +151,12 @@
   color: $color__link--accent;
 
   &:hover {
-    text-decoration: underline;
+    @include text-underline(1.12em, $color__link--accent);
+  }
+
+  &:active {
+    background-image: none;
+    text-shadow: 0;
   }
 }
 
@@ -168,11 +178,6 @@
 
 .g-header__nav-secondary a,
 .g-header__opening-hours a {
-  color: $color__text--secondary;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
 
 .g-header__menu-link {

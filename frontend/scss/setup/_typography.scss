@@ -576,6 +576,18 @@ $f-secondary: generate-font-obj((
   @include f-secondary;
 }
 
+a.f-secondary,
+.f-secondary a {
+  &:hover,
+  &:focus:hover {
+    @include text-underline(1.02em, $color__text--secondary);
+  }
+
+  &:active {
+    @include text-underline(1.02em, transparent);
+  }
+}
+
 %f-link,
 .f-link {
   @include f-link;

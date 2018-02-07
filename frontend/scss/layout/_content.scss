@@ -1,0 +1,19 @@
+a,
+%link-transition {
+  transition-property: color, background-color, border-color, opacity;
+  transition-duration: .15s;
+  transition-timing-function: ease-in-out;
+}
+
+%image-transition {
+  @extend %link-transition;
+
+  a:hover &,
+  a:focus & {
+    opacity: 0.9;
+  }
+
+  a:active & {
+    opacity: 1;
+  }
+}

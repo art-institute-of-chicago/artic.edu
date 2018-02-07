@@ -54,6 +54,16 @@
 .g-footer__link-list a,
 .g-footer .f-secondary a {
   color: $color__text--footer;
+
+  &:hover {
+    @include text-underline(1.05em, $color__text--footer, $color__bg--footer);
+  }
+
+  &:active {
+    background-image: none;
+    color: $color__text--footer;
+    text-shadow: 0;
+  }
 }
 
 .g-footer__link-list {

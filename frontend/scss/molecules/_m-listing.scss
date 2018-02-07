@@ -62,7 +62,14 @@
   text-decoration: none;
 }
 
+.m-listing__link {
+  .title {
+    @extend %link-transition;
+  }
+}
+
 .m-listing__img {
+  @extend %image-transition;
   display: block;
   position: relative;
   margin-top: 28px;
