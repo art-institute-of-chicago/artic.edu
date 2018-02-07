@@ -31,7 +31,7 @@ class EventController extends Controller
     {
         $item = $this->repository->getById($id);
 
-        return view('site.article', [
+        return view('site.eventDetail', [
             'article' => $item
         ]);
     }
