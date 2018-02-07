@@ -124,7 +124,7 @@
 }
 
 .g-nav-mobile__nav .g-nav-mobile__back {
-  @extend %f-tag;
+  @extend %f-tag-2;
   @include untuck;
   position: relative;
   margin-right: - map-get($outer-gutters, 'xsmall');
