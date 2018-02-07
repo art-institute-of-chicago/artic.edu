@@ -1,0 +1,11 @@
+.s-scroll-direction-up {
+  .g-header {
+    transform: translateY(0);
+  }
+}
+
+.s-scroll-direction-down {
+  .g-header {
+    transform: translateY(-100%);
+  }
+}

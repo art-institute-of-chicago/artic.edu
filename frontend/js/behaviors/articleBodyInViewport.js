@@ -10,7 +10,6 @@ const articleBodyInViewport = function(container) {
   let topBudge = 80;
   let isSetUp = false;
   let lastScrollTop = 0;
-  let scrollDirection = false;
   let tallEnough = false;
 
   function _posDefault() {
@@ -41,17 +40,6 @@ const articleBodyInViewport = function(container) {
           _posFixed();
         } else if (sT < lockTop && position !== 'default') {
           _posDefault();
-        }
-      }
-      if (sT !== lastScrollTop) {
-        if (sT > lastScrollTop && scrollDirection !== 'down') {
-          scrollDirection = 'down';
-          dE.classList.remove('s-scroll-direction-up');
-          dE.classList.add('s-scroll-direction-down');
-        } else if (sT < lastScrollTop && scrollDirection !== 'up') {
-          scrollDirection = 'up';
-          dE.classList.remove('s-scroll-direction-down');
-          dE.classList.add('s-scroll-direction-up');
         }
       }
       lastScrollTop = sT;
