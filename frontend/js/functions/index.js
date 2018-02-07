@@ -8,3 +8,4 @@ export { default as ajaxPageLoadMaskToggle } from './ajaxPageLoadMaskToggle';
 export { default as findAncestorByTagName } from './findAncestorByTagName';
 export { default as ajaxableLink } from './ajaxableLink';
 export { default as loadProgressBar } from './loadProgressBar';
+export { default as setScrollDirection } from './setScrollDirection';

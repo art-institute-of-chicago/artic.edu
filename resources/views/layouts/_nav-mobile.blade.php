@@ -2,20 +2,22 @@
   <div class="g-nav-mobile__inner">
     <div class="g-nav-mobile__container">
       <div class="g-header">
-        <a class="g-header__logo" href="/">
-          <svg aria-title="Art Institute of Chicago">
-            <use xlink:href="#icon--logo--80" />
-            <use xlink:href="#icon--logo--88" />
-            <use xlink:href="#icon--logo--92" />
-          </svg>
-        </a>
-        <nav class="g-header__nav-primary">
-          <ul class="f-secondary">
-            <li class='u-hide@small+'><a href="#">Buy Tickets</a></li>
-            <li><a href="#">Visit</a></li>
-          </ul>
-        </nav>
-      </div>
+        <div class="g-header__inner">
+            <a class="g-header__logo" href="/">
+              <svg aria-title="Art Institute of Chicago">
+                <use xlink:href="#icon--logo--80" />
+                <use xlink:href="#icon--logo--88" />
+                <use xlink:href="#icon--logo--92" />
+              </svg>
+            </a>
+            <nav class="g-header__nav-primary">
+              <ul class="f-secondary">
+                <li class='u-hide@small+'><a href="#">Buy Tickets</a></li>
+                <li><a href="#">Visit</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
 
       <div class="g-nav-mobile__search">
         <form action="/">

@@ -38,10 +38,6 @@
   color: $color__text--title-contrast;
 }
 
-.g-nav-mobile .g-header {
-  position: relative;
-}
-
 .g-nav-mobile__search {
   @include background-fill();
   position: relative;
@@ -115,6 +111,7 @@
   position: absolute;
   right: 3px;
   top: 16px;
+  transition: transform 0.1s ease-in-out;
 }
 
 .g-nav-mobile__nav .g-nav-mobile__nav--muted {
@@ -127,7 +124,7 @@
 }
 
 .g-nav-mobile__nav .g-nav-mobile__back {
-  @extend %f-tag;
+  @extend %f-tag-2;
   @include untuck;
   position: relative;
   margin-right: - map-get($outer-gutters, 'xsmall');
@@ -211,6 +208,7 @@
 .g-footer-nav__expander-trigger.nav-is-open .icon--arrow {
   right: map-get($outer-gutters, 'xsmall');
   margin-right: 3px;
+  transform: rotate(-90deg);
 }
 
 .g-nav-mobile__expander,
@@ -256,4 +254,28 @@
 
 .nav-is-open + .g-nav-mobile__subnav {
   transform: translateX(0);
+}
+
+
+.g-nav-mobile .g-header {
+  position: relative;
+  transform: translateY(0);
+
+  @supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0)) {
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+  }
+}
+
+.g-nav-mobile .g-header__inner {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.g-nav-mobile .g-header__logo {
+  color: $color__grey--100;
+}
+
+.g-nav-mobile .g-header__logo:hover {
+  color: $color__red--100;
 }

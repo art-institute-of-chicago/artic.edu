@@ -1,17 +1,15 @@
 .g-header {
-  position: absolute;
+  position: fixed;
   z-index: map-get($zindexs, 'header');
   left: 0;
   right: 0;
   top: 0;
-  height: 112px;
+  background-color: rgba(255,255,255,0.9);
+  transition: transform 0.3s ease-in-out;
 
-  @include breakpoint('small+') {
-    height: 128px;
-  }
-
-  @include breakpoint('medium+') {
-    height: 140px;
+  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
   }
 }
 
@@ -27,6 +25,20 @@
   @include breakpoint('small+') {
     left: 0;
     right: 0;
+  }
+}
+
+.g-header__inner {
+  @extend %container;
+  position: relative;
+  height: 112px;
+
+  @include breakpoint('small+') {
+    height: 128px;
+  }
+
+  @include breakpoint('medium+') {
+    height: 140px;
   }
 }
 
@@ -114,7 +126,7 @@
   bottom: 13px;
 
   @include breakpoint('small+') {
-    bottom: 16px;
+    bottom: 20px;
   }
 }
 

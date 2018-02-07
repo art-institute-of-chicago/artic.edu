@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery } from 'a17-helpers';
 import * as Behaviors from './behaviors';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar } from './functions';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection } from './functions';
 
 /*
 
@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function(){
   loadProgressBar();
   // on resize, check
   resized();
+
+  // handle sticky header and articleBodyInViewport
+  setScrollDirection();
 });
 
 // make console.log safe
