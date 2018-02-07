@@ -47,9 +47,10 @@
 
 .dropdown {
   display: inline-block;
+  position: relative;
 }
 
-.dropdown > button {
+.dropdown__trigger {
   display: block;
   position: relative;
   min-width: 180px;
@@ -67,11 +68,11 @@
   overflow: hidden;
 }
 
-.dropdown > button[class*=f-] {
+.dropdown__trigger[class*=f-] {
   @include untuck;
 }
 
-.dropdown > button.f-secondary {
+.dropdown__trigger.f-secondary {
   padding-top: 11px;
   padding-bottom: 9px;
 
@@ -81,18 +82,18 @@
   }
 }
 
-.dropdown > button:hover {
+.dropdown__trigger:hover {
   border-color: $color__input-border--hover;
   color: $color__input-text--hover;
 }
 
-.dropdown > button:focus,
-.dropdown > button:active {
+.dropdown__trigger:focus,
+.dropdown__trigger:active {
   border-color: $color__input-border--focus;
   color: $color__input-text--focus;
 }
 
-.dropdown > button > .icon--arrow {
+.dropdown__trigger > .icon--arrow {
   position: absolute;
   right: 16px;
   top: 50%;
@@ -101,19 +102,20 @@
   transform-origin: 8px 8px;
 }
 
-.dropdown.s-active > button > .icon--arrow {
+.dropdown.s-active .dropdown__trigger > .icon--arrow {
   transform: rotate(90deg) scaleX(-1);
 }
 
-.dropdown > ul {
+.dropdown__list {
   @include untuck;
   @extend %styled-scrollbars;
   display: none;
   position: absolute;
   z-index: map-get($zindexs, 'dropdown');
+  max-width: 90vw;
   left: -999px;
   top: -999px;
-  max-width: 90vw;
+  min-width: 100%;
   max-height: 220px;
   margin-top: 0;
   background-color: $color__white;
@@ -122,19 +124,25 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.dropdown.s-active > ul {
-  display: block;
+.dropdown__list.js-positioned {
+  @include breakpoint('xsmall') {
+    left: 50vw !important;
+    width: colspan(58, 'xsmall');
+    min-width: colspan(58, 'xsmall');
+    max-width: colspan(58, 'xsmall');
+    margin-left: colspan(29, 'xsmall', 0, true);
+  }
 }
 
-.dropdown > ul > li:not(:first-child) {
+.dropdown__list > li:not(:first-child) {
   border-top: 1px solid $color__rules--tertiary;
 }
 
-.dropdown > ul > li.s-hidden {
+.dropdown__list > li.s-hidden {
   display: none;
 }
 
-.dropdown > ul a:not([class]) {
+.dropdown__list a:not([class]) {
   display: block;
   padding: 10px 16px;
   background-color: $color__white;
@@ -142,9 +150,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   text-decoration: none;
+  overflow: hidden;
 }
 
-.dropdown > ul.f-secondary a:not([class]) {
+.dropdown__list.f-secondary a:not([class]) {
   padding-top: 11px;
   padding-bottom: 12px;
 
@@ -154,17 +163,17 @@
   }
 }
 
-.dropdown > ul a:not([class]):hover {
+.dropdown__list a:not([class]):hover {
   background-color: $color__bg--secondary;
   color: $color__text--title;
 }
 
-.dropdown > ul a:not([class]):active {
+.dropdown__list a:not([class]):active {
   background-color: $color__bg--primary;
   color: $color__text--title;
 }
 
-.dropdown > ul .s-active a:not([class]) {
+.dropdown__list .s-active a:not([class]) {
   background-color: $color__black--90;
   color: $color__text--title-contrast;
 }
@@ -172,7 +181,7 @@
 
 // variation `dropdown--filter`
 
-.dropdown--filter > button {
+.dropdown--filter .dropdown__trigger {
   min-width: 0;
   height: auto;
   padding-top: 0;
@@ -184,18 +193,18 @@
   color: $color__link;
 }
 
-.dropdown--filter > button:hover {
+.dropdown--filter .dropdown__trigger:hover {
   color: $color__link--hover;
 }
 
-.dropdown--filter > button:active {
+.dropdown--filter .dropdown__trigger:active {
   color: $color__link--active;
 }
 
-.dropdown--filter > button > .icon--arrow {
+.dropdown--filter .dropdown__trigger > .icon--arrow {
   right: 0;
 }
 
-.dropdown--filter.s-active > button > .icon--arrow {
+.dropdown--filter.s-active .dropdown__trigger > .icon--arrow {
   transform: rotate(90deg);
 }

@@ -721,15 +721,14 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
     @slot('ariaTitle', 'Filter by')
     @slot('options', array(array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
   @endcomponent
-</div>
-<div style="margin-top: 20px;">
   @component('components.atoms._dropdown')
-    @slot('prompt', 'Dropdown filter')
-    @slot('variation', 'dropdown--filter')
-    @slot('ariaTitle', 'Sort by')
-    @slot('options', array(array('href' => '#', 'label' => 'Dropdown', 'active' => true), array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
+    @slot('prompt', 'Dropdown')
+    @slot('ariaTitle', 'Filter by')
+    @slot('options', array(array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
   @endcomponent
-</div>{{--
+</div>
+<p class="f-body">If the dropdown is in a m-links bar, add variation <code>dropdown--filter</code></p>
+{{--
 <div style="margin-top: 20px;">
   @component('components.atoms._dropdown')
     @slot('prompt', 'Dropdown filter hoverable')

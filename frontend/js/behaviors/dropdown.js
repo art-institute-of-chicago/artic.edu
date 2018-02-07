@@ -1,14 +1,12 @@
-import { purgeProperties, setFocusOnTarget, triggerCustomEvent, getOffset } from 'a17-helpers';
+import { purgeProperties, setFocusOnTarget, triggerCustomEvent } from 'a17-helpers';
+import { positionElementToTarget } from '../functions';
 
 const dropdown = function(container) {
 
   let active = false;
   let allow = true;
   let $list;
-  let hoverable = (container.getAttribute('data-dropdown-hoverable') !== null);
-  let hovered = false;
-  let hoverTimer;
-  const hoverIntentTime = 250;
+  let $listClone;
 
   /*
       Find a html element's position.
@@ -44,16 +42,29 @@ const dropdown = function(container) {
     if (event) {
       event.stopPropagation();
     }
-    var scrollLeft = _findScrollLeft(container);
-    if (container.classList.contains('dropdown--filter')) {
-      $list.style.top = Math.round(container.offsetTop - 4) + 'px';
-      $list.style.left = Math.round(container.offsetLeft - scrollLeft - 17) + 'px';
-      $list.style.minWidth = Math.round(container.offsetWidth + 32) + 'px';
-    } else {
-      $list.style.top = Math.round(container.offsetTop) + 'px';
-      $list.style.left = Math.round(container.offsetLeft + container.offsetWidth + 20 - scrollLeft) + 'px';
-      $list.style.minWidth = Math.round(container.offsetWidth) + 'px';
+    $listClone = $list.cloneNode(true);
+    let minWidth = Math.round(container.offsetWidth);
+    let top = 0;
+    let left = 0;
+    document.body.appendChild($listClone);
+    if (A17.currentMediaQuery === 'xsmall') {
+      left = 'auto';
     }
+    if (container.classList.contains('dropdown--filter')) {
+      minWidth = Math.round(container.offsetWidth + 32);
+      top = Math.round(container.offsetHeight * -1);
+      left = -16;
+    }
+    $listClone.style.minWidth = minWidth + 'px';
+    $listClone.style.display = 'block';
+    positionElementToTarget({
+      element: $listClone,
+      target: container,
+      padding: {
+        left: left,
+        top: top
+      }
+    });
     container.classList.add('s-active');
     setFocusOnTarget(container.querySelector('ul'));
     triggerCustomEvent(document, 'dropdown:closed', { el: container });
@@ -86,6 +97,8 @@ const dropdown = function(container) {
       }
     }
     container.classList.remove('s-active');
+    document.body.removeChild($listClone);
+    $listClone = null;
     triggerCustomEvent(document, 'dropdown:closed', { el: container });
     active = false;
   }
@@ -132,30 +145,6 @@ const dropdown = function(container) {
     }
   }
 
-  function _mouseEnter() {
-    if (hovered) {
-      _open();
-    } else {
-      if (hoverTimer) {
-        clearTimeout(hoverTimer);
-      }
-      hoverTimer = setTimeout(function(){
-        hovered = true;
-        _open();
-      }, hoverIntentTime);
-    }
-  }
-
-  function _mouseLeave() {
-    if (hoverTimer) {
-      clearTimeout(hoverTimer);
-    }
-    hoverTimer = setTimeout(function(){
-      hovered = false;
-      _close();
-    }, hoverIntentTime);
-  }
-
   function _init() {
     container.setAttribute('tabindex','0');
     $list = container.querySelector('[data-dropdown-list]');
@@ -166,10 +155,6 @@ const dropdown = function(container) {
     document.addEventListener('touchend', _touchend, false);
     container.addEventListener('dropdown:open', _open, false);
     container.addEventListener('dropdown:close', _close, false);
-    if (hoverable) {
-      container.addEventListener('mouseenter', _mouseEnter, false);
-      container.addEventListener('mouseleave', _mouseLeave, false);
-    }
   }
 
   this.destroy = function() {
@@ -180,10 +165,6 @@ const dropdown = function(container) {
     document.removeEventListener('touchend', _touchend);
     container.removeEventListener('dropdown:open', _open);
     container.removeEventListener('dropdown:close', _close);
-    if (hoverable) {
-      container.removeEventListener('mouseenter', _mouseEnter);
-      container.removeEventListener('mouseleave', _mouseLeave);
-    }
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);

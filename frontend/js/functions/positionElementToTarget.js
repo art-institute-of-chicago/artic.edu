@@ -20,15 +20,21 @@ const positionElementToTarget = function(options) {
   let targetBoundingClientRect = target.getBoundingClientRect();
   let elementBoundingClientRect = element.getBoundingClientRect();
   let sT = document.documentElement.scrollTop || document.body.scrollTop;
-  let left = targetBoundingClientRect.left + padding.left - a17BoundingClientRect.left;
+  let left = 0;
   let top = targetBoundingClientRect.top + targetBoundingClientRect.height + sT + padding.top;
 
-  if (position.indexOf('center') > -1) {
-    left += ((targetBoundingClientRect.width / 2) - (elementBoundingClientRect.width / 2) - padding.left);
-  }
+  if (padding.left !== 'auto') {
+    left = targetBoundingClientRect.left + padding.left - a17BoundingClientRect.left;
+    // ??
+    left = targetBoundingClientRect.left + padding.left;
 
-  if (position.indexOf('right') > -1) {
-    left += targetBoundingClientRect.width;
+    if (position.indexOf('center') > -1) {
+      left += ((targetBoundingClientRect.width / 2) - (elementBoundingClientRect.width / 2) - padding.left);
+    }
+
+    if (position.indexOf('right') > -1) {
+      left += targetBoundingClientRect.width;
+    }
   }
 
   if (position.indexOf('top') > -1) {
@@ -40,18 +46,22 @@ const positionElementToTarget = function(options) {
     top = targetBoundingClientRect.top + targetBoundingClientRect.height + sT + padding.top;
   }
 
-  if (left + elementBoundingClientRect.width > window.innerWidth) {
-    left -= 20;
-    while (left + elementBoundingClientRect.width > window.innerWidth) {
+  if (padding.left !== 'auto') {
+    if (left + elementBoundingClientRect.width > window.innerWidth) {
       left -= 20;
+      while (left + elementBoundingClientRect.width > window.innerWidth) {
+        left -= 20;
+      }
+    } else if (left < padding.left) {
+      left = padding.left;
     }
-  } else if (left < padding.left) {
-    left = padding.left;
   }
 
   element.classList.add('js-positioned');
   if (!breakpoints || (breakpoints && breakpoints[A17.currentMediaQuery])) {
-    element.style.left = Math.round(left) + 'px';
+    if (padding.left !== 'auto') {
+      element.style.left = Math.round(left) + 'px';
+    }
     element.style.top = Math.round(top) + 'px';
   } else {
     element.style.left = '';
