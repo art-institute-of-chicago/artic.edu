@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\EventRepository;
 use A17\CmsToolkit\Http\Controllers\Front\Controller;
+use App\Models\Page;
 
 class EventController extends Controller
 {

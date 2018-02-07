@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Api\ExhibitionRepository;
 use A17\CmsToolkit\Http\Controllers\Front\Controller;
+use App\Models\Page;
 
 class ExhibitionController extends Controller
 {
@@ -14,6 +15,18 @@ class ExhibitionController extends Controller
         $this->apiRepository = $repository;
 
         parent::__construct();
+    }
+
+    public function index()
+    {
+        $page = Page::forType('Exhibitions and Events')->first();
+
+        var_dump($page);
+        die();
+
+        return view('site.exhibitions', [
+            'page' => $page
+        ]);
     }
 
     public function show($id)

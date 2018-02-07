@@ -16,6 +16,15 @@ class ArticleController extends Controller
         parent::__construct();
     }
 
+    public function index()
+    {
+        $page = Page::forType('Articles')->first();
+
+        return view('site.articles', [
+            'page' => $page
+        ]);
+    }
+
     public function show($id)
     {
         $item = $this->repository->getById($id);
