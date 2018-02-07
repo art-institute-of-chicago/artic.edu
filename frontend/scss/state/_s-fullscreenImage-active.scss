@@ -8,13 +8,21 @@
     overflow: hidden;
   }
 
+  #a17 {
+    filter: blur(3px);
+  }
+
   .o-fullscreen-image {
-    display: block;
+    height: calc(100vh - 80px);
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .g-mask {
     right: 0;
     bottom: 0;
     opacity: 1;
+    background-color: rgba($color__black--80, .5);
   }
 }

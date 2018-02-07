@@ -12,7 +12,7 @@ const sharePage = function(container) {
       target: container,
       position: 'top left',
       padding: {
-        top: 20
+        top: 12
       },
       breakpoints: {
         xsmall: false,

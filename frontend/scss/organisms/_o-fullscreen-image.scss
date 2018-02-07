@@ -1,17 +1,22 @@
 
 .o-fullscreen-image {
-  display: none;
   position: fixed;
   z-index: map-get($zindexs, 'fullscreenImage');
   left: 50%;
   top: 50%;
-  width: 100vw;
+  width: calc(100vw - 80px);
   max-width: 1280px;
-  height: 100vh;
+  height: calc(100vh - 80px);
+    height: 0; // for animation
   max-height: 1024px;
+  border-radius: $border-radius;
   background-color: $color__black--80;
   overflow: hidden;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(.75);
+  opacity: 0;
+  transition: opacity .15s, transform .15s;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .o-fullscreen-image img {
@@ -55,8 +60,8 @@
 
   @include breakpoint('small+') {
     left: auto;
-    right: 40px;
-    bottom: 40px;
+    right: 32px;
+    bottom: 32px;
   }
 
   .s-dragging ~ & {
@@ -98,7 +103,7 @@
   }
 
   @include breakpoint('small+') {
-    right: 40px;
-    top: 40px;
+    right: 32px;
+    top: 32px;
   }
 }

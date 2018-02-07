@@ -28,9 +28,9 @@
       </li>
     </ul>
     @component('components.atoms._btn')
-        @slot('variation', 'btn--septenary btn--icon-sq o-fullscreen-image__close')
+        @slot('variation', 'btn--octonary btn--icon btn--icon-circle-48 o-fullscreen-image__close')
         @slot('font', '')
-        @slot('icon', 'icon--close')
+        @slot('icon', 'icon--close--24')
         @slot('dataAttributes', 'data-fullscreen-close')
     @endcomponent
 </div>

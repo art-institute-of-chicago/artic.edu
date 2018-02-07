@@ -157,13 +157,47 @@
 
   &:hover,
   &:focus:hover {
-    background-color: rgba($color__black, .75);
+    background-color: rgba($color__black, .6);
     color: $color__white;
   }
 
   &:active:hover {
-    background-color: rgba($color__black, .5);
+    background-color: rgba($color__black, .7);
     color: $color__white;
+  }
+
+  &.btn:disabled,
+  &.btn:disabled:hover,
+  &.btn:disabled:focus:hover,
+  &.btn:disabled:active:hover {
+    background-color: rgba($color__black, .5);
+    color: rgba($color__white, .2);
+    opacity: 1;
+  }
+}
+
+.btn--octonary {
+  background-color: rgba($color__black, .2);
+  color: $color__white;
+
+  &:hover,
+  &:focus:hover {
+    background-color: rgba($color__black, .3);
+    color: $color__white;
+  }
+
+  &:active:hover {
+    background-color: rgba($color__black, .4);
+    color: $color__white;
+  }
+
+  &.btn:disabled,
+  &.btn:disabled:hover,
+  &.btn:disabled:focus:hover,
+  &.btn:disabled:active:hover {
+    background-color: rgba($color__black, .2);
+    color: rgba($color__white, .2);
+    opacity: 1;
   }
 }
 
