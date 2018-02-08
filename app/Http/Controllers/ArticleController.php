@@ -25,9 +25,12 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $item = $this->repository->getById($id);
+        $item = $this->repository->forSlug($slug);
+        if (empty($item)) {
+            $item = $this->repository->getById($slug);
+        }
 
         return view('site.articleDetail', [
             'item' => $item

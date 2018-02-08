@@ -17,7 +17,7 @@ Route::name('events')->get('/events/{id}', 'EventController@show');
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');
-Route::name('articles')->get('/articles/{id}', 'ArticleController@show');
+Route::name('articles')->get('/articles/{slug}', 'ArticleController@show');
 
 // Exhibition routes
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionController@index');
