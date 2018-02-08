@@ -1,22 +1,28 @@
 
 .o-fullscreen-image {
+  display: none;
   position: fixed;
   z-index: map-get($zindexs, 'fullscreenImage');
-  left: 50%;
-  top: 50%;
-  width: calc(100vw - 80px);
-  max-width: 1280px;
-  height: calc(100vh - 80px);
-    height: 0; // for animation
-  max-height: 1024px;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
   border-radius: $border-radius;
   background-color: $color__black--80;
   overflow: hidden;
-  transform: translate(-50%, -50%) scale(.75);
+  transform: scale(.85);
   opacity: 0;
-  transition: opacity .15s, transform .15s;
+  transition: opacity .1s, transform .15s $bezier--bounce;
   overflow: hidden;
-  pointer-events: none;
+
+  @media screen and (min-width: 1280px) and (min-height: 1024px) {
+    left: 50%;
+    top: 50%;
+    width: 1280px - 80px;
+    height: 1024px - 80px;
+    margin-top: (1024px - 80px)/-2;
+    margin-left: (1280px - 80px)/-2;
+  }
 }
 
 .o-fullscreen-image img {

@@ -78,3 +78,16 @@ $grid-padding-tops: (
   large: 1.5,
   xlarge: 1.5,
 );
+
+
+
+@keyframes reveal {
+  0% {
+    transform: scale(.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

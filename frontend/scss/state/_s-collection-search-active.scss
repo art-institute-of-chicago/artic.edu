@@ -8,6 +8,13 @@
     overflow: hidden;
   }
 
+  #a17 > *:not(#content),
+  .o-collection-listing > *:not(.o-collection-search) {
+    @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+      filter: blur(5px);
+    }
+  }
+
   .o-collection-search {
     display: block;
   }
@@ -16,5 +23,10 @@
     right: 0;
     bottom: 0;
     opacity: 1;
+
+    @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+    }
   }
 }

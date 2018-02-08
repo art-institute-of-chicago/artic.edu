@@ -132,6 +132,8 @@ const search = function(container) {
       closeTrigger.addEventListener('click', _close, false);
     });
 
+    document.addEventListener('search:close', _close, false);
+
     textInput.addEventListener('input', _handleInput, false);
     textInput.addEventListener('propertychange', _handleInput, false);
 

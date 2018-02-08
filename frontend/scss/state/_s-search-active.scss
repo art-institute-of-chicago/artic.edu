@@ -8,17 +8,28 @@
     overflow: hidden;
   }
 
+  #a17 {
+    @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+      filter: blur(5px);
+    }
+  }
+
   .g-search {
-    opacity: 1;
     visibility: visible;
-    transition: opacity .2s $bezier--ease-in-out;
+    transform: translateY(0%);
+    transition: transform .2s $bezier--ease-in-out;
   }
 
   .g-mask {
     right: 0;
     bottom: 0;
     opacity: 1;
-    background-color: rgba(255,255,255,0.95);
+    background-color: rgba(255,255,255,.5);
+
+    @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+    }
   }
 }
 
@@ -32,7 +43,7 @@
   }
 
   .g-mask {
-    // background-color: rgba($color__black--90, 0.96);
+    background-color: rgba(0,0,0,0);
   }
 }
 

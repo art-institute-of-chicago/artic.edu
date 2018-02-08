@@ -2,7 +2,6 @@
   @extend %container;
   position: relative;
   padding-top: 112px;
-  will-change: filter;
 
   @include breakpoint('small+') {
     padding-top: 128px;

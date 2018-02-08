@@ -44,19 +44,20 @@
 
 
 .m-calendar {
-  display: none;
   position: absolute;
   z-index: map-get($zindexs, 'calendar');
   flex-flow: column nowrap;
   background-color: $color__white;
+}
+
+.m-calendar:not(.m-calendar--inline) {
+  display: none;
   box-shadow: $shadow;
 }
 
 .m-calendar--inline {
-  display: block;
   position: relative;
   border: 1px solid $color__rules--primary;
-  box-shadow: none;
 }
 
 .m-calendar a {

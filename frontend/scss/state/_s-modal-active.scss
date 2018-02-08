@@ -9,15 +9,14 @@
   }
 
   .g-modal {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity .2s $bezier--ease-in-out;
+    display: table;
+    animation: reveal .2s $bezier--bounce normal forwards;
   }
 
   .g-mask {
     right: 0;
     bottom: 0;
     opacity: 1;
-    background-color: rgba($color__black--80,0.5);
+    background-color: rgba($color__black--80, .5);
   }
 }

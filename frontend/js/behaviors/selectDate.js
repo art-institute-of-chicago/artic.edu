@@ -32,6 +32,7 @@ const selectDate = function(container) {
     if (calendarOpen) {
       document.documentElement.classList.remove('s-calendar-active');
       triggerCustomEvent(document, 'body:unlock');
+      calendar.classList.remove('js-positioned');
       calendar.removeAttribute('style');
       triggerCustomEvent(document, 'focus:untrap');
       setFocusOnTarget(container.parentNode);
@@ -134,7 +135,7 @@ const selectDate = function(container) {
 
   function _init() {
     opener.addEventListener('click', _openCalendar, false);
-     container.addEventListener('calendar:dateSelected', _dateSelected, false);
+    container.addEventListener('calendar:dateSelected', _dateSelected, false);
     container.addEventListener('calendar:datesSelected', _datesSelected, false);
     document.addEventListener('selectDate:close', _closeCalendar, false);
     document.addEventListener('click', _clicksOutside, false);

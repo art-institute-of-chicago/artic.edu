@@ -8,5 +8,6 @@
 
   .info-button-info {
     display: block;
+    animation: reveal .2s $bezier--bounce normal forwards;
   }
 }

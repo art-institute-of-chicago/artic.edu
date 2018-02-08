@@ -9,20 +9,30 @@
   }
 
   #a17 {
-    filter: blur(3px);
+    @media screen and (min-width: 1280px) and (min-height: 1024px) {
+      @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+        filter: blur(5px);
+      }
+    }
   }
 
   .o-fullscreen-image {
-    height: calc(100vh - 80px);
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-    pointer-events: auto;
+    display: block;
+    animation: reveal .2s normal forwards;
   }
 
   .g-mask {
     right: 0;
     bottom: 0;
-    opacity: 1;
-    background-color: rgba($color__black--80, .5);
+
+    @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+    }
+
+    @media screen and (min-width: 1280px) and (min-height: 1024px) {
+      opacity: 1;
+      background-color: rgba($color__black--80, .5);
+    }
   }
 }
