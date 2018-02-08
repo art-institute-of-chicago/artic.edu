@@ -10,7 +10,7 @@
     @component('components.atoms._date')
         {{ date('M j, Y', intval($dateStart)) }} &ndash; {{ date('M j, Y', intval($dateEnd)) }}
     @endcomponent
-  @elseif (isset($date))
+  @elseif (!empty($date))
     @component('components.atoms._date')
         @slot('tag','p')
         {{ $date->format('F j, Y') }}

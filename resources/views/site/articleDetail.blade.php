@@ -11,7 +11,7 @@
     @slot('title', $item->title)
     @slot('date', $item->date)
     @slot('type', $item->type)
-    @slot('intro', $item->copy)
+    @slot('intro', $item->heading)
     @slot('img', $item->headerImage)
     @slot('galleryImages', $item->galleryImages)
     @slot('nextArticle', $item->nextArticle)
