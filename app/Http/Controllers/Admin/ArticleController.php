@@ -29,7 +29,7 @@ class ArticleController extends ModuleController
             'edit_link' => true,
             'sort' => true,
             'field' => 'date',
-            'present' => true
+            'present' => true,
         ],
     ];
 
@@ -42,7 +42,7 @@ class ArticleController extends ModuleController
     protected $formWithCount = ['revisions'];
     protected $defaultOrders = ['date' => 'desc'];
 
-    protected $previewView   = 'site.articleDetail';
+    protected $previewView = 'site.articleDetail';
 
     protected function indexData($request)
     {
@@ -54,7 +54,6 @@ class ArticleController extends ModuleController
         return [
             'categoriesList' => app(CategoryRepository::class)->listAll('name'),
             'articleLayoutsList' => $this->repository->getArticleLayoutsList(),
-            'baseUrl' => config('app.url') . '/articles/',
         ];
     }
 }
