@@ -11,7 +11,7 @@
     @slot('title', $item->title)
     @slot('date', $item->date)
     @slot('type', $item->type)
-    @slot('intro', $item->heading)
+    @slot('intro', $item->intro)
     @slot('img', $item->headerImage)
     @slot('galleryImages', $item->galleryImages)
     @slot('nextArticle', $item->nextArticle)
@@ -117,11 +117,11 @@
   </div>
   @endif
 
-  @if ($item->intro and $item->headerType !== 'super-hero')
+  @if ($item->heading and $item->headerType !== 'super-hero')
   <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
-        {{ $item->intro }}
+        {{ $item->heading }}
     @endcomponent
   </div>
   @endif
