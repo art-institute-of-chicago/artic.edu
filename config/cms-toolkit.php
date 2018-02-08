@@ -7,7 +7,6 @@ return [
 
     'frontend' => [
         'dev_assets_path' => '/dist',
-        'views_path' => 'site',
     ],
 
     'enabled' => [
@@ -17,6 +16,7 @@ return [
     ],
 
     'block_editor' => [
+        'block_single_layout' => 'layouts.block',
         'blocks' => [
             'text' => [
                 'title' => 'Text',
@@ -210,7 +210,7 @@ return [
                             'module' => 'articles',
                             'name' => 'Articles',
                             'scopes' => ['published' => true],
-                        ]
+                        ],
                     ],
                     'max_items' => 2,
                 ],
@@ -226,7 +226,7 @@ return [
                             'module' => 'selections',
                             'name' => 'Selections',
                             'scopes' => ['published' => true],
-                        ]
+                        ],
                     ],
                     'max_items' => 6,
                 ],
