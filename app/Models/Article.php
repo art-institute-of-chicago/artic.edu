@@ -117,7 +117,8 @@ class Article extends Model
                 "doc" => "Copy",
                 "type" => "text",
                 "value" => function() { return $this->copy; }
-            ]
+            ],
+            
         ];
     }
 }

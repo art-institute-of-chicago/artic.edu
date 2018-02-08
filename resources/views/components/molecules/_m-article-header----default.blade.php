@@ -13,7 +13,8 @@
   @elseif (isset($date))
     @component('components.atoms._date')
         @slot('tag','p')
-        {{ date('F j, Y', intval($date)) }}
+        {{ $date->format('F j, Y') }}
+        {{-- {{ date('F j, Y', intval($date)) }} --}}
     @endcomponent
   @endif
   @if (isset($type))

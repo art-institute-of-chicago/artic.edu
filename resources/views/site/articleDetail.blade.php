@@ -2,49 +2,49 @@
 
 @section('content')
 
-<article class="o-article{{ ($article->articleType === 'editorial') ? ' o-article--editorial' : '' }}" data-behavior="internalLinksScroll">
+<article class="o-article{{ ($item->articleType === 'editorial') ? ' o-article--editorial' : '' }}" data-behavior="internalLinksScroll">
 
   @component('components.molecules._m-article-header')
-    @slot('editorial', ($article->articleType === 'editorial'))
-    @slot('headerType', ($article->headerType ?? null))
-    @slot('variation', ($article->headerVariation ?? null))
-    @slot('title', $article->title)
-    @slot('date', $article->date)
-    @slot('type', $article->type)
-    @slot('intro', $article->intro)
-    @slot('img', $article->headerImage)
-    @slot('galleryImages', $article->galleryImages)
-    @slot('nextArticle', $article->nextArticle)
-    @slot('prevArticle', $article->prevArticle)
+    @slot('editorial', ($item->articleType === 'editorial'))
+    @slot('headerType', ($item->headerType ?? null))
+    @slot('variation', ($item->headerVariation ?? null))
+    @slot('title', $item->title)
+    @slot('date', $item->date)
+    @slot('type', $item->type)
+    @slot('intro', $item->copy)
+    @slot('img', $item->headerImage)
+    @slot('galleryImages', $item->galleryImages)
+    @slot('nextArticle', $item->nextArticle)
+    @slot('prevArticle', $item->prevArticle)
   @endcomponent
 
-  <div class="o-article__primary-actions{{ ($article->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@large+' : '' }}">
-    @if ($article->articleType !== 'artwork')
+  <div class="o-article__primary-actions{{ ($item->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}{{ ($item->articleType === 'artwork') ? ' u-show@large+' : '' }}">
+    @if ($item->articleType !== 'artwork')
         @component('components.molecules._m-article-actions')
-            @slot('articleType', $article->articleType)
+            @slot('articleType', $item->articleType)
         @endcomponent
     @endif
 
-    @if ($article->author)
+    @if ($item->author)
         @component('components.molecules._m-author')
             @slot('variation', 'm-author---keyline-top')
-            @slot('editorial', ($article->articleType === 'editorial'))
-            @slot('img', $article->author['img'] ?? null);
-            @slot('name', $article->author['name'] ?? null);
-            @slot('link', $article->author['link'] ?? null);
-            @slot('date', $article->date ?? null);
+            @slot('editorial', ($item->articleType === 'editorial'))
+            @slot('img', $item->author['img'] ?? null);
+            @slot('name', $item->author['name'] ?? null);
+            @slot('link', $item->author['link'] ?? null);
+            @slot('date', $item->date ?? null);
         @endcomponent
     @endif
 
-    @if ($article->nav)
+    @if ($item->nav)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.molecules._m-link-list')
             @slot('variation', 'u-show@large+')
-            @slot('links', $article->nav);
+            @slot('links', $item->nav);
         @endcomponent
     @endif
 
-    @if ($article->onView)
+    @if ($item->onView)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.atoms._title')
             @slot('variation', 'u-show@large+')
@@ -56,118 +56,118 @@
             @slot('variation', 'u-show@large+')
             @slot('tag','p')
             @slot('font', 'f-secondary')
-            <a href="{{ $article->onView['href'] }}">{{ $article->onView['label'] }}</a>
+            <a href="{{ $item->onView['href'] }}">{{ $item->onView['label'] }}</a>
         @endcomponent
     @endif
   </div>
 
   {{-- dupe 😢 - hides xlarge+ --}}
-  @if ($article->nav)
+  @if ($item->nav)
   <div class="o-article__meta">
-    @if ($article->nav)
+    @if ($item->nav)
         @component('components.molecules._m-link-list')
-            @slot('links', $article->nav);
+            @slot('links', $item->nav);
         @endcomponent
     @endif
   </div>
   @endif
 
-  <div class="o-article__secondary-actions{{ ($article->headerType === 'gallery') ? ' o-article__secondary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@medium+' : '' }}">
-    @if ($article->articleType === 'exhibition')
+  <div class="o-article__secondary-actions{{ ($item->headerType === 'gallery') ? ' o-article__secondary-actions--inline-header' : '' }}{{ ($item->articleType === 'artwork') ? ' u-show@medium+' : '' }}">
+    @if ($item->articleType === 'exhibition')
         @component('components.molecules._m-ticket-actions----exhibition')
         @endcomponent
     @endif
 
-    @if ($article->articleType === 'event')
+    @if ($item->articleType === 'event')
         @component('components.molecules._m-ticket-actions----event')
-            @slot('ticketPrices', $article->ticketPrices);
-            @slot('ticketLink', $article->ticketLink);
+            @slot('ticketPrices', $item->ticketPrices);
+            @slot('ticketLink', $item->ticketLink);
         @endcomponent
     @endif
 
-    @if ($article->featuredRelated)
+    @if ($item->featuredRelated)
       {{-- dupe 😢 - shows medium+ --}}
       @component('components.blocks._inline-aside')
           @slot('variation', 'u-show@medium+')
-          @slot('type', $article->featuredRelated['type'])
-          @slot('items', $article->featuredRelated['items'])
-          @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
+          @slot('type', $item->featuredRelated['type'])
+          @slot('items', $item->featuredRelated['items'])
+          @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
       @endcomponent
     @endif
   </div>
 
-  @if ($article->headerType === 'gallery')
+  @if ($item->headerType === 'gallery')
   <div class="o-article__inline-header">
-    @if ($article->title)
+    @if ($item->title)
       @component('components.atoms._title')
           @slot('tag','h1')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
-          {{ $article->title }}
+          {{ $item->title }}
       @endcomponent
     @endif
-    @if ($article->subtitle)
+    @if ($item->subtitle)
       @component('components.atoms._title')
           @slot('tag','p')
           @slot('font', 'f-secondary')
           @slot('variation', 'o-article__inline-header-subtitle')
-          {{ $article->subtitle }}
+          {{ $item->subtitle }}
       @endcomponent
     @endif
   </div>
   @endif
 
-  @if ($article->intro and $article->headerType !== 'super-hero')
+  @if ($item->intro and $item->headerType !== 'super-hero')
   <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
-        {{ $article->intro }}
+        {{ $item->intro }}
     @endcomponent
   </div>
   @endif
 
-  @if ($article->featuredRelated)
+  @if ($item->featuredRelated)
   {{-- dupe 😢 - hidden medium+ --}}
   <div class="o-article__related">
     @component('components.blocks._inline-aside')
-        @slot('type', $article->featuredRelated['type'])
-        @slot('items', $article->featuredRelated['items'])
-        @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
+        @slot('type', $item->featuredRelated['type'])
+        @slot('items', $item->featuredRelated['items'])
+        @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
     @endcomponent
   </div>
   @endif
 
   <div class="o-article__body o-blocks" data-behavior="articleBodyInViewport">
     @component('components.blocks._blocks')
-        @slot('editorial', ($article->articleType === 'editorial'))
-        @slot('blocks', $article->blocks ?? null)
-        @slot('dropCapFirstPara', ($article->articleType === 'editorial'))
+        @slot('editorial', ($item->articleType === 'editorial'))
+        @slot('blocks', $item->blocks ?? null)
+        @slot('dropCapFirstPara', ($item->articleType === 'editorial'))
     @endcomponent
 
-    @if ($article->catalogues)
+    @if ($item->catalogues)
         @component('components.atoms._hr')
         @endcomponent
         @component('components.blocks._text')
             @slot('font', 'f-subheading-1')
             @slot('tag', 'h4')
-            Catalogue{{ sizeof($article->catalogues) > 1 ? 's' : '' }}
+            Catalogue{{ sizeof($item->catalogues) > 1 ? 's' : '' }}
         @endcomponent
-        @foreach ($article->catalogues as $catalogue)
+        @foreach ($item->catalogues as $catalogue)
             @component('components.molecules._m-download-file')
                 @slot('file', $catalogue)
             @endcomponent
         @endforeach
     @endif
 
-    @if ($article->pictures)
+    @if ($item->pictures)
         @component('components.atoms._hr')
         @endcomponent
         @component('components.blocks._text')
             @slot('font', 'f-subheading-1')
             @slot('tag', 'h4')
-            Picture{{ sizeof($article->pictures) > 1 ? 's' : '' }}
+            Picture{{ sizeof($item->pictures) > 1 ? 's' : '' }}
         @endcomponent
-        @foreach ($article->pictures as $picture)
+        @foreach ($item->pictures as $picture)
             @component('components.molecules._m-media')
                 @slot('variation', 'o-blocks__block')
                 @slot('item', $picture)
@@ -175,60 +175,60 @@
         @endforeach
     @endif
 
-    @if ($article->otherResources)
+    @if ($item->otherResources)
         @component('components.atoms._hr')
         @endcomponent
         @component('components.blocks._text')
             @slot('font', 'f-subheading-1')
             @slot('tag', 'h4')
-            Other Resource{{ sizeof($article->otherResources) > 1 ? 's' : '' }}
+            Other Resource{{ sizeof($item->otherResources) > 1 ? 's' : '' }}
         @endcomponent
         @component('components.molecules._m-link-list')
             @slot('variation', 'm-link-list--download')
-            @slot('links', $article->otherResources);
+            @slot('links', $item->otherResources);
         @endcomponent
     @endif
 
-    @if ($article->speakers)
+    @if ($item->speakers)
         @component('components.blocks._text')
             @slot('font', 'f-module-title-2')
             @slot('tag', 'h4')
-            Speaker{{ sizeof($article->speakers) > 1 ? 's' : '' }}
+            Speaker{{ sizeof($item->speakers) > 1 ? 's' : '' }}
         @endcomponent
-        @foreach ($article->speakers as $speaker)
+        @foreach ($item->speakers as $speaker)
             @component('components.molecules._m-row-block')
                 @slot('variation', 'm-row-block--inline-title m-row-block--keyline-top')
                 @slot('title', $speaker['title'] ?? null)
                 @slot('img', $speaker['img'] ?? null)
                 @slot('text', $speaker['text'] ?? null)
                 @slot('titleFont', 'f-subheading-1')
-                @slot('textFont', ($article->articleType === 'editorial') ? 'f-body-editorial' : 'f-body')
+                @slot('textFont', ($item->articleType === 'editorial') ? 'f-body-editorial' : 'f-body')
             @endcomponent
         @endforeach
     @endif
 
-    @if ($article->sponsors)
+    @if ($item->sponsors)
         @component('components.blocks._text')
             @slot('font', 'f-module-title-2')
             @slot('tag', 'h4')
             Sponsors
         @endcomponent
         @component('components.blocks._blocks')
-            @slot('editorial', ($article->articleType === 'editorial'))
-            @slot('blocks', $article->sponsors ?? null)
+            @slot('editorial', ($item->articleType === 'editorial'))
+            @slot('blocks', $item->sponsors ?? null)
         @endcomponent
     @endif
 
-    @if ($article->futherSupport)
+    @if ($item->futherSupport)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top')
-            @slot('title', $article->futherSupport['title'] ?? null)
-            @slot('img', $article->futherSupport['logo'] ?? null)
-            @slot('text', $article->futherSupport['text'] ?? null)
+            @slot('title', $item->futherSupport['title'] ?? null)
+            @slot('img', $item->futherSupport['logo'] ?? null)
+            @slot('text', $item->futherSupport['text'] ?? null)
         @endcomponent
     @endif
 
-    @if ($article->citation)
+    @if ($item->citation)
         @component('components.atoms._hr')
         @endcomponent
         @component('components.blocks._text')
@@ -238,11 +238,11 @@
         @endcomponent
         @component('components.blocks._text')
             @slot('font', 'f-secondary')
-            {{ $article->citation }}
+            {{ $item->citation }}
         @endcomponent
     @endif
 
-    @if ($article->references)
+    @if ($item->references)
         @component('components.organisms._o-accordion')
             @slot('variation', 'o-accordion--section')
             @slot('items', array(
@@ -252,7 +252,7 @@
                     'blocks' => array(
                         array(
                             "type" => 'references',
-                            "items" => $article->references
+                            "items" => $item->references
                         ),
                     ),
                 ),
@@ -261,7 +261,7 @@
         @endcomponent
     @endif
 
-    @if ($article->topics)
+    @if ($item->topics)
         @component('components.atoms._hr')
         @endcomponent
         @component('components.blocks._text')
@@ -270,7 +270,7 @@
             Topics
         @endcomponent
         <ul class="m-inline-list">
-        @foreach ($article->topics as $topic)
+        @foreach ($item->topics as $topic)
             <li class="m-inline-list__item"><a class="tag f-tag" href="{{ $topic['href'] }}">{{ $topic['label'] }}</a></li>
         @endforeach
         </ul>
@@ -278,7 +278,7 @@
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
-        @slot('articleType', $article->articleType)
+        @slot('articleType', $item->articleType)
     @endcomponent
   </div>
 
@@ -290,7 +290,7 @@
 
 </article>
 
-@if ($article->comments)
+@if ($item->comments)
     @component('components.organisms._o-accordion')
         @slot('variation', 'o-accordion--section')
         @slot('items', array(
@@ -299,7 +299,7 @@
                 'blocks' => array(
                     array(
                         "type" => 'embed',
-                        "content" => $article->comments
+                        "content" => $item->comments
                     ),
                 ),
             ),
@@ -308,14 +308,14 @@
     @endcomponent
 @endif
 
-@if ($article->relatedEventsByDay)
+@if ($item->relatedEventsByDay)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => '#')))
         @slot('id', 'related_events')
         Related Events
     @endcomponent
     @component('components.organisms._o-row-listing')
-        @foreach ($article->relatedEventsByDay as $date)
+        @foreach ($item->relatedEventsByDay as $date)
             @component('components.molecules._m-date-listing')
                 @slot('date', $date)
             @endcomponent
@@ -327,10 +327,10 @@
     @endcomponent
 @endif
 
-@if ($article->relatedExhibitions)
+@if ($item->relatedExhibitions)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all exhibitions', 'href' => '#')))
-        {{ $article->relatedExhibitionsTitle ? $article->relatedExhibitionsTitle : "Related Exhibitions" }}
+        {{ $item->relatedExhibitionsTitle ? $item->relatedExhibitionsTitle : "Related Exhibitions" }}
     @endcomponent
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
@@ -338,7 +338,7 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($article->relatedExhibitions as $item)
+        @foreach ($item->relatedExhibitions as $item)
             @component('components.molecules._m-listing----exhibition')
                 @slot('item', $item)
             @endcomponent
@@ -346,7 +346,7 @@
     @endcomponent
 @endif
 
-@if ($article->relatedEvents)
+@if ($item->relatedEvents)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => '#')))
         Related Events
@@ -357,7 +357,7 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($article->relatedEvents as $item)
+        @foreach ($item->relatedEvents as $item)
             @component('components.molecules._m-listing----event')
                 @slot('item', $item)
             @endcomponent
@@ -365,7 +365,7 @@
     @endcomponent
 @endif
 
-@if ($article->relatedArticles)
+@if ($item->relatedArticles)
     @component('components.molecules._m-title-bar')
         Further Reading
     @endcomponent
@@ -375,7 +375,7 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($article->relatedArticles as $item)
+        @foreach ($item->relatedArticles as $item)
             @component('components.molecules._m-listing----article')
                 @slot('item', $item)
             @endcomponent
@@ -383,13 +383,13 @@
     @endcomponent
 @endif
 
-@if ($article->exploreFuther)
+@if ($item->exploreFuther)
     @component('components.molecules._m-title-bar')
         Explore Further
     @endcomponent
     @component('components.molecules._m-links-bar')
         @slot('variation', '')
-        @slot('linksPrimary', $article->exploreFuther['nav'])
+        @slot('linksPrimary', $item->exploreFuther['nav'])
     @endcomponent
     @component('components.atoms._hr')
         @slot('variation','hr--flush-top')
@@ -400,7 +400,7 @@
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
         @slot('maintainOrder','false')
-        @foreach ($article->exploreFuther['items'] as $item)
+        @foreach ($item->exploreFuther['items'] as $item)
             @component('components.molecules._m-listing----'.$item->type)
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
@@ -409,7 +409,7 @@
     @endcomponent
 @endif
 
-@if ($article->recentlyViewedArtworks)
+@if ($item->recentlyViewedArtworks)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'Clear your history', 'href' => '#')))
         Recently Viewed
@@ -418,10 +418,10 @@
     @endcomponent
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--scroll@large o-grid-listing--scroll@xlarge  o-grid-listing--gridlines-cols')
-        @slot('cols_large',(sizeof($article->recentlyViewedArtworks) > 6) ? '12' : '6')
-        @slot('cols_xlarge',(sizeof($article->recentlyViewedArtworks) > 6) ? '12' : '6')
+        @slot('cols_large',(sizeof($item->recentlyViewedArtworks) > 6) ? '12' : '6')
+        @slot('cols_xlarge',(sizeof($item->recentlyViewedArtworks) > 6) ? '12' : '6')
         @slot('behavior','dragScroll')
-        @foreach ($article->recentlyViewedArtworks as $item)
+        @foreach ($item->recentlyViewedArtworks as $item)
             @component('components.molecules._m-listing----artwork-minimal')
                 @slot('item', $item)
             @endcomponent
@@ -431,12 +431,12 @@
     @endcomponent
 @endif
 
-@if ($article->interestedThemes)
+@if ($item->interestedThemes)
     @php
         $themeString = 'It seems it you could also be interested in ';
-        $themesLength = sizeof($article->interestedThemes);
+        $themesLength = sizeof($item->interestedThemes);
         $themesIndex = 1;
-        foreach ($article->interestedThemes as $theme) {
+        foreach ($item->interestedThemes as $theme) {
             if ($themesIndex > 1 && $themesIndex < $themesLength) {
                 $themeString .= ', ';
             }

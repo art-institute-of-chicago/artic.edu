@@ -42,6 +42,8 @@ class ArticleController extends ModuleController
     protected $formWithCount = ['revisions'];
     protected $defaultOrders = ['date' => 'desc'];
 
+    protected $previewView   = 'site.articleDetail';
+
     protected function indexData($request)
     {
         return [];
@@ -51,7 +53,8 @@ class ArticleController extends ModuleController
     {
         return [
             'categoriesList' => app(CategoryRepository::class)->listAll('name'),
-            'articleLayoutsList' => $this->repository->getArticleLayoutsList()
+            'articleLayoutsList' => $this->repository->getArticleLayoutsList(),
+            'baseUrl' => config('app.url') . '/articles/',
         ];
     }
 }

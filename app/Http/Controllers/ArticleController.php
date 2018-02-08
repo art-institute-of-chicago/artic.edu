@@ -30,7 +30,7 @@ class ArticleController extends Controller
         $item = $this->repository->getById($id);
 
         return view('site.articleDetail', [
-            'article' => $item
+            'item' => $item
         ]);
     }
 
