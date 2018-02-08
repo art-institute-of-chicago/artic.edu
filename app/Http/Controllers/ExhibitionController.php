@@ -42,6 +42,7 @@ class ExhibitionController extends Controller
         die();
 
         return view('site.exhibitionDetail', [
+            'contrastHeader' => ($article->headerType === 'hero'),
             'article' => $item
         ]);
     }

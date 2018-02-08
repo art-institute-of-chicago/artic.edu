@@ -23,6 +23,9 @@ Route::name('articles')->get('/articles/{slug}', 'ArticleController@show');
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionController@index');
 Route::name('exhibitions')->get('/exhibitions/{id}', 'ExhibitionController@show');
 
+// Artwork routes
+Route::name('artworks')->get('/artworks/{id}', 'ArtworkController@show');
+
 // Exhibition history routes
 Route::resource('exhibitionHistory', 'ExhibitionHistoryController', ['only' => ['index', 'show']]);
 

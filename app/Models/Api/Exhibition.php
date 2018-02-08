@@ -16,24 +16,32 @@ class Exhibition extends BaseApiModel
         'search'     => '/api/v1/exhibitions/search'
     ];
 
-    // protected $casts = [
-    //     'start_at' => 'datetime'
-    // ];
+    protected $appends = ['date'];
 
     protected $augmented = true;
     protected $augmentedModelClass = 'App\Models\Exhibition';
 
-    protected $presenterAdmin      = 'App\Presenters\Admin\ExhibitionPresenter';
+    protected $presenter       = 'App\Presenters\Admin\ExhibitionPresenter';
+    protected $presenterAdmin  = 'App\Presenters\Admin\ExhibitionPresenter';
+
+    // Generates the id-slug type of URL
+    public function getRouteKeyName() {
+        return 'id_slug';
+    }
+
+    public function getIdSlugAttribute() {
+        return join(array_filter([$this->id, $this->getSlug()]), '-');
+    }
 
     // Solve this using casts. Because it returns an object it can't be used on the CMS
     // A value option could be added when showing
-    public function getStartAtAttribute($value) {
-        return $this->asDateTime($value)->format("Y-m-d h:m:s T");
-    }
+    // public function getStartAtAttribute($value) {
+    //     return $this->asDateTime($value)->format("Y-m-d h:m:s T");
+    // }
 
-    public function getEndAtAttribute($value) {
-        return $this->asDateTime($value)->format("Y-m-d h:m:s T");
-    }
+    // public function getEndAtAttribute($value) {
+    //     return $this->asDateTime($value)->format("Y-m-d h:m:s T");
+    // }
 
     public function artworks()
     {

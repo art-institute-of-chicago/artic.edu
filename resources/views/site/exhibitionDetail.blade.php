@@ -2,15 +2,15 @@
 
 @section('content')
 
-<article class="o-article{{ ($article->articleType === 'editorial') ? ' o-article--editorial' : '' }}" data-behavior="internalLinksScroll">
+<article class="o-article" data-behavior="internalLinksScroll">
 
   @component('components.molecules._m-article-header')
-    @slot('editorial', ($article->articleType === 'editorial'))
+    @slot('editorial', false)
     @slot('headerType', ($article->headerType ?? null))
     @slot('variation', ($article->headerVariation ?? null))
     @slot('title', $article->title)
-    @slot('date', $article->date)
-    @slot('type', $article->type)
+    @slot('date', $article->present()->date)
+    @slot('type', $article->present()->exhibitionType)
     @slot('intro', $article->intro)
     @slot('img', $article->headerImage)
     @slot('galleryImages', $article->galleryImages)
@@ -18,17 +18,16 @@
     @slot('prevArticle', $article->prevArticle)
   @endcomponent
 
-  <div class="o-article__primary-actions{{ ($article->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@large+' : '' }}">
-    @if ($article->articleType !== 'artwork')
-        @component('components.molecules._m-article-actions')
-            @slot('articleType', $article->articleType)
-        @endcomponent
-    @endif
+  <div class="o-article__primary-actions{{ ($article->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}>
+
+    @component('components.molecules._m-article-actions')
+        @slot('articleType', 'exhibition')
+    @endcomponent
 
     @if ($article->author)
         @component('components.molecules._m-author')
             @slot('variation', 'm-author---keyline-top')
-            @slot('editorial', ($article->articleType === 'editorial'))
+            @slot('editorial', false)
             @slot('img', $article->author['img'] ?? null);
             @slot('name', $article->author['name'] ?? null);
             @slot('link', $article->author['link'] ?? null);
@@ -72,18 +71,10 @@
   </div>
   @endif
 
-  <div class="o-article__secondary-actions{{ ($article->headerType === 'gallery') ? ' o-article__secondary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@medium+' : '' }}">
-    @if ($article->articleType === 'exhibition')
-        @component('components.molecules._m-ticket-actions----exhibition')
-        @endcomponent
-    @endif
+  <div class="o-article__secondary-actions{{ ($article->headerType === 'gallery') ? ' o-article__secondary-actions--inline-header' : '' }}">
 
-    @if ($article->articleType === 'event')
-        @component('components.molecules._m-ticket-actions----event')
-            @slot('ticketPrices', $article->ticketPrices);
-            @slot('ticketLink', $article->ticketLink);
-        @endcomponent
-    @endif
+    @component('components.molecules._m-ticket-actions----exhibition')
+    @endcomponent
 
     @if ($article->featuredRelated)
       {{-- dupe 😢 - shows medium+ --}}
@@ -139,9 +130,9 @@
 
   <div class="o-article__body o-blocks" data-behavior="articleBodyInViewport">
     @component('components.blocks._blocks')
-        @slot('editorial', ($article->articleType === 'editorial'))
+        @slot('editorial', false)
         @slot('blocks', $article->blocks ?? null)
-        @slot('dropCapFirstPara', ($article->articleType === 'editorial'))
+        @slot('dropCapFirstPara', false)
     @endcomponent
 
     @if ($article->catalogues)
@@ -202,7 +193,7 @@
                 @slot('img', $speaker['img'] ?? null)
                 @slot('text', $speaker['text'] ?? null)
                 @slot('titleFont', 'f-subheading-1')
-                @slot('textFont', ($article->articleType === 'editorial') ? 'f-body-editorial' : 'f-body')
+                @slot('textFont', 'f-body')
             @endcomponent
         @endforeach
     @endif
@@ -214,7 +205,7 @@
             Sponsors
         @endcomponent
         @component('components.blocks._blocks')
-            @slot('editorial', ($article->articleType === 'editorial'))
+            @slot('editorial', false)
             @slot('blocks', $article->sponsors ?? null)
         @endcomponent
     @endif
@@ -278,7 +269,7 @@
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
-        @slot('articleType', $article->articleType)
+        @slot('articleType', 'exhibition')
     @endcomponent
   </div>
 

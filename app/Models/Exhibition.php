@@ -14,8 +14,13 @@ class Exhibition extends Model
 {
     use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiModel, Transformable;
 
+    protected $presenter      = 'App\Presenters\Admin\ExhibitionPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
     protected $apiModel = 'App\Models\Api\Exhibition';
+
+    const BASIC = 0;
+    const LARGE = 1;
+    const SPECIAL = 2;
 
     protected $fillable = [
         'published',
@@ -54,11 +59,10 @@ class Exhibition extends Model
     ];
 
     public static $exhibitionTypes = [
-        0 => 'Basic',
-        1 => 'Large Feature',
-        2 => 'Special Exhibition'
+        self::BASIC   => 'Basic',
+        self::LARGE   => 'Large Feature',
+        self::SPECIAL => 'Special Exhibition'
     ];
-
 
     public function apiElements()
     {

@@ -793,7 +793,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @param  mixed  $value
      * @return string
      */
-    protected function asJson($value)
+    public function asJson($value)
     {
         return json_encode($value);
     }
@@ -804,7 +804,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @param  mixed  $value
      * @return \Illuminate\Support\Carbon
      */
-    protected function asDateTime($value)
+    public function asDateTime($value)
     {
         if ($value instanceof Carbon) {
             return $value;
@@ -936,7 +936,12 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function __get($key)
     {
-        return $this->getAttribute($key);
+        $value = $this->getAttribute($key);
+        if (!$value && isset($this->augmented) && $this->augmented) {
+            return $this->getAugmentedModel()->$key;
+        } else {
+            return $value;
+        }
     }
 
     /**

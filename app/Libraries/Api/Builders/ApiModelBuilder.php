@@ -153,9 +153,12 @@ class ApiModelBuilder
      * @param  string  $boolean
      * @return $this
      */
-    public function ids($ids)
+    public function ids(array $ids)
     {
-        $this->query->ids(...func_get_args());
+        // Remove slugs from ID-SLUG type of id's
+        $ids = array_map(function($id) { return (integer) $id; }, $ids);
+
+        $this->query->ids($ids);
 
         return $this;
     }
@@ -201,6 +204,9 @@ class ApiModelBuilder
     public function findSingle($id, $columns = [])
     {
         $builder = clone $this;
+
+        // Remove slugs from ID-SLUG type of id's
+        $id = (integer) $id;
 
         // Eager load relationships
         if ($result = $builder->getSingle($id, $columns)) {
