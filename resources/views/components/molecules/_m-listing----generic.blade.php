@@ -29,7 +29,7 @@
             @if ($item->date)
             <br>
             @component('components.atoms._date')
-                {{ date( 'F j, Y', intval($item->date)) }}
+                {{ $item->date->format('F j, Y') }}
             @endcomponent
             @endif
         </span>

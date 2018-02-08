@@ -24,7 +24,7 @@
                 @endcomponent
                 <br>
                 @component('components.atoms._date')
-                    {{ date( 'F j, Y', intval($item->date)) }}
+                    {{ $item->date->format('F j, Y') }}
                 @endcomponent
             </span>
         </span>

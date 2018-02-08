@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use A17\CmsToolkit\Http\Controllers\Front\Controller as Controller;
 use App\Presenters\StaticObjectPresenter;
 use Faker\Generator as Faker;
+use Carbon\Carbon;
 
 class StaticsController extends Controller {
   protected $faker;
@@ -1504,6 +1505,11 @@ class StaticsController extends Controller {
     return $images;
   }
 
+  private function makeDate() {
+    $timestamp = $this->faker->unixTime();
+    return Carbon::createFromTimestamp($timestamp);
+  }
+
   private function getExhibitionType($upcoming = false) {
     $exhibitionTypes = array("Exhibition","Special Exhibition","Ongoing");
     return $upcoming ? "Upcoming" : $this->faker->randomElement($exhibitionTypes);
@@ -1524,8 +1530,8 @@ class StaticsController extends Controller {
       "id" => $this->faker->uuid,
       "slug" => "/statics/exhibition",
       "title" => $this->faker->sentence(6, true),
-      "dateStart" => $this->faker->unixTime(),
-      "dateEnd" => $this->faker->unixTime(),
+      "dateStart" => $this->makeDate(),
+      "dateEnd" => $this->makeDate(),
       "closingSoon" => $this->faker->boolean(10),
       "exclusive" => $this->faker->boolean(10),
       "nowOpen" => $this->faker->boolean(10),
@@ -1551,8 +1557,8 @@ class StaticsController extends Controller {
       "id" => $this->faker->uuid,
       "slug" => $boolean ? "/statics/exhibition_history_detail" : null,
       "title" => $this->faker->sentence(6, true),
-      "dateStart" => $this->faker->unixTime(),
-      "dateEnd" => $this->faker->unixTime(),
+      "dateStart" => $this->makeDate(),
+      "dateEnd" => $this->makeDate(),
       "image" => $boolean ? $this->getImage() : null,
       'intro' => $this->faker->paragraph(6, false),
     ]);
@@ -1595,7 +1601,7 @@ class StaticsController extends Controller {
       "shortDesc" => $this->faker->paragraph(1, false),
       "timeStart" => $timeStart,
       "timeEnd" => $timeEnd,
-      "date" => $this->faker->unixTime(),
+      "date" => $this->makeDate(),
       "exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
       "free" => $free,
@@ -1820,7 +1826,7 @@ class StaticsController extends Controller {
         'link' => '#',
       ),
       "intro" => $this->faker->sentence(12, true),
-      "date" => $this->faker->unixTime(),
+      "date" => $this->makeDate(),
       "image" => $this->getImage(),
       "type" => 'article',
       "subtype" => $this->faker->word(),
@@ -1842,7 +1848,7 @@ class StaticsController extends Controller {
       "slug" => "/statics/article",
       "title" => $this->faker->sentence(6, true),
       "shortDesc" => $this->faker->sentence(12, true),
-      "date" => $this->faker->unixTime(),
+      "date" => $this->makeDate(),
       "image" => $this->getImage(),
       "type" => 'generic',
     ]);

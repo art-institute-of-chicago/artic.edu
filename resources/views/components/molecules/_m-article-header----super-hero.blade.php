@@ -18,12 +18,12 @@
       @endif
       @if (isset($dateStart) and isset($dateEnd))
         @component('components.atoms._date')
-            {{ date('M j, Y', intval($dateStart)) }} &ndash; {{ date('M j, Y', intval($dateEnd)) }}
+            {{ $dateStart->format('M j, Y') }} &ndash; {{ $dateEnd->format('M j, Y') }}
         @endcomponent
       @elseif (isset($date))
         @component('components.atoms._date')
             @slot('tag','p')
-            {{ date('F j, Y', intval($date)) }}
+            {{ $date->format('F j, Y') }}
         @endcomponent
       @endif
       @if (isset($type))
