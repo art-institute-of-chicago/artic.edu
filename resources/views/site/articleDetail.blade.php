@@ -138,11 +138,12 @@
   @endif
 
   <div class="o-article__body o-blocks" data-behavior="articleBodyInViewport">
-    @component('components.blocks._blocks')
+    {{-- @component('components.blocks._blocks')
         @slot('editorial', ($item->articleType === 'editorial'))
         @slot('blocks', $item->blocks ?? null)
         @slot('dropCapFirstPara', ($item->articleType === 'editorial'))
-    @endcomponent
+    @endcomponent --}}
+    {!! $item->renderBlocks() !!}
 
     @if ($item->catalogues)
         @component('components.atoms._hr')
