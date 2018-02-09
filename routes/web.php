@@ -8,6 +8,9 @@ if (!app()->environment('production')) {
   Route::get('/statics/{slug?}', 'StaticsController@index');
 }
 
+// Newsletter subscription
+Route::name('subscribe')->post('/subscribe', 'SubscribeController@store');
+
 // Visit routes
 Route::name('visit')->get('/visit', 'VisitController@index');
 
