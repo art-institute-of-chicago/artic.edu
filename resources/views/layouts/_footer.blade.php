@@ -1,3 +1,6 @@
+@component('components.molecules._m-aside-newsletter')
+    @slot('variation', 'm-aside-newsletter--wide')
+@endcomponent
 <footer id="footer" class="g-footer">
   <a href="#a17" class="g-footer__top-link arrow-link arrow-link--up f-small-caps">
     Back to top
