@@ -19,3 +19,12 @@
     'label' => 'Related Events',
     'note' => 'Select up to 3 events you want to feature on the homepage'
 ])
+
+@formField('browser', [
+    'routePrefix' => 'whatson',
+    'max' => 4,
+    'moduleName' => 'shopItems',
+    'name' => 'homeShopItems',
+    'label' => 'Related Shop items',
+    'note' => 'Select up to 3 shop items you want to feature on the homepage'
+])

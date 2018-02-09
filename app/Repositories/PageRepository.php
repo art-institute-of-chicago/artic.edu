@@ -23,6 +23,7 @@ class PageRepository extends ModuleRepository
     {
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeEvents', 'position', 'Event');
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
         return parent::hydrate($object, $fields);
     }
 
@@ -33,6 +34,7 @@ class PageRepository extends ModuleRepository
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'shopItemsShopItems']);
 
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
@@ -57,6 +59,9 @@ class PageRepository extends ModuleRepository
 
         // Exhibition & Events
         $fields['browsers']['exhibitionsExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsExhibitions', 'App\Models\Api\Exhibition', 'whatson', 'title', 'exhibitions');
+
+        // Shop Items
+        $fields['browsers']['homeShopItems'] = $this->getFormFieldsForBrowserApi($object, 'homeShopItems', 'App\Models\Api\ShopItem', 'whatson', 'title', 'shopItesm');
 
         // Visits
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');
