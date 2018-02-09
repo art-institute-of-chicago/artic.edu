@@ -38,11 +38,8 @@ class ExhibitionController extends Controller
         // TODO: This could be improved to be performed automatically
         $item->getAugmentedModel();
 
-        var_dump($item);
-        die();
-
         return view('site.exhibitionDetail', [
-            'contrastHeader' => ($article->headerType === 'hero'),
+            'contrastHeader' => ($item->present()->headerType === 'hero'),
             'item' => $item
         ]);
     }

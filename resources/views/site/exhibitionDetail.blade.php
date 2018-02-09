@@ -10,6 +10,8 @@
     {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
     @slot('title', $item->title)
     @slot('date', $item->present()->date)
+    @slot('dateStart', $item->present()->startAt)
+    @slot('dateEnd', $item->present()->endAt)
     @slot('type', $item->present()->exhibitionType)
     @slot('intro', $item->intro)
     @slot('img', $item->headerImage)

@@ -2,6 +2,7 @@
 
 namespace App\Presenters\Admin;
 
+use Carbon\Carbon;
 use App\Presenters\BasePresenter;
 
 class ExhibitionPresenter extends BasePresenter
@@ -36,5 +37,15 @@ class ExhibitionPresenter extends BasePresenter
                 return 'hero';
                 break;
         }
+    }
+
+    public function startAt()
+    {
+        return new Carbon($this->entity->start_at);
+    }
+
+    public function endAt()
+    {
+        return new Carbon($this->entity->end_at);
     }
 }
