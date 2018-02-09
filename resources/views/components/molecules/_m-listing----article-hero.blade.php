@@ -23,9 +23,11 @@
                     {{ $item->subtype }}
                 @endcomponent
                 <br>
-                @component('components.atoms._date')
-                    {{ $item->date->format('F j, Y') }}
-                @endcomponent
+                @if (!empty($item->date))
+                    @component('components.atoms._date')
+                        {{ $item->date->format('F j, Y') }}
+                    @endcomponent
+                @endif
             </span>
         </span>
     </a>

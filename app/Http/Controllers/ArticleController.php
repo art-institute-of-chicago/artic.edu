@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Repositories\ArticleRepository;
 use A17\CmsToolkit\Http\Controllers\Front\Controller;
+use App\Models\Page;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -20,8 +22,14 @@ class ArticleController extends Controller
     {
         $page = Page::forType('Articles')->first();
 
+        $heroArticle = Article::first();
+
+        $articles = Article::all();
+
         return view('site.articles', [
-            'page' => $page
+            'page' => $page,
+            'heroArticle' => $heroArticle,
+            'articles' => $articles
         ]);
     }
 

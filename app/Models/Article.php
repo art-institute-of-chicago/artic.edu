@@ -13,6 +13,7 @@ class Article extends Model
     use HasSlug, HasRevisions, HasMedias, HasBlocks, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
+    protected $presenter = 'App\Presenters\ArticlePresenter';
 
     protected $fillable = [
         'published',
