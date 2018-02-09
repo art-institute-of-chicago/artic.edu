@@ -8,6 +8,10 @@
                     @slot('width', $item->image['width'])
                     @slot('height', $item->image['height'])
                 @endcomponent
+
+                @if ($item->isVideo)
+                    <svg class="icon--play--48"><use xlink:href="#icon--play--48" /></svg>
+                @endif
             @endif
         </span>
         <span class="m-listing__meta">
@@ -23,7 +27,7 @@
                     {{ $item->subtype }}
                 @endcomponent
                 <br>
-                @if (!empty($item->date))
+                @if ($item->date)
                     @component('components.atoms._date')
                         {{ $item->date->format('F j, Y') }}
                     @endcomponent

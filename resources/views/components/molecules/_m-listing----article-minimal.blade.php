@@ -9,7 +9,7 @@
                     @slot('height', $item->image['height'])
                 @endcomponent
 
-                @if (isset($item->isVideo) && $item->isVideo)
+                @if ($item->isVideo)
                     <svg class="icon--play--48"><use xlink:href="#icon--play--48" /></svg>
                 @endif
             @endif
