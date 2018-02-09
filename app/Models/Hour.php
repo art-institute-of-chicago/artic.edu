@@ -92,7 +92,7 @@ class Hour extends Model
             return $closure->closure_copy;
         } else {
             $hours = Hour::where('type', $type)->where('day_of_week', $day)->first();
-            if ($hours) {
+            if ($hours && $hours->opening_time && $hours->closing_time) {
                 return "Open today " . $hours->opening_time->format('g:i') . '&ndash;'. $hours->closing_time->format('g:i');
             }
         }

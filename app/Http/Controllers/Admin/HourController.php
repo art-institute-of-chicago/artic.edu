@@ -15,7 +15,7 @@ class HourController extends ModuleController
         'create' => false,
     ];
 
-    protected $titleColumnKey = 'type';
+    protected $titleColumnKey = 'presentType';
 
     protected $indexColumns = [
         'type' => [
@@ -56,14 +56,6 @@ class HourController extends ModuleController
      * Relations to eager load for the form view
      */
     protected $formWith = [];
-
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
-    protected $filters = [
-        'fType' => 'type',
-    ];
 
     protected $defaultOrders = ['type' => 'asc'];
 

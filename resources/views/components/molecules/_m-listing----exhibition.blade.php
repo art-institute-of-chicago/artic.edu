@@ -1,5 +1,6 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->nowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
-  <a href="{{ $item->slug }}" class="m-listing__link">
+    <a href="{!! route('exhibitions.show', $item) !!}" class="m-listing__link">
+
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
         @if ($item->image)
             @component('components.atoms._img')

@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Presenters;
+use Illuminate\Contracts\Routing\UrlRoutable;
 
-class StaticObjectPresenter
+class StaticObjectPresenter implements UrlRoutable
 {
     protected $entity; // This is to store the original array instance
 
@@ -31,5 +32,19 @@ class StaticObjectPresenter
     public function push($index, $value)
     {
         $this->entity[$index] = $value;
+    }
+
+    // Implement UrlRoutable functions
+
+    public function getRouteKey() {
+        return $this->entity['id'];
+    }
+
+    public function getRouteKeyName() {
+        return 'id';
+    }
+
+    public function resolveRouteBinding($value) {
+        return $this->entity;
     }
 }

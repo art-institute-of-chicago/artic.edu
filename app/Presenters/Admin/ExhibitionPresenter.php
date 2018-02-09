@@ -25,4 +25,16 @@ class ExhibitionPresenter extends BasePresenter
     {
         return ($this->entity->cms_exhibition_type == \App\Models\Exhibition::SPECIAL) ? "Special Exhibition" : 'Exhibition';
     }
+
+    public function headerType()
+    {
+        switch ($this->exhibitionType()) {
+            case 'Special Exhibition':
+                return 'super-hero';
+                break;
+            case 'Exhibition':
+                return 'hero';
+                break;
+        }
+    }
 }
