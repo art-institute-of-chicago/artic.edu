@@ -164,6 +164,15 @@
     object-position: center top;
   }
 
+.m-listing__img .icon--play--48 {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  margin: 0 auto;
+  transform: translateY(-50%);
+}
 
 .m-listing__meta {
   display: flex;

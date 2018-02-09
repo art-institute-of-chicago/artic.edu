@@ -292,6 +292,7 @@
   }
 }
 
+  .o-article--video .o-article__body,
   .o-article__secondary-actions ~ .o-article__body {
     @include breakpoint('medium+') {
       float: left;
@@ -309,6 +310,7 @@
     }
   }
 
+  .o-article--video .o-article__body,
   .o-article__secondary-actions ~ .o-article__intro ~ .o-article__body {
     @include breakpoint('large+') {
       margin-left: colspan(15, large);
@@ -334,7 +336,11 @@
     }
   }
 
-
+.o-article__body-actions {
+  margin-top: 64px;
+  padding-top: 8px;
+  border-top: 1px solid $color__rules--primary;
+}
 
 .o-article__top-link {
   display: none;

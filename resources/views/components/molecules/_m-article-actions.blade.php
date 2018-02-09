@@ -7,7 +7,7 @@
             @slot('behavior','sharePage')
         @endcomponent
     </li>
-    @if (isset($articleType) and $articleType !== 'exhibition' and $articleType !== 'exhibitionHistory')
+    @if (isset($articleType) and $articleType !== 'exhibition' and $articleType !== 'exhibitionHistory' and $articleType !== 'video')
     <li class="m-article-actions__action">
         @component('components.atoms._btn')
             @slot('variation', 'btn--secondary btn--icon')

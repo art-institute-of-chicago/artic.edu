@@ -147,3 +147,12 @@
     }
   }
 }
+
+.o-article--video .m-media {
+  margin-top: 28px;
+
+  @include breakpoint('large+') {
+    margin-top: 0;
+    margin-bottom: 28px;
+  }
+}

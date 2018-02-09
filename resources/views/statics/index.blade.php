@@ -69,8 +69,9 @@
           <li><a href="/statics/contact">contact</a></li>
           <li><a href="/statics/search_results">search results</a></li>
           <li><a href="/statics/search_results_artists">search results artists</a></li>
-          <li><a href="/statics/modal1">Modal</a></li>
-          <li><a href="/statics/modal2">Modal with Image</a></li>
+          <li><a href="/statics/modal1">modal</a></li>
+          <li><a href="/statics/modal2">modal with image</a></li>
+          <li><a href="/statics/video">video detail</a></li>
         </ul>
     </div>
 </article>

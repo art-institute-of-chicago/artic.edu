@@ -459,6 +459,65 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function video() {
+    $relatedVideos = $this->getArticles(4);
+    $newRelatedVideos = [];
+
+    foreach ($relatedVideos as $vid) {
+        $vid->subtype = null;
+        $vid->isVideo = true;
+
+        $newRelatedVideos[] = $vid;
+    }
+
+    $article = (object)[
+        'articleType' => 'video',
+        'type' => 'video',
+        'id' => $this->faker->uuid,
+        'slug' => "/statics/video",
+        'title' => $this->faker->sentence(6, true),
+        'date' => $this->makeDate(),
+        'intro' => $this->faker->paragraph(6, false),
+        'video' => [
+            'type' => 'embed',
+            'size' => 'l',
+            'media' => $this->getEmbed(),
+            'hideCaption' => true
+        ],
+        'blocks' => [
+            [
+                "type" => 'text',
+                "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+            ],
+            [
+                "type" => 'text',
+                "content" => 'Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.'
+            ]
+        ],
+        'relatedVideos' => $newRelatedVideos,
+        'recentlyViewedArtworks' => $this->getArtworks($this->faker->numberBetween(6,20)),
+    ];
+
+    // $article = $this->getExhibition();
+    // $article->push('articleType', 'video');
+    // $article->push('headerImage', $this->getImage(1600,900));
+    // $article->push('intro', $this->faker->paragraph(6, false));
+    // $article->push('blocks', $this->generateBlocks('all'));
+    // $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
+    // $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
+    // $article->push('relatedExhibitions', $this->getExhibitions(4));
+    // $article->push('relatedEvents', $this->getEvents(4));
+    // $article->push('relatedArticles', $this->getArticles(4));
+    // $article->push('featuredRelated', array(
+    //    'type' => 'event',
+    //    'items' => $this->getEvents(1),
+    // ));
+
+    return view('statics/video', [
+      'article' => $article,
+    ]);
+  }
+
   public function collection() {
     $quickSearchLinks = array();
     for ($i = 0; $i < 20; $i++) {
