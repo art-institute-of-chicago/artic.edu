@@ -5,6 +5,8 @@ namespace App\Models;
 use A17\CmsToolkit\Models\Model;
 use A17\CmsToolkit\Models\Behaviors\HasPresenter;
 
+use Carbon\Carbon;
+
 class Hour extends Model
 {
     use HasPresenter, Transformable;
@@ -78,5 +80,23 @@ class Hour extends Model
                 "value" => function() { return $this->closed; }
             ]
         ];
+    }
+
+    public static function getOpeningToday($type=0)
+    {
+        $day = date('N');
+        $today = Carbon::today();
+
+        $closure = Closure::published()->where('date_start', '>=', $today)->where('date_end', '<=', $today)->first();
+        if ($closure) {
+            return $closure->closure_copy;
+        } else {
+            $hours = Hour::where('type', $type)->where('day_of_week', $day)->first();
+            if ($hours) {
+                return "Open today " . $hours->opening_time->format('g:i') . '&ndash;'. $hours->closing_time->format('g:i');
+            }
+        }
+
+        return "";
     }
 }

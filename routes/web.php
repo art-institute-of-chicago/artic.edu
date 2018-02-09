@@ -8,20 +8,24 @@ if (!app()->environment('production')) {
   Route::get('/statics/{slug?}', 'StaticsController@index');
 }
 
+// Visit routes
+Route::name('visit')->get('/visit', 'VisitController@index');
+
+
 // Search routes
 Route::name('search')->get('/search', 'SearchController@index');
 
 // Events routes
 Route::name('events')->get('/events', 'EventController@index');
-Route::name('events')->get('/events/{id}', 'EventController@show');
+Route::name('events.show')->get('/events/{id}', 'EventController@show');
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');
-Route::name('articles')->get('/articles/{slug}', 'ArticleController@show');
+Route::name('articles.show')->get('/articles/{slug}', 'ArticleController@show');
 
 // Exhibition routes
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionController@index');
-Route::name('exhibitions')->get('/exhibitions/{id}', 'ExhibitionController@show');
+Route::name('exhibitions.show')->get('/exhibitions/{id}', 'ExhibitionController@show');
 
 // Artwork routes
 Route::name('artworks')->get('/artworks/{id}', 'ArtworkController@show');
