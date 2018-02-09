@@ -51,6 +51,11 @@
         'name' => 'hero'
     ])
 
+    @formField('checkbox', [
+        'name' => 'is_boosted',
+        'label' => 'Boost this Article on search results'
+    ])
+
     @formField('block_editor', [
         'blocks' => [
             'text', 'image_with_caption', 'video_with_caption', 'gallery', 'media_embed', 'quote', 'list',

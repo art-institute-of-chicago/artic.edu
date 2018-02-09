@@ -25,7 +25,8 @@ class Article extends Model
         'copy',
         'type',
         'citation',
-        'layout_type'
+        'layout_type',
+        'is_boosted',
     ];
 
     public $slugAttributes = [
@@ -39,7 +40,7 @@ class Article extends Model
 
     public $nullable = [];
 
-    public $checkboxes = ['published'];
+    public $checkboxes = ['published', 'is_boosted'];
 
     public $dates = ['date'];
 
