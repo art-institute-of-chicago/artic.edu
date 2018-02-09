@@ -10,7 +10,7 @@ use App\Models\Admission as Admission;
 
 class Page extends Model
 {
-    use HasSlug, HasRevisions, HasMedias;
+    use HasSlug, HasRevisions, HasMedias, Transformable;
 
     public static $types = [
         0 => 'Home',
@@ -105,5 +105,53 @@ class Page extends Model
     public function artArticles()
     {
         return $this->belongsToMany('App\Models\Article', 'page_art_article')->withPivot('position')->orderBy('position');
+    }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'published',
+                "doc" => "Published?",
+                "type" => "boolean",
+                "value" => function() { return $this->published; }
+            ],
+
+            [
+                "name" => 'type',
+                "doc" => "Type of Page",
+                "type" => "integer",
+                "value" => function() { return $this->type; }
+            ],
+
+            [
+                "name" => 'home_intro',
+                "doc" => "Home Intro",
+                "type" => "string",
+                "value" => function() { return $this->home_intro; }
+            ],
+
+            [
+                "name" => 'exhibition_intro',
+                "doc" => "Exhibition Intro",
+                "type" => "string",
+                "value" => function() { return $this->exhibition_intro; }
+            ],
+
+            [
+                "name" => 'art_intro',
+                "doc" => "Art Intro",
+                "type" => "string",
+                "value" => function() { return $this->art_intro; }
+            ],
+
+            [
+                "name" => 'visit_intro',
+                "doc" => "Visit Intro",
+                "type" => "string",
+                "value" => function() { return $this->visit_intro; }
+            ],
+
+        ];
     }
 }

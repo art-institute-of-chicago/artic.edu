@@ -165,6 +165,20 @@ Route::get('/', function () {
  *        @SWG\Property(property="also_known_as", type="boolean", description="Also Known As"),
  *        @SWG\Property(property="intro_copy", type="datetime", description="Intro Copy"),
  *        @SWG\Property(property="datahub_id", type="string", description="datahub_id"),
+ *     ),
+ *
+ *     @SWG\Definition(
+ *        definition="Page",
+ *        type="object",
+ *        required={"id"},
+ *        @SWG\Property(property="id", type="integer", description="ID of Artist"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State of Article"),
+ *        @SWG\Property(property="type", type="integer", description="Type"),
+ *        @SWG\Property(property="home_intro", type="string", description="home_intro"),
+ *        @SWG\Property(property="exhibition_intro", type="string", description="exhibition_intro"),
+ *        @SWG\Property(property="art_intro", type="string", description="art_intro"),
+ *        @SWG\Property(property="visit_intro", type="string", description="visit_intro")
  *     )
  * )
  */
@@ -479,5 +493,40 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('artists/{id}', 'API\ArtistsController@show');
+
+    /**
+     *
+     * - pages ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/pages",
+     *      tags={"pages"},
+     *      operationId="getPages",
+     *      summary="List all pages",
+     *      @SWG\Response(response="200", description="List all pages")
+     *  )
+     *
+     */
+    Route::get('pages', 'API\PagesController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/pages/{id}",
+     *      tags={"pages"},
+     *      operationId="getPage",
+     *      summary="Fetch page details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific page")
+     *  )
+     *
+     */
+    Route::get('pages/{id}', 'API\PagesController@show');
+
 
 });

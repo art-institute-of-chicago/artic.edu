@@ -351,6 +351,43 @@
                     }
                 }
             }
+        },
+        "/api/v1/pages": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all pages",
+                "operationId": "getPages",
+                "responses": {
+                    "200": {
+                        "description": "List all pages"
+                    }
+                }
+            }
+        },
+        "/api/v1/pages/{id}": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Fetch page details",
+                "operationId": "getPage",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific page"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -731,6 +768,46 @@
                 },
                 "datahub_id": {
                     "description": "datahub_id",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Page": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Artist",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Article",
+                    "type": "boolean"
+                },
+                "type": {
+                    "description": "Type",
+                    "type": "integer"
+                },
+                "home_intro": {
+                    "description": "home_intro",
+                    "type": "string"
+                },
+                "exhibition_intro": {
+                    "description": "exhibition_intro",
+                    "type": "string"
+                },
+                "art_intro": {
+                    "description": "art_intro",
+                    "type": "string"
+                },
+                "visit_intro": {
+                    "description": "visit_intro",
                     "type": "string"
                 }
             },
