@@ -314,6 +314,14 @@
                 @endcomponent
             @endif
 
+            @if ($block['type'] === 'simple-inline-listing')
+                @component('components.molecules._m-listing----generic')
+                    @slot('variation', 'o-blocks__block')
+                    @slot('tag', 'div')
+                    @slot('item', $block['content'])
+                @endcomponent
+            @endif
+
         @else
             @php
                 var_dump($block);
