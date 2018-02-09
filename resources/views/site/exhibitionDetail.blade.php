@@ -20,30 +20,27 @@
     @slot('prevArticle', $item->prevArticle) --}}
   @endcomponent
 
-  <div class="o-article__primary-actions{{ ($item->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}>
+  <div class="o-article__primary-actions{{ ($item->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}">
 
     @component('components.molecules._m-article-actions')
         @slot('articleType', 'exhibition')
     @endcomponent
 
-    @if ($item->nav)
+    @if ($item->present()->navigation)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.molecules._m-link-list')
             @slot('variation', 'u-show@large+')
-            @slot('links', $item->nav)
+            @slot('links', $item->present()->navigation)
         @endcomponent
     @endif
-
   </div>
 
   {{-- dupe 😢 - hides xlarge+ --}}
-  @if ($item->nav)
+  @if ($item->present()->navigation)
       <div class="o-article__meta">
-        @if ($item->nav)
             @component('components.molecules._m-link-list')
-                @slot('links', $item->nav);
+                @slot('links', $item->present()->navigation);
             @endcomponent
-        @endif
       </div>
   @endif
 

@@ -48,4 +48,32 @@ class ExhibitionPresenter extends BasePresenter
     {
         return new Carbon($this->entity->end_at);
     }
+
+    public function navigation()
+    {
+        return array_filter([$this->galleryLink(), $this->relatedEventsLink(), $this->closingSoonLink()]);
+    }
+
+    protected function galleryLink() {
+        return [
+            'label' => $this->entity->gallery_title,
+            'href'  => '#',
+            'iconBefore' => 'location'
+        ];
+    }
+
+    protected function relatedEventsLink() {
+        return [
+            'label' => '12 related events',
+            'href' => '#related_events',
+            'iconBefore' => 'calendar'
+        ];
+    }
+
+    protected function closingSoonLink() {
+        return [
+            'label' => 'Closing Soon',
+            'variation' => 'closing-soon'
+        ];
+    }
 }
