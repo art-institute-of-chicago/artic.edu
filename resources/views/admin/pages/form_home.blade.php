@@ -22,7 +22,7 @@
 
 @formField('browser', [
     'routePrefix' => 'whatson',
-    'max' => 4,
+    'max' => 5,
     'moduleName' => 'shopItems',
     'name' => 'homeShopItems',
     'label' => 'Related Shop items',
