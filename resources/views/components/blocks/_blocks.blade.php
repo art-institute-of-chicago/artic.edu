@@ -135,6 +135,36 @@
                 @endif
             @endif
 
+            @if ($block['type'] === 'inline-listing')
+                @if (isset($block['subtype']) and $block['subtype'])
+                    @component('components.organisms._o-row-listing')
+                        @slot('variation', 'o-blocks__block')
+                        @foreach ($block['items'] as $item)
+                            @component('components.molecules._m-listing----'.$block["subtype"])
+                                @slot('item', $item)
+                            @endcomponent
+                        @endforeach
+                    @endcomponent
+                @endif
+            @endif
+
+            @if ($block['type'] === 'inline-grid')
+                @if (isset($block['subtype']) and $block['subtype'])
+                    @component('components.organisms._o-grid-listing')
+                        @slot('variation', 'o-blocks__block  o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+                        @slot('cols_small','2')
+                        @slot('cols_medium','2')
+                        @slot('cols_large','2')
+                        @slot('cols_xlarge','2')
+                        @foreach ($block['items'] as $item)
+                            @component('components.molecules._m-listing----'.$block["subtype"])
+                                @slot('item', $item)
+                            @endcomponent
+                        @endforeach
+                    @endcomponent
+                @endif
+            @endif
+
             @if ($block['type'] === 'link-list')
                 @component('components.molecules._m-link-list')
                     @slot('variation', 'o-blocks__block')
@@ -311,14 +341,6 @@
                     @slot('hint', $block['hint'] ?? null)
                     @slot('disabled', $block['disabled'] ?? false)
                     {!! $block['label'] !!}
-                @endcomponent
-            @endif
-
-            @if ($block['type'] === 'simple-inline-listing')
-                @component('components.molecules._m-listing----generic')
-                    @slot('variation', 'o-blocks__block')
-                    @slot('tag', 'div')
-                    @slot('item', $block['content'])
                 @endcomponent
             @endif
 

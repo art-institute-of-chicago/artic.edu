@@ -2517,6 +2517,23 @@ class StaticsController extends Controller {
         "content" => $this->faker->paragraph(6)
     ));
 
+    array_push($blocks, array(
+        "type" => 'inline-listing',
+        "subtype" => 'page',
+        "items" => $this->getPages(1)
+    ));
+
+    array_push($blocks, array(
+        "type" => 'inline-grid',
+        "subtype" => 'page',
+        "items" => $this->getPages(2)
+    ));
+
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->faker->paragraph(6)
+    ));
+
 
     if ($num === 'all') {
       return $blocks;

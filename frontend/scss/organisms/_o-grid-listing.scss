@@ -226,6 +226,10 @@ X cols at XXXXX breakpoint
 @include breakpoint('medium') {
   .o-grid-listing--2-col\@medium > * {
     width: colspan(grid-cols-to-colspan(2), 'medium');
+
+    .o-article__body & {
+      width: colspan(18, 'medium');
+    }
   }
 
   .o-grid-listing--3-col\@medium > * {
@@ -254,6 +258,10 @@ X cols at XXXXX breakpoint
 @include breakpoint('large') {
   .o-grid-listing--2-col\@large > * {
     width: colspan(grid-cols-to-colspan(2), 'large');
+
+    .o-article__body & {
+      width: colspan(13, 'large');
+    }
   }
 
   .o-grid-listing--3-col\@large > * {
@@ -301,6 +309,10 @@ X cols at XXXXX breakpoint
 @include breakpoint('xlarge') {
   .o-grid-listing--2-col\@xlarge > * {
     width: colspan(grid-cols-to-colspan(2), 'xlarge');
+
+    .o-article__body & {
+      width: colspan(13, 'xlarge');
+    }
   }
 
   .o-grid-listing--3-col\@xlarge > * {
@@ -557,6 +569,10 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   .o-grid-listing--gridlines-rows.o-grid-listing--4-col\@medium > *:nth-child(4n + 1)::before {
     display: block;
     width: colspan(58, 'medium');
+
+    .o-article__body & {
+      width: colspan(38, 'medium');
+    }
   }
 }
 
@@ -570,6 +586,10 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   .o-grid-listing--gridlines-rows.o-grid-listing--12-col\@large > *:nth-child(12n + 1)::before {
     display: block;
     width: colspan(58, 'large');
+
+    .o-article__body & {
+      width: colspan(28, 'large');
+    }
   }
 }
 
@@ -583,6 +603,10 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
   .o-grid-listing--gridlines-rows.o-grid-listing--12-col\@xlarge > *:nth-child(12n + 1)::before {
     display: block;
     width: colspan(58, 'xlarge');
+
+    .o-article__body & {
+      width: colspan(28, 'xlarge');
+    }
   }
 }
 
