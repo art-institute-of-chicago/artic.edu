@@ -10,6 +10,7 @@ use A17\CmsToolkit\Repositories\Behaviors\HandleRepeaters;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Models\Event;
+use Carbon\Carbon;
 
 class EventRepository extends ModuleRepository
 {
@@ -49,6 +50,22 @@ class EventRepository extends ModuleRepository
 
     public function getEventLayoutsList() {
         return collect($this->model::$eventLayouts);
+    }
+
+    public function getRelatedEventsByDay($object) {
+        $ids = $object->events->pluck('id');
+
+        $query = $this->model->rightJoin('event_metas', function ($join) {
+            $join->on('events.id', '=', 'event_metas.event_id');
+        });
+        $query->where('event_metas.date', '>=', Carbon::today());
+        $query->whereIn('id', $ids);
+        $query->orderBy('event_metas.date', 'ASC');
+
+        $results = $query->get();
+        return $results->groupBy(function($item) {
+          return $item->date->format('Y-m-d');
+        });
     }
 
 }

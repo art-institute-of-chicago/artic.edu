@@ -20,7 +20,7 @@
             {{ $title }}
         @endcomponent
       @endif
-      @if (isset($dateStart) and isset($dateEnd))
+      @if ($dateStart and $dateEnd)
         @component('components.atoms._date')
             {{ $dateStart->format('M j, Y') }} &ndash; {{ $dateEnd->format('M j, Y') }}
         @endcomponent

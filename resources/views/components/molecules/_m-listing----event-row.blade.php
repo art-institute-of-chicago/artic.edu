@@ -1,10 +1,10 @@
 <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ $item->slug }}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-        @if ($item->image)
+        @if ($img = $item->imageAsArray('hero'))
             @component('components.atoms._img')
                 @slot('src', $item->image['src'])
-                @slot('srcset', $item->image['srcset'])
+                {{-- @slot('srcset', $item->image['srcset']) --}}
                 @slot('width', $item->image['width'])
                 @slot('height', $item->image['height'])
             @endcomponent

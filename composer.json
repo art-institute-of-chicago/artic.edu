@@ -41,7 +41,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/MigrationHelpers.php"
+            "app/Helpers/MigrationHelpers.php",
+            "app/Helpers/DatesHelpers.php"
         ]
     },
     "autoload-dev": {

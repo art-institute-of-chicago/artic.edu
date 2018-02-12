@@ -71,6 +71,7 @@ class Exhibition extends Model
 
     public function apiModels($relation, $model)
     {
+        // TODO: Generalize, optimize and refactor
         $modelClass = "\\App\\Models\\Api\\" . ucfirst($model);
         $ids = $this->$relation->pluck('datahub_id')->toArray();
         return $modelClass::query()->ids($ids)->get();

@@ -91,9 +91,10 @@
 @endcomponent
 
 @component('components.organisms._o-row-listing')
-    @foreach ($eventsByDay as $date)
+    @foreach ($eventsByDay as $date => $events)
         @component('components.molecules._m-date-listing')
             @slot('date', $date)
+            @slot('events', $events)
         @endcomponent
     @endforeach
 @endcomponent

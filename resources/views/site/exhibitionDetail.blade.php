@@ -236,16 +236,17 @@
     @endcomponent
 @endif
 
-@if ($item->relatedEventsByDay)
+@if ($relatedEventsByDay)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => '#')))
         @slot('id', 'related_events')
         Related Events
     @endcomponent
     @component('components.organisms._o-row-listing')
-        @foreach ($item->relatedEventsByDay as $date)
+        @foreach ($relatedEventsByDay as $date => $events)
             @component('components.molecules._m-date-listing')
                 @slot('date', $date)
+                @slot('events', $events)
             @endcomponent
         @endforeach
     @endcomponent
@@ -272,118 +273,6 @@
                 @slot('item', $item)
             @endcomponent
         @endforeach
-    @endcomponent
-@endif
-
-@if ($item->relatedEvents)
-    @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all events', 'href' => '#')))
-        Related Events
-    @endcomponent
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
-        @slot('cols_medium','3')
-        @slot('cols_large','4')
-        @slot('cols_xlarge','4')
-        @slot('behavior','dragScroll')
-        @foreach ($item->relatedEvents as $item)
-            @component('components.molecules._m-listing----event')
-                @slot('item', $item)
-            @endcomponent
-        @endforeach
-    @endcomponent
-@endif
-
-@if ($item->relatedArticles)
-    @component('components.molecules._m-title-bar')
-        Further Reading
-    @endcomponent
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
-        @slot('cols_medium','3')
-        @slot('cols_large','4')
-        @slot('cols_xlarge','4')
-        @slot('behavior','dragScroll')
-        @foreach ($item->relatedArticles as $item)
-            @component('components.molecules._m-listing----article')
-                @slot('item', $item)
-            @endcomponent
-        @endforeach
-    @endcomponent
-@endif
-
-@if ($item->exploreFuther)
-    @component('components.molecules._m-title-bar')
-        Explore Further
-    @endcomponent
-    @component('components.molecules._m-links-bar')
-        @slot('variation', '')
-        @slot('linksPrimary', $item->exploreFuther['nav'])
-    @endcomponent
-    @component('components.atoms._hr')
-        @slot('variation','hr--flush-top')
-    @endcomponent
-    @component('components.organisms._o-pinboard')
-        @slot('cols_small','2')
-        @slot('cols_medium','3')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @slot('maintainOrder','false')
-        @foreach ($item->exploreFuther['items'] as $item)
-            @component('components.molecules._m-listing----'.$item->type)
-                @slot('variation', 'o-pinboard__item')
-                @slot('item', $item)
-            @endcomponent
-        @endforeach
-    @endcomponent
-@endif
-
-@if ($item->recentlyViewedArtworks)
-    @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Clear your history', 'href' => '#')))
-        Recently Viewed
-    @endcomponent
-    @component('components.atoms._hr')
-    @endcomponent
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--scroll@large o-grid-listing--scroll@xlarge  o-grid-listing--gridlines-cols')
-        @slot('cols_large',(sizeof($item->recentlyViewedArtworks) > 6) ? '12' : '6')
-        @slot('cols_xlarge',(sizeof($item->recentlyViewedArtworks) > 6) ? '12' : '6')
-        @slot('behavior','dragScroll')
-        @foreach ($item->recentlyViewedArtworks as $item)
-            @component('components.molecules._m-listing----artwork-minimal')
-                @slot('item', $item)
-            @endcomponent
-        @endforeach
-    @endcomponent
-    @component('components.atoms._hr')
-    @endcomponent
-@endif
-
-@if ($item->interestedThemes)
-    @php
-        $themeString = 'It seems it you could also be interested in ';
-        $themesLength = sizeof($item->interestedThemes);
-        $themesIndex = 1;
-        foreach ($item->interestedThemes as $theme) {
-            if ($themesIndex > 1 && $themesIndex < $themesLength) {
-                $themeString .= ', ';
-            }
-            if ($themesIndex === $themesLength) {
-                $themeString .= ' and ';
-            }
-            $themeString .= '<a href="'.$theme['href'].'">'.$theme['label'].'</a>';
-            if ($themesIndex === $themesLength) {
-                $themeString .= '.';
-            }
-            $themesIndex++;
-        }
-    @endphp
-    @component('components.blocks._text')
-        @slot('variation','interests-list')
-        @slot('font','f-list-2')
-        @slot('tag','p')
-        {!! $themeString !!}
     @endcomponent
 @endif
 

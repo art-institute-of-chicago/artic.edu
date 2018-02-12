@@ -310,16 +310,17 @@
     @endcomponent
 @endif
 
-@if ($article->relatedEventsByDay)
+@if (isset($relatedEventsByDay))
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => '#')))
         @slot('id', 'related_events')
         Related Events
     @endcomponent
     @component('components.organisms._o-row-listing')
-        @foreach ($article->relatedEventsByDay as $date)
+        @foreach ($relatedEventsByDay as $date => $events)
             @component('components.molecules._m-date-listing')
                 @slot('date', $date)
+                @slot('events', $events)
             @endcomponent
         @endforeach
     @endcomponent

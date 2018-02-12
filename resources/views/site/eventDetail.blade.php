@@ -10,6 +10,8 @@
     @slot('variation', ($article->headerVariation ?? null))
     @slot('title', $article->title)
     @slot('date', $article->date)
+    @slot('dateStart', $article->dateStart)
+    @slot('dateEnd', $article->dateEnd)
     @slot('type', $article->type)
     @slot('intro', $article->intro)
     @slot('img', $article->headerImage)

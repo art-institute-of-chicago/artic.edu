@@ -172,6 +172,7 @@ class StaticsController extends Controller {
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
       'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
   }
 
@@ -184,6 +185,7 @@ class StaticsController extends Controller {
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
       'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
   }
 
@@ -196,6 +198,7 @@ class StaticsController extends Controller {
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
       'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
   }
 
@@ -208,6 +211,7 @@ class StaticsController extends Controller {
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
       'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
   }
 
@@ -270,7 +274,7 @@ class StaticsController extends Controller {
       'title' => "Further support has been provided by",
       'text' => $this->faker->paragraph(5),
     ));
-    $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
+    // $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
     $article->push('relatedExhibitions', $this->getExhibitions(4));
     $article->push('featuredRelated', array(
       'type' => 'media',
@@ -280,6 +284,7 @@ class StaticsController extends Controller {
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
+      'relatedEventsByDay' => $this->makeEventsByDates(1),
       'article' => $article,
     ]);
   }
@@ -328,6 +333,7 @@ class StaticsController extends Controller {
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'hero'),
       'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
   }
 
@@ -1661,6 +1667,8 @@ class StaticsController extends Controller {
       "timeStart" => $timeStart,
       "timeEnd" => $timeEnd,
       "date" => $this->makeDate(),
+      "dateStart" => $this->makeDate(),
+      "dateEnd" => $this->makeDate(),
       "exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
       "free" => $free,
@@ -1682,16 +1690,11 @@ class StaticsController extends Controller {
     $dates = array();
     $date = strtotime($startDate);
     for ($i = 0; $i < $days; $i++) {
-      $thisDay = array(
-        'date' => array(
-            'date' => date('d', strtotime($startDate. ' + '.$i.' days')),
-            'month' => date('M', strtotime($startDate. ' + '.$i.' days')),
-            'day' => date('D', strtotime($startDate. ' + '.$i.' days'))
-        ),
-        'events' => $this->getEvents($this->faker->numberBetween(3,6)),
-        'ongoingEvents' => $this->getEvents($this->faker->numberBetween(1,3)),
-      );
-      array_push($dates, $thisDay);
+      $thisDay = \Carbon\Carbon::parse($startDate)->format('Y-m-d');
+      $dates[$thisDay] = $this->getEvents($this->faker->numberBetween(3,6));
+
+      // TODO: Integrate ongoingEvents when we reach that view
+      // 'ongoingEvents' => $this->getEvents($this->faker->numberBetween(1,3)),
     }
     return $dates;
   }
@@ -2055,7 +2058,6 @@ class StaticsController extends Controller {
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('blocks', $this->generateBlocks('all'));
     $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
-    $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
     $article->push('relatedExhibitions', $this->getExhibitions(4));
     $article->push('relatedEvents', $this->getEvents(4));
     $article->push('relatedArticles', $this->getArticles(4));
