@@ -55,7 +55,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function composeTemplatesViews()
     {
-      view()->composer('layouts.*', function ($view) {
+      view()->composer('*', function ($view) {
         $hours_today = Hour::getOpeningToday();
 
         $view->with([
@@ -70,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
 
             ,   'buy' => '/buy'
             ,   'become-a-member' => '/become-a-member'
-            ,   'shop' => '/shop'
+            ,   'shop' => 'http://www.artinstituteshop.org'
 
             ,   'collection' => '/collection'
             ,   'exhibitions' => route('exhibitions')

@@ -10,15 +10,34 @@ use App\Presenters\StaticObjectPresenter;
 
 use Carbon\Carbon;
 
+
+use App\Repositories\Api\ShopItemRepository;
+
 use App\Models\Exhibition;
 use App\Models\Page;
+use App\Models\Api\ShopItem;
 
 class HomeController extends Controller
 {
+
+    protected $shopItemRepository;
+
     public function index()
     {
         $page = Page::where('type', 0)->first();
         // $featuredExhibitions = $page->homeExhibitions;
+
+        $shopItems = $page->homeShopItems;
+        $shopItemRepository = new ShopItemRepository(new ShopItem);
+
+        $products = collect([]);
+        foreach($shopItems as $shopItem) {
+            // dd($shopItem);
+            $item = $shopItemRepository->getById($shopItem->datahub_id);
+            // dd($item);
+            $products->push($item);
+        }
+
 
         $featuredExhibitions = [new StaticObjectPresenter([
           "type" => "Exhibition",
@@ -52,7 +71,7 @@ class HomeController extends Controller
         ,   'exhibitions' => []
         ,   'events' => []
         ,   'theCollection' => []
-        ,   'products' => []
+        ,   'products' => $products
         ];
 
         return view('home.index', $view_data);

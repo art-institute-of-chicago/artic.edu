@@ -16,4 +16,9 @@ class ShopItem extends BaseApiModel
     {
         return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');
     }
+
+    public function getSlugAttribute()
+    {
+        return $this->link;
+    }
 }

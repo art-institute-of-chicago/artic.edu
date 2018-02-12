@@ -98,7 +98,7 @@
 
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('label' => 'Explore the Shop', 'href' => '#')))
+    @slot('links', array(array('label' => 'Explore the Shop', 'href' => $_pages['shop'])))
     From the Shop
 @endcomponent
 
