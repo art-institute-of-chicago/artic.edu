@@ -14,6 +14,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection as BaseCollection;
+use Illuminate\Contracts\Routing\UrlRoutable;
 
 use ArrayAccess;
 use DateTime;
@@ -23,7 +24,7 @@ use App\Libraries\Api\Models\Behaviors\HasApiCalls;
 use App\Libraries\Api\Models\Behaviors\HasAugmentedModel;
 use App\Libraries\Api\Models\Behaviors\HasRelationships;
 
-abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
+abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, UrlRoutable
 {
     use HasApiCalls, HasAugmentedModel, HasRelationships;
 
@@ -70,6 +71,13 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @var array
      */
     protected $casts = [];
+
+    /**
+     * Used to create URL's
+     *
+     * @var array
+     */
+    protected $primaryKey = 'id';
 
     /**
      * Indicates whether attributes are snake cased on arrays.
@@ -1033,6 +1041,35 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     public function getEndpoint($type)
     {
         return $this->endpoints[$type];
+    }
+
+    public function getTable()
+    {
+        return;
+    }
+
+
+    /**
+     * Implement Basic URLRoutable functions
+     *
+     */
+
+    public function getRouteKey()
+    {
+        return $this->getAttribute($this->getRouteKeyName());
+    }
+
+    public function getRouteKeyName() {
+        return $this->getKeyName();
+    }
+
+    public function resolveRouteBinding($value) {
+        return $this->entity;
+    }
+
+    public function getKeyName()
+    {
+        return $this->primaryKey;
     }
 
     /**

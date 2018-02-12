@@ -33,6 +33,14 @@ class Exhibition extends BaseApiModel
         return join(array_filter([$this->id, $this->getSlug()]), '-');
     }
 
+    public function getDateStartAttribute() {
+        return new Carbon($this->start_at);
+    }
+
+    public function getDateEndAttribute() {
+        return new Carbon($this->end_at);
+    }
+
     // Solve this using casts. Because it returns an object it can't be used on the CMS
     // A value option could be added when showing
     // public function getStartAtAttribute($value) {

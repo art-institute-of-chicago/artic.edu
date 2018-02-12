@@ -69,6 +69,13 @@ class Exhibition extends Model
         return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
     }
 
+    public function apiModels($relation, $model)
+    {
+        $modelClass = "\\App\\Models\\Api\\" . ucfirst($model);
+        $ids = $this->$relation->pluck('datahub_id')->toArray();
+        return $modelClass::query()->ids($ids)->get();
+    }
+
     public function exhibitions()
     {
         return $this->apiElements()->where('relation', 'exhibitions');

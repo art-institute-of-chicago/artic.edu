@@ -1,13 +1,14 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->nowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
+
     <a href="{!! route('exhibitions.show', $item) !!}" class="m-listing__link">
 
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-        @if ($item->image)
+        @if ($item->image('hero'))
             @component('components.atoms._img')
-                @slot('src', $item->image['src'])
-                @slot('srcset', $item->image['srcset'])
-                @slot('width', $item->image['width'])
-                @slot('height', $item->image['height'])
+                @slot('src', $item->image('hero'))
+                {{-- @slot('srcset', $item->image['srcset']) --}}
+                {{-- @slot('width', $item->image['width']) --}}
+                {{-- @slot('height', $item->image['height']) --}}
             @endcomponent
         @endif
     </span>

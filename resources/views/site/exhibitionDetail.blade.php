@@ -13,15 +13,11 @@
     @slot('dateStart', $item->present()->startAt)
     @slot('dateEnd', $item->present()->endAt)
     @slot('type', $item->present()->exhibitionType)
-    @slot('intro', $item->intro)
+    @slot('intro', $item->header_copy)
     @slot('img', $item->headerImage)
-    {{-- @slot('galleryImages', $item->galleryImages) --}}
-    {{-- @slot('nextArticle', $item->nextArticle)
-    @slot('prevArticle', $item->prevArticle) --}}
   @endcomponent
 
-  <div class="o-article__primary-actions{{ ($item->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}">
-
+  <div class="o-article__primary-actions">
     @component('components.molecules._m-article-actions')
         @slot('articleType', 'exhibition')
     @endcomponent
@@ -61,11 +57,11 @@
     @endif
   </div>
 
-  @if ($item->intro and $item->headerType !== 'super-hero')
+  @if ($item->header_copy and $item->present()->headerType !== 'super-hero')
   <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
-        {{ $item->intro }}
+        {{ $item->header_copy }}
     @endcomponent
   </div>
   @endif
@@ -259,7 +255,7 @@
     @endcomponent
 @endif
 
-@if ($item->relatedExhibitions)
+@if ($item->exhibitions)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all exhibitions', 'href' => '#')))
         {{-- Title can be Related Exhibitions or On View for Exhibition History --}}
@@ -271,7 +267,7 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($item->relatedExhibitions as $item)
+        @foreach ($item->apiModels('exhibitions', 'Exhibition') as $item)
             @component('components.molecules._m-listing----exhibition')
                 @slot('item', $item)
             @endcomponent
