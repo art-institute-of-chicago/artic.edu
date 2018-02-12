@@ -223,7 +223,7 @@
 
     @if ($article->futherSupport)
         @component('components.molecules._m-row-block')
-            @slot('variation', 'm-row-block--keyline-top')
+            @slot('variation', 'm-row-block--keyline-top o-blocks__block')
             @slot('title', $article->futherSupport['title'] ?? null)
             @slot('img', $article->futherSupport['logo'] ?? null)
             @slot('text', $article->futherSupport['text'] ?? null)
@@ -246,7 +246,7 @@
 
     @if ($article->references)
         @component('components.organisms._o-accordion')
-            @slot('variation', 'o-accordion--section')
+            @slot('variation', 'o-accordion--section o-blocks__block')
             @slot('items', array(
                 array(
                     'title' => "References",

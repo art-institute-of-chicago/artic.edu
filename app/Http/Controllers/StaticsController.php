@@ -346,7 +346,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => 'Curabitur velit libero<sup id="ref_cite-1"><a href="#ref_note-1">[1]</a></sup>, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia<sup id="ref_cite-2"><a href="#ref_note-2">[2]</a></sup> sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique<sup id="ref_cite-3"><a href="#ref_note-3">[3]</a></sup>, tincidunt risus vel, gravida justo.'
+        "content" => '<p>Curabitur velit libero<sup id="ref_cite-1"><a href="#ref_note-1">[1]</a></sup>, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia<sup id="ref_cite-2"><a href="#ref_note-2">[2]</a></sup> sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique<sup id="ref_cite-3"><a href="#ref_note-3">[3]</a></sup>, tincidunt risus vel, gravida justo.</p>'
     ));
     // get an event
     $article = $this->getArticle();
@@ -493,11 +493,11 @@ class StaticsController extends Controller {
         'blocks' => [
             [
                 "type" => 'text',
-                "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+                "content" => $this->generateParagraph(12, false)
             ],
             [
                 "type" => 'text',
-                "content" => 'Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.'
+                "content" => $this->generateParagraph(12, false)
             ]
         ],
         'relatedVideos' => $newRelatedVideos,

@@ -110,12 +110,19 @@
 
   /*****/
 
+  .o-article--editorial & > p:not([class*=f-]),
   & > .f-body-editorial {
     @include tucked-margin-top($f-body-editorial, ('xsmall': 56));
 
     &:first-child {
       @include tucked-align-top($f-body-editorial);
     }
+  }
+
+  .o-article--editorial & > p:not([class*=f-]),
+  .o-article--editorial & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  .o-article--editorial & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+    @extend %f-body-editorial;
   }
 
   /*****/
@@ -135,11 +142,14 @@
 
   /*****/
 
+  & > h5:not([class*=f-]) + p:not([class*=f-]),
   & > .f-subheading-1 + .f-body,
   & > .f-subheading-1 + .f-body-editorial {
     margin-top: 0;
   }
 
+  & > .m-media + p:not([class*=f-]),
+  & > .m-quote + p:not([class*=f-]),
   & > .m-media + .f-body,
   & > .m-media + .f-body-editorial,
   & > .quote + .f-body,
@@ -147,14 +157,14 @@
     @include tucked-margin-top($f-body, ('xsmall': 60));
   }
 
-  & > p,
+  & > p:not([class*=f-]),
   & > h4:not([class*=f-]),
   & > h5:not([class*=f-]),
   & > *[class*=f-] .f-link {
     @include untuck;
   }
 
-  & > p,
+  & > p:not([class*=f-]),
   & > .f-deck,
   & > .f-body,
   & > .f-body-editorial {
@@ -267,6 +277,8 @@
   }
 
   & > p:not([class*=f-]) a,
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) a,
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) a,
   & > .f-body a {
     @include text-underline(1.02em, $color__text--tertiary);
     color: $color__link--accent;
@@ -282,6 +294,9 @@
     }
   }
 
+  .o-article--editorial & > p:not([class*=f-]) a,
+  .o-article--editorial & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) a,
+  .o-article--editorial & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) a,
   & > .f-body-editorial a {
     @include text-underline(.82em, $color__text--tertiary);
     color: $color__link--editorial;
@@ -313,8 +328,25 @@
     }
   }
 
+  & > p:not([class*=f-]) sub,
+  & > p:not([class*=f-]) sup,
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) sub,
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) sup,
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) sub,
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) sup,
+  & > .f-body sub,
+  & > .f-body sup,
+  & > .f-body-editorial sub,
+  & > .f-body-editorial sup {
+    font-size: 60%;
+  }
+
   & > p:not([class*=f-]) sub a,
   & > p:not([class*=f-]) sup a,
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) sub a,
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) sup a,
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) sub a,
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) sup a,
   & > .f-body sub a,
   & > .f-body sup a,
   & > .f-body-editorial sub a,
