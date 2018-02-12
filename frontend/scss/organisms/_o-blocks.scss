@@ -9,6 +9,9 @@
     }
   }
 
+  /*****/
+
+  & > h4:not([class*=f-]),
   & > .f-module-title-2 {
     @include tucked-margin-top($f-module-title-2, ('xsmall': 68));
 
@@ -17,6 +20,13 @@
     }
   }
 
+  & > h4:not([class*=f-]) {
+    @extend %f-module-title-2;
+  }
+
+  /*****/
+
+  & > h5:not([class*=f-]),
   & > .f-subheading-1 {
     @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
 
@@ -25,9 +35,16 @@
     }
   }
 
+  & > h5:not([class*=f-]) {
+    @extend %f-subheading-1;
+  }
+
+  & > .hr + h5:not([class*=f-]),
   & > .hr + .f-subheading-1 {
     @include tucked-margin-top($f-subheading-1, ('xsmall': 28));
   }
+
+  /*****/
 
   & > .f-list-2 {
     @include tucked-margin-top($f-list-2, ('xsmall': 56));
@@ -37,6 +54,8 @@
     }
   }
 
+  /*****/
+
   & > .f-list-3 {
     @include tucked-margin-top($f-list-3, ('xsmall': 56));
 
@@ -44,6 +63,8 @@
       @include tucked-align-top($f-list-3);
     }
   }
+
+  /*****/
 
   & > .f-list-4 {
     @include tucked-margin-top($f-list-4, ('xsmall': 56));
@@ -53,6 +74,8 @@
     }
   }
 
+  /*****/
+
   & > .f-list-5 {
     @include tucked-margin-top($f-list-5, ('xsmall': 56));
 
@@ -61,6 +84,11 @@
     }
   }
 
+  /*****/
+
+  & > p:not([class*=f-]),
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
   & > .f-body {
     @include tucked-margin-top($f-body, ('xsmall': 56));
 
@@ -68,6 +96,19 @@
       @include tucked-align-top($f-body);
     }
   }
+
+  & > p:not([class*=f-]),
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+    @extend %f-body;
+  }
+
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+    @extend .list;
+  }
+
+  /*****/
 
   & > .f-body-editorial {
     @include tucked-margin-top($f-body-editorial, ('xsmall': 56));
@@ -77,6 +118,9 @@
     }
   }
 
+  /*****/
+
+  & > small,
   & > .f-secondary {
     @include tucked-margin-top($f-secondary, ('xsmall': 48));
 
@@ -85,22 +129,32 @@
     }
   }
 
-    & > .f-subheading-1 + .f-body,
-    & > .f-subheading-1 + .f-body-editorial {
-      margin-top: 0;
-    }
+  & > small {
+    @extend %f-secondary;
+  }
 
-    & > .m-media + .f-body,
-    & > .m-media + .f-body-editorial,
-    & > .quote + .f-body,
-    & > .quote + .f-body-editorial {
-      @include tucked-margin-top($f-body, ('xsmall': 60));
-    }
+  /*****/
 
+  & > .f-subheading-1 + .f-body,
+  & > .f-subheading-1 + .f-body-editorial {
+    margin-top: 0;
+  }
+
+  & > .m-media + .f-body,
+  & > .m-media + .f-body-editorial,
+  & > .quote + .f-body,
+  & > .quote + .f-body-editorial {
+    @include tucked-margin-top($f-body, ('xsmall': 60));
+  }
+
+  & > p,
+  & > h4:not([class*=f-]),
+  & > h5:not([class*=f-]),
   & > *[class*=f-] .f-link {
     @include untuck;
   }
 
+  & > p,
   & > .f-deck,
   & > .f-body,
   & > .f-body-editorial {
@@ -114,6 +168,8 @@
       padding-right: 0;
     }
   }
+
+  /*****/
 
   .o-blocks__block {
     clear: both;
@@ -140,6 +196,8 @@
     }
   }
 
+  h4:not([class*=f-]) + .o-blocks__block,
+  h5:not([class*=f-]) + .o-blocks__block,
   .f-module-title-2 + .o-blocks__block,
   .f-subheading-1 + .o-blocks__block,
   .o-blocks__block + .o-blocks__block {
@@ -208,6 +266,7 @@
     }
   }
 
+  & > p:not([class*=f-]) a,
   & > .f-body a {
     @include text-underline(1.02em, $color__text--tertiary);
     color: $color__link--accent;
@@ -254,6 +313,8 @@
     }
   }
 
+  & > p:not([class*=f-]) sub a,
+  & > p:not([class*=f-]) sup a,
   & > .f-body sub a,
   & > .f-body sup a,
   & > .f-body-editorial sub a,

@@ -701,12 +701,12 @@ class StaticsController extends Controller {
             array(
                 "type" => 'text',
                 "subtype" => 'secondary',
-                "content" => $this->faker->paragraph()
+                "content" => $this->generateParagraph()
             ),
             array(
                 "type" => 'text',
                 "subtype" => 'secondary',
-                "content" => $this->faker->paragraph()
+                "content" => $this->generateParagraph()
             ),
         ),
         'links' => array(
@@ -948,11 +948,11 @@ class StaticsController extends Controller {
         array_push($questionsAndAnswers, array(
             "type" => 'text',
             "subtype" => 'heading-2',
-            "content" => $this->faker->sentence(6)
+            "content" => $this->generateHeading(6, 'h5')
         ));
         array_push($questionsAndAnswers, array(
             "type" => 'text',
-            "content" => $this->faker->paragraph(3)
+            "content" => $this->generateParagraph(3)
         ));
     }
     $accordion = array();
@@ -1017,8 +1017,7 @@ class StaticsController extends Controller {
         )
     ));
     array_push($blocks, array(
-        "type" => 'text',
-        "subtype" => 'intro',
+        "type" => 'intro',
         "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
     ));
     array_push($blocks, array(
@@ -1027,7 +1026,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(2)
+        "content" => $this->generateParagraph(2)
     ));
     array_push($blocks, array(
         "type" => 'info-bar',
@@ -1035,27 +1034,27 @@ class StaticsController extends Controller {
         "blocks" => array(
             array(
                 "type" => 'text',
-                "content" => $this->faker->paragraph(2)
+                "content" => $this->generateParagraph(2)
             ),
         ),
     ));
     array_push($blocks, array(
         "type" => 'text',
         "subtype" => 'heading-2',
-        "content" => $this->faker->sentence(6)
+        "content" => $this->generateHeading(6, 'h5')
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(2)
+        "content" => $this->generateParagraph(2)
     ));
     array_push($blocks, array(
         "type" => 'text',
         "subtype" => 'heading-2',
-        "content" => $this->faker->sentence(6)
+        "content" => $this->generateHeading(6, 'h5')
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(2)
+        "content" => $this->generateParagraph(2)
     ));
 
     // now push to a view
@@ -2129,7 +2128,7 @@ class StaticsController extends Controller {
                 'blocks' => array(
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(12)
+                        "content" => $this->generateParagraph(12)
                     ),
                 ),
             ),
@@ -2138,7 +2137,7 @@ class StaticsController extends Controller {
                 'blocks' => array(
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(12)
+                        "content" => $this->generateParagraph(12)
                     ),
                 ),
             ),
@@ -2173,9 +2172,17 @@ class StaticsController extends Controller {
     array_push($blocks, array(
         "type" => 'text',
         'subtype' => 'secondary',
-        "content" => $this->faker->paragraph()
+        "content" => $this->generateParagraph()
     ));
     return $blocks;
+  }
+
+  private function generateHeading($num = 6, $tag = 'h4') {
+    return '<'.$tag.'>'.$this->faker->sentence($num).'</'.$tag.'>';
+  }
+
+  private function generateParagraph($num = 6, $variableLength = true) {
+    return '<p>'.$this->faker->paragraph($num, $variableLength).'</p>';
   }
 
   private function generateBlocks($num = 3) {
@@ -2184,16 +2191,16 @@ class StaticsController extends Controller {
 
     array_push($blocks, array(
         "type" => 'text',
-        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+        "content" => '<p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p>'
     ));
     array_push($blocks, array(
         "type" => 'text',
         "subtype" => 'heading-1',
-        "content" => $this->faker->sentence(6)
+        "content" => $this->generateHeading(6)
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(12, false)
+        "content" => $this->generateParagraph(12, false)
     ));
     array_push($blocks, array(
         "type" => 'hr',
@@ -2201,12 +2208,13 @@ class StaticsController extends Controller {
     array_push($blocks, array(
         "type" => 'text',
         "subtype" => 'heading-2',
-        "content" => $this->faker->sentence(6)
+        "content" => $this->generateHeading(6, 'h5')
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(12, false)
+        "content" => '<ul><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ul><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><ol><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ol>'
     ));
+    /*
     array_push($blocks, array(
         "type" => 'unorderedList',
         "items" => array(
@@ -2217,7 +2225,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(12, false)
+        "content" => $this->generateParagraph(12, false)
     ));
     array_push($blocks, array(
         "type" => 'orderedList',
@@ -2227,14 +2235,14 @@ class StaticsController extends Controller {
           $this->faker->sentence(6),
         )
     ));
+    */
     array_push($blocks, array(
-        "type" => 'text',
-        "subtype" => 'intro',
+        "type" => 'intro',
         "content" => $this->faker->paragraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(12, false)
+        "content" => $this->generateParagraph(12, false)
     ));
     array_push($blocks, array(
       "type" => 'deflist',
@@ -2248,7 +2256,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(12, false)
+        "content" => $this->generateParagraph(12, false)
     ));
     array_push($blocks, array(
         "type" => 'quote',
@@ -2256,7 +2264,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(2)
+        "content" => $this->generateParagraph(2)
     ));
     array_push($blocks, array(
         "type" => 'info-bar',
@@ -2264,13 +2272,13 @@ class StaticsController extends Controller {
         "blocks" => array(
             array(
                 "type" => 'text',
-                "content" => $this->faker->paragraph(2)
+                "content" => $this->generateParagraph(2)
             ),
         ),
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(2)
+        "content" => $this->generateParagraph(2)
     ));
     array_push($blocks, array(
         "type" => 'media',
@@ -2338,7 +2346,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'listing',
@@ -2347,7 +2355,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'listing',
@@ -2356,7 +2364,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'listing',
@@ -2365,7 +2373,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'aside',
@@ -2374,7 +2382,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'aside',
@@ -2383,7 +2391,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'aside',
@@ -2392,7 +2400,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'aside',
@@ -2401,7 +2409,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'aside',
@@ -2410,7 +2418,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'aside',
@@ -2419,11 +2427,11 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6, false)
+        "content" => $this->generateParagraph(6, false)
     ));
     array_push($blocks, array(
         "type" => 'time-line',
@@ -2439,7 +2447,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6)
+        "content" => $this->generateParagraph(6)
     ));
     array_push($blocks, array(
         "type" => 'accordion',
@@ -2449,24 +2457,11 @@ class StaticsController extends Controller {
                 'blocks' => array(
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
+                        "content" => $this->generateParagraph(8)
                     ),
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
-                    ),
-                ),
-            ),
-            array(
-                'title' => $this->faker->sentence(6),
-                'blocks' => array(
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
-                    ),
-                    array(
-                        "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
+                        "content" => $this->generateParagraph(8)
                     ),
                 ),
             ),
@@ -2475,11 +2470,24 @@ class StaticsController extends Controller {
                 'blocks' => array(
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
+                        "content" => $this->generateParagraph(8)
                     ),
                     array(
                         "type" => 'text',
-                        "content" => $this->faker->paragraph(8)
+                        "content" => $this->generateParagraph(8)
+                    ),
+                ),
+            ),
+            array(
+                'title' => $this->faker->sentence(6),
+                'blocks' => array(
+                    array(
+                        "type" => 'text',
+                        "content" => $this->generateParagraph(8)
+                    ),
+                    array(
+                        "type" => 'text',
+                        "content" => $this->generateParagraph(8)
                     ),
                 ),
             ),
@@ -2487,7 +2495,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6)
+        "content" => $this->generateParagraph(6)
     ));
     array_push($blocks, array(
         "type" => 'gallery',
@@ -2498,7 +2506,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6)
+        "content" => $this->generateParagraph(6)
     ));
     array_push($blocks, array(
         "type" => 'gallery',
@@ -2509,14 +2517,14 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6)
+        "content" => $this->generateParagraph(6)
     ));
 
     $blocks = array_merge($blocks, $this->generateGenericForm());
 
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6)
+        "content" => $this->generateParagraph(6)
     ));
 
     array_push($blocks, array(
@@ -2533,7 +2541,7 @@ class StaticsController extends Controller {
 
     array_push($blocks, array(
         "type" => 'text',
-        "content" => $this->faker->paragraph(6)
+        "content" => $this->generateParagraph(6)
     ));
 
 
@@ -2544,7 +2552,7 @@ class StaticsController extends Controller {
       for ($i = 0; $i < $num; $i++) {
         array_push($generatedBlocks, array(
           "type" => 'text',
-          "content" => $this->faker->paragraph(10)
+          "content" => $this->generateParagraph(10)
         ));
       }
       return $generatedBlocks;
@@ -3142,11 +3150,11 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
       "type" => 'text',
-      "content" => $this->faker->paragraph(5)
+      "content" => $this->generateParagraph(5)
     ));
     array_push($blocks, array(
       "type" => 'text',
-      "content" => $this->faker->paragraph(5)
+      "content" => $this->generateParagraph(5)
     ));
     array_push($blocks, array(
         "type" => 'form',
