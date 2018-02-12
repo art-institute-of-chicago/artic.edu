@@ -6,23 +6,22 @@ namespace App\Models\Behaviors;
 
 trait HasApiRelations
 {
-    protected $defaultApiRelationships = [];
-
-    /**
-    * Define the base element
-    *
-    */
     public function apiElements()
     {
         return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
     }
 
-    public function exhibitions()
+    public function apiModels($relation, $model)
     {
-        return $this->apiElements()->where('relation', 'exhibitions');
-    }
+        // TODO: Generalize, optimize and refactor
 
-    public function getApiRelationships() {
-        return array_merge($this->defaultApiRelationships, $this->apiRelationships);
+        // Obtain the API class
+        $modelClass = "\\App\\Models\\Api\\" . ucfirst($model);
+
+        // Get all Ids
+        $ids = $this->$relation->pluck('datahub_id')->toArray();
+
+        // Load the API collection
+        return $modelClass::query()->ids($ids)->get();
     }
 }

@@ -7,10 +7,11 @@ use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Admission as Admission;
+use App\Models\Behaviors\HasApiRelations;
 
 class Page extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasApiRelations, Transformable;
 
     public static $types = [
         0 => 'Home',

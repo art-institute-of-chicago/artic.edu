@@ -9,10 +9,11 @@ use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 
 use App\Models\Behaviors\HasApiModel;
+use App\Models\Behaviors\HasApiRelations;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiModel, Transformable;
+    use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiModel, HasApiRelations, Transformable;
 
     protected $presenter      = 'App\Presenters\Admin\ExhibitionPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
@@ -63,19 +64,6 @@ class Exhibition extends Model
         self::LARGE   => 'Large Feature',
         self::SPECIAL => 'Special Exhibition'
     ];
-
-    public function apiElements()
-    {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
-    }
-
-    public function apiModels($relation, $model)
-    {
-        // TODO: Generalize, optimize and refactor
-        $modelClass = "\\App\\Models\\Api\\" . ucfirst($model);
-        $ids = $this->$relation->pluck('datahub_id')->toArray();
-        return $modelClass::query()->ids($ids)->get();
-    }
 
     public function exhibitions()
     {

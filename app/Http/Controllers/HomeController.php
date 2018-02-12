@@ -27,17 +27,7 @@ class HomeController extends Controller
         $page = Page::where('type', 0)->first();
         // $featuredExhibitions = $page->homeExhibitions;
 
-        $shopItems = $page->homeShopItems;
-        $shopItemRepository = new ShopItemRepository(new ShopItem);
-
-        $products = collect([]);
-        foreach($shopItems as $shopItem) {
-            // dd($shopItem);
-            $item = $shopItemRepository->getById($shopItem->datahub_id);
-            // dd($item);
-            $products->push($item);
-        }
-
+        $products = $page->apiModels('homeShopItems', 'ShopItem');
 
         $featuredExhibitions = [new StaticObjectPresenter([
           "type" => "Exhibition",
