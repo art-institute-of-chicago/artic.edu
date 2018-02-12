@@ -1,9 +1,9 @@
-<form class="m-aside-newsletter{{ (isset($variation)) ? ' '.$variation : ' ' }}">
+<form class="m-aside-newsletter{{ (isset($variation)) ? ' '.$variation : ' ' }}{{ (isset($error) and $error) ? ' s-error' : '' }}{{ (isset($success) and $success) ? ' s-success' : '' }}" action="/subscribe" data-behavior="newsletter">
   <fieldset>
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
-    <span class="m-aside-newsletter__field{{ (isset($error) and $error) ? ' s-error' : '' }}{{ (isset($success) and $success) ? ' s-success' : '' }}">
-      <label for="newsletterEmail" class="f-secondary">Email address</label>
-      <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-secondary" placeholder="{{ $placeholder ?? '' }}">
+    <span class="m-aside-newsletter__field">
+      <label for="email" class="f-secondary">Email address</label>
+      <input type="text" name="email" class="f-secondary" placeholder="{{ $placeholder ?? '' }}">
       <button type="submit" class="{{ $btnFont ?? 'f-buttons' }}">Sign Up</button>
     </span>
     @if (isset($error) and $error)

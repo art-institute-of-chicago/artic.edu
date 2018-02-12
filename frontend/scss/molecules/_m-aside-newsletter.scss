@@ -31,10 +31,10 @@
     </span>
     </fieldset>
 </form>
-<form class="m-aside-newsletter m-aside-newsletter--wide">
+<form class="m-aside-newsletter m-aside-newsletter--wide s-error">
   <fieldset>
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
-    <span class="m-aside-newsletter__field s-error">
+    <span class="m-aside-newsletter__field">
       <label for="newsletterEmail" class="f-secondary">Email address</label>
       <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-secondary">
       <button type="submit" class="f-tag">Sign Up</button>
@@ -42,10 +42,10 @@
     <em class="m-aside-newsletter__msg m-aside-newsletter__msg--error f-buttons">Please enter a valid email address</em>
   </fieldset>
 </form>
-<form class="m-aside-newsletter m-aside-newsletter--wide">
+<form class="m-aside-newsletter m-aside-newsletter--wide s-success">
   <fieldset>
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
-    <span class="m-aside-newsletter__field s-success">
+    <span class="m-aside-newsletter__field">
       <label for="newsletterEmail" class="f-secondary">Email address</label>
       <input type="text" id="newsletterEmail" name="newsletterEmail" class="f-secondary">
       <button type="submit" class="f-tag">Sign Up</button>
@@ -62,11 +62,19 @@
   margin-top: 40px;
 }
 
+.m-aside-newsletter.s-loading {
+  @extend %a-loader;
+  pointer-events: none;
+}
+
 .m-aside-newsletter fieldset {
   display: block;
   margin: 0;
   padding: 0;
 }
+  .m-aside-newsletter.s-loading fieldset {
+    opacity: .4;
+  }
 
 .m-aside-newsletter legend {
   float: left;
