@@ -1,6 +1,6 @@
 <{{ $tag or 'header' }} class="m-article-header m-article-header--hero{{ (isset($variation)) ? ' '.$variation : '' }}">
   <div class="m-article-header__img">
-      @if (isset($img))
+      @if ($img)
         @component('components.atoms._img')
             @slot('src', $img['src'])
             @slot('width', $img['width'])
@@ -23,7 +23,7 @@
             {{ $title }}
         @endcomponent
       @endif
-      @if (isset($img) and isset($img['credit']))
+      @if ($img and isset($img['credit']))
         @if ($img['creditUrl'])
             <a href="{{ $img['creditUrl'] }}" class="m-article-header__info-trigger">
                 <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>

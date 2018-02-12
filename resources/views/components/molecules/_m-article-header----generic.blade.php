@@ -1,5 +1,5 @@
 <{{ $tag or 'header' }} class="m-article-header m-article-header--generic{{ (isset($img)) ? ' m-article-header--generic-w-img' : ''}}{{ (!isset($breadcrumb)) ? ' m-article-header--generic-no-breadcrumb' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
-    @if (isset($img))
+    @if ($img)
     <div class="m-article-header__img">
         @component('components.atoms._img')
             @slot('src', $img['src'])
@@ -17,7 +17,7 @@
         @endcomponent
       @endif
       @if (isset($breadcrumb))
-          @if (isset($img))
+          @if ($img)
           <ul class="m-article-header__breadcrumb" style="background-image: url({{ $img['src'] }});">
           @else
           <ul class="m-article-header__breadcrumb">

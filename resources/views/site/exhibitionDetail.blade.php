@@ -14,7 +14,7 @@
     @slot('dateEnd', $item->present()->endAt)
     @slot('type', $item->present()->exhibitionType)
     @slot('intro', $item->header_copy)
-    @slot('img', $item->headerImage)
+    @slot('img', $item->imageAsArray('hero'))
   @endcomponent
 
   <div class="o-article__primary-actions">

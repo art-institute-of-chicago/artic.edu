@@ -1,6 +1,6 @@
 <{{ $tag or 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}">
   <div class="m-article-header__img">
-      @if (isset($img))
+      @if ($img)
         @component('components.atoms._img')
             @slot('src', $img['src'])
             @slot('width', $img['width'])
@@ -8,7 +8,7 @@
         @endcomponent
       @endif
   </div>
-  @if (isset($img))
+  @if ($img)
   <div class="m-article-header__text" style="background-image: url({{ $img['src'] }});">
   @else
   <div class="m-article-header__text">
