@@ -166,7 +166,8 @@
 
     @include breakpoint('large+') {
       width: colspan(58, large);
-      margin-right: colspan(20, large, 0, true);
+      margin-right: 0;
+      margin-left: colspan(15, large, 0, true);
     }
 
     @include breakpoint('xlarge') {
