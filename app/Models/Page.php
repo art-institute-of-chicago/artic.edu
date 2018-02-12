@@ -68,11 +68,6 @@ class Page extends Model
         return $query->where('type', array_flip(self::$types)[$type]);
     }
 
-    public function apiElements()
-    {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
-    }
-
     public function homeExhibitions()
     {
         return $this->apiElements()->where('relation', 'homeExhibitions');
