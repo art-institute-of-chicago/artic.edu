@@ -1863,6 +1863,7 @@ class StaticsController extends Controller {
       "artist" => $this->faker->firstName.' '.$this->faker->lastName,
       "year" => $this->faker->year(),
       "image" => $this->getImage(),
+      "galleryLocation" => "Gallery 239",
       "type" => 'artwork',
     ]);
   }
@@ -2537,6 +2538,16 @@ class StaticsController extends Controller {
         "type" => 'inline-grid',
         "subtype" => 'page',
         "items" => $this->getPages(2)
+    ));
+
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->generateParagraph(6)
+    ));
+
+    array_push($blocks, array(
+        "type" => 'artwork',
+        "item" => $this->getArtwork(),
     ));
 
     array_push($blocks, array(

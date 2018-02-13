@@ -293,6 +293,83 @@
                 @endcomponent
             @endif
 
+            @if ($block['type'] === 'artwork')
+                @php
+                    $artworkItem = array();
+                    $artworkItem['type'] = 'image';
+                    $artworkItem['media'] = $block['item']->image;
+                    $artworkItem['captionTitle'] = $block['item']->title;
+                    $artworkItem['caption'] = $block['item']->artist.', '.$block['item']->year.' <br>'.$block['item']->galleryLocation;
+                    $artworkItem['hideShare'] = true;
+                @endphp
+                @component('components.molecules._m-media')
+                    @slot('variation', 'o-blocks__block')
+                    @slot('item', $artworkItem)
+                @endcomponent
+            @endif
+
+
+            {{-- DEAD BLOCKS
+            @php
+                $font = (isset($editorial) and $editorial) ? 'f-body-editorial' : false;
+                $variation = false;
+                $tag = false;
+                //
+                if (isset($block['subtype'])) {
+                    switch ($block['subtype']) {
+                        case 'intro':
+                            $font = 'f-deck';
+                            break;
+                        case 'secondary':
+                            $font = 'f-secondary';
+                            break;
+                        case 'heading-1':
+                            $font = 'f-module-title-2';
+                            $tag = 'h4';
+                            break;
+                        case 'heading-2':
+                            $font = 'f-subheading-1';
+                            $tag = 'h4';
+                            break;
+                    }
+                }
+                $content = $block['content'];
+            @endphp
+            @component('components.blocks._text')
+                @slot('tag', ($tag ? $tag : null))
+                @slot('variation', ($variation ? $variation : null))
+                @slot('font', ($font ? $font : null))
+                @slot('loopIndex', $loop->iteration)
+
+                @if (isset($editorial) and $editorial and $loop->first and !$loop->parent and isset($dropCapFirstPara) and $dropCapFirstPara)
+                    @component('components.blocks._text')
+                        @slot('font','f-dropcap-editorial')
+                        @slot('tag','span')
+                        @php echo substr($content, 0, 1) @endphp
+                    @endcomponent
+                    @php echo substr($content, 1) @endphp
+                @else
+                    {!! $content !!}
+                @endif
+            @endcomponent
+
+            @if ($block['type'] === 'unorderedList')
+                <ul class="list {{ ((isset($editorial) and $editorial) ? 'f-body-editorial' : 'f-body') }}">
+                @foreach ($block['items'] as $item)
+                    <li>{{ $item }}</li>
+                @endforeach
+                </ul>
+            @endif
+
+            @if ($block['type'] === 'orderedList')
+                <ol class="list {{ ((isset($editorial) and $editorial) ? 'f-body-editorial' : 'f-body') }}">
+                @foreach ($block['items'] as $item)
+                    <li>{{ $item }}</li>
+                @endforeach
+                </ol>
+            @endif
+            --}}
+
         @else
             @php
                 var_dump($block);
