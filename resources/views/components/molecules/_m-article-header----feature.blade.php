@@ -37,17 +37,17 @@
         @endcomponent
       @endif
 
-      @if ($img['creditUrl'])
+      @if (isset($img['creditUrl']))
           <a href="{{ $img['creditUrl'] }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
               {{ $img['credit'] }}
           </a>
-      @else
+      @elseif (isset($img['credit']))
           <span class="m-article-header__img-credit f-secondary" data-gallery-credit>
               {{ $img['credit'] }}
           </span>
       @endif
       @if (isset($img) and isset($img['credit']))
-        @if ($img['creditUrl'])
+        @if (isset($img['creditUrl']))
             <a href="{{ $img['creditUrl'] }}" class="m-article-header__info-trigger">
                 <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
             </a>

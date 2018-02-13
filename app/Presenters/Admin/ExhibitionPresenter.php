@@ -22,19 +22,17 @@ class ExhibitionPresenter extends BasePresenter
         return $start->format('m d Y') . ' - ' . $end->format('m d Y');
     }
 
-    public function exhibitionType()
-    {
-        return ($this->entity->cms_exhibition_type == \App\Models\Exhibition::SPECIAL) ? "Special Exhibition" : 'Exhibition';
-    }
-
     public function headerType()
     {
-        switch ($this->exhibitionType()) {
-            case 'Special Exhibition':
-                return 'super-hero';
+        switch ($this->entity->cms_exhibition_type) {
+            case \App\Models\Exhibition::SPECIAL:
+                return "super-hero";
                 break;
-            case 'Exhibition':
-                return 'hero';
+            case \App\Models\Exhibition::LARGE:
+                return "feature";
+                break;
+            case \App\Models\Exhibition::BASIC:
+                return null;
                 break;
         }
     }
