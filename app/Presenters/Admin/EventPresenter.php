@@ -15,4 +15,9 @@ class EventPresenter extends BasePresenter
         return 'No title';
     }
 
+    public function type()
+    {
+        return \App\Models\Event::$eventTypes[$this->entity->type];
+    }
+
 }

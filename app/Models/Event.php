@@ -14,8 +14,9 @@ class Event extends Model
     use HasSlug, HasRevisions, HasMedias, HasBlocks, HasRecurrentDates, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
+    protected $presenter = 'App\Presenters\Admin\EventPresenter';
 
-    protected $appends = ['all_dates', 'date'];
+    protected $appends = ['all_dates', 'date', 'date_end'];
 
     protected $fillable = [
         'title',
@@ -45,13 +46,20 @@ class Event extends Model
         'buy_button_caption'
     ];
 
+    const CLASSES_AND_WORKSHOPS = 0;
+    const LIVE_ARTS = 1;
+    const SCREENINGS = 2;
+    const SPECIAL_EVENT = 3;
+    const TALKS = 4;
+    const TOUR = 5;
+
     public static $eventTypes = [
-        0 => 'Classes and workshops',
-        1 => 'Live arts',
-        2 => 'Screenings',
-        3 => 'Special Events',
-        4 => 'Talks',
-        5 => 'Tours'
+        self::CLASSES_AND_WORKSHOPS => 'Classes and workshops',
+        self::LIVE_ARTS => 'Live arts',
+        self::SCREENINGS => 'Screenings',
+        self::SPECIAL_EVENT => 'Special Event',
+        self::TALKS => 'Talks',
+        self::TOUR => 'Tour'
     ];
 
     public static $eventLayouts = [
@@ -80,7 +88,7 @@ class Event extends Model
         'is_boosted'
     ];
 
-    public $dates = ['date'];
+    public $dates = ['date', 'date_end'];
 
     public $mediasParams = [
         'hero' => [
@@ -106,6 +114,16 @@ class Event extends Model
 
     public function getIdSlugAttribute() {
         return join([$this->id, $this->getSlug()], '-');
+    }
+
+    public function getTimeStartAttribute() {
+        if ($this->date)
+            return $this->date->format('h:ia');
+    }
+
+    public function getTimeEndAttribute() {
+        if ($this->date_end)
+         return $this->date_end->format('h:ia');
     }
 
     public function siteTags()

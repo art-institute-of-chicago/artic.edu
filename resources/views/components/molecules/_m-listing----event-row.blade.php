@@ -1,5 +1,5 @@
 <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
-  <a href="{{ $item->slug }}" class="m-listing__link">
+  <a href="{{ route('events.show', $item) }}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
         @if ($img = $item->imageAsArray('hero'))
             @component('components.atoms._img')
@@ -18,7 +18,11 @@
             @endcomponent
         @else
             @component('components.atoms._type')
-                {{ $item->type }}
+                @if (method_exists($item, 'present'))
+                    {{ $item->present()->type }}
+                @else
+                    {{ $item->type }}
+                @endif
             @endcomponent
         @endif
         <br>
