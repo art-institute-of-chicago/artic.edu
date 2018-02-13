@@ -24,6 +24,8 @@ class Event extends Model
         'short_description',
         'description',
         'hero_caption',
+        'start_time',
+        'end_time',
         'is_private',
         'is_after_hours',
         'is_ticketed',

@@ -8,11 +8,13 @@
 @formField('date_picker', [
     'name' => 'start_date',
     'label' => 'Start Date',
+    'withTime' => false
 ])
 
 @formField('date_picker', [
     'name' => 'end_date',
-    'label' => 'Ends'
+    'label' => 'Ends',
+    'withTime' => false
 ])
 
 @formField('input', [

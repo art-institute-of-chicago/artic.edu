@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAuthorToArticles extends Migration
+class AddDateEndToEventsMeta extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddAuthorToArticles extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->string('author')->nullable();
+        Schema::table('event_metas', function (Blueprint $table) {
+            $table->datetime('date_end')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddAuthorToArticles extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn('author');
+        Schema::table('event_metas', function (Blueprint $table) {
+            $table->dropColumn('date_end');
         });
     }
 }

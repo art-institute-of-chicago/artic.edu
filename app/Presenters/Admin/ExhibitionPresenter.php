@@ -37,6 +37,15 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
+    public function exhibitionType()
+    {
+        if ($this->entity->cms_exhibition_type == \App\Models\Exhibition::SPECIAL) {
+            return 'Special Exhibition';
+        } else {
+            return 'Exhibition';
+        }
+    }
+
     public function startAt()
     {
         return new Carbon($this->entity->start_at);

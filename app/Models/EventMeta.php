@@ -8,6 +8,7 @@ class EventMeta extends Model
 {
     protected $fillable = [
         'date',
+        'date_end',
         'event_id'
     ];
 

@@ -13,9 +13,16 @@ trait HandleRecurrence
 
         // Create dates in all ocurrences
         foreach($rules as $occurrence) {
-            \App\Models\EventMeta::create([
-                'date' => $occurrence,
-                'event_id' => $object->id]
+            // Force rewind the date to the beginning of the day
+            $occurrence->setTime(0,0);
+
+            // Generate an Event Meta, add hours to the start and end dates
+            \App\Models\EventMeta::create(
+                [
+                    'date'     => (clone $occurrence)->add(new \DateInterval($object->start_time)),
+                    'date_end' => (clone $occurrence)->add(new \DateInterval($object->end_time)),
+                    'event_id' => $object->id
+                ]
             );
         }
     }

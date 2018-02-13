@@ -104,6 +104,18 @@
             'rows' => 2
         ])
 
+        @formField('select', [
+            'name' => 'start_time',
+            'label' => 'Start Time',
+            'options' => hoursSelectOptions()
+        ])
+
+        @formField('select', [
+            'name' => 'end_time',
+            'label' => 'End Time',
+            'options' => hoursSelectOptions()
+        ])
+
         @formField('repeater', [
             'type' => 'dateRules',
             'title' => 'Date Rule',
