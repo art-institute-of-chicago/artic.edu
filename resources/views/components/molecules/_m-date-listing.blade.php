@@ -13,9 +13,9 @@
           @endcomponent
       @endforeach
       </ul>
+      @if (isset($date['ongoingEvents']))
       <h4 class="m-date-listing__listings-title f-module-title-1">Ongoing events</h4>
       <ul class="m-date-listing__items">
-        @if (isset($date['ongoingEvents']))
           @foreach ($date['ongoingEvents'] as $item)
               @component('components.molecules._m-listing----event-row')
                   @slot('item', $item)
@@ -24,7 +24,7 @@
                   @slot('variation', 'm-listing--row m-listing--secondary')
               @endcomponent
           @endforeach
-        @endif
       </ul>
+    @endif
     </div>
 </{{ $tag ?? 'li' }}>

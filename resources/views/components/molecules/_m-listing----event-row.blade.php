@@ -3,10 +3,10 @@
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
         @if ($img = $item->imageAsArray('hero'))
             @component('components.atoms._img')
-                @slot('src', $item->image['src'])
-                {{-- @slot('srcset', $item->image['srcset']) --}}
-                @slot('width', $item->image['width'])
-                @slot('height', $item->image['height'])
+                @slot('src', $img['src'])
+                {{-- @slot('srcset', $img['srcset']) --}}
+                @slot('width', $img['width'])
+                @slot('height', $img['height'])
             @endcomponent
         @endif
     </span>

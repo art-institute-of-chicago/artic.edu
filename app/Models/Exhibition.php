@@ -7,6 +7,7 @@ use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
+use Carbon\Carbon;
 
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
@@ -88,6 +89,16 @@ class Exhibition extends Model
     public function events()
     {
         return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
+    }
+
+    public function eventsCount()
+    {
+        $query = $this->events()->rightJoin('event_metas', function ($join) {
+            $join->on('events.id', '=', 'event_metas.event_id');
+        });
+        $query->where('event_metas.date', '>=', Carbon::today());
+
+        return $query->count();
     }
 
     protected function transformMappingInternal()

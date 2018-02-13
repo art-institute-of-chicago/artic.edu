@@ -68,4 +68,13 @@ class EventRepository extends ModuleRepository
         });
     }
 
+    public function getRelatedEventsCount($object) {
+        $query = $object->events()->rightJoin('event_metas', function ($join) {
+            $join->on('events.id', '=', 'event_metas.event_id');
+        });
+        $query->where('event_metas.date', '>=', Carbon::today());
+
+        return $query->count();
+    }
+
 }

@@ -63,8 +63,9 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     protected function relatedEventsLink() {
+        $count = $this->entity->eventsCount();
         return [
-            'label' => '12 related events',
+            'label' =>  $count . ' related ' . str_plural('event', $count),
             'href' => '#related_events',
             'iconBefore' => 'calendar'
         ];
