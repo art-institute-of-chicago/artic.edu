@@ -33,3 +33,4 @@ export { default as search } from './search';
 export { default as autocomplete } from './autocomplete';
 export { default as modal } from './modal';
 export { default as newsletter } from './newsletter';
+export { default as openImageFullScreen } from './openImageFullScreen';

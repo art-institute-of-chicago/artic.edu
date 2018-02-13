@@ -301,6 +301,7 @@
                     $artworkItem['captionTitle'] = $block['item']->title;
                     $artworkItem['caption'] = $block['item']->artist.', '.$block['item']->year.' <br>'.$block['item']->galleryLocation;
                     $artworkItem['hideShare'] = true;
+                    $artworkItem['fullscreen'] = true;
                 @endphp
                 @component('components.molecules._m-media')
                     @slot('variation', 'o-blocks__block')

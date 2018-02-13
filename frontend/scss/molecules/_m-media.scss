@@ -53,10 +53,16 @@
   object-fit: cover;
 }
 
-.m-media__download-btn {
+.m-media__btn-download {
   position: absolute;
   right: 20px;
   bottom: 20px;
+}
+
+.m-media__btn-fullscreen {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
 .m-media figcaption {
