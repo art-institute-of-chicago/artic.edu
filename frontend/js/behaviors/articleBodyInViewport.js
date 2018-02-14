@@ -71,9 +71,11 @@ const articleBodyInViewport = function(container) {
       window.removeEventListener('resized',_calcLockPositions);
       document.removeEventListener('fonts:loaded',_calcLockPositions);
       document.removeEventListener('page:updated',_calcLockPositions);
+      /*
       forEach(document.querySelectorAll('img'), function(index, img) {
         img.removeEventListener('load', _calcLockPositions);
       });
+      */
       isSetUp = false;
     }
   }
@@ -84,7 +86,7 @@ const articleBodyInViewport = function(container) {
       window.addEventListener('resized',_calcLockPositions, false);
       document.addEventListener('fonts:loaded',_calcLockPositions, false);
       document.addEventListener('page:updated',_calcLockPositions, false);
-
+      /*
       forEach(document.querySelectorAll('img'), function (index, img) {
         img.addEventListener('load', _calcLockPositions, false);
         try {
@@ -93,7 +95,7 @@ const articleBodyInViewport = function(container) {
           }
         } catch(err) {}
       });
-
+      */
       _calcLockPositions();
       _decidePos();
       isSetUp = true;
