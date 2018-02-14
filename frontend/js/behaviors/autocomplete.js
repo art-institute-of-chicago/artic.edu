@@ -44,7 +44,7 @@ const autocomplete = function(container) {
 
     ajaxTimer = setTimeout(function(){
       ajaxRequest({
-        url: '/collections/search/'+ s,
+        url: '/collection/search/'+ s,
         type: 'GET',
         requestHeaders: [
           {

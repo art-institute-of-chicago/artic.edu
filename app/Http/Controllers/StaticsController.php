@@ -1879,6 +1879,7 @@ class StaticsController extends Controller {
       "subtitle" => $this->faker->sentence(5, true),
       "artist" => $this->faker->firstName.' '.$this->faker->lastName,
       "year" => $this->faker->year(),
+      "artist_display" => $this->faker->firstName.' '.$this->faker->lastName.', '.$this->faker->year(),
       "image" => $this->getImage(),
       "galleryLocation" => "Gallery 239",
       "type" => 'artwork',

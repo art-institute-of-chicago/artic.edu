@@ -8,6 +8,10 @@ if (!app()->environment('production')) {
   Route::get('/statics/{slug?}', 'StaticsController@index');
 }
 
+// Collection routes
+Route::name('collection')->get('/collection', 'CollectionController@index');
+Route::name('collection.search')->get('/collection/search/{slug}', 'CollectionController@search');
+
 // Newsletter subscription
 Route::name('subscribe')->post('/subscribe', 'SubscribeController@store');
 
@@ -31,7 +35,7 @@ Route::name('exhibitions')->get('/exhibitions', 'ExhibitionController@index');
 Route::name('exhibitions.show')->get('/exhibitions/{id}', 'ExhibitionController@show');
 
 // Artwork routes
-Route::name('artworks')->get('/artworks/{id}', 'ArtworkController@show');
+Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
 
 // Exhibition history routes
 Route::resource('exhibitionHistory', 'ExhibitionHistoryController', ['only' => ['index', 'show']]);
