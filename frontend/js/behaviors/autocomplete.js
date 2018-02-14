@@ -64,7 +64,7 @@ const autocomplete = function(container) {
 
     ajaxTimer = setTimeout(function(){
       ajaxRequest({
-        url: '/collection/search/'+ s,
+        url: autoCompleteUrl + _fixedEncodeURIComponent(textInput.value),
         type: 'GET',
         requestHeaders: [
           {
@@ -92,10 +92,9 @@ const autocomplete = function(container) {
   // handle submit
   function _handleSubmit(event) {
     event.preventDefault();
-    searchTerm = _fixedEncodeURIComponent(textInput.value);
     // trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
-      url: queryStringHandler.updateParameter(container.action, 'keyword', searchTerm),
+      url: queryStringHandler.updateParameter(container.action, 'keyword', _fixedEncodeURIComponent(textInput.value)),
     });
   }
 
