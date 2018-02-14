@@ -577,7 +577,7 @@ $f-secondary: generate-font-obj((
 }
 
 a.f-secondary,
-.f-secondary a {
+.f-secondary:not(.dropdown__list):not(.m-search-bar__autocomplete) a {
   &:hover,
   &:focus:hover {
     @include text-underline(1.02em, $color__text--secondary);

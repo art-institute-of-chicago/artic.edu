@@ -586,10 +586,13 @@ class StaticsController extends Controller {
   }
 
   public function collectionsAutocomplete(){
-    $items = [];
+    $items = array();
 
     for ($i = 0; $i < 5; $i++) {
-      $items[] = $this->faker->words(3, true);
+      array_push($items, array(
+          'href' => '#',
+          'label' => $this->faker->words(3, true),
+      ));
     }
 
     return view('components/molecules/_m-search-bar__autocomplete', [

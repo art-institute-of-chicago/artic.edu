@@ -1,5 +1,6 @@
 
 .m-search-bar {
+  position: relative;
 }
 
 .m-search-bar__inner {
@@ -121,42 +122,68 @@
 }
 
 // autocomplete
+
 .m-search-bar__autocomplete {
-  position: relative;
-  z-index: 2;
-  display: block;
-}
-
-.m-search-bar__autocomplete ul {
-  @extend %f-secondary;
-  display: block;
-  top: 0;
-  left: 0;
-  right: 56px;
-  max-height: none;
-  // background-color: $color__bg;
-}
-
-.m-search-bar__autocomplete li {
-}
-
-.m-search-bar__autocomplete li a {
   @include untuck;
   display: block;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background-color: $color__bg;
+  box-shadow: $shadow;
 }
 
-.m-search-bar__autocomplete-close {
-  position: absolute;
-  bottom: 100%;
-  right: 76px;
-  margin-bottom: 20px;
+.m-search-bar__autocomplete li:not(:first-child) {
+  border-top: 1px solid $color__rules--tertiary;
+}
+
+.m-search-bar__autocomplete a:not([class]) {
+  display: block;
+  padding: 10px 16px;
+  background-color: $color__white;
+  color: $color__text--secondary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.m-search-bar__autocomplete.f-secondary a:not([class]) {
+  padding-top: 11px;
+  padding-bottom: 12px;
+
+  @include breakpoint('large+') {
+    padding-top: 8px;
+    padding-bottom: 11px;
+  }
+}
+
+.m-search-bar__autocomplete a:not([class]):hover {
+  background-color: $color__bg--secondary;
   color: $color__text--title;
 }
 
-.m-search-bar--loading .m-search-bar__loader {
+.m-search-bar__autocomplete a:not([class]):active {
+  background-color: $color__bg--primary;
+  color: $color__text--title;
+}
+
+
+.m-search-bar.s-autocomplete-active .m-search-bar__clear {
+  display: block;
+  position: absolute;
+  right: 56px;
+  border: 0 none;
+  background-color: transparent;
+  color: $color__text--title;
+}
+
+.m-search-bar.s-loading .m-search-bar__loader {
   display: block;
 }
 
-.m-search-bar--loading .m-search-bar__autocomplete-close {
+.m-search-bar.s-loading .m-search-bar__autocomplete-close {
   display: none;
 }

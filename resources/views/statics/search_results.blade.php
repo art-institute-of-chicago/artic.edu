@@ -15,6 +15,9 @@
     @slot('placeholder','Search by keyword, artist or reference')
     @slot('value', $searchTerm)
     @slot('name', 'search')
+    @slot('behaviors','autocomplete')
+    @slot('dataAttributes','data-autocomplete-url="/search/autocomplete/"')
+    @slot('action','/statics/search_results')
 @endcomponent
 
 @component('components.molecules._m-links-bar')

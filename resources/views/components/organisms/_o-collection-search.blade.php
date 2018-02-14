@@ -2,6 +2,7 @@
     @component('components.molecules._m-search-bar')
         @slot('placeholder','Search...')
         @slot('name', 'collection-search')
+        @slot('action','/statics/collection')
     @endcomponent
 
     <p class="o-collection-search__title f-tag-2">Quick Search</p>

@@ -21,6 +21,9 @@
 @component('components.molecules._m-search-bar')
     @slot('placeholder','Search by keyword, artist or reference')
     @slot('name', 'collection-search')
+    @slot('behaviors','autocomplete')
+    @slot('dataAttributes','data-autocomplete-url="/collections/search/"')
+    @slot('action','/statics/collection')
 @endcomponent
 
 @component('components.molecules._m-quick-search-links----collection')
