@@ -1,12 +1,4 @@
 .s-search-active {
-  position: fixed;
-  overflow: hidden;
-
-  body {
-    position: fixed;
-    width: 100vw;
-    overflow: hidden;
-  }
 
   #a17 {
     @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {

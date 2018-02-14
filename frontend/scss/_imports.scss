@@ -163,6 +163,7 @@ $include-icons: false; // see icons.scss!
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ states */
 
+@import 'state/s-body-locked';
 @import 'state/s-contrast-header';
 @import 'state/s-article-sticky-xxxx';
 @import 'state/s-shareMenu-active';

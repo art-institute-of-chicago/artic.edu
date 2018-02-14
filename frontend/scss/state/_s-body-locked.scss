@@ -1,0 +1,10 @@
+.s-body-locked {
+  position: fixed;
+  overflow: hidden;
+
+  body {
+    position: fixed;
+    width: 100vw;
+    overflow: hidden;
+  }
+}

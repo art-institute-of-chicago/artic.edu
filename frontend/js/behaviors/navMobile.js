@@ -59,7 +59,7 @@ const navMobile = function(container) {
 
   function _lockBody(){
     triggerCustomEvent(document, 'body:lock', {
-      breakpoints: 'xsmall small medium large xlarge'
+      breakpoints: 'all'
     });
     setFocusOnTarget(container);
     triggerCustomEvent(document, 'focus:trap', {

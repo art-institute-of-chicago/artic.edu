@@ -1,12 +1,4 @@
 .s-fullscreenImage-active {
-  position: fixed;
-  overflow: hidden;
-
-  body {
-    position: fixed;
-    width: 100vw;
-    overflow: hidden;
-  }
 
   #a17 {
     @media screen and (min-width: 1280px) and (min-height: 1024px) {
