@@ -254,6 +254,9 @@ const imageZoomArea = function(container) {
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     setFocusOnTarget(document.getElementById('a17'));
+    img.removeAttribute('width');
+    img.removeAttribute('height');
+    img.removeAttribute('srcset');
     active = false;
   }
 
