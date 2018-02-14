@@ -1536,34 +1536,51 @@ class StaticsController extends Controller {
     return $embed;
   }
 
-  private function getGalleryImages($num = 6) {
+  private function getGalleryImages($num = 6, $type = false) {
     $images = array();
-    for ($i = 0; $i < $num; $i++) {
-      if ($i == 2) {
-        array_push($images, array(
-              'type' => 'video',
-              'size' => 'gallery',
-              'media' => $this->getVideo(),
-              'caption' => $this->faker->paragraph(3, false),
-          )
-        );
-      } else if ($i == 5) {
-        array_push($images, array(
-              'type' => 'embed',
-              'size' => 'gallery',
-              'media' => $this->getEmbed(),
-              'caption' => $this->faker->paragraph(3, false),
-          )
-        );
-      } else {
-        array_push($images, array(
-              'type' => 'image',
-              'size' => 'gallery',
-              'media' => $this->getImage(),
-              'caption' => $this->faker->paragraph(3, false),
-              'url' => $this->faker->boolean() ? '#' : null,
-          )
-        );
+    if ($type === 'artworks') {
+      for ($i = 0; $i < $num; $i++) {
+        // need to convert the artwork item to media
+        $artwork = $this->getArtwork();
+        $artworkItem = array();
+        $artworkItem['type'] = 'image';
+        $artworkItem['size'] = 'gallery';
+        $artworkItem['media'] = $artwork->image;
+        $artworkItem['captionTitle'] = $artwork->title;
+        $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
+        $artworkItem['hideShare'] = true;
+        $artworkItem['fullscreen'] = true;
+
+        array_push($images, $artworkItem);
+      }
+    } else {
+      for ($i = 0; $i < $num; $i++) {
+        if ($i == 2) {
+          array_push($images, array(
+                'type' => 'video',
+                'size' => 'gallery',
+                'media' => $this->getVideo(),
+                'caption' => $this->faker->paragraph(3, false),
+            )
+          );
+        } else if ($i == 5) {
+          array_push($images, array(
+                'type' => 'embed',
+                'size' => 'gallery',
+                'media' => $this->getEmbed(),
+                'caption' => $this->faker->paragraph(3, false),
+            )
+          );
+        } else {
+          array_push($images, array(
+                'type' => 'image',
+                'size' => 'gallery',
+                'media' => $this->getImage(),
+                'caption' => $this->faker->paragraph(3, false),
+                'url' => $this->faker->boolean() ? '#' : null,
+            )
+          );
+        }
       }
     }
     return $images;
@@ -2548,6 +2565,19 @@ class StaticsController extends Controller {
     array_push($blocks, array(
         "type" => 'artwork',
         "item" => $this->getArtwork(),
+    ));
+
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => $this->generateParagraph(6)
+    ));
+
+    array_push($blocks, array(
+        "type" => 'gallery',
+        "subtype" => 'slider',
+        "title" => 'Slider Gallery',
+        "caption" => $this->faker->paragraph(3, false),
+        "items" => $this->getGalleryImages(6,'artworks'),
     ));
 
     array_push($blocks, array(
