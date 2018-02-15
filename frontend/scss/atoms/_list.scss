@@ -44,3 +44,7 @@ ul.list > li {
 ol.list > li {
   list-style-type: decimal;
 }
+
+ul.list ul.list > li {
+  list-style-type: circle;
+}
