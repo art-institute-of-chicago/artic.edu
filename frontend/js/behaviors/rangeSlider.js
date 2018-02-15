@@ -1,4 +1,5 @@
 import { purgeProperties, queryStringHandler, forEach, getUrlParameterByName, triggerCustomEvent } from '@area17/a17-helpers';
+import noUiSlider from '../libs/nouislider';
 
 const rangeSlider = function(container){
 
@@ -16,25 +17,17 @@ const rangeSlider = function(container){
   const $range = container.querySelector('[data-range-bar]');
   const $minDisplay = container.querySelector('[data-range-min-display]');
   const $maxDisplay = container.querySelector('[data-range-max-display]');
-  // get param to update
+  const $customFrom = container.querySelector('[data-range-custom-from]');
+  const $customTo = container.querySelector('[data-range-custom-to]');
+  const $customBtn = container.querySelector('[data-range-custom-btn]');
   const param = container.getAttribute('data-param');
-  // defaults
-  let maxIncrements = rangeValues.length;
-  let minIncrementIndex = 0;
-  let maxIncrementIndex = maxIncrements - 1;
-  // what values does the range start on? these update as the sliders move
-  let minThumbInitIncrementIndex = minIncrementIndex;
-  let maxThumbInitIncrementIndex = maxIncrementIndex;
-  // vars so we can convert the left positions to an increment index
-  let singleIncrementSizeInPixels;
-  // the left position of the thumbs
-  let minThumbCurrentLeftPositionInPixels, maxThumbCurrentLeftPositionInPixels;
-  // drag differences
-  let xDown, xDiff, leftDragPosInit;
-  // halt duplicate drags
-  let dragging = false;
-  // update timer to trigger page load when finished dragging around
-  let draggingTimer;
+  const bcText = 'BC';
+  const adText = 'AD';
+  const inputs = [$customFrom, $customTo];
+  const displays = [$minDisplay, $maxDisplay];
+  var rangeStart = 0;
+  var rangeEnd = rangeValues.length - 1;
+  var timer;
 
   function _findInArray(array, value) {
     let returnIndex = -1;
@@ -46,173 +39,199 @@ const rangeSlider = function(container){
     return returnIndex;
   }
 
-  function _triggerPageLoad() {
-    var windowLocationHref = queryStringHandler.updateParameter(window.location.href, param+'-start', rangeValues[minThumbInitIncrementIndex]);
-    windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, param+'-end', rangeValues[maxThumbInitIncrementIndex]);
+  function _prepData(){
+    // grab init positions from URL
+    let initStart = getUrlParameterByName(param+'-start', window.location.search);
+    let initEnd = getUrlParameterByName(param+'-end', window.location.search);
+
+    if (initStart) {
+      $customFrom.value = initStart;
+    }
+
+    if (initEnd) {
+      $customTo.value = initEnd;
+    }
+
+    if( initStart || initEnd ){
+      var indexes = _setCustomValues();
+
+      rangeStart = indexes.fromIndex;
+      rangeEnd = indexes.toIndex;
+    }
+  }
+
+  function _triggerPageLoad(minIndex, maxIndex) {
+    var windowLocationHref = queryStringHandler.updateParameter(window.location.href, param+'-start', rangeValues[minIndex]);
+    windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, param+'-end', rangeValues[maxIndex]);
     // trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: windowLocationHref,
     });
   }
 
-  function convertPixelsToIncrementIndex(left) {
-    return Math.floor((left / $slideTrack.offsetWidth) * (maxIncrementIndex));
-  }
-
-  function convertIncrementIndexToPixels(index) {
-    return Math.round(index * singleIncrementSizeInPixels);
-  }
-
-  function _checkOutOfBounds(left) {
-    let isMinThumb = (dragging.getAttribute('data-range-thumb-min') !== null);
-
-    if (isMinThumb) {
-      if (left > maxThumbCurrentLeftPositionInPixels - singleIncrementSizeInPixels) {
-        left = maxThumbCurrentLeftPositionInPixels - singleIncrementSizeInPixels;
+  function _createSlider(){
+    noUiSlider.create($slideTrack, {
+      start: [rangeStart, rangeEnd],
+      connect: true,
+      step: 1,
+      range: {
+        min: 0,
+        max: rangeValues.length - 1
+      },
+      format: {
+      to: function ( value ) {
+        return Math.round(value);
+      },
+      from: function ( value ) {
+        return Math.round(value);
       }
-      if (left < 0) {
-        left = 0;
-      }
-      minThumbCurrentLeftPositionInPixels = left;
-      minThumbInitIncrementIndex = convertPixelsToIncrementIndex(minThumbCurrentLeftPositionInPixels);
-    } else {
-      let maxLeft = Math.floor(maxIncrementIndex * singleIncrementSizeInPixels);
-      if (left > maxLeft) {
-        left = maxLeft;
-      }
-      if (left < minThumbCurrentLeftPositionInPixels + singleIncrementSizeInPixels) {
-        left = minThumbCurrentLeftPositionInPixels + singleIncrementSizeInPixels;
-      }
-      maxThumbCurrentLeftPositionInPixels = left;
-      maxThumbInitIncrementIndex = convertPixelsToIncrementIndex(maxThumbCurrentLeftPositionInPixels);
     }
+    });
+
+    $slideTrack.noUiSlider.on('update', function( values, handle ) {
+      inputs[handle].value = rangeValues[values[handle]];
+      displays[handle].innerHTML = rangeValues[values[handle]];
+    });
+
+    $slideTrack.noUiSlider.on('set', function( values, handle ) {
+      clearTimeout(timer);
+
+      // set event is triggered each time a handle is set so it will run 4 times when using the custom inputs. Set timeout to only trigger 1 pageload.
+      timer = setTimeout(function(){
+        _triggerPageLoad(values[0], values[1]);
+      }, 500);
+    });
   }
 
-  function _updateDisplay() {
-    $min.style.left = minThumbCurrentLeftPositionInPixels + 'px';
-    $max.style.left = maxThumbCurrentLeftPositionInPixels + 'px';
-    $range.style.width = (maxThumbCurrentLeftPositionInPixels - minThumbCurrentLeftPositionInPixels) + 'px';
-    $range.style.left = minThumbCurrentLeftPositionInPixels + 'px';
-    if ($minDisplay && $maxDisplay) {
-      $minDisplay.textContent = rangeValues[minThumbInitIncrementIndex];
-      $maxDisplay.textContent = rangeValues[maxThumbInitIncrementIndex];
-    }
-  }
+  function _handleClick(e){
+    var indexes = _setCustomValues();
 
-  function _calcValues(){
-    singleIncrementSizeInPixels = $slideTrack.offsetWidth / maxIncrementIndex;
-    //
-    minThumbCurrentLeftPositionInPixels = convertIncrementIndexToPixels(minThumbInitIncrementIndex);
-    maxThumbCurrentLeftPositionInPixels = convertIncrementIndexToPixels(maxThumbInitIncrementIndex);
-    //
-    _updateDisplay();
-  }
-
-  function _onDraggingStart(event) {
-    if (!dragging) {
-      dragging = event.target;
-      leftDragPosInit = parseInt(event.target.style.left);
-      dragging.classList.add('s-dragging');
-      container.classList.add('s-dragging');
-      try {
-        clearTimeout(draggingTimer);
-      } catch(err) {}
-    }
-  }
-
-  function _onDragging(event, xNow) {
-    if (dragging) {
-      if (!xDown) {
-        return;
+    $slideTrack.noUiSlider.updateOptions({
+      range: {
+        'min': 0,
+        'max': rangeValues.length - 1
       }
-      // diffs
-      xDiff = xDown - xNow;
-      // new values
-      let leftDragPos = leftDragPosInit - xDiff;
-      // stop dragging off the screen
-      leftDragPos = _checkOutOfBounds(leftDragPos);
-      // update position
-      _updateDisplay();
-    }
+    });
+    $slideTrack.noUiSlider.set([ indexes.fromIndex, indexes.toIndex ]);
+
+    e.preventDefault();
   }
 
-  function _onDraggingEnd(event) {
-    if (dragging) {
-      dragging.classList.remove('s-dragging');
-      container.classList.remove('s-dragging');
-      dragging = false;
-      // reset
-      xDown = undefined;
-      xDiff = undefined;
-      //
-      draggingTimer = setTimeout(_triggerPageLoad, 500);
+  function _setCustomValues(e){
+    var fromValueRaw = $customFrom.value;
+    var toValueRaw = $customTo.value;
+    var fromValue = parseInt(fromValueRaw);
+    var toValue = parseInt(toValueRaw);
+    var fromTextValue = fromValueRaw;
+    var toTextValue = toValueRaw;
+    var fromExists = _findInArray(rangeValues, fromValueRaw) > -1;
+    var toExists = _findInArray(rangeValues, toValueRaw) > -1;
+
+    if( fromValueRaw.indexOf(bcText) > -1 ){
+      var fromValue = fromValue * -1;
     }
+
+    // toValue cannot be lower than fromValue
+    if( fromValue > toValue ){
+      alert('Upper date range must be higher than the lower date range');
+      return;
+    }
+
+    // From Value
+    if( !fromExists && fromValueRaw != null && fromValueRaw != '' ){
+      fromTextValue = _updateRangeValues(fromValue);
+    }
+
+    // To Value
+    if( !toExists && toValueRaw != null && toValueRaw != '' ){
+      toTextValue = _updateRangeValues(toValue);
+    }
+
+    var fromIndex = _findInArray(rangeValues, fromTextValue) > -1 ? _findInArray(rangeValues, fromTextValue) : 0;
+    var toIndex = _findInArray(rangeValues, toTextValue) > -1 ? _findInArray(rangeValues, toTextValue) : rangeValues.length - 1;
+
+    return {fromIndex: fromIndex, toIndex: toIndex};
   }
 
-  function _setUpDragging(el) {
-    // dragging
-    el.addEventListener('mousedown', function(event){
-      event.preventDefault();
-      if (event.which === 1) {
-        xDown = event.pageX;
-        _onDraggingStart(event);
+  function _updateRangeValues(customValue){
+    var isBC = false;
+    var spliced = false;
+    var lastIndex = false;
+    var customValIndex = 0;
+
+    if( isNaN( customValue ) ){
+      alert( 'Please enter a valid number' );
+      return;
+    }
+
+    // If fromValue starts with a '-' then search for BC else get AD
+    if( customValue < 0 ){
+      isBC = true;
+    }
+
+    var text = Math.abs(customValue) + (isBC ? bcText : adText);
+
+    // find nearest number in array of values
+    // loop all values
+    rangeValues.forEach( function(val, index) {
+      var parsedVal = parseInt(val);
+
+      if( isBC ){
+        // if isBC == true then check if value contains 'BC'
+        if( val.indexOf(bcText) != -1 ){
+          // convert BC numbers to negative
+          var negVal = parsedVal * -1;
+
+          // check if value is less than current index value
+          if( customValue <= negVal && spliced == false){
+            // insert value into array at location of nearest number
+
+            if( rangeValues.indexOf(text) == -1 ){
+              rangeValues.splice(index, 0, Math.abs(customValue) + bcText );
+            }
+
+            spliced = true;
+            customValIndex = index;
+          }
+
+          lastIndex = index;
+        }
+      }else{
+        // else check if it contains 'AD'
+        if( val.indexOf(adText) != -1 ){
+          // check if value is greater than current index value
+          if( customValue <= parsedVal && spliced == false){
+            // insert value into array at location of nearest number
+            if( rangeValues.indexOf(text) == -1 ){
+              rangeValues.splice(index, 0, text );
+            }
+            spliced = true;
+            customValIndex = index;
+          }
+
+          lastIndex = index;
+        }
       }
-    }, false);
+    });
 
-    document.addEventListener('mousemove', function(event){
-      _onDragging(event, event.pageX);
-    }, false);
+    // if not then insert into array at current index
+    if( !spliced && lastIndex ){
+      rangeValues.splice(lastIndex + 1, 0, Math.abs(customValue) + (isBC ? bcText : adText) );
+      customValIndex = lastIndex + 1;
+    }
 
-    document.addEventListener('mouseup', function(event){
-      _onDraggingEnd(event);
-    }, false);
-
-    // touch versions
-    el.addEventListener('touchstart', function(event){
-      event.preventDefault();
-      event.stopPropagation();
-      xDown = event.touches[0].clientX;
-      _onDraggingStart(event);
-    }, false);
-
-    document.addEventListener('touchmove', function(event){
-      if (dragging) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      _onDragging(event, event.changedTouches[0].clientX);
-    }, false);
-
-    document.addEventListener('touchend', function(event){
-      _onDraggingEnd(event);
-    }, false);
+    return text;
   }
 
   function _init() {
-    // grab init positions from URL
-    let initStart = getUrlParameterByName(param+'-start', window.location.search);
-    let initEnd = getUrlParameterByName(param+'-end', window.location.search);
-    if (initStart) {
-      minThumbInitIncrementIndex = _findInArray(rangeValues, initStart) || minIncrementIndex;
-    }
-    if (initEnd) {
-      maxThumbInitIncrementIndex = _findInArray(rangeValues, initEnd) || maxIncrementIndex;
-    }
-
-    // set up dragging
-    _setUpDragging($min);
-    _setUpDragging($max);
-
-    // go go go
-    document.addEventListener('resized', _calcValues, false);
-    document.addEventListener('collectionFilters:visible', _calcValues, false);
-    _calcValues();
+    _prepData();
+    _createSlider();
+    $customBtn.addEventListener('click', _handleClick, false);
   }
 
   this.destroy = function() {
     // remove specific event handlers
-    document.removeEventListener('resized', _calcValues);
-    document.removeEventListener('collectionFilters:visible', _calcValues);
+    $customBtn.removeEventListener('click', _handleClick);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);

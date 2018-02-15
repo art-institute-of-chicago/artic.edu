@@ -4,110 +4,92 @@
 <script>
 var dateRangeValues = ['8000BC','7000BC','6000BC','5000BC','4000BC','3000BC','2000BC','1000BC','1AD','500AD','1000AD','1200AD','1400AD','1600AD','1700AD','1800AD','1900AD','1910AD','1920AD','1930AD','1940AD','1950AD','1960AD','1970AD','1980AD','1990AD','2000AD','2010AD','Present'];
 </script>
-<div class="range-slider" data-behavior="rangeSlider" data-param="date" data-range-values="dateRangeValues">
+<div class="range-slider s-capped" data-behavior="rangeSlider" data-param="date" data-range-values="dateRangeValues">
   <em class="range-slider__display f-secondary">
     <span data-range-min-display></span> - <span data-range-max-display></span>
   </em>
-  <div class="range-slider__slider" data-range-slider>
-    <span class="range-slider__range" data-range-bar></span>
-    <span class="range-slider__thumb range-slider__thumb--min" data-range-thumb-min></span>
-    <span class="range-slider__thumb range-slider__thumb--max" data-range-thumb-max></span>
+
+  <div class="range-slider__slider" data-range-slider></div>
+
+  <div class="range-slider__custom">
+      <div class="range-slider__custom-row">
+          <div class="range-slider__custom-input">
+              <input type="num" id="rangeFrom" name="rangeFrom" data-range-custom-from />
+          </div>
+
+          <div class="range-slider__custom-input">
+              <input type="num" id="rangeTo" name="rangeTo" data-range-custom-to />
+          </div>
+      </div>
+
+      <button class="range-slider__custom-btn" data-range-custom-btn>OK</button>
   </div>
 </div>
+
+<button class="m-filters__show-more-toggle f-secondary" data-behavior="filterToggleShowMore">
+    <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+    <span>Custom range</span>
+</button>
 ```
 
 ***/
 
 .range-slider {
   position: relative;
-}
-
-.range-slider__slider {
-  position: relative;
-  height: 4px;
-  margin: 24px 8px 0;
-  background-color: $color__black--10;
-  /* autoprefixer: off */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: -8px;
-    right: -8px;
-    top: 0;
-    bottom: 0;
-    background-color: $color__black--10;
-  }
-}
-
-.range-slider__range {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: $color__black--40;
-
-  .s-dragging & {
-    background-color: $color__black--80;
-  }
-}
-
-.range-slider__thumb {
-  position: absolute;
-  z-index: 2;
-  width: 16px;
-  height: 16px;
-  margin-top: -6px;
-  margin-left: -8px;
-  border: 1px solid $color__black--20;
-  border-radius: 50%;
-  background-color: $color__white;
-  /* autoprefixer: off */
-  cursor: move;
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
-  cursor: grab;
-
-  &:hover {
-    border-color: $color__black--80;
-  }
-
-  .s-dragging &:hover {
-    border-color: $color__black--20;
-  }
-
-  &.s-dragging {
-    z-index: 3;
-    border-color: $color__black--80;
-    /* autoprefixer: off */
-    cursor: move;
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-    cursor: grabbing;
-  }
-
-  .s-dragging &.s-dragging:hover {
-    border-color: $color__black--80;
-  }
-
-  &.range-slider__thumb--min {
-    left: 0;
-  }
-
-  &.range-slider__thumb--max {
-    left: 100%;
-  }
+  max-height: 185px;
+  overflow: hidden;
 }
 
 .range-slider__display {
   display: block;
   color: $color__text--secondary;
   font-style: normal;
+}
+
+.range-slider__custom {
+  margin-top: 30px;
+}
+
+.range-slider__custom-row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.range-slider__custom-input {
+  margin-left: 20px;
+}
+
+.range-slider__custom-input:first-child {
+  margin-left: 0;
+}
+
+.range-slider__custom-input input {
+  @extend %input;
+  @extend %f-secondary;
+  @include untuck;
+}
+
+.range-slider__custom-btn {
+  @extend %f-tag;
+  @include untuck;
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: $border-radius;
+  background-color: $color__black--5;
+  color: $color__black--54;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.range-slider.s-capped {
+  max-height: 62px;
+}
+
+.range-slider.s-capped + .m-filters__show-more-toggle svg {
+  transform: rotate(90deg);
 }

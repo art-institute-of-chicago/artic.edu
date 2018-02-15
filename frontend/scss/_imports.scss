@@ -39,6 +39,10 @@ $include-icons: false; // see icons.scss!
 
 @import 'setup/placeholders';
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ vendors */
+
+@import 'vendor/nouislider';
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ atoms */
 
 @import 'atoms/general-styles';
