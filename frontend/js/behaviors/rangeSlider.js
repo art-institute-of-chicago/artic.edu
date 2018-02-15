@@ -176,8 +176,10 @@ const rangeSlider = function(container){
     }, false);
 
     document.addEventListener('touchmove', function(event){
-      event.preventDefault();
-      event.stopPropagation();
+      if (dragging) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
       _onDragging(event, event.changedTouches[0].clientX);
     }, false);
 
