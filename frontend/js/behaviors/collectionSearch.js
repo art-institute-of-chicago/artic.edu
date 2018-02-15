@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent, setFocusOnTarget } from 'a17-helpers';
+import { purgeProperties, triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
 import { focusTrap } from '../functions';
 
 const collectionSearch = function(container) {

@@ -1,4 +1,4 @@
-import { purgeProperties } from 'a17-helpers';
+import { purgeProperties } from '@area17/a17-helpers';
 
 const filterToggleShowMore = function(container) {
 

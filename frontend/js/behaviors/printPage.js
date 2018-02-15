@@ -1,4 +1,4 @@
-import { purgeProperties, queryStringHandler } from 'a17-helpers';
+import { purgeProperties, queryStringHandler } from '@area17/a17-helpers';
 
 const printPage = function(container) {
 

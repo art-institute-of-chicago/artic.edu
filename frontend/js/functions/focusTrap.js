@@ -1,4 +1,4 @@
-import { setFocusOnTarget } from 'a17-helpers';
+import { setFocusOnTarget } from '@area17/a17-helpers';
 
 const focusTrap = function() {
 

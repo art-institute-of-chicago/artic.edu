@@ -1,4 +1,4 @@
-import { purgeProperties, setFocusOnTarget, triggerCustomEvent } from 'a17-helpers';
+import { purgeProperties, setFocusOnTarget, triggerCustomEvent } from '@area17/a17-helpers';
 import { positionElementToTarget } from '../functions';
 
 const dropdown = function(container) {

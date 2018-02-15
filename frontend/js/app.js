@@ -1,4 +1,4 @@
-import { manageBehaviors, resized, getCurrentMediaQuery } from 'a17-helpers';
+import { manageBehaviors, resized, getCurrentMediaQuery } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
 import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection } from './functions';
 

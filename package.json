@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "a17-helpers": "git+https://code.area17.com/a17/a17-helpers.git",
+    "@area17/a17-helpers": "^0.x",
     "gulp-cli": "^2.0.0"
   },
   "devDependencies": {

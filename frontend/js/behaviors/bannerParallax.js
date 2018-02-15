@@ -1,4 +1,4 @@
-import { purgeProperties, getOffset } from 'a17-helpers';
+import { purgeProperties, getOffset } from '@area17/a17-helpers';
 
 const bannerParallax = function(container) {
 

@@ -1,4 +1,4 @@
-import { purgeProperties, forEach } from 'a17-helpers';
+import { purgeProperties, forEach } from '@area17/a17-helpers';
 
 const pinboard = function(container){
 

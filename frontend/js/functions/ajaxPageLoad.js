@@ -1,4 +1,4 @@
-import { triggerCustomEvent, ajaxRequest } from 'a17-helpers';
+import { triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
 import { findAncestorByTagName, ajaxableLink } from '../functions';
 
 const ajaxPageLoad = function() {

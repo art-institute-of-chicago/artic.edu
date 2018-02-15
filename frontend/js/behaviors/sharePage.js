@@ -1,4 +1,4 @@
-import { setFocusOnTarget, purgeProperties, triggerCustomEvent } from 'a17-helpers';
+import { setFocusOnTarget, purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
 import { positionElementToTarget, focusTrap } from '../functions';
 
 const sharePage = function(container) {

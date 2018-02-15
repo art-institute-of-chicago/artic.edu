@@ -1,4 +1,4 @@
-import { purgeProperties, getOffset, forEach } from 'a17-helpers';
+import { purgeProperties, getOffset, forEach } from '@area17/a17-helpers';
 
 const articleBodyInViewport = function(container) {
 

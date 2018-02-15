@@ -1,4 +1,4 @@
-import { purgeProperties, setFocusOnTarget, forEach, getIndex, triggerCustomEvent } from 'a17-helpers';
+import { purgeProperties, setFocusOnTarget, forEach, getIndex, triggerCustomEvent } from '@area17/a17-helpers';
 import { focusTrap } from '../functions';
 
 const imageZoomArea = function(container) {

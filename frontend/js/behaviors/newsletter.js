@@ -1,4 +1,4 @@
-import { purgeProperties, ajaxRequest, objectifyForm } from 'a17-helpers';
+import { purgeProperties, ajaxRequest, objectifyForm } from '@area17/a17-helpers';
 
 const newsletter = function(container) {
 

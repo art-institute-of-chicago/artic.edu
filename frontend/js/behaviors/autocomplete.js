@@ -1,4 +1,4 @@
-import { purgeProperties, ajaxRequest, triggerCustomEvent, queryStringHandler } from 'a17-helpers';
+import { purgeProperties, ajaxRequest, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
 
 const autocomplete = function(container) {
   const autoCompleteUrl = container.getAttribute('data-autocomplete-url');

@@ -1,4 +1,4 @@
-import { triggerCustomEvent } from 'a17-helpers';
+import { triggerCustomEvent } from '@area17/a17-helpers';
 
 const historyProxy = function() {
 

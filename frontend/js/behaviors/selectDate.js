@@ -1,4 +1,4 @@
-import { setFocusOnTarget, purgeProperties, triggerCustomEvent, queryStringHandler } from 'a17-helpers';
+import { setFocusOnTarget, purgeProperties, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
 import { positionElementToTarget } from '../functions';
 
 const selectDate = function(container) {

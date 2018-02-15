@@ -1,4 +1,4 @@
-import { purgeProperties, forEach, getIndex, triggerCustomEvent } from 'a17-helpers';
+import { purgeProperties, forEach, getIndex, triggerCustomEvent } from '@area17/a17-helpers';
 
 const headerGallery = function(container) {
 

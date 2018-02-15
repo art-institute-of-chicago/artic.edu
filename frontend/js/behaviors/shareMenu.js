@@ -1,4 +1,4 @@
-import { purgeProperties, escapeString, copyTextToClipboard, forEach, triggerCustomEvent } from 'a17-helpers';
+import { purgeProperties, escapeString, copyTextToClipboard, forEach, triggerCustomEvent } from '@area17/a17-helpers';
 
 const shareMenu = function(container) {
 

@@ -1,4 +1,4 @@
-import { purgeProperties, setFocusOnTarget, scrollToY, getOffset } from 'a17-helpers';
+import { purgeProperties, setFocusOnTarget, scrollToY, getOffset } from '@area17/a17-helpers';
 
 const internalLinksScroll = function(container) {
 

@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent, queryStringHandler, forEach } from 'a17-helpers';
+import { purgeProperties, triggerCustomEvent, queryStringHandler, forEach } from '@area17/a17-helpers';
 
 const calendar = function(container) {
 

@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent } from 'a17-helpers';
+import { purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
 
 const openImageFullScreen = function(container) {
 

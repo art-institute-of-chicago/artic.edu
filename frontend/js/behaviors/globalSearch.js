@@ -1,4 +1,4 @@
-import { purgeProperties, setFocusOnTarget, triggerCustomEvent, ajaxRequest, queryStringHandler } from 'a17-helpers';
+import { purgeProperties, setFocusOnTarget, triggerCustomEvent, ajaxRequest, queryStringHandler } from '@area17/a17-helpers';
 
 //data-search-inner
 const globalSearch = function(container) {

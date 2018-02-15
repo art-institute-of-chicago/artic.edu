@@ -1,4 +1,4 @@
-import { purgeProperties, queryStringHandler, forEach, getUrlParameterByName, triggerCustomEvent } from 'a17-helpers';
+import { purgeProperties, queryStringHandler, forEach, getUrlParameterByName, triggerCustomEvent } from '@area17/a17-helpers';
 
 const rangeSlider = function(container){
 
