@@ -13,7 +13,6 @@
   transform: scale(.85);
   opacity: 0;
   transition: opacity .1s, transform .15s $bezier--bounce;
-  overflow: hidden;
 
   @media screen and (min-width: 1280px) and (min-height: 1024px) {
     left: 50%;
