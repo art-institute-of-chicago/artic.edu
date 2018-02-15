@@ -12,6 +12,7 @@ const autocomplete = function(container) {
   const loaderKlass = 's-loading';
   const autocompleteActiveKlass = 's-autocomplete-active';
 
+  let active = false;
   let searchTerm = '';
   let dropdownList;
   let ajaxTimer;
@@ -33,6 +34,7 @@ const autocomplete = function(container) {
       container.appendChild(dropdownList);
     }
     container.classList.add(autocompleteActiveKlass);
+    active = true;
   }
 
   // hide autocomplete
@@ -48,6 +50,7 @@ const autocomplete = function(container) {
       container.removeChild(dropdownList);
       dropdownList = null;
     }
+    active = false;
   }
 
   function _fixedEncodeURIComponent(str) {
@@ -115,11 +118,36 @@ const autocomplete = function(container) {
     textInput.value = '';
   }
 
+  function _clicks(event) {
+    if (active && document.activeElement !== container && !container.contains(document.activeElement)) {
+      event.preventDefault();
+      event.stopPropagation();
+      _hideAutocomplete();
+    }
+  }
+
+  function _touchstart(event) {
+    if (active && event.target !== container && !container.contains(event.target)) {
+      event.preventDefault();
+      event.stopPropagation();
+      _hideAutocomplete();
+    }
+  }
+
+  function _escape(event) {
+    if (active && event.keyCode === 27) {
+      _hideAutocomplete();
+    }
+  }
+
   function _init() {
     textInput.addEventListener('input', _handleInput, false);
     textInput.addEventListener('propertychange', _handleInput, false);
     container.addEventListener('submit', _handleSubmit, false);
     clearBtn.addEventListener('click', _clearInput, false);
+    document.addEventListener('click', _clicks, false);
+    document.addEventListener('touchstart', _touchstart, false);
+    window.addEventListener('keyup', _escape, false);
   }
 
   this.destroy = function() {
@@ -127,6 +155,9 @@ const autocomplete = function(container) {
     textInput.removeEventListener('propertychange', _handleInput);
     container.removeEventListener('submit', _handleSubmit);
     clearBtn.removeEventListener('click', _clearInput);
+    document.removeEventListener('click', _clicks);
+    document.removeEventListener('touchstart', _touchstart);
+    window.removeEventListener('keyup', _escape);
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
