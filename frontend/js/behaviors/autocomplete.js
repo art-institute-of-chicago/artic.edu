@@ -28,7 +28,7 @@ const autocomplete = function(container) {
   function _showAutocomplete(content) {
     let parser = new DOMParser();
     let doc = parser.parseFromString(content, 'text/html');
-    dropdownList = doc.querySelector('[data-autocomplete-list');
+    dropdownList = doc.querySelector('[data-autocomplete-list]');
     if (dropdownList) {
       container.appendChild(dropdownList);
     }
