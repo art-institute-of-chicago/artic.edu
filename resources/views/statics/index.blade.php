@@ -67,8 +67,17 @@
           <li><a href="/statics/articles">articles</a></li>
           <li><a href="/statics/generic_form">generic form</a></li>
           <li><a href="/statics/contact">contact</a></li>
-          <li><a href="/statics/search_results">search results</a></li>
-          <li><a href="/statics/search_results_artists">search results artists</a></li>
+          <li>
+            <a href="/statics/search_results">search results</a>
+            <ul class="list">
+               <li><a href="/statics/search_results_artists">search results artists</a></li>
+               <li><a href="/statics/search_results_pages">search results pages</a></li>
+               <li><a href="/statics/search_results_artworks">search results artworks</a></li>
+               <li><a href="/statics/search_results_events_and_exhibitions">search results events and exhibitions</a></li>
+               <li><a href="/statics/search_results_articles_and_publications">search results articles and publications</a></li>
+               <li><a href="/statics/search_results_research_and_resources">search results research and resources</a></li>
+            </ul>
+          </li>
           <li><a href="/statics/modal1">modal</a></li>
           <li><a href="/statics/modal2">modal with image</a></li>
           <li><a href="/statics/video">video detail</a></li>
