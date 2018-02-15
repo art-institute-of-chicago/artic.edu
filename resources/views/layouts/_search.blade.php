@@ -1,16 +1,13 @@
-<div class="g-search" data-behavior="search">
+<div class="g-search" data-behavior="globalSearch" data-autocomplete-url="/autocomplete/">
     <div class="g-search__scroll">
-        <div class="g-search__inner">
-            <form action="" class="g-search__form">
-                <input type="search" id="q" name="q" class="g-search__input" placeholder="Search" />
-
+        <div class="g-search__inner" data-search-inner>
+            <form action="/search" class="g-search__form">
+                <input type="search" id="q" name="q" class="g-search__input" placeholder="Search" autocomplete="off" />
                 <button type="submit" class="g-search__submit">
                     <svg aria-label="Search" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
                 </button>
-
                 <span class="g-search__loader"></span>
             </form>
-
             <div class="g-search__suggested">
                 <span class="g-search__suggested-title">Suggested Terms</span>
                 <ul>
@@ -19,12 +16,9 @@
                     @endforeach
                 </ul>
             </div>
-
-            <a href="#" class="g-search__close" data-search-close>
+            <button class="g-search__close" data-behavior="globalSearchClose">
                 <svg aria-hidden="true" class="icon--close--24"><use xlink:href="#icon--close--24" /></svg>
-            </a>
-
-            <div data-autocomplete></div>
+            </button>
         </div>
     </div>
 </div>

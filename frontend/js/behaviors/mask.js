@@ -11,7 +11,7 @@ const mask = function(container) {
     triggerCustomEvent(document, 'collectionFilters:close');
     triggerCustomEvent(document, 'infoButtonInfo:close');
     triggerCustomEvent(document, 'modal:close');
-    triggerCustomEvent(document, 'search:close');
+    triggerCustomEvent(document, 'globalSearch:close');
   }
 
   function _init() {

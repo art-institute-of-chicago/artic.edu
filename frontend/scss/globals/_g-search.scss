@@ -48,7 +48,15 @@ $f-autocomplete: generate-font-obj((
   position: absolute;
   top: 25px;
   right: 0;
+  padding: 0;
+  border: 0 none;
+  background-color: transparent;
   color: $color__white;
+  cursor: pointer;
+
+  &:hover {
+    opacity: .7;
+  }
 }
 
 .g-search__form {
@@ -58,8 +66,8 @@ $f-autocomplete: generate-font-obj((
 .g-search__input {
   @include font-styles($f-search-input);
   width: 100%;
-  padding-bottom: 15px;
   padding-right: 40px;
+  padding-bottom: 15px;
   border: 0;
   border-bottom: 1px solid rgba($color__rules--tertiary, 0.5);
   background-color: transparent;
@@ -67,7 +75,7 @@ $f-autocomplete: generate-font-obj((
   -webkit-appearance: none;
   outline: 0;
 
-  @include placeholder(){
+  @include placeholder() {
     color: $color__text--search;
   }
 }
@@ -78,6 +86,9 @@ $f-autocomplete: generate-font-obj((
 }
 
 .g-search__submit {
+  display: block;
+  width: 24px;
+  height: 56px;
   position: absolute;
   top: 50%;
   right: 0;
@@ -87,10 +98,16 @@ $f-autocomplete: generate-font-obj((
   border: 0;
   background-color: transparent;
   color: $color__text--search;
+  line-height: 56px;
+  text-align: center;
+  cursor: pointer;
   transform: translateY(-50%);
   -webkit-appearance: none;
   cursor: pointer;
-  outline: 0;
+
+  .g-search.s-loading & {
+    display: none;
+  }
 }
 
 .g-search__submit:hover {
@@ -106,6 +123,10 @@ $f-autocomplete: generate-font-obj((
   z-index: 2;
   margin-top: -7.5px;
   transform: translateY(-50%);
+
+  .g-search.s-loading & {
+    display: block;
+  }
 }
 
 .g-search__suggested {
@@ -175,8 +196,19 @@ $f-autocomplete: generate-font-obj((
 }
 
 .g-search__autocomplete-all {
-  @extend %f-buttons;
-  display: inline-block;
+  display: block;
   margin-top: 10px;
-  color: $color__grey--130;
+}
+
+.g-search__autocomplete-all a {
+  color: $color__link--hover;
+
+  &:hover,
+  &:focus:hover {
+    color: $color__link;
+  }
+
+  &:active:hover {
+    color: $color__link--active;
+  }
 }

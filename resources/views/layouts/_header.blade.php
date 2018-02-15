@@ -23,7 +23,7 @@
           <li{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'visit') ? ' s-current' : '' }}><a href="{{ $_pages['visit'] }}">Visit</a></li>
           <li class="u-show@small+{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'exhibitions_and_events') ? ' s-current' : '' }}"><a href="{{ $_pages['exhibitions'] }}">Exhibitions &amp; Events</a></li>
           <li class="u-show@small+{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'collection') ? ' s-current' : '' }}"><a href="{{ $_pages['collection'] }}">The Collection</a></li>
-          <li class="u-show@small+"><a href="#" data-search-open><svg class="icon--search--24" aria-label="Search site"><use xlink:href="#icon--search--24" /></svg></a></li>
+          <li class="u-show@small+"><button data-behavior="globalSearchOpen"><svg class="icon--search--24" aria-label="Search site"><use xlink:href="#icon--search--24" /></svg></button></li>
         </ul>
       </nav>
       <nav class="g-header__nav-secondary">
