@@ -1,57 +1,66 @@
 
+.o-collection-listing .m-header-block + .m-intro-block {
+  margin-top: 24px;
 
-.o-collection-listing {
-
-  .m-header-block + .m-intro-block {
-    margin-top: 24px;
-
-    @include breakpoint('medium+') {
-      margin-top: 32px;
-    }
-
-    @include breakpoint('large+') {
-      margin-top: 40px;
-    }
-
+  @include breakpoint('medium+') {
+    margin-top: 32px;
   }
 
-  & > .m-search-bar,
-  & > .m-quick-search-links,
-  & > .m-search-actions,
-  & > .m-active-filters {
+  @include breakpoint('large+') {
+    margin-top: 40px;
+  }
+}
 
-    @include breakpoint('small-') {
-      display: none;
+.o-collection-listing > .m-search-bar,
+.o-collection-listing > .m-quick-search-links,
+.o-collection-listing > .m-search-actions,
+.o-collection-listing > .m-active-filters {
+
+  @include breakpoint('small-') {
+    display: none;
+  }
+}
+
+.o-collection-listing > .m-search-triggers {
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
+.o-collection-listing .o-pinboard {
+  margin-top: 16px;
+
+  @include breakpoint('small-') {
+    box-shadow: 0 1px 0 $color__white inset;
+    margin-top: 0;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: auto;
+      width: 100%;
+      height: 1px;
+      background: $color__white;
     }
   }
+}
 
-  & > .m-search-triggers {
 
-    @include breakpoint('medium+') {
-      display: none;
-    }
-  }
+.o-collection-listing__no-results {
+  min-height: 33vh;
+  margin-top: 40px;
+}
 
-  .o-pinboard {
-    margin-top: 16px;
+.o-collection-listing__no-results .title {
+  margin-top: 40px;
+}
 
-    @include breakpoint('small-') {
-      box-shadow: 0 1px 0 $color__white inset;
-      margin-top: 0;
-
-      &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        z-index: 2;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: auto;
-        width: 100%;
-        height: 1px;
-        background: $color__white;
-      }
-    }
-  }
+.o-collection-listing__no-results .title + .f-body {
+  margin-top: 20px;
 }

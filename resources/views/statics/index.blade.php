@@ -48,7 +48,12 @@
         <h4 class="title f-subheading-1">Batch 02</h4>
         <ul class="list f-body">
           <li><a href="/statics/artwork">artwork, images header</a></li>
-          <li><a href="/statics/collection">collection</a></li>
+          <li>
+            <a href="/statics/collection">collection</a>
+            <ul class="list">
+                <a href="/statics/collection_no_results">collection no results</a>
+            </ul>
+          </li>
           <li><a href="/statics/visit">visit</a></li>
         </ul>
         <h4 class="title f-subheading-1">Batch 03</h4>
@@ -70,12 +75,13 @@
           <li>
             <a href="/statics/search_results">search results</a>
             <ul class="list">
-               <li><a href="/statics/search_results_artists">search results artists</a></li>
-               <li><a href="/statics/search_results_pages">search results pages</a></li>
-               <li><a href="/statics/search_results_artworks">search results artworks</a></li>
-               <li><a href="/statics/search_results_events_and_exhibitions">search results events and exhibitions</a></li>
-               <li><a href="/statics/search_results_articles_and_publications">search results articles and publications</a></li>
-               <li><a href="/statics/search_results_research_and_resources">search results research and resources</a></li>
+                <li><a href="/statics/search_results_no_results">search no results</a></li>
+                <li><a href="/statics/search_results_artists">search results artists</a></li>
+                <li><a href="/statics/search_results_pages">search results pages</a></li>
+                <li><a href="/statics/search_results_artworks">search results artworks</a></li>
+                <li><a href="/statics/search_results_events_and_exhibitions">search results events and exhibitions</a></li>
+                <li><a href="/statics/search_results_articles_and_publications">search results articles and publications</a></li>
+                <li><a href="/statics/search_results_research_and_resources">search results research and resources</a></li>
             </ul>
           </li>
           <li><a href="/statics/modal1">modal</a></li>

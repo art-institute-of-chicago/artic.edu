@@ -585,6 +585,41 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function collection_no_results() {
+    $quickSearchLinks = array();
+    for ($i = 0; $i < 20; $i++) {
+      array_push($quickSearchLinks,
+        array(
+          'href' => '#',
+          'label' => $this->faker->word(),
+          'image' => $this->getImage(40,40),
+        )
+      );
+    }
+
+    $filters = array();
+    for ($i = 0; $i < 20; $i++) {
+      array_push($filters,
+        array(
+          'href' => '#',
+          'label' => $this->faker->word(),
+          'count' => $this->faker->numberBetween(13,1312),
+        )
+      );
+    }
+    // now push to a view
+    return view('statics/collection', [
+      'primaryNavCurrent' => 'collection',
+      'title' => 'The Collection',
+      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
+      'quickSearchLinks' => $quickSearchLinks,
+      'filters' => $filters,
+      'filterCategories' => $this->generateCollectionFilterCategories(),
+      'featuredArticlesHero' => $this->getArticle(),
+      'featuredArticles' => $this->getArticles(4),
+    ]);
+  }
+
   public function collectionsAutocomplete(){
     $items = array();
 
@@ -1321,6 +1356,15 @@ class StaticsController extends Controller {
           'pagination' => null,
           'allResultsView' => null,
         ),
+    ]);
+  }
+
+  public function search_results_no_results() {
+
+    // now push to a view
+    return view('statics/search_results', [
+        'title' => "Search Results",
+        'searchTerm' => 'Darth Vader',
     ]);
   }
 

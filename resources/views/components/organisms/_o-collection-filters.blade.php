@@ -1,6 +1,6 @@
 <div class="o-collection-filters" data-behavior="collectionFilters">
 
-    @if (isset($activeFilters) and sizeof($activeFilters) > 0)
+    @if (!empty($activeFilters))
     <div class="m-active-filters o-collection-filters__active-filters">
         <ul class="m-active-filters__items">
         @foreach ($activeFilters as $link)

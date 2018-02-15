@@ -33,10 +33,12 @@
 @component('components.molecules._m-search-actions----collection')
 @endcomponent
 
-@component('components.molecules._m-active-filters')
-    @slot('links', $activeFilters)
-    @slot('clearAllLink', '/statics/collection')
-@endcomponent
+@if (!empty($activeFilters))
+    @component('components.molecules._m-active-filters')
+        @slot('links', $activeFilters)
+        @slot('clearAllLink', '/statics/collection')
+    @endcomponent
+@endif
 
 @component('components.molecules._m-search-triggers----collection')
 @endcomponent
@@ -46,28 +48,46 @@
 @endcomponent
 
 @component('components.organisms._o-collection-filters')
-    @slot('activeFilters', $activeFilters)
+    @if (!empty($activeFilters))
+        @slot('activeFilters', $activeFilters)
+    @endif
     @slot('clearAllLink', '/statics/collection')
     @slot('filterCategories', $filterCategories)
 @endcomponent
 
-@component('components.organisms._o-pinboard')
-    @slot('cols_xsmall','2')
-    @slot('cols_small','2')
-    @slot('cols_medium','3')
-    @slot('cols_large','3')
-    @slot('cols_xlarge','4')
-    @slot('maintainOrder','false')
-    @foreach ($artworks as $item)
-        @component('components.molecules._m-listing----'.$item->type)
-            @slot('variation', 'o-pinboard__item')
-            @slot('item', $item)
+@if (!empty($activeFilters))
+    @component('components.organisms._o-pinboard')
+        @slot('cols_xsmall','2')
+        @slot('cols_small','2')
+        @slot('cols_medium','3')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','4')
+        @slot('maintainOrder','false')
+        @foreach ($artworks as $item)
+            @component('components.molecules._m-listing----'.$item->type)
+                @slot('variation', 'o-pinboard__item')
+                @slot('item', $item)
+            @endcomponent
+        @endforeach
+    @endcomponent
+@else
+    <div class="o-collection-listing__no-results">
+        @component('components.atoms._hr')
         @endcomponent
-    @endforeach
-@endcomponent
+        @component('components.atoms._title')
+            @slot('tag','h2')
+            @slot('font', 'f-headline')
+            No results found
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-body')
+            0 results for your selected filters
+        @endcomponent
+    </div>
+@endif
 
 
-@if ($featuredArticles)
+@if (!empty($featuredArticles))
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all articles', 'href' => '#')))
         Featured
@@ -103,7 +123,7 @@
     </div>
 @endif
 
-@if ($recentlyViewedArtworks)
+@if (!empty($recentlyViewedArtworks))
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'Clear your history', 'href' => '#')))
         Recently Viewed
@@ -126,7 +146,7 @@
     @endcomponent
 @endif
 
-@if ($interestedThemes)
+@if (!empty($interestedThemes))
     @php
         $themeString = 'It seems it you could also be interested in ';
         $themesLength = sizeof($interestedThemes);

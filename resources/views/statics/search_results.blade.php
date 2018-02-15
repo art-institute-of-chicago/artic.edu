@@ -13,23 +13,42 @@
 
 @component('components.molecules._m-search-bar')
     @slot('placeholder','Search by keyword, artist or reference')
-    @slot('value', $searchTerm)
+    @slot('value', $searchTerm ?? '')
     @slot('name', 'search')
     @slot('behaviors','autocomplete')
     @slot('dataAttributes','data-autocomplete-url="/search/autocomplete/"')
     @slot('action','/statics/search_results')
 @endcomponent
 
-@component('components.molecules._m-links-bar')
-    @slot('overflow', true)
-    @slot('linksPrimary', $searchResultsTypeLinks)
-@endcomponent
+@if (!empty($searchResultsTypeLinks))
+    @component('components.molecules._m-links-bar')
+        @slot('overflow', true)
+        @slot('linksPrimary', $searchResultsTypeLinks)
+    @endcomponent
+    @component('components.atoms._hr')
+        @slot('variation','hr--flush-top')
+    @endcomponent
+@endif
 
-@component('components.atoms._hr')
-    @slot('variation','hr--flush-top')
-@endcomponent
+@if (empty($featuredResults) && empty($artists) && empty($pages) && empty($artworks) && empty($eventsAndExhibitions) && empty($articlesAndPublications) && empty($researchAndResources))
+    <div class="o-search-results__no-results">
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.atoms._title')
+            @slot('tag','h2')
+            @slot('font', 'f-headline')
+            No results found
+        @endcomponent
+        @if (!empty($searchTerm))
+            @component('components.blocks._text')
+                @slot('font', 'f-body')
+                0 results for '{{ $searchTerm }}'
+            @endcomponent
+        @endif
+    </div>
+@endif
 
-@if (isset($featuredResults))
+@if (!empty($featuredResults))
     @component('components.molecules._m-featured-results')
         @if (sizeof($featuredResults) === 1)
             @slot('title', 'Featured Result')
@@ -54,7 +73,7 @@
     @endcomponent
 @endif
 
-@if (isset($artists))
+@if (!empty($artists))
     @component('components.molecules._m-title-bar')
         @if (isset($artists['totalResults']) and isset($artists['allResultsHref']))
             @slot('links', array(array('label' => 'See all '.$artists['totalResults'].' artists', 'href' => $artists['allResultsHref'])))
@@ -82,7 +101,7 @@
     @endif
 @endif
 
-@if (isset($pages))
+@if (!empty($pages))
     @component('components.molecules._m-title-bar')
         @if (isset($pages['totalResults']) and isset($pages['allResultsHref']))
             @slot('links', array(array('label' => 'See all '.$pages['totalResults'].' pages', 'href' => $pages['allResultsHref'])))
@@ -121,7 +140,7 @@
     @endif
 @endif
 
-@if (isset($artworks))
+@if (!empty($artworks))
     @component('components.molecules._m-title-bar')
         @if (isset($artworks['totalResults']) and isset($artworks['allResultsHref']))
             @slot('links', array(array('label' => 'See all '.$artworks['totalResults'].' artworks', 'href' => $artworks['allResultsHref'])))
@@ -162,7 +181,7 @@
     @endif
 @endif
 
-@if (isset($eventsAndExhibitions))
+@if (!empty($eventsAndExhibitions))
     @component('components.molecules._m-title-bar')
         @if (isset($eventsAndExhibitions['totalResults']) and isset($eventsAndExhibitions['allResultsHref']))
             @slot('links', array(array('label' => 'See all '.$eventsAndExhibitions['totalResults'].' events and exhibitions', 'href' => $eventsAndExhibitions['allResultsHref'])))
@@ -231,7 +250,7 @@
     @endif
 @endif
 
-@if (isset($articlesAndPublications))
+@if (!empty($articlesAndPublications))
     @component('components.molecules._m-title-bar')
         @if (isset($articlesAndPublications['totalResults']) and isset($articlesAndPublications['allResultsHref']))
             @slot('links', array(array('label' => 'See all '.$articlesAndPublications['totalResults'].' articles &amp; publications', 'href' => $articlesAndPublications['allResultsHref'])))
@@ -289,7 +308,7 @@
     @endif
 @endif
 
-@if (isset($researchAndResources))
+@if (!empty($researchAndResources))
     @component('components.molecules._m-title-bar')
         @if (isset($researchAndResources['totalResults']) and isset($researchAndResources['allResultsHref']))
             @slot('links', array(array('label' => 'See all '.$researchAndResources['totalResults'].' research &amp; resources', 'href' => $researchAndResources['allResultsHref'])))
