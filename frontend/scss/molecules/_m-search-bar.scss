@@ -41,6 +41,7 @@
 
 .m-search-bar input[type=text]:focus {
   border-color: $color__rules--focus;
+  background-color: $color__white;
 }
 
 .m-search-bar input[type=text]:focus + .m-search-bar__submit {
