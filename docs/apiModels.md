@@ -40,7 +40,9 @@ Load a collection and paginate (paginate function is the same as a regular model
 
 Search (This will use the search enpoint, which might disable some filters)
 
-`\App\Models\Api\Artwork::query()->search(QUERY)`
+`\App\Models\Api\Artwork::query()->search('SEARCH_STRING')->get()`
+or
+`\App\Models\Api\Artwork::query()->search('SEARCH_STRING')->paginate(PER_PAGE, ....)`
 
 
 
