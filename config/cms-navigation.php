@@ -72,6 +72,10 @@ return [
                 'title' => 'Selections',
                 'module' => true,
             ],
+            'galleries' => [
+                'title' => 'Galleries',
+                'module' => true,
+            ],
         ],
     ],
 
@@ -118,10 +122,6 @@ return [
             ],
             'shopItems' => [
                 'title' => 'Shop',
-                'module' => true,
-            ],
-            'galleries' => [
-                'title' => 'Galleries',
                 'module' => true,
             ],
         ],

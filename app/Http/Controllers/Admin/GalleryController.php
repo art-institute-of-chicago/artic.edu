@@ -7,7 +7,7 @@ use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 class GalleryController extends BaseApiController
 {
     protected $moduleName = 'galleries';
-    protected $hasAugmentedModel = false;
+    protected $hasAugmentedModel = true;
 
     protected $indexOptions = [
         'publish' => false,
@@ -25,6 +25,11 @@ class GalleryController extends BaseApiController
         'title' => [
             'title' => 'Title',
             'field' => 'title',
+        ],
+        'augmented' => [
+            'title' => 'Augmented?',
+            'field' => 'augmented',
+            'present' => true
         ],
         'type' => [
             'title' => 'Type',

@@ -23,6 +23,9 @@ Route::group(['prefix' => 'whatson'], function () {
     Route::module('events');
     Route::module('articles');
     Route::module('selections');
+
+    Route::module('galleries');
+    Route::name('whatson.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');
 });
 
 Route::group(['prefix' => 'general'], function () {
@@ -37,7 +40,6 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('shopItems');
     Route::module('feeAges');
     Route::module('feeCategories');
-    Route::module('galleries');
     Route::name('general.fees')->get('/fees', 'FeeController@index');
     Route::name('general.fees.update')->post('/fees', 'FeeController@update');
 });
