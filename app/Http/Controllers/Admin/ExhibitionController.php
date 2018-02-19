@@ -30,10 +30,13 @@ class ExhibitionController extends BaseApiController
         'augmented' => [
             'title' => 'Augmented?',
             'field' => 'augmented',
+            'present' => true
         ],
-        'dates' => [
-            'title' => 'Dates field',
-            'field' => 'dates'
+        'date' => [
+            'title' => 'Dates',
+            'field' => 'date',
+            'present' => true,
+            'optional' => false
         ]
     ];
 

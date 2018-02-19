@@ -39,10 +39,6 @@ class ExhibitionController extends Controller
 
         $relatedEventsByDay = $this->eventRepository->getRelatedEventsByDay($item);
 
-        // Load augmented model.
-        // TODO: This could be improved to be performed automatically
-        $item->getAugmentedModel();
-
         return view('site.exhibitionDetail', [
             'contrastHeader' => ($item->present()->headerType === 'hero'),
             'item' => $item,

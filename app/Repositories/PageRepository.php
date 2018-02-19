@@ -34,7 +34,7 @@ class PageRepository extends ModuleRepository
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'shopItemsShopItems']);
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems']);
 
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
@@ -56,12 +56,10 @@ class PageRepository extends ModuleRepository
         // Homepage
         $fields['browsers']['homeExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'homeExhibitions', 'App\Models\Api\Exhibition', 'whatson', 'title', 'exhibitions');
         $fields['browsers']['homeEvents'] = $this->getFormFieldsForBrowser($object, 'homeEvents', 'whatson', 'title', 'events');
+        $fields['browsers']['homeShopItems'] = $this->getFormFieldsForBrowserApi($object, 'homeShopItems', 'App\Models\Api\ShopItem', 'whatson');
 
         // Exhibition & Events
         $fields['browsers']['exhibitionsExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsExhibitions', 'App\Models\Api\Exhibition', 'whatson', 'title', 'exhibitions');
-
-        // Shop Items
-        $fields['browsers']['homeShopItems'] = $this->getFormFieldsForBrowserApi($object, 'homeShopItems', 'App\Models\Api\ShopItem', 'whatson', 'title', 'shopItesm');
 
         // Visits
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');

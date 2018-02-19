@@ -78,11 +78,6 @@ class Page extends Model
         return $this->apiElements()->where('relation', 'exhibitionsExhibitions');
     }
 
-    public function shopItemsShopItems()
-    {
-        return $this->apiElements()->where('relation', 'shopItemsShopItems');
-    }
-
     public function homeEvents()
     {
         return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');

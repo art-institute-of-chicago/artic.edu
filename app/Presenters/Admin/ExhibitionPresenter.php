@@ -84,4 +84,8 @@ class ExhibitionPresenter extends BasePresenter
             'variation' => 'closing-soon'
         ];
     }
+
+    protected function augmented() {
+        return $this->entity->getAugmentedModel() ? 'Yes' : 'No';
+    }
 }

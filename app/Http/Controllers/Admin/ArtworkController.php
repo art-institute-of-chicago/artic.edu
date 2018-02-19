@@ -26,10 +26,10 @@ class ArtworkController extends BaseApiController
             'title' => 'Title',
             'field' => 'title',
         ],
-        'datahub_id' => [
+        'id' => [
             'title' => 'Datahub ID',
             'field' => 'id',
-        ],
+        ]
     ];
 
     /*
