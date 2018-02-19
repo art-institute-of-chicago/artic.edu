@@ -62,20 +62,25 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     protected function galleryLink() {
-        return [
-            'label' => $this->entity->gallery_title,
-            'href'  => '#',
-            'iconBefore' => 'location'
-        ];
+        if ($this->entity->gallery_id) {
+            return [
+                'label' => $this->entity->gallery_title,
+                'href'  => '#',
+                'iconBefore' => 'location'
+            ];
+        }
     }
 
     protected function relatedEventsLink() {
         $count = $this->entity->eventsCount();
-        return [
-            'label' =>  $count . ' related ' . str_plural('event', $count),
-            'href' => '#related_events',
-            'iconBefore' => 'calendar'
-        ];
+
+        if ($count > 0) {
+            return [
+                'label' =>  $count . ' related ' . str_plural('event', $count),
+                'href' => '#related_events',
+                'iconBefore' => 'calendar'
+            ];
+        }
     }
 
     protected function closingSoonLink() {

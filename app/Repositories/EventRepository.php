@@ -52,8 +52,8 @@ class EventRepository extends ModuleRepository
         return collect($this->model::$eventLayouts);
     }
 
-    public function getRelatedEventsByDay($object) {
-        if (empty($object->events)) { return null; }
+    public function getRelatedEventsByDay($object, $perPage = 3) {
+        if ($object->events()->count() == 0) { return null; }
 
         $ids = $object->events->pluck('id');
 
@@ -64,7 +64,7 @@ class EventRepository extends ModuleRepository
         $query->whereIn('id', $ids);
         $query->orderBy('event_metas.date', 'ASC');
 
-        $results = $query->get();
+        $results = $query->paginate($perPage);
         return $results->groupBy(function($item) {
           return $item->date->format('Y-m-d');
         });

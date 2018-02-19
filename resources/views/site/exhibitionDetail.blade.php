@@ -149,7 +149,7 @@
 
     @if ($item->futherSupport)
         @component('components.molecules._m-row-block')
-            @slot('variation', 'm-row-block--keyline-top')
+            @slot('variation', 'm-row-block--keyline-top o-blocks__block')
             @slot('title', $item->futherSupport['title'] ?? null)
             @slot('img', $item->futherSupport['logo'] ?? null)
             @slot('text', $item->futherSupport['text'] ?? null)
@@ -172,7 +172,7 @@
 
     @if ($item->references)
         @component('components.organisms._o-accordion')
-            @slot('variation', 'o-accordion--section')
+            @slot('variation', 'o-accordion--section o-blocks__block')
             @slot('items', array(
                 array(
                     'title' => "References",
@@ -238,7 +238,7 @@
 
 @if ($relatedEventsByDay)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all events', 'href' => '#')))
+        @slot('links', array(array('label' => 'See all events', 'href' => route('events'))))
         @slot('id', 'related_events')
         Related Events
     @endcomponent
@@ -258,7 +258,7 @@
 
 @if ($item->exhibitions)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all exhibitions', 'href' => '#')))
+        @slot('links', array(array('label' => 'See all exhibitions', 'href' => route('exhibitions'))))
         {{-- Title can be Related Exhibitions or On View for Exhibition History --}}
         Related Exhibitions
     @endcomponent
