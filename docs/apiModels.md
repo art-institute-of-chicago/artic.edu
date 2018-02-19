@@ -87,7 +87,7 @@ And that will load all related artworks.
 
 
 
-### Eager load
+## Eager load
 
 
 You could eager load those artworks with one call in a collection doing the following:
@@ -97,7 +97,7 @@ You could eager load those artworks with one call in a collection doing the foll
 ```
 
 
-### Augmented models (working but approach still under dev)
+## Augmented models (working but approach still under dev)
 
 Please take a look to the `HasAugmentedModel` trait.
 
@@ -116,7 +116,7 @@ So to use it just call the method or attribute normally from an API model.
 If the API model doesn't have that method or attribute, IT WILL BYPASS the call to the augmented model to load it from the database automatically.
 
 
-### Related elements coming from the API.
+## Related elements coming from the API.
 
 Exhibitions for example can be augmented on the CMS, and in there you can select related exhibitions to it.
 These related exhibitions are not necessarily augmented so the relationship should be directly linked to the API.
@@ -151,3 +151,19 @@ $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
 // On getFormFields:
 $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
 ```
+
+
+## Generating links
+
+BaseApiModel implements `UrlRoutable`, which means, you can pass an API model and this will generate a correct link. If it contains an augmented model with a slug, this will generate a proper ID-SLUG string to fill it up.
+
+```php
+// Generating an exhibition detail link.
+
+// Load an exhibition with id ID
+$item = \App\Models\Api\Exhibition::query()->find(ID);
+
+// Generate the link inside a blade view
+route('exhibitions.show', $item)
+```
+
