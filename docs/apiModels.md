@@ -5,12 +5,13 @@ API models and connections examples.
 ## Base models
 
 BaseApiModel.php is a fake Eloquent model that implements many of it's functions. Between them:
-    * Generate an array
-    * Use mutators for fields
-    * Paginate results
-    * Create them from an array
-    * Json serialize
-    * And more, please take a look at the file for a full list.
+
+* Generate an array
+* Use mutators for fields
+* Paginate results
+* Create them from an array
+* Json serialize
+* And more, please take a look at the file for a full list.
 
 We don't allow to save or destroy, so for now it's just a read-only model.
 
