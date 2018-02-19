@@ -57,9 +57,10 @@ public function index(ArtworkRepository $artworks)
 Remember that the repository has to inherit from BaseApiRepository, and the model has to be an api model.
 
 This function will:
-1 - search for the 'query' term
-2 - Load all stats (aggregations, suggestions, pagination)
-3 - Load real models and return a collection of BaseApiModels
+
+* search for the 'query' term
+* Load all stats (aggregations, suggestions, pagination)
+* Load real models and return a collection of BaseApiModels
 
 
 
