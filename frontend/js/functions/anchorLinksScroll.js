@@ -1,6 +1,6 @@
 import { purgeProperties, setFocusOnTarget, scrollToY, getOffset } from '@area17/a17-helpers';
 
-const internalLinksScroll = function(container) {
+const anchorLinksScroll = function(container) {
 
   function _handleClicks(event) {
     let hash = event.target.href;
@@ -22,21 +22,7 @@ const internalLinksScroll = function(container) {
     }
   }
 
-  function _init() {
-    container.addEventListener('click', _handleClicks, false);
-  }
-
-  this.destroy = function() {
-    // remove specific event handlers
-    container.removeEventListener('click', _handleClicks);
-
-    // remove properties of this behavior
-    A17.Helpers.purgeProperties(this);
-  };
-
-  this.init = function() {
-    _init();
-  };
+  document.addEventListener('click', _handleClicks, false);
 };
 
-export default internalLinksScroll;
+export default anchorLinksScroll;

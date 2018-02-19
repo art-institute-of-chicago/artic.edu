@@ -13,7 +13,6 @@ export { default as shareMenu } from './shareMenu';
 export { default as mask } from './mask';
 export { default as pinboard } from './pinboard';
 export { default as bannerParallax } from './bannerParallax';
-export { default as internalLinksScroll } from './internalLinksScroll';
 export { default as imageInfo } from './imageInfo';
 export { default as headerGallery } from './headerGallery';
 export { default as imageZoomArea } from './imageZoomArea';

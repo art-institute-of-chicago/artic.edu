@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article class="o-article" data-behavior="internalLinksScroll">
+<article class="o-article">
 
   @component('components.molecules._m-article-header')
     @slot('editorial', false)

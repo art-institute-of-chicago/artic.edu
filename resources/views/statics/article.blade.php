@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article class="o-article{{ ($article->articleType === 'editorial') ? ' o-article--editorial' : '' }}" data-behavior="internalLinksScroll">
+<article class="o-article{{ ($article->articleType === 'editorial') ? ' o-article--editorial' : '' }}">
 
   @component('components.molecules._m-article-header')
     @slot('editorial', ($article->articleType === 'editorial'))

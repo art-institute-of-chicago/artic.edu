@@ -29,7 +29,7 @@ $print = isset($_GET['print']);
 <body>
 <div id="a17">
   <main id="content">
-    <article class="o-article" data-behavior="internalLinksScroll">
+    <article class="o-article">
       <div class="o-article__body o-blocks" data-behavior="articleBodyInViewport">
         @yield('content')
       </div>

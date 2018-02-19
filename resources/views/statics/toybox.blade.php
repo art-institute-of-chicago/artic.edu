@@ -743,7 +743,7 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
   @component('components.atoms._dropdown')
     @slot('prompt', 'Dropdown')
     @slot('ariaTitle', 'Filter by')
-    @slot('options', array(array('href' => '#', 'label' => 'Option 1'), array('href' => '#', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
+    @slot('options', array(array('href' => '#', 'label' => 'Option 1'), array('href' => 'http://www.google.com/', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
   @endcomponent
   @component('components.atoms._dropdown')
     @slot('prompt', 'Dropdown')

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="o-visit" data-behavior="internalLinksScroll">
+<section class="o-visit">
 
   @component('components.molecules._m-media')
     @slot('item', $headerMedia)
@@ -22,20 +22,7 @@
       ))
       @slot('secondaryHtml')
           <li class="m-links-bar__item m-links-bar__item--primary">
-              @component('components.atoms._dropdown')
-                @slot('prompt', 'Select language')
-                @slot('ariaTitle', 'Select language')
-                @slot('variation','dropdown--filter f-buttons')
-                @slot('font', 'f-buttons')
-                @slot('options', array(
-                  array('href' => '#', 'label' => 'English'),
-                  array('href' => '#', 'label' => 'Español'),
-                  array('href' => '#', 'label' => 'Français'),
-                  array('href' => '#', 'label' => 'Deutsch'),
-                  array('href' => '#', 'label' => '日本語'),
-                  array('href' => '#', 'label' => 'Português'),
-                ))
-              @endcomponent
+
           </li>
       @endslot
   @endcomponent

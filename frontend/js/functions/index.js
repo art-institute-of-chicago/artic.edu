@@ -9,3 +9,4 @@ export { default as findAncestorByTagName } from './findAncestorByTagName';
 export { default as ajaxableLink } from './ajaxableLink';
 export { default as loadProgressBar } from './loadProgressBar';
 export { default as setScrollDirection } from './setScrollDirection';
+export { default as anchorLinksScroll } from './anchorLinksScroll';
