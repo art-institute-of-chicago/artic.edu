@@ -2,7 +2,7 @@
 
 API models and connections examples.
 
-#### Base models
+## Base models
 
 BaseApiModel.php is a fake Eloquent model that implements many of it's functions. Between them:
     * Generate an array
@@ -19,7 +19,7 @@ It has been done this way to generate a compatible way to work with our CMS, imp
 Please check the Exhibitions model, here you can see we can even use our HasPresenter trait, and some other useful Eloquent functionality.
 
 
-#### Basic usage
+## Basic usage
 
 Let's use artworks to exemplify.
 
@@ -43,11 +43,11 @@ Search (This will use the search enpoint, which might disable some filters)
 
 
 
-#### Repository usage
+## Repository usage
 
 Search:
 
-```
+```php
 public function index(ArtworkRepository $artworks)
     {
         $artworksResults = $artworks->forSearchQuery(request('query'));
@@ -63,12 +63,12 @@ This function will:
 
 
 
-#### Advanced usage
+## Advanced usage
 
 Check the `Api\Exhibition` model.
 It contains several hasMany relations. These will take those Id's returned by the API and load the collection of models assigned.
 
-```
+```php
 public function artworks()
     {
         return $this->hasMany(\App\Models\Api\Artwork::class, 'artwork_ids');
@@ -88,7 +88,62 @@ And that will load all related artworks.
 
 You could eager load those artworks with one call in a collection doing the following:
 
-```
+```php
 \App\Models\Api\Artwork::query()->with(['artworks', 'any_other_has_many'])->get();
 ```
 
+
+### Augmented models (working but approach still under dev)
+
+Please take a look to the `HasAugmentedModel` trait.
+
+Here you can see the functions to load augmented models from our CMS using the `datahub_id` field.
+
+For example on exhibitions, if you check `Models\Api\Exhibition`
+
+```php
+protected $augmented = true;
+protected $augmentedModelClass = 'App\Models\Exhibition';
+```
+
+You specify that it has an augmented model.
+
+So to use it just call the method or attribute normally from an API model.
+If the API model doesn't have that method or attribute, IT WILL BYPASS the call to the augmented model to load it from the database automatically.
+
+
+### Related elements coming from the API.
+
+Exhibitions for example can be augmented on the CMS, and in there you can select related exhibitions to it.
+These related exhibitions are not necessarily augmented so the relationship should be directly linked to the API.
+
+To achieve this include the trait `HasApiRelations` and then define the relationship like the following:
+
+```php
+public function exhibitions()
+    {
+        return $this->apiElements()->where('relation', 'exhibitions');
+    }
+```
+
+The last 'exhibitions' is the pluralized type from the API. This will save a metamodel containing the related database element, with the related datahub_id and type.
+
+To load the ACTUAL related elements for the FE you can use the trait function:
+
+```php
+$related_exhibitions = $item->apiModels('exhibitions', 'Exhibition');
+```
+
+$item is an exhibition, the first parameters is the relation we passed when defining the relationship, and the second is the API/Model to be loaded.
+
+That's it, this will load a collection of API models coming from that relationship.
+
+Please check Exhibitions repository. In there you will find examples of how to load a browser with this data.
+
+```php
+// On afterSave:
+$this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
+
+// On getFormFields:
+$fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
+```
