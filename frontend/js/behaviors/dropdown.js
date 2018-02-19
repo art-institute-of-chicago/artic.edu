@@ -1,4 +1,4 @@
-import { purgeProperties, setFocusOnTarget, triggerCustomEvent } from '@area17/a17-helpers';
+import { purgeProperties, setFocusOnTarget } from '@area17/a17-helpers';
 import { positionElementToTarget } from '../functions';
 
 const dropdown = function(container) {
@@ -13,15 +13,13 @@ const dropdown = function(container) {
       Adapted from Peter-Paul Koch of QuirksMode at   http://www.quirksmode.org/js/findpos.html
   */
   function _findScrollLeft(obj) {
-      var scrollLeft = 0;
-
-      while(obj && obj.parentNode)
-      {
-          scrollLeft += (obj.parentNode.scrollLeft) ? obj.parentNode.scrollLeft : 0;
-          obj = obj.parentNode;
-      }
-
-      return scrollLeft;
+    var scrollLeft = 0;
+    while(obj && obj.parentNode)
+    {
+      scrollLeft += (obj.parentNode.scrollLeft) ? obj.parentNode.scrollLeft : 0;
+      obj = obj.parentNode;
+    }
+    return scrollLeft;
   }
 
   function _ignore(el) {
@@ -36,7 +34,7 @@ const dropdown = function(container) {
   }
 
   function _open(event) {
-    if (!allow) {
+    if (!allow || $listClone) {
       return;
     }
     if (event) {
@@ -66,8 +64,7 @@ const dropdown = function(container) {
       }
     });
     container.classList.add('s-active');
-    setFocusOnTarget(container.querySelector('ul'));
-    triggerCustomEvent(document, 'dropdown:closed', { el: container });
+    setFocusOnTarget($listClone);
     active = true;
   }
 
@@ -99,35 +96,43 @@ const dropdown = function(container) {
     container.classList.remove('s-active');
     document.body.removeChild($listClone);
     $listClone = null;
-    triggerCustomEvent(document, 'dropdown:closed', { el: container });
     active = false;
+    if (event) {
+      setFocusOnTarget(container.parentNode);
+    }
   }
 
   function _focus(event) {
-    if (document.activeElement === container || container.contains(document.activeElement)) {
-      event.stopPropagation();
+    if (document.activeElement === container || container.contains(document.activeElement) || ($listClone && (document.activeElement === $listClone || $listClone.contains(document.activeElement)))) {
       if (!active) {
         if (document.activeElement.getAttribute('data-dropdown-ignore') === null) {
           _open(event);
         }
       } else if (document.activeElement === container || document.activeElement === container.firstElementChild) {
         _close(event);
-        setFocusOnTarget(container.parentNode);
       }
     } else {
-      _close(event);
+      _close();
     }
   }
 
   function _clicks(event) {
-    if (document.activeElement !== container && !container.contains(document.activeElement) && active) {
-      _close(event);
+    if (active) {
+      if (document.activeElement !== container && !container.contains(document.activeElement) && $listClone && document.activeElement !== $listClone && !$listClone.contains(document.activeElement)) {
+        _close(event);
+      } else {
+        _close();
+      }
     }
   }
 
   function _touchstart(event) {
-    if (event.target !== container && !container.contains(event.target) && active) {
-      _close(event);
+    if (active) {
+      if (event.target !== container && !container.contains(event.target) && $listClone && event.target !== $listClone && !$listClone.contains(event.target)) {
+        _close(event);
+      } else {
+        _close();
+      }
     }
   }
 
