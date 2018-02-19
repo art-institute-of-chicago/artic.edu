@@ -120,6 +120,10 @@ return [
                 'title' => 'Shop',
                 'module' => true,
             ],
+            'galleries' => [
+                'title' => 'Galleries',
+                'module' => true,
+            ],
         ],
     ],
 ];
