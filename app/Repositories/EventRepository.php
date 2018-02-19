@@ -53,6 +53,8 @@ class EventRepository extends ModuleRepository
     }
 
     public function getRelatedEventsByDay($object) {
+        if (empty($object->events)) { return null; }
+
         $ids = $object->events->pluck('id');
 
         $query = $this->model->rightJoin('event_metas', function ($join) {
