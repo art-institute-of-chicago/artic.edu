@@ -245,11 +245,8 @@
 
   <div class="m-mini-promo">
     @component('components.atoms._img')
-        @slot('src', $admission['cityPass']['image']['src'] ?? '')
-        @slot('srcset', $admission['cityPass']['image']['srcset'] ?? '')
-        @slot('sizes', $admission['cityPass']['image']['sizes'] ?? '')
-        @slot('width', $admission['cityPass']['image']['width'] ?? '')
-        @slot('height', $admission['cityPass']['image']['height'] ?? '')
+        @slot('image', $admission['cityPass']['image'])
+        @slot('sizes', '200px')
     @endcomponent
     <div class="m-mini-promo__text">
       @component('components.atoms._title')
