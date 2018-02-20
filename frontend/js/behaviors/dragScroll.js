@@ -20,6 +20,18 @@ const dragScroll = function(container) {
     container.scrollTop = newScrollTop;
     lastScrollLeft = newScrollLeft;
     lastScrollTop = newScrollTop;
+
+    if( lastScrollLeft > 0){
+      container.parentElement.classList.add('s-scroll-start');
+    }else{
+      container.parentElement.classList.remove('s-scroll-start');
+    }
+
+    if( container.clientWidth + newScrollLeft >= container.scrollWidth){
+      container.parentElement.classList.add('s-scroll-end');
+    }else{
+      container.parentElement.classList.remove('s-scroll-end');
+    }
   }
 
   function _momentum() {
