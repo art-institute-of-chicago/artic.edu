@@ -204,7 +204,7 @@ public function getSearch($perPage = null, $columns = [], $pageName = 'page', $p
 
 AIC offers a parameter `query` on which you can pass raw ES parameters to perform a search.
 
-For example, let's search for the upcoming exhibitinos for the next 2 weeks:
+For example, let's search for the upcoming exhibitions for the next 2 weeks:
 
 ```php
 
@@ -238,7 +238,7 @@ $results = \App\Models\Api\Exhibition::query()->rawSearch($params)->getSearch();
 
 ```
 
-Remember that you could simply build scopes as you would normally do with Eloquen models. Lets create one at the exhibition model:
+Remember that you could simply build scopes as you would normally do with Eloquent models. Lets create one at the exhibition model:
 
 ```php
 public function scopeNextTwoWeeks($query) {
@@ -284,7 +284,7 @@ $results = \App\Models\Api\Exhibition::query()->nextTwoWeeks()->getSearch();
 ```
 
 
-In case you don't want to use a specific model and you prefer to perform a general search, you can still use the Search model as explained before:
+In case you don't want to use a specific model and you prefer to perform a general search, you can still use the `Search` model as explained before:
 
 
 ```php
@@ -318,3 +318,4 @@ $results = \App\Models\Api\Search::query()->rawSearch($params)->resources(['artw
 ```
 
 
+You can move all this to a scope as well. Just add it to the `Search` model as seen before and call it by it's name.
