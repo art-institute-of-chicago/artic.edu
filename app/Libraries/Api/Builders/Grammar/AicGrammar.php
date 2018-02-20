@@ -115,9 +115,9 @@ class AicGrammar
         return ['q' => $text];
     }
 
-    protected function compileSearchParameters($query, array $text)
+    protected function compileSearchParameters($query, array $elasticParameters)
     {
-        return $text;
+        return ['query' => $elasticParameters];
     }
 
     protected function compileOrders($query, $order)
