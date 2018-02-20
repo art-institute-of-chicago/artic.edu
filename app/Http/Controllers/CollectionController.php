@@ -35,7 +35,7 @@ class CollectionController extends Controller
                     $item = $this->apiRepository->getById($result_item->id);
                     // dd($item);
                     $item->type = 'artwork';
-                    $item->image = ['image_id' => $item->image_id];
+                    $item->image = LakeviewImageService::getImage($item->image_id);
                     $items[] = $item;
                 }
             }

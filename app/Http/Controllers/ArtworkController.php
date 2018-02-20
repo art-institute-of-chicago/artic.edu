@@ -31,7 +31,7 @@ class ArtworkController extends Controller
 
         $galleryImages = collect();
         if ($item->image_id) {
-            $dimensions = LakeviewImageService::getDimensions($item->image_id);
+            // $dimensions = LakeviewImageService::getDimensions($item->image_id);
             $galleryImages[] = LakeviewImageService::getImage($item->image_id);
         }
         // dd($galleryImages);

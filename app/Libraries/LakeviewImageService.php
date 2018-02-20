@@ -18,36 +18,31 @@ class LakeviewImageService implements ImageServiceInterface
     {
     }
 
-      private function getImage($image_id, $width = false, $height = false) {
-        //$color = preg_replace('/#/i', '', $this->faker->hexcolor);
-        $width = isset($width) && $width ? $width : $this->faker->numberBetween(300,700);
-        $height = isset($height) && $height ? $height : $this->faker->numberBetween(300,700);
-        //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
-        $src = "//placeimg.com/".$width."/".$height."/nature";
-        //$src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
-        $srcset = "//placeimg.com/".$width."/".$height."/nature ".$width."w";
-        //$src = $this->faker->imageUrl($width, $height, 'nature');
-        //$src = str_replace('https://', 'http://', $src);
+    public function getImage($image_id, $width = '', $height = '') {
+        $credit = null;
+        $creditUrl = null;
+        $shareTitle = null;
+        $downloadName = null;
 
-        $credit = $this->faker->boolean() ? $this->faker->sentence(3) : null;
-        $creditUrl = ($credit && $this->faker->boolean()) ? '#' : null;
+        $dimensions = $this->getDimensions($image_id);
 
+        $src = $this->getUrl($image_id, ['width' => $width, 'height' => $height]);
+        $srcset = $this->getUrl($image_id, ['width' => $width, 'height' => $height])." 300w";
         $image = array(
             "src" => $src,
             "srcset" => $srcset,
-            "width" => $width,
-            "height" => $height,
+            "width" => $dimensions['width'],
+            "height" => $dimensions['height'],
             "shareUrl" => '#',
-            "shareTitle" => $this->faker->sentence(5),
+            "shareTitle" => $shareTitle,
             "downloadUrl" => $src,
-            "downloadName" => $this->faker->word(),
+            "downloadName" => $downloadName,
             "credit" => $credit,
             "creditUrl" => $creditUrl,
         );
 
         return $image;
-      }
-
+    }
 
     public function getUrl($id, array $params = [])
     {
