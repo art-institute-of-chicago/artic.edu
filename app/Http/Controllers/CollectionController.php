@@ -26,8 +26,7 @@ class CollectionController extends Controller
         $q = $request->get('q');
         $items = [];
         if ($q) {
-            $results = \App\Models\Api\Search::search($q)->resources(['artworks'])->get();
-
+            $results = \App\Models\Api\Search::search($q)->resources(['artworks'])->getSearch();
             foreach($results as $result_item) {
                 $item_results = $aicConnection->get('/api/v1/'.$result_item->api_model.'/'.$result_item->api_id, ['q' => $q, 'type' => 'artworks']);
                 $item = $this->apiRepository->getById($result_item->id);
@@ -80,8 +79,7 @@ class CollectionController extends Controller
     public function search($slug, Request $request)
     {
         $aicConnection = new AicConnection;
-        $results = \App\Models\Api\Search::search($slug)->resources(['artworks'])->get();
-
+        $results = \App\Models\Api\Search::search($slug)->resources(['artworks'])->getSearch();
         $items = [];
         foreach($results as $result_item) {
             $item = $this->apiRepository->getById($result_item->id);

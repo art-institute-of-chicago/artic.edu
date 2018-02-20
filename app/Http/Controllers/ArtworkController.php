@@ -39,11 +39,22 @@ class ArtworkController extends Controller
 
         // generate some blocks
         // $blocks = $this->generateArtworkBlocks();
+        // dd($item);
+        $blocks = [];
+        array_push($blocks, array(
+          "type" => 'deflist',
+          "items" => array(
+            array('key' => 'Artist', 'value' => 'The Artist Name'),
+          )
+        ));
+        $item->blocks = $blocks;
+        // dd($blocks);
+
+
         // update and add some items (I ran into memory issues doing this in the main getartwork func..)
         // $article->push('nextArticle', $this->getArtwork());
         // $article->push('prevArticle', $this->getArtwork());
         // $article->push('onView', array('label' => 'European Painting and Sculpture, Galleries 239', 'href' => '#'));
-        // $article->push('blocks', $blocks);
         // $article->push('exploreFuther', array(
         //   'items' => $this->getArtworks(8),
         //   'nav' => array(

@@ -113,7 +113,11 @@ class LakeviewImageService implements ImageServiceInterface
 
     protected function fetchImageInfo($id) {
         $json = Cache::remember('lakeview-image-'.$id, 24*60, function () use ($id) {
-            return json_decode(file_get_contents($this->base_url.$this->version.'/'.$id.'/info.json'));
+            try {
+                return json_decode(@file_get_contents($this->base_url.$this->version.'/'.$id.'/info.json'));
+            } catch (Exception $e) {
+                return [];
+            }
         });
         return $json;
     }
