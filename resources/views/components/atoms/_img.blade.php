@@ -3,4 +3,12 @@
         $src = LakeviewImageService::getUrl($image_id);
     }
 @endphp
-<img alt="{{ $alt ?? '' }}" class="{{ $class ?? '' }}" src="{{ $src ?? '' }}" sizes="{{ $sizes ?? '' }}" srcset="{{ $srcset ?? '' }}" width="{{ $width ?? '' }}" height="{{ $height ?? '' }}">
+<img
+    alt="{{ $image['alt'] ?? '' }}{{ $alt ?? '' }}"
+    class="{{ $image['class'] ?? '' }} {{ $class ?? '' }}"
+    src="{{ $image['src'] ?? '' }}"
+    srcset="{{ $image['srcset'] ?? '' }}"
+    width="{{ $image['width'] ?? '' }}"
+    height="{{ $image['height'] ?? '' }}"
+    sizes="{{ $sizes ?? '' }}"
+>

@@ -1548,12 +1548,13 @@ class StaticsController extends Controller {
     //$color = preg_replace('/#/i', '', $this->faker->hexcolor);
     $width = isset($width) && $width ? $width : $this->faker->numberBetween(300,700);
     $height = isset($height) && $height ? $height : $this->faker->numberBetween(300,700);
-    //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
-    $src = "//placeimg.com/".$width."/".$height."/nature";
-    //$src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
-    $srcset = "//placeimg.com/".$width."/".$height."/nature ".$width."w";
-    //$src = $this->faker->imageUrl($width, $height, 'nature');
-    //$src = str_replace('https://', 'http://', $src);
+    $src = "//placehold.dev.area17.com/image/".'25'."x".round(($width/$height) * 25);
+    $srcset = "//placehold.dev.area17.com/image/".'100'."x".round(($width/$height) * 100)." 100w, ";
+    $srcset .= "//placehold.dev.area17.com/image/".'200'."x".round(($width/$height) * 200)." 200w, ";
+    $srcset .= "//placehold.dev.area17.com/image/".'400'."x".round(($width/$height) * 400)." 400w, ";
+    $srcset .= "//placehold.dev.area17.com/image/".'800'."x".round(($width/$height) * 800)." 800w, ";
+    $srcset .= "//placehold.dev.area17.com/image/".'1200'."x".round(($width/$height) * 1200)." 1200w, ";
+    $srcset .= "//placehold.dev.area17.com/image/".'2000'."x".round(($width/$height) * 2000)." 2000w, ";
 
     $credit = $this->faker->boolean() ? $this->faker->sentence(3) : null;
     $creditUrl = ($credit && $this->faker->boolean()) ? '#' : null;

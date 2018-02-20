@@ -3,10 +3,8 @@
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}" data-blur-img>
             @if ($item->image)
                 @component('components.atoms._img')
-                    @slot('src', $item->image['src'])
-                    @slot('srcset', $item->image['srcset'])
-                    @slot('width', $item->image['width'])
-                    @slot('height', $item->image['height'])
+                    @slot('image', $item->image)
+                    @slot('sizes', $imageSizes ?? '')
                 @endcomponent
 
                 @if ($item->isVideo)
