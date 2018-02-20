@@ -1,6 +1,6 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
     <a href="{{ $item->slug }}" class="m-listing__link">
-        <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
+        <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}" data-blur-img>
             @if ($item->image)
                 @component('components.atoms._img')
                     @slot('src', $item->image['src'])
@@ -14,7 +14,7 @@
                 @endif
             @endif
         </span>
-        <span class="m-listing__meta">
+        <span class="m-listing__meta" data-blur-clip-to>
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
                 {{ $item->title }}
