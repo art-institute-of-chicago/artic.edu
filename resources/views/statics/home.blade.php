@@ -50,11 +50,10 @@
 @endcomponent
 
 @component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--4-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge')
-    @slot('cols_medium','3')
+    @slot('variation', 'o-grid-listing--gridlines-cols')
+    @slot('cols_medium','4')
     @slot('cols_large','4')
     @slot('cols_xlarge','4')
-    @slot('behavior','dragScroll')
     @foreach ($events as $item)
         @component('components.molecules._m-listing----event')
             @slot('item', $item)
