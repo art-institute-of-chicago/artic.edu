@@ -4,22 +4,9 @@
 
 <div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
-        @component('components.atoms._img')
-            @if (isset($images[0]['image_id']))
-                @slot('image_id', $images[0]['image_id'])
-            @endif
-            @if (isset($images[0]['src']))
-                @slot('src', $images[0]['src'])
-            @endif
-            @if (isset($images[0]['srcset']))
-                @slot('srcset', $images[0]['srcset'])
-            @endif
-            @if (isset($images[0]['width']))
-                @slot('width', $images[0]['width'])
-            @endif
-            @if (isset($images[0]['height']))
-                @slot('height', $images[0]['height'])
-            @endif
+         @component('components.atoms._img')
+            @slot('image', $images[0])
+            @slot('sizes', '100vw')
         @endcomponent
       </div>
       <ul class="m-article-header__img-nav">
@@ -34,10 +21,7 @@
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('src', $nextArticle->image['src'])
-                  @slot('srcset', $nextArticle->image['srcset'])
-                  @slot('width', $nextArticle->image['width'])
-                  @slot('height', $nextArticle->image['height'])
+                  @slot('image', $nextArticle->image)
                   @slot('sizes', '120px')
               @endcomponent
             </span>
@@ -54,10 +38,7 @@
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('src', $prevArticle->image['src'])
-                  @slot('srcset', $prevArticle->image['srcset'])
-                  @slot('width', $prevArticle->image['width'])
-                  @slot('height', $prevArticle->image['height'])
+                  @slot('image', $prevArticle->image)
                   @slot('sizes', '120px')
               @endcomponent
             </span>
@@ -111,21 +92,8 @@
       @foreach ($images as $image)
         <li>
           @component('components.atoms._img')
-              @if (isset($images['image_id']))
-                @slot('src', $image['image_id'])
-              @endif
-              @if (isset($images['src']))
-                @slot('src', $image['src'])
-              @endif
-              @if (isset($images['srcset']))
-                @slot('srcset', $image['srcset'])
-              @endif
-              @if (isset($images['width']))
-                @slot('width', $image['width'])
-              @endif
-              @if (isset($images['height']))
-                @slot('height', $image['height'])
-              @endif
+              @slot('image', $image)
+              @slot('sizes', '300px')
           @endcomponent
           <button
             @if (isset($image['image_id']))

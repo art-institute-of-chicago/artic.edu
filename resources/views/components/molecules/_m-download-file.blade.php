@@ -1,12 +1,9 @@
 <p class="m-download-file">
     @if (isset($file['thumb']))
         @component('components.atoms._img')
-            @slot('src', $file['thumb']['src'] ?? '')
-            @slot('srcset', $file['thumb']['srcset'] ?? '')
-            @slot('sizes', $file['thumb']['sizes'] ?? '')
-            @slot('width', $file['thumb']['width'] ?? '')
-            @slot('height', $file['thumb']['height'] ?? '')
+            @slot('image',  $file['thumb'])
             @slot('class', 'm-download-file__img')
+            @slot('sizes', $imageSizes ?? '')
         @endcomponent
     @endif
     <span class="m-download-file__meta f-secondary">

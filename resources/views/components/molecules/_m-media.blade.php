@@ -8,18 +8,14 @@
     <{{ $tag }}{{ ($tag === 'a') ? ' href="'.$item['url'].'"' : '' }} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}">
         @if ($type == 'image')
             @component('components.atoms._img')
-                @slot('src', $media['src'] ?? '')
-                @slot('srcset', $media['srcset'] ?? '')
-                @slot('sizes', $media['sizes'] ?? '')
-                @slot('width', $media['width'] ?? '')
-                @slot('height', $media['height'] ?? '')
+                @slot('image', $media)
+                @slot('sizes', $imageSizes ?? '')
             @endcomponent
         @elseif ($type == 'embed')
             {!! $media['embed'] ?? '' !!}
         @else
             @component('components.atoms._video')
-                @slot('src', $media['src'] ?? '')
-                @slot('poster', $media['poster'] ?? '')
+                @slot('video', $media)
                 @slot('controls', true)
             @endcomponent
         @endif

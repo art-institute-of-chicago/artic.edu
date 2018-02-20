@@ -5,9 +5,8 @@
                 @if ( $modal['image'] )
                     <figure class="g-modal__image">
                         @component('components.atoms._img')
-                            @slot('src', $modal['image']['src'])
-                            @slot('width', $modal['image']['width'])
-                            @slot('height', $modal['image']['height'])
+                            @slot('image', $modal['image'])
+                            @slot('sizes', $imageSizes ?? '')
                         @endcomponent
                     </figure>
                 @endif

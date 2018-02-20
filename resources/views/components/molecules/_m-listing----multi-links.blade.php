@@ -3,9 +3,8 @@
     @if ( !empty( $item['image'] ) )
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
             @component('components.atoms._img')
-                @slot('src', $item['image']['src'])
-                @slot('width', $item['image']['width'])
-                @slot('height', $item['image']['height'])
+                @slot('image', $item->image)
+                @slot('sizes', $imageSizes ?? '')
             @endcomponent
         </span>
     @endif
