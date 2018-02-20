@@ -80,6 +80,7 @@ class CollectionController extends Controller
     {
         $aicConnection = new AicConnection;
         $results = \App\Models\Api\Search::search($slug)->resources(['artworks'])->getSearch();
+
         $items = [];
         foreach($results as $result_item) {
             $item = $this->apiRepository->getById($result_item->id);
@@ -98,7 +99,7 @@ class CollectionController extends Controller
 
         return view('layouts/_autocomplete', [
             'term' => $slug,
-            'resultCount' => 200,
+            'resultCount' => $results->total(),
             'items' => $items,
             'seeAllUrl' => route('collection', ['q' => $slug])
         ]);
