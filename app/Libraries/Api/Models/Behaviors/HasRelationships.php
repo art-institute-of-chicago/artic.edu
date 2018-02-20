@@ -80,8 +80,19 @@ trait HasRelationships
         if ($this->relationLoaded($key)) {
             return $this->relations[$key];
         } else {
-            return;
+            if (method_exists($this, $key)) {
+                return $this->getRelationshipFromMethod($key);
+            }
         }
+    }
+
+    protected function getRelationshipFromMethod($method)
+    {
+        $relation = $this->$method();
+
+        return tap($relation->get(), function ($results) use ($method) {
+            $this->setRelation($method, $results);
+        });
     }
 
     /**
