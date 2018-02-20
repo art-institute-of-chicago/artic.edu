@@ -62,9 +62,12 @@ class Event extends Model
         self::TOUR => 'Tour'
     ];
 
+    const BASIC_LAYOUT = 0;
+    const LARGE_LAYOUT = 1;
+
     public static $eventLayouts = [
-        0 => 'Basic',
-        1 => 'Large Feature',
+        self::BASIC_LAYOUT => 'Basic',
+        self::LARGE_LAYOUT => 'Large Feature',
     ];
 
     public $slugAttributes = [
