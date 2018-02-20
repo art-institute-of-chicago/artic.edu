@@ -41,6 +41,39 @@ class Exhibition extends BaseApiModel
         return new Carbon($this->end_at);
     }
 
+
+    // EXAMPLE SCOPE:
+    // Search for all exhibitions for the next 2 weeks, not closed
+    public function scopeNextTwoWeeks($query) {
+        $params = [
+          'bool' => [
+            'must' => [
+              0 => [
+                'range' => [
+                  'start_at' => [
+                    'lte' => 'now+2w',
+                  ],
+                ],
+              ],
+              1 => [
+                'range' => [
+                  'end_at' => [
+                    'gte' => 'now',
+                  ],
+                ],
+              ],
+            ],
+            'must_not' => [
+              'term' => [
+                'status' => 'Closed',
+              ],
+            ],
+          ],
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     // Solve this using casts. Because it returns an object it can't be used on the CMS
     // A value option could be added when showing
     // public function getStartAtAttribute($value) {

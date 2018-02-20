@@ -440,6 +440,20 @@ class ApiModelBuilder
     }
 
     /**
+     * Apply the given scope on the current builder instance.
+     *
+     * @param  callable  $scope
+     * @param  array  $parameters
+     * @return mixed
+     */
+    protected function callScope(callable $scope, $parameters = [])
+    {
+        array_unshift($parameters, $this);
+        $result = $scope(...array_values($parameters)) ?? $this;
+        return $result;
+    }
+
+    /**
      * Dynamically handle calls into the query instance.
      *
      * @param  string  $method

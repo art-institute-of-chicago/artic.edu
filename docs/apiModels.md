@@ -200,4 +200,121 @@ $query->paginationData;
 public function getSearch($perPage = null, $columns = [], $pageName = 'page', $page = null)
 ```
 
+## Raw Elasticsearch execution
+
+AIC offers a parameter `query` on which you can pass raw ES parameters to perform a search.
+
+For example, let's search for the upcoming exhibitinos for the next 2 weeks:
+
+```php
+
+$params = [
+  'bool' => [
+    'must' => [
+      0 => [
+        'range' => [
+          'start_at' => [
+            'lte' => 'now+2w',
+          ],
+        ],
+      ],
+      1 => [
+        'range' => [
+          'end_at' => [
+            'gte' => 'now',
+          ],
+        ],
+      ],
+    ],
+    'must_not' => [
+      'term' => [
+        'status' => 'Closed',
+      ],
+    ],
+  ],
+];
+
+$results = \App\Models\Api\Exhibition::query()->rawSearch($params)->getSearch();
+
+```
+
+Remember that you could simply build scopes as you would normally do with Eloquen models. Lets create one at the exhibition model:
+
+```php
+public function scopeNextTwoWeeks($query) {
+    $params = [
+      'bool' => [
+        'must' => [
+          0 => [
+            'range' => [
+              'start_at' => [
+                'lte' => 'now+2w',
+              ],
+            ],
+          ],
+          1 => [
+            'range' => [
+              'end_at' => [
+                'gte' => 'now',
+              ],
+            ],
+          ],
+        ],
+        'must_not' => [
+          'term' => [
+            'status' => 'Closed',
+          ],
+        ],
+      ],
+    ];
+
+    return $query->rawSearch($params);
+}
+
+```
+
+
+This way the controller will be much cleaner:
+
+
+```php
+
+$results = \App\Models\Api\Exhibition::query()->nextTwoWeeks()->getSearch();
+
+```
+
+
+In case you don't want to use a specific model and you prefer to perform a general search, you can still use the Search model as explained before:
+
+
+```php
+
+// Let's search artworks from 1812-1815
+
+$params = [
+  'bool' => [
+    'must' => [
+      0 => [
+        'range' => [
+          'date_start' => [
+            'gte' => 1812,
+          ],
+        ],
+      ],
+      1 => [
+        'range' => [
+          'date_end' => [
+            'lte' => 1815,
+          ],
+        ],
+      ],
+    ],
+  ],
+];
+
+
+$results = \App\Models\Api\Search::query()->rawSearch($params)->resources(['artworks'])->getSearch();
+
+```
+
 
