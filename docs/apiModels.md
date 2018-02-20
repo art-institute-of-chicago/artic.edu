@@ -238,7 +238,7 @@ $results = \App\Models\Api\Exhibition::query()->rawSearch($params)->getSearch();
 
 ```
 
-Remember that you could simply build scopes as you would normally do with Eloquent models. Lets create one at the exhibition model:
+Remember that you could simply build scopes as you would normally do with Eloquent models. Lets create one at the `Exhibition` model:
 
 ```php
 public function scopeNextTwoWeeks($query) {
@@ -319,3 +319,8 @@ $results = \App\Models\Api\Search::query()->rawSearch($params)->resources(['artw
 
 
 You can move all this to a scope as well. Just add it to the `Search` model as seen before and call it by it's name.
+
+
+
+*Something to remember:* Scopes are good for every query on this document, not only searching.
+
