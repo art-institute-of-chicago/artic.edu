@@ -176,19 +176,28 @@ Afterwards it loads all real models trying to keep it efficient using one query 
 
 ```php
 
-use App\Models\Api\Search;
+// This one will prepare a query with any resource
+$query = App\Models\Api\Search::search('monet');
 
-// This one will search any resource
-$query = Search::search('monet');
+// This one just the specified ones (artworks and exhibitions)
+$query = App\Models\Api\Search::search('monet')->resources(['artworks', 'exhibitions']);
 
-// This one just the specified ones
-$query = Search::search('monet')->resources(['artworks', 'exhibitions']);
+// This one just monet exhibitions
+$query = App\Models\Api\Search::search('monet')->resources(['exhibitions']);
 
-// Get the actual collection
+// Run the actual query and get 10 elements
 $results = $query->getSearch(10);
 
-// Useful data loaded after the query
+// Useful data loaded after execution
 $query->suggestionsData;
 $query->aggregationsData;
+$query->paginationData;
+```
+
+`getSearch` function prototype is:
+
+```php
+public function getSearch($perPage = null, $columns = [], $pageName = 'page', $page = null)
+```
 
 
