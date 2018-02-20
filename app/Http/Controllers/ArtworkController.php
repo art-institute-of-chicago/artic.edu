@@ -24,7 +24,7 @@ class ArtworkController extends Controller
         // The ID is a datahub_id not a local ID
         // get an artwork
         $item = $this->apiRepository->getById($id);
-        // dd($item);
+        //dd($item);
 
         $item->articleType = 'artwork';
         $item->headerType = 'gallery';

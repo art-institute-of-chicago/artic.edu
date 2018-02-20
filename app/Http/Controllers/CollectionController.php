@@ -26,18 +26,15 @@ class CollectionController extends Controller
         $q = $request->get('q');
         $items = [];
         if ($q) {
-            $results = \App\Models\Api\Search::search($q)->resources(['artworks'])->paginate();
-            $results = $aicConnection->get('/api/v1/search', ['q' => $q, 'resources' => 'artworks']);
+            $results = \App\Models\Api\Search::search($q)->resources(['artworks'])->get();
 
-            if ($results->status == 200) {
-                foreach($results->body->data as $result_item) {
-                    $item_results = $aicConnection->get('/api/v1/'.$result_item->api_model.'/'.$result_item->api_id, ['q' => $q, 'type' => 'artworks']);
-                    $item = $this->apiRepository->getById($result_item->id);
-                    // dd($item);
-                    $item->type = 'artwork';
-                    $item->image = LakeviewImageService::getImage($item->image_id);
-                    $items[] = $item;
-                }
+            foreach($results as $result_item) {
+                $item_results = $aicConnection->get('/api/v1/'.$result_item->api_model.'/'.$result_item->api_id, ['q' => $q, 'type' => 'artworks']);
+                $item = $this->apiRepository->getById($result_item->id);
+                // dd($item);
+                $item->type = 'artwork';
+                $item->image = LakeviewImageService::getImage($item->image_id);
+                $items[] = $item;
             }
         }
 
@@ -83,31 +80,32 @@ class CollectionController extends Controller
     public function search($slug, Request $request)
     {
         $aicConnection = new AicConnection;
-        $results = $aicConnection->get('/api/v1/search', ['q' => $slug, 'type' => 'artworks']);
-        // dd($results);
-        if ($results->status == 200) {
-            $items = [];
+        $results = \App\Models\Api\Search::search($slug)->resources(['artworks'])->get();
 
-            foreach($results->body->data as $result_item) {
-                $data = $this->apiRepository->getById($result_item->id);
+        $items = [];
+        foreach($results as $result_item) {
+            $item = $this->apiRepository->getById($result_item->id);
+            // dd($item);
+            $item->type = 'artwork';
+            $item->text = $item->title;
+            $item->url = route('artworks.show', $item->id);
 
-                $item = [
-                    'url' => route('artworks.show', $data->id),
-                    'image' => ['src' => "//placeimg.com/40/40/nature", 'width' => 40, 'height' => '40'],
-                    'text' => $data->title,
-                ];
-                $items[] = $item;
-            }
-
-            return view('layouts/_autocomplete', [
-                'term' => $slug,
-                'resultCount' => $results->body->pagination->total,
-                'items' => $items,
-                'seeAllUrl' => route('collection', ['q' => $slug])
-            ]);
-        } else {
-            abort($results->status);
+            $image = LakeviewImageService::getImage($item->image_id, 30);
+            $image['width'] = 30;
+            $image['height'] = '';
+            $item->image = $image;
+            // dd($item->image);
+            $items[] = $item;
         }
+
+        return view('layouts/_autocomplete', [
+            'term' => $slug,
+            'resultCount' => 200,
+            'items' => $items,
+            'seeAllUrl' => route('collection', ['q' => $slug])
+        ]);
+
+        abort(500);
     }
 
 }
