@@ -41,15 +41,21 @@ class ArtworkController extends Controller
         // $blocks = $this->generateArtworkBlocks();
         // dd($item);
         $blocks = [];
+
+        $details = [];
+        $details[] = array('key' => 'Artist', 'value' => 'The Artist Name');
+        if (!empty($item->date_display)) $details[] = array('key' => 'Date', 'value' => $item->date_display);
+        if (!empty($item->medium)) $details[] = array('key' => 'Medium', 'value' => $item->medium);
+        if (!empty($item->dimensions)) $details[] = array('key' => 'Dimensions', 'value' => $item->dimensions);
+        if (!empty($item->credit_line)) $details[] = array('key' => 'Credit line', 'value' => $item->credit_line);
+        if (!empty($item->main_reference_number)) $details[] = array('key' => 'Reference Number', 'value' => $item->main_reference_number);
+        if (!empty($item->copyright_notice)) $details[] = array('key' => 'Copyright', 'value' => $item->copyright_notice);
+
         array_push($blocks, array(
           "type" => 'deflist',
-          "items" => array(
-            array('key' => 'Artist', 'value' => 'The Artist Name'),
-          )
+          "items" =>$details
         ));
         $item->blocks = $blocks;
-        // dd($blocks);
-
 
         // update and add some items (I ran into memory issues doing this in the main getartwork func..)
         // $article->push('nextArticle', $this->getArtwork());
