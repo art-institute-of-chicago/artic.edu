@@ -50,7 +50,7 @@
 @endcomponent
 
 @component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
+    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--2-col@small o-grid-listing--4-col@medium o-grid-listing--4-col@large o-grid-listing--4-col@xlarge')
     @slot('cols_medium','3')
     @slot('cols_large','4')
     @slot('cols_xlarge','4')
