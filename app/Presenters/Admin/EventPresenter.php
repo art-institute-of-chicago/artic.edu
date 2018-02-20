@@ -26,7 +26,7 @@ class EventPresenter extends BasePresenter
             case \App\Models\Event::LARGE_LAYOUT:
                 return "feature";
                 break;
-            case \App\Models\Event::BASIC:
+            case \App\Models\Event::BASIC_LAYOUT:
                 return null;
                 break;
         }
