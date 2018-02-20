@@ -20,4 +20,16 @@ class EventPresenter extends BasePresenter
         return \App\Models\Event::$eventTypes[$this->entity->type];
     }
 
+    public function headerType()
+    {
+        switch ($this->entity->layout_type) {
+            case \App\Models\Event::LARGE_LAYOUT:
+                return "feature";
+                break;
+            case \App\Models\Event::BASIC:
+                return null;
+                break;
+        }
+    }
+
 }
