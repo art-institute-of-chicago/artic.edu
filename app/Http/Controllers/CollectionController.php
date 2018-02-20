@@ -9,6 +9,8 @@ use App\Libraries\Api\Builders\Connection\AicConnection;
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 
+use LakeviewImageService;
+
 class CollectionController extends Controller
 {
     protected $apiRepository;
@@ -20,19 +22,21 @@ class CollectionController extends Controller
 
     public function index(Request $request)
     {
+        $img = \App::make('lakeviewimageservice');
         $aicConnection = new AicConnection;
         $q = $request->get('q');
         $items = [];
         if ($q) {
-            $results = $aicConnection->get('/api/v1/search', ['q' => $q, 'type' => 'artworks']);
+            $results = $aicConnection->get('/api/v1/search', ['q' => $q, 'resources' => 'artworks']);
+            // dd($results);
             if ($results->status == 200) {
                 foreach($results->body->data as $result_item) {
                     $item_results = $aicConnection->get('/api/v1/'.$result_item->api_model.'/'.$result_item->api_id, ['q' => $q, 'type' => 'artworks']);
                     $item = $this->apiRepository->getById($result_item->id);
-                    $item->type = 'artwork';
-                    $item->image = ['src' => "//placeimg.com/400/400/nature", 'srcset' => "//placeimg.com/400/400/nature/400w", 'width' => '400', 'height' => '400'];
-                    $items[] = $item;
                     // dd($item);
+                    $item->type = 'artwork';
+                    $item->image = ['image_id' => $item->image_id];
+                    $items[] = $item;
                 }
             }
         }

@@ -4,6 +4,8 @@ namespace App\Providers;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 
+use App\Libraries\LakeviewImageService;
+
 use Illuminate\Support\ServiceProvider;
 
 use App\Models\Hour;
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->registerMorphMap();
         $this->registerApiClient();
+        $this->registerLakeviewImageService();
         $this->composeTemplatesViews();
     }
 
@@ -43,6 +46,13 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
+    public function registerLakeviewImageService()
+    {
+        $this->app->singleton('lakeviewimageservice', function($app)
+        {
+            return new LakeviewImageService();
+        });
+    }
     /**
      * Register any application services.
      *

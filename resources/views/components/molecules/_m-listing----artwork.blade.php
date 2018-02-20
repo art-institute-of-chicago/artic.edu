@@ -3,10 +3,25 @@
         <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--tall' }}">
             @if ($item->image)
                 @component('components.atoms._img')
-                    @slot('src', $item->image['src'])
-                    @slot('srcset', $item->image['srcset'])
-                    @slot('width', $item->image['width'])
-                    @slot('height', $item->image['height'])
+                        @slot('image', $item->image['image'])
+                    @if (isset($item->image['image_id']))
+                        @slot('image_id', $item->image['image_id'])
+                    @endif
+                    @if (isset($item->image['src']))
+                        @slot('src', $item->image['src'])
+                    @endif
+                    @if (isset($item->image['srcset']))
+                        @slot('srcset', $item->image['srcset'])
+                    @endif
+                    @if (isset($item->image['width']))
+                        @slot('width', $item->image['width'])
+                    @endif
+                    @if (isset($item->image['height']))
+                        @slot('height', $item->image['height'])
+                    @endif
+                    @if (isset($item->image['sizes']))
+                        @slot('height', $item->image['sizes'])
+                    @endif
                 @endcomponent
             @endif
         </span>

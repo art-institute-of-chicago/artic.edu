@@ -6,6 +6,8 @@ use App\Repositories\Api\ArtworkRepository;
 use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Page;
 
+use LakeviewImageService;
+
 class ArtworkController extends Controller
 {
     protected $apiRepository;
@@ -20,14 +22,79 @@ class ArtworkController extends Controller
     public function show($id)
     {
         // The ID is a datahub_id not a local ID
+        // get an artwork
         $item = $this->apiRepository->getById($id);
+        // dd($item);
 
-        var_dump($item);
-        die();
+        $item->articleType = 'artwork';
+        $item->headerType = 'gallery';
 
-        return view('site.artworkDetail', [
-            'contrastHeader' => ($article->headerType === 'hero'),
-            'article' => $item
+        $galleryImages = collect();
+        if ($item->image_id) {
+            $dimensions = LakeviewImageService::getDimensions($item->image_id);
+            $galleryImages[] = [
+                'src' => LakeviewImageService::getUrl($item->image_id, ['width' => 300])
+            ,   'srcset' => LakeviewImageService::getUrl($item->image_id, ['width' => 300])." 300w"
+            ,   'width' => $dimensions['width']
+            ,   'height' => $dimensions['height']
+            ];
+        }
+        // dd($galleryImages);
+        $item->galleryImages = $galleryImages;
+
+        // generate some blocks
+        // $blocks = $this->generateArtworkBlocks();
+        // update and add some items (I ran into memory issues doing this in the main getartwork func..)
+        // $article->push('nextArticle', $this->getArtwork());
+        // $article->push('prevArticle', $this->getArtwork());
+        // $article->push('onView', array('label' => 'European Painting and Sculpture, Galleries 239', 'href' => '#'));
+        // $article->push('blocks', $blocks);
+        // $article->push('exploreFuther', array(
+        //   'items' => $this->getArtworks(8),
+        //   'nav' => array(
+        //     array(
+        //       'href' => '#',
+        //       'label' => "Renaissance",
+        //     ),
+        //     array(
+        //       'href' => '#',
+        //       'label' => "Arms",
+        //       'active' => true,
+        //     ),
+        //     array(
+        //       'href' => '#',
+        //       'label' => "Northern Italy",
+        //     ),
+        //     array(
+        //       'href' => '#',
+        //       'label' => "All tags",
+        //     ),
+        //   ),
+        // ));
+        // $article->push('galleryImages', $this->getImages($this->faker->numberBetween(1,5)));
+        // $article->push('recentlyViewedArtworks', $this->getArtworks($this->faker->numberBetween(6,20)));
+        // $article->push('interestedThemes', array(
+        //   array(
+        //     'href' => '#',
+        //     'label' => "Picasso",
+        //   ),
+        //   array(
+        //     'href' => '#',
+        //     'label' => "Modern Art",
+        //   ),
+        //   array(
+        //     'href' => '#',
+        //     'label' => "European Art",
+        //   ),
+        // ));
+        // $article->push('featuredRelated', array(
+        //   'type' => 'article',
+        //   'items' => $this->getArticles(1),
+        // ));
+        // now push to a view
+        return view('site.articleDetail', [
+          'contrastHeader' => ($item->headerType === 'hero'),
+          'item' => $item,
         ]);
     }
 

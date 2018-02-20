@@ -5,10 +5,21 @@
 <div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
         @component('components.atoms._img')
-            @slot('src', $images[0]['src'])
-            @slot('srcset', $images[0]['srcset'])
-            @slot('width', $images[0]['width'])
-            @slot('height', $images[0]['height'])
+            @if (isset($images[0]['image_id']))
+                @slot('image_id', $images[0]['image_id'])
+            @endif
+            @if (isset($images[0]['src']))
+                @slot('src', $images[0]['src'])
+            @endif
+            @if (isset($images[0]['srcset']))
+                @slot('srcset', $images[0]['srcset'])
+            @endif
+            @if (isset($images[0]['width']))
+                @slot('width', $images[0]['width'])
+            @endif
+            @if (isset($images[0]['height']))
+                @slot('height', $images[0]['height'])
+            @endif
         @endcomponent
       </div>
       <ul class="m-article-header__img-nav">
@@ -59,11 +70,11 @@
         </li>
         @endif
       </ul>
-    @if ($images[0]['creditUrl'])
+    @if (isset($images[0]['creditUrl']))
         <a href="{{ $images[0]['creditUrl'] }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
-            {{ $images[0]['credit'] }}
+            {{ $images[0]['creditUrl'] }}
         </a>
-    @else
+    @elseif (isset($images[0]['credit']))
         <span class="m-article-header__img-credit f-secondary" data-gallery-credit>
             {{ $images[0]['credit'] }}
         </span>
@@ -100,21 +111,53 @@
       @foreach ($images as $image)
         <li>
           @component('components.atoms._img')
-              @slot('src', $image['src'])
-              @slot('srcset', $image['srcset'])
-              @slot('width', $image['width'])
-              @slot('height', $image['height'])
+              @if (isset($images['image_id']))
+                @slot('src', $image['image_id'])
+              @endif
+              @if (isset($images['src']))
+                @slot('src', $image['src'])
+              @endif
+              @if (isset($images['srcset']))
+                @slot('srcset', $image['srcset'])
+              @endif
+              @if (isset($images['width']))
+                @slot('width', $image['width'])
+              @endif
+              @if (isset($images['height']))
+                @slot('height', $image['height'])
+              @endif
           @endcomponent
           <button
-            data-gallery-img-srcset="{{ $image['srcset'] }}"
-            data-gallery-img-credit="{{ $image['credit'] }}"
-            data-gallery-img-credit-url="{{ $image['creditUrl'] }}"
-            data-gallery-img-share-url="{{ $image['shareUrl'] }}"
-            data-gallery-img-share-title="{{ $image['shareTitle'] }}"
-            data-gallery-img-download-url="{{ $image['downloadUrl'] }}"
-            data-gallery-img-download-name="{{ $image['downloadName'] }}"
-            data-gallery-img-width="{{ $image['width'] }}"
-            data-gallery-img-height="{{ $image['height'] }}"
+            @if (isset($image['image_id']))
+                data-gallery-img-srcset="{{ $image['image_id'] }}"
+            @endif
+            @if (isset($image['srcset']))
+                data-gallery-img-srcset="{{ $image['srcset'] }}"
+            @endif
+            @if (isset($image['credit']))
+                data-gallery-img-credit="{{ $image['credit'] }}"
+            @endif
+            @if (isset($image['creditUrl']))
+                data-gallery-img-credit-url="{{ $image['creditUrl'] }}"
+            @endif
+            @if (isset($image['shareUrl']))
+                data-gallery-img-share-url="{{ $image['shareUrl'] }}"
+            @endif
+            @if (isset($image['shareTitle']))
+                data-gallery-img-share-title="{{ $image['shareTitle'] }}"
+            @endif
+            @if (isset($image['downloadUrl']))
+                data-gallery-img-download-url="{{ $image['downloadUrl'] }}"
+            @endif
+            @if (isset($image['downloadName']))
+                data-gallery-img-download-name="{{ $image['downloadName'] }}"
+            @endif
+            @if (isset($image['width']))
+                data-gallery-img-width="{{ $image['width'] }}"
+            @endif
+            @if (isset($image['height']))
+                data-gallery-img-height="{{ $image['height'] }}"
+            @endif
             disabled
           >Show this image</button>
         </li>
