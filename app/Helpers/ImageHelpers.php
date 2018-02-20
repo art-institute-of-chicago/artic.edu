@@ -1,5 +1,15 @@
 <?php
 
+function aic_imageSizesBreakpoints() {
+    return array(
+        'xsmall' => '',
+        'small' => '(min-width: 600px)',
+        'medium' => '(min-width: 900px)',
+        'large' => '(min-width: 1200px)',
+        'xlarge' => '(min-width: 1640px)',
+    );
+}
+
 /***
 
 Outputs a string for the sizes attribute of an image
@@ -18,16 +28,6 @@ Outputs a string for the sizes attribute of an image
 
 ***/
 
-function aic_imageSizesBreakpoints() {
-    return array(
-        'xsmall' => '',
-        'small' => '(min-width: 600px)',
-        'medium' => '(min-width: 900px)',
-        'large' => '(min-width: 1200px)',
-        'xlarge' => '(min-width: 1640px)',
-    );
-}
-
 function aic_imageSizes($data) {
     $breakpoints = aic_imageSizesBreakpoints();
     $sizes = '';
@@ -42,7 +42,9 @@ function aic_imageSizes($data) {
 
     foreach ($breakpoints as $name => $point):
         if (array_key_exists($name, $data)) {
-            if ($name === 'xlarge') {
+            if (strrpos($data[$name], 'px') > 0 || strrpos($data[$name], 'vw') > 0) {
+                $thisSize = $data[$name];
+            } else if ($name === 'xlarge') {
                 $thisSize = round($data[$name] * ($xlargeMaxSize/$totalCSScolumns)).'px';
             } else {
                 $thisSize = round(($data[$name] * (100/($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
