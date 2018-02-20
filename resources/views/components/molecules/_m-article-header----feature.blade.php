@@ -1,5 +1,5 @@
-<{{ $tag or 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}">
-  <div class="m-article-header__img">
+<{{ $tag or 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
+  <div class="m-article-header__img" data-blur-img>
       @if ($img)
         @component('components.atoms._img')
             @slot('src', $img['src'])
@@ -8,11 +8,7 @@
         @endcomponent
       @endif
   </div>
-  @if ($img)
-  <div class="m-article-header__text" style="background-image: url({{ $img['src'] }});">
-  @else
-  <div class="m-article-header__text">
-  @endif
+  <div class="m-article-header__text" data-blur-clip-to>
       @if (isset($title))
         @component('components.atoms._title')
             @slot('tag','h1')

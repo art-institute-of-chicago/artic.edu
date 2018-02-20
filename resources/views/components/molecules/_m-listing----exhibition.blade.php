@@ -1,8 +1,7 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->nowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
-
+<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->nowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-behavior="blurMyBackground"' : '' !!}>
     <a href="{!! route('exhibitions.show', $item) !!}" class="m-listing__link">
 
-    <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
+    <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-img' : '' }}>
         @if ($img = $item->imageAsArray('hero'))
             @component('components.atoms._img')
                 @slot('src', $img['src'])
@@ -12,8 +11,8 @@
             @endcomponent
         @endif
     </span>
-    <span class="m-listing__meta">
-    @if (!isset($variation) or $variation !== 'm-listing--hero')
+    <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
+    @if (!isset($variation) or strrpos($variation, "--hero") < 0)
         @if ($item->exclusive)
             @component('components.atoms._type')
                 @slot('variation', 'type--membership')

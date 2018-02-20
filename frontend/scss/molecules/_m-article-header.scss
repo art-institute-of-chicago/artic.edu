@@ -137,6 +137,41 @@
   margin-left: -50vw;
 }
 
+.m-article-header--feature .m-article-header__img + .m-article-header__img {
+  position: absolute;
+  top: 0;
+}
+
+@supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+  .m-article-header--feature .m-article-header__img[data-blur-img-dupe] {
+    display: none;
+  }
+}
+@supports not (clip-path: inset(0 0 0 0)) {
+  .m-article-header--feature .m-article-header__img[data-blur-img-dupe] {
+    display: none;
+  }
+}
+@supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) and (clip-path: inset(0 0 0 0)) and (filter: blur(5px)) {
+  .m-article-header--feature .m-article-header__img {
+    overflow: hidden;
+  }
+
+  .m-article-header--feature .m-article-header__img img,
+  .m-article-header--feature .m-article-header__img video {
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 5px);
+  }
+
+  .m-article-header--feature .m-article-header__img[data-blur-img-dupe] img,
+  .m-article-header--feature .m-article-header__img[data-blur-img-dupe] video {
+    filter: blur(5px);
+  }
+}
+
 .m-article-header--feature .m-article-header__img::before {
   content: '';
   position: absolute;
@@ -194,20 +229,10 @@
     padding-right: colspan(15, xlarge);
     padding-left: colspan(15, xlarge);
   }
-
-  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
-    background-size: 1px 1px;
-    background-repeat: no-repeat;
-    background-position: -1px -1px;
-  }
-
-  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-    background: none !important;
-  }
 }
 
 .m-article-header--feature .m-article-header__text::before {
-  //@include opaqueBg(rgba(0,0,0,.4), rgba(0,0,0,.25));
+  @include opaqueBg(rgba(0,0,0,.4), rgba(0,0,0,.25));
   content: '';
   position: absolute;
   z-index: -1;
@@ -216,31 +241,10 @@
   bottom: 0;
   width: 100vw;
   margin-left: -50vw;
-
-  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
-    background-color: none;
-    background-image: inherit;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    background-size: 100vw 100vh;
-    background-position: bottom center;
-    //top: auto;
-    //height: 100vh;
-    filter: blur(3px);
-    clip: rect(0, auto, auto, auto);
-  }
-
-  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-    background-color: rgba(0,0,0,.25);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-  }
 }
 
   .m-article-header--feature.m-article-header--editorial .m-article-header__text::before {
-    @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-      background-color: rgba($color__bg--editorial, .85);
-    }
+    @include opaqueBg(rgba($color__bg--editorial, .85), rgba($color__bg--editorial, .85));
   }
 
 .m-article-header--feature .m-article-header__text::after {
@@ -253,18 +257,7 @@
   width: 100vw;
   margin-left: -50vw;
   background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.03) 20%, rgba(0,0,0,.3) 100%);
-
-  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
-    bottom: 0;
-    height: calc(100% + 124px);
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.03) 20%, rgba(0,0,0,.3) 124px, rgba(0,0,0,.5) 124px, rgba(0,0,0,.5) 100%);
-  }
 }
-  .m-article-header--feature.m-article-header--editorial .m-article-header__text::after {
-    @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
-      background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.03) 20%, rgba(0,0,0,.3) 124px, rgba($color__bg--editorial, .85) 124px, rgba($color__bg--editorial, .85) 100%);
-    }
-  }
 
 .m-article-header--feature .m-article-header__text > * {
   flex: 0 0 auto;
@@ -609,10 +602,10 @@
 .m-article-header__breadcrumb {
   display: none;
   position: absolute;
+  z-index: 2;
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
   flex-flow: row wrap;
 
   @include breakpoint('small+') {
@@ -648,15 +641,33 @@
   //text-shadow: 0 0 25px rgba(0, 0, 0, 1);
 }
 
-.m-article-header--generic-w-img .m-article-header__breadcrumb {
-  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
-    background-size: 1px 1px;
-    background-repeat: no-repeat;
-    background-position: -1px -1px;
+@supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+  .m-article-header--generic-w-img .m-article-header__img[data-blur-img-dupe] {
+    display: none;
+  }
+}
+@supports not (clip-path: inset(0 0 0 0)) {
+  .m-article-header--generic-w-img .m-article-header__img[data-blur-img-dupe] {
+    display: none;
+  }
+}
+@supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) and (clip-path: inset(0 0 0 0)) and (filter: blur(5px)) {
+  .m-article-header--generic-w-img .m-article-header__img {
+    overflow: hidden;
   }
 
-  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-    background: none !important;
+  .m-article-header--generic-w-img .m-article-header__img img,
+  .m-article-header--generic-w-img .m-article-header__img video {
+    left: -5px;
+    right: -5px;
+    top: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 5px);
+  }
+
+  .m-article-header--generic-w-img .m-article-header__img[data-blur-img-dupe] img,
+  .m-article-header--generic-w-img .m-article-header__img[data-blur-img-dupe] video {
+    filter: blur(5px);
   }
 }
 
@@ -666,25 +677,7 @@
   width: 100vw;
   height: 48px;
   margin-left: -50vw;
-  background-color: rgba(0,0,0,.4);
-
-  @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
-    background-color: none;
-    background-image: inherit;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 0;
-    height: 100%;
-    filter: blur(2px) brightness(.8);
-    clip: rect(0, auto, 48px, auto);
-  }
-
-  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-    background-color: rgba(0,0,0,.25);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-  }
+  background-color: rgba(0,0,0,.25);
 }
 
 .m-article-header--generic-w-img .m-article-header__breadcrumb li {
