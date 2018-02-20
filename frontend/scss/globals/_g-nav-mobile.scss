@@ -32,6 +32,7 @@
   z-index: 10;
   right: map-get($outer-gutters, 'xsmall');
   top: 16px;
+  color: $color__black--90;
 }
 
 .js-subnav-open .g-nav-mobile__close {
