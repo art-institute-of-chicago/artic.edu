@@ -24,7 +24,7 @@ class ArtworkController extends Controller
         // The ID is a datahub_id not a local ID
         // get an artwork
         $item = $this->apiRepository->getById($id);
-        //dd($item);
+        // dd($item);
 
         $item->articleType = 'artwork';
         $item->headerType = 'gallery';
@@ -37,10 +37,12 @@ class ArtworkController extends Controller
         // dd($galleryImages);
         $item->galleryImages = $galleryImages;
 
-        // generate some blocks
-        // $blocks = $this->generateArtworkBlocks();
-        // dd($item);
         $blocks = [];
+        array_push($blocks, array(
+          "type" => 'text',
+          "content" => $item->description
+        ));
+
         array_push($blocks, $item->getArtworkDetailsBlock());
         $item->blocks = $blocks;
 

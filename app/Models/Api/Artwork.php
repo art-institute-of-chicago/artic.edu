@@ -26,7 +26,15 @@ class Artwork extends BaseApiModel
     {
 
         $details = [];
-        $details[] = array('key' => 'Artist', 'value' => 'The Artist Name');
+
+        if ($this->artists->count() > 0) {
+            $details[] = array('key' => 'Artist', 'value' => $this->artists->implode('title', ', '));
+        } else {
+            if (!empty($this->place_of_origin)) {
+                $details[] = array('key' => 'Origin', 'value' => $this->place_of_origin);
+            }
+        }
+
         if (!empty($this->date_display)) {
             $details[] = array('key' => 'Date', 'value' => $this->date_display);
         }
