@@ -167,3 +167,28 @@ $item = \App\Models\Api\Exhibition::query()->find(ID);
 route('exhibitions.show', $item)
 ```
 
+## General Search
+
+I created a special model to deal with general searching. `App\Models\Api\Search`.
+
+This one just uses a general endpoint to load ANY KIND of element.
+Afterwards it loads all real models trying to keep it efficient using one query per entity (passing by an array of ids).
+
+```php
+
+use App\Models\Api\Search;
+
+// This one will search any resource
+$query = Search::search('monet');
+
+// This one just the specified ones
+$query = Search::search('monet')->resources(['artworks', 'exhibitions']);
+
+// Get the actual collection
+$results = $query->getSearch(10);
+
+// Useful data loaded after the query
+$query->suggestionsData;
+$query->aggregationsData;
+
+

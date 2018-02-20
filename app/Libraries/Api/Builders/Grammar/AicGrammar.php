@@ -16,7 +16,9 @@ class AicGrammar
         'orders',
         'ids',
         'columns',
-        'searchText'
+        'searchText',
+        'searchParameters',
+        'searchResources'
     ];
 
     /**
@@ -103,9 +105,19 @@ class AicGrammar
         return empty($ids) ? [] : ['ids' => join(',', $ids)];
     }
 
+    protected function compileSearchResources($query, $resources)
+    {
+        return empty($resources) ? [] : ['resources' => join(',', $resources)];
+    }
+
     protected function compileSearchText($query, $text)
     {
         return ['q' => $text];
+    }
+
+    protected function compileSearchParameters($query, array $text)
+    {
+        return $text;
     }
 
     protected function compileOrders($query, $order)

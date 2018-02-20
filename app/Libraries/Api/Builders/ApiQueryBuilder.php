@@ -82,6 +82,20 @@ class ApiQueryBuilder {
     public $searchText;
 
     /**
+     * Search parameters for a raw ES query.
+     *
+     * @var array
+     */
+    public $searchParameters = [];
+
+    /**
+     * Search specific resources. Useful only for general searches
+     *
+     * @var array
+     */
+    public $searchResources = [];
+
+    /**
      * Pagination data saved after a request
      */
     public $paginationData;
@@ -326,6 +340,19 @@ class ApiQueryBuilder {
     }
 
     /**
+     * Search for specific resources
+     *
+     * @param  string  $search
+     * @return $this
+     */
+    public function resources($resources)
+    {
+        $this->searchResources = $resources;
+
+        return $this;
+    }
+
+    /**
      * Perform a search
      *
      * @param  string  $search
@@ -334,6 +361,19 @@ class ApiQueryBuilder {
     public function search($search)
     {
         $this->searchText = $search;
+
+        return $this;
+    }
+
+    /**
+     * Perform a raw ES search
+     *
+     * @param  array $search
+     * @return $this
+     */
+    public function rawSearch($search)
+    {
+        $this->searchParameters = array_merge_recursive($this->searchParameters, $search);
 
         return $this;
     }

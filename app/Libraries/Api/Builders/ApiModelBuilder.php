@@ -145,12 +145,36 @@ class ApiModelBuilder
     }
 
     /**
-     * Add a basic where clause to the query.
+     * Perform a raw ES search
      *
-     * @param  string|array|\Closure  $column
-     * @param  string  $operator
-     * @param  mixed  $value
-     * @param  string  $boolean
+     * @param  string  $search
+     * @return $this
+     */
+    public function rawSearch($search)
+    {
+        $this->query->rawSearch(...func_get_args());
+        $this->performSearch = true;
+
+        return $this;
+    }
+
+    /**
+     * When searching filter by specific resources
+     *
+     * @param  array $resources
+     * @return $this
+     */
+    public function resources(array $resources)
+    {
+        $this->query->resources($resources);
+
+        return $this;
+    }
+
+    /**
+     * Filter elements by specific ID's
+     *
+     * @param  array $ids
      * @return $this
      */
     public function ids(array $ids)
