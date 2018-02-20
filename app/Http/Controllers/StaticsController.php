@@ -21,6 +21,8 @@ class StaticsController extends Controller {
           return $this->{$function}();
       }
 
+      dd(_imageHelper('test'));
+
       return view(($slug != "") ? "statics/{$slug}" : "statics/index");
   }
 
