@@ -22,13 +22,13 @@ class CollectionController extends Controller
 
     public function index(Request $request)
     {
-        $img = \App::make('lakeviewimageservice');
         $aicConnection = new AicConnection;
         $q = $request->get('q');
         $items = [];
         if ($q) {
+            $results = \App\Models\Api\Search::search($q)->resources(['artworks'])->paginate();
             $results = $aicConnection->get('/api/v1/search', ['q' => $q, 'resources' => 'artworks']);
-            // dd($results);
+
             if ($results->status == 200) {
                 foreach($results->body->data as $result_item) {
                     $item_results = $aicConnection->get('/api/v1/'.$result_item->api_model.'/'.$result_item->api_id, ['q' => $q, 'type' => 'artworks']);
