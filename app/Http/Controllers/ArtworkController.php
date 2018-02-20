@@ -32,12 +32,7 @@ class ArtworkController extends Controller
         $galleryImages = collect();
         if ($item->image_id) {
             $dimensions = LakeviewImageService::getDimensions($item->image_id);
-            $galleryImages[] = [
-                'src' => LakeviewImageService::getUrl($item->image_id, ['width' => 300])
-            ,   'srcset' => LakeviewImageService::getUrl($item->image_id, ['width' => 300])." 300w"
-            ,   'width' => $dimensions['width']
-            ,   'height' => $dimensions['height']
-            ];
+            $galleryImages[] = LakeviewImageService::getImage($item->image_id);
         }
         // dd($galleryImages);
         $item->galleryImages = $galleryImages;
