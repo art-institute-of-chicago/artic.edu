@@ -25,6 +25,7 @@ class ArtworkController extends Controller
         // get an artwork
         $item = $this->apiRepository->getById($id);
         // dd($item);
+        // dd($item->categories);
 
         $item->articleType = 'artwork';
         $item->headerType = 'gallery';
@@ -52,6 +53,17 @@ class ArtworkController extends Controller
           "type" => 'text',
           "content" => $item->description
         ));
+
+        if ($item->is_on_view) {
+            $label = '';
+            if (!empty($item->collection_status)) {
+                $label .= $item->collection_status . ', ';
+            }
+            if (!empty($item->gallery_title)) {
+                $label .= $item->gallery_title;
+            }
+            $item->onView = array('label' => $label, 'href' => route('galleries.show', [$item->gallery_id]));
+        }
 
         array_push($blocks, $item->getArtworkDetailsBlock());
         array_push($blocks, $item->getArtworkDescriptionBlocks());

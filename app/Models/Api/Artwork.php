@@ -17,6 +17,11 @@ class Artwork extends BaseApiModel
         return $this->hasMany(\App\Models\Api\Artist::class, 'alt_artist_ids');
     }
 
+    public function categories()
+    {
+        return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');
+    }
+
     public function getSlugAttribute()
     {
         return route('artworks.show', $this->id);
