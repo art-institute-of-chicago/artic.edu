@@ -45,10 +45,13 @@
   @endif
 
   <div class="o-article__secondary-actions">
-    @component('components.molecules._m-ticket-actions----event')
-        @slot('ticketPrices', $item->ticketPrices);
-        @slot('ticketLink', $item->ticketLink);
-    @endcomponent
+    @if ($item->is_ticketed)
+        @component('components.molecules._m-ticket-actions----event')
+            @slot('ticketPrices', $item->ticketPrices);
+            @slot('ticketLink', $item->buy_tickets_link);
+            @slot('buttonText', $item->buy_button_text);
+        @endcomponent
+    @endif
 
     @if ($item->featuredRelated)
       {{-- dupe 😢 - shows medium+ --}}
@@ -61,11 +64,11 @@
     @endif
   </div>
 
-  @if ($item->hero_caption and $item->headerType !== 'super-hero')
+  @if ($item->description and $item->headerType !== 'super-hero')
   <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
-        {{ $item->hero_caption }}
+        {{ $item->description }}
     @endcomponent
   </div>
   @endif
@@ -196,7 +199,7 @@
     @endcomponent
 @endif
 
-@if ($item->events)
+@if ($item->events()->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => route('events'))))
         Related Events

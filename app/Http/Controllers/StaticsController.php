@@ -1742,6 +1742,7 @@ class StaticsController extends Controller {
       "free" => $free,
       "register" => $register,
       "soldOut" => $soldOut,
+      "is_ticketed" => true,
 
       // Add a presenter function to fit our integrations
       "present" => function () use ($timeStart, $timeEnd) {

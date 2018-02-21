@@ -13,6 +13,13 @@
         'default' => '0'
     ])
 
+    @formField('select', [
+        'name' => 'layout_type',
+        'label' => 'Event layout',
+        'options' => $eventLayoutsList,
+        'default' => '0'
+    ])
+
     @formField('checkbox', [
         'name' => 'hidden',
         'label' => 'Hidden from listings?',
@@ -21,13 +28,6 @@
     @formField('checkbox', [
         'name' => 'is_ongoing',
         'label' => 'Ongoing Event?'
-    ])
-
-    @formField('select', [
-        'name' => 'layout_type',
-        'label' => 'Event layout',
-        'options' => $eventLayoutsList,
-        'default' => '0'
     ])
 
     @formField('medias', [
@@ -39,7 +39,8 @@
 
     @formField('input', [
         'name' => 'hero_caption',
-        'label' => 'Hero Image Caption'
+        'label' => 'Hero Image Caption',
+        'note' => 'Usually used for copyright'
     ])
 
     @formField('input', [
@@ -166,11 +167,6 @@
         ])
 
         @formField('checkbox', [
-            'name' => 'is_ticketed',
-            'label' => 'Ticketed Event?'
-        ])
-
-        @formField('checkbox', [
             'name' => 'is_sold_out',
             'label' => 'Sold Out?',
         ])
@@ -178,6 +174,16 @@
         @formField('checkbox', [
             'name' => 'is_free',
             'label' => 'Free Event?'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_ticketed',
+            'label' => 'Ticketed Event?'
+        ])
+
+        @formField('input', [
+            'name' => 'buy_tickets_link',
+            'label' => 'External Link to buy tickets'
         ])
 
         @formField('input', [

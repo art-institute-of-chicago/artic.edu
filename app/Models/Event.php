@@ -39,6 +39,7 @@ class Event extends Model
         'is_member_exclusive',
         'hidden',
         'rsvp_link',
+        'buy_tickets_link',
         'location',
         'sponsors_description',
         'sponsors_sub_copy',
