@@ -9,6 +9,21 @@
   }
 }
 
+.m-cta-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.m-cta-banner__img {
+  z-index: 1;
+}
+
 .m-cta-banner__img,
 .m-cta-banner__img img,
 .m-cta-banner__img video {
@@ -41,6 +56,7 @@
   right: 20px;
   top: 0;
   bottom: 20px;
+  z-index: 3;
 
   @include breakpoint('small+') {
     left: colspan(3, small);
