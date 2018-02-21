@@ -156,6 +156,12 @@ return [
                 'component' => 'a17-block-offer',
                 'max' => 10,
             ],
+            'timeline_item' => [
+                'title' => 'Timeline Item',
+                'trigger' => 'Add Timeline',
+                'component' => 'a17-block-timeline_item',
+                'max' => 10,
+            ],
         ],
         'crops' => [
             'image' => [
