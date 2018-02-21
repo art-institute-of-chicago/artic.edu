@@ -12,6 +12,7 @@
             @component('components.atoms._img')
                 @slot('image', $img)
                 @slot('sizes', $imageSizes ?? '')
+                @slot('srcset', $imageSrcSet ?? '')
             @endcomponent
         </div>
     @endif

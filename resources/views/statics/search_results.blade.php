@@ -57,6 +57,16 @@
                 @slot('variation', 'm-listing--row m-listing--tertiary')
                 @slot('imgVariation', 'm-listing__img--square')
                 @slot('item', $featuredResults[0]['item'])
+                @slot('imageSrcSet', array(150,300,500))
+                @slot('imageSizes', aic_imageSizes(
+                  array(
+                      'xsmall' => '90vw',
+                      'small' => '11vw',
+                      'medium' => '11vw',
+                      'large' => '8vw',
+                      'xlarge' => '130px',
+                  )
+                ))
             @endcomponent
         @else
             @slot('title', 'Featured Results')
@@ -66,6 +76,16 @@
                         @slot('variation', 'm-listing--row m-listing--tertiary')
                         @slot('imgVariation', 'm-listing__img--square')
                         @slot('item', $featuredResult['item'])
+                        @slot('imageSrcSet', array(150,300,500))
+                        @slot('imageSizes', aic_imageSizes(
+                          array(
+                              'xsmall' => '90vw',
+                              'small' => '11vw',
+                              'medium' => '11vw',
+                              'large' => '8vw',
+                              'xlarge' => '130px',
+                          )
+                        ))
                     @endcomponent
                 @endforeach
             @endcomponent
@@ -92,6 +112,7 @@
             @component('components.molecules._m-listing----artist')
                 @slot('variation', 'm-listing--inline m-listing--inline-narrow-image')
                 @slot('item', $item)
+                @slot('imageSrcSet', array(100,200))
                 @slot('imageSizes', aic_imageSizes(
                   array(
                       'xsmall' => '10',

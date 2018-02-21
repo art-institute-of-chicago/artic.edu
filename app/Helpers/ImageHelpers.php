@@ -1,16 +1,107 @@
 <?php
 
-function aic_imageSizesBreakpoints() {
-    return array(
+/***
+
+aic_imageSizesCSSsettings
+
+Returns an array of CSS settings for the site - see _variable.scss
+
+***/
+
+function aic_imageSizesCSSsettings() {
+    $breakpoints = array(
         'xsmall' => '',
         'small' => '(min-width: 600px)',
         'medium' => '(min-width: 900px)',
         'large' => '(min-width: 1200px)',
         'xlarge' => '(min-width: 1640px)',
     );
+    $totalCSScolumns = 58; // all breakpoints
+    $xlargeMaxSize = 1500; // just xlarge, its not fluid
+    $innerGutterCSSColumns = 2; // all breakpoints
+    $outerGutterCSScolumns = 3; // all breakpoints
+
+    return array(
+        'breakpoints' => $breakpoints,
+        'totalCSScolumns' => $totalCSScolumns,
+        'xlargeMaxSize' => $xlargeMaxSize,
+        'innerGutterCSSColumns' => $innerGutterCSSColumns,
+        'outerGutterCSScolumns' => $outerGutterCSScolumns,
+    );
 }
 
 /***
+
+aic_imageSrcSet
+
+Outputs a string for the srcset attribute of an image
+
+AND
+
+Outputs a string for the LQIP src of an image
+
+```
+    $srcsetAndSource = aic_imageSrcSet(array(
+        'srcset' => $srcset,
+        'image' => $image,
+    ));
+
+    $srcset = $srcsetAndSource['srcset'];
+    $src = $srcsetAndSource['src'];
+```
+
+
+***/
+
+function aic_imageSrcSet($data) {
+
+    $stringSrcset = '';
+    $stringSrc = '';
+
+    $srcset = $data['srcset'] ?? false;
+
+    $sourceType = $data['image']['sourceType'] ?? false;
+    $src = $data['image']['src'] ?? false;
+    $width = $data['image']['width'] ?? false;
+    $height = $data['image']['height'] ?? false;
+
+    $LQIPDimension = 25;
+
+    if (!$srcset || !$sourceType || !$src || !$width || !$height) {
+        return array(
+            'srcset' => $stringSrcset,
+            'src' => $stringSrc,
+        );
+    }
+
+    // now, based on the source type, generate URLs as needed
+    if ($sourceType === 'placeholder') {
+        // for place holders its a bit dumb because its not passing through a service
+        foreach ($srcset as $size):
+            $stringSrcset .= "//placehold.dev.area17.com/image/".$size."x".round(($width/$height) * $size)." ".$size."w, ";
+        endforeach;
+
+        $stringSrc = "//placehold.dev.area17.com/image/".$LQIPDimension."x".round(($width/$height) * $LQIPDimension)." ".$LQIPDimension."w";
+    }
+
+    if ($sourceType === 'imgix') {
+        // do transformations
+    }
+
+    if ($sourceType === 'lakeview') {
+        // do transformations
+    }
+
+    return array(
+        'srcset' => $stringSrcset,
+        'src' => $stringSrc,
+    );
+}
+
+
+/***
+
+aic_imageSizes
 
 Outputs a string for the sizes attribute of an image
 
@@ -26,20 +117,24 @@ Outputs a string for the sizes attribute of an image
     ))
 ```
 
+* Breakpoints are fluid except xlarge
+* For all breakpoints, except xlarge, 1 CSS column is 100vw/64 (64 is 58 + 3 + 3)
+* At xlarge, 1 CSS column is 1500px/58
+
+See _grid.scss, @function colspan {}
+
 ***/
 
 function aic_imageSizes($data) {
-    $breakpoints = aic_imageSizesBreakpoints();
     $sizes = '';
-    $xlargeMaxSize = 1500;
-    $totalCSScolumns = 58;
-    $outerGutterCSScolumns = 3;
-
-    // breakpoints are fluid except xlagre
-    // for all breakpoints, except xlarge, 1 CSS column is 100vw/64 * 1
-    // at xlarge, 1 CSS column is 1500px/58
-    // see _variables.scss and _grid.scss (@function colspan)
-
+    // grab settings
+    $settings = aic_imageSizesCSSsettings();
+    // make friendly
+    $breakpoints = $settings['breakpoints'];
+    $xlargeMaxSize = $settings['xlargeMaxSize'];
+    $totalCSScolumns = $settings['totalCSScolumns'];
+    $outerGutterCSScolumns = $settings['outerGutterCSScolumns'];
+    //
     foreach ($breakpoints as $name => $point):
         if (array_key_exists($name, $data)) {
             if (strrpos($data[$name], 'px') > 0 || strrpos($data[$name], 'vw') > 0) {
@@ -64,6 +159,8 @@ function aic_imageSizes($data) {
 
 /***
 
+aic_gridListingImageSizes
+
 Outputs a string for the sizes attribute of an image, in a grid listing
 
 ```
@@ -81,14 +178,17 @@ Outputs a string for the sizes attribute of an image, in a grid listing
 ***/
 
 function aic_gridListingImageSizes($data) {
-    $breakpoints = aic_imageSizesBreakpoints();
     $newData = array();
-    $totalCSScolumns = 58;
-    $gutterCSSColumns = 2;
+    // grab settings
+    $settings = aic_imageSizesCSSsettings();
+    // make friendly
+    $breakpoints = $settings['breakpoints'];
+    $totalCSScolumns = $settings['totalCSScolumns'];
+    $innerGutterCSSColumns = $settings['innerGutterCSSColumns'];
 
     foreach ($breakpoints as $name => $point):
         if (array_key_exists($name, $data)) {
-            $newData[$name] = ($totalCSScolumns - (($data[$name] - 1) * $gutterCSSColumns)) / $data[$name];
+            $newData[$name] = ($totalCSScolumns - (($data[$name] - 1) * $innerGutterCSSColumns)) / $data[$name];
         } else {
             $newData[$name] = 58;
         }

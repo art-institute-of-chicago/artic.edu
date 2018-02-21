@@ -4,6 +4,7 @@
             @component('components.atoms._img')
                 @slot('image', $post->image)
                 @slot('sizes', $imageSizes ?? '')
+                @slot('srcset', $imageSrcSet ?? '')
             @endcomponent
         </figure>
 

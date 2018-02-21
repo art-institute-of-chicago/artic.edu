@@ -10,6 +10,7 @@
             @component('components.atoms._img')
                 @slot('image', $media)
                 @slot('sizes', $imageSizes ?? '')
+                @slot('srcset', $imageSrcSet ?? '')
             @endcomponent
         @elseif ($type == 'embed')
             {!! $media['embed'] ?? '' !!}

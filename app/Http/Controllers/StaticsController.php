@@ -1544,24 +1544,18 @@ class StaticsController extends Controller {
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
 
-  private function getImage($width = false, $height = false) {
-    //$color = preg_replace('/#/i', '', $this->faker->hexcolor);
-    $width = isset($width) && $width ? $width : $this->faker->numberBetween(300,700);
-    $height = isset($height) && $height ? $height : $this->faker->numberBetween(300,700);
-    $src = "//placehold.dev.area17.com/image/".'25'."x".round(($width/$height) * 25);
-    $srcset = "//placehold.dev.area17.com/image/".'100'."x".round(($width/$height) * 100)." 100w, ";
-    $srcset .= "//placehold.dev.area17.com/image/".'200'."x".round(($width/$height) * 200)." 200w, ";
-    $srcset .= "//placehold.dev.area17.com/image/".'400'."x".round(($width/$height) * 400)." 400w, ";
-    $srcset .= "//placehold.dev.area17.com/image/".'800'."x".round(($width/$height) * 800)." 800w, ";
-    $srcset .= "//placehold.dev.area17.com/image/".'1200'."x".round(($width/$height) * 1200)." 1200w, ";
-    $srcset .= "//placehold.dev.area17.com/image/".'2000'."x".round(($width/$height) * 2000)." 2000w, ";
+  private function getImage() {
+    $sourceType = 'placeholder';
+    $width = $this->faker->numberBetween(2000,5000);
+    $height = $this->faker->numberBetween(2000,5000);
+    $src = "//placehold.dev.area17.com/image/".$width."x".$height."?bg=333&fg=ccc";
 
     $credit = $this->faker->boolean() ? $this->faker->sentence(3) : null;
     $creditUrl = ($credit && $this->faker->boolean()) ? '#' : null;
 
     $image = array(
+        "sourceType" => $sourceType,
         "src" => $src,
-        "srcset" => $srcset,
         "width" => $width,
         "height" => $height,
         "shareUrl" => '#',
