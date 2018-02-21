@@ -36,4 +36,5 @@ export { default as modal } from './modal';
 export { default as newsletter } from './newsletter';
 export { default as openImageFullScreen } from './openImageFullScreen';
 export { default as blurMyBackground } from './blurMyBackground';
+export { default as loadMore } from './loadMore';
 

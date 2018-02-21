@@ -317,6 +317,8 @@
         Related Events
     @endcomponent
     @component('components.organisms._o-row-listing')
+        @slot('id', 'eventsList')
+
         @foreach ($relatedEventsByDay as $date => $events)
             @component('components.molecules._m-date-listing')
                 @slot('date', $date)
@@ -326,7 +328,7 @@
     @endcomponent
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--buttons')
-        @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary')))
+        @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => '/exhibitions_load_more', 'loadMoreTarget' => '#eventsList')))
     @endcomponent
 @endif
 

@@ -1,3 +1,3 @@
-<ul class="o-row-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+<ul {!! (isset($id)) ? 'id="'. $id .'"' : '' !!} class="o-row-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     {{ $slot }}
 </ul>
