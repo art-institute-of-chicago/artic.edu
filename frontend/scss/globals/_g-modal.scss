@@ -71,11 +71,13 @@
   background-color: $color__bg;
 
   @include breakpoint('xsmall') {
-    width: colspan(58, 'xsmall');
+    padding-left: map-get($outer-gutters, 'xsmall');
+    padding-right: map-get($outer-gutters, 'xsmall');
   }
 
   @include breakpoint('small') {
-    width: colspan(58, 'small');
+    padding-left: map-get($outer-gutters, 'small');
+    padding-right: map-get($outer-gutters, 'small');
   }
 
   @include breakpoint('medium') {
