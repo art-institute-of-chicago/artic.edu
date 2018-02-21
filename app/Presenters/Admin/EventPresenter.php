@@ -43,4 +43,25 @@ class EventPresenter extends BasePresenter
         }
     }
 
+    public function navigation()
+    {
+        return array_filter([$this->locationLink(), $this->registrationRequired()]);
+    }
+
+    protected function locationLink() {
+        if ($this->entity->location) {
+            return [
+                'label' => $this->entity->location,
+                'iconBefore' => 'location'
+            ];
+        }
+    }
+
+    protected function registrationRequired() {
+        return [
+            'label' => 'Registration required',
+            'variation' => 'user'
+        ];
+    }
+
 }
