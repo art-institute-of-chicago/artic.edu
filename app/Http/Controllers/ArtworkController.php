@@ -33,6 +33,7 @@ class ArtworkController extends Controller
         if ($item->image_id) {
             // $dimensions = LakeviewImageService::getDimensions($item->image_id);
             $image = LakeviewImageService::getImage($item->image_id);
+            // dd($image);
             // add copyright to each image
             // "shareUrl" => '#',
             // "shareTitle" => $shareTitle,
@@ -53,6 +54,7 @@ class ArtworkController extends Controller
         ));
 
         array_push($blocks, $item->getArtworkDetailsBlock());
+        array_push($blocks, $item->getArtworkDescriptionBlocks());
         $item->blocks = $blocks;
 
         // update and add some items (I ran into memory issues doing this in the main getartwork func..)

@@ -27,7 +27,7 @@ class Artwork extends BaseApiModel
 
         $details = [];
 
-        if ($this->artists->count() > 0) {
+        if ($this->artists != null && $this->artists->count() > 0) {
             $details[] = array('key' => 'Artist', 'value' => $this->artists->implode('title', ', '));
         } else {
             if (!empty($this->place_of_origin)) {
@@ -60,5 +60,66 @@ class Artwork extends BaseApiModel
         );
 
         return $block;
+    }
+
+    public function getArtworkDescriptionBlocks()
+    {
+        $blocks = [];
+
+        $content = [];
+        if (!empty($this->publication_history)) {
+            $block = array(
+                'title' => 'Publication History',
+                'blocks' => []
+            );
+            foreach(explode("\n", $this->publication_history) as $txt) {
+                if (!empty($txt)) {
+                    $block['blocks'][] = array(
+                        "type" => 'text',
+                        "content" => '<p>'.$txt.'</p>'
+                    );
+                }
+            }
+            $content[] = $block;
+        }
+
+        if (!empty($this->exhibition_history)) {
+            $block = array(
+                'title' => 'Exhibition History',
+                'blocks' => []
+            );
+            foreach(explode("\n", $this->exhibition_history) as $txt) {
+                if (!empty($txt)) {
+                    $block['blocks'][] = array(
+                        "type" => 'text',
+                        "content" => '<p>'.$txt.'</p>'
+                    );
+                }
+            }
+            $content[] = $block;
+        }
+
+        if (!empty($this->provenance_text)) {
+            $block = array(
+                'title' => 'Provenance',
+                'blocks' => []
+            );
+            foreach(explode("\n", $this->provenance_text) as $txt) {
+                if (!empty($txt)) {
+                    $block['blocks'][] = array(
+                        "type" => 'text',
+                        "content" => '<p>'.$txt.'</p>'
+                    );
+                }
+            }
+            $content[] = $block;
+        }
+
+        $blocks = array(
+            "type" => 'accordion',
+            "content" => $content
+        );
+
+        return $blocks;
     }
 }
