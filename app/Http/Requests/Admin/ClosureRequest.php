@@ -11,12 +11,12 @@ class ClosureRequest extends Request
         $rules = [];
 
         if (!empty($this->input('date_end'))) {
-            $rules['date_start'] = 'required|date_format:m/d/Y|before:date_end';
+            $rules['date_start'] = 'required|before:date_end';
         } else {
-            $rules['date_start'] = 'required|date_format:m/d/Y';
+            $rules['date_start'] = 'required';
         }
 
-        $rules['date_end'] = 'required|date_format:m/d/Y';
+        $rules['date_end'] = 'required';
 
         return $rules;
     }

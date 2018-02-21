@@ -13,7 +13,7 @@ class ClosureController extends ModuleController
         'delete' => false,
     ];
 
-    protected $titleColumnKey = 'type';
+    protected $titleColumnKey = 'presentType';
 
     protected $indexColumns = [
         'type' => [
@@ -55,7 +55,7 @@ class ClosureController extends ModuleController
      * In the indexData function, name your lists with the filter name + List (fFilterNameList)
      */
     protected $filters = [
-        'fType' => 'type',
+        'fPresentType' => 'presentType',
     ];
 
     protected $defaultOrders = ['date_start' => 'desc'];

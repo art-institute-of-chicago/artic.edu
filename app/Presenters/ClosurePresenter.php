@@ -3,7 +3,7 @@
 namespace App\Presenters;
 
 use App\Presenters\BasePresenter;
-use App\Models\Hour;
+use App\Models\Closure;
 use Carbon\Carbon;
 
 class ClosurePresenter extends BasePresenter
@@ -20,7 +20,7 @@ class ClosurePresenter extends BasePresenter
     }
 
     public function presentType() {
-        return Hour::$types[$this->entity->type];
+        return Closure::$types[$this->entity->type];
     }
 
 }

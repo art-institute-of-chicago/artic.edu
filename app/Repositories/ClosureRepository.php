@@ -14,23 +14,24 @@ class ClosureRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function getDatesField($fields, $f)
-    {
-        if (($dateTime = DateTime::createFromFormat("Y-m-d H:i:s", $fields[$f]))) {
-            $fields[$f] = $dateTime->format("m/d/Y");
-        }
+    // public function getDatesField($fields, $f)
+    // {
+    //     if (($dateTime = DateTime::createFromFormat("Y-m-d", $fields[$f]))) {
+    //         $fields[$f] = $dateTime->format("m/d/Y");
+    //     }
 
-        return $fields;
-    }
+    //     return $fields;
+    // }
 
-    public function prepareDatesField($fields, $f)
-    {
-        if (($datetime = DateTime::createFromFormat("m/d/Y", $fields[$f]))) {
-            $fields[$f] = $datetime->format("Y-m-d");
-        } else {
-            $fields[$f] = null;
-        }
+    // public function prepareDatesField($fields, $f)
+    // {
+    //     dd($fields);
+    //     if (($datetime = DateTime::createFromFormat("Y-m-d", $fields[$f]))) {
+    //         $fields[$f] = $datetime->format("Y-m-d");
+    //     } else {
+    //         $fields[$f] = null;
+    //     }
 
-        return $fields;
-    }
+    //     return $fields;
+    // }
 }

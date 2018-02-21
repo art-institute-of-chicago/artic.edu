@@ -29,6 +29,7 @@ class LakeviewImageService implements ImageServiceInterface
         $src = $this->getUrl($image_id, ['width' => $width, 'height' => $height]);
         $srcset = $this->getUrl($image_id, ['width' => $width, 'height' => $height])." 300w";
         $image = array(
+            "type" => 'lakeview',
             "src" => $src,
             "srcset" => $srcset,
             "width" => $dimensions['width'],
