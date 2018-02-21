@@ -145,6 +145,21 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function exhibitions_load_more($page){
+    $maxPages = 4;
+    $page = ($page == $maxPages ? '' : $page + 1);
+
+    $events = $this->makeEventsByDates(4);
+
+    return [
+        'page' => $page,
+        'html' => view('statics.exhibitions_load_more', [
+            'items' => $events
+        ])->render(),
+    ];
+  }
+
+
   public function exhibitions_and_events() {
     return view('statics/exhibitions_and_events', [
       'primaryNavCurrent' => 'exhibitions_and_events',
