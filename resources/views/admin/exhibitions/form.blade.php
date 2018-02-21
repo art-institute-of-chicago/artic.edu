@@ -105,6 +105,12 @@
             'disabled' => true
         ])
         @formField('input', [
+            'name' => 'short_description',
+            'label' => 'Short Description',
+            'type' => 'textarea',
+            'disabled' => true
+        ])
+        @formField('input', [
             'name' => 'start_at',
             'label' => 'Start at',
             'disabled' => true

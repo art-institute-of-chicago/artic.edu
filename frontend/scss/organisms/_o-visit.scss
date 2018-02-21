@@ -16,14 +16,14 @@
 }
 
 .o-visit .m-header-block + .m-title-bar {
-  margin-top: 32px;
+  margin-top: 24px;
 
   @include breakpoint('medium+') {
-    margin-top: 52px;
+    margin-top: 32px;
   }
 
   @include breakpoint('large+') {
-    margin-top: 52px;
+    margin-top: 40px;
   }
 }
 
