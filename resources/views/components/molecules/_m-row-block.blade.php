@@ -11,8 +11,7 @@
         <div class="m-row-block__img">
             @component('components.atoms._img')
                 @slot('image', $img)
-                @slot('sizes', $imageSizes ?? '')
-                @slot('srcset', $imageSrcSet ?? '')
+                @slot('settings', $imageSettings ?? '')
             @endcomponent
         </div>
     @endif

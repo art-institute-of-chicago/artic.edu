@@ -3,8 +3,7 @@
     <span class="m-image-stack__img">
     @component('components.atoms._img')
         @slot('image', $image)
-        @slot('sizes', $imageSizes ?? '')
-        @slot('srcset', $imageSrcSet ?? '')
+        @slot('settings', $imageSettings ?? '')
     @endcomponent
     </span>
 @endforeach

@@ -15,8 +15,7 @@
 <div class="m-listing__img">
     @component('components.atoms._img')
         @slot('image', $item->image)
-        @slot('sizes', $imageSizes ?? '')
-        @slot('srcset', $imageSrcSet ?? '')
+        @slot('settings', $imageSettings ?? '')
     @endcomponent
 </div>
 @endif

@@ -4,8 +4,7 @@
             <figure class="o-artist-bio__image">
                 @component('components.atoms._img')
                     @slot('image', $item->image)
-                    @slot('sizes', $imageSizes ?? '')
-                    @slot('srcset', $imageSrcSet ?? '')
+                    @slot('settings', $imageSettings ?? '')
                 @endcomponent
                 @if (isset($item->caption))
                 <figcaption>

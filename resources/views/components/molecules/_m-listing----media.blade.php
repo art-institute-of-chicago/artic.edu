@@ -7,6 +7,7 @@
                     @slot('srcset', $item->image['srcset'])
                     @slot('width', $item->image['width'])
                     @slot('height', $item->image['height'])
+                    @slot('imageSettings', $imageSettings ?? null)
                 @endcomponent
             @endif
         </span>

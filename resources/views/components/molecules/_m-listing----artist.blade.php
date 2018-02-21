@@ -4,8 +4,7 @@
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--square' }}">
             @component('components.atoms._img')
                 @slot('image', $item->image)
-                @slot('sizes', $imageSizes ?? '')
-                @slot('srcset', $imageSrcSet ?? '')
+                @slot('settings', $imageSettings ?? '')
             @endcomponent
         </span>
         @endif

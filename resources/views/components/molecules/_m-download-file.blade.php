@@ -3,8 +3,7 @@
         @component('components.atoms._img')
             @slot('image',  $file['thumb'])
             @slot('class', 'm-download-file__img')
-            @slot('sizes', $imageSizes ?? '')
-            @slot('srcset', $imageSrcSet ?? '')
+            @slot('settings', $imageSettings ?? '')
         @endcomponent
     @endif
     <span class="m-download-file__meta f-secondary">

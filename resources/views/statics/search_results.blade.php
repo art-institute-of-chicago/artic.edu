@@ -57,15 +57,17 @@
                 @slot('variation', 'm-listing--row m-listing--tertiary')
                 @slot('imgVariation', 'm-listing__img--square')
                 @slot('item', $featuredResults[0]['item'])
-                @slot('imageSrcSet', array(150,300,500))
-                @slot('imageSizes', aic_imageSizes(
-                  array(
-                      'xsmall' => '90vw',
-                      'small' => '11vw',
-                      'medium' => '11vw',
-                      'large' => '8vw',
-                      'xlarge' => '130px',
-                  )
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '1:1',
+                    'srcset' => array(150,300,500),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '90vw',
+                          'small' => '11vw',
+                          'medium' => '11vw',
+                          'large' => '8vw',
+                          'xlarge' => '130px',
+                    )),
                 ))
             @endcomponent
         @else
@@ -76,15 +78,17 @@
                         @slot('variation', 'm-listing--row m-listing--tertiary')
                         @slot('imgVariation', 'm-listing__img--square')
                         @slot('item', $featuredResult['item'])
-                        @slot('imageSrcSet', array(150,300,500))
-                        @slot('imageSizes', aic_imageSizes(
-                          array(
-                              'xsmall' => '90vw',
-                              'small' => '11vw',
-                              'medium' => '11vw',
-                              'large' => '8vw',
-                              'xlarge' => '130px',
-                          )
+                        @slot('imageSettings', array(
+                            'fit' => 'crop',
+                            'ratio' => '1:1',
+                            'srcset' => array(150,300,500),
+                            'sizes' => aic_imageSizes(array(
+                                  'xsmall' => '90vw',
+                                  'small' => '11vw',
+                                  'medium' => '11vw',
+                                  'large' => '8vw',
+                                  'xlarge' => '130px',
+                            )),
                         ))
                     @endcomponent
                 @endforeach
@@ -112,15 +116,17 @@
             @component('components.molecules._m-listing----artist')
                 @slot('variation', 'm-listing--inline m-listing--inline-narrow-image')
                 @slot('item', $item)
-                @slot('imageSrcSet', array(100,200))
-                @slot('imageSizes', aic_imageSizes(
-                  array(
-                      'xsmall' => '10',
-                      'small' => '8',
-                      'medium' => '5',
-                      'large' => '4',
-                      'xlarge' => '4',
-                  )
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '1:1',
+                    'srcset' => array(100,200),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '10',
+                          'small' => '8',
+                          'medium' => '5',
+                          'large' => '4',
+                          'xlarge' => '4',
+                    )),
                 ))
             @endcomponent
         @endforeach
@@ -151,14 +157,17 @@
               @component('components.molecules._m-listing----generic-row')
                   @slot('imgVariation','')
                   @slot('item', $item)
-                  @slot('imageSizes', aic_gridListingImageSizes(
-                    array(
-                        'xsmall' => '1',
-                        'small' => '2',
-                        'medium' => '3',
-                        'large' => '4',
-                        'xlarge' => '4',
-                    )
+                  @slot('imageSettings', array(
+                      'fit' => 'crop',
+                      'ratio' => '16:9',
+                      'srcset' => array(200,400,600),
+                      'sizes' => aic_gridListingImageSizes(array(
+                            'xsmall' => '1',
+                            'small' => '2',
+                            'medium' => '3',
+                            'large' => '4',
+                            'xlarge' => '4',
+                      )),
                   ))
               @endcomponent
           @endforeach
@@ -169,14 +178,17 @@
                 @component('components.molecules._m-listing----generic-row')
                     @slot('variation', 'm-listing--row')
                     @slot('item', $item)
-                    @slot('imageSizes', aic_imageSizes(
-                      array(
-                          'xsmall' => '58',
-                          'small' => '13',
-                          'medium' => '13',
-                          'large' => '13',
-                          'xlarge' => '13',
-                      )
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600),
+                        'sizes' => aic_imageSizes(array(
+                              'xsmall' => '58',
+                              'small' => '13',
+                              'medium' => '13',
+                              'large' => '13',
+                              'xlarge' => '13',
+                        )),
                     ))
                 @endcomponent
             @endforeach
@@ -220,14 +232,15 @@
             @component('components.molecules._m-listing----artwork')
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
-                @slot('imageSizes', aic_gridListingImageSizes(
-                  array(
-                      'xsmall' => '1',
-                      'small' => '2',
-                      'medium' => '3',
-                      'large' => '4',
-                      'xlarge' => '4',
-                  )
+                @slot('imageSettings', array(
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_gridListingImageSizes(array(
+                          'xsmall' => '1',
+                          'small' => '2',
+                          'medium' => '3',
+                          'large' => '4',
+                          'xlarge' => '4',
+                    )),
                 ))
             @endcomponent
         @endforeach

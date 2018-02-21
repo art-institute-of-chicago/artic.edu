@@ -32,46 +32,88 @@ function aic_imageSizesCSSsettings() {
 
 /***
 
-aic_imageSrcSet
+aic_imageSettings
 
+Outputs a string for the sizes attribute of an image
 Outputs a string for the srcset attribute of an image
-
-AND
-
 Outputs a string for the LQIP src of an image
 
 ```
-    $srcsetAndSource = aic_imageSrcSet(array(
-        'srcset' => $srcset,
+    $settings = aic_imageSettings(array(
+        'settings' => $settings,
         'image' => $image,
     ));
 
-    $srcset = $srcsetAndSource['srcset'];
-    $src = $srcsetAndSource['src'];
+    $srcset = $imageSettings['srcset'];
+    $sizes = $imageSettings['sizes'];
+    $src = $imageSettings['src'];
 ```
 
 
 ***/
 
-function aic_imageSrcSet($data) {
-
+function aic_imageSettings($data) {
     $stringSrcset = '';
     $stringSrc = '';
+    $stringSizes = '';
+    $stringWidth = '';
+    $stringHeight = '';
 
-    $srcset = $data['srcset'] ?? false;
+    $settings = $data['settings'];
+    $image = $data['image'];
 
-    $sourceType = $data['image']['sourceType'] ?? false;
-    $src = $data['image']['src'] ?? false;
-    $width = $data['image']['width'] ?? false;
-    $height = $data['image']['height'] ?? false;
+    $srcset = $settings['srcset'] ?? false;
+    $sizes = $settings['sizes'] ?? false;
+
+    $sourceType = $image['sourceType'] ?? false;
+    $originalSrc = $image['src'] ?? false;
+    $width = $image['width'] ?? false;
+    $height = $image['height'] ?? false;
 
     $LQIPDimension = 25;
 
-    if (!$srcset || !$sourceType || !$src || !$width || !$height) {
+    // return if no datas
+    if (!$srcset || !$sourceType || !$originalSrc || !$width || !$height) {
         return array(
             'srcset' => $stringSrcset,
             'src' => $stringSrc,
+            'sizes' => $stringSizes,
+            'width' => $stringWidth,
+            'height' => $stringHeight,
         );
+    }
+
+    // assign the sizes
+    $stringSizes = $settings['sizes'] ?? '';
+
+    // work out ratio cropping
+    if (!empty($settings['ratio'])) {
+        if ($settings['ratio'] === "1:1") {
+            if ($height > $width) {
+                $width = $height;
+            } else {
+                $height = $width;
+            }
+        }
+        if ($settings['ratio'] === "16:9") {
+            $height = round($width * (9/16));
+        }
+
+        // because we're limiting with a dimension, we need to crop
+        if(empty($settings['fit'])) {
+            $settings['fit'] = 'crop';
+        }
+        if(empty($settings['crop'])) {
+            $settings['crop'] = 'faces,entropy';
+        }
+    }
+
+    if (empty($settings['auto'])) {
+        $settings['auto'] = 'compress';
+    }
+
+    if (empty($settings['q'])) {
+        $settings['q'] = '45';
     }
 
     // now, based on the source type, generate URLs as needed
@@ -85,16 +127,51 @@ function aic_imageSrcSet($data) {
     }
 
     if ($sourceType === 'imgix') {
-        // do transformations
+        /*
+            to build the urls, will need:
+
+            $originalSrc
+            $width
+            $height
+            $settings['fit']
+            $settings['crop']
+            $settings['crop']
+            $settings['auto']
+            $settings['q']
+
+            nb: the src wants to have lower settings
+
+            $settings['q'] = 10;
+            $settings['blur'] = 75;
+        */
     }
 
     if ($sourceType === 'lakeview') {
-        // do transformations
+        /*
+            to build the urls, will need:
+
+            $originalSrc
+            $width
+            $height
+            $settings['fit']
+            $settings['crop']
+            $settings['crop']
+            $settings['auto']
+            $settings['q']
+
+            nb: the src wants to have lower settings
+
+            $settings['q'] = 10;
+            $settings['blur'] = 75;
+        */
     }
 
     return array(
         'srcset' => $stringSrcset,
         'src' => $stringSrc,
+        'sizes' => $stringSizes,
+        'width' => $stringWidth,
+        'height' => $stringHeight,
     );
 }
 

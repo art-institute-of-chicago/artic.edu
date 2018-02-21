@@ -4,8 +4,7 @@
         @if ($img = $item->imageAsArray('hero'))
             @component('components.atoms._img')
                 @slot('image', $img)
-                @slot('sizes', $imageSizes ?? '')
-                @slot('srcset', $imageSrcSet ?? '')
+                @slot('settings', $imageSettings ?? '')
             @endcomponent
         @endif
     </span>
