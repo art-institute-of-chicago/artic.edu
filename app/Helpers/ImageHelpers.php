@@ -96,7 +96,7 @@ function aic_imageSettings($data) {
             }
         }
         if ($settings['ratio'] === "16:9") {
-            $height = round($width * (9/16));
+            $height = round($width * (16/9));
         }
 
         // because we're limiting with a dimension, we need to crop
@@ -120,10 +120,10 @@ function aic_imageSettings($data) {
     if ($sourceType === 'placeholder') {
         // for place holders its a bit dumb because its not passing through a service
         foreach ($srcset as $size):
-            $stringSrcset .= "//placehold.dev.area17.com/image/".$size."x".round(($width/$height) * $size)." ".$size."w, ";
+            $stringSrcset .= "//placehold.dev.area17.com/image/".$size."x".round(($height/$width) * $size)." ".$size."w, ";
         endforeach;
 
-        $stringSrc = "//placehold.dev.area17.com/image/".$LQIPDimension."x".round(($width/$height) * $LQIPDimension)." ".$LQIPDimension."w";
+        $stringSrc = "//placehold.dev.area17.com/image/".$LQIPDimension."x".round(($height/$width) * $LQIPDimension);
     }
 
     if ($sourceType === 'imgix') {
