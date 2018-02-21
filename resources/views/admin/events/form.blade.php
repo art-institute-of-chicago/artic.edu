@@ -104,6 +104,13 @@
             'rows' => 2
         ])
 
+        @formField('input', [
+            'name' => 'forced_date',
+            'label' => 'Force the date to show this',
+            'note' => 'Optional, the event will show this instead of the automatic computed date',
+            'type' => 'text'
+        ])
+
         @formField('select', [
             'name' => 'start_time',
             'label' => 'Start Time',

@@ -8,6 +8,7 @@ use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasRecurrentDates;
+use Carbon\Carbon;
 
 class Event extends Model
 {
@@ -25,6 +26,7 @@ class Event extends Model
         'short_description',
         'description',
         'hero_caption',
+        'forced_date',
         'start_time',
         'end_time',
         'is_private',
@@ -147,6 +149,11 @@ class Event extends Model
     public function events()
     {
         return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
+    }
+
+    public function getNextOcurrenceAttribute()
+    {
+        return $this->eventMetas()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->first();
     }
 
     protected function transformMappingInternal()

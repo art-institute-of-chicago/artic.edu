@@ -32,4 +32,15 @@ class EventPresenter extends BasePresenter
         }
     }
 
+    public function formattedNextOcurrence()
+    {
+        if (!empty($this->entity->forced_date)) {
+            return $this->entity->forced_date;
+        } else {
+            if ($next = $this->entity->nextOcurrence) {
+                return $next->date->format('F j, Y h:ia') . '&ndash;' . $next->date_end->format('h:ia');
+            }
+        }
+    }
+
 }

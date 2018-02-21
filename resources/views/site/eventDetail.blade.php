@@ -8,9 +8,10 @@
     @slot('editorial', false)
     @slot('headerType', $item->present()->headerType)
     @slot('title', $item->title)
-    @slot('date', $item->date)
+    @slot('formattedDate', $item->present()->formattedNextOcurrence)
+    {{-- @slot('date', $item->date)
     @slot('dateStart', $item->dateStart)
-    @slot('dateEnd', $item->dateEnd)
+    @slot('dateEnd', $item->dateEnd) --}}
     @slot('type', $item->present()->type)
     @slot('intro', $item->hero_caption)
     @slot('img', $item->imageAsArray('hero'))

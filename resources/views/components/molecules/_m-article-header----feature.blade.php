@@ -16,7 +16,11 @@
             {{ $title }}
         @endcomponent
       @endif
-      @if ($dateStart and $dateEnd)
+      @if (isset($formattedDate))
+        @component('components.atoms._date')
+            {{ $formattedDate }}
+        @endcomponent
+      @elseif ($dateStart and $dateEnd)
         @component('components.atoms._date')
             {{ $dateStart->format('M j, Y') }} &ndash; {{ $dateEnd->format('M j, Y') }}
         @endcomponent
