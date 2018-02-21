@@ -108,6 +108,9 @@ function aic_imageSettings($data) {
         }
     }
 
+    $stringWidth = $width;
+    $stringHeight = $height;
+
     if (empty($settings['auto'])) {
         $settings['auto'] = 'compress';
     }
@@ -143,6 +146,12 @@ function aic_imageSettings($data) {
 
             $settings['q'] = 10;
             $settings['blur'] = 75;
+
+
+            Make sure you generate:
+
+            $stringSrc
+            $stringSrcSet
         */
     }
 
@@ -163,6 +172,12 @@ function aic_imageSettings($data) {
 
             $settings['q'] = 10;
             $settings['blur'] = 75;
+
+
+            Make sure you generate:
+
+            $stringSrc
+            $stringSrcSet
         */
     }
 
@@ -193,6 +208,25 @@ Outputs a string for the sizes attribute of an image
       )
     ))
 ```
+
+You can specify set values in units also:
+
+```
+    @slot('imageSizes', aic_imageSizes(
+      array(
+          'xsmall' => '216px',
+          'small' => '216px',
+          'medium' => '30vw',
+          'large' => '18',
+          'xlarge' => '18',
+      )
+    ))
+```
+
+Unitless numbers are CSS columns where 1 CSS column is 1/58th the full column width.
+
+Numbers with units get used as is.
+
 
 * Breakpoints are fluid except xlarge
 * For all breakpoints, except xlarge, 1 CSS column is 100vw/64 (64 is 58 + 3 + 3)
@@ -238,7 +272,20 @@ function aic_imageSizes($data) {
 
 aic_gridListingImageSizes
 
-Outputs a string for the sizes attribute of an image, in a grid listing
+Outputs a string for the sizes attribute of an image, in a grid listing.
+
+The numbers are how many columns in the grid listing. So in this example, at `small` the items are in a 2 column grid:
+_________
+| x | x |
+| x | x |
+| x | x |
+---------
+
+And at `medium` they're in a 3 column grid:
+_____________
+| x | x | x |
+| x | x | x |
+-------------
 
 ```
     @slot('imageSizes', aic_gridListingImageSizes(

@@ -1075,7 +1075,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+        "content" => '<p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p>'
     ));
     array_push($blocks, array(
         "type" => 'text',

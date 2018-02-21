@@ -46,14 +46,17 @@
         @foreach ($article->relatedVideos as $item)
             @component('components.molecules._m-listing----article-minimal')
                 @slot('item', $item)
-                @slot('imageSizes', aic_imageSizes(
-                  array(
-                      'xsmall' => '216px',
-                      'small' => '216px',
-                      'medium' => '18',
-                      'large' => '13',
-                      'xlarge' => '13',
-                  )
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
                 ))
             @endcomponent
         @endforeach
@@ -76,14 +79,15 @@
         @foreach ($article->recentlyViewedArtworks as $item)
             @component('components.molecules._m-listing----artwork-minimal')
                 @slot('item', $item)
-                @slot('imageSizes', aic_imageSizes(
-                  array(
-                      'xsmall' => '216px',
-                      'small' => '216px',
-                      'medium' => '216px',
-                      'large' => sizeof($article->recentlyViewedArtworks) > 6 ? '3' : '8',
-                      'xlarge' => sizeof($article->recentlyViewedArtworks) > 6 ? '3' : '8',
-                  )
+                @slot('imageSettings', array(
+                    'srcset' => array(108,216,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '216px',
+                          'large' => sizeof($article->recentlyViewedArtworks) > 6 ? 3 : 8,
+                          'xlarge' => sizeof($article->recentlyViewedArtworks) > 6 ? 3 : 8,
+                    )),
                 ))
             @endcomponent
         @endforeach

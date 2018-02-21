@@ -6,7 +6,16 @@
       <div class="m-article-header__img-container" data-gallery-hero>
          @component('components.atoms._img')
             @slot('image', $images[0])
-            @slot('sizes', '100vw')
+            @slot('settings', array(
+                'srcset' => array(200,423,846,1692,3000,6000),
+                'sizes' => aic_imageSizes(array(
+                      'xsmall' => '58',
+                      'small' => '58',
+                      'medium' => '846px',
+                      'large' => '846px',
+                      'xlarge' => '846px',
+                )),
+            ))
         @endcomponent
       </div>
       <ul class="m-article-header__img-nav">
@@ -22,7 +31,10 @@
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
                   @slot('image', $nextArticle->image)
-                  @slot('sizes', '120px')
+                  @slot('settings', array(
+                    'srcset' => array(120,240),
+                    'sizes' => '120px',
+                  ))
               @endcomponent
             </span>
             <span class="f-caption">
@@ -39,7 +51,10 @@
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
                   @slot('image', $prevArticle->image)
-                  @slot('sizes', '120px')
+                  @slot('settings', array(
+                    'srcset' => array(120,240),
+                    'sizes' => '120px',
+                  ))
               @endcomponent
             </span>
             <span class="f-caption">
@@ -93,14 +108,35 @@
         <li>
           @component('components.atoms._img')
               @slot('image', $image)
-              @slot('sizes', '300px')
+              @slot('settings', array(
+                'srcset' => array(300,600),
+                'sizes' => '300px',
+              ))
           @endcomponent
+          @php
+            $galleryImageThumbSettings = aic_imageSettings(array(
+                'settings' => array(
+                    'srcset' => array(200,423,846,1692,3000,6000),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '58',
+                          'small' => '58',
+                          'medium' => '846px',
+                          'large' => '846px',
+                          'xlarge' => '846px',
+                    ))
+                ),
+                'image' => $image,
+            ));
+          @endphp
           <button
-            @if (isset($image['image_id']))
-                data-gallery-img-srcset="{{ $image['image_id'] }}"
+            @if (isset($galleryImageThumbSettings['srcset']))
+                data-gallery-img-srcset="{{ $galleryImageThumbSettings['srcset'] }}"
             @endif
-            @if (isset($image['srcset']))
-                data-gallery-img-srcset="{{ $image['srcset'] }}"
+            @if (isset($galleryImageThumbSettings['width']))
+                data-gallery-img-width="{{ $image['width'] }}"
+            @endif
+            @if (isset($galleryImageThumbSettings['height']))
+                data-gallery-img-height="{{ $image['height'] }}"
             @endif
             @if (isset($image['credit']))
                 data-gallery-img-credit="{{ $image['credit'] }}"
@@ -119,12 +155,6 @@
             @endif
             @if (isset($image['downloadName']))
                 data-gallery-img-download-name="{{ $image['downloadName'] }}"
-            @endif
-            @if (isset($image['width']))
-                data-gallery-img-width="{{ $image['width'] }}"
-            @endif
-            @if (isset($image['height']))
-                data-gallery-img-height="{{ $image['height'] }}"
             @endif
             disabled
           >Show this image</button>

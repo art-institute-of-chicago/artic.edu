@@ -1,8 +1,45 @@
 @php
+    $imageSettings = null;
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $media = $item['media'];
     $tag = (isset($item['url']) && $item['url'] && $type !== 'embed' && $type !== 'video') ? 'a' : 'span';
+
+    if ($size === 's') {
+        $imageSettings = array(
+            'srcset' => array(300,600,800,1200,1600),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '58',
+                  'small' => '58',
+                  'medium' => '38',
+                  'large' => '28',
+                  'xlarge' => '28',
+        )));
+    }
+
+    if ($size === 'm') {
+        $imageSettings = array(
+            'srcset' => array(300,600,800,1200,1600,2000),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '58',
+                  'small' => '58',
+                  'medium' => '58',
+                  'large' => '58',
+                  'xlarge' => '43',
+        )));
+    }
+
+    if ($size === 'l') {
+        $imageSettings = array(
+            'srcset' => array(300,600,800,1200,1600,2000),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '58',
+                  'small' => '58',
+                  'medium' => '58',
+                  'large' => '58',
+                  'xlarge' => '58',
+        )));
+    }
 @endphp
 <figure data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <{{ $tag }}{{ ($tag === 'a') ? ' href="'.$item['url'].'"' : '' }} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}">

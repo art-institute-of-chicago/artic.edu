@@ -291,6 +291,20 @@ const imageZoomArea = function(container) {
       }
     }
 
+    // trap for too large images
+    if (initImgWidth > maxImgDim || initImgHeight > maxImgDim) {
+      if (initImgWidth === initImgHeight) {
+        initImgWidth = maxImgDim;
+        initImgHeight = maxImgDim;
+      } else if (initImgWidth > initImgHeight) {
+        initImgHeight = Math.round((initImgHeight/initImgWidth) * maxImgDim);
+        initImgWidth = maxImgDim;
+      } else {
+        initImgWidth = Math.round((initImgWidth/initImgHeight) * maxImgDim);
+        initImgHeight = maxImgDim;
+      }
+    }
+
     img.setAttribute('width', initImgWidth);
     img.setAttribute('height', initImgHeight);
     img.setAttribute('srcset', event.data.img.srcset);
