@@ -124,6 +124,7 @@ Route::get('/', function () {
  *        @SWG\Property(property="rsvp_link", type="string", description="RSVP Link"),
  *        @SWG\Property(property="start_date", type="datetime", description="Start Date"),
  *        @SWG\Property(property="end_date", type="datetime", description="End Date"),
+ *        @SWG\Property(property="all_dates", type="datetime", description="A list of all the dates that this event occurs on"),
  *        @SWG\Property(property="location", type="string", description="Location"),
  *        @SWG\Property(property="sponsors_description", type="string", description="Sponsors Description"),
  *        @SWG\Property(property="sponsors_sub_copy", type="string", description="Sub Copy"),

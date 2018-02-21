@@ -654,6 +654,10 @@
                     "description": "End Date",
                     "type": "datetime"
                 },
+                "all_dates": {
+                    "description": "A list of all the dates that this event occurs on",
+                    "type": "datetime"
+                },
                 "location": {
                     "description": "Location",
                     "type": "string"
