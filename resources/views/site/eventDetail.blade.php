@@ -157,7 +157,7 @@
 
 </article>
 
-@if (isset($relatedEventsByDay))
+{{-- @if (isset($relatedEventsByDay))
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => '#')))
         @slot('id', 'related_events')
@@ -175,7 +175,7 @@
         @slot('variation', 'm-links-bar--buttons')
         @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary')))
     @endcomponent
-@endif
+@endif --}}
 
 @if ($item->relatedExhibitions)
     @component('components.molecules._m-title-bar')
@@ -196,9 +196,9 @@
     @endcomponent
 @endif
 
-@if ($item->relatedEvents)
+@if ($item->events)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all events', 'href' => '#')))
+        @slot('links', array(array('label' => 'See all events', 'href' => route('events'))))
         Related Events
     @endcomponent
     @component('components.organisms._o-grid-listing')
@@ -207,7 +207,7 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($item->relatedEvents as $item)
+        @foreach ($item->events as $item)
             @component('components.molecules._m-listing----event')
                 @slot('item', $item)
             @endcomponent

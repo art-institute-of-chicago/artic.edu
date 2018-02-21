@@ -43,6 +43,20 @@ class EventPresenter extends BasePresenter
         }
     }
 
+    public function nextOcurrenceDate()
+    {
+        if ($next = $this->entity->nextOcurrence) {
+            return $next->date->format('F j, Y');
+        }
+    }
+
+    public function nextOcurrenceTime()
+    {
+        if ($next = $this->entity->nextOcurrence) {
+            return $next->date->format('h:ia') . ' &ndash; ' . $next->date_end->format('h:ia');
+        }
+    }
+
     public function navigation()
     {
         return array_filter([$this->locationLink(), $this->registrationRequired()]);

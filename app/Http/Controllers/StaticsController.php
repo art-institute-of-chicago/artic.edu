@@ -1664,6 +1664,10 @@ class StaticsController extends Controller {
       "exclusive" => $this->faker->boolean(10),
       "nowOpen" => $this->faker->boolean(10),
       "image" => $this->getImage(),
+
+      "imageAsArray" => function () {
+        return $this->getImage();
+      }
     ]);
   }
 
@@ -1732,11 +1736,26 @@ class StaticsController extends Controller {
       "date" => $this->makeDate(),
       "dateStart" => $this->makeDate(),
       "dateEnd" => $this->makeDate(),
-      "exclusive" => $this->faker->boolean(30),
+      "exclusive" => $this->faker->boolean(30), // Should be deprecated, leaving to keep statics
+      "is_member_exclusive" => $this->faker->boolean(30),
       "image" => $this->getImage(),
       "free" => $free,
       "register" => $register,
       "soldOut" => $soldOut,
+
+      // Add a presenter function to fit our integrations
+      "present" => function () use ($timeStart, $timeEnd) {
+        return new StaticObjectPresenter([
+            'type' => $this->getEventType(),
+            'nextOcurrenceDate' => $this->makeDate()->format('F j, Y'),
+            'nextOcurrenceTime' => "{$timeStart} &ndash; {$timeEnd}"
+        ]);
+      },
+
+      "imageAsArray" => function () {
+        return $this->getImage();
+      }
+
     ]);
   }
 
