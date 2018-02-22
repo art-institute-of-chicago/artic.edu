@@ -15,10 +15,13 @@ trait HandleApiRelations
 
     public function updateBrowserApiRelated($object, $fields, $relationships, $positionAttribute = 'position')
     {
-        $relatedElementsWithPosition = [];
+        // Remove all associations
+        $object->apiElements()->detach();
 
         foreach($relationships as $relationship)
         {
+            $relatedElementsWithPosition = [];
+
             $fieldsHasElements = isset($fields['browsers'][$relationship]) && !empty($fields['browsers'][$relationship]);
             $relatedElements = $fieldsHasElements ? $fields['browsers'][$relationship] : [];
 
@@ -26,7 +29,6 @@ trait HandleApiRelations
             $relatedElements = array_map(function($element) {
                 return ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
             }, $relatedElements);
-
 
             $position = 1;
 
@@ -37,9 +39,10 @@ trait HandleApiRelations
                     $positionAttribute => $position++
                 ];
             }
+
+            $result = $object->$relationship()->attach($relatedElementsWithPosition);
         }
 
-        $object->$relationship()->sync($relatedElementsWithPosition);
     }
 
     /**

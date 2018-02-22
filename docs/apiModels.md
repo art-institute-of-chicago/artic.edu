@@ -152,6 +152,7 @@ $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
 $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
 ```
 
+As a note, `updateBrowserApiRelated` should be called only once with all the API relationships.
 
 ## Generating links
 

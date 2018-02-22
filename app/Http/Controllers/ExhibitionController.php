@@ -6,6 +6,7 @@ use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\EventRepository;
 use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Page;
+use App\Models\Api\Exhibition;
 
 class ExhibitionController extends Controller
 {
@@ -20,15 +21,17 @@ class ExhibitionController extends Controller
         parent::__construct();
     }
 
-    public function index()
+    public function index(ExhibitionRepository $repository)
     {
         $page = Page::forType('Exhibitions and Events')->first();
 
-        var_dump($page);
-        die();
+        $collection  = $repository->get();
+        // $eventsByDay = $this->eventRepository->getRelatedEventsByDay($item);
 
         return view('site.exhibitions', [
-            'page' => $page
+            'page' => $page,
+            'collection' => $collection,
+            'eventsByDay' => []
         ]);
     }
 

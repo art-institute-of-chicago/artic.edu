@@ -52,6 +52,25 @@ class EventRepository extends ModuleRepository
         return collect($this->model::$eventLayouts);
     }
 
+    public function getEventsByDateGrouped($startDate, $endDate = null, $perPage = null, $page = null)
+    {
+        $query = $this->model->rightJoin('event_metas', function ($join) {
+            $join->on('events.id', '=', 'event_metas.event_id');
+        });
+        $query->where('event_metas.date', '>=', $startDate);
+
+        if ($endDate) {
+            $query->where('event_metas.date_end', '<=', $endDate);
+        }
+
+        $query->orderBy('event_metas.date', 'ASC');
+
+        $results = $query->paginate($perPage, ['*'], 'page', $page);
+        return $results->groupBy(function($item) {
+          return $item->date->format('Y-m-d');
+        });
+    }
+
     public function getRelatedEventsByDay($object, $perPage = 3) {
         if ($object->events()->count() == 0) { return null; }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\EventRepository;
 use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Page;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -19,7 +20,11 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = $this->repository->getByRange(request('start_date'), request('end_date'));
+        // Grouped by day
+        $events = $this->repository->getEventsByDateGrouped(Carbon::today());
+
+        // Not grouped by day, just sorted
+        // $events = $this->repository->getByRange(request('start_date'), request('end_date'));
 
         foreach($events as $event) {
             echo "{$event->date->format('Y-m-d h:i l')} - {$event->title} <br>";
