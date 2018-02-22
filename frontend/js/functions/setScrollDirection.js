@@ -1,3 +1,5 @@
+import { triggerCustomEvent } from '@area17/a17-helpers';
+
 const setScrollDirection = function() {
   const dE = document.documentElement;
 
@@ -8,14 +10,19 @@ const setScrollDirection = function() {
     var sT = document.documentElement.scrollTop || document.body.scrollTop;
 
     if (sT !== lastScrollTop) {
+      triggerCustomEvent(document, 'scroll:active', { 'y': sT });
+
       if (sT > lastScrollTop && scrollDirection !== 'down') {
         scrollDirection = 'down';
         dE.classList.remove('s-scroll-direction-up');
         dE.classList.add('s-scroll-direction-down');
+        triggerCustomEvent(document, 'scroll:down', { 'y': sT });
       } else if (sT < lastScrollTop && scrollDirection !== 'up') {
         scrollDirection = 'up';
         dE.classList.remove('s-scroll-direction-down');
         dE.classList.add('s-scroll-direction-up');
+
+        triggerCustomEvent(document, 'scroll:up', { 'y': sT });
       }
     }
 

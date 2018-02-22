@@ -1,4 +1,4 @@
-<header class="g-header">
+<header class="g-header" data-behavior="stickyHeader">
   <div class="g-header__inner">
       @if (isset($filledLogo) and $filledLogo)
       <a class="g-header__logo" href="/">

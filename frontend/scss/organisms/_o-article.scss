@@ -216,6 +216,11 @@
   }
 }
 
+.o-article__intro {
+  padding-top: 12px;
+  border-top: 1px solid $color__rules--primary;
+}
+
 .o-article__inline-header {
   position: relative;
   padding-top: .02px;

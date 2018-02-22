@@ -186,7 +186,7 @@ class StaticsController extends Controller {
     $article = $this->generateAllBlocksArticle();
 
     return view('statics/article', [
-      'contrastHeader' => ($article->headerType === 'hero'),
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
       'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
@@ -199,7 +199,7 @@ class StaticsController extends Controller {
     $article->push('headerImage', $this->getImage(1600,900));
 
     return view('statics/article', [
-      'contrastHeader' => ($article->headerType === 'hero'),
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
       'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
@@ -212,7 +212,7 @@ class StaticsController extends Controller {
     $article->push('headerImage', $this->getImage(1600,900));
 
     return view('statics/article', [
-      'contrastHeader' => ($article->headerType === 'hero'),
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
       'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
@@ -225,7 +225,7 @@ class StaticsController extends Controller {
     $article->push('headerImage', $this->getImage(1600,900));
 
     return view('statics/article', [
-      'contrastHeader' => ($article->headerType === 'hero'),
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
       'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
@@ -299,7 +299,7 @@ class StaticsController extends Controller {
     $article->push('nav', $nav);
     // now push to a view
     return view('statics/article', [
-      'contrastHeader' => ($article->headerType === 'hero'),
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'relatedEventsByDay' => $this->makeEventsByDates(1),
       'article' => $article,
     ]);
@@ -347,7 +347,7 @@ class StaticsController extends Controller {
     $article->push('ticketPrices', $ticketPrices);
     // now push to a view
     return view('statics/article', [
-      'contrastHeader' => ($article->headerType === 'hero'),
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
       'relatedEventsByDay' => $this->makeEventsByDates(1)
     ]);
@@ -415,7 +415,7 @@ class StaticsController extends Controller {
     $article->push('comments', '<p class="f-secondary">comments embed code</p>');
     // now push to a view
     return view('statics/article', [
-      'contrastHeader' => ($article->headerType === 'hero'),
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
     ]);
   }
@@ -476,7 +476,7 @@ class StaticsController extends Controller {
     ));
     // now push to a view
     return view('statics/article', [
-      'contrastHeader' => ($article->headerType === 'hero'),
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
     ]);
   }
@@ -944,7 +944,7 @@ class StaticsController extends Controller {
     $article->push('otherResources', $this->generateFiles($this->faker->numberBetween(2,5)));
 
     return view('statics/article', [
-      'contrastHeader' => ($article->headerType === 'hero'),
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
       'article' => $article,
     ]);
   }
