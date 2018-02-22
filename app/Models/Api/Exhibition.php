@@ -44,21 +44,21 @@ class Exhibition extends BaseApiModel
 
     // EXAMPLE SCOPE:
     // Search for all exhibitions for the next 2 weeks, not closed
-    public function scopeNextTwoWeeks($query) {
+    public function scopeCurrent($query) {
         $params = [
           'bool' => [
             'must' => [
               0 => [
                 'range' => [
-                  'start_at' => [
-                    'lte' => 'now+2w',
+                  'end_at' => [
+                    'gte' => 'now',
                   ],
                 ],
               ],
               1 => [
                 'range' => [
-                  'end_at' => [
-                    'gte' => 'now',
+                  'start_at' => [
+                    'lte' => 'now',
                   ],
                 ],
               ],
@@ -66,6 +66,24 @@ class Exhibition extends BaseApiModel
             'must_not' => [
               'term' => [
                 'status' => 'Closed',
+              ],
+            ],
+          ],
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeUpcoming($query) {
+        $params = [
+          'bool' => [
+            'must' => [
+              0 => [
+                'range' => [
+                  'start_at' => [
+                    'gte' => 'now',
+                  ],
+                ],
               ],
             ],
           ],

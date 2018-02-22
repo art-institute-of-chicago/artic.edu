@@ -22,18 +22,29 @@ class ExhibitionController extends Controller
         parent::__construct();
     }
 
-    public function index(ExhibitionRepository $repository)
+    public function index($upcoming = false)
     {
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
-        $events     = $this->eventRepository->getEventsByDateGrouped(Carbon::today(), Carbon::tomorrow()->addDay(), 4);
+        if ($upcoming) {
+            $collection = $this->apiRepository->upcoming();
+        } else {
+            $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
+        }
+
+        $events = $this->eventRepository->getEventsByDateGrouped(Carbon::today(), Carbon::tomorrow()->addDay(), 4);
 
         return view('site.exhibitions', [
             'page' => $page,
             'collection' => $collection,
-            'eventsByDay' => $events
+            'eventsByDay' => $events,
+            'upcoming' => $upcoming
         ]);
+    }
+
+    public function upcoming()
+    {
+        return $this->index(true);
     }
 
     public function show($id)

@@ -33,6 +33,7 @@ Route::name('articles.show')->get('/articles/{slug}', 'ArticleController@show');
 
 // Exhibition routes
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionController@index');
+Route::name('exhibitions.upcoming')->get('/exhibitions/upcoming', 'ExhibitionController@upcoming');
 Route::name('exhibitions.show')->get('/exhibitions/{id}', 'ExhibitionController@show');
 
 // Artwork routes

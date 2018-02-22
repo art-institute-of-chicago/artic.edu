@@ -296,7 +296,11 @@ class ApiModelBuilder
         $ids = $results->pluck('id')->toArray();
 
         // Load the actual models using the IDS returned by search
-        $models = $this->model->newQuery()->ids($ids)->get();
+        if (empty($ids)) {
+            $models = collect();
+        } else {
+            $models = $this->model->newQuery()->ids($ids)->get();
+        }
 
         return $this->paginator($models, $paginationData->total, $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),

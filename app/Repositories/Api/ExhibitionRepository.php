@@ -14,4 +14,9 @@ class ExhibitionRepository extends BaseApiRepository
         $this->model = $model;
     }
 
+    // Upcoming exhibitions
+    public function upcoming() {
+        return $this->model->query()->upcoming()->getSearch();
+    }
+
 }

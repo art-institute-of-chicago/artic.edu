@@ -17,8 +17,8 @@
 
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', array(
-        array('label' => 'Current', 'href' => '#', 'active' => true),
-        array('label' => 'Upcoming', 'href' => '#'),
+        array('label' => 'Current', 'href' => route('exhibitions'), 'active' => !$upcoming),
+        array('label' => 'Upcoming', 'href' => route('exhibitions.upcoming'), 'active' => $upcoming),
         array('label' => 'Archive', 'href' => '#', 'liVariation' => 'm-links-bar__item--push')
     ))
 @endcomponent
