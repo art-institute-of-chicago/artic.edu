@@ -70,6 +70,9 @@ function aic_imageSettings($data) {
     $width = $image['width'] ?? false;
     $height = $image['height'] ?? false;
 
+    $ratioW = null;
+    $ratioH = null;
+
     $LQIPDimension = 25;
 
     // return if no datas
@@ -90,6 +93,7 @@ function aic_imageSettings($data) {
     if ($sourceType === 'placeholder') {
         // work out ratio cropping
         if (!empty($settings['ratio'])) {
+            // square
             if ($settings['ratio'] === "1:1") {
                 if ($height > $width) {
                     $width = $height;
@@ -97,8 +101,11 @@ function aic_imageSettings($data) {
                     $height = $width;
                 }
             }
-            if ($settings['ratio'] === "16:9") {
-                $height = round($width * (16/9));
+            // some other ratio
+            if (sizeof(explode(":",$settings['ratio'])) === 2) {
+                $ratioW = explode(":",$settings['ratio'])[0];
+                $ratioH = explode(":",$settings['ratio'])[1];
+                $height = round($width * ($ratioH/$ratioW));
             }
         }
         // for place holders its a bit dumb because its not passing through a service
@@ -115,6 +122,7 @@ function aic_imageSettings($data) {
 
         // work out ratio cropping
         if (!empty($settings['ratio'])) {
+            // square
             if ($settings['ratio'] === "1:1") {
                 if ($height > $width) {
                     $width = $height;
@@ -122,10 +130,12 @@ function aic_imageSettings($data) {
                     $height = $width;
                 }
             }
-            if ($settings['ratio'] === "16:9") {
-                $height = round($width * (9/16));
+            // some other ratio
+            if (sizeof(explode(":",$settings['ratio'])) === 2) {
+                $ratioW = explode(":",$settings['ratio'])[0];
+                $ratioH = explode(":",$settings['ratio'])[1];
+                $height = round($width * ($ratioH/$ratioW));
             }
-
             // because we're limiting with a dimension, we need to crop
             if(empty($settings['fit'])) {
                 $settings['fit'] = 'crop';
@@ -205,24 +215,28 @@ function aic_imageSettings($data) {
                     $height = $width;
                 }
             }
-            if ($settings['ratio'] === "16:9") {
+            // some other ratio
+            if (sizeof(explode(":",$settings['ratio'])) === 2) {
+                $ratioW = explode(":",$settings['ratio'])[0];
+                $ratioH = explode(":",$settings['ratio'])[1];
+                $height = round($width * ($ratioH/$ratioW));
                 // need to manually calc area to grab..
                 // first check the image is taller than the ratio height we need
-                $ratioHeight = round($width * (9/16));
+                $ratioHeight = round($width * ($ratioH/$ratioW));
                 if ($height === $ratioHeight) {
                     // the source image *is* 16:9
                     $resizeVal = 'full';
                 } else if ($height > $ratioHeight) {
                     // the source image is 16:something-taller-than-9
                     $cropWidth = $width;
-                    $cropHeight = round($cropWidth * (9/16));
+                    $cropHeight = round($cropWidth * ($ratioH/$ratioW));
                     $topPosition = round(($height - $cropHeight) / 2);
                     $resizeVal = "0,".$topPosition.",".$cropWidth.",".$cropHeight;
                     $height = $cropHeight;
                 } else {
                     // the source image is 16:something-less-than-9
                     $cropHeight = $height;
-                    $cropWidth = round($cropHeight * (16/9));
+                    $cropWidth = round($cropHeight * ($ratioW/$ratioH));
                     $leftPosition = round(($width - $cropWidth) / 2);
                     $resizeVal = $leftPosition.",0,".$cropWidth.",".$cropHeight;
                     $width = $cropWidth;
