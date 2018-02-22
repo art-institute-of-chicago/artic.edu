@@ -10,6 +10,7 @@
           @component('components.molecules._m-listing----event-row')
               @slot('item', $item)
               @slot('variation', 'm-listing--row')
+              @slot('imageSettings', $imageSettings ?? null)
           @endcomponent
       @endforeach
       </ul>
@@ -22,6 +23,7 @@
                   @slot('titleFont', 'f-list-2')
                   @slot('hideShortDesc', true)
                   @slot('variation', 'm-listing--row m-listing--secondary')
+                  @slot('imageSettings', $imageSettingsOnGoing ?? null)
               @endcomponent
           @endforeach
       </ul>
