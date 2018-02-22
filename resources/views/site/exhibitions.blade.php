@@ -43,20 +43,22 @@
 @component('components.atoms._hr')
 @endcomponent
 
-@component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-    @slot('cols_small','2')
-    @slot('cols_medium','3')
-    @slot('cols_large','3')
-    @slot('cols_xlarge','3')
-    @foreach ($collection as $item)
-        @if ($loop->index < 6)
-            @component('components.molecules._m-listing----exhibition')
-               @slot('item', $item)
-            @endcomponent
-        @endif
-    @endforeach
-@endcomponent
+@if ($collection->count() > 0)
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
+        @slot('cols_medium','3')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+        @foreach ($collection as $item)
+            @if ($loop->index < 6)
+                @component('components.molecules._m-listing----exhibition')
+                   @slot('item', $item)
+                @endcomponent
+            @endif
+        @endforeach
+    @endcomponent
+@endif
 
 @component('components.molecules._m-aside-newsletter')
     @slot('variation', 'm-aside-newsletter--wide')
@@ -65,25 +67,29 @@
 @component('components.atoms._hr')
 @endcomponent
 
-@component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-    @slot('cols_small','2')
-    @slot('cols_medium','3')
-    @slot('cols_large','3')
-    @slot('cols_xlarge','3')
-    @foreach ($collection as $item)
-        @if ($loop->index > 5)
-            @component('components.molecules._m-listing----exhibition')
-                @slot('item', $item)
-            @endcomponent
-        @endif
-    @endforeach
-@endcomponent
+@if ($collection->count() > 5)
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
+        @slot('cols_medium','3')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+        @foreach ($collection as $item)
+            @if ($loop->index > 5)
+                @component('components.molecules._m-listing----exhibition')
+                    @slot('item', $item)
+                @endcomponent
+            @endif
+        @endforeach
+    @endcomponent
+@endif
 
-@component('components.molecules._m-links-bar')
-    @slot('variation', 'm-links-bar--buttons')
-    @slot('linksPrimary', array(array('label' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary')))
-@endcomponent
+@unless($upcoming)
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--buttons')
+        @slot('linksPrimary', array(array('label' => 'Upcoming Exhibits', 'href' => route('exhibitions.upcoming'), 'variation' => 'btn--secondary')))
+    @endcomponent
+@endunless
 
 @if (!empty($eventsByDay))
     @component('components.molecules._m-title-bar')

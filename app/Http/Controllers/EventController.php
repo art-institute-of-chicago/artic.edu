@@ -18,24 +18,17 @@ class EventController extends Controller
         parent::__construct();
     }
 
-    public function index()
+    public function index($upcoming = false)
     {
-        // Grouped by day
-        $groups = $this->repository->getEventsByDateGrouped(Carbon::today());
+        $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        // Not grouped by day, just sorted
-        // $events = $this->repository->getByRange(request('start_date'), request('end_date'));
+        // Today events
+        $collection = $this->repository->getEventsByDateGrouped(Carbon::today(), Carbon::tomorrow(), 100);
 
-        foreach($groups as $date => $events) {
-            echo "DATE: {$date} <br> <br>";
-            foreach($events as $event) {
-                echo "{$event->date->format('Y-m-d h:i l')} - {$event->title} <br>";
-            }
-
-            echo "-----<br> <br>";
-        }
-
-        die();
+        return view('site.events', [
+            'page' => $page,
+            'eventsByDay' => $collection
+        ]);
     }
 
     public function show($id)
