@@ -6,9 +6,8 @@
                 @slot('variation', 'tag--w-image')
                 @slot('href', $link['href'])
                 @component('components.atoms._img')
-                    @slot('src', $link['image']['src'])
-                    @slot('width', $link['image']['width'])
-                    @slot('height', $link['image']['height'])
+                    @slot('image', $link['image'])
+                    @slot('sizes', '40px')
                 @endcomponent
                 {{ $link['label'] }}
             @endcomponent

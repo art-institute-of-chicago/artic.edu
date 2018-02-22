@@ -10,11 +10,8 @@
     @if (isset($img))
         <div class="m-row-block__img">
             @component('components.atoms._img')
-                @slot('src', $img['src'] ?? '')
-                @slot('srcset', $img['srcset'] ?? '')
-                @slot('sizes', $img['sizes'] ?? '')
-                @slot('width', $img['width'] ?? '')
-                @slot('height', $img['height'] ?? '')
+                @slot('image', $img)
+                @slot('settings', $imageSettings ?? '')
             @endcomponent
         </div>
     @endif

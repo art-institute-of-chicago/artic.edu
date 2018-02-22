@@ -1075,7 +1075,7 @@ class StaticsController extends Controller {
     ));
     array_push($blocks, array(
         "type" => 'text',
-        "content" => 'Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.'
+        "content" => '<p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p>'
     ));
     array_push($blocks, array(
         "type" => 'text',
@@ -1544,23 +1544,18 @@ class StaticsController extends Controller {
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
 
-  private function getImage($width = false, $height = false) {
-    //$color = preg_replace('/#/i', '', $this->faker->hexcolor);
-    $width = isset($width) && $width ? $width : $this->faker->numberBetween(300,700);
-    $height = isset($height) && $height ? $height : $this->faker->numberBetween(300,700);
-    //$src = "http://placehold.dev.area17.com/image/".$width."x".$height."/?bg=".$color."&text=";
-    $src = "//placeimg.com/".$width."/".$height."/nature";
-    //$src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
-    $srcset = "//placeimg.com/".$width."/".$height."/nature ".$width."w";
-    //$src = $this->faker->imageUrl($width, $height, 'nature');
-    //$src = str_replace('https://', 'http://', $src);
+  private function getImage() {
+    $sourceType = 'placeholder';
+    $width = $this->faker->numberBetween(2000,5000);
+    $height = $this->faker->numberBetween(2000,5000);
+    $src = "//placehold.dev.area17.com/image/".$width."x".$height."?bg=333&fg=ccc";
 
     $credit = $this->faker->boolean() ? $this->faker->sentence(3) : null;
     $creditUrl = ($credit && $this->faker->boolean()) ? '#' : null;
 
     $image = array(
+        "sourceType" => $sourceType,
         "src" => $src,
-        "srcset" => $srcset,
         "width" => $width,
         "height" => $height,
         "shareUrl" => '#',

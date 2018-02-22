@@ -2,9 +2,8 @@
   <div class="m-article-header__img" data-blur-img>
       @if ($img)
         @component('components.atoms._img')
-            @slot('src', $img['src'])
-            @slot('width', $img['width'])
-            @slot('height', $img['height'])
+            @slot('image', $img)
+            @slot('sizes', '100vw')
         @endcomponent
       @endif
   </div>

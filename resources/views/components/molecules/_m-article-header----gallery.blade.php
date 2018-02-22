@@ -4,22 +4,18 @@
 
 <div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
-        @component('components.atoms._img')
-            @if (isset($images[0]['image_id']))
-                @slot('image_id', $images[0]['image_id'])
-            @endif
-            @if (isset($images[0]['src']))
-                @slot('src', $images[0]['src'])
-            @endif
-            @if (isset($images[0]['srcset']))
-                @slot('srcset', $images[0]['srcset'])
-            @endif
-            @if (isset($images[0]['width']))
-                @slot('width', $images[0]['width'])
-            @endif
-            @if (isset($images[0]['height']))
-                @slot('height', $images[0]['height'])
-            @endif
+         @component('components.atoms._img')
+            @slot('image', $images[0])
+            @slot('settings', array(
+                'srcset' => array(200,423,846,1692,3000,6000),
+                'sizes' => aic_imageSizes(array(
+                      'xsmall' => '58',
+                      'small' => '58',
+                      'medium' => '846px',
+                      'large' => '846px',
+                      'xlarge' => '846px',
+                )),
+            ))
         @endcomponent
       </div>
       <ul class="m-article-header__img-nav">
@@ -34,11 +30,11 @@
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('src', $nextArticle->image['src'])
-                  @slot('srcset', $nextArticle->image['srcset'])
-                  @slot('width', $nextArticle->image['width'])
-                  @slot('height', $nextArticle->image['height'])
-                  @slot('sizes', '120px')
+                  @slot('image', $nextArticle->image)
+                  @slot('settings', array(
+                    'srcset' => array(120,240),
+                    'sizes' => '120px',
+                  ))
               @endcomponent
             </span>
             <span class="f-caption">
@@ -54,11 +50,11 @@
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('src', $prevArticle->image['src'])
-                  @slot('srcset', $prevArticle->image['srcset'])
-                  @slot('width', $prevArticle->image['width'])
-                  @slot('height', $prevArticle->image['height'])
-                  @slot('sizes', '120px')
+                  @slot('image', $prevArticle->image)
+                  @slot('settings', array(
+                    'srcset' => array(120,240),
+                    'sizes' => '120px',
+                  ))
               @endcomponent
             </span>
             <span class="f-caption">
@@ -111,28 +107,36 @@
       @foreach ($images as $image)
         <li>
           @component('components.atoms._img')
-              @if (isset($images['image_id']))
-                @slot('src', $image['image_id'])
-              @endif
-              @if (isset($images['src']))
-                @slot('src', $image['src'])
-              @endif
-              @if (isset($images['srcset']))
-                @slot('srcset', $image['srcset'])
-              @endif
-              @if (isset($images['width']))
-                @slot('width', $image['width'])
-              @endif
-              @if (isset($images['height']))
-                @slot('height', $image['height'])
-              @endif
+              @slot('image', $image)
+              @slot('settings', array(
+                'srcset' => array(300,600),
+                'sizes' => '300px',
+              ))
           @endcomponent
+          @php
+            $galleryImageThumbSettings = aic_imageSettings(array(
+                'settings' => array(
+                    'srcset' => array(200,423,846,1692,3000,6000),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '58',
+                          'small' => '58',
+                          'medium' => '846px',
+                          'large' => '846px',
+                          'xlarge' => '846px',
+                    ))
+                ),
+                'image' => $image,
+            ));
+          @endphp
           <button
-            @if (isset($image['image_id']))
-                data-gallery-img-srcset="{{ $image['image_id'] }}"
+            @if (isset($galleryImageThumbSettings['srcset']))
+                data-gallery-img-srcset="{{ $galleryImageThumbSettings['srcset'] }}"
             @endif
-            @if (isset($image['srcset']))
-                data-gallery-img-srcset="{{ $image['srcset'] }}"
+            @if (isset($galleryImageThumbSettings['width']))
+                data-gallery-img-width="{{ $image['width'] }}"
+            @endif
+            @if (isset($galleryImageThumbSettings['height']))
+                data-gallery-img-height="{{ $image['height'] }}"
             @endif
             @if (isset($image['credit']))
                 data-gallery-img-credit="{{ $image['credit'] }}"
@@ -151,12 +155,6 @@
             @endif
             @if (isset($image['downloadName']))
                 data-gallery-img-download-name="{{ $image['downloadName'] }}"
-            @endif
-            @if (isset($image['width']))
-                data-gallery-img-width="{{ $image['width'] }}"
-            @endif
-            @if (isset($image['height']))
-                data-gallery-img-height="{{ $image['height'] }}"
             @endif
             disabled
           >Show this image</button>

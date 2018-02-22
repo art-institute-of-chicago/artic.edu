@@ -4,10 +4,8 @@
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-img' : '' }}>
         @if ($img = $item->imageAsArray('hero'))
             @component('components.atoms._img')
-                @slot('src', $img['src'])
-                {{-- @slot('srcset', $img['srcset']) --}}
-                @slot('width', $img['width'])
-                @slot('height', $img['height'])
+                @slot('image', $item->image)
+                @slot('settings', $imageSettings ?? '')
             @endcomponent
         @endif
     </span>

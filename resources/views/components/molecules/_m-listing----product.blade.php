@@ -2,18 +2,10 @@
 <a href="{{ $item->slug }}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--square' }}">
         @if ($item->image)
-            @if (is_array($item->image))
-                @component('components.atoms._img')
-                    @slot('src', $item->image['src'])
-                    @slot('srcset', $item->image['srcset'])
-                    @slot('width', $item->image['width'])
-                    @slot('height', $item->image['height'])
-                @endcomponent
-            @else
-                @component('components.atoms._img')
-                    @slot('src', $item->image)
-                @endcomponent
-            @endif
+            @component('components.atoms._img')
+                @slot('image', $item->image)
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
         @endif
     </span>
     <span class="m-listing__meta">

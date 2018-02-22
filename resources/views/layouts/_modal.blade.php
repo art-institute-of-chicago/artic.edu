@@ -5,9 +5,16 @@
                 @if ( $modal['image'] )
                     <figure class="g-modal__image">
                         @component('components.atoms._img')
-                            @slot('src', $modal['image']['src'])
-                            @slot('width', $modal['image']['width'])
-                            @slot('height', $modal['image']['height'])
+                            @slot('image', $modal['image'])
+                            @slot('sizes', aic_imageSizes(
+                              array(
+                                  'xsmall' => '0',
+                                  'small' => '0',
+                                  'medium' => '25',
+                                  'large' => '20',
+                                  'xlarge' => '20',
+                              )
+                            ))
                         @endcomponent
                     </figure>
                 @endif

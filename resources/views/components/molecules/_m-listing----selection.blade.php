@@ -3,6 +3,7 @@
         <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--tall' }}">
             @component('components.molecules._m-image-stack')
                 @slot('images', $item->images)
+                @slot('imageSettings', $imageSettings ?? null)
             @endcomponent
         </span>
         <span class="m-listing__meta">

@@ -2,11 +2,8 @@
     @if (isset($img))
         <div class="m-author__img">
             @component('components.atoms._img')
-                @slot('src', $img['src'] ?? '')
-                @slot('srcset', $img['srcset'] ?? '')
-                @slot('sizes', $img['sizes'] ?? '')
-                @slot('width', $img['width'] ?? '')
-                @slot('height', $img['height'] ?? '')
+                @slot('image', $img)
+                @slot('sizes', '80px')
             @endcomponent
         </div>
     @endif

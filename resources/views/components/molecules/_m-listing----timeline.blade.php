@@ -14,9 +14,8 @@
 @if ($item->image)
 <div class="m-listing__img">
     @component('components.atoms._img')
-        @slot('src', $item->image['src'])
-        @slot('width', $item->image['width'])
-        @slot('height', $item->image['height'])
+        @slot('image', $item->image)
+        @slot('settings', $imageSettings ?? '')
     @endcomponent
 </div>
 @endif

@@ -10,6 +10,7 @@
             @slot('variation', 'm-listing--hero m-listing--hero-editorial')
             @slot('titleFont', 'f-headline-editorial')
             @slot('captionFont', 'f-secondary')
+            @slot('imageSizes', '100vw')
         @endcomponent
     @endcomponent
 
@@ -58,6 +59,15 @@
               @slot('item', $item)
               @slot('titleFont', 'f-list-4')
               @slot('captionFont', 'f-secondary')
+              @slot('imageSizes', aic_gridListingImageSizes(
+                array(
+                    'xsmall' => '1',
+                    'small' => '2',
+                    'medium' => '2',
+                    'large' => '2',
+                    'xlarge' => '2',
+                )
+              ))
           @endcomponent
       @endforeach
   @endcomponent
@@ -74,6 +84,15 @@
       @foreach ($articles as $item)
           @component('components.molecules._m-listing----article-minimal')
               @slot('item', $item)
+              @slot('imageSizes', aic_gridListingImageSizes(
+                array(
+                    'xsmall' => '1',
+                    'small' => '2',
+                    'medium' => '3',
+                    'large' => '4',
+                    'xlarge' => '4',
+                )
+              ))
           @endcomponent
       @endforeach
   @endcomponent

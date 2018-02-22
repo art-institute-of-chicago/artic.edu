@@ -1,14 +1,10 @@
 <article class="m-post-hero">
     <div class="m-post-hero__inner">
         <figure class="m-post-hero__image">
-            <a href="#">
-                @component('components.atoms._img')
-                    @slot('src', $post->image['src'])
-                    @slot('srcset', $post->image['srcset'])
-                    @slot('width', $post->image['width'])
-                    @slot('height', $post->image['height'])
-                @endcomponent
-            </a>
+            @component('components.atoms._img')
+                @slot('image', $post->image)
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
         </figure>
 
         <div class="m-post-hero__main">

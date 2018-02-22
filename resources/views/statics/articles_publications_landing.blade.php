@@ -44,6 +44,15 @@
                     @if ($loop->index < 2)
                         @component('components.molecules._m-listing----article-minimal')
                             @slot('item', $editorial)
+                            @slot('imageSizes', aic_imageSizes(
+                              array(
+                                  'xsmall' => '58',
+                                  'small' => '58',
+                                  'medium' => '38',
+                                  'large' => '28',
+                                  'xlarge' => '28',
+                              )
+                            ))
                         @endcomponent
                     @endif
                 @endforeach
@@ -53,6 +62,15 @@
                     @if ($loop->index > 1)
                         @component('components.molecules._m-listing----article-minimal')
                             @slot('item', $editorial)
+                            @slot('imageSizes', aic_imageSizes(
+                              array(
+                                  'xsmall' => '58',
+                                  'small' => '28',
+                                  'medium' => '18',
+                                  'large' => '13',
+                                  'xlarge' => '13',
+                              )
+                            ))
                         @endcomponent
                     @endif
                 @endforeach
@@ -77,6 +95,15 @@
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
+                        @slot('imageSizes', aic_imageSizes(
+                          array(
+                              'xsmall' => '58',
+                              'small' => '23',
+                              'medium' => '22',
+                              'large' => '18',
+                              'xlarge' => '18',
+                          )
+                        ))
                     @endcomponent
                 @endforeach
             @endcomponent
@@ -106,6 +133,15 @@
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
+                        @slot('imageSizes', aic_imageSizes(
+                          array(
+                              'xsmall' => '58',
+                              'small' => '23',
+                              'medium' => '22',
+                              'large' => '13',
+                              'xlarge' => '13',
+                          )
+                        ))
                     @endcomponent
                 @endforeach
             @endcomponent
@@ -133,6 +169,15 @@
                     @if ($loop->index < 2)
                         @component('components.molecules._m-listing----article-minimal')
                             @slot('item', $editorial)
+                            @slot('imageSizes', aic_imageSizes(
+                              array(
+                                  'xsmall' => '58',
+                                  'small' => '58',
+                                  'medium' => '38',
+                                  'large' => '28',
+                                  'xlarge' => '28',
+                              )
+                            ))
                         @endcomponent
                     @endif
                 @endforeach
@@ -142,6 +187,15 @@
                     @if ($loop->index > 1)
                         @component('components.molecules._m-listing----article-minimal')
                             @slot('item', $editorial)
+                            @slot('imageSizes', aic_imageSizes(
+                              array(
+                                  'xsmall' => '58',
+                                  'small' => '28',
+                                  'medium' => '18',
+                                  'large' => '13',
+                                  'xlarge' => '13',
+                              )
+                            ))
                         @endcomponent
                     @endif
                 @endforeach

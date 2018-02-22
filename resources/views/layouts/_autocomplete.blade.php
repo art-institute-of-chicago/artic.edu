@@ -5,11 +5,9 @@
                 <li>
                     <a href="{{ $item['url'] }}">
                         @component('components.atoms._img')
-                            @slot('src', $item['image']['src'])
-                            @slot('width', $item['image']['width'])
-                            @slot('height', $item['image']['height'])
+                            @slot('image', $item['image'])
+                            @slot('sizes', '40px')
                         @endcomponent
-
                         {{ $item['text'] }}
                     </a>
                 </li>
