@@ -10,3 +10,11 @@
     'name' => 'exhibitionsExhibitions',
     'label' => 'Featured Exhibitions'
 ])
+
+@formField('browser', [
+    'routePrefix' => 'whatson',
+    'max' => 20,
+    'moduleName' => 'exhibitions',
+    'name' => 'exhibitionsCurrent',
+    'label' => 'Listing Exhibitions'
+])

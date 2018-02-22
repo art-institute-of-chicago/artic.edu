@@ -72,6 +72,7 @@ class EventRepository extends ModuleRepository
     }
 
     public function getRelatedEventsByDay($object, $perPage = 3) {
+        if (!method_exists($object, 'events')) {return null; }
         if ($object->events()->count() == 0) { return null; }
 
         $ids = $object->events->pluck('id');

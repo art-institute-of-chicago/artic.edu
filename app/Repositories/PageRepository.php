@@ -30,7 +30,7 @@ class PageRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions','exhibitionsExhibitions']);
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions','exhibitionsExhibitions', 'exhibitionsCurrent']);
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
@@ -59,6 +59,7 @@ class PageRepository extends ModuleRepository
 
         // Exhibition & Events
         $fields['browsers']['exhibitionsExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsExhibitions', 'App\Models\Api\Exhibition', 'whatson', 'title', 'exhibitions');
+        $fields['browsers']['exhibitionsCurrent'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsCurrent', 'App\Models\Api\Exhibition', 'whatson', 'title', 'exhibitions');
 
         // Visits
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');

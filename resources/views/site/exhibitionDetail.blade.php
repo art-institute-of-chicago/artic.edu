@@ -256,7 +256,7 @@
     @endcomponent
 @endif
 
-@if ($item->exhibitions()->count() > 0)
+@if (method_exists($item, 'exhibitions') and $item->exhibitions()->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all exhibitions', 'href' => route('exhibitions'))))
         {{-- Title can be Related Exhibitions or On View for Exhibition History --}}

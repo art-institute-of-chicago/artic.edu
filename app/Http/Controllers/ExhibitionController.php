@@ -23,9 +23,10 @@ class ExhibitionController extends Controller
 
     public function index(ExhibitionRepository $repository)
     {
-        $page = Page::forType('Exhibitions and Events')->first();
+        $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        $collection  = $repository->get();
+        $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
+
         // $eventsByDay = $this->eventRepository->getRelatedEventsByDay($item);
 
         return view('site.exhibitions', [
