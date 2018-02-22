@@ -65,7 +65,7 @@ class ExhibitionPresenter extends BasePresenter
         if ($this->entity->gallery_id) {
             return [
                 'label' => $this->entity->gallery_title,
-                'href'  => '#',
+                'href'  => route('galleries.show', $this->entity->gallery_id),
                 'iconBefore' => 'location'
             ];
         }

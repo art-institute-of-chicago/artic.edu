@@ -43,4 +43,4 @@ Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
 Route::resource('exhibitionHistory', 'ExhibitionHistoryController', ['only' => ['index', 'show']]);
 
 // Gallery / tag page
-Route::name('galleries.show')->get('/galleries/{id}', 'GalleriesController@show');
+Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');
