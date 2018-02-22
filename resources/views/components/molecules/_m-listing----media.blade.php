@@ -4,7 +4,7 @@
             @if ($item->image)
                 @component('components.atoms._img')
                     @slot('image', $item->image)
-                    @slot('imageSettings', $imageSettings ?? null)
+                    @slot('settings', $imageSettings ?? null)
                 @endcomponent
             @endif
         </span>

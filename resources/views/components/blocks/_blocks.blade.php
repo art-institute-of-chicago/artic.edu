@@ -69,6 +69,16 @@
                     @foreach ($block['items'] as $item)
                         @component('components.molecules._m-listing----timeline')
                             @slot('item', $item)
+                            @slot('imageSettings', array(
+                                'srcset' => array(300,600,800,1200,1600),
+                                'sizes' => aic_imageSizes(array(
+                                      'xsmall' => '58',
+                                      'small' => '58',
+                                      'medium' => '38',
+                                      'large' => '28',
+                                      'xlarge' => '28',
+                                )),
+                            ))
                         @endcomponent
                     @endforeach
                 @endcomponent
@@ -82,6 +92,33 @@
                             @component('components.molecules._m-listing----'.$block["subtype"].'-row')
                                 @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
                                 @slot('item', $item)
+                                @if ($block["subtype"] === 'product')
+                                    @slot('imageSettings', array(
+                                        'fit' => 'crop',
+                                        'ratio' => '1:1',
+                                        'srcset' => array(200,400,600),
+                                        'sizes' => aic_imageSizes(array(
+                                              'xsmall' => '28',
+                                              'small' => '12',
+                                              'medium' => '9',
+                                              'large' => '9',
+                                              'xlarge' => '9',
+                                        )),
+                                    ))
+                                @else
+                                    @slot('imageSettings', array(
+                                        'fit' => 'crop',
+                                        'ratio' => '16:9',
+                                        'srcset' => array(200,400,600),
+                                        'sizes' => aic_imageSizes(array(
+                                              'xsmall' => '58',
+                                              'small' => '13',
+                                              'medium' => '13',
+                                              'large' => '13',
+                                              'xlarge' => '13',
+                                        )),
+                                    ))
+                                @endif
                             @endcomponent
                         @endforeach
                     @endcomponent
@@ -96,6 +133,33 @@
                         @slot('items', $block['items'])
                         @slot('itemsMolecule', '_m-listing----'.$block['subtype'].'-row')
                         @slot('itemsVariation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
+                        @if ($block["subtype"] === 'product')
+                            @slot('imageSettings', array(
+                                'fit' => 'crop',
+                                'ratio' => '1:1',
+                                'srcset' => array(200,400,600),
+                                'sizes' => aic_imageSizes(array(
+                                      'xsmall' => '28',
+                                      'small' => '12',
+                                      'medium' => '9',
+                                      'large' => '9',
+                                      'xlarge' => '9',
+                                )),
+                            ))
+                        @else
+                            @slot('imageSettings', array(
+                                'fit' => 'crop',
+                                'ratio' => '16:9',
+                                'srcset' => array(200,400,600),
+                                'sizes' => aic_imageSizes(array(
+                                      'xsmall' => '18',
+                                      'small' => '23',
+                                      'medium' => '13',
+                                      'large' => '8',
+                                      'xlarge' => '8',
+                                )),
+                            ))
+                        @endif
                     @endcomponent
                 @endif
             @endif
