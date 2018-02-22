@@ -110,29 +110,9 @@ function aic_imageSettings($data) {
     }
 
     if ($sourceType === 'imgix') {
-        /*
-            to build the urls, will need:
+        $base = explode('?', $originalSrc)[0].'?';
+        $imgixSettings = array();
 
-            $originalSrc
-            $width
-            $height
-            $settings['fit']
-            $settings['crop']
-            $settings['crop']
-            $settings['auto']
-            $settings['q']
-
-            nb: the src wants to have lower settings
-
-            $settings['q'] = 10;
-            $settings['blur'] = 75;
-
-
-            Make sure you generate:
-
-            $stringSrc
-            $stringSrcSet
-        */
         // work out ratio cropping
         if (!empty($settings['ratio'])) {
             if ($settings['ratio'] === "1:1") {
@@ -156,12 +136,53 @@ function aic_imageSettings($data) {
         }
 
         if (empty($settings['auto'])) {
-            $settings['auto'] = 'compress';
+            $imgixSettings['auto'] = 'compress';
+        } else {
+            $imgixSettings['auto'] = $settings['auto'];
+        }
+
+        if (empty($settings['fm'])) {
+            $imgixSettings['fm'] = 'jpg';
+        } else {
+            $imgixSettings['fm'] = $settings['fm'];
         }
 
         if (empty($settings['q'])) {
-            $settings['q'] = '45';
+            $imgixSettings['q'] = '80';
+        } else {
+            $imgixSettings['q'] = $settings['q'];
         }
+
+        if(empty($settings['fit'])) {
+            $settings['fit'] = 'crop';
+        } else {
+            $imgixSettings['fit'] = $settings['fit'];
+        }
+
+        if(empty($settings['crop'])) {
+            $settings['crop'] = 'faces,entropy';
+        } else {
+            $imgixSettings['crop'] = $settings['crop'];
+        }
+
+        $imgixSettings['w'] = $width;
+        $imgixSettings['h'] = $height;
+
+        // generate variants
+        foreach ($srcset as $size):
+            $imgixSettings['w'] = $size;
+            $imgixSettings['h'] = round(($height/$width) * $size);
+            $imgixSettingsString = http_build_query($imgixSettings);
+            $stringSrcset .= $base.$imgixSettingsString." ".$size."w, ";
+        endforeach;
+
+        $imgixSettings['w'] = $LQIPDimension;
+        $imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
+        $imgixSettings['q'] = '10';
+        $imgixSettings['blur'] = '75';
+        $imgixSettingsString = http_build_query($imgixSettings);
+
+        $stringSrc = $base.$imgixSettingsString;
     }
 
     if ($sourceType === 'lakeview') {

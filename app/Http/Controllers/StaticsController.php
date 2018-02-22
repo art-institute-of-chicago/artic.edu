@@ -1569,7 +1569,14 @@ class StaticsController extends Controller {
 
     //$image = LakeviewImageService::getImage('92e0fb45-44a6-4b99-c011-2175b9cbc468');
     //$image['sourceType'] = 'lakeview';
-
+    /*
+    $image = array(
+        "sourceType" => 'imgix',
+        "src" => 'https://aic-cms-dev.imgix.net/fd860e9e-0875-4eef-89ba-4abf5beb3afb/screenshot2017-12-08at11.51.39am.png?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=%2C%2C%2C',
+        "width" => 1184,
+        "height" => 592,
+    );
+    */
     return $image;
   }
 
