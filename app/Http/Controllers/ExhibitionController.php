@@ -7,6 +7,7 @@ use App\Repositories\EventRepository;
 use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Page;
 use App\Models\Api\Exhibition;
+use Carbon\Carbon;
 
 class ExhibitionController extends Controller
 {
@@ -26,13 +27,12 @@ class ExhibitionController extends Controller
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
         $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
-
-        // $eventsByDay = $this->eventRepository->getRelatedEventsByDay($item);
+        $events     = $this->eventRepository->getEventsByDateGrouped(Carbon::today(), Carbon::tomorrow());
 
         return view('site.exhibitions', [
             'page' => $page,
             'collection' => $collection,
-            'eventsByDay' => []
+            'eventsByDay' => $events
         ]);
     }
 

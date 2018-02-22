@@ -86,7 +86,7 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('label' => 'Browse events', 'href' => '#')))
+    @slot('links', array(array('label' => 'Browse events', 'href' => route('events'))))
     Today&rsquo;s Events
 @endcomponent
 
