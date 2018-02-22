@@ -21,13 +21,18 @@ class EventController extends Controller
     public function index()
     {
         // Grouped by day
-        $events = $this->repository->getEventsByDateGrouped(Carbon::today());
+        $groups = $this->repository->getEventsByDateGrouped(Carbon::today());
 
         // Not grouped by day, just sorted
         // $events = $this->repository->getByRange(request('start_date'), request('end_date'));
 
-        foreach($events as $event) {
-            echo "{$event->date->format('Y-m-d h:i l')} - {$event->title} <br>";
+        foreach($groups as $date => $events) {
+            echo "DATE: {$date} <br> <br>";
+            foreach($events as $event) {
+                echo "{$event->date->format('Y-m-d h:i l')} - {$event->title} <br>";
+            }
+
+            echo "-----<br> <br>";
         }
 
         die();
