@@ -86,41 +86,21 @@ function aic_imageSettings($data) {
     // assign the sizes
     $stringSizes = $settings['sizes'] ?? '';
 
-    // work out ratio cropping
-    if (!empty($settings['ratio'])) {
-        if ($settings['ratio'] === "1:1") {
-            if ($height > $width) {
-                $width = $height;
-            } else {
-                $height = $width;
-            }
-        }
-        if ($settings['ratio'] === "16:9") {
-            $height = round($width * (16/9));
-        }
-
-        // because we're limiting with a dimension, we need to crop
-        if(empty($settings['fit'])) {
-            $settings['fit'] = 'crop';
-        }
-        if(empty($settings['crop'])) {
-            $settings['crop'] = 'faces,entropy';
-        }
-    }
-
-    $stringWidth = $width;
-    $stringHeight = $height;
-
-    if (empty($settings['auto'])) {
-        $settings['auto'] = 'compress';
-    }
-
-    if (empty($settings['q'])) {
-        $settings['q'] = '45';
-    }
-
     // now, based on the source type, generate URLs as needed
     if ($sourceType === 'placeholder') {
+        // work out ratio cropping
+        if (!empty($settings['ratio'])) {
+            if ($settings['ratio'] === "1:1") {
+                if ($height > $width) {
+                    $width = $height;
+                } else {
+                    $height = $width;
+                }
+            }
+            if ($settings['ratio'] === "16:9") {
+                $height = round($width * (16/9));
+            }
+        }
         // for place holders its a bit dumb because its not passing through a service
         foreach ($srcset as $size):
             $stringSrcset .= "//placehold.dev.area17.com/image/".$size."x".round(($height/$width) * $size)." ".$size."w, ";
@@ -153,33 +133,91 @@ function aic_imageSettings($data) {
             $stringSrc
             $stringSrcSet
         */
+        // work out ratio cropping
+        if (!empty($settings['ratio'])) {
+            if ($settings['ratio'] === "1:1") {
+                if ($height > $width) {
+                    $width = $height;
+                } else {
+                    $height = $width;
+                }
+            }
+            if ($settings['ratio'] === "16:9") {
+                $height = round($width * (16/9));
+            }
+
+            // because we're limiting with a dimension, we need to crop
+            if(empty($settings['fit'])) {
+                $settings['fit'] = 'crop';
+            }
+            if(empty($settings['crop'])) {
+                $settings['crop'] = 'faces,entropy';
+            }
+        }
+
+        if (empty($settings['auto'])) {
+            $settings['auto'] = 'compress';
+        }
+
+        if (empty($settings['q'])) {
+            $settings['q'] = '45';
+        }
     }
 
     if ($sourceType === 'lakeview') {
-        /*
-            to build the urls, will need:
 
-            $originalSrc
-            $width
-            $height
-            $settings['fit']
-            $settings['crop']
-            $settings['crop']
-            $settings['auto']
-            $settings['q']
+        // iiif doesn't have many image processing features..
+        // http://iiif.io/api/image/2.1/#region
+        // /{region}/{size}/{rotation}/{quality}.{format}
 
-            nb: the src wants to have lower settings
+        $base = explode('/full/full/0/default.jpg', $originalSrc)[0];
+        $resizeVal = 'full';
 
-            $settings['q'] = 10;
-            $settings['blur'] = 75;
+        // check to see if a ratio is defined
+        if (!empty($settings['ratio'])) {
+            if ($settings['ratio'] === "1:1") {
+                // iiif does have a square region pre-defined
+                $resizeVal = 'square';
+                if ($height > $width) {
+                    $width = $height;
+                } else {
+                    $height = $width;
+                }
+            }
+            if ($settings['ratio'] === "16:9") {
+                // need to manually calc area to grab..
+                // first check the image is taller than the ratio height we need
+                $ratioHeight = round($width * (9/16));
+                if ($height === $ratioHeight) {
+                    // the source image *is* 16:9
+                    $resizeVal = 'full';
+                } else if ($height > $ratioHeight) {
+                    // the source image is 16:something-taller-than-9
+                    $cropWidth = $width;
+                    $cropHeight = round($cropWidth * (9/16));
+                    $topPosition = round(($height - $cropHeight) / 2);
+                    $resizeVal = "0,".$topPosition.",".$cropWidth.",".$cropHeight;
+                    $height = $cropHeight;
+                } else {
+                    // the source image is 16:something-less-than-9
+                    $cropHeight = $height;
+                    $cropWidth = round($cropHeight * (16/9));
+                    $leftPosition = round(($width - $cropWidth) / 2);
+                    $resizeVal = $leftPosition.",0,".$cropWidth.",".$cropHeight;
+                    $width = $cropWidth;
+                }
+            }
+        }
 
-
-            Make sure you generate:
-
-            $stringSrc
-            $stringSrcSet
-        */
+        // generate variants
+        foreach ($srcset as $size):
+            $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w, ";
+        endforeach;
+        $stringSrc = $base."/".$resizeVal."/".$LQIPDimension.",/0/default.jpg";
     }
+
+    $stringWidth = $width;
+    $stringHeight = $height;
 
     return array(
         'srcset' => $stringSrcset,

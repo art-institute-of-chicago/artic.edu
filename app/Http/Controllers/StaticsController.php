@@ -6,6 +6,7 @@ use A17\CmsToolkit\Http\Controllers\Front\Controller as Controller;
 use App\Presenters\StaticObjectPresenter;
 use Faker\Generator as Faker;
 use Carbon\Carbon;
+use LakeviewImageService;
 
 class StaticsController extends Controller {
   protected $faker;
@@ -1565,6 +1566,9 @@ class StaticsController extends Controller {
         "credit" => $credit,
         "creditUrl" => $creditUrl,
     );
+
+    //$image = LakeviewImageService::getImage('92e0fb45-44a6-4b99-c011-2175b9cbc468');
+    //$image['sourceType'] = 'lakeview';
 
     return $image;
   }
