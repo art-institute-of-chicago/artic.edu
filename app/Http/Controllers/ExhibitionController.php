@@ -27,7 +27,7 @@ class ExhibitionController extends Controller
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
         $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
-        $events     = $this->eventRepository->getEventsByDateGrouped(Carbon::today(), Carbon::tomorrow());
+        $events     = $this->eventRepository->getEventsByDateGrouped(Carbon::today(), Carbon::tomorrow()->addDay(), 4);
 
         return view('site.exhibitions', [
             'page' => $page,

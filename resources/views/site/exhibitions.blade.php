@@ -85,19 +85,20 @@
     @slot('linksPrimary', array(array('label' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary')))
 @endcomponent
 
-@component('components.molecules._m-title-bar')
-    @slot('links', array(array('label' => 'Browse events', 'href' => route('events'))))
-    Today&rsquo;s Events
-@endcomponent
+@if (!empty($eventsByDay))
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(array('label' => 'Browse events', 'href' => route('events'))))
+        Today&rsquo;s Events
+    @endcomponent
 
-@component('components.organisms._o-row-listing')
-    @foreach ($eventsByDay as $date => $events)
-        @component('components.molecules._m-date-listing')
-            @slot('date', $date)
-            @slot('events', $events)
-        @endcomponent
-    @endforeach
-@endcomponent
-
+    @component('components.organisms._o-row-listing')
+        @foreach ($eventsByDay as $date => $events)
+            @component('components.molecules._m-date-listing')
+                @slot('date', $date)
+                @slot('events', $events)
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
 
 @endsection
