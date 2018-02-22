@@ -246,7 +246,18 @@
   <div class="m-mini-promo">
     @component('components.atoms._img')
         @slot('image', $admission['cityPass']['image'])
-        @slot('sizes', '200px')
+        @slot('settings', array(
+            'fit' => 'crop',
+            'ratio' => '1:1',
+            'srcset' => array(200,400,600),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '23',
+                  'small' => '13',
+                  'medium' => '13',
+                  'large' => '13',
+                  'xlarge' => '13',
+            )),
+        ))
     @endcomponent
     <div class="m-mini-promo__text">
       @component('components.atoms._title')
