@@ -3,12 +3,6 @@
     <script src="{{ mix('/assets/admin/behaviors/google_maps.js') }}"></script>
 @endpush
 
-@formField('input', [
-    'label' => 'Intro text',
-    'name' => 'visit_intro',
-    'field_name' => 'Intro text',
-])
-
 @formField('medias', [
     'name' => 'visit_hero',
     'label' => 'Hero Image',
