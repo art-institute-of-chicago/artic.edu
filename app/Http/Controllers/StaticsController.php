@@ -1569,6 +1569,7 @@ class StaticsController extends Controller {
 
     //$image = LakeviewImageService::getImage('92e0fb45-44a6-4b99-c011-2175b9cbc468');
     //$image['sourceType'] = 'lakeview';
+
     /*
     $image = array(
         "sourceType" => 'imgix',
@@ -1576,7 +1577,13 @@ class StaticsController extends Controller {
         "width" => 1184,
         "height" => 592,
     );
-    */
+    $image = array(
+        "sourceType" => 'imgix',
+        "src" => 'https://wyss-prod.imgix.net/app/uploads/2017/11/29103410/Falkor-IMG_7110.jpg?',
+        "width" => 4000,
+        "height" => 3000,
+    );
+    /**/
     return $image;
   }
 

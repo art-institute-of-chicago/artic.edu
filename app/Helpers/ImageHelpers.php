@@ -123,7 +123,7 @@ function aic_imageSettings($data) {
                 }
             }
             if ($settings['ratio'] === "16:9") {
-                $height = round($width * (16/9));
+                $height = round($width * (9/16));
             }
 
             // because we're limiting with a dimension, we need to crop
@@ -131,7 +131,7 @@ function aic_imageSettings($data) {
                 $settings['fit'] = 'crop';
             }
             if(empty($settings['crop'])) {
-                $settings['crop'] = 'faces,entropy';
+                $settings['crop'] = 'faces,edges,entropy';
             }
         }
 
@@ -160,7 +160,7 @@ function aic_imageSettings($data) {
         }
 
         if(empty($settings['crop'])) {
-            $settings['crop'] = 'faces,entropy';
+            $settings['crop'] = 'faces,edges,entropy';
         } else {
             $imgixSettings['crop'] = $settings['crop'];
         }
