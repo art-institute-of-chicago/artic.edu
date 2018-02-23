@@ -47,6 +47,18 @@
                 @slot('type', $featuredRelated['type'])
                 @slot('items', $featuredRelated['items'])
                 @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '0',
+                          'small' => '23',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
             @endcomponent
         @endif
       </div>
@@ -59,6 +71,18 @@
                 @slot('type', $featuredRelated['type'])
                 @slot('items', $featuredRelated['items'])
                 @slot('itemsMolecule', '_m-listing----'.$featuredRelated['type'])
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '58',
+                          'small' => '23',
+                          'medium' => '18',
+                          'large' => '0',
+                          'xlarge' => '0',
+                    )),
+                ))
             @endcomponent
         </div>
       @endif
