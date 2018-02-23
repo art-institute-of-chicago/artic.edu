@@ -10,6 +10,9 @@ class ExhibitionHistoryController extends Controller
     public function index()
     {
         $page = Page::forType('Exhibition History')->first();
+
+        var_dump($page);
+        die();
     }
 
     public function show($id)
