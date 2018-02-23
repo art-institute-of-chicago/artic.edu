@@ -171,6 +171,18 @@
                         @foreach ($block['items'] as $item)
                             @component('components.molecules._m-listing----'.$block["subtype"])
                                 @slot('item', $item)
+                                @slot('imageSettings', array(
+                                    'fit' => 'crop',
+                                    'ratio' => '16:9',
+                                    'srcset' => array(200,400,600,1000,1500),
+                                    'sizes' => aic_imageSizes(array(
+                                          'xsmall' => '58',
+                                          'small' => '58',
+                                          'medium' => '38',
+                                          'large' => '28',
+                                          'xlarge' => '28',
+                                    )),
+                                ))
                             @endcomponent
                         @endforeach
                     @endcomponent
@@ -188,6 +200,18 @@
                         @foreach ($block['items'] as $item)
                             @component('components.molecules._m-listing----'.$block["subtype"])
                                 @slot('item', $item)
+                                @slot('imageSettings', array(
+                                    'fit' => 'crop',
+                                    'ratio' => '16:9',
+                                    'srcset' => array(200,400,600),
+                                    'sizes' => aic_imageSizes(array(
+                                          'xsmall' => '28',
+                                          'small' => '28',
+                                          'medium' => '18',
+                                          'large' => '13',
+                                          'xlarge' => '13',
+                                    )),
+                                ))
                             @endcomponent
                         @endforeach
                     @endcomponent
@@ -208,6 +232,30 @@
                         @slot('title', $block['title']);
                         @slot('caption', $block['caption']);
                         @slot('items', $block['items']);
+                            @if ($block["subtype"] === 'mosaic')
+                                @slot('imageSettings', array(
+                                    'srcset' => array(200,400,600,1000,1500),
+                                    'sizes' => aic_imageSizes(array(
+                                          'xsmall' => '58',
+                                          'small' => '28',
+                                          'medium' => '28',
+                                          'large' => '28',
+                                          'xlarge' => '21',
+                                    )),
+                                ))
+                            @endif
+                            @if ($block["subtype"] === 'slider')
+                                @slot('imageSettings', array(
+                                    'srcset' => array(200,400,600,1000,1500),
+                                    'sizes' => aic_imageSizes(array(
+                                          'xsmall' => '50',
+                                          'small' => '35',
+                                          'medium' => '23',
+                                          'large' => '23',
+                                          'xlarge' => '18',
+                                    )),
+                                ))
+                            @endif
                     @endcomponent
                 @endif
             @endif

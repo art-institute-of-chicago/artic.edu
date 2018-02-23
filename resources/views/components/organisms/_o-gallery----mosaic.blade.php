@@ -21,6 +21,7 @@
             @foreach ($items as $item)
                 @component('components.molecules._m-media')
                     @slot('item', $item)
+                    @slot('imageSettings', $imageSettings ?? '')
                 @endcomponent
             @endforeach
         @endif

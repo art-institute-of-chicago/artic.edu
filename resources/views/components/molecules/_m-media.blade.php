@@ -1,11 +1,10 @@
 @php
-    $imageSettings = null;
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $media = $item['media'];
     $tag = (isset($item['url']) && $item['url'] && $type !== 'embed' && $type !== 'video') ? 'a' : 'span';
 
-    if ($size === 's') {
+    if (empty($imageSettings) && $size === 's') {
         $imageSettings = array(
             'srcset' => array(300,600,800,1200,1600),
             'sizes' => aic_imageSizes(array(
@@ -17,7 +16,7 @@
         )));
     }
 
-    if ($size === 'm') {
+    if (empty($imageSettings) && $size === 'm') {
         $imageSettings = array(
             'srcset' => array(300,600,800,1200,1600,2000),
             'sizes' => aic_imageSizes(array(
@@ -29,7 +28,7 @@
         )));
     }
 
-    if ($size === 'l') {
+    if (empty($imageSettings) && $size === 'l') {
         $imageSettings = array(
             'srcset' => array(300,600,800,1200,1600,2000),
             'sizes' => aic_imageSizes(array(
