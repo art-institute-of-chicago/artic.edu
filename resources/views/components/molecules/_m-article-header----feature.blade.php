@@ -3,7 +3,10 @@
       @if ($img)
         @component('components.atoms._img')
             @slot('image', $img)
-            @slot('sizes', '100vw')
+            @slot('imageSettings', array(
+                'srcset' => array(300,600,1000,1500,3000),
+                'sizes' => '100vw',
+            ))
         @endcomponent
       @endif
   </div>
