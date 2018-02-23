@@ -65,11 +65,11 @@ class CollectionController extends Controller
 
     }
 
-    public function search($slug)
+    public function search()
     {
-        $collection = \App\Models\Api\Search::search($slug)->resources(['artworks'])->getSearch();
+        $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch();
 
-        foreach($collection as $item) {
+        foreach($collection as &$item) {
             $item->type = 'artwork';
             $item->text = $item->title;
             $item->url = route('artworks.show', $item->id);
@@ -81,10 +81,10 @@ class CollectionController extends Controller
         }
 
         return view('layouts/_autocomplete', [
-            'term' => $slug,
+            'term' => request('q'),
             'resultCount' => $collection->total(),
             'items' => $collection,
-            'seeAllUrl' => route('collection', ['q' => $slug])
+            'seeAllUrl' => route('collection', ['q' => request('q')])
         ]);
 
         abort(500);

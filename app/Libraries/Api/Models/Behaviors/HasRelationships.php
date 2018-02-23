@@ -90,6 +90,10 @@ trait HasRelationships
     {
         $relation = $this->$method();
 
+        if (!$relation) { // Empty relationships return null to avoid calling the API
+            return null;
+        }
+
         return tap($relation->get(), function ($results) use ($method) {
             $this->setRelation($method, $results);
         });

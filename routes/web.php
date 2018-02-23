@@ -11,7 +11,7 @@ if (!app()->environment('production')) {
 
 // Collection routes
 Route::name('collection')->get('/collection', 'CollectionController@index');
-Route::name('collection.search')->get('/collection/search/{slug}', 'CollectionController@search');
+Route::name('collection.search')->get('/collection/search', 'CollectionController@search');
 
 // Newsletter subscription
 Route::name('subscribe')->post('/subscribe', 'SubscribeController@store');
