@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Libraries\Api\Builders\Connection\AicConnection;
-
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 
@@ -67,15 +65,11 @@ class CollectionController extends Controller
 
     }
 
-    public function search($slug, Request $request)
+    public function search($slug)
     {
-        $aicConnection = new AicConnection;
-        $results = \App\Models\Api\Search::search($slug)->resources(['artworks'])->getSearch();
+        $collection = \App\Models\Api\Search::search($slug)->resources(['artworks'])->getSearch();
 
-        $items = [];
-        foreach($results as $result_item) {
-            $item = $this->apiRepository->getById($result_item->id);
-            // dd($item);
+        foreach($collection as $item) {
             $item->type = 'artwork';
             $item->text = $item->title;
             $item->url = route('artworks.show', $item->id);
@@ -84,14 +78,12 @@ class CollectionController extends Controller
             $image['width'] = 30;
             $image['height'] = '';
             $item->image = $image;
-            // dd($item->image);
-            $items[] = $item;
         }
 
         return view('layouts/_autocomplete', [
             'term' => $slug,
-            'resultCount' => $results->total(),
-            'items' => $items,
+            'resultCount' => $collection->total(),
+            'items' => $collection,
             'seeAllUrl' => route('collection', ['q' => $slug])
         ]);
 
