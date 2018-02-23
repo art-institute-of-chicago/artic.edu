@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasPosition;
+use A17\CmsToolkit\Models\Behaviors\Sortable;
 use A17\CmsToolkit\Models\Model;
 
-class Question extends Model
+class Question extends Model implements Sortable
 {
     use HasPosition;
 

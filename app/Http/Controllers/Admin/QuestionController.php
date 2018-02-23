@@ -10,6 +10,10 @@ class QuestionController extends ModuleController
 
     protected $titleColumnKey = 'question';
 
+    protected $indexOptions = [
+        'reorder' => true
+    ];
+
     protected $indexColumns = [
         'question' => [
             'title' => 'Question',
