@@ -528,6 +528,8 @@
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
                 @slot('imageSettings', array(
+                    'fit' => ($item->type !== 'selection' || $item->type !== 'artwork') ? 'crop' : null,
+                    'ratio' => ($item->type !== 'selection' || $item->type !== 'artwork') ? '16:9' : null,
                     'srcset' => array(200,400,600),
                     'sizes' => aic_gridListingImageSizes(array(
                           'xsmall' => '1',

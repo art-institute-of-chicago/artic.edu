@@ -1,6 +1,6 @@
 @php
-    if (isset($image_id)) {
-        $src = LakeviewImageService::getUrl($image_id);
+    if (empty($image['sourceType'])) {
+        $image['sourceType'] === 'imgix';
     }
 
     if (isset($settings)) {
