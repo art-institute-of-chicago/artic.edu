@@ -164,6 +164,25 @@
     object-position: center top;
   }
 
+.m-listing__img.m-listing__img--padded {
+  height: 200px;
+  background-image: none;
+}
+
+.m-listing__img--padded::before {
+  display: none;
+}
+
+.m-listing__img--padded img,
+.m-listing__img--padded video {
+  top: 20px;
+  bottom: 20px;
+  width: auto;
+  height: 160px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
 .m-listing__img .icon--play--48 {
   position: absolute;
   top: 50%;

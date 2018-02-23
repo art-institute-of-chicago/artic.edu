@@ -139,6 +139,7 @@
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
+                        @slot('imgVariation', 'm-listing__img--padded')
                         @slot('imageSizes', aic_imageSizes(
                           array(
                               'xsmall' => '58',

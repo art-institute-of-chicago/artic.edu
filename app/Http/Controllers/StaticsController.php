@@ -1144,7 +1144,7 @@ class StaticsController extends Controller {
           ],
           'printedCatalogs' => [
               'intro' => $this->faker->paragraph(),
-              'items' => $this->getCatalogs(4),
+              'items' => $this->getCatalogs(4), // image dims should be max of 160x160 on printed catalogs
           ],
           'journalHero' => $this->getArticle(),
           'journals' => $this->getArticles(4),
