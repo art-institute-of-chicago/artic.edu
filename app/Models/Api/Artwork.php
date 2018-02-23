@@ -9,7 +9,8 @@ class Artwork extends BaseApiModel
     protected $endpoints = [
         'collection' => '/api/v1/artworks',
         'resource'   => '/api/v1/artworks/{id}',
-        'search'     => '/api/v1/artworks/search'
+        'search'     => '/api/v1/artworks/search',
+        'boosted'    => '/api/v1/artworks/boosted'
     ];
 
     public function artists()

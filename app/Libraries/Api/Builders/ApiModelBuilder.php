@@ -46,6 +46,13 @@ class ApiModelBuilder
     protected $performSearch = false;
 
     /**
+     * Variable to force to use a specific endpoint. Just save the name defined on the model
+     *
+     * @var string
+     */
+    protected $customEndpoint;
+
+    /**
      * Applied global scopes.
      *
      * @var array
@@ -358,7 +365,7 @@ class ApiModelBuilder
     {
         $builder = clone $this;
 
-        $endpoint = $this->getEndpoint('resource', ['id' => $id]);
+        $endpoint = $this->getEndpoint($this->resolveResourceEndpoint(), ['id' => $id]);
 
         $result = $this->model->hydrate(
             $this->query->get($columns, $endpoint)->all()
@@ -415,6 +422,18 @@ class ApiModelBuilder
     }
 
     /**
+     * Force to use a specific endpoint
+     *
+     * @return string
+     */
+    public function forceEndpoint($name)
+    {
+        $this->customEndpoint = $name;
+
+        return $this;
+    }
+
+    /**
      * Resolve endpoint. Because search and listing contains different ones
      * We will check if we are calling a search, and use that endpoint in that case
      *
@@ -422,7 +441,21 @@ class ApiModelBuilder
      */
     public function resolveCollectionEndpoint()
     {
-        return $this->performSearch ? 'search' : 'collection';
+        if ($this->customEndpoint) {
+            return $this->customEndpoint;
+        } else {
+            return $this->performSearch ? 'search' : 'collection';
+        }
+    }
+
+    /**
+     * Resolve single element endpoint
+     *
+     * @return string
+     */
+    public function resolveResourceEndpoint()
+    {
+        return $this->customEndpoint ?? 'resource';
     }
 
     /**

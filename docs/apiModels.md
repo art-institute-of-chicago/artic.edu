@@ -325,3 +325,26 @@ You can move all this to a scope as well. Just add it to the `Search` model as s
 
 *Something to remember:* Scopes are good for every query on this document, not only searching.
 
+
+## Force a custom endpoint
+
+If you don't want to use the basic defined endpoints, you could just specify the name for the one you want to use for the current query.
+
+```php
+class Artwork extends BaseApiModel
+{
+    protected $endpoints = [
+        'collection' => '/api/v1/artworks',
+        'resource'   => '/api/v1/artworks/{id}',
+        'search'     => '/api/v1/artworks/search',
+        'boosted'    => '/api/v1/artworks/boosted'
+    ];
+}
+```
+
+Here we added a new `boosted` endpoint to retrieve the most important artworks. To use it just call the scope `forceEndpoint($name)`.
+
+
+```php
+    \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->search('picasso')->getSearch();
+```
