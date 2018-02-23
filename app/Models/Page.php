@@ -34,6 +34,11 @@ class Page extends Model
         // Exhibition
         'exhibition_intro',
 
+        // Exhibition History
+        'exhibition_history_sub_heading',
+        'exhibition_history_intro_copy',
+        'exhibition_history_popup_copy',
+
         // Art and Ideas
         'art_intro',
 
@@ -61,6 +66,14 @@ class Page extends Model
                     'ratio' => 1,
                 ],
             ],
+        ],
+        'exhibition_history_intro' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ]
         ],
     ];
 

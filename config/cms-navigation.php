@@ -29,6 +29,10 @@ return [
                 'title' => 'Exhibitions & Events',
                 'route' => 'admin.landing.exhibitions',
             ],
+            'exhibitions_history' => [
+                'title' => 'Exhibition History',
+                'route' => 'admin.landing.exhibition_history',
+            ],
             'art' => [
                 'title' => 'Art & Ideas',
                 'route' => 'admin.landing.art',

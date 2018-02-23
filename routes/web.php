@@ -41,7 +41,8 @@ Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/related
 Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
 
 // Exhibition history routes
-Route::resource('exhibitionHistory', 'ExhibitionHistoryController', ['only' => ['index', 'show']]);
+Route::get('exhibitions/history', 'ExhibitionHistoryController@index');
+Route::get('exhibitions/history/{id}', 'ExhibitionHistoryController@show');
 
 // Gallery / tag page
 Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');

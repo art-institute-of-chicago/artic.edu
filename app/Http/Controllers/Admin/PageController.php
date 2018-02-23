@@ -52,6 +52,13 @@ class PageController extends ModuleController
         return view('admin.pages.form', $this->form($page->id));
     }
 
+    public function exhibitionHistory(PageRepository $pages)
+    {
+        abort_unless($page = $pages->byName('Exhibition History'), 500, "CMS home page doesn't exist, make sure to migrate the database first (php artisan migrate)");
+        Session::put("pages_back_link", route('admin.landing.exhibition_history'));
+        return view('admin.pages.form', $this->form($page->id));
+    }
+
     protected function getRoutePrefix()
     {
         return null;
