@@ -92,6 +92,18 @@
           @slot('type', $item->featuredRelated['type'])
           @slot('items', $item->featuredRelated['items'])
           @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
+          @slot('imageSettings', array(
+              'fit' => 'crop',
+              'ratio' => '16:9',
+              'srcset' => array(200,400,600),
+              'sizes' => aic_imageSizes(array(
+                    'xsmall' => '0',
+                    'small' => '23',
+                    'medium' => '18',
+                    'large' => '13',
+                    'xlarge' => '13',
+              )),
+          ))
       @endcomponent
     @endif
   </div>
@@ -133,6 +145,18 @@
         @slot('type', $item->featuredRelated['type'])
         @slot('items', $item->featuredRelated['items'])
         @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
+        @slot('imageSettings', array(
+            'fit' => 'crop',
+            'ratio' => '16:9',
+            'srcset' => array(200,400,600),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '58',
+                  'small' => '23',
+                  'medium' => '18',
+                  'large' => '0',
+                  'xlarge' => '0',
+            )),
+        ))
     @endcomponent
   </div>
   @endif
@@ -158,6 +182,10 @@
         @foreach ($item->catalogues as $catalogue)
             @component('components.molecules._m-download-file')
                 @slot('file', $catalogue)
+                @slot('imageSettings', array(
+                    'srcset' => array(120,240),
+                    'sizes' => '120px',
+                ))
             @endcomponent
         @endforeach
     @endif
@@ -174,6 +202,16 @@
             @component('components.molecules._m-media')
                 @slot('variation', 'o-blocks__block')
                 @slot('item', $picture)
+                @slot('imageSettings', array(
+                    'srcset' => array(300,600,800,1200,1600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '58',
+                          'small' => '58',
+                          'medium' => '38',
+                          'large' => '28',
+                          'xlarge' => '28',
+                    ))
+                ))
             @endcomponent
         @endforeach
     @endif
@@ -206,6 +244,16 @@
                 @slot('text', $speaker['text'] ?? null)
                 @slot('titleFont', 'f-subheading-1')
                 @slot('textFont', ($item->articleType === 'editorial') ? 'f-body-editorial' : 'f-body')
+                @slot('imageSettings', array(
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '13',
+                          'small' => '13',
+                          'medium' => '8',
+                          'large' => '8',
+                          'xlarge' => '8',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endif
@@ -228,6 +276,16 @@
             @slot('title', $item->futherSupport['title'] ?? null)
             @slot('img', $item->futherSupport['logo'] ?? null)
             @slot('text', $item->futherSupport['text'] ?? null)
+            @slot('imageSettings', array(
+                'srcset' => array(200,400,600),
+                'sizes' => aic_imageSizes(array(
+                      'xsmall' => '13',
+                      'small' => '13',
+                      'medium' => '8',
+                      'large' => '8',
+                      'xlarge' => '8',
+                )),
+            ))
         @endcomponent
     @endif
 
@@ -368,6 +426,18 @@
         @foreach ($item->relatedExhibitions as $item)
             @component('components.molecules._m-listing----exhibition')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
@@ -387,6 +457,18 @@
         @foreach ($item->relatedEvents as $item)
             @component('components.molecules._m-listing----event')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
@@ -405,6 +487,18 @@
         @foreach ($item->relatedArticles as $item)
             @component('components.molecules._m-listing----article')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
@@ -431,6 +525,18 @@
             @component('components.molecules._m-listing----'.$item->type)
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => ($item->type !== 'selection' || $item->type !== 'artwork') ? 'crop' : null,
+                    'ratio' => ($item->type !== 'selection' || $item->type !== 'artwork') ? '16:9' : null,
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_gridListingImageSizes(array(
+                          'xsmall' => '1',
+                          'small' => '2',
+                          'medium' => '3',
+                          'large' => '3',
+                          'xlarge' => '3',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
@@ -451,6 +557,16 @@
         @foreach ($item->recentlyViewedArtworks as $item)
             @component('components.molecules._m-listing----artwork-minimal')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'srcset' => array(108,216,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '216px',
+                          'large' => sizeof($article->recentlyViewedArtworks) > 6 ? 3 : 8,
+                          'xlarge' => sizeof($article->recentlyViewedArtworks) > 6 ? 3 : 8,
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent

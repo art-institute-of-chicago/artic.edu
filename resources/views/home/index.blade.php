@@ -8,6 +8,10 @@
             @slot('item', $item)
             @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
             @slot('titleFont', ($loop->first) ? 'f-list-5' : 'f-list-3')
+            @slot('imageSettings', array(
+                'srcset' => array(300,600,1000,1500,3000),
+                'sizes' => '100vw',
+            ))
         @endcomponent
     @endforeach
 @endcomponent
@@ -42,6 +46,18 @@
         @component('components.molecules._m-listing----exhibition')
             @slot('titleFont', 'f-list-4')
             @slot('item', $item)
+            @slot('imageSettings', array(
+                'fit' => 'crop',
+                'ratio' => '16:9',
+                'srcset' => array(200,400,600,1000,1500),
+                'sizes' => aic_gridListingImageSizes(array(
+                      'xsmall' => '1',
+                      'small' => '2',
+                      'medium' => '2',
+                      'large' => '2',
+                      'xlarge' => '2',
+                )),
+            ))
         @endcomponent
     @endforeach
 @endcomponent
@@ -58,6 +74,18 @@
     @foreach ($events as $item)
         @component('components.molecules._m-listing----event')
             @slot('item', $item)
+            @slot('imageSettings', array(
+                'fit' => 'crop',
+                'ratio' => '16:9',
+                'srcset' => array(200,400,600),
+                'sizes' => aic_gridListingImageSizes(array(
+                      'xsmall' => '1',
+                      'small' => '1',
+                      'medium' => '4',
+                      'large' => '4',
+                      'xlarge' => '4',
+                )),
+            ))
         @endcomponent
     @endforeach
 @endcomponent
@@ -86,6 +114,18 @@
         @component('components.molecules._m-listing----'.$item->type)
             @slot('variation', 'o-pinboard__item')
             @slot('item', $item)
+            @slot('imageSettings', array(
+                'fit' => ($item->type !== 'selection' || $item->type !== 'artwork') ? 'crop' : null,
+                'ratio' => ($item->type !== 'selection' || $item->type !== 'artwork') ? '16:9' : null,
+                'srcset' => array(200,400,600,1000),
+                'sizes' => aic_gridListingImageSizes(array(
+                      'xsmall' => '1',
+                      'small' => '2',
+                      'medium' => '3',
+                      'large' => '3',
+                      'xlarge' => '3',
+                )),
+            ))
         @endcomponent
     @endforeach
 @endcomponent
@@ -112,6 +152,18 @@
         @component('components.molecules._m-listing----product')
             @slot('simple', true)
             @slot('item', $item)
+            @slot('imageSettings', array(
+                'fit' => 'crop',
+                'ratio' => '1:1',
+                'srcset' => array(200,400,600),
+                'sizes' => aic_imageSizes(array(
+                      'xsmall' => '216px',
+                      'small' => '216px',
+                      'medium' => '18',
+                      'large' => '13',
+                      'xlarge' => '13',
+                )),
+            ))
         @endcomponent
     @endforeach
 @endcomponent
