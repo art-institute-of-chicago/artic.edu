@@ -20,7 +20,13 @@ class CollectionController extends Controller
 
     public function index()
     {
-        $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch();
+        // If we don't have a query let's load the boosted artworks
+        if (request('q')) {
+            $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch();
+        } else {
+            $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->get();
+        }
+
         foreach($collection as &$item) {
             $item->type = 'artwork';
             $item->image = LakeviewImageService::getImage($item->image_id);
