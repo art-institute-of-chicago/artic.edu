@@ -82,8 +82,8 @@
 
     @if ($article->articleType === 'event')
         @component('components.molecules._m-ticket-actions----event')
-            @slot('ticketPrices', $article->ticketPrices);
             @slot('ticketLink', $article->ticketLink);
+            @slot('buttonCaption', $article->ticketPrices);
         @endcomponent
     @endif
 

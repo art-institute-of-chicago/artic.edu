@@ -9,13 +9,11 @@
             @endcomponent
         </li>
     @endif
-    @if (isset($ticketPrices) and $ticketPrices)
+    @if (isset($buttonCaption) and $buttonCaption)
         <li class="m-ticket-actions__inline-list">
-            <ul class="m-ticket-actions__inline-list-items f-secondary">
-                @foreach ($ticketPrices as $ticketPrice)
-                <li class="m-ticket-actions__inline-list-item">{{ $ticketPrice['price'] }} {{ $ticketPrice['label'] }}</li>
-                @endforeach
-            </ul>
+            <div class="m-ticket-actions__inline-list-items f-secondary">
+                {!! $buttonCaption !!}
+            </div>
         </li>
     @endif
 </ul>

@@ -315,11 +315,7 @@ class StaticsController extends Controller {
     array_push($nav, $locationLink);
     array_push($nav, $registrationLink);
     // set ticket prices
-    $ticketPrices = array(
-      array('price' => '$10', 'label' => 'students'),
-      array('price' => '$15', 'label' => 'members'),
-      array('price' => '$20', 'label' => 'nonmembers'),
-    );
+    $ticketPrices = '<p>$10 <strong>students</strong></p><p>$20 members</p><p>$30 non-members</p>';
     // get an event
     $article = $this->getEvent();
     $article->push('articleType', 'event');

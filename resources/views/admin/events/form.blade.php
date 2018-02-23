@@ -192,10 +192,10 @@
             'note' => 'E.G. Buy Tickets'
         ])
 
-        @formField('input', [
+        @formField('wysiwyg', [
             'name' => 'buy_button_caption',
             'label' => 'Copy below Buy Button text',
-            'type' => 'textarea'
+            'toolbarOptions' => ['bold']
         ])
 
         @formField('checkbox', [

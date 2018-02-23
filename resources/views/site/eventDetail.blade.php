@@ -50,6 +50,7 @@
             @slot('ticketPrices', $item->ticketPrices);
             @slot('ticketLink', $item->buy_tickets_link);
             @slot('buttonText', $item->buy_button_text);
+            @slot('buttonCaption', $item->buy_button_caption);
         @endcomponent
     @endif
 
