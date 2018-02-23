@@ -30,6 +30,11 @@ class SelectionsController extends Controller
             $item = $this->repository->getById($slug);
         }
 
+        $item->headerType = 'hero';
+
+        if ($item->siteTags->first()) {
+            $item->type = $item->siteTags->first()->name;
+        }
         // dd($item->image('hero'));
 
         // dd($item->articles);
