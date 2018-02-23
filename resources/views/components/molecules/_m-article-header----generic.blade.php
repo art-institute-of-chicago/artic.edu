@@ -3,7 +3,7 @@
     <div class="m-article-header__img" data-blur-img>
         @component('components.atoms._img')
             @slot('image', $img)
-            @slot('imageSettings', array(
+            @slot('settings', array(
                 'srcset' => array(300,600,1000,1500,3000),
                 'sizes' => '100vw',
             ))
