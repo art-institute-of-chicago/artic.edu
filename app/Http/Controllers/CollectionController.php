@@ -20,21 +20,12 @@ class CollectionController extends Controller
         $this->apiRepository = $repository;
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $aicConnection = new AicConnection;
-        $q = $request->get('q');
-        $items = [];
-        if ($q) {
-            $results = \App\Models\Api\Search::search($q)->resources(['artworks'])->getSearch();
-            foreach($results as $result_item) {
-                $item_results = $aicConnection->get('/api/v1/'.$result_item->api_model.'/'.$result_item->api_id, ['q' => $q, 'type' => 'artworks']);
-                $item = $this->apiRepository->getById($result_item->id);
-                // dd($item);
-                $item->type = 'artwork';
-                $item->image = LakeviewImageService::getImage($item->image_id);
-                $items[] = $item;
-            }
+        $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch();
+        foreach($collection as &$item) {
+            $item->type = 'artwork';
+            $item->image = LakeviewImageService::getImage($item->image_id);
         }
 
         return view('site.collection.index', [
@@ -54,7 +45,7 @@ class CollectionController extends Controller
               'label' => "Legs",
             ),
           ),
-          'artworks' => $items,
+          'artworks' => $collection,
           'recentlyViewedArtworks' => [],
           'interestedThemes' => array(
             array(

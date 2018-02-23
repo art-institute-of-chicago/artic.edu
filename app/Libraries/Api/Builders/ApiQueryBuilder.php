@@ -360,7 +360,7 @@ class ApiQueryBuilder {
      */
     public function search($search)
     {
-        $this->searchText = $search;
+        $this->searchText = empty($search) ? null : $search;
 
         return $this;
     }

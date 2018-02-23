@@ -112,7 +112,10 @@ class AicGrammar
 
     protected function compileSearchText($query, $text)
     {
-        return ['q' => $text];
+        if ($text)
+            return ['q' => $text];
+        else
+            return [];
     }
 
     protected function compileSearchParameters($query, array $elasticParameters)
