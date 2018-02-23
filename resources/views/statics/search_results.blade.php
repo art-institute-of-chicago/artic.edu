@@ -36,15 +36,9 @@
         @endcomponent
         @component('components.atoms._title')
             @slot('tag','h2')
-            @slot('font', 'f-headline')
-            No results found
+            @slot('font', 'f-list-3')
+            Sorry, we couldn't find any results matching your criteria
         @endcomponent
-        @if (!empty($searchTerm))
-            @component('components.blocks._text')
-                @slot('font', 'f-body')
-                0 results for '{{ $searchTerm }}'
-            @endcomponent
-        @endif
     </div>
 @endif
 

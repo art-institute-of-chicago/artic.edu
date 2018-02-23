@@ -28,7 +28,12 @@
         <ul class="list f-body">
           <li><a href="/statics/home">home</a></li>
           <li><a href="/statics/exhibitions_and_events">exhibitions and events</a></li>
-          <li><a href="/statics/events">events</a></li>
+          <li>
+            <a href="/statics/events">events</a>
+            <ul class="list">
+              <li><a href="/statics/events_no_results">events no results</a></li>
+            </ul>
+          </li>
         </ul>
         <ul class="list f-body">
           <li><a href="/statics/article">all blocks, standard header</a></li>

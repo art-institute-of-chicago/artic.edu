@@ -183,6 +183,15 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function events_no_results() {
+    return view('statics/events', [
+      'primaryNavCurrent' => 'exhibitions_and_events',
+      'title' => 'Exhibitions and Events',
+      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
+      'eventsByDay' => [],
+    ]);
+  }
+
   public function article() {
 
     $article = $this->generateAllBlocksArticle();
