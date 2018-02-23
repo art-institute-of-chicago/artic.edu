@@ -424,8 +424,16 @@
 .m-listing--hero .m-listing__img {
   display: block;
   position: relative;
-  max-height: 95vh;
+  max-height: calc(95vh - 112px);
   overflow: hidden;
+
+  @include breakpoint('small') {
+  max-height: calc(95vh - 128px);
+  }
+
+  @include breakpoint('medium+') {
+    max-height: calc(95vh - 140px);
+  }
 }
 
 .m-listing--hero .m-listing__img::before {
