@@ -146,7 +146,9 @@ class StaticsController extends Controller {
     ]);
   }
 
-  public function exhibitions_load_more($page){
+  public function exhibitions_load_more() {
+    $page = request('page');
+
     $maxPages = 4;
     $page = ($page == $maxPages ? '' : $page + 1);
 

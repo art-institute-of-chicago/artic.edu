@@ -5,7 +5,7 @@ Route::name('home')->get('/', 'HomeController@index');
 if (!app()->environment('production')) {
   Route::get('/autocomplete/{slug?}', 'StaticsController@autocomplete');
   Route::get('/collections/search/{slug?}', 'StaticsController@collectionsAutocomplete');
-  Route::get('/exhibitions_load_more/{page}', 'StaticsController@exhibitions_load_more');
+  Route::get('/exhibitions_load_more', 'StaticsController@exhibitions_load_more');
   Route::get('/statics/{slug?}', 'StaticsController@index');
 }
 
@@ -35,6 +35,7 @@ Route::name('articles.show')->get('/articles/{slug}', 'ArticleController@show');
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionController@index');
 Route::name('exhibitions.upcoming')->get('/exhibitions/upcoming', 'ExhibitionController@upcoming');
 Route::name('exhibitions.show')->get('/exhibitions/{id}', 'ExhibitionController@show');
+Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/relatedEvents', 'ExhibitionController@loadMoreRelatedEvents');
 
 // Artwork routes
 Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');

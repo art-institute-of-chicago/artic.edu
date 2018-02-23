@@ -71,10 +71,11 @@ class EventRepository extends ModuleRepository
         });
     }
 
-    public function getRelatedEventsByDay($object, $perPage = 3) {
-        if (!method_exists($object, 'events')) {return null; }
+    public function getRelatedEventsByDay($object, $perPage = 3, $page = null) {
+        // if (!method_exists($object, 'events')) {return null; }
         if ($object->events()->count() == 0) { return null; }
 
+        // Using the relationship directly, doesn't generate the correct Query.
         $ids = $object->events->pluck('id');
 
         $query = $this->model->rightJoin('event_metas', function ($join) {
@@ -84,7 +85,7 @@ class EventRepository extends ModuleRepository
         $query->whereIn('id', $ids);
         $query->orderBy('event_metas.date', 'ASC');
 
-        $results = $query->paginate($perPage);
+        $results = $query->paginate($perPage, ['*'], 'page', $page);
         return $results->groupBy(function($item) {
           return $item->date->format('Y-m-d');
         });

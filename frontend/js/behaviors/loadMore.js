@@ -26,7 +26,8 @@ const loadMore = function(container) {
 
     ajaxTimer = setTimeout(function(){
       ajaxRequest({
-        url: url +'/'+ page,
+        url: url,
+        data: { page: page },
         type: 'GET',
         requestHeaders: [
           {

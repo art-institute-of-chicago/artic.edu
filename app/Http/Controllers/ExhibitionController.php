@@ -14,6 +14,8 @@ class ExhibitionController extends Controller
     protected $apiRepository;
     protected $eventRepository;
 
+    const RELATED_EVENTS_PER_PAGE = 3;
+
     public function __construct(ExhibitionRepository $repository, EventRepository $eventRepository)
     {
         $this->apiRepository = $repository;
@@ -59,6 +61,21 @@ class ExhibitionController extends Controller
             'item' => $item,
             'relatedEventsByDay' => $relatedEventsByDay
         ]);
+    }
+
+    public function loadMoreRelatedEvents($id)
+    {
+        $item = $this->apiRepository->getById($id);
+        $relatedEventsByDay = $this->eventRepository->getRelatedEventsByDay($item, self::RELATED_EVENTS_PER_PAGE, request('page'));
+
+        $page = $relatedEventsByDay->isEmpty() ? '' : request('page') + 1;
+
+        return [
+            'page' => $page,
+            'html' => view('statics.exhibitions_load_more', [
+                'items' => $relatedEventsByDay
+            ])->render(),
+        ];
     }
 
 }

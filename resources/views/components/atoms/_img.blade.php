@@ -1,6 +1,6 @@
 @php
-    if (empty($image['sourceType'])) {
-        $image['sourceType'] === 'imgix';
+    if (!isset($image['sourceType']) || empty($image['sourceType'])) {
+        $image['sourceType'] = 'imgix';
     }
 
     if (isset($settings)) {
