@@ -63,15 +63,6 @@ m-paginator
 
 .m-paginator a {
   color: $color__text--title;
-
-  &:hover,
-  &:focus:hover {
-    color: $color__text--secondary;
-  }
-
-  &:active:hover {
-    color: $color__text--title;
-  }
 }
 
 .m-paginator__prev-next {
