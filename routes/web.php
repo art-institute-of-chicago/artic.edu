@@ -31,6 +31,11 @@ Route::name('events.show')->get('/events/{id}', 'EventController@show');
 Route::name('articles')->get('/articles', 'ArticleController@index');
 Route::name('articles.show')->get('/articles/{slug}', 'ArticleController@show');
 
+// Exhibition history routes
+// Must remain before exhibition routes
+Route::get('exhibitions/history', 'ExhibitionHistoryController@index');
+Route::get('exhibitions/history/{id}', 'ExhibitionHistoryController@show');
+
 // Exhibition routes
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionController@index');
 Route::name('exhibitions.upcoming')->get('/exhibitions/upcoming', 'ExhibitionController@upcoming');
@@ -39,10 +44,6 @@ Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/related
 
 // Artwork routes
 Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
-
-// Exhibition history routes
-Route::get('exhibitions/history', 'ExhibitionHistoryController@index');
-Route::get('exhibitions/history/{id}', 'ExhibitionHistoryController@show');
 
 // Gallery / tag page
 Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');

@@ -8,6 +8,30 @@ Returns an array of CSS settings for the site - see _variable.scss
 
 ***/
 
+function aic_convertFromImage($imageObject)
+{
+    $sourceType = 'imgix';
+
+    $src = ImageService::getUrl($imageObject->uuid);
+    $credit = '';
+    $creditUrl = '';
+
+    $image = array(
+        "sourceType" => $sourceType,
+        "src" => $src,
+        "width" => $imageObject->width,
+        "height" => $imageObject->height,
+        "shareUrl" => '#',
+        "shareTitle" => '',
+        "downloadUrl" => $src,
+        "downloadName" => $imageObject->filename,
+        "credit" => $credit,
+        "creditUrl" => $creditUrl,
+    );
+
+    return $image;
+}
+
 function aic_imageSizesCSSsettings() {
     $breakpoints = array(
         'xsmall' => '',
