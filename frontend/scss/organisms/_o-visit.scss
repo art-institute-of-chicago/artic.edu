@@ -29,13 +29,17 @@
 
 .o-visit .m-ticket-actions {
   display: flex;
-  flex-flow: row-reverse nowrap;
+  flex-flow: column-reverse;
+
+  @include breakpoint('small+') {
+    flex-flow: row-reverse nowrap;
+  }
 }
 
 .o-visit .m-ticket-actions__action {
-  flex: 0 0 auto;
 
   @include breakpoint('small+') {
+    flex: 0 0 auto;
     width: colspan(28, small);
     margin-top: 0;
   }
@@ -50,6 +54,14 @@
 
   @include breakpoint('xlarge') {
     width: colspan(13, xlarge);
+  }
+}
+
+.o-visit .m-ticket-actions__action:first-child {
+  margin-top: 12px;
+
+  @include breakpoint('small+') {
+    margin-top: 0;
   }
 }
 
