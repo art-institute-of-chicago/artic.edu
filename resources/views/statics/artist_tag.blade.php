@@ -8,6 +8,16 @@
 
 @component('components.organisms._o-artist-bio')
     @slot('item', $article)
+    @slot('imageSettings', array(
+        'srcset' => array(200,400,600,1000,1500,2000),
+        'sizes' => aic_gridListingImageSizes(array(
+              'xsmall' => '58',
+              'small' => '58',
+              'medium' => '58',
+              'large' => '28',
+              'xlarge' => '28',
+        )),
+    ))
 @endcomponent
 
 @component('components.molecules._m-title-bar')
@@ -25,6 +35,18 @@
             @component('components.molecules._m-listing----artwork')
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => ($item->type !== 'selection' || $item->type !== 'artwork') ? 'crop' : null,
+                    'ratio' => ($item->type !== 'selection' || $item->type !== 'artwork') ? '16:9' : null,
+                    'srcset' => array(200,400,600,1000),
+                    'sizes' => aic_gridListingImageSizes(array(
+                          'xsmall' => '1',
+                          'small' => '2',
+                          'medium' => '3',
+                          'large' => '4',
+                          'xlarge' => '4',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
@@ -56,6 +78,18 @@
         @foreach ($article->relatedArticles as $item)
             @component('components.molecules._m-listing----article')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600,1000),
+                    'sizes' => aic_gridListingImageSizes(array(
+                          'xsmall' => '1',
+                          'small' => '2',
+                          'medium' => '3',
+                          'large' => '4',
+                          'xlarge' => '4',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
@@ -135,6 +169,16 @@
         @foreach ($article->recentlyViewedArtworks as $item)
             @component('components.molecules._m-listing----artwork-minimal')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'srcset' => array(108,216,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '216px',
+                          'large' => sizeof($article->recentlyViewedArtworks) > 6 ? 3 : 8,
+                          'xlarge' => sizeof($article->recentlyViewedArtworks) > 6 ? 3 : 8,
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent

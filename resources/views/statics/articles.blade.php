@@ -11,6 +11,10 @@
             @slot('titleFont', 'f-headline-editorial')
             @slot('captionFont', 'f-secondary')
             @slot('imageSizes', '100vw')
+            @slot('imageSettings', array(
+                'srcset' => array(200,400,600,1000,1500,2000,3000),
+                'sizes' => '100vw',
+            ))
         @endcomponent
     @endcomponent
 
@@ -59,14 +63,17 @@
               @slot('item', $item)
               @slot('titleFont', 'f-list-4')
               @slot('captionFont', 'f-secondary')
-              @slot('imageSizes', aic_gridListingImageSizes(
-                array(
-                    'xsmall' => '1',
-                    'small' => '2',
-                    'medium' => '2',
-                    'large' => '2',
-                    'xlarge' => '2',
-                )
+              @slot('imageSettings', array(
+                  'fit' => 'crop',
+                  'ratio' => '16:9',
+                  'srcset' => array(200,400,600,1000,1500),
+                  'sizes' => aic_gridListingImageSizes(array(
+                        'xsmall' => '1',
+                        'small' => '2',
+                        'medium' => '2',
+                        'large' => '2',
+                        'xlarge' => '2',
+                  )),
               ))
           @endcomponent
       @endforeach
@@ -84,14 +91,17 @@
       @foreach ($articles as $item)
           @component('components.molecules._m-listing----article-minimal')
               @slot('item', $item)
-              @slot('imageSizes', aic_gridListingImageSizes(
-                array(
-                    'xsmall' => '1',
-                    'small' => '2',
-                    'medium' => '3',
-                    'large' => '4',
-                    'xlarge' => '4',
-                )
+              @slot('imageSettings', array(
+                  'fit' => 'crop',
+                  'ratio' => '16:9',
+                  'srcset' => array(200,400,600,1000,1500),
+                  'sizes' => aic_gridListingImageSizes(array(
+                        'xsmall' => '1',
+                        'small' => '2',
+                        'medium' => '3',
+                        'large' => '4',
+                        'xlarge' => '4',
+                  )),
               ))
           @endcomponent
       @endforeach

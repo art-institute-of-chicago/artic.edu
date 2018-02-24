@@ -7,7 +7,7 @@
                 @slot('href', $link['href'])
                 @component('components.atoms._img')
                     @slot('image', $link['image'])
-                    @slot('imageSettings', array(
+                    @slot('settings', array(
                         'fit' => 'crop',
                         'ratio' => '1:1',
                         'srcset' => array(20,40),

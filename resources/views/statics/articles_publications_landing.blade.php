@@ -38,6 +38,18 @@
                     @slot('captionFont', 'f-body-editorial')
                     @slot('variation', 'o-feature-plus-4__feature')
                     @slot('item', $featureHero)
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600,1000),
+                        'sizes' => aic_imageSizes(array(
+                              'xsmall' => '58',
+                              'small' => '58',
+                              'medium' => '38',
+                              'large' => '28',
+                              'xlarge' => '28',
+                        )),
+                    ))
                 @endcomponent
                 <ul class="o-feature-plus-4__items-1">
                 @foreach ($features as $editorial)
@@ -47,13 +59,13 @@
                             @slot('imageSettings', array(
                                 'fit' => 'crop',
                                 'ratio' => '16:9',
-                                'srcset' => array(200,400,600,1000),
+                                'srcset' => array(200,400,600),
                                 'sizes' => aic_imageSizes(array(
                                       'xsmall' => '58',
-                                      'small' => '58',
-                                      'medium' => '38',
-                                      'large' => '28',
-                                      'xlarge' => '28',
+                                      'small' => '28',
+                                      'medium' => '18',
+                                      'large' => '13',
+                                      'xlarge' => '13',
                                 )),
                             ))
                         @endcomponent
@@ -170,6 +182,18 @@
                     @slot('captionFont', 'f-body-editorial')
                     @slot('variation', 'o-feature-plus-4__feature')
                     @slot('item', $journalHero)
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600,1000),
+                        'sizes' => aic_imageSizes(array(
+                              'xsmall' => '58',
+                              'small' => '58',
+                              'medium' => '38',
+                              'large' => '28',
+                              'xlarge' => '28',
+                        )),
+                    ))
                 @endcomponent
                 <ul class="o-feature-plus-4__items-1">
                 @foreach ($journals as $editorial)
@@ -179,10 +203,10 @@
                             @slot('imageSizes', aic_imageSizes(
                               array(
                                   'xsmall' => '58',
-                                  'small' => '58',
-                                  'medium' => '38',
-                                  'large' => '28',
-                                  'xlarge' => '28',
+                                  'small' => '28',
+                                  'medium' => '18',
+                                  'large' => '13',
+                                  'xlarge' => '13',
                               )
                             ))
                         @endcomponent

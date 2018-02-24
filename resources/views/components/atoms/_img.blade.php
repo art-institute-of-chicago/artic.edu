@@ -1,4 +1,5 @@
 @php
+    $highlight = ' ';
     if (!isset($image['sourceType']) || empty($image['sourceType'])) {
         $image['sourceType'] = 'imgix';
     }
@@ -18,6 +19,7 @@
 
     if (empty($src)) {
         $src = $image['src'];
+        $highlight = ' data-no-img-settings';
     }
 
     if (empty($width)) {
@@ -36,4 +38,5 @@
     sizes="{{ $sizes ?? '' }}"
     width="{{ $width ?? '' }}"
     height="{{ $height ?? '' }}"
+    {{ $highlight }}
 >

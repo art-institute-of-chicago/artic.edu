@@ -23,15 +23,25 @@
 
         @component('components.molecules._m-post-hero')
             @slot('post', $hero)
+            @slot('imageSettings', array(
+                'srcset' => array(300,600,800,1000,1500),
+                'sizes' => aic_imageSizes(array(
+                      'xsmall' => 58,
+                      'small' => 38,
+                      'medium' => 38,
+                      'large' => 38,
+                      'xlarge' => 38,
+                )),
+            ))
         @endcomponent
 
-        @component('components.organisms._o-grid-listing')
+{{--         @component('components.organisms._o-grid-listing')
             @slot('cols_medium','2')
             @slot('cols_large','2')
             @slot('cols_xlarge','2')
             @slot('tag', 'div')
         @endcomponent
-
+ --}}
         @component('components.atoms._hr')
         @endcomponent
 
@@ -43,6 +53,18 @@
                 @component('components.molecules._m-listing----multi-links')
                     @slot('variation', 'm-listing--row@small m-listing--row@medium')
                     @slot('item', $item)
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600,800),
+                        'sizes' => aic_imageSizes(array(
+                              'xsmall' => '58',
+                              'small' => '23',
+                              'medium' => '22',
+                              'large' => '18',
+                              'xlarge' => '18',
+                        )),
+                    ))
                 @endcomponent
             @endforeach
         @endcomponent

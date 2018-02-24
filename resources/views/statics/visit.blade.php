@@ -6,6 +6,10 @@
 
   @component('components.molecules._m-media')
     @slot('item', $headerMedia)
+    @slot('imageSettings', array(
+        'srcset' => array(300,600,1000,1500,3000),
+        'sizes' => '100vw',
+    ))
   @endcomponent
 
   @component('components.molecules._m-links-bar')
@@ -332,6 +336,18 @@
           @component('components.molecules._m-listing----multi-links')
               @slot('variation', 'm-listing--row@small m-listing--row@medium')
               @slot('item', $item)
+              @slot('imageSettings', array(
+                  'fit' => 'crop',
+                  'ratio' => '16:9',
+                  'srcset' => array(200,400,600),
+                  'sizes' => aic_imageSizes(array(
+                        'xsmall' => '58',
+                        'small' => '23',
+                        'medium' => '22',
+                        'large' => '18',
+                        'xlarge' => '18',
+                  )),
+              ))
           @endcomponent
       @endforeach
   @endcomponent
@@ -380,6 +396,18 @@
           @component('components.molecules._m-listing----multi-links')
               @slot('variation', 'm-listing--row@small m-listing--row@medium')
               @slot('item', $item)
+              @slot('imageSettings', array(
+                  'fit' => 'crop',
+                  'ratio' => '16:9',
+                  'srcset' => array(200,400,600),
+                  'sizes' => aic_imageSizes(array(
+                        'xsmall' => '58',
+                        'small' => '23',
+                        'medium' => '22',
+                        'large' => '18',
+                        'xlarge' => '18',
+                  )),
+              ))
           @endcomponent
       @endforeach
   @endcomponent
@@ -400,6 +428,18 @@
           @component('components.molecules._m-listing----multi-links')
               @slot('variation', 'm-listing--row@small m-listing--row@medium')
               @slot('item', $item)
+              @slot('imageSettings', array(
+                  'fit' => 'crop',
+                  'ratio' => '16:9',
+                  'srcset' => array(200,400,600),
+                  'sizes' => aic_imageSizes(array(
+                        'xsmall' => '58',
+                        'small' => '23',
+                        'medium' => '22',
+                        'large' => '18',
+                        'xlarge' => '18',
+                  )),
+              ))
           @endcomponent
       @endforeach
   @endcomponent

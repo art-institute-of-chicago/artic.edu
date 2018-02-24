@@ -124,6 +124,18 @@
                 @component('components.molecules._m-listing----generic-row')
                     @slot('variation', 'm-listing--generic m-listing--row')
                     @slot('item', $item)
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(150,300,600),
+                        'sizes' => aic_imageSizes(array(
+                              'xsmall' => 58,
+                              'small' => 13,
+                              'medium' => 13,
+                              'large' => 10,
+                              'xlarge' => 10,
+                        )),
+                    ))
                 @endcomponent
             @endforeach
         @endcomponent

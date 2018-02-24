@@ -6,14 +6,15 @@
                     <figure class="g-modal__image">
                         @component('components.atoms._img')
                             @slot('image', $modal['image'])
-                            @slot('sizes', aic_imageSizes(
-                              array(
-                                  'xsmall' => '0',
-                                  'small' => '0',
-                                  'medium' => '25',
-                                  'large' => '20',
-                                  'xlarge' => '20',
-                              )
+                            @slot('imageSettings', array(
+                                'srcset' => array(300,600,1000,1500),
+                                'sizes' => aic_imageSizes(array(
+                                      'xsmall' => '0',
+                                      'small' => '0',
+                                      'medium' => '25',
+                                      'large' => '20',
+                                      'xlarge' => '20',
+                                )),
                             ))
                         @endcomponent
                     </figure>
