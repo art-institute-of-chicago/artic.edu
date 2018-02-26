@@ -6,6 +6,13 @@
         'label' => 'Title',
     ]) --}}
 
+    @formField('medias', [
+        'with_multiple' => false,
+        'no_crop' => false,
+        'label' => 'Hero Image',
+        'name' => 'hero'
+    ])
+
     @formField('input', [
         'name' => 'intro',
         'label' => 'Intro',
