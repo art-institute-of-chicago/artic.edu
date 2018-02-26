@@ -29,11 +29,6 @@ class Artist extends Model
     // those fields get auto set to false if not submited
     public $checkboxes = [];
 
-    public function siteTags()
-    {
-        return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
-    }
-
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article', 'article_artist')->withPivot('position')->orderBy('position');

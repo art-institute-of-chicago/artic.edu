@@ -31,6 +31,7 @@ class ArtistController extends BaseApiController
         'augmented' => [
             'title' => 'Augmented?',
             'field' => 'augmented',
+            'present' => true
         ],
         'datahub_id' => [
             'title' => 'Datahub ID',
@@ -38,18 +39,11 @@ class ArtistController extends BaseApiController
         ],
     ];
 
-    protected $formWith = ['siteTags'];
+    protected $formWith = [];
 
     protected function indexData($request)
     {
         return [];
-    }
-
-    protected function formData($request)
-    {
-        return [
-            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
-        ];
     }
 
 }

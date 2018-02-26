@@ -17,7 +17,6 @@ class ArtistRepository extends BaseApiRepository
 
     public function afterSave($object, $fields)
     {
-        $object->siteTags()->sync($fields['siteTags'] ?? []);
         $this->updateBrowser($object, $fields, 'articles');
         parent::afterSave($object, $fields);
     }

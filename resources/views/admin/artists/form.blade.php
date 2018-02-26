@@ -15,13 +15,6 @@
         'label' => 'Intro Copy',
         'type' => 'textarea'
     ])
-
-    @formField('multi_select', [
-        'name' => 'siteTags',
-        'label' => 'Tags',
-        'options' => $siteTagsList,
-        'placeholder' => 'Select some tags',
-    ])
 @stop
 
 @section('fieldsets')
