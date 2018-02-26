@@ -41,9 +41,12 @@ Load a collection and paginate (paginate function is the same as a regular model
 Search (This will use the search enpoint, which might disable some filters)
 
 `\App\Models\Api\Artwork::query()->search('SEARCH_STRING')->get()`
-or
-`\App\Models\Api\Artwork::query()->search('SEARCH_STRING')->paginate(PER_PAGE, ....)`
 
+This one will load the actual models, with the complete data
+
+`\App\Models\Api\Artwork::query()->search('SEARCH_STRING')->getSearch()`
+
+This is because using a search endpoint returns a smaller version of the object with relevant searching data. Not the full object. `getSearch()` loads the real data.
 
 
 ## Repository usage
