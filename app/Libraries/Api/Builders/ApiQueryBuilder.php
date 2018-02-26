@@ -128,7 +128,12 @@ class ApiQueryBuilder {
 
     public function whereIn($column, $values, $boolean = 'and', $not = false)
     {
-        throw new \Exception("whereIn function has not been defined for this Query Builder");
+        if ($column == 'id') {
+            $this->ids($values);
+            return $this;
+        } else {
+            throw new \Exception("whereIn function has been defined only for IDS at the API Query Builder");
+        }
     }
 
     /**
@@ -219,7 +224,9 @@ class ApiQueryBuilder {
      */
     public function ids($ids = [])
     {
-        $this->ids = $ids;
+        if (!empty($ids)) {
+            $this->ids = $ids;
+        }
 
         return $this;
     }
@@ -240,10 +247,11 @@ class ApiQueryBuilder {
         $results = $this->forPage($page, $perPage)->get($columns);
 
         $paginationData = $this->getPaginationData();
+        $total = $paginationData ? $paginationData->total : $results->count();
 
         $data = $results['body']->data;
 
-        return $this->paginator($data, $paginationData->total, $perPage, $page, [
+        return $this->paginator($data, $total, $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);

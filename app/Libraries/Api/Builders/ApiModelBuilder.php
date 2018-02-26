@@ -393,8 +393,9 @@ class ApiModelBuilder
 
         $results        = $this->forPage($page, $perPage)->get($columns);
         $paginationData = $this->query->getPaginationData();
+        $total = $paginationData ? $paginationData->total : $results->count();
 
-        return $this->paginator($results, $paginationData->total, $perPage, $page, [
+        return $this->paginator($results, $total, $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);

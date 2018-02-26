@@ -49,4 +49,10 @@ class ArtworkController extends BaseApiController
         ];
     }
 
+    public function browser()
+    {
+        // Allow to filter by IDS when listing artworks.
+        return response()->json($this->getBrowserData(['id' => request('artwork_ids')]));
+    }
+
 }

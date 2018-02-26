@@ -120,12 +120,12 @@ class AicGrammar
 
     protected function compileSearchParameters($query, array $elasticParameters)
     {
-        return ['query' => $elasticParameters];
+        return empty($elasticParameters) ? [] : ['query' => $elasticParameters];
     }
 
     protected function compileOrders($query, $order)
     {
-        return ['orders' => $order];
+        return empty($order) ? [] : ['orders' => $order];
     }
 
     protected function compileLimit($query, $limit)

@@ -5,10 +5,11 @@ namespace App\Models;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasApiModel;
+use App\Models\Behaviors\HasApiRelations;
 
 class Artist extends Model
 {
-    use HasSlug, HasApiModel, Transformable;
+    use HasSlug, HasApiModel, HasApiRelations, Transformable;
 
     protected $apiModel = 'App\Models\Api\Artist';
 
@@ -23,15 +24,14 @@ class Artist extends Model
         'title',
     ];
 
-    // those fields get auto set to null if not submited
-    public $nullable = [];
-
-    // those fields get auto set to false if not submited
-    public $checkboxes = [];
-
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article', 'article_artist')->withPivot('position')->orderBy('position');
+    }
+
+    public function featuredArtworks()
+    {
+        return $this->apiElements()->where('relation', 'featuredArtworks');
     }
 
     protected function transformMappingInternal()

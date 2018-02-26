@@ -22,6 +22,17 @@
 
         @formField('browser', [
             'routePrefix' => 'whatson',
+            'max' => 4,
+            'moduleName' => 'artworks',
+            'name' => 'featuredArtworks',
+            'label' => 'Featured Artwork',
+            'params' => [
+                'artwork_ids' => $item->artwork_ids
+            ]
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
             'name' => 'articles',
             'moduleName' => 'articles',
             'max' => 4,
