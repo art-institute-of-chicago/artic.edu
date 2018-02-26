@@ -10,6 +10,19 @@
         'name' => 'also_known_as',
         'label' => 'Also known as...',
     ])
+
+    @formField('input', [
+        'name' => 'birth_date',
+        'label' => 'Birth Date',
+        'disabled' => true
+    ])
+
+    @formField('input', [
+        'name' => 'death_date',
+        'label' => 'Death Date',
+        'disabled' => true
+    ])
+
     @formField('input', [
         'name' => 'intro_copy',
         'label' => 'Intro Copy',
