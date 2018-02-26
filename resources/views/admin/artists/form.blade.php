@@ -22,7 +22,7 @@
 
         @formField('browser', [
             'routePrefix' => 'whatson',
-            'max' => 4,
+            'max' => 1,
             'moduleName' => 'artworks',
             'name' => 'featuredArtworks',
             'label' => 'Featured Artwork',
