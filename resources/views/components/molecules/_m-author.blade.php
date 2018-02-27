@@ -3,7 +3,12 @@
         <div class="m-author__img">
             @component('components.atoms._img')
                 @slot('image', $img)
-                @slot('sizes', '80px')
+                @slot('settings', array(
+                    'fit' => 'crop',
+                    'ratio' => '1:1',
+                    'srcset' => array(40,80),
+                    'sizes' => '40px',
+                ))
             @endcomponent
         </div>
     @endif
