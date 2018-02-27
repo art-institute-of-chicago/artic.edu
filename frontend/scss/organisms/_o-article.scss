@@ -286,6 +286,8 @@
     float: left;
     width: colspan(43, large);
     margin-top: 0;
+    margin-right: auto;
+    margin-left: auto;
 
     .o-article__intro ~ & {
       margin-top: 28px;
@@ -305,24 +307,12 @@
     }
 
     @include breakpoint('large+') {
+      float: none;
       width: colspan(28, large);
-      //margin-left: colspan(15, large);
     }
 
     @include breakpoint('xlarge') {
       width: colspan(28, xlarge);
-      //margin-left: colspan(15, xlarge);
-    }
-  }
-
-  .o-article--video .o-article__body,
-  .o-article__secondary-actions ~ .o-article__intro ~ .o-article__body {
-    @include breakpoint('large+') {
-      margin-left: colspan(15, large);
-    }
-
-    @include breakpoint('xlarge') {
-      margin-left: colspan(15, xlarge);
     }
   }
 
