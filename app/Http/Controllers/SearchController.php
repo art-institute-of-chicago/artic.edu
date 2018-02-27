@@ -24,7 +24,7 @@ class SearchController extends Controller
         ExhibitionRepository $exhibitions
     ) {
         // General search to get featured elements and general metadata.
-        $collection = $search->forSearchQuery('picasso');
+        $featured = $search->forSearchQuery(request('q'), 2);
 
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
@@ -32,14 +32,35 @@ class SearchController extends Controller
         $artists     = $artists->forSearchQuery(request('q'), self::PER_PAGE);
         $exhibitions = $exhibitions->forSearchQuery(request('q'), self::PER_PAGE_EXHIBITIONS);
 
-        return view('site.search.index', [
-            'collection'  => $collection,
-            'artworks'    => $artworks,
-            'artists'     => $artists,
-            'eventsAndExhibitions' => $exhibitions,
+        $links = $this->buildSearchLinks($featured, $artworks, $artists, $exhibitions);
 
-            'allResultsView' => false
+        return view('site.search.index', [
+            'featuredResults'      => $featured->items,
+            'eventsAndExhibitions' => $exhibitions,
+            'artworks' => $artworks,
+            'artists'  => $artists,
+
+            'allResultsView' => false,
+            'searchResultsTypeLinks' => $links
         ]);
+    }
+
+
+    protected function buildSearchLinks($all, $artworks, $artists, $exhibitions) {
+        return [
+            $this->buildLabel('All', $all, route('search'), true),
+            $this->buildLabel('Artist', $artists, route('search'), false),
+            $this->buildLabel('Artwork', $artworks, route('search'), false),
+            $this->buildLabel('Exhibitions & Events', $exhibitions, route('search'), false),
+        ];
+    }
+
+    protected function buildLabel($name, $collection, $href, $active) {
+        return [
+            'label' => ($name == 'All' ? 'All' : str_plural($name, $collection->pagination->total)) .' ('. $collection->pagination->total.')',
+            'href' => $href,
+            'active' => $active
+        ];
     }
 
 }

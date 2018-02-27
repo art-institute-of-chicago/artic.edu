@@ -42,15 +42,16 @@
     </div>
 @endif
 
-@if (!empty($featuredResults))
+@if (isset($featuredResults) && !$featuredResults->isEmpty())
     @component('components.molecules._m-featured-results')
-        @if (sizeof($featuredResults) === 1)
+
+        @if ($featuredResults->count() == 1)
             @slot('title', 'Featured Result')
-            @component('components.molecules._m-listing----'.$featuredResults[0]['type'])
+            @component('components.molecules._m-listing----'.strtolower($featuredResults->first()->getClassName()))
                 @slot('tag', 'p')
                 @slot('variation', 'm-listing--row m-listing--tertiary')
                 @slot('imgVariation', 'm-listing__img--square')
-                @slot('item', $featuredResults[0]['item'])
+                @slot('item', $featuredResults->first())
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '1:1',
@@ -68,10 +69,10 @@
             @slot('title', 'Featured Results')
             @component('components.organisms._o-row-listing')
                 @foreach ($featuredResults as $featuredResult)
-                    @component('components.molecules._m-listing----'.$featuredResult['type'])
+                    @component('components.molecules._m-listing----'.strtolower($featuredResult->getClassName()))
                         @slot('variation', 'm-listing--row m-listing--tertiary')
                         @slot('imgVariation', 'm-listing__img--square')
-                        @slot('item', $featuredResult['item'])
+                        @slot('item', $featuredResult)
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '1:1',
@@ -89,7 +90,7 @@
             @endcomponent
         @endif
     @endcomponent
-@endif
+@endunless
 
 @if ($artists->pagination->total > 0)
     @component('components.molecules._m-title-bar')
