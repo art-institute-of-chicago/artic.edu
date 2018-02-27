@@ -6,24 +6,32 @@
   display: none;
   position: fixed;
   z-index: map-get($zindexs, 'shareMenu');
-  left: 50%;
-  top: 50%;
-  width: colspan(58, xsmall);
+  left: colspan(3, xsmall);
+  right: colspan(3, xsmall);
+  bottom: colspan(3, xsmall);
+  max-height: 80vh;
   background-color: $color__white;
   box-shadow: $shadow;
   overflow-y: auto;
-  transform: translateX(-50%) translateY(-50%);
   -webkit-overflow-scrolling: touch;
 
   @include breakpoint('small+') {
-    width: colspan(38, small);
+    left: colspan(10, small);
+    right: colspan(10, small);
+    top: 50%;
+    bottom: auto;
+    margin-top: -144px;
   }
 
   @include breakpoint('medium+') {
     position: absolute;
     left: auto;
+    right: auto;
     top: auto;
+    bottom: auto;
     width: 180px;
+    margin-top: 0;
+    max-height: auto;
     transform: none;
   }
 }

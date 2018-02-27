@@ -38,7 +38,8 @@ const positionElementToTarget = function(options) {
   }
 
   if (position.indexOf('top') > -1) {
-    top -= (targetBoundingClientRect.height + elementBoundingClientRect.height + padding.top + padding.top);
+    console.log(targetBoundingClientRect.top, elementBoundingClientRect.height, sT, padding.top);
+    top = targetBoundingClientRect.top + sT - padding.top - elementBoundingClientRect.height;
   }
 
   // check for out of bounds
