@@ -835,6 +835,11 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         return new Carbon($value);
     }
 
+    public function getClassName()
+    {
+        return (new \ReflectionClass($this))->getShortName();
+    }
+
     /**
      * Determine if the given value is a standard date format.
      *

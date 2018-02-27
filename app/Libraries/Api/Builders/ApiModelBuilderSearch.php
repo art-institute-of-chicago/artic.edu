@@ -22,7 +22,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
      *
      * @param  array  $columns
      */
-    public function getSearch($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    public function getSearch($perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [])
     {
         $builder = clone $this;
 
@@ -32,7 +32,11 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $results        = $this->forPage($page, $perPage)->get($columns);
         $paginationData = $this->query->getPaginationData();
 
-        $models = $this->extractModels($results);
+        if (isset($options['segregated']) && $options['segregated']) {
+            $models = $this->extractModels($results);
+        } else {
+            $models = $this->extractModelsFlat($results);
+        }
 
         return $this->paginator($models, $paginationData->total, $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),
@@ -40,18 +44,12 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         ]);
     }
 
-    protected function extractModels($results) {
+    protected function extractModelsFlat($results) {
         $original = clone $results;
 
-        // Group results by type
-        $resultsByType = $results->groupBy('api_model');
-
-        // Segregate results to load a single query per entity to load them all
-        $segregatedResults = $resultsByType->map(function ($collection, $type) {
-            $ids = $collection->pluck('id')->toArray();
-            if (isset($this->getTypeMap()[$type]))
-                return $this->getTypeMap()[$type]::query()->ids($ids)->get();
-        });
+        // It's more efficient to get segregated results, and then reshuffle them into the
+        // original order
+        $segregatedResults = $this->extractModels($results);
 
         // Mix them all up together
         $flatResults = collect(array_filter(array_flatten($segregatedResults)));
@@ -67,6 +65,25 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         });
 
         return $sorted;
+    }
+
+    protected function extractModels($results) {
+        // Group results by type
+        $resultsByType = $results->groupBy('api_model');
+
+        // Segregate results to load a single query per entity to load them all
+        $segregatedResults = $resultsByType->map(function ($collection, $type) {
+            $ids = $collection->pluck('id')->toArray();
+            if (isset($this->getTypeMap()[$type]))
+                return $this->getTypeMap()[$type]::query()->ids($ids)->get();
+        });
+
+        // Remove empty categories
+        $filtered = $segregatedResults->filter(function($value, $key) {
+            return !empty($value);
+        });
+
+        return $filtered;
     }
 
     protected function getTypeMap() {

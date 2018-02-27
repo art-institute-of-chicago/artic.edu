@@ -15,7 +15,8 @@ class Search extends BaseApiModel
 
     public $typeMap = [
         'artworks'    => 'App\Models\Api\Artwork',
-        'exhibitions' => 'App\Models\Api\Exhibition'
+        'exhibitions' => 'App\Models\Api\Exhibition',
+        'agents'      => 'App\Models\Api\Artist'
     ];
 
     // Use a search Builder to overload the search function to allow
