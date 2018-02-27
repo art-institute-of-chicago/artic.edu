@@ -320,7 +320,7 @@ class StaticsController extends Controller {
     // make some left rail links
     $locationLink = array('label' => 'Rubloff Auditorium', 'href' => '#', 'iconBefore' => 'location');
     $ticketLink = '#';
-    $registrationLink = array('label' => 'Registration required', 'href' => $ticketLink, 'iconBefore' => 'user');
+    $registrationLink = array('label' => 'Registration required', 'href' => $ticketLink);
     // make left rail nav array
     $nav = array();
     array_push($nav, $locationLink);
