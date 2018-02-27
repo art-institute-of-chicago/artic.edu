@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   top: 0;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255,255,255,.9);
   transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 
   @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
@@ -12,21 +12,6 @@
     backdrop-filter: blur(5px);
   }
 }
-
-// .g-header::after {
-//   content: '';
-//   position: absolute;
-//   left: colspan(3, xsmall, 0, true);
-//   right: colspan(3, xsmall, 0, true);
-//   bottom: 0;
-//   height: 1px;
-//   background-color: $color__rules--primary;
-
-//   @include breakpoint('small+') {
-//     left: 0;
-//     right: 0;
-//   }
-// }
 
 .g-header__inner {
   @extend %container;
@@ -190,6 +175,18 @@
 .g-header__opening-hours a,
 .g-header__nav-secondary a {
   color: $color__text--secondary;
+}
+
+.g-header__opening-hours a,
+.g-header__nav-secondary a {
+  &:hover,
+  &:focus:hover {
+    @include text-underline(1.02em, $color__text--secondary);
+  }
+
+  &:active {
+    @include text-underline(1.02em, transparent);
+  }
 }
 
 .g-header__menu-link {

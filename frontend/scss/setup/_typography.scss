@@ -576,6 +576,10 @@ $f-secondary: generate-font-obj((
   @include f-secondary;
 }
 
+/*
+  adds underlines all over the site!
+*/
+/*
 a.f-secondary,
 .f-secondary:not(.dropdown__list):not(.m-search-bar__autocomplete) a {
   &:hover,
@@ -587,6 +591,7 @@ a.f-secondary,
     @include text-underline(1.02em, transparent);
   }
 }
+/**/
 
 %f-link,
 .f-link {
