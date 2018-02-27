@@ -395,6 +395,7 @@
 
 
 .m-article-header--super-hero {
+  min-height: 125vh;
   padding-top: 0;
 
   @include breakpoint('large+') {
@@ -411,7 +412,6 @@
   top: 0;
   bottom: 0;
   width: 100vw;
-  height: 125vh;
   margin-left: -50vw;
 }
 
