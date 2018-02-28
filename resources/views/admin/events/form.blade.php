@@ -55,6 +55,12 @@
         'type' => 'textarea'
     ])
 
+    @formField('input', [
+        'name' => 'list_description',
+        'label' => 'List Description',
+        'type' => 'textarea'
+    ])
+
     @formField('multi_select', [
         'name' => 'siteTags',
         'label' => 'Tags',
