@@ -50,20 +50,11 @@
             </li>
             <li class="m-links-bar__item m-links-bar__item--primary">
                 @component('components.atoms._dropdown')
-                  @slot('prompt', 'Year: 2016')
+                  @slot('prompt', 'Year: '.$year)
                   @slot('ariaTitle', 'Select decade')
                   @slot('variation','dropdown--filter f-buttons')
                   @slot('font', 'f-buttons')
-                  @slot('options', array(
-                    array('href' => '#', 'label' => '2017'),
-                    array('href' => '#', 'label' => '2016', 'active' => true),
-                    array('href' => '#', 'label' => '2015'),
-                    array('href' => '#', 'label' => '2014'),
-                    array('href' => '#', 'label' => '2013'),
-                    array('href' => '#', 'label' => '2012'),
-                    array('href' => '#', 'label' => '2011'),
-                    array('href' => '#', 'label' => '2010'),
-                  ))
+                  @slot('options', $years)
                 @endcomponent
             </li>
             <li class="m-links-bar__item m-links-bar__item--search">
@@ -82,7 +73,7 @@
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'Showing 10 out of 23 Exhibitions', 'href' => '#')))
         @slot('titleFont', 'f-numeral-date')
-        2016
+        {{ $year }}
     @endcomponent
 
     @component('components.atoms._hr')

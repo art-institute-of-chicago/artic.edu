@@ -19,4 +19,8 @@ class ExhibitionRepository extends BaseApiRepository
         return $this->model->query()->upcoming()->getSearch();
     }
 
+    public function history($year=null, $perPage=null) {
+        return $this->model->query()->history($year)->getSearch(15);
+    }
+
 }

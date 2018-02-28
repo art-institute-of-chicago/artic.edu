@@ -92,6 +92,55 @@ class Exhibition extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeHistory($query, $year=null) {
+        if ($year == null) {
+            $params = [
+              'bool' => [
+                'must' => [
+                  0 => [
+                    'range' => [
+                      'end_at' => [
+                        'lte' => 'now',
+                      ],
+                    ],
+                  ],
+                ],
+              ],
+            ];
+        } else {
+            $start = $year.'-01-01';
+            $end = $year.'-12-31';
+            $params = [
+              'bool' => [
+                'must' => [
+                  0 => [
+                    'range' => [
+                      'end_at' => [
+                        'lte' => $end
+                      ],
+                    ],
+                  ],
+                  1 => [
+                    'range' => [
+                      'start_at' => [
+                        'gte' => $start
+                      ],
+                    ],
+                  ],
+                  2 => [
+                      'term' => [
+                        'status' => 'Closed',
+                      ],
+                  ],
+                ],
+              ],
+            ];
+        }
+
+        return $query->orderBy('start_at', 'asc')->rawSearch($params);
+    }
+
+
     // Solve this using casts. Because it returns an object it can't be used on the CMS
     // A value option could be added when showing
     // public function getStartAtAttribute($value) {

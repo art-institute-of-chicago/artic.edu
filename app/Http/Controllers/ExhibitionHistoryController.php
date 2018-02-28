@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
+use App\Repositories\Api\ExhibitionRepository;
+
 use App\Models\Api\Exhibition;
 use App\Models\Page;
 
 class ExhibitionHistoryController extends Controller
 {
-    public function index()
+
+    protected $apiRepository;
+
+    public function __construct(ExhibitionRepository $repository)
+    {
+        $this->apiRepository = $repository;
+    }
+
+    public function index(Request $request)
     {
         $page = Page::forType('Exhibition History')->firstOrFail();
 
@@ -16,6 +28,24 @@ class ExhibitionHistoryController extends Controller
             "type" => 'text',
             "content" => '<p>'.$page->exhibition_history_intro_copy.'</p>'
         ];
+
+        $year = intval($request->get('year', date('Y')));
+        $years = [];
+        for($i=2010; $i<2020; $i++) {
+            $y = [
+                'href' => '?year='.$i
+            ,   'label' => $i
+            ];
+            if ($i == $year) {
+                $y['active'] = true;
+            } else {
+                $y['active'] = false;
+            }
+
+            $years[] = $y;
+        }
+        // dd($years);
+        $exhibitions = $this->apiRepository->history($year);
 
         $view_data = [
             'title' => 'Exhibition History',
@@ -27,7 +57,9 @@ class ExhibitionHistoryController extends Controller
               'hideCaption' => true,
              ),
             'blocks' => $blocks,
-            'exhibitions' => [],
+            'years' => $years,
+            'year' => $year,
+            'exhibitions' => $exhibitions,
             'recentlyViewedArtworks' => [],
             'interestedThemes' => array(
               array(
