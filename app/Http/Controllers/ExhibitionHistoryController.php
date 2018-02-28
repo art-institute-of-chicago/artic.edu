@@ -30,21 +30,36 @@ class ExhibitionHistoryController extends Controller
         ];
 
         $year = intval($request->get('year', date('Y')));
-        $years = [];
-        for($i=2010; $i<2020; $i++) {
+
+        $decades = collect([]);
+        $decade_start = 0;
+        $decade_promot = '';
+        for($i=1900; $i<date('Y'); $i=$i+10) {
+            $d = array('href' => '?year='.$i, 'label' => ''.$i.'-'.($i+9));
+
+            if ($year >= $i && $year < $i+10) {
+                $d['active'] = true;
+                $decade_start = $i;
+                $decade_prompt = $d['label'];
+            }
+
+            $decades[] = $d;
+        }
+        $decades = $decades->reverse();
+
+        $years = collect([]);
+        for($i=$decade_start; $i<($decade_start+10); $i++) {
             $y = [
                 'href' => '?year='.$i
             ,   'label' => $i
             ];
             if ($i == $year) {
                 $y['active'] = true;
-            } else {
-                $y['active'] = false;
             }
 
             $years[] = $y;
         }
-        // dd($years);
+        $years = $years->reverse();
         $exhibitions = $this->apiRepository->history($year);
 
         $view_data = [
@@ -58,6 +73,8 @@ class ExhibitionHistoryController extends Controller
              ),
             'blocks' => $blocks,
             'years' => $years,
+            'decades' => $decades,
+            'decade_prompt' => $decade_prompt,
             'year' => $year,
             'exhibitions' => $exhibitions,
             'recentlyViewedArtworks' => [],

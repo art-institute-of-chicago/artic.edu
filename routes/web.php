@@ -33,8 +33,8 @@ Route::name('articles.show')->get('/articles/{slug}', 'ArticleController@show');
 
 // Exhibition history routes
 // Must remain before exhibition routes
-Route::get('exhibitions/history', 'ExhibitionHistoryController@index');
-Route::get('exhibitions/history/{id}', 'ExhibitionHistoryController@show');
+Route::name('exhibitions.history')->get('exhibitions/history', 'ExhibitionHistoryController@index');
+Route::name('exhibitions.history.show')->get('exhibitions/history/{id}', 'ExhibitionHistoryController@show');
 
 // Exhibition routes
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionController@index');

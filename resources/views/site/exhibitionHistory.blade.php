@@ -34,18 +34,11 @@
         @slot('primaryHtml')
             <li class="m-links-bar__item m-links-bar__item--primary">
                 @component('components.atoms._dropdown')
-                  @slot('prompt', 'Decade: 2010-2017')
+                  @slot('prompt', 'Decade: '.$decade_prompt)
                   @slot('ariaTitle', 'Select decade')
                   @slot('variation','dropdown--filter f-buttons')
                   @slot('font', 'f-buttons')
-                  @slot('options', array(
-                    array('href' => '#', 'label' => '2010-2017', 'active' => true),
-                    array('href' => '#', 'label' => '2000-2009'),
-                    array('href' => '#', 'label' => '1990-1999'),
-                    array('href' => '#', 'label' => '1980-1989'),
-                    array('href' => '#', 'label' => '1970-1979'),
-                    array('href' => '#', 'label' => '1960-1969'),
-                  ))
+                  @slot('options', $decades)
                 @endcomponent
             </li>
             <li class="m-links-bar__item m-links-bar__item--primary">
