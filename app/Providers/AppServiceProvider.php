@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
         $this->registerApiClient();
         $this->registerLakeviewImageService();
         $this->composeTemplatesViews();
+
+        \Illuminate\Pagination\AbstractPaginator::defaultView("site.pagination.aic");
+        \Illuminate\Pagination\AbstractPaginator::defaultSimpleView("site.pagination.simple-aic");
     }
 
     public function registerMorphMap()

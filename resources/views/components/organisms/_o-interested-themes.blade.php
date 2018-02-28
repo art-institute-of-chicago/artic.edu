@@ -3,9 +3,9 @@
     @endcomponent
     @php
         $themeString = 'It seems it you could also be interested in ';
-        $themesLength = sizeof(themes);
+        $themesLength = sizeof($themes);
         $themesIndex = 1;
-        foreach (themes as $theme) {
+        foreach ($themes as $theme) {
             if ($themesIndex > 1 && $themesIndex < $themesLength) {
                 $themeString .= ', ';
             }

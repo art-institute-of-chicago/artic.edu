@@ -64,7 +64,7 @@
     @endcomponent
 
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Showing 10 out of 23 Exhibitions', 'href' => '#')))
+        @slot('links', array(array('label' => 'Showing '.$exhibitions->count().' out of '.$exhibitions->total().' Exhibitions', 'href' => '#')))
         @slot('titleFont', 'f-numeral-date')
         {{ $year }}
     @endcomponent
@@ -81,8 +81,7 @@
         @endforeach
     @endcomponent
 
-    @component('components.molecules._m-paginator')
-    @endcomponent
+    {!! $exhibitions->appends(['year' => $year])->links() !!}
 
     @component('components.organisms._o-recently-viewed')
         @slot('artworks',$recentlyViewedArtworks ?? null)
