@@ -542,63 +542,12 @@
     @endcomponent
 @endif
 
-@if ($item->recentlyViewedArtworks)
-    @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Clear your history', 'href' => '#')))
-        Recently Viewed
-    @endcomponent
-    @component('components.atoms._hr')
-    @endcomponent
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--scroll@large o-grid-listing--scroll@xlarge  o-grid-listing--gridlines-cols')
-        @slot('cols_large',(sizeof($item->recentlyViewedArtworks) > 6) ? '12' : '6')
-        @slot('cols_xlarge',(sizeof($item->recentlyViewedArtworks) > 6) ? '12' : '6')
-        @slot('behavior','dragScroll')
-        @foreach ($item->recentlyViewedArtworks as $item)
-            @component('components.molecules._m-listing----artwork-minimal')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'srcset' => array(108,216,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '216px',
-                          'small' => '216px',
-                          'medium' => '216px',
-                          'large' => sizeof($article->recentlyViewedArtworks) > 6 ? 3 : 8,
-                          'xlarge' => sizeof($article->recentlyViewedArtworks) > 6 ? 3 : 8,
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endcomponent
-    @component('components.atoms._hr')
-    @endcomponent
-@endif
+@component('components.organisms._o-recently-viewed')
+    @slot('artworks',$item->recentlyViewedArtworks)
+@endcomponent
 
-@if ($item->interestedThemes)
-    @php
-        $themeString = 'It seems it you could also be interested in ';
-        $themesLength = sizeof($item->interestedThemes);
-        $themesIndex = 1;
-        foreach ($item->interestedThemes as $theme) {
-            if ($themesIndex > 1 && $themesIndex < $themesLength) {
-                $themeString .= ', ';
-            }
-            if ($themesIndex === $themesLength) {
-                $themeString .= ' and ';
-            }
-            $themeString .= '<a href="'.$theme['href'].'">'.$theme['label'].'</a>';
-            if ($themesIndex === $themesLength) {
-                $themeString .= '.';
-            }
-            $themesIndex++;
-        }
-    @endphp
-    @component('components.blocks._text')
-        @slot('variation','interests-list')
-        @slot('font','f-list-2')
-        @slot('tag','p')
-        {!! $themeString !!}
-    @endcomponent
-@endif
+@component('components.organisms._o-interested-themes')
+    @slot('themes',$item->interestedThemes)
+@endcomponent
 
 @endsection
