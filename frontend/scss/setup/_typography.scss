@@ -22,14 +22,14 @@
 // https://code.area17.com/mike/a17-js-helpers/wikis/A17-Helpers-fontObservers
 
 // the fall back font family string. eg. Helvetica, Arial, sans-serif.
-$serif-font: 'Sabon', 'Times New Roman', Times, Georgia, serif;
-$sans-serif-font: "Ideal Sans A", "Ideal Sans B", Helvetica, Arial, sans-serif;
+$serif-font: 'Times New Roman', Times, Georgia, serif;
+$sans-serif-font: Helvetica, Arial, sans-serif;
 // the font family string when the primary font is loaded (your primary font plus the fall back string)
 $serif-font--loaded: 'Sabon', #{$serif-font};
 $sans-serif-font--loaded: "Ideal Sans A", "Ideal Sans B", #{$sans-serif-font};
 // the appended class names when the fonts have loaded
-$serif-font-loaded-class: 'js-serif-font-loaded';
-$sans-serif-font-loaded-class: 'js-sans-serif-font-loaded';
+$serif-font-loaded-class: 's-serif-loaded';
+$sans-serif-font-loaded-class: 's-sans-serif-loaded';
 // cap heights of the fonts - measure height of a capital H at 100px and then divide by 100
 $cap-heights: (
   serif: .66,

@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll } from './functions';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers } from './functions';
 
 /*
 
@@ -38,9 +38,42 @@ document.addEventListener('DOMContentLoaded', function(){
   loadProgressBar();
   // on resize, check
   resized();
-
   // handle sticky header and articleBodyInViewport
   setScrollDirection();
+  // watch for fonts loading
+  fontObservers({
+    name: 'serif',
+    variants: [
+      {
+        name: 'Sabon',
+        weight: '400',
+        style: 'normal'
+      },
+      {
+        name: 'Sabon',
+        weight: '400',
+        style: 'italic'
+      },
+      {
+        name: 'Sabon',
+        weight: '500',
+        style: 'normal'
+      },
+    ]
+  });
+  fontObservers({
+    name: 'sans-serif',
+    variants: [
+      {
+        name: 'Ideal Sans A',
+      },
+      {
+        name: 'Ideal Sans B',
+        weight: '400',
+        style: 'italic'
+      },
+    ]
+  });
 });
 
 // make console.log safe
