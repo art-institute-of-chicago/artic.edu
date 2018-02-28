@@ -154,13 +154,26 @@ class ApiModelBuilder
     /**
      * Perform a raw ES search
      *
-     * @param  string  $search
+     * @param  array $search
      * @return $this
      */
     public function rawSearch($search)
     {
         $this->query->rawSearch(...func_get_args());
         $this->performSearch = true;
+
+        return $this;
+    }
+
+    /**
+     * Add aggregations to the raw ES search
+     *
+     * @param  array $aggregations
+     * @return $this
+     */
+    public function aggregations($aggregations)
+    {
+        $this->query->aggregations(...func_get_args());
 
         return $this;
     }

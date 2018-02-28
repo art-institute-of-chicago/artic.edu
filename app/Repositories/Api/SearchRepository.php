@@ -14,4 +14,21 @@ class SearchRepository extends BaseApiRepository
         $this->model = $model;
     }
 
+    public function forSearchQuery($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [] )
+    {
+        // Build the search query
+        $search  = $this->model->search($string)->aggregationType();
+
+        // Perform the query
+        $results = $search->getSearch($perPage, $columns, $pageName, $page, $options);
+
+        // Build metadata and results
+        return (object) [
+            'pagination'   => $search->paginationData,
+            'aggregations' => $search->aggregationsData,
+            'suggestions'  => $search->suggestionsData,
+            'items'        => $results
+        ];
+    }
+
 }

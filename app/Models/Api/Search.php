@@ -26,4 +26,17 @@ class Search extends BaseApiModel
         return new ApiModelBuilderSearch($query);
     }
 
+    public function scopeAggregationType($query)
+    {
+        $aggs = [
+            'types' => [
+                'terms' => [
+                    'field' => 'api_model'
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
 }

@@ -18,7 +18,8 @@ class AicGrammar
         'columns',
         'searchText',
         'searchParameters',
-        'searchResources'
+        'searchResources',
+        'aggregationParameters'
     ];
 
     /**
@@ -121,6 +122,11 @@ class AicGrammar
     protected function compileSearchParameters($query, array $elasticParameters)
     {
         return empty($elasticParameters) ? [] : ['query' => $elasticParameters];
+    }
+
+    protected function compileAggregationParameters($query, array $aggregations)
+    {
+        return empty($aggregations) ? [] : ['aggregations' => $aggregations];
     }
 
     protected function compileOrders($query, $order)

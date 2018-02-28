@@ -88,6 +88,14 @@ class ApiQueryBuilder {
      */
     public $searchParameters = [];
 
+
+    /**
+     * Aggregations parameters for a raw ES query.
+     *
+     * @var array
+     */
+    public $aggregationParameters = [];
+
     /**
      * Search specific resources. Useful only for general searches
      *
@@ -381,6 +389,19 @@ class ApiQueryBuilder {
     public function rawSearch($search)
     {
         $this->searchParameters = array_merge_recursive($this->searchParameters, $search);
+
+        return $this;
+    }
+
+    /**
+     * Add aggregations to the raw ES search
+     *
+     * @param  array $aggregations
+     * @return $this
+     */
+    public function aggregations($aggregations)
+    {
+        $this->aggregationParameters = array_merge_recursive($this->aggregationParameters, $aggregations);
 
         return $this;
     }

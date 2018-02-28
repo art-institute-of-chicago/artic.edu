@@ -17,22 +17,36 @@ class SearchController extends Controller
     const PER_PAGE_ARTWORKS = 8;
     const PER_PAGE_EXHIBITIONS = 4;
 
-    public function index(
+    protected $artworksRepository;
+    protected $artistsRepository;
+    protected $searchRepository;
+    protected $exhibitionsRepository;
+
+    public function __construct(
         ArtworkRepository $artworks,
         ArtistRepository $artists,
         SearchRepository $search,
         ExhibitionRepository $exhibitions
     ) {
+        $this->artworksRepository = $artworks;
+        $this->artistsRepository = $artists;
+        $this->searchRepository = $search;
+        $this->exhibitionsRepository = $exhibitions;
+    }
+
+
+    public function index()
+    {
         // General search to get featured elements and general metadata.
-        $featured = $search->forSearchQuery(request('q'), 2);
+        $featured = $this->searchRepository->forSearchQuery(request('q'), 2);
 
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
-        $artworks    = $artworks->forSearchQuery(request('q'), self::PER_PAGE_ARTWORKS);
-        $artists     = $artists->forSearchQuery(request('q'), self::PER_PAGE);
-        $exhibitions = $exhibitions->forSearchQuery(request('q'), self::PER_PAGE_EXHIBITIONS);
+        $artworks    = $this->artworksRepository->forSearchQuery(request('q'), self::PER_PAGE_ARTWORKS);
+        $artists     = $this->artistsRepository->forSearchQuery(request('q'), self::PER_PAGE);
+        $exhibitions = $this->exhibitionsRepository->forSearchQuery(request('q'), self::PER_PAGE_EXHIBITIONS);
 
-        $links = $this->buildSearchLinks($featured, $artworks, $artists, $exhibitions);
+        $links = $this->buildSearchLinks($featured, $artworks, $artists, $exhibitions, 'all');
 
         return view('site.search.index', [
             'featuredResults'      => $featured->items,
@@ -45,13 +59,12 @@ class SearchController extends Controller
         ]);
     }
 
-
-    protected function buildSearchLinks($all, $artworks, $artists, $exhibitions) {
+    protected function buildSearchLinks($all, $artworks, $artists, $exhibitions, $active = 'all') {
         return [
-            $this->buildLabel('All', $all, route('search'), true),
-            $this->buildLabel('Artist', $artists, route('search'), false),
-            $this->buildLabel('Artwork', $artworks, route('search'), false),
-            $this->buildLabel('Exhibitions & Events', $exhibitions, route('search'), false),
+            $this->buildLabel('All', $all, route('search'), $active == 'all'),
+            $this->buildLabel('Artist', $artists, route('search'), $active == 'artists'),
+            $this->buildLabel('Artwork', $artworks, route('search'), $active == 'artworks'),
+            $this->buildLabel('Exhibitions & Events', $exhibitions, route('search'), $active == 'exhibitions'),
         ];
     }
 

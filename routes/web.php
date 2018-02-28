@@ -22,6 +22,9 @@ Route::name('visit')->get('/visit', 'VisitController@index');
 
 // Search routes
 Route::name('search')->get('/search', 'SearchController@index');
+Route::name('search.artists')->get('/search/artists', 'SearchController@artists');
+Route::name('search.artworks')->get('/search/artworks', 'SearchController@artworks');
+Route::name('search.exhibitionsEvents')->get('/search/exhibitions_and_events', 'SearchController@exhibitionsEvents');
 
 // Events routes
 Route::name('events')->get('/events', 'EventController@index');
