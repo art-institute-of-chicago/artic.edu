@@ -39,6 +39,11 @@
     'title_singular' => 'Dinning Hour'
 ])
 
+@formField('input', [
+    'name' => 'visit_intro',
+    'label' => 'Explore all dinning link'
+])
+
 @formField('map', [
     'name' => 'location',
     'label' => 'Location',
