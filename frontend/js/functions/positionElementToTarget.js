@@ -21,38 +21,60 @@ const positionElementToTarget = function(options) {
   let elementBoundingClientRect = element.getBoundingClientRect();
   let sT = document.documentElement.scrollTop || document.body.scrollTop;
   let left = 0;
-  let top = targetBoundingClientRect.top + targetBoundingClientRect.height + sT + padding.top;
+  let top = 0;
+
+  function _alignToBottom() {
+    top = targetBoundingClientRect.top + targetBoundingClientRect.height + sT + padding.top;
+  }
+
+  function _alignToTop() {
+    top = targetBoundingClientRect.top + sT - padding.top - elementBoundingClientRect.height;
+  }
+
+  function _alignToLeft() {
+    left = targetBoundingClientRect.left + padding.left;
+  }
+
+  function _alignToHorizCenter() {
+    _alignToLeft();
+    left += ((targetBoundingClientRect.width / 2) - (elementBoundingClientRect.width / 2) - padding.left);
+  }
+
+  function _alignToRight() {
+    left = targetBoundingClientRect.left + targetBoundingClientRect.width - elementBoundingClientRect.width - padding.left;
+  }
 
   if (padding.left !== 'auto') {
-    left = targetBoundingClientRect.left + padding.left - a17BoundingClientRect.left;
-    // ??
-    left = targetBoundingClientRect.left + padding.left;
+    if (position.indexOf('left') > -1) {
+      _alignToLeft();
+    }
 
     if (position.indexOf('center') > -1) {
-      left += ((targetBoundingClientRect.width / 2) - (elementBoundingClientRect.width / 2) - padding.left);
+      _alignToHorizCenter();
     }
 
     if (position.indexOf('right') > -1) {
-      left += targetBoundingClientRect.width;
+      _alignToRight();
     }
+  } else {
+    _alignToLeft();
   }
 
   if (position.indexOf('top') > -1) {
-    console.log(targetBoundingClientRect.top, elementBoundingClientRect.height, sT, padding.top);
-    top = targetBoundingClientRect.top + sT - padding.top - elementBoundingClientRect.height;
+    _alignToTop();
+  } else {
+    _alignToBottom();
   }
 
   // check for out of bounds
   if (sT > top) {
-    top = targetBoundingClientRect.top + targetBoundingClientRect.height + sT + padding.top;
+    _alignToBottom();
   }
+
 
   if (padding.left !== 'auto') {
     if (left + elementBoundingClientRect.width > window.innerWidth) {
-      left -= 20;
-      while (left + elementBoundingClientRect.width > window.innerWidth) {
-        left -= 20;
-      }
+      _alignToRight();
     } else if (left < padding.left) {
       left = padding.left;
     }
