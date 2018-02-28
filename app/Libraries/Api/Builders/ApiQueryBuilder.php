@@ -208,8 +208,7 @@ class ApiQueryBuilder {
     public function orderBy($column, $direction = 'asc')
     {
         $this->orders[] = [
-            'column' => $column,
-            'direction' => strtolower($direction) == 'asc' ? 'asc' : 'desc',
+            $column => ['order' => strtolower($direction) == 'asc' ? 'asc' : 'desc']
         ];
 
         return $this;

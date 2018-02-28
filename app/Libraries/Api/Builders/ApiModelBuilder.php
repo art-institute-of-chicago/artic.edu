@@ -309,7 +309,14 @@ class ApiModelBuilder
             $models = $this->model->newQuery()->ids($ids)->get();
         }
 
-        return $this->paginator($models, $paginationData->total, $perPage, $page, [
+        // Sort them by the original ids listing
+        $sorted = $models->sortBy(function($model, $key) use ($ids) {
+            return collect($ids)->search(function($id, $key) use ($model) {
+                return $id == $model->id;
+            });
+        });
+
+        return $this->paginator($sorted, $paginationData->total, $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);

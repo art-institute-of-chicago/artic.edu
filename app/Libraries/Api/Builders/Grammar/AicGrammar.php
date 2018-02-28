@@ -125,7 +125,7 @@ class AicGrammar
 
     protected function compileOrders($query, $order)
     {
-        return empty($order) ? [] : ['orders' => $order];
+        return empty($order) ? [] : ['sort' => $order];
     }
 
     protected function compileLimit($query, $limit)
