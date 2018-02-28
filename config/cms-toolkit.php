@@ -132,11 +132,17 @@ return [
                 'component' => 'a17-block-locations',
                 'max' => 10,
             ],
-            'hours' => [
+            'featured_hours' => [
                 'title' => 'Featured Hours',
                 'trigger' => 'Add featured hours',
-                'component' => 'a17-block-hours',
+                'component' => 'a17-block-featured_hours',
                 'max' => 10,
+            ],
+            'dinning_hours' => [
+                'title' => 'Dinning Hours',
+                'trigger' => 'Add Dinning hours',
+                'component' => 'a17-block-dinning_hours',
+                'max' => 3,
             ],
             'accordion_item' => [
                 'title' => 'Accordion Item',
