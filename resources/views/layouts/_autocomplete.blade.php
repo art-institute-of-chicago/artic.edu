@@ -14,7 +14,7 @@
             @endforeach
         </ul>
         <p class="g-search__autocomplete-all f-buttons">
-            <a href="{{ isset($seeAllUrl) ? $seeAllUrl : route('search') }}">See {{ $resultCount }} {{ $resultCount == 1 ? 'result' : 'results' }} for {{ $term }} &rsaquo;</a>
+            <a href="{{ isset($seeAllUrl) ? $seeAllUrl : route('search') }}">See {{ $resultCount }} {{ $resultCount == 1 ? 'result' : 'results' }} for {{ $term }}&nbsp;&nbsp;&rsaquo;</a>
         </p>
     </div>
 @endif

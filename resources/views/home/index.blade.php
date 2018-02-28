@@ -23,8 +23,8 @@
 
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', array(
-        array('label' => 'Hours and admission fees &rsaquo;', 'href' => $_pages['hours'], 'variation' => 'arrow-link'),
-        array('label' => 'Directions and parking &rsaquo;', 'href' => $_pages['directions'], 'variation' => 'arrow-link')
+        array('label' => 'Hours and admission fees&nbsp;&nbsp;&rsaquo;', 'href' => $_pages['hours'], 'variation' => 'arrow-link'),
+        array('label' => 'Directions and parking&nbsp;&nbsp;&rsaquo;', 'href' => $_pages['directions'], 'variation' => 'arrow-link')
     ))
 @endcomponent
 

@@ -3,7 +3,7 @@
   @if (isset($links) and $links)
   <ul class="m-title-bar__links">
     @foreach ($links as $link)
-    <li><a href="{{ $link['href'] }}" class="f-buttons">{!! $link['label'] !!} &rsaquo;</a></li>
+    <li><a href="{{ $link['href'] }}" class="f-buttons">{!! $link['label'] !!}&nbsp;&nbsp;&rsaquo;</a></li>
     @endforeach
   </ul>
   @endif

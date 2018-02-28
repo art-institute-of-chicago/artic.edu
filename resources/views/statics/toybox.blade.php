@@ -623,8 +623,8 @@ array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' 
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('label' => 'Exhibitions &rsaquo;', 'href' => '#', 'variation' => 'arrow-link', 'active' => true));
-array_push($linksBarPrimary, array('label' => 'Events &rsaquo;', 'href' => '#', 'variation' => 'arrow-link', 'active' => false));
+array_push($linksBarPrimary, array('label' => 'Exhibitions&nbsp;&nbsp;&rsaquo;', 'href' => '#', 'variation' => 'arrow-link', 'active' => true));
+array_push($linksBarPrimary, array('label' => 'Events&nbsp;&nbsp;&rsaquo;', 'href' => '#', 'variation' => 'arrow-link', 'active' => false));
 array_push($linksBarPrimary, array('label' => 'Archive', 'href' => '#', 'active' => false, 'liVariation' => 'm-links-bar__item--push'));
 array_push($linksBarPrimary, array('label' => 'All', 'href' => '#', 'active' => false, 'liVariation' => 'm-links-bar__item--push'));
 @endphp
