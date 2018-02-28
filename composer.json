@@ -43,7 +43,8 @@
         "files": [
             "app/Helpers/MigrationHelpers.php",
             "app/Helpers/ImageHelpers.php",
-            "app/Helpers/DatesHelpers.php"
+            "app/Helpers/DatesHelpers.php",
+            "app/Helpers/QueryHelpers.php"
         ]
     },
     "autoload-dev": {

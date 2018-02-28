@@ -92,7 +92,7 @@
     @endcomponent
 @endunless
 
-@if ($artists->pagination->total > 0)
+@if (isset($artists) && $artists->pagination->total > 0)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all '. $artists->pagination->total.' artists', 'href' => route('search'))))
         Artists
@@ -193,9 +193,11 @@
     @endif
 @endif
 
-@if ($artworks->pagination->total > 0)
+@if (isset($artworks) && $artworks->pagination->total > 0)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all '. $artworks->pagination->total .' artworks', 'href' => route('search'))))
+        @unless ($allResultsView)
+            @slot('links', array(array('label' => 'See all '. $artworks->pagination->total .' artworks', 'href' => route('search'))))
+        @endunless
         Artworks
     @endcomponent
     @if (isset($allResultsView) and $allResultsView)
@@ -204,13 +206,13 @@
         @component('components.molecules._m-search-actions----collection')
         @endcomponent
         @component('components.molecules._m-active-filters')
-            @slot('links', $artworks['activeFilters'])
+            @slot('links', $activeFilters)
             @slot('clearAllLink', '/statics/collection')
         @endcomponent
         @component('components.organisms._o-collection-filters')
-            @slot('activeFilters', $artworks['activeFilters'])
+            @slot('activeFilters', $activeFilters)
             @slot('clearAllLink', '/statics/search_results_artworks')
-            @slot('filterCategories', $artworks['filterCategories'])
+            @slot('filterCategories', $filterCategories)
         @endcomponent
     @endif
     @component('components.organisms._o-pinboard')
@@ -244,9 +246,11 @@
     @endif
 @endif
 
-@if ($eventsAndExhibitions->pagination->total > 0)
+@if (isset($eventsAndExhibitions) && $eventsAndExhibitions->pagination->total > 0)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all '. $eventsAndExhibitions->pagination->total .' events and exhibitions', 'href' => route('exhibitions'))))
+        @unless (isset($allResultsView) and $allResultsView)
+            @slot('links', array(array('label' => 'See all '. $eventsAndExhibitions->pagination->total .' events and exhibitions', 'href' => route('exhibitions'))))
+        @endif
         Events and Exhibitions
     @endcomponent
     @if (isset($allResultsView) and $allResultsView)
