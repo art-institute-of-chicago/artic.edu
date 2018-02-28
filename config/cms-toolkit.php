@@ -132,6 +132,12 @@ return [
                 'component' => 'a17-block-locations',
                 'max' => 10,
             ],
+            'hours' => [
+                'title' => 'Featured Hours',
+                'trigger' => 'Add featured hours',
+                'component' => 'a17-block-hours',
+                'max' => 10,
+            ],
             'accordion_item' => [
                 'title' => 'Accordion Item',
                 'trigger' => 'Add accordion',

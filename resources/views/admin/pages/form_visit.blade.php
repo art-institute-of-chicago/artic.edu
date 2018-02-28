@@ -17,11 +17,19 @@
     'title_singular' => 'Locations'
 ])
 
+
 @formField('repeater', [
     'type' => 'admissions',
     'title' => 'Free Admissions',
     'routePrefix' => 'landing.visit',
     'title_singular' => 'Free Admission'
+])
+
+@formField('repeater', [
+    'type' => 'hours',
+    'title' => 'Hours',
+    'routePrefix' => 'landing.visit',
+    'title_singular' => 'Hour'
 ])
 
 <section class="box" data-behavior="google_maps" data-zoom="15" data-latlng-center="41.8794774,-87.6222743" data-latlng="41.877486,-87.623285|41.881674,-87.621061">
