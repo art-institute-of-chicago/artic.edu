@@ -29,7 +29,7 @@ class ExhibitionHistoryController extends Controller
             "content" => '<p>'.$page->exhibition_history_intro_copy.'</p>'
         ];
 
-        $year = intval($request->get('year', date('Y')));
+        $year = intval($request->get('year', date('Y')-1));
 
         $decades = collect([]);
         $decade_start = 0;
