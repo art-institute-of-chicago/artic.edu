@@ -1727,7 +1727,7 @@ class StaticsController extends Controller {
       "dateStart" => $this->makeDate(),
       "dateEnd" => $this->makeDate(),
       "image" => $boolean ? $this->getImage() : null,
-      'intro' => $this->faker->paragraph(6, false),
+      'short_description' => $this->faker->paragraph(6, false),
     ]);
   }
 
