@@ -1,4 +1,4 @@
-<{{ $tag ?? 'li' }} class="m-listing{{ (!$item->slug) ? ' s-no-link' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }} class="m-listing m-listing--hover-bar{{ (!$item->slug) ? ' s-no-link' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
   @if ($item->slug)
   <a href="{{ $item->slug }}" class="m-listing__link">
   @endif

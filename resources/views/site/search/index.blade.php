@@ -226,8 +226,8 @@
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
                 @slot('imageSettings', array(
-                    'fit' => ($item->type !== 'selection' || $item->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->type !== 'selection' || $item->type !== 'artwork') ? '16:9' : null,
+                    'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
+                    'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
                     'srcset' => array(200,400,600),
                     'sizes' => aic_gridListingImageSizes(array(
                           'xsmall' => '1',
@@ -397,8 +397,8 @@
                 @slot('item', $item)
                 @if (isset($articlesAndPublications['allResultsView']) and $articlesAndPublications['allResultsView'])
                     @slot('imageSettings', array(
-                        'fit' => ($item->type !== 'selection' || $item->type !== 'artwork') ? 'crop' : null,
-                        'ratio' => ($item->type !== 'selection' || $item->type !== 'artwork') ? '16:9' : null,
+                        'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
+                        'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
                         'srcset' => array(200,400,600),
                         'sizes' => aic_gridListingImageSizes(array(
                               'xsmall' => '1',
@@ -410,8 +410,8 @@
                     ))
                 @else
                     @slot('imageSettings', array(
-                        'fit' => ($item->type !== 'selection' || $item->type !== 'artwork') ? 'crop' : null,
-                        'ratio' => ($item->type !== 'selection' || $item->type !== 'artwork') ? '16:9' : null,
+                        'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
+                        'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
                         'srcset' => array(200,400,600),
                         'sizes' => aic_imageSizes(array(
                               'xsmall' => '216px',

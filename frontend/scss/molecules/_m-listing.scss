@@ -110,7 +110,7 @@
   padding-bottom: percentage(4 / 3); // 3:4
 }
 
-.m-listing__img::after {
+.m-listing--hover-bar .m-listing__img::after {
   content: '';
   position: absolute;
   left: 0;
@@ -119,24 +119,25 @@
   height: 0;
   background-color: $color__link;
   transition: all .25s $bezier--ease-out-circ;
+}
 
-  .m-listing--limited & {
+  .m-listing--hover-bar.m-listing--limited .m-listing__img::after {
     background-color: $color__text--limited;
   }
 
-  .m-listing--new & {
+  .m-listing--hover-bar.m-listing--new .m-listing__img::after {
     background-color: $color__text--new;
   }
 
-  .m-listing--membership & {
+  .m-listing--hover-bar.m-listing--membership .m-listing__img::after {
     background-color: $color__text--membership;
   }
 
-  .m-listing__link:hover &,
-  .m-listing__link:focus & {
+  .m-listing--hover-bar .m-listing__link:hover .m-listing__img::after,
+  .m-listing--hover-bar .m-listing__link:focus .m-listing__img::after {
     height: 4px;
   }
-}
+
   .m-listing__img--no-bg::after {
     content: none;
     display: none;
