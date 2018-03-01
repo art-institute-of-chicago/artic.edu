@@ -1291,9 +1291,27 @@
 
 
 // variant `m-listing` inside `.o-pinboard`
-
 .o-pinboard__item.m-listing--variable-height .m-listing__img {
+  max-height: percentage(4 / 3);
   overflow: hidden;
+}
+
+.o-pinboard__item.m-listing--variable-height img {
+  object-fit: contain;
+}
+
+@media (hover: hover) {
+  .o-pinboard__item.m-listing--variable-height .m-listing__img:hover {
+    z-index: 2;
+    overflow: visible;
+  }
+
+  .o-pinboard__item.m-listing--variable-height img {
+    display: block;
+    position: static;
+    height: auto;
+    object-fit: unset;
+  }
 }
 
 .o-pinboard__item.m-listing--variable-height .m-listing__img::before,
@@ -1302,16 +1320,9 @@
   display: none;
 }
 
-.o-pinboard__item.m-listing--variable-height img {
-  display: block;
-  position: static;
-  object-fit: contain;
-}
-
 .o-pinboard__item .m-listing__meta {
   min-height: 0;
 }
-
 
 
 // variant `m-listing` thats also a `.o-feature-plus-4__feature`

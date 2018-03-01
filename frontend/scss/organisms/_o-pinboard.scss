@@ -66,6 +66,10 @@
       margin-top: 0;
       //transition: top .15s $bezier--ease-out-circ, left .15s $bezier--ease-out-circ, height .15s $bezier--ease-out-circ;
     }
+
+    .o-pinboard[class*="col@#{$name}"] > .s-positioned.o-pinboard__item.m-listing--variable-height:hover {
+      z-index: 2;
+    }
   }
 }
 

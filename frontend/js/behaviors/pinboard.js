@@ -80,9 +80,9 @@ const pinboard = function(container){
           let maxHeight = Math.round(block.offsetWidth * 4/3);
           let imageNativeHeightAtThisWidth = Math.round((parseInt(img.getAttribute('height')) / parseInt(img.getAttribute('width'))) * blockWidth);
           if (imageNativeHeightAtThisWidth > maxHeight) {
-            img.style.height = maxHeight + 'px';
+            img.parentNode.style.height = maxHeight + 'px';
           } else {
-            img.style.height = imageNativeHeightAtThisWidth + 'px';
+            img.parentNode.style.height = imageNativeHeightAtThisWidth + 'px';
           }
         }
         // now get blocks new height
