@@ -71,6 +71,12 @@ class BaseApiController extends ModuleController
         return $this->getApiRepository()->get($this->indexWith, $scopes, $this->orderScope(), $perPage, $forcePagination);
     }
 
+    // DISABLE ORDERS, this only works when using ES search.
+    protected function orderScope()
+    {
+        return [];
+    }
+
     public function getIndexTableData($items)
     {
         // Make a call to obtain all augmented models included on this list

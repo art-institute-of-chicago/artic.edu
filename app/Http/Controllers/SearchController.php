@@ -11,6 +11,10 @@ use App\Repositories\Api\ArtistRepository;
 use App\Repositories\Api\SearchRepository;
 use App\Repositories\Api\ExhibitionRepository;
 
+use App\Http\Controllers\StaticsController;
+
+use LakeviewImageService;
+
 class SearchController extends Controller
 {
     const ALL_PER_PAGE = 5;
@@ -20,6 +24,8 @@ class SearchController extends Controller
     const ARTWORKS_PER_PAGE = 20;
 
     const EXHIBITIONS_PER_PAGE = 20;
+
+    const ARTISTS_PER_PAGE = 30;
 
     protected $artworksRepository;
     protected $artistsRepository;
@@ -61,6 +67,11 @@ class SearchController extends Controller
             'allResultsView' => false,
             'searchResultsTypeLinks' => $links
         ]);
+    }
+
+    public function autocomplete(StaticsController $statics)
+    {
+        return $statics->autocomplete(request('q'));
     }
 
     public function artworks()
@@ -116,11 +127,36 @@ class SearchController extends Controller
         ]);
     }
 
+    public function artists()
+    {
+        $general = $this->searchRepository->forSearchQuery(request('q'), 2);
+        $artists = $this->artistsRepository->forSearchQuery(request('q'), self::ARTISTS_PER_PAGE);
+
+        $links = $this->buildSearchLinks($general, $general->aggregations->types->buckets, 'artists');
+
+        return view('site.search.index', [
+            'artists' => $artists,
+            'allResultsView' => true,
+            'searchResultsTypeLinks' => $links,
+            'filterCategories' => [],
+            'activeFilters' => array(
+              array(
+                'href' => '#',
+                'label' => "Arms",
+              ),
+              array(
+                'href' => '#',
+                'label' => "Legs",
+              )
+            ),
+        ]);
+    }
+
     protected function buildSearchLinks($all, $aggregations, $active = 'all')
     {
         return [
             $this->buildLabel('All', $all->pagination->total, route('search'), $active == 'all'),
-            $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search'), $active == 'artists'),
+            $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'),
             $this->buildLabel('Artwork', extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'),
             $this->buildLabel('Exhibitions & Events', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitionsEvents', ['q' => request('q')]), $active == 'exhibitions'),
         ];

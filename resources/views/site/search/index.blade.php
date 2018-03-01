@@ -16,8 +16,8 @@
     @slot('value', request('q'))
     @slot('name', 'search')
     @slot('behaviors','autocomplete')
-    @slot('dataAttributes','data-autocomplete-url="/search/autocomplete/"')
-    @slot('action','/statics/search_results')
+    @slot('dataAttributes','data-autocomplete-url="'. route('search.autocomplete') . '"')
+    @slot('action', route('search'))
 @endcomponent
 
 @if (!empty($searchResultsTypeLinks))
@@ -94,7 +94,9 @@
 
 @if (isset($artists) && $artists->pagination->total > 0)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all '. $artists->pagination->total.' artists', 'href' => route('search'))))
+        @unless ($allResultsView)
+            @slot('links', array(array('label' => 'See all '. $artists->pagination->total.' artists', 'href' => route('search'))))
+        @endunless
         Artists
     @endcomponent
     @component('components.atoms._hr')
