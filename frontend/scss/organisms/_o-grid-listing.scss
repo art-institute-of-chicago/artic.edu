@@ -95,8 +95,8 @@ Variant: `o-listing--single-row` - limits to a single row
         margin-left: -50vw;
         padding-left: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
       } @elseif ($name == 'xsmall') {
-        margin-right: colspan(5, $name, 0, true);
-        margin-left: colspan(5, $name, 0, true);
+        margin-right: colspan(7, $name, 0, true);
+        margin-left: colspan(7, $name, 0, true);
         padding-left: colspan(1, $name);
       } @else {
         margin-right: colspan(3, $name, 0, true);
@@ -125,7 +125,7 @@ Variant: `o-listing--single-row` - limits to a single row
       @if ($name == 'xlarge') {
         width: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
       } @elseif ($name == 'xsmall') {
-        width: colspan(6, $name);
+        width: colspan(7, $name);
       } @else {
         width: colspan(3, $name);
       }
