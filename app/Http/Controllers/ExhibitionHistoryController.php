@@ -35,7 +35,13 @@ class ExhibitionHistoryController extends Controller
         $decade_start = 0;
         $decade_promot = '';
         for($i=1900; $i<date('Y'); $i=$i+10) {
-            $d = array('href' => '?year='.$i, 'label' => ''.$i.'-'.($i+9));
+
+            $end = ($i+9);
+            if ($end > date('Y')) {
+                $end = date('Y');
+            }
+
+            $d = array('href' => '?year='.$i, 'label' => ''.$i.'-'.($end));
 
             if ($year >= $i && $year < $i+10) {
                 $d['active'] = true;
@@ -49,15 +55,17 @@ class ExhibitionHistoryController extends Controller
 
         $years = collect([]);
         for($i=$decade_start; $i<($decade_start+10); $i++) {
-            $y = [
-                'href' => '?year='.$i
-            ,   'label' => $i
-            ];
-            if ($i == $year) {
-                $y['active'] = true;
-            }
+            if ($i <= date('Y')) {
+                $y = [
+                    'href' => '?year='.$i
+                ,   'label' => $i
+                ];
+                if ($i == $year) {
+                    $y['active'] = true;
+                }
 
-            $years[] = $y;
+                $years[] = $y;
+            }
         }
         $years = $years->reverse();
         $exhibitions = $this->apiRepository->history($year);
