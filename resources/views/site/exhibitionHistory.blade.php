@@ -20,6 +20,16 @@
         <div class="o-blocks">
           @component('components.molecules._m-media')
             @slot('item', $media)
+            @slot('imageSettings', array(
+                'srcset' => array(108,216,400,600),
+                'sizes' => aic_imageSizes(array(
+                      'xsmall' => 58,
+                      'small' => 58,
+                      'medium' => 28,
+                      'large' => 28,
+                      'xlarge' => 28,
+                )),
+            ))
           @endcomponent
         </div>
         <div class="o-blocks">
@@ -77,6 +87,16 @@
             @component('components.molecules._m-listing----exhibition-history-row')
                 @slot('variation', 'm-listing--row')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'srcset' => array(108,216,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => 58,
+                          'small' => 58,
+                          'medium' => 13,
+                          'large' => 13,
+                          'xlarge' => 13,
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
