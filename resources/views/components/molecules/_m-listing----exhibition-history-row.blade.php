@@ -1,6 +1,6 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--hover-bar{{ (!$item->slug) ? ' s-no-link' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
-  @if ($item->slug)
-  <a href="{{ $item->slug }}" class="m-listing__link">
+  @if ($item->id)
+  <a href="{{ route('exhibitions.history.show', $item) }}" class="m-listing__link">
   @endif
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
         @if (isset($item->image))
@@ -24,7 +24,7 @@
             @endcomponent
         </span>
     </span>
-  @if ($item->slug)
+  @if ($item->id)
   </a>
   @endif
 </{{ $tag ?? 'li' }}>
