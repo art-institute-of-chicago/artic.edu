@@ -62,6 +62,12 @@ class ExhibitionHistoryController extends Controller
         $years = $years->reverse();
         $exhibitions = $this->apiRepository->history($year);
 
+        foreach($exhibitions as &$item) {
+            if ($item->imageObject('hero')) {
+                $item->image = aic_convertFromImage($item->imageObject('hero'));
+            }
+        }
+
         $view_data = [
             'title' => 'Exhibition History',
             'intro' => $page->exhibition_history_sub_heading,
