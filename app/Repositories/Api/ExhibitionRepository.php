@@ -20,7 +20,7 @@ class ExhibitionRepository extends BaseApiRepository
     }
 
     public function history($year=null, $perPage=null) {
-        return $this->model->query()->history($year)->paginate();
+        return $this->model->query()->history($year)->getSearch();
     }
 
 }
