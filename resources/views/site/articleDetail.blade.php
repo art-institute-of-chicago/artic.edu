@@ -118,6 +118,7 @@
           {{ $item->title }}
       @endcomponent
     @endif
+
     @if ($item->subtitle)
       @component('components.atoms._title')
           @slot('tag','p')
