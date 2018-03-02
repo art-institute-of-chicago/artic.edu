@@ -5,12 +5,13 @@ namespace App\Models;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
+use App\Models\Behaviors\HasApiRelations;
 
 use App\Models\Behaviors\HasApiModel;
 
 class Department extends Model
 {
-    use HasApiModel, Transformable, HasMedias;
+    use HasApiModel, Transformable, HasMedias, HasApiRelations;
 
     protected $apiModel = 'App\Models\Api\Department';
 
@@ -33,4 +34,9 @@ class Department extends Model
             ]
         ],
     ];
+
+    public function artworks()
+    {
+        return $this->apiElements()->where('relation', 'artworks');
+    }
 }

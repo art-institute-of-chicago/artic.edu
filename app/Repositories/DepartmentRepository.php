@@ -17,4 +17,19 @@ class DepartmentRepository extends BaseApiRepository
         $this->model = $model;
     }
 
+    public function afterSave($object, $fields)
+    {
+        $this->updateBrowserApiRelated($object, $fields, ['artworks']);
+        parent::afterSave($object, $fields);
+    }
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+
+        $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'whatson');
+
+        return $fields;
+    }
+
 }

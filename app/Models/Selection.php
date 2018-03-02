@@ -6,10 +6,11 @@ use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
+use App\Models\Behaviors\HasApiRelations;
 
 class Selection extends Model
 {
-    use HasSlug, HasMedias, HasBlocks, Transformable;
+    use HasSlug, HasMedias, HasBlocks, HasApiRelations, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
 
@@ -50,11 +51,6 @@ class Selection extends Model
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
-    }
-
-    public function apiElements()
-    {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
     }
 
     public function artworks()
