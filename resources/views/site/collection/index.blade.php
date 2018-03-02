@@ -53,30 +53,24 @@
 @endcomponent
 
 @component('components.organisms._o-pinboard')
+    @slot('id', 'artworksList')
+
     @slot('cols_xsmall','2')
     @slot('cols_small','2')
     @slot('cols_medium','3')
     @slot('cols_large','3')
     @slot('cols_xlarge','4')
     @slot('maintainOrder','false')
-    @foreach ($artworks as $item)
-        @component('components.molecules._m-listing----'.$item->type)
-            @slot('variation', 'o-pinboard__item')
-            @slot('item', $item)
-            @slot('imageSettings', array(
-                'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
-                'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
-                'srcset' => array(200,400,600,1000),
-                'sizes' => aic_gridListingImageSizes(array(
-                      'xsmall' => '2',
-                      'small' => '2',
-                      'medium' => '3',
-                      'large' => '3',
-                      'xlarge' => '4',
-                )),
-            ))
-        @endcomponent
-    @endforeach
+
+    @component('site.collection.items')
+        @slot('artworks', $artworks)
+    @endcomponent
+
+@endcomponent
+
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'm-links-bar--buttons')
+    @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection'), 'loadMoreTarget' => '#artworksList')))
 @endcomponent
 
 

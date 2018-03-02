@@ -35,6 +35,16 @@ class CollectionController extends Controller
             $item->image = LakeviewImageService::getImage($item->image_id);
         }
 
+        // If it's ajax, just load more elements.
+        if (request()->ajax() && request()->has('page')) {
+            return [
+                'page' => request('page'),
+                'html' => view('site.collection.items', [
+                    'artworks' => $collection
+                ])->render()
+            ];
+        }
+
         return view('site.collection.index', [
           'primaryNavCurrent' => 'collection',
           'title' => 'The Collection',
