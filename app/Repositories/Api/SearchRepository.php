@@ -31,4 +31,12 @@ class SearchRepository extends BaseApiRepository
         ];
     }
 
+    public function multimedia($id) {
+        return $this->model->query()->multimedia($id)->resources(['sections'])->getSearch(1000);
+    }
+
+    public function classroomResources($id) {
+        return $this->model->query()->classroomResources($id)->resources(['sections'])->getSearch(1000);
+    }
+
 }

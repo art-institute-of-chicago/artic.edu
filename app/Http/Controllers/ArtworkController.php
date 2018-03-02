@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Api\ArtworkRepository;
+use App\Repositories\Api\SearchRepository;
+
 use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Page;
 
@@ -11,10 +13,12 @@ use LakeviewImageService;
 class ArtworkController extends Controller
 {
     protected $apiRepository;
+    protected $searchRepository;
 
-    public function __construct(ArtworkRepository $repository)
+    public function __construct(ArtworkRepository $repository, SearchRepository $search)
     {
         $this->apiRepository = $repository;
+        $this->searchRepository = $search;
 
         parent::__construct();
     }
@@ -24,6 +28,9 @@ class ArtworkController extends Controller
         // The ID is a datahub_id not a local ID
         // get an artwork
         $item = $this->apiRepository->getById($id);
+
+        $artworkMultimedia = $this->searchRepository->multimedia($id);
+        $artworkClassrommResources = $this->searchRepository->classroomResources($id);
 
         $item->subtitle = $item->place_of_origin . ', ' . $item->date_display;
         $item->articleType = 'artwork';
@@ -54,7 +61,7 @@ class ArtworkController extends Controller
         }
 
         array_push($blocks, $item->getArtworkDetailsBlock());
-        array_push($blocks, $item->getArtworkDescriptionBlocks());
+        array_push($blocks, $item->getArtworkDescriptionBlocks($artworkMultimedia, $artworkClassrommResources));
         $item->blocks = $blocks;
 
         return view('site.articleDetail', [

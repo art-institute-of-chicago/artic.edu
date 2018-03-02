@@ -3,6 +3,7 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Presenters\StaticObjectPresenter;
 
 class Artwork extends BaseApiModel
 {
@@ -68,7 +69,7 @@ class Artwork extends BaseApiModel
         return $block;
     }
 
-    public function getArtworkDescriptionBlocks()
+    public function getArtworkDescriptionBlocks($multimedia, $resources)
     {
         $blocks = [];
 
@@ -121,11 +122,57 @@ class Artwork extends BaseApiModel
             $content[] = $block;
         }
 
+        if (!empty($multimedia) && $multimedia->count()) {
+
+            $items = [];
+            foreach($multimedia as $media) {
+                $media->title = $media->publication_title;
+                $media->slug = $media->web_url;
+                $items[] = $media;
+            }
+
+            $block = array(
+                'title' => 'Multimedia',
+                'blocks' => [
+                    [
+                        "type" => 'listing',
+                        "subtype" => 'media',
+                        "items" => $items,
+                    ]
+                ]
+            );
+
+            $content[] = $block;
+        }
+
+        if (!empty($resources) && $resources->count()) {
+
+            $items = [];
+            foreach($resources as $resource) {
+                $items[] = array('label' => $resource->publication_title, 'href' => $resource->web_url);
+            }
+
+            $block = array(
+                'title' => 'Classroom Resources',
+                'blocks' => [
+                    [
+                        "type" => 'link-list',
+                        "links" => $items,
+                    ]
+                ]
+            );
+
+            $content[] = $block;
+        }
+
+
         $blocks = array(
             "type" => 'accordion',
             "content" => $content
         );
 
+
+        // dd($content);
         return $blocks;
     }
 }
