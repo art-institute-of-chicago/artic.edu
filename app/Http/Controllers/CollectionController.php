@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
+use App\Models\Page;
 
 use LakeviewImageService;
 
@@ -20,6 +21,8 @@ class CollectionController extends Controller
 
     public function index()
     {
+        $page = Page::forType('Art and Ideas')->with('apiElements')->first();
+
         // If we don't have a query let's load the boosted artworks
         if (request('q')) {
             $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch();
@@ -35,7 +38,7 @@ class CollectionController extends Controller
         return view('site.collection.index', [
           'primaryNavCurrent' => 'collection',
           'title' => 'The Collection',
-          'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
+          'intro' => $page->art_intro,
           'quickSearchLinks' => [],
           'filters' => [],
           'filterCategories' => [],
