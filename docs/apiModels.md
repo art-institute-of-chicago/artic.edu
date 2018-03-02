@@ -329,6 +329,59 @@ You can move all this to a scope as well. Just add it to the `Search` model as s
 *Something to remember:* Scopes are good for every query on this document, not only searching.
 
 
+## Aggregations
+
+To get some aggregations when searching you can use the `aggregations` function in our builder.
+For example to get the counts by type while searching 'picasso':
+
+```php
+$aggs = [
+    'types' => [
+        'terms' => [
+            'field' => 'api_model'
+        ]
+    ]
+];
+
+$query = \App\Models\Api\Search::query()->search('picasso')->aggregations($aggs);
+$results = $query->getSearch();
+
+// Results metadata are stored at the query.
+$query->aggregationsData,
+
+// Also pagination and suggestions
+$query->paginationData
+$query->suggestionsData,
+
+```
+
+
+You could also use scopes directly:
+
+
+```php
+
+// This is the scope on the search model
+
+public function scopeAggregationType($query)
+{
+    $aggs = [
+        'types' => [
+            'terms' => [
+                'field' => 'api_model'
+            ]
+        ]
+    ];
+
+    return $query->aggregations($aggs);
+}
+
+
+$query = \App\Models\Api\Search::query()->search($string)->aggregationType();
+$results = $query->getSearch();
+```
+
+
 ## Force a custom endpoint
 
 If you don't want to use the basic defined endpoints, you could just specify the name for the one you want to use for the current query.
