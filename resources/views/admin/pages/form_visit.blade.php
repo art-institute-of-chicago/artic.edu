@@ -10,6 +10,13 @@
     'no_crop' => false
 ])
 
+@formField('medias', [
+    'name' => 'visit_mobile',
+    'label' => 'Hero Mobile Image',
+    'with_multiple' => false,
+    'no_crop' => false
+])
+
 @formField('repeater', [
     'type' => 'locations',
     'title' => 'Locations',
