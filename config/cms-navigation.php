@@ -80,6 +80,10 @@ return [
                 'title' => 'Galleries',
                 'module' => true,
             ],
+            'departments' => [
+                'title' => 'Departments',
+                'module' => true,
+            ],
         ],
     ],
 

@@ -27,6 +27,9 @@ Route::group(['prefix' => 'whatson'], function () {
 
     Route::module('galleries');
     Route::name('whatson.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');
+
+    Route::module('departments');
+    Route::name('whatson.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
 });
 
 Route::group(['prefix' => 'general'], function () {
