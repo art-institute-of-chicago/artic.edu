@@ -9,16 +9,18 @@ if (!app()->environment('production')) {
   Route::get('/statics/{slug?}', 'StaticsController@index');
 }
 
+// Routes related to session
+
 // Collection routes
 Route::name('collection')->get('/collection', 'CollectionController@index');
 Route::name('collection.search')->get('/collection/search', 'CollectionController@search');
+Route::name('collection.recently-viewed.clear')->get('/collection/recently-viewed/clear', 'CollectionController@clearRecentlyViewed');
 
 // Newsletter subscription
 Route::name('subscribe')->post('/subscribe', 'SubscribeController@store');
 
 // Visit routes
 Route::name('visit')->get('/visit', 'VisitController@index');
-
 
 // Search routes
 Route::name('search')->get('/search', 'SearchController@index');

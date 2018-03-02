@@ -28,6 +28,9 @@ class ArtworkController extends Controller
         // The ID is a datahub_id not a local ID
         // get an artwork
         $item = $this->apiRepository->getById($id);
+        if (empty($item)) {
+            abort(404);
+        }
 
         $artworkMultimedia = $this->searchRepository->multimedia($id);
         $artworkClassrommResources = $this->searchRepository->classroomResources($id);
@@ -40,6 +43,7 @@ class ArtworkController extends Controller
         if ($item->image_id) {
             $image = LakeviewImageService::getImage($item->image_id);
             $galleryImages[] = $image;
+            $item->image = $image;
         }
         $item->galleryImages = $galleryImages;
 
@@ -64,9 +68,16 @@ class ArtworkController extends Controller
         array_push($blocks, $item->getArtworkDescriptionBlocks($artworkMultimedia, $artworkClassrommResources));
         $item->blocks = $blocks;
 
+        aic_addToRecentlyViewedArtworks($item);
+        $recentlyViewed = aic_getRecentlyViewedArtworks();
+
+        if (sizeof($recentlyViewed) > 2) {
+            $item->recentlyViewedArtworks = $recentlyViewed;
+        }
+
         return view('site.articleDetail', [
           'contrastHeader' => ($item->headerType === 'hero'),
-          'item' => $item,
+          'item' => $item
         ]);
     }
 

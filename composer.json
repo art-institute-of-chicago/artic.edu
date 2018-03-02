@@ -44,7 +44,8 @@
             "app/Helpers/MigrationHelpers.php",
             "app/Helpers/ImageHelpers.php",
             "app/Helpers/DatesHelpers.php",
-            "app/Helpers/QueryHelpers.php"
+            "app/Helpers/QueryHelpers.php",
+            "app/Helpers/SessionHelpers.php"
         ]
     },
     "autoload-dev": {

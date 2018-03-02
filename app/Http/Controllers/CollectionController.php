@@ -84,6 +84,12 @@ class CollectionController extends Controller
 
     }
 
+    public function clearRecentlyViewed()
+    {
+        aic_clearRecentlyViewedArtworks();
+        return redirect()->back();
+    }
+
     public function search()
     {
         $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch();
