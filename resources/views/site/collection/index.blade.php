@@ -48,7 +48,7 @@
 
 @component('components.organisms._o-collection-filters')
     @slot('activeFilters', $activeFilters)
-    @slot('clearAllLink', '/statics/collection')
+    @slot('clearAllLink', route('collection'))
     @slot('filterCategories', $filterCategories)
 @endcomponent
 
