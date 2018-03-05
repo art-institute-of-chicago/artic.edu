@@ -210,12 +210,6 @@
     @endcomponent
   </div>
 
-  <a class="o-article__top-link" href="#a17">
-    <svg class="icon--arrow" aria-label="top of page">
-      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow">
-    </svg>
-  </a>
-
 </article>
 
 @if ($item->comments)

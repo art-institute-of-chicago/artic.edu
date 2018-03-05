@@ -42,7 +42,11 @@ class ExhibitionPresenter extends BasePresenter
         if ($this->entity->cms_exhibition_type == \App\Models\Exhibition::SPECIAL) {
             return 'Special Exhibition';
         } else {
-            return 'Ongoing';
+            if ($this->entity->ongoing) {
+                return 'Ongoing';
+            } else {
+                return 'Exhibition';
+            }
         }
     }
 
@@ -96,10 +100,12 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     protected function closingSoonLink() {
-        return [
-            'label' => 'Closing Soon',
-            'variation' => 'closing-soon'
-        ];
+        if ($this->entity->closingSoon) {
+            return [
+                'label' => 'Closing Soon',
+                'variation' => 'closing-soon'
+            ];
+        }
     }
 
     protected function augmented() {

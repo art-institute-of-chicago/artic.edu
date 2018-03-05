@@ -42,13 +42,16 @@ class Exhibition extends BaseApiModel
     }
 
     public function getClosingSoonAttribute() {
-        return Carbon::now()->between($this->dateEnd->subWeeks(2), $this->dateEnd);
+        return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
     }
 
     public function getNowOpenAttribute() {
-        return Carbon::now()->between($this->dateStart, $this->dateStart->addWeeks(2));
+        return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateStart->startOfDay()->addWeeks(2));
     }
 
+    public function getOngoingAttribute() {
+        return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateEnd->endOfDay());
+    }
 
     // EXAMPLE SCOPE:
     // Search for all exhibitions for the next 2 weeks, not closed
