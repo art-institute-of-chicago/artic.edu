@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Api\Artwork;
 use App\Models\Api\Artist;
+use App\Models\Api\Search as GeneralSearch;
 use App\Models\Api\Exhibition;
 
 use App\Repositories\Api\ArtworkRepository;
@@ -27,6 +28,8 @@ class SearchController extends Controller
     const EXHIBITIONS_PER_PAGE = 20;
 
     const ARTISTS_PER_PAGE = 30;
+
+    const AUTOCOMPLETE_PER_PAGE = 10;
 
     protected $artworksRepository;
     protected $artistsRepository;
@@ -72,9 +75,30 @@ class SearchController extends Controller
         ]);
     }
 
-    public function autocomplete(StaticsController $statics)
+    public function autocomplete()
     {
-        return $statics->autocomplete(request('q'));
+        // TODO: Integrate this search for all types and use a better approach than overwriting the results
+
+        $query = GeneralSearch::search(request('q'))->resources(['artworks']);
+        $collection = $query->getSearch(self::AUTOCOMPLETE_PER_PAGE);
+
+        foreach($collection as &$item) {
+            $item->type = 'artwork';
+            $item->text = $item->title;
+            $item->url = route('artworks.show', $item->id);
+
+            $image = LakeviewImageService::getImage($item->image_id, 30);
+            $image['width'] = 30;
+            $image['height'] = '';
+            $item->image = $image;
+        }
+
+        return view('layouts/_autocomplete', [
+            'term' => request('q'),
+            'resultCount' => $collection->total(),
+            'items' => $collection,
+            'seeAllUrl' => route('collection', ['q' => request('q')])
+        ]);
     }
 
     public function artworks()

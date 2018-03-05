@@ -68,6 +68,7 @@ class ExhibitionController extends Controller
         $item = $this->apiRepository->getById($id);
         $relatedEventsByDay = $this->eventRepository->getRelatedEventsByDay($item, self::RELATED_EVENTS_PER_PAGE, request('page'));
 
+        // TODO: 1 load too many. Send an empty page when there aren't more events
         $page = $relatedEventsByDay->isEmpty() ? '' : request('page') + 1;
 
         return [

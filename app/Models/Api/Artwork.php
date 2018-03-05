@@ -4,6 +4,7 @@ namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Presenters\StaticObjectPresenter;
+use LakeviewImageService;
 
 class Artwork extends BaseApiModel
 {
@@ -27,6 +28,18 @@ class Artwork extends BaseApiModel
     public function getSlugAttribute()
     {
         return route('artworks.show', $this->id);
+    }
+
+    // public function getImageAttribute()
+    // {
+    //     if (!empty($this->image_id)) {
+    //         return LakeviewImageService::getImage($this->image_id);
+    //     }
+    // }
+
+    public function getTypeAttribute()
+    {
+        return 'artwork';
     }
 
     public function getArtworkDetailsBlock()

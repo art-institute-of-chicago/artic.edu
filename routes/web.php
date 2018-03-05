@@ -13,7 +13,7 @@ if (!app()->environment('production')) {
 
 // Collection routes
 Route::name('collection')->get('/collection', 'CollectionController@index');
-Route::name('collection.search')->get('/collection/search', 'CollectionController@search');
+Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
 Route::name('collection.recently-viewed.clear')->get('/collection/recently-viewed/clear', 'CollectionController@clearRecentlyViewed');
 
 // Newsletter subscription

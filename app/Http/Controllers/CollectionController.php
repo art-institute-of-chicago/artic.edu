@@ -92,29 +92,23 @@ class CollectionController extends Controller
         return redirect()->back();
     }
 
-    public function search()
+    public function autocomplete()
     {
-        $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch();
+        // Collection autocomplete is just a text one. Images and rich suggestions are used on General ones.
 
-        foreach($collection as &$item) {
-            $item->type = 'artwork';
-            $item->text = $item->title;
-            $item->url = route('artworks.show', $item->id);
+        $results = \App\Models\Api\Search::search(request('q'))->forceEndpoint('autocomplete')->getRaw();
+        $items   = [];
 
-            $image = LakeviewImageService::getImage($item->image_id, 30);
-            $image['width'] = 30;
-            $image['height'] = '';
-            $item->image = $image;
+        foreach($results as $i) {
+            array_push($items, array(
+                'href' => route('collection', ['q' => request('q')]),
+                'label' => $i,
+            ));
         }
 
-        return view('layouts/_autocomplete', [
-            'term' => request('q'),
-            'resultCount' => $collection->total(),
-            'items' => $collection,
-            'seeAllUrl' => route('collection', ['q' => request('q')])
+        return view('components/molecules/_m-search-bar__autocomplete', [
+            'items' => $items
         ]);
-
-        abort(500);
     }
 
 }

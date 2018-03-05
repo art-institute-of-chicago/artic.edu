@@ -101,7 +101,7 @@ class StaticsController extends Controller {
     return view('layouts/_autocomplete', [
         'term' => $slug,
         'resultCount' => $this->faker->numerify('#,###'),
-        'items' => [
+        'items' => (object) [
             [
                 'url' => '#',
                 'image' => $this->getImage(40,40),

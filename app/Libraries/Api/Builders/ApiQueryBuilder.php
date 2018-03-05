@@ -436,6 +436,29 @@ class ApiQueryBuilder {
         }
     }
 
+    /**
+     * Execute a get query and return a raw response
+     *
+     * @param array $columns
+     * @return \Illuminate\Support\Collection
+     */
+    public function getRaw($columns = [], $endpoint = null)
+    {
+        $original = $this->columns;
+
+        if (is_null($original)) {
+            $this->columns = $columns;
+        }
+
+        $results = $this->runGet($endpoint);
+
+        if (is_array($results->body)) {
+            return collect($results->body);
+        } else {
+            return collect([$results->body]);
+        }
+    }
+
     public function getPaginationData() {
         return $this->paginationData;
     }

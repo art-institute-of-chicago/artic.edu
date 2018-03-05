@@ -285,6 +285,19 @@ class ApiModelBuilder
         return $builder->getModel()->newCollection($models);
     }
 
+
+    /**
+     * Execute the query and return a raw response
+     *
+     * @param  array  $columns
+     */
+    public function getRaw($columns = [])
+    {
+        $builder = clone $this;
+
+        return $this->query->getRaw($columns, $this->getEndpoint($this->resolveCollectionEndpoint()))->all();
+    }
+
     /**
      * Get the hydrated models
      *

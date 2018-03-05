@@ -10,7 +10,8 @@ class Search extends BaseApiModel
 {
 
     protected $endpoints = [
-        'search' => '/api/v1/search'
+        'search' => '/api/v1/search',
+        'autocomplete' => '/api/v1/autocomplete'
     ];
 
     public $typeMap = [

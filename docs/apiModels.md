@@ -404,3 +404,16 @@ Here we added a new `boosted` endpoint to retrieve the most important artworks. 
 ```php
     \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->search('picasso')->getSearch();
 ```
+
+## Raw response. Do not parse elements
+
+
+If you want to get a raw response just use the `getRaw()` function instead of a regular `get` or `getSearch`.
+For example the following query will force the 'autocomplete' endpoint, and get a raw response using the parameter 'q' sent on the request.
+
+```php
+    $collection = \App\Models\Api\Search::search(request('q'))->forceEndpoint('autocomplete')->getRaw();
+```
+
+getRaw just returns an array with the raw responses.
+For now it's just intended to be used on the autocomplete.

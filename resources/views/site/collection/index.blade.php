@@ -23,7 +23,7 @@
     @slot('name', 'collection-search')
     @slot('value', request('q'))
     @slot('behaviors','autocomplete')
-    @slot('dataAttributes','data-autocomplete-url="'. route('collection.search') .'"')
+    @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
     @slot('action', route('collection'))
 @endcomponent
 
