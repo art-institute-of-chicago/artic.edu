@@ -36,7 +36,7 @@
 
 @component('components.molecules._m-active-filters')
     @slot('links', $activeFilters)
-    @slot('clearAllLink', '/statics/collection')
+    @slot('clearAllLink', route('collection'))
 @endcomponent
 
 @component('components.molecules._m-search-triggers----collection')
