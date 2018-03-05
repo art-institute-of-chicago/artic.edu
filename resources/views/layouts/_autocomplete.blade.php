@@ -6,7 +6,10 @@
                     <a href="{{ $item['url'] }}">
                         @component('components.atoms._img')
                             @slot('image', $item['image'])
-                            @slot('sizes', '40px')
+                            @slot('settings', array(
+                                'srcset' => array(40,80),
+                                'sizes' => '40px',
+                            ))
                         @endcomponent
                         {{ $item['text'] }}
                     </a>
