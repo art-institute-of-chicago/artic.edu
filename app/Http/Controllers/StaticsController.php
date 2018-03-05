@@ -259,6 +259,17 @@ class StaticsController extends Controller {
     ]);
   }
 
+  public function article_galleries() {
+
+    $article = $this->generateAllBlocksArticle('galleries');
+
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
+    ]);
+  }
+
   public function generic_detail() {
     $navs = $this->generateGenericNav('detail');
 
@@ -2171,20 +2182,81 @@ class StaticsController extends Controller {
     );
   }
 
-  private function generateAllBlocksArticle() {
+  private function generateAllBlocksArticle($type = null) {
     $article = $this->getExhibition();
     $article->push('articleType', 'exhibition');
     $article->push('headerImage', $this->getImage(1600,900));
     $article->push('intro', $this->faker->paragraph(6, false));
-    $article->push('blocks', $this->generateBlocks('all'));
-    $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
-    $article->push('relatedExhibitions', $this->getExhibitions(4));
-    $article->push('relatedEvents', $this->getEvents(4));
-    $article->push('relatedArticles', $this->getArticles(4));
-    $article->push('featuredRelated', array(
-       'type' => 'event',
-       'items' => $this->getEvents(1),
-    ));
+    if ($type === null) {
+        $article->push('blocks', $this->generateBlocks('all'));
+        $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
+        $article->push('relatedExhibitions', $this->getExhibitions(4));
+        $article->push('relatedEvents', $this->getEvents(4));
+        $article->push('relatedArticles', $this->getArticles(4));
+        $article->push('featuredRelated', array(
+           'type' => 'event',
+           'items' => $this->getEvents(1),
+        ));
+    } else if ($type === 'galleries') {
+        $blocks = array();
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
+        ));
+        array_push($blocks, array(
+            "type" => 'gallery',
+            "subtype" => 'mosaic',
+            "title" => 'Mosaic Gallery',
+            "caption" => $this->faker->paragraph(3, false),
+            "items" => $this->getGalleryImages(6),
+        ));
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
+        ));
+        array_push($blocks, array(
+            "type" => 'gallery',
+            "subtype" => 'slider',
+            "title" => 'Slider Gallery',
+            "caption" => $this->faker->paragraph(3, false),
+            "items" => $this->getGalleryImages(6),
+        ));
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
+        ));
+        array_push($blocks, array(
+            "type" => 'gallery',
+            "subtype" => 'mosaic',
+            "title" => 'Mosaic Gallery',
+            "caption" => $this->faker->paragraph(3, false),
+            "items" => $this->getGalleryImages(6),
+            "allLink" => array(
+              'href' => '#',
+              'label' => "See all exhibition objects",
+            ),
+        ));
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
+        ));
+        array_push($blocks, array(
+            "type" => 'gallery',
+            "subtype" => 'slider',
+            "title" => 'Slider Gallery',
+            "caption" => $this->faker->paragraph(3, false),
+            "items" => $this->getGalleryImages(6),
+            "allLink" => array(
+              'href' => '#',
+              'label' => "See all exhibition objects",
+            ),
+        ));
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
+        ));
+        $article->push('blocks', $blocks);
+    }
     return $article;
   }
 

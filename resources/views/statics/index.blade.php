@@ -36,7 +36,12 @@
           </li>
         </ul>
         <ul class="list f-body">
-          <li><a href="/statics/article">all blocks, standard header</a></li>
+          <li>
+            <a href="/statics/article">all blocks, standard header</a>
+            <ul class="list">
+                <li><a href="/statics/article_galleries">galleries</a></li>
+            </ul>
+          </li>
           <li><a href="/statics/article_feature">all blocks, feature header</a></li>
           <li><a href="/statics/article_hero">all blocks, hero header</a></li>
           <li><a href="/statics/article_superhero">all blocks, super hero header</a></li>

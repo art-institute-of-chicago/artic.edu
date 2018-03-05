@@ -14,6 +14,10 @@
 }
 
 .o-gallery__title {
+  @include breakpoint('medium+') {
+    padding-right: 50%;
+  }
+
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: 100%;
@@ -41,7 +45,6 @@
 .o-gallery__media {
   position: relative;
   margin-top: 40px;
-  padding-bottom: 84px;
 
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
@@ -59,6 +62,32 @@
 .o-gallery .hr {
   margin-top: 0;
   border-top-color: $color__rules--contrast;
+}
+
+.o-gallery__all-link {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 44px;
+  margin-top: 0;
+
+  @include breakpoint('medium+') {
+    display: block;
+  }
+}
+
+.o-gallery__all-link-btn {
+  margin-top: 0;
+  padding-bottom: 32px;
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
+.o-gallery__all-link-btn .btn {
+  display: block;
+  width: 100%;
 }
 
 .o-gallery__caption p {
@@ -111,13 +140,13 @@
 }
 
 
-
-
 .o-gallery--mosaic {
 
   .o-gallery__media {
+    padding-bottom: 56px;
+
     @include breakpoint('small+') {
-      padding-bottom: 84px - 48px;
+      padding-bottom: 64px - 48px;
       columns: 2;
       column-gap: colspan(2, small);
       column-fill: balance;
@@ -132,6 +161,7 @@
     }
 
     @include breakpoint('medium+') {
+      padding-bottom: 84px - 48px;
       column-gap: colspan(2, medium);
     }
 
@@ -175,17 +205,27 @@
       max-height: #{colspan(21, xlarge) * 4/3};
     }
   }
+
+  .o-gallery__all-link-btn {
+    margin-top: -28px;
+
+    @include breakpoint('small+') {
+      margin-top: -32px;
+    }
+  }
 }
 
 
 .o-gallery--slider {
+  padding-bottom: .02px;
 
   .o-gallery__media {
     display: flex;
     flex-flow: row nowrap;
     margin-right: colspan(3, xsmall, 0, true);
+    margin-bottom: 24px;
     margin-left: colspan(3, xsmall, 0, true);
-    padding-bottom: 84px;
+    padding-bottom: 32px;
     padding-left: colspan(2, xsmall);
     overflow-x: auto;
     overflow-y: hidden;
@@ -201,12 +241,14 @@
 
     @include breakpoint('small+') {
       margin-right: colspan(3, small, 0, true);
+      margin-bottom: 32px;
       margin-left: colspan(3, small, 0, true);
       padding-left: colspan(2, small);
     }
 
     @include breakpoint('medium+') {
       margin-right: colspan(3, medium, 0, true);
+      margin-bottom: 52px;
       margin-left: colspan(3, medium, 0, true);
       padding-left: colspan(2, medium);
     }
@@ -326,6 +368,14 @@
 
     @include breakpoint('xlarge') {
       height: #{colspan(18, xlarge) * 9/16};
+    }
+  }
+
+  .o-gallery__all-link-btn {
+    margin-top: -24px;
+
+    @include breakpoint('small+') {
+      margin-top: -32px;
     }
   }
 }
