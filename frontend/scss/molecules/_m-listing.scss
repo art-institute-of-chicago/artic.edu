@@ -1018,6 +1018,12 @@
   .o-grid-listing & {
     border-top: 0;
   }
+
+  .f-subheading-1 + .o-row-listing &,
+  .f-module-title-1 + .o-row-listing & {
+    padding-top: 0;
+    border-top: 0;
+  }
 }
 
 .m-listing--inline .m-listing__link {
@@ -1121,6 +1127,17 @@
 }
 
 // variant 'm-listing--inline-feature'
+
+.m-listing--inline-feature + .m-listing--inline-feature {
+
+  @include breakpoint('large+') {
+    padding-top: 35px;
+  }
+
+  @include breakpoint('medium+') {
+    padding-top: 39px;
+  }
+}
 
 .m-listing--inline-feature,
 .m-listing--inline-feature .m-listing__link {

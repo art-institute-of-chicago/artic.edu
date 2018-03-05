@@ -86,13 +86,26 @@
 
             @if ($block['type'] === 'listing')
                 @if (isset($block['subtype']) and $block['subtype'])
+                    @if ($block["subtype"] === 'product')
+                        @component('components.atoms._hr')
+                        @endcomponent
+                        @component('components.blocks._text')
+                            @slot('font', 'f-module-title-1')
+                            @slot('tag', 'h4')
+                            {{ 'Featured '.str_plural(ucfirst($block['subtype']), sizeof($block['items'])) }}
+                        @endcomponent
+                    @endif
                     @component('components.organisms._o-row-listing')
                         @slot('variation', 'o-blocks__block')
                         @foreach ($block['items'] as $item)
                             @component('components.molecules._m-listing----'.$block["subtype"].'-row')
                                 @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
                                 @slot('item', $item)
+                                @if ($block["subtype"] === 'media' or $block["subtype"] === 'event')
+                                    @slot('titleFont','f-list-2')
+                                @endif
                                 @if ($block["subtype"] === 'product')
+                                    @slot('titleFont','f-list-3')
                                     @slot('imageSettings', array(
                                         'fit' => 'crop',
                                         'ratio' => '1:1',
@@ -133,6 +146,10 @@
                         @slot('items', $block['items'])
                         @slot('itemsMolecule', '_m-listing----'.$block['subtype'].'-row')
                         @slot('itemsVariation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
+                        @if ($block["subtype"] === 'media' or $block["subtype"] === 'event')
+                            @slot('titleFont','f-list-2')
+                        @endif
+                        @slot('hideShortDesc', true)
                         @if ($block["subtype"] === 'product')
                             @slot('imageSettings', array(
                                 'fit' => 'crop',
@@ -229,8 +246,9 @@
                 @if (isset($block['subtype']) and $block['subtype'])
                     @component('components.organisms._o-gallery----'.$block["subtype"])
                         @slot('variation', 'o-blocks__block')
-                        @slot('title', $block['title']);
-                        @slot('caption', $block['caption']);
+                        @slot('title', $block['title'] ?? null);
+                        @slot('caption', $block['caption'] ?? null);
+                        @slot('allLink', $block['allLink'] ?? null);
                         @slot('items', $block['items']);
                             @if ($block["subtype"] === 'mosaic')
                                 @slot('imageSettings', array(

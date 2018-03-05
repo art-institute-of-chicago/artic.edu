@@ -41,7 +41,7 @@
 
   & > .hr + h5:not([class*=f-]),
   & > .hr + .f-subheading-1 {
-    @include tucked-margin-top($f-subheading-1, ('xsmall': 28));
+    @include tucked-margin-top($f-subheading-1, ('xsmall': 36));
   }
 
   /*****/
@@ -272,11 +272,11 @@
 
   .m-inline-aside {
     @include breakpoint('small') {
+      float: right;
       clear: both;
-      float: left;
       width: colspan(23, small);
-      margin-right: colspan(3, small);
       margin-bottom: colspan(3, small);
+      margin-left: colspan(3, small);
     }
   }
 

@@ -7,6 +7,7 @@
                     @slot('settings', $imageSettings ?? null)
                 @endcomponent
             @endif
+            <svg class="icon--play--48"><use xlink:href="#icon--play--48"></use></svg>
         </span>
         <span class="m-listing__meta">
             <strong class="title {{ $titleFont ?? 'f-list-3' }}">{{ $item->title }}</strong>

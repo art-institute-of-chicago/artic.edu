@@ -7,6 +7,8 @@
             @slot('variation', $itemsVariation ?? null)
             @slot('item', $items[0])
             @slot('imageSettings', $imageSettings ?? null)
+            @slot('titleFont', $titleFont ?? null)
+            @slot('hideShortDesc', $hideShortDesc ?? null)
         @endcomponent
     @else
         @slot('title', 'Related '.ucfirst($type).'s')
@@ -16,6 +18,8 @@
                     @slot('variation', $itemsVariation ?? null)
                     @slot('item', $item)
                     @slot('imageSettings', $imageSettings ?? null)
+                    @slot('titleFont', $titleFont ?? null)
+                    @slot('hideShortDesc', $hideShortDesc ?? null)
                 @endcomponent
             @endforeach
         @endcomponent
