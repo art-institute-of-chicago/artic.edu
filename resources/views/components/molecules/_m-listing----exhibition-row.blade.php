@@ -9,6 +9,10 @@
         @endif
     </span>
     <span class="m-listing__meta">
+        @component('components.atoms._type')
+            {{ $item->present()->exhibitionType }}
+        @endcomponent
+
         @if ($item->closingSoon)
             @component('components.atoms._type')
                 @slot('variation', 'type--limited')
@@ -23,10 +27,6 @@
             @component('components.atoms._type')
                 @slot('variation', 'type--membership')
                 Member Exclusive
-            @endcomponent
-        @else
-            @component('components.atoms._type')
-                {{ $item->type }}
             @endcomponent
         @endif
         <br>

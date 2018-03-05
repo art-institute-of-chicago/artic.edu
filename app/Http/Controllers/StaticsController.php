@@ -1711,6 +1711,12 @@ class StaticsController extends Controller {
       "nowOpen" => $this->faker->boolean(10),
       "image" => $this->getImage(),
 
+      "present" => function () use ($upcoming) {
+        return new StaticObjectPresenter([
+            'exhibitionType' => $this->getExhibitionType($upcoming)
+        ]);
+      },
+
       "imageAsArray" => function () {
         return $this->getImage();
       }

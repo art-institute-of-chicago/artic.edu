@@ -42,9 +42,21 @@ class ExhibitionPresenter extends BasePresenter
         if ($this->entity->cms_exhibition_type == \App\Models\Exhibition::SPECIAL) {
             return 'Special Exhibition';
         } else {
-            return 'Exhibition';
+            return 'Ongoing';
         }
     }
+
+    // public function timing()
+    // {
+    //     // If started less than 2 weeks ago
+    //     if (Carbon::now()->between($this->startAt(), $this->startAt()->addWeeks(2)) {
+    //         return 'Now Open';
+    //     }
+
+    //     if (Carbon::now()->between($this->endAt()->subWeeks(2), $this->endAt()) {
+    //         return 'Closing soon';
+    //     }
+    // }
 
     public function startAt()
     {
