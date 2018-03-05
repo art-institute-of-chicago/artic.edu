@@ -29,7 +29,7 @@ return [
                 'title' => 'Exhibitions & Events',
                 'route' => 'admin.landing.exhibitions',
             ],
-            'exhibitions_history' => [
+            'exhibition_history' => [
                 'title' => 'Exhibition History',
                 'route' => 'admin.landing.exhibition_history',
             ],
