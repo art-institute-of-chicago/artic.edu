@@ -59,8 +59,9 @@ const globalSearch = function(container) {
     _showLoader();
     ajaxTimer = setTimeout(function(){
       ajaxRequest({
-        url: autoCompleteUrl + _fixedEncodeURIComponent(textInput.value),
+        url: autoCompleteUrl,
         type: 'GET',
+        data: { q: textInput.value },
         requestHeaders: [
           {
             header: 'Content-Type',

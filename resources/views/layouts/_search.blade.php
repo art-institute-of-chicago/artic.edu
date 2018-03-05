@@ -1,4 +1,4 @@
-<div class="g-search" data-behavior="globalSearch" data-autocomplete-url="/autocomplete/">
+<div class="g-search" data-behavior="globalSearch" data-autocomplete-url="{!! route('search.autocomplete') !!}">
     <div class="g-search__scroll">
         <div class="g-search__inner" data-search-inner>
             <form action="/search" class="g-search__form">
@@ -11,8 +11,8 @@
             <div class="g-search__suggested">
                 <span class="g-search__suggested-title">Suggested Terms</span>
                 <ul>
-                    @foreach ($search['suggested'] as $item)
-                        <li><a href="#">{{ $item }}</a></li>
+                    @foreach ($searchTerms as $item)
+                        <li><a href="{!! route('search', ['q' => $item]) !!}">{{ $item }}</a></li>
                     @endforeach
                 </ul>
             </div>

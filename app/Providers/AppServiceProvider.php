@@ -118,21 +118,6 @@ class AppServiceProvider extends ServiceProvider
             ,   'legal-saic' => '/saic'
             ,   'legal-terms' => '/terms'
             ,   'legal-image-licensing' => '/image-licensing'
-
-            ],
-            'search' => [
-                'suggested' => [
-                    'Chicago',
-                    'Landscapes',
-                    'Impressionism',
-                    'Jewelry',
-                    'Animals',
-                    'Furniture',
-                    'Art Deco',
-                    'Mythology',
-                    'Chicago',
-                    'Landscapes',
-                ]
             ],
             'mobileNav' => [
                 [

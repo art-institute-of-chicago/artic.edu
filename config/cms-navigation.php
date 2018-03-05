@@ -132,6 +132,10 @@ return [
                 'title' => 'Shop',
                 'module' => true,
             ],
+            'searchTerms' => [
+                'title' => 'Search Terms',
+                'module' => true,
+            ],
         ],
     ],
 ];

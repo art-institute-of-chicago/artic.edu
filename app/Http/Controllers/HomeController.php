@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-// use A17\CmsToolkit\Http\Controllers\Front\Controller;
-
+use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use A17\CmsToolkit\Models\Feature;
 
 use App\Presenters\StaticObjectPresenter;
-
-use Carbon\Carbon;
-
-
 use App\Repositories\Api\ShopItemRepository;
 
 use App\Models\Exhibition;
 use App\Models\Page;
 use App\Models\Api\ShopItem;
+
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {

@@ -32,7 +32,7 @@ class CreateDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments');
         Schema::dropIfExists('department_slugs');
+        Schema::dropIfExists('departments');
     }
 }

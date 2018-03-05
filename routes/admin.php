@@ -44,6 +44,7 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('shopItems');
     Route::module('feeAges');
     Route::module('feeCategories');
+    Route::module('searchTerms');
     Route::name('general.fees')->get('/fees', 'FeeController@index');
     Route::name('general.fees.update')->post('/fees', 'FeeController@update');
 });

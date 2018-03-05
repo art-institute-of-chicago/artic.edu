@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 use App\Models\Page;
@@ -17,6 +18,7 @@ class CollectionController extends Controller
     public function __construct(ArtworkRepository $repository)
     {
         $this->apiRepository = $repository;
+        parent::__construct();
     }
 
     public function index()

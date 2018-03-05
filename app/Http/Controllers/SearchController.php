@@ -12,6 +12,7 @@ use App\Repositories\Api\SearchRepository;
 use App\Repositories\Api\ExhibitionRepository;
 
 use App\Http\Controllers\StaticsController;
+use A17\CmsToolkit\Http\Controllers\Front\Controller;
 
 use LakeviewImageService;
 
@@ -42,6 +43,8 @@ class SearchController extends Controller
         $this->artistsRepository = $artists;
         $this->searchRepository = $search;
         $this->exhibitionsRepository = $exhibitions;
+
+        parent::__construct();
     }
 
 
