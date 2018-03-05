@@ -78,7 +78,7 @@
   </div>
   @endif
 
-  <div class="o-article__body o-blocks" data-behavior="articleBodyInViewport">
+  <div class="o-article__body o-blocks">
 
     {{-- Print blocks --}}
     @component('components.blocks._blocks')

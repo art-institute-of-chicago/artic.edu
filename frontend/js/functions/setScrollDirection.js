@@ -12,6 +12,12 @@ const setScrollDirection = function() {
     if (sT !== lastScrollTop) {
       triggerCustomEvent(document, 'scroll:active', { 'y': sT });
 
+      if (sT > 400) {
+        dE.classList.add('s-allow-top-link');
+      } else {
+        dE.classList.remove('s-allow-top-link');
+      }
+
       if (sT > lastScrollTop && scrollDirection !== 'down') {
         scrollDirection = 'down';
         dE.classList.remove('s-scroll-direction-up');

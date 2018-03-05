@@ -191,8 +191,11 @@ $f-autocomplete: generate-font-obj((
 
 .g-search__autocomplete li img {
   position: absolute;
-  top: 6px;
   left: 0;
+  top: 6px;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
 }
 
 .g-search__autocomplete-all {

@@ -163,7 +163,7 @@
   </div>
   @endif
 
-  <div class="o-article__body o-blocks" data-behavior="articleBodyInViewport">
+  <div class="o-article__body o-blocks">
     @component('components.blocks._blocks')
         @slot('editorial', ($article->articleType === 'editorial'))
         @slot('blocks', $article->blocks ?? null)
@@ -327,12 +327,6 @@
         @slot('articleType', $article->articleType)
     @endcomponent
   </div>
-
-  <a class="o-article__top-link" href="#a17">
-    <svg class="icon--arrow" aria-label="top of page">
-      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow">
-    </svg>
-  </a>
 
 </article>
 

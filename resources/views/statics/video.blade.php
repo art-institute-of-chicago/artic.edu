@@ -11,7 +11,7 @@
         @slot('intro', $article->intro)
     @endcomponent
 
-    <div class="o-article__body o-blocks" data-behavior="articleBodyInViewport">
+    <div class="o-article__body o-blocks">
         @component('components.molecules._m-media')
             @slot('variation', 'o-blocks__block')
             @slot('item', $article->video)

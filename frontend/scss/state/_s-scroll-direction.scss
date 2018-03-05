@@ -4,6 +4,19 @@
   }
 }
 
+.s-scroll-direction-up.s-allow-top-link {
+  .top-link {
+    @include breakpoint('medium+') {
+      bottom: 84px;
+      transition-timing-function: $bezier--ease-out-circ;
+    }
+
+    @include breakpoint('large+') {
+      bottom: 40px;
+    }
+  }
+}
+
 .s-scroll-direction-down.s-header-hide {
   .g-header {
     transform: translateY(-100%);

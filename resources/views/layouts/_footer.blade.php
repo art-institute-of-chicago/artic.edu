@@ -106,3 +106,8 @@
     <li><a href="{{ $_pages['legal-image-licensing'] }}">Image licensing</a></li>
   </ul>
 </footer>
+<a class="top-link" href="#a17">
+  <svg class="icon--arrow" aria-label="top of page">
+    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow">
+  </svg>
+</a>

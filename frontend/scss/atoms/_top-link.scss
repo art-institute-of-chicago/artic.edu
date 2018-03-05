@@ -1,0 +1,48 @@
+
+.top-link {
+  display: none;
+  position: fixed;
+  z-index: map-get($zindexs, 'articleTopLink');
+  right: 40px;
+  bottom: -48px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0 none;
+  border-radius: $border-radius;
+  background-color: rgba($color__black, .7);
+  color: $color__white;
+  line-height: 45px;
+  text-align: center;
+  cursor: pointer;
+  transform: rotate(-90deg);
+  transition: bottom .25s $bezier--bounce;
+  will-change: bottom;
+
+  @include breakpoint('medium+') {
+    display: block;
+  }
+}
+
+.top-link:hover,
+.top-link:focus,
+.top-link:active {
+  background-color: rgba($color__black, .9);
+  color: $color__white;
+}
+
+.top-link svg {
+  position: relative;
+  right: 3px;
+  vertical-align: middle;
+}
+
+.top-link::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  bottom: 16px;
+  width: 1.5px;
+  background-color: $color__white;
+}
