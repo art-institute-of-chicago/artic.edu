@@ -108,7 +108,7 @@
 
         @formField('input', [
             'name' => 'forced_date',
-            'label' => 'Force the date to show this',
+            'label' => 'Force the event to show this as date',
             'note' => 'Optional, the event will show this instead of the automatic computed date',
             'type' => 'text'
         ])
