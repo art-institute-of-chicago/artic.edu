@@ -66,4 +66,9 @@ class PageController extends ModuleController
         return null;
     }
 
+    protected function moduleHasRevisions()
+    {
+        return false;
+    }
+
 }

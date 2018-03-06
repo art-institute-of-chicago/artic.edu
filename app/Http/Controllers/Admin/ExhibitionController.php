@@ -11,14 +11,8 @@ class ExhibitionController extends BaseApiController
 
     protected $indexOptions = [
         'publish' => false,
-        'bulkPublish' => false,
-        'feature' => false,
-        'bulkFeature' => false,
-        'restore' => false,
-        'bulkRestore' => false,
-        'bulkDelete' => false,
-        'reorder' => false,
-
+        'bulkEdit' => false,
+        'create' => false,
         'permalink' => false,
     ];
 
@@ -30,14 +24,14 @@ class ExhibitionController extends BaseApiController
         'augmented' => [
             'title' => 'Augmented?',
             'field' => 'augmented',
-            'present' => true
+            'present' => true,
         ],
         'date' => [
             'title' => 'Dates',
             'field' => 'date',
             'present' => true,
-            'optional' => false
-        ]
+            'optional' => false,
+        ],
     ];
 
     protected $indexWith = ['medias'];
@@ -57,7 +51,7 @@ class ExhibitionController extends BaseApiController
     {
         return [
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
-            'exhibitionTypesList' => $this->repository->getExhibitionTypesList()
+            'exhibitionTypesList' => $this->repository->getExhibitionTypesList(),
         ];
     }
 
