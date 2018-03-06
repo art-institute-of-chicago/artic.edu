@@ -8,10 +8,13 @@ use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Models\Selection;
 use App\Repositories\Behaviors\HandleApiRelations;
+use App\Repositories\Behaviors\HandleApiBlocks;
 
 class SelectionRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleMedias, HandleBLocks, HandleApiRelations;
+    use HandleSlugs, HandleMedias, HandleBLocks, HandleApiBlocks, HandleApiRelations {
+        HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
+    }
 
     public function __construct(Selection $model)
     {

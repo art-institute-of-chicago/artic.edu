@@ -118,6 +118,26 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-event',
             ],
+            'artwork' => [
+                'title' => 'Artwork',
+                'icon' => 'image',
+                'component' => 'a17-block-artwork',
+            ],
+            'artworks' => [
+                'title' => 'Artworks Gallery',
+                'icon' => 'image',
+                'component' => 'a17-block-artworks',
+            ],
+            'shop_item' => [
+                'title' => 'Shop Item',
+                'icon' => 'image',
+                'component' => 'a17-block-shop_item',
+            ],
+            'shop_items' => [
+                'title' => 'Shop Items',
+                'icon' => 'image',
+                'component' => 'a17-block-shop_items',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
