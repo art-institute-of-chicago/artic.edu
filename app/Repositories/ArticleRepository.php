@@ -9,10 +9,13 @@ use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Models\Article;
 use App\Repositories\Behaviors\HandleApiRelations;
+use App\Repositories\Behaviors\HandleApiBlocks;
 
 class ArticleRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiRelations;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations {
+        HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
+    }
 
     public function __construct(Article $model)
     {

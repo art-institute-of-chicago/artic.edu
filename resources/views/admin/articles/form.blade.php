@@ -58,7 +58,7 @@
 
     @formField('block_editor', [
         'blocks' => [
-            'text', 'image_with_caption', 'video_with_caption', 'gallery', 'media_embed', 'quote', 'list',
+            'text', 'image_with_caption', 'video_with_caption', 'gallery', 'media_embed', 'quote', 'list', 'artwork', 'artworks'
         ]
     ])
 @stop
