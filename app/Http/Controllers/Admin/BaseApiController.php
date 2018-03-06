@@ -28,7 +28,7 @@ class BaseApiController extends ModuleController
     ];
 
     // Remove CMS toolkit table filters.
-    public function getIndexTableMainFilters($items)
+    public function getIndexTableMainFilters($items, $scopes = [])
     {
         return [];
     }

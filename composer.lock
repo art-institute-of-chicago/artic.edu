@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "git@code.area17.com:a17/laravel-cms-toolkit.git",
-                "reference": "e8295e6c2ac810edea203507ee5b22f6bceca602"
+                "reference": "4c8d551880e1adf97ae97d5206ddae9c74b242ea"
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.0.1",
@@ -84,7 +84,7 @@
                 "cms-toolkit",
                 "laravel"
             ],
-            "time": "2018-03-06T06:11:04+00:00"
+            "time": "2018-03-06T14:22:39+00:00"
         },
         {
             "name": "aic/data-hub-foundation",
