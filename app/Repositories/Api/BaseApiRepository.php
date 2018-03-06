@@ -2,12 +2,24 @@
 
 namespace App\Repositories\Api;
 
+use A17\CmsToolkit\Models\Model;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleApiRelations;
 
 abstract class BaseApiRepository extends ModuleRepository
 {
     use HandleApiRelations;
+
+    public function getById($id, $with = [], $withCount = [])
+    {
+        $item = $this->model->with($with)->withCount($withCount)->findOrFail($id);
+
+        if ($item instanceof Model) {
+            return $item->refreshApi();
+        }
+
+        return $item;
+    }
 
     public function filter($query, array $scopes = [])
     {
