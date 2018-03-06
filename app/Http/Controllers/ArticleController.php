@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\ArticleRepository;
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Page;
 use App\Models\Article;
 
-class ArticleController extends Controller
+class ArticleController extends FrontController
 {
     protected $repository;
 

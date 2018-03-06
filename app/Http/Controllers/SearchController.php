@@ -13,11 +13,10 @@ use App\Repositories\Api\SearchRepository;
 use App\Repositories\Api\ExhibitionRepository;
 
 use App\Http\Controllers\StaticsController;
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 
 use LakeviewImageService;
 
-class SearchController extends Controller
+class SearchController extends FrontController
 {
     const ALL_PER_PAGE = 5;
     const ALL_PER_PAGE_ARTWORKS = 8;

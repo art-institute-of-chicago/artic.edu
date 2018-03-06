@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\EventRepository;
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Page;
 use Carbon\Carbon;
 
-class EventController extends Controller
+class EventController extends FrontController
 {
     protected $repository;
 

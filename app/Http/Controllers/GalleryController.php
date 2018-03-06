@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Api\GalleryRepository;
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Api\Gallery;
 use Carbon\Carbon;
 
-class GalleryController extends Controller
+class GalleryController extends FrontController
 {
     protected $repository;
 

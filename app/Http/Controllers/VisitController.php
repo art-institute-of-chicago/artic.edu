@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use A17\CmsToolkit\Http\Controllers\Front\Controller as Controller;
 use App\Presenters\StaticObjectPresenter;
 use Faker\Generator as Faker;
 use LakeviewImageService;
@@ -12,7 +11,7 @@ use App\Models\Page;
 
 use Illuminate\Http\Request;
 
-class VisitController extends Controller
+class VisitController extends FrontController
 {
 
 
@@ -30,7 +29,7 @@ class VisitController extends Controller
     {
         $page = Page::forType('Visit')->first();
 
-        $headerMedia = $page->visit_hero; 
+        $headerMedia = $page->visit_hero;
 
         $hours = array(
             'media' => array(

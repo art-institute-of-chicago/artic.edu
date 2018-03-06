@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\SelectionRepository;
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Selection;
 
 use App\Presenters\StaticObjectPresenter;
 
-class SelectionsController extends Controller
+class SelectionsController extends FrontController
 {
     protected $repository;
 

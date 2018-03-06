@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 use App\Models\Page;
 
 use LakeviewImageService;
 
-class CollectionController extends Controller
+class CollectionController extends FrontController
 {
     protected $apiRepository;
 

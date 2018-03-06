@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\EventRepository;
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Page;
 use App\Models\Api\Exhibition;
 use Carbon\Carbon;
 
-class ExhibitionController extends Controller
+class ExhibitionController extends FrontController
 {
     protected $apiRepository;
     protected $eventRepository;

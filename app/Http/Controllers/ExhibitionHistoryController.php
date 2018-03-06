@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Repositories\Api\ExhibitionRepository;
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 
 use App\Models\Api\Exhibition;
 use App\Models\Page;
 
-class ExhibitionHistoryController extends Controller
+class ExhibitionHistoryController extends FrontController
 {
 
     protected $apiRepository;

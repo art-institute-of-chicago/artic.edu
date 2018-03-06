@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\SearchRepository;
 
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use App\Models\Page;
 
 use LakeviewImageService;
 
-class ArtworkController extends Controller
+class ArtworkController extends FrontController
 {
     protected $apiRepository;
     protected $searchRepository;

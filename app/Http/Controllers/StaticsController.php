@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use A17\CmsToolkit\Http\Controllers\Front\Controller as Controller;
 use App\Presenters\StaticObjectPresenter;
 use Faker\Generator as Faker;
 use Carbon\Carbon;
 use LakeviewImageService;
 
-class StaticsController extends Controller {
+class StaticsController extends FrontController {
   protected $faker;
 
   function __construct(Faker $faker) {

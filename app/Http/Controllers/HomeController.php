@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use A17\CmsToolkit\Http\Controllers\Front\Controller;
 use A17\CmsToolkit\Models\Feature;
 
 use App\Presenters\StaticObjectPresenter;
@@ -14,7 +13,7 @@ use App\Models\Api\ShopItem;
 
 use Carbon\Carbon;
 
-class HomeController extends Controller
+class HomeController extends FrontController
 {
 
     protected $shopItemRepository;
