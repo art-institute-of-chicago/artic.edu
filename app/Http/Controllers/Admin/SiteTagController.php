@@ -10,6 +10,7 @@ class SiteTagController extends ModuleController
 
     protected $indexOptions = [
         'publish' => false,
+        'editInModal' => true,
     ];
 
     protected $titleColumnKey = 'name';

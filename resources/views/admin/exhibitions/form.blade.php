@@ -1,4 +1,11 @@
-@extends('cms-toolkit::layouts.form')
+@extends('cms-toolkit::layouts.form', [
+    'additionalFieldsets' => [
+        ['fieldset' => 'attributes', 'label' => 'Attributes'],
+        ['fieldset' => 'related', 'label' => 'Related'],
+        ['fieldset' => 'api', 'label' => 'Datahub fields'],
+    ]
+])
+
 
 @section('contentFields')
     @formField('checkbox', [
@@ -92,7 +99,7 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="related" title="API Fields">
+    <a17-fieldset id="api" title="Datahub fields">
         @formField('input', [
             'name' => 'title',
             'label' => 'Title',

@@ -11,14 +11,12 @@ class ArtworkController extends BaseApiController
 
     protected $indexOptions = [
         'publish' => false,
-        'bulkPublish' => false,
+        'bulkEdit' => false,
         'feature' => false,
-        'bulkFeature' => false,
         'restore' => false,
-        'bulkRestore' => false,
-        'bulkDelete' => false,
-        'reorder' => false,
         'permalink' => false,
+        'create' => false,
+        'edit' => false,
     ];
 
     protected $indexColumns = [
@@ -29,7 +27,7 @@ class ArtworkController extends BaseApiController
         'id' => [
             'title' => 'Datahub ID',
             'field' => 'id',
-        ]
+        ],
     ];
 
     /*

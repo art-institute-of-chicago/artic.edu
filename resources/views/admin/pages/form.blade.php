@@ -1,6 +1,15 @@
-@extends('cms-toolkit::layouts.form')
+@php
+    $pageType = App\Models\Page::$types[$item->type];
+@endphp
 
-@section('contentFields')
-    <input type="hidden" name="type" value="{{ $item->type }}">
-    @include('admin.pages.form_' . snake_case(App\Models\Page::$types[$item->type]))
-@stop
+@extends('cms-toolkit::layouts.form', [
+    'additionalFieldsets' =>
+    $pageType == 'Visit' ? [
+        ['fieldset' => 'locations', 'label' => 'Locations'],
+        ['fieldset' => 'admissions', 'label' => 'Admissions'],
+        ['fieldset' => 'featured_hours', 'label' => 'Featured hours'],
+        ['fieldset' => 'dinning_hours', 'label' => 'Dinning hours'],
+    ] : []
+])
+
+@include('admin.pages.form_' . snake_case($pageType))

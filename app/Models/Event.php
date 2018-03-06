@@ -17,7 +17,7 @@ class Event extends Model
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
     protected $presenter = 'App\Presenters\Admin\EventPresenter';
 
-    protected $appends = ['all_dates', 'date', 'date_end'];
+    protected $appends = ['all_dates'];
 
     protected $fillable = [
         'title',
@@ -46,7 +46,7 @@ class Event extends Model
         'content',
         'layout_type',
         'buy_button_text',
-        'buy_button_caption'
+        'buy_button_caption',
     ];
 
     const CLASSES_AND_WORKSHOPS = 0;
@@ -62,7 +62,7 @@ class Event extends Model
         self::SCREENINGS => 'Screenings',
         self::SPECIAL_EVENT => 'Special Event',
         self::TALKS => 'Talks',
-        self::TOUR => 'Tour'
+        self::TOUR => 'Tour',
     ];
 
     const BASIC_LAYOUT = 0;
@@ -91,7 +91,7 @@ class Event extends Model
         'is_member_exclusive',
         'is_ongoing',
         'is_sold_out',
-        'is_boosted'
+        'is_boosted',
     ];
 
     public $dates = ['date', 'date_end'];
@@ -114,22 +114,30 @@ class Event extends Model
     ];
 
     // Generates the id-slug type of URL
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return 'id_slug';
     }
 
-    public function getIdSlugAttribute() {
+    public function getIdSlugAttribute()
+    {
         return join([$this->id, $this->getSlug()], '-');
     }
 
-    public function getTimeStartAttribute() {
-        if ($this->date)
+    public function getTimeStartAttribute()
+    {
+        if ($this->date) {
             return $this->date->format('h:ia');
+        }
+
     }
 
-    public function getTimeEndAttribute() {
-        if ($this->date_end)
-         return $this->date_end->format('h:ia');
+    public function getTimeEndAttribute()
+    {
+        if ($this->date_end) {
+            return $this->date_end->format('h:ia');
+        }
+
     }
 
     public function siteTags()
@@ -164,128 +172,128 @@ class Event extends Model
                 "name" => "title",
                 "doc" => "Title",
                 "type" => "boolean",
-                "value" => function() { return $this->title; }
+                "value" => function () {return $this->title;},
             ],
-                    [
+            [
                 "name" => "published",
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function() { return $this->published; }
+                "value" => function () {return $this->published;},
             ],
-                    [
+            [
                 "name" => "type",
                 "doc" => "Type",
                 "type" => "number",
-                "value" => function() { return $this->type; }
+                "value" => function () {return $this->type;},
             ],
-                    [
+            [
                 "name" => "short_description",
                 "doc" => "Short Description",
                 "type" => "string",
-                "value" => function() { return $this->short_description; }
+                "value" => function () {return $this->short_description;},
             ],
-                    [
+            [
                 "name" => "description",
                 "doc" => "Description",
                 "type" => "string",
-                "value" => function() { return $this->description; }
+                "value" => function () {return $this->description;},
             ],
-                    [
+            [
                 "name" => "hero_caption",
                 "doc" => "Hero caption",
                 "type" => "string",
-                "value" => function() { return $this->hero_caption; }
+                "value" => function () {return $this->hero_caption;},
             ],
-                    [
+            [
                 "name" => "is_private",
                 "doc" => "Is Private",
                 "type" => "boolean",
-                "value" => function() { return $this->is_private; }
+                "value" => function () {return $this->is_private;},
             ],
-                    [
+            [
                 "name" => "is_after_hours",
                 "doc" => "Is after hhours",
                 "type" => "boolean",
-                "value" => function() { return $this->is_after_hours; }
+                "value" => function () {return $this->is_after_hours;},
             ],
-                    [
+            [
                 "name" => "is_ticketed",
                 "doc" => "Is ticketed",
                 "type" => "boolean",
-                "value" => function() { return $this->is_ticketed; }
+                "value" => function () {return $this->is_ticketed;},
             ],
-                    [
+            [
                 "name" => "is_free",
                 "doc" => "Is Free",
                 "type" => "boolean",
-                "value" => function() { return $this->is_free; }
+                "value" => function () {return $this->is_free;},
             ],
-                    [
+            [
                 "name" => "is_member_exclusive",
                 "doc" => "Is member exclusive",
                 "type" => "boolean",
-                "value" => function() { return $this->is_member_exclusive; }
+                "value" => function () {return $this->is_member_exclusive;},
             ],
-                    [
+            [
                 "name" => "hidden",
                 "doc" => "Hidden",
                 "type" => "boolean",
-                "value" => function() { return $this->hidden; }
+                "value" => function () {return $this->hidden;},
             ],
             [
                 "name" => "rsvp_link",
                 "doc" => "RSVP Link",
                 "type" => "string",
-                "value" => function() { return $this->rsvp_link; }
+                "value" => function () {return $this->rsvp_link;},
             ],
             [
                 "name" => "all_dates",
                 "doc" => "Dates",
                 "type" => "array",
-                "value" => function() { return $this->all_dates; }
+                "value" => function () {return $this->all_dates;},
             ],
             [
                 "name" => "location",
                 "doc" => "Location",
                 "type" => "string",
-                "value" => function() { return $this->location; }
+                "value" => function () {return $this->location;},
             ],
-                    [
+            [
                 "name" => "sponsors_description",
                 "doc" => "sponsors_description",
                 "type" => "string",
-                "value" => function() { return $this->sponsors_description; }
+                "value" => function () {return $this->sponsors_description;},
             ],
-                    [
+            [
                 "name" => "sponsors_sub_copy",
                 "doc" => "sponsors_sub_copy",
                 "type" => "string",
-                "value" => function() { return $this->sponsors_sub_copy; }
+                "value" => function () {return $this->sponsors_sub_copy;},
             ],
-                    [
+            [
                 "name" => "content",
                 "doc" => "Content",
                 "type" => "string",
-                "value" => function() { return $this->content; }
+                "value" => function () {return $this->content;},
             ],
-                    [
+            [
                 "name" => "layout_type",
                 "doc" => "Layout Type",
                 "type" => "number",
-                "value" => function() { return $this->layout_type; }
+                "value" => function () {return $this->layout_type;},
             ],
             [
                 "name" => "buy_button_text",
                 "doc" => "buy_button_text",
                 "type" => "string",
-                "value" => function() { return $this->buy_button_text; }
+                "value" => function () {return $this->buy_button_text;},
             ],
-                    [
+            [
                 "name" => "buy_button_caption",
                 "doc" => "buy_button_caption",
                 "type" => "string",
-                "value" => function() { return $this->buy_button_caption; }
-            ]
+                "value" => function () {return $this->buy_button_caption;},
+            ],
         ];
     }
 }

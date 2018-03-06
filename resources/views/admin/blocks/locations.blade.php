@@ -1,42 +1,29 @@
-    <div class="col">
-        @formField('input', [
-            'type' => 'text',
-            'name' => 'name',
-            'field_name' => 'Name',
-            'label' => 'Name',
-            'required' => true
-        ])
-        @formField('input', [
-            'type' => 'text',
-            'name' => 'street',
-            'field_name' => 'Street',
-            'label' => 'Street',
-        ])
-        @formField('input', [
-            'type' => 'text',
-            'name' => 'address',
-            'field_name' => 'Address',
-            'label' => 'Address',
-        ])
-    </div>
+@formField('input', [
+    'name' => 'name',
+    'label' => 'Name',
+    'required' => true
+])
 
-    <div class="col">
-        @formField('input', [
-            'type' => 'text',
-            'name' => 'city',
-            'field_name' => 'City',
-            'label' => 'City',
-        ])
-        @formField('input', [
-            'type' => 'text',
-            'name' => 'state',
-            'field_name' => 'State',
-            'label' => 'State',
-        ])
-        @formField('input', [
-            'type' => 'text',
-            'name' => 'zip',
-            'field_name' => 'ZIP code',
-            'label' => 'ZIP code',
-        ])
-    </div>
+@component('cms-toolkit::partials.form.utils._collapsed_fields', ['label' => 'Edit location'])
+    @formField('input', [
+        'name' => 'street',
+        'label' => 'Street',
+    ])
+    @formField('input', [
+        'name' => 'address',
+        'label' => 'Address',
+    ])
+
+    @formField('input', [
+        'name' => 'city',
+        'label' => 'City',
+    ])
+    @formField('input', [
+        'name' => 'state',
+        'label' => 'State',
+    ])
+    @formField('input', [
+        'name' => 'zip',
+        'label' => 'ZIP code',
+    ])
+@endcomponent

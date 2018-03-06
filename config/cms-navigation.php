@@ -29,7 +29,7 @@ return [
                 'title' => 'Exhibitions & Events',
                 'route' => 'admin.landing.exhibitions',
             ],
-            'exhibitions_history' => [
+            'exhibition_history' => [
                 'title' => 'Exhibition History',
                 'route' => 'admin.landing.exhibition_history',
             ],
@@ -39,7 +39,25 @@ return [
             ],
             'visit' => [
                 'title' => 'Visit',
-                'route' => 'admin.landing.visit',
+                'route' => 'admin.landing.visit.page',
+                'secondary_navigation' => [
+                    'page' => [
+                        'title' => 'Landing',
+                        'route' => 'admin.landing.visit.page',
+                    ],
+                    'fees' => [
+                        'title' => 'Admission Fees',
+                        'route' => 'admin.landing.visit.fees',
+                    ],
+                    'feeAges' => [
+                        'title' => 'Admission Ages',
+                        'module' => true,
+                    ],
+                    'feeCategories' => [
+                        'title' => 'Admission Categories',
+                        'module' => true,
+                    ],
+                ],
             ],
             'articles' => [
                 'title' => 'Articles',
@@ -92,18 +110,6 @@ return [
         'route' => 'admin.general.categories.index',
 
         'primary_navigation' => [
-            'fees' => [
-                'title' => 'Admission Fees',
-                'route' => 'admin.general.fees',
-            ],
-            'feeAges' => [
-                'title' => 'Admission Ages',
-                'module' => true,
-            ],
-            'feeCategories' => [
-                'title' => 'Admission Categories',
-                'module' => true,
-            ],
             'categories' => [
                 'title' => 'Article Categories',
                 'module' => true,

@@ -10,6 +10,8 @@ class CategoryController extends ModuleController
 
     protected $indexOptions = [
         'publish' => false,
+        'editInModal' => true,
+        'permalink' => false,
     ];
 
     protected $titleColumnKey = 'name';

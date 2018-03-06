@@ -10,43 +10,8 @@ class FeeAgeController extends ModuleController
 
     protected $indexOptions = [
         'publish' => false,
+        'permalink' => false,
+        'editInModal' => true,
+        'reorder' => true,
     ];
-
-    protected $indexColumns = [
-        'title' => [
-            'title' => 'Field title',
-            'edit_link' => true,
-            'sort' => false,
-            'field' => 'title',
-        ],
-    ];
-
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
-
-    /*
-     * Relations to eager load for the form view
-     */
-    protected $formWith = [];
-
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
-    protected $filters = [];
-
-    protected $defaultOrders = ['position' => 'asc'];
-
-    protected function indexData($request)
-    {
-        return [];
-    }
-
-    protected function formData($request)
-    {
-        return [];
-    }
-
 }

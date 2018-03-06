@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
 use A17\CmsToolkit\Models\Behaviors\HasPosition;
+use A17\CmsToolkit\Models\Model;
 
 class FeeAge extends Model
 {
@@ -11,12 +11,6 @@ class FeeAge extends Model
 
     protected $fillable = [
         'title',
-        'position'
+        'position',
     ];
-
-    // those fields get auto set to null if not submited
-    public $nullable = [];
-
-    // those fields get auto set to false if not submited
-    public $checkboxes = [];
 }
