@@ -28,6 +28,9 @@ class SelectionsController extends Controller
         $item = $this->repository->forSlug($slug);
         if (empty($item)) {
             $item = $this->repository->getById($slug);
+            if ($item->imageObject('hero')) {
+                $item->headerImage = aic_convertFromImage($item->imageObject('hero'));
+            }
         }
 
         $item->headerType = 'hero';
@@ -35,7 +38,6 @@ class SelectionsController extends Controller
         if ($item->siteTags->first()) {
             $item->type = $item->siteTags->first()->name;
         }
-        // dd($item->image('hero'));
 
         // dd($item->articles);
         // $item->featuredRelated = array(
