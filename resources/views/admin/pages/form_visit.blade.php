@@ -1,58 +1,40 @@
-@push('extra_js')
-    <script src="https://maps.googleapis.com/maps/api/js?key={!! env('GOOGLE_API_KEY') !!}&maptype=roadmap"></script>
-    <script src="{{ mix('/assets/admin/behaviors/google_maps.js') }}"></script>
-@endpush
+@section('contentFields')
+    @formField('medias', [
+        'name' => 'visit_hero',
+        'label' => 'Hero Image',
+    ])
 
-@formField('medias', [
-    'name' => 'visit_hero',
-    'label' => 'Hero Image',
-    'with_multiple' => false,
-    'no_crop' => false
-])
+    @formField('medias', [
+        'name' => 'visit_mobile',
+        'label' => 'Hero Mobile Image',
+    ])
 
-@formField('medias', [
-    'name' => 'visit_mobile',
-    'label' => 'Hero Mobile Image',
-    'with_multiple' => false,
-    'no_crop' => false
-])
+    @formField('input', [
+        'name' => 'visit_intro',
+        'label' => 'Explore all dinning link'
+    ])
 
-@formField('repeater', [
-    'type' => 'locations',
-    'title' => 'Locations',
-    'routePrefix' => 'landing.visit',
-    'title_singular' => 'Locations'
-])
+    @formField('map', [
+        'name' => 'location',
+        'label' => 'Location',
+        'showMap' => true,
+    ])
+@stop
 
+@section('fieldsets')
+    <a17-fieldset title="Locations" id="locations">
+        @formField('repeater', ['type' => 'locations'])
+    </a17-fieldset>
 
-@formField('repeater', [
-    'type' => 'admissions',
-    'title' => 'Free Admissions',
-    'routePrefix' => 'landing.visit',
-    'title_singular' => 'Free Admission'
-])
+    <a17-fieldset title="Admissions" id="admissions">
+        @formField('repeater', ['type' => 'admissions'])
+    </a17-fieldset>
 
-@formField('repeater', [
-    'type' => 'featured_hours',
-    'title' => 'Hours',
-    'routePrefix' => 'landing.visit',
-    'title_singular' => 'Hour'
-])
+    <a17-fieldset title="Featured hours" id="featured_hours">
+        @formField('repeater', ['type' => 'featured_hours'])
+    </a17-fieldset>
 
-@formField('repeater', [
-    'type' => 'dinning_hours',
-    'title' => 'Dinning Hours',
-    'routePrefix' => 'landing.visit',
-    'title_singular' => 'Dinning Hour'
-])
-
-@formField('input', [
-    'name' => 'visit_intro',
-    'label' => 'Explore all dinning link'
-])
-
-@formField('map', [
-    'name' => 'location',
-    'label' => 'Location',
-    'showMap' => true,
-])
+    <a17-fieldset title="Dinning Hours" id="dinning_hours">
+        @formField('repeater', ['type' => 'dinning_hours'])
+    </a17-fieldset>
+@stop
