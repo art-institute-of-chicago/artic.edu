@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\SiteTagRepository;
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use App\Repositories\SiteTagRepository;
 
 class SelectionController extends ModuleController
 {

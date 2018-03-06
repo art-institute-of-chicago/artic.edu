@@ -3,15 +3,15 @@
 namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
-use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
+use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\ModuleRepository;
-use App\Repositories\Api\BaseApiRepository;
 use App\Models\Selection;
+use App\Repositories\Behaviors\HandleApiRelations;
 
-class SelectionRepository extends BaseApiRepository
+class SelectionRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleMedias, HandleBLocks;
+    use HandleSlugs, HandleMedias, HandleBLocks, HandleApiRelations;
 
     public function __construct(Selection $model)
     {
