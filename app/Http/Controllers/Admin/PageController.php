@@ -11,12 +11,14 @@ class PageController extends ModuleController
     const MISSING_CMS_PAGE_MESSAGE = "CMS home page doesn't exist, make sure to migrate the database and seed it first (php artisan migrate & php artisan db:seed)";
 
     protected $moduleName = 'pages';
-    protected $formWith = ['slugs'];
-    protected $formWithCount = [];
 
     protected function formData($request)
     {
-        return [];
+        return [
+            'permalink' => false,
+            'publish' => false,
+            'editableTitle' => false,
+        ];
     }
 
     public function home(PageRepository $pages)
@@ -43,7 +45,7 @@ class PageController extends ModuleController
     public function visit(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Visit'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.landing.visit'));
+        Session::put("pages_back_link", route('admin.landing.visit.page'));
         return view('admin.pages.form', $this->form($page->id));
     }
 
