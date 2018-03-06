@@ -17,16 +17,16 @@
         $height = $settings['height'];
     }
 
-    if (empty($src)) {
+    if (empty($src) && isset($image['src'])) {
         $src = $image['src'];
         $highlight = ' data-no-img-settings';
     }
 
-    if (empty($width)) {
+    if (empty($width) && isset($image['width'])) {
         $width = $image['width'];
     }
 
-    if (empty($height)) {
+    if (empty($height) && isset($image['height'])) {
         $height = $image['height'];
     }
 @endphp

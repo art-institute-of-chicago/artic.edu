@@ -1562,6 +1562,16 @@ class StaticsController extends FrontController {
   // Make some fake datas
   // --------------------------------------------------------------------------------------------
 
+  private function getImageUrl()
+  {
+    $sourceType = 'placeholder';
+    $width = $this->faker->numberBetween(2000,5000);
+    $height = $this->faker->numberBetween(2000,5000);
+    $src = "//placehold.dev.area17.com/image/".$width."x".$height."?bg=333&fg=ccc";
+
+    return $src;
+  }
+
   private function getImage() {
     $sourceType = 'placeholder';
     $width = $this->faker->numberBetween(2000,5000);
@@ -1857,6 +1867,7 @@ class StaticsController extends FrontController {
       "title" => $this->faker->sentence(4, true),
       "shortDesc" => $this->faker->paragraph(1, false),
       "image" => $this->getImage(),
+      "image_url" => $this->getImageUrl(),
       "price" => $price,
       "priceSale" => $priceSale,
       "currency" => "$",

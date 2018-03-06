@@ -27,6 +27,6 @@
         'moduleName' => 'shopItems',
         'name' => 'homeShopItems',
         'label' => 'Related Shop items',
-        'note' => 'Select up to 3 shop items you want to feature on the homepage'
+        'note' => 'Select up to 5 shop items you want to feature on the homepage'
     ])
 @stop
