@@ -7,7 +7,13 @@ Route::group(['prefix' => 'landing'], function () {
     Route::name('landing.exhibitions')->get('exhibitions', 'PageController@exhibitions');
     Route::name('landing.exhibition_history')->get('exhibitions_history', 'PageController@exhibitionHistory');
     Route::name('landing.art')->get('art', 'PageController@art');
-    Route::name('landing.visit')->get('visit', 'PageController@visit');
+    Route::group(['prefix' => 'visit'], function () {
+        Route::name('landing.visit.page')->get('page', 'PageController@visit');
+        Route::module('feeAges');
+        Route::module('feeCategories');
+        Route::name('landing.visit.fees')->get('/fees', 'FeeController@index');
+        Route::name('landing.visit.fees.update')->post('/fees', 'FeeController@update');
+    });
     Route::name('landing.articles')->get('articles', 'PageController@articles');
 });
 
@@ -42,11 +48,7 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('admissions');
     Route::module('locations');
     Route::module('shopItems');
-    Route::module('feeAges');
-    Route::module('feeCategories');
     Route::module('searchTerms');
-    Route::name('general.fees')->get('/fees', 'FeeController@index');
-    Route::name('general.fees.update')->post('/fees', 'FeeController@update');
 });
 
 Route::get('/', function () {
