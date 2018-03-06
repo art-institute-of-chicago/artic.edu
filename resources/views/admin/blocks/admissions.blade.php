@@ -1,58 +1,32 @@
-{{-- @formField('publish_status', ['repeater' => true])
+@formField('input', [
+    'name' => 'title',
+    'label' => 'Title',
+    'required' => true
+])
 
-<div class="columns">
-    <div class="col">
-        @formField('input', [
-            'repeater' => true,
-            'name' => 'title',
-            'label' => 'Title',
-            'field_name' => 'Title',
-            'required' => true
-        ])
+@component('cms-toolkit::partials.form.utils._collapsed_fields', ['label' => 'Edit admission'])
+    @formField('date_picker', [
+        'name' => 'date',
+        'label' => 'Date',
+        'required' => true
+    ])
 
-        @formField('date_picker', [
-            'repeater' => true,
-            'name' => 'date',
-            'label' => 'Date',
-            'field_name' => 'Date',
-            'date_settings' => 'admissions_date_settings',
-            'required' => true
-        ])
-        @formField('input', [
-            'repeater' => true,
-            'name' => 'time_start',
-            'label' => 'Opening time',
-            'field_name' => 'Opening time',
-            'required' => true
-        ])
-        @formField('input', [
-            'repeater' => true,
-            'name' => 'time_end',
-            'label' => 'Closing time',
-            'field_name' => 'Closing time',
-            'required' => true
-        ])
-    </div>
+    @formField('input', [
+        'name' => 'time_start',
+        'label' => 'Opening time',
+        'required' => true
+    ])
 
-    <div class="col">
-        @formField('textarea', [
-            'repeater' => true,
-            'label' => 'Copy',
-            'name' => 'copy',
-            'field_name' => 'Copy',
-            'required' => true
-        ])
-    </div>
+    @formField('input', [
+        'name' => 'time_end',
+        'label' => 'Closing time',
+        'required' => true
+    ])
 
-    <script>
-        var admissions_date_settings = {
-            lang:'en',
-            format: 'm/d/Y',
-            datepicker: true,
-            timepicker: false,
-            dayOfWeekStart:1,
-        }
-    </script>
-
-</div>
- --}}
+    @formField('input', [
+        'name' => 'copy',
+        'label' => 'Copy',
+        'type' => 'textarea',
+        'required' => true
+    ])
+@endcomponent

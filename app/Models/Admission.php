@@ -15,14 +15,14 @@ class Admission extends Model
         'title',
         'copy',
         'position',
-        'page_id'
+        'page_id',
     ];
 
     // those fields get auto set to null if not submited
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = [];
+    public $checkboxes = ['published'];
 
     public $dates = ['date'];
 }
