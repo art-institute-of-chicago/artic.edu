@@ -37,6 +37,15 @@ class Artwork extends BaseApiModel
     //     }
     // }
 
+    public function getImageCopyright()
+    {
+        if (!empty($this->copyright_notice)) {
+            return $this->copyright_notice;
+        }
+
+        return '';
+    }
+
     public function getTypeAttribute()
     {
         return 'artwork';

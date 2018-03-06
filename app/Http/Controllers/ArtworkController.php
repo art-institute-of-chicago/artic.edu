@@ -42,6 +42,7 @@ class ArtworkController extends Controller
         $galleryImages = collect();
         if ($item->image_id) {
             $image = LakeviewImageService::getImage($item->image_id);
+            $image['credit'] = $item->getImageCopyright();
             $galleryImages[] = $image;
             $item->image = $image;
         }

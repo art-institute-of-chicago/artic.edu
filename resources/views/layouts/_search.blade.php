@@ -11,9 +11,11 @@
             <div class="g-search__suggested">
                 <span class="g-search__suggested-title">Suggested Terms</span>
                 <ul>
-                    @foreach ($searchTerms as $item)
-                        <li><a href="{!! route('search', ['q' => $item]) !!}">{{ $item }}</a></li>
-                    @endforeach
+                    @if (isset($searchTerms))
+                        @foreach ($searchTerms as $item)
+                            <li><a href="{!! route('search', ['q' => $item]) !!}">{{ $item }}</a></li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
             <button class="g-search__close" data-behavior="globalSearchClose">
