@@ -25,31 +25,43 @@ class Exhibition extends BaseApiModel
     protected $presenterAdmin  = 'App\Presenters\Admin\ExhibitionPresenter';
 
     // Generates the id-slug type of URL
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return 'id_slug';
     }
 
-    public function getIdSlugAttribute() {
+    public function getTypeAttribute()
+    {
+        return 'exhibition';
+    }
+
+    public function getIdSlugAttribute()
+    {
         return join(array_filter([$this->id, $this->getSlug()]), '-');
     }
 
-    public function getDateStartAttribute() {
+    public function getDateStartAttribute()
+    {
         return new Carbon($this->start_at);
     }
 
-    public function getDateEndAttribute() {
+    public function getDateEndAttribute()
+    {
         return new Carbon($this->end_at);
     }
 
-    public function getClosingSoonAttribute() {
+    public function getClosingSoonAttribute()
+    {
         return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
     }
 
-    public function getNowOpenAttribute() {
+    public function getNowOpenAttribute()
+    {
         return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateStart->startOfDay()->addWeeks(2));
     }
 
-    public function getOngoingAttribute() {
+    public function getOngoingAttribute()
+    {
         return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateEnd->endOfDay());
     }
 

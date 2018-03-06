@@ -79,25 +79,40 @@ class SearchController extends Controller
     {
         // TODO: Integrate this search for all types and use a better approach than overwriting the results
 
-        $query = GeneralSearch::search(request('q'))->resources(['artworks']);
+        $query = GeneralSearch::search(request('q'))->resources(['artworks', 'exhibitions', 'artists', 'agents']);
         $collection = $query->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
         foreach($collection as &$item) {
-            $item->type = 'artwork';
-            $item->text = $item->title;
-            $item->url = route('artworks.show', $item->id);
+            switch ($item->type) {
+                case 'artwork':
+                    $item->url = route('search.artworks', ['q' => $item->title]);
+                    $item->section = 'Artworks';
+                    break;
+                case 'exhibition':
+                    $item->url = route('search.exhibitionsEvents', ['q' => $item->title]);
+                    $item->section = 'Exhibitions and Events';
+                    break;
+                case 'artist':
+                    $item->url = route('search.artists', ['q' => $item->title]);
+                    $item->section = 'Artists';
+                    break;
+            }
 
-            $image = LakeviewImageService::getImage($item->image_id, 30);
-            $image['width'] = 30;
-            $image['height'] = '';
-            $item->image = $image;
+            $item->text = $item->title;
+
+            if (!empty($item->image_id)) {
+                $image = LakeviewImageService::getImage($item->image_id, 30);
+                $image['width'] = 30;
+                $image['height'] = '';
+                $item->image = $image;
+            }
         }
 
         return view('layouts/_autocomplete', [
             'term' => request('q'),
             'resultCount' => $collection->total(),
             'items' => $collection,
-            'seeAllUrl' => route('collection', ['q' => request('q')])
+            'seeAllUrl' => route('search', ['q' => request('q')])
         ]);
     }
 

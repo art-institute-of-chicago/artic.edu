@@ -20,6 +20,11 @@ class Artist extends BaseApiModel
     protected $presenter       = 'App\Presenters\Admin\ArtistPresenter';
     protected $presenterAdmin  = 'App\Presenters\Admin\ArtistPresenter';
 
+    public function getTypeAttribute()
+    {
+        return 'artist';
+    }
+
     public function artworks()
     {
         return $this->hasMany(\App\Models\Api\Artwork::class, 'artwork_ids');
