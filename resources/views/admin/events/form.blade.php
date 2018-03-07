@@ -106,23 +106,28 @@
             'rows' => 2
         ])
 
+        @component('cms-toolkit::partials.form.utils._columns')
+            @slot('left')
+                @formField('select', [
+                    'name' => 'start_time',
+                    'label' => 'Start Time',
+                    'options' => hoursSelectOptions()
+                ])
+            @endslot
+            @slot('right')
+                @formField('select', [
+                    'name' => 'end_time',
+                    'label' => 'End Time',
+                    'options' => hoursSelectOptions()
+                ])
+            @endslot
+        @endcomponent
+
         @formField('input', [
             'name' => 'forced_date',
-            'label' => 'Force the event to show this as date',
+            'label' => 'Force the event to show this text as date',
             'note' => 'Optional, the event will show this instead of the automatic computed date',
             'type' => 'text'
-        ])
-
-        @formField('select', [
-            'name' => 'start_time',
-            'label' => 'Start Time',
-            'options' => hoursSelectOptions()
-        ])
-
-        @formField('select', [
-            'name' => 'end_time',
-            'label' => 'End Time',
-            'options' => hoursSelectOptions()
         ])
 
         @formField('repeater', [
