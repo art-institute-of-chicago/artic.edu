@@ -5,7 +5,7 @@
         'name' => 'type',
         'label' => 'Event type',
         'options' => $eventTypesList,
-        'default' => '0'
+        'default' => '1'
     ])
 
     @formField('select', [

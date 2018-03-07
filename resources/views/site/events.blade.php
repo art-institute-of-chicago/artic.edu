@@ -17,9 +17,9 @@
 
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', array(
-        array('label' => 'Today', 'href' => '#', 'active' => true),
-        array('label' => 'Tomorrow', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium"),
-        array('label' => 'This weekend', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small")
+        array('label' => 'Today', 'href' => route('events'), 'active' => !request('time')),
+        array('label' => 'Tomorrow', 'href' => route('events', ['time' => 'tomorrow']), 'active' => (request('time') == 'tomorrow'), 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium"),
+        array('label' => 'This weekend', 'href' => route('events', ['time' => 'weekend']), 'active' => (request('time') == 'weekend'), 'liVariation' => "u-hide@xsmall u-hide@small")
     ))
     @slot('primaryHtml')
         <li class="m-links-bar__item">
@@ -31,19 +31,11 @@
     @slot('secondaryHtml')
         <li class="m-links-bar__item m-links-bar__item--primary">
             @component('components.atoms._dropdown')
-              @slot('prompt', 'All event types')
+              @slot('prompt', request('type') ? \App\Models\Event::$eventTypes[request('type')] : 'All event types')
               @slot('ariaTitle', 'Filter by')
               @slot('variation','dropdown--filter f-buttons')
               @slot('font', 'f-buttons')
-              @slot('options', array(
-                array('href' => '#', 'label' => 'All event types'),
-                array('href' => '#', 'label' => 'Classes and workshops'),
-                array('href' => '#', 'label' => 'Live Arts'),
-                array('href' => '#', 'label' => 'Screenings'),
-                array('href' => '#', 'label' => 'Special Events'),
-                array('href' => '#', 'label' => 'Talks'),
-                array('href' => '#', 'label' => 'Tours'),
-              ))
+              @slot('options', $eventTypesLinks)
             @endcomponent
         </li>
         <li class="m-links-bar__item m-links-bar__item--primary">
