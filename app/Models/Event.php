@@ -49,12 +49,12 @@ class Event extends Model
         'buy_button_caption',
     ];
 
-    const CLASSES_AND_WORKSHOPS = 0;
-    const LIVE_ARTS = 1;
-    const SCREENINGS = 2;
-    const SPECIAL_EVENT = 3;
-    const TALKS = 4;
-    const TOUR = 5;
+    const CLASSES_AND_WORKSHOPS = 1;
+    const LIVE_ARTS = 2;
+    const SCREENINGS = 3;
+    const SPECIAL_EVENT = 4;
+    const TALKS = 5;
+    const TOUR = 6;
 
     public static $eventTypes = [
         self::CLASSES_AND_WORKSHOPS => 'Classes and workshops',
@@ -153,6 +153,49 @@ class Event extends Model
     public function scopeLanding($query)
     {
         return $query->whereLanding(true);
+    }
+
+    public function scopeBetweenDates($query, $startDate, $endDate = null)
+    {
+        $query->rightJoin('event_metas', function ($join) {
+            $join->on('events.id', '=', 'event_metas.event_id');
+        });
+        $query->where('event_metas.date', '>=', $startDate);
+
+        if ($endDate) {
+            $query->where('event_metas.date_end', '<=', $endDate);
+        }
+
+        $query->orderBy('event_metas.date', 'ASC');
+
+        return $query;
+    }
+
+    public function scopeByType($query, $type)
+    {
+        return $query->where('type', '=', $type);
+    }
+
+    public function scopeToday($query)
+    {
+        return $query->betweenDates(Carbon::today(), Carbon::tomorrow());
+    }
+
+    public function scopeTomorrow($query)
+    {
+        return $query->betweenDates(Carbon::tomorrow(), Carbon::tomorrow()->addDay());
+    }
+
+    public function scopeWeekend($query)
+    {
+        return $query->betweenDates(Carbon::today()->nextWeekendDay(), Carbon::today()->nextWeekendDay()->addDays(2));
+    }
+
+    public static function groupByDay($collection)
+    {
+        return $collection->groupBy(function($item) {
+          return $item->date->format('Y-m-d');
+        });
     }
 
     public function events()
