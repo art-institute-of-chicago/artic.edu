@@ -48,6 +48,11 @@ class Selection extends Model
         ],
     ];
 
+    public function getIntroAttribute()
+    {
+        return $this->short_copy;
+    }
+
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');

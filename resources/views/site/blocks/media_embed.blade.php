@@ -1,15 +1,13 @@
 @php
-    $source_url = $block->input('source_url');
-    $image = $block->imageAsArray('image', 'desktop');
-    $embed_code = EmbedConverter::convertUrl($source_url);
+    $embed_code = $block->input('embed_code');
 @endphp
 
-@if ($source_url)
+@if ($embed_code)
     @component('components.molecules._m-media')
         @slot('variation', 'o-blocks__block')
         @slot('item', [
             'type' => 'embed',
-            'size' => 'm',
+            'size' => 's',
             'media' => [
                 "embed" => $embed_code,
                 "src" => (isset($image['src'])) ? $image['src'] : '',
@@ -18,7 +16,7 @@
                 "height" => (isset($image['height'])) ? $image['height'] : '',
                 "shareUrl" => '#',
                 "shareTitle" => '',
-                "downloadUrl" => $source_url,
+                "downloadUrl" => '',
                 "downloadName" => '',
                 "credit" => '',
                 "creditUrl" => '',
