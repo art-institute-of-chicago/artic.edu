@@ -22,3 +22,4 @@
         'caption' => $block->input('caption')
     ])
 @endcomponent
+

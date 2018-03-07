@@ -231,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'LakeviewImageService' => App\Facades\LakeviewImageServiceFacade::class,
+        'EmbedConverter' => App\Facades\EmbedConverterFacade::class,
     ],
 
 ];

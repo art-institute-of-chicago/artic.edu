@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 
 use App\Libraries\LakeviewImageService;
+use App\Libraries\EmbedConverterService;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerMorphMap();
         $this->registerApiClient();
         $this->registerLakeviewImageService();
+        $this->registerEmbedConverterService();
         $this->composeTemplatesViews();
 
         \Illuminate\Pagination\AbstractPaginator::defaultView("site.pagination.aic");
@@ -46,6 +48,14 @@ class AppServiceProvider extends ServiceProvider
                 'base_uri'   => config('api.base_uri'),
                 'exceptions' => false
             ]);
+        });
+    }
+
+    public function registerEmbedConverterService()
+    {
+        $this->app->singleton('embedconverterservice', function($app)
+        {
+            return new EmbedConverterService();
         });
     }
 

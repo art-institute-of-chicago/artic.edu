@@ -27,12 +27,12 @@ class SelectionsController extends FrontController
         $item = $this->repository->forSlug($slug);
         if (empty($item)) {
             $item = $this->repository->getById($slug);
-            if ($item->imageObject('hero')) {
-                $item->headerImage = aic_convertFromImage($item->imageObject('hero'));
-            }
         }
 
         $item->headerType = 'hero';
+        if ($item->imageObject('hero')) {
+            $item->headerImage = aic_convertFromImage($item->imageObject('hero'));
+        }
 
         if ($item->siteTags->first()) {
             $item->type = $item->siteTags->first()->name;

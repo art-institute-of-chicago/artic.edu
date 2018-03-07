@@ -1,5 +1,6 @@
 @php
-    $image = [];
+    $image = $block->imageAsArray('image', 'desktop');
+    $embed_code = EmbedConverter::convertUrl($block->input('source_url'))
 @endphp
 
 @component('components.molecules._m-media')
@@ -8,7 +9,8 @@
         'type' => 'embed',
         'size' => 'm',
         'media' => [
-            "src" => $block->input('source_url'),
+            "embed" => $embed_code,
+            "src" => $image['src'],
             "srcset" => $image['src'],
             "width" => $image['width'],
             "height" => $image['height'],
@@ -22,3 +24,4 @@
         'caption' => ''
     ])
 @endcomponent
+
