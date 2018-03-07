@@ -40,19 +40,11 @@
         </li>
         <li class="m-links-bar__item m-links-bar__item--primary">
             @component('components.atoms._dropdown')
-              @slot('prompt', 'All audiences')
+              @slot('prompt', request('audience') ? \App\Models\Event::$eventAudiences[request('audience')] : 'All audiences')
               @slot('ariaTitle', 'Filter by')
               @slot('variation','dropdown--filter f-buttons')
               @slot('font', 'f-buttons')
-              @slot('options', array(
-                array('href' => '#', 'label' => 'All audiences'),
-                array('href' => '#', 'label' => 'Classes and workshops'),
-                array('href' => '#', 'label' => 'Live Arts'),
-                array('href' => '#', 'label' => 'Screenings'),
-                array('href' => '#', 'label' => 'Special Events'),
-                array('href' => '#', 'label' => 'Talks'),
-                array('href' => '#', 'label' => 'Tours'),
-              ))
+              @slot('options', $eventAudiencesLinks)
             @endcomponent
         </li>
     @endslot

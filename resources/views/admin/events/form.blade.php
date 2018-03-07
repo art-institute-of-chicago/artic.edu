@@ -2,6 +2,13 @@
 
 @section('contentFields')
     @formField('select', [
+        'name' => 'layout_type',
+        'label' => 'Event layout',
+        'options' => $eventLayoutsList,
+        'default' => '0'
+    ])
+
+    @formField('select', [
         'name' => 'type',
         'label' => 'Event type',
         'options' => $eventTypesList,
@@ -9,10 +16,10 @@
     ])
 
     @formField('select', [
-        'name' => 'layout_type',
-        'label' => 'Event layout',
-        'options' => $eventLayoutsList,
-        'default' => '0'
+        'name' => 'type',
+        'label' => 'Event audience',
+        'options' => $eventAudiencesList,
+        'default' => '1'
     ])
 
     @formField('checkbox', [

@@ -48,11 +48,15 @@ class EventRepository extends ModuleRepository
         return collect($this->model::$eventTypes);
     }
 
+    public function getEventAudiencesList() {
+        return collect($this->model::$eventAudiences);
+    }
+
     public function getEventLayoutsList() {
         return collect($this->model::$eventLayouts);
     }
 
-    public function getEventsByDateGrouped($start = null, $end = null, $time = null, $type = null, $perPage = 5, $page = null)
+    public function getEventsByDateGrouped($start = null, $end = null, $time = null, $type = null, $audience = null, $perPage = 5, $page = null)
     {
         $query = $this->model->newQuery();
 
@@ -74,6 +78,10 @@ class EventRepository extends ModuleRepository
 
         if ($type) {
             $query->byType($type);
+        }
+
+        if ($audience) {
+            $query->byAudience($audience);
         }
 
         $results = $query->paginate($perPage, ['*'], 'page', $page);

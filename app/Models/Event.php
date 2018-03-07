@@ -23,6 +23,7 @@ class Event extends Model
         'title',
         'published',
         'type',
+        'audience',
         'short_description',
         'description',
         'hero_caption',
@@ -63,6 +64,24 @@ class Event extends Model
         self::SPECIAL_EVENT => 'Special Event',
         self::TALKS => 'Talks',
         self::TOUR => 'Tour',
+    ];
+
+    const FAMILIES = 1;
+    const MEMBERS = 2;
+    const ADULTS = 3;
+    const TEENS = 4;
+    const RESEARCHERS_SCHOLARS = 5;
+    const TEACHERS = 6;
+    const EVENING_ASSOCIATES = 7;
+
+    public static $eventAudiences = [
+        self::FAMILIES => 'Families',
+        self::MEMBERS => 'Members',
+        self::ADULTS => 'Adults',
+        self::TEENS => 'Teens',
+        self::RESEARCHERS_SCHOLARS => 'Researchers/Scholars',
+        self::TEACHERS => 'Teachers',
+        self::EVENING_ASSOCIATES => 'Evening Associates',
     ];
 
     const BASIC_LAYOUT = 0;
@@ -174,6 +193,11 @@ class Event extends Model
     public function scopeByType($query, $type)
     {
         return $query->where('type', '=', $type);
+    }
+
+    public function scopeByAudience($query, $audience)
+    {
+        return $query->where('audience', '=', $audience);
     }
 
     public function scopeToday($query)

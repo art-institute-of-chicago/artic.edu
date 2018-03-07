@@ -41,6 +41,7 @@ class EventController extends ModuleController
         return [
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
             'eventTypesList' => $this->repository->getEventTypesList(),
+            'eventAudiencesList' => $this->repository->getEventAudiencesList(),
             'eventLayoutsList' => $this->repository->getEventLayoutsList()
         ];
     }
