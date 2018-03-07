@@ -17,14 +17,18 @@
 
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', array(
-        array('label' => 'Today', 'href' => route('events'), 'active' => !request('time')),
-        array('label' => 'Tomorrow', 'href' => route('events', ['time' => 'tomorrow']), 'active' => (request('time') == 'tomorrow'), 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium"),
-        array('label' => 'This weekend', 'href' => route('events', ['time' => 'weekend']), 'active' => (request('time') == 'weekend'), 'liVariation' => "u-hide@xsmall u-hide@small")
+        array('label' => 'Today', 'href' => route('events'), 'active' => !request('start') && !request('time')),
+        array('label' => 'Tomorrow', 'href' => route('events', ['time' => 'tomorrow']), 'active' => (!request('start') && request('time') == 'tomorrow'), 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium"),
+        array('label' => 'This weekend', 'href' => route('events', ['time' => 'weekend']), 'active' => (!request('start') && request('time') == 'weekend'), 'liVariation' => "u-hide@xsmall u-hide@small")
     ))
     @slot('primaryHtml')
         <li class="m-links-bar__item">
             @component('components.atoms._date-select-trigger')
-                Select dates
+                @if (request('start') && request('end'))
+                    {{ \Carbon\Carbon::parse(request('start'))->format('d M, Y') }} - {{ \Carbon\Carbon::parse(request('end'))->format('d M, Y') }}
+                @else
+                    Select dates
+                @endif
             @endcomponent
         </li>
     @endslot
