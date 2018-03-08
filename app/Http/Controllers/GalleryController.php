@@ -11,6 +11,8 @@ class GalleryController extends FrontController
 {
     protected $repository;
 
+    const ARTWORKS_PER_PAGE = 8;
+
     public function __construct(GalleryRepository $repository)
     {
         $this->repository = $repository;
@@ -22,11 +24,11 @@ class GalleryController extends FrontController
     {
         // The ID is a datahub_id not a local ID
         $item = $this->repository->getById($id);
-        $artworks = Search::query()->resources(['artworks'])->byGallery($item->id)->getSearch();
+        $artworks = Search::query()->resources(['artworks'])->byGallery($item->id)->getSearch(self::ARTWORKS_PER_PAGE);
 
         return view('site.tagDetail', [
             'item' => $item,
-            'artworks' => $artworks
+            'artworks' => $artworks,
         ]);
     }
 

@@ -6,19 +6,22 @@
     {{ $item->title }}
 @endcomponent
 
-@component('components.organisms._o-artist-bio')
-    @slot('item', $item)
-    @slot('imageSettings', array(
-        'srcset' => array(200,400,600,1000,1500,2000),
-        'sizes' => aic_gridListingImageSizes(array(
-              'xsmall' => '58',
-              'small' => '58',
-              'medium' => '58',
-              'large' => '28',
-              'xlarge' => '28',
-        )),
-    ))
-@endcomponent
+{{-- Do not show extra data when no augmented model exists --}}
+@if (!empty($item->getAugmentedModel()))
+    @component('components.organisms._o-artist-bio')
+        @slot('item', $item)
+        @slot('imageSettings', array(
+            'srcset' => array(200,400,600,1000,1500,2000),
+            'sizes' => aic_gridListingImageSizes(array(
+                  'xsmall' => '58',
+                  'small' => '58',
+                  'medium' => '58',
+                  'large' => '28',
+                  'xlarge' => '28',
+            )),
+        ))
+    @endcomponent
+@endif
 
 @component('components.molecules._m-title-bar')
     Artworks
@@ -52,11 +55,15 @@
     @endcomponent
 @endif
 
-@if ($item->artworksMoreLink)
+@if ($artworks->total() > 8)
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--buttons')
         @slot('linksPrimary', array(
-            $item->artworksMoreLink
+            [
+                'label' => "See all {$artworks->total()} artworks",
+                'href' => route('collection', ['gallery' => $item->id]),
+                'variation' => 'btn--secondary'
+            ]
         ));
     @endcomponent
 @endif

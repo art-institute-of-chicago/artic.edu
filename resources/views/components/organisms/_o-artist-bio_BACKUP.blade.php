@@ -1,12 +1,12 @@
 <section class="o-artist-bio">
     <div class="o-artist-bio__inner">
-        @if ($item->image('hero'))
+        @if ($item->image)
             <figure class="o-artist-bio__image">
                 @component('components.atoms._img')
-                    @slot('image', $item->imageAsArray('hero'))
+                    @slot('image', $item->image)
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
-                @if ($item->caption)
+                @if (isset($item->caption))
                 <figcaption>
                     {!! $item->caption !!}
                 </figcaption>
@@ -34,11 +34,13 @@
                 </dl>
             @endif
 
-            {{-- @if (!empty($item->intro)) --}}
+            @if ($item->blocks)
                 <div class="o-artist-bio__body o-blocks">
-                    {!! $item->intro !!}
+                    @component('components.blocks._blocks')
+                        @slot('blocks', $item->blocks ?? null)
+                    @endcomponent
                 </div>
-            {{-- @endif --}}
+            @endif
 
             @if ($item->tags)
                 <ul class="o-artist-bio__tags">

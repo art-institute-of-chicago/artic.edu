@@ -18,10 +18,9 @@
         'label' => 'Caption'
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'intro',
         'label' => 'Intro',
-        'type' => 'textarea'
     ])
 
     @formField('input', [
