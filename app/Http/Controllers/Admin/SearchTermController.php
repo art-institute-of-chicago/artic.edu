@@ -10,7 +10,9 @@ class SearchTermController extends ModuleController
 
     protected $indexOptions = [
         'publish' => false,
-        'reorder' => true
+        'reorder' => true,
+        'editInModal' => true,
+        'permalink' => false
     ];
 
     protected $titleColumnKey = 'name';
