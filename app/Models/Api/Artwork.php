@@ -30,12 +30,12 @@ class Artwork extends BaseApiModel
         return route('artworks.show', $this->id);
     }
 
-    // public function getImageAttribute()
-    // {
-    //     if (!empty($this->image_id)) {
-    //         return LakeviewImageService::getImage($this->image_id);
-    //     }
-    // }
+    public function getImageAttribute()
+    {
+        if (!empty($this->image_id)) {
+            return LakeviewImageService::getImage($this->image_id);
+        }
+    }
 
     public function getImageCopyright()
     {

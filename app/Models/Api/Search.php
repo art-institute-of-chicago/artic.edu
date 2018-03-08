@@ -14,6 +14,8 @@ class Search extends BaseApiModel
         'autocomplete' => '/api/v1/autocomplete'
     ];
 
+    // This defines how to map a returned type to one of our API models
+    // IF IT'S NOT HERE IT WILL BE REMOVED FROM THE RESULTS
     public $typeMap = [
         'artworks'    => 'App\Models\Api\Artwork',
         'exhibitions' => 'App\Models\Api\Exhibition',
@@ -21,8 +23,10 @@ class Search extends BaseApiModel
         'sections'    => 'App\Models\Api\Section'
     ];
 
-    // Use a search Builder to overload the search function to allow
-    // different types
+    // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
+    // On that builder, we will to overload the search function to allow
+    // searching for multiple types and segregate them when returning a call
+    // Or simply return all API models shuffled in the correct order (see code)
     public function newApiModelBuilder($query)
     {
         return new ApiModelBuilderSearch($query);
@@ -121,7 +125,6 @@ class Search extends BaseApiModel
             ],
         ];
 
-        // dd($query->rawSearch($params));
         return $query->rawSearch($params);
     }
 

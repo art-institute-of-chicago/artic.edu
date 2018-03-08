@@ -64,7 +64,7 @@ class SearchController extends FrontController
         $links = $this->buildSearchLinks($general, $general->aggregations->types->buckets, 'all');
 
         return view('site.search.index', [
-            'featuredResults'      => $general->items,
+            'featuredResults'      => $general->items->where('is_boosted', true),
             'eventsAndExhibitions' => $exhibitions,
             'artworks' => $artworks,
             'artists'  => $artists,
