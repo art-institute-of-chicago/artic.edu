@@ -126,10 +126,9 @@
             @endcomponent
         @endforeach
     @endcomponent
-    @if(isset($pagination) and $pagination)
-        @component('components.molecules._m-paginator')
-        @endcomponent
-    @endif
+
+    {{-- Pagination --}}
+    {!! $artists->items->links() !!}
 @endif
 
 @if (!empty($pages))
@@ -242,10 +241,10 @@
             @endcomponent
         @endforeach
     @endcomponent
-    @if(isset($pagination) and $pagination)
-        @component('components.molecules._m-paginator')
-        @endcomponent
-    @endif
+
+    {{-- Pagination --}}
+    {!! $artworks->items->links() !!}
+
 @endif
 
 @if (isset($eventsAndExhibitions) && $eventsAndExhibitions->pagination->total > 0)
@@ -342,10 +341,9 @@
             @endcomponent
         @endforeach
     @endcomponent
-    @if(isset($pagination) and $pagination)
-        @component('components.molecules._m-paginator')
-        @endcomponent
-    @endif
+
+    {{-- Pagination --}}
+    {!! $eventsAndExhibitions->items->links() !!}
 @endif
 
 @if (!empty($articlesAndPublications))
