@@ -30,10 +30,6 @@ class GalleryController extends BaseApiController
             'title' => 'Augmented?',
             'field' => 'augmented',
             'present' => true
-        ],
-        'type' => [
-            'title' => 'Type',
-            'field' => 'type',
         ]
     ];
 

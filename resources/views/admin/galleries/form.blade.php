@@ -14,6 +14,11 @@
     ])
 
     @formField('input', [
+        'name' => 'caption',
+        'label' => 'Caption'
+    ])
+
+    @formField('input', [
         'name' => 'intro',
         'label' => 'Intro',
         'type' => 'textarea'

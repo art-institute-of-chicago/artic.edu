@@ -127,8 +127,10 @@
         @endforeach
     @endcomponent
 
-    {{-- Pagination --}}
-    {!! $artists->items->links() !!}
+    @if (isset($allResultsView) && $allResultsView)
+        {{-- Pagination --}}
+        {!! $artists->items->links() !!}
+    @endif
 @endif
 
 @if (!empty($pages))
@@ -242,8 +244,10 @@
         @endforeach
     @endcomponent
 
-    {{-- Pagination --}}
-    {!! $artworks->items->links() !!}
+    @if (isset($allResultsView) && $allResultsView)
+        {{-- Pagination --}}
+        {!! $artworks->items->links() !!}
+    @endif
 
 @endif
 
@@ -342,8 +346,10 @@
         @endforeach
     @endcomponent
 
-    {{-- Pagination --}}
-    {!! $eventsAndExhibitions->items->links() !!}
+    @if (isset($allResultsView) && $allResultsView)
+        {{-- Pagination --}}
+        {!! $eventsAndExhibitions->items->links() !!}
+    @endif
 @endif
 
 @if (!empty($articlesAndPublications))

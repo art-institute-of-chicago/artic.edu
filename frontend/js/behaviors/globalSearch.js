@@ -127,7 +127,7 @@ const globalSearch = function(container) {
   function _handleSubmit(event){
     event.preventDefault();
     triggerCustomEvent(document, 'ajax:getPage', {
-      url: queryStringHandler.updateParameter(form.action, 'keyword', _fixedEncodeURIComponent(textInput.value)),
+      url: queryStringHandler.updateParameter(form.action, 'q', _fixedEncodeURIComponent(textInput.value)),
     });
   }
 

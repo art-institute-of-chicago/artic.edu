@@ -45,6 +45,17 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
+    public function scopeByGallery($query, $id)
+    {
+        $params = [
+            "term" => [
+                "gallery_id" => $id
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeMultimedia($query, $id)
     {
         $params = [

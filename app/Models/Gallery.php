@@ -16,7 +16,8 @@ class Gallery extends Model
 
     protected $fillable = [
         'datahub_id',
-        'intro'
+        'intro',
+        'caption'
     ];
 
     public $slugAttributes = [

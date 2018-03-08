@@ -195,12 +195,20 @@ class SearchController extends FrontController
 
     protected function buildSearchLinks($all, $aggregations, $active = 'all')
     {
-        return [
-            $this->buildLabel('All', $all->pagination->total, route('search'), $active == 'all'),
-            $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'),
-            $this->buildLabel('Artwork', extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'),
-            $this->buildLabel('Exhibitions & Events', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitionsEvents', ['q' => request('q')]), $active == 'exhibitions'),
-        ];
+        $links = [];
+
+        array_push($links, $this->buildLabel('All', $all->pagination->total, route('search'), $active == 'all'));
+        if (extractAggregation($aggregations, 'agents')) {
+            array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
+        }
+        if (extractAggregation($aggregations, 'artworks')) {
+            array_push($links, $this->buildLabel('Artwork', extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'));
+        }
+        if (extractAggregation($aggregations, 'exhibitions')) {
+            array_push($links, $this->buildLabel('Exhibitions & Events', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitionsEvents', ['q' => request('q')]), $active == 'exhibitions'));
+        }
+
+        return $links;
     }
 
     protected function buildLabel($name, $total, $href, $active) {
