@@ -1,4 +1,4 @@
-import { purgeProperties, forEach, ajaxRequest } from '@area17/a17-helpers';
+import { purgeProperties, forEach, ajaxRequest, triggerCustomEvent } from '@area17/a17-helpers';
 
 const loadMore = function(container) {
   var url = container.getAttribute('data-load-more-url');
@@ -8,8 +8,6 @@ const loadMore = function(container) {
   var ajaxTimer;
   var loaderKlass = 's-loading';
   var hideKlass = 's-hidden';
-
-  console.log($target);
 
   function _handleClicks(e){
     page++;
@@ -43,6 +41,10 @@ const loadMore = function(container) {
 
             if( !parsed.page ){
               container.classList.add(hideKlass);
+            }
+
+            if ($target.classList.contains('o-pinboard')) {
+              triggerCustomEvent($target, 'pinboard:contentAdded');
             }
           } catch (err) {
             console.error('Error updating autocomplete: '+ err);

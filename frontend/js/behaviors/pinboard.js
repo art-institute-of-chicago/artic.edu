@@ -54,7 +54,7 @@ const pinboard = function(container){
     let margin = (container.offsetWidth - (colWidth * colCount)) / (colCount - 1);
     //
     forEach(blocks, function(index, block) {
-      if (!block.classList.contains('s-positioned') || resetPreviousPositions) {
+      if (block.classList.contains('s-positioned') === false || resetPreviousPositions) {
         // reset the blocks height
         block.style.height = 'auto';
         // work out which col to drop into and how far left this is
@@ -122,6 +122,10 @@ const pinboard = function(container){
     }
   }
 
+  function _contentAdded() {
+    _positionBlocks();
+  }
+
   function _resized() {
     setTimeout(_setupBlocks, 32);
   }
@@ -130,13 +134,13 @@ const pinboard = function(container){
     maintainOrder = (container.getAttribute('data-pinboard-maintain-order') === 'true');
     _getColCounts();
     _setupBlocks();
-    container.addEventListener('pinboard:contentAdded', _positionBlocks, false);
+    container.addEventListener('pinboard:contentAdded', _contentAdded, false);
     document.addEventListener('resized', _resized, false);
   }
 
   this.destroy = function() {
     // remove specific event handlers
-    container.removeEventListener('pinboard:contentAdded', _positionBlocks);
+    container.removeEventListener('pinboard:contentAdded', _contentAdded);
     document.removeEventListener('resized', _resized);
 
     // remove properties of this behavior
