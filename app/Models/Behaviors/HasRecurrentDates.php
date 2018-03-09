@@ -23,8 +23,8 @@ trait HasRecurrentDates
 
     public function getAllDatesAttribute()
     {
-        return $this->eventMetas()->pluck('date')->map(function($element) {
-            return $element->format('Y-m-d h:i');
+        return $this->eventMetas()->get()->map(function($element) {
+            return ['date' => $element->date, 'date_end' => $element->date_end];
         });
     }
 

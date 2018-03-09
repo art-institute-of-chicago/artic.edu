@@ -105,7 +105,7 @@
 
     <a17-fieldset id="dates" title="Date Rules">
         @formField('input', [
-            'name' => 'all_dates',
+            'name' => 'all_dates_cms',
             'label' => 'All computed dates',
             'note' => 'Dates built using all rules below.',
             'type' => 'textarea',

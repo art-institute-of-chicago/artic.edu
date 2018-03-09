@@ -14,6 +14,8 @@
         @slot('dateEnd', $dateEnd ?? null)
         @slot('type', $type ?? null)
         @slot('img', $img ?? null)
+        @slot('credit', $credit ?? null)
+        @slot('creditUrl', $creditUrl ?? null)
     @endcomponent
 @elseif (isset($headerType) and $headerType === 'super-hero')
     {{-- Super Hero header --}}

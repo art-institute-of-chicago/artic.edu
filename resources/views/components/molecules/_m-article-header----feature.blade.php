@@ -39,18 +39,18 @@
         @endcomponent
       @endif
 
-      @if (isset($img['creditUrl']))
-          <a href="{{ $img['creditUrl'] }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
-              {{ $img['credit'] }}
+      {{-- @if (isset($creditUrl))
+          <a href="{{ $creditUrl }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
+              {{ $credit }}
           </a>
-      @elseif (isset($img['credit']))
+      @elseif (isset($credit))
           <span class="m-article-header__img-credit f-secondary" data-gallery-credit>
-              {{ $img['credit'] }}
+              {{ $credit }}
           </span>
-      @endif
-      @if (isset($img) and isset($img['credit']))
-        @if (isset($img['creditUrl']))
-            <a href="{{ $img['creditUrl'] }}" class="m-article-header__info-trigger">
+      @endif --}}
+      @if (isset($credit) and !empty($credit))
+        @if (isset($creditUrl))
+            <a href="{{ $creditUrl }}" class="m-article-header__info-trigger">
                 <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
             </a>
         @else
@@ -58,7 +58,7 @@
               <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
             </button>
             <div class="m-article-header__info" id="image-credit" aria-labelledby="image-info-trigger" aria-hidden="true" role="Tooltip">
-              <p class="f-caption">{{ $img['credit'] }}</p>
+              <p class="f-caption">{{ $credit }}</p>
             </div>
         @endif
       @endif

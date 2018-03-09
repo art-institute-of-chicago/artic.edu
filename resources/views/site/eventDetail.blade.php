@@ -13,8 +13,9 @@
     @slot('dateStart', $item->dateStart)
     @slot('dateEnd', $item->dateEnd) --}}
     @slot('type', $item->present()->type)
-    @slot('intro', $item->hero_caption)
+    {{-- @slot('intro', $item->hero_caption) --}}
     @slot('img', $item->imageAsArray('hero'))
+    @slot('credit', $item->hero_caption)
     {{-- @slot('galleryImages', $item->galleryImages) --}}
     {{-- @slot('nextArticle', $item->nextArticle) --}}
     {{-- @slot('prevArticle', $item->prevArticle) --}}

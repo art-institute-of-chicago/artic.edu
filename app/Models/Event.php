@@ -17,7 +17,7 @@ class Event extends Model
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
     protected $presenter = 'App\Presenters\Admin\EventPresenter';
 
-    protected $appends = ['all_dates'];
+    protected $appends = ['all_dates', 'all_dates_cms'];
 
     protected $fillable = [
         'title',
@@ -157,6 +157,16 @@ class Event extends Model
             return $this->date_end->format('h:ia');
         }
 
+    }
+
+    public function getAllDatesCmsAttribute()
+    {
+        $dates_string = '';
+        foreach($this->all_dates as $date) {
+            $dates_string .= $date['date']->format('F j, Y h:ia') . ' - ' . $date['date_end']->format('F j, Y h:ia') . "\n";
+        }
+
+        return $dates_string;
     }
 
     public function siteTags()
