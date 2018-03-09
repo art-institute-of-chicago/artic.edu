@@ -19,8 +19,11 @@ if (!A17.browserSpec || A17.browserSpec === 'html4') {
 }
 
 A17.currentMediaQuery = getCurrentMediaQuery();
+A17.env = 'production';
 
 document.addEventListener('DOMContentLoaded', function(){
+  // update env
+  A17.env = /s-env-([a-z]*)/ig.exec(document.documentElement.className)[1];
   // go go go
   manageBehaviors(Behaviors);
   // listen for body lock requests

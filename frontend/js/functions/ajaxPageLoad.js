@@ -3,8 +3,8 @@ import { findAncestorByTagName, ajaxableLink } from '../functions';
 
 const ajaxPageLoad = function() {
 
-  var ajaxActive = false;
-  var failSafe = false; // true in production, false in dev
+  var ajaxActive = (A17.env === 'local') ? false : true;
+  var failSafe = (A17.env === 'production') ? true : false;
 
   var ajaxing = false;
   var ajaxTimeOutTime = 3500;
