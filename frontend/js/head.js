@@ -80,7 +80,7 @@
     disableSS();
   } else {
     s = d.createElement('script');
-    s.src = '//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.2/picturefill.min.js';
+    s.src = '//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js';
     h.appendChild(s);
     // if not an old browser - ajax in the sprite
     a = new XMLHttpRequest();

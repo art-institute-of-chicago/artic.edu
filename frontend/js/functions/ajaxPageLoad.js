@@ -114,7 +114,9 @@ const ajaxPageLoad = function() {
               defaultComplete(options, doc);
           }
           // fix images
-          picturefill();
+          if (window.picturefill) {
+            window.picturefill();
+          }
           // tell the page and hide the loaders
           triggerCustomEvent(document, 'page:updated');
           triggerCustomEvent(document, 'loader:complete');
