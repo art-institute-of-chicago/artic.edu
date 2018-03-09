@@ -92,7 +92,9 @@ const pinboard = function(container){
         block.style.top = Math.round(smallestCol) + 'px';
         block.style.height = Math.round(newHeight) + 'px';
         // stop being repositioned
-        block.classList.add('s-positioned');
+        setTimeout(function(){
+          block.classList.add('s-positioned');
+        }, 250);
         // update col
         cols[smallestColIndex] = smallestCol + newHeight + margin;
         // update container height
@@ -121,7 +123,7 @@ const pinboard = function(container){
   }
 
   function _resized() {
-    setTimeout(_setupBlocks, 300);
+    setTimeout(_setupBlocks, 32);
   }
 
   function _init() {

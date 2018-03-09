@@ -57,14 +57,26 @@
       margin-top: #{map-get($grid-margin-tops, $name)}px;
       padding-top: #{map-get($grid-margin-tops, $name) - 1}px;
       border-top: 1px solid $color__rules--primary;
+      opacity: 0;
+      transition: opacity .25s;
     }
+
+    .o-pinboard[class*="col@#{$name}"] > *:nth-child(1) { transition-delay: .1s; }
+    .o-pinboard[class*="col@#{$name}"] > *:nth-child(2) { transition-delay: .2s; }
+    .o-pinboard[class*="col@#{$name}"] > *:nth-child(3) { transition-delay: .3s; }
+    .o-pinboard[class*="col@#{$name}"] > *:nth-child(4) { transition-delay: .4s; }
+    .o-pinboard[class*="col@#{$name}"] > *:nth-child(5) { transition-delay: .5s; }
+    .o-pinboard[class*="col@#{$name}"] > *:nth-child(6) { transition-delay: .6s; }
+    .o-pinboard[class*="col@#{$name}"] > *:nth-child(7) { transition-delay: .7s; }
+    .o-pinboard[class*="col@#{$name}"] > *:nth-child(7) ~ * { transition-delay: .8s; }
 
     .o-pinboard[class*="col@#{$name}"] > .s-positioned {
       position: absolute;
       z-index: 1;
       flex: none;
       margin-top: 0;
-      //transition: top .15s $bezier--ease-out-circ, left .15s $bezier--ease-out-circ, height .15s $bezier--ease-out-circ;
+      opacity: 1;
+      transition: top .4s $bezier--bounce, left .4s $bezier--bounce, height .4s $bezier--bounce;
     }
 
     .o-pinboard[class*="col@#{$name}"] > .s-positioned.o-pinboard__item.m-listing--variable-height:hover {
