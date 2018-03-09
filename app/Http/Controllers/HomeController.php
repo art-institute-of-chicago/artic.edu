@@ -7,7 +7,9 @@ use A17\CmsToolkit\Models\Feature;
 use App\Presenters\StaticObjectPresenter;
 use App\Repositories\Api\ShopItemRepository;
 use App\Repositories\Api\ExhibitionRepository;
+use App\Repositories\Api\EventRepository;
 
+use App\Models\Event;
 use App\Models\Exhibition;
 use App\Models\Page;
 use App\Models\Api\ShopItem;
@@ -24,11 +26,13 @@ class HomeController extends FrontController
         $this->exhibitionRepository = $exhibitionRepository;
     }
 
-
     public function index()
     {
         $page = Page::where('type', 0)->first();
-        // $featuredExhibitions = $page->homeExhibitions;
+
+
+        $exhibitions = $page->apiModels('homeExhibitions', 'Exhibition');
+        $events = $page->homeEvents;
 
         $products = $page->apiModels('homeShopItems', 'ShopItem');
 
@@ -75,8 +79,8 @@ class HomeController extends FrontController
         $view_data = [
             'mainFeatures' => $mainFeatures
         ,   'intro' => $page->home_intro
-        ,   'exhibitions' => []
-        ,   'events' => []
+        ,   'exhibitions' => $exhibitions
+        ,   'events' => $events
         ,   'theCollection' => []
         ,   'products' => $products
         ,   'membership_module_image' => $membership_module_image

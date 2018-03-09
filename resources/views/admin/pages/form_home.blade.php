@@ -6,7 +6,7 @@
 
     @formField('browser', [
         'routePrefix' => 'whatson',
-        'max' => 4,
+        'max' => 2,
         'moduleName' => 'exhibitions',
         'name' => 'homeExhibitions',
         'label' => 'Related Exhibitions'
@@ -18,7 +18,7 @@
         'moduleName' => 'events',
         'name' => 'homeEvents',
         'label' => 'Related Events',
-        'note' => 'Select up to 3 events you want to feature on the homepage'
+        'note' => 'Select up to 4 events you want to feature on the homepage'
     ])
 
     @formField('browser', [
