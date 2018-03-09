@@ -36,7 +36,8 @@ class AppServiceProvider extends ServiceProvider
             'events' => 'App\Models\Event',
             'articles' => 'App\Models\Article',
             'selections' => 'App\Models\Selection',
-            'artists' => 'App\Models\Artist'
+            'artists' => 'App\Models\Artist',
+            'homeFeatures' => 'App\Models\HomeFeature'
         ]);
     }
 

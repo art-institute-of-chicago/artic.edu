@@ -224,33 +224,11 @@ return [
                     'name' => 'Home main feature',
                     'bucketables' => [
                         [
-                            'module' => 'events',
-                            'name' => 'Events',
-                            'scopes' => ['published' => true],
-                        ],
-                        [
-                            'module' => 'articles',
-                            'name' => 'Articles',
-                            'scopes' => ['published' => true],
+                            'module' => 'homeFeatures',
+                            'name' => 'Home Features'
                         ],
                     ],
-                    'max_items' => 1,
-                ],
-                'home_secondary_features' => [
-                    'name' => 'Home secondary features',
-                    'bucketables' => [
-                        [
-                            'module' => 'events',
-                            'name' => 'Events',
-                            'scopes' => ['published' => true],
-                        ],
-                        [
-                            'module' => 'articles',
-                            'name' => 'Articles',
-                            'scopes' => ['published' => true],
-                        ],
-                    ],
-                    'max_items' => 2,
+                    'max_items' => 5,
                 ],
                 'home_art_and_ideas' => [
                     'name' => 'Art and Ideas',

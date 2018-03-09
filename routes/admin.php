@@ -3,8 +3,11 @@
 Route::module('pages');
 
 Route::group(['prefix' => 'landing'], function () {
-    Route::name('landing.home')->get('home', 'PageController@home');
-    Route::name('landing.exhibitions')->get('exhibitions', 'PageController@exhibitions');
+    Route::group(['prefix' => 'home'], function () {
+       Route::name('landing.home.page')->get('page', 'PageController@home');
+       Route::module('homeFeatures');
+     });
+   Route::name('landing.exhibitions')->get('exhibitions', 'PageController@exhibitions');
     Route::name('landing.exhibition_history')->get('exhibitions_history', 'PageController@exhibitionHistory');
     Route::name('landing.art')->get('art', 'PageController@art');
     Route::group(['prefix' => 'visit'], function () {

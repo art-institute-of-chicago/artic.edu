@@ -18,12 +18,22 @@ return [
     ],
     'landing' => [
         'title' => "Pages",
-        'route' => 'admin.landing.home',
+        'route' => 'admin.landing.home.page',
 
         'primary_navigation' => [
             'home' => [
                 'title' => 'Homepage',
-                'route' => 'admin.landing.home',
+                'route' => 'admin.landing.home.page',
+                'secondary_navigation' => [
+                    'page' => [
+                        'title' => 'Landing',
+                        'route' => 'admin.landing.home.page',
+                    ],
+                    'homeFeatures' => [
+                        'title' => 'Home Features',
+                        'module' => true,
+                    ],
+                ],
             ],
             'exhibitions' => [
                 'title' => 'Exhibitions & Events',

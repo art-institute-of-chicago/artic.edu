@@ -3,8 +3,8 @@
 @section('content')
 
 @component('components.organisms._o-features')
-    @foreach ($heroExhibitions as $item)
-        @component('components.molecules._m-listing----exhibition')
+    @foreach ($mainFeatures as $item)
+        @component('components.molecules._m-listing----'.$item->type)
             @slot('item', $item)
             @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
             @slot('titleFont', ($loop->first) ? 'f-list-5' : 'f-list-3')

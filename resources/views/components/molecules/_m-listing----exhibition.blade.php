@@ -2,9 +2,9 @@
     <a href="{!! route('exhibitions.show', $item) !!}" class="m-listing__link">
 
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-img' : '' }}>
-        @if ($img = $item->imageAsArray('hero'))
+        @if ($img = $item->image)
             @component('components.atoms._img')
-                @slot('image', $img)
+                @slot('image', $item->image)
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
         @endif
