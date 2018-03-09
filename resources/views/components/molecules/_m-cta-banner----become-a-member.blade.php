@@ -1,13 +1,16 @@
+@php
+    if (!isset($href)) {
+        $href = '#';
+    }
+    if (!isset($image)) {
+        $image = null;
+    }
+@endphp
 <aside class="m-cta-banner m-cta-banner--parallax{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="bannerParallax">
-    <a href="#">
+    <a href="{{ $href }}">
         <div class="m-cta-banner__img" data-parallax-img>
             @component('components.atoms._img')
-                @slot('image', array(
-                    "sourceType" => 'imgix',
-                    "src" => 'https://wyss-prod.imgix.net/app/uploads/2017/11/29103410/Falkor-IMG_7110.jpg?',
-                    "width" => 4000,
-                    "height" => 3000,
-                ))
+                @slot('image', $image)
                 @slot('settings', array(
                     'fit' => 'crop',
                     'ratio' => '25:3',

@@ -30,6 +30,8 @@ class Page extends Model
 
         // Homepage
         'home_intro',
+        'home_membership_module_url',
+        'home_membership_module_image',
 
         // Exhibition
         'exhibition_intro',
@@ -84,6 +86,14 @@ class Page extends Model
             ],
         ],
         'exhibition_history_intro' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ]
+        ],
+        'home_membership_module_image' => [
             'default' => [
                 [
                     'name' => 'default',

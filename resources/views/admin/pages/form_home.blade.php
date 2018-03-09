@@ -29,4 +29,15 @@
         'label' => 'Related Shop items',
         'note' => 'Select up to 5 shop items you want to feature on the homepage'
     ])
+
+    @formField('medias', [
+        'label' => 'Membership Module Image',
+        'name' => 'home_membership_module_image'
+    ])
+
+    @formField('input', [
+        'name' => 'home_membership_module_url',
+        'label' => 'Membership URL',
+    ])
+
 @stop

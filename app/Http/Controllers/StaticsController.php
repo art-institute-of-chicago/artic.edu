@@ -93,6 +93,8 @@ class StaticsController extends FrontController {
       'events' => $this->getEvents(4),
       'products' => $this->getProducts(5),
       'theCollection' => $this->generateCollection(),
+       'membership_module_image' => $this->getImage(),
+       'membership_module_url' => ''
     ];
   }
 

@@ -96,6 +96,8 @@
 @endcomponent
 
 @component('components.molecules._m-cta-banner----become-a-member')
+    @slot('image', $membership_module_image)
+    @slot('href', $membership_module_url)
 @endcomponent
 
 
