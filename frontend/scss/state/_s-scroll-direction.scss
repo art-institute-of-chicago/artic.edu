@@ -1,6 +1,6 @@
 .s-scroll-direction-up {
   .g-header {
-    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -19,6 +19,6 @@
 
 .s-scroll-direction-down.s-header-hide {
   .g-header {
-    transform: translateY(-100%);
+    opacity: 0;
   }
 }
