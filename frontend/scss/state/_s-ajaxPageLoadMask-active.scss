@@ -3,27 +3,7 @@
   .g-mask {
     right: 0;
     bottom: 0;
-    background-color: rgba($color__white, .25);
-    opacity: 1;
-  }
-
-  .g-mask::before {
-    content: '';
-    position: fixed;
-    z-index: 30;
-    left: 50%;
-    top: 50%;
-    width: 72px;
-    height: 72px;
-    margin-top: -36px;
-    margin-left: -36px;
-    border: 1px solid $color__rules--primary;
-    background-color: $color__white;
-  }
-
-  .g-mask::after {
-    @include ajax-loader;
-    position: fixed;
-    z-index: 30;
+    background-color: rgba($color__white, 1);
+    opacity: 0;
   }
 }

@@ -1,0 +1,19 @@
+.s-page-nav {
+
+  .g-mask {
+    right: 0;
+    bottom: 0;
+    background-color: rgba($color__white, 1);
+    opacity: 0;
+  }
+}
+
+.s-page-nav-swapping {
+
+  .g-mask {
+    right: 0;
+    bottom: 0;
+    background-color: rgba($color__white, 1);
+    opacity: 1;
+  }
+}

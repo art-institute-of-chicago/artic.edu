@@ -12,7 +12,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
-    @slot('linksPrimary', array(array('label' => 'Exhibitions', 'href' => '#', 'active' => true), array('label' => 'Events', 'href' => '#', 'active' => false)))
+    @slot('linksPrimary', array(array('label' => 'Exhibitions', 'href' => '/statics/exhibitions_and_events', 'active' => true), array('label' => 'Events', 'href' => '/statics/events', 'active' => false)))
 @endcomponent
 
 @component('components.molecules._m-links-bar')

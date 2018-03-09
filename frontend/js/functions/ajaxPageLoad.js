@@ -14,21 +14,37 @@ const ajaxPageLoad = function() {
   var documentContent;
   var docTitle;
 
+  function defaultStart(options,doc) {
+    document.documentElement.classList.remove('s-page-nav');
+  }
+
   function defaultComplete(options,doc) {
-    // replace content
-    document.querySelector('#a17').innerHTML = doc.querySelector('#a17').innerHTML;
+    // fade out content
+    document.documentElement.classList.add('s-page-nav-swapping');
+    setTimeout(function(){
+      // scroll to top
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      // replace content
+      document.querySelector('#a17').innerHTML = doc.querySelector('#a17').innerHTML;
+      // reveal content
+      document.documentElement.classList.remove('s-page-nav');
+      document.documentElement.classList.remove('s-page-nav-swapping');
+      // tell page about update
+      triggerCustomEvent(document, 'page:updated');
+    }, 250);
     // replace title
     docTitle = doc.title;
     document.title = docTitle;
-    // scroll to top
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
     // update history
     if (!options.popstate) {
       triggerCustomEvent(document, 'history:pushstate', { url: options.href, type: options.type, title: docTitle });
     }
     // so we know what to do on replace states
     A17.previousAjaxPageLoadType = options.type;
+  }
+
+  function tabStart(options,doc) {
   }
 
   function tabComplete(options,doc) {
@@ -45,11 +61,30 @@ const ajaxPageLoad = function() {
     A17.previousAjaxPageLoadType = options.type;
   }
 
+  function modalStart(options,doc) {
+  }
+
   function modalComplete(options,doc) {
     // replace content
     document.querySelector('[data-modal]').className = 'g-modal ' + (options.modalClass ? options.modalClass : '');
     document.querySelector('[data-modal-content]').innerHTML = doc.querySelector('body').innerHTML;
     triggerCustomEvent(document, 'modal:show', { opener: options.opener });
+  }
+
+  function parseHTML(data,type) {
+    if (type === 'native') {
+      var parser = new DOMParser();
+      return parser.parseFromString(data, 'text/html');
+    } else {
+      var doc = document.implementation.createHTMLDocument('');
+      if (data.toLowerCase().indexOf('<!doctype') > -1) {
+        doc.documentElement.innerHTML = data;
+      }
+      else {
+        doc.body.innerHTML = data;
+      }
+      return doc;
+    }
   }
 
   function loadDocument(options) {
@@ -77,6 +112,19 @@ const ajaxPageLoad = function() {
     triggerCustomEvent(document, 'ajaxPageLoadMask:show');
     triggerCustomEvent(document, 'loader:start');
 
+    // do on start func
+    switch (options.type) {
+      case 'tab':
+        tabStart(options);
+        break;
+      case 'modal':
+        modalStart(options);
+        break;
+      default:
+        // essentially, type = page
+        defaultStart(options);
+    }
+
     let token = document.querySelector('meta[name="csrf-token"]');
     if (token) {
       token = token.getAttribute('content');
@@ -99,8 +147,7 @@ const ajaxPageLoad = function() {
         } catch(err) {}
         try {
           // parse returned page
-          var parser = new DOMParser();
-          var doc = parser.parseFromString(data, 'text/html');
+          var doc = parseHTML(data,'native');
           // do on complete func
           switch (options.type) {
             case 'tab':
