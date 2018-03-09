@@ -9,7 +9,7 @@
   .g-search {
     visibility: visible;
     transform: translateY(0%);
-    transition: transform .2s $bezier--ease-in-out;
+    transition: transform .4s $bezier--marius-ease;
   }
 
   .g-mask {
