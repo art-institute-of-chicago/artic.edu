@@ -18,7 +18,7 @@ li {
 
 img {
   border: 0 none;
-  transition: filter .25s linear;
+  transition: filter .15s linear;
 
   &[data-no-img-settings] {
     outline: 3px solid rgba(yellow,.75);
@@ -27,7 +27,7 @@ img {
 
   &[data-src],
   &[data-srcset] {
-    filter: opacity(50%) saturate(0);
+    filter: saturate(0);
   }
 }
 
