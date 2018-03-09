@@ -27,7 +27,7 @@ img {
 
   &[data-src],
   &[data-srcset] {
-    filter: saturate(0);
+    filter: blur(30px);
   }
 }
 

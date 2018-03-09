@@ -1,7 +1,14 @@
 @php
     $highlight = ' ';
+
+
+
     if (!isset($image['sourceType']) || empty($image['sourceType'])) {
         $image['sourceType'] = 'imgix';
+    }
+
+    if (isset($image['src']) && strrpos($image['src'], 'lakeimagesweb.artic.edu') > 0) {
+        $image['sourceType'] = 'lakeview';
     }
 
     if (isset($settings)) {
