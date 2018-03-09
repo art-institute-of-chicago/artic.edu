@@ -1,4 +1,4 @@
-import { purgeProperties, forEach } from '@area17/a17-helpers';
+import { purgeProperties, forEach, triggerCustomEvent } from '@area17/a17-helpers';
 
 const pinboard = function(container){
 
@@ -97,6 +97,8 @@ const pinboard = function(container){
         cols[smallestColIndex] = smallestCol + newHeight + margin;
         // update container height
         container.style.height = _maxOfArray(cols) + 'px';
+        // tell the page
+        triggerCustomEvent(document, 'page:updated');
       }
     });
   }

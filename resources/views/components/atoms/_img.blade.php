@@ -34,7 +34,7 @@
     alt="{{ $image['alt'] ?? '' }}{{ $alt ?? '' }}"
     class="{{ $image['class'] ?? '' }} {{ $class ?? '' }}"
     src="{{ $src ?? '' }}"
-    srcset="{{ $srcset ?? '' }}"
+    data-srcset="{{ $srcset ?? '' }}"
     sizes="{{ $sizes ?? '' }}"
     width="{{ $width ?? '' }}"
     height="{{ $height ?? '' }}"

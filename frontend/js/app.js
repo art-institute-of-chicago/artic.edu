@@ -1,7 +1,7 @@
 import { manageBehaviors, resized, getCurrentMediaQuery } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
 import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers } from './functions';
-
+import lazyLoad from './libs/lazyLoad';
 /*
 
   A17
@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function(){
       },
     ]
   });
+  // lazy load images
+  lazyLoad();
 });
 
 // make console.log safe
