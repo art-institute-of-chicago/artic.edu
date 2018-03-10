@@ -75,13 +75,14 @@ class BaseApiController extends ModuleController
         if ($this->hasAugmentedModel) {
             $ids = $items->pluck('id')->toArray();
             $this->localElements = $this->repository->whereIn('datahub_id', $ids)->get();
-            $items = $items->map(function ($item) {
+            $items->setCollection($items->getCollection()->map(function ($item) {
                 if ($element = collect($this->localElements)->where('datahub_id', $item->id)->first()) {
                     $item->setAugmentedModel($element);
                 }
 
                 return $item;
-            });
+            }));
+
         }
 
         return $items;
