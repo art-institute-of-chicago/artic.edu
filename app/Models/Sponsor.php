@@ -24,8 +24,10 @@ class Sponsor extends Model
     public $mediasParams = [
         'profile' => [
             'default' => [
-                'name' => 'default',
-                'ratio' => 1,
+                [
+                    'name' => 'default',
+                    'ratio' => 1,
+                ],
             ],
         ],
     ];
