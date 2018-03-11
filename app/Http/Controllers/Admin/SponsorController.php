@@ -13,7 +13,7 @@ class SponsorController extends ModuleController
             'title' => 'Logo',
             'thumb' => true,
             'variant' => [
-                'role' => 'logo',
+                'role' => 'profile',
                 'crop' => 'default',
             ],
         ],

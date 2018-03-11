@@ -6,9 +6,10 @@ use A17\CmsToolkit\Http\Requests\Admin\Request;
 
 class ClosureRequest extends Request
 {
+
     public function rules()
     {
-        $rules = [];
+        $rules = ['type' => 'required'];
 
         if (!empty($this->input('date_end'))) {
             $rules['date_start'] = 'required|before:date_end';
@@ -24,7 +25,7 @@ class ClosureRequest extends Request
     public function messages()
     {
         return [
-            'date_start.before' => 'Start date must happen before ending date.'
+            'date_start.before' => 'Start date must happen before ending date.',
         ];
     }
 }

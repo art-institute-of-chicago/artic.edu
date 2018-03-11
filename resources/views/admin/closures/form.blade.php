@@ -1,11 +1,12 @@
-@extends('cms-toolkit::layouts.form')
+@extends('cms-toolkit::layouts.form', ['contentFieldsetLabel' => 'Edit closure'])
 
 @section('contentFields')
     @formField('select', [
-        'name' => 'type',
-        'label' => 'Type',
-        'options' => $typeList,
+        'name' => "type",
+        'label' => "Type",
+        'options' => $typesList,
         'placeholder' => 'Select a type',
+        'required' => true
     ])
 
     @formField('date_picker', [
@@ -21,9 +22,15 @@
         'withTime' => false,
         'required' => true
     ])
-
     @formField('input', [
         'name' => 'closure_copy',
         'label' => 'Closure Copy',
     ])
 @stop
+
+@push('vuexStore')
+    window.STORE.form.fields.push({
+        name: 'cmsFormTitle',
+        value: '{{ $item->presentAdmin()->presentType }} closure'
+    })
+@endpush

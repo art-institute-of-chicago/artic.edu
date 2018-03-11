@@ -14,25 +14,31 @@ class ClosureController extends ModuleController
     ];
 
     protected $titleColumnKey = 'presentType';
+    protected $titleFormKey = 'cmsFormTitle';
 
     protected $indexColumns = [
-        'type' => [
+        'presentType' => [
             'title' => 'Type',
             'present' => true,
             'field' => 'presentType',
             'edit_link' => true,
+            'sortKey' => 'type',
         ],
-        'opening_time' => [
+        'presentStartDate' => [
             'title' => 'Start Date',
             'present' => true,
             'field' => 'presentStartDate',
+            'sort' => true,
+            'sortKey' => 'date_start',
         ],
-        'closing_time' => [
+        'presentEndDate' => [
             'title' => 'End Date',
             'present' => true,
             'field' => 'presentEndDate',
+            'sort' => true,
+            'sortKey' => 'date_end',
         ],
-        'title' => [
+        'closure_copy' => [
             'title' => 'Closure Copy',
             'edit_link' => true,
             'sort' => false,
@@ -40,22 +46,12 @@ class ClosureController extends ModuleController
         ],
     ];
 
-    /*
-     * Relations to eager load for the index view
-     */
-    protected $indexWith = [];
+    protected $defaultFilters = [
+        'search' => '%closure_copy',
+    ];
 
-    /*
-     * Relations to eager load for the form view
-     */
-    protected $formWith = [];
-
-    /*
-     * Filters mapping ('fFilterName' => 'filterColumn')
-     * In the indexData function, name your lists with the filter name + List (fFilterNameList)
-     */
     protected $filters = [
-        'fPresentType' => 'presentType',
+        'types' => 'type',
     ];
 
     protected $defaultOrders = ['date_start' => 'desc'];
@@ -63,14 +59,15 @@ class ClosureController extends ModuleController
     protected function indexData($request)
     {
         return [
-            'fTypeList' => [null => 'All types'] + Closure::$types,
+            'typesList' => collect(Closure::$types),
         ];
     }
 
     protected function formData($request)
     {
         return [
-            'typeList' => collect(Closure::$types),
+            'typesList' => collect(Closure::$types),
+            'editableTitle' => false,
         ];
     }
 
