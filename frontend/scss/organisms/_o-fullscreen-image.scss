@@ -10,17 +10,17 @@
   border-radius: $border-radius;
   background-color: $color__black--80;
   overflow: hidden;
-  transform: scale(.85);
   opacity: 0;
   transition: opacity .1s, transform .15s $bezier--bounce;
 
-  @media screen and (min-width: 1280px) and (min-height: 1024px) {
+  @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
     left: 50%;
     top: 50%;
-    width: 1280px - 80px;
-    height: 1024px - 80px;
-    margin-top: (1024px - 80px)/-2;
-    margin-left: (1280px - 80px)/-2;
+    width: calc(100vw - 80px);
+    max-width: 1280px;
+    height: calc(100vh - 80px);
+    max-height: 1024px;
+    transform: translate(-50%, -50%);
   }
 }
 

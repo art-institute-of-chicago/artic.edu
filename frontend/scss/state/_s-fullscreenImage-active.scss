@@ -1,7 +1,7 @@
 .s-fullscreenImage-active {
 
   #a17 {
-    @media screen and (min-width: 1280px) and (min-height: 1024px) {
+    @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
       @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
         filter: blur(5px);
       }
@@ -11,6 +11,10 @@
   .o-fullscreen-image {
     display: block;
     animation: reveal .2s normal forwards;
+
+    @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
+      animation-name: reveal-fullscren-lg;
+    }
   }
 
   .g-mask {
@@ -22,9 +26,9 @@
       backdrop-filter: blur(5px);
     }
 
-    @media screen and (min-width: 1280px) and (min-height: 1024px) {
-      opacity: 1;
+    @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
       background-color: rgba($color__black--80, .5);
+      opacity: 1;
     }
   }
 }
