@@ -2,36 +2,47 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\FeeRepository;
-use App\Models\FeeCategory;
+use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 use App\Models\FeeAge;
+use App\Models\FeeCategory;
+use App\Repositories\FeeRepository;
 
-use Illuminate\Routing\Controller;
-
-
-class FeeController extends Controller
+class FeeController extends ModuleController
 {
     public function __construct(FeeRepository $fees)
     {
         $this->fees = $fees;
+        $this->request = request();
     }
 
-    public function index()
+    public function index($parentModuleId = null)
     {
         $feeCategories = FeeCategory::ordered()->get();
-        $feeAges       = FeeAge::ordered()->get();
+        $feeAges = FeeAge::ordered()->get();
 
         return view('admin.fees.index', [
-            'form_fields'   => $this->fees->getFormFields(),
+            'customForm' => true,
+            'editableTitle' => false,
+            'customTitle' => 'Update admission fees',
+            'form_fields' => $this->fees->getFormFields(),
             'feeCategories' => $feeCategories,
-            'feeAges'       => $feeAges,
+            'feeAges' => $feeAges,
+            'saveUrl' => route('admin.landing.visit.fees.update'),
+            'publish' => false,
         ]);
     }
 
-    public function update()
+    public function update($id, $submoduleId = null)
     {
+        if (array_key_exists('cancel', request()->all())) {
+            return redirect()->route('admin.landing.visit.fees.update');
+        }
+
         $this->fees->update(request()->except('_token'));
 
-        return redirect()->back();
+        $this->fireEvent();
+
+        return redirect()->route('admin.landing.visit.fees.update');
+
     }
 }

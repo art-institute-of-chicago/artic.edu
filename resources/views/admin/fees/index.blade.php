@@ -1,38 +1,56 @@
-@extends('cms-toolkit::layouts.main')
+@extends('cms-toolkit::layouts.form', [
+    'contentFieldsetLabel' => !empty($feeAges) ? $feeAges->first()->title: 'No fee ages created',
+    'additionalFieldsets' => $feeAges->reject(function ($feeAge, $index) {
+        return $index == 0;
+    })->map(function ($feeAge) {
+        return [
+            'fieldset' => 'fieldset' . $feeAge->id,
+            'label' => $feeAge->title
+        ];
+    })->toArray()
+])
 
-@section('content')
-    {{ Form::model($form_fields, [
-        'method' => 'POST',
-        'url' => route('admin.landing.visit.fees.update'),
-        'class' => "simple_form",
-        'novalidate' => "novalidate",
-        'accept-charset' => "UTF-8",
-    ]) }}
-
+@section('contentFields')
     @foreach($feeAges as $feeAge)
-        <section class="box box-background">
-            <header class="header_small">
-                <h3><b>{{$feeAge->title}}</b></h3>
-            </header>
-
-            <section class="box">
-                @foreach($feeCategories as $feeCategory)
-                    @formField('input', [
-                        'field_name' => $feeCategory->title,
-                        'field' => 'price['. $feeAge->id .']['. $feeCategory->id .']'
-                    ])
-                @endforeach
-            </section>
-        </section>
+        @if($loop->first)
+            @foreach($feeCategories as $feeCategory)
+                @formField('input', [
+                    'label' => $feeCategory->title,
+                    'name' => 'price['. $feeAge->id .']['. $feeCategory->id .']'
+                ])
+            @endforeach
+        @else
+            @break
+        @endif
     @endforeach
 @stop
 
-@section('footer')
-    @can('edit')
-        <ul>
-            <li><input type="submit" class="btn btn-primary"></li>
-            <li><a href="{{ Request::url() }}" class="btn">Cancel</a></li>
-        </ul>
-    @endcan
-    </form>
+@section('fieldsets')
+    @foreach($feeAges as $feeAge)
+        @if(!$loop->first)
+            <a17-fieldset id="fieldset{{ $feeAge->id }}" title="{{ $feeAge->title }}">
+                @foreach($feeCategories as $feeCategory)
+                    @formField('input', [
+                        'label' => $feeCategory->title,
+                        'name' => 'price['. $feeAge->id .']['. $feeCategory->id .']'
+                    ])
+                @endforeach
+            </a17-fieldset>
+        @endif
+    @endforeach
 @stop
+
+@push('vuexStore')
+window.STORE.publication.submitOptions = {
+    update: [
+      {
+        name: 'update',
+        text: 'Update'
+      },
+      {
+        name: 'cancel',
+        text: 'Cancel'
+      }
+    ]
+}
+@endpush
