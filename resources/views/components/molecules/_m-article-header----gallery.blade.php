@@ -18,13 +18,16 @@
             ))
         @endcomponent
       </div>
+      @if (sizeof($images) > 1 or $nextArticle or $prevArticle)
       <ul class="m-article-header__img-nav">
+        @if (sizeof($images) > 1)
         <li class="m-article-header__img-nav-next-img">
           <button data-gallery-next></button>
         </li>
         <li class="m-article-header__img-nav-prev-img">
           <button data-gallery-previous></button>
         </li>
+        @endif
         @if ($nextArticle)
         <li class="m-article-header__img-nav-next-artwork">
           <a href="#" class="m-article-header__img-nav-artwork-preview">
@@ -66,6 +69,7 @@
         </li>
         @endif
       </ul>
+      @endif
     @if (isset($images[0]['creditUrl']))
         <a href="{{ $images[0]['creditUrl'] }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
             {{ $images[0]['creditUrl'] }}

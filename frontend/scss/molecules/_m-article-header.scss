@@ -715,20 +715,23 @@ $thumbTease: 4px;
   justify-content: center;
   width: 100%;
   height: calc(100vh - #{112px - $thumbTease + $imgPadding});
+  min-height: 360px;
   padding-top: 16px;
   padding-bottom: 124px;
   background-color: $color__bg--primary;
 
   @include breakpoint('small+') {
     height: calc(100vh - #{128px - $thumbTease + $imgPadding});
+    min-height: 400px;
     padding-top: 60px;
     padding-bottom: 140px;
   }
 
   @include breakpoint('medium+') {
     height: calc(100vh - #{140px - $thumbTease + $imgPadding});
+    min-height: none;
     padding-top: 48px;
-    padding-bottom: 48px;
+    padding-bottom: 80px;
   }
 }
 
@@ -760,14 +763,19 @@ $thumbTease: 4px;
   left: 0;
   right: 0;
   bottom: 88px;
+  margin-bottom: -4px;
+  padding-bottom: 4px;
   text-align: center;
-  text-overflow: ellipses;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 
   @include breakpoint('small+') {
-    right: auto;
+    right: 166px;
     bottom: 36px;
     text-align: left;
+    white-space: normal;
+    overflow: visible;
   }
 }
 
