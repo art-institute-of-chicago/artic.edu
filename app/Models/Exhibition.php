@@ -11,10 +11,11 @@ use Carbon\Carbon;
 
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class Exhibition extends Model
 {
-    use HasRevisions, HasSlug, HasMedias, HasBlocks, HasApiModel, HasApiRelations, Transformable;
+    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiModel, HasApiRelations, Transformable;
 
     protected $presenter      = 'App\Presenters\Admin\ExhibitionPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';

@@ -8,40 +8,69 @@ use LakeviewImageService;
 trait HasMediasApi
 {
 
-    public $mediasParams = [
-        'image_id' => [
-            'default' => [
-                [
-                    'width'  => 45,
-                    'height' => 45
-                ],
-            ],
-        ],
-    ];
+    // You have to define roles and crop on the API model.
+    //
+    // 'field': Optional, API field with the image ID (if not defined, default to image_id)
+    // 'width', 'height': Optional, cropping options
+    //
+    // public $mediasParams
+    //     'hero' => [
+    //         'default' => [
+    //             'field'  => 'image_id',   // Optional
+    //             'width'  => 45,           // Optional
+    //             'height' => 45            // Optional
+    //         ],
+    //     ],
+    // ];
 
-    public function imageFront($parameter = 'image_id', $crop = null)
+    public function imageFront($role = 'hero', $crop = null)
     {
-        if (!empty($this->$parameter)) {
+        if (empty($this->mediasParams)) {
+            throw new \Exception('You have to define $mediasParams when using imageFront');
+        }
+
+        if (isset($this->mediasParams[$role])) {
             if ($crop) {
-                return LakeviewImageService::getImage($this->$parameter, $this->getWidth($parameter, $crop), $this->getHeight($parameter, $crop));
+                $image = LakeviewImageService::getImage($this->{$this->getImageField($role, $crop)});
+                $image['width'] = $this->getWidth($role, $crop);
+                $image['height'] = $this->getHeight($role, $crop);
+
+                return $image;
             } else {
-                return LakeviewImageService::getImage($this->$parameter);
+                return LakeviewImageService::getImage($this->{$this->getImageField($role, 'default')});
             }
         } else {
             if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'imageFront')) {
-                return $this->getAugmentedModel()->imageFront(...$parameters);
+                return $this->getAugmentedModel()->imageFront($role, $crop);
             }
         }
     }
 
-    protected function getWidth($parameter, $crop)
+    protected function getImageField($role, $crop)
     {
-        $this->mediasParams[$parameter][$crop]['width'];
+        if (isset($this->mediasParams[$role][$crop]['field'])) {
+            return $this->mediasParams[$role][$crop]['field'];
+        } else {
+            return 'image_id';
+        }
     }
 
-    protected function getHeight($parameter, $crop)
+    protected function getWidth($role, $crop)
     {
-        $this->mediasParams[$parameter][$crop]['height'];
+        if (isset($this->mediasParams[$role][$crop]['width'])) {
+            return $this->mediasParams[$role][$crop]['width'];
+        } else {
+            return '';
+        }
+    }
+
+    protected function getHeight($role, $crop)
+    {
+        if (isset($this->mediasParams[$role][$crop]['height'])) {
+            return $this->mediasParams[$role][$crop]['height'];
+        } else {
+            return '';
+        }
     }
 
 }

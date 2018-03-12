@@ -40,10 +40,10 @@ class ArtworkController extends FrontController
 
         $galleryImages = collect();
         if ($item->image_id) {
-            $image = LakeviewImageService::getImage($item->image_id);
+            $image = $item->imageFront();
             $image['credit'] = $item->getImageCopyright();
             $galleryImages[] = $image;
-            $item->image = $image;
+            // $item->image = $image;
         }
         $item->galleryImages = $galleryImages;
 

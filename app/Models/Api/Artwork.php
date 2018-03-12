@@ -18,6 +18,19 @@ class Artwork extends BaseApiModel
         'boosted'    => '/api/v1/artworks/boosted'
     ];
 
+    public $mediasParams = [
+        'hero' => [
+            'default' => [
+                'field'  => 'image_id',
+            ],
+            'thumbnail' => [
+                'field'  => 'image_id',
+                'width'  => 45,
+                'height' => 45
+            ],
+        ],
+    ];
+
     public function artists()
     {
         return $this->hasMany(\App\Models\Api\Artist::class, 'alt_artist_ids');

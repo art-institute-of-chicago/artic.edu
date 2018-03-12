@@ -9,10 +9,11 @@ use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasRecurrentDates;
 use Carbon\Carbon;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class Event extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasBlocks, HasRecurrentDates, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
     protected $presenter = 'App\Presenters\Admin\EventPresenter';
@@ -131,12 +132,6 @@ class Event extends Model
             ],
         ],
     ];
-
-    public function imageFront( ...$parameters ) {
-        $imageObject = $this->imageObject(...$parameters);
-        if ($imageObject)
-            return aic_convertFromImage($imageObject);
-    }
 
     // Generates the id-slug type of URL
     public function getRouteKeyName()
