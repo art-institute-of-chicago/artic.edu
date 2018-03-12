@@ -48,7 +48,7 @@
         'with_multiple' => false,
         'no_crop' => false,
         'label' => 'Author Thumbnail',
-        'name' => 'hero'
+        'name' => 'author'
     ])
 
     @formField('checkbox', [

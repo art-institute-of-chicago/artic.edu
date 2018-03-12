@@ -30,8 +30,8 @@ class SelectionsController extends FrontController
         }
 
         $item->headerType = 'hero';
-        if ($item->imageObject('hero')) {
-            $item->headerImage = aic_convertFromImage($item->imageObject('hero'));
+        if ($item->imageFront('hero')) {
+            $item->headerImage = $item->imageFront('hero');
         }
 
         if ($item->siteTags->first()) {

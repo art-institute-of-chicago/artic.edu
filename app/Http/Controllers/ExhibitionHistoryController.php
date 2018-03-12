@@ -72,19 +72,13 @@ class ExhibitionHistoryController extends FrontController
         $years = $years->reverse();
         $exhibitions = $this->apiRepository->history($year);
 
-        foreach($exhibitions as &$item) {
-            if ($item->imageObject('hero')) {
-                $item->image = aic_convertFromImage($item->imageObject('hero'));
-            }
-        }
-
         $view_data = [
             'title' => 'Exhibition History',
             'intro' => $page->exhibition_history_sub_heading,
             'media' => array(
               'type' => 'image',
               'size' => 's',
-              'media' => aic_convertFromImage($page->imageObject('exhibition_history_intro')),
+              'media' => $page->imageFront('exhibition_history_intro'),
               'hideCaption' => true,
              ),
             'blocks' => $blocks,
@@ -116,5 +110,6 @@ class ExhibitionHistoryController extends FrontController
     public function show($id)
     {
         $resource = Exhibition::with('artworks')->find($id);
+        dd($resource);
     }
 }

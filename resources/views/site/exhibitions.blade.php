@@ -36,6 +36,18 @@
         @component('components.molecules._m-listing----exhibition')
             @slot('item', $item)
             @slot('titleFont', 'f-list-4')
+            @slot('imageSettings', array(
+                'fit' => 'crop',
+                'ratio' => '16:9',
+                'srcset' => array(200,400,600,1000,1500),
+                'sizes' => aic_gridListingImageSizes(array(
+                      'xsmall' => '1',
+                      'small' => '2',
+                      'medium' => '2',
+                      'large' => '2',
+                      'xlarge' => '2',
+                )),
+            ))
         @endcomponent
     @endforeach
 @endcomponent
@@ -54,6 +66,18 @@
             @if ($loop->index < 6)
                 @component('components.molecules._m-listing----exhibition')
                    @slot('item', $item)
+                   @slot('imageSettings', array(
+                       'fit' => 'crop',
+                       'ratio' => '16:9',
+                       'srcset' => array(200,400,600,1000),
+                       'sizes' => aic_gridListingImageSizes(array(
+                             'xsmall' => '1',
+                             'small' => '2',
+                             'medium' => '3',
+                             'large' => '3',
+                             'xlarge' => '3',
+                       )),
+                   ))
                 @endcomponent
             @endif
         @endforeach
@@ -78,6 +102,18 @@
             @if ($loop->index > 5)
                 @component('components.molecules._m-listing----exhibition')
                     @slot('item', $item)
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600,1000),
+                        'sizes' => aic_gridListingImageSizes(array(
+                              'xsmall' => '1',
+                              'small' => '2',
+                              'medium' => '3',
+                              'large' => '3',
+                              'xlarge' => '3',
+                        )),
+                    ))
                 @endcomponent
             @endif
         @endforeach

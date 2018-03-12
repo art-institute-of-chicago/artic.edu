@@ -4,9 +4,9 @@
             @foreach ($items as $item)
                 <li>
                     <a href="{{ $item->url }}">
-                        @if ($item->image)
+                        @if ($item->imageFront('hero', 'thumbnail'))
                             @component('components.atoms._img')
-                                @slot('image', $item->image)
+                                @slot('image', $item->imageFront('hero', 'thumbnail'))
                                 @slot('settings', array(
                                     'srcset' => array(40,80),
                                     'sizes' => '40px',

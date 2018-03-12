@@ -31,11 +31,6 @@ class CollectionController extends FrontController
             $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->get();
         }
 
-        foreach($collection as &$item) {
-            $item->type = 'artwork';
-            $item->image = LakeviewImageService::getImage($item->image_id);
-        }
-
         // If it's ajax, just load more elements.
         if (request()->ajax() && request()->has('page')) {
             return [

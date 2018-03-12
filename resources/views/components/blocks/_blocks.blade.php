@@ -427,7 +427,7 @@
                 @php
                     $artworkItem = array();
                     $artworkItem['type'] = 'image';
-                    $artworkItem['media'] = $block['item']->image;
+                    $artworkItem['media'] = $block['item']->imageFront();
                     $artworkItem['captionTitle'] = $block['item']->title;
                     $artworkItem['caption'] = $block['item']->artist.', '.$block['item']->year.' <br>'.$block['item']->galleryLocation;
                     $artworkItem['hideShare'] = true;

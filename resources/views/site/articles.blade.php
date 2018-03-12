@@ -6,13 +6,16 @@
 
     @component('components.organisms._o-features')
         @component('components.molecules._m-listing----article-hero')
-            @slot('item', (object) [
+            @slot('item', $heroArticle)
+
+            {{-- (object) [
               'image' => $heroArticle->hero,
               'slug'  => $heroArticle->slug,
               'title' => $heroArticle->title,
               'intro' => $heroArticle->heading,
               'subtype' => $heroArticle->articleType,
-            ])
+            ]) --}}
+
             @slot('variation', 'm-listing--hero m-listing--hero-editorial')
             @slot('titleFont', 'f-headline-editorial')
             @slot('captionFont', 'f-secondary')
@@ -95,14 +98,16 @@
       @slot('cols_xlarge','4')
       @foreach ($articles as $item)
           @component('components.molecules._m-listing----article-minimal')
-              @slot('item', (object) [
-              'image' => $item->hero,
-              'slug'  => $item->slug,
-              'title' => $item->title,
-              'intro' => $item->heading,
-              'subtype' => $item->articleType,
-              'date' => $item->date,
-            ]))
+              @slot('item', $item)
+
+              {{-- (object) [
+                  'image' => $item->hero,
+                  'slug'  => $item->slug,
+                  'title' => $item->title,
+                  'intro' => $item->heading,
+                  'subtype' => $item->articleType,
+                  'date' => $item->date,
+                ])) --}}
             @slot('imageSettings', array(
                 'fit' => 'crop',
                 'ratio' => '16:9',
