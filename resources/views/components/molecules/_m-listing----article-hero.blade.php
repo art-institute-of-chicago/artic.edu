@@ -1,9 +1,9 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
     <a href="{{ $item->slug }}" class="m-listing__link">
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}" data-blur-img>
-            @if ($item->image)
+            @if ($item->imageFront())
                 @component('components.atoms._img')
-                    @slot('image', $item->image)
+                    @slot('image', $item->imageFront())
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
 

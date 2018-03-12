@@ -1,9 +1,9 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->nowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ $item->slug }}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-        @if ($item->image)
+        @if ($item->imageFront())
             @component('components.atoms._img')
-                @slot('image', $item->image)
+                @slot('image', $item->imageFront())
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
         @endif

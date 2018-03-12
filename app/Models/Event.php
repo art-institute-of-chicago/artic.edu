@@ -132,6 +132,12 @@ class Event extends Model
         ],
     ];
 
+    public function imageFront( ...$parameters ) {
+        $imageObject = $this->imageObject(...$parameters);
+        if ($imageObject)
+            return aic_convertFromImage($imageObject);
+    }
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {

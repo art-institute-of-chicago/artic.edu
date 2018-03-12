@@ -5,9 +5,12 @@ namespace App\Models\Api;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Presenters\StaticObjectPresenter;
 use LakeviewImageService;
+use App\Models\Behaviors\HasMediasApi;
 
 class Artwork extends BaseApiModel
 {
+    use HasMediasApi;
+
     protected $endpoints = [
         'collection' => '/api/v1/artworks',
         'resource'   => '/api/v1/artworks/{id}',

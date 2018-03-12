@@ -15,7 +15,7 @@ class StaticObjectPresenter implements UrlRoutable
     public function __call($name, $args)
     {
         if ( isset($this->entity[$name])) {
-            return call_user_func_array($this->entity[$name], ['this' => $this] + $args);
+            return call_user_func_array($this->entity[$name], $args);
         }
     }
 
