@@ -56,10 +56,14 @@
 
 .m-listing__link {
   display: flex;
-  flex: 1;
+  flex: 0 1 auto;
   flex-flow: column nowrap;
-  height: 100%;
   text-decoration: none;
+}
+
+.m-listing__link:only-child {
+  flex-grow: 1;
+  height: 100%;
 }
 
 .m-listing__link {
@@ -71,6 +75,7 @@
 .m-listing__img {
   @extend %image-transition;
   display: block;
+  flex: 0 0 auto;
   position: relative;
   margin-top: 28px;
   background-color: $color__bg--primary;
@@ -223,7 +228,9 @@
   }
 }
 
-.m-listing__meta:first-child {
+.m-listing__link:not(:only-child) .m-listing__meta,
+.m-listing__meta:first-child,
+.m-listing__link + .m-listing__meta {
   min-height: 0;
 }
 
