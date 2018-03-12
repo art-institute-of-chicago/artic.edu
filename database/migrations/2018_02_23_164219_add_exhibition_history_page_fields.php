@@ -15,9 +15,9 @@ class AddExhibitionHistoryPageFields extends Migration
     {
         Schema::table('pages', function (Blueprint $table) {
             // Exhibition History
-            $table->string('exhibition_history_sub_heading');
-            $table->text('exhibition_history_intro_copy');
-            $table->text('exhibition_history_popup_copy');
+            $table->string('exhibition_history_sub_heading')->nullable();
+            $table->text('exhibition_history_intro_copy')->nullable();
+            $table->text('exhibition_history_popup_copy')->nullable();
         });
     }
 
