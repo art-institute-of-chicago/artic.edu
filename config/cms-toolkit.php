@@ -138,6 +138,11 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-shop_items',
             ],
+            'child_pages' => [
+                'title' => 'Child Pages Link Block',
+                'icon' => 'image',
+                'component' => 'a17-block-child_pages',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
