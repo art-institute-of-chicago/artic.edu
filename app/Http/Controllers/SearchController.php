@@ -98,13 +98,6 @@ class SearchController extends FrontController
             }
 
             $item->text = $item->title;
-
-            // if (!empty($item->image_id)) {
-            //     $image = LakeviewImageService::getImage($item->image_id, 30);
-            //     $image['width'] = 30;
-            //     $image['height'] = '';
-            //     $item->image = $image;
-            // }
         }
 
         return view('layouts/_autocomplete', [

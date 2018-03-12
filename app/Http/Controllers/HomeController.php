@@ -57,10 +57,6 @@ class HomeController extends FrontController
                     $item->dateEnd = Carbon::now();
                 }
 
-                // if ($feature->imageObject('hero')) {
-                //     $item->image = aic_convertFromImage($feature->imageObject('hero'));
-                // }
-
                 if ($item) {
                     $mainFeatures[] = $item;
                 }
@@ -69,11 +65,6 @@ class HomeController extends FrontController
 
         // sort by published?
         $mainFeatures = $mainFeatures->slice(0, 3);
-
-        // $membership_module_image = null;
-        // if ($page->imageObject('home_membership_module_image')) {
-        //     $membership_module_image = aic_convertFromImage($page->imageObject('home_membership_module_image'));
-        // }
         $membership_module_url = $page->home_membership_module_url;
 
         $view_data = [
