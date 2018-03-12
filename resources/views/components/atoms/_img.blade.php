@@ -1,8 +1,6 @@
 @php
     $highlight = ' ';
 
-
-
     if (!isset($image['sourceType']) || empty($image['sourceType'])) {
         $image['sourceType'] = 'imgix';
     }
@@ -41,7 +39,11 @@
     alt="{{ $image['alt'] ?? '' }}{{ $alt ?? '' }}"
     class="{{ $image['class'] ?? '' }} {{ $class ?? '' }}"
     src="{{ $src ?? '' }}"
+    @if (isset($_GET['print']))
+    srcset="{{ $srcset ?? '' }}"
+    @else
     data-srcset="{{ $srcset ?? '' }}"
+    @endif
     sizes="{{ $sizes ?? '' }}"
     width="{{ $width ?? '' }}"
     height="{{ $height ?? '' }}"
