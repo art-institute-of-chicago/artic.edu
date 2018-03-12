@@ -5,14 +5,29 @@ namespace App\Models\Api;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Presenters\StaticObjectPresenter;
 use LakeviewImageService;
+use App\Models\Behaviors\HasMediasApi;
 
 class Artwork extends BaseApiModel
 {
+    use HasMediasApi;
+
     protected $endpoints = [
         'collection' => '/api/v1/artworks',
         'resource'   => '/api/v1/artworks/{id}',
         'search'     => '/api/v1/artworks/search',
         'boosted'    => '/api/v1/artworks/boosted'
+    ];
+
+    public $mediasParams = [
+        'hero' => [
+            'default' => [
+                'field'  => 'image_id',
+            ],
+            'thumbnail' => [
+                'field'  => 'image_id',
+                'width'  => 30,
+            ],
+        ],
     ];
 
     public function artists()

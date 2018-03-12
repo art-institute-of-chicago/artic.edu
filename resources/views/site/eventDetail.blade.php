@@ -214,6 +214,18 @@
         @foreach ($item->relatedExhibitions as $item)
             @component('components.molecules._m-listing----exhibition')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
@@ -233,6 +245,18 @@
         @foreach ($item->events as $item)
             @component('components.molecules._m-listing----event')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent

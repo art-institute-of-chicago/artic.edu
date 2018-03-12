@@ -1,7 +1,7 @@
 <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->is_member_exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ route('events.show', $item) }}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-        @if ($img = $item->imageAsArray('hero'))
+        @if ($img = $item->imageFront('hero'))
             @component('components.atoms._img')
                 @slot('image', $img)
                 @slot('settings', $imageSettings ?? '')

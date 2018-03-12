@@ -33,7 +33,7 @@
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('image', $nextArticle->image)
+                  @slot('image', $nextArticle->imageFront())
                   @slot('settings', array(
                     'srcset' => array(120,240),
                     'sizes' => '120px',
@@ -53,7 +53,7 @@
           <a href="#" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('image', $prevArticle->image)
+                  @slot('image', $prevArticle->imageFront())
                   @slot('settings', array(
                     'srcset' => array(120,240),
                     'sizes' => '120px',

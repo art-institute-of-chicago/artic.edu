@@ -1,9 +1,9 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{{ $item->slug }}" class="m-listing__link">
-        @if ($item->image)
+        @if ($item->imageFront())
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--square' }}">
             @component('components.atoms._img')
-                @slot('image', $item->image)
+                @slot('image', $item->imageFront())
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
         </span>

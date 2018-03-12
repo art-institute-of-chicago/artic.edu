@@ -7,10 +7,11 @@ use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class Article extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasBlocks, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenter = 'App\Presenters\ArticlePresenter';
@@ -120,7 +121,7 @@ class Article extends Model
                 "type" => "text",
                 "value" => function() { return $this->copy; }
             ],
-            
+
         ];
     }
 }

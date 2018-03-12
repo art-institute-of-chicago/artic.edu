@@ -47,13 +47,11 @@ class LakeviewImageService implements ImageServiceInterface
 
     public function getUrl($id, array $params = [])
     {
-        // dd('abc');
         $width = isset($params['width']) ? $params['width'] : '';
         $height = isset($params['height']) ? $params['height'] : '';
         $size = isset($params['size']) ? $params['size'] : 'full';
 
         $data = $this->fetchImageInfo($id);
-        // dd($data);
 
         $dimensions = 'full';
         if ($width != '' || $height != '') {

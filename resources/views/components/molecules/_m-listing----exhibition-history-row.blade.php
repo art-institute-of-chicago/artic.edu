@@ -3,9 +3,9 @@
   <a href="{{ route('exhibitions.history.show', $item) }}" class="m-listing__link">
   @endif
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-        @if (isset($item->image))
+        @if ($item->imageFront('hero'))
             @component('components.atoms._img')
-                @slot('image', $item->image)
+                @slot('image', $item->imageFront('hero'))
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
         @endif

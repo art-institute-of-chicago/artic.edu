@@ -1649,7 +1649,7 @@ class StaticsController extends FrontController {
         $artworkItem = array();
         $artworkItem['type'] = 'image';
         $artworkItem['size'] = 'gallery';
-        $artworkItem['media'] = $artwork->image;
+        $artworkItem['media'] = $artwork->imageFront();
         $artworkItem['captionTitle'] = $artwork->title;
         $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
         $artworkItem['hideShare'] = true;
@@ -1720,7 +1720,9 @@ class StaticsController extends FrontController {
       "closingSoon" => $this->faker->boolean(10),
       "exclusive" => $this->faker->boolean(10),
       "nowOpen" => $this->faker->boolean(10),
-      "image" => $this->getImage(),
+      "imageFront" => function () {
+        return $this->getImage();
+      },
 
       "present" => function () use ($upcoming) {
         return new StaticObjectPresenter([
@@ -1754,7 +1756,7 @@ class StaticsController extends FrontController {
       "title" => $this->faker->sentence(6, true),
       "dateStart" => $this->makeDate(),
       "dateEnd" => $this->makeDate(),
-      "image" => $boolean ? $this->getImage() : null,
+      "imageFront" => $boolean ? function() {return $this->getImage();} : null,
       'short_description' => $this->faker->paragraph(6, false),
     ]);
   }
@@ -1801,7 +1803,9 @@ class StaticsController extends FrontController {
       "dateEnd" => $this->makeDate(),
       "exclusive" => $this->faker->boolean(30), // Should be deprecated, leaving to keep statics
       "is_member_exclusive" => $this->faker->boolean(30),
-      "image" => $this->getImage(),
+      "imageFront" => function () {
+         return $this->getImage();
+      },
       "free" => $free,
       "register" => $register,
       "soldOut" => $soldOut,
@@ -1868,8 +1872,9 @@ class StaticsController extends FrontController {
       "type" => 'Furnishings',
       "title" => $this->faker->sentence(4, true),
       "shortDesc" => $this->faker->paragraph(1, false),
-      "image" => $this->getImage(),
-      "image_url" => $this->getImageUrl(),
+      "imageFront" => function () {
+        return $this->getImage();
+      },
       "price" => $price,
       "priceSale" => $priceSale,
       "currency" => "$",
@@ -1913,7 +1918,7 @@ class StaticsController extends FrontController {
       "id" => $this->faker->uuid,
       "slug" => "/statics/artist",
       "title" => $this->faker->name(),
-      "image" => ($intro) ? $this->getImage() : null,
+      "imageFront" => ($intro) ? function () { return $this->getImage(); } : null,
       'caption' => ($intro) ? $this->faker->sentence() : null,
       'aka' => 'Rembrant',
       'dob' => strtotime('July 15, 1606'),
@@ -1942,7 +1947,9 @@ class StaticsController extends FrontController {
       "id" => $this->faker->uuid,
       "slug" => "/statics/catalog",
       "title" => $this->faker->sentence(),
-      "image" => $this->getImage(),
+      "imageFront" => function () {
+        return $this->getImage();
+      },
       "type" => 'catalog',
     ]);
   }
@@ -1964,7 +1971,7 @@ class StaticsController extends FrontController {
       "id" => $this->faker->uuid,
       "slug" => "/statics/page",
       "title" => $this->faker->sentence(),
-      "image" => $this->faker->boolean() ? $this->getImage() : null,
+      "imageFront" => $this->faker->boolean() ? function() { return $this->getImage(); } : null,
       "shortDesc" => $this->faker->sentence(12, true),
       "subtype" => $this->faker->randomElement($types),
       "type" => 'page',
@@ -1987,7 +1994,7 @@ class StaticsController extends FrontController {
       "title" => $this->faker->sentence(6, true),
       "time" => $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30')),
       "blurb" => $this->faker->paragraph(5),
-      "image" => ($this->faker->boolean()) ? $this->getImage() : null,
+      "imageFront" => $this->faker->boolean() ? function() { return $this->getImage(); } : null,
       "type" => 'timelineEvent',
     ]);
   }
@@ -2011,7 +2018,9 @@ class StaticsController extends FrontController {
       "artist" => $this->faker->firstName.' '.$this->faker->lastName,
       "year" => $this->faker->year(),
       "artist_display" => $this->faker->firstName.' '.$this->faker->lastName.', '.$this->faker->year(),
-      "image" => $this->getImage(),
+      "imageFront" => function() {
+        return $this->getImage();
+      },
       "galleryLocation" => "Gallery 239",
       "type" => 'artwork',
     ]);
@@ -2038,7 +2047,9 @@ class StaticsController extends FrontController {
       ),
       "intro" => $this->faker->sentence(12, true),
       "date" => $this->makeDate(),
-      "image" => $this->getImage(),
+      "imageFront" => function() {
+        return $this->getImage();
+      },
       "type" => 'article',
       "subtype" => $this->faker->word(),
     ]);
@@ -2060,7 +2071,9 @@ class StaticsController extends FrontController {
       "title" => $this->faker->sentence(6, true),
       "shortDesc" => $this->faker->sentence(12, true),
       "date" => $this->makeDate(),
-      "image" => $this->getImage(),
+      "imageFront" => function() {
+        return $this->getImage();
+      },
       "type" => 'generic',
     ]);
   }
@@ -2124,7 +2137,9 @@ class StaticsController extends FrontController {
       "id" => $this->faker->uuid,
       "slug" => "/statics/selection",
       "title" => $this->faker->sentence(6, true),
-      "image" => $this->getImage(),
+      "imageFront" => function() {
+        return $this->getImage();
+      },
       "images" => $selectionImages,
       "type" => 'selection',
     ]);
