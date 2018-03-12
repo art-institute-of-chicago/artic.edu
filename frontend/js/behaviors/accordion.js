@@ -14,7 +14,6 @@ const accordion = function(container) {
   }
 
   function _toggle(event) {
-    console.log(event.target.parentNode);
     if (event.target.classList.contains('o-accordion__trigger') || event.target.parentNode.classList.contains('o-accordion__trigger')) {
       event.preventDefault();
       event.stopPropagation();
