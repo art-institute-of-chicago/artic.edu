@@ -31,6 +31,7 @@ class ExhibitionRepository extends BaseApiRepository
 
         $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
         $this->updateBrowser($object, $fields, 'events');
+        $this->updateBrowser($object, $fields, 'articles');
 
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
 
@@ -43,6 +44,7 @@ class ExhibitionRepository extends BaseApiRepository
 
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'whatson');
 
+        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'whatson');
         $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'general');
 

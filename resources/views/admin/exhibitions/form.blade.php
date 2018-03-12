@@ -97,6 +97,15 @@
             'note' => 'Select related events',
             'max' => 20
         ])
+
+        @formField('browser', [
+            'routePrefix' => 'whatson',
+            'moduleName' => 'articles',
+            'name' => 'articles',
+            'label' => 'Related articles',
+            'note' => 'Select related articles',
+            'max' => 20
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="api" title="Datahub fields">

@@ -91,6 +91,11 @@ class Exhibition extends Model
         return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
     }
 
+    public function articles()
+    {
+        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
+    }
+
     public function eventsCount()
     {
         $query = $this->events()->rightJoin('event_metas', function ($join) {
