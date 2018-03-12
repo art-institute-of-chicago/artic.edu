@@ -27,7 +27,7 @@ In case the system didn't update your /etc/hosts file automatically:
 - Access the CMS [here](http://admin.aic.dev.a17.io/login).
 - Access Templates Here [here](http://admin.aic.dev.a17.io/templates/home).
 
-#### Frontend assets (To be defined)
+#### Frontend assets
 
 ```
 $ npm install
@@ -42,19 +42,19 @@ npm install gulp-cli
 And then for initial compile:
 
 ```
-$ gulp build
+$ npm run build
 ```
 
 Or for continuous work, with 'watch' task running, just:
 
 ```
-$ gulp
+$ npm run dev
 ```
 
 To generate UI toolkit pages:
 
 ```
-$ gulp toolkit
+$ npm run toolkit
 ```
 
 ### Deployment (staging only for now)
