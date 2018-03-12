@@ -12,7 +12,11 @@
             "source": {
                 "type": "git",
                 "url": "git@code.area17.com:a17/laravel-cms-toolkit.git",
+<<<<<<< 59df535e3a3b2bd5e2ea0c6c7bb919080efd02f6
                 "reference": "ebabf922fe95aa1859f45e8e6801bee6a52bbdfb"
+=======
+                "reference": "f1d05ab3c40c5a50c306ee84e79110f9adffa30f"
+>>>>>>> Fix custom fee form and update CMS deps
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.1",
@@ -83,7 +87,11 @@
                 "cms-toolkit",
                 "laravel"
             ],
+<<<<<<< 59df535e3a3b2bd5e2ea0c6c7bb919080efd02f6
             "time": "2018-03-15T16:29:28+00:00"
+=======
+            "time": "2018-03-11T05:39:21+00:00"
+>>>>>>> Fix custom fee form and update CMS deps
         },
         {
             "name": "aic/data-hub-foundation",
