@@ -20,5 +20,7 @@
 .s-scroll-direction-down.s-header-hide {
   .g-header {
     opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity .2s, background-color .2s, transform 0s .2s;
   }
 }
