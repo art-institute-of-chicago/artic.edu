@@ -18,13 +18,16 @@
     </span>
     <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
     @if (!isset($variation) or strrpos($variation, "--hero") < 0)
+      <span class="m-listing__types f-tag">
         @if ($item->exclusive)
             @component('components.atoms._type')
                 @slot('variation', 'type--membership')
+                @slot('font', '')
                 Member Exclusive
             @endcomponent
         @else
             @component('components.atoms._type')
+                @slot('font', '')
                 {{ $item->present()->exhibitionType }}
             @endcomponent
         @endif
@@ -32,14 +35,17 @@
         @if ($item->closingSoon)
             @component('components.atoms._type')
                 @slot('variation', 'type--limited')
+                @slot('font', '')
                 Closing Soon
             @endcomponent
         @elseif ($item->nowOpen)
             @component('components.atoms._type')
                 @slot('variation', 'type--new')
+                @slot('font', '')
                 Now Open
             @endcomponent
         @endif
+      </span>
       <br>
     @endif
         @component('components.atoms._title')

@@ -247,12 +247,17 @@
   margin-top: auto;
 }
 
+.m-listing__types,
 .m-listing__meta .type,
 .m-listing__meta .title,
 .m-listing__meta .date {
   display: block;
 }
 
+.m-listing__types .type {
+  display: inline-block;
+  padding-right: 8px;
+}
 
 .m-listing.s-no-link .title {
   color: $color__text--secondary;

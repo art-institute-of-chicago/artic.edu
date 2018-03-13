@@ -9,26 +9,32 @@
         @endif
     </span>
     <span class="m-listing__meta">
-        @component('components.atoms._type')
-            {{ $item->present()->exhibitionType }}
-        @endcomponent
+        <span class="m-listing__types f-tag">
+            @component('components.atoms._type')
+                @slot('font', '')
+                {{ $item->present()->exhibitionType }}
+            @endcomponent
 
-        @if ($item->closingSoon)
-            @component('components.atoms._type')
-                @slot('variation', 'type--limited')
-                Closing Soon
-            @endcomponent
-        @elseif ($item->nowOpen)
-            @component('components.atoms._type')
-                @slot('variation', 'type--new')
-                Now Open
-            @endcomponent
-        @elseif ($item->exclusive)
-            @component('components.atoms._type')
-                @slot('variation', 'type--membership')
-                Member Exclusive
-            @endcomponent
-        @endif
+            @if ($item->closingSoon)
+                @component('components.atoms._type')
+                    @slot('variation', 'type--limited')
+                    @slot('font', '')
+                    Closing Soon
+                @endcomponent
+            @elseif ($item->nowOpen)
+                @component('components.atoms._type')
+                    @slot('variation', 'type--new')
+                    @slot('font', '')
+                    Now Open
+                @endcomponent
+            @elseif ($item->exclusive)
+                @component('components.atoms._type')
+                    @slot('variation', 'type--membership')
+                    @slot('font', '')
+                    Member Exclusive
+                @endcomponent
+            @endif
+        </span>
         <br>
         @component('components.atoms._title')
             {{ $item->title }}
