@@ -17,7 +17,6 @@
         @endif
     </span>
     <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-    @if (!isset($variation) or strrpos($variation, "--hero") < 0)
       <span class="m-listing__types f-tag">
         @if ($item->exclusive)
             @component('components.atoms._type')
@@ -47,7 +46,6 @@
         @endif
       </span>
       <br>
-    @endif
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-3')
             {{ $item->title }}

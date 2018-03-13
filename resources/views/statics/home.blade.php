@@ -7,7 +7,7 @@
         @component('components.molecules._m-listing----exhibition')
             @slot('item', $item)
             @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
-            @slot('titleFont', ($loop->first) ? 'f-list-5' : 'f-list-3')
+            @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-module-title-2')
             @slot('imageSettings', array(
                 'srcset' => array(300,600,1000,1500,3000),
                 'sizes' => '100vw',
