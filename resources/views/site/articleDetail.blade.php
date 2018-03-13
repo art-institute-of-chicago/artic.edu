@@ -12,7 +12,7 @@
     @slot('date', $item->date)
     @slot('type', $item->type)
     @slot('intro', $item->heading)
-    @slot('img', $item->headerImage)
+    @slot('img', $item->imageFront('hero'))
     @slot('galleryImages', $item->galleryImages)
     @slot('nextArticle', $item->nextArticle)
     @slot('prevArticle', $item->prevArticle)
@@ -29,7 +29,7 @@
         @component('components.molecules._m-author')
             @slot('variation', 'm-author---keyline-top')
             @slot('editorial', ($item->articleType === 'editorial'))
-            @slot('img', $item->author['img'] ?? null);
+            @slot('img', $item->imageFront('author') ?? null);
             @slot('name', $item->author ?? null);
             @slot('link', $item->author['link'] ?? null);
             @slot('date', $item->date ?? null);

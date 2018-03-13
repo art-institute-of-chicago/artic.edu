@@ -14,10 +14,12 @@ class PageController extends ModuleController
 
     protected function formData($request)
     {
+        #TODO: remove horrible hack to enable title editing for Visit Page
+        $editableTitle = stripos($request->path(), 'visit') !== false ? true : false;
         return [
             'permalink' => false,
             'publish' => false,
-            'editableTitle' => false,
+            'editableTitle' => $editableTitle,
         ];
     }
 
