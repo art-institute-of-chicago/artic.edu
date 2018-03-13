@@ -1,4 +1,11 @@
-<{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->is_member_exclusive ? " m-listing--membership" : "" }}">
+@php
+    if (isset($variation) and strrpos($variation, '--hero') < 0 and strrpos($variation, '--feature') < 0) {
+        $hoverBar = '';
+    } else {
+        $hoverBar = ' m-listing--hover-bar';
+    }
+@endphp
+<{{ $tag or 'li' }} class="m-listing{{ $hoverBar }}{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->is_member_exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ route('events.show', $item) }}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
         @if ($img = $item->imageFront('hero'))
