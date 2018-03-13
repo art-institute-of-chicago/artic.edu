@@ -65,7 +65,7 @@ $f-ui: (
       $push: 0;
     }
     // calc the push/pull
-    @return (($line-height - $cap-height) / 2) + $push;
+    @return round((($line-height - $cap-height) / 2) + $push);
   } @else {
     @warn "Unknown font `#{$font}` in $cap-heights.";
     @return 0;

@@ -59,9 +59,9 @@ $f-display-3: generate-font-obj((
   font-loaded-class: $serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 31, line-height: 36, text-transform: 'uppercase', letter-spacing: .1em, push: 0),
-    'small+': (font-size: 51, line-height: 60, push: 0),
-    'medium+': (font-size: 58, line-height: 68, push: 0),
-    'large+': (font-size: 68, line-height: 80, push: 0),
+    'small+': (font-size: 51, line-height: 60, push: -2),
+    'medium+': (font-size: 58, line-height: 68, push: -1),
+    'large+': (font-size: 68, line-height: 80, push: -1),
    )
 ));
 
@@ -284,7 +284,7 @@ $f-module-title-1: generate-font-obj((
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 0),
+    'xsmall': (font-size: 16, line-height: 24, letter-spacing: .01em, push: 1),
     'small+': (font-size: 17, line-height: 24, push: 0),
    )
 ));
@@ -398,6 +398,12 @@ $f-body-emphasis: generate-font-obj((
 %f-body i,
 .f-body i {
   @include f-body-emphasis;
+}
+
+%f-body em,
+.f-body em,
+%f-body i,
+.f-body i {
   @include untuck;
 }
 
@@ -464,6 +470,12 @@ $f-body-editorial-emphasis: generate-font-obj((
 %f-body-editorial i,
 .f-body-editorial i {
   @include f-body-editorial-emphasis;
+}
+
+%f-body-editorial em,
+.f-body-editorial em,
+%f-body-editorial i,
+.f-body-editorial i {
   @include untuck;
 }
 
@@ -627,7 +639,7 @@ $f-tag-2: generate-font-obj((
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 12, line-height: 16, letter-spacing: .14em, text-transform: 'uppercase', push: 0),
-    'medium+': (font-size: 13, line-height: 16, push: 0),
+    'medium+': (font-size: 13, line-height: 16, push: 1),
    )
 ));
 
@@ -844,7 +856,7 @@ $f-list-3: generate-font-obj((
   font-loaded-class: $serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 22, line-height: 28, letter-spacing: -.005em, push: -1),
-    'large': (font-size: 24, line-height: 32, push: 0),
+    'large': (font-size: 24, line-height: 32, push: -2),
     'xlarge': (font-size: 25, line-height: 32, push: 0),
    )
 ));
@@ -875,8 +887,8 @@ $f-list-2: generate-font-obj((
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 19, line-height: 24, push: -1),
-    'small+': (font-size: 22, line-height: 28, letter-spacing: -0.005em, push: 0),
+    'xsmall': (font-size: 19, line-height: 24, push: -2),
+    'small+': (font-size: 22, line-height: 28, letter-spacing: -0.005em, push: -1),
    )
 ));
 
@@ -934,9 +946,9 @@ $f-quote: generate-font-obj((
   font-family-loaded: $serif-font--loaded,
   font-loaded-class: $serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 24, line-height: 32, letter-spacing: -.015em, font-style: italic, push: 0),
-    'small+': (font-size: 27, line-height: 36, push: 1),
-    'medium+': (font-size: 30, line-height: 40, push: 0),
+    'xsmall': (font-size: 24, line-height: 32, letter-spacing: -.015em, font-style: italic, push: -2),
+    'small+': (font-size: 27, line-height: 36, push: -1),
+    'medium+': (font-size: 30, line-height: 40, push: -1),
    )
 ));
 
@@ -1028,9 +1040,9 @@ $f-main-nav: generate-font-obj((
   font-family-loaded: $sans-serif-font--loaded,
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
-    'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+    'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 1),
     'small+': (font-size: 18, line-height: 24, letter-spacing: .015em, push: 0),
-    'medium+': (font-size: 19, line-height: 28, push: 0),
+    'medium+': (font-size: 19, line-height: 28, push: 1),
    )
 ));
 
