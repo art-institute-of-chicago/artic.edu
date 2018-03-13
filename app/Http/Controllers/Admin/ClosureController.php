@@ -70,7 +70,7 @@ class ClosureController extends ModuleController
     protected function formData($request)
     {
         return [
-            'typeList' => Closure::$types,
+            'typeList' => collect(Closure::$types),
         ];
     }
 
