@@ -30,19 +30,22 @@ trait HasMediasApi
         }
 
         if (isset($this->mediasParams[$role])) {
-            if ($crop) {
+            if ($crop && !empty($this->{$this->getImageField($role, $crop)})) {
                 $image = LakeviewImageService::getImage($this->{$this->getImageField($role, $crop)});
                 $image['width'] = $this->getWidth($role, $crop);
                 $image['height'] = $this->getHeight($role, $crop);
 
                 return $image;
             } else {
-                return LakeviewImageService::getImage($this->{$this->getImageField($role, 'default')});
+                if (!empty($this->{$this->getImageField($role, 'default')})) {
+                    return LakeviewImageService::getImage($this->{$this->getImageField($role, 'default')});
+                }
             }
-        } else {
-            if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'imageFront')) {
-                return $this->getAugmentedModel()->imageFront($role, $crop);
-            }
+        }
+
+        // If nothing has been returned on the API side, check for an augmented model
+        if ($this->hasAugmentedModel() && method_exists($this->getAugmentedModel(), 'imageFront')) {
+            return $this->getAugmentedModel()->imageFront($role, $crop);
         }
     }
 
