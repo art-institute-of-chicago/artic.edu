@@ -58,9 +58,11 @@ class EventRepository extends ModuleRepository
 
     public function groupByDate($collection)
     {
-        return $collection->groupBy(function($item) {
-          return $item->date->format('Y-m-d');
-        });
+        if ($collection) {
+            return $collection->groupBy(function($item) {
+              return $item->date->format('Y-m-d');
+            });
+        }
     }
 
     public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $perPage = 5, $page = null)
