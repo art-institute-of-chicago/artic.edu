@@ -90,7 +90,7 @@
     @endcomponent
 
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Showing 10 out of 23 Exhibitions', 'href' => '#')))
+        @slot('links', array(array('label' => 'Showing 10 out of 23 Exhibitions')))
         @slot('titleFont', 'f-numeral-date')
         2016
     @endcomponent

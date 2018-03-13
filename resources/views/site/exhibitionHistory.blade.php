@@ -74,7 +74,7 @@
     @endcomponent
 
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Showing '.$exhibitions->count().' out of '.$exhibitions->total().' Exhibitions', 'href' => '#')))
+        @slot('links', array(array('label' => 'Showing '.$exhibitions->count().' out of '.$exhibitions->total().' Exhibitions')))
         @slot('titleFont', 'f-numeral-date')
         {{ $year }}
     @endcomponent
