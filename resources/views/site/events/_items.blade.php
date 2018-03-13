@@ -2,6 +2,7 @@
     @component('components.molecules._m-date-listing')
         @slot('date', $date)
         @slot('events', $events)
+        @slot('ongoing', $ongoing)
         @slot('imageSettings', array(
             'fit' => 'crop',
             'ratio' => '16:9',

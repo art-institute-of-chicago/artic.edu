@@ -28,7 +28,19 @@ class EventController extends FrontController
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
         $collection = $this->repository->getEventsFiltered(request('start'), request('end'), request('time'), request('type'), request('audience'), self::PER_PAGE);
-        $eventsByDay = $this->repository->groupByDate($collection);
+
+        // Divide the collection on normal events, and ongoing ones
+        $ongoing = $collection->filter(function ($item) {
+            return ($item->date <= Carbon::now()) && ($item->date_end > Carbon::now());
+        });
+
+        $recurrent = $collection->filter(function ($item) {
+            return ($item->date > Carbon::now());
+        });
+
+
+
+        $eventsByDay = $this->repository->groupByDate($recurrent);
 
         // If it's an ajax request return only items
         if (request()->ajax()) {
@@ -45,7 +57,8 @@ class EventController extends FrontController
         return view('site.events.index', [
             'page' => $page,
             'eventsByDay' => $eventsByDay,
-            'collection' => $collection
+            'collection' => $collection,
+            'ongoing' => $ongoing
         ]);
     }
 

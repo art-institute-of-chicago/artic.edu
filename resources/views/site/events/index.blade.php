@@ -70,6 +70,7 @@
 
         @component('site.events._items')
             @slot('eventsByDay', $eventsByDay)
+            @slot('ongoing', $ongoing)
         @endcomponent
     @endcomponent
 
