@@ -9,7 +9,7 @@
         @endif
     </span>
     <span class="m-listing__meta">
-        @if ($item->exclusive)
+        @if ($item->is_member_exclusive)
             @component('components.atoms._type')
                 @slot('variation', 'type--membership')
                 Member Exclusive
@@ -28,41 +28,64 @@
             @slot('font', $titleFont ?? 'f-list-4')
             {{ $item->title }}
         @endcomponent
-        @if (!isset($hideShortDesc) or !$hideShortDesc)
-        <br>
-        @component('components.atoms._short-description')
-            {{ $item->shortDesc }}
-        @endcomponent
+
+        @if (!empty($item->list_description))
+            <br>
+            @component('components.atoms._short-description')
+                {{ $item->list_description }}
+            @endcomponent
         @endif
+
         <br>
         <span class="m-listing__meta-bottom">
             @component('components.atoms._date')
                 {{ $item->timeStart }} &ndash; {{ $item->timeEnd }}
             @endcomponent
-            @if ($item->free)
-            <br>
-            @component('components.atoms._tag')
-                @slot('variation','tag--primary')
-                @slot('tag','span')
-                Free
-            @endcomponent
-            @endif
-            @if ($item->register)
-            <br>
-            @component('components.atoms._tag')
-                @slot('variation','tag--secondary')
-                @slot('tag','span')
-                Register
-            @endcomponent
-            @endif
-            @if ($item->soldOut)
-            <br>
-            @component('components.atoms._tag')
-                @slot('variation','tag--tertiary')
-                @slot('tag','span')
-                Sold Out
-            @endcomponent
-            @endif
+
+            @switch ($item->present()->ticketStatus)
+                @case('free')
+                    <br>
+                    @component('components.atoms._tag')
+                        @slot('variation','tag--primary')
+                        @slot('tag','span')
+                        Free
+                    @endcomponent
+                    @break
+                @case('register')
+                    <br>
+                    @component('components.atoms._tag')
+                        @slot('variation','tag--secondary')
+                        @slot('tag','span')
+                        Register
+                    @endcomponent
+                    @break
+                @case('rsvp')
+                    <br>
+                    @component('components.atoms._tag')
+                        @slot('variation','tag--secondary')
+                        @slot('tag','span')
+                        @slot('href', route('events'))
+                        RSVP
+                    @endcomponent
+                    @break
+                @case('buy-ticket')
+                    <br>
+                    @component('components.atoms._tag')
+                        @slot('variation','tag--secondary')
+                        @slot('tag','span')
+                        @slot('href', route('events'))
+                        {{ !empty($item->buy_button_text) ? $item->buy_button_text : 'Buy ticket'}}
+                    @endcomponent
+                    @break
+                @case('sold-out')
+                    <br>
+                    @component('components.atoms._tag')
+                        @slot('variation','tag--tertiary')
+                        @slot('tag','span')
+                        Sold Out
+                    @endcomponent
+                    @break
+            @endswitch
         </span>
     </span>
   </a>

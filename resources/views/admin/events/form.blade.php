@@ -48,7 +48,7 @@
     @formField('input', [
         'name' => 'short_description',
         'label' => 'Short description',
-        'note' => 'Used at the landing page and SEO'
+        'note' => 'Used for SEO'
     ])
 
     @formField('input', [
@@ -68,16 +68,6 @@
         'label' => 'Tags',
         'options' => $siteTagsList,
         'placeholder' => 'Select some tags',
-    ])
-
-    @formField('checkbox', [
-        'name' => 'is_private',
-        'label' => 'Is Private?',
-    ])
-
-    @formField('input', [
-        'name' => 'rsvp_link',
-        'label' => 'External RSVP Link'
     ])
 
     @formField('input', [
@@ -102,6 +92,70 @@
 @stop
 
 @section('fieldsets')
+
+    <a17-fieldset id="attributes" title="Event entrance attributes">
+        @formField('input', [
+            'name' => 'location',
+            'label' => 'Location'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_private',
+            'label' => 'Is Private?',
+        ])
+
+        @formField('input', [
+            'name' => 'rsvp_link',
+            'label' => 'External RSVP Link'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_member_exclusive',
+            'label' => 'Members exclusive event?'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_after_hours',
+            'label' => 'After Hours?'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_sold_out',
+            'label' => 'Sold Out?',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_free',
+            'label' => 'Free Event?'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_ticketed',
+            'label' => 'Ticketed Event?'
+        ])
+
+        @formField('input', [
+            'name' => 'buy_tickets_link',
+            'label' => 'External Link to buy tickets'
+        ])
+
+        @formField('input', [
+            'name' => 'buy_button_text',
+            'label' => 'Buy Tickets button text',
+            'note' => 'E.G. Buy Tickets'
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'buy_button_caption',
+            'label' => 'Copy below Buy Button text',
+            'toolbarOptions' => ['bold']
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_boosted',
+            'label' => 'Boost this Article on search results'
+        ])
+    </a17-fieldset>
 
     <a17-fieldset id="dates" title="Date Rules">
         @formField('input', [
@@ -160,60 +214,6 @@
             'label' => 'Related Events',
             'note' => 'Select events',
             'max' => 4
-        ])
-    </a17-fieldset>
-
-    <a17-fieldset id="attributes" title="Attributes">
-        @formField('input', [
-            'name' => 'location',
-            'label' => 'Location'
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_member_exclusive',
-            'label' => 'Members exclusive event?'
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_after_hours',
-            'label' => 'After Hours?'
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_sold_out',
-            'label' => 'Sold Out?',
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_free',
-            'label' => 'Free Event?'
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_ticketed',
-            'label' => 'Ticketed Event?'
-        ])
-
-        @formField('input', [
-            'name' => 'buy_tickets_link',
-            'label' => 'External Link to buy tickets'
-        ])
-
-        @formField('input', [
-            'name' => 'buy_button_text',
-            'label' => 'Buy Tickets button text',
-            'note' => 'E.G. Buy Tickets'
-        ])
-
-        @formField('wysiwyg', [
-            'name' => 'buy_button_caption',
-            'label' => 'Copy below Buy Button text',
-            'toolbarOptions' => ['bold']
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_boosted',
-            'label' => 'Boost this Article on search results'
         ])
     </a17-fieldset>
 @endsection

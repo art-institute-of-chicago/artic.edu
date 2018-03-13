@@ -26,6 +26,7 @@ class Event extends Model
         'type',
         'audience',
         'short_description',
+        'list_description',
         'description',
         'hero_caption',
         'forced_date',

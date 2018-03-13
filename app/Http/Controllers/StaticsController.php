@@ -1790,18 +1790,21 @@ class StaticsController extends FrontController {
     $timeStart = $this->makeEventTime($hour, ($this->faker->boolean() ? '00' : '30'));
     $timeEnd = $this->makeEventTime($hour + 1, ($this->faker->boolean() ? '00' : '30'));
 
+    $ticketStatus = ['rsvp', 'buy-ticket', 'sold-out', 'free', 'register'];
+    $randomTicketStatus = $ticketStatus[array_rand($ticketStatus)];
+
     return new StaticObjectPresenter([
       "type" => $this->getEventType(),
       "id" => $this->faker->uuid,
       "slug" => "/statics/event",
       "title" => $this->faker->sentence(6, true),
       "shortDesc" => $this->faker->paragraph(1, false),
+      "list_description" => $this->faker->paragraph(1, false),
       "timeStart" => $timeStart,
       "timeEnd" => $timeEnd,
       "date" => $this->makeDate(),
       "dateStart" => $this->makeDate(),
       "dateEnd" => $this->makeDate(),
-      "exclusive" => $this->faker->boolean(30), // Should be deprecated, leaving to keep statics
       "is_member_exclusive" => $this->faker->boolean(30),
       "imageFront" => function () {
          return $this->getImage();
@@ -1812,11 +1815,12 @@ class StaticsController extends FrontController {
       "is_ticketed" => true,
 
       // Add a presenter function to fit our integrations
-      "present" => function () use ($timeStart, $timeEnd) {
+      "present" => function () use ($timeStart, $timeEnd, $randomTicketStatus) {
         return new StaticObjectPresenter([
             'type' => $this->getEventType(),
             'nextOcurrenceDate' => $this->makeDate()->format('F j, Y'),
-            'nextOcurrenceTime' => "{$timeStart} &ndash; {$timeEnd}"
+            'nextOcurrenceTime' => "{$timeStart} &ndash; {$timeEnd}",
+            'ticketStatus' => $randomTicketStatus,
         ]);
       },
 

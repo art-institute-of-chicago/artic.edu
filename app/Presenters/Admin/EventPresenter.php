@@ -32,6 +32,29 @@ class EventPresenter extends BasePresenter
         }
     }
 
+    public function ticketStatus()
+    {
+        if ($this->entity->is_private) {
+            return 'rsvp';
+        }
+
+        if ($this->entity->is_member_exclusive) {
+            return 'register';
+        }
+
+        if ($this->entity->is_free) {
+            return 'free';
+        }
+
+        if ($this->entity->is_ticketed) {
+            if ($this->entity->is_sold_out) {
+                return 'sold-out';
+            } else {
+                return 'buy-ticket';
+            }
+        }
+    }
+
     public function formattedNextOcurrence()
     {
         if (!empty($this->entity->forced_date)) {
