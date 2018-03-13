@@ -29,7 +29,12 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('label' => 'Browse all current exhibitions', 'href' => $_pages['exhibitions'])))
+    @slot('links', array(
+        array(
+            'label' => 'All current exhibitions and events',
+            'href' => $_pages['exhibitions'],
+        ),
+    ))
     Exhibitions and Events
 @endcomponent
 
@@ -92,7 +97,13 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('label' => 'Browse all current exhibitions', 'href' => $_pages['exhibitions'], 'variation' => 'btn btn--secondary f-buttons')))
+    @slot('linksPrimary', array(
+        array(
+            'label' => 'All current exhibitions and events',
+            'href' => $_pages['exhibitions'],
+            'variation' => 'btn btn--secondary f-buttons',
+        ),
+    ))
 @endcomponent
 
 @component('components.molecules._m-cta-banner----become-a-member')
