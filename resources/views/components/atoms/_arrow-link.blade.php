@@ -1,4 +1,4 @@
-<{{ $tag ?? 'a' }} class="arrow-link {{ (isset($font)) ? $font : 'f-link' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{{ (isset($href)) ? ' href="'.$href : '"' }}>
+<{{ $tag ?? 'a' }} class="arrow-link {{ (isset($font)) ? $font : 'f-link' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($href)) ? ' href="'.$href.'"' : '' !!}>
     @if (isset($variation) && strrpos($variation, "--up") > 0)
         {!! $slot !!}<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg>
     @elseif (isset($variation) && strrpos($variation, "--down") > 0)

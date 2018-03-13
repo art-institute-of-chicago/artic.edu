@@ -1,8 +1,11 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
 
-    @if (isset($item['titleLink']) and $item['titleLink'])
+
+@if (isset($item['titleLink']) and $item['titleLink'])
+    <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
         <a href="{{ $item['titleLink'] }}" class="m-listing__link">
-    @endif
+@else
+    <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+@endif
 
         @if ( !empty( $item['image'] ) )
             <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
@@ -18,8 +21,9 @@
         @if (isset($item['title']) and $item['title'])
             <span class="m-listing__meta">
                 @component('components.atoms._title')
+                    @slot('variation', 'title--w-right-arrow')
                     @slot('font', $titleFont ?? 'f-list-3')
-                    {{ $item['title'] }}
+                    {{ $item['title'] }} <span class='title__arrow'>&rsaquo;</span>
                 @endcomponent
             </span>
         @endif

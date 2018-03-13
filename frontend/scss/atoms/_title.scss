@@ -17,3 +17,16 @@ a.title:hover,
 a:hover .title {
   color: $color__text--secondary;
 }
+
+
+.title--w-right-arrow {
+  display: block;
+  position: relative;
+  padding-right: 20px;
+}
+
+.title--w-right-arrow .title__arrow {
+  position: absolute;
+  right: 0;
+  top: 4px;
+}
