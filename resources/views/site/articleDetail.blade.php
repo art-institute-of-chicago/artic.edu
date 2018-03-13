@@ -11,7 +11,7 @@
     @slot('title', $item->title)
     @slot('date', $item->date)
     @slot('type', $item->type)
-    @slot('intro', $item->intro)
+    @slot('intro', $item->heading)
     @slot('img', $item->headerImage)
     @slot('galleryImages', $item->galleryImages)
     @slot('nextArticle', $item->nextArticle)
@@ -30,7 +30,7 @@
             @slot('variation', 'm-author---keyline-top')
             @slot('editorial', ($item->articleType === 'editorial'))
             @slot('img', $item->author['img'] ?? null);
-            @slot('name', $item->author['name'] ?? null);
+            @slot('name', $item->author ?? null);
             @slot('link', $item->author['link'] ?? null);
             @slot('date', $item->date ?? null);
         @endcomponent
