@@ -56,7 +56,14 @@ class EventRepository extends ModuleRepository
         return collect($this->model::$eventLayouts);
     }
 
-    public function getEventsByDateGrouped($start = null, $end = null, $time = null, $type = null, $audience = null, $perPage = 5, $page = null)
+    public function groupByDate($collection)
+    {
+        return $collection->groupBy(function($item) {
+          return $item->date->format('Y-m-d');
+        });
+    }
+
+    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $perPage = 5, $page = null)
     {
         $query = $this->model->newQuery();
 
@@ -84,13 +91,10 @@ class EventRepository extends ModuleRepository
             $query->byAudience($audience);
         }
 
-        $results = $query->paginate($perPage, ['*'], 'page', $page);
-        return $results->groupBy(function($item) {
-          return $item->date->format('Y-m-d');
-        });
+        return $query->paginate($perPage, ['*'], 'page', $page);
     }
 
-    public function getRelatedEventsByDay($object, $perPage = 3, $page = null) {
+    public function getRelatedEvents($object, $perPage = 3, $page = null) {
         if (!$object->events()) { return null; }
         if ($object->events()->count() == 0) { return null; }
 
@@ -104,10 +108,7 @@ class EventRepository extends ModuleRepository
         $query->whereIn('id', $ids);
         $query->orderBy('event_metas.date', 'ASC');
 
-        $results = $query->paginate($perPage, ['*'], 'page', $page);
-        return $results->groupBy(function($item) {
-          return $item->date->format('Y-m-d');
-        });
+        return $query->paginate($perPage, ['*'], 'page', $page);
     }
 
     public function getRelatedEventsCount($object) {

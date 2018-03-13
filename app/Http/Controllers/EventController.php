@@ -27,11 +27,25 @@ class EventController extends FrontController
     {
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
-        $collection = $this->repository->getEventsByDateGrouped(request('start'), request('end'), request('time'), request('type'), request('audience'), self::PER_PAGE);
+        $collection = $this->repository->getEventsFiltered(request('start'), request('end'), request('time'), request('type'), request('audience'), self::PER_PAGE);
+        $eventsByDay = $this->repository->groupByDate($collection);
 
-        return view('site.events', [
+        // If it's an ajax request return only items
+        if (request()->ajax()) {
+            $view['html'] = view('site.events._items', [
+                'eventsByDay' => $eventsByDay
+            ])->render();
+
+            if ($collection->hasMorePages())
+                $view['page'] = request('page');
+
+            return $view;
+        }
+
+        return view('site.events.index', [
             'page' => $page,
-            'eventsByDay' => $collection,
+            'eventsByDay' => $eventsByDay,
+            'collection' => $collection
         ]);
     }
 
@@ -39,7 +53,7 @@ class EventController extends FrontController
     {
         $item = $this->repository->getById($id);
 
-        return view('site.eventDetail', [
+        return view('site.events.detail', [
             'item' => $item
         ]);
     }

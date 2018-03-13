@@ -33,13 +33,15 @@ class ExhibitionController extends FrontController
             $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
         }
 
-        $events = $this->eventRepository->getEventsByDateGrouped(Carbon::today(), Carbon::tomorrow()->addDay(), null, null, null, 4);
+        $events = $this->eventRepository->getEventsFiltered(Carbon::today(), Carbon::tomorrow()->addDay(), null, null, null, 20);
+        $eventsByDay = $this->eventRepository->groupByDate($events);
 
         return view('site.exhibitions', [
             'page' => $page,
-            'collection' => $collection,
-            'eventsByDay' => $events,
-            'upcoming' => $upcoming
+            'collection'  => $collection,
+            'eventsByDay' => $eventsByDay,
+            'events'      => $events,
+            'upcoming'    => $upcoming
         ]);
     }
 
@@ -53,7 +55,8 @@ class ExhibitionController extends FrontController
         // The ID is a datahub_id not a local ID
         $item = $this->apiRepository->getById($id);
 
-        $relatedEventsByDay = $this->eventRepository->getRelatedEventsByDay($item);
+        $collection = $this->eventRepository->getRelatedEvents($item);
+        $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
         return view('site.exhibitionDetail', [
             'contrastHeader' => ($item->present()->headerType === 'hero'),

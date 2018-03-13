@@ -66,41 +66,19 @@
     </div>
 @else
     @component('components.organisms._o-row-listing')
-        @foreach ($eventsByDay as $date => $events)
-            @component('components.molecules._m-date-listing')
-                @slot('date', $date)
-                @slot('events', $events)
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '13',
-                          'medium' => '13',
-                          'large' => '13',
-                          'xlarge' => '13',
-                    )),
-                ))
-                @slot('imageSettingsOnGoing', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '7',
-                          'medium' => '7',
-                          'large' => '7',
-                          'xlarge' => '7',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
+        @slot('id', 'eventsList')
+
+        @component('site.events._items')
+            @slot('eventsByDay', $eventsByDay)
+        @endcomponent
     @endcomponent
-    @component('components.molecules._m-links-bar')
-        @slot('variation', 'm-links-bar--buttons')
-        @slot('linksPrimary', array(array('label' => 'See more events', 'href' => '#', 'variation' => 'btn--secondary')))
-    @endcomponent
+
+    @if ($collection->hasMorePages())
+        @component('components.molecules._m-links-bar')
+            @slot('variation', 'm-links-bar--buttons')
+            @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('events', request()->all()), 'loadMoreTarget' => '#eventsList')))
+        @endcomponent
+    @endif
 @endif
 
 

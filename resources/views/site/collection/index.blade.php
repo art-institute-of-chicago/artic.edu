@@ -62,7 +62,7 @@
     @slot('cols_xlarge','4')
     @slot('maintainOrder','false')
 
-    @component('site.collection.items')
+    @component('site.collection._items')
         @slot('artworks', $artworks)
     @endcomponent
 
