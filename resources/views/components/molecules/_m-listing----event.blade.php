@@ -1,5 +1,5 @@
 @php
-    if (isset($variation) and strrpos($variation, '--hero') < 0 and strrpos($variation, '--feature') < 0) {
+    if (isset($variation) and ((strrpos($variation, '--hero') > 0) or (strrpos($variation, '--feature') > 0))) {
         $hoverBar = '';
     } else {
         $hoverBar = ' m-listing--hover-bar';
