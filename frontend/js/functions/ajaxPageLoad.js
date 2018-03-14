@@ -1,5 +1,5 @@
 import { triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
-import { findAncestorByTagName, ajaxableLink } from '../functions';
+import { findAncestorByTagName, ajaxableLink, ajaxableHref } from '../functions';
 
 const ajaxPageLoad = function() {
 
@@ -210,20 +210,24 @@ const ajaxPageLoad = function() {
 
   function getPage(event) {
     if (event.data.url) {
-      if (!history.state && (!event.data.type || (event.data.type && event.data.type !== 'modal'))) {
-        triggerCustomEvent(document, 'history:replacestate', {
-          url: location.href,
+      if (ajaxableHref(event.data.url)) {
+        if (!history.state && (!event.data.type || (event.data.type && event.data.type !== 'modal'))) {
+          triggerCustomEvent(document, 'history:replacestate', {
+            url: location.href,
+            type: event.data.type || 'page',
+          });
+          A17.previousAjaxPageLoadType = event.data.type || 'page';
+        }
+        loadDocument({
+          href: event.data.url,
           type: event.data.type || 'page',
+          popstate: false,
+          modalClass: event.data.modalClass ? event.data.modalClass : null,
+          opener: event.data.opener ? event.data.opener : null,
         });
-        A17.previousAjaxPageLoadType = event.data.type || 'page';
+      } else {
+        window.location.href = event.data.url;
       }
-      loadDocument({
-        href: event.data.url,
-        type: event.data.type || 'page',
-        popstate: false,
-        modalClass: event.data.modalClass ? event.data.modalClass : null,
-        opener: event.data.opener ? event.data.opener : null,
-      });
     }
   }
 
