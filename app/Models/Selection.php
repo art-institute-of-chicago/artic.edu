@@ -48,6 +48,12 @@ class Selection extends Model
         ],
     ];
 
+    // Generates the id-slug type of URL
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function getIntroAttribute()
     {
         return $this->short_copy;
@@ -87,14 +93,26 @@ class Selection extends Model
                 "name" => 'content',
                 "doc" => "Content",
                 "type" => "text",
-                "value" => function() { return $this->copy; }
+                "value" => function() { return $this->blocks; }
             ],
             [
                 "name" => 'short_copy',
                 "doc" => "Short Copy",
                 "type" => "text",
                 "value" => function() { return $this->short_copy; }
-            ]
+            ],
+            [
+                "name" => "slug",
+                "doc" => "slug",
+                "type" => "string",
+                "value" => function () {return $this->slug;},
+            ],
+            [
+                "name" => "web_url",
+                "doc" => "web_url",
+                "type" => "string",
+                "value" => function () {return url(route('selections.show', $this));},
+            ],
         ];
     }
 

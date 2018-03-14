@@ -171,7 +171,10 @@ Route::get('/', function () {
  *        @SWG\Property(property="updated_at", type="datetime", description="updated_at"),
  *        @SWG\Property(property="content", type="string", description="Content"),
  *        @SWG\Property(property="short_copy", type="string", description="Short Copy"),
- *     ),
+ *        @SWG\Property(property="slug", type="string", description="Slug"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
+  *     ),
  *
  *     @SWG\Definition(
  *        definition="Artist",
