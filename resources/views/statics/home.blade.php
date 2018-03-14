@@ -166,7 +166,7 @@
             @slot('item', $item)
             @slot('imageSettings', array(
                 'fit' => 'crop',
-                'ratio' => '1:1',
+                'ratio' => '3:4',
                 'srcset' => array(200,400,600),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '216px',
