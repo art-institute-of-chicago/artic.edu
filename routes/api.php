@@ -85,6 +85,7 @@ Route::get('/', function () {
  *        @SWG\Property(property="date_end", type="datetime", description="Closure End"),
  *        @SWG\Property(property="closure_copy", type="string", description="Copy"),
  *        @SWG\Property(property="type", type="boolean", description="Type"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State of Location"),
  *     ),
  *
  *     @SWG\Definition(
