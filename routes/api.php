@@ -152,6 +152,13 @@ Route::get('/', function () {
  *        @SWG\Property(property="published", type="boolean", description="Published State of Article"),
  *        @SWG\Property(property="date", type="string", description="Date"),
  *        @SWG\Property(property="copy", type="string", description="Copy"),
+ *        @SWG\Property(property="is_boosted", type="string", description="Is Boosted"),
+ *        @SWG\Property(property="slug", type="string", description="Slug"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
+ *        @SWG\Property(property="type", type="string", description="Type"),
+ *        @SWG\Property(property="heading", type="string", description="Heading"),
+ *        @SWG\Property(property="author", type="string", description="Author"),
  *     ),
  *
  *     @SWG\Definition(

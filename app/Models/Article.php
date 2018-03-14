@@ -70,6 +70,12 @@ class Article extends Model
         ]
     ];
 
+    // Generates the id-slug type of URL
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'article_category');
@@ -119,9 +125,44 @@ class Article extends Model
                 "name" => 'copy',
                 "doc" => "Copy",
                 "type" => "text",
-                "value" => function() { return $this->copy; }
+                "value" => function() { return $this->blocks; }
             ],
-
+            [
+                "name" => 'is_boosted',
+                "doc" => "Is Boosted",
+                "type" => "boolean",
+                "value" => function() { return $this->is_boosted; }
+            ],
+            [
+                "name" => "slug",
+                "doc" => "slug",
+                "type" => "string",
+                "value" => function () {return $this->slug;},
+            ],
+            [
+                "name" => "web_url",
+                "doc" => "web_url",
+                "type" => "string",
+                "value" => function () {return url(route('articles.show', $this));},
+            ],
+            [
+                "name" => "type",
+                "doc" => "type",
+                "type" => "string",
+                "value" => function () {return $this->type;},
+            ],
+            [
+                "name" => "heading",
+                "doc" => "heading",
+                "type" => "string",
+                "value" => function () {return $this->heading;},
+            ],
+            [
+                "name" => "author",
+                "doc" => "author",
+                "type" => "string",
+                "value" => function () {return $this->author;},
+            ],
         ];
     }
 }
