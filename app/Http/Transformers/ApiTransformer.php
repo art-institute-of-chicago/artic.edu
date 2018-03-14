@@ -54,7 +54,7 @@ class ApiTransformer extends AbstractTransformer
 
         return [
             'id' => $item->getAttributeValue($item->getKeyName()),
-            'title' => $item->title,
+            // 'title' => $item->title,
         ];
 
     }

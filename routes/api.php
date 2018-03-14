@@ -41,7 +41,6 @@ Route::get('/', function () {
  *        type="object",
  *        required={"id", "name"},
  *        @SWG\Property(property="id", type="integer", description="ID of Tag"),
- *        @SWG\Property(property="title", type="string", description="Title"),
  *        @SWG\Property(property="name", type="string", description="Name of Tag"),
  *        @SWG\Property(property="last_updated", type="datetime", description="Last Updated At"),
  *     ),
