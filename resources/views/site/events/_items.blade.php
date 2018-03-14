@@ -2,7 +2,11 @@
     @component('components.molecules._m-date-listing')
         @slot('date', $date)
         @slot('events', $events)
-        @slot('ongoing', $ongoing)
+        
+        @if ($date == \Carbon\Carbon::today()->format("Y-m-d"))
+            @slot('ongoing', $ongoing)
+        @endif
+
         @slot('imageSettings', array(
             'fit' => 'crop',
             'ratio' => '16:9',

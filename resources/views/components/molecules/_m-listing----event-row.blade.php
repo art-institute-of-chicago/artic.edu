@@ -67,6 +67,7 @@
                         @slot('behavior', 'getUrl')
                         @slot('dataAttributes', 'data-href="'.route('events').'"')
                         RSVP
+                        @slot('href', route('events'))
                     @endcomponent
                     @break
                 @case('buy-ticket')

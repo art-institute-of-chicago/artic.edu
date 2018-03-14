@@ -38,7 +38,6 @@ class Event extends Model
         'is_sold_out',
         'is_free',
         'is_boosted',
-        'is_ongoing',
         'is_member_exclusive',
         'hidden',
         'rsvp_link',
@@ -110,7 +109,6 @@ class Event extends Model
         'is_ticketed',
         'is_free',
         'is_member_exclusive',
-        'is_ongoing',
         'is_sold_out',
         'is_boosted',
     ];

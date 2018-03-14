@@ -1,5 +1,6 @@
 .studio
 .sass-cache
+.vscode
 dist
 toolkit
 /test

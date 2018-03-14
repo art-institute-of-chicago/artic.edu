@@ -12,7 +12,7 @@
     {{-- @slot('date', $item->date)
     @slot('dateStart', $item->dateStart)
     @slot('dateEnd', $item->dateEnd) --}}
-    @slot('type', $item->present()->type)
+    @slot('type', $item->member_exclusive ? 'Member Exclusive' : $item->present()->type)
     {{-- @slot('intro', $item->hero_caption) --}}
     @slot('img', $item->imageAsArray('hero'))
     @slot('credit', $item->hero_caption)
@@ -46,14 +46,36 @@
   @endif
 
   <div class="o-article__secondary-actions">
-    @if ($item->is_ticketed)
-        @component('components.molecules._m-ticket-actions----event')
-            @slot('ticketPrices', $item->ticketPrices);
-            @slot('ticketLink', $item->buy_tickets_link);
-            @slot('buttonText', $item->buy_button_text);
-            @slot('buttonCaption', $item->buy_button_caption);
-        @endcomponent
-    @endif
+    @switch ($item->present()->ticketStatus)
+        @case('buy-ticket')
+            @component('components.molecules._m-ticket-actions----event')
+                @slot('ticketLink', $item->buy_tickets_link);
+                @slot('buttonText', $item->buy_button_text);
+                @slot('buttonCaption', $item->buy_button_caption);
+            @endcomponent
+            @break
+        @case('free')
+            @component('components.molecules._m-ticket-actions----event')
+                @slot('buttonText', 'FREE');
+            @endcomponent
+            @break
+        @case('register')
+            @component('components.molecules._m-ticket-actions----event')
+                @slot('buttonText', 'Register');
+            @endcomponent
+            @break
+        @case('rsvp')
+            @component('components.molecules._m-ticket-actions----event')
+                @slot('buttonText', 'RSVP');
+                @slot('ticketLink', route('events'));
+            @endcomponent
+            @break
+        @case('sold-out')
+            @component('components.molecules._m-ticket-actions----event')
+                @slot('buttonText', 'Sold out');
+            @endcomponent
+            @break
+    @endswitch
 
     @if ($item->featuredRelated)
       {{-- dupe 😢 - shows medium+ --}}

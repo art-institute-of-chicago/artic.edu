@@ -1,6 +1,11 @@
 @extends('cms-toolkit::layouts.form')
 
 @section('contentFields')
+    @formField('checkbox', [
+        'name' => 'hidden',
+        'label' => 'Hidden from listings?',
+    ])
+
     @formField('select', [
         'name' => 'layout_type',
         'label' => 'Event layout',
@@ -20,16 +25,6 @@
         'label' => 'Event audience',
         'options' => $eventAudiencesList,
         'default' => '1'
-    ])
-
-    @formField('checkbox', [
-        'name' => 'hidden',
-        'label' => 'Hidden from listings?',
-    ])
-
-    @formField('checkbox', [
-        'name' => 'is_ongoing',
-        'label' => 'Ongoing Event?'
     ])
 
     @formField('medias', [
@@ -71,6 +66,11 @@
     ])
 
     @formField('input', [
+        'name' => 'location',
+        'label' => 'Location'
+    ])
+
+    @formField('input', [
         'name' => 'sponsors_description',
         'label' => 'Sponsors section description',
         'type' => 'textarea'
@@ -94,11 +94,6 @@
 @section('fieldsets')
 
     <a17-fieldset id="attributes" title="Event entrance attributes">
-        @formField('input', [
-            'name' => 'location',
-            'label' => 'Location'
-        ])
-
         @formField('checkbox', [
             'name' => 'is_private',
             'label' => 'Is Private?',
@@ -106,7 +101,8 @@
 
         @formField('input', [
             'name' => 'rsvp_link',
-            'label' => 'External RSVP Link'
+            'label' => 'External RSVP Link',
+            'note' => 'URL used when an event is private for the RSVP link'
         ])
 
         @formField('checkbox', [
