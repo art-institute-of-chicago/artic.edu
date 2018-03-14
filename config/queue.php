@@ -4,16 +4,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Queue Driver
+    | Default Queue Connection Name
     |--------------------------------------------------------------------------
     |
     | Laravel's queue API supports an assortment of back-ends via a single
     | API, giving you convenient access to each back-end using the same
-    | syntax for each one. Here you may set the default queue driver.
+    | syntax for every one. Here you may define a default connection.
     |
-    | Supported: "sync", "database", "beanstalkd", "sqs", "redis", "null"
-    |
-    */
+     */
 
     'default' => env('QUEUE_DRIVER', 'sync'),
 
@@ -26,7 +24,9 @@ return [
     | is used by your application. A default configuration has been added
     | for each back-end shipped with Laravel. You are free to add more.
     |
-    */
+    | Drivers: "sync", "database", "beanstalkd", "sqs", "redis", "null"
+    |
+     */
 
     'connections' => [
 
@@ -50,11 +50,11 @@ return [
 
         'sqs' => [
             'driver' => 'sqs',
-            'key' => 'your-public-key',
-            'secret' => 'your-secret-key',
-            'prefix' => 'https://sqs.us-east-1.amazonaws.com/your-account-id',
-            'queue' => 'your-queue-name',
-            'region' => 'us-east-1',
+            'key' => env('SQS_KEY', 'your-public-key'),
+            'secret' => env('SQS_SECRET', 'your-secret-key'),
+            'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+            'queue' => env('SQS_QUEUE', 'your-queue-name'),
+            'region' => env('SQS_REGION', 'us-east-1'),
         ],
 
         'redis' => [
@@ -62,6 +62,7 @@ return [
             'connection' => 'default',
             'queue' => 'default',
             'retry_after' => 90,
+            'block_for' => null,
         ],
 
     ],
@@ -75,7 +76,7 @@ return [
     | can control which database and table are used to store the jobs that
     | have failed. You may change them to any database / table you wish.
     |
-    */
+     */
 
     'failed' => [
         'database' => env('DB_CONNECTION', 'mysql'),

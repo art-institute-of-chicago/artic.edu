@@ -1,7 +1,6 @@
 let mix = require('laravel-mix');
 
 if (mix.inProduction()) {
-  mix.copyDirectory('vendor/a17/laravel-cms-toolkit/public/assets/vendor', 'public/assets/vendor');
   mix.copyDirectory('vendor/a17/laravel-cms-toolkit/public/assets/admin/fonts', 'public/assets/admin/fonts');
   mix.copy('vendor/a17/laravel-cms-toolkit/public/assets/admin/icons/icons.svg', 'public/assets/admin/icons/icons.svg');
   mix.copy('vendor/a17/laravel-cms-toolkit/public/assets/admin/icons/icons-files.svg', 'public/assets/admin/icons/icons-files.svg');

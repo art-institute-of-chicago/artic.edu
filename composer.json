@@ -18,19 +18,20 @@
         "php": ">=7.0.0",
         "a17/laravel-cms-toolkit": "dev-pre-1.0-sprint",
         "aic/data-hub-foundation": "dev-master",
-        "darkaonline/l5-swagger": "5.5.*",
-        "fideloper/proxy": "~3.3",
+        "darkaonline/l5-swagger": "5.6.*",
+        "fideloper/proxy": "~4.0",
         "guzzlehttp/guzzle": "6.3.0",
-        "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0",
+        "laravel/framework": "5.6.*",
+        "laravel/tinker": "^1.0",
         "rlanvin/php-rrule": "1.*"
     },
     "require-dev": {
-        "filp/whoops": "~2.0",
-        "fzaninotto/faker": "~1.4",
+        "filp/whoops": "^2.0",
+        "fzaninotto/faker": "^1.4",
         "laravel/homestead": "^6.5",
-        "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~6.0"
+        "mockery/mockery": "^1.0",
+        "nunomaduro/collision": "^2.0",
+        "phpunit/phpunit": "^7.0"
     },
     "autoload": {
         "classmap": [
