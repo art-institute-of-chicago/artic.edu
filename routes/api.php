@@ -50,7 +50,6 @@ Route::get('/', function () {
  *        type="object",
  *        required={"id", "name"},
  *        @SWG\Property(property="id", type="integer", description="ID of Location"),
- *        @SWG\Property(property="title", type="string", description="Title"),
  *        @SWG\Property(property="name", type="string", description="Name of Location"),
  *        @SWG\Property(property="street", type="string", description="Street of Location"),
  *        @SWG\Property(property="address", type="string", description="Address of Location"),
@@ -58,6 +57,7 @@ Route::get('/', function () {
  *        @SWG\Property(property="state", type="string", description="State of Location"),
  *        @SWG\Property(property="zip", type="string", description="Zip of Location"),
  *        @SWG\Property(property="published", type="boolean", description="Published State of Location"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
  *     ),
  *
  *     @SWG\Definition(

@@ -26,6 +26,11 @@ class Location extends Model
     // those fields get auto set to false if not submited
     public $checkboxes = ['published'];
 
+    public function page()
+    {
+        return $this->belongsTo('App\Models\Page');
+    }
+
     protected function transformMappingInternal()
     {
         return [
@@ -76,7 +81,13 @@ class Location extends Model
                 "doc" => "Published status this location",
                 "type" => "boolean",
                 "value" => function() { return $this->published; }
-            ]
+            ],
+            [
+                "name" => "web_url",
+                "doc" => "web_url",
+                "type" => "string",
+                "value" => function () {return url(route('pages.show', $this->page));},
+            ],
         ];
     }
 
