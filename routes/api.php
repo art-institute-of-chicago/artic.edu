@@ -151,7 +151,7 @@ Route::get('/', function () {
  *        @SWG\Property(property="title", type="string", description="Title"),
  *        @SWG\Property(property="published", type="boolean", description="Published State of Article"),
  *        @SWG\Property(property="date", type="string", description="Date"),
- *        @SWG\Property(property="copy", type="string", description="Copy"),
+ *        @SWG\Property(property="copy", type="json", description="Copy"),
  *        @SWG\Property(property="is_boosted", type="string", description="Is Boosted"),
  *        @SWG\Property(property="slug", type="string", description="Slug"),
  *        @SWG\Property(property="web_url", type="string", description="Web Url"),
@@ -196,6 +196,13 @@ Route::get('/', function () {
  *        @SWG\Property(property="exhibition_intro", type="string", description="exhibition_intro"),
  *        @SWG\Property(property="art_intro", type="string", description="art_intro"),
  *        @SWG\Property(property="visit_intro", type="string", description="visit_intro")
+ *        @SWG\Property(property="slug", type="string", description="Slug"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
+ *        @SWG\Property(property="exhibition_history_sub_heading", type="string", description="Exhibition History Sub Heading"),
+ *        @SWG\Property(property="exhibition_history_intro_copy", type="string", description="Exhibition History Intro Copy"),
+ *        @SWG\Property(property="exhibition_history_popup_copy", type="string", description="Exhibition History Popup Copy"),
+ *        @SWG\Property(property="content", type="json", description="Content"),
  *     )
  * )
  */

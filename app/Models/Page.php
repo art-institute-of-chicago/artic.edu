@@ -198,6 +198,47 @@ class Page extends Model
                 "value" => function() { return $this->visit_intro; }
             ],
 
+            [
+                "name" => "slug",
+                "doc" => "slug",
+                "type" => "string",
+                "value" => function () {return $this->slug;},
+            ],
+            [
+                "name" => "web_url",
+                "doc" => "web_url",
+                "type" => "string",
+                "value" => function () {return url(route('pages.show', $this));},
+            ],
+
+            [
+                "name" => "exhibition_history_sub_heading",
+                "doc" => "exhibition_history_sub_heading",
+                "type" => "string",
+                "value" => function () {return $this->exhibition_history_sub_heading;},
+            ],
+
+            [
+                "name" => "exhibition_history_intro_copy",
+                "doc" => "exhibition_history_intro_copy",
+                "type" => "string",
+                "value" => function () {return $this->exhibition_history_intro_copy;},
+            ],
+
+            [
+                "name" => "exhibition_history_popup_copy",
+                "doc" => "exhibition_history_popup_copy",
+                "type" => "string",
+                "value" => function () {return $this->exhibition_history_popup_copy;},
+            ],
+
+            [
+                "name" => "content",
+                "doc" => "content",
+                "type" => "string",
+                "value" => function () {return $this->blocks;},
+            ],
+
         ];
     }
 }
