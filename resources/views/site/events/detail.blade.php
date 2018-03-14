@@ -109,11 +109,13 @@
   @endif
 
   <div class="o-article__body o-blocks">
-    @component('components.blocks._blocks')
+      {!! $item->renderBlocks() !!}
+    
+      {{--  @component('components.blocks._blocks')
         @slot('editorial', false)
         @slot('blocks', $item->blocks ?? null)
         @slot('dropCapFirstPara', false)
-    @endcomponent
+        @endcomponent  --}}
 
     @if ($item->pictures)
         @component('components.atoms._hr')

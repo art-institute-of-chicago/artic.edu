@@ -95,10 +95,12 @@ class EventPresenter extends BasePresenter
     }
 
     protected function registrationRequired() {
-        return [
-            'label' => 'Registration required',
-            'variation' => 'user'
-        ];
+        if ($this->entity->is_member_exclusive) {
+            return [
+                'label' => 'Registration required',
+                'variation' => 'user'
+            ];
+        }
     }
 
 }

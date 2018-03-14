@@ -38,8 +38,6 @@ class EventController extends FrontController
             return ($item->date > Carbon::now());
         });
 
-
-
         $eventsByDay = $this->repository->groupByDate($recurrent);
 
         // If it's an ajax request return only items
