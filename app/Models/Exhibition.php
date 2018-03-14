@@ -164,6 +164,12 @@ class Exhibition extends Model
                 "type" => "string",
                 "value" => function() { return $this->sponsors_sub_copy; }
             ],
+            [
+                "name" => 'sponsors_description',
+                "doc" => "sponsors_description",
+                "type" => "string",
+                "value" => function() { return $this->sponsors_description; }
+            ],
         ];
     }
 

@@ -102,6 +102,8 @@ Route::get('/', function () {
  *        @SWG\Property(property="exhibition_message", type="string", description="Message"),
  *        @SWG\Property(property="cms_exhibition_type", type="integer", description="Type"),
  *        @SWG\Property(property="sponsors_sub_copy", type="string", description="Sub Copy"),
+ *        @SWG\Property(property="sponsors_description", type="string", description="Sponsors Description"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
  *     ),
  *
  *     @SWG\Definition(
