@@ -68,9 +68,19 @@
         </ul>
         <h4 class="title f-subheading-1">Batch 03</h4>
         <ul class="list f-body">
-          <li><a href="/statics/exhibition_history">exhibition history</a></li>
+          <li>
+            <a href="/statics/exhibition_history">exhibition history</a>
+            <ul class="list">
+                <li><a href="/statics/exhibition_history_no_results">exhibition history no results</a></li>
+            </ul>
+          </li>
           <li><a href="/statics/exhibition_history_detail">exhibition history details</a></li>
-          <li><a href="/statics/generic_listing">generic listing</a></li>
+          <li>
+            <a href="/statics/generic_listing">generic listing</a>
+            <ul class="list">
+                <li><a href="/statics/generic_listing_no_results">generic listing no results</a></li>
+            </ul>
+          </li>
           <li><a href="/statics/faq">faq</a></li>
           <li><a href="/statics/artist_tag">artist tag</a></li>
           <li><a href="/statics/artist_tag_no_intro">artist tag no intro</a></li>

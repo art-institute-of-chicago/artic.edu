@@ -55,15 +55,8 @@
 @endcomponent
 
 @if (empty($eventsByDay) or (isset($eventsByDay) and count($eventsByDay) == 0))
-    <div class="o-collection-listing__no-results">
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.atoms._title')
-            @slot('tag','h2')
-            @slot('font', 'f-list-3')
-            Sorry, we couldn't find any results matching your criteria
-        @endcomponent
-    </div>
+    @component('components.molecules._m-no-results')
+    @endcomponent
 @else
     @component('components.organisms._o-row-listing')
         @slot('id', 'eventsList')

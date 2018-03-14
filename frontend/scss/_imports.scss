@@ -121,6 +121,7 @@ $include-icons: false; // see icons.scss!
 @import 'molecules/m-fieldset';
 @import 'molecules/m-info-bar';
 @import 'molecules/m-featured-results';
+@import 'molecules/m-no-results';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ organisms */
 
@@ -140,7 +141,6 @@ $include-icons: false; // see icons.scss!
 @import 'organisms/o-visit';
 @import 'organisms/o-artist-bio';
 @import 'organisms/o-form';
-@import 'organisms/o-search-results';
 @import 'organisms/o-application-error';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */

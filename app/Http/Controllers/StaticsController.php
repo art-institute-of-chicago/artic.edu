@@ -948,6 +948,38 @@ class StaticsController extends FrontController {
     ]);
   }
 
+  public function exhibition_history_no_results() {
+    // now push to a view
+    return view('statics/exhibition_history', [
+      'primaryNavCurrent' => 'exhibitions_and_events',
+      'title' => 'Plan Your Visit',
+      'intro' => $this->faker->sentence(20, false),
+      'media' => array(
+        'type' => 'image',
+        'size' => 's',
+        'media' => $this->getImage(800,450),
+        'hideCaption' => true,
+       ),
+      'blocks' => $this->generateBlocks(1),
+      'exhibitions' => [],
+      'recentlyViewedArtworks' => $this->getArtworks($this->faker->numberBetween(6,20)),
+      'interestedThemes' => array(
+        array(
+          'href' => '#',
+          'label' => "Picasso",
+        ),
+        array(
+          'href' => '#',
+          'label' => "Modern Art",
+        ),
+        array(
+          'href' => '#',
+          'label' => "European Art",
+        ),
+      ),
+    ]);
+  }
+
   public function exhibition_history_detail() {
 
     $blocks = array();
@@ -1011,6 +1043,34 @@ class StaticsController extends FrontController {
       'filters' => $filters,
       'listingCountText' => 'Showing 1-10 press releases',
       'listingItems' => $this->getPressReleases(10),
+    ]);
+  }
+
+  public function generic_listing_no_results() {
+    $navs = $this->generateGenericNav('landing');
+    $filters = array(
+        array(
+            'prompt' => 'Months',
+            'links' => array(
+                array('href' => '#', 'label' => 'All'),
+                array('href' => '#', 'label' => 'December'),
+                array('href' => '#', 'label' => 'November'),
+                array('href' => '#', 'label' => 'October'),
+                array('href' => '#', 'label' => 'September', 'active' => true),
+                array('href' => '#', 'label' => 'August'),
+            ),
+        ),
+    );
+    // now push to a view
+    return view('statics/generic', [
+      'title' => 'Press Releases',
+      'subNav' => $navs['subNav'],
+      'nav' => $navs['nav'],
+      "breadcrumb" => $this->generateGenericBreadcrumb(),
+      'wideBody' => true,
+      'filters' => $filters,
+      'listingCountText' => 'Showing 1-10 press releases',
+      'listingItems' => [],
     ]);
   }
 

@@ -74,32 +74,38 @@
     @endcomponent
 
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Showing '.$exhibitions->count().' out of '.$exhibitions->total().' Exhibitions')))
+        @if (isset($exhibitions) and sizeof($exhibitions) > 0)
+            @slot('links', array(array('label' => 'Showing '.$exhibitions->count().' out of '.$exhibitions->total().' Exhibitions')))
+        @endif
         @slot('titleFont', 'f-numeral-date')
         {{ $year }}
     @endcomponent
 
-    @component('components.atoms._hr')
-    @endcomponent
-
-    @component('components.organisms._o-row-listing')
-        @foreach ($exhibitions as $item)
-            @component('components.molecules._m-listing----exhibition-history-row')
-                @slot('variation', 'm-listing--row')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'srcset' => array(108,216,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => 58,
-                          'small' => 58,
-                          'medium' => 13,
-                          'large' => 13,
-                          'xlarge' => 13,
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endcomponent
+    @if (isset($exhibitions) and sizeof($exhibitions) > 0)
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.organisms._o-row-listing')
+            @foreach ($exhibitions as $item)
+                @component('components.molecules._m-listing----exhibition-history-row')
+                    @slot('variation', 'm-listing--row')
+                    @slot('item', $item)
+                    @slot('imageSettings', array(
+                        'srcset' => array(108,216,400,600),
+                        'sizes' => aic_imageSizes(array(
+                              'xsmall' => 58,
+                              'small' => 58,
+                              'medium' => 13,
+                              'large' => 13,
+                              'xlarge' => 13,
+                        )),
+                    ))
+                @endcomponent
+            @endforeach
+        @endcomponent
+    @else
+        @component('components.molecules._m-no-results')
+        @endcomponent
+    @endif
 
     {!! $exhibitions->appends(['year' => $year])->links() !!}
 
