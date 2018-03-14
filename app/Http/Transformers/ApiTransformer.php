@@ -79,6 +79,15 @@ class ApiTransformer extends AbstractTransformer
             $dates['last_updated'] = $item->updated_at->toIso8601String();
         }
 
+        if ( $item->created_at )
+        {
+            $dates['created_at'] = $item->created_at->toIso8601String();
+        }
+        else
+        {
+            $dates['created_at'] = null;
+        }
+
         return $dates;
 
     }

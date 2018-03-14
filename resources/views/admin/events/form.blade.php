@@ -16,7 +16,7 @@
     ])
 
     @formField('select', [
-        'name' => 'type',
+        'name' => 'audience',
         'label' => 'Event audience',
         'options' => $eventAudiencesList,
         'default' => '1'

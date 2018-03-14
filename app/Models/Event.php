@@ -244,6 +244,17 @@ class Event extends Model
         return $this->eventMetas()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->first();
     }
 
+    public function getAudienceDisplay()
+    {
+        $display = '';
+
+        if ($this->audience != null) {
+            $display = self::$eventAudiences[$this->audience];
+        }
+
+        return $display;
+    }
+
     protected function transformMappingInternal()
     {
         return [
@@ -276,6 +287,12 @@ class Event extends Model
                 "doc" => "Description",
                 "type" => "string",
                 "value" => function () {return $this->description;},
+            ],
+            [
+                "name" => "list_description",
+                "doc" => "list_description",
+                "type" => "string",
+                "value" => function () {return $this->list_description;},
             ],
             [
                 "name" => "hero_caption",
@@ -338,6 +355,12 @@ class Event extends Model
                 "value" => function () {return $this->location;},
             ],
             [
+                "name" => "audience",
+                "doc" => "Audience",
+                "type" => "string",
+                "value" => function () {return $this->getAudienceDisplay();},
+            ],
+            [
                 "name" => "sponsors_description",
                 "doc" => "sponsors_description",
                 "type" => "string",
@@ -372,6 +395,42 @@ class Event extends Model
                 "doc" => "buy_button_caption",
                 "type" => "string",
                 "value" => function () {return $this->buy_button_caption;},
+            ],
+            [
+                "name" => "forced_date",
+                "doc" => "forced_date",
+                "type" => "string",
+                "value" => function () {return $this->forced_date;},
+            ],
+            [
+                "name" => "buy_tickets_link",
+                "doc" => "buy_tickets_link",
+                "type" => "string",
+                "value" => function () {return $this->buy_tickets_link;},
+            ],
+            [
+                "name" => "is_sold_out",
+                "doc" => "is_sold_out",
+                "type" => "boolean",
+                "value" => function () {return $this->is_sold_out;},
+            ],
+            [
+                "name" => "is_boosted",
+                "doc" => "is_boosted",
+                "type" => "boolean",
+                "value" => function () {return $this->is_boosted;},
+            ],
+            [
+                "name" => "slug",
+                "doc" => "slug",
+                "type" => "string",
+                "value" => function () {return $this->slug;},
+            ],
+            [
+                "name" => "web_url",
+                "doc" => "web_url",
+                "type" => "string",
+                "value" => function () {return url(route('events.show', $this));},
             ],
         ];
     }
