@@ -63,8 +63,9 @@
                     <br>
                     @component('components.atoms._tag')
                         @slot('variation','tag--secondary')
-                        @slot('tag','span')
-                        @slot('href', route('events'))
+                        @slot('tag','button')
+                        @slot('behavior', 'getUrl')
+                        @slot('dataAttributes', 'data-href="'.route('events').'"')
                         RSVP
                     @endcomponent
                     @break
@@ -72,8 +73,9 @@
                     <br>
                     @component('components.atoms._tag')
                         @slot('variation','tag--secondary')
-                        @slot('tag','span')
-                        @slot('href', route('events'))
+                        @slot('tag','button')
+                        @slot('behavior', 'getUrl')
+                        @slot('dataAttributes', 'data-href="'.route('events').'"')
                         {{ !empty($item->buy_button_text) ? $item->buy_button_text : 'Buy ticket'}}
                     @endcomponent
                     @break
