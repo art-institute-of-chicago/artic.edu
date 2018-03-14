@@ -174,7 +174,7 @@ Route::get('/', function () {
  *        @SWG\Property(property="slug", type="string", description="Slug"),
  *        @SWG\Property(property="web_url", type="string", description="Web Url"),
  *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
-  *     ),
+ *     ),
  *
  *     @SWG\Definition(
  *        definition="Artist",
@@ -182,9 +182,10 @@ Route::get('/', function () {
  *        required={"id"},
  *        @SWG\Property(property="id", type="integer", description="ID of Artist"),
  *        @SWG\Property(property="title", type="string", description="Title"),
- *        @SWG\Property(property="also_known_as", type="boolean", description="Also Known As"),
- *        @SWG\Property(property="intro_copy", type="datetime", description="Intro Copy"),
+ *        @SWG\Property(property="also_known_as", type="string", description="Also Known As"),
+ *        @SWG\Property(property="intro_copy", type="string", description="Intro Copy"),
  *        @SWG\Property(property="datahub_id", type="string", description="datahub_id"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
  *     ),
  *
  *     @SWG\Definition(
