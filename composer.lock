@@ -12,6 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "git@code.area17.com:a17/laravel-cms-toolkit.git",
+<<<<<<< 40163ca797229f43212e63f3ff9fa0a025aee740
 <<<<<<< 13200ef421b1e04f1ca7e040954378eb22b231da
 <<<<<<< 59df535e3a3b2bd5e2ea0c6c7bb919080efd02f6
                 "reference": "ebabf922fe95aa1859f45e8e6801bee6a52bbdfb"
@@ -21,6 +22,9 @@
 =======
                 "reference": "f5e60932df887a4a74cebf57d5c531833ff7031b"
 >>>>>>> Update to Laravel 5.6 and latests CMS Toolkit
+=======
+                "reference": "8e3d2d999895967d9d7028ca9573c7efd1997e7d"
+>>>>>>> Update toolkit
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.1",
@@ -91,6 +95,7 @@
                 "cms-toolkit",
                 "laravel"
             ],
+<<<<<<< 40163ca797229f43212e63f3ff9fa0a025aee740
 <<<<<<< 13200ef421b1e04f1ca7e040954378eb22b231da
 <<<<<<< 59df535e3a3b2bd5e2ea0c6c7bb919080efd02f6
             "time": "2018-03-15T16:29:28+00:00"
@@ -100,6 +105,9 @@
 =======
             "time": "2018-03-14T07:06:30+00:00"
 >>>>>>> Update to Laravel 5.6 and latests CMS Toolkit
+=======
+            "time": "2018-03-14T16:40:24+00:00"
+>>>>>>> Update toolkit
         },
         {
             "name": "aic/data-hub-foundation",
