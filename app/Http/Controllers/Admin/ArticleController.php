@@ -31,6 +31,13 @@ class ArticleController extends ModuleController
             'field' => 'date',
             'present' => true,
         ],
+        'author' => [
+            'title' => 'Author',
+            'edit_link' => true,
+            'sort' => true,
+            'field' => 'author',
+            'present' => true,
+        ],
     ];
 
     protected $indexWith = [];
