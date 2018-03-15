@@ -58,7 +58,7 @@
 
     @formField('block_editor', [
         'blocks' => [
-            'text', 'image_with_caption', 'video_with_caption', 'gallery', 'media_embed', 'quote', 'list', 'artwork', 'artworks'
+            'text', 'image_with_caption', 'video_with_caption', 'gallery', 'media_embed', 'quote', 'list', 'artwork', 'artworks', 'references', 'citation'
         ]
     ])
 @stop
@@ -70,7 +70,7 @@
             'routePrefix' => 'whatson',
             'name' => 'articles',
             'moduleName' => 'articles',
-            'max' => 20,
+            'max' => 1,
             'label' => 'Related Articles',
         ])
 
@@ -78,7 +78,7 @@
             'routePrefix' => 'whatson',
             'name' => 'selections',
             'moduleName' => 'selections',
-            'max' => 20,
+            'max' => 1,
             'label' => 'Related Selections',
         ])
 
@@ -94,7 +94,7 @@
             'routePrefix' => 'whatson',
             'name' => 'exhibitions',
             'moduleName' => 'exhibitions',
-            'max' => 20,
+            'max' => 1,
             'label' => 'Related Exhibitions',
         ])
 

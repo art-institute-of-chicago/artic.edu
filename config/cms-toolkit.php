@@ -78,6 +78,16 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-paragraph',
             ],
+            'citation' => [
+                'title' => 'Citation',
+                'icon' => 'text',
+                'component' => 'a17-block-citation',
+            ],
+            'references' => [
+                'title' => 'References',
+                'icon' => 'text',
+                'component' => 'a17-block-references',
+            ],
             'timeline' => [
                 'title' => 'Timeline',
                 'icon' => 'text',
