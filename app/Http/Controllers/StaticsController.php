@@ -1692,7 +1692,7 @@ class StaticsController extends FrontController {
 
   private function getEmbed() {
     $embed = array(
-        'embed' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
+        'embed' => '<iframe width="560" height="315" data-src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
     );
     return $embed;
   }
@@ -1960,6 +1960,7 @@ class StaticsController extends FrontController {
       "title" => $this->faker->sentence(6, true),
       "image" => $this->getImage(),
       "timeStamp" => $this->faker->time(),
+      "embed" => $this->getEmbed(),
       "type" => 'media',
     ]);
   }

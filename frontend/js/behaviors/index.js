@@ -38,3 +38,4 @@ export { default as blurMyBackground } from './blurMyBackground';
 export { default as loadMore } from './loadMore';
 export { default as stickyHeader } from './stickyHeader';
 export { default as getUrl } from './getUrl';
+export { default as triggerMediaModal } from './triggerMediaModal';
