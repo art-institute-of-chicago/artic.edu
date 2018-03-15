@@ -22,7 +22,7 @@
 
     @formField('multi_select', [
         'name' => 'categories',
-        'label' => 'Categories',
+        'label' => 'Categories Topics',
         'options' => $categoriesList,
         'placeholder' => 'Select some categories',
     ])
