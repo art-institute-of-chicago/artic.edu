@@ -74,9 +74,9 @@
         <a href="{{ $images[0]['creditUrl'] }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
             {{ $images[0]['creditUrl'] }}
         </a>
-    @elseif (isset($images[0]['credit']))
+    @else (isset($images[0]['credit']))
         <span class="m-article-header__img-credit f-secondary" data-gallery-credit>
-            {{ $images[0]['credit'] }}
+            {{ $images[0]['credit'] ?? '' }}
         </span>
     @endif
       <ul class="m-article-header__img-actions">
