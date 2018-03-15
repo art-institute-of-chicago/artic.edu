@@ -39,6 +39,10 @@ class ArticleController extends FrontController
             $item = $this->repository->getById($slug);
         }
 
+        if ($item->categories->first()) {
+            $item->topics = $item->categories;
+        }
+
         return view('site.articleDetail', [
             'item' => $item
         ]);

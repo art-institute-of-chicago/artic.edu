@@ -169,7 +169,7 @@
             @slot('blocks', $item->blocks ?? null)
         @endcomponent
     @else
-        {!! $item->renderBlocks() !!}
+        {!! $item->renderBlocks(false) !!}
     @endif
 
     @if ($item->catalogues)
