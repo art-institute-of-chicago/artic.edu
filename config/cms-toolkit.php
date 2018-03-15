@@ -182,7 +182,7 @@ return [
             ],
             'list_item' => [
                 'title' => 'List Item',
-                'trigger' => 'Add list',
+                'trigger' => 'Add item',
                 'component' => 'a17-block-list_item',
                 'max' => 10,
             ],

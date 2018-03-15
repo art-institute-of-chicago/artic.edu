@@ -15,3 +15,8 @@
     'label' => 'Description',
     'rows' => 4
 ])
+
+@formField('input', [
+    'name' => 'external_link',
+    'label' => 'Link'
+])
