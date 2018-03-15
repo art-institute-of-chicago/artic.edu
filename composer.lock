@@ -12,19 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "git@code.area17.com:a17/laravel-cms-toolkit.git",
-<<<<<<< 40163ca797229f43212e63f3ff9fa0a025aee740
-<<<<<<< 13200ef421b1e04f1ca7e040954378eb22b231da
-<<<<<<< 59df535e3a3b2bd5e2ea0c6c7bb919080efd02f6
                 "reference": "ebabf922fe95aa1859f45e8e6801bee6a52bbdfb"
-=======
-                "reference": "f1d05ab3c40c5a50c306ee84e79110f9adffa30f"
->>>>>>> Fix custom fee form and update CMS deps
-=======
-                "reference": "f5e60932df887a4a74cebf57d5c531833ff7031b"
->>>>>>> Update to Laravel 5.6 and latests CMS Toolkit
-=======
-                "reference": "8e3d2d999895967d9d7028ca9573c7efd1997e7d"
->>>>>>> Update toolkit
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.1",
@@ -95,19 +83,7 @@
                 "cms-toolkit",
                 "laravel"
             ],
-<<<<<<< 40163ca797229f43212e63f3ff9fa0a025aee740
-<<<<<<< 13200ef421b1e04f1ca7e040954378eb22b231da
-<<<<<<< 59df535e3a3b2bd5e2ea0c6c7bb919080efd02f6
             "time": "2018-03-15T16:29:28+00:00"
-=======
-            "time": "2018-03-11T05:39:21+00:00"
->>>>>>> Fix custom fee form and update CMS deps
-=======
-            "time": "2018-03-14T07:06:30+00:00"
->>>>>>> Update to Laravel 5.6 and latests CMS Toolkit
-=======
-            "time": "2018-03-14T16:40:24+00:00"
->>>>>>> Update toolkit
         },
         {
             "name": "aic/data-hub-foundation",
@@ -156,7 +132,6 @@
         },
         {
             "name": "aws/aws-sdk-php",
-<<<<<<< 13200ef421b1e04f1ca7e040954378eb22b231da
             "version": "3.52.26",
             "source": {
                 "type": "git",
@@ -167,18 +142,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3aefee935e611e1ce959f0288cd160dc81d233a0",
                 "reference": "3aefee935e611e1ce959f0288cd160dc81d233a0",
-=======
-            "version": "3.52.25",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "c1ce16adeeb9a47270f6ba8fb7aef5e1d62fa7d0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c1ce16adeeb9a47270f6ba8fb7aef5e1d62fa7d0",
-                "reference": "c1ce16adeeb9a47270f6ba8fb7aef5e1d62fa7d0",
->>>>>>> Update to Laravel 5.6 and latests CMS Toolkit
                 "shasum": ""
             },
             "require": {
@@ -245,11 +208,7 @@
                 "s3",
                 "sdk"
             ],
-<<<<<<< 13200ef421b1e04f1ca7e040954378eb22b231da
             "time": "2018-03-14T20:20:20+00:00"
-=======
-            "time": "2018-03-13T19:14:00+00:00"
->>>>>>> Update to Laravel 5.6 and latests CMS Toolkit
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1224,7 +1183,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< 13200ef421b1e04f1ca7e040954378eb22b231da
             "version": "v5.6.12",
             "source": {
                 "type": "git",
@@ -1235,18 +1193,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/82d8165d1ea86bdd81ddfa1db9343fa19e7d1450",
                 "reference": "82d8165d1ea86bdd81ddfa1db9343fa19e7d1450",
-=======
-            "version": "v5.6.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "195ba6a67bdad2a23105c7ab410cd43e0f20bb73"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/195ba6a67bdad2a23105c7ab410cd43e0f20bb73",
-                "reference": "195ba6a67bdad2a23105c7ab410cd43e0f20bb73",
->>>>>>> Update to Laravel 5.6 and latests CMS Toolkit
                 "shasum": ""
             },
             "require": {
@@ -1371,11 +1317,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< 13200ef421b1e04f1ca7e040954378eb22b231da
             "time": "2018-03-14T17:29:38+00:00"
-=======
-            "time": "2018-03-09T16:53:27+00:00"
->>>>>>> Update to Laravel 5.6 and latests CMS Toolkit
         },
         {
             "name": "laravel/tinker",
