@@ -171,8 +171,6 @@
         @slot('dropCapFirstPara', ($article->articleType === 'editorial'))
     @endcomponent
 
-    <p class="f-module-title-1">HHEHEHEH</p>
-
     @if ($article->catalogues)
         @component('components.atoms._hr')
         @endcomponent
