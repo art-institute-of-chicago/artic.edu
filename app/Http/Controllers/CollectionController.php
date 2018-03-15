@@ -14,6 +14,8 @@ class CollectionController extends FrontController
 {
     protected $apiRepository;
 
+    const PER_PAGE = 20;
+
     public function __construct(ArtworkRepository $repository)
     {
         $this->apiRepository = $repository;
@@ -26,16 +28,16 @@ class CollectionController extends FrontController
 
         // If we don't have a query let's load the boosted artworks
         if (request('q')) {
-            $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch();
+            $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch(self::PER_PAGE);
         } else {
-            $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->get();
+            $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->paginate(self::PER_PAGE);
         }
 
         // If it's ajax, just load more elements.
         if (request()->ajax() && request()->has('page')) {
             return [
                 'page' => request('page'),
-                'html' => view('site.collection.items', [
+                'html' => view('site.collection._items', [
                     'artworks' => $collection
                 ])->render()
             ];
