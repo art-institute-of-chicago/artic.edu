@@ -1656,9 +1656,6 @@ class StaticsController extends FrontController {
         "creditUrl" => $creditUrl,
     );
 
-    //$image = LakeviewImageService::getImage('92e0fb45-44a6-4b99-c011-2175b9cbc468');
-    //$image['sourceType'] = 'lakeview';
-
     /*
     $image = array(
         "sourceType" => 'imgix',

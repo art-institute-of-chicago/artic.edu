@@ -31,14 +31,14 @@ trait HasMediasApi
 
         if (isset($this->mediasParams[$role])) {
             if ($crop && !empty($this->{$this->getImageField($role, $crop)})) {
-                $image = LakeviewImageService::getImage($this->{$this->getImageField($role, $crop)});
+                $image = LakeviewImageService::getImage($this, $this->getImageField($role, $crop));
                 $image['width'] = $this->getWidth($role, $crop, $image);
                 $image['height'] = $this->getHeight($role, $crop, $image);
 
                 return $image;
             } else {
                 if (!empty($this->{$this->getImageField($role, 'default')})) {
-                    return LakeviewImageService::getImage($this->{$this->getImageField($role, 'default')});
+                    return LakeviewImageService::getImage($this, $this->getImageField($role, 'default'));
                 }
             }
         }

@@ -19,22 +19,24 @@ class LakeviewImageService implements ImageServiceInterface
     {
     }
 
-    public function getImage($image_id, $width = '', $height = '') {
+    public function getImage($object, $imageField = 'image_id', $width = '', $height = '')
+    {
         $credit = null;
         $creditUrl = null;
         $shareTitle = null;
         $downloadName = null;
 
-        $dimensions = $this->getDimensions($image_id);
+        $preLoadedInfo = $this->getInfo($object, $imageField);
 
-        $src = $this->getUrl($image_id, ['width' => $width, 'height' => $height]);
-        $srcset = $this->getUrl($image_id, ['width' => $width, 'height' => $height])." 300w";
+        $src = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]);
+        $srcset = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height])." 300w";
+
         $image = array(
             "type" => 'lakeview',
             "src" => $src,
             "srcset" => $srcset,
-            "width" => $dimensions['width'],
-            "height" => $dimensions['height'],
+            "width" => $preLoadedInfo['width'],
+            "height" => $preLoadedInfo['height'],
             "shareUrl" => '#',
             "shareTitle" => $shareTitle,
             "downloadUrl" => $src,
@@ -42,6 +44,10 @@ class LakeviewImageService implements ImageServiceInterface
             "credit" => $credit,
             "creditUrl" => $creditUrl,
         );
+
+        if (isset($preLoadedInfo['lqip']) && !empty($preLoadedInfo['lqip'])) {
+            $image['lqip'] = $preLoadedInfo['lqip'];
+        }
 
         return $image;
     }
@@ -51,8 +57,6 @@ class LakeviewImageService implements ImageServiceInterface
         $width = isset($params['width']) ? $params['width'] : '';
         $height = isset($params['height']) ? $params['height'] : '';
         $size = isset($params['size']) ? $params['size'] : 'full';
-
-        $data = $this->fetchImageInfo($id);
 
         $dimensions = 'full';
         if ($width != '' || $height != '') {
@@ -84,6 +88,22 @@ class LakeviewImageService implements ImageServiceInterface
 
     public function getRawUrl($id)
     {
+    }
+
+    public function getInfo($object, $imageField = 'image_id')
+    {
+        // Try returning already loaded information
+        if (!empty($object->thumbnail))
+        {
+            return [
+                'width'  => $object->thumbnail->width,
+                'height' => $object->thumbnail->height,
+                'lqip'   => $object->thumbnail->lqip,
+            ];
+        } else {
+            // Hit the server to get the info if not available
+            return $this->getDimensions($object->$imageField);
+        }
     }
 
     public function getDimensions($id)
