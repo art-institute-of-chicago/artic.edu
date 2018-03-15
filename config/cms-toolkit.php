@@ -181,6 +181,12 @@ return [
                 'component' => 'a17-block-list_item',
                 'max' => 10,
             ],
+            'gallery_item' => [
+                'title' => 'Gallery Item',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-gallery_item',
+                'max' => 10,
+            ],
             'dateRules' => [
                 'title' => 'Date Rule',
                 'trigger' => 'Add Date Rule',

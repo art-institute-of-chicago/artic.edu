@@ -1,9 +1,3 @@
-@formField('medias', [
-    'name' => 'image',
-    'label' => 'Image',
-    'max' => 100
-])
-
 @formField('select', [
     'name' => 'layout',
     'label' => 'Layout',
@@ -21,20 +15,16 @@
 ])
 
 @formField('input', [
+    'name' => 'title',
+    'label' => 'Title',
+    'maxlength' => 150
+])
+
+@formField('input', [
     'type' => 'textarea',
     'name' => 'description',
     'label' => 'Description',
     'rows' => 4
 ])
 
-@formField('input', [
-    'name' => 'subhead',
-    'label' => 'Image Subhead',
-    'maxlength' => 150
-])
-
-@formField('input', [
-    'name' => 'label',
-    'label' => 'Image Label',
-    'maxlength' => 150
-])
+@formField('repeater', ['type' => 'gallery_item'])

@@ -110,7 +110,7 @@
   @endif
 
   <div class="o-article__body o-blocks">
-      {!! $item->renderBlocks() !!}
+      {!! $item->renderBlocks(false) !!}
 
       {{--  @component('components.blocks._blocks')
         @slot('editorial', false)

@@ -26,7 +26,7 @@
         @endcomponent
     </div>
     <div class="o-gallery__media">
-        @if (isset($items))
+        @if (isset($items) && !empty($items))
             @foreach ($items as $item)
                 @component('components.molecules._m-media')
                     @slot('item', $item)
