@@ -5,6 +5,14 @@
     ])
 
     @formField('browser', [
+        'routePrefix' => 'landing.home',
+        'max' => 10,
+        'moduleName' => 'homeFeatures',
+        'name' => 'homeFeatures',
+        'label' => 'Home Features'
+    ])
+
+    @formField('browser', [
         'routePrefix' => 'whatson',
         'max' => 2,
         'moduleName' => 'exhibitions',

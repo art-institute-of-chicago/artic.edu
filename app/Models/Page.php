@@ -132,6 +132,11 @@ class Page extends Model
         return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');
     }
 
+    public function homeFeatures()
+    {
+        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_home_feature')->withPivot('position')->orderBy('position');
+    }
+
     public function homeShopItems()
     {
         return $this->apiElements()->where('relation', 'homeShopItems');

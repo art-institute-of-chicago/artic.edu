@@ -30,14 +30,13 @@ class HomeController extends FrontController
     {
         $page = Page::where('type', 0)->first();
 
-
         $exhibitions = $page->apiModels('homeExhibitions', 'Exhibition');
         $events = $page->homeEvents;
 
         $products = $page->apiModels('homeShopItems', 'ShopItem');
 
         $mainFeatures = collect([]);
-        $mainFeatureBucket = Feature::forBucket('home_main_features');
+        $mainFeatureBucket = $page->homeFeatures;
         foreach($mainFeatureBucket as $feature) {
             $item = null;
             if ($feature->published) {
