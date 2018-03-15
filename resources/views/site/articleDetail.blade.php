@@ -6,7 +6,7 @@
 
   @component('components.molecules._m-article-header')
     @slot('editorial', ($item->articleType === 'editorial'))
-    @slot('headerType', ($item->headerType ?? null))
+    @slot('headerType', 'feature')
     @slot('variation', ($item->headerVariation ?? null))
     @slot('title', $item->title)
     @slot('date', $item->date)
@@ -31,7 +31,7 @@
             @slot('editorial', ($item->articleType === 'editorial'))
             @slot('img', $item->imageFront('author') ?? null);
             @slot('name', $item->author ?? null);
-            @slot('link', $item->author['link'] ?? null);
+            @slot('link', null);
             @slot('date', $item->date ?? null);
         @endcomponent
     @endif
