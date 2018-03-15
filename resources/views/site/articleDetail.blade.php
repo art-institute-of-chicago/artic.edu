@@ -6,7 +6,7 @@
 
   @component('components.molecules._m-article-header')
     @slot('editorial', ($item->articleType === 'editorial'))
-    @slot('headerType', ($item->layout_type == 1 ? 'feature' : null))
+    @slot('headerType', ($item->headerType ?? ($item->layout_type == 1 ? 'feature' : null )))
     @slot('variation', ($item->headerVariation ?? null))
     @slot('title', $item->title)
     @slot('date', $item->date)

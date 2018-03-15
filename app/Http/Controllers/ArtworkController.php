@@ -40,10 +40,10 @@ class ArtworkController extends FrontController
 
         $galleryImages = collect();
         if ($item->image_id) {
-            $image = $item->imageFront();
+            $image = $item->imageFront('hero');
             $image['credit'] = $item->getImageCopyright();
             $galleryImages[] = $image;
-            // $item->image = $image;
+            $item->image = $image;
         }
         $item->galleryImages = $galleryImages;
 
