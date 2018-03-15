@@ -5,6 +5,11 @@
 ])
 
 @formField('input', [
+    'name' => 'tag',
+    'label' => 'Tag'
+])
+
+@formField('input', [
     'name' => 'header',
     'label' => 'Header'
 ])

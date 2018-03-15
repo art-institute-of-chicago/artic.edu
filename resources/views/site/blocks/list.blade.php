@@ -1,7 +1,7 @@
 @php
     $items = [];
     foreach ($block->childs as $item) {
-        $item->subtype = 'generic';
+        $item->subtype = $item->input('tag');
         $item->title = $item->input('header');
         $item->shortDesc = $item->input('description');
         $item->slug = $item->input('external_link');
@@ -15,8 +15,6 @@
         @component('components.molecules._m-listing----generic-row')
             @slot('item', $item)
             @slot('image', $item->imageAsArray('image', 'desktop'))
-            @slot('tag', 'tagName')
-
             @slot('variation', 'm-listing--inline')
             @slot('titleFont','f-list-2')
             @slot('imageSettings', array(
