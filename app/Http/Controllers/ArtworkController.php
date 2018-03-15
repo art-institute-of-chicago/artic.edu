@@ -62,6 +62,14 @@ class ArtworkController extends FrontController
                 $label .= $item->gallery_title;
             }
             $item->onView = array('label' => $label, 'href' => route('galleries.show', [$item->gallery_id]));
+
+            array_push($blocks, array(
+              "type" => 'deflist',
+              "variation" => 'deflist--free-spacing u-hide@large+',
+              "items" => array(
+                array('key' => 'On View', 'value' => $label),
+              )
+            ));
         }
 
         array_push($blocks, $item->getArtworkDetailsBlock());

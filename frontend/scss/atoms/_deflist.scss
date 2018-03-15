@@ -61,6 +61,24 @@
   }
 }
 
+.deflist--free-spacing dt {
+  @include breakpoint('small+') {
+    width: auto;
+  }
+
+  @include breakpoint('medium+') {
+    width: auto;
+  }
+
+  @include breakpoint('large+') {
+    width: auto;
+  }
+
+  @include breakpoint('xlarge') {
+    width: auto;
+  }
+}
+
 .deflist dd {
   flex: 1;
   width: 100%;

@@ -292,7 +292,7 @@
             @endif
 
             @if ($block['type'] === 'deflist')
-                <dl class="deflist o-blocks__block">
+                <dl class="deflist o-blocks__block {{ $block['variation'] ?? ''}}">
                 @foreach ($block['items'] as $item)
                     <div class="deflist__row">
                     <dt class="f-module-title-1">{{ $item['key'] }}</dt>

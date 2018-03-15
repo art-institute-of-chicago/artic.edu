@@ -110,13 +110,6 @@
   <ul class="m-article-header__img-thumbs{{ (sizeof($images) === 1) ? ' m-article-header__img-thumbs--single-img' : ''}}" data-gallery-thumbs>
       @foreach ($images as $image)
         <li>
-          @component('components.atoms._img')
-              @slot('image', $image)
-              @slot('settings', array(
-                'srcset' => array(300,600),
-                'sizes' => '300px',
-              ))
-          @endcomponent
           @php
             $galleryImageThumbSettings = aic_imageSettings(array(
                 'settings' => array(
@@ -162,6 +155,13 @@
             @endif
             disabled
           >Show this image</button>
+          @component('components.atoms._img')
+              @slot('image', $image)
+              @slot('settings', array(
+                'srcset' => array(300,600),
+                'sizes' => '300px',
+              ))
+          @endcomponent
         </li>
       @endforeach
   </ul>

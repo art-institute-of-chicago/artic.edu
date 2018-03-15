@@ -22,7 +22,7 @@
     @if (isset($articleType) and $articleType !== 'exhibition' and $articleType !== 'exhibitionHistory' and $articleType !== 'video')
     <li class="m-article-actions__action">
         @component('components.atoms._btn')
-            @slot('variation', 'btn--secondary btn--icon')
+            @slot('variation', 'btn--quaternary btn--icon')
             @slot('font', '')
             @slot('icon', 'icon--print--24')
             @slot('behavior','printPage')
