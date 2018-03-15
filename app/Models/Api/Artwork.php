@@ -25,7 +25,6 @@ class Artwork extends BaseApiModel
             ],
             'thumbnail' => [
                 'field'  => 'image_id',
-                'width'  => 30,
             ],
         ],
     ];

@@ -99,7 +99,7 @@ class SearchController extends FrontController
 
             $item->text = $item->title;
         }
-
+        
         return view('layouts/_autocomplete', [
             'term' => request('q'),
             'resultCount' => $collection->total(),
