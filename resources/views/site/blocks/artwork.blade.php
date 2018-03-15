@@ -2,11 +2,7 @@
     $ids = $block->browserIds('artworks');
     $artwork = \App\Models\Api\Artwork::query()->ids($ids)->get()->first();
     if ($artwork) {
-
-        $image = null;
-        if ($artwork->image_id) {
-            $image = LakeviewImageService::getImage($artwork->image_id);
-        }
+        $image = $artwork->imageFront('hero', 'thumbnail');
 
         $galleryLocation = '';
         if ($artwork->is_on_view) {

@@ -5,10 +5,7 @@
 
     $items = [];
     foreach($artworks as $artwork) {
-        $image = null;
-        if ($artwork->image_id) {
-            $image = LakeviewImageService::getImage($artwork->image_id);
-        }
+        $image = $artwork->imageFront('hero', 'thumbnail');
 
         $caption = "";
         if (!empty($artwork->artist_display)) {

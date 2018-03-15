@@ -93,7 +93,7 @@ class LakeviewImageService implements ImageServiceInterface
     public function getInfo($object, $imageField = 'image_id')
     {
         // Try returning already loaded information
-        if (!empty($object->thumbnail))
+        if (!empty($object->thumbnail) && $object->thumbnail->width && $object->thumbnail->height)
         {
             return [
                 'width'  => $object->thumbnail->width,
@@ -132,6 +132,8 @@ class LakeviewImageService implements ImageServiceInterface
     }
 
     protected function fetchImageInfo($id) {
+        \Log::error('LOADIN IMAGE ' . $id);
+
         $json = Cache::remember('lakeview-image-'.$id.$this->cacheVersion, 24*60, function () use ($id) {
             try {
                 return json_decode(@file_get_contents($this->base_url.$this->version.'/'.$id.'/info.json'));
