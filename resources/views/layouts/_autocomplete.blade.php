@@ -5,13 +5,17 @@
                 <li>
                     <a href="{{ $item->url }}">
                         @if ($item->imageFront('hero', 'thumbnail'))
+                        <span class="g-search__autocomplete-img">
                             @component('components.atoms._img')
                                 @slot('image', $item->imageFront('hero', 'thumbnail'))
                                 @slot('settings', array(
+                                    'fit' => 'crop',
+                                    'ratio' => '1:1',
                                     'srcset' => array(40,80),
                                     'sizes' => '40px',
                                 ))
                             @endcomponent
+                        </span>
                         @endif
                         <strong>{{ str_limit($item->text, 100) }}</strong>
                         @unless(empty($item->section))

@@ -18,6 +18,7 @@ const globalSearch = function(container) {
   let searchTerm = '';
   let dropdownList;
   let ajaxTimer;
+  let timestamp = 0;
 
   function _showLoader() {
     container.classList.add(loaderKlass);
@@ -28,23 +29,36 @@ const globalSearch = function(container) {
   }
 
   // show autocomplete
-  function _showAutocomplete(content) {
-    let parser = new DOMParser();
-    let doc = parser.parseFromString(content, 'text/html');
-    dropdownList = doc.querySelector('[data-autocomplete-list]');
-    if (dropdownList) {
-      container.querySelector('[data-search-inner]').appendChild(dropdownList);
+  function _showAutocomplete(content,stamp) {
+    if (stamp === timestamp) {
+      let parser = new DOMParser();
+      let doc = parser.parseFromString(content, 'text/html');
+      dropdownList = doc.querySelector('[data-autocomplete-list]');
+      if (dropdownList) {
+        container.querySelector('[data-search-inner]').appendChild(dropdownList);
+        requestAnimationFrame(function(){
+          if (!document.documentElement.classList.contains(autocompleteKlass)) {
+            document.documentElement.classList.add(autocompleteKlass);
+          }
+        });
+        triggerCustomEvent(document, 'page:updated');
+      }
     }
-    document.documentElement.classList.add(autocompleteKlass);
   }
 
-  // hide autocomplete
-  function _hideAutocomplete() {
-    document.documentElement.classList.remove(autocompleteKlass);
+  function _clearAutocomplete() {
     if (dropdownList) {
       container.querySelector('[data-search-inner]').removeChild(dropdownList);
       dropdownList = null;
     }
+  }
+
+  // hide autocomplete
+  function _hideAutocomplete() {
+    if (document.documentElement.classList.contains(autocompleteKlass)) {
+      document.documentElement.classList.remove(autocompleteKlass);
+    }
+    _clearAutocomplete();
   }
 
   function _fixedEncodeURIComponent(str) {
@@ -56,6 +70,14 @@ const globalSearch = function(container) {
   // handle ajax search
   function _doAjax() {
     clearTimeout(ajaxTimer);
+
+    var tempTimeStamp = Date.now();
+    if (tempTimeStamp > timestamp) {
+      timestamp = tempTimeStamp;
+    } else {
+      return;
+    }
+
     _showLoader();
     ajaxTimer = setTimeout(function(){
       ajaxRequest({
@@ -69,17 +91,24 @@ const globalSearch = function(container) {
           }
         ],
         onSuccess: function(data){
-          _hideAutocomplete();
+          _clearAutocomplete();
           try {
-            _showAutocomplete(data);
+            _showAutocomplete(data,timestamp,textInput.value);
           } catch (err) {
             console.error('Error updating autocomplete: '+ err);
+            triggerCustomEvent(document, 'globalSearch:close');
+            triggerCustomEvent(document, 'ajax:getPage', {
+              url: queryStringHandler.updateParameter(form.action, 'q', _fixedEncodeURIComponent(textInput.value)),
+            });
           }
           _hideLoader();
         },
         onError: function(data){
-          console.error('Error: '+ data);
           _hideLoader();
+          triggerCustomEvent(document, 'globalSearch:close');
+          triggerCustomEvent(document, 'ajax:getPage', {
+            url: queryStringHandler.updateParameter(form.action, 'q', _fixedEncodeURIComponent(textInput.value)),
+          });
         }
       });
     }, 250);
@@ -95,6 +124,7 @@ const globalSearch = function(container) {
       element: container
     });
     document.documentElement.classList.add(stateKlass);
+    textInput.focus();
     active = true;
   }
 
@@ -107,6 +137,7 @@ const globalSearch = function(container) {
     triggerCustomEvent(document, 'focus:untrap');
     setFocusOnTarget(document.getElementById('a17'));
     active = false;
+    clearTimeout(ajaxTimer);
   }
 
   // handle escape key
@@ -126,6 +157,7 @@ const globalSearch = function(container) {
   // handle form submit
   function _handleSubmit(event){
     event.preventDefault();
+    triggerCustomEvent(document, 'globalSearch:close');
     triggerCustomEvent(document, 'ajax:getPage', {
       url: queryStringHandler.updateParameter(form.action, 'q', _fixedEncodeURIComponent(textInput.value)),
     });

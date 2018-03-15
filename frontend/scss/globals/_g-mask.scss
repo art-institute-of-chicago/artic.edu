@@ -5,16 +5,16 @@
   right: 100%;
   top: 0;
   bottom: 100%;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba($color__black, .6);
   opacity: 0;
-  transition: opacity .15s;
+  transition: opacity .25s;
   will-change: opacity, background-color, right, bottom;
 
   @supports (backdrop-filter: blur(5px)) {
-    transition: opacity .15s, backdrop-filter .15s;
+    transition: opacity .25s, backdrop-filter .25s;
   }
 
   @supports (-webkit-backdrop-filter: blur(5px)) {
-    transition: opacity .15s, -webkit-backdrop-filter .15s;
+    transition: opacity .25s, -webkit-backdrop-filter .25s;
   }
 }

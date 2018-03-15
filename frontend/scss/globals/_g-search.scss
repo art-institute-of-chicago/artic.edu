@@ -32,9 +32,11 @@ $f-autocomplete: generate-font-obj((
 }
 
 .g-search__scroll {
+  height: 300px;
   overflow: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  transition: height .25s .25s $bezier--marius-ease;
 }
 
 .g-search__inner {
@@ -163,6 +165,8 @@ $f-autocomplete: generate-font-obj((
 
 .g-search__autocomplete {
   margin-top: 64px;
+  opacity: 0;
+  transition: opacity .25s linear;
 }
 
 .g-search__autocomplete ul {
@@ -189,10 +193,22 @@ $f-autocomplete: generate-font-obj((
   color: $color__white;
 }
 
-.g-search__autocomplete li img {
+.g-search__autocomplete-img {
   position: absolute;
   left: 0;
   top: 6px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.g-search__autocomplete strong {
+  font-weight: normal;
+  color: $color__white;
+}
+
+.g-search__autocomplete-img img {
+  display: block;
   width: 40px;
   height: 40px;
   object-fit: cover;
