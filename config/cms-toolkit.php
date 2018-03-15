@@ -18,11 +18,6 @@ return [
     'block_editor' => [
         'block_single_layout' => 'layouts.block',
         'blocks' => [
-            'text' => [
-                'title' => 'Text',
-                'icon' => 'text',
-                'component' => 'a17-block-text',
-            ],
             'quote' => [
                 'title' => 'Quote',
                 'icon' => 'text',
