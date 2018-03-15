@@ -8,7 +8,7 @@
     @endif
     @if (isset($formattedDate))
         @component('components.atoms._date')
-            {{ $formattedDate }}
+            {!! $formattedDate !!}
         @endcomponent
     @elseif ($dateStart and $dateEnd)
         @component('components.atoms._date')
