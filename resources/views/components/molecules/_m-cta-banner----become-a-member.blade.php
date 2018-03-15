@@ -5,6 +5,15 @@
     if (!isset($image)) {
         $image = null;
     }
+    if (!isset($headline)) {
+        $headline = null;
+    }
+    if (!isset($short_copy)) {
+        $short_copy = null;
+    }
+    if (!isset($button_text)) {
+        $button_text = null;
+    }
 @endphp
 <aside class="m-cta-banner m-cta-banner--parallax{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="bannerParallax">
     <a href="{{ $href }}">
@@ -26,9 +35,9 @@
             @endcomponent
         </div>
         <div class="m-cta-banner__txt">
-            <p class="m-cta-banner__title f-module-title-2">Become a Member</p>
-            <p class="m-cta-banner__msg f-list-2">Join today and get <em>exclusive access</em> to the Art Institute of Chicago.</p>
-            <p class="m-cta-banner__action"><span class="btn f-buttons btn--contrast">Learn More</span></p>
+            <p class="m-cta-banner__title f-module-title-2">{{ $headline }}</p>
+            <p class="m-cta-banner__msg f-list-2">{{ $short_copy }}</p>
+            <p class="m-cta-banner__action"><span class="btn f-buttons btn--contrast">{{ $button_text }}</span></p>
         </div>
     </a>
 </aside>

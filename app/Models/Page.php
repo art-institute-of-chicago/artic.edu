@@ -34,6 +34,10 @@ class Page extends Model
         'home_membership_module_url',
         'home_membership_module_image',
 
+        'home_membership_module_headline',
+        'home_membership_module_short_copy',
+        'home_membership_module_button_text',
+
         // Exhibition
         'exhibition_intro',
 

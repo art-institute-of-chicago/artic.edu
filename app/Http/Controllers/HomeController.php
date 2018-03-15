@@ -66,6 +66,9 @@ class HomeController extends FrontController
         // sort by published?
         $mainFeatures = $mainFeatures->slice(0, 3);
         $membership_module_url = $page->home_membership_module_url;
+        $membership_module_headline = $page->home_membership_module_headline;
+        $membership_module_button_text = $page->home_membership_module_button_text;
+        $membership_module_short_copy = $page->home_membership_module_short_copy;
 
         $view_data = [
             'mainFeatures' => $mainFeatures
@@ -76,6 +79,9 @@ class HomeController extends FrontController
         ,   'products' => $products
         ,   'membership_module_image' => $page->imageFront('home_membership_module_image')
         ,   'membership_module_url' => $membership_module_url
+        ,   'membership_module_headline' => $membership_module_headline
+        ,   'membership_module_button_text' => $membership_module_button_text
+        ,   'membership_module_short_copy' => $membership_module_short_copy
         ];
 
         return view('home.index', $view_data);
