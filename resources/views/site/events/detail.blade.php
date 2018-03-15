@@ -25,6 +25,7 @@
 
     @component('components.molecules._m-article-actions')
         @slot('articleType', 'event')
+        @slot('icsLink', $item->icsLink ?? null)
     @endcomponent
 
     @if ($item->present()->navigation)
@@ -110,7 +111,7 @@
 
   <div class="o-article__body o-blocks">
       {!! $item->renderBlocks() !!}
-    
+
       {{--  @component('components.blocks._blocks')
         @slot('editorial', false)
         @slot('blocks', $item->blocks ?? null)
@@ -175,6 +176,7 @@
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
         @slot('articleType', 'event')
+        @slot('icsLink', $item->icsLink ?? null)
     @endcomponent
   </div>
 

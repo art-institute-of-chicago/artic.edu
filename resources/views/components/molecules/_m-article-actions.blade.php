@@ -7,6 +7,18 @@
             @slot('behavior','sharePage')
         @endcomponent
     </li>
+    @if (!empty($icsLink))
+    <li class="m-article-actions__action">
+        @component('components.atoms._btn')
+            @slot('variation', 'btn--septenary btn--icon')
+            @slot('font', '')
+            @slot('icon', 'icon--calendar')
+            @slot('dataAttributes', 'download')
+            @slot('tag', 'a')
+            @slot('href', '#')
+        @endcomponent
+    </li>
+    @endif
     @if (isset($articleType) and $articleType !== 'exhibition' and $articleType !== 'exhibitionHistory' and $articleType !== 'video')
     <li class="m-article-actions__action">
         @component('components.atoms._btn')

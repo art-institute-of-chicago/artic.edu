@@ -24,6 +24,7 @@
     @if ($article->articleType !== 'artwork')
         @component('components.molecules._m-article-actions')
             @slot('articleType', $article->articleType)
+            @slot('icsLink', $article->icsLink ?? null)
         @endcomponent
     @endif
 
@@ -339,6 +340,7 @@
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
         @slot('articleType', $article->articleType)
+        @slot('icsLink', $article->icsLink ?? null)
     @endcomponent
   </div>
 

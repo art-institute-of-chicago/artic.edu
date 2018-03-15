@@ -1873,6 +1873,7 @@ class StaticsController extends FrontController {
       "register" => $register,
       "soldOut" => $soldOut,
       "is_ticketed" => true,
+      "icsLink" => '#',
 
       // Add a presenter function to fit our integrations
       "present" => function () use ($timeStart, $timeEnd, $randomTicketStatus) {
