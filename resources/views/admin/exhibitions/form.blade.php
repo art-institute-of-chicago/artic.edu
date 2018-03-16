@@ -40,7 +40,7 @@
     @formField('block_editor', [
         'blocks' => [
             'event', 'paragraph', 'image', 'video', 'gallery',
-            'media_embed', 'quote', 'list', 'accordion', 'related_offers', 'newsletter_signup_inline'
+            'media_embed', 'quote', 'list', 'accordion', 'newsletter_signup_inline'
         ]
     ])
 

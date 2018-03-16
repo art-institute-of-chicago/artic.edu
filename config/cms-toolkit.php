@@ -58,11 +58,6 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-membership_banner',
             ],
-            'related_offers' => [
-                'title' => 'Related Offers',
-                'icon' => 'text',
-                'component' => 'a17-block-related_offers',
-            ],
             'paragraph' => [
                 'title' => 'Paragraph',
                 'icon' => 'text',
