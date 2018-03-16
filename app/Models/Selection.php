@@ -8,6 +8,8 @@ use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasApiRelations;
 
+use App\Models\Api\Artwork;
+
 class Selection extends Model
 {
     use HasSlug, HasMedias, HasBlocks, HasApiRelations, Transformable;
@@ -72,6 +74,49 @@ class Selection extends Model
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
+    }
+
+    public function getArtworkImages($count = 5)
+    {
+        $list = collect([]);
+
+        $artwork_ids = collect([]);
+        foreach($this->blocks as $block) {
+            if ($block->type == 'artwork') {
+                if (isset($block->content['browsers'])) {
+                    if (isset($block->content['browsers']['artworks'])) {
+                        $ids = $block->content['browsers']['artworks'];
+                        foreach($ids as $id) {
+                            $artwork_ids->push($id);
+                        }
+                    }
+                }
+            } else if ($block->type == 'artworks') {
+                if (isset($block->content['browsers'])) {
+                    if (isset($block->content['browsers']['artworks'])) {
+                        $ids = $block->content['browsers']['artworks'];
+                        foreach($ids as $id) {
+                            $artwork_ids->push($id);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        // load artworks and get the images
+        $artworks = Artwork::query()->ids($artwork_ids->toArray())->get();
+        foreach($artworks as $artwork) {
+            if ($artwork->imageFront()) {
+                $list[] = $artwork->imageFront();
+            }
+
+            if ($list->count() >= $count) {
+                break;
+            }
+        }
+
+        return $list;
     }
 
     protected function transformMappingInternal()

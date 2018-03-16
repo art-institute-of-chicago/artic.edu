@@ -8,6 +8,7 @@ use App\Presenters\StaticObjectPresenter;
 use App\Repositories\Api\ShopItemRepository;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\Api\EventRepository;
+use App\Repositories\Api\ArtworkRepository;
 
 use App\Models\Event;
 use App\Models\Exhibition;
@@ -22,8 +23,9 @@ class HomeController extends FrontController
     protected $shopItemRepository;
     protected $exhibitionRepository;
 
-    public function __construct(ExhibitionRepository $exhibitionRepository) {
+    public function __construct(ExhibitionRepository $exhibitionRepository, ArtworkRepository $artworkRepository) {
         $this->exhibitionRepository = $exhibitionRepository;
+        $this->artworkRepository = $artworkRepository;
     }
 
     public function index()
@@ -61,9 +63,36 @@ class HomeController extends FrontController
                 }
             }
         }
-
-        // sort by published?
+        // TODO: sort by published or leave in position order?
         $mainFeatures = $mainFeatures->slice(0, 3);
+
+        $collectionFeatures = collect([]);
+        $collectionFeatureBucket = $page->collectionFeatures;
+        foreach($collectionFeatureBucket as $feature) {
+            $item = null;
+            if ($feature->published) {
+                if ($feature->articles->count()) {
+                    $item = $feature->articles()->first();
+                    $item->type= 'article';
+
+                } else if ($feature->artworks->count()) {
+                    $item = $this->artworkRepository->getById($feature->artworks()->first()->datahub_id);
+                    $item->type= 'artwork';
+
+                } else if ($feature->selections->count()) {
+                    $item = $feature->selections()->first();
+
+                    $item->type= 'selection';
+                    $item->images = $item->getArtworkImages();
+                }
+
+                if ($item) {
+                    $collectionFeatures[] = $item;
+                }
+            }
+        }
+
+
         $membership_module_url = $page->home_membership_module_url;
         $membership_module_headline = $page->home_membership_module_headline;
         $membership_module_button_text = $page->home_membership_module_button_text;
@@ -74,7 +103,7 @@ class HomeController extends FrontController
         ,   'intro' => $page->home_intro
         ,   'exhibitions' => $exhibitions
         ,   'events' => $events
-        ,   'theCollection' => []
+        ,   'theCollection' => $collectionFeatures
         ,   'products' => $products
         ,   'membership_module_image' => $page->imageFront('home_membership_module_image')
         ,   'membership_module_url' => $membership_module_url
