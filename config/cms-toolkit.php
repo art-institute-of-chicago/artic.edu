@@ -143,7 +143,7 @@ return [
             ],
             'locations' => [
                 'title' => 'Locations',
-                'trigger' => 'Add locations',
+                'trigger' => 'Add a location',
                 'component' => 'a17-block-locations',
                 'max' => 10,
             ],
@@ -161,7 +161,7 @@ return [
             ],
             'accordion_item' => [
                 'title' => 'Accordion Item',
-                'trigger' => 'Add accordion',
+                'trigger' => 'Add accordion item',
                 'component' => 'a17-block-accordion_item',
                 'max' => 10,
             ],

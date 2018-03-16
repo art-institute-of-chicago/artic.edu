@@ -152,7 +152,7 @@
         @endforeach
     @endif
 
-    @if (!empty($item->sponsors_description))
+    @if (strlen($item->sponsors_description) > 0)
         @component('components.blocks._text')
             @slot('font', 'f-module-title-2')
             @slot('tag', 'h4')
