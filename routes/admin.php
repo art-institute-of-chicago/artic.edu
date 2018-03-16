@@ -9,6 +9,12 @@ Route::group(['prefix' => 'homepage'], function () {
 
 Route::group(['prefix' => 'visit'], function () {
     Route::name('visit.landing')->get('landing', 'PageController@visit');
+    Route::module('hours');
+    Route::module('closures');
+    Route::module('sponsors');
+    Route::module('questions');
+    Route::module('admissions');
+    Route::module('locations');
 });
 
 // Route::group(['prefix' => 'landing'], function () {

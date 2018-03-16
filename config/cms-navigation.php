@@ -25,6 +25,22 @@ return [
                 'title' => 'Landing',
                 'route' => 'admin.visit.landing',
             ],
+            'hours' => [
+                'title' => 'Hours',
+                'module' => true,
+            ],
+            'closures' => [
+                'title' => 'Closures',
+                'module' => true,
+            ],
+            'sponsors' => [
+                'title' => 'Sponsors',
+                'module' => true,
+            ],
+            'questions' => [
+                'title' => 'FAQ',
+                'module' => true,
+            ],
         ]
     ],
 
