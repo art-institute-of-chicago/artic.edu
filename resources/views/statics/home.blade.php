@@ -3,14 +3,20 @@
 @section('content')
 
 @component('components.organisms._o-features')
-    @foreach ($heroExhibitions as $item)
+    @foreach ($heroItems as $item)
         @component('components.molecules._m-listing----'.$item->listingType)
             @slot('item', $item)
             @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
             @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-module-title-2')
             @slot('imageSettings', array(
                 'srcset' => array(300,600,1000,1500,3000),
-                'sizes' => '100vw',
+                'sizes' => ($loop->first) ? '100vw' : aic_gridListingImageSizes(array(
+                      'xsmall' => '1',
+                      'small' => '2',
+                      'medium' => '2',
+                      'large' => '2',
+                      'xlarge' => '2',
+                )),
             ))
         @endcomponent
     @endforeach

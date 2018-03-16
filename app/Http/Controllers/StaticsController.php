@@ -64,31 +64,34 @@ class StaticsController extends FrontController {
 
   public function home_1_feature() {
     $items = $this->getHomepageItems();
-    $items['heroExhibitions'] = $this->getExhibitions(1);
+    $items['heroItems'] = $this->getExhibitions(1);
     return view('statics/home', $items);
   }
 
   public function home_mixed() {
     $items = $this->getHomepageItems();
-    $items['heroExhibitions'] = array();
+    $items['heroItems'] = array();
     $event = $this->getEvent();
     $artwork = $this->getArtwork();
     $article = $this->getArticle();
-    $artist = $this->getArtist();
+    $artist = $this->getArtist(true);
     $media = $this->getMedia();
+    $exhibition = $this->getExhibition();
 
-    array_push($items['heroExhibitions'], $event);
-    array_push($items['heroExhibitions'], $artwork);
-    array_push($items['heroExhibitions'], $article);
-    array_push($items['heroExhibitions'], $artist);
-    array_push($items['heroExhibitions'], $media);
+    array_push($items['heroItems'], $event);
+    array_push($items['heroItems'], $artwork);
+    array_push($items['heroItems'], $article);
+    array_push($items['heroItems'], $artist);
+    array_push($items['heroItems'], $media);
+    array_push($items['heroItems'], $event);
+    array_push($items['heroItems'], $exhibition);
 
     return view('statics/home', $items);
   }
 
   public function home_videos() {
     $items = $this->getHomepageItems();
-    $items['heroExhibitions'] = array();
+    $items['heroItems'] = array();
     $exhibition1 = $this->getExhibition();
     $exhibition2 = $this->getExhibition();
     $exhibition3 = $this->getEvent();
@@ -96,9 +99,9 @@ class StaticsController extends FrontController {
     $exhibition1->push('videoFront', $this->getVideo());
     $exhibition2->push('videoFront', $this->getVideo());
 
-    array_push($items['heroExhibitions'], $exhibition1);
-    array_push($items['heroExhibitions'], $exhibition2);
-    array_push($items['heroExhibitions'], $exhibition3);
+    array_push($items['heroItems'], $exhibition1);
+    array_push($items['heroItems'], $exhibition2);
+    array_push($items['heroItems'], $exhibition3);
 
     return view('statics/home', $items);
   }
@@ -1702,6 +1705,7 @@ class StaticsController extends FrontController {
       "slug" => "/statics/media",
       "title" => $this->faker->sentence(6, true),
       "image" => $this->getImage(),
+      "imageFront" => function () { return $this->getImage(); },
       "timeStamp" => $this->faker->time(),
       "embed" => $this->getEmbed(),
       "type" => 'media',
@@ -3257,7 +3261,7 @@ class StaticsController extends FrontController {
       'contrastHeader' => true,
       'filledLogo' => true,
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
-      'heroExhibitions' => $this->getExhibitions(3),
+      'heroItems' => $this->getExhibitions(3),
       'exhibitions' => $this->getExhibitions(2),
       'events' => $this->getEvents(4),
       'products' => $this->getProducts(5),
