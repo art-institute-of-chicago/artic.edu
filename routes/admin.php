@@ -47,7 +47,7 @@ Route::group(['prefix' => 'collection'], function () {
     Route::name('collection.artists.augment')->get('artists/augment/{datahub_id}', 'ArtistController@augment');
 
     Route::group(['prefix' => 'articles_publications'], function () {
-        Route::name('collection.articles_publications.landing')->get('landing', 'PageController@art');
+        Route::name('collection.articles_publications.landing')->get('landing', 'PageController@articles');
         Route::module('articles');
         Route::module('categories');
     });

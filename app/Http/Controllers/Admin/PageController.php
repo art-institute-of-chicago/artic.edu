@@ -82,7 +82,7 @@ class PageController extends ModuleController
     public function articles(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Articles'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.landing.articles'));
+        Session::put("pages_back_link", route('admin.collection.articles_publications.landing'));
         $additionalFieldsets = [];
         $fields = $this->form($page->id);
         $fields['additionalFieldsets'] = $additionalFieldsets;
