@@ -98,11 +98,6 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-newsletter_signup_inline',
             ],
-            'sponsor' => [
-                'title' => 'Sponsor',
-                'icon' => 'text',
-                'component' => 'a17-block-sponsor',
-            ],
             'footnote' => [
                 'title' => 'Footnote',
                 'icon' => 'text',

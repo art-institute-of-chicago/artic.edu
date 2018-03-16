@@ -152,25 +152,41 @@
         @endforeach
     @endif
 
-    @if ($item->sponsors)
+    @if (!empty($item->sponsors_description))
         @component('components.blocks._text')
             @slot('font', 'f-module-title-2')
             @slot('tag', 'h4')
             Sponsors
         @endcomponent
-        @component('components.blocks._blocks')
-            @slot('editorial', ($item->articleType === 'editorial'))
-            @slot('blocks', $item->sponsors ?? null)
+
+        @component('components.blocks._text')
+            {!! $item->sponsors_description !!}
         @endcomponent
     @endif
 
-    @if ($item->futherSupport)
+    @if ($item->sponsors()->count() > 0)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top o-blocks__block')
-            @slot('title', $item->futherSupport['title'] ?? null)
-            @slot('img', $item->futherSupport['logo'] ?? null)
-            @slot('text', $item->futherSupport['text'] ?? null)
+            @slot('title', $item->sponsors_sub_copy ?? "Further support has been provided by")
         @endcomponent
+
+        @foreach ($item->sponsors as $sponsor)
+            @component('components.molecules._m-row-block')
+                @slot('title', $sponsor->title ?? null)
+                @slot('img', $sponsor->imageFront('profile', 'default') ?? null)
+                @slot('text', $sponsor->copy ?? null)
+                @slot('imageSettings', array(
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '13',
+                          'small' => '13',
+                          'medium' => '8',
+                          'large' => '8',
+                          'xlarge' => '8',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
     @endif
 
     @component('components.molecules._m-article-actions')

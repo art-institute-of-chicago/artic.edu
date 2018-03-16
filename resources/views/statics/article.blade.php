@@ -274,6 +274,8 @@
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top o-blocks__block')
             @slot('title', $article->futherSupport['title'] ?? null)
+        @endcomponent
+        @component('components.molecules._m-row-block')
             @slot('img', $article->futherSupport['logo'] ?? null)
             @slot('text', $article->futherSupport['text'] ?? null)
             @slot('imageSettings', array(
