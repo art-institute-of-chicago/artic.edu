@@ -333,7 +333,7 @@
         @endcomponent
         <ul class="m-inline-list">
         @foreach ($item->topics as $topic)
-            <li class="m-inline-list__item"><a class="tag f-tag" href="{{ $topic['href'] }}">{{ $topic['label'] }}</a></li>
+            <li class="m-inline-list__item"><a class="tag f-tag" href="{{ $topic['href'] }}">{{ $topic['name'] }}</a></li>
         @endforeach
         </ul>
     @endif
