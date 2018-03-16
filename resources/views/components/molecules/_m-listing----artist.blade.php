@@ -1,7 +1,7 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
     <a href="{{ $item->slug }}" class="m-listing__link">
         @if ($item->imageFront())
-        <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--square' }}">
+        <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--square' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
             @if ($item->videoFront)
                 @component('components.atoms._video')
                     @slot('video', $item->videoFront)
@@ -17,7 +17,7 @@
             @endif
         </span>
         @endif
-        <span class="m-listing__meta">
+        <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
                 {{ $item->title }}

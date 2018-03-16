@@ -1,6 +1,6 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation) and $variation === 'o-pinboard__item') ? ' m-listing--variable-height' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag or 'li' }} class="m-listing{{ (isset($variation) and $variation === 'o-pinboard__item') ? ' m-listing--variable-height' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
     <a href="{{ route('artworks.show', $item) }}" class="m-listing__link">
-        <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--tall' }}">
+        <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
             @if ($item->videoFront)
                 @component('components.atoms._video')
                     @slot('video', $item->videoFront)
@@ -15,13 +15,15 @@
                 @endcomponent
             @endif
         </span>
-        <span class="m-listing__meta">
+        <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
             @if ( !empty( $item->sku ) )
                 <em class="type f-tag">{{ $item->sku }}</em>
                 <br>
             @endif
-
-            <strong class="title f-list-2">{{ $item->title }}</strong>
+            @component('components.atoms._title')
+                @slot('font', $titleFont ?? 'f-list-2')
+                {{ $item->title }}
+            @endcomponent
             <br>
             <span class="subtitle f-body">{{ $item->artist_display }}</span>
         </span>
