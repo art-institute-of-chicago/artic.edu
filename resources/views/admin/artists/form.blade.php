@@ -34,7 +34,7 @@
     <a17-fieldset id="attributes" title="Related">
 
         @formField('browser', [
-            'routePrefix' => 'whatson',
+            'routePrefix' => 'collection',
             'max' => 1,
             'moduleName' => 'artworks',
             'name' => 'featuredArtworks',

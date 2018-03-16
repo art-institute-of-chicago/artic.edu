@@ -84,6 +84,20 @@ return [
     'collection' => [
         'title' => 'Collection',
         'route' => 'admin.collection.landing',
+        'primary_navigation' => [
+            'collection' => [
+                'title' => 'Landing',
+                'route' => 'admin.collection.landing',
+            ],
+            'artworks' => [
+                'title' => 'Artworks',
+                'module' => true,
+            ],
+            'artists' => [
+                'title' => 'Artists',
+                'module' => true,
+            ],
+        ]
     ]
 
 
