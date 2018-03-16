@@ -46,7 +46,7 @@
         <br>
         <span class="m-listing__meta-bottom">
             @component('components.atoms._date')
-                {{ $item->timeStart }} &ndash; {{ $item->timeEnd }}
+                {!! $item->present()->nextOcurrenceTime !!}
             @endcomponent
 
             @switch ($item->present()->ticketStatus)
