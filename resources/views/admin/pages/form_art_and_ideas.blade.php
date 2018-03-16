@@ -5,7 +5,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'collection.articles_publications',
         'max' => 5,
         'moduleName' => 'articles',
         'name' => 'artArticles',

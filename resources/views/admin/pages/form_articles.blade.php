@@ -1,6 +1,6 @@
 @section('contentFields')
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'collection.articles_publications',
         'max' => 3,
         'moduleName' => 'articles',
         'name' => 'articlesArticles',

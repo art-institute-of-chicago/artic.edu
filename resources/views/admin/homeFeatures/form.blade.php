@@ -31,7 +31,7 @@
 {{--
     #2 Removed for now?
      @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'collection',
         'moduleName' => 'artworks',
         'name' => 'artworks',
         'label' => 'Artworks'

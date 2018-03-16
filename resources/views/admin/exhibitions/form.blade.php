@@ -99,7 +99,7 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'whatson',
+            'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'articles',
             'name' => 'articles',
             'label' => 'Related articles',
