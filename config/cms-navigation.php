@@ -25,6 +25,20 @@ return [
                 'title' => 'Landing',
                 'route' => 'admin.visit.landing',
             ],
+
+            'fees' => [
+                'title' => 'Admission Fees',
+                'route' => 'admin.visit.fees',
+            ],
+            'feeAges' => [
+                'title' => 'Admission Ages',
+                'module' => true,
+            ],
+            'feeCategories' => [
+                'title' => 'Admission Categories',
+                'module' => true,
+            ],
+
             'hours' => [
                 'title' => 'Hours',
                 'module' => true,
@@ -84,32 +98,8 @@ return [
     //     ],
     // ],
     // 'landing' => [
-    //     'title' => "Pages",
-    //     'route' => 'admin.landing.home.page',
     //
     //     'primary_navigation' => [
-    //         'home' => [
-    //             'title' => 'Homepage',
-    //             'route' => 'admin.landing.home.page',
-    //             'secondary_navigation' => [
-    //                 'page' => [
-    //                     'title' => 'Landing',
-    //                     'route' => 'admin.landing.home.page',
-    //                 ],
-    //                 'homeFeatures' => [
-    //                     'title' => 'Home Features',
-    //                     'module' => true,
-    //                 ],
-    //             ],
-    //         ],
-    //         'exhibitions' => [
-    //             'title' => 'Exhibitions & Events',
-    //             'route' => 'admin.landing.exhibitions',
-    //         ],
-    //         'exhibition_history' => [
-    //             'title' => 'Exhibition History',
-    //             'route' => 'admin.landing.exhibition_history',
-    //         ],
     //         'art' => [
     //             'title' => 'Art & Ideas',
     //             'route' => 'admin.landing.art',

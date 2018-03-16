@@ -13,6 +13,10 @@ Route::group(['prefix' => 'visit'], function () {
     Route::module('closures');
     Route::module('sponsors');
     Route::module('questions');
+    Route::module('feeAges');
+    Route::module('feeCategories');
+    Route::name('visit.fees')->get('fees', 'FeeController@index');
+    Route::name('visit.fees.update')->post('fees', 'FeeController@update');
 });
 
 Route::group(['prefix' => 'exhibitions_events'], function () {
