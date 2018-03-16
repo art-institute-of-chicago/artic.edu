@@ -37,13 +37,6 @@
         'label' => 'Pricing or attendance information',
     ])
 
-    @formField('block_editor', [
-        'blocks' => [
-            'event', 'paragraph', 'image', 'video', 'gallery',
-            'media_embed', 'quote', 'list', 'accordion', 'newsletter_signup_inline'
-        ]
-    ])
-
     @formField('input', [
         'name' => 'sponsors_description',
         'label' => 'Sponsors section description',
@@ -63,6 +56,13 @@
         'label' => 'Sponsors',
         'note' => 'Select Sponsors',
         'max' => 20
+    ])
+
+    @formField('block_editor', [
+        'blocks' => [
+            'event', 'paragraph', 'image', 'video', 'gallery',
+            'media_embed', 'quote', 'list', 'accordion', 'newsletter_signup_inline'
+        ]
     ])
 @stop
 
