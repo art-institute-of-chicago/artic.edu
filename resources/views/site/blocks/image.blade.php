@@ -12,7 +12,14 @@
             "srcset" => $image['src'],
             "width" => $image['width'],
             "height" => $image['height'],
-        ]
+            "shareUrl" => '#',
+            "shareTitle" => $block->input('caption'),
+            "downloadUrl" => $image['src'],
+            "downloadName" => '',
+            "credit" => '',
+            "creditUrl" => '',
+        ],
+        'caption' => $block->input('caption')
     ])
 @endcomponent
 
