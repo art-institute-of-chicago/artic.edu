@@ -22,6 +22,8 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
     Route::name('exhibitions_events.exhibitions.augment')->get('exhibitions/augment/{datahub_id}', 'ExhibitionController@augment');
 
     Route::module('events');
+
+    Route::name('exhibitions_events.history')->get('history', 'PageController@exhibitionHistory');
 });
 
 // Route::group(['prefix' => 'landing'], function () {

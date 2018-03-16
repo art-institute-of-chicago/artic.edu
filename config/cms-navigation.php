@@ -60,6 +60,10 @@ return [
                 'title' => 'Events',
                 'module' => true,
             ],
+            'history' => [
+                'title' => 'History Landing',
+                'route' => 'admin.exhibitions_events.history',
+            ],
         ]
     ]
 
