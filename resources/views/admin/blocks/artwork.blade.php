@@ -1,5 +1,5 @@
 @formField('browser', [
-    'routePrefix' => 'whatson',
+    'routePrefix' => 'collection',
     'name' => 'artworks',
     'moduleName' => 'artworks',
     'label' => 'Artworks',

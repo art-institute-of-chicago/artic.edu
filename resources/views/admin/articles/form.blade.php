@@ -76,7 +76,7 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'whatson',
+            'routePrefix' => 'collection',
             'name' => 'selections',
             'moduleName' => 'selections',
             'max' => 1,

@@ -41,7 +41,7 @@ class ArticleRepository extends ModuleRepository
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events');
 
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
-        $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'whatson');
+        $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'collection');
 
         return $fields;
     }

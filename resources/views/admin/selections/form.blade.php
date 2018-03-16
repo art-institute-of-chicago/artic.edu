@@ -26,7 +26,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'collection',
         'name' => 'artworks',
         'moduleName' => 'artworks',
         'label' => 'Artworks',
@@ -34,7 +34,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'collection.articles_publications',
         'moduleName' => 'articles',
         'name' => 'articles',
         'label' => 'Article'

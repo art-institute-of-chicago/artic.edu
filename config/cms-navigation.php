@@ -115,6 +115,10 @@ return [
                     ]
                 ],
             ],
+            'selections' => [
+                'title' => 'Selections',
+                'module' => true,
+            ],
         ]
     ]
 

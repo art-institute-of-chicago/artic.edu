@@ -43,6 +43,8 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('categories');
     });
 
+    Route::module('selections');
+
 });
 
 // Route::group(['prefix' => 'landing'], function () {
@@ -66,8 +68,6 @@ Route::group(['prefix' => 'collection'], function () {
 Route::group(['prefix' => 'whatson'], function () {
 
     Route::module('shopItems');
-
-    Route::module('selections');
 
     Route::module('galleries');
     Route::name('whatson.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');
