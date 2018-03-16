@@ -101,6 +101,10 @@ return [
                 'title' => 'Landing',
                 'route' => 'admin.collection.landing',
             ],
+            'collection_features' => [
+                'title' => 'Features',
+                'module' => true,
+            ],
             'artworks' => [
                 'title' => 'Artworks',
                 'module' => true,

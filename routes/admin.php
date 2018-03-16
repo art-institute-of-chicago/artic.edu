@@ -40,6 +40,7 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 
 Route::group(['prefix' => 'collection'], function () {
     Route::name('collection.landing')->get('landing', 'PageController@collection');
+    Route::module('collectionFeatures');
     Route::module('artworks');
     Route::name('collection.artworks.augment')->get('artworks/augment/{datahub_id}', 'ArtworkController@augment');
     Route::module('artists');
