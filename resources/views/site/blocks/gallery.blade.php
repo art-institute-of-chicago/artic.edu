@@ -4,6 +4,7 @@
     $items = [];
     foreach ($block->childs as $item) {
         $item->type = 'image';
+        $item->size = 'gallery';
         $item->media = $item->imageAsArray('image', 'desktop');
         $item->captionTitle = $item->input('captionTitle');
         $item->caption = $item->input('caption');
@@ -40,5 +41,6 @@
     @slot('variation', 'o-blocks__block')
     @slot('title', $block->input('title'))
     @slot('caption', $block->input('description'))
+    @slot('allLink', null);
     @slot('items', $items)
 @endcomponent
