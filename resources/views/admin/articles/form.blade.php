@@ -68,7 +68,7 @@
     <a17-fieldset id="attributes" title="Related">
 
         @formField('browser', [
-            'routePrefix' => 'whatson',
+            'routePrefix' => 'collection.articles_publications',
             'name' => 'articles',
             'moduleName' => 'articles',
             'max' => 1,
@@ -84,7 +84,7 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'whatson',
+            'routePrefix' => 'collection',
             'name' => 'artworks',
             'moduleName' => 'artworks',
             'label' => 'Artworks',
@@ -92,7 +92,7 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'whatson',
+            'routePrefix' => 'exhibitions_events',
             'name' => 'exhibitions',
             'moduleName' => 'exhibitions',
             'max' => 1,

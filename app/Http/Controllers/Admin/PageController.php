@@ -52,7 +52,7 @@ class PageController extends ModuleController
     public function art(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Art and Ideas'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.landing.art'));
+        Session::put("pages_back_link", route('admin.collection.articles_publications.landing'));
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);

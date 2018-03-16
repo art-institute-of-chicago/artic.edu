@@ -97,6 +97,24 @@ return [
                 'title' => 'Artists',
                 'module' => true,
             ],
+            'articles_publications' => [
+                'title' => 'Articles & Publications',
+                'route' => 'admin.collection.articles_publications.landing',
+                'secondary_navigation' => [
+                    'landing' => [
+                        'title' => 'Landing',
+                        'route' => 'admin.collection.articles_publications.landing',
+                    ],
+                    'articles' => [
+                        'title' => 'Articles',
+                        'module' => true,
+                    ],
+                    'categories' => [
+                        'title' => 'Categories',
+                        'module' => true,
+                    ]
+                ],
+            ],
         ]
     ]
 

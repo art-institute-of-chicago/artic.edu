@@ -37,6 +37,12 @@ Route::group(['prefix' => 'collection'], function () {
     Route::module('artists');
     Route::name('collection.artists.augment')->get('artists/augment/{datahub_id}', 'ArtistController@augment');
 
+    Route::group(['prefix' => 'articles_publications'], function () {
+        Route::name('collection.articles_publications.landing')->get('landing', 'PageController@art');
+        Route::module('articles');
+        Route::module('categories');
+    });
+
 });
 
 // Route::group(['prefix' => 'landing'], function () {
@@ -61,7 +67,6 @@ Route::group(['prefix' => 'whatson'], function () {
 
     Route::module('shopItems');
 
-    Route::module('articles');
     Route::module('selections');
 
     Route::module('galleries');
