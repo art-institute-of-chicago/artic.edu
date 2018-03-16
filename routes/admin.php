@@ -55,16 +55,10 @@ Route::group(['prefix' => 'collection'], function () {
 
 });
 
-//
-// Route::group(['prefix' => 'general'], function () {
-//     Route::module('categories');
-//     Route::module('siteTags');
-//     Route::module('sponsors');
-//     Route::module('admissions');
-//     Route::module('locations');
-//     Route::module('shopItems');
-//     Route::module('searchTerms');
-// });
+Route::group(['prefix' => 'general'], function () {
+    Route::module('siteTags');
+    Route::module('searchTerms');
+});
 
 Route::get('/', function () {
     return redirect()->route('admin.homepage.landing');
