@@ -102,6 +102,18 @@ class PageController extends ModuleController
         return view('admin.pages.form', $fields);
     }
 
+    public function collection(PageRepository $pages)
+    {
+        abort_unless($page = $pages->byName('Collection'), 500, self::MISSING_CMS_PAGE_MESSAGE);
+        Session::put("pages_back_link", route('admin.collection.landing'));
+
+        $additionalFieldsets = [];
+        $fields = $this->form($page->id);
+        $fields['additionalFieldsets'] = $additionalFieldsets;
+
+        return view('admin.pages.form', $fields);
+    }
+
     protected function getRoutePrefix()
     {
         return null;

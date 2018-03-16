@@ -30,6 +30,11 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
     Route::name('exhibitions_events.history')->get('history', 'PageController@exhibitionHistory');
 });
 
+Route::group(['prefix' => 'collection'], function () {
+    Route::name('collection.landing')->get('landing', 'PageController@collection');
+
+});
+
 // Route::group(['prefix' => 'landing'], function () {
 //     Route::group(['prefix' => 'home'], function () {
 //        Route::name('landing.home.page')->get('page', 'PageController@home');

@@ -79,6 +79,11 @@ return [
                 'route' => 'admin.exhibitions_events.history',
             ],
         ]
+    ],
+
+    'collection' => [
+        'title' => 'Collection',
+        'route' => 'admin.collection.landing',
     ]
 
 
