@@ -23,6 +23,8 @@ Route::group(['prefix' => 'visit'], function () {
 
     Route::module('departments');
     Route::name('visit.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
+
+    Route::module('shopItems');
 });
 
 Route::group(['prefix' => 'exhibitions_events'], function () {
@@ -53,9 +55,6 @@ Route::group(['prefix' => 'collection'], function () {
 
 });
 
-Route::group(['prefix' => 'whatson'], function () {
-    Route::module('shopItems');
-});
 //
 // Route::group(['prefix' => 'general'], function () {
 //     Route::module('categories');

@@ -63,6 +63,10 @@ return [
                 'title' => 'Departments',
                 'module' => true,
             ],
+            'shopItems' => [
+                'title' => 'Shop',
+                'module' => true,
+            ],
         ]
     ],
 

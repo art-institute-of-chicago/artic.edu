@@ -57,7 +57,7 @@ class PageRepository extends ModuleRepository
         // Homepage
         $fields['browsers']['homeExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'homeExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
         $fields['browsers']['homeEvents'] = $this->getFormFieldsForBrowser($object, 'homeEvents', 'exhibitions_events', 'title', 'events');
-        $fields['browsers']['homeShopItems'] = $this->getFormFieldsForBrowserApi($object, 'homeShopItems', 'App\Models\Api\ShopItem', 'whatson');
+        $fields['browsers']['homeShopItems'] = $this->getFormFieldsForBrowserApi($object, 'homeShopItems', 'App\Models\Api\ShopItem', 'visit');
         $fields['browsers']['homeFeatures'] = $this->getFormFieldsForBrowser($object, 'homeFeatures', 'homepage', 'title', 'homeFeatures');
 
         // Exhibition & Events
@@ -69,10 +69,10 @@ class PageRepository extends ModuleRepository
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'locations', 'Location');
 
         // Articles
-        $fields['browsers']['articlesArticles'] = $this->getFormFieldsForBrowser($object, 'articlesArticles', 'whatson', 'title', 'articles');
+        $fields['browsers']['articlesArticles'] = $this->getFormFieldsForBrowser($object, 'articlesArticles', 'collection.articles_publications', 'title', 'articles');
 
         // Art & Ideas
-        $fields['browsers']['artArticles'] = $this->getFormFieldsForBrowser($object, 'artArticles', 'whatson', 'title', 'articles');
+        $fields['browsers']['artArticles'] = $this->getFormFieldsForBrowser($object, 'artArticles', 'collection.articles_publications', 'title', 'articles');
 
         return $fields;
     }

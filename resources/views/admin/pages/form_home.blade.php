@@ -30,7 +30,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'visit',
         'max' => 5,
         'moduleName' => 'shopItems',
         'name' => 'homeShopItems',
