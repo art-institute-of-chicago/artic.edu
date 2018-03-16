@@ -90,7 +90,7 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'whatson',
+            'routePrefix' => 'exhibitions_events',
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Related events',

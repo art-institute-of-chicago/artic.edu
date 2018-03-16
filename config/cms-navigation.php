@@ -56,6 +56,10 @@ return [
                 'title' => 'Exhibitions',
                 'module' => true,
             ],
+            'events' => [
+                'title' => 'Events',
+                'module' => true,
+            ],
         ]
     ]
 

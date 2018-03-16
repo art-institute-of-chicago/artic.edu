@@ -21,6 +21,7 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
     Route::module('exhibitions');
     Route::name('exhibitions_events.exhibitions.augment')->get('exhibitions/augment/{datahub_id}', 'ExhibitionController@augment');
 
+    Route::module('events');
 });
 
 // Route::group(['prefix' => 'landing'], function () {
@@ -49,7 +50,6 @@ Route::group(['prefix' => 'whatson'], function () {
 
     Route::module('shopItems');
 
-    Route::module('events');
     Route::module('articles');
     Route::module('selections');
 
