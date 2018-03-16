@@ -40,7 +40,7 @@ class PageController extends ModuleController
     public function exhibitions(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Exhibitions and Events'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.landing.exhibitions'));
+        Session::put("pages_back_link", route('admin.exhibitions_events.landing'));
 
         $additionalFieldsets = [];
         $fields = $this->form($page->id);

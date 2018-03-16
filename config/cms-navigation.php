@@ -44,6 +44,18 @@ return [
         ]
     ],
 
+    'exhibitions_events' => [
+        'title' => 'Exhibitions & Events',
+        'route' => 'admin.exhibitions_events.landing',
+        'primary_navigation' => [
+            'exhibitions_events' => [
+                'title' => 'Landing',
+                'route' => 'admin.exhibitions_events.landing',
+            ],
+        ]
+    ]
+
+
     // 'featured' => [
     //     'title' => 'Features',
     //     'route' => 'admin.featured.homepage',

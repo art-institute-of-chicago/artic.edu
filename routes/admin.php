@@ -13,8 +13,10 @@ Route::group(['prefix' => 'visit'], function () {
     Route::module('closures');
     Route::module('sponsors');
     Route::module('questions');
-    Route::module('admissions');
-    Route::module('locations');
+});
+
+Route::group(['prefix' => 'exhibitions_events'], function () {
+    Route::name('exhibitions_events.landing')->get('landing', 'PageController@exhibitions');
 });
 
 // Route::group(['prefix' => 'landing'], function () {
@@ -57,12 +59,9 @@ Route::group(['prefix' => 'whatson'], function () {
 });
 //
 // Route::group(['prefix' => 'general'], function () {
-//     Route::module('hours');
-//     Route::module('closures');
 //     Route::module('categories');
 //     Route::module('siteTags');
 //     Route::module('sponsors');
-//     Route::module('questions');
 //     Route::module('admissions');
 //     Route::module('locations');
 //     Route::module('shopItems');
