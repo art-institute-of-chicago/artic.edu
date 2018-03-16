@@ -26,7 +26,7 @@ class PageController extends ModuleController
     public function home(PageRepository $pages)
     {
         abort_unless($page = $pages->byName('Home'), 500, self::MISSING_CMS_PAGE_MESSAGE);
-        Session::put("pages_back_link", route('admin.landing.home.page'));
+        Session::put("pages_back_link", route('admin.homepage.landing'));
         return view('admin.pages.form', $this->form($page->id));
     }
 

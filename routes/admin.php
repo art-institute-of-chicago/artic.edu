@@ -2,24 +2,29 @@
 
 Route::module('pages');
 
-Route::group(['prefix' => 'landing'], function () {
-    Route::group(['prefix' => 'home'], function () {
-       Route::name('landing.home.page')->get('page', 'PageController@home');
-       Route::module('homeFeatures');
-     });
-   Route::name('landing.exhibitions')->get('exhibitions', 'PageController@exhibitions');
-    Route::name('landing.exhibition_history')->get('exhibitions_history', 'PageController@exhibitionHistory');
-    Route::name('landing.art')->get('art', 'PageController@art');
-    Route::group(['prefix' => 'visit'], function () {
-        Route::name('landing.visit.page')->get('page', 'PageController@visit');
-        Route::module('feeAges');
-        Route::module('feeCategories');
-        Route::name('landing.visit.fees')->get('/fees', 'FeeController@index');
-        Route::name('landing.visit.fees.update')->post('/fees', 'FeeController@update');
-    });
-    Route::name('landing.articles')->get('articles', 'PageController@articles');
+Route::group(['prefix' => 'homepage'], function () {
+    Route::name('homepage.landing')->get('landing', 'PageController@home');
+    Route::module('homeFeatures');
 });
 
+// Route::group(['prefix' => 'landing'], function () {
+//     Route::group(['prefix' => 'home'], function () {
+//        Route::name('landing.home.page')->get('page', 'PageController@home');
+//        Route::module('homeFeatures');
+//      });
+//    Route::name('landing.exhibitions')->get('exhibitions', 'PageController@exhibitions');
+//     Route::name('landing.exhibition_history')->get('exhibitions_history', 'PageController@exhibitionHistory');
+//     Route::name('landing.art')->get('art', 'PageController@art');
+//     Route::group(['prefix' => 'visit'], function () {
+//         Route::name('landing.visit.page')->get('page', 'PageController@visit');
+//         Route::module('feeAges');
+//         Route::module('feeCategories');
+//         Route::name('landing.visit.fees')->get('/fees', 'FeeController@index');
+//         Route::name('landing.visit.fees.update')->post('/fees', 'FeeController@update');
+//     });
+//     Route::name('landing.articles')->get('articles', 'PageController@articles');
+// });
+//
 Route::group(['prefix' => 'whatson'], function () {
     Route::module('exhibitions');
     Route::name('whatson.exhibitions.augment')->get('exhibitions/augment/{datahub_id}', 'ExhibitionController@augment');
@@ -40,20 +45,20 @@ Route::group(['prefix' => 'whatson'], function () {
     Route::module('departments');
     Route::name('whatson.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
 });
-
-Route::group(['prefix' => 'general'], function () {
-    Route::module('hours');
-    Route::module('closures');
-    Route::module('categories');
-    Route::module('siteTags');
-    Route::module('sponsors');
-    Route::module('questions');
-    Route::module('admissions');
-    Route::module('locations');
-    Route::module('shopItems');
-    Route::module('searchTerms');
-});
+//
+// Route::group(['prefix' => 'general'], function () {
+//     Route::module('hours');
+//     Route::module('closures');
+//     Route::module('categories');
+//     Route::module('siteTags');
+//     Route::module('sponsors');
+//     Route::module('questions');
+//     Route::module('admissions');
+//     Route::module('locations');
+//     Route::module('shopItems');
+//     Route::module('searchTerms');
+// });
 
 Route::get('/', function () {
-    return redirect()->route('admin.featured.homepage');
-});
+    return redirect()->route('admin.homepage.landing');
+})->name('home');

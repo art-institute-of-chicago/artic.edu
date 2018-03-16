@@ -5,7 +5,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'landing.home',
+    'routePrefix' => 'homepage',
         'max' => 10,
         'moduleName' => 'homeFeatures',
         'name' => 'homeFeatures',

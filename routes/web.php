@@ -58,4 +58,4 @@ Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
 // Generic Page
-Route::name('pages.show')->get('/{slug}', 'PagesController@show');
+// Route::name('pages.show')->get('/{slug}', 'PagesController@show');
