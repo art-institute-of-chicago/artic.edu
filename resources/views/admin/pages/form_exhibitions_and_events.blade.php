@@ -9,7 +9,7 @@
         'max' => 2,
         'moduleName' => 'exhibitions',
         'name' => 'exhibitionsExhibitions',
-        'label' => 'Featured Exhibitions'
+        'label' => 'Featured exhibitions'
     ])
 
     @formField('browser', [
@@ -17,6 +17,6 @@
         'max' => 20,
         'moduleName' => 'exhibitions',
         'name' => 'exhibitionsCurrent',
-        'label' => 'Listing Exhibitions'
+        'label' => 'Listing exhibitions'
     ])
 @stop
