@@ -1,3 +1,4 @@
+/*
 .g-modal {
   display: none;
   position: fixed;
@@ -5,7 +6,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: map-get($zindexs, 'modal');
   height: 100%;
   width: 100%;
   // display: flex;
@@ -26,138 +27,195 @@
   max-height: 100%;
   overflow-y: auto;
 }
+*/
 
-.g-modal__content {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-}
-
-.g-modal__image {
+.g-modal {
   display: none;
-  position: relative;
-  overflow: hidden;
-
-  @include breakpoint('medium+') {
-    display: block
-  }
-
-  @include breakpoint('medium') {
-    width: colspan(25, 'medium');
-  }
-
-  @include breakpoint('large') {
-    width: colspan(20, 'large');
-  }
-
-  @include breakpoint('xlarge') {
-    width: colspan(20, 'xlarge');
-  }
-}
-
-.g-modal__image img {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  z-index: map-get($zindexs, 'modal');
   left: 0;
   right: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
+  top: 0;
+  bottom: 0;
+  max-width: 100vw;
+  max-height: 100vh;
+  background-color: $color__white;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 
-.g-modal__main {
-  position: relative;
-  padding: 16px 40px 40px;
-  background-color: $color__bg;
-
-  @include breakpoint('xsmall') {
-    padding-left: map-get($outer-gutters, 'xsmall');
-    padding-right: map-get($outer-gutters, 'xsmall');
-  }
-
-  @include breakpoint('small') {
-    padding-left: map-get($outer-gutters, 'small');
-    padding-right: map-get($outer-gutters, 'small');
-  }
-
-  @include breakpoint('medium') {
-    width: colspan(33, 'medium');
-  }
-
-  @include breakpoint('large') {
-    width: colspan(28, 'large');
-  }
-
-  @include breakpoint('xlarge') {
-    width: colspan(28, 'xlarge');
+  @include breakpoint('small+') {
+    left: 50%;
+    right: auto;
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
   }
 }
 
-.g-modal__close {
-  position: absolute;
-  top: 22px;
-  right: 22px;
-  color: $color__text--forms;
+
+.g-modal--media {
+  .g-modal__content {
+    display: block;
+    width: 90vw;
+    max-width: 160vh; // stops a 16:9 thing growing taller than 90% of total vh
+    height: 0;
+    padding-bottom: percentage(9 / 16); // 16:9
+  }
+
+  iframe {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
-.g-modal__title {
-  @extend %f-display-1;
-}
 
-.g-modal__intro {
-  @extend %f-module-title-1;
-  margin-top: 24px;
-  color: $color__text--secondary;
-}
+.g-modal--promo {
 
-.g-modal__form {
-  margin-top: 44px;
-}
-
-.g-modal__form-row {
-  margin-top: 16px;
-}
-
-.g-modal__form-row:first-child {
-  margin-top: 0;
-}
-
-.g-modal__form-row p {
-}
-
-.g-modal__form-row--split {
-  @include breakpoint('medium+') {
+  .g-modal__content {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: center;
   }
-}
 
-.g-modal__form-row--split p {
-  width: 100%;
-  margin-top: 16px;
+  .g-modal__image {
+    display: none;
+    position: relative;
+    overflow: hidden;
 
-  @include breakpoint('medium+') {
-    margin-left: 20px;
+    @include breakpoint('medium+') {
+      display: block
+    }
+
+    @include breakpoint('medium') {
+      width: colspan(25, 'medium');
+    }
+
+    @include breakpoint('large') {
+      width: colspan(20, 'large');
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(20, 'xlarge');
+    }
+  }
+
+  .g-modal__image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .g-modal__main {
+    position: relative;
+    padding: 16px 40px 40px;
+    background-color: $color__bg;
+
+    @include breakpoint('xsmall') {
+      padding-left: map-get($outer-gutters, 'xsmall');
+      padding-right: map-get($outer-gutters, 'xsmall');
+    }
+
+    @include breakpoint('small') {
+      padding-left: map-get($outer-gutters, 'small');
+      padding-right: map-get($outer-gutters, 'small');
+    }
+
+    @include breakpoint('medium') {
+      width: colspan(33, 'medium');
+    }
+
+    @include breakpoint('large') {
+      width: colspan(28, 'large');
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(28, 'xlarge');
+    }
+  }
+
+  .g-modal__close {
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    padding: 0;
+    border: 0 none;
+    background: transparent;
+    color: $color__text--forms;
+    cursor: pointer;
+  }
+
+  .g-modal__close:hover {
+    color: $color__text;
+  }
+
+  .g-modal__title {
+    @extend %f-display-1;
+  }
+
+  .g-modal__intro {
+    @extend %f-module-title-1;
+    margin-top: 24px;
+    color: $color__text--secondary;
+  }
+
+  .g-modal__form {
+    margin-top: 44px;
+  }
+
+  .g-modal__form-row {
+    margin-top: 16px;
+  }
+
+  .g-modal__form-row:first-child {
     margin-top: 0;
   }
-}
 
-.g-modal__form-row--split p:first-child {
-  margin-top: 0;
-  margin-left: 0;
-}
+  .g-modal__form-row p {
+  }
 
-.g-modal__form-row--submit {
-  margin-top: 24px;
-}
+  .g-modal__form-row--split {
+    @include breakpoint('medium+') {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+    }
+  }
 
-.g-modal__form-row--submit button {
-  width: 100%;
-}
+  .g-modal__form-row--split p {
+    width: 100%;
+    margin-top: 16px;
 
-.g-modal__form-note {
-  @extend %f-caption;
-  margin-top: 32px;
-  color: $color__text--secondary;
+    @include breakpoint('medium+') {
+      margin-left: 20px;
+      margin-top: 0;
+    }
+  }
+
+  .g-modal__form-row--split p:first-child {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .g-modal__form-row--submit {
+    margin-top: 24px;
+  }
+
+  .g-modal__form-row--submit button {
+    width: 100%;
+  }
+
+  .g-modal__form-note {
+    @extend %f-caption;
+    margin-top: 32px;
+    color: $color__text--secondary;
+  }
 }

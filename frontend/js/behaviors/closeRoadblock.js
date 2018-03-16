@@ -1,20 +1,11 @@
 import { purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
 
-const triggerMediaModal = function(container) {
+const closeRoadblock = function(container) {
 
   function _handleClicks(event) {
-    var textarea = container.querySelector('textarea');
-    if (textarea) {
-      var embedCode = textarea.value;
-      if (embedCode) {
-        event.preventDefault();
-        event.stopPropagation();
-        triggerCustomEvent(document, 'modal:open', {
-          type: 'media',
-          embedCode: embedCode,
-        });
-      }
-    }
+    event.preventDefault();
+    event.stopPropagation();
+    triggerCustomEvent(document, 'roadblock:close');
   }
 
   function _init() {
@@ -34,5 +25,4 @@ const triggerMediaModal = function(container) {
   };
 };
 
-export default triggerMediaModal;
-
+export default closeRoadblock;

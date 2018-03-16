@@ -1,4 +1,4 @@
-.s-modal-active {
+.s-roadblock-active {
 
   #a17 {
     @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
@@ -6,7 +6,7 @@
     }
   }
 
-  .g-modal:not(.g-modal--promo) {
+  .g-modal--promo {
     display: block;
     animation: reveal .2s $bezier--bounce normal forwards;
 
@@ -19,7 +19,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba($color__black--80, .5);
-    opacity: 1;
+      opacity: 1;
 
     @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
       -webkit-backdrop-filter: blur(5px);

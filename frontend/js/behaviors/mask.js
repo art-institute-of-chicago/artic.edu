@@ -2,7 +2,9 @@ import { purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
 
 const mask = function(container) {
 
-  function _handleClicks() {
+  function _handleClicks(event) {
+    event.preventDefault();
+    event.stopPropagation();
     container.blur();
     triggerCustomEvent(document, 'shareMenu:close');
     triggerCustomEvent(document, 'selectDate:close');
@@ -11,6 +13,7 @@ const mask = function(container) {
     triggerCustomEvent(document, 'collectionFilters:close');
     triggerCustomEvent(document, 'infoButtonInfo:close');
     triggerCustomEvent(document, 'modal:close');
+    triggerCustomEvent(document, 'roadblock:close');
     triggerCustomEvent(document, 'globalSearch:close');
   }
 

@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers } from './functions';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals } from './functions';
 import lazyLoad from './libs/lazyLoad';
 /*
 
@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function(){
   focusDisplayHandler();
   // scroll anchor links
   anchorLinksScroll();
+  // listen for modal open/close requests (including roadblock close)
+  modals();
   // listen for ajax page load type events
   ajaxPageLoad();
   ajaxPageLoadMaskToggle();

@@ -39,7 +39,7 @@
     alt="{{ $image['alt'] ?? '' }}{{ $alt ?? '' }}"
     class="{{ $image['class'] ?? '' }} {{ $class ?? '' }}"
     src="{{ $src ?? '' }}"
-    @if (isset($_GET['print']))
+    @if (isset($_GET['print']) or (isset($settings['lazyload']) and $settings['lazyload'] === false))
     srcset="{{ $srcset ?? '' }}"
     @else
     data-srcset="{{ $srcset ?? '' }}"

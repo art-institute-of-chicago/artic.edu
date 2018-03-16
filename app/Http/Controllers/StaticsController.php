@@ -61,9 +61,9 @@ class StaticsController extends FrontController {
     return view('statics/home', $this->getHomepageItems());
   }
 
-  public function modal1() {
+  public function roadblock1() {
     $items = $this->getHomepageItems();
-    $items['modal'] = [
+    $items['roadblock'] = [
         'title' => 'Avoid the crowds and save 20%',
         'intro' => $this->faker->paragraph(),
         'image' => false
@@ -72,9 +72,9 @@ class StaticsController extends FrontController {
     return view('statics/home', $items);
   }
 
-  public function modal2() {
+  public function roadblock2() {
     $items = $this->getHomepageItems();
-    $items['modal'] = [
+    $items['roadblock'] = [
         'title' => 'Enjoy Exclusing Access Today',
         'intro' => $this->faker->paragraph(),
         'image' => $this->getImage(400, 600)
@@ -1691,9 +1691,16 @@ class StaticsController extends FrontController {
   }
 
   private function getEmbed() {
-    $embed = array(
-        'embed' => '<iframe width="560" height="315" data-src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
-    );
+    $embed = array();
+    if ($this->faker->boolean()) {
+        $embed = array(
+            'embed' => '<iframe width="560" height="315" data-src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
+        );
+    } else {
+        $embed = array(
+            'embed' => '<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/197955759&color=%23b50938&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>',
+        );
+    }
     return $embed;
   }
 
