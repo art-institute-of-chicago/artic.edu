@@ -57,7 +57,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'general',
+        'routePrefix' => 'visit',
         'moduleName' => 'sponsors',
         'name' => 'sponsors',
         'label' => 'Sponsors',
@@ -83,7 +83,7 @@
     </a17-fieldset>
     <a17-fieldset id="related" title="Related">
         @formField('browser', [
-            'routePrefix' => 'whatson',
+            'routePrefix' => 'exhibitions_events',
             'max' => 4,
             'name' => 'exhibitions',
             'label' => 'Related Exhibitions'

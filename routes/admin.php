@@ -17,6 +17,10 @@ Route::group(['prefix' => 'visit'], function () {
 
 Route::group(['prefix' => 'exhibitions_events'], function () {
     Route::name('exhibitions_events.landing')->get('landing', 'PageController@exhibitions');
+
+    Route::module('exhibitions');
+    Route::name('exhibitions_events.exhibitions.augment')->get('exhibitions/augment/{datahub_id}', 'ExhibitionController@augment');
+
 });
 
 // Route::group(['prefix' => 'landing'], function () {
@@ -38,8 +42,6 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 // });
 //
 Route::group(['prefix' => 'whatson'], function () {
-    Route::module('exhibitions');
-    Route::name('whatson.exhibitions.augment')->get('exhibitions/augment/{datahub_id}', 'ExhibitionController@augment');
     Route::module('artworks');
     Route::name('whatson.artworks.augment')->get('artworks/augment/{datahub_id}', 'ArtworkController@augment');
     Route::module('artists');

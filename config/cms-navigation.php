@@ -52,6 +52,10 @@ return [
                 'title' => 'Landing',
                 'route' => 'admin.exhibitions_events.landing',
             ],
+            'exhibitions' => [
+                'title' => 'Exhibitions',
+                'module' => true,
+            ],
         ]
     ]
 

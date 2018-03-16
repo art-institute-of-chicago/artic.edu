@@ -5,7 +5,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'exhibitions_events',
         'max' => 2,
         'moduleName' => 'exhibitions',
         'name' => 'exhibitionsExhibitions',
@@ -13,7 +13,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'exhibitions_events',
         'max' => 20,
         'moduleName' => 'exhibitions',
         'name' => 'exhibitionsCurrent',
