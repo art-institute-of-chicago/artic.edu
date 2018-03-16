@@ -44,8 +44,9 @@
     margin-top: 0;
     margin-right: colspan(2, large);
 
-    &.o-article__primary-actions--inline-header {
-      //margin-top: 40px;
+    //&.o-article__primary-actions--inline-header {
+    .m-article-header--gallery ~ & {
+      margin-top: 40px;
     }
   }
 
