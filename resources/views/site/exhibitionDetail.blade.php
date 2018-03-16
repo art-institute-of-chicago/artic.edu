@@ -79,13 +79,14 @@
   @endif
 
   <div class="o-article__body o-blocks">
+    {!! $item->renderBlocks(false) !!}
 
     {{-- Print blocks --}}
-    @component('components.blocks._blocks')
+    {{-- @component('components.blocks._blocks')
         @slot('editorial', false)
         @slot('blocks', $item->blocks ?? null)
         @slot('dropCapFirstPara', false)
-    @endcomponent
+    @endcomponent --}}
 
     {{-- History Detail - Exhibition PDF's --}}
     @if ($item->catalogues)
