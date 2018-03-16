@@ -26,6 +26,8 @@ class HomeController extends FrontController
     public function __construct(ExhibitionRepository $exhibitionRepository, ArtworkRepository $artworkRepository) {
         $this->exhibitionRepository = $exhibitionRepository;
         $this->artworkRepository = $artworkRepository;
+
+        parent::__construct();
     }
 
     public function index()
