@@ -27,7 +27,7 @@ class DepartmentRepository extends BaseApiRepository
     {
         $fields = parent::getFormFields($object);
 
-        $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'whatson');
+        $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'collection');
 
         return $fields;
     }

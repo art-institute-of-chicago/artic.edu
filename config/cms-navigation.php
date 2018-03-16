@@ -55,6 +55,14 @@ return [
                 'title' => 'FAQ',
                 'module' => true,
             ],
+            'galleries' => [
+                'title' => 'Galleries',
+                'module' => true,
+            ],
+            'departments' => [
+                'title' => 'Departments',
+                'module' => true,
+            ],
         ]
     ],
 

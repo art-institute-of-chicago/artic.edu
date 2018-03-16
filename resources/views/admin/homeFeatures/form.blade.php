@@ -7,21 +7,21 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'collection.articles_publications',
         'moduleName' => 'articles',
         'name' => 'articles',
         'label' => 'Article'
     ])
 
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'exhibitions_events',
         'moduleName' => 'events',
         'name' => 'events',
         'label' => 'Events'
     ])
 
     @formField('browser', [
-        'routePrefix' => 'whatson',
+        'routePrefix' => 'exhibitions_events',
         'moduleName' => 'exhibitions',
         'name' => 'exhibitions',
         'label' => 'Exhibitions'

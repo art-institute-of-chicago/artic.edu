@@ -26,7 +26,7 @@ class ArtistRepository extends BaseApiRepository
     {
         $fields = parent::getFormFields($object);
         $fields['browsers']['featuredArtworks'] = $this->getFormFieldsForBrowserApi($object, 'featuredArtworks', 'App\Models\Api\Artwork', 'collection');
-        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'whatson');
+        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
         return $fields;
     }
 

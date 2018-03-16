@@ -223,7 +223,7 @@ return [
             ],
         ],
         'browser_route_prefixes' => [
-            'events' => 'whatson',
+            'events' => 'exhibitions_events',
         ],
     ],
 

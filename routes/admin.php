@@ -17,6 +17,12 @@ Route::group(['prefix' => 'visit'], function () {
     Route::module('feeCategories');
     Route::name('visit.fees')->get('fees', 'FeeController@index');
     Route::name('visit.fees.update')->post('fees', 'FeeController@update');
+
+    Route::module('galleries');
+    Route::name('visit.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');
+
+    Route::module('departments');
+    Route::name('visit.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
 });
 
 Route::group(['prefix' => 'exhibitions_events'], function () {
@@ -47,33 +53,8 @@ Route::group(['prefix' => 'collection'], function () {
 
 });
 
-// Route::group(['prefix' => 'landing'], function () {
-//     Route::group(['prefix' => 'home'], function () {
-//        Route::name('landing.home.page')->get('page', 'PageController@home');
-//        Route::module('homeFeatures');
-//      });
-//    Route::name('landing.exhibitions')->get('exhibitions', 'PageController@exhibitions');
-//     Route::name('landing.exhibition_history')->get('exhibitions_history', 'PageController@exhibitionHistory');
-//     Route::name('landing.art')->get('art', 'PageController@art');
-//     Route::group(['prefix' => 'visit'], function () {
-//         Route::name('landing.visit.page')->get('page', 'PageController@visit');
-//         Route::module('feeAges');
-//         Route::module('feeCategories');
-//         Route::name('landing.visit.fees')->get('/fees', 'FeeController@index');
-//         Route::name('landing.visit.fees.update')->post('/fees', 'FeeController@update');
-//     });
-//     Route::name('landing.articles')->get('articles', 'PageController@articles');
-// });
-//
 Route::group(['prefix' => 'whatson'], function () {
-
     Route::module('shopItems');
-
-    Route::module('galleries');
-    Route::name('whatson.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');
-
-    Route::module('departments');
-    Route::name('whatson.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
 });
 //
 // Route::group(['prefix' => 'general'], function () {
