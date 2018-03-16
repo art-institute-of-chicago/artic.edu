@@ -11,7 +11,7 @@
 
     @formField('input', [
         'name' => 'visit_intro',
-        'label' => 'Explore all dinning link'
+        'label' => 'Explore all dining link'
     ])
 
     @formField('map', [
@@ -34,7 +34,7 @@
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
 
-    <a17-fieldset title="Dinning Hours" id="dinning_hours">
+    <a17-fieldset title="Dining Hours" id="dinning_hours">
         @formField('repeater', ['type' => 'dinning_hours'])
     </a17-fieldset>
 @stop

@@ -242,7 +242,7 @@ return [
                     'max_items' => 5,
                 ],
                 'home_art_and_ideas' => [
-                    'name' => 'Art and Ideas',
+                    'name' => 'The Collection',
                     'bucketables' => [
                         [
                             'module' => 'articles',
@@ -261,10 +261,10 @@ return [
         ],
 
         'art_and_ideas' => [
-            'name' => 'Art and Ideas',
+            'name' => 'The Collection',
             'buckets' => [
                 'art_and_ideas_main_features' => [
-                    'name' => 'Art and Ideas featured articles',
+                    'name' => 'The Collection featured articles',
                     'bucketables' => [
                         [
                             'module' => 'articles',

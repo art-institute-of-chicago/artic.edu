@@ -16,21 +16,21 @@
 
     @formField('input', [
         'name' => 'short_copy',
-        'label' => 'Short Intro copy',
+        'label' => 'Short intro copy',
         'type' => 'textarea'
     ])
 
     @formField('medias', [
         'name' => 'hero',
-        'label' => 'Hero Image'
+        'label' => 'Hero image'
     ])
 
     @formField('browser', [
         'routePrefix' => 'collection',
         'name' => 'artworks',
         'moduleName' => 'artworks',
-        'label' => 'Artworks',
-        'max' => 500
+        'label' => 'Artworks for listing display',
+        'max' => 6
     ])
 
     @formField('browser', [

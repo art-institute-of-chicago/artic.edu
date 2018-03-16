@@ -8,7 +8,7 @@
 
     @formField('select', [
         'name' => 'layout_type',
-        'label' => 'Event layout',
+        'label' => 'Hero type',
         'options' => $eventLayoutsList,
         'default' => '0'
     ])
@@ -36,7 +36,7 @@
 
     @formField('input', [
         'name' => 'hero_caption',
-        'label' => 'Hero Image Caption',
+        'label' => 'Hero image Caption',
         'note' => 'Usually used for copyright'
     ])
 
@@ -54,7 +54,7 @@
 
     @formField('input', [
         'name' => 'list_description',
-        'label' => 'List Description',
+        'label' => 'List description',
         'type' => 'textarea'
     ])
 
@@ -96,7 +96,7 @@
     <a17-fieldset id="attributes" title="Event entrance attributes">
         @formField('checkbox', [
             'name' => 'is_private',
-            'label' => 'Is Private?',
+            'label' => 'Is Private',
         ])
 
         @formField('input', [
@@ -107,53 +107,53 @@
 
         @formField('checkbox', [
             'name' => 'is_member_exclusive',
-            'label' => 'Members exclusive event?'
+            'label' => 'Members exclusive event'
         ])
 
         @formField('checkbox', [
             'name' => 'is_after_hours',
-            'label' => 'After Hours?'
+            'label' => 'After Hours'
         ])
 
         @formField('checkbox', [
             'name' => 'is_sold_out',
-            'label' => 'Sold Out?',
+            'label' => 'Sold Out',
         ])
 
         @formField('checkbox', [
             'name' => 'is_free',
-            'label' => 'Free Event?'
+            'label' => 'Free Event'
         ])
 
         @formField('checkbox', [
             'name' => 'is_ticketed',
-            'label' => 'Ticketed Event?'
+            'label' => 'Ticketed Event'
         ])
 
         @formField('input', [
             'name' => 'buy_tickets_link',
-            'label' => 'External Link to buy tickets'
+            'label' => 'Buy tickets link'
         ])
 
         @formField('input', [
             'name' => 'buy_button_text',
-            'label' => 'Buy Tickets button text',
+            'label' => 'Button text',
             'note' => 'E.G. Buy Tickets'
         ])
 
         @formField('wysiwyg', [
             'name' => 'buy_button_caption',
-            'label' => 'Copy below Buy Button text',
+            'label' => 'Pricing or attendance information',
             'toolbarOptions' => ['bold']
         ])
 
         @formField('checkbox', [
             'name' => 'is_boosted',
-            'label' => 'Boost this Article on search results'
+            'label' => 'Boost this event on search results'
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="dates" title="Date Rules">
+    <a17-fieldset id="dates" title="Date rules">
         @formField('input', [
             'name' => 'all_dates_cms',
             'label' => 'All computed dates',
@@ -189,7 +189,7 @@
 
         @formField('repeater', [
             'type' => 'dateRules',
-            'title' => 'Date Rule',
+            'title' => 'Date rule',
         ])
     </a17-fieldset>
 

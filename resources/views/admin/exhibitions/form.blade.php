@@ -15,7 +15,7 @@
 
     @formField('select', [
         'name' => 'cms_exhibition_type',
-        'label' => 'CMS Exhibition type',
+        'label' => 'Exhibition Layout',
         'options' => $exhibitionTypesList,
         'default' => '0'
     ])
@@ -34,7 +34,7 @@
 
     @formField('input', [
         'name' => 'exhibition_message',
-        'label' => 'Exhibitions related message under buttons',
+        'label' => 'Pricing or attendance information',
     ])
 
     @formField('block_editor', [

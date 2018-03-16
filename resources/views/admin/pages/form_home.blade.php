@@ -17,7 +17,7 @@
         'max' => 2,
         'moduleName' => 'exhibitions',
         'name' => 'homeExhibitions',
-        'label' => 'Related Exhibitions'
+        'label' => 'Featured Exhibitions'
     ])
 
     @formField('browser', [
@@ -25,7 +25,7 @@
         'max' => 4,
         'moduleName' => 'events',
         'name' => 'homeEvents',
-        'label' => 'Related Events',
+        'label' => 'Featured Events',
         'note' => 'Select up to 4 events you want to feature on the homepage'
     ])
 
@@ -34,7 +34,7 @@
         'max' => 5,
         'moduleName' => 'shopItems',
         'name' => 'homeShopItems',
-        'label' => 'Related Shop items',
+        'label' => 'Featured Shop items',
         'note' => 'Select up to 5 shop items you want to feature on the homepage'
     ])
 

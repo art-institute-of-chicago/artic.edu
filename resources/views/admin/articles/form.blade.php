@@ -3,7 +3,7 @@
 @section('contentFields')
     @formField('date_picker', [
         'name' => 'date',
-        'label' => 'Publishing date',
+        'label' => 'Display date',
     ])
 
     @formField('select', [
@@ -16,25 +16,25 @@
     @formField('medias', [
         'with_multiple' => false,
         'no_crop' => false,
-        'label' => 'Hero Image',
+        'label' => 'Hero image',
         'name' => 'hero'
     ])
 
     @formField('multi_select', [
         'name' => 'categories',
-        'label' => 'Categories Topics',
+        'label' => 'Topics',
         'options' => $categoriesList,
         'placeholder' => 'Select some categories',
     ])
 
     @formField('input', [
         'name' => 'type',
-        'label' => 'Article Type'
+        'label' => 'Article type'
     ])
 
     @formField('input', [
         'name' => 'heading',
-        'label' => 'Headline',
+        'label' => 'Title',
         'rows' => 3,
         'type' => 'textarea'
     ])
@@ -47,13 +47,13 @@
     @formField('medias', [
         'with_multiple' => false,
         'no_crop' => false,
-        'label' => 'Author Thumbnail',
+        'label' => 'Author thumbnail',
         'name' => 'author'
     ])
 
     @formField('checkbox', [
         'name' => 'is_boosted',
-        'label' => 'Boost this Article on search results'
+        'label' => 'Boost this article on search results'
     ])
 
     @formField('block_editor', [
@@ -72,7 +72,7 @@
             'name' => 'articles',
             'moduleName' => 'articles',
             'max' => 1,
-            'label' => 'Related Articles',
+            'label' => 'Related articles',
         ])
 
         @formField('browser', [
@@ -80,14 +80,14 @@
             'name' => 'selections',
             'moduleName' => 'selections',
             'max' => 1,
-            'label' => 'Related Selections',
+            'label' => 'Related selections',
         ])
 
         @formField('browser', [
             'routePrefix' => 'collection',
             'name' => 'artworks',
             'moduleName' => 'artworks',
-            'label' => 'Artworks',
+            'label' => 'Related artwork',
             'max' => 500
         ])
 
@@ -96,7 +96,7 @@
             'name' => 'exhibitions',
             'moduleName' => 'exhibitions',
             'max' => 1,
-            'label' => 'Related Exhibitions',
+            'label' => 'Related exhibitions',
         ])
 
     </a17-fieldset>
