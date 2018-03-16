@@ -41,11 +41,11 @@
             @endcomponent
         @else
             @component('components.atoms._date')
-                {{ $item->present()->nextOcurrenceDate }}
+                {!! $item->present()->nextOcurrenceDate !!}
             @endcomponent
             <br>
             @component('components.atoms._date')
-                {{ $item->present()->nextOcurrenceTime }}
+                {!! $item->present()->nextOcurrenceTime !!}
             @endcomponent
         @endif
       </span>

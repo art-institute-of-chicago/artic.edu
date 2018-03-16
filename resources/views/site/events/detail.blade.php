@@ -12,7 +12,7 @@
     {{-- @slot('date', $item->date)
     @slot('dateStart', $item->dateStart)
     @slot('dateEnd', $item->dateEnd) --}}
-    @slot('type', $item->member_exclusive ? 'Member Exclusive' : $item->present()->type)
+    @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : $item->present()->type)
     {{-- @slot('intro', $item->hero_caption) --}}
     @slot('img', $item->imageAsArray('hero'))
     @slot('credit', $item->hero_caption)
