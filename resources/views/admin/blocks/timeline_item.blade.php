@@ -1,9 +1,21 @@
-@formField('date_picker', [
-    'name' => 'date',
-    'label' => 'Date',
+@formField('input', [
+    'name' => 'time',
+    'label' => 'Time'
 ])
 
 @formField('input', [
-    'name' => 'text',
-    'label' => 'Text'
+    'name' => 'title',
+    'label' => 'Title'
+])
+
+@formField('input', [
+    'name' => 'description',
+    'label' => 'Description',
+    'type' => 'textarea'
+])
+
+@formField('medias', [
+    'name' => 'image',
+    'label' => 'Image',
+    'max' => '1'
 ])
