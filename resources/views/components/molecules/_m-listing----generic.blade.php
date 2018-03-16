@@ -1,7 +1,14 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{{ $item->slug }}" class="m-listing__link">
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-            @if (isset($image) || method_exists($item, 'imageFront'))
+            @if (isset($video) || $item->videoFront)
+                @component('components.atoms._video')
+                    @slot('video', ($video ?? $item->videoFront))
+                    @slot('autoplay', true)
+                    @slot('loop', true)
+                    @slot('muted', true)
+                @endcomponent
+            @elseif (isset($image) || method_exists($item, 'imageFront'))
                 @component('components.atoms._img')
                     @slot('image', ($image ?? $item->imageFront()))
                     @slot('settings', $imageSettings ?? '')

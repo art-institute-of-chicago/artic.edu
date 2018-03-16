@@ -26,7 +26,14 @@
     <div class="o-article__body o-blocks">
         <h4 class="title f-subheading-1">Batch 01</h4>
         <ul class="list f-body">
-          <li><a href="/statics/home">home</a></li>
+          <li>
+            <a href="/statics/home">home</a>
+            <ul class="list">
+              <li><a href="/statics/home_1_feature">home 1 feature</a></li>
+              <li><a href="/statics/home_mixed">home mixed features</a></li>
+              <li><a href="/statics/home_videos">home videos</a></li>
+            </ul>
+          </li>
           <li><a href="/statics/exhibitions_and_events">exhibitions and events</a></li>
           <li>
             <a href="/statics/events">events</a>
@@ -64,7 +71,12 @@
                 <a href="/statics/collection_no_results">collection no results</a>
             </ul>
           </li>
-          <li><a href="/statics/visit">visit</a></li>
+          <li>
+            <a href="/statics/visit">visit</a>
+            <ul class="list">
+                <li><a href="/statics/visit_video">visit video</a></li>
+            </ul>
+          </li>
         </ul>
         <h4 class="title f-subheading-1">Batch 03</h4>
         <ul class="list f-body">

@@ -5,10 +5,17 @@
         <a href="{{ $item->url }}" class="m-listing__link">
     @endif
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-            @if ($item->imageFront())
+            @if ($item->videoFront)
+                @component('components.atoms._video')
+                    @slot('video', $item->videoFront)
+                    @slot('autoplay', true)
+                    @slot('loop', true)
+                    @slot('muted', true)
+                @endcomponent
+            @elseif ($item->imageFront())
                 @component('components.atoms._img')
                     @slot('image', $item->imageFront())
-                    @slot('settings', $imageSettings ?? null)
+                    @slot('settings', $imageSettings ?? '')
                 @endcomponent
             @endif
             <svg class="icon--play--48"><use xlink:href="#icon--play--48"></use></svg>

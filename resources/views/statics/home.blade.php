@@ -4,7 +4,7 @@
 
 @component('components.organisms._o-features')
     @foreach ($heroExhibitions as $item)
-        @component('components.molecules._m-listing----exhibition')
+        @component('components.molecules._m-listing----'.$item->listingType)
             @slot('item', $item)
             @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
             @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-module-title-2')

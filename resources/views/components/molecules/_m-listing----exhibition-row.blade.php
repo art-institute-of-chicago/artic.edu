@@ -1,7 +1,14 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->nowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
   <a href="{{ $item->slug }}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-        @if ($item->imageFront('hero'))
+        @if ($item->videoFront)
+            @component('components.atoms._video')
+                @slot('video', $item->videoFront)
+                @slot('autoplay', true)
+                @slot('loop', true)
+                @slot('muted', true)
+            @endcomponent
+        @elseif ($item->imageFront('hero'))
             @component('components.atoms._img')
                 @slot('image', $item->imageFront('hero'))
                 @slot('settings', $imageSettings ?? '')

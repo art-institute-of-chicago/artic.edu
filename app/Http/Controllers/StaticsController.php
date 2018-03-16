@@ -58,7 +58,49 @@ class StaticsController extends FrontController {
   }
 
   public function home() {
-    return view('statics/home', $this->getHomepageItems());
+    $items = $this->getHomepageItems();
+    return view('statics/home', $items);
+  }
+
+  public function home_1_feature() {
+    $items = $this->getHomepageItems();
+    $items['heroExhibitions'] = $this->getExhibitions(1);
+    return view('statics/home', $items);
+  }
+
+  public function home_mixed() {
+    $items = $this->getHomepageItems();
+    $items['heroExhibitions'] = array();
+    $event = $this->getEvent();
+    $artwork = $this->getArtwork();
+    $article = $this->getArticle();
+    $artist = $this->getArtist();
+    $media = $this->getMedia();
+
+    array_push($items['heroExhibitions'], $event);
+    array_push($items['heroExhibitions'], $artwork);
+    array_push($items['heroExhibitions'], $article);
+    array_push($items['heroExhibitions'], $artist);
+    array_push($items['heroExhibitions'], $media);
+
+    return view('statics/home', $items);
+  }
+
+  public function home_videos() {
+    $items = $this->getHomepageItems();
+    $items['heroExhibitions'] = array();
+    $exhibition1 = $this->getExhibition();
+    $exhibition2 = $this->getExhibition();
+    $exhibition3 = $this->getEvent();
+
+    $exhibition1->push('videoFront', $this->getVideo());
+    $exhibition2->push('videoFront', $this->getVideo());
+
+    array_push($items['heroExhibitions'], $exhibition1);
+    array_push($items['heroExhibitions'], $exhibition2);
+    array_push($items['heroExhibitions'], $exhibition3);
+
+    return view('statics/home', $items);
   }
 
   public function roadblock1() {
@@ -82,87 +124,6 @@ class StaticsController extends FrontController {
 
     return view('statics/home', $items);
   }
-
-  public function getHomepageItems(){
-    return [
-      'contrastHeader' => true,
-      'filledLogo' => true,
-      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
-      'heroExhibitions' => $this->getExhibitions(3),
-      'exhibitions' => $this->getExhibitions(2),
-      'events' => $this->getEvents(4),
-      'products' => $this->getProducts(5),
-      'theCollection' => $this->generateCollection(),
-       'membership_module_image' => $this->getImage(),
-       'membership_module_url' => ''
-    ];
-  }
-
-  public function autocomplete($slug) {
-    return view('layouts/_autocomplete', [
-        'term' => $slug,
-        'resultCount' => $this->faker->numerify('#,###'),
-        'items' => (object) [
-            [
-                'url' => '#',
-                'image' => $this->getImage(40,40),
-                'text' => $this->faker->sentence(6, true),
-            ],
-            [
-                'url' => '#',
-                'image' => $this->getImage(40,40),
-                'text' => $this->faker->sentence(6, true),
-            ],
-            [
-                'url' => '#',
-                'image' => $this->getImage(40,40),
-                'text' => $this->faker->sentence(6, true),
-            ],
-            [
-                'url' => '#',
-                'image' => $this->getImage(40,40),
-                'text' => $this->faker->sentence(6, true),
-            ],
-            [
-                'url' => '#',
-                'image' => $this->getImage(40,40),
-                'text' => $this->faker->sentence(6, true),
-            ],
-            [
-                'url' => '#',
-                'image' => $this->getImage(40,40),
-                'text' => $this->faker->sentence(6, true),
-            ],
-            [
-                'url' => '#',
-                'image' => $this->getImage(40,40),
-                'text' => $this->faker->sentence(6, true),
-            ],
-            [
-                'url' => '#',
-                'image' => $this->getImage(40,40),
-                'text' => $this->faker->sentence(6, true),
-            ],
-        ]
-    ]);
-  }
-
-  public function exhibitions_load_more() {
-    $page = request('page');
-
-    $maxPages = 4;
-    $page = ($page == $maxPages ? '' : $page + 1);
-
-    $events = $this->makeEventsByDates(4);
-
-    return [
-        'page' => $page,
-        'html' => view('statics.exhibitions_load_more', [
-            'items' => $events
-        ])->render(),
-    ];
-  }
-
 
   public function exhibitions_and_events() {
     return view('statics/exhibitions_and_events', [
@@ -671,249 +632,21 @@ class StaticsController extends FrontController {
   }
 
   public function visit() {
+    $items = $this->getVisitItems();
     // now push to a view
-    return view('statics/visit', [
-      'primaryNavCurrent' => 'visit',
-      'contrastHeader' => true,
-      'filledLogo' => true,
-      'headerMedia' => array(
-        'type' => 'image',
+    return view('statics/visit', $items);
+  }
+
+  public function visit_video() {
+    $items = $this->getVisitItems();
+    $items['headerMedia'] = array(
+        'type' => 'video',
         'size' => 'hero',
-        'media' => $this->getImage(1600,900),
+        'media' => $this->getVideo(),
         'hideCaption' => true,
-       ),
-      'title' => 'Plan Your Visit',
-      'hours' => array(
-        'media' => array(
-            'type' => 'image',
-            'size' => 's',
-            'media' => $this->getImage(800,450),
-            'hideCaption' => true,
-        ),
-        'primary' => $this->faker->sentence(8),
-        'secondary' => $this->faker->sentence(8),
-        'sections' => array(
-            array(
-                'title' => $this->faker->sentence(3),
-                'link' => '#',
-                'text' => $this->faker->sentence(8),
-            ),
-            array(
-                'title' => $this->faker->sentence(3),
-                'link' => '#',
-                'text' => $this->faker->sentence(8),
-            ),
-            array(
-                'title' => $this->faker->sentence(3),
-                'link' => '#',
-                'text' => $this->faker->sentence(8),
-            ),
-         )
-       ),
-      'admission' => array(
-        'text' => $this->faker->paragraph(3),
-        'cityPass' => array(
-            'title' => 'CityPass',
-            'text' => $this->faker->paragraph(3),
-            'image' => $this->getImage(400,225),
-            'link' => array(
-                'label' => 'Get CityPass',
-                'href' => '#',
-            ),
-        ),
-        'ageGroups' => array(
-            array(
-                'title' => 'Adults',
-                'prices' => array(
-                    'generalAdmission' => '$25',
-                    'chicagoResidents' => '$20',
-                    'illonoisResidents' => '$20',
-                    'fastPass' => '$35',
-                ),
-            ),
-            array(
-                'title' => 'Seniors',
-                'subtitle' => '65+',
-                'prices' => array(
-                    'generalAdmission' => '$19',
-                    'chicagoResidents' => '$14',
-                    'illonoisResidents' => '$16',
-                    'fastPass' => '$29',
-                ),
-            ),
-            array(
-                'title' => 'Students',
-                'prices' => array(
-                    'generalAdmission' => '$19',
-                    'chicagoResidents' => '$14',
-                    'illonoisResidents' => '$16',
-                    'fastPass' => '$29',
-                ),
-            ),
-            array(
-                'title' => 'Teens',
-                'subtitle' => '14-17',
-                'prices' => array(
-                    'generalAdmission' => '$19',
-                    'chicagoResidents' => 'Free',
-                    'illonoisResidents' => '$16',
-                    'fastPass' => '$19',
-                ),
-            ),
-        ),
-       ),
-      'directions' => array(
-        'intro' => $this->faker->paragraph(),
-        'image' => array(
-            'type' => 'image',
-            'size' => 's',
-            'media' => $this->getImage(800,800),
-            'hideCaption' => true,
-        ),
-        'text' => array(
-            array(
-                "type" => 'text',
-                "subtype" => 'secondary',
-                "content" => $this->generateParagraph()
-            ),
-            array(
-                "type" => 'text',
-                "subtype" => 'secondary',
-                "content" => $this->generateParagraph()
-            ),
-        ),
-        'links' => array(
-            array(
-              'href' => '#',
-              'label' => $this->faker->sentence(2),
-            ),
-            array(
-              'href' => '#',
-              'label' => $this->faker->sentence(2),
-            ),
-        ),
-       ),
-      'dining' => array(
-        'options' => $this->generateDiningOptions(),
-      ),
-      'faq' => array(
-        'questions' => array(
-            array(
-              'href' => '#',
-              'label' => $this->faker->sentence(2),
-            ),
-            array(
-              'href' => '#',
-              'label' => $this->faker->sentence(2),
-            ),
-            array(
-              'href' => '#',
-              'label' => $this->faker->sentence(2),
-            ),
-            array(
-              'href' => '#',
-              'label' => $this->faker->sentence(2),
-            ),
-        ),
-      ),
-      'tours' => array(
-            array(
-                'title' => $this->faker->sentence(2),
-                'titleLink' => '#',
-                'image' => $this->getImage(400,225),
-                'links' => array(
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                )
-            ),
-            array(
-                'title' => $this->faker->sentence(2),
-                'titleLink' => '#',
-                'image' => $this->getImage(400,225),
-                'links' => array(
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                )
-            ),
-            array(
-                'title' => $this->faker->sentence(2),
-                'titleLink' => '#',
-                'image' => $this->getImage(400,225),
-                'links' => array(
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                )
-            ),
-       ),
-      'familiesTeensEducators' => array(
-            array(
-                'title' => $this->faker->sentence(2),
-                'titleLink' => '#',
-                'image' => $this->getImage(400,225),
-                'text' => $this->faker->paragraph(3),
-                'links' => array(
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                )
-            ),
-            array(
-                'title' => $this->faker->sentence(2),
-                'titleLink' => '#',
-                'image' => $this->getImage(400,225),
-                'text' => $this->faker->paragraph(3),
-                'links' => array(
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                )
-            ),
-            array(
-                'title' => $this->faker->sentence(2),
-                'titleLink' => '#',
-                'image' => $this->getImage(400,225),
-                'text' => $this->faker->paragraph(3),
-                'links' => array(
-                    array(
-                      'href' => '#',
-                      'label' => $this->faker->sentence(2),
-                    ),
-                )
-            ),
-       ),
-    ]);
+    );
+    // now push to a view
+    return view('statics/visit', $items);
   }
 
   public function exhibition_history() {
@@ -1784,6 +1517,7 @@ class StaticsController extends FrontController {
       "closingSoon" => $this->faker->boolean(10),
       "exclusive" => $this->faker->boolean(10),
       "nowOpen" => $this->faker->boolean(10),
+      "listingType" => 'exhibition',
       "imageFront" => function () {
         return $this->getImage();
       },
@@ -1878,6 +1612,7 @@ class StaticsController extends FrontController {
       "soldOut" => $soldOut,
       "is_ticketed" => true,
       "icsLink" => '#',
+      "listingType" => 'event',
 
       // Add a presenter function to fit our integrations
       "present" => function () use ($timeStart, $timeEnd, $randomTicketStatus) {
@@ -1948,6 +1683,7 @@ class StaticsController extends FrontController {
       "priceSale" => $priceSale,
       "currency" => "$",
       "type" => 'product',
+      "listingType" => 'product',
     ]);
   }
 
@@ -1969,6 +1705,7 @@ class StaticsController extends FrontController {
       "timeStamp" => $this->faker->time(),
       "embed" => $this->getEmbed(),
       "type" => 'media',
+      "listingType" => 'media'
     ]);
   }
 
@@ -2000,6 +1737,7 @@ class StaticsController extends FrontController {
         array('label' => 'Dutch Painters', 'href' => '#'),
        ) : null,
       "type" => 'artist',
+      "listingType" => 'artist',
     ]);
   }
 
@@ -2093,6 +1831,7 @@ class StaticsController extends FrontController {
       },
       "galleryLocation" => "Gallery 239",
       "type" => 'artwork',
+      "listingType" => 'artwork',
     ]);
   }
 
@@ -2122,6 +1861,7 @@ class StaticsController extends FrontController {
       },
       "type" => 'article',
       "subtype" => $this->faker->word(),
+      "listingType" => 'article',
     ]);
   }
 
@@ -2145,6 +1885,7 @@ class StaticsController extends FrontController {
         return $this->getImage();
       },
       "type" => 'generic',
+      "listingType" => 'generic',
     ]);
   }
 
@@ -2212,6 +1953,7 @@ class StaticsController extends FrontController {
       },
       "images" => $selectionImages,
       "type" => 'selection',
+      "listingType" => 'selection',
     ]);
   }
 
@@ -3508,5 +3250,330 @@ class StaticsController extends FrontController {
       array('label' => 'Articles &amp; Publications (3)', 'href' => '#', 'active' => ($active === 'articlesAndPublications')),
       array('label' => 'Research &amp; Resources (11)', 'href' => '#', 'active' => ($active === 'researchAndResources')),
     );
+  }
+
+  public function getHomepageItems(){
+    return [
+      'contrastHeader' => true,
+      'filledLogo' => true,
+      'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet tortor. Quisque tristique laoreet lectus sit amet tempus. Aliquam vel eleifend nisi.',
+      'heroExhibitions' => $this->getExhibitions(3),
+      'exhibitions' => $this->getExhibitions(2),
+      'events' => $this->getEvents(4),
+      'products' => $this->getProducts(5),
+      'theCollection' => $this->generateCollection(),
+       'membership_module_image' => $this->getImage(),
+       'membership_module_url' => ''
+    ];
+  }
+
+  public function autocomplete($slug) {
+    return view('layouts/_autocomplete', [
+        'term' => $slug,
+        'resultCount' => $this->faker->numerify('#,###'),
+        'items' => (object) [
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+            [
+                'url' => '#',
+                'image' => $this->getImage(40,40),
+                'text' => $this->faker->sentence(6, true),
+            ],
+        ]
+    ]);
+  }
+
+  public function exhibitions_load_more() {
+    $page = request('page');
+
+    $maxPages = 4;
+    $page = ($page == $maxPages ? '' : $page + 1);
+
+    $events = $this->makeEventsByDates(4);
+
+    return [
+        'page' => $page,
+        'html' => view('statics.exhibitions_load_more', [
+            'items' => $events
+        ])->render(),
+    ];
+  }
+
+  public function getVisitItems(){
+    return [
+        'primaryNavCurrent' => 'visit',
+        'contrastHeader' => true,
+        'filledLogo' => true,
+        'headerMedia' => array(
+          'type' => 'image',
+          'size' => 'hero',
+          'media' => $this->getImage(1600,900),
+          'hideCaption' => true,
+         ),
+        'title' => 'Plan Your Visit',
+        'hours' => array(
+          'media' => array(
+              'type' => 'image',
+              'size' => 's',
+              'media' => $this->getImage(800,450),
+              'hideCaption' => true,
+          ),
+          'primary' => $this->faker->sentence(8),
+          'secondary' => $this->faker->sentence(8),
+          'sections' => array(
+              array(
+                  'title' => $this->faker->sentence(3),
+                  'link' => '#',
+                  'text' => $this->faker->sentence(8),
+              ),
+              array(
+                  'title' => $this->faker->sentence(3),
+                  'link' => '#',
+                  'text' => $this->faker->sentence(8),
+              ),
+              array(
+                  'title' => $this->faker->sentence(3),
+                  'link' => '#',
+                  'text' => $this->faker->sentence(8),
+              ),
+           )
+         ),
+        'admission' => array(
+          'text' => $this->faker->paragraph(3),
+          'cityPass' => array(
+              'title' => 'CityPass',
+              'text' => $this->faker->paragraph(3),
+              'image' => $this->getImage(400,225),
+              'link' => array(
+                  'label' => 'Get CityPass',
+                  'href' => '#',
+              ),
+          ),
+          'ageGroups' => array(
+              array(
+                  'title' => 'Adults',
+                  'prices' => array(
+                      'generalAdmission' => '$25',
+                      'chicagoResidents' => '$20',
+                      'illonoisResidents' => '$20',
+                      'fastPass' => '$35',
+                  ),
+              ),
+              array(
+                  'title' => 'Seniors',
+                  'subtitle' => '65+',
+                  'prices' => array(
+                      'generalAdmission' => '$19',
+                      'chicagoResidents' => '$14',
+                      'illonoisResidents' => '$16',
+                      'fastPass' => '$29',
+                  ),
+              ),
+              array(
+                  'title' => 'Students',
+                  'prices' => array(
+                      'generalAdmission' => '$19',
+                      'chicagoResidents' => '$14',
+                      'illonoisResidents' => '$16',
+                      'fastPass' => '$29',
+                  ),
+              ),
+              array(
+                  'title' => 'Teens',
+                  'subtitle' => '14-17',
+                  'prices' => array(
+                      'generalAdmission' => '$19',
+                      'chicagoResidents' => 'Free',
+                      'illonoisResidents' => '$16',
+                      'fastPass' => '$19',
+                  ),
+              ),
+          ),
+         ),
+        'directions' => array(
+          'intro' => $this->faker->paragraph(),
+          'image' => array(
+              'type' => 'image',
+              'size' => 's',
+              'media' => $this->getImage(800,800),
+              'hideCaption' => true,
+          ),
+          'text' => array(
+              array(
+                  "type" => 'text',
+                  "subtype" => 'secondary',
+                  "content" => $this->generateParagraph()
+              ),
+              array(
+                  "type" => 'text',
+                  "subtype" => 'secondary',
+                  "content" => $this->generateParagraph()
+              ),
+          ),
+          'links' => array(
+              array(
+                'href' => '#',
+                'label' => $this->faker->sentence(2),
+              ),
+              array(
+                'href' => '#',
+                'label' => $this->faker->sentence(2),
+              ),
+          ),
+         ),
+        'dining' => array(
+          'options' => $this->generateDiningOptions(),
+        ),
+        'faq' => array(
+          'questions' => array(
+              array(
+                'href' => '#',
+                'label' => $this->faker->sentence(2),
+              ),
+              array(
+                'href' => '#',
+                'label' => $this->faker->sentence(2),
+              ),
+              array(
+                'href' => '#',
+                'label' => $this->faker->sentence(2),
+              ),
+              array(
+                'href' => '#',
+                'label' => $this->faker->sentence(2),
+              ),
+          ),
+        ),
+        'tours' => array(
+              array(
+                  'title' => $this->faker->sentence(2),
+                  'titleLink' => '#',
+                  'image' => $this->getImage(400,225),
+                  'links' => array(
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                  )
+              ),
+              array(
+                  'title' => $this->faker->sentence(2),
+                  'titleLink' => '#',
+                  'image' => $this->getImage(400,225),
+                  'links' => array(
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                  )
+              ),
+              array(
+                  'title' => $this->faker->sentence(2),
+                  'titleLink' => '#',
+                  'image' => $this->getImage(400,225),
+                  'links' => array(
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                  )
+              ),
+         ),
+        'familiesTeensEducators' => array(
+              array(
+                  'title' => $this->faker->sentence(2),
+                  'titleLink' => '#',
+                  'image' => $this->getImage(400,225),
+                  'text' => $this->faker->paragraph(3),
+                  'links' => array(
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                  )
+              ),
+              array(
+                  'title' => $this->faker->sentence(2),
+                  'titleLink' => '#',
+                  'image' => $this->getImage(400,225),
+                  'text' => $this->faker->paragraph(3),
+                  'links' => array(
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                  )
+              ),
+              array(
+                  'title' => $this->faker->sentence(2),
+                  'titleLink' => '#',
+                  'image' => $this->getImage(400,225),
+                  'text' => $this->faker->paragraph(3),
+                  'links' => array(
+                      array(
+                        'href' => '#',
+                        'label' => $this->faker->sentence(2),
+                      ),
+                  )
+              ),
+         ),
+    ];
   }
 }

@@ -52,7 +52,13 @@
         @else
             @component('components.atoms._video')
                 @slot('video', $media)
-                @slot('controls', true)
+                @if ($size === 'hero')
+                    @slot('autoplay', true)
+                    @slot('loop', true)
+                    @slot('muted', true)
+                @else
+                    @slot('controls', true)
+                @endif
             @endcomponent
         @endif
         @if (isset($item['downloadable']) and $item['downloadable'] && $tag !== 'a')

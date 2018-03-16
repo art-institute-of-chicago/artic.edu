@@ -45,16 +45,19 @@
   @include breakpoint('medium+') {
     width: colspan(grid-cols-to-colspan(2), 'medium');
     margin-top: colspan(2, medium);
+    margin-left: colspan(2, medium);
   }
 
   @include breakpoint('large+') {
     width: colspan(grid-cols-to-colspan(2), 'large');
     margin-top: colspan(2, large);
+    margin-left: colspan(2, large);
   }
 
   @include breakpoint('xlarge') {
     width: colspan(grid-cols-to-colspan(2), 'xlarge');
     margin-top: colspan(2, xlarge);
+    margin-left: colspan(2, xlarge);
   }
 }
 

@@ -1,5 +1,5 @@
 <video
-    src="{{ $video['src'] ?? '' }}"
+    data-src="{{ $video['src'] ?? '' }}"
     poster="{{ $video['poster'] ?? '' }}"
     {{ isset($autoplay) ? ' autoplay' : '' }}
     {{ isset($loop) ? ' loop' : '' }}
