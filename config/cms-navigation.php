@@ -17,6 +17,17 @@ return [
         ]
     ],
 
+    'visit' => [
+        'title' => 'Visit',
+        'route' => 'admin.visit.landing',
+        'primary_navigation' => [
+            'visit' => [
+                'title' => 'Landing',
+                'route' => 'admin.visit.landing',
+            ],
+        ]
+    ],
+
     // 'featured' => [
     //     'title' => 'Features',
     //     'route' => 'admin.featured.homepage',

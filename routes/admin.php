@@ -7,6 +7,10 @@ Route::group(['prefix' => 'homepage'], function () {
     Route::module('homeFeatures');
 });
 
+Route::group(['prefix' => 'visit'], function () {
+    Route::name('visit.landing')->get('landing', 'PageController@visit');
+});
+
 // Route::group(['prefix' => 'landing'], function () {
 //     Route::group(['prefix' => 'home'], function () {
 //        Route::name('landing.home.page')->get('page', 'PageController@home');
