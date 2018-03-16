@@ -69,6 +69,9 @@ class EventRepository extends ModuleRepository
     {
         $query = $this->model->newQuery();
 
+        // Do not show hidden events
+        $query->notHidden();
+
         if ($start) {
             $query->betweenDates($start, $end);
         } else {
@@ -101,7 +104,7 @@ class EventRepository extends ModuleRepository
         if ($object->events()->count() == 0) { return null; }
 
         // Using the relationship directly, doesn't generate the correct Query.
-        $ids = $object->events->pluck('id');
+        $ids = $object->events()->notHidden()->get()->pluck('id');
 
         $query = $this->model->rightJoin('event_metas', function ($join) {
             $join->on('events.id', '=', 'event_metas.event_id');

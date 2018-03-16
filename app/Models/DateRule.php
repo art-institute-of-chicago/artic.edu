@@ -25,8 +25,8 @@ class DateRule extends Model
 
     public static $ruleTypes = [
         0 => 'Recurring event',
-        1 => 'Include specific date (ignores everything except Start Date)',
-        2 => 'Exclude specific date (ignores everything except Start Date)'
+        1 => 'Include specific date (all fields ignored except Start Date)',
+        2 => 'Exclude specific date (all fields ignored except Start Date)'
     ];
 
     public static $recurringTypes = [

@@ -15,5 +15,11 @@
             Become a member
         @endcomponent
     </li>
-    <li class="m-ticket-actions__note f-secondary">Exhibitions are free with museum admission.</li>
+    <li class="m-ticket-actions__note f-secondary">
+        @if(isset($pricingAttendanceMessage) && !empty($pricingAttendanceMessage))
+            {{ $pricingAttendanceMessage }}
+        @else
+            Exhibitions are free with museum admission.
+        @endif
+    </li>
 </ul>

@@ -184,6 +184,11 @@ class Event extends Model
         return $query->whereLanding(true);
     }
 
+    public function scopeNotHidden($query)
+    {
+        return $query->whereHidden(false);
+    }
+
     public function scopeBetweenDates($query, $startDate, $endDate = null)
     {
         $query->rightJoin('event_metas', function ($join) {

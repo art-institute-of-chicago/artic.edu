@@ -43,6 +43,7 @@
   <div class="o-article__secondary-actions">
 
     @component('components.molecules._m-ticket-actions----exhibition')
+        @slot('pricingAttendanceMessage', $item->exhibition_message)
     @endcomponent
 
     {{-- This is the featured element at the side --}}

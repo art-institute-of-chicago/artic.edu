@@ -55,7 +55,7 @@ class ExhibitionController extends FrontController
         // The ID is a datahub_id not a local ID
         $item = $this->apiRepository->getById($id);
 
-        $collection = $this->eventRepository->getRelatedEvents($item);
+        $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE);
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
         return view('site.exhibitionDetail', [
@@ -68,17 +68,17 @@ class ExhibitionController extends FrontController
     public function loadMoreRelatedEvents($id)
     {
         $item = $this->apiRepository->getById($id);
-        $relatedEventsByDay = $this->eventRepository->getRelatedEventsByDay($item, self::RELATED_EVENTS_PER_PAGE, request('page'));
+        $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE, request('page'));
+        $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
-        // TODO: 1 load too many. Send an empty page when there aren't more events
-        $page = $relatedEventsByDay->isEmpty() ? '' : request('page') + 1;
-
-        return [
-            'page' => $page,
-            'html' => view('statics.exhibitions_load_more', [
+        $view['html'] = view('statics.exhibitions_load_more', [
                 'items' => $relatedEventsByDay
-            ])->render(),
-        ];
+        ])->render();
+
+        if ($collection->hasMorePages())
+            $view['page'] = request('page');
+
+        return $view;
     }
 
 }
