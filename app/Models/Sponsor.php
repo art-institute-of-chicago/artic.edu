@@ -4,10 +4,11 @@ namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class Sponsor extends Model
 {
-    use HasMedias;
+    use HasMedias, HasMediasEloquent;
 
     protected $fillable = [
         'published',

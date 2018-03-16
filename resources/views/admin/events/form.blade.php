@@ -79,14 +79,22 @@
     @formField('input', [
         'name' => 'sponsors_sub_copy',
         'label' => 'Sponsors sub copy',
-        'note' => 'E.G. further support provided by'
+        'note' => 'Default: Further support has been provided by'
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'visit',
+        'moduleName' => 'sponsors',
+        'name' => 'sponsors',
+        'label' => 'Sponsors',
+        'note' => 'Select Sponsors',
+        'max' => 20
     ])
 
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
-            'list', 'newsletter_signup_inline',
-            'sponsor', 'timeline', 'link'
+            'list', 'newsletter_signup_inline', 'timeline', 'link'
         ]
     ])
 @stop
@@ -194,15 +202,6 @@
     </a17-fieldset>
 
     <a17-fieldset id="related_elements" title="Related elements">
-        @formField('browser', [
-            'routePrefix' => 'visit',
-            'moduleName' => 'sponsors',
-            'name' => 'sponsors',
-            'label' => 'Sponsors',
-            'note' => 'Select Sponsors',
-            'max' => 20
-        ])
-
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'events',

@@ -1,7 +1,6 @@
 <template>
     <div class="block__body">
-        <a17-datepicker label="Date" :name="fieldName('date')" place-holder="Date" enable-time in-store="date"
-></a17-datepicker><a17-textfield label="Text" :name="fieldName('text')" type="text" in-store="value" ></a17-textfield>
+        <a17-textfield label="Time" :name="fieldName('time')" type="text" in-store="value" ></a17-textfield><a17-textfield label="Title" :name="fieldName('title')" type="text" in-store="value" ></a17-textfield><a17-textfield label="Description" :name="fieldName('description')" type="textarea" in-store="value" ></a17-textfield><a17-inputframe label="Image" name="medias.image" > <a17-mediafield :name="fieldName('image')" crop-context="image" ></a17-mediafield> </a17-inputframe>
     </div>
 </template>
 
