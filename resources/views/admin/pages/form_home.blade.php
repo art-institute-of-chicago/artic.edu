@@ -13,6 +13,14 @@
     ])
 
     @formField('browser', [
+    'routePrefix' => 'collection',
+        'max' => 10,
+        'moduleName' => 'collectionFeatures',
+        'name' => 'collectionFeatures',
+        'label' => 'Collection Features'
+    ])
+
+    @formField('browser', [
         'routePrefix' => 'exhibitions_events',
         'max' => 2,
         'moduleName' => 'exhibitions',
