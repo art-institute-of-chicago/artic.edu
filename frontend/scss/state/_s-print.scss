@@ -6,6 +6,16 @@
   margin: 0;
   overflow: auto;
 
+  * {
+    display: block;
+    position: static;
+    width: auto;
+    height: auto;
+    min-height: auto;
+    color: #000;
+    columns: 1;
+  }
+
   #a17 {
     width: 100%;
     padding-top: 0;
@@ -20,7 +30,20 @@
   .o-article__primary,
   .o-article__secondary,
   .o-article__tertiary,
-  .o-article__top-link,  {
+  .o-article__top-link,
+  .m-aside-newsletter,
+  .top-link,
+  .design-grid-toggles,
+  .design-grid,
+  .m-article-actions,
+  .o-article__primary-actions,
+  .o-article__secondary-actions,
+  .o-article__related,
+  .m-media__share,
+  .m-media__btn-fullscreen,
+  .m-media__img::before,
+  .o-gallery__caption hr,
+  #content > *:not(.o-article), {
     display: none !important;
   }
 
@@ -37,8 +60,42 @@
   .m-media--m,
   .m-media--l,
   .m-cta-banner,
-  .m-aside-newsletter--wide {
+  .m-aside-newsletter--wide,
+  .o-article__body,
+  .o-article__body,
+  .o-article__meta,
+  .m-media {
     width: 100% !important;
     margin: 0 !important;
   }
+
+  .o-article__body,
+  .o-article__meta,
+  .m-media {
+    display: block;
+    float: none;
+    margin-top: 28px !important;
+  }
+
+  .m-media {
+    overflow: hidden;
+  }
+
+  .m-media .m-media__img {
+    width: 25%;
+    float: left;
+  }
+
+  .m-media figcaption {
+    width: 75%;
+    float: left;
+    padding-right: 50px;
+    padding-left: 28px;
+  }
+
+  .o-gallery {
+    background-color: transparent;
+    color: #000;
+  }
+
 }
