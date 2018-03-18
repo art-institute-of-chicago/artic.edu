@@ -25,6 +25,9 @@ $print = isset($_GET['print']);
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   @include('layouts._head-js')
+  @if ($print)
+      <script>A17.print = true;</script>
+  @endif
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
   <style>
   @import url("//hello.myfonts.net/count/3545d5");

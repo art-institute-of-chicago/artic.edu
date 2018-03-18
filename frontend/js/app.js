@@ -18,6 +18,10 @@ if (!A17.browserSpec || A17.browserSpec === 'html4') {
   throw new Error('HTML4');
 }
 
+if (A17.print) {
+  throw new Error('Printing');
+}
+
 A17.currentMediaQuery = getCurrentMediaQuery();
 A17.env = 'production';
 
