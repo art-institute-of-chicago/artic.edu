@@ -2,6 +2,7 @@
 
 ```
 <span class="price f-secondary">$257</span><br>
+<span class="price price--offer f-secondary">$199</span><br>
 <span class="price price--sale f-secondary"><strike>$1453</strike> <em>$1089</em></span>
 ```
 
@@ -9,6 +10,10 @@
 
 .price {
   color: $color__text--secondary;
+}
+
+.price--offer {
+  color: $color__text--type;
 }
 
 .price strike {

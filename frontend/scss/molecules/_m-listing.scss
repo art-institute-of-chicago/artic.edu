@@ -336,6 +336,10 @@
   @include tucked-margin-top($f-body, ('xsmall': 48));
 }
 
+.m-listing__meta .f-list-4 + br + .f-body {
+  @include tucked-margin-top($f-body, ('xsmall': 36));
+}
+
 .m-listing__meta .subtitle.f-body {
   @include tucked-margin-top($f-body, ('xsmall': 28));
 }

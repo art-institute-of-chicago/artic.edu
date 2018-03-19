@@ -24,7 +24,7 @@
         @endcomponent
         <br>
         @component('components.atoms._title')
-            @slot('font', $titleFont ?? 'f-list-3')
+            @slot('font', $titleFont ?? 'f-list-4')
             {{ $item->title }}
         @endcomponent
         <br>
@@ -32,6 +32,7 @@
         <br>
         <span class="m-listing__meta-bottom">
             @component('components.atoms._price')
+                @slot('variation','price--offer')
                 {{ $item->currency }}{{ $item->price }}
             @endcomponent
         </span>
