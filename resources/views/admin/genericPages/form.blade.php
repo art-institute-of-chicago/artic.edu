@@ -13,6 +13,10 @@
         'type' => 'textarea'
     ])
     @formField('block_editor', [
-        'blocks' => ['image', 'title', 'quote', 'charvet']
+        'blocks' => [
+            'paragraph', 'image', 'video', 'media_embed', 'list',
+            'child_pages', 'accordion', 'membership_banner',
+            'timeline', 'link', 'newsletter_signup_inline'
+        ]
     ])
 @stop
