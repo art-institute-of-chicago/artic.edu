@@ -200,6 +200,23 @@
   transform: translateY(-50%);
 }
 
+.m-listing__img-prompt {
+  @include untuck;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px 12px 12px;
+  background-color: $color__text--type;
+  color: $color__text--title-contrast;
+  text-align: center;
+
+  @include breakpoint('medium+') {
+    min-width: 120px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+}
+
 .m-listing__meta {
   display: flex;
   flex: 1 0 auto;

@@ -325,6 +325,7 @@ class StaticsController extends FrontController {
       'text' => $this->faker->paragraph(5),
     ));
     $article->push('relatedEvents', $this->getEvents(4));
+    $article->push('relatedOffers', $this->getOffers(3));
     $article->push('ticketLink', $ticketLink);
     $article->push('nav', $nav);
     $article->push('ticketPrices', $ticketPrices);
@@ -1697,6 +1698,38 @@ class StaticsController extends FrontController {
       array_push($products, $product);
     }
     return $products;
+  }
+
+  private function getOffer() {
+    $priceRounded = $this->faker->boolean(70);
+    $price = $this->faker->numberBetween(30,2500);
+
+    if (!$priceRounded) {
+      $price = $price - 0.01;
+    }
+
+    return new StaticObjectPresenter([
+      "id" => $this->faker->uuid,
+      "slug" => "#",
+      "title" => $this->faker->sentence(4, true),
+      "shortDesc" => $this->faker->paragraph(1, false),
+      "imageFront" => function () {
+        return $this->getImage();
+      },
+      "price" => $price,
+      "currency" => "$",
+      "type" => 'Offer',
+      "listingType" => 'offer',
+    ]);
+  }
+
+  private function getOffers($num = 5) {
+    $offers = array();
+    for ($i = 0; $i < $num; $i++) {
+      $offer = $this->getOffer();
+      array_push($offers, $offer);
+    }
+    return $offers;
   }
 
   private function getMedia() {
