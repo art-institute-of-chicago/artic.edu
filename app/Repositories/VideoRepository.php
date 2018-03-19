@@ -16,4 +16,5 @@ class VideoRepository extends ModuleRepository
     {
         $this->model = $model;
     }
+
 }
