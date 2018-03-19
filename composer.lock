@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cfd29d66e5d094fa391524e94e4cee77",
+    "content-hash": "619c660c5d46f1d9a4a56a83f937377f",
     "packages": [
         {
             "name": "a17/laravel-cms-toolkit",
-            "version": "dev-pre-1.0-sprint",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "git@code.area17.com:a17/laravel-cms-toolkit.git",
-                "reference": "ebabf922fe95aa1859f45e8e6801bee6a52bbdfb"
+                "reference": "d911d6534ef7f93eec9154aba5dcadc7d849ede9"
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.1",
@@ -37,6 +37,9 @@
                     "A17\\CmsToolkit\\": "src/"
                 }
             },
+            "license": [
+                "Apache-2.0"
+            ],
             "authors": [
                 {
                     "name": "Quentin Renard",
@@ -83,7 +86,7 @@
                 "cms-toolkit",
                 "laravel"
             ],
-            "time": "2018-03-15T16:29:28+00:00"
+            "time": "2018-03-19T08:40:23+00:00"
         },
         {
             "name": "aic/data-hub-foundation",
@@ -132,16 +135,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.52.26",
+            "version": "3.52.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3aefee935e611e1ce959f0288cd160dc81d233a0"
+                "reference": "4b8286d243ad9eeaaa1fccf312c1d9f920ef7cd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3aefee935e611e1ce959f0288cd160dc81d233a0",
-                "reference": "3aefee935e611e1ce959f0288cd160dc81d233a0",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4b8286d243ad9eeaaa1fccf312c1d9f920ef7cd0",
+                "reference": "4b8286d243ad9eeaaa1fccf312c1d9f920ef7cd0",
                 "shasum": ""
             },
             "require": {
@@ -208,7 +211,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-03-14T20:20:20+00:00"
+            "time": "2018-03-16T20:40:34+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2544,16 +2547,16 @@
         },
         {
             "name": "swagger-api/swagger-ui",
-            "version": "v3.12.9",
+            "version": "v3.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swagger-api/swagger-ui.git",
-                "reference": "83232dc2d8d4bd27cb1b38e310db885e45f80f60"
+                "reference": "14ef0cc3796e60f446fffb82343c20aecfadddca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/83232dc2d8d4bd27cb1b38e310db885e45f80f60",
-                "reference": "83232dc2d8d4bd27cb1b38e310db885e45f80f60",
+                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/14ef0cc3796e60f446fffb82343c20aecfadddca",
+                "reference": "14ef0cc3796e60f446fffb82343c20aecfadddca",
                 "shasum": ""
             },
             "type": "library",
@@ -2597,7 +2600,7 @@
                 "swagger",
                 "ui"
             ],
-            "time": "2018-03-03T05:13:00+00:00"
+            "time": "2018-03-17T07:27:24+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5473,7 +5476,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "a17/laravel-cms-toolkit": 20,
         "aic/data-hub-foundation": 20
     },
     "prefer-stable": false,
