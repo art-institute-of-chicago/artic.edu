@@ -2074,6 +2074,7 @@ class StaticsController extends FrontController {
         $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
         $article->push('relatedExhibitions', $this->getExhibitions(4));
         $article->push('relatedEvents', $this->getEvents(4));
+        $article->push('relatedOffers', $this->getOffers(3));
         $article->push('relatedArticles', $this->getArticles(4));
         $article->push('featuredRelated', array(
            'type' => 'event',
