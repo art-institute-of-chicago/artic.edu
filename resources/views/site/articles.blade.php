@@ -32,14 +32,7 @@
 
   @component('components.molecules._m-links-bar')
       @slot('overflow', true)
-      @slot('linksPrimary', array(
-        array('label' => 'All', 'href' => '#', 'active' => true),
-        array('label' => 'Collection', 'href' => '#'),
-        array('label' => 'Exhibitions', 'href' => '#'),
-        array('label' => 'People', 'href' => '#'),
-        array('label' => 'Programs', 'href' => '#'),
-        array('label' => 'Technology', 'href' => '#'),
-      ))
+      @slot('linksPrimary', $categories)
       @slot('secondaryHtml')
           <li class="m-links-bar__item m-links-bar__item--primary">
               @component('components.atoms._dropdown')
@@ -66,7 +59,7 @@
       @slot('cols_medium','2')
       @slot('cols_large','2')
       @slot('cols_xlarge','2')
-{{--       @foreach ($featuredArticles as $item)
+      @foreach ($featuredArticles as $item)
           @component('components.molecules._m-listing----article')
               @slot('item', $item)
               @slot('titleFont', 'f-list-4')
@@ -84,7 +77,7 @@
                   )),
               ))
           @endcomponent
-      @endforeach --}}
+      @endforeach
   @endcomponent
 
   @component('components.atoms._hr')

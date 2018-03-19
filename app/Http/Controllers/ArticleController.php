@@ -21,14 +21,24 @@ class ArticleController extends FrontController
     {
         $page = Page::forType('Articles')->first();
 
-        $heroArticle = Article::first();
+        $heroArticle = $page->articlesArticles->first();
 
         $articles = Article::all();
+        $featuredArticles = $page->articlesArticles->forget(0);
+
+        $categories = array(array('label' => 'All', 'href' => '#', 'active' => true));
+        foreach ($page->articlesCategories as $category) {
+            array_push($categories,
+                array('label' => $category->name, 'href' => '#')
+            );
+        }
 
         return view('site.articles', [
             'page' => $page,
             'heroArticle' => $heroArticle,
-            'articles' => $articles
+            'articles' => $articles,
+            'categories' => $categories,
+            'featuredArticles' => $featuredArticles
         ]);
     }
 

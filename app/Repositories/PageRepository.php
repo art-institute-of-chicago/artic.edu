@@ -46,6 +46,9 @@ class PageRepository extends ModuleRepository
         // Articles
         $this->updateBrowser($object, $fields, 'articlesArticles');
 
+        // Article Categories
+        $this->updateBrowser($object, $fields, 'articlesCategories');
+
         // Art & Ideas
         $this->updateBrowser($object, $fields, 'artArticles');
 
@@ -73,6 +76,9 @@ class PageRepository extends ModuleRepository
 
         // Articles
         $fields['browsers']['articlesArticles'] = $this->getFormFieldsForBrowser($object, 'articlesArticles', 'collection.articles_publications', 'title', 'articles');
+
+        // Article Categories
+        $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articles_publications', 'name', 'categories');
 
         // Art & Ideas
         $fields['browsers']['artArticles'] = $this->getFormFieldsForBrowser($object, 'artArticles', 'collection.articles_publications', 'title', 'articles');
