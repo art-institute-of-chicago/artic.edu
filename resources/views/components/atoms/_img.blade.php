@@ -9,6 +9,10 @@
         $image['sourceType'] = 'lakeview';
     }
 
+    if (isset($image['src']) && strrpos($image['src'], 'artinstituteshop.org') > 0) {
+        $image['sourceType'] = 'artinstituteshop';
+    }
+
     if (isset($settings)) {
         $settings = aic_imageSettings(array(
             'settings' => $settings,
@@ -22,9 +26,12 @@
         $height = $settings['height'];
     }
 
+    if (empty($srcset) && empty($src)) {
+        $highlight = ' data-no-img-settings';
+    }
+
     if (empty($src) && isset($image['src'])) {
         $src = $image['src'];
-        $highlight = ' data-no-img-settings';
     }
 
     if (empty($width) && isset($image['width'])) {
@@ -38,7 +45,11 @@
 <img
     alt="{{ $image['alt'] ?? '' }}{{ $alt ?? '' }}"
     class="{{ $image['class'] ?? '' }} {{ $class ?? '' }}"
-    src="{{ $src ?? '' }}"
+    @if (empty($srcset) and isset($src))
+        data-src="{{ $src ?? '' }}"
+    @else
+        src="{{ $src ?? '' }}"
+    @endif
     @if (isset($_GET['print']) or (isset($settings['lazyload']) and $settings['lazyload'] === false))
     srcset="{{ $srcset ?? '' }}"
     @else

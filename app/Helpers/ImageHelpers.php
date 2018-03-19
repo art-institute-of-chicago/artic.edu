@@ -102,13 +102,23 @@ function aic_imageSettings($data) {
 
     // return if no datas
     if (!$srcset || !$sourceType || !$originalSrc || !$width || !$height) {
-        return array(
-            'srcset' => $stringSrcset,
-            'src' => $stringSrc,
-            'sizes' => $stringSizes,
-            'width' => $stringWidth,
-            'height' => $stringHeight,
-        );
+        if ($sourceType === 'artinstituteshop') {
+            return array(
+                'src' => $originalSrc,
+                'sizes' => $stringSizes,
+                'srcset' => null,
+                'width' => null,
+                'height' => null,
+            );
+        } else {
+            return array(
+                'srcset' => $stringSrcset,
+                'src' => $originalSrc,
+                'sizes' => $stringSizes,
+                'width' => $stringWidth,
+                'height' => $stringHeight,
+            );
+        }
     }
 
     // assign the sizes
