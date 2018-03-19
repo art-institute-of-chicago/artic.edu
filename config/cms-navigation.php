@@ -165,4 +165,16 @@ return [
             ],
         ],
     ],
+
+    'generic' => [
+        'title' => 'Generic Pages',
+        'route' => 'admin.generic.genericPages.index',
+
+        'primary_navigation' => [
+            'genericPages' => [
+                'title' => 'Generic Pages',
+                'module' => true,
+            ]
+        ],
+    ],
 ];

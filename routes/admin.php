@@ -56,6 +56,10 @@ Route::group(['prefix' => 'collection'], function () {
 
 });
 
+Route::group(['prefix' => 'generic'], function () {
+    Route::module('genericPages');
+});
+
 Route::group(['prefix' => 'general'], function () {
     Route::module('siteTags');
     Route::module('searchTerms');
