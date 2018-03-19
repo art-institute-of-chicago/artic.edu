@@ -26,7 +26,7 @@ class ExhibitionRepository extends BaseApiRepository
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'articles', 'position', 'Article');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'sponsors', 'position', 'Sponsor');
+        $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
 
         return parent::hydrate($object, $fields);
     }

@@ -149,7 +149,7 @@
         @endcomponent
     @endif
 
-    @if (isset($item->sponsors) && $item->sponsors()->count() > 0)
+    @if ($item->sponsors() && $item->sponsors()->count() > 0)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top o-blocks__block')
             @slot('title', $item->sponsors_sub_copy ?? "Further support has been provided by")
@@ -309,6 +309,18 @@
         @foreach ($item->apiModels('exhibitions', 'Exhibition') as $item)
             @component('components.molecules._m-listing----exhibition')
                 @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
