@@ -50,6 +50,7 @@ Route::group(['prefix' => 'collection'], function () {
         Route::name('collection.articles_publications.landing')->get('landing', 'PageController@articles');
         Route::module('articles');
         Route::module('categories');
+        Route::module('videos');
     });
 
     Route::module('selections');

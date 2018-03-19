@@ -128,6 +128,10 @@ return [
                     'categories' => [
                         'title' => 'Categories',
                         'module' => true,
+                    ],
+                    'videos' => [
+                        'title' => 'Videos',
+                        'module' => true,
                     ]
                 ],
             ],
