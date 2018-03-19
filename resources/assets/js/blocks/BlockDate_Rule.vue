@@ -1,4 +1,5 @@
 <template>
+    <!-- eslint-disable -->
     <div class="block__body">
         <a17-vselect label="Type of rule" :name="fieldName('type')" :options='[{"value":0,"label":"Recurring event"},{"value":1,"label":"Include specific date (all fields ignored except Start Date)"},{"value":2,"label":"Exclude specific date (all fields ignored except Start Date)"}]' :has-default-store="true" size="large" in-store="inputValue" > </a17-vselect><div class="wrapper"> <div class="col--double"> <a17-datepicker label="Start Date" :name="fieldName('start_date')" place-holder="Start Date" in-store="date"
 ></a17-datepicker> </div> <div class="col--double"> <a17-datepicker label="Ends" :name="fieldName('end_date')" place-holder="Ends" in-store="date"

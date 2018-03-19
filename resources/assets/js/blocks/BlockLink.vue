@@ -1,4 +1,5 @@
 <template>
+    <!-- eslint-disable -->
     <div class="block__body">
         <a17-textfield label="Title" :name="fieldName('title')" type="text" in-store="value" ></a17-textfield><a17-textfield label="Link" :name="fieldName('link')" type="text" in-store="value" ></a17-textfield>
     </div>

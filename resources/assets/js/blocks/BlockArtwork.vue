@@ -1,4 +1,5 @@
 <template>
+    <!-- eslint-disable -->
     <div class="block__body">
         <a17-inputframe label="Artworks" name="browsers.artworks"> <a17-browserfield :name="fieldName('artworks')" item-label="artworks" :max="1" endpoint="/collection/artworks/browser" modal-title="Attach artworks" >Add one artwork</a17-browserfield></a17-inputframe>
     </div>
