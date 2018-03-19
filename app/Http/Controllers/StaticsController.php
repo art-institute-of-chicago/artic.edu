@@ -1689,12 +1689,12 @@ class StaticsController extends FrontController {
       "slug" => "/statics/product",
       "type" => 'Furnishings',
       "title" => $this->faker->sentence(4, true),
-      "shortDesc" => $this->faker->paragraph(1, false),
+      "description" => $this->faker->paragraph(1, false),
       "imageFront" => function () {
         return $this->getImage();
       },
       "price" => $price,
-      "priceSale" => $priceSale,
+      "sale_price" => $priceSale,
       "currency" => "$",
       "type" => 'product',
       "listingType" => 'product',

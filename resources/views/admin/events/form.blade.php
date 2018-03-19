@@ -94,7 +94,8 @@
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
-            'list', 'newsletter_signup_inline', 'timeline', 'link'
+            'list', 'newsletter_signup_inline', 'timeline', 'link', 'shop_items',
+            'artworks'
         ]
     ])
 @stop

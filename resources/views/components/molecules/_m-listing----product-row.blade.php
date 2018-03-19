@@ -1,5 +1,5 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-  <a href="{{ $item->slug }}" class="m-listing__link">
+  <a href="{!! $item->web_url !!}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--tall' }}">
      @if ($item->videoFront)
          @component('components.atoms._video')
@@ -8,9 +8,9 @@
              @slot('loop', true)
              @slot('muted', true)
          @endcomponent
-     @elseif ($item->imageFront())
+     @elseif ($item->imageFront('hero'))
          @component('components.atoms._img')
-             @slot('image', $item->imageFront())
+             @slot('image', $item->imageFront('hero'))
              @slot('settings', $imageSettings ?? '')
          @endcomponent
      @endif
@@ -21,15 +21,15 @@
       @endcomponent
       <br>
       @component('components.atoms._short-description')
-          {{ $item->shortDesc }}
+          {{ $item->description }}
       @endcomponent
       <br>
-      @if ($item->priceSale)
+      @if ($item->sale_price)
           @component('components.atoms._price')
               @slot('salePrice')
                   {{ $item->currency }}{{ $item->price }}
               @endslot
-              {{ $item->currency }}{{ $item->priceSale }}
+              {{ $item->currency }}{{ $item->sale_price }}
           @endcomponent
       @else
           @component('components.atoms._price')

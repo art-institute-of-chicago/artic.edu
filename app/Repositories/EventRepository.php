@@ -9,12 +9,15 @@ use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRepeaters;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleRecurrence;
+use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Models\Event;
 use Carbon\Carbon;
 
 class EventRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleRepeaters, HandleRecurrence;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleBlocks, HandleRepeaters, HandleRecurrence {
+        HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
+    }
 
     public function __construct(Event $model)
     {

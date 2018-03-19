@@ -28,7 +28,6 @@ class HomeFeatureRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'articles');
         $this->updateBrowser($object, $fields, 'events');
         $this->updateBrowserApiRelated($object, $fields, ['artworks', 'exhibitions']);
-        // $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
 
         parent::afterSave($object, $fields);
     }

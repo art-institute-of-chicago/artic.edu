@@ -118,11 +118,6 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-artworks',
             ],
-            'shop_item' => [
-                'title' => 'Shop Item',
-                'icon' => 'image',
-                'component' => 'a17-block-shop_item',
-            ],
             'shop_items' => [
                 'title' => 'Shop Items',
                 'icon' => 'image',
