@@ -12,25 +12,18 @@ class Video extends Model
     use HasSlug, HasMedias, HasFiles;
 
     protected $fillable = [
-        // 'published',
-        // 'position',
-        // 'public',
-        // 'featured',
-        // 'publish_start_date',
-        // 'publish_end_date',
+        'published',
+        'date',
+        'title',
+        'heading',
+        'video_url'
     ];
 
-    // public $translatedAttributes = [
-    //     'title',
-    //     'description',
-    //     'active',
-    // ];
+    public $slugAttributes = [
+        'title',
+    ];
 
-    // public $slugAttributes = [
-    //     'title',
-    // ];
-
-    // public $checkboxes = ['published', 'active'];
+    public $checkboxes = ['published'];
 
     // fill this in if you use the HasMedias traits
     // public $mediasParams = [

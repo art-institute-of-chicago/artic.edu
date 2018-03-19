@@ -8,6 +8,10 @@ class VideoRequest extends Request
 {
     public function rules()
     {
-        return [];
+        $rules = [
+            'title' => 'required'
+        ];
+
+        return $rules;
     }
 }

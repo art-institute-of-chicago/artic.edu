@@ -12,6 +12,10 @@ class CreateVideosTables extends Migration
             // add some fields
             // use this one with the HasPosition trait
             // $table->integer('position')->unsigned()->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('title');
+            $table->dateTime('date')->nullable();
+            $table->text('heading')->nullable();
         });
 
 
