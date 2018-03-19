@@ -21,10 +21,10 @@ class ArticleController extends FrontController
     {
         $page = Page::forType('Articles')->first();
 
-        $heroArticle = $page->articlesArticles->first();
+        $featuredArticles = $page->articlesArticles;
+        $heroArticle = $featuredArticles->first();
 
-        $articles = Article::all();
-        $featuredArticles = $page->articlesArticles->forget(0);
+        $articles = Article::published()->whereNotIn('id', $featuredArticles->pluck('id'))->get();
 
         $categories = array(array('label' => 'All', 'href' => '#', 'active' => true));
         foreach ($page->articlesCategories as $category) {
@@ -38,7 +38,7 @@ class ArticleController extends FrontController
             'heroArticle' => $heroArticle,
             'articles' => $articles,
             'categories' => $categories,
-            'featuredArticles' => $featuredArticles
+            'featuredArticles' => $featuredArticles->forget(0)
         ]);
     }
 
