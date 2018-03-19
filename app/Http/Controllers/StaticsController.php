@@ -1420,11 +1420,21 @@ class StaticsController extends FrontController {
   }
 
   private function getVideo() {
-    $video = array(
-        'src' => '/test/feature-1.mp4',
-        'poster' => '/test/feature-1.jpg',
+    $videos = array(
+        array(
+            'src' => 'http://1312img.s3.amazonaws.com/aic/feature-1.mp4',
+            'poster' => 'http://1312img.s3.amazonaws.com/aic/feature-1.jpg',
+        ),
+        array(
+            'src' => 'http://1312img.s3.amazonaws.com/aic/feature-2.mp4',
+            'poster' => 'http://1312img.s3.amazonaws.com/aic/feature-2.jpg',
+        ),
+        array(
+            'src' => 'http://1312img.s3.amazonaws.com/aic/feature-3.mp4',
+            'poster' => 'http://1312img.s3.amazonaws.com/aic/feature-3.jpg',
+        ),
     );
-    return $video;
+    return $this->faker->randomElement($videos);
   }
 
   private function getEmbed() {
