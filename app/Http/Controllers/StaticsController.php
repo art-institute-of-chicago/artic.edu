@@ -304,6 +304,22 @@ class StaticsController extends FrontController {
     ]);
   }
 
+  public function event_past() {
+    $article = $this->getEventPageContents();
+    $article->push('relatedEvents', $this->getEvents(4));
+    $article->push('relatedOffers', $this->getOffers(3));
+
+    $article->push('ticketLink', null);
+    $article->push('ticketPrices', null);
+    $article->push('nav', null);
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
+    ]);
+  }
+
   public function event_feature() {
     $article = $this->getEventPageContents('feature');
     // now push to a view
