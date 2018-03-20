@@ -446,12 +446,8 @@
     top: 0;
     bottom: 0;
     min-height: 0;
-    padding: 20px;
+    padding: colspan(2, small);
     background-color: rgba(0,0,0,.25);
-
-    @include breakpoint('large+') {
-      padding: 40px;
-    }
   }
 
   .m-listing--feature .m-listing__link:hover .m-listing__meta {
@@ -477,8 +473,26 @@
   }
 }
 
+.m-listing--feature .m-listing__meta {
+  @include breakpoint('medium+') {
+    padding: colspan(2);
+  }
+
+  @include breakpoint('large+') {
+    padding: colspan(1, large);
+  }
+
+  @include breakpoint('xlarge') {
+    padding: colspan(1, xlarge);
+  }
+}
+
 .m-listing--feature .m-listing__meta .f-tag {
-  @include tucked-margin-top($f-tag, ('xsmall': 32, 'small+': 8, 'medium+': 16, 'large+': 0));
+  @include tucked-margin-top($f-tag, ('xsmall': 32, 'small+': 8));
+}
+
+.m-listing--feature .m-listing__meta .f-module-title-2:first-child {
+  @include tucked-align-top($f-module-title-2);
 }
 
 .m-listing--feature .m-listing__meta .f-secondary + br + .f-secondary {
@@ -601,35 +615,29 @@
   right: 0;
   bottom: 0;
   min-height: 0;
-  padding: 0.02px 20% 24px colspan(3, 'xsmall');
+  padding: colspan(2, xsmall) colspan(3, xsmall);
 
   @include breakpoint('small+') {
-    padding-right: 40%;
-    padding-left: colspan(3, 'small');
+    padding: colspan(2, small) colspan(3, small);
   }
 
   @include breakpoint('medium+') {
-    left: 50%;
-    right: auto;
-    bottom: 32px;
-    width: colspan(28, medium);
-    margin-left: colspan(29, medium, 0, true);
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: colspan(1, medium) colspan(3, medium);
   }
 
   @include breakpoint('large+') {
+    left: 50%;
+    right: auto;
     bottom: 40px;
     width: colspan(28, large);
     margin-left: colspan(29, large, 0, true);
-    padding-right: 40px;
-    padding-bottom: 28px;
-    padding-left: 40px;
+    padding: colspan(1, large);
   }
 
   @include breakpoint('xlarge') {
     width: colspan(28, xlarge);
     margin-left: colspan(29, xlarge, 0, true);
+    padding: colspan(1, xlarge);
   }
 }
 
@@ -654,7 +662,11 @@
 }
 
 .m-listing--hero .m-listing__meta .f-tag {
-  @include tucked-margin-top($f-tag, ('xsmall': 32, 'small+': 40, 'large+': 40));
+  @include tucked-align-top($f-tag);
+}
+
+.m-listing--hero .m-listing__meta .f-display-1 {
+  @include tucked-align-top($f-display-1);
 }
 
 .m-listing--hero .m-listing__meta .f-secondary {
