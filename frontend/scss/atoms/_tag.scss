@@ -33,6 +33,10 @@
   }
 }
 
+a.tag {
+  @extend %link-transition;
+}
+
 a.tag:hover,
 a.tag:focus {
   background-color: $color__black--10;
@@ -210,6 +214,10 @@ a.tag--quinary:active {
   height: 40px;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
+}
+
+a.tag--w-image::before {
+  @extend %link-transition;
 }
 
 a.tag--w-image:hover,

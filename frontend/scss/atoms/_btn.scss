@@ -21,6 +21,7 @@
 // primary, secondary, tertiary, quaternary, quinary, senary, septenary, octonary, nonary, denary
 
 .btn {
+  @extend %link-transition;
   display: inline-block;
   padding-right: 27px;
   padding-left: 27px;

@@ -78,6 +78,9 @@
   .m-media__btn-download,
   .m-media__btn-fullscreen {
     opacity: 0;
+    transition-property: opacity;
+    transition-duration: .15s;
+    transition-timing-function: ease-in-out;
   }
 
   .m-media__img:hover .m-media__btn-download,
