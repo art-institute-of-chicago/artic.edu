@@ -39,6 +39,16 @@
                   'xlarge' => '58',
         )));
     }
+
+    if ($type == 'embed') {
+        // make embeds lazy load
+        $media['embed'] = preg_replace('/src/i', 'data-src', $media['embed']);
+        // fix soundcloud embed height
+        if (strrpos($media['embed'],'api.soundcloud.com')) {
+            $media['embed'] = preg_replace_callback('/(height=")([^"]*)/i', function($m) { return $m[1].'166'; },$media['embed']);
+            $variation = ($variation ?? '').' m-media--soundcloud';
+        }
+    }
 @endphp
 <figure data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <{{ $tag }}{{ ($tag === 'a') ? ' href="'.$item['url'].'"' : '' }} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}">

@@ -22,6 +22,15 @@
   &.m-media__img--video::before {
     padding-bottom: percentage(9 / 16);
   }
+
+  .m-media--soundcloud & {
+    height: 166px;
+  }
+
+  .m-media--soundcloud &::before {
+    content: none;
+    display: none;
+  }
 }
 
 .m-media__img img {
