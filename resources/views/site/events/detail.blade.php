@@ -164,7 +164,7 @@
         @endcomponent
     @endif
 
-    @if ($item->sponsors()->count() > 0)
+    @if ($item->sponsors() && $item->sponsors()->count() > 0)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top o-blocks__block')
             @slot('title', $item->sponsors_sub_copy ?? "Further support has been provided by")

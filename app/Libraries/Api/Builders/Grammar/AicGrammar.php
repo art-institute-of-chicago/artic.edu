@@ -37,8 +37,8 @@ class AicGrammar
         // function for the component which is responsible for making the parameters
         $compiled = $this->compileComponents($query);
 
-        \Log::info("Compiled parameters for this call are:");
-        \Log::info(print_r($compiled, true));
+        // \Log::info("Compiled parameters for this call are:");
+        // \Log::info(print_r($compiled, true));
 
         $query->columns = $original;
 

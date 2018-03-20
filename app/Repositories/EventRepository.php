@@ -24,6 +24,15 @@ class EventRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function hydrate($object, $fields)
+    {
+        $this->hydrateBrowser($object, $fields, 'siteTags');
+        $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
+        $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
+
+        return parent::hydrate($object, $fields);
+    }
+    
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
@@ -126,6 +135,14 @@ class EventRepository extends ModuleRepository
         $query->where('event_metas.date', '>=', Carbon::today());
 
         return $query->count();
+    }
+
+    // Show data, moved here to allow preview
+    public function getShowData($item, $slug = null, $previewPage = null)
+    {
+        return [
+            'item' => $item,
+        ];
     }
 
 }

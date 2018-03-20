@@ -94,12 +94,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/art-institute-of-chicago/data-hub-foundation.git",
-                "reference": "421acfc79b67bbde42e031e1d668bb052e343c72"
+                "reference": "a89a27635c900b450fef18c35a5294eb555120d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/421acfc79b67bbde42e031e1d668bb052e343c72",
-                "reference": "421acfc79b67bbde42e031e1d668bb052e343c72",
+                "url": "https://api.github.com/repos/art-institute-of-chicago/data-hub-foundation/zipball/a89a27635c900b450fef18c35a5294eb555120d1",
+                "reference": "a89a27635c900b450fef18c35a5294eb555120d1",
                 "shasum": ""
             },
             "require": {
@@ -131,7 +131,7 @@
                 "source": "https://github.com/art-institute-of-chicago/data-hub-foundation/tree/master",
                 "issues": "https://github.com/art-institute-of-chicago/data-hub-foundation/issues"
             },
-            "time": "2018-03-12T19:31:04+00:00"
+            "time": "2018-03-19T21:51:08+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
@@ -1952,16 +1952,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.24.2",
+            "version": "1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "bba6c6e410c6b4317e37a9474aeaa753808c3875"
+                "reference": "cbcf13da0b531767e39eb86e9687f5deba9857b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bba6c6e410c6b4317e37a9474aeaa753808c3875",
-                "reference": "bba6c6e410c6b4317e37a9474aeaa753808c3875",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cbcf13da0b531767e39eb86e9687f5deba9857b4",
+                "reference": "cbcf13da0b531767e39eb86e9687f5deba9857b4",
                 "shasum": ""
             },
             "require": {
@@ -2001,7 +2001,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-03-10T10:10:14+00:00"
+            "time": "2018-03-19T15:50:49+00:00"
         },
         {
             "name": "nikic/php-parser",

@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use A17\CmsToolkit\Http\Controllers\Front\ShowWithPreview;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\EventRepository;
 use App\Models\Page;
 use App\Models\Api\Exhibition;
 use Carbon\Carbon;
 
-class ExhibitionController extends FrontController
+class ExhibitionsController extends FrontController
 {
+    use ShowWithPreview;
+
     protected $apiRepository;
     protected $eventRepository;
-
-    const RELATED_EVENTS_PER_PAGE = 3;
+    protected $moduleName = 'exhibitions';
+    protected $showViewName = 'site.exhibitionDetail';
 
     public function __construct(ExhibitionRepository $repository, EventRepository $eventRepository)
     {
+        $this->repository = $repository;
         $this->apiRepository = $repository;
         $this->eventRepository = $eventRepository;
 
@@ -50,19 +54,15 @@ class ExhibitionController extends FrontController
         return $this->index(true);
     }
 
-    public function show($id)
+    // Show view has been moved to be used with the trait ShowWithPreview
+    protected function showData($slug, $item)
     {
-        // The ID is a datahub_id not a local ID
-        $item = $this->apiRepository->getById($id);
+        return $this->apiRepository->getShowData($item, $slug);
+    }
 
-        $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE);
-        $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
-
-        return view('site.exhibitionDetail', [
-            'contrastHeader' => ($item->present()->headerType === 'hero'),
-            'item' => $item,
-            'relatedEventsByDay' => $relatedEventsByDay
-        ]);
+    protected function getItem($slug)
+    {
+        return $this->apiRepository->getById($slug);
     }
 
     public function loadMoreRelatedEvents($id)

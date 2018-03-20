@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use A17\CmsToolkit\Http\Controllers\Front\ShowWithPreview;
 use App\Repositories\EventRepository;
 use App\Models\Page;
 use App\Models\Event;
 use Carbon\Carbon;
 use View;
 
-class EventController extends FrontController
+class EventsController extends FrontController
 {
+    use ShowWithPreview;
+
     protected $repository;
+    protected $moduleName   = 'events';
+    protected $showViewName = 'site.events.detail';
 
     const PER_PAGE = 10;
 
@@ -65,13 +70,15 @@ class EventController extends FrontController
         ]);
     }
 
-    public function show($id)
+    // Show view has been moved to be used with the trait ShowWithPreview
+    protected function showData($slug, $item)
     {
-        $item = $this->repository->getById($id);
+        return $this->repository->getShowData($item, $slug);
+    }
 
-        return view('site.events.detail', [
-            'item' => $item
-        ]);
+    protected function getItem($slug)
+    {
+        return $this->repository->getById($slug);
     }
 
     protected function generateEventTypes()

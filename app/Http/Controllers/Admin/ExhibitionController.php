@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Repositories\SiteTagRepository;
+use App\Repositories\Api\ExhibitionRepository;
+use App\Models\Api\Exhibition;
 
 class ExhibitionController extends BaseApiController
 {
     protected $moduleName = 'exhibitions';
     protected $hasAugmentedModel = true;
+    protected $previewView = 'site.exhibitionDetail';
 
     protected $indexOptions = [
         'publish' => false,
         'bulkEdit' => false,
         'create' => false,
-        'permalink' => false,
+        'permalink' => true,
     ];
 
     protected $indexColumns = [
@@ -54,6 +57,18 @@ class ExhibitionController extends BaseApiController
             'exhibitionTypesList' => $this->repository->getExhibitionTypesList(),
             'editableTitle' => false,
         ];
+    }
+
+    protected function previewData($item)
+    {
+        // The ID is a datahub_id not a local ID
+        $apiRepo = app(ExhibitionRepository::class);
+        $apiItem = $apiRepo->getById($item->datahub_id);
+
+        // Force the augmented model
+        $apiItem->setAugmentedModel($item);
+
+        return $apiRepo->getShowData($apiItem);
     }
 
 }
