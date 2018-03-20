@@ -16,21 +16,17 @@
 
     @formField('map', [
         'name' => 'location',
-        'label' => 'Location',
+        'label' => 'Museum Location',
         'showMap' => true,
     ])
 @stop
 
 @section('fieldsets')
-    <a17-fieldset title="Locations" id="locations">
+    <a17-fieldset title="Museum Address" id="locations">
         @formField('repeater', ['type' => 'locations'])
     </a17-fieldset>
 
-    <a17-fieldset title="Admissions" id="admissions">
-        @formField('repeater', ['type' => 'admissions'])
-    </a17-fieldset>
-
-    <a17-fieldset title="Featured hours" id="featured_hours">
+    <a17-fieldset title="Hours" id="featured_hours">
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
 
