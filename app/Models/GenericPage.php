@@ -98,5 +98,24 @@ class GenericPage extends Model implements Sortable
         }
     }
 
+    public function apiElements()
+    {
+        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
+    }
+
+    public function exhibitions()
+    {
+        return $this->apiElements()->where('relation', 'exhibitions');
+    }
+
+    public function events()
+    {
+        return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
+    }
+
+    public function articles()
+    {
+        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
+    }
 
 }
