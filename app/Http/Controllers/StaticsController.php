@@ -1550,6 +1550,7 @@ class StaticsController extends FrontController {
       "exclusive" => $this->faker->boolean(10),
       "nowOpen" => $this->faker->boolean(10),
       "listingType" => 'exhibition',
+      "list_description" => $this->faker->paragraph(1, false),
       "imageFront" => function () {
         return $this->getImage();
       },

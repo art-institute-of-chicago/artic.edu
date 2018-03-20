@@ -82,7 +82,7 @@
                         @slot('variation','tag--secondary')
                         @slot('tag','button')
                         @slot('behavior', 'getUrl')
-                        @slot('dataAttributes', 'data-href="'. $item->buy_ticket_link .'"')
+                        @slot('dataAttributes', 'data-href="'. $item->buy_tickets_link .'"')
                         {{ !empty($item->buy_button_text) ? $item->buy_button_text : 'Buy ticket'}}
                     @endcomponent
                     @break

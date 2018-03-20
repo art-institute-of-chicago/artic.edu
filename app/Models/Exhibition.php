@@ -33,6 +33,7 @@ class Exhibition extends Model
         'datahub_id',
         'is_visible',
         'exhibition_message',
+        'list_description',
         'sponsors_description',
         'sponsors_sub_copy',
         'cms_exhibition_type'
@@ -121,6 +122,12 @@ class Exhibition extends Model
                 "doc" => "Header Copy",
                 "type" => "string",
                 "value" => function() { return $this->header_copy; }
+            ],
+            [
+                "name" => "list_description",
+                "doc" => "list_description",
+                "type" => "string",
+                "value" => function () {return $this->list_description;},
             ],
             [
                 "name" => 'content',

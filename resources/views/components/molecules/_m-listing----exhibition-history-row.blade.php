@@ -16,7 +16,7 @@
             {{ $item->title }}
         @endcomponent
         <br>
-        <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->short_description }}</span>
+        <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->listing_description }}</span>
         <br>
         <span class="m-listing__meta-bottom">
             @component('components.atoms._date')

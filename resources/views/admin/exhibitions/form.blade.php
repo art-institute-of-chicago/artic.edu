@@ -33,6 +33,12 @@
     ])
 
     @formField('input', [
+        'name' => 'list_description',
+        'label' => 'List description',
+        'type' => 'textarea'
+    ])
+
+    @formField('input', [
         'name' => 'exhibition_message',
         'label' => 'Pricing or attendance information',
     ])

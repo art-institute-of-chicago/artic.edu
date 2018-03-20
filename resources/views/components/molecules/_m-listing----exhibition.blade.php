@@ -57,12 +57,18 @@
             @slot('font', $titleFont ?? 'f-list-3')
             {{ $item->title }}
         @endcomponent
-      <br>
-      <span class="m-listing__meta-bottom">
-        @component('components.atoms._date')
-            {{ $item->dateStart->format('M j, Y') }} &ndash; {{ $item->dateEnd->format('M j, Y') }}
-        @endcomponent
-      </span>
+        <br>
+        @if ($item->list_description)
+            @component('components.atoms._short-description')
+                {{ $item->list_description }}
+            @endcomponent
+            <br>
+        @endif
+        <span class="m-listing__meta-bottom">
+            @component('components.atoms._date')
+                {{ $item->dateStart->format('M j, Y') }} &ndash; {{ $item->dateEnd->format('M j, Y') }}
+            @endcomponent
+        </span>
     </span>
   </a>
 </{{ $tag or 'li' }}>

@@ -47,6 +47,12 @@
             {{ $item->title }}
         @endcomponent
         <br>
+        @if ($item->list_description)
+            @component('components.atoms._short-description')
+                {{ $item->list_description }}
+            @endcomponent
+            <br>
+        @endif
         @if (isset($variation) && !strrpos($variation, "--row"))
             @component('components.atoms._date')
                 Through {{ $item->dateEnd->format('M j, Y') }}
