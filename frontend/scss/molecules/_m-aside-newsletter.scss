@@ -238,10 +238,6 @@
 .m-aside-newsletter--wide {
   @include background-fill;
   background-color: $color__bg--secondary;
-
-  @include breakpoint('large+') {
-    min-height: 160px;
-  }
 }
 
 .m-aside-newsletter--wide fieldset {
@@ -274,16 +270,17 @@
 }
 
 .m-aside-newsletter--wide legend .title.f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 40, 'small+': 84, 'large+': 82, 'xlarge': 84));
+  @include tucked-margin-top($f-list-3, ('xsmall': 44, 'small+': 52, 'large+': 82, 'xlarge': 84));
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__field {
   padding-top: .02px;
-  padding-bottom: 20px;
+  padding-bottom: 28px;
 
   @include breakpoint('small+') {
     flex-flow: row nowrap;
     padding-top: 20px;
+    padding-bottom: 40px;
   }
 
   @include breakpoint('large+') {
