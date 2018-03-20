@@ -163,7 +163,7 @@
 
 .g-footer__grid > li::after {
   content: '';
-  // display: none;
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -175,6 +175,10 @@
     @include breakpoint('#{$name}') {
       right: colspan(1, #{$name}, 0, true);
     }
+  }
+
+  @include breakpoint('medium+') {
+    display: block;
   }
 }
 
