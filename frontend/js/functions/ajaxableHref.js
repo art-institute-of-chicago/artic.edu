@@ -1,6 +1,6 @@
 const ajaxableHref = function(href) {
   // fail if no href or same page
-  if (!href || href.indexOf('#') > 0 || href === location.href) {
+  if (!href || href.indexOf('#') > -1 || href === location.href) {
     return false;
   }
   // fail if external or not same protocol
