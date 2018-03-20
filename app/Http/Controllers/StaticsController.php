@@ -293,42 +293,9 @@ class StaticsController extends FrontController {
   }
 
   public function event() {
-    // make some left rail links
-    $locationLink = array('label' => 'Rubloff Auditorium', 'href' => '#', 'iconBefore' => 'location');
-    $ticketLink = '#';
-    $registrationLink = array('label' => 'Registration required', 'href' => $ticketLink);
-    // make left rail nav array
-    $nav = array();
-    array_push($nav, $locationLink);
-    array_push($nav, $registrationLink);
-    // set ticket prices
-    $ticketPrices = '<p>$10 <strong>students</strong></p><p>$20 members</p><p>$30 non-members</p>';
-    // get an event
-    $article = $this->getEvent();
-    $article->push('articleType', 'event');
-    //$article->push('headerType', 'feature');
-    $article->push('headerImage', $this->getImage());
-    $article->push('blocks', $this->generateBlocks(6));
-    $article->push('intro', $this->faker->paragraph(6, false));
-    $article->push('speakers', array(
-        array(
-          'img' => $this->getImage(),
-          'title' => $this->faker->firstName.' '.$this->faker->lastName,
-          'text' => $this->faker->paragraph(5),
-        ),
-      )
-    );
-    $article->push('sponsors', $this->generateBlocks(2));
-    $article->push('futherSupport', array(
-      'logo' => $this->getImage(),
-      'title' => "Further support has been provided by",
-      'text' => $this->faker->paragraph(5),
-    ));
+    $article = $this->getEventPageContents();
     $article->push('relatedEvents', $this->getEvents(4));
     $article->push('relatedOffers', $this->getOffers(3));
-    $article->push('ticketLink', $ticketLink);
-    $article->push('nav', $nav);
-    $article->push('ticketPrices', $ticketPrices);
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
@@ -338,84 +305,27 @@ class StaticsController extends FrontController {
   }
 
   public function event_feature() {
-    // make some left rail links
-    $locationLink = array('label' => 'Rubloff Auditorium', 'href' => '#', 'iconBefore' => 'location');
-    $registrationLink = array('label' => 'Registration required', 'href' => "#");
-    // make left rail nav array
-    $nav = array();
-    array_push($nav, $locationLink);
-    array_push($nav, $registrationLink);
-    // make blocks
-    $blocks = array();
-    array_push($blocks, array(
-        "type" => 'text',
-         "content" => $this->generateParagraph(3)
-    ));
-    array_push($blocks, array(
-        "type" => 'media',
-        "content" => array(
-            'type' => 'embed',
-            'size' => 's',
-            'media' => $this->getEmbed('soundcloud'),
-            'hideCaption' => true
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'text',
-         "content" => $this->generateParagraph(1)
-    ));
-    array_push($blocks, array(
-        "type" => 'media',
-        "content" => array(
-            'type' => 'embed',
-            'size' => 'm',
-            'media' => $this->getEmbed(),
-            'caption' => $this->faker->paragraph(3, false)
-        )
-    ));
-    array_push($blocks, array(
-        "type" => 'gallery',
-        "subtype" => 'slider',
-        "title" => 'Slider Gallery',
-        "caption" => $this->faker->paragraph(3, false),
-        "items" => $this->getGalleryImages(6),
-        "allLink" => array(
-          'href' => '#',
-          'label' => "See all exhibition objects",
-        ),
-    ));
-    array_push($blocks, array(
-        "type" => 'time-line',
-        "items" => $this->getTimelineEvents(3)
-    ));
-    array_push($blocks, array(
-        "type" => 'newsletter-sign-up',
-    ));
+    $article = $this->getEventPageContents('feature');
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
+    ]);
+  }
 
-    // get an event
-    $article = $this->getEvent();
-    $article->push('articleType', 'event');
-    $article->push('headerType', 'feature');
-    $article->push('headerImage', $this->getImage());
-    $article->push('blocks', $blocks);
-    $article->push('intro', $this->faker->paragraph(6, false));
-    $article->push('speakers', array(
-        array(
-          'img' => $this->getImage(),
-          'title' => $this->faker->firstName.' '.$this->faker->lastName,
-          'text' => $this->faker->paragraph(5),
-        ),
-      )
-    );
-    $article->push('sponsors', $this->generateBlocks(2));
-    $article->push('futherSupport', array(
-      'logo' => $this->getImage(),
-      'title' => "Further support has been provided by",
-      'text' => $this->faker->paragraph(5),
-    ));
-    $article->push('ticketLink', '#');
-    $article->push('ticketPrices', '<p>$10 <strong>students</strong></p><p>$20 members</p><p>$30 non-members</p>');
-    $article->push('nav', $nav);
+  public function event_hero() {
+    $article = $this->getEventPageContents('hero');
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
+    ]);
+  }
+
+  public function event_superhero() {
+    $article = $this->getEventPageContents('super-hero');
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
@@ -1458,14 +1368,19 @@ class StaticsController extends FrontController {
     return $src;
   }
 
-  private function getImage() {
+  private function getImage($credit = null) {
     $sourceType = 'placeholder';
     $width = $this->faker->numberBetween(2000,5000);
     $height = $this->faker->numberBetween(2000,5000);
     $src = "//placehold.dev.area17.com/image/".$width."x".$height."?bg=333&fg=ccc";
 
-    $credit = $this->faker->boolean() ? $this->faker->sentence(3) : null;
-    $creditUrl = ($credit && $this->faker->boolean()) ? '#' : null;
+    if ($credit) {
+        $credit = $this->faker->sentence(3);
+        $creditUrl = null;
+    } else {
+        $credit = $this->faker->boolean() ? $this->faker->sentence(3) : null;
+        $creditUrl = ($credit && $this->faker->boolean()) ? '#' : null;
+    }
 
     $image = array(
         "sourceType" => $sourceType,
@@ -3710,5 +3625,88 @@ class StaticsController extends FrontController {
               ),
          ),
     ];
+  }
+
+  function getEventPageContents($headerType = null) {
+    // make some left rail links
+    $locationLink = array('label' => 'Rubloff Auditorium', 'href' => '#', 'iconBefore' => 'location');
+    $registrationLink = array('label' => 'Registration required', 'href' => "#");
+    // make left rail nav array
+    $nav = array();
+    array_push($nav, $locationLink);
+    array_push($nav, $registrationLink);
+    // make blocks
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(3)
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 's',
+            'media' => $this->getEmbed('soundcloud'),
+            'hideCaption' => true
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(1)
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 'm',
+            'media' => $this->getEmbed(),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'gallery',
+        "subtype" => 'slider',
+        "title" => 'Slider Gallery',
+        "caption" => $this->faker->paragraph(3, false),
+        "items" => $this->getGalleryImages(6),
+        "allLink" => array(
+          'href' => '#',
+          'label' => "See all exhibition objects",
+        ),
+    ));
+    array_push($blocks, array(
+        "type" => 'time-line',
+        "items" => $this->getTimelineEvents(3)
+    ));
+    array_push($blocks, array(
+        "type" => 'newsletter-sign-up',
+    ));
+
+    // get an event
+    $article = $this->getEvent();
+    $article->push('articleType', 'event');
+    $article->push('headerType', $headerType ?? null);
+    $article->push('headerImage', $this->getImage(true));
+    $article->push('blocks', $blocks);
+    $article->push('intro', $this->faker->paragraph(6, false));
+    $article->push('speakers', array(
+        array(
+          'img' => $this->getImage(),
+          'title' => $this->faker->firstName.' '.$this->faker->lastName,
+          'text' => $this->faker->paragraph(5),
+        ),
+      )
+    );
+    $article->push('sponsors', $this->generateBlocks(2));
+    $article->push('futherSupport', array(
+      'logo' => $this->getImage(),
+      'title' => "Further support has been provided by",
+      'text' => $this->faker->paragraph(5),
+    ));
+    $article->push('ticketLink', '#');
+    $article->push('ticketPrices', '<p>$10 <strong>students</strong></p><p>$20 members</p><p>$30 non-members</p>');
+    $article->push('nav', $nav);
+
+    return $article;
   }
 }
