@@ -18,6 +18,8 @@ class ExhibitionsController extends FrontController
     protected $moduleName = 'exhibitions';
     protected $showViewName = 'site.exhibitionDetail';
 
+    const RELATED_EVENTS_PER_PAGE = 3;
+
     public function __construct(ExhibitionRepository $repository, EventRepository $eventRepository)
     {
         $this->repository = $repository;

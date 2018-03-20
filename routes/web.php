@@ -47,9 +47,9 @@ Route::name('exhibitions.history.show')->get('exhibitions/history/{id}', 'Exhibi
 
 // Exhibition routes
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionsController@index');
-Route::moduleShowWithPreview('exhibitions');
 Route::name('exhibitions.upcoming')->get('/exhibitions/upcoming', 'ExhibitionsController@upcoming');
 Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/relatedEvents', 'ExhibitionsController@loadMoreRelatedEvents');
+Route::moduleShowWithPreview('exhibitions');
 
 // Artwork routes
 Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
