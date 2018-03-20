@@ -37,6 +37,9 @@ Route::name('events.show')->get('/events/{id}', 'EventController@show');
 Route::name('articles')->get('/articles', 'ArticleController@index');
 Route::name('articles.show')->get('/articles/{slug}', 'ArticleController@show');
 
+// Videos routes
+Route::name('videos.show')->get('/videos/{slug}', 'VideoController@show');
+
 // Exhibition history routes
 // Must remain before exhibition routes
 Route::name('exhibitions.history')->get('exhibitions/history', 'ExhibitionHistoryController@index');
