@@ -32,7 +32,7 @@ class EventRepository extends ModuleRepository
 
         return parent::hydrate($object, $fields);
     }
-    
+
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
@@ -122,7 +122,7 @@ class EventRepository extends ModuleRepository
             $join->on('events.id', '=', 'event_metas.event_id');
         });
         $query->where('event_metas.date', '>=', Carbon::today());
-        $query->whereIn('id', $ids);
+        $query->whereIn('events.id', $ids);
         $query->orderBy('event_metas.date', 'ASC');
 
         return $query->paginate($perPage, ['*'], 'page', $page);
