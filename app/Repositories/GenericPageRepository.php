@@ -30,7 +30,7 @@ class GenericPageRepository extends ModuleRepository
     {
         if (is_array(array_first($ids))) {
             DB::transaction(function () use ($ids) {
-                Page::saveTreeFromIds($ids);
+                GenericPage::saveTreeFromIds($ids);
             }, 3);
         } else {
             parent::setNewOrder($ids);
