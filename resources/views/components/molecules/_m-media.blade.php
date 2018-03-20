@@ -83,7 +83,7 @@
         @endif
         @if (isset($item['fullscreen']) and $item['fullscreen'] && $tag !== 'a')
             @component('components.atoms._btn')
-                @slot('variation', 'm-media__btn-fullscreen btn--septenary btn--icon-sq')
+                @slot('variation', 'm-media__btn-fullscreen btn--septenary btn--icon btn--icon-circle-48')
                 @slot('font', '')
                 @slot('icon', 'icon--zoom--24')
                 @slot('dataAttributes', '')
