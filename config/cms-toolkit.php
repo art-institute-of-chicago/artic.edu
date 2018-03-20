@@ -143,10 +143,10 @@ return [
                 'max' => 10,
             ],
             'featured_hours' => [
-                'title' => 'Hours',
+                'title' => 'Museum Hours',
                 'trigger' => 'Add hours',
                 'component' => 'a17-block-featured_hours',
-                'max' => 10,
+                'max' => 3,
             ],
             'dinning_hours' => [
                 'title' => 'Dining',

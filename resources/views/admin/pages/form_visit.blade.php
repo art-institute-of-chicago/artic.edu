@@ -26,7 +26,25 @@
         @formField('repeater', ['type' => 'locations', 'max' => 2])
     </a17-fieldset>
 
-    <a17-fieldset title="Hours" id="featured_hours">
+    <a17-fieldset title="Museum Hours" id="featured_hours">
+        @formField('medias', [
+            'name' => 'museum_image',
+            'label' => 'Image',
+            'max' => '1'
+        ])
+        @formField('input', [
+            'name' => 'header',
+            'field_name' => 'header',
+            'label' => 'Header',
+            'required' => true
+        ])
+        @formField('input', [
+            'type' => 'text',
+            'name' => 'subheader',
+            'field_name' => 'subheader',
+            'label' => 'Subheader',
+            'required' => true
+        ])
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
 

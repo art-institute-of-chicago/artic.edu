@@ -1,20 +1,21 @@
     <div class="col">
-        @formField('medias', [
-            'name' => 'image',
-            'label' => 'Image',
-            'max' => '1'
+        @formField('input', [
+            'name' => 'title',
+            'field_name' => 'title',
+            'label' => 'Title',
+            'required' => true
         ])
         @formField('input', [
-            'name' => 'intro',
-            'field_name' => 'intro',
-            'label' => 'Intro',
+            'name' => 'external_link',
+            'field_name' => 'external_link',
+            'label' => 'link',
             'required' => true
         ])
         @formField('input', [
             'type' => 'text',
-            'name' => 'hours',
-            'field_name' => 'hours',
-            'label' => 'Hours',
+            'name' => 'text',
+            'field_name' => 'text',
+            'label' => 'Text',
             'required' => true
         ])
     </div>
