@@ -1,7 +1,7 @@
 @section('contentFields')
     @formField('medias', [
         'name' => 'visit_hero',
-        'label' => 'Hero Image',
+        'label' => 'Hero Image/Video',
     ])
 
     @formField('medias', [
@@ -23,14 +23,14 @@
 
 @section('fieldsets')
     <a17-fieldset title="Museum Address" id="locations">
-        @formField('repeater', ['type' => 'locations'])
+        @formField('repeater', ['type' => 'locations', 'max' => 2])
     </a17-fieldset>
 
     <a17-fieldset title="Hours" id="featured_hours">
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
 
-    <a17-fieldset title="Dining Hours" id="dinning_hours">
+    <a17-fieldset title="Dining" id="dinning_hours">
         @formField('repeater', ['type' => 'dinning_hours'])
     </a17-fieldset>
 @stop

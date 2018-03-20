@@ -149,7 +149,7 @@ return [
                 'max' => 10,
             ],
             'dinning_hours' => [
-                'title' => 'Dining Hours',
+                'title' => 'Dining',
                 'trigger' => 'Add dining hours',
                 'component' => 'a17-block-dinning_hours',
                 'max' => 3,
