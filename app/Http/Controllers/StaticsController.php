@@ -337,6 +337,93 @@ class StaticsController extends FrontController {
     ]);
   }
 
+  public function event_feature() {
+    // make some left rail links
+    $locationLink = array('label' => 'Rubloff Auditorium', 'href' => '#', 'iconBefore' => 'location');
+    $registrationLink = array('label' => 'Registration required', 'href' => "#");
+    // make left rail nav array
+    $nav = array();
+    array_push($nav, $locationLink);
+    array_push($nav, $registrationLink);
+    // make blocks
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(3)
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 's',
+            'media' => $this->getEmbed('soundcloud'),
+            'hideCaption' => true
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(1)
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 'm',
+            'media' => $this->getEmbed(),
+            'caption' => $this->faker->paragraph(3, false)
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'gallery',
+        "subtype" => 'slider',
+        "title" => 'Slider Gallery',
+        "caption" => $this->faker->paragraph(3, false),
+        "items" => $this->getGalleryImages(6),
+        "allLink" => array(
+          'href' => '#',
+          'label' => "See all exhibition objects",
+        ),
+    ));
+    array_push($blocks, array(
+        "type" => 'time-line',
+        "items" => $this->getTimelineEvents(3)
+    ));
+    array_push($blocks, array(
+        "type" => 'newsletter-sign-up',
+    ));
+
+    // get an event
+    $article = $this->getEvent();
+    $article->push('articleType', 'event');
+    $article->push('headerType', 'feature');
+    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('blocks', $blocks);
+    $article->push('intro', $this->faker->paragraph(6, false));
+    $article->push('speakers', array(
+        array(
+          'img' => $this->getImage(320,320),
+          'title' => $this->faker->firstName.' '.$this->faker->lastName,
+          'text' => $this->faker->paragraph(5),
+        ),
+      )
+    );
+    $article->push('sponsors', $this->generateBlocks(2));
+    $article->push('futherSupport', array(
+      'logo' => $this->getImage(320,320),
+      'title' => "Further support has been provided by",
+      'text' => $this->faker->paragraph(5),
+    ));
+    $article->push('ticketLink', '#');
+    $article->push('ticketPrices', '<p>$10 <strong>students</strong></p><p>$20 members</p><p>$30 non-members</p>');
+    $article->push('nav', $nav);
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
+    ]);
+  }
+
   public function editorial() {
     $headerImage = $this->getImage(1600,900);
     $blocks = $this->generateBlocks(3);
@@ -1437,15 +1524,15 @@ class StaticsController extends FrontController {
     return $this->faker->randomElement($videos);
   }
 
-  private function getEmbed() {
+  private function getEmbed($type = null) {
     $embed = array();
-    if ($this->faker->boolean()) {
+    if ($this->faker->boolean() || $type == 'soundcloud') {
         $embed = array(
-            'embed' => '<iframe width="560" height="315" data-src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
+            'embed' => '<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/348258574&color=%23b50938&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>',
         );
     } else {
         $embed = array(
-            'embed' => '<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/197955759&color=%23b50938&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>',
+            'embed' => '<iframe width="560" height="315" data-src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
         );
     }
     return $embed;
