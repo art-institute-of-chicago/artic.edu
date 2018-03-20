@@ -14,6 +14,21 @@ const ajaxPageLoad = function() {
   var documentContent;
   var docTitle;
 
+  function stateChecks(doc) {
+    // check to see if we need the contrasted header
+    if (doc.documentElement.classList.contains('s-contrast-header')) {
+      document.documentElement.classList.add('s-contrast-header');
+    } else {
+      document.documentElement.classList.remove('s-contrast-header');
+    }
+    // check to see if we need the filled in logo
+    if (doc.documentElement.classList.contains('s-filled-logo')) {
+      document.documentElement.classList.add('s-filled-logo');
+    } else {
+      document.documentElement.classList.remove('s-filled-logo');
+    }
+  }
+
   function defaultStart(options,doc) {
     document.documentElement.classList.remove('s-page-nav');
   }
@@ -27,6 +42,8 @@ const ajaxPageLoad = function() {
       document.body.scrollTop = 0;
       // replace content
       document.querySelector('#a17').innerHTML = doc.querySelector('#a17').innerHTML;
+      // check states
+      stateChecks(doc);
       // reveal content
       document.documentElement.classList.remove('s-page-nav');
       document.documentElement.classList.remove('s-page-nav-swapping');
