@@ -217,6 +217,10 @@
   }
 }
 
+.m-listing:not(.m-listing--hero):not(.m-listing--hero-editorial):not(.m-listing--hover-bar) .m-listing__link:hover .m-listing__img {
+  opacity: .9;
+}
+
 .m-listing__meta {
   display: flex;
   flex: 1 0 auto;
