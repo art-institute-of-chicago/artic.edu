@@ -647,7 +647,7 @@ array_push($linksBarPrimary, array('label' => 'Btn 5', 'href' => '#', 'variation
 
 @php
 $linksBarPrimary = array();
-array_push($linksBarPrimary, array('label' => 'Upcoming Exhibits', 'href' => '#', 'variation' => ''));
+array_push($linksBarPrimary, array('label' => 'Upcoming exhibitions', 'href' => '#', 'variation' => ''));
 $linksBarPrimarySecondary = array();
 array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#'));
 @endphp

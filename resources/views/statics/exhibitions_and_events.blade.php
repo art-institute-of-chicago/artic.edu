@@ -118,7 +118,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--buttons')
-    @slot('linksPrimary', array(array('label' => 'Upcoming Exhibits', 'href' => '#', 'variation' => 'btn--secondary')))
+    @slot('linksPrimary', array(array('label' => 'Upcoming exhibitions', 'href' => '#', 'variation' => 'btn--secondary')))
 @endcomponent
 
 @component('components.molecules._m-title-bar')
