@@ -335,7 +335,7 @@
   top: 0;
   bottom: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   margin-left: -50vw;
 }
 
@@ -390,6 +390,10 @@
   @include tucked-margin-top($f-display-3, ('xsmall': 60, 'small+': 100));
 }
 
+.m-article-header--hero .m-article-header__info-trigger,
+.m-article-header--hero .m-article-header__info {
+  bottom: 28px;
+}
 
 
 
