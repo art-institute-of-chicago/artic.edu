@@ -37,6 +37,20 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
+    public function contrastHeader()
+    {
+        switch ($this->headerType()) {
+            case 'feature':
+            case 'super-hero':
+            case 'hero':
+                return true;
+                break;
+
+            default:
+                return false;
+        }
+    }
+
     public function exhibitionType()
     {
         if ($this->entity->cms_exhibition_type == \App\Models\Exhibition::SPECIAL) {

@@ -33,7 +33,7 @@ class ExhibitionRepository extends BaseApiRepository
         $relatedEventsByDay = app(EventRepository::class)->groupByDate($collection);
 
         return [
-            'contrastHeader' => ($item->present()->headerType === 'hero'),
+            'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
             'relatedEventsByDay' => $relatedEventsByDay
         ];
