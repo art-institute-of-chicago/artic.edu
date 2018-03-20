@@ -23,8 +23,8 @@
         <ul class="g-footer__link-list">
           <li>{{ $_hours['opening_today'] }}</li>
           <li><a href="{{ $_pages['visit'] }}">Visit</a></li>
-          <li><a href="{{ $_pages['exhibitions'] }}">Exhibitions and Events</a></li>
-          <li><a href="{{ $_pages['collection'] }}">The Collection</a></li>
+          <li><a href="{{ $_pages['exhibitions'] }}">Exhibitions and events</a></li>
+          <li><a href="{{ $_pages['collection'] }}">The collection</a></li>
         </ul>
       </li>
 
@@ -48,13 +48,13 @@
 
       <li class="u-hide@small-">
         <div class="g-footer__grid__group">
-          <h3 class="f-list-6"><a href="{{ $_pages['about-us'] }}">About Us<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></h3>
+          <h3 class="f-list-6"><a href="{{ $_pages['about-us'] }}">About us<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></h3>
 
           <ul class="g-footer__link-list">
             <li><a href="{{ $_pages['about-us-inside-the-museum'] }}">Inside the museum</a></li>
-            <li><a href="{{ $_pages['about-us-inside-the-museum'] }}">Mission and History</a></li>
+            <li><a href="{{ $_pages['about-us-inside-the-museum'] }}">Mission and history</a></li>
             <li><a href="{{ $_pages['about-us-leadership'] }}">Leadership</a></li>
-            <li><a href="{{ $_pages['about-us-financials'] }}">Financial Records</a></li>
+            <li><a href="{{ $_pages['about-us-financials'] }}">Financial records</a></li>
           </ul>
         </div>
 
@@ -63,16 +63,16 @@
 
           <ul class="g-footer__link-list">
             <li><a href="{{ $_pages['support-us-membership'] }}">Membership</a></li>
-            <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to Give</a></li>
-            <li><a href="{{ $_pages['support-us-affiliate-groups'] }}">Affiliate Groups</a></li>
-            <li><a href="{{ $_pages['support-us-corporate-sponsorship'] }}">Corporate Sponsorship</a></li>
+            <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to give</a></li>
+            <li><a href="{{ $_pages['support-us-affiliate-groups'] }}">Affiliate groups</a></li>
+            <li><a href="{{ $_pages['support-us-corporate-sponsorship'] }}">Corporate sponsorship</a></li>
           </ul>
         </div>
       </li>
 
       <li>
         <div class="g-footer__grid__group u-hide@small-">
-          <h3 class="f-list-6"><a href="{{ $_pages['learn'] }}">Learn with Us<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></h3>
+          <h3 class="f-list-6"><a href="{{ $_pages['learn'] }}">Learn with us<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></h3>
 
           <ul class="g-footer__link-list">
             <li><a href="{{ $_pages['learn-families'] }}">Families</a></li>
