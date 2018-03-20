@@ -74,6 +74,18 @@
   top: 20px;
 }
 
+@media (hover: hover) {
+  .m-media__btn-download,
+  .m-media__btn-fullscreen {
+    opacity: 0;
+  }
+
+  .m-media__img:hover .m-media__btn-download,
+  .m-media__img:hover .m-media__btn-fullscreen {
+    opacity: 1;
+  }
+}
+
 .m-media figcaption {
   @include tucked-margin-top($f-caption, ('xsmall': 24));
   display: block;
