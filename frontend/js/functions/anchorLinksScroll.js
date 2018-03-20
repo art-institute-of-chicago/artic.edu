@@ -5,6 +5,8 @@ const anchorLinksScroll = function(container) {
   function _handleClicks(event) {
     let hash = event.target.href;
     if (event.target.host === window.location.host && event.target.hash) {
+      event.preventDefault();
+      event.stopPropagation();
       let target = document.getElementById(event.target.hash.replace('#',''));
       let offsetTarget = getOffset(target).top - 20;
       window.location.hash = '';
@@ -18,7 +20,6 @@ const anchorLinksScroll = function(container) {
           setFocusOnTarget(target);
         }
       });
-      event.preventDefault();
     }
   }
 
