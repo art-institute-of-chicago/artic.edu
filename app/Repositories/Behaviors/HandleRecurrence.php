@@ -13,14 +13,16 @@ trait HandleRecurrence
 
         // Create dates in all ocurrences
         foreach($rules as $occurrence) {
+            $date = clone ($occurrence);
+
             // Force rewind the date to the beginning of the day
-            $occurrence->setTime(0,0);
+            $begginingOfDay = \Carbon\Carbon::instance($date)->startOfDay();
 
             // Generate an Event Meta, add hours to the start and end dates
             \App\Models\EventMeta::create(
                 [
-                    'date'     => (clone $occurrence)->add(new \DateInterval($object->start_time)),
-                    'date_end' => (clone $occurrence)->add(new \DateInterval($object->end_time)),
+                    'date'     => (clone $begginingOfDay)->add(new \DateInterval($object->start_time)),
+                    'date_end' => (clone $begginingOfDay)->add(new \DateInterval($object->end_time)),
                     'event_id' => $object->id
                 ]
             );
