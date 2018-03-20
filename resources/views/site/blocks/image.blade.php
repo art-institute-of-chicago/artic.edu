@@ -6,7 +6,7 @@
     @slot('variation', 'o-blocks__block')
     @slot('item', [
         'type' => 'image',
-        'size' => $block->input('layout') === 1 ? 's' : 'm',
+        'size' => $block->input('size'),
         'media' => [
             "src" => $image['src'],
             "srcset" => $image['src'],
