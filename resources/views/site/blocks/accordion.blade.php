@@ -14,7 +14,7 @@
 @endphp
 
 @component('components.organisms._o-accordion')
-    @slot('variation', 'o-accordion--section')
+    @slot('variation', 'o-blocks__block')
     @slot('items', $items)
     @slot('loopIndex', $block->id)
 @endcomponent
