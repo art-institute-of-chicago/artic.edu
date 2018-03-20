@@ -302,11 +302,11 @@
 
 .m-listing__meta .f-list-3 {
   @include tucked-margin-top($f-list-3, ('xsmall': 32));
-
-  &:first-child {
+}
+  .m-listing__meta .f-list-3:first-child,
+  .m-listing__meta .date + .f-list-3 {
     @include tucked-margin-top($f-list-3, ('xsmall': 44));
   }
-}
 
 .m-listing__meta .f-list-4 {
   @include tucked-margin-top($f-list-4, ('xsmall': 32, 'large+': 40));
@@ -334,6 +334,10 @@
 
 .m-listing__meta .f-body {
   @include tucked-margin-top($f-body, ('xsmall': 48));
+}
+
+.m-listing__meta .f-list-3 + .f-body {
+  @include tucked-margin-top($f-body, ('xsmall': 32));
 }
 
 .m-listing__meta .f-list-4 + br + .f-body {
