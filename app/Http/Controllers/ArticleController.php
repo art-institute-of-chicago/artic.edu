@@ -24,19 +24,25 @@ class ArticleController extends FrontController
         $featuredArticles = $page->articlesArticles;
         $heroArticle = $featuredArticles->first();
 
-        $articles = Article::published()->whereNotIn('id', $featuredArticles->pluck('id'))->get();
+        $articles = Article::published()->whereNotIn('id', $featuredArticles->pluck('id'));
+        if (request('category')) {
+            $articles = $articles->whereHas('categories', function ($query) use ($page){
+                $query->where('category_id', request('category'));
+            });
+        }
+        $baseurl = route('articles');
+        $categories = array(array('label' => 'All', 'href' => $baseurl, 'active' => true));
 
-        $categories = array(array('label' => 'All', 'href' => '#', 'active' => true));
         foreach ($page->articlesCategories as $category) {
             array_push($categories,
-                array('label' => $category->name, 'href' => '#')
+                array('label' => $category->name, 'href' => $baseurl.'?category='.$category->id)
             );
         }
 
         return view('site.articles', [
             'page' => $page,
             'heroArticle' => $heroArticle,
-            'articles' => $articles,
+            'articles' => $articles->get(),
             'categories' => $categories,
             'featuredArticles' => $featuredArticles->forget(0)
         ]);
