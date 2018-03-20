@@ -8,6 +8,7 @@ use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 class EventController extends ModuleController
 {
     protected $moduleName = 'events';
+    protected $previewView = 'site.events.detail';
 
     protected $indexOptions = [
         'publish' => true,

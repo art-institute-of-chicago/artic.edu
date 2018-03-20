@@ -30,8 +30,8 @@ Route::name('search.artworks')->get('/search/artworks', 'SearchController@artwor
 Route::name('search.exhibitionsEvents')->get('/search/exhibitions_and_events', 'SearchController@exhibitionsEvents');
 
 // Events routes
-Route::name('events')->get('/events', 'EventController@index');
-Route::name('events.show')->get('/events/{id}', 'EventController@show');
+Route::name('events')->get('/events', 'EventsController@index');
+Route::moduleShowWithPreview('events');
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');

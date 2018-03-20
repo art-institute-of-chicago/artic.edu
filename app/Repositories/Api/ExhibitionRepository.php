@@ -37,8 +37,6 @@ class ExhibitionRepository extends BaseApiRepository
             'item' => $item,
             'relatedEventsByDay' => $relatedEventsByDay
         ];
-
-        // 'previewingPageSlug' => $previewPage ? ($previewPage->id . '-' . str_slug($previewPage->title)) : false,
     }
 
 }
