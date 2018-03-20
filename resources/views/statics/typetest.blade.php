@@ -53,7 +53,7 @@
 <div class="m-title-bar">
   <h2 class="m-title-bar__title f-module-title-1">From the Shop</h2>
   <ul class="m-title-bar__links">
-    <li><a href="#">Explore the Shop<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></li>
+    <li><a href="#">Explore the shop<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></li>
   </ul>
 </div>
 

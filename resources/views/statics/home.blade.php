@@ -156,7 +156,7 @@
 
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('label' => 'Explore the Shop', 'href' => '#')))
+    @slot('links', array(array('label' => 'Explore the shop', 'href' => '#')))
     From the Shop
 @endcomponent
 
@@ -188,7 +188,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('label' => 'Explore the Shop', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
+    @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => '#', 'variation' => 'btn btn--secondary f-buttons')))
 @endcomponent
 
 @endsection

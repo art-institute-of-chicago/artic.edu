@@ -13,7 +13,7 @@
 
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('label' => 'Explore the Shop', 'href' => '#')))
+    @slot('links', array(array('label' => 'Explore the shop', 'href' => '#')))
     5 column scroll
 @endcomponent
 @component('components.atoms._hr')
@@ -53,7 +53,7 @@
 @endcomponent
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('label' => 'Explore the Shop', 'href' => '#')))
+    @slot('links', array(array('label' => 'Explore the shop', 'href' => '#')))
     4 column scroll
 @endcomponent
 @component('components.atoms._hr')
