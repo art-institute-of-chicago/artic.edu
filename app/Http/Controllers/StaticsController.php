@@ -122,7 +122,7 @@ class StaticsController extends FrontController {
     $items['roadblock'] = [
         'title' => 'Enjoy Exclusing Access Today',
         'intro' => $this->faker->paragraph(),
-        'image' => $this->getImage(400, 600)
+        'image' => $this->getImage()
     ];
 
     return view('statics/home', $items);
@@ -172,7 +172,7 @@ class StaticsController extends FrontController {
 
     $article = $this->generateAllBlocksArticle();
     $article->push('headerType', 'feature');
-    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('headerImage', $this->getImage());
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
@@ -185,7 +185,7 @@ class StaticsController extends FrontController {
 
     $article = $this->generateAllBlocksArticle();
     $article->push('headerType', 'hero');
-    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('headerImage', $this->getImage());
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
@@ -198,7 +198,7 @@ class StaticsController extends FrontController {
 
     $article = $this->generateAllBlocksArticle();
     $article->push('headerType', 'super-hero');
-    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('headerImage', $this->getImage());
 
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
@@ -213,7 +213,7 @@ class StaticsController extends FrontController {
     return view('statics/generic', [
         'subNav' => $navs['subNav'],
         'nav' => $navs['nav'],
-        'headerImage' => $this->getImage(2000,240),
+        'headerImage' => $this->getImage(),
         "title" => "Students",
         "breadcrumb" => $this->generateGenericBreadcrumb(),
         "blocks" => $this->generateBlocks(3),
@@ -241,7 +241,7 @@ class StaticsController extends FrontController {
     return view('statics/generic', [
         'subNav' => $navs['subNav'],
         'nav' => $navs['nav'],
-        'headerImage' => $this->getImage(2000,240),
+        'headerImage' => $this->getImage(),
         "title" => "Scheduling a tour",
         "breadcrumb" => $this->generateGenericBreadcrumb(),
         "blocks" => $this->generateBlocks(3),
@@ -268,12 +268,12 @@ class StaticsController extends FrontController {
     $article->push('articleType', 'exhibition');
     $article->push('closingSoon', true);
     $article->push('headerType', 'super-hero');
-    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('headerImage', $this->getImage());
     $article->push('blocks', $this->generateBlocks(6));
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('sponsors', $this->generateBlocks(2));
     $article->push('futherSupport', array(
-      'logo' => $this->getImage(320,320),
+      'logo' => $this->getImage(),
       'title' => "Further support has been provided by",
       'text' => $this->faker->paragraph(5),
     ));
@@ -307,12 +307,12 @@ class StaticsController extends FrontController {
     $article = $this->getEvent();
     $article->push('articleType', 'event');
     //$article->push('headerType', 'feature');
-    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('headerImage', $this->getImage());
     $article->push('blocks', $this->generateBlocks(6));
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('speakers', array(
         array(
-          'img' => $this->getImage(320,320),
+          'img' => $this->getImage(),
           'title' => $this->faker->firstName.' '.$this->faker->lastName,
           'text' => $this->faker->paragraph(5),
         ),
@@ -320,7 +320,7 @@ class StaticsController extends FrontController {
     );
     $article->push('sponsors', $this->generateBlocks(2));
     $article->push('futherSupport', array(
-      'logo' => $this->getImage(320,320),
+      'logo' => $this->getImage(),
       'title' => "Further support has been provided by",
       'text' => $this->faker->paragraph(5),
     ));
@@ -396,12 +396,12 @@ class StaticsController extends FrontController {
     $article = $this->getEvent();
     $article->push('articleType', 'event');
     $article->push('headerType', 'feature');
-    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('headerImage', $this->getImage());
     $article->push('blocks', $blocks);
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('speakers', array(
         array(
-          'img' => $this->getImage(320,320),
+          'img' => $this->getImage(),
           'title' => $this->faker->firstName.' '.$this->faker->lastName,
           'text' => $this->faker->paragraph(5),
         ),
@@ -409,7 +409,7 @@ class StaticsController extends FrontController {
     );
     $article->push('sponsors', $this->generateBlocks(2));
     $article->push('futherSupport', array(
-      'logo' => $this->getImage(320,320),
+      'logo' => $this->getImage(),
       'title' => "Further support has been provided by",
       'text' => $this->faker->paragraph(5),
     ));
@@ -425,7 +425,7 @@ class StaticsController extends FrontController {
   }
 
   public function editorial() {
-    $headerImage = $this->getImage(1600,900);
+    $headerImage = $this->getImage();
     $blocks = $this->generateBlocks(3);
     array_push($blocks, array(
         "type" => 'quote',
@@ -444,7 +444,7 @@ class StaticsController extends FrontController {
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('sponsors', $this->generateBlocks(2));
     $article->push('futherSupport', array(
-      'logo' => $this->getImage(320,320),
+      'logo' => $this->getImage(),
       'title' => "Further support has been provided by",
       'text' => $this->faker->paragraph(5),
     ));
@@ -593,7 +593,7 @@ class StaticsController extends FrontController {
 
     // $article = $this->getExhibition();
     // $article->push('articleType', 'video');
-    // $article->push('headerImage', $this->getImage(1600,900));
+    // $article->push('headerImage', $this->getImage());
     // $article->push('intro', $this->faker->paragraph(6, false));
     // $article->push('blocks', $this->generateBlocks('all'));
     // $article->push('nav', array(array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location')));
@@ -618,7 +618,7 @@ class StaticsController extends FrontController {
         array(
           'href' => '#',
           'label' => $this->faker->word(),
-          'image' => $this->getImage(40,40),
+          'image' => $this->getImage(),
         )
       );
     }
@@ -679,7 +679,7 @@ class StaticsController extends FrontController {
         array(
           'href' => '#',
           'label' => $this->faker->word(),
-          'image' => $this->getImage(40,40),
+          'image' => $this->getImage(),
         )
       );
     }
@@ -749,7 +749,7 @@ class StaticsController extends FrontController {
       'media' => array(
         'type' => 'image',
         'size' => 's',
-        'media' => $this->getImage(800,450),
+        'media' => $this->getImage(),
         'hideCaption' => true,
        ),
       'blocks' => $this->generateBlocks(1),
@@ -781,7 +781,7 @@ class StaticsController extends FrontController {
       'media' => array(
         'type' => 'image',
         'size' => 's',
-        'media' => $this->getImage(800,450),
+        'media' => $this->getImage(),
         'hideCaption' => true,
        ),
       'blocks' => $this->generateBlocks(1),
@@ -969,7 +969,7 @@ class StaticsController extends FrontController {
         "content" => array(
             'type' => 'image',
             'size' => 's',
-            'media' => $this->getImage(640,480),
+            'media' => $this->getImage(),
             'hideCaption' => true,
         )
     ));
@@ -1077,13 +1077,13 @@ class StaticsController extends FrontController {
               ],
           ],
           'hero' => (object)[
-              'image' => $this->getImage(890,505),
+              'image' => $this->getImage(),
               'primary' => $this->faker->sentence(8),
               'secondary' => $this->faker->sentence(8),
           ],
           'items' => [
               [
-                  'image' => $this->getImage(360, 205),
+                  'image' => $this->getImage(),
                   'title' => 'Libraries',
                   'titleLink' => '#',
                   'text' => 'The Ryerson & Burnham Libraries constitute a major art and architecure research collection service The Art Institute of Chicago...',
@@ -1100,13 +1100,13 @@ class StaticsController extends FrontController {
                   ]
               ],
               [
-                  'image' => $this->getImage(360, 205),
+                  'image' => $this->getImage(),
                   'title' => 'Art & Architecture Archives',
                   'titleLink' => '#',
                   'text' => 'The Archives’ collections are notably strong in late 19th- and 20th-century American architecture, with particular depth...',
               ],
               [
-                  'image' => $this->getImage(360, 205),
+                  'image' => $this->getImage(),
                   'title' => 'Research Guides',
                   'titleLink' => '#',
                   'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
@@ -1130,19 +1130,19 @@ class StaticsController extends FrontController {
                   ]
               ],
               [
-                  'image' => $this->getImage(360, 205),
+                  'image' => $this->getImage(),
                   'title' => 'Scholarly Initiatives',
                   'titleLink' => '#',
                   'text' => 'The Ryerson & Burnham Libraries constitute a major art and architecure research collection service The Art Institute of Chicago...',
               ],
               [
-                  'image' => $this->getImage(360, 205),
+                  'image' => $this->getImage(),
                   'title' => 'Educator Resources',
                   'titleLink' => '#',
                   'text' => 'The Archives’ collections are notably strong in late 19th- and 20th-century American architecture, with particular depth...',
               ],
               [
-                  'image' => $this->getImage(360, 205),
+                  'image' => $this->getImage(),
                   'title' => 'Provenance',
                   'titleLink' => '#',
                   'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
@@ -1984,7 +1984,7 @@ class StaticsController extends FrontController {
       "slug" => "/statics/article",
       "title" => $this->faker->sentence(6, true),
       "author" => array(
-        'img' => $this->getImage(320,320),
+        'img' => $this->getImage(),
         'name' => $this->faker->firstName.' '.$this->faker->lastName,
         'link' => '#',
       ),
@@ -2034,7 +2034,7 @@ class StaticsController extends FrontController {
 
   private function generateFile() {
     return array(
-        'thumb' => $this->getImage(210,290),
+        'thumb' => $this->getImage(),
         'name' => 'AIC1970PandS69thAn_comb',
         'extension' => 'pdf',
         'size' => '2.1MB',
@@ -2164,7 +2164,7 @@ class StaticsController extends FrontController {
   private function generateAllBlocksArticle($type = null) {
     $article = $this->getExhibition();
     $article->push('articleType', 'exhibition');
-    $article->push('headerImage', $this->getImage(1600,900));
+    $article->push('headerImage', $this->getImage());
     $article->push('intro', $this->faker->paragraph(6, false));
     if ($type === null) {
         $article->push('blocks', $this->generateBlocks('all'));
@@ -2458,7 +2458,7 @@ class StaticsController extends FrontController {
         "content" => array(
             'type' => 'image',
             'size' => 's',
-            'media' => $this->getImage(640,480),
+            'media' => $this->getImage(),
             'caption' => $this->faker->paragraph(3, false)
         )
     ));
@@ -2467,7 +2467,7 @@ class StaticsController extends FrontController {
         "content" => array(
             'type' => 'image',
             'size' => 'm',
-            'media' => $this->getImage(480,640),
+            'media' => $this->getImage(),
             'caption' => $this->faker->paragraph(3, false)
         )
     ));
@@ -2476,7 +2476,7 @@ class StaticsController extends FrontController {
         "content" => array(
             'type' => 'image',
             'size' => 'l',
-            'media' => $this->getImage(640,640),
+            'media' => $this->getImage(),
             'caption' => $this->faker->paragraph(3, false)
         )
     ));
@@ -3340,7 +3340,7 @@ class StaticsController extends FrontController {
         "content" => array(
             'type' => 'image',
             'size' => 's',
-            'media' => $this->getImage(640,480),
+            'media' => $this->getImage(),
             'hideCaption' => true,
         )
     ));
@@ -3409,42 +3409,42 @@ class StaticsController extends FrontController {
         'items' => (object) [
             [
                 'url' => '#',
-                'image' => $this->getImage(40,40),
+                'image' => $this->getImage(),
                 'text' => $this->faker->sentence(6, true),
             ],
             [
                 'url' => '#',
-                'image' => $this->getImage(40,40),
+                'image' => $this->getImage(),
                 'text' => $this->faker->sentence(6, true),
             ],
             [
                 'url' => '#',
-                'image' => $this->getImage(40,40),
+                'image' => $this->getImage(),
                 'text' => $this->faker->sentence(6, true),
             ],
             [
                 'url' => '#',
-                'image' => $this->getImage(40,40),
+                'image' => $this->getImage(),
                 'text' => $this->faker->sentence(6, true),
             ],
             [
                 'url' => '#',
-                'image' => $this->getImage(40,40),
+                'image' => $this->getImage(),
                 'text' => $this->faker->sentence(6, true),
             ],
             [
                 'url' => '#',
-                'image' => $this->getImage(40,40),
+                'image' => $this->getImage(),
                 'text' => $this->faker->sentence(6, true),
             ],
             [
                 'url' => '#',
-                'image' => $this->getImage(40,40),
+                'image' => $this->getImage(),
                 'text' => $this->faker->sentence(6, true),
             ],
             [
                 'url' => '#',
-                'image' => $this->getImage(40,40),
+                'image' => $this->getImage(),
                 'text' => $this->faker->sentence(6, true),
             ],
         ]
@@ -3475,7 +3475,7 @@ class StaticsController extends FrontController {
         'headerMedia' => array(
           'type' => 'image',
           'size' => 'hero',
-          'media' => $this->getImage(1600,900),
+          'media' => $this->getImage(),
           'hideCaption' => true,
          ),
         'title' => 'Plan Your Visit',
@@ -3483,7 +3483,7 @@ class StaticsController extends FrontController {
           'media' => array(
               'type' => 'image',
               'size' => 's',
-              'media' => $this->getImage(800,450),
+              'media' => $this->getImage(),
               'hideCaption' => true,
           ),
           'primary' => $this->faker->sentence(8),
@@ -3511,7 +3511,7 @@ class StaticsController extends FrontController {
           'cityPass' => array(
               'title' => 'CityPass',
               'text' => $this->faker->paragraph(3),
-              'image' => $this->getImage(400,225),
+              'image' => $this->getImage(),
               'link' => array(
                   'label' => 'Get CityPass',
                   'href' => '#',
@@ -3563,7 +3563,7 @@ class StaticsController extends FrontController {
           'image' => array(
               'type' => 'image',
               'size' => 's',
-              'media' => $this->getImage(800,800),
+              'media' => $this->getImage(),
               'hideCaption' => true,
           ),
           'text' => array(
@@ -3616,7 +3616,7 @@ class StaticsController extends FrontController {
               array(
                   'title' => $this->faker->sentence(2),
                   'titleLink' => '#',
-                  'image' => $this->getImage(400,225),
+                  'image' => $this->getImage(),
                   'links' => array(
                       array(
                         'href' => '#',
@@ -3639,7 +3639,7 @@ class StaticsController extends FrontController {
               array(
                   'title' => $this->faker->sentence(2),
                   'titleLink' => '#',
-                  'image' => $this->getImage(400,225),
+                  'image' => $this->getImage(),
                   'links' => array(
                       array(
                         'href' => '#',
@@ -3654,7 +3654,7 @@ class StaticsController extends FrontController {
               array(
                   'title' => $this->faker->sentence(2),
                   'titleLink' => '#',
-                  'image' => $this->getImage(400,225),
+                  'image' => $this->getImage(),
                   'links' => array(
                       array(
                         'href' => '#',
@@ -3675,7 +3675,7 @@ class StaticsController extends FrontController {
               array(
                   'title' => $this->faker->sentence(2),
                   'titleLink' => '#',
-                  'image' => $this->getImage(400,225),
+                  'image' => $this->getImage(),
                   'text' => $this->faker->paragraph(3),
                   'links' => array(
                       array(
@@ -3687,7 +3687,7 @@ class StaticsController extends FrontController {
               array(
                   'title' => $this->faker->sentence(2),
                   'titleLink' => '#',
-                  'image' => $this->getImage(400,225),
+                  'image' => $this->getImage(),
                   'text' => $this->faker->paragraph(3),
                   'links' => array(
                       array(
@@ -3699,7 +3699,7 @@ class StaticsController extends FrontController {
               array(
                   'title' => $this->faker->sentence(2),
                   'titleLink' => '#',
-                  'image' => $this->getImage(400,225),
+                  'image' => $this->getImage(),
                   'text' => $this->faker->paragraph(3),
                   'links' => array(
                       array(
