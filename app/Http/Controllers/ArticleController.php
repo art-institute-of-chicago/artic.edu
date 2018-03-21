@@ -50,10 +50,7 @@ class ArticleController extends FrontController
 
     public function show($slug)
     {
-        $item = $this->repository->forSlug($slug);
-        if (empty($item)) {
-            $item = $this->repository->getById($slug);
-        }
+        $item = $this->repository->find($slug);
 
         if ($item->categories->first()) {
             $item->topics = $item->categories;

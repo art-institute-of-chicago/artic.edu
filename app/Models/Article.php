@@ -73,10 +73,20 @@ class Article extends Model
         ]
     ];
 
+    public function getArticleTypeattribute()
+    {
+        return 'editorial';
+    }
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id_slug';
+    }
+
+    public function getIdSlugAttribute()
+    {
+        return join([$this->id, $this->getSlug()], '-');
     }
 
     public function categories()
