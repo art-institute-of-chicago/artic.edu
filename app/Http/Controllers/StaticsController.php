@@ -1470,43 +1470,10 @@ class StaticsController extends FrontController {
   }
 
   private function getGalleryImages($num = 6, $type = false) {
-    $images = array();
-    if ($type === 'artworks') {
-      for ($i = 0; $i < $num; $i++) {
-        // need to convert the artwork item to media
-        $artwork = $this->getArtwork();
-        $artworkItem = array();
-        $artworkItem['type'] = 'image';
-        $artworkItem['size'] = 'gallery';
-        $artworkItem['media'] = $artwork->imageFront();
-        $artworkItem['captionTitle'] = $artwork->title;
-        $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
-        $artworkItem['hideShare'] = true;
-        $artworkItem['fullscreen'] = true;
-
-        array_push($images, $artworkItem);
-      }
-    } else {
-      for ($i = 0; $i < $num; $i++) {
-        /*
-        if ($i == 2) {
-          array_push($images, array(
-                'type' => 'video',
-                'size' => 'gallery',
-                'media' => $this->getVideo(),
-                'caption' => $this->faker->paragraph(3, false),
-            )
-          );
-        */
-        if ($i == 5) {
-          array_push($images, array(
-                'type' => 'embed',
-                'size' => 'gallery',
-                'media' => $this->getEmbed(),
-                'caption' => $this->faker->paragraph(3, false),
-            )
-          );
-        } else if ($i == 1) {
+      $images = array();
+      if ($type === 'artworks') {
+        for ($i = 0; $i < $num; $i++) {
+          // need to convert the artwork item to media
           $artwork = $this->getArtwork();
           $artworkItem = array();
           $artworkItem['type'] = 'image';
@@ -1518,7 +1485,8 @@ class StaticsController extends FrontController {
           $artworkItem['fullscreen'] = true;
 
           array_push($images, $artworkItem);
-        } else if ($i == 2) {
+        }
+      } else {
           $artwork = $this->getArtwork();
           $artworkItem = array();
           $artworkItem['type'] = 'image';
@@ -1528,23 +1496,36 @@ class StaticsController extends FrontController {
           $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
           $artworkItem['hideShare'] = true;
           $artworkItem['fullscreen'] = true;
-          $artworkItem['url'] = '#';
 
-          array_push($images, $artworkItem);
-        } else {
-          array_push($images, array(
-                'type' => 'image',
-                'size' => 'gallery',
-                'media' => $this->getImage(),
-                'caption' => $this->faker->paragraph(3, false),
-                'url' => $this->faker->boolean() ? '#' : null,
-            )
-          );
+
+        for ($i = 0; $i < $num; $i++) {
+          if ($i == 5) {
+            array_push($images, array(
+                  'type' => 'embed',
+                  'size' => 'gallery',
+                  'media' => $this->getEmbed(),
+                  'caption' => $this->faker->paragraph(3, false),
+              )
+            );
+          } else if ($i == 1 || $i === 2) {
+              if ($i === 2) {
+                  $artworkItem['url'] = '#';
+              }
+              array_push($images, $artworkItem);
+          } else {
+            array_push($images, array(
+                  'type' => 'image',
+                  'size' => 'gallery',
+                  'media' => $this->getImage(),
+                  'caption' => $this->faker->paragraph(3, false),
+                  'url' => $this->faker->boolean() ? '#' : null,
+              )
+            );
+          }
         }
       }
+      return $images;
     }
-    return $images;
-  }
 
   private function makeDate() {
     $timestamp = $this->faker->unixTime();
