@@ -56,6 +56,11 @@ class Selection extends Model
         return 'slug';
     }
 
+    public function getHeaderTypeAttribute()
+    {
+        return 'hero';
+    }
+
     public function getIntroAttribute()
     {
         return $this->short_copy;

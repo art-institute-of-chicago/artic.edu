@@ -13,8 +13,8 @@ class Article extends Model
 {
     use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable;
 
+    protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
-    protected $presenter = 'App\Presenters\ArticlePresenter';
 
     protected $fillable = [
         'published',
@@ -34,9 +34,12 @@ class Article extends Model
         'title',
     ];
 
+    const BASIC = 0;
+    const LARGE = 1;
+
     public static $articleLayouts = [
-        0 => 'Basic',
-        1 => 'Large Feature',
+        self::BASIC => 'Basic',
+        self::LARGE => 'Large Feature',
     ];
 
     public $nullable = [];

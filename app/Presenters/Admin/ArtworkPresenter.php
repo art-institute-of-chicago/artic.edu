@@ -15,4 +15,9 @@ class ArtworkPresenter extends BasePresenter
         return 'No title';
     }
 
+    public function headerType()
+    {
+        return "gallery";
+    }
+
 }

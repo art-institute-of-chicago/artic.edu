@@ -10,4 +10,10 @@ class SelectionPresenter extends BasePresenter
     {
         return $this->artworks->count();
     }
+
+    public function headerType()
+    {
+        return "hero";
+    }
+
 }

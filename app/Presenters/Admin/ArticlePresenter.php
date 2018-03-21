@@ -20,7 +20,18 @@ class ArticlePresenter extends BasePresenter
         if ($this->entity->date) {
             return $this->entity->date->format('d M, Y');
         }
+    }
 
+    public function headerType()
+    {
+        switch ($this->entity->layout_type) {
+            case \App\Models\Article::LARGE:
+                return "feature";
+                break;
+            default:
+                return null;
+                break;
+        }
     }
 
 }

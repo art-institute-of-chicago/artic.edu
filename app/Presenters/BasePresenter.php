@@ -23,4 +23,18 @@ abstract class BasePresenter
         return $this->entity->{$property};
     }
 
+    public function contrastHeader()
+    {
+        switch ($this->headerType()) {
+            case 'feature':
+            case 'super-hero':
+            case 'hero':
+                return true;
+                break;
+
+            default:
+                return false;
+        }
+    }
+
 }

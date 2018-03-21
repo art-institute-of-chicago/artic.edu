@@ -4,12 +4,13 @@ namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Presenters\StaticObjectPresenter;
+use A17\CmsToolkit\Models\Behaviors\HasPresenter;
 use LakeviewImageService;
 use App\Models\Behaviors\HasMediasApi;
 
 class Artwork extends BaseApiModel
 {
-    use HasMediasApi;
+    use HasMediasApi, HasPresenter;
 
     protected $endpoints = [
         'collection' => '/api/v1/artworks',
@@ -17,6 +18,9 @@ class Artwork extends BaseApiModel
         'search'     => '/api/v1/artworks/search',
         'boosted'    => '/api/v1/artworks/boosted'
     ];
+
+    protected $presenter       = 'App\Presenters\Admin\ArtworkPresenter';
+    protected $presenterAdmin  = 'App\Presenters\Admin\ArtworkPresenter';
 
     public $mediasParams = [
         'hero' => [

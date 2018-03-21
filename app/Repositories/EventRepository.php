@@ -141,6 +141,7 @@ class EventRepository extends ModuleRepository
     public function getShowData($item, $slug = null, $previewPage = null)
     {
         return [
+            'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
         ];
     }

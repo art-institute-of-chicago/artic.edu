@@ -84,7 +84,7 @@ class ArtworkController extends FrontController
         }
 
         return view('site.articleDetail', [
-          'contrastHeader' => ($item->headerType === 'hero'),
+          'contrastHeader' => $item->present()->contrastHeader,
           'item' => $item
         ]);
     }

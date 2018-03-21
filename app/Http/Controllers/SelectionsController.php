@@ -29,7 +29,6 @@ class SelectionsController extends FrontController
             $item = $this->repository->getById($slug);
         }
 
-        $item->headerType = 'hero';
         if ($item->imageFront('hero')) {
             $item->headerImage = $item->imageFront('hero');
         }
@@ -65,6 +64,7 @@ class SelectionsController extends FrontController
         // ));
 
         return view('site.articleDetail', [
+            'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item
         ]);
     }

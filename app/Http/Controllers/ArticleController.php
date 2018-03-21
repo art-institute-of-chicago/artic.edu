@@ -60,6 +60,7 @@ class ArticleController extends FrontController
         }
 
         return view('site.articleDetail', [
+            'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item
         ]);
     }
