@@ -42,7 +42,7 @@
   cursor: grab;
 }
 
-.o-fullscreen-image img.s-draggable.s-dragging {
+.o-fullscreen-image img.s-draggable.s-mousedown {
   /* autoprefixer: off */
   cursor: move;
   cursor: -webkit-grabbing;

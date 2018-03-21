@@ -126,7 +126,7 @@ Variant: `o-listing--single-row` - limits to a single row
       }
     }
 
-    .o-grid-listing--single-row[class*="scroll@#{$name}"].s-dragging {
+    .o-grid-listing--single-row[class*="scroll@#{$name}"].s-mousedown {
       /* autoprefixer: off */
       cursor: move;
       cursor: -webkit-grabbing;

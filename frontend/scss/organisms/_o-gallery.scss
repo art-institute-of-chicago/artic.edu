@@ -300,7 +300,7 @@
     }
   }
 
-  .o-gallery__media.s-dragging {
+  .o-gallery__media.s-mousedown {
     /* autoprefixer: off */
     cursor: move;
     cursor: -webkit-grabbing;

@@ -65,8 +65,8 @@
   cursor: grab;
 }
 
-.m-quick-search-links__links.s-dragging::before,
-.m-quick-search-links__links.s-dragging * {
+.m-quick-search-links__links.s-mousedown::before,
+.m-quick-search-links__links.s-mousedown * {
   /* autoprefixer: off */
   cursor: move;
   cursor: -webkit-grabbing;

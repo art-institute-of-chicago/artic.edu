@@ -60,6 +60,7 @@ const dragScroll = function(container) {
 
   function _mouseDown(event) {
     event.preventDefault();
+    container.classList.remove('s-mousedown');
     // reset everything
     xVelocity = 0;
     yVelocity = 0;
@@ -79,6 +80,7 @@ const dragScroll = function(container) {
       window.requestAnimationFrame(_momentum);
     }
     container.classList.remove('s-dragging');
+    container.classList.remove('s-mousedown');
     setTimeout(function(){
       allowClicks = true;
     }, 50);
