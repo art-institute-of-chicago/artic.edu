@@ -224,7 +224,7 @@ function aic_imageSettings($data) {
         $imgixSettings['w'] = $LQIPDimension;
         $imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
         $imgixSettings['q'] = '10';
-        $imgixSettings['blur'] = '75';
+        //$imgixSettings['blur'] = '75';
         $imgixSettingsString = http_build_query($imgixSettings);
 
         $stringSrc = $base.$imgixSettingsString;
