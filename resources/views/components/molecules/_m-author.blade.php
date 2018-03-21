@@ -25,7 +25,7 @@
         <br>
         @endif
         @if (isset($date))
-            {{ $date ?? '' }}
+            {{ $date->format('F j, Y') ?? '' }}
         @endif
     @endcomponent
 </div>
