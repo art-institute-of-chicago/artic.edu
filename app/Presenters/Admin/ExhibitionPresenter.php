@@ -50,17 +50,15 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
-    // public function timing()
-    // {
-    //     // If started less than 2 weeks ago
-    //     if (Carbon::now()->between($this->startAt(), $this->startAt()->addWeeks(2)) {
-    //         return 'Now Open';
-    //     }
+    public function formattedDate()
+    {
+        $date = $this->entity->dateStart->format('M j, Y');
+        if (!empty($this->entity->dateEnd)) {
+            $date .= '&ndash; ' . $this->entity->dateEnd->format('M j, Y');
+        }
 
-    //     if (Carbon::now()->between($this->endAt()->subWeeks(2), $this->endAt()) {
-    //         return 'Closing soon';
-    //     }
-    // }
+        return $date;
+    }
 
     public function startAt()
     {

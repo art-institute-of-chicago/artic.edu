@@ -42,27 +42,32 @@ class Exhibition extends BaseApiModel
 
     public function getDateStartAttribute()
     {
-        return new Carbon($this->start_at);
+        if (!empty($this->start_at))
+            return new Carbon($this->start_at);
     }
 
     public function getDateEndAttribute()
     {
-        return new Carbon($this->end_at);
+        if (!empty($this->end_at))
+            return new Carbon($this->end_at);
     }
 
     public function getClosingSoonAttribute()
     {
-        return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
+        if (!empty($this->dateEnd))
+            return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
     }
 
     public function getNowOpenAttribute()
     {
-        return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateStart->startOfDay()->addWeeks(2));
+        if (!empty($this->dateStart) && !empty($this->dateEnd))
+            return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateStart->startOfDay()->addWeeks(2));
     }
 
     public function getOngoingAttribute()
     {
-        return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateEnd->endOfDay());
+        if (!empty($this->dateStart) && !empty($this->dateEnd))
+            return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateEnd->endOfDay());
     }
 
     // EXAMPLE SCOPE:

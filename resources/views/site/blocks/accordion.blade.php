@@ -15,6 +15,8 @@
 
 @component('components.organisms._o-accordion')
     @slot('variation', 'o-blocks__block')
+    @slot('titleFont', null)
     @slot('items', $items)
     @slot('loopIndex', $block->id)
 @endcomponent
+

@@ -60,7 +60,7 @@
         @else
             <span class="m-listing__meta-bottom">
                 @component('components.atoms._date')
-                    {{ $item->dateStart->format('M j, Y') }} &ndash; {{ $item->dateEnd->format('M j, Y') }}
+                    {!! $item->present()->formattedDate !!}
                 @endcomponent
             </span>
         @endif
