@@ -32,6 +32,10 @@
             <br>
             <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->shortDesc }}</span>
             @endif
+            @if ($item->short_description)
+            <br>
+            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->short_description }}</span>
+            @endif
             @if ($item->date)
             <br>
             @component('components.atoms._date')
