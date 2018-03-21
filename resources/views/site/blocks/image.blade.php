@@ -7,6 +7,8 @@
     @slot('item', [
         'type' => 'image',
         'size' => $block->input('size'),
+        'caption' => $block->input('caption'),
+        'captionTitle' => $block->input('caption_title'),
         'media' => [
             "src" => $image['src'],
             "srcset" => $image['src'],
@@ -19,7 +21,6 @@
             "credit" => '',
             "creditUrl" => '',
         ],
-        'caption' => $block->input('caption')
     ])
 @endcomponent
 
