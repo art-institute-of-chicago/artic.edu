@@ -1589,6 +1589,7 @@ class StaticsController extends FrontController {
       "dateEnd" => $this->makeDate(),
       "imageFront" => $boolean ? function() {return $this->getImage();} : null,
       'short_description' => $this->faker->paragraph(6, false),
+      'listing_description' => $this->faker->paragraph(6, false),
     ]);
   }
 
