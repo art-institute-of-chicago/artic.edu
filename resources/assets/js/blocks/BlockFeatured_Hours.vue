@@ -1,7 +1,7 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <div class="col"> <a17-inputframe label="Image" name="medias.image" > <a17-mediafield :name="fieldName('image')" crop-context="image" ></a17-mediafield> </a17-inputframe> <a17-textfield label="Intro" :name="fieldName('intro')" type="text" :required="true" in-store="value" ></a17-textfield> <a17-textfield label="Hours" :name="fieldName('hours')" type="text" :required="true" in-store="value" ></a17-textfield> </div>
+        <div class="col"> <a17-textfield label="Title" :name="fieldName('title')" type="text" :required="true" in-store="value" ></a17-textfield> <a17-textfield label="link" :name="fieldName('external_link')" type="text" :required="true" in-store="value" ></a17-textfield> <a17-textfield label="Text" :name="fieldName('copy')" type="textarea" :required="true" :rows="3" in-store="value" ></a17-textfield> </div>
     </div>
 </template>
 

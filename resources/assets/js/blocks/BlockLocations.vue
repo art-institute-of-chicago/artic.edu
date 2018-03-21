@@ -1,7 +1,7 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <a17-textfield label="Name" :name="fieldName('name')" type="text" :required="true" in-store="value" ></a17-textfield><a17-inputframe v-show="!opened"> <a href='#' @click.prevent='open' class="f--small f--note f--underlined">Edit location</a></a17-inputframe><div v-show="opened"> <a17-textfield label="Street" :name="fieldName('street')" type="text" in-store="value" ></a17-textfield> <a17-textfield label="Address" :name="fieldName('address')" type="text" in-store="value" ></a17-textfield> <a17-textfield label="City" :name="fieldName('city')" type="text" in-store="value" ></a17-textfield> <a17-textfield label="State" :name="fieldName('state')" type="text" in-store="value" ></a17-textfield> <a17-textfield label="ZIP code" :name="fieldName('zip')" type="text" in-store="value" ></a17-textfield></div>
+        <a17-textfield label="Entrance" :name="fieldName('name')" type="text" :required="true" in-store="value" ></a17-textfield><a17-inputframe v-show="!opened"> <a href='#' @click.prevent='open' class="f--small f--note f--underlined">Edit location</a></a17-inputframe><div v-show="opened"> <a17-textfield label="Street" :name="fieldName('street')" type="text" in-store="value" ></a17-textfield> <a17-textfield label="Address" :name="fieldName('address')" type="text" in-store="value" ></a17-textfield> <a17-textfield label="City" :name="fieldName('city')" type="text" in-store="value" ></a17-textfield> <a17-textfield label="State" :name="fieldName('state')" type="text" in-store="value" ></a17-textfield> <a17-textfield label="ZIP code" :name="fieldName('zip')" type="text" in-store="value" ></a17-textfield></div>
     </div>
 </template>
 
