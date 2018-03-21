@@ -108,7 +108,7 @@ class EventRepository extends ModuleRepository
             $query->byAudience($audience);
         }
 
-        return $query->paginate($perPage, ['*'], 'page', $page);
+        return $query->paginate($perPage, ['events.*', 'event_metas.date', 'event_metas.date_end'], 'page', $page);
     }
 
     public function getRelatedEvents($object, $perPage = 3, $page = null) {
@@ -125,7 +125,7 @@ class EventRepository extends ModuleRepository
         $query->whereIn('events.id', $ids);
         $query->orderBy('event_metas.date', 'ASC');
 
-        return $query->paginate($perPage, ['*'], 'page', $page);
+        return $query->paginate($perPage, ['events.*', 'event_metas.date', 'event_metas.date_end'], 'page', $page);
     }
 
     public function getRelatedEventsCount($object) {
