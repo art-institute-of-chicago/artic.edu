@@ -13,10 +13,11 @@ use A17\CmsToolkit\Models\Behaviors\Sortable;
 use A17\CmsToolkit\Models\Model;
 
 use Kalnoy\Nestedset\NodeTrait;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class GenericPage extends Model implements Sortable
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait; // HasTranslation,
+    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait; // HasTranslation,
 
     protected $fillable = [
         'short_description',

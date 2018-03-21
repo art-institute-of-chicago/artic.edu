@@ -10,7 +10,7 @@
                 @endcomponent
             @elseif (isset($image) || method_exists($item, 'imageFront'))
                 @component('components.atoms._img')
-                    @slot('image', ($image ?? $item->imageFront()))
+                    @slot('image', ($image ?? $item->imageFront('default')))
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
             @endif

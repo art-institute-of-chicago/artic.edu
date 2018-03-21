@@ -61,4 +61,5 @@ Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
 // Generic Page
-// Route::name('pages.show')->get('/{slug}', 'PagesController@show');
+// This MUST be the last route
+Route::get('{any}', ['as' => 'genericpages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');
