@@ -127,7 +127,7 @@
 
 
 .o-gallery__media .m-media__img {
-  background-color: $color__black--93;
+  background: transparent;
 }
 
 
@@ -229,15 +229,6 @@
     padding-left: colspan(2, xsmall);
     overflow-x: auto;
     overflow-y: hidden;
-    cursor: ew-resize;
-    -ms-overflow-style: none;
-    overflow-y: -moz-scrollbars-none;
-    -webkit-overflow-scrolling: touch;
-
-    &::-webkit-scrollbar {
-      -webkit-appearance: none;
-      display: none;
-    }
 
     @include breakpoint('small+') {
       margin-right: colspan(3, small, 0, true);
@@ -292,6 +283,31 @@
     }
   }
 
+  .o-gallery__media {
+    /* autoprefixer: off */
+    cursor: move;
+    cursor: ew-resize;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+    -ms-overflow-style: none;
+    overflow-y: -moz-scrollbars-none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      display: none;
+    }
+  }
+
+  .o-gallery__media.s-dragging {
+    /* autoprefixer: off */
+    cursor: move;
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    cursor: grabbing;
+  }
+
   .o-gallery__media > * {
     flex: 0 0 auto;
     width: colspan(50, xsmall);
@@ -323,25 +339,25 @@
     }
   }
 
-  .m-media__img::before {
-    content: '';
-    display: block;
-    height: 400px;
+  .m-media__img img {
+    max-height: 400px;
+    object-fit: contain;
+    object-position: center top;
 
     @include breakpoint('small+') {
-      height: 480px;
+      max-height: 480px;
     }
 
     @include breakpoint('medium+') {
-      height: 480px;
+      max-height: 480px;
     }
 
     @include breakpoint('large+') {
-      height: 420px;
+      max-height: 420px;
     }
 
     @include breakpoint('xlarge') {
-      height: #{colspan(21, xlarge) * 4/3};
+      max-height: #{colspan(21, xlarge) * 4/3};
     }
   }
 
@@ -349,10 +365,7 @@
   .m-media__img embed,
   .m-media__img iframe,
   .m-media__img object {
-    top: 50%;
-    bottom: auto;
     height: colspan(50, xsmall) * 9/16;
-    transform: translateY(-50%);
 
     @include breakpoint('small+') {
       height: colspan(35, small) * 9/16;

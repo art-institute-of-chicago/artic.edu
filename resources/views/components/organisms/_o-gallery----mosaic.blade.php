@@ -5,7 +5,7 @@
     @if (!empty($allLink))
     <p class="o-gallery__all-link f-buttons">
         @component('components.atoms._arrow-link')
-            @slot($allLink['href'], '#')
+            @slot('href', $allLink['href'])
             {{ $allLink['label'] }}
         @endcomponent
     </p>
@@ -23,6 +23,7 @@
             @slot('variation', 'btn--contrast-secondary btn--icon o-gallery__share')
             @slot('font', '')
             @slot('icon', 'icon--share--24')
+            @slot('behavior','sharePage')
         @endcomponent
     </div>
     <div class="o-gallery__media">
