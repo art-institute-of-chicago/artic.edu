@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "a17/laravel-cms-toolkit",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "git@code.area17.com:a17/laravel-cms-toolkit.git",
-                "reference": "581f09dd1d8801e6b5206b55b50eb727110a2ee7"
+                "reference": "ea8c6c656bf78dd8ee390fde673b5f87bc722d1b"
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.1",
@@ -86,7 +86,7 @@
                 "cms-toolkit",
                 "laravel"
             ],
-            "time": "2018-03-21T12:56:21+00:00"
+            "time": "2018-03-21T16:53:01+00:00"
         },
         {
             "name": "aic/data-hub-foundation",
