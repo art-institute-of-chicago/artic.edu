@@ -12,9 +12,10 @@
             'required' => true
         ])
         @formField('input', [
-            'type' => 'text',
-            'name' => 'text',
-            'field_name' => 'text',
+            'type' => 'textarea',
+            'rows' => 3,
+            'name' => 'copy',
+            'field_name' => 'copy',
             'label' => 'Text',
             'required' => true
         ])

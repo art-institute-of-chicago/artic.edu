@@ -163,6 +163,11 @@ class Page extends Model
         return $this->hasMany(DiningHour::class)->orderBy('position');
     }
 
+    public function featured_hours()
+    {
+        return $this->hasMany(FeaturedHour::class)->orderBy('position');
+    }
+
     public function articlesArticles()
     {
         return $this->belongsToMany('App\Models\Article', 'page_article_article')->withPivot('position')->orderBy('position');
