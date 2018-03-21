@@ -50,6 +50,22 @@
     .g-header__menu-link:focus {
       color: rgba($color__text--title-contrast, .7);
     }
+
+    .g-header__nav-primary a:hover {
+      @include text-underline(1.12em, $color__text--title-contrast, transparent);
+    }
+
+    .g-header__nav-primary .s-current a {
+      background: none;
+      text-shadow: none;
+    }
+
+    .g-header__opening-hours a:hover,
+    .g-header__nav-secondary a:hover,
+    .g-header__opening-hours a:active,
+    .g-header__nav-secondary a:active {
+      @include text-underline(1.02em, $color__text--title-contrast, transparent);
+    }
   }
 
   &.s-filled-logo {
