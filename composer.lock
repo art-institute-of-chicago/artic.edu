@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "a17/laravel-cms-toolkit",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "git@code.area17.com:a17/laravel-cms-toolkit.git",
-                "reference": "b3e4c60b8c65529370d03825d61113e19a4142ef"
+                "reference": "581f09dd1d8801e6b5206b55b50eb727110a2ee7"
             },
             "require": {
                 "barryvdh/laravel-debugbar": "^3.1",
@@ -86,7 +86,7 @@
                 "cms-toolkit",
                 "laravel"
             ],
-            "time": "2018-03-20T15:26:00+00:00"
+            "time": "2018-03-21T12:56:21+00:00"
         },
         {
             "name": "aic/data-hub-foundation",
@@ -135,16 +135,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.52.28",
+            "version": "3.52.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "4b8286d243ad9eeaaa1fccf312c1d9f920ef7cd0"
+                "reference": "51efd3a7cda92f245ccf39fea03227e0eb473c93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4b8286d243ad9eeaaa1fccf312c1d9f920ef7cd0",
-                "reference": "4b8286d243ad9eeaaa1fccf312c1d9f920ef7cd0",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/51efd3a7cda92f245ccf39fea03227e0eb473c93",
+                "reference": "51efd3a7cda92f245ccf39fea03227e0eb473c93",
                 "shasum": ""
             },
             "require": {
@@ -211,7 +211,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-03-16T20:40:34+00:00"
+            "time": "2018-03-20T21:15:39+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -4058,16 +4058,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "4e310ef9384f53ee8dda8736afb3cbaf320753a0"
+                "reference": "e60011a179d97f33ee394865b1cec472247df3b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/4e310ef9384f53ee8dda8736afb3cbaf320753a0",
-                "reference": "4e310ef9384f53ee8dda8736afb3cbaf320753a0",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/e60011a179d97f33ee394865b1cec472247df3b9",
+                "reference": "e60011a179d97f33ee394865b1cec472247df3b9",
                 "shasum": ""
             },
             "require": {
@@ -4116,7 +4116,7 @@
                 "php",
                 "symfony"
             ],
-            "time": "2018-02-18T12:29:27+00:00"
+            "time": "2018-03-20T21:27:23+00:00"
         },
         {
             "name": "phar-io/manifest",
