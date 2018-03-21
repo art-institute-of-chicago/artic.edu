@@ -1488,6 +1488,7 @@ class StaticsController extends FrontController {
       }
     } else {
       for ($i = 0; $i < $num; $i++) {
+        /*
         if ($i == 2) {
           array_push($images, array(
                 'type' => 'video',
@@ -1496,7 +1497,8 @@ class StaticsController extends FrontController {
                 'caption' => $this->faker->paragraph(3, false),
             )
           );
-        } else if ($i == 5) {
+        */
+        if ($i == 5) {
           array_push($images, array(
                 'type' => 'embed',
                 'size' => 'gallery',
@@ -1504,6 +1506,31 @@ class StaticsController extends FrontController {
                 'caption' => $this->faker->paragraph(3, false),
             )
           );
+        } else if ($i == 1) {
+          $artwork = $this->getArtwork();
+          $artworkItem = array();
+          $artworkItem['type'] = 'image';
+          $artworkItem['size'] = 'gallery';
+          $artworkItem['media'] = $artwork->imageFront();
+          $artworkItem['captionTitle'] = $artwork->title;
+          $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
+          $artworkItem['hideShare'] = true;
+          $artworkItem['fullscreen'] = true;
+
+          array_push($images, $artworkItem);
+        } else if ($i == 2) {
+          $artwork = $this->getArtwork();
+          $artworkItem = array();
+          $artworkItem['type'] = 'image';
+          $artworkItem['size'] = 'gallery';
+          $artworkItem['media'] = $artwork->imageFront();
+          $artworkItem['captionTitle'] = $artwork->title;
+          $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
+          $artworkItem['hideShare'] = true;
+          $artworkItem['fullscreen'] = true;
+          $artworkItem['url'] = '#';
+
+          array_push($images, $artworkItem);
         } else {
           array_push($images, array(
                 'type' => 'image',
@@ -2158,7 +2185,7 @@ class StaticsController extends FrontController {
             "subtype" => 'slider',
             "title" => 'Slider Gallery',
             "caption" => $this->faker->paragraph(3, false),
-            "items" => $this->getGalleryImages(6),
+            "items" => $this->getGalleryImages(10),
             "allLink" => array(
               'href' => '#',
               'label' => "See all exhibition objects",

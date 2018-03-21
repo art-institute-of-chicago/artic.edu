@@ -4,6 +4,8 @@ const openImageFullScreen = function(container) {
 
   function _handleClicks(event) {
     event.preventDefault();
+    event.stopPropagation();
+
     let data = {
       srcset: container.getAttribute('data-gallery-img-srcset') || container.parentNode.querySelector('img').getAttribute('srcset'),
       width: container.getAttribute('data-gallery-img-width') || container.parentNode.querySelector('img').getAttribute('width'),
@@ -14,7 +16,7 @@ const openImageFullScreen = function(container) {
       shareTitle: container.getAttribute('data-gallery-img-share-title') || '',
       downloadUrl: container.getAttribute('data-gallery-img-download-url') || '',
       downloadName: container.getAttribute('data-gallery-img-download-name') || '',
-    }
+    };
 
     triggerCustomEvent(document, 'fullScreenImage:open', {
       img: data,

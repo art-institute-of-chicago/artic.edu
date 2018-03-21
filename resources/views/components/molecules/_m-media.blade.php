@@ -51,7 +51,7 @@
     }
 @endphp
 <figure data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <{{ $tag }}{!! ($tag === 'a') ? ' href="'.$item['url'].'"' : '' !!} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}">
+    <{{ $tag }}{!! ($tag === 'a') ? ' href="'.$item['url'].'"' : '' !!} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! (isset($item['fullscreen']) and $item['fullscreen'] and $tag !== 'a') ? ' data-behavior="openImageFullScreen"' : '' !!}>
         @if ($type == 'image')
             @component('components.atoms._img')
                 @slot('image', $media)
@@ -81,13 +81,14 @@
                 @slot('download', true)
             @endcomponent
         @endif
-        @if (isset($item['fullscreen']) and $item['fullscreen'] && $tag !== 'a')
+        @if (isset($item['fullscreen']) and $item['fullscreen'])
             @component('components.atoms._btn')
                 @slot('variation', 'm-media__btn-fullscreen btn--septenary btn--icon btn--icon-circle-48')
                 @slot('font', '')
                 @slot('icon', 'icon--zoom--24')
-                @slot('dataAttributes', '')
-                @slot('behavior','openImageFullScreen')
+                @if ($tag === 'a')
+                    @slot('behavior','openImageFullScreen')
+                @endif
             @endcomponent
         @endif
     </{{ $tag }}>
