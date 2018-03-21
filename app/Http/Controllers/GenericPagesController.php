@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Repositories\GenericPageRepository;
 
+use App\Models\GenericPage;
+
 class GenericPagesController extends FrontController
 {
     protected $genericPageRepository;
@@ -23,25 +25,25 @@ class GenericPagesController extends FrontController
         $state = '';
         $subNav = array(
             array('href' => '#', 'label' => 'Tours'),
-            array('href' => '#', 'label' => 'Scheduling a tour', 'active' => ($state === 'detail')),
+            array('href' => '#', 'label' => 'Scheduling a tour', 'active' => true),
             array('href' => '#', 'label' => 'Preparing for a museum visit'),
             array('href' => '#', 'label' => 'Bus scholarship'),
             array('href' => '#', 'label' => 'For tour companies'),
         );
         $nav = array(
             array('label' => 'Adults and university', 'href' => '#'),
-            array('label' => 'Students', 'href' => '#', 'links' => $subNav, 'active' => ($state === 'landing')),
+            array('label' => 'Students', 'href' => '#', 'links' => $subNav, 'active' => true),
             array('label' => 'Group FAQs', 'href' => '#',),
         );
 
-        $navs = array('nav' => $nav, 'subNav' => $subNav);
+        $navs = $this->buildNav($page);
 
         return view('site.genericpage.show', [
             'subNav' => $navs['subNav'],
             'nav' => $navs['nav'],
             'headerImage' => $page->imageFront('hero'),
             "title" => $page->title,
-            "breadcrumb" => [],
+            "breadcrumb" => $this->buildBreadCrumb($page),
             "blocks" => null,
             'featuredRelated' => [],
             'nav' => $navs['nav'],
@@ -49,6 +51,35 @@ class GenericPagesController extends FrontController
         ]);
     }
 
+    protected function buildNav($page)
+    {
+        $ancestors = clone $page->ancestors;
+
+        $rootNav = [];
+        $subNav = [];
+
+        $root = $ancestors->shift();
+        $sub = $ancestors->shift();
+        if ($sub) {
+            foreach($sub->children as $item) {
+                $subNav[] = ['href' => $item->url, 'label' => $item->title];
+            }
+        }
+
+        foreach($root->children as $item) {
+            $navItem = ['href' => $item->url, 'label' => $item->title];
+
+            if ($sub && $item->id == $sub->id) {
+                $navItem['links'] = $subNav;
+            }
+            $rootNav[] = $navItem;
+
+        }
+        // // dd($rootNav);
+        $nav = array('nav' => $rootNav, 'subNav' => $subNav);
+
+        return $nav;
+    }
 
     protected function getPage($slug)
     {
@@ -63,5 +94,28 @@ class GenericPagesController extends FrontController
         }
 
         return $page;
+    }
+
+    protected function buildBreadCrumb($page)
+    {
+        $crumbs = [];
+
+        $ancestors = clone $page->ancestors;
+
+        foreach($page->ancestors as $ancestor) {
+            // dd($ancestor);
+            $crumb = [];
+            $crumb['label'] = $ancestor->title;
+            $crumb['href'] = $ancestor->url;
+
+            $crumbs[] = $crumb;
+        }
+
+        $crumb = [];
+        $crumb['label'] = $page->title;
+        $crumb['href'] = $page->url;
+        $crumbs[] = $crumb;
+
+        return $crumbs;
     }
 }

@@ -61,6 +61,22 @@ class GenericPage extends Model implements Sortable
         ],
     ];
 
+    public function getUrlAttribute()
+    {
+        $url = "";
+
+        foreach($this->ancestors as $item) {
+            $url = $url ."/".$item->slug;
+        }
+        $url = $url ."/".$this->slug;
+
+        return $url;
+    }
+
+    public function getUrl($prefix="")
+    {
+        return $prefix."/".$this->slug;
+    }
 
     public static function saveTreeFromIds($nodesArray)
     {
