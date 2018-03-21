@@ -38,9 +38,10 @@
         'type' => 'textarea'
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'exhibition_message',
         'label' => 'Pricing or attendance information',
+        'toolbarOptions' => ['bold']
     ])
 
     @formField('input', [
