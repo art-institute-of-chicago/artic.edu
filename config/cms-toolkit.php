@@ -148,10 +148,10 @@ return [
                 'component' => 'a17-block-featured_hours',
                 'max' => 3,
             ],
-            'dinning_hours' => [
+            'dining_hours' => [
                 'title' => 'Dining',
                 'trigger' => 'Add dining hours',
-                'component' => 'a17-block-dinning_hours',
+                'component' => 'a17-block-dining_hours',
                 'max' => 3,
             ],
             'accordion_item' => [

@@ -42,6 +42,7 @@ class PageRepository extends ModuleRepository
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
         $this->updateRepeater($object, $fields, 'locations', 'Location');
+        $this->updateRepeater($object, $fields, 'dining_hours', 'DiningHour');
 
         // Articles
         $this->updateBrowser($object, $fields, 'articlesArticles');
@@ -73,6 +74,7 @@ class PageRepository extends ModuleRepository
         // Visits
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'locations', 'Location');
+        $fields = $this->getFormFieldsForRepeater($object, $fields, 'dining_hours', 'DiningHour');
 
         // Articles
         $fields['browsers']['articlesArticles'] = $this->getFormFieldsForBrowser($object, 'articlesArticles', 'collection.articles_publications', 'title', 'articles');

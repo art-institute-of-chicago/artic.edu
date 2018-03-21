@@ -70,7 +70,7 @@ class PageController extends ModuleController
             ['fieldset' => 'locations', 'label' => 'Locations'],
             ['fieldset' => 'admissions', 'label' => 'Admissions'],
             ['fieldset' => 'featured_hours', 'label' => 'Featured hours'],
-            ['fieldset' => 'dinning_hours', 'label' => 'Dinning hours'],
+            ['fieldset' => 'dining_hours', 'label' => 'Dining hours'],
         ];
 
         $fields = $this->form($page->id);

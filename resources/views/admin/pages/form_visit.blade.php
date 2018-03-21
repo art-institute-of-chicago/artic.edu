@@ -48,7 +48,7 @@
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
 
-    <a17-fieldset title="Dining" id="dinning_hours">
-        @formField('repeater', ['type' => 'dinning_hours'])
+    <a17-fieldset title="Dining" id="dining_hours">
+        @formField('repeater', ['type' => 'dining_hours'])
     </a17-fieldset>
 @stop

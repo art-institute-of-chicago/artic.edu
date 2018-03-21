@@ -13,7 +13,7 @@
             'required' => true
         ])
         @formField('medias', [
-            'name' => 'image',
+            'name' => 'cover',
             'label' => 'Image',
             'max' => '1'
         ])

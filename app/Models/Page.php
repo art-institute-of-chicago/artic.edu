@@ -158,6 +158,11 @@ class Page extends Model
         return $this->hasMany(Location::class)->orderBy('position');
     }
 
+    public function dining_hours()
+    {
+        return $this->hasMany(DiningHour::class)->orderBy('position');
+    }
+
     public function articlesArticles()
     {
         return $this->belongsToMany('App\Models\Article', 'page_article_article')->withPivot('position')->orderBy('position');
