@@ -101,7 +101,9 @@ class HomeController extends FrontController
         $membership_module_short_copy = $page->home_membership_module_short_copy;
 
         $view_data = [
-            'mainFeatures' => $mainFeatures
+            'contrastHeader' => sizeof($mainFeatures) > 0 ? true : false
+        ,   'filledLogo' => sizeof($mainFeatures) > 0 ? true : false
+        ,   'mainFeatures' => $mainFeatures
         ,   'intro' => $page->home_intro
         ,   'exhibitions' => $exhibitions
         ,   'events' => $events
