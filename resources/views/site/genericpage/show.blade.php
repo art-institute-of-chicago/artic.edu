@@ -89,6 +89,7 @@
   @endif
 
   <div class="o-article__body o-blocks">
+    {!! $page->renderBlocks(false) !!}
     @if (isset($filters) && $filters)
         @component('components.molecules._m-links-bar')
             @slot('variation','m-links-bar--filters')
@@ -107,10 +108,6 @@
             @endslot
         @endcomponent
     @endif
-    <div class="o-article__body o-blocks">
-      {!! $page->renderBlocks(false) !!}
-    </div>
-
     {{-- @if (isset($listingItems) and $listingItems)
         @if (sizeof($listingItems) > 0)
             @if (isset($listingCountText) and $listingCountText)
