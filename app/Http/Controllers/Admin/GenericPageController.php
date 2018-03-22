@@ -67,7 +67,7 @@ class GenericPageController extends ModuleController
         $page = $this->repository->getById(request('genericPage'));
 
         return [
-            'parents' => $this->getParents(request('page'))->map(function ($page) {
+            'parents' => $this->getParents($page->id)->map(function ($page) {
                 return [
                     'id' => $page->id,
                     'name' => $page->title,
