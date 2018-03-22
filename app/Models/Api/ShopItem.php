@@ -26,6 +26,14 @@ class ShopItem extends BaseApiModel
         ],
     ];
 
+
+    public function imageFront($role = 'hero', $crop = null)
+    {
+        if (!empty($this->image_url)) {
+            return aic_convertFromImageProxy($this->image_url);
+        }
+    }
+
     public function categories()
     {
         return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');

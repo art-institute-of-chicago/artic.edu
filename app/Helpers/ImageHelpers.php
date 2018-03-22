@@ -8,6 +8,30 @@ Returns an array of CSS settings for the site - see _variable.scss
 
 ***/
 
+function aic_convertFromImageProxy($imageUrl)
+{
+    $sourceType = 'imgix';
+
+    $src = $imageUrl;
+    $credit = '';
+    $creditUrl = '';
+
+    $image = array(
+        "sourceType" => $sourceType,
+        "src" => $src,
+        "width" => '',
+        "height" => '',
+        "shareUrl" => '#',
+        "shareTitle" => '',
+        "downloadUrl" => $src,
+        "downloadName" => '',
+        "credit" => '',
+        "creditUrl" => '',
+    );
+
+    return $image;
+}
+
 function aic_convertFromImage($imageObject)
 {
     $sourceType = 'imgix';
