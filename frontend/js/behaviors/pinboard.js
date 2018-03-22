@@ -31,6 +31,11 @@ const pinboard = function(container){
     return Math.max.apply(Math, array);
   }
 
+  function _getMarginTop(node) {
+    let style = window.getComputedStyle(node);
+    return parseInt(style.getPropertyValue('margin-top'));
+  }
+
   function _unpositionBlocks() {
     if (active) {
       forEach(container.children, function(index, block) {
@@ -51,7 +56,8 @@ const pinboard = function(container){
     let firstChild = container.firstElementChild;
     let colWidth = firstChild.offsetWidth;
     // margin is the total width, minus how many columns of content, divided by how many gutters (which is columns minus 1)
-    let margin = (container.offsetWidth - (colWidth * colCount)) / (colCount - 1);
+    let marginLeft = (container.offsetWidth - (colWidth * colCount)) / (colCount - 1);
+    let marginTop = _getMarginTop(firstChild) || 160;
     //
     forEach(blocks, function(index, block) {
       if (block.classList.contains('s-positioned') === false || resetPreviousPositions) {
@@ -65,13 +71,13 @@ const pinboard = function(container){
           // always maintain DOM order
           smallestCol = cols[colCurrent];
           smallestColIndex = colCurrent;
-          leftPos = smallestColIndex * (colWidth + margin);
+          leftPos = smallestColIndex * (colWidth + marginLeft);
           colCurrent = (colCurrent < cols.length - 1) ? colCurrent + 1 : 0;
         } else {
           // best position like pinterest/masonry
           smallestCol = _minOfArray(cols);
           smallestColIndex = cols.indexOf(smallestCol);
-          leftPos = smallestColIndex * (colWidth + margin);
+          leftPos = smallestColIndex * (colWidth + marginLeft);
         }
         // calc and lock any image heights, make height is 4:3 ratio
         let img = block.querySelector('img');
@@ -96,7 +102,7 @@ const pinboard = function(container){
           block.classList.add('s-positioned');
         }, 250);
         // update col
-        cols[smallestColIndex] = smallestCol + newHeight + margin;
+        cols[smallestColIndex] = smallestCol + newHeight + marginTop;
         // update container height
         container.style.height = _maxOfArray(cols) + 'px';
         // tell the page

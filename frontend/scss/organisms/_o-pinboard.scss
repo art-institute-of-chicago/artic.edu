@@ -1,4 +1,18 @@
+$pinboard-grid-margin-tops: (
+  xsmall: 28,
+  small: 28,
+  medium: 32,
+  large: 60,
+  xlarge: 60,
+);
 
+$pinboard-grid-padding-tops: (
+  xsmall: 28,
+  small: 28,
+  medium: 28,
+  large: 32,
+  xlarge: 32,
+);
 
 .o-pinboard {
   position: relative;
@@ -40,7 +54,7 @@
 @each $name, $point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-pinboard > * {
-      margin-top: #{map-get($grid-margin-tops, $name)}px;
+      margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
     }
 
     .o-pinboard[class*="col@#{$name}"] {
@@ -54,8 +68,8 @@
       left: 0;
       top: 0;
       flex: 0 0 auto;
-      margin-top: #{map-get($grid-margin-tops, $name)}px;
-      padding-top: #{map-get($grid-margin-tops, $name) - 1}px;
+      margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
+      padding-top: #{map-get($pinboard-grid-padding-tops, $name) - 1}px;
       border-top: 1px solid $color__rules--primary;
       opacity: 0;
       transition: opacity .25s;

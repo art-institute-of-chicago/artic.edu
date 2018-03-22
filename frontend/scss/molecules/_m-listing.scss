@@ -297,11 +297,19 @@
   @include tucked-margin-top($f-headline-editorial, ('xsmall': 36, 'small+': 60, 'medium+': 64));
 }
 
+.m-listing__meta .f-list-1 {
+  @include tucked-margin-top($f-list-1, ('xsmall': 32));
+
+  &:first-child {
+    @include tucked-margin-top($f-list-1, ('xsmall': 44, 'large+': 38));
+  }
+}
+
 .m-listing__meta .f-list-2 {
   @include tucked-margin-top($f-list-2, ('xsmall': 32));
 
   &:first-child {
-    @include tucked-margin-top($f-list-2, ('xsmall': 44));
+    @include tucked-margin-top($f-list-2, ('xsmall': 44, 'large+': 38));
   }
 }
 
@@ -356,6 +364,10 @@
 .m-listing__meta .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 36));
 }
+  .m-listing__meta .f-list-1 + br + .f-secondary,
+  .m-listing__meta .f-list-2 + br + .f-secondary {
+    @include tucked-margin-top($f-secondary, ('xsmall': 28));
+  }
 
 .m-listing__meta .f-link {
   @include tucked-margin-top($f-secondary, ('xsmall': 28));
