@@ -76,9 +76,9 @@ class EventsController extends FrontController
         return $this->repository->getShowData($item, $slug);
     }
 
-    protected function getItem($slug)
+    protected function getItem($id)
     {
-        return $this->repository->find($slug);
+        return $this->repository->find((Integer) $id);
     }
 
     protected function generateEventTypes()

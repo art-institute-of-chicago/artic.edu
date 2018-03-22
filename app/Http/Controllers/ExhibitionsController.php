@@ -62,14 +62,14 @@ class ExhibitionsController extends FrontController
         return $this->apiRepository->getShowData($item, $slug);
     }
 
-    protected function getItem($slug)
+    protected function getItem($idSlug)
     {
-        return $this->apiRepository->getById($slug);
+        return $this->apiRepository->getById((Integer) $idSlug);
     }
 
-    public function loadMoreRelatedEvents($id)
+    public function loadMoreRelatedEvents($idSlug)
     {
-        $item = $this->apiRepository->getById($id);
+        $item = $this->apiRepository->getById((Integer) $idSlug);
         $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE, request('page'));
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 

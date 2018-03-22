@@ -135,7 +135,7 @@ class Event extends Model
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {
-        return 'id';
+        return 'id_slug';
     }
 
     public function getIdSlugAttribute()

@@ -20,10 +20,10 @@ class GalleryController extends FrontController
         parent::__construct();
     }
 
-    public function show($id)
+    public function show($idSlug)
     {
         // The ID is a datahub_id not a local ID
-        $item = $this->repository->getById($id);
+        $item = $this->repository->getById((Integer) $idSlug);
         $artworks = Search::query()->resources(['artworks'])->byGallery($item->id)->getSearch(self::ARTWORKS_PER_PAGE);
 
         return view('site.tagDetail', [

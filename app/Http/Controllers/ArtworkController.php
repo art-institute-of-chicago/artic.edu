@@ -22,17 +22,17 @@ class ArtworkController extends FrontController
         parent::__construct();
     }
 
-    public function show($id)
+    public function show($idSlug)
     {
         // The ID is a datahub_id not a local ID
         // get an artwork
-        $item = $this->apiRepository->getById($id);
+        $item = $this->apiRepository->getById((Integer) $idSlug);
         if (empty($item)) {
             abort(404);
         }
 
-        $artworkMultimedia = $this->searchRepository->multimedia($id);
-        $artworkClassrommResources = $this->searchRepository->classroomResources($id);
+        $artworkMultimedia = $this->searchRepository->multimedia((Integer) $idSlug);
+        $artworkClassrommResources = $this->searchRepository->classroomResources((Integer) $idSlug);
 
         $item->subtitle = $item->place_of_origin . ', ' . $item->date_display;
         $item->articleType = 'artwork';

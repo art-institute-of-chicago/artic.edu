@@ -50,7 +50,7 @@ class ArticleController extends FrontController
 
     public function show($id)
     {
-        $item = $this->repository->find($id);
+        $item = $this->repository->find((Integer) $id);
 
         if ($item->categories->first()) {
             $item->topics = $item->categories;

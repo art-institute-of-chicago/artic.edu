@@ -107,9 +107,9 @@ class ExhibitionHistoryController extends FrontController
         return view('site.exhibitionHistory', $view_data);
     }
 
-    public function show($id)
+    public function show($idSlug)
     {
-        $resource = Exhibition::with('artworks')->find($id);
+        $resource = Exhibition::with('artworks')->find((Integer) $idSlug);
         dd($resource);
     }
 }
