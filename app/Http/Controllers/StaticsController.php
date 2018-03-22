@@ -68,7 +68,7 @@ class StaticsController extends FrontController {
     return view('statics/home', $items);
   }
 
-  public function home_mixed() {
+  public function home_features() {
     $items = $this->getHomepageItems();
     $items['heroItems'] = array();
     $event = $this->getEvent();
@@ -78,15 +78,14 @@ class StaticsController extends FrontController {
     $media = $this->getMedia();
     $exhibition = $this->getExhibition();
 
+    array_push($items['heroItems'], $exhibition);
     array_push($items['heroItems'], $event);
     array_push($items['heroItems'], $artwork);
     array_push($items['heroItems'], $article);
     array_push($items['heroItems'], $artist);
-    array_push($items['heroItems'], $media);
-    array_push($items['heroItems'], $event);
-    array_push($items['heroItems'], $exhibition);
+    //array_push($items['heroItems'], $media);
 
-    return view('statics/home', $items);
+    return view('statics/home_features', $items);
   }
 
   public function home_videos() {

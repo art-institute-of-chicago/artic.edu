@@ -30,7 +30,7 @@
             <a href="/statics/home">home</a>
             <ul class="list">
               <li><a href="/statics/home_1_feature">home 1 feature</a></li>
-              <li><a href="/statics/home_mixed">home mixed features</a></li>
+              <li><a href="/statics/home_features">home mixed features</a></li>
               <li><a href="/statics/home_videos">home videos</a></li>
             </ul>
           </li>
