@@ -61,4 +61,19 @@ class ExhibitionRepository extends BaseApiRepository
         return collect($this->model::$exhibitionTypes);
     }
 
+    public function getFormFieldsHandleSlugs($object, $fields)
+    {
+        unset($fields['slugs']);
+
+        if ($object->slugs != null) {
+            foreach ($object->slugs as $slug) {
+                if ($slug->active || $object->slugs->where('locale', $slug->locale)->where('active', true)->count() === 0) {
+                    $fields['translations']['slug'][$slug->locale] = $object->datahub_id . '-' . $slug->slug;
+                }
+            }
+        }
+
+        return $fields;
+    }
+
 }
