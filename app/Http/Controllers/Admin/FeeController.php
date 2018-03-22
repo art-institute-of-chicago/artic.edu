@@ -27,7 +27,7 @@ class FeeController extends ModuleController
             'form_fields' => $this->fees->getFormFields(),
             'feeCategories' => $feeCategories,
             'feeAges' => $feeAges,
-            'saveUrl' => route('admin.landing.visit.fees.update'),
+            'saveUrl' => route('admin.visit.fees.update'),
             'publish' => false,
         ]);
     }
@@ -35,14 +35,14 @@ class FeeController extends ModuleController
     public function update($id, $submoduleId = null)
     {
         if (array_key_exists('cancel', request()->all())) {
-            return redirect()->route('admin.landing.visit.fees.update');
+            return redirect()->route('admin.visit.fees.update');
         }
 
         $this->fees->update(request()->except('_token'));
 
         $this->fireEvent();
 
-        return redirect()->route('admin.landing.visit.fees.update');
+        return redirect()->route('admin.visit.fees.update');
 
     }
 }
