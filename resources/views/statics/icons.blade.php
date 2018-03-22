@@ -15,6 +15,9 @@
   <svg class="icon--calendar">
     <use xlink:href="#icon--calendar"></use>
   </svg>
+  <svg class="icon--calendar--24">
+    <use xlink:href="#icon--calendar--24"></use>
+  </svg>
   <svg class="icon--check">
     <use xlink:href="#icon--check"></use>
   </svg>

@@ -304,7 +304,8 @@
   margin-right: 0;
   vertical-align: middle;
 
-  &.icon--calendar {
+  &.icon--calendar,
+  &.icon--calendar--24 {
     margin-top: -2px;
   }
 }

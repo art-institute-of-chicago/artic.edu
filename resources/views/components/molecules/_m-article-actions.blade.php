@@ -12,7 +12,7 @@
         @component('components.atoms._btn')
             @slot('variation', 'btn--septenary btn--icon')
             @slot('font', '')
-            @slot('icon', 'icon--calendar')
+            @slot('icon', 'icon--calendar--24')
             @slot('dataAttributes', 'download')
             @slot('tag', 'a')
             @slot('href', '#')
