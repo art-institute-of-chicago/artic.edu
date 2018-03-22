@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
+use App\Models\Behaviors\HasMediasEloquent;
 use A17\CmsToolkit\Models\Model;
 
 class DiningHour extends Model 
 {
-    use HasMedias;
+    use HasMedias, HasMediasEloquent;
 
     protected $fillable = [
         'published',
