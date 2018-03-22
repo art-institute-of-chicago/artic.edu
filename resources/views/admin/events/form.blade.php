@@ -208,7 +208,7 @@
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Related Events',
-            'note' => 'Select events',
+            'note' => 'Select upto 4 events',
             'max' => 4
         ])
     </a17-fieldset>
