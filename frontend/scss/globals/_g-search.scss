@@ -44,6 +44,8 @@ $f-autocomplete: generate-font-obj((
   position: relative;
   padding: 84px 0 45px;
   transform: translateZ(0);
+  opacity: 0;
+  transition: opacity .25s .75s $bezier--marius-ease;
 }
 
 .g-search__close {

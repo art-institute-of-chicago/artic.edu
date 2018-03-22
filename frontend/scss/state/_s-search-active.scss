@@ -2,14 +2,18 @@
 
   #a17 {
     @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
-      filter: blur(5px);
+      filter: blur(3px);
     }
   }
 
   .g-search {
     visibility: visible;
     transform: translateY(0%);
-    transition: transform .4s $bezier--marius-ease;
+    transition: transform .4s .25s $bezier--marius-ease;
+  }
+
+  .g-search__inner {
+    opacity: 1;
   }
 
   .g-mask {
