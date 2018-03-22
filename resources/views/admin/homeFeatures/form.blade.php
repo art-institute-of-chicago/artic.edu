@@ -6,10 +6,19 @@
         'name' => 'hero'
     ])
 
+    @php
+        $selectedFeature = 'articles';
+        foreach (['articles', 'events', 'exhibitions'] as $featureType) {
+            if (isset($form_fields['browsers'][$featureType]) && !empty($form_fields['browsers'][$featureType])) {
+                $selectedFeature = $featureType;
+            }
+        }
+    @endphp
+
     @formField('radios', [
         'name' => '_featureType',
         'label' => 'Feature type',
-        'default' => 'articles',
+        'default' => $selectedFeature,
         'inline' => true,
         'options' => [
             [
