@@ -5,21 +5,15 @@ import { purgeProperties } from '@area17/a17-helpers';
 const dragScroll = function(container) {
 
   let lastScrollLeft = 0;
-  let lastScrollTop = 0;
   let lastClientX = 0;
-  let lastClientY = 0;
   let dragging = false;
   let allowClicks = true;
   let xVelocity = 0;
-  let yVelocity = 0;
 
   function updateScroll(x, y) {
     let newScrollLeft = lastScrollLeft - x;
-    let newScrollTop = lastScrollTop - y;
     container.scrollLeft = newScrollLeft;
-    container.scrollTop = newScrollTop;
     lastScrollLeft = newScrollLeft;
-    lastScrollTop = newScrollTop;
 
     if( lastScrollLeft > 0){
       container.parentElement.classList.add('s-scroll-start');
@@ -40,12 +34,9 @@ const dragScroll = function(container) {
       if (Math.abs(xVelocity) > 0) {
         xVelocity = (xVelocity > 0) ? xVelocity - 1 : xVelocity + 1;
       }
-      if (Math.abs(yVelocity) > 0) {
-        yVelocity = (yVelocity > 0) ? yVelocity - 1 : yVelocity + 1;
-      }
       // if some momentum remains, update scroll and try again
-      if (Math.abs(xVelocity) > 0 || Math.abs(yVelocity) > 0) {
-        updateScroll(xVelocity, yVelocity);
+      if (Math.abs(xVelocity) > 0) {
+        updateScroll(xVelocity);
         window.requestAnimationFrame(_momentum);
       }
     }
@@ -60,14 +51,11 @@ const dragScroll = function(container) {
 
   function _mouseDown(event) {
     event.preventDefault();
-    container.classList.remove('s-mousedown');
+    container.classList.add('s-mousedown');
     // reset everything
     xVelocity = 0;
-    yVelocity = 0;
     lastScrollLeft = container.scrollLeft;
-    lastScrollTop = container.scrollTop;
     lastClientX = event.clientX;
-    lastClientY = event.clientY;
     // allow mouse move tracking
     dragging = true;
   }
@@ -76,7 +64,7 @@ const dragScroll = function(container) {
     // stop mouse move tracking
     dragging = false;
     // if we have some velocity, do momentum
-    if (Math.abs(xVelocity) > 0 || Math.abs(yVelocity) > 0) {
+    if (Math.abs(xVelocity) > 0) {
       window.requestAnimationFrame(_momentum);
     }
     container.classList.remove('s-dragging');
@@ -90,14 +78,12 @@ const dragScroll = function(container) {
     if (dragging) {
       // get the distance moved
       xVelocity = -lastClientX + event.clientX;
-      yVelocity = -lastClientX + event.clientX;
       // update
-      updateScroll(xVelocity, yVelocity);
+      updateScroll(xVelocity);
       // set so we can compare
       lastClientX = event.clientX;
-      lastClientY = event.clientY;
       // if it looks like the user is trying to scroll, block link clicks
-      if (Math.abs(xVelocity) > 2 || Math.abs(yVelocity) > 2) {
+      if (Math.abs(xVelocity) > 20) {
         allowClicks = false;
       }
       //
