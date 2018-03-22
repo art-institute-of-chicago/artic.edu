@@ -12,7 +12,7 @@ class GenericPageController extends ModuleController
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-            'sort' => true
+            'sort' => true,
         ],
     ];
 
@@ -47,7 +47,7 @@ class GenericPageController extends ModuleController
         return [
             'nested' => true,
             'nestedDepth' => 4,
-            'pages' => $pagesList
+            'pages' => $pagesList,
         ];
     }
 
@@ -61,10 +61,16 @@ class GenericPageController extends ModuleController
         ]);
     }
 
-
     protected function formData($request)
     {
         $page = $this->repository->getById(request('genericPage'));
+
+        $breadcrumb = $page->ancestors->map(function ($parentPage) {
+            return [
+                'label' => $parentPage->title,
+                'url' => $this->getModuleRoute($parentPage->id, 'edit'),
+            ];
+        })->toArray();
 
         return [
             'parents' => $this->getParents($page->id)->map(function ($page) {
@@ -74,7 +80,11 @@ class GenericPageController extends ModuleController
                     'edit' => $this->getModuleRoute($page->id, 'edit'),
                 ];
             }),
-            'breadcrumb' => []
+            'breadcrumb' => empty($breadcrumb) ? null : array_merge($breadcrumb, [
+                [
+                    'label' => $page->title,
+                ],
+            ]),
         ];
     }
 
@@ -89,6 +99,5 @@ class GenericPageController extends ModuleController
             'children' => $this->getIndexTableData($item->children),
         ] : []);
     }
-
 
 }
