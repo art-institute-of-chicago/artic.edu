@@ -34,11 +34,11 @@ function aic_convertFromImage($imageObject)
 
 function aic_imageSizesCSSsettings() {
     $breakpoints = array(
-        'xsmall' => '',
-        'small' => '(min-width: 600px)',
-        'medium' => '(min-width: 900px)',
-        'large' => '(min-width: 1200px)',
         'xlarge' => '(min-width: 1640px)',
+        'large' => '(min-width: 1200px)',
+        'medium' => '(min-width: 900px)',
+        'small' => '(min-width: 600px)',
+        'xsmall' => '',
     );
     $totalCSScolumns = 58; // all breakpoints
     $xlargeMaxSize = 1500; // just xlarge, its not fluid
@@ -371,7 +371,7 @@ function aic_imageSizes($data) {
                 $thisSize = round(($totalCSScolumns * (100/($totalCSScolumns + $outerGutterCSScolumns + $outerGutterCSScolumns))), 2).'vw';
             }
         }
-        $sizes .= ($name === 'xsmall' ? '' : ', '). $point .' '. $thisSize;
+        $sizes .= ($name === 'xlarge' ? '' : ', '). $point .' '. $thisSize;
     endforeach;
 
     return $sizes;
