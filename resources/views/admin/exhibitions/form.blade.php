@@ -106,7 +106,7 @@
             'max' => 20
         ])
 
-        @formField('browser', [
+{{--         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'articles',
             'name' => 'articles',
@@ -114,7 +114,7 @@
             'note' => 'Select related articles',
             'max' => 20
         ])
-    </a17-fieldset>
+ --}}    </a17-fieldset>
 
     <a17-fieldset id="api" title="Datahub fields">
         @formField('input', [
