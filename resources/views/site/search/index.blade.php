@@ -122,7 +122,7 @@
 
     @if (isset($allResultsView) && $allResultsView)
         {{-- Pagination --}}
-        {!! $artists->items->links() !!}
+        {!! $artists->items->appends(request()->input())->links() !!}
     @endif
 @endif
 
@@ -239,7 +239,7 @@
 
     @if (isset($allResultsView) && $allResultsView)
         {{-- Pagination --}}
-        {!! $artworks->items->links() !!}
+        {!! $artworks->items->appends(request()->input())->links() !!}
     @endif
 
 @endif
@@ -341,7 +341,7 @@
 
     @if (isset($allResultsView) && $allResultsView)
         {{-- Pagination --}}
-        {!! $eventsAndExhibitions->items->links() !!}
+        {!! $eventsAndExhibitions->items->appends(request()->input())->links() !!}
     @endif
 @endif
 
