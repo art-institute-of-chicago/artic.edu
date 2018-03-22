@@ -7,14 +7,16 @@ use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasMediasEloquent;
 
 use App\Models\Api\Artwork;
 
 class Selection extends Model
 {
-    use HasSlug, HasMedias, HasBlocks, HasApiRelations, Transformable;
+    use HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
+    protected $presenter = 'App\Presenters\Admin\SelectionPresenter';
 
     protected $fillable = [
         'published',

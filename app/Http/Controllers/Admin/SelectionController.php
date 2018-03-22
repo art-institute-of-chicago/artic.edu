@@ -10,7 +10,7 @@ class SelectionController extends ModuleController
     protected $moduleName = 'selections';
 
     protected $indexOptions = [
-        'permalink' => false,
+        'permalink' => true,
     ];
 
     protected $indexColumns = [

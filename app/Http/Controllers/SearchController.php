@@ -99,7 +99,7 @@ class SearchController extends FrontController
 
             $item->text = $item->title;
         }
-        
+
         return view('layouts/_autocomplete', [
             'term' => request('q'),
             'resultCount' => $collection->total(),
@@ -190,7 +190,7 @@ class SearchController extends FrontController
     {
         $links = [];
 
-        array_push($links, $this->buildLabel('All', $all->pagination->total, route('search'), $active == 'all'));
+        array_push($links, $this->buildLabel('All', $all->pagination->total, route('search', ['q' => request('q')]), $active == 'all'));
         if (extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
