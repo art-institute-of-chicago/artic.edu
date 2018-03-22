@@ -22,19 +22,19 @@
 
     @formField('multi_select', [
         'name' => 'categories',
-        'label' => 'Topics',
+        'label' => 'Categories',
         'options' => $categoriesList,
         'placeholder' => 'Select some categories',
     ])
 
     @formField('input', [
         'name' => 'type',
-        'label' => 'Article type'
+        'label' => 'Article Label'
     ])
 
     @formField('input', [
         'name' => 'heading',
-        'label' => 'Title',
+        'label' => 'Header',
         'rows' => 3,
         'type' => 'textarea'
     ])
