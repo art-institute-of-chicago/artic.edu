@@ -27,7 +27,11 @@ A17.env = 'production';
 
 document.addEventListener('DOMContentLoaded', function(){
   // update env
-  A17.env = /s-env-([a-z]*)/ig.exec(document.documentElement.className)[1];
+  try {
+    A17.env = /s-env-([a-z]*)/ig.exec(document.documentElement.className)[1];
+  } catch(err){
+    A17.env = 'unknown';
+  }
   // go go go
   manageBehaviors(Behaviors);
   // listen for body lock requests
