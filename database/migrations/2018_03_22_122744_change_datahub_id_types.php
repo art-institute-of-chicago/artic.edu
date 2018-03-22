@@ -13,18 +13,31 @@ class ChangeDatahubIdTypes extends Migration
      */
     public function up()
     {
-        Schema::table('departments', function (Blueprint $table) {
-            $table->dropColumn('datahub_id');
-        });
-        Schema::table('galleries', function (Blueprint $table) {
-            $table->dropColumn('datahub_id');
+        Schema::dropIfExists('gallery_slugs');
+        Schema::dropIfExists('galleries');
+        Schema::dropIfExists('department_slugs');
+        Schema::dropIfExists('departments');
+
+        Schema::create('departments', function (Blueprint $table) {
+            createDefaultTableFields($table, true, false);
+
+            $table->text('intro')->nullable();
+            $table->string('datahub_id');
         });
 
-        Schema::table('departments', function (Blueprint $table) {
-            $table->string('datahub_id');
+        Schema::create('department_slugs', function (Blueprint $table) {
+            createDefaultSlugsTableFields($table, 'department');
         });
-        Schema::table('galleries', function (Blueprint $table) {
-            $table->string('datahub_id');
+
+        Schema::create('galleries', function (Blueprint $table) {
+            createDefaultTableFields($table, true, false);
+
+            $table->text('intro')->nullable();
+            $table->integer('datahub_id')->unsigned();
+        });
+
+        Schema::create('gallery_slugs', function (Blueprint $table) {
+            createDefaultSlugsTableFields($table, 'gallery');
         });
     }
 
@@ -35,18 +48,5 @@ class ChangeDatahubIdTypes extends Migration
      */
     public function down()
     {
-        Schema::table('departments', function (Blueprint $table) {
-            $table->dropColumn('datahub_id');
-        });
-        Schema::table('galleries', function (Blueprint $table) {
-            $table->dropColumn('datahub_id');
-        });
-
-        Schema::table('departments', function (Blueprint $table) {
-            $table->integer('datahub_id')->unsigned();
-        });
-        Schema::table('galleries', function (Blueprint $table) {
-            $table->integer('datahub_id')->unsigned();
-        });
     }
 }

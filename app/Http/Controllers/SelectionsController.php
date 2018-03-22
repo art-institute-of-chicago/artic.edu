@@ -26,7 +26,7 @@ class SelectionsController extends FrontController
     {
         $item = $this->repository->forSlug($slug);
         if (empty($item)) {
-            $item = $this->repository->getById($slug);
+            $item = $this->repository->getById((Integer) $slug);
         }
 
         if ($item->imageFront('hero')) {

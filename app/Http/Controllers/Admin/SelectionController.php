@@ -9,6 +9,10 @@ class SelectionController extends ModuleController
 {
     protected $moduleName = 'selections';
 
+    protected $indexOptions = [
+        'permalink' => false,
+    ];
+
     protected $indexColumns = [
         'image' => [
             'title' => 'Hero',
