@@ -7,13 +7,13 @@ const setScrollDirection = function() {
   let scrollDirection = false;
   let hideHeader = false;
   let allowTopLink = false;
+  let machineScroll = false;
 
   function _init() {
     var sT = document.documentElement.scrollTop || document.body.scrollTop;
 
-    if (sT !== lastScrollTop) {
+    if (sT !== lastScrollTop && machineScroll !== true) {
       //triggerCustomEvent(document, 'scroll:active', { 'y': sT });
-
       if (sT > 100 && !hideHeader){
         dE.classList.add('s-header-hide');
         hideHeader = true;
@@ -47,6 +47,10 @@ const setScrollDirection = function() {
 
     window.requestAnimationFrame(_init);
   }
+
+  document.addEventListener('setScrollDirection:machineScroll', function(event){
+    machineScroll = event.data.machineScroll;
+  });
 
   _init();
 };
