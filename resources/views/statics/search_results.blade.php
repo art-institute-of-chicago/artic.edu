@@ -285,18 +285,11 @@
         @endcomponent
     @endif
     @component('components.organisms._o-grid-listing')
-        @if (isset($eventsAndExhibitions['allResultsView']) and $eventsAndExhibitions['allResultsView'])
-            @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-            @slot('cols_small','2')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-        @else
-            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-        @endif
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
         @foreach ($eventsAndExhibitions['results'] as $item)
             @component('components.molecules._m-listing----'.$item->listingType.'')
                 @slot('item', $item)
@@ -369,18 +362,11 @@
         @endcomponent
     @endif
     @component('components.organisms._o-grid-listing')
-        @if (isset($articlesAndPublications['allResultsView']) and $articlesAndPublications['allResultsView'])
-            @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-            @slot('cols_small','2')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-        @else
-            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-        @endif
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
         @foreach ($articlesAndPublications['results'] as $item)
             @component('components.molecules._m-listing----'.$item->type)
                 @slot('imgVariation','')
