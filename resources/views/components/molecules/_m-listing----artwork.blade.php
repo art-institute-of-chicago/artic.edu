@@ -8,9 +8,9 @@
                     @slot('loop', true)
                     @slot('muted', true)
                 @endcomponent
-            @elseif ($item->imageFront())
+            @elseif (isset($image) || $item->imageFront())
                 @component('components.atoms._img')
-                    @slot('image', $item->imageFront())
+                    @slot('image', $image ?? $item->imageFront())
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
             @endif

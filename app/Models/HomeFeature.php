@@ -5,11 +5,12 @@ namespace App\Models;
 use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasMediasEloquent;
 use A17\CmsToolkit\Models\Model;
 
 class HomeFeature extends Model
 {
-    use HasMedias, HasBlocks, HasApiRelations;
+    use HasMedias, HasBlocks, HasApiRelations, HasMediasEloquent;
 
     protected $fillable = [
         'title',

@@ -46,18 +46,21 @@ class HomeController extends FrontController
             if ($feature->published) {
                 if ($feature->events->count()) {
                     $item = $feature->events()->first();
-                    $item->type= 'exhibition';
+                    $item->type= 'event';
                     $item->dateStart = Carbon::now();
                     $item->dateEnd = Carbon::now();
+                    $item->feature_image = $feature->imageFront('hero');
                 } else if ($feature->exhibitions->count()) {
                     $item = $this->exhibitionRepository->getById($feature->exhibitions()->first()->datahub_id);
+                    $item->feature_image = $feature->imageFront('hero');
 
-                    $item->type= 'exhibition';
+                    $item->type = 'exhibition';
                 } else if ($feature->articles->count()) {
                     $item = $feature->articles()->first();
                     $item->type= 'article';
                     $item->dateStart = Carbon::now();
                     $item->dateEnd = Carbon::now();
+                    $item->feature_image = $feature->imageFront('hero');
                 }
 
                 if ($item) {
@@ -84,7 +87,7 @@ class HomeController extends FrontController
                 } else if ($feature->selections->count()) {
                     $item = $feature->selections()->first();
 
-                    $item->type= 'selection';
+                    $item->type = 'selection';
                     $item->images = $item->getArtworkImages();
                 }
 

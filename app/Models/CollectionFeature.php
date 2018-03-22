@@ -4,13 +4,14 @@ namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasMediasEloquent;
 
 use A17\CmsToolkit\Models\Model;
 
 class CollectionFeature extends Model
 {
 
-    use HasBlocks, HasApiRelations;
+    use HasBlocks, HasApiRelations, HasMediasEloquent;
 
     protected $fillable = [
         'title',
