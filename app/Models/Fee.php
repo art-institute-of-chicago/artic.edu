@@ -17,4 +17,14 @@ class Fee extends Model
 
     // those fields get auto set to false if not submited
     public $checkboxes = [];
+
+    public function fee_age()
+    {
+        return $this->belongsTo('App\Models\FeeAge');
+    }
+
+    public function fee_category()
+    {
+        return $this->belongsTo('App\Models\FeeCategory');
+    }
 }

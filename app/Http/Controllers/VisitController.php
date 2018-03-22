@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Fee;
 
 use Illuminate\Http\Request;
 
@@ -27,6 +28,34 @@ class VisitController extends FrontController
             'sections' => $page->featured_hours,
         );
 
+        $ageGroups = array();
+        $ageName = '';
+        $prices = array();
+        foreach(Fee::all() as $admission){
+            if($ageName !== $admission->fee_age->title){
+
+                if($ageName !== ''){
+                    array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
+                }
+
+                $ageName = $admission->fee_age->title;
+                $prices = array();
+            } else {
+                // TODO: Avoid hardcoding the classes.
+                switch( strtolower(str_replace(' ', '', $admission->fee_category->title)) ) {
+                    case 'chicagoresidents':
+                        $prices['chicagoResidents'] = $admission->price;
+                    case 'illinoisresidents':
+                        $prices['illonoisResidents'] = $admission->price;
+                    case 'fastpass':
+                        $prices['fastPass'] = $admission->price;
+                    default:
+                        $prices['generalAdmission'] = $admission->price;
+                };
+            };
+        };
+        array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
+
         $admission = array(
             'text' => 'Become a member Text',
             'cityPass' => array(
@@ -38,46 +67,7 @@ class VisitController extends FrontController
                     'href' => $page->visit_city_pass_link,
                 ),
             ),
-            'ageGroups' => array(
-                array(
-                    'title' => 'Adults',
-                    'prices' => array(
-                        'generalAdmission' => '$25',
-                        'chicagoResidents' => '$20',
-                        'illonoisResidents' => '$20',
-                        'fastPass' => '$35',
-                    ),
-                ),
-                array(
-                    'title' => 'Seniors',
-                    'subtitle' => '65+',
-                    'prices' => array(
-                        'generalAdmission' => '$19',
-                        'chicagoResidents' => '$14',
-                        'illonoisResidents' => '$16',
-                        'fastPass' => '$29',
-                    ),
-                ),
-                array(
-                    'title' => 'Students',
-                    'prices' => array(
-                        'generalAdmission' => '$19',
-                        'chicagoResidents' => '$14',
-                        'illonoisResidents' => '$16',
-                        'fastPass' => '$29',
-                    ),
-                ),
-                array(
-                    'title' => 'Teens',
-                    'subtitle' => '14-17',
-                    'prices' => array(
-                        'generalAdmission' => '$19',
-                        'chicagoResidents' => 'Free',
-                        'illonoisResidents' => '$16',
-                        'fastPass' => '$19',
-                    ),
-                ),
-            ),
+            'ageGroups' => $ageGroups,
         );
         $dining = array();
         foreach ($page->dining_hours as $hour) {
