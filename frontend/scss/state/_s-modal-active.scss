@@ -10,7 +10,7 @@
     display: block;
     animation: reveal .2s $bezier--bounce normal forwards;
 
-    @include breakpoint('small+') {
+    @include breakpoint('medium+') {
       animation: reveal-fullscren-lg .2s $bezier--bounce normal forwards;
     }
   }
