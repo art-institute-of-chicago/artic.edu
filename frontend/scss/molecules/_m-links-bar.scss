@@ -33,7 +33,8 @@
   width: 100%;
   margin-top: 40px;
 
-  &:first-child {
+  &:first-child,
+  .m-no-results & {
     margin-top: 0;
   }
 
@@ -75,12 +76,12 @@
   height: 1px;
   background-color: $color__rules--primary;
   pointer-events: none;
-
-  .m-intro-block + &:not(.m-links-bar--tabs)::before {
+}
+  .m-intro-block + .m-links-bar:not(.m-links-bar--tabs)::before,
+  .m-no-results .m-links-bar::before {
     content: none;
     display: none;
   }
-}
 
 .m-links-bar__items-primary,
 .m-links-bar__items-secondary {

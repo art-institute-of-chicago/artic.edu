@@ -1,18 +1,17 @@
 
 
 .m-no-results {
-  margin-top: 20px;
-  margin-bottom: 235px;
+  margin-bottom: 120px;
 }
 
 .o-article__body .m-no-results .hr {
   display: none;
 }
 
-.m-no-results .title {
-  margin-top: 30px;
+.m-no-results .title.f-list-3 {
+  @include tucked-margin-top($f-list-3, ('xsmall': 60));
 }
 
 .m-no-results .title + .f-body {
-  margin-top: 20px;
+  @include tucked-margin-top($f-body, ('xsmall': 56));
 }

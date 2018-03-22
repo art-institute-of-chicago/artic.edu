@@ -68,6 +68,10 @@
 
 @if (empty($eventsByDay) or (isset($eventsByDay) and count($eventsByDay) == 0))
     @component('components.molecules._m-no-results')
+        @component('components.molecules._m-links-bar')
+            @slot('variation', 'm-links-bar--buttons')
+            @slot('linksPrimary', array(array('label' => 'See upcoming events', 'href' => route('events'), 'variation' => 'btn--secondary')))
+        @endcomponent
     @endcomponent
 @else
     @component('components.organisms._o-row-listing')
