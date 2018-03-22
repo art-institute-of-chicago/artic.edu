@@ -132,7 +132,7 @@ const globalSearch = function(container) {
   function _closeSearch() {
     document.documentElement.classList.remove(stateKlass);
     _hideAutocomplete();
-    textInput.value = '';
+    // textInput.value = '';
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     setFocusOnTarget(document.getElementById('a17'));
