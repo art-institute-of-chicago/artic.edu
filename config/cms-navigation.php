@@ -156,12 +156,16 @@ return [
 
 
     'generic' => [
-        'title' => 'Generic Pages',
+        'title' => 'Pages',
         'route' => 'admin.generic.genericPages.index',
 
         'primary_navigation' => [
             'genericPages' => [
                 'title' => 'Generic Pages',
+                'module' => true,
+            ],
+            'pressReleases' => [
+                'title' => 'Press Releases',
                 'module' => true,
             ]
         ],

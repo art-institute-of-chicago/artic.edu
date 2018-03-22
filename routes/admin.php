@@ -59,6 +59,7 @@ Route::group(['prefix' => 'collection'], function () {
 
 Route::group(['prefix' => 'generic'], function () {
     Route::module('genericPages');
+    Route::module('pressReleases');
 });
 
 Route::group(['prefix' => 'general'], function () {
