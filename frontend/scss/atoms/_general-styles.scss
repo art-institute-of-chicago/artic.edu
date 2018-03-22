@@ -79,6 +79,13 @@ sup {
   *[class*=f-] & {
     font-size: 60%;
   }
+
+  .o-article .o-blocks>p:not([class*=f-]) & a,
+  .o-article .o-blocks>p:not([class*=f-]) & a
+  .o-article--editorial .o-blocks>p:not([class*=f-]) & a,
+  .o-article--editorial .o-blocks>p:not([class*=f-]) & a {
+    background: none;
+  }
 }
 
   sub {

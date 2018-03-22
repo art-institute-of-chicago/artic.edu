@@ -506,7 +506,11 @@ $f-body-editorial-reference: generate-font-obj((
 }
 
 %f-body-editorial-reference,
-.f-body-editorial-reference,
+.f-body-editorial-reference {
+  @include f-body-editorial-reference;
+}
+
+/*
 %f-body-editorial sup,
 .f-body-editorial sub,
 %f-body-editorial sup,
@@ -520,6 +524,7 @@ $f-body-editorial-reference: generate-font-obj((
 .f-body-editorial sup {
   @include untuck;
 }
+*/
 
 /***
 

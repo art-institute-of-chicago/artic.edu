@@ -18,6 +18,10 @@
   &:active:hover {
     color: $color__link--accent-active;
   }
+
+  .o-blocks >.f-secondary & {
+    background: none;
+  }
 }
 
 .return-link::before {
