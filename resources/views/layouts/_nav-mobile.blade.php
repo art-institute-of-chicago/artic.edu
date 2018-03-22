@@ -35,7 +35,7 @@
           @foreach ($mobileNav as $level_0)
             <li class="{{ $level_0['class'] ?? '' }}">
               <a href="{{ $level_0['slug'] ?? '#' }}" {{ array_key_exists('children', $level_0) ? 'data-nav-trigger' : '' }}>
-                {{ $level_0['name'] }}
+                {!! $level_0['name'] !!}
 
                 @if (array_key_exists('children', $level_0))
                   <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
@@ -48,7 +48,7 @@
                   <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back" data-nav-back>
                     <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
 
-                    {{ $level_0['name'] }}
+                    {!! $level_0['name'] !!}
                   </a>
 
                   <ul>
@@ -68,14 +68,14 @@
                             <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back" data-nav-back>
                               <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
 
-                              {{ $level_1['name'] }}
+                              {!! $level_1['name'] !!}
                             </a>
 
                             <ul>
                               @foreach ($level_1['children'] as $level_2)
                                 <li class="{{ $level_2['class'] ?? '' }}">
                                   <a href="{{ $level_2['slug'] ?? '#' }}" {!! array_key_exists('children', $level_2) ? ' class="g-footer-nav__expander-trigger arrow-link arrow-link--down" data-nav-trigger' : '' !!}>
-                                    {{ $level_2['name'] }}
+                                    {!! $level_2['name'] !!}
 
                                     @if (array_key_exists('children', $level_2))
                                       <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
@@ -87,7 +87,7 @@
                                     <div class="g-nav-mobile__expander">
                                       <ul>
                                         @foreach ($level_2['children'] as $level_3)
-                                          <li><a href="{{ $level_3['slug'] ?? '#' }}">{{ $level_3['name'] }}</a></li>
+                                          <li><a href="{{ $level_3['slug'] ?? '#' }}">{!! $level_3['name'] !!}</a></li>
                                         @endforeach
                                       </ul>
                                     </div>
@@ -127,7 +127,7 @@
         </div>
       </nav>
 
-      <a href="#" class="g-nav-mobile__close" data-nav-mobile-close><svg aria-hidden="true" class="icon--close--24"><use xlink:href="#icon--close--24" /></svg></a>
+      <a href="#" class="g-nav-mobile__close" data-behavior="closeNavMobile"><svg aria-hidden="true" class="icon--close--24"><use xlink:href="#icon--close--24" /></svg></a>
     </div>
   </div>
 </div>
