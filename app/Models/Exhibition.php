@@ -64,8 +64,8 @@ class Exhibition extends Model
 
     public static $exhibitionTypes = [
         self::BASIC   => 'Basic',
-        self::LARGE   => 'Large Feature',
-        self::SPECIAL => 'Special Exhibition'
+        self::LARGE   => 'Large feature',
+        self::SPECIAL => 'Special exhibition'
     ];
 
     public function exhibitions()

@@ -24,8 +24,8 @@ class SponsorController extends ModuleController
             'field' => 'title',
         ],
         'copy' => [
-            'title' => 'Sponsor Copy',
-            'copy' => 'Sponsor Copy',
+            'title' => 'Sponsor copy',
+            'copy' => 'Sponsor copy',
             'edit_link' => true,
             'field' => 'copy',
         ],

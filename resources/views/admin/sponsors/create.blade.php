@@ -8,6 +8,6 @@
     @formField('input', [
         'name' => 'copy',
         'required' => true,
-        'label' => 'Sponsor Copy',
+        'label' => 'Sponsor copy',
     ])
 @endif

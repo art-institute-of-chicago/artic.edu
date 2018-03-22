@@ -1,12 +1,12 @@
 @section('contentFields')
     @formField('medias', [
         'name' => 'visit_hero',
-        'label' => 'Hero Image/Video',
+        'label' => 'Hero image/video',
     ])
 
     @formField('medias', [
         'name' => 'visit_mobile',
-        'label' => 'Hero Mobile Image',
+        'label' => 'Hero mobile image',
     ])
 
     @formField('input', [

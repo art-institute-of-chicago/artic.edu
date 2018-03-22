@@ -9,6 +9,6 @@
         'max' => 5,
         'moduleName' => 'articles',
         'name' => 'artArticles',
-        'label' => 'Featured Articles'
+        'label' => 'Featured articles'
     ])
 @stop

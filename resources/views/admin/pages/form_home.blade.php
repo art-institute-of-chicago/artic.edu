@@ -9,7 +9,7 @@
         'max' => 10,
         'moduleName' => 'homeFeatures',
         'name' => 'homeFeatures',
-        'label' => 'Home Features'
+        'label' => 'Home features'
     ])
 
     @formField('browser', [
@@ -17,7 +17,7 @@
         'max' => 10,
         'moduleName' => 'collectionFeatures',
         'name' => 'collectionFeatures',
-        'label' => 'Collection Features'
+        'label' => 'Collection features'
     ])
 
     @formField('browser', [
@@ -25,7 +25,7 @@
         'max' => 2,
         'moduleName' => 'exhibitions',
         'name' => 'homeExhibitions',
-        'label' => 'Featured Exhibitions'
+        'label' => 'Featured exhibitions'
     ])
 
     @formField('browser', [
@@ -33,7 +33,7 @@
         'max' => 4,
         'moduleName' => 'events',
         'name' => 'homeEvents',
-        'label' => 'Featured Events',
+        'label' => 'Featured events',
         'note' => 'Select up to 4 events you want to feature on the homepage'
     ])
 
@@ -42,7 +42,7 @@
         'max' => 5,
         'moduleName' => 'shopItems',
         'name' => 'homeShopItems',
-        'label' => 'Featured Shop items',
+        'label' => 'Featured shop items',
         'note' => 'Select up to 5 shop items you want to feature on the homepage'
     ])
 
@@ -63,12 +63,12 @@
 
         @formField('input', [
             'name' => 'home_membership_module_short_copy',
-            'label' => 'Short Copy',
+            'label' => 'Short copy',
         ])
 
         @formField('input', [
             'name' => 'home_membership_module_button_text',
-            'label' => 'Button Text',
+            'label' => 'Button text',
         ])
 
         @formField('input', [

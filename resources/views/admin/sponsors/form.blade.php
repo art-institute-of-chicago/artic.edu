@@ -3,7 +3,7 @@
 @section('contentFields')
     @formField('input', [
         'name' => 'copy',
-        'label' => 'Sponsor Copy',
+        'label' => 'Sponsor copy',
     ])
 
     @formField('medias', [

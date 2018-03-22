@@ -10,12 +10,12 @@
 @section('contentFields')
     @formField('checkbox', [
         'name' => 'is_visible',
-        'label' => 'Is Visible?',
+        'label' => 'Visible?',
     ])
 
     @formField('select', [
         'name' => 'cms_exhibition_type',
-        'label' => 'Exhibition Layout',
+        'label' => 'Exhibition layout',
         'options' => $exhibitionTypesList,
         'default' => '0'
     ])
@@ -23,7 +23,7 @@
     @formField('medias', [
         'with_multiple' => false,
         'no_crop' => false,
-        'label' => 'Hero Image',
+        'label' => 'Hero image',
         'name' => 'hero'
     ])
 
@@ -61,7 +61,7 @@
         'moduleName' => 'sponsors',
         'name' => 'sponsors',
         'label' => 'Sponsors',
-        'note' => 'Select Sponsors',
+        'note' => 'Select sponsors',
         'max' => 20
     ])
 
@@ -94,7 +94,7 @@
             'routePrefix' => 'exhibitions_events',
             'max' => 4,
             'name' => 'exhibitions',
-            'label' => 'Related Exhibitions'
+            'label' => 'Related exhibitions'
         ])
 
         @formField('browser', [
@@ -130,7 +130,7 @@
         ])
         @formField('input', [
             'name' => 'short_description',
-            'label' => 'Short Description',
+            'label' => 'Short description',
             'type' => 'textarea',
             'disabled' => true
         ])
@@ -181,7 +181,7 @@
         ])
         @formField('input', [
             'name' => 'last_updated',
-            'label' => 'last_updated',
+            'label' => 'Last updated',
             'disabled' => true
         ])
         @formField('input', [
