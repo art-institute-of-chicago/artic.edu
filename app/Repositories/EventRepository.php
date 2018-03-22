@@ -13,7 +13,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Models\Event;
 use Carbon\Carbon;
 
-public class EventRepository extends ModuleRepository
+class EventRepository extends ModuleRepository
 {
     use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleBlocks, HandleRepeaters, HandleRecurrence {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
