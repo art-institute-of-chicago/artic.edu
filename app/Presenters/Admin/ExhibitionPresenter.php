@@ -52,7 +52,11 @@ class ExhibitionPresenter extends BasePresenter
 
     public function formattedDate()
     {
-        $date = $this->entity->dateStart->format('M j, Y');
+        $date = '';
+
+        if (!empty($this->entity->dateStart)) {
+            $date .= $this->entity->dateStart->format('M j, Y');
+        }
         if (!empty($this->entity->dateEnd)) {
             $date .= '&ndash; ' . $this->entity->dateEnd->format('M j, Y');
         }
