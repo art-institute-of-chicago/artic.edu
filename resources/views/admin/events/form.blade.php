@@ -83,7 +83,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'visit',
+        'routePrefix' => 'exhibitions_events',
         'moduleName' => 'sponsors',
         'name' => 'sponsors',
         'label' => 'Sponsors',

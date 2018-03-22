@@ -51,10 +51,6 @@ return [
                 'title' => 'Closures',
                 'module' => true,
             ],
-            'sponsors' => [
-                'title' => 'Sponsors',
-                'module' => true,
-            ],
             'questions' => [
                 'title' => 'FAQ',
                 'module' => true,
@@ -88,6 +84,10 @@ return [
             ],
             'events' => [
                 'title' => 'Events',
+                'module' => true,
+            ],
+            'sponsors' => [
+                'title' => 'Sponsors',
                 'module' => true,
             ],
             'history' => [

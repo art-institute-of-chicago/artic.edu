@@ -48,7 +48,7 @@ class EventRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
 
-        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'visit');
+        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
 
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');

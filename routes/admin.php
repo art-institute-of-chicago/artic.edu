@@ -12,7 +12,6 @@ Route::group(['prefix' => 'visit'], function () {
     Route::name('visit.landing')->get('landing', 'PageController@visit');
     Route::module('hours');
     Route::module('closures');
-    Route::module('sponsors');
     Route::module('questions');
     Route::module('feeAges');
     Route::module('feeCategories');
@@ -35,6 +34,7 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
     Route::name('exhibitions_events.exhibitions.augment')->get('exhibitions/augment/{datahub_id}', 'ExhibitionController@augment');
 
     Route::module('events');
+    Route::module('sponsors');
 
     Route::name('exhibitions_events.history')->get('history', 'PageController@exhibitionHistory');
 });
