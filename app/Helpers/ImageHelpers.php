@@ -10,14 +10,10 @@ Returns an array of CSS settings for the site - see _variable.scss
 
 function aic_convertFromImageProxy($imageUrl)
 {
-    $sourceType = 'imgix';
-
     $src = $imageUrl;
-    $credit = '';
-    $creditUrl = '';
 
     $image = array(
-        "sourceType" => $sourceType,
+        "sourceType" => 'imgix',
         "src" => $src,
         "width" => '',
         "height" => '',
