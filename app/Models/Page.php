@@ -52,6 +52,8 @@ class Page extends Model
 
         // Visit
         'visit_intro',
+        'visit_hour_header',
+        'visit_hour_subheader'
     ];
 
     public $slugAttributes = [
@@ -70,6 +72,14 @@ class Page extends Model
             ],
         ],
         'visit_mobile' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1
+                ],
+            ]
+        ],
+        'visit_featured_hour' => [
             'default' => [
                 [
                     'name' => 'default',

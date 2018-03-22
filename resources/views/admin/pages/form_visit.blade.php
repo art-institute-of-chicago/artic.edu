@@ -28,20 +28,21 @@
 
     <a17-fieldset title="Museum Hours" id="featured_hours">
         @formField('medias', [
-            'name' => 'museum_image',
+            'name' => 'visit_featured_hour',
             'label' => 'Image',
             'max' => '1'
         ])
         @formField('input', [
-            'name' => 'header',
-            'field_name' => 'header',
+            'name' => 'visit_hour_header',
+            'field_name' => 'visit_hour_header',
             'label' => 'Header',
             'required' => true
         ])
         @formField('input', [
             'type' => 'text',
-            'name' => 'subheader',
-            'field_name' => 'subheader',
+            'rows' => 3,
+            'name' => 'visit_hour_subheader',
+            'field_name' => 'visit_hour_subheader',
             'label' => 'Subheader',
             'required' => true
         ])
