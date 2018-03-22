@@ -5,6 +5,7 @@ Route::module('pages');
 Route::group(['prefix' => 'homepage'], function () {
     Route::name('homepage.landing')->get('landing', 'PageController@home');
     Route::module('homeFeatures');
+    Route::module('collectionFeatures');
 });
 
 Route::group(['prefix' => 'visit'], function () {
@@ -40,7 +41,6 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 
 Route::group(['prefix' => 'collection'], function () {
     Route::name('collection.landing')->get('landing', 'PageController@art');
-    Route::module('collectionFeatures');
     Route::module('artworks');
     Route::name('collection.artworks.augment')->get('artworks/augment/{datahub_id}', 'ArtworkController@augment');
     Route::module('artists');

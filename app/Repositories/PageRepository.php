@@ -66,7 +66,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['homeEvents'] = $this->getFormFieldsForBrowser($object, 'homeEvents', 'exhibitions_events', 'title', 'events');
         $fields['browsers']['homeShopItems'] = $this->getFormFieldsForBrowserApi($object, 'homeShopItems', 'App\Models\Api\ShopItem', 'visit');
         $fields['browsers']['homeFeatures'] = $this->getFormFieldsForBrowser($object, 'homeFeatures', 'homepage', 'title', 'homeFeatures');
-        $fields['browsers']['collectionFeatures'] = $this->getFormFieldsForBrowser($object, 'collectionFeatures', 'collection', 'title', 'collectionFeatures');
+        $fields['browsers']['collectionFeatures'] = $this->getFormFieldsForBrowser($object, 'collectionFeatures', 'homepage', 'title', 'collectionFeatures');
 
         // Exhibition & Events
         $fields['browsers']['exhibitionsExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');

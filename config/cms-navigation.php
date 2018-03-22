@@ -11,7 +11,12 @@ return [
                 'route' => 'admin.homepage.landing',
             ],
             'homeFeatures' => [
-                'title' => 'Features',
+                'title' => 'Home Features',
+                'module' => true,
+            ],
+
+            'collectionFeatures' => [
+                'title' => 'Collection Features',
                 'module' => true,
             ],
         ]
@@ -100,18 +105,6 @@ return [
                 'title' => 'Landing',
                 'route' => 'admin.collection.landing',
             ],
-            'collectionFeatures' => [
-                'title' => 'Features',
-                'module' => true,
-            ],
-            'artworks' => [
-                'title' => 'Artworks',
-                'module' => true,
-            ],
-            'artists' => [
-                'title' => 'Artists',
-                'module' => true,
-            ],
             'articles_publications' => [
                 'title' => 'Articles & Publications',
                 'route' => 'admin.collection.articles_publications.landing',
@@ -134,6 +127,14 @@ return [
                     ]
                 ],
             ],
+            'artists' => [
+                'title' => 'Artists',
+                'module' => true,
+            ],
+            'artworks' => [
+                'title' => 'Artworks',
+                'module' => true,
+            ],
             'selections' => [
                 'title' => 'Selections',
                 'module' => true,
@@ -141,15 +142,28 @@ return [
         ]
     ],
 
-    'featured' => [
-        'title' => 'Features',
-        'route' => 'admin.featured.art_and_ideas',
+    // 'featured' => [
+    //     'title' => 'Features',
+    //     'route' => 'admin.featured.art_and_ideas',
+
+    //     'primary_navigation' => [
+    //         'art_and_ideas' => [
+    //             'title' => 'Art and Ideas',
+    //             'route' => 'admin.featured.art_and_ideas',
+    //         ],
+    //     ],
+    // ],
+
+
+    'generic' => [
+        'title' => 'Generic Pages',
+        'route' => 'admin.generic.genericPages.index',
 
         'primary_navigation' => [
-            'art_and_ideas' => [
-                'title' => 'Art and Ideas',
-                'route' => 'admin.featured.art_and_ideas',
-            ],
+            'genericPages' => [
+                'title' => 'Generic Pages',
+                'module' => true,
+            ]
         ],
     ],
 
@@ -169,15 +183,4 @@ return [
         ],
     ],
 
-    'generic' => [
-        'title' => 'Generic Pages',
-        'route' => 'admin.generic.genericPages.index',
-
-        'primary_navigation' => [
-            'genericPages' => [
-                'title' => 'Generic Pages',
-                'module' => true,
-            ]
-        ],
-    ],
 ];

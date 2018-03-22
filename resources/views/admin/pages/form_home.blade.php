@@ -13,7 +13,7 @@
     ])
 
     @formField('browser', [
-    'routePrefix' => 'collection',
+    'routePrefix' => 'homepage',
         'max' => 10,
         'moduleName' => 'collectionFeatures',
         'name' => 'collectionFeatures',
