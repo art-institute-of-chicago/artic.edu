@@ -88,7 +88,7 @@
 @if (isset($artists) && $artists->pagination->total > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $artists->pagination->total.' artists', 'href' => route('search'))))
+            @slot('links', array(array('label' => 'See all '. $artists->pagination->total.' artists', 'href' => route('search.artists', request()->input()))))
         @endunless
         Artists
     @endcomponent
@@ -192,7 +192,7 @@
 @if (isset($artworks) && $artworks->pagination->total > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $artworks->pagination->total .' artworks', 'href' => route('search'))))
+            @slot('links', array(array('label' => 'See all '. $artworks->pagination->total .' artworks', 'href' => route('search.artworks', request()->input()))))
         @endunless
         Artworks
     @endcomponent
@@ -247,7 +247,7 @@
 @if (isset($eventsAndExhibitions) && $eventsAndExhibitions->pagination->total > 0)
     @component('components.molecules._m-title-bar')
         @unless (isset($allResultsView) and $allResultsView)
-            @slot('links', array(array('label' => 'See all '. $eventsAndExhibitions->pagination->total .' events and exhibitions', 'href' => route('exhibitions'))))
+            @slot('links', array(array('label' => 'See all '. $eventsAndExhibitions->pagination->total .' events and exhibitions', 'href' => route('search.exhibitionsEvents', request()->input()))))
         @endif
         Events and Exhibitions
     @endcomponent
