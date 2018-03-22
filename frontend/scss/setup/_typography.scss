@@ -620,10 +620,12 @@ a.f-link {
 
   &:hover,
   &:focus:hover {
+    @include text-underline(1.02em, $color__link--hover);
     color: $color__link--hover;
   }
 
   &:active:hover {
+    @include text-underline(1.02em, $color__link--active);
     color: $color__link--active;
   }
 }
