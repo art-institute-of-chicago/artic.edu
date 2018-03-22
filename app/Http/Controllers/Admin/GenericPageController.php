@@ -39,26 +39,24 @@ class GenericPageController extends ModuleController
 
     protected function indexData($request)
     {
-        $pagesList = $this->repository->listAll('title');
+        $pagesList = $this->repository->withDepth()->defaultOrder()->get()->filter(function ($page) {
+            return $page->depth < 3;
+        })->pluck('title');
+
         $pagesList = $pagesList->prepend('None', '');
-        // dd($pagesList);
-        // app(CategoryRepository::class)->listAll('name'),
 
         return [
             'nested' => true,
-            'nestedDepth' => 4,
+            'nestedDepth' => 3,
             'pages' => $pagesList,
         ];
     }
 
     private function getParents($exceptPage = null)
     {
-        return $this->repository->get([], [
-            'parent_id' => null,
-            'exceptIds' => is_null($exceptPage) ? [] : [$exceptPage],
-        ], [
-            'position' => 'asc',
-        ]);
+        return $this->repository->withDepth()->defaultOrder()->orderBy('position')->get()->filter(function ($page) {
+            return $page->depth < 3;
+        })->values();
     }
 
     protected function formData($request)
