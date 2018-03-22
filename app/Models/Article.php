@@ -89,6 +89,11 @@ class Article extends Model
         return join([$this->id, $this->getSlug()], '-');
     }
 
+    public function getUrlWithoutSlugAttribute()
+    {
+        return join([route('articles'), '/', $this->id, '-']);
+    }
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'article_category');

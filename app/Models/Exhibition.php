@@ -108,6 +108,11 @@ class Exhibition extends Model
         return $query->count();
     }
 
+    public function getUrlWithoutSlugAttribute()
+    {
+        return join([route('exhibitions'), '/', $this->datahub_id, '-']);
+    }
+
     protected function transformMappingInternal()
     {
         return [
