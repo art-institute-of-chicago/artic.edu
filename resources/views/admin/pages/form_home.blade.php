@@ -2,6 +2,7 @@
     @formField('input', [
         'name' => 'home_intro',
         'label' => 'Intro text',
+        'type' => 'textarea'
     ])
 
     @formField('browser', [
