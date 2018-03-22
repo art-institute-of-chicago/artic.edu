@@ -6,11 +6,11 @@ return [
         'route' => 'admin.homepage.landing',
 
         'primary_navigation' => [
-            'homepage' => [
+            'landing' => [
                 'title' => 'Landing',
                 'route' => 'admin.homepage.landing',
             ],
-            'home_features' => [
+            'homeFeatures' => [
                 'title' => 'Features',
                 'module' => true,
             ],
@@ -21,11 +21,10 @@ return [
         'title' => 'Visit',
         'route' => 'admin.visit.landing',
         'primary_navigation' => [
-            'visit' => [
+            'landing' => [
                 'title' => 'Landing',
                 'route' => 'admin.visit.landing',
             ],
-
             'fees' => [
                 'title' => 'Admission Fees',
                 'route' => 'admin.visit.fees',
@@ -97,11 +96,11 @@ return [
         'title' => 'Collection',
         'route' => 'admin.collection.landing',
         'primary_navigation' => [
-            'collection' => [
+            'landing' => [
                 'title' => 'Landing',
                 'route' => 'admin.collection.landing',
             ],
-            'collection_features' => [
+            'collectionFeatures' => [
                 'title' => 'Features',
                 'module' => true,
             ],
