@@ -133,7 +133,7 @@
   position: relative;
   left: 50%;
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
   margin-left: -50vw;
 }
 
@@ -318,7 +318,7 @@
 
 
 .m-article-header--hero {
-  min-height: 90vh;
+  min-height: 95vh;
   padding-top: 0;
 
   @include breakpoint('large+') {
