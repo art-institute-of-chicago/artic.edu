@@ -14,7 +14,7 @@
 
     @formField('browser', [
         'routePrefix' => 'exhibitions_events',
-        'max' => 20,
+        'max' => 12,
         'moduleName' => 'exhibitions',
         'name' => 'exhibitionsCurrent',
         'label' => 'Listing exhibitions'

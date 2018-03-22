@@ -74,7 +74,7 @@ return [
         'title' => 'Exhibitions & Events',
         'route' => 'admin.exhibitions_events.landing',
         'primary_navigation' => [
-            'exhibitions_events' => [
+            'landing' => [
                 'title' => 'Landing',
                 'route' => 'admin.exhibitions_events.landing',
             ],
