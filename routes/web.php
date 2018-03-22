@@ -36,7 +36,7 @@ Route::moduleShowWithPreview('events');
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');
-Route::name('articles.show')->get('/articles/{slug}', 'ArticleController@show');
+Route::name('articles.show')->get('/articles/{id}', 'ArticleController@show');
 
 // Videos routes
 Route::name('videos.show')->get('/videos/{slug}', 'VideoController@show');

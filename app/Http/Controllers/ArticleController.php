@@ -48,9 +48,9 @@ class ArticleController extends FrontController
         ]);
     }
 
-    public function show($slug)
+    public function show($id)
     {
-        $item = $this->repository->find($slug);
+        $item = $this->repository->find($id);
 
         if ($item->categories->first()) {
             $item->topics = $item->categories;
