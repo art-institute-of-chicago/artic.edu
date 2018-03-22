@@ -53,7 +53,13 @@ class Page extends Model
         // Visit
         'visit_intro',
         'visit_hour_header',
-        'visit_hour_subheader'
+        'visit_hour_subheader',
+        'visit_city_pass_title',
+        'visit_city_pass_text',
+        'visit_city_pass_button_label',
+        'visit_city_pass_link',
+        'visit_transportation_link',
+        'visit_parking_link'
     ];
 
     public $slugAttributes = [
@@ -80,6 +86,22 @@ class Page extends Model
             ]
         ],
         'visit_featured_hour' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1
+                ],
+            ]
+        ],
+        'visit_map' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1
+                ],
+            ]
+        ],
+        'visit_city_pass' => [
             'default' => [
                 [
                     'name' => 'default',
