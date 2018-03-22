@@ -132,25 +132,31 @@ class GenericPagesController extends FrontController
         if ($type) {
             if ($type == 'events') {
                 $item = $page->events->first();
-                $featured = [
-                    'type' => 'event'
-                ,   'items' => [$item]
-                ];
+                if ($item) {
+                    $featured = [
+                        'type' => 'event'
+                    ,   'items' => [$item]
+                    ];
+                }
             }
             if ($type == 'articles') {
                 $item = $page->articles->first();
-                $featured = [
-                    'type' => 'article'
-                ,   'items' => [$item]
-                ];
+                if ($item) {
+                    $featured = [
+                        'type' => 'article'
+                    ,   'items' => [$item]
+                    ];
+                }
             }
             if ($type == 'exhibitions') {
                 $item = $page->exhibitions->first();
-                $exhibition = $this->exhibitionRepository->getById($item->datahub_id);
-                $featured = [
-                    'type' => 'exhibition'
-                ,   'items' => [$exhibition]
-                ];
+                if ($item) {
+                    $exhibition = $this->exhibitionRepository->getById($item->datahub_id);
+                    $featured = [
+                        'type' => 'exhibition'
+                    ,   'items' => [$exhibition]
+                    ];
+                }
             }
         } else {
             $featured = [];
