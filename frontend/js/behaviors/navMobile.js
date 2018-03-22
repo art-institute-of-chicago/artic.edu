@@ -3,8 +3,6 @@ import { focusTrap } from '../functions';
 
 const navMobile = function(container) {
 
-  var navOpen = document.querySelector('[data-nav-mobile-open]');
-  var navClose = document.querySelector('[data-nav-mobile-close]');
   var openTriggers = container.querySelectorAll('[data-nav-trigger]');
   var backTriggers = container.querySelectorAll('[data-nav-back]');
   var klass = 's-nav-mobile-active';
@@ -13,18 +11,12 @@ const navMobile = function(container) {
 
   function _openNav(e){
     document.documentElement.classList.add(klass);
-
     _lockBody();
-
-    e.preventDefault();
   }
 
   function _closeNav(e){
     document.documentElement.classList.remove(klass);
-
     _unlockBody();
-
-    e.preventDefault();
   }
 
   function _openSubNav(e){
@@ -37,6 +29,7 @@ const navMobile = function(container) {
     }
 
     e.preventDefault();
+    e.stopPropagation();
   };
 
   function _goBack(e){
@@ -47,6 +40,7 @@ const navMobile = function(container) {
     checkLevel();
 
     e.preventDefault();
+    e.stopPropagation();
   }
 
   function checkLevel(){
@@ -74,8 +68,8 @@ const navMobile = function(container) {
   }
 
   function _init() {
-    navOpen.addEventListener('click', _openNav, false);
-    navClose.addEventListener('click', _closeNav, false);
+    document.addEventListener('navMobile:open', _openNav, false);
+    document.addEventListener('navMobile:close', _closeNav, false);
 
     forEach(openTriggers, function(index, openTrigger) {
       openTrigger.addEventListener('click', _openSubNav, false);
@@ -88,8 +82,8 @@ const navMobile = function(container) {
 
   this.destroy = function() {
     // remove specific event handlers
-    navOpen.removeEventListener('click', _openNav);
-    navClose.removeEventListener('click', _closeNav);
+    document.removeEventListener('navMobile:open', _openNav);
+    document.removeEventListener('navMobile:close', _closeNav);
 
     forEach(openTriggers, function(index, openTrigger) {
       openTrigger.removeEventListener('click', _openSubNav);

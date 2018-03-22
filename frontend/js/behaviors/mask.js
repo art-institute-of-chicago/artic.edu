@@ -15,6 +15,7 @@ const mask = function(container) {
     triggerCustomEvent(document, 'modal:close');
     triggerCustomEvent(document, 'roadblock:close');
     triggerCustomEvent(document, 'globalSearch:close');
+    triggerCustomEvent(document, 'navMobile:close');
   }
 
   function _init() {

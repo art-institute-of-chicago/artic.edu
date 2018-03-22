@@ -34,6 +34,6 @@
         </ul>
       </nav>
       <p class="g-header__opening-hours f-secondary"><a href="{{ $_pages['visit'] }}">{!! $_hours['general'] !!}</a></p>
-      <button class="g-header__menu-link f-secondary" data-nav-mobile-open>Menu<svg class="icon--menu--24"><use xlink:href="#icon--menu--24" /></svg></button>
+      <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile">Menu<svg class="icon--menu--24"><use xlink:href="#icon--menu--24" /></svg></button>
   </div>
 </header>
