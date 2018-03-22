@@ -180,8 +180,21 @@
 
     @include breakpoint('small+') {
       display: inline-block;
+      width: colspan(28, small);
       margin: 0 0 48px;
       column-break-inside: avoid;
+    }
+
+    @include breakpoint('medium+') {
+      width: colspan(28, medium);
+    }
+
+    @include breakpoint('large+') {
+      width: colspan(28, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(21, xlarge);
     }
   }
 
