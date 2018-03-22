@@ -48,12 +48,16 @@
         @endif
         @if (isset($item['links']) and $item['links'])
             <br>
+            <ul>
             @foreach ($item['links'] as $link)
+                <li>
                 @component('components.atoms._arrow-link')
                     @slot('href', $link['href'])
-                    {{ $link['label'] }}
+                    {!! $link['label'] !!}
                 @endcomponent
+                </li>
             @endforeach
+            </ul>
         @endif
     </span>
 
