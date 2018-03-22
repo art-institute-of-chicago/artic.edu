@@ -168,8 +168,7 @@
                 @endcomponent
               @endif
             </th>
-            {{-- TODO: Avoid hardcoding the classes. --}}
-            @foreach (['generalAdmission', 'chicagoResidents', 'illonoisResidents', 'fastPass'] as $ageGroupPrice)
+            @foreach ($admission['keys'] as $ageGroupPrice)
               <td>
                 @component('components.blocks._text')
                     @slot('font', 'f-secondary')

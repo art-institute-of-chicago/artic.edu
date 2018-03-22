@@ -31,7 +31,10 @@ class VisitController extends FrontController
         $ageGroups = array();
         $ageName = '';
         $prices = array();
+        $keys = array();
+        $i = 0;
         foreach(Fee::all() as $admission){
+            $key = strtolower(str_replace(' ', '', $admission->fee_category->title));
             if($ageName !== $admission->fee_age->title){
 
                 if($ageName !== ''){
@@ -40,19 +43,11 @@ class VisitController extends FrontController
 
                 $ageName = $admission->fee_age->title;
                 $prices = array();
-            } else {
-                // TODO: Avoid hardcoding the classes.
-                switch( strtolower(str_replace(' ', '', $admission->fee_category->title)) ) {
-                    case 'chicagoresidents':
-                        $prices['chicagoResidents'] = $admission->price;
-                    case 'illinoisresidents':
-                        $prices['illonoisResidents'] = $admission->price;
-                    case 'fastpass':
-                        $prices['fastPass'] = $admission->price;
-                    default:
-                        $prices['generalAdmission'] = $admission->price;
-                };
+                $i = 0;
             };
+            $prices[$key] = $admission->price;
+            $keys[$i]=  $key;
+            $i += 1;
         };
         array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
 
@@ -68,6 +63,7 @@ class VisitController extends FrontController
                 ),
             ),
             'ageGroups' => $ageGroups,
+            'keys' => $keys
         );
         $dining = array();
         foreach ($page->dining_hours as $hour) {

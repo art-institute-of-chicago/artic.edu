@@ -36,6 +36,14 @@
 @stop
 
 @section('fieldsets')
+    <a17-fieldset title="Admissions" id="citi_pass">
+        @formField('input', [
+            'name' => 'visit_admission_description',
+            'field_name' => 'visit_admission_description',
+            'label' => 'Admission Table Description'
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="City Pass" id="citi_pass">
         @formField('medias', [
             'name' => 'visit_city_pass',
