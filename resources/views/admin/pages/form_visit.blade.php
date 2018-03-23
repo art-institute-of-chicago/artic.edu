@@ -36,15 +36,37 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset title="Admissions" id="citi_pass">
+    <a17-fieldset title="Admissions" id="Admissions">
         @formField('input', [
             'name' => 'visit_admission_description',
             'field_name' => 'visit_admission_description',
-            'label' => 'Admission Table Description'
+            'label' => 'Admission Table Description',
+            'rows' => 3,
+            'type' => 'textarea'
+        ])
+        @formField('input', [
+            'name' => 'visit_buy_tickets_label',
+            'field_name' => 'visit_buy_tickets_label',
+            'label' => 'Buy Tickets Label'
+        ])
+        @formField('input', [
+            'name' => 'visit_buy_tickets_link',
+            'field_name' => 'visit_buy_tickets_link',
+            'label' => 'Buy Tickets Link'
+        ])
+        @formField('input', [
+            'name' => 'visit_become_member_label',
+            'field_name' => 'visit_become_member_label',
+            'label' => 'Become a member Label'
+        ])
+        @formField('input', [
+            'name' => 'visit_become_member_link',
+            'field_name' => 'visit_become_member_link',
+            'label' => 'Become a member Link'
         ])
     </a17-fieldset>
 
-    <a17-fieldset title="City Pass" id="citi_pass">
+    <a17-fieldset title="City Pass" id="city_pass">
         @formField('medias', [
             'name' => 'visit_city_pass',
             'label' => 'Image',
@@ -110,5 +132,18 @@
         ])
 
         @formField('repeater', ['type' => 'dining_hours'])
+    </a17-fieldset>
+
+    <a17-fieldset title="Faq" id="faq">
+        @formField('input', [
+            'name' => 'visit_faq_accessibility_link',
+            'label' => 'Accessibility information link'
+        ])
+        @formField('input', [
+            'name' => 'visit_faq_more_link',
+            'label' => "More FAQ's and guidelines link"
+        ])
+
+        @formField('repeater', ['type' => 'faqs'])
     </a17-fieldset>
 @stop

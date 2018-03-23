@@ -227,16 +227,16 @@
                   @component('components.atoms._btn')
                       @slot('variation', 'btn--full')
                       @slot('tag', 'a')
-                      @slot('href', '#')
-                      Buy tickets
+                      @slot('href', $admission['buy_tickets']['link'])
+                      {{ $admission['buy_tickets']['label'] }}
                   @endcomponent
               </li>
               <li class="m-ticket-actions__action">
                   @component('components.atoms._btn')
                       @slot('variation', 'btn--secondary btn--full')
                       @slot('tag', 'a')
-                      @slot('href', '#')
-                      Become a member
+                      @slot('href', $admission['become_member']['link'])
+                      {{ $admission['become_member']['label'] }}
                   @endcomponent
               </li>
           </ul>
@@ -361,6 +361,27 @@
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
           array('label' => 'Explore all dining', 'href' => '#'),
+        ))
+    @endcomponent
+
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(
+          array('label' => 'Accessibility information', 'href' => $faq['accesibility_link']),
+          array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'])
+        ))
+        @slot('id', 'faq')
+        FAQ
+    @endcomponent
+
+    @component('components.molecules._m-link-list')
+        @slot('links', $faq['questions']);
+    @endcomponent
+
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--title-bar-companion')
+        @slot('linksPrimary', array(
+          array('label' => 'Accessibility information', 'href' => $faq['accesibility_link']),
+          array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'])
         ))
     @endcomponent
   </section>

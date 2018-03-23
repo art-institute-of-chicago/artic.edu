@@ -154,6 +154,12 @@ return [
                 'component' => 'a17-block-dining_hours',
                 'max' => 3,
             ],
+            'faqs' => [
+                'title' => 'FAQ',
+                'trigger' => 'Add FAQ',
+                'component' => 'a17-block-faqs',
+                'max' => 5,
+            ],
             'accordion_item' => [
                 'title' => 'Accordion Item',
                 'trigger' => 'Add accordion item',

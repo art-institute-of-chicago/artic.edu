@@ -52,7 +52,7 @@ class VisitController extends FrontController
         array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
 
         $admission = array(
-            'text' => 'Become a member Text',
+            'text' => $page->visit_admission_description,
             'cityPass' => array(
                 'title' => $page->visit_city_pass_title,
                 'text' => $page->visit_city_pass_text,
@@ -63,7 +63,15 @@ class VisitController extends FrontController
                 ),
             ),
             'ageGroups' => $ageGroups,
-            'keys' => $keys
+            'keys' => $keys,
+            'become_member' => array(
+                'label' => $page->visit_become_member_label,
+                'link' => $page->visit_become_member_link
+            ),
+            'buy_tickets' => array(
+                'label' => $page->visit_buy_tickets_label,
+                'link' => $page->visit_buy_tickets_link
+            )
         );
         $dining = array();
         foreach ($page->dining_hours as $hour) {
@@ -72,7 +80,7 @@ class VisitController extends FrontController
             'title' => $hour->name,
             'text' => $hour->hours
           ));
-        }
+        };
 
         $directions = array(
             'intro' => 'Located in the heart of the Chicago-across from Millenium Park and steps from Lake Michigan-the Art Institute wecomes visitors at two entrances',
@@ -90,6 +98,20 @@ class VisitController extends FrontController
             ),
         );
 
+        $questions = array();
+        foreach ($page->faqs as $faq) {
+          array_push($questions, array(
+            'label' => $faq->title,
+            'href' => $hour->link
+          ));
+        };
+
+        $faq = array(
+            'accesibility_link' => $page->visit_faq_accessibility_link,
+            'more_link' => $page->visit_faq_more_link,
+            'questions' => $questions,
+        );
+
         return view('site.visit', [
           'primaryNavCurrent' => 'visit',
           'title' => $page->title,
@@ -100,6 +122,7 @@ class VisitController extends FrontController
           'admission' => $admission,
           'dining' => $dining,
           'directions' => $directions,
+          'faq' => $faq,
         ]);
     }
 

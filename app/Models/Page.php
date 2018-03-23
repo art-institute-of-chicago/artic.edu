@@ -59,7 +59,14 @@ class Page extends Model
         'visit_city_pass_button_label',
         'visit_city_pass_link',
         'visit_transportation_link',
-        'visit_parking_link'
+        'visit_parking_link',
+        'visit_admission_description',
+        'visit_buy_tickets_label',
+        'visit_buy_tickets_link',
+        'visit_become_member_label',
+        'visit_become_member_link',
+        'visit_faq_accessibility_link',
+        'visit_faq_more_link'
     ];
 
     public $slugAttributes = [
@@ -193,6 +200,11 @@ class Page extends Model
     public function dining_hours()
     {
         return $this->hasMany(DiningHour::class)->orderBy('position');
+    }
+
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class)->orderBy('position');
     }
 
     public function featured_hours()
