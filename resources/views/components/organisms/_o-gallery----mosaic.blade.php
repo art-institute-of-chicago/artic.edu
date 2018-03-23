@@ -26,7 +26,7 @@
             @slot('behavior','sharePage')
         @endcomponent
     </div>
-    <div class="o-gallery__media">
+    <div class="o-gallery__media o-gallery__media--2-col@small  o-gallery__media--2-col@medium  o-gallery__media--2-col@large  o-gallery__media--2-col@xlarge" data-behavior="pinboard">
         @if (isset($items) && !empty($items))
             @foreach ($items as $item)
                 @component('components.molecules._m-media')
