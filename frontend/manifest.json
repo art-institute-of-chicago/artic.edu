@@ -5,6 +5,11 @@
         "scss/app.scss"
       ]
     },
+    "print.css": {
+      "files": [
+        "scss/print.scss"
+      ]
+    },
     "html4css.css": {
       "files": [
         "scss/html4css.scss"

@@ -1,4 +1,4 @@
-import { manageBehaviors, resized, getCurrentMediaQuery } from '@area17/a17-helpers';
+import { manageBehaviors, resized, getCurrentMediaQuery, forEach } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
 import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals } from './functions';
 import lazyLoad from './libs/lazyLoad';
@@ -18,14 +18,23 @@ if (!A17.browserSpec || A17.browserSpec === 'html4') {
   throw new Error('HTML4');
 }
 
-if (A17.print) {
-  throw new Error('Printing');
-}
-
 A17.currentMediaQuery = getCurrentMediaQuery();
 A17.env = 'production';
 
 document.addEventListener('DOMContentLoaded', function(){
+  if (A17.print) {
+    forEach(document.querySelectorAll('[data-src]'), function(index, el) {
+      try {
+        el.src = el.getAttribute('data-src');
+      } catch(err) {}
+    });
+    forEach(document.querySelectorAll('[data-srcset]'), function(index, el) {
+      try {
+        el.srcset = el.getAttribute('data-srcset');
+      } catch(err) {}
+    });
+    return;
+  }
   // update env
   try {
     A17.env = /s-env-([a-z]*)/ig.exec(document.documentElement.className)[1];

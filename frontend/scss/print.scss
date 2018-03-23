@@ -1,0 +1,401 @@
+* {
+  background: transparent;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  outline: 0;
+  color: #000;
+  box-sizing: border-box;
+}
+
+%link-transition {
+  background: none;
+}
+
+@import 'setup/variables';
+@import 'setup/colors';
+@import 'setup/mixins';
+@import 'setup/typography';
+
+@import 'atoms/arrow-link';
+@import 'atoms/hr';
+@import 'atoms/tag';
+@import 'atoms/list';
+@import 'atoms/deflist';
+
+*[class*='f-'] {
+  color: #000;
+
+  &::before,
+  &::after {
+    content: none;
+    display: none;
+  }
+}
+
+
+article,
+aside,
+dialog,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+main {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body > *:not(#a17),
+#a17 > *:not(#content),
+#content > *:not(.o-article),
+svg[class*=icon--play],
+.icon--return,
+.m-article-actions,
+.o-article__primary-actions,
+.o-article__secondary-actions,
+.o-article__related,
+.m-media__share,
+.m-media__btn-fullscreen,
+.m-article-header__info-trigger,
+.o-gallery-share,
+.o-gallery__caption hr,
+.o-accordion__trigger-icon,
+.m-article-header__img-nav,
+.m-article-header__img-actions,
+.m-aside-newsletter,
+.tag,
+.m-listing .tag,
+.icon--new-window,
+.o-gallery__share,
+.o-form,
+.m-article-header__text .m-article-header__info-trigger,
+.m-no-results {
+  display: none;
+}
+
+svg {
+  width: 16px;
+  height: 16px;
+}
+
+sub, sup {
+  font-size: 76.5%;
+}
+
+a {
+  text-decoration: none;
+  background: none;
+}
+
+a::after,
+a[class*=f-]::after {
+  display: inline-block !important;
+  content: " [" attr(href) "] ";
+  clear: both;
+  font-size: 80%;
+  font-weight: normal;
+  padding: 0;
+}
+
+img {
+  width: 25%;
+  height: auto;
+}
+
+.o-blocks {
+  & > h5,
+  & > p,
+  & > ul,
+  & > ol {
+    margin: 20px 0 0;
+
+    &::before,
+    &::after {
+      content: none;
+      display: none;
+    }
+  }
+
+  & > h4,
+  & > .f-deck,
+  & > .hr
+  & > .o-row-listing,
+  & > .m-inline-aside,
+  & > dl {
+    margin: 40px 0 0;
+
+    &::before,
+    &::after {
+      content: none;
+      display: none;
+    }
+  }
+
+  & > h4:not([class*=f-]) {
+    @extend %f-module-title-2;
+  }
+
+  & > h5:not([class*=f-]) {
+    @extend %f-subheading-1;
+  }
+
+  & > p:not([class*=f-]),
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+    @extend %f-body;
+  }
+
+  & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+    @extend .list;
+  }
+}
+
+.o-article--editorial .o-blocks > p:not([class*=f-]),
+.o-article--editorial .o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+.o-article--editorial .o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+  @extend %f-body-editorial;
+}
+
+.o-article__intro p,
+.f-caption {
+  margin: 20px 0 0;
+}
+
+.o-accordion h3,
+.o-gallery__title {
+  margin: 40px 0 0;
+}
+
+.o-gallery__caption hr {
+  display: none;
+}
+
+.m-article-header__img-thumbs {
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+  padding-left: 0;
+  justify-content: center;
+}
+
+.m-article-header__img-thumbs li {
+  flex: 0 0 auto;
+  width: 15%;
+  margin: 10px;
+}
+
+.m-article-header__img-thumbs img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.m-article-header__img-thumbs button {
+  display: none;
+}
+
+.m-media {
+  margin: 20px 0 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.m-media .m-media__img {
+  position: relative;
+  width: 25%;
+  float: left;
+  overflow: hidden;
+}
+
+.m-media .m-media__img.m-media__img--video {
+  height: 0;
+  padding-bottom: 15%;
+}
+
+.m-media .m-media__img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.m-media .m-media__img video,
+.m-media .m-media__img embed,
+.m-media .m-media__img iframe {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.m-media figcaption {
+  width: 75%;
+  float: left;
+  padding-right: 50px;
+  padding-left: 28px;
+}
+
+.o-article__meta .m-link-list,
+.o-row-listing,
+.o-grid-listing {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.m-article-header__img {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.m-article-header__img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.m-article-header__text:not(:first-child),
+.o-article__inline-header:not(:first-child) {
+  margin-top: 40px;
+}
+
+
+.m-article-header__text *,
+.o-article__inline-header * {
+  display: block;
+  margin: 10px 0 0;
+}
+
+.m-article-header__text h1,
+.o-article__inline-header h1,
+.o-article__inline-header h1 + p {
+  margin: 0;
+}
+
+.m-article-header__text .f-deck {
+  margin-top: 20px;
+}
+
+.m-article-header__text .hr {
+  display: none;
+}
+
+.quote {
+  position: relative;
+  padding: 0 60px;
+  margin: 20px 0 0;
+}
+
+.quote__icon {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 48px;
+  height: 29px;
+}
+
+.deflist dt {
+  width: 25%;
+  margin-top: 20px;
+}
+
+.deflist dd {
+  width: 75%;
+  margin-top: 20px;
+}
+
+.m-info-bar {
+  position: relative;
+  padding: 0 20px 34px 64px;
+  border: 1px solid #000;
+  margin: 40px 0 0;
+}
+
+.m-info-bar__icon {
+  position: absolute;
+  left: 28px;
+  top: 32px;
+}
+
+.m-listing,
+.m-row-block {
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.m-listing .m-listing__img,
+.m-row-block .m-row-block__img {
+  width: 25%;
+  float: right;
+}
+
+.m-listing .m-listing__img img,
+.m-row-block .m-row-block__img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.m-listing .m-listing__meta,
+.m-row-block .m-row-block__meta {
+  width: 75%;
+  float: left;
+  padding-right: 75px;
+
+  &:only-child {
+    width: 100%;
+  }
+}
+
+.m-listing .m-listing__meta * {
+  display: block;
+  margin: 5px 0 0;
+}
+
+.m-listing .m-listing__meta *:first-child {
+  margin-top: 0;
+}
+
+.m-listing .m-listing__meta br,
+.m-listing .m-listing__meta .tag {
+  display: none;
+}
+
+.m-listing .m-listing__meta .type,
+.m-listing .m-listing__meta .price *,
+.price * {
+  display: inline-block;
+  margin-top: 0;
+  margin-right: 10px;
+}
+

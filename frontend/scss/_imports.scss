@@ -17,6 +17,7 @@ $include-icons: false; // see icons.scss!
 @import 'setup/colors';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ functions/mixins
+
 @import 'setup/mixins';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ typography */
@@ -179,7 +180,6 @@ $include-icons: false; // see icons.scss!
 @import 'state/s-collection-search-active';
 @import 'state/s-ajaxPageLoadMask-active';
 @import 'state/s-infoButtonInfo-active';
-@import 'state/s-print';
 @import 'state/s-search-active';
 @import 'state/s-nav-mobile-active';
 @import 'state/s-modal-active';
