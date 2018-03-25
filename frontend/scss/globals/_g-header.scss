@@ -5,7 +5,7 @@
   right: 0;
   top: 0;
   background-color: rgba($color__white,.9);
-  transition: opacity .2s, background-color 0s, transform 0s 0s;
+  transition: opacity .2s, transform 0s 0s;
 
   @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
     -webkit-backdrop-filter: blur(5px);
@@ -18,7 +18,6 @@
   position: relative;
   height: 112px;
   border-bottom: 1px solid $color__rules--primary;
-  transition: border-bottom-color 0s;
 
   @include breakpoint('small+') {
     height: 128px;

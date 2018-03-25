@@ -12,7 +12,7 @@
     }
   }
 
-  //&:not(.s-scroll-direction-up):not(.s-header-hide) {
+  &:not(.s-scroll-direction-up),
   &:not(.s-header-hide) {
 
     .g-header {

@@ -14,10 +14,10 @@ const setScrollDirection = function() {
 
     if (sT !== lastScrollTop && machineScroll !== true) {
       //triggerCustomEvent(document, 'scroll:active', { 'y': sT });
-      if (sT > 100 && !hideHeader){
+      if (sT > 0 && !hideHeader){
         dE.classList.add('s-header-hide');
         hideHeader = true;
-      } else if (sT <= 100 && hideHeader) {
+      } else if (sT <= 0 && hideHeader) {
         dE.classList.remove('s-header-hide');
         hideHeader = false;
       }
