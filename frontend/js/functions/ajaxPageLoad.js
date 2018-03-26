@@ -30,18 +30,24 @@ const ajaxPageLoad = function() {
   }
 
   function defaultStart(options,doc) {
-    document.documentElement.classList.remove('s-page-nav');
+    document.documentElement.classList.add('s-page-nav');
   }
 
   function defaultComplete(options,doc) {
     // fade out content
     document.documentElement.classList.add('s-page-nav-swapping');
     setTimeout(function(){
-      // scroll to top
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
       // replace content
       document.querySelector('#a17').innerHTML = doc.querySelector('#a17').innerHTML;
+      // fix scroll
+      if(options.popstate && options.popstate.data.scrollY) {
+        document.documentElement.scrollTop = options.popstate.data.scrollY;
+        document.body.scrollTop = options.popstate.data.scrollY;
+      } else {
+        // scroll to top
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
       // check states
       stateChecks(doc);
       // reveal content
@@ -55,7 +61,11 @@ const ajaxPageLoad = function() {
     document.title = docTitle;
     // update history
     if (!options.popstate) {
-      triggerCustomEvent(document, 'history:pushstate', { url: options.href, type: options.type, title: docTitle });
+      triggerCustomEvent(document, 'history:pushstate', {
+        url: options.href,
+        type: options.type,
+        title: docTitle,
+      });
     }
     // so we know what to do on replace states
     A17.previousAjaxPageLoadType = options.type;
@@ -117,10 +127,15 @@ const ajaxPageLoad = function() {
 
     ajaxing = true;
 
-    triggerCustomEvent(document, 'modal:hide', { opener: options.opener });
-    triggerCustomEvent(document, 'navPrimary:hide', { opener: options.opener });
     triggerCustomEvent(document, 'shareMenu:close');
     triggerCustomEvent(document, 'selectDate:close');
+    triggerCustomEvent(document, 'fullScreenImage:close');
+    triggerCustomEvent(document, 'collectionSearch:close');
+    triggerCustomEvent(document, 'infoButtonInfo:close');
+    triggerCustomEvent(document, 'modal:close');
+    triggerCustomEvent(document, 'roadblock:close');
+    triggerCustomEvent(document, 'globalSearch:close');
+    triggerCustomEvent(document, 'navMobile:close');
 
     docTitle = null;
     docContent = null;
@@ -232,6 +247,7 @@ const ajaxPageLoad = function() {
           triggerCustomEvent(document, 'history:replacestate', {
             url: location.href,
             type: event.data.type || 'page',
+            scrollY: window.scrollY || 0,
           });
           A17.previousAjaxPageLoadType = event.data.type || 'page';
         }
@@ -254,11 +270,17 @@ const ajaxPageLoad = function() {
       var ajaxable = ajaxableLink(link, event);
       if (ajaxable) {
         event.preventDefault();
+        triggerCustomEvent(document, 'history:replacestate', {
+          url: location.href,
+          type: 'page',
+          scrollY: window.scrollY || 0,
+        });
+        A17.previousAjaxPageLoadType = 'page';
         loadDocument({
           href: ajaxable.href,
           type: 'page',
           popstate: false,
-          link: link
+          link: link,
         });
       }
     }
