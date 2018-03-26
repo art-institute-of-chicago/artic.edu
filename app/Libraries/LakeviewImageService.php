@@ -11,12 +11,15 @@ class LakeviewImageService implements ImageServiceInterface
 {
     use ImageServiceDefaults;
 
-    protected $base_url = "https://lakeimagesweb.artic.edu/iiif/";
-    protected $version = "2";
+    protected $base_url;
+    protected $version;
+
     protected $cacheVersion = "1";
 
     public function __construct()
     {
+        $this->base_url = config('lakeview.cdn_enabled') ? config('lakeview.base_url_cdn') : config('lakeview.base_url');
+        $this->version  = config('lakeview.version');
     }
 
     public function getImage($object, $imageField = 'image_id', $width = '', $height = '')

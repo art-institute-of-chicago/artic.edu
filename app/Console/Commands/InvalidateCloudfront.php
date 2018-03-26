@@ -14,7 +14,7 @@ class InvalidateCloudfront extends Command
 
     public function handle()
     {
-        if (config('cache.enable_cloudfront_cache')) {
+        if (config('services.cloudfront.enabled')) {
             if (!empty($this->argument('urls'))) {
                 app(CloudfrontCacheService::class)->invalidate($this->argument('urls'));
             } else {

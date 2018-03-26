@@ -36,6 +36,7 @@ return [
     ],
 
     'cloudfront' => [
+        'enabled' => env('CLOUDFRONT_ENABLED', false),
         'key' => env('AWS_KEY'),
         'secret' => env('AWS_SECRET'),
         'distribution' => env('CLOUDFRONT_DISTRIBUTION'),

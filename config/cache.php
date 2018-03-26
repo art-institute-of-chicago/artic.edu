@@ -16,7 +16,6 @@ return [
     */
 
     'default' => env('CACHE_DRIVER', 'file'),
-    'enable_cloudfront_cache' => env('CLOUDFRONT_ENABLED', false),
 
     /*
     |--------------------------------------------------------------------------
