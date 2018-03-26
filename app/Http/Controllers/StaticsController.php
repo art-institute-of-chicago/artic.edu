@@ -351,15 +351,16 @@ class StaticsController extends FrontController {
 
   public function editorial() {
     $headerImage = $this->getImage();
-    $blocks = $this->generateBlocks(3);
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => '<p><span class="f-dropcap-editorial">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula libero vel quam fringilla dignissim. Praesent finibus sem sed arcu tempor, non tincidunt magna luctus. Maecenas lacinia interdum lacinia. Pellentesque ac felis vehicula, fermentum mauris sed, ornare ex. Mauris cursus, nulla eget fermentum molestie, metus velit sodales turpis, nec tempus felis orci id erat. Curabitur velit libero<sup id="ref_cite-1"><a href="#ref_note-1">[1]</a></sup>, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia<sup id="ref_cite-2"><a href="#ref_note-2">[2]</a></sup> sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique<sup id="ref_cite-3"><a href="#ref_note-3">[3]</a></sup>, tincidunt risus vel, gravida justo.</p>'
+    ));
     array_push($blocks, array(
         "type" => 'quote',
         "content" => $this->faker->paragraph(6, false)
     ));
-    array_push($blocks, array(
-        "type" => 'text',
-        "content" => '<p>Curabitur velit libero<sup id="ref_cite-1"><a href="#ref_note-1">[1]</a></sup>, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia<sup id="ref_cite-2"><a href="#ref_note-2">[2]</a></sup> sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique<sup id="ref_cite-3"><a href="#ref_note-3">[3]</a></sup>, tincidunt risus vel, gravida justo.</p>'
-    ));
+    $blocks = array_merge($blocks, $this->generateBlocks(3));
     // get an event
     $article = $this->getArticle();
     $article->push('articleType', 'editorial');

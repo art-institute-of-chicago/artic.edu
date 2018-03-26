@@ -125,6 +125,21 @@
     @extend %f-body-editorial;
   }
 
+  .o-article--editorial &.o-article__body > p:not([class*=f-]) .f-dropcap-editorial {
+    float: left;
+    margin-top: -17px;
+    margin-right: 4px;
+
+    @include breakpoint('small+') {
+      margin-top: -9px;
+    }
+
+    @include breakpoint('large+') {
+      margin-top: -34px;
+      margin-bottom: -4px;
+    }
+  }
+
   /*****/
 
   & > small,
