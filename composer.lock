@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b96d4d728ca18d262786f929dfe500a",
+    "content-hash": "68525341608f48bc8d24f6dd8be30dc0",
     "packages": [
         {
             "name": "a17/laravel-cms-toolkit",
@@ -90,16 +90,16 @@
         },
         {
             "name": "aacotroneo/laravel-saml2",
-            "version": "0.11.0",
+            "version": "0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aacotroneo/laravel-saml2.git",
-                "reference": "6523bd968737e435318d0392178c4d299794faa3"
+                "reference": "21c01a5d0397e958bd995f4e09a52a8e788bbbe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aacotroneo/laravel-saml2/zipball/6523bd968737e435318d0392178c4d299794faa3",
-                "reference": "6523bd968737e435318d0392178c4d299794faa3",
+                "url": "https://api.github.com/repos/aacotroneo/laravel-saml2/zipball/21c01a5d0397e958bd995f4e09a52a8e788bbbe6",
+                "reference": "21c01a5d0397e958bd995f4e09a52a8e788bbbe6",
                 "shasum": ""
             },
             "require": {
@@ -145,7 +145,7 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2017-08-30T13:31:42+00:00"
+            "time": "2018-02-19T01:04:09+00:00"
         },
         {
             "name": "aic/data-hub-foundation",
@@ -271,7 +271,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-03-27T19:13:06+00:00"
+            "time": "2018-03-26T21:49:03+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2403,16 +2403,16 @@
         },
         {
             "name": "onelogin/php-saml",
-            "version": "v2.12.0",
+            "version": "v2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onelogin/php-saml.git",
-                "reference": "9416fa739cff88ffcc472967cec048a774b97e0f"
+                "reference": "28e7ccc949592e78f7f4648dcfb492893aecc360"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/onelogin/php-saml/zipball/9416fa739cff88ffcc472967cec048a774b97e0f",
-                "reference": "9416fa739cff88ffcc472967cec048a774b97e0f",
+                "url": "https://api.github.com/repos/onelogin/php-saml/zipball/28e7ccc949592e78f7f4648dcfb492893aecc360",
+                "reference": "28e7ccc949592e78f7f4648dcfb492893aecc360",
                 "shasum": ""
             },
             "require": {
@@ -2452,7 +2452,7 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2017-11-06T17:44:03+00:00"
+            "time": "2018-03-05T15:43:24+00:00"
         },
         {
             "name": "paragonie/random_compat",
