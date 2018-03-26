@@ -130,14 +130,14 @@ const globalSearch = function(container) {
 
   // close search
   function _closeSearch() {
+    active = false;
+    clearTimeout(ajaxTimer);
     document.documentElement.classList.remove(stateKlass);
     _hideAutocomplete();
-    // textInput.value = '';
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     setFocusOnTarget(document.getElementById('a17'));
-    active = false;
-    clearTimeout(ajaxTimer);
+    textInput.value = '';
   }
 
   // handle escape key
@@ -157,21 +157,25 @@ const globalSearch = function(container) {
   // handle form submit
   function _handleSubmit(event){
     event.preventDefault();
-    triggerCustomEvent(document, 'globalSearch:close');
-    triggerCustomEvent(document, 'ajax:getPage', {
-      url: queryStringHandler.updateParameter(form.action, 'q', _fixedEncodeURIComponent(textInput.value)),
-    });
+    if (active) {
+      triggerCustomEvent(document, 'globalSearch:close');
+      triggerCustomEvent(document, 'ajax:getPage', {
+        url: queryStringHandler.updateParameter(form.action, 'q', _fixedEncodeURIComponent(textInput.value)),
+      });
+    }
   }
 
   // handle search input
   function _handleInput() {
-    searchTerm = textInput.value;
-    if(searchTerm.length >= 3){
-      // do ajax
-      _doAjax();
-    }else if(searchTerm.length === 0){
-      // hide autocomplete
-      _hideAutocomplete();
+    if (active) {
+      searchTerm = textInput.value;
+      if(searchTerm.length >= 3){
+        // do ajax
+        _doAjax();
+      }else if(searchTerm.length === 0){
+        // hide autocomplete
+        _hideAutocomplete();
+      }
     }
   }
 
