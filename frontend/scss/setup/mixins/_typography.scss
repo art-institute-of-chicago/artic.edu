@@ -239,7 +239,7 @@ $f-ui: (
 
         @if map-has-key($font-info, tuck-method) {
           // check if the new tuck method differs from the last
-          $untuck: if(($tuck-method && $tuck-method != map-get($font-info, tuck-method)), $tuck-method, false);
+          $untuck: if(($tuck-method and $tuck-method != map-get($font-info, tuck-method)), $tuck-method, false);
           // set the new tuck method
           $tuck-method: map-get($font-info, tuck-method);
         } @else {
