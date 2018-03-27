@@ -86,7 +86,7 @@ class Location extends Model
                 "name" => "web_url",
                 "doc" => "web_url",
                 "type" => "string",
-                "value" => function () {return url(route('pages.show', $this->page));},
+                "value" => function () {return '/#todo';},
             ],
         ];
     }
