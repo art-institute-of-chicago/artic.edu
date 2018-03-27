@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use App\Models\Behaviors\HasMediasEloquent;
 use A17\CmsToolkit\Models\Model;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class Family extends Model 
 {
@@ -27,12 +27,11 @@ class Family extends Model
         return $this->belongsTo('App\Models\Page');
     }
 
-    // fill this in if you use the HasMedias traits
     public $mediasParams = [
-        'cover' => [
+        'family_cover' => [
             'default' => [
                 [
-                    'name' => 'cover',
+                    'name' => 'default',
                     'ratio' => 3 / 4,
                 ],
             ]
