@@ -11,8 +11,7 @@
             'label' => 'link',
             'required' => true
         ])
-        @formField('input', [
-            'type' => 'textarea',
+        @formField('wysiwyg', [
             'rows' => 3,
             'name' => 'copy',
             'field_name' => 'copy',
