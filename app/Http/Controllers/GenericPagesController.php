@@ -26,6 +26,7 @@ class GenericPagesController extends FrontController
     public function show($slug)
     {
         $page = $this->getPage($slug);
+        $crumbs = $this->buildBreadCrumb($page);
         $navs = $this->buildNav($page);
 
         return view('site.genericpage.show', [
@@ -33,7 +34,7 @@ class GenericPagesController extends FrontController
             'nav' => $navs['nav'],
             'headerImage' => $page->imageFront('hero'),
             "title" => $page->title,
-            "breadcrumb" => $this->buildBreadCrumb($page),
+            "breadcrumb" => $crumbs,
             "blocks" => null,
             'featuredRelated' => $this->getRelated($page),
             'nav' => $navs['nav'],
@@ -44,28 +45,34 @@ class GenericPagesController extends FrontController
     protected function buildNav($page)
     {
         $ancestors = clone $page->ancestors;
-
         $rootNav = [];
         $subNav = [];
 
         $root = $ancestors->shift();
         $sub = $ancestors->shift();
+        $forceNav = false;
         if ($sub) {
             foreach($sub->children as $item) {
                 $subNav[] = ['href' => $item->url, 'label' => $item->title];
+            }
+        } else {
+            if (sizeof($ancestors) == 0) {
+                $forceNav = true;
+                foreach($page->children as $item) {
+                    $subNav[] = ['href' => $item->url, 'label' => $item->title];
+                }
             }
         }
 
         foreach($root->children as $item) {
             $navItem = ['href' => $item->url, 'label' => $item->title];
 
-            if ($sub && $item->id == $sub->id) {
+            if ($sub && $item->id == $sub->id || ($forceNav && $page->id == $item->id)) {
                 $navItem['links'] = $subNav;
             }
             $rootNav[] = $navItem;
 
         }
-        // // dd($rootNav);
         $nav = array('nav' => $rootNav, 'subNav' => $subNav);
 
         return $nav;
@@ -92,7 +99,7 @@ class GenericPagesController extends FrontController
 
         $ancestors = clone $page->ancestors;
 
-        foreach($page->ancestors as $ancestor) {
+        foreach($ancestors as $ancestor) {
             // dd($ancestor);
             $crumb = [];
             $crumb['label'] = $ancestor->title;
