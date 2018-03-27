@@ -18,7 +18,7 @@ class GenericPageController extends ModuleController
 
     protected $indexOptions = [
         'reorder' => true,
-        'permalink' => false,
+        'permalink' => true,
     ];
 
     /*
@@ -63,6 +63,11 @@ class GenericPageController extends ModuleController
     {
         $page = $this->repository->getById(request('genericPage'));
 
+        $baseUrl = '//'.config('app.url')."/";
+        foreach($page->ancestors as $item) {
+            $baseUrl = $baseUrl.$item->slug."/";
+        }
+
         $breadcrumb = $page->ancestors->map(function ($parentPage) {
             return [
                 'label' => $parentPage->title,
@@ -83,6 +88,8 @@ class GenericPageController extends ModuleController
                     'label' => $page->title,
                 ],
             ]),
+
+           'baseUrl' => $baseUrl
         ];
     }
 
