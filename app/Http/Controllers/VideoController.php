@@ -29,7 +29,7 @@ class VideoController extends FrontController
 
         $relatedVideos = Video::published()->limit(4)->whereNotIn('id', array($item['id']))->get();
 
-        return view('site.VideoDetail', [
+        return view('site.videoDetail', [
             'item' => $item,
             'relatedVideos' => $relatedVideos
         ]);
