@@ -384,6 +384,71 @@
           array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'])
         ))
     @endcomponent
+
+    @component('components.molecules._m-title-bar')
+        @slot('id', 'tours')
+        Tours
+    @endcomponent
+
+    @component('components.atoms._hr')
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+{{--         @foreach ($tours as $item)
+            @component('components.molecules._m-listing----multi-links')
+                @slot('variation', 'm-listing--row@small m-listing--row@medium')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '58',
+                          'small' => '23',
+                          'medium' => '22',
+                          'large' => '18',
+                          'xlarge' => '18',
+                    )),
+                ))
+            @endcomponent
+        @endforeach --}}
+    @endcomponent
+
+    @component('components.molecules._m-title-bar')
+        @slot('id', 'familes_teens_educators')
+        Families, Teens &amp; Educators
+    @endcomponent
+
+    @component('components.atoms._hr')
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+        @foreach ($families as $item)
+            @component('components.molecules._m-listing----multi-links')
+                @slot('variation', 'm-listing--row@small m-listing--row@medium')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '58',
+                          'small' => '23',
+                          'medium' => '22',
+                          'large' => '18',
+                          'xlarge' => '18',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
+
   </section>
 
 @endsection

@@ -160,6 +160,12 @@ return [
                 'component' => 'a17-block-faqs',
                 'max' => 5,
             ],
+            'families' => [
+                'title' => 'Families, teens and educators',
+                'trigger' => 'Add item',
+                'component' => 'a17-block-families',
+                'max' => 3,
+            ],
             'accordion_item' => [
                 'title' => 'Accordion Item',
                 'trigger' => 'Add accordion item',

@@ -207,6 +207,11 @@ class Page extends Model
         return $this->hasMany(Faq::class)->orderBy('position');
     }
 
+    public function families()
+    {
+        return $this->hasMany(Family::class)->orderBy('position');
+    }
+
     public function featured_hours()
     {
         return $this->hasMany(FeaturedHour::class)->orderBy('position');

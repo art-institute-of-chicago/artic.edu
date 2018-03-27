@@ -112,6 +112,20 @@ class VisitController extends FrontController
             'questions' => $questions,
         );
 
+        $families = array();
+        foreach ($page->families as $item) {
+          array_push($families, array(
+            'image' => $item->imageFront('cover'),
+            'title' => $item->title,
+            'text' => $item->text,
+            'titleLink' => $item->external_link,
+            'links' => array(array(
+                'href' => $item->external_link,
+                'label' => $item->link_label,
+            ))
+          ));
+        };
+
         return view('site.visit', [
           'primaryNavCurrent' => 'visit',
           'title' => $page->title,
@@ -123,6 +137,7 @@ class VisitController extends FrontController
           'dining' => $dining,
           'directions' => $directions,
           'faq' => $faq,
+          'families' => $families,
         ]);
     }
 

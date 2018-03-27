@@ -37,12 +37,10 @@
 
 @section('fieldsets')
     <a17-fieldset title="Admissions" id="Admissions">
-        @formField('input', [
+        @formField('wysiwyg', [
             'name' => 'visit_admission_description',
             'field_name' => 'visit_admission_description',
-            'label' => 'Admission Table Description',
-            'rows' => 3,
-            'type' => 'textarea'
+            'label' => 'Admission Table Description'
         ])
         @formField('input', [
             'name' => 'visit_buy_tickets_label',
@@ -66,7 +64,7 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset title="City Pass" id="city_pass">
+    <a17-fieldset title="Featured Offer" id="featured_offer">
         @formField('medias', [
             'name' => 'visit_city_pass',
             'label' => 'Image',
@@ -145,5 +143,9 @@
         ])
 
         @formField('repeater', ['type' => 'faqs'])
+    </a17-fieldset>
+
+    <a17-fieldset title="Families, teens and educators" id="families">
+        @formField('repeater', ['type' => 'families'])
     </a17-fieldset>
 @stop

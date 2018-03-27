@@ -1,7 +1,7 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <div class="col"> <a17-textfield label="Title" :name="fieldName('title')" type="text" :required="true" in-store="value" ></a17-textfield> <a17-textfield label="link" :name="fieldName('external_link')" type="text" :required="true" in-store="value" ></a17-textfield> <a17-textfield label="Text" :name="fieldName('copy')" type="textarea" :required="true" :rows="3" in-store="value" ></a17-textfield> </div>
+        <div class="col"> <a17-textfield label="Title" :name="fieldName('title')" type="text" :required="true" in-store="value" ></a17-textfield> <a17-textfield label="link" :name="fieldName('external_link')" type="text" :required="true" in-store="value" ></a17-textfield> <a17-wysiwyg label="Text" :name="fieldName('copy')" in-store="value" ></a17-wysiwyg> </div>
     </div>
 </template>
 
