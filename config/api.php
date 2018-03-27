@@ -13,4 +13,16 @@ return [
     */
 
     'base_uri' => env('API_BASE_URI', 'http://aggregator-data-test.artic.edu'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | API caching
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'cache_enabled' => env('API_CACHE_ENABLED', false),
+    'cache_ttl'     => env('API_CACHE_TTL', 60 * 30), //Half an hour default
+    'cache_version' => env('API_CACHE_VERSION', 1),
+    'logger' => env('API_LOGGER', false)
 ];

@@ -8,6 +8,7 @@ class AicConnection implements ApiConnectionInterface
 
     protected $client;
     protected $defaultGrammar = 'App\Libraries\Api\Builders\Grammar\AicGrammar';
+    protected $cacheKeyName   = 'Aic-cache-key';
 
     /**
      * Create a new API connection instance.
@@ -62,6 +63,19 @@ class AicConnection implements ApiConnectionInterface
         // Let's leave the specific to the clients.
         $adaptedParameters = $this->client->adaptParameters($params);
 
-        return $this->client->request($verb, $endpoint, $adaptedParameters);
+        // Perform API request and caching
+        if (config('api.cache_enabled')) {
+            $cacheKey = $this->buildCacheKey($verb, $endpoint, $adaptedParameters, config('api.cache_version'));
+
+            return \Cache::remember($cacheKey, config('api.cache_ttl'), function () use ($verb, $endpoint, $adaptedParameters) {
+                return $this->client->request($verb, $endpoint, $adaptedParameters);
+            });
+        } else {
+            return $this->client->request($verb, $endpoint, $adaptedParameters);
+        }
+    }
+
+    protected function buildCacheKey() {
+        return json_encode(func_get_args());
     }
 }
