@@ -25,6 +25,7 @@ yarn-error.log
 /public/test
 /recipes/playbook.retry
 /recipes/ansible.cfg
+/recipes/vendor
 .vault_pass
 /public/assets/admin
 /public/assets/vendor
