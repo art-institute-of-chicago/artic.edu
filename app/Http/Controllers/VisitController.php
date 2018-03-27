@@ -32,9 +32,12 @@ class VisitController extends FrontController
         $ageName = '';
         $prices = array();
         $keys = array();
+        $titles = array();
         $i = 0;
-        foreach(Fee::all() as $admission){
+        foreach(Fee::orderBy('fee_age_id')->get() as $admission){
             $key = strtolower(str_replace(' ', '', $admission->fee_category->title));
+            $title = $admission->fee_category->title;
+            $tooltip = $admission->fee_category->tooltip;
             if($ageName !== $admission->fee_age->title){
 
                 if($ageName !== ''){
@@ -46,7 +49,8 @@ class VisitController extends FrontController
                 $i = 0;
             };
             $prices[$key] = $admission->price;
-            $keys[$i]=  $key;
+            $titles[$i] = array('title' => $title, 'tooltip' => $tooltip);
+            $keys[$i] = $key;
             $i += 1;
         };
         array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
@@ -64,6 +68,7 @@ class VisitController extends FrontController
             ),
             'ageGroups' => $ageGroups,
             'keys' => $keys,
+            'titles' => $titles,
             'become_member' => array(
                 'label' => $page->visit_become_member_label,
                 'link' => $page->visit_become_member_link

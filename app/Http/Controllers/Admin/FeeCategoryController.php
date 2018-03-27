@@ -20,4 +20,14 @@ class FeeCategoryController extends ModuleController
     //     @section('footer')
     //     @stop
     // @endif
+    protected $indexColumns = [
+        'title' => [
+            'title' => 'Title',
+            'field' => 'title',
+        ],
+        'tooltip' => [
+            'title' => 'Tooltip',
+            'field' => 'tooltip',
+        ],
+    ];
 }

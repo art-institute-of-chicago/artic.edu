@@ -109,46 +109,21 @@
         <thead>
           <tr>
             <td>&nbsp;</td>
-            <th>
-              @component('components.blocks._text')
-                  @slot('font', 'f-module-title-1')
-                  @slot('tag','span')
-                  General Admission
-              @endcomponent
-            </th>
-            <th>
-              @component('components.blocks._text')
-                  @slot('font', 'f-module-title-1')
-                  @slot('tag','span')
-                  Chicago Residents
-              @endcomponent
-              &nbsp;
-              @component('components.atoms._info-button-trigger')
-                  A valid photo ID with a resident address is required for Chicago and Illinois resident admission prices. Discount only available at museum admission desks.
-              @endcomponent
-            </th>
-            <th>
-              @component('components.blocks._text')
-                  @slot('font', 'f-module-title-1')
-                  @slot('tag','span')
-                  Illinois Residents
-              @endcomponent
-              &nbsp;
-              @component('components.atoms._info-button-trigger')
-                  A valid photo ID with a resident address is required for Chicago and Illinois resident admission prices. Discount only available at museum admission desks.
-              @endcomponent
-            </th>
-            <th>
-              @component('components.blocks._text')
-                  @slot('font', 'f-module-title-1')
-                  @slot('tag','span')
-                  Fast Pass
-              @endcomponent
-              &nbsp;
-              @component('components.atoms._info-button-trigger')
-                  A valid photo ID with a resident address is required for Chicago and Illinois resident admission prices. Discount only available at museum admission desks.
-              @endcomponent
-            </th>
+            @foreach ($admission['titles'] as $category)
+              <th>
+                @component('components.blocks._text')
+                    @slot('font', 'f-module-title-1')
+                    @slot('tag','span')
+                    {{ $category['title'] }}
+                @endcomponent
+                @if (isset($category['tooltip']))
+                  &nbsp;
+                  @component('components.atoms._info-button-trigger')
+                      {{ $category['tooltip'] }}
+                  @endcomponent
+                @endif
+              </th>
+            @endforeach
           </tr>
         </thead>
         <tbody>

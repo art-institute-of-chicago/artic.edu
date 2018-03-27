@@ -11,6 +11,7 @@ class FeeCategory extends Model
 
     protected $fillable = [
         'title',
+        'tooltip',
         'position'
     ];
 
