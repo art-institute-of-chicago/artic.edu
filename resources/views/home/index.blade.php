@@ -170,7 +170,7 @@
             @slot('simple', true)
             @slot('item', $item)
             @slot('imageSettings', array(
-                'fit' => 'crop',
+                'fit' => 'clamp',
                 'ratio' => '3:4',
                 'srcset' => array(200,400,600),
                 'sizes' => aic_imageSizes(array(
