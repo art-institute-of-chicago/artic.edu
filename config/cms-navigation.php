@@ -124,6 +124,14 @@ return [
                     'videos' => [
                         'title' => 'Videos',
                         'module' => true,
+                    ],
+                    'printedCatalogs' => [
+                        'title' => 'Printed Catalogs',
+                        'module' => true,
+                    ],
+                    'digitalCatalogs' => [
+                        'title' => 'Digital Catalogs',
+                        'module' => true,
                     ]
                 ],
             ],
