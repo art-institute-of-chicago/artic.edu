@@ -17,6 +17,7 @@ return [
 
     'block_editor' => [
         'block_single_layout' => 'layouts.block',
+        'block_preview_render_childs' => false,
         'blocks' => [
             'quote' => [
                 'title' => 'Quote',
