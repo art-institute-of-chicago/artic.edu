@@ -37,11 +37,13 @@ export DOCKER_MACHINE_NAME="default"
 
 #### Usage.
 
-On the Login form you can add the button with the route('saml_login') as href.
+On the Login form
+```filename: resources/views/vendor/laravel-cms-toolkit/auth/login.blade.php```
+There is a button that triggers the login through the IDP server.
 ```html
-<a href="{{ route('saml_login') }}" class="login__google" tabindex="4">
-  <span>Sign in with Google</span>
-</a>
+  <a href="{{ route('saml_login') }}" class="login__google" tabindex="4">
+    <span>Sign in with SSO</span>
+  </a>
 ```
 
 Your Application needs to be running on the IP 192.168.10.20
@@ -60,6 +62,4 @@ There are two static users configured in the IdP with the following data:
 
 #### TO-DO
 
-- Creating the User when authorized by the IDP on the `EventServiceProvider.php` file
-- Implementing the logout with route 'saml_logout'
-
+- Implementing the logout with route 'saml_logout' to logout from the IDP server
