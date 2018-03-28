@@ -119,20 +119,8 @@
   position: relative;
   left: 50%;
   width: 100vw;
-  height: 50vh;
+  height: 60vh;
   margin-left: -50vw;
-
-  @include breakpoint('small+') {
-    height: 75vh;
-  }
-
-  @include breakpoint('medium+') {
-    height: 40vh;
-  }
-
-  @include breakpoint('large+') {
-    height: 30vh;
-  }
 }
 
 .m-media--hero .m-media__img::after {
