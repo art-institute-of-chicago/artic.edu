@@ -31,6 +31,10 @@
     content: none;
     display: none;
   }
+
+  &[data-behavior*=openImageFullScreen] {
+    cursor: pointer;
+  }
 }
 
 .m-media__img img {
