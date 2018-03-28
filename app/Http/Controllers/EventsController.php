@@ -28,46 +28,64 @@ class EventsController extends FrontController
         parent::__construct();
     }
 
-    public function index($upcoming = false)
+    public function index()
     {
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
+        $collection  = $this->collection();
 
-        $collection = $this->repository->getEventsFiltered(request('start'), request('end'), request('time'), request('type'), request('audience'), self::PER_PAGE);
+        // If it's filtered just show everything instead of dividing the listing on ongoing
+        if ($this->isFiltered()) {
+            $ongoing = null;
+            $eventsByDay = $this->repository->groupByDate($collection);
+        } else {
+            // Divide the collection on normal events, and ongoing ones
+            $ongoing = $collection->filter(function ($item) {
+                return ($item->date <= Carbon::now()) && ($item->date_end > Carbon::now());
+            });
+            $recurrent = $collection->filter(function ($item) {
+                return ($item->date > Carbon::now());
+            });
 
-        // Divide the collection on normal events, and ongoing ones
-        $ongoing = $collection->filter(function ($item) {
-            return ($item->date <= Carbon::now()) && ($item->date_end > Carbon::now());
-        });
-        $recurrent = $collection->filter(function ($item) {
-            return ($item->date > Carbon::now());
-        });
+            // Show ongoing events as regular if there's no more events for the day
+            if ($recurrent->isEmpty() && !$ongoing->isEmpty()) {
+                $recurrent = $ongoing;
+                $ongoing   = null;
+            }
 
-        // Show ongoing events as regular if there's no more events for the day
-        if ($recurrent->isEmpty() && !$ongoing->isEmpty()) {
-            $recurrent = $ongoing;
-            $ongoing   = null;
-        }
-
-        $eventsByDay = $this->repository->groupByDate($recurrent);
-
-        // If it's an ajax request return only items
-        if (request()->ajax()) {
-            $view['html'] = view('site.events._items', [
-                'eventsByDay' => $eventsByDay
-            ])->render();
-
-            if ($collection->hasMorePages())
-                $view['page'] = request('page');
-
-            return $view;
+            $eventsByDay = $this->repository->groupByDate($recurrent);
         }
 
         return view('site.events.index', [
-            'page' => $page,
+            'page'        => $page,
             'eventsByDay' => $eventsByDay,
-            'collection' => $collection,
-            'ongoing' => $ongoing
+            'collection'  => $collection,
+            'ongoing'     => $ongoing
         ]);
+    }
+
+    public function indexMore()
+    {
+        $collection  = $this->collection();
+        $eventsByDay = $this->repository->groupByDate($collection);
+
+        $view['html'] = view('site.events._items', [
+            'eventsByDay' => $eventsByDay
+        ])->render();
+
+        if ($collection->hasMorePages())
+            $view['page'] = request('page');
+
+        return $view;
+    }
+
+    protected function collection()
+    {
+        return $this->repository->getEventsFiltered(request('start'), request('end'), request('time'), request('type'), request('audience'), self::PER_PAGE);
+    }
+
+    protected function isFiltered()
+    {
+        return !empty(request()->only('start', 'end', 'time', 'type', 'audience', 'page'));
     }
 
     // Show view has been moved to be used with the trait ShowWithPreview

@@ -24,7 +24,7 @@ class Search extends BaseApiModel
     ];
 
     // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
-    // On that builder, we will to overload the search function to allow
+    // On that builder, we will overload the search function to allow
     // searching for multiple types and segregate them when returning a call
     // Or simply return all API models shuffled in the correct order (see code)
     public function newApiModelBuilder($query)

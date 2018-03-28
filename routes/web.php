@@ -31,6 +31,7 @@ Route::name('search.exhibitionsEvents')->get('/search/exhibitions_and_events', '
 
 // Events routes
 Route::name('events')->get('/events', 'EventsController@index');
+Route::name('events.more')->get('/events-more', 'EventsController@indexMore');
 Route::moduleShowWithPreview('events');
 
 // Articles routes

@@ -70,7 +70,7 @@
     @if ($collection->hasMorePages())
         @component('components.molecules._m-links-bar')
             @slot('variation', 'm-links-bar--buttons')
-            @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('events', request()->all()), 'loadMoreTarget' => '#eventsList')))
+            @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('events.more', request()->all()), 'loadMoreTarget' => '#eventsList')))
         @endcomponent
     @endif
 @endif
