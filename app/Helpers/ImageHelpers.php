@@ -115,10 +115,25 @@ function aic_imageSettings($data) {
     $width = $image['width'] ?? false;
     $height = $image['height'] ?? false;
 
+    $ratio = $settings['ratio'] ?? false;
     $ratioW = null;
     $ratioH = null;
 
     $LQIPDimension = 25;
+
+    // trying to fill image dimensions in if dimensions haven't been set but we do have a srcset and a ratio specified
+    // could be dangerous!!
+    if (!$width && !$height && $srcset && $ratio) {
+        $width = array_values($srcset)[0];
+        $settings['fit'] = 'clamp';
+        if ($settings['ratio'] === "1:1") {
+            $height = $width;
+        } else if (sizeof(explode(":",$ratio)) === 2) {
+            $ratioW = explode(":",$settings['ratio'])[0];
+            $ratioH = explode(":",$settings['ratio'])[1];
+            $height = round($width * ($ratioH/$ratioW));
+        }
+    }
 
     // return if no datas
     if (!$srcset || !$sourceType || !$originalSrc || !$width || !$height) {
@@ -219,13 +234,18 @@ function aic_imageSettings($data) {
         }
 
         if(empty($settings['fit'])) {
-            $settings['fit'] = 'crop';
+            $imgixSettings['fit'] = 'crop';
         } else {
             $imgixSettings['fit'] = $settings['fit'];
         }
 
+        if(empty($settings['bg'])) {
+        } else {
+            $imgixSettings['bg'] = $settings['bg'];
+        }
+
         if(empty($settings['crop'])) {
-            $settings['crop'] = 'faces,edges,entropy';
+            $imgixSettings['crop'] = 'faces,edges,entropy';
         } else {
             $imgixSettings['crop'] = $settings['crop'];
         }
