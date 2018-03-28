@@ -127,6 +127,20 @@ return [
                     ]
                 ],
             ],
+            'research_resources' => [
+                'title' => 'Research and Resources',
+                'route' => 'admin.collection.research_resources.landing',
+                'secondary_navigation' => [
+                    'landing' => [
+                        'title' => 'Landing',
+                        'route' => 'admin.collection.research_resources.landing',
+                    ],
+                    'researchGuides' => [
+                        'title' => 'Research Guides',
+                        'module' => true,
+                    ]
+                ],
+            ],
             'artists' => [
                 'title' => 'Artists',
                 'module' => true,

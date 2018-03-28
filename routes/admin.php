@@ -46,6 +46,12 @@ Route::group(['prefix' => 'collection'], function () {
     Route::module('artists');
     Route::name('collection.artists.augment')->get('artists/augment/{datahub_id}', 'ArtistController@augment');
 
+
+    Route::group(['prefix' => 'research_resources'], function () {
+        Route::name('collection.research_resources.landing')->get('landing', 'PageController@research');
+        Route::module('researchGuides');
+    });
+
     Route::group(['prefix' => 'articles_publications'], function () {
         Route::name('collection.articles_publications.landing')->get('landing', 'PageController@articles');
         Route::module('articles');

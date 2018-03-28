@@ -117,6 +117,17 @@ class PageController extends ModuleController
         return view('admin.pages.form', $fields);
     }
 
+    public function research(PageRepository $pages)
+    {
+        abort_unless($page = $pages->byName('Research and Resources'), 500, self::MISSING_CMS_PAGE_MESSAGE);
+
+        $additionalFieldsets = [];
+        $fields = $this->form($page->id);
+        $fields['additionalFieldsets'] = $additionalFieldsets;
+
+        return view('admin.pages.form', $fields);
+    }
+
     protected function getRoutePrefix()
     {
         return null;

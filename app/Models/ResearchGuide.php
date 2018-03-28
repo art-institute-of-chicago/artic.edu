@@ -3,17 +3,15 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-// use A17\CmsToolkit\Models\Behaviors\HasTranslation;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasFiles;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Model;
 
-class PressRelease extends Model
+class ResearchGuide extends Model
 {
-    use HasBlocks,  HasSlug, HasMedias, HasFiles, HasRevisions;
-    // HasTranslation
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions;
 
     protected $fillable = [
         'short_description',
@@ -21,7 +19,7 @@ class PressRelease extends Model
         'published',
         'public',
         'publish_start_date',
-        'publish_end_date',
+        'publish_end_date'
     ];
 
     // public $translatedAttributes = [
@@ -54,6 +52,4 @@ class PressRelease extends Model
         ],
     ];
 
-    // protected $presenter = 'App\Presenters\HoursPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\PressReleasePresenter';
 }

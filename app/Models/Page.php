@@ -21,7 +21,8 @@ class Page extends Model
         3 => 'Visit',
         4 => 'Articles',
         5 => 'Exhibition History',
-        6 => 'Collection'
+        6 => 'Collection',
+        7 => 'Research and Resources'
     ];
 
     protected $fillable = [
