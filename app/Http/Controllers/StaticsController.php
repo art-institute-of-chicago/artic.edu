@@ -3431,19 +3431,19 @@ class StaticsController extends FrontController {
           'secondary' => $this->faker->sentence(8),
           'sections' => array(
               array(
-                  'title' => $this->faker->sentence(3),
+                  'title' => 'The Ryan Learning Center',
                   'link' => '#',
-                  'text' => $this->faker->sentence(8),
+                  'text' => '10:30-5:00 and Thursday until 8:00 <br>Free Admission',
               ),
               array(
-                  'title' => $this->faker->sentence(3),
+                  'title' => 'The Ryerson and Burnham Libraries',
                   'link' => '#',
-                  'text' => $this->faker->sentence(8),
+                  'text' => 'Monday-Wednesday 1:00-5:00 <br>Thursday 10:30-8:00 <br>Friday 1:00-5:00 <br>Saturday-Sunday Closed',
               ),
               array(
-                  'title' => $this->faker->sentence(3),
+                  'title' => 'Museum Shops',
                   'link' => '#',
-                  'text' => $this->faker->sentence(8),
+                  'text' => '10:30-5:00 and Thursday until 8:00',
               ),
            )
          ),

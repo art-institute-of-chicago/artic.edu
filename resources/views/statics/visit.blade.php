@@ -80,14 +80,14 @@
               @component('components.atoms._arrow-link')
                   @slot('font','f-null')
                   @slot('href', $section['link'])
-                  {{ $section['title'] }}
+                  {!! $section['title'] !!}
               @endcomponent
           @endcomponent
         </div>
         <div class="o-blocks">
           @component('components.blocks._text')
               @slot('font','f-secondary')
-              {{ $section['text'] }}
+              {!! $section['text'] !!}
           @endcomponent
         </div>
     @endcomponent
