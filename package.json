@@ -33,7 +33,7 @@
     "cms-watch-blocks": "watch 'npm run cms-copy-blocks' resources/assets/js/blocks --wait=2 --interval=0.1"
   },
   "engines": {
-    "node": ">= 6.10.3",
-    "npm": ">= 3.10.10"
+    "node": ">= 9.9.0",
+    "npm": ">= 5.8.0"
   }
 }
