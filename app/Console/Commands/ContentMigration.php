@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use App/Libraries/ContentMigrationService;
+
 class ContentMigration extends Command
 {
     /**
@@ -40,7 +42,7 @@ class ContentMigration extends Command
         //
         $type = $this->argument('type');
 
-       
+       $result = $this->migrate($type);
 
     }
 }
