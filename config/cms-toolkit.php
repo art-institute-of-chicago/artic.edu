@@ -227,6 +227,22 @@ return [
                     ],
                 ]
             ],
+            'banner' => [
+                'default' => [
+                    [
+                        'name' => 'default',
+                        'ratio' => 200 / 24,
+                    ],
+                ]
+            ],
+            'listing_image' => [
+                'default' => [
+                    [
+                        'name' => 'default',
+                        'ratio' => 16 / 9,
+                    ],
+                ]
+            ],
             'dining_cover' => [
                 'default' => [
                     [

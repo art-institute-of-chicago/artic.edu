@@ -38,7 +38,7 @@ class PressRelease extends Model
     public $dates = ['publish_start_date', 'publish_end_date'];
 
     public $mediasParams = [
-        'hero' => [
+        'listing' => [
             'default' => [
                 [
                     'name' => 'landscape',
@@ -51,6 +51,14 @@ class PressRelease extends Model
                     'ratio' => 1,
                 ],
             ],
+        ],
+        'banner' => [
+            'default' => [
+                [
+                    'name' => 'landscape',
+                    'ratio' => 200 / 24,
+                ],
+            ]
         ],
     ];
 

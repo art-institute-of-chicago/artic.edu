@@ -3,8 +3,14 @@
 @section('contentFields')
     @formField('medias', [
         'with_multiple' => false,
-        'label' => 'Hero image',
-        'name' => 'hero'
+        'label' => 'Banner image',
+        'name' => 'banner'
+    ])
+
+    @formField('medias', [
+        'with_multiple' => false,
+        'label' => 'Listing image',
+        'name' => 'listing'
     ])
 
     @formField('input', [

@@ -32,7 +32,7 @@ class GenericPagesController extends FrontController
         return view('site.genericpage.show', [
             'subNav' => $navs['subNav'],
             'nav' => $navs['nav'],
-            'headerImage' => $page->imageFront('hero'),
+            'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             "breadcrumb" => $crumbs,
             "blocks" => null,

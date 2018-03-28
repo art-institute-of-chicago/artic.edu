@@ -29,6 +29,8 @@ class GenericPage extends Model implements Sortable
         'publish_start_date',
         'publish_end_date',
         'parent_id',
+        'listing',
+        'banner'
     ];
 
     // public $translatedAttributes = [
@@ -45,7 +47,7 @@ class GenericPage extends Model implements Sortable
 
     // fill this in if you use the HasMedias traits
     public $mediasParams = [
-        'hero' => [
+        'listing' => [
             'default' => [
                 [
                     'name' => 'landscape',
@@ -58,6 +60,14 @@ class GenericPage extends Model implements Sortable
                     'ratio' => 1,
                 ],
             ],
+        ],
+        'banner' => [
+            'default' => [
+                [
+                    'name' => 'landscape',
+                    'ratio' => 200 / 24,
+                ],
+            ]
         ],
     ];
 

@@ -22,7 +22,7 @@
         @foreach ($listing as $item)
             @component('components.molecules._m-listing----generic')
                 @slot('item', $item)
-                @slot('image', $item->imageFront('hero'))
+                @slot('image', $item->imageFront('listing'))
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
@@ -50,7 +50,7 @@
         @foreach ($grid as $item)
             @component('components.molecules._m-listing----generic')
                 @slot('item', $item)
-                @slot('image', $item->imageFront('hero'))
+                @slot('image', $item->imageFront('listing'))
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
