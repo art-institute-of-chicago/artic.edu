@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@area17/a17-helpers": "^0.x",
-    "buble": "^0.19.3",
     "gulp-cli": "^2.0.1",
     "gulp-sass": "^3.2.1"
   },
