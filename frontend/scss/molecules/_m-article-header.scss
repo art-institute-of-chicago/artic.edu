@@ -455,7 +455,7 @@
   z-index: 2;
   flex-flow: column nowrap;
   justify-content: space-between;
-  padding-top: 25vh;
+  padding-top: 45vh;
   padding-bottom: 24px;
 
   @include breakpoint('small+') {
@@ -501,7 +501,7 @@
   padding-bottom: 20px;
 
   @include breakpoint('large+') {
-    top: calc(25vh + 16px);
+    top: calc(45vh + 16px);
     padding-bottom: 0;
   }
 }
