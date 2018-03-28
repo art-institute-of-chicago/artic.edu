@@ -214,6 +214,18 @@ return [
                 'title' => 'Search Terms',
                 'module' => true,
             ],
+            'pageCategories' => [
+                'title' => 'Page Categories',
+                'module' => true,
+            ],
+            'catalogCategories' => [
+                'title' => 'Catalog Categories',
+                'module' => true,
+            ],
+            'resourceCategories' => [
+                'title' => 'Resource Categories',
+                'module' => true,
+            ],
         ],
     ],
 

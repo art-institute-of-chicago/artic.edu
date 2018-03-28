@@ -75,6 +75,9 @@ Route::group(['prefix' => 'generic'], function () {
 Route::group(['prefix' => 'general'], function () {
     Route::module('siteTags');
     Route::module('searchTerms');
+    Route::module('pageCategories');
+    Route::module('catalogCategories');
+    Route::module('resourceCategories');
 });
 
 Route::get('/', function () {
