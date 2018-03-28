@@ -2,9 +2,9 @@
 
 /***
 
-aic_imageSizesCSSsettings
+aic_convertFromImageProxy
 
-Returns an array of CSS settings for the site - see _variable.scss
+Converts an image proxy url to AIC image object format
 
 ***/
 
@@ -27,6 +27,14 @@ function aic_convertFromImageProxy($imageUrl, $options = [])
 
     return $image;
 }
+
+/***
+
+aic_convertFromImage
+
+Converts an image service image object to AIC image object format
+
+***/
 
 function aic_convertFromImage($imageObject)
 {
@@ -51,6 +59,14 @@ function aic_convertFromImage($imageObject)
 
     return $image;
 }
+
+/***
+
+aic_imageSizesCSSsettings
+
+Returns an array of CSS settings for the site - see _variable.scss
+
+***/
 
 function aic_imageSizesCSSsettings() {
     $breakpoints = array(
@@ -122,10 +138,8 @@ function aic_imageSettings($data) {
     $LQIPDimension = 25;
 
     // trying to fill image dimensions in if dimensions haven't been set but we do have a srcset and a ratio specified
-    // could be dangerous!!
     if (!$width && !$height && $srcset && $ratio) {
         $width = array_values($srcset)[0];
-        $settings['fit'] = 'clamp';
         if ($settings['ratio'] === "1:1") {
             $height = $width;
         } else if (sizeof(explode(":",$ratio)) === 2) {
@@ -163,16 +177,15 @@ function aic_imageSettings($data) {
     if ($sourceType === 'placeholder') {
         // work out ratio cropping
         if (!empty($settings['ratio'])) {
-            // square
             if ($settings['ratio'] === "1:1") {
+                // square
                 if ($height > $width) {
                     $width = $height;
                 } else {
                     $height = $width;
                 }
-            }
-            // some other ratio
-            if (sizeof(explode(":",$settings['ratio'])) === 2) {
+            } else if (sizeof(explode(":",$settings['ratio'])) === 2) {
+                // some other ratio
                 $ratioW = explode(":",$settings['ratio'])[0];
                 $ratioH = explode(":",$settings['ratio'])[1];
                 $height = round($width * ($ratioH/$ratioW));
@@ -192,16 +205,15 @@ function aic_imageSettings($data) {
 
         // work out ratio cropping
         if (!empty($settings['ratio'])) {
-            // square
             if ($settings['ratio'] === "1:1") {
+                // square
                 if ($height > $width) {
                     $width = $height;
                 } else {
                     $height = $width;
                 }
-            }
-            // some other ratio
-            if (sizeof(explode(":",$settings['ratio'])) === 2) {
+            } else if (sizeof(explode(":",$settings['ratio'])) === 2) {
+                // some other ratio
                 $ratioW = explode(":",$settings['ratio'])[0];
                 $ratioH = explode(":",$settings['ratio'])[1];
                 $height = round($width * ($ratioH/$ratioW));
@@ -289,9 +301,8 @@ function aic_imageSettings($data) {
                 } else {
                     $height = $width;
                 }
-            }
-            // some other ratio
-            if (sizeof(explode(":",$settings['ratio'])) === 2) {
+            } else if (sizeof(explode(":",$settings['ratio'])) === 2) {
+                // some other ratio
                 $ratioW = explode(":",$settings['ratio'])[0];
                 $ratioH = explode(":",$settings['ratio'])[1];
                 $height = round($width * ($ratioH/$ratioW));
