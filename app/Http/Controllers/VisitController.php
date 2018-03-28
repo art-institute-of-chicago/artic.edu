@@ -81,7 +81,7 @@ class VisitController extends FrontController
         $dining = array();
         foreach ($page->dining_hours as $hour) {
           array_push($dining, array(
-            'image' => $hour->imageFront('cover'),
+            'image' => $hour->imageFront('dining_cover'),
             'title' => $hour->name,
             'text' => $hour->hours
           ));
@@ -120,7 +120,7 @@ class VisitController extends FrontController
         $families = array();
         foreach ($page->families as $item) {
           array_push($families, array(
-            'image' => $item->imageFront('cover'),
+            'image' => $item->imageFront('family_cover'),
             'title' => $item->title,
             'text' => $item->text,
             'titleLink' => $item->external_link,

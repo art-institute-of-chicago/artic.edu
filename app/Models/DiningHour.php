@@ -27,10 +27,10 @@ class DiningHour extends Model
 
     // fill this in if you use the HasMedias traits
     public $mediasParams = [
-        'cover' => [
+        'dining_cover' => [
             'default' => [
                 [
-                    'name' => 'portrait',
+                    'name' => 'default',
                     'ratio' => 3 / 4,
                 ],
             ]

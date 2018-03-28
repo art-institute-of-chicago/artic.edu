@@ -227,6 +227,14 @@ return [
                     ],
                 ]
             ],
+            'dining_cover' => [
+                'default' => [
+                    [
+                        'name' => 'default',
+                        'ratio' => 3 / 4,
+                    ],
+                ]
+            ],
         ],
         'browser_route_prefixes' => [
             'events' => 'exhibitions_events',
