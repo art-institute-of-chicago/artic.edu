@@ -7,7 +7,7 @@ use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasFiles;
 use A17\CmsToolkit\Models\Model;
 
-class Video extends Model 
+class Video extends Model
 {
     use HasSlug, HasMedias, HasFiles;
 
@@ -19,31 +19,36 @@ class Video extends Model
         'video_url'
     ];
 
+    public $mediasParams = [
+        'hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ]
+        ],
+    ];
+
     public $slugAttributes = [
         'title',
     ];
 
     public $checkboxes = ['published'];
 
-    // fill this in if you use the HasMedias traits
-    // public $mediasParams = [
-    //     'cover' => [
-    //         'default' => [
-    //             [
-    //                 'name' => 'landscape',
-    //                 'ratio' => 16 / 9,
-    //             ],
-    //             [
-    //                 'name' => 'portrait',
-    //                 'ratio' => 3 / 4,
-    //             ],
-    //         ],
-    //         'mobile' => [
-    //             [
-    //                 'name' => 'mobile',
-    //                 'ratio' => 1,
-    //             ],
-    //         ],
-    //     ],
-    // ];
+    // Generates the id-slug type of URL
+    public function getRouteKeyName()
+    {
+        return 'id_slug';
+    }
+
+    public function getIdSlugAttribute()
+    {
+        return join([$this->id, $this->getSlug()], '-');
+    }
+
+    public function getUrlWithoutSlugAttribute()
+    {
+        return join([route('videos'), '/', $this->id, '-']);
+    }
 }
