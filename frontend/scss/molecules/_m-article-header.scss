@@ -454,7 +454,8 @@
   position: relative;
   z-index: 2;
   flex-flow: column nowrap;
-  justify-content: space-between;
+  //justify-content: space-between;
+  min-height: 125vh;
   padding-top: 45vh;
   padding-bottom: 24px;
 
