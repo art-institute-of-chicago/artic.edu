@@ -175,6 +175,7 @@
 .m-article-header--feature .m-article-header__img::before {
   content: '';
   position: absolute;
+  z-index: 1;
   left: 0;
   right: 0;
   top: 0;
