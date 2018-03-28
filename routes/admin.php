@@ -50,6 +50,7 @@ Route::group(['prefix' => 'collection'], function () {
     Route::group(['prefix' => 'research_resources'], function () {
         Route::name('collection.research_resources.landing')->get('landing', 'PageController@research');
         Route::module('researchGuides');
+        Route::module('educatorResources');
     });
 
     Route::group(['prefix' => 'articles_publications'], function () {
@@ -59,6 +60,7 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('videos');
         Route::module('printedCatalogs');
         Route::module('digitalCatalogs');
+        Route::module('scholarlyJournals');
     });
 
     Route::module('selections');

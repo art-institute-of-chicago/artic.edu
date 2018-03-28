@@ -132,6 +132,10 @@ return [
                     'digitalCatalogs' => [
                         'title' => 'Digital Catalogs',
                         'module' => true,
+                    ],
+                    'scholarlyJournals' => [
+                        'title' => 'Scholarly Journals',
+                        'module' => true,
                     ]
                 ],
             ],
@@ -145,6 +149,10 @@ return [
                     ],
                     'researchGuides' => [
                         'title' => 'Research Guides',
+                        'module' => true,
+                    ],
+                    'educatorResources' => [
+                        'title' => 'Educator Resources',
                         'module' => true,
                     ]
                 ],
