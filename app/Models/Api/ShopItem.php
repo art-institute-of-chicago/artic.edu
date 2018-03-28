@@ -18,19 +18,17 @@ class ShopItem extends BaseApiModel
     public $mediasParams = [
         'hero' => [
             'default' => [
-                'field'  => 'image_id',
-            ],
-            'thumbnail' => [
-                'field'  => 'image_id',
-            ],
+                // 'width'  => 200,
+                // 'height'  => 100,
+            ]
         ],
     ];
 
 
-    public function imageFront($role = 'hero', $crop = null)
+    public function imageFront($role = 'hero', $crop = 'default')
     {
         if (!empty($this->image_url)) {
-            return aic_convertFromImageProxy($this->image_url);
+            return aic_convertFromImageProxy($this->image_url, $this->mediasParams[$role][$crop]);
         }
     }
 

@@ -8,15 +8,15 @@ Returns an array of CSS settings for the site - see _variable.scss
 
 ***/
 
-function aic_convertFromImageProxy($imageUrl)
+function aic_convertFromImageProxy($imageUrl, $options = [])
 {
     $src = $imageUrl;
 
     $image = array(
         "sourceType" => 'imgix',
         "src" => $src,
-        "width" => '',
-        "height" => '',
+        "width" => $options['width'] ?? '',
+        "height" => $options['height'] ?? '',
         "shareUrl" => '#',
         "shareTitle" => '',
         "downloadUrl" => $src,
