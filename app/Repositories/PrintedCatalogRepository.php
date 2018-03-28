@@ -18,4 +18,10 @@ class PrintedCatalogRepository extends ModuleRepository
     {
         $this->model = $model;
     }
+
+    public function afterSave($object, $fields)
+    {
+        $object->categories()->sync($fields['categories'] ?? []);
+        parent::afterSave($object, $fields);
+    }
 }

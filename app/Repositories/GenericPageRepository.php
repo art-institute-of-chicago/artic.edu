@@ -47,6 +47,7 @@ class GenericPageRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
+        $object->categories()->sync($fields['categories'] ?? []);
 
         $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
         $this->updateBrowser($object, $fields, 'events');

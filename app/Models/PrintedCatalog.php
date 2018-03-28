@@ -53,4 +53,9 @@ class PrintedCatalog extends Model
             ]
         ],
     ];
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\CatalogCategory');
+    }
 }

@@ -145,4 +145,9 @@ class GenericPage extends Model implements Sortable
         return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\PageCategory');
+    }
+
 }

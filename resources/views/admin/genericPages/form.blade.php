@@ -18,6 +18,14 @@
         'label' => 'Short Description',
         'type' => 'textarea'
     ])
+
+    @formField('multi_select', [
+        'name' => 'categories',
+        'label' => 'Categories',
+        'options' => $categoriesList,
+        'placeholder' => 'Select some categories',
+    ])
+
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image', 'video', 'media_embed', 'list',

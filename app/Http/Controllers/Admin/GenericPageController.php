@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 
+use App\Repositories\PageCategoryRepository;
+
 class GenericPageController extends ModuleController
 {
     protected $moduleName = 'genericPages';
@@ -89,7 +91,9 @@ class GenericPageController extends ModuleController
                 ],
             ]),
 
-           'baseUrl' => $baseUrl
+           'baseUrl' => $baseUrl,
+
+            'categoriesList' => app(PageCategoryRepository::class)->listAll('name'),
         ];
     }
 
