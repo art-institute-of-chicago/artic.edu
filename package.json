@@ -1,18 +1,18 @@
 {
   "name": "aic",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@area17/a17-helpers": "^0.x",
-    "gulp-cli": "^2.0.1"
+    "gulp-cli": "^2.0.1",
+    "gulp-sass": "^3.2.1"
   },
   "devDependencies": {
     "@antoine_a17/a17-node-sassdown": "1.0.7",
-    "a17-script": "git+https://code.area17.com/a17/a17-script.git#d68842e3ce6094995f36aa5e7f1a13fc29e45dfb",
+    "a17-script": "git+https://code.area17.com/a17/a17-script.git#gulp",
     "concurrently": "^3.5.0",
     "cross-env": "^5.1.4",
     "laravel-mix": "^2.0.0",
-    "uglifyjs-webpack-plugin": "^1.2.4",
     "watch": "^1.0.2"
   },
   "scripts": {
