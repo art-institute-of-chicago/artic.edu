@@ -65,6 +65,7 @@ Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@sh
 
 // About
 Route::name('about.press')->get('/about/press', 'PressReleasesController@index');
+Route::name('about.press.archive')->get('/about/press/archive', 'PressReleasesController@archive');
 Route::name('about.press.show')->get('/about/press/{id}', 'PressReleasesController@show');
 
 // Generic Page

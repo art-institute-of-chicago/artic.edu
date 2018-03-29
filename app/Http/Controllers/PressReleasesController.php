@@ -21,9 +21,11 @@ class PressReleasesController extends FrontController
 
     public function index(Request $request)
     {
-        $items = PressRelease::published()->paginate();
+        $items = PressRelease::current()->published()->paginate();
+        $title = 'Press Releases';
         $subNav = [
-            ['label' => 'Press Releases', 'href' => '/about/press', 'active' => true]
+            ['label' => $title, 'href' => route('about.press'), 'active' => true],
+            ['label' => 'Press Releases Archive', 'href' => route('about.press.archive')]
         ];
 
         $nav = [
@@ -32,7 +34,7 @@ class PressReleasesController extends FrontController
 
         $crumbs = [
             ['label' => 'About', 'href' => '/about'],
-            ['label' => 'Press Releases', 'href' => '/about/press']
+            ['label' => $title, 'href' => '']
         ];
 
         $filters = array(
@@ -45,7 +47,49 @@ class PressReleasesController extends FrontController
         );
 
         $view_data = [
-            'title' => 'Press Releases',
+            'title' => $title,
+            'subNav' => $subNav,
+            'nav' => $nav,
+            "breadcrumb" => $crumbs,
+            'wideBody' => true,
+            'filters' => $filters,
+            'listingCountText' => 'Showing '.$items->total().' press releases',
+            'listingItems' => $items,
+        ];
+
+
+        return view('site.pressreleases.index', $view_data);
+    }
+
+    public function archive(Request $request)
+    {
+        $title = 'Press Releases Archive';
+        $items = PressRelease::archive()->published()->paginate();
+        $subNav = [
+            ['label' => 'Press Releases', 'href' => route('about.press')],
+            ['label' => $title, 'href' => route('about.press.archive'), 'active' => true]
+        ];
+
+        $nav = [
+            ['label' => 'About', 'href' => '/about', 'links' => $subNav]
+        ];
+
+        $crumbs = [
+            ['label' => 'About', 'href' => '/about'],
+            ['label' => $title, 'href' => '']
+        ];
+
+        $filters = array(
+            array(
+                'prompt' => 'Year',
+                'links' => array(
+                    array('href' => '#', 'label' => 'All', 'active' => true),
+                ),
+            ),
+        );
+
+        $view_data = [
+            'title' => $title,
             'subNav' => $subNav,
             'nav' => $nav,
             "breadcrumb" => $crumbs,

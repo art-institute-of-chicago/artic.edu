@@ -12,6 +12,8 @@ use A17\CmsToolkit\Models\Model;
 
 use App\Models\Behaviors\HasMediasEloquent;
 
+use Carbon\Carbon;
+
 class PressRelease extends Model
 {
     use HasBlocks,  HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;
@@ -94,4 +96,11 @@ class PressRelease extends Model
         return $query->orderBy('publish_start_date', 'desc');
     }
 
+    public function scopeCurrent($query) {
+        return $query->whereNull('publish_start_date')->orWhere('publish_start_date', '>', Carbon::parse('2011-12-31'));
+    }
+
+    public function scopeArchive($query) {
+        return $query->where('publish_start_date', '<=', Carbon::parse('2011-12-31'));
+    }
 }
