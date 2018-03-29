@@ -78,7 +78,7 @@ class EventsController extends FrontController
         return $view;
     }
 
-    public function ical($id)
+    public function ics($id)
     {
         $event = $this->getItem($id);
 

@@ -15,7 +15,7 @@
             @slot('icon', 'icon--calendar--24')
             @slot('dataAttributes', 'download')
             @slot('tag', 'a')
-            @slot('href', '#')
+            @slot('href', $icsLink)
         @endcomponent
     </li>
     @endif

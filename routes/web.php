@@ -33,7 +33,7 @@ Route::name('search.exhibitionsEvents')->get('/search/exhibitions_and_events', '
 Route::name('events')->get('/events', 'EventsController@index');
 Route::name('events.more')->get('/events-more', 'EventsController@indexMore');
 Route::moduleShowWithPreview('events');
-Route::name('events.ical')->get('/events/{id}/ical', 'EventsController@ical');
+Route::name('events.ics')->get('/events/{id}/ics', 'EventsController@ics');
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');
