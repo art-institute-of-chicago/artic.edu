@@ -167,7 +167,7 @@
     @if ($item->sponsors() && $item->sponsors()->count() > 0)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top o-blocks__block')
-            @slot('title', $item->sponsors_sub_copy ?? "Further support has been provided by")
+            @slot('title', ($item->sponsors_sub_copy != null && $item->sponsors_sub_copy != '') ? $item->sponsors_sub_copy : "Further support has been provided by:")
         @endcomponent
 
         @foreach ($item->sponsors as $sponsor)
