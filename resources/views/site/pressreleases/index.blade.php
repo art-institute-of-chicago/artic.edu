@@ -89,14 +89,6 @@
   @endif
 
   <div class="o-article__body o-blocks">
-
-    @if (!empty($intro))
-        @component('components.blocks._text')
-            @slot('font','f-deck')
-            {{ $intro }}
-        @endcomponent
-    @endif
-    {!! $page->renderBlocks(false) !!}
     @if (isset($filters) && $filters)
         @component('components.molecules._m-links-bar')
             @slot('variation','m-links-bar--filters')
@@ -115,7 +107,11 @@
             @endslot
         @endcomponent
     @endif
-    {{-- @if (isset($listingItems) and $listingItems)
+    @component('components.blocks._blocks')
+        @slot('blocks', $blocks ?? null)
+    @endcomponent
+
+    @if (isset($listingItems) and $listingItems)
         @if (sizeof($listingItems) > 0)
             @if (isset($listingCountText) and $listingCountText)
                 @component('components.molecules._m-listing-header')
@@ -129,6 +125,7 @@
                     @component('components.molecules._m-listing----generic-row')
                         @slot('variation', 'm-listing--generic m-listing--row')
                         @slot('item', $item)
+                        @slot('image', $item->imageFront('listing'))
                         @slot('imageSettings', array(
                             'fit' => 'crop',
                             'ratio' => '16:9',
@@ -144,8 +141,7 @@
                     @endcomponent
                 @endforeach
             @endcomponent
-            @component('components.molecules._m-paginator')
-            @endcomponent
+            {!! $listingItems->links() !!}
         @else
             @component('components.molecules._m-no-results')
             @endcomponent
@@ -153,7 +149,7 @@
     @else
         @component('components.molecules._m-no-results')
         @endcomponent
-    @endif --}}
+    @endif
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')

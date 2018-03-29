@@ -63,6 +63,10 @@ Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');
 // Selections
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
+// About
+Route::name('about.press')->get('/about/press', 'PressReleasesController@index');
+Route::name('about.press.show')->get('/about/press/{id}', 'PressReleasesController@show');
+
 // Generic Page
 // This MUST be the last route
 Route::get('{any}', ['as' => 'genericpages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');

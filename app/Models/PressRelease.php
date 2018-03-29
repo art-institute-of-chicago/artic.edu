@@ -10,9 +10,11 @@ use A17\CmsToolkit\Models\Behaviors\HasFiles;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Model;
 
+use App\Models\Behaviors\HasMediasEloquent;
+
 class PressRelease extends Model
 {
-    use HasBlocks,  HasSlug, HasMedias, HasFiles, HasRevisions;
+    use HasBlocks,  HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;
     // HasTranslation
 
     protected $fillable = [
@@ -65,4 +67,31 @@ class PressRelease extends Model
 
     // protected $presenter = 'App\Presenters\HoursPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\PressReleasePresenter';
+
+    // Generates the id-slug type of URL
+    public function getRouteKeyName()
+    {
+        return 'id_slug';
+    }
+
+    public function getIdSlugAttribute()
+    {
+        return join([$this->id, $this->getSlug()], '-');
+    }
+
+    public function getUrlWithoutSlugAttribute()
+    {
+        return join([route('articles'), '/', $this->id, '-']);
+    }
+
+    public function getSlugAttribute()
+    {
+        return route('about.press.show', $this);
+    }
+
+    public function scopeRecent($query)
+    {
+        return $query->orderBy('publish_start_date', 'desc');
+    }
+
 }
