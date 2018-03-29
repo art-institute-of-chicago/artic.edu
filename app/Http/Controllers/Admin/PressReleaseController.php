@@ -23,4 +23,11 @@ class PressReleaseController extends ModuleController
         ],
     ];
 
+    protected function formData($request)
+    {
+        $baseUrl = '//'.config('app.url')."/about/press/";
+        return [
+            'baseUrl' => $baseUrl
+        ];
+    }
 }

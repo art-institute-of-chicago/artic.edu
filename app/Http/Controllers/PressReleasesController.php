@@ -62,6 +62,13 @@ class PressReleasesController extends FrontController
     public function show($id)
     {
         $page = $this->repository->find((Integer) $id);
+        if (!$page) {
+            $page = $this->repository->forSlug($id);
+
+            if (!$page) {
+                abort(404);
+            }
+        }
 
         $navs = [
             'nav' => [],
