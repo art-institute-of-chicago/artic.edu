@@ -22,7 +22,7 @@ class ScholarlyJournalsController extends FrontController
     public function index(Request $request)
     {
         $items = ScholarlyJournal::published()->paginate();
-        $title = 'Scholarly Journals';
+        $title = 'Scholarly journals';
         $subNav = [
             ['label' => $title, 'href' => route('collection.publications.scholarly-journals'), 'active' => true]
         ];
@@ -77,7 +77,7 @@ class ScholarlyJournalsController extends FrontController
         ];
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Scholarly Journals', 'href' => route('collection.publications.scholarly-journals')],
+            ['label' => 'Scholarly journals', 'href' => route('collection.publications.scholarly-journals')],
             ['label' => $page->title, 'href' => '']
         ];
 
