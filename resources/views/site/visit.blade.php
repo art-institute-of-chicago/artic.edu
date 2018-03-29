@@ -128,33 +128,43 @@
         </thead>
         <tbody>
           @foreach ($admission['ageGroups'] as $ageGroup)
-          <tr>
-            <th>
-              @component('components.blocks._text')
-                  @slot('font', 'f-module-title-1')
-                  @slot('tag','span')
-                  {{ $ageGroup['title'] }}
-              @endcomponent
-              @if (isset($ageGroup['subtitle']))
-                @component('components.blocks._text')
-                    @slot('font', 'f-secondary')
-                    @slot('tag','em')
-                    &nbsp;({{ $ageGroup['subtitle'] }})
-                @endcomponent
-              @endif
-            </th>
-            @foreach ($admission['keys'] as $ageGroupPrice)
-              <td>
-                @component('components.blocks._text')
-                    @slot('font', 'f-secondary')
-                    @slot('tag','span')
-                    {{ $ageGroup['prices'][$ageGroupPrice] }}
-                @endcomponent
-              </td>
-            @endforeach
+            @if ($ageGroup['title'] !== 'children' and $ageGroup['title'] !== 'members')
+              <tr>
+                <th>
+                  @component('components.blocks._text')
+                      @slot('font', 'f-module-title-1')
+                      @slot('tag','span')
+                      {{ $ageGroup['title'] }}
+                  @endcomponent
+                  @if (isset($ageGroup['subtitle']))
+                    @component('components.blocks._text')
+                        @slot('font', 'f-secondary')
+                        @slot('tag','em')
+                        &nbsp;({{ $ageGroup['subtitle'] }})
+                    @endcomponent
+                  @endif
+                </th>
+                @foreach ($admission['keys'] as $ageGroupPrice)
+                  <td>
+                    @if (strtolower($ageGroup['prices'][$ageGroupPrice]) === 'free')
+                      @component('components.blocks._text')
+                          @slot('font','f-tag')
+                          @slot('tag','span')
+                          Free
+                      @endcomponent
+                    @else
+                      @component('components.blocks._text')
+                          @slot('font', 'f-secondary')
+                          @slot('tag','span')
+                          ${{ $ageGroup['prices'][$ageGroupPrice] }}
+                      @endcomponent
+                    @endif
+                  </td>
+                @endforeach
+            @endif
           </tr>
           @endforeach
-{{--           <tr>
+          <tr>
             <th>
               @component('components.blocks._text')
                   @slot('font', 'f-module-title-1')
@@ -178,7 +188,7 @@
                   Members
               @endcomponent
             </th>
-          </tr> --}}
+          </tr>
         </tbody>
       </table>
     </div>
