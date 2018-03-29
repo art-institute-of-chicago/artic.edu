@@ -3,6 +3,35 @@
         @if (isset($block['type']))
 
             @if ($block['type'] === 'text')
+                @php
+                    $font = null;
+                    $tag = null;
+                    if (isset($block['subtype'])) {
+                        switch ($block['subtype']) {
+                            case 'intro':
+                                $font = 'f-deck';
+                                break;
+                            case 'secondary':
+                                $font = 'f-secondary';
+                                break;
+                            case 'heading-1':
+                                $font = 'f-module-title-2';
+                                $tag = 'h4';
+                                break;
+                            case 'heading-2':
+                                $font = 'f-subheading-1';
+                                $tag = 'h4';
+                                break;
+                        }
+                    }
+                    if ($font && !$tag) {
+                        $block['content'] = preg_replace('/<p>/im', '<p class="'.$font.'">', $block['content']);
+                    }
+                    if ($font && $tag) {
+                        $block['content'] = preg_replace('/<p>/im', '<'.$tag.' class="'.$font.'">', $block['content']);
+                        $block['content'] = preg_replace('/</p>/im', '</'.$tag.'>', $block['content']);
+                    }
+                @endphp
                 {!! $block['content'] !!}
             @endif
 

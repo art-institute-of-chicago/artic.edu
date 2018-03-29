@@ -278,7 +278,7 @@
       </div>
       <div class="m-directions-block__text o-blocks">
         @foreach ($directions['locations'] as $location)
-          <p>
+          <p class="f-secondary">
             {!! $location['name'] !!}<br />
             {!! $location['street'] !!} {!! $location['addres'] !!}<br />
             {!! $location['city'] !!} {!! $location['state'] !!} {!! $location['zip'] !!}
