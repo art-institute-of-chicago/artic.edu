@@ -20,12 +20,14 @@
         "aacotroneo/laravel-saml2": "^0.11.0",
         "aic/data-hub-foundation": "dev-master",
         "darkaonline/l5-swagger": "5.6.*",
+        "eluceo/ical": "0.14.*",
         "fideloper/proxy": "~4.0",
         "guzzlehttp/guzzle": "6.3.0",
         "kalnoy/nestedset": "^4.3",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "rlanvin/php-rrule": "1.*"
+        "rlanvin/php-rrule": "1.*",
+        "spatie/calendar-links": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

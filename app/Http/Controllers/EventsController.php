@@ -78,6 +78,36 @@ class EventsController extends FrontController
         return $view;
     }
 
+    public function ical($id)
+    {
+        $event = $this->getItem($id);
+
+        $vCalendar = new \Eluceo\iCal\Component\Calendar($event->title);
+
+        foreach ($event->all_dates as $dates) {
+            if ($dates['date'] > Carbon::now()) {
+                $vEvent = new \Eluceo\iCal\Component\Event();
+                $vEvent->setSummary($event->title);
+                $vEvent->setDtStart($dates['date'])->setDtEnd($dates['date_end']);
+                $vCalendar->addComponent($vEvent);
+            }
+        }
+
+        $content = $vCalendar->render();
+
+        $headers = [
+            'Content-type'        => 'text/calendar',
+            'Content-Disposition' => 'attachment; filename="' . $event->title . '.ics"',
+        ];
+
+        return \Response::make($content, 200, $headers);
+
+
+        // Response::make($ical)->header("Content-type","text/calendar; charset=utf-8")
+
+        // return response()->download(;, $event->title . ".ics");
+    }
+
     protected function collection()
     {
         return $this->repository->getEventsFiltered(request('start'), request('end'), request('time'), request('type'), request('audience'), self::PER_PAGE);
