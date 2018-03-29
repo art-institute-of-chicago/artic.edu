@@ -37,6 +37,8 @@ export DOCKER_MACHINE_NAME="default"
 
 #### Usage.
 
+The package used for integrating the SAML authentication is https://github.com/aacotroneo/laravel-saml2
+
 On the Login form
 ```filename: resources/views/vendor/laravel-cms-toolkit/auth/login.blade.php```
 There is a button that triggers the login through the IDP server.
