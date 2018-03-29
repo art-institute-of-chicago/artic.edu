@@ -13,8 +13,16 @@ trait HasMediasEloquent
 
     public function imageFront( ...$parameters ) {
         $imageObject = $this->imageObject(...$parameters);
-        if ($imageObject)
-            return aic_convertFromImage($imageObject);
+        if ($imageObject) {
+            $cropParams = [
+                'crop_x' => $imageObject->pivot->crop_x,
+                'crop_y' => $imageObject->pivot->crop_y,
+                'crop_w' => $imageObject->pivot->crop_w,
+                'crop_h' => $imageObject->pivot->crop_h
+            ];
+
+            return aic_convertFromImage($imageObject, $cropParams);
+        }
     }
 
 }

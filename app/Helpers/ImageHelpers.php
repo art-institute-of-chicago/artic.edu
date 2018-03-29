@@ -36,11 +36,12 @@ Converts an image service image object to AIC image object format
 
 ***/
 
-function aic_convertFromImage($imageObject)
+function aic_convertFromImage($imageObject, $cropParams = [])
 {
     $sourceType = 'imgix';
 
-    $src = ImageService::getUrl($imageObject->uuid);
+    $src = ImageService::getUrlWithCrop($imageObject->uuid, $cropParams);
+
     $credit = '';
     $creditUrl = '';
 

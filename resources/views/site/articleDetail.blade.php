@@ -29,7 +29,7 @@
         @component('components.molecules._m-author')
             @slot('variation', 'm-author---keyline-top')
             @slot('editorial', ($item->articleType === 'editorial'))
-            @slot('img', $item->imageFront('author') ?? null);
+            @slot('img', $item->imageFront('author', 'square'));
             @slot('name', $item->author ?? null);
             @slot('link', null);
             @slot('date', $item->date ?? null);
