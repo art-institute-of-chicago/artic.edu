@@ -6,10 +6,11 @@ use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasFiles;
 use A17\CmsToolkit\Models\Model;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class Video extends Model
 {
-    use HasSlug, HasMedias, HasFiles;
+    use HasSlug, HasMedias, HasFiles, HasMediasEloquent;
 
     protected $fillable = [
         'published',
@@ -35,6 +36,16 @@ class Video extends Model
     ];
 
     public $checkboxes = ['published'];
+
+    public function getEmbedAttribute()
+    {
+        return \EmbedConverter::convertUrl($this->video_url);
+    }
+
+    public function getUrlAttribute()
+    {
+        return $this->video_url;
+    }
 
     // Generates the id-slug type of URL
     public function getRouteKeyName()

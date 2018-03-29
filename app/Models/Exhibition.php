@@ -98,6 +98,11 @@ class Exhibition extends Model
         return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
     }
 
+    public function videos()
+    {
+        return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
+    }
+
     public function eventsCount()
     {
         $query = $this->events()->rightJoin('event_metas', function ($join) {
@@ -111,6 +116,22 @@ class Exhibition extends Model
     public function getUrlWithoutSlugAttribute()
     {
         return join([route('exhibitions'), '/', $this->datahub_id, '-']);
+    }
+
+    public function getFeaturedRelatedAttribute()
+    {
+        $types = collect(['articles', 'videos'])->shuffle();
+        foreach ($types as $type) {
+            if ($item = $this->$type()->first()) {
+                if ($type == 'videos')
+                    $type = 'medias';
+
+                return [
+                    'type' => str_singular($type),
+                    'items' => [$item]
+                ];
+            }
+        }
     }
 
     protected function transformMappingInternal()

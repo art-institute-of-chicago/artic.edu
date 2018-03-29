@@ -27,6 +27,7 @@ class ExhibitionRepository extends BaseApiRepository
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'articles', 'position', 'Article');
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
+        $this->hydrateBrowser($object, $fields, 'videos', 'position', 'Video');
 
         return parent::hydrate($object, $fields);
     }
@@ -38,6 +39,7 @@ class ExhibitionRepository extends BaseApiRepository
         $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
         $this->updateBrowser($object, $fields, 'events');
         $this->updateBrowser($object, $fields, 'articles');
+        $this->updateBrowser($object, $fields, 'videos');
 
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
 
@@ -53,6 +55,7 @@ class ExhibitionRepository extends BaseApiRepository
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
         $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
+        $fields['browsers']['videos'] = $this->getFormFieldsForBrowser($object, 'videos', 'collection.articles_publications');
 
         return $fields;
     }

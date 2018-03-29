@@ -106,15 +106,22 @@
             'max' => 20
         ])
 
-{{--         @formField('browser', [
+        @formField('browser', [
+            'routePrefix' => 'collection.articles_publications',
+            'moduleName' => 'videos',
+            'max' => 1,
+            'name' => 'videos',
+            'label' => 'Related video'
+        ])
+
+        @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'articles',
+            'max' => 1,
             'name' => 'articles',
-            'label' => 'Related articles',
-            'note' => 'Select related articles',
-            'max' => 20
+            'label' => 'Related article',
         ])
- --}}    </a17-fieldset>
+    </a17-fieldset>
 
     <a17-fieldset id="api" title="Datahub fields">
         @formField('input', [

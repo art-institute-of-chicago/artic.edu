@@ -1,4 +1,5 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
+
     @if ($item->embed)
         <a href="{{ $item->url }}" class="m-listing__link" data-behavior="triggerMediaModal">
     @else
@@ -12,9 +13,9 @@
                     @slot('loop', true)
                     @slot('muted', true)
                 @endcomponent
-            @elseif (isset($image) || $item->imageFront())
+            @elseif (isset($image) || $item->imageFront('hero'))
                 @component('components.atoms._img')
-                    @slot('image', $image ?? $item->imageFront())
+                    @slot('image', $image ?? $item->imageFront('hero'))
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
             @endif
@@ -28,7 +29,7 @@
             @endif
         </span>
         @if ($item->embed)
-        <textarea style="display: none;">{!! array_first($item->embed) !!}</textarea>
+        <textarea style="display: none;">{!! is_array($item->embed) ? array_first($item->embed) : $item->embed !!}</textarea>
         @endif
     </a>
 </{{ $tag or 'li' }}>
