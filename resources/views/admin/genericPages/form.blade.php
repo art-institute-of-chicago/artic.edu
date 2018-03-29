@@ -15,13 +15,13 @@
 
     @formField('input', [
         'name' => 'listing_description',
-        'label' => 'Listing Description',
+        'label' => 'Listing description',
         'type' => 'textarea'
     ])
 
     @formField('input', [
         'name' => 'short_description',
-        'label' => 'Short Description',
+        'label' => 'Short description',
         'type' => 'textarea'
     ])
 
@@ -48,14 +48,14 @@
             'max' => 1,
             'moduleName' => 'exhibitions',
             'name' => 'exhibitions',
-            'label' => 'Related Exhibitions'
+            'label' => 'Related exhibitions'
         ])
 
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'events',
             'name' => 'events',
-            'label' => 'Related Events',
+            'label' => 'Related events',
             'max' => 1
         ])
 

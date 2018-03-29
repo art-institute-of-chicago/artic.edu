@@ -50,12 +50,12 @@ return [
                 'component' => 'a17-block-list',
             ],
             'media_embed' => [
-                'title' => 'Media Embed',
+                'title' => 'Media embed',
                 'icon' => 'text',
                 'component' => 'a17-block-media_embed',
             ],
             'membership_banner' => [
-                'title' => 'Membership Banner',
+                'title' => 'Membership banner',
                 'icon' => 'text',
                 'component' => 'a17-block-membership_banner',
             ],
@@ -90,12 +90,12 @@ return [
                 'component' => 'a17-block-plan_your_visit',
             ],
             'newsletter_signup_footer' => [
-                'title' => 'Newsletter Signup Footer',
+                'title' => 'Newsletter signup footer',
                 'icon' => 'text',
                 'component' => 'a17-block-newsletter_signup_footer',
             ],
             'newsletter_signup_inline' => [
-                'title' => 'Newsletter Signup Inline',
+                'title' => 'Newsletter signup inline',
                 'icon' => 'text',
                 'component' => 'a17-block-newsletter_signup_inline',
             ],
@@ -125,7 +125,7 @@ return [
                 'component' => 'a17-block-shop_items',
             ],
             'child_pages' => [
-                'title' => 'Child Pages Link Block',
+                'title' => 'Child pages link block',
                 'icon' => 'image',
                 'component' => 'a17-block-child_pages',
             ],

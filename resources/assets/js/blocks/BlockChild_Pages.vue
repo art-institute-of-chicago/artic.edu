@@ -1,7 +1,7 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <div class="input"> <label class="input__label"> <br /> Children Link Block Here </label></div>
+        <div class="input"> <label class="input__label"> <br /> Children link block here </label></div>
     </div>
 </template>
 

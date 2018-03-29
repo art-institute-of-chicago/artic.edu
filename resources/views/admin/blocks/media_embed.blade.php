@@ -1,5 +1,5 @@
 @formField('input', [
     'name' => 'embed_code',
-    'label' => 'Media Embed Code',
+    'label' => 'Media embed code',
     'type' => 'textarea'
 ])

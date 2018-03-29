@@ -1,6 +1,6 @@
 <div class="input">
     <label class="input__label">
         <br />
-        Children Link Block Here
+        Children link block here
     </label>
 </div>

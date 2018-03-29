@@ -15,13 +15,13 @@
 
     @formField('input', [
         'name' => 'listing_description',
-        'label' => 'Listing Description',
+        'label' => 'Listing description',
         'type' => 'textarea'
     ])
 
     @formField('input', [
         'name' => 'short_description',
-        'label' => 'Short Description',
+        'label' => 'Short description',
         'type' => 'textarea'
     ])
     @formField('block_editor', [
