@@ -7,7 +7,9 @@ const anchorLinksScroll = function(container) {
     if (event.target.host === window.location.host && event.target.hash) {
       event.preventDefault();
       event.stopPropagation();
-      triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': true });
+      if (event.target.classList.contains('return-link')) {
+        triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': true });
+      }
       let target = document.getElementById(event.target.hash.replace('#',''));
       let offsetTarget = getOffset(target).top - 20;
       window.location.hash = '';
@@ -19,7 +21,9 @@ const anchorLinksScroll = function(container) {
         easing: 'easeInOut',
         onComplete: function() {
           setFocusOnTarget(target);
-          triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': false });
+          if (event.target.classList.contains('return-link')) {
+            triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': false });
+          }
         }
       });
     }
