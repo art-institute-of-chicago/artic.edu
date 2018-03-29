@@ -83,7 +83,7 @@ class PressRelease extends Model
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('articles'), '/', $this->id, '-']);
+        return join([route('about.press.show'), '/', $this->id, '-']);
     }
 
     public function getSlugAttribute()

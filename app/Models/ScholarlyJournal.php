@@ -9,9 +9,11 @@ use A17\CmsToolkit\Models\Behaviors\HasFiles;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Model;
 
+use App\Models\Behaviors\HasMediasEloquent;
+
 class ScholarlyJournal extends Model
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;
 
     protected $fillable = [
         'listing_description',
@@ -54,5 +56,27 @@ class ScholarlyJournal extends Model
             ]
         ],
     ];
+
+    // Generates the id-slug type of URL
+    public function getRouteKeyName()
+    {
+        return 'id_slug';
+    }
+
+    public function getIdSlugAttribute()
+    {
+        return join([$this->id, $this->getSlug()], '-');
+    }
+
+    public function getUrlWithoutSlugAttribute()
+    {
+        return join([route('collection.publications.scholarly-journals'), '/', $this->id, '-']);
+    }
+
+    public function getSlugAttribute()
+    {
+        return route('collection.publications.scholarly-journals.show', $this);
+    }
+
 
 }

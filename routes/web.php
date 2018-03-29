@@ -16,6 +16,18 @@ Route::name('collection')->get('/collection', 'CollectionController@index');
 Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
 Route::name('collection.recently-viewed.clear')->get('/collection/recently-viewed/clear', 'CollectionController@clearRecentlyViewed');
 
+// Collection Publications ???
+Route::name('collection.publications')->get('/collection/publications/printed-catalogs', 'PublicationsController@index');
+// Collection Publications Printed Catalogs
+Route::name('collection.publications.printed-catalogs')->get('/collection/publications/printed-catalogs', 'PrintedCatalogsController@index');
+Route::name('collection.publications.printed-catalogs.show')->get('/collection/publications/printed-catalogs/{id}', 'PrintedCatalogsController@show');
+// Collection Publications Digital Catalogs
+Route::name('collection.publications.digital-catalogs')->get('/collection/publications/digital-catalogs', 'DigitalCatalogsController@index');
+Route::name('collection.publications.digital-catalogs.show')->get('/collection/publications/digital-catalogs/{id}', 'DigitalCatalogsController@show');
+// Collection Publications Scholarly Journals
+Route::name('collection.publications.scholarly-journals')->get('/collection/publications/scholarly-journals', 'ScholarlyJournalsController@index');
+Route::name('collection.publications.scholarly-journals.show')->get('/collection/publications/scholarly-journals/{id}', 'ScholarlyJournalsController@show');
+
 // Newsletter subscription
 Route::name('subscribe')->post('/subscribe', 'SubscribeController@store');
 
