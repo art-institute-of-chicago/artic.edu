@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Repositories\SiteTagRepository;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 
@@ -26,7 +25,7 @@ class EventController extends ModuleController
 
     protected $indexWith = ['medias'];
 
-    protected $formWith = ['revisions', 'siteTags', 'dateRules'];
+    protected $formWith = ['revisions', 'dateRules'];
 
     protected $filters = [];
 
@@ -40,7 +39,6 @@ class EventController extends ModuleController
     protected function formData($request)
     {
         return [
-            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
             'eventTypesList' => $this->repository->getEventTypesList(),
             'eventAudiencesList' => $this->repository->getEventAudiencesList(),
             'eventLayoutsList' => $this->repository->getEventLayoutsList()

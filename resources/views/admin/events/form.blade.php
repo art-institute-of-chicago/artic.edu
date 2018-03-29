@@ -41,28 +41,21 @@
     ])
 
     @formField('input', [
+        'name' => 'description',
+        'label' => 'Header',
+        'type' => 'textarea'
+    ])
+
+    @formField('input', [
         'name' => 'short_description',
         'label' => 'Short description',
         'note' => 'Used for SEO'
     ])
 
     @formField('input', [
-        'name' => 'description',
-        'label' => 'Description',
-        'type' => 'textarea'
-    ])
-
-    @formField('input', [
         'name' => 'list_description',
         'label' => 'List description',
         'type' => 'textarea'
-    ])
-
-    @formField('multi_select', [
-        'name' => 'siteTags',
-        'label' => 'Tags',
-        'options' => $siteTagsList,
-        'placeholder' => 'Select some tags',
     ])
 
     @formField('input', [
@@ -95,7 +88,7 @@
         'blocks' => [
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'newsletter_signup_inline', 'timeline', 'link', 'shop_items',
-            'artworks'
+            'artworks', 'artwork'
         ]
     ])
 @stop

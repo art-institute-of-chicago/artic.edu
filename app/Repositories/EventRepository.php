@@ -26,7 +26,6 @@ class EventRepository extends ModuleRepository
 
     public function hydrate($object, $fields)
     {
-        $this->hydrateBrowser($object, $fields, 'siteTags');
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
 
@@ -35,7 +34,6 @@ class EventRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $object->siteTags()->sync($fields['siteTags'] ?? []);
         $this->updateBrowser($object, $fields, 'sponsors');
         $this->updateBrowser($object, $fields, 'events');
 
