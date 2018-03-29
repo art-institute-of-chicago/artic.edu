@@ -50,7 +50,6 @@
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Related Events',
-            'note' => 'Select related events',
             'max' => 1
         ])
 
@@ -59,7 +58,6 @@
             'moduleName' => 'articles',
             'name' => 'articles',
             'label' => 'Related articles',
-            'note' => 'Select related articles',
             'max' => 1
         ])
 
