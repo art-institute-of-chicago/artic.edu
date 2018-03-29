@@ -12,7 +12,7 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  @include breakpoint('medium+') {
+  @include breakpoint('small+') {
     left: 50%;
     right: auto;
     top: 50%;
@@ -96,9 +96,7 @@
     }
 
     @include breakpoint('small') {
-      padding-right: map-get($outer-gutters, 'small');
-      padding-top: 52px;
-      padding-left: map-get($outer-gutters, 'small');
+      width: colspan(43, 'small');
     }
 
     @include breakpoint('medium') {
@@ -155,7 +153,7 @@
   }
 
   .g-modal__form-row--split {
-    @include breakpoint('medium+') {
+    @include breakpoint('small+') {
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
@@ -166,7 +164,7 @@
     width: 100%;
     margin-top: 16px;
 
-    @include breakpoint('medium+') {
+    @include breakpoint('small+') {
       margin-left: 20px;
       margin-top: 0;
     }
