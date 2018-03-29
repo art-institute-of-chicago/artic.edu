@@ -2,6 +2,7 @@
     'additionalFieldsets' => [
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'related', 'label' => 'Related'],
+        ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
         ['fieldset' => 'api', 'label' => 'Datahub fields'],
     ]
 ])
@@ -105,7 +106,9 @@
             'note' => 'Select related events',
             'max' => 20
         ])
+    </a17-fieldset>
 
+    <a17-fieldset id="side_related" title="Sidebar Related - Only one will show up randomly">
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'videos',
