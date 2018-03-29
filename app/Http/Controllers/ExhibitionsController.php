@@ -64,7 +64,7 @@ class ExhibitionsController extends FrontController
 
     protected function getItem($idSlug)
     {
-        return $this->apiRepository->getById((Integer) $idSlug);
+        return $this->apiRepository->getById((Integer) $idSlug, ['apiElements']);
     }
 
     public function loadMoreRelatedEvents($idSlug)

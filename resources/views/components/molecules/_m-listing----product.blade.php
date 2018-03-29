@@ -1,5 +1,5 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-<a href="{{ $item->web_url }}" class="m-listing__link">
+<a href="{!! $item->web_url !!}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--tall' }}">
         @if ($item->videoFront)
             @component('components.atoms._video')

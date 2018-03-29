@@ -106,6 +106,15 @@
             'note' => 'Select related events',
             'max' => 20
         ])
+
+        @formField('browser', [
+            'routePrefix' => 'visit',
+            'moduleName' => 'shopItems',
+            'name' => 'shopItems',
+            'label' => 'Related offers',
+            'note' => 'Select related products',
+            'max' => 3
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="side_related" title="Sidebar Related - Only one will show up randomly">

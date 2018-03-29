@@ -1749,8 +1749,10 @@ class StaticsController extends FrontController {
     return new StaticObjectPresenter([
       "id" => $this->faker->uuid,
       "slug" => "#",
+      "web_url" => "#",
       "title" => $this->faker->sentence(4, true),
       "shortDesc" => $this->faker->paragraph(1, false),
+      "description" => $this->faker->paragraph(1, false),
       "imageFront" => function () {
         return $this->getImage();
       },

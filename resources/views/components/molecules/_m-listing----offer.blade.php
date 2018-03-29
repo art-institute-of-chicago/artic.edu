@@ -1,5 +1,5 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
-  <a href="{{ $item->slug }}" class="m-listing__link">
+  <a href="{!! $item->web_url !!}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
         @if ($item->videoFront)
             @component('components.atoms._video')
@@ -15,7 +15,7 @@
             @endcomponent
         @endif
         <span class="m-listing__img-prompt f-buttons">
-            Book
+            {{ $item->title }}
         </span>
     </span>
     <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
@@ -28,13 +28,26 @@
             {{ $item->title }}
         @endcomponent
         <br>
-        <span class="intro {{ $captionFont ?? 'f-body' }}">{{ $item->shortDesc }}</span>
+        <span class="intro {{ $captionFont ?? 'f-body' }}">{{ $item->description }}</span>
         <br>
         <span class="m-listing__meta-bottom">
-            @component('components.atoms._price')
+            @if ($item->priceSale)
+                @component('components.atoms._price')
+                    @slot('salePrice')
+                        {{ $item->currency }}{{ $item->price }}
+                    @endslot
+                    {{ $item->currency }}{{ $item->priceSale }}
+                @endcomponent
+            @else
+                @component('components.atoms._price')
+                    {{ $item->currency }}{{ $item->price }}
+                @endcomponent
+            @endif
+
+{{--             @component('components.atoms._price')
                 @slot('variation','price--offer')
                 {{ $item->currency }}{{ $item->price }}
-            @endcomponent
+            @endcomponent --}}
         </span>
     </span>
   </a>

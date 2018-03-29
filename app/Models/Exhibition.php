@@ -73,6 +73,11 @@ class Exhibition extends Model
         return $this->apiElements()->where('relation', 'exhibitions');
     }
 
+    public function shopItems()
+    {
+        return $this->apiElements()->where('relation', 'shopItems');
+    }
+
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
