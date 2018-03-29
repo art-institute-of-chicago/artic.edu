@@ -17,6 +17,7 @@ class PressRelease extends Model
 
     protected $fillable = [
         'short_description',
+        'listing_description',
         'title',
         'published',
         'public',

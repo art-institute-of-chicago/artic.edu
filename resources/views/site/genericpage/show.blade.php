@@ -89,6 +89,9 @@
   @endif
 
   <div class="o-article__body o-blocks">
+    <div>
+        {{ $intro }}
+    </div>
     {!! $page->renderBlocks(false) !!}
     @if (isset($filters) && $filters)
         @component('components.molecules._m-links-bar')

@@ -32,9 +32,9 @@
             <br>
             <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->shortDesc }}</span>
             @endif
-            @if ($item->short_description)
+            @if ($item->listing_description)
             <br>
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->short_description }}</span>
+            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->listing_description }}</span>
             @endif
             @if ($item->date)
             <br>

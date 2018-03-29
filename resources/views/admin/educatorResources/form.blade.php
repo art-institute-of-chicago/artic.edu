@@ -14,6 +14,12 @@
     ])
 
     @formField('input', [
+        'name' => 'listing_description',
+        'label' => 'Listing Description',
+        'type' => 'textarea'
+    ])
+
+    @formField('input', [
         'name' => 'short_description',
         'label' => 'Short Description',
         'type' => 'textarea'

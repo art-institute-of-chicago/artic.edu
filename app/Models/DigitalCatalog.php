@@ -14,6 +14,7 @@ class DigitalCatalog extends Model
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions;
 
     protected $fillable = [
+        'listing_description',
         'short_description',
         'title',
         'published',

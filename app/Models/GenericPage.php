@@ -21,6 +21,7 @@ class GenericPage extends Model implements Sortable
 
     protected $fillable = [
         'short_description',
+        'listing_description',
         'title',
         'published',
         'position',
