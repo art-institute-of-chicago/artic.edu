@@ -16,6 +16,7 @@
     @slot('breadcrumb', $breadcrumb ?? null)
   @endcomponent
 
+  @if (isset($nav) && !empty($nav))
   <div class="o-article__primary-actions">
     @if (isset($subNav))
         @component('components.atoms._dropdown')
@@ -34,6 +35,7 @@
         @endcomponent
     @endif
   </div>
+  @endif
 
   @if (!$isWideBody)
       <div class="o-article__secondary-actions">

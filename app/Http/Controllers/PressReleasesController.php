@@ -22,12 +22,14 @@ class PressReleasesController extends FrontController
     public function index(Request $request)
     {
         $items = PressRelease::published()->paginate();
-        $navs = [
-            'nav' => [
-                ['label' => 'Press Releases', 'href' => '/press', 'active' => true],
-            ],
-            'subNav' => []
+        $subNav = [
+            ['label' => 'Press Releases', 'href' => '/about/press', 'active' => true]
         ];
+
+        $nav = [
+            ['label' => 'About', 'href' => '/about', 'links' => $subNav]
+        ];
+
         $crumbs = [
             ['label' => 'About', 'href' => '/about'],
             ['label' => 'Press Releases', 'href' => '/about/press']
@@ -44,8 +46,8 @@ class PressReleasesController extends FrontController
 
         $view_data = [
             'title' => 'Press Releases',
-            'subNav' => $navs['subNav'],
-            'nav' => $navs['nav'],
+            'subNav' => $subNav,
+            'nav' => $nav,
             "breadcrumb" => $crumbs,
             'wideBody' => true,
             'filters' => $filters,
@@ -62,9 +64,7 @@ class PressReleasesController extends FrontController
         $page = $this->repository->find((Integer) $id);
 
         $navs = [
-            'nav' => [
-                ['label' => 'Press Releases', 'href' => '/press', 'active' => true],
-            ],
+            'nav' => [],
             'subNav' => []
         ];
         $crumbs = [
@@ -74,8 +74,8 @@ class PressReleasesController extends FrontController
         ];
 
         return view('site.pressreleases.show', [
-            'subNav' => $navs['subNav'],
-            'nav' => $navs['nav'],
+            'subNav' => null,
+            'nav' => null,
             'intro' => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
