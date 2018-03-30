@@ -11,8 +11,10 @@ class EducatorResourceController extends ModuleController
 
     protected function formData($request)
     {
+        $baseUrl = '//'.config('app.url')."/collection/resources/educator-resources/";
         return [
             'categoriesList' => app(ResourceCategoryRepository::class)->listAll('name'),
+            'baseUrl' => $baseUrl
         ];
     }
 }

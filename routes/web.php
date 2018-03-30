@@ -17,7 +17,7 @@ Route::name('collection.autocomplete')->get('/collection/autocomplete', 'Collect
 Route::name('collection.recently-viewed.clear')->get('/collection/recently-viewed/clear', 'CollectionController@clearRecentlyViewed');
 
 // Collection Publications ???
-Route::name('collection.publications')->get('/collection/publications/printed-catalogs', 'PublicationsController@index');
+Route::name('collection.publications')->get('/collection/publications', 'PublicationsController@index');
 // Collection Publications Printed Catalogs
 Route::name('collection.publications.printed-catalogs')->get('/collection/publications/printed-catalogs', 'PrintedCatalogsController@index');
 Route::name('collection.publications.printed-catalogs.show')->get('/collection/publications/printed-catalogs/{id}', 'PrintedCatalogsController@show');
@@ -27,6 +27,15 @@ Route::name('collection.publications.digital-catalogs.show')->get('/collection/p
 // Collection Publications Scholarly Journals
 Route::name('collection.publications.scholarly-journals')->get('/collection/publications/scholarly-journals', 'ScholarlyJournalsController@index');
 Route::name('collection.publications.scholarly-journals.show')->get('/collection/publications/scholarly-journals/{id}', 'ScholarlyJournalsController@show');
+
+// Collection Resources ???
+Route::name('collection.resources')->get('/collection/resources', 'ResourcesController@index');
+// Collection Resources Research Guides
+Route::name('collection.resources.research-guides')->get('/collection/resources/research-guides', 'ResearchGuidesController@index');
+Route::name('collection.resources.research-guides.show')->get('/collection/resources/research-guides/{id}', 'ResearchGuidesController@show');
+// Collection Resources Educator Resources
+Route::name('collection.resources.educator-resources')->get('/collection/resources/educator-resources', 'EducatorResourcesController@index');
+Route::name('collection.resources.educator-resources.show')->get('/collection/resources/educator-resources/{id}', 'EducatorResourcesController@show');
 
 // Newsletter subscription
 Route::name('subscribe')->post('/subscribe', 'SubscribeController@store');
