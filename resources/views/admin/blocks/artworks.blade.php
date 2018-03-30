@@ -23,20 +23,13 @@
 ])
 
 @formField('input', [
-    'type' => 'textarea',
-    'name' => 'description',
-    'label' => 'Description',
-    'rows' => 4
+    'name' => 'title',
+    'label' => 'Gallery Title',
+    'maxlength' => 150
 ])
 
 @formField('input', [
     'name' => 'subhead',
-    'label' => 'Image Subhead',
-    'maxlength' => 150
+    'label' => 'Image Subhead'
 ])
 
-@formField('input', [
-    'name' => 'label',
-    'label' => 'Image Label',
-    'maxlength' => 150
-])

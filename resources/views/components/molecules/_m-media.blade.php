@@ -95,10 +95,22 @@
     @if (!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption']))
     <figcaption>
         @if ($size == 'gallery')
-            @if (isset($item['captionTitle']))<strong class="f-caption">{!! $item['captionTitle'] !!}</strong> <br>@endif
+            @if (isset($item['captionTitle']))
+                @if(isset($item['urlTitle']) && $item['urlTitle'])
+                    <a href="{!! $item['urlTitle'] !!}"><strong class="f-caption">{!! $item['captionTitle'] !!}</strong></a> <br>
+                @else
+                    <strong class="f-caption">{!! $item['captionTitle'] !!}</strong> <br>
+                @endif
+            @endif
             @if (isset($item['caption']))<span class="f-caption">{!! $item['caption'] !!}</span>@endif
         @else
-            @if (isset($item['captionTitle']))<strong class="f-caption-title">{!! $item['captionTitle'] !!}</strong> <br>@endif
+            @if (isset($item['captionTitle']))
+                @if(isset($item['urlTitle']) && $item['urlTitle'])
+                    <a href="{!! $item['urlTitle'] !!}"><strong class="f-caption-title">{!! $item['captionTitle'] !!}</strong></a> <br>
+                @else
+                    <strong class="f-caption-title">{!! $item['captionTitle'] !!}</strong> <br>
+                @endif
+            @endif
             @if (isset($item['caption']))<span class="f-caption">{!! $item['caption'] !!}</span>@endif
             @if (!isset($item['hideShare']))
             @component('components.atoms._btn')

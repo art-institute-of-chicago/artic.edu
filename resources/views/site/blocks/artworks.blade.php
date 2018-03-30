@@ -23,6 +23,8 @@
         $item['media'] = $image;
         $item['captionTitle'] = $artwork->title;
         $item['caption'] = $caption;
+        $item['url'] = route('artworks.show', $artwork);
+        $item['urlTitle'] = route('artworks.show', $artwork);
         $items[] = $item;
 
     }
@@ -30,7 +32,7 @@
 
 @component('components.organisms._o-gallery----'.$subtype)
     @slot('variation', 'o-blocks__block')
-    @slot('title', $block->input('label'))
+    @slot('title', $block->input('title'))
     @slot('caption', $block->input('subhead'))
     @slot('items', $items)
 @endcomponent

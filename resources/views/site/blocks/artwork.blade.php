@@ -33,6 +33,7 @@
         $artworkItem['caption'] = $caption.'<br>'.$galleryLocation;
         $artworkItem['hideShare'] = true;
         $artworkItem['fullscreen'] = true;
+        $artworkItem['urlTitle'] = route('artworks.show', $artwork);
     }
 @endphp
 @component('components.molecules._m-media')
