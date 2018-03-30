@@ -133,6 +133,14 @@
             'name' => 'articles',
             'label' => 'Related article',
         ])
+
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'max' => 1,
+            'name' => 'sidebarExhibitions',
+            'label' => 'Related Exhibition',
+            'moduleName' => 'exhibitions',
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="api" title="Datahub fields">

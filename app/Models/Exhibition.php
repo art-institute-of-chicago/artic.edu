@@ -21,6 +21,8 @@ class Exhibition extends Model
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
     protected $apiModel = 'App\Models\Api\Exhibition';
 
+    protected $selectedFeaturedRelated = null;
+
     const BASIC = 0;
     const LARGE = 1;
     const SPECIAL = 2;
@@ -71,6 +73,11 @@ class Exhibition extends Model
     public function exhibitions()
     {
         return $this->apiElements()->where('relation', 'exhibitions');
+    }
+
+    public function sidebarExhibitions()
+    {
+        return $this->apiElements()->where('relation', 'sidebarExhibitions');
     }
 
     public function shopItems()
@@ -125,16 +132,27 @@ class Exhibition extends Model
 
     public function getFeaturedRelatedAttribute()
     {
-        $types = collect(['articles', 'videos'])->shuffle();
+        if ($this->selectedFeaturedRelated)
+            return $this->selectedFeaturedRelated;
+
+        $types = collect(['articles', 'videos', 'sidebarExhibitions'])->shuffle();
         foreach ($types as $type) {
             if ($item = $this->$type()->first()) {
-                if ($type == 'videos')
-                    $type = 'medias';
+                switch ($type) {
+                    case 'videos':
+                        $type = 'medias';
+                        break;
+                    case 'sidebarExhibitions':
+                        $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
+                        $type = 'exhibition';
+                        break;
+                }
 
-                return [
+                $this->selectedFeaturedRelated = [
                     'type' => str_singular($type),
                     'items' => [$item]
                 ];
+                return $this->selectedFeaturedRelated;
             }
         }
     }
