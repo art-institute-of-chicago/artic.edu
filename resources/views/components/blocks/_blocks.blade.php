@@ -29,7 +29,7 @@
                     }
                     if ($font && $tag) {
                         $block['content'] = preg_replace('/<p>/im', '<'.$tag.' class="'.$font.'">', $block['content']);
-                        $block['content'] = preg_replace('/</p>/im', '</'.$tag.'>', $block['content']);
+                        $block['content'] = preg_replace('/<\/p>/im', '</'.$tag.'>', $block['content']);
                     }
                 @endphp
                 {!! $block['content'] !!}
