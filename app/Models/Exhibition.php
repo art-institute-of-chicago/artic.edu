@@ -137,6 +137,7 @@ class Exhibition extends Model
 
     public function getFeaturedRelatedAttribute()
     {
+        // Select a random element from those relationships below and return one per request
         if ($this->selectedFeaturedRelated)
             return $this->selectedFeaturedRelated;
 

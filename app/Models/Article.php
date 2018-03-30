@@ -9,12 +9,16 @@ use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
+use App\Models\Behaviors\HasApiRelations;
+
 class Article extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable;
 
     protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
+
+    protected $selectedFeaturedRelated = null;
 
     protected $fillable = [
         'published',
@@ -122,6 +126,60 @@ class Article extends Model
     public function exhibitions()
     {
         return $this->apiElements()->where('relation', 'exhibitions');
+    }
+
+    public function sidebarExhibitions()
+    {
+        return $this->apiElements()->where('relation', 'sidebarExhibitions');
+    }
+
+    public function sidebarEvent()
+    {
+        return $this->belongsToMany('App\Models\Event', 'article_event_sidebar')->withPivot('position')->orderBy('position');
+    }
+
+    public function sidebarArticle()
+    {
+        return $this->belongsToMany('App\Models\Article', 'article_article_sidebar', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
+    }
+
+    public function videos()
+    {
+        return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
+    }
+
+    public function getFeaturedRelatedAttribute()
+    {
+        // Select a random element from those relationships below and return one per request
+        if ($this->selectedFeaturedRelated)
+            return $this->selectedFeaturedRelated;
+
+        $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
+        foreach ($types as $type) {
+            if ($item = $this->$type()->first()) {
+                switch ($type) {
+                    case 'sidebarArticle':
+                        $type = 'article';
+                        break;
+                    case 'videos':
+                        $type = 'medias';
+                        break;
+                    case 'sidebarEvent':
+                        $type = 'event';
+                        break;
+                    case 'sidebarExhibitions':
+                        $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
+                        $type = 'exhibition';
+                        break;
+                }
+
+                $this->selectedFeaturedRelated = [
+                    'type' => str_singular($type),
+                    'items' => [$item]
+                ];
+                return $this->selectedFeaturedRelated;
+            }
+        }
     }
 
     protected function transformMappingInternal()
