@@ -54,7 +54,8 @@ Route::group(['prefix' => 'collection'], function () {
     });
 
     Route::group(['prefix' => 'articles_publications'], function () {
-        Route::name('collection.articles_publications.landing')->get('landing', 'PageController@articles');
+        Route::name('collection.articles_publications.landing')->get('landing', 'PageController@articles_publications');
+        Route::name('collection.articles_publications.articles_landing')->get('articles_landing', 'PageController@articles');
         Route::module('articles');
         Route::module('categories');
         Route::module('videos');

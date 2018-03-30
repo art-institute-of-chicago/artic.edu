@@ -17,12 +17,13 @@ class Page extends Model
     public static $types = [
         0 => 'Home',
         1 => 'Exhibitions and Events',
-        2 => 'Art and Ideas',
+        2 => 'Art and Ideas',               // now The Collection?
         3 => 'Visit',
         4 => 'Articles',
         5 => 'Exhibition History',
         6 => 'Collection',
-        7 => 'Research and Resources'
+        7 => 'Research and Resources',
+        8 => 'Articles and Publications',
     ];
 
     protected $fillable = [
@@ -231,6 +232,26 @@ class Page extends Model
     public function artArticles()
     {
         return $this->belongsToMany('App\Models\Article', 'page_art_article')->withPivot('position')->orderBy('position');
+    }
+
+    public function articles()
+    {
+        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
+    }
+
+    public function digitalCatalogs()
+    {
+        return $this->belongsToMany('App\Models\DigitalCatalog')->withPivot('position')->orderBy('position');
+    }
+
+    public function printedCatalogs()
+    {
+        return $this->belongsToMany('App\Models\PrintedCatalog')->withPivot('position')->orderBy('position');
+    }
+
+    public function scholarlyJournals()
+    {
+        return $this->belongsToMany('App\Models\ScholarlyJournal')->withPivot('position')->orderBy('position');
     }
 
     protected function transformMappingInternal()

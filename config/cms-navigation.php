@@ -113,6 +113,10 @@ return [
                         'title' => 'Landing',
                         'route' => 'admin.collection.articles_publications.landing',
                     ],
+                    'articles_landing' => [
+                        'title' => 'Articles Landing',
+                        'route' => 'admin.collection.articles_publications.articles_landing',
+                    ],
                     'articles' => [
                         'title' => 'Articles',
                         'module' => true,

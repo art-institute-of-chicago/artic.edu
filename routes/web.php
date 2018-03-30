@@ -28,8 +28,8 @@ Route::name('collection.publications.digital-catalogs.show')->get('/collection/p
 Route::name('collection.publications.scholarly-journals')->get('/collection/publications/scholarly-journals', 'ScholarlyJournalsController@index');
 Route::name('collection.publications.scholarly-journals.show')->get('/collection/publications/scholarly-journals/{id}', 'ScholarlyJournalsController@show');
 
-// Collection Resources ???
-Route::name('collection.resources')->get('/collection/resources', 'ResourcesController@index');
+// Collection Research and Resources ???
+Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');
 // Collection Resources Research Guides
 Route::name('collection.resources.research-guides')->get('/collection/resources/research-guides', 'ResearchGuidesController@index');
 Route::name('collection.resources.research-guides.show')->get('/collection/resources/research-guides/{id}', 'ResearchGuidesController@show');
@@ -55,6 +55,9 @@ Route::name('events')->get('/events', 'EventsController@index');
 Route::name('events.more')->get('/events-more', 'EventsController@indexMore');
 Route::moduleShowWithPreview('events');
 Route::name('events.ics')->get('/events/{id}/ics', 'EventsController@ics');
+
+// Articles & Publications routes
+Route::name('articles_publications')->get('/articles_publications', 'ArticlesPublicationsController@index');
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');

@@ -26,6 +26,12 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'collectionFeatures', 'position', 'CollectionFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
+
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'articles', 'position', 'Article');
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'printedCatalogs', 'position', 'PrintedCatalog');
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'digitalCatalogs', 'position', 'DigitalCatalog');
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'scholarlyJournals', 'position', 'scholarlyJournal');
+
         return parent::hydrate($object, $fields);
     }
 
@@ -55,6 +61,11 @@ class PageRepository extends ModuleRepository
 
         // Art & Ideas
         $this->updateBrowser($object, $fields, 'artArticles');
+
+        $this->updateBrowser($object, $fields, 'articles');
+        $this->updateBrowser($object, $fields, 'printedCatalogs');
+        $this->updateBrowser($object, $fields, 'digitalCatalogs');
+        $this->updateBrowser($object, $fields, 'scholarlyJournals');
 
         parent::afterSave($object, $fields);
     }
@@ -90,6 +101,11 @@ class PageRepository extends ModuleRepository
 
         // Art & Ideas
         $fields['browsers']['artArticles'] = $this->getFormFieldsForBrowser($object, 'artArticles', 'collection.articles_publications', 'title', 'articles');
+
+        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications', 'title', 'articles');
+        $fields['browsers']['printedCatalogs'] = $this->getFormFieldsForBrowser($object, 'printedCatalogs', 'collection.articles_publications', 'title', 'printedCatalogs');
+        $fields['browsers']['digitalCatalogs'] = $this->getFormFieldsForBrowser($object, 'digitalCatalogs', 'collection.articles_publications', 'title', 'digitalCatalogs');
+        $fields['browsers']['scholarlyJournals'] = $this->getFormFieldsForBrowser($object, 'scholarlyJournals', 'collection.articles_publications', 'title', 'scholarlyJournals');
 
         return $fields;
     }

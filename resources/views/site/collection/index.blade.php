@@ -17,8 +17,8 @@
     @slot('overflow', true)
     @slot('linksPrimary', [
         ['label' => 'Artworks', 'href' => '#', 'active' => true],
-        ['label' => 'Articles &amp; Publications', 'href' => '#'],
-        ['label' => 'Research', 'href' => '#']
+        ['label' => 'Articles &amp; Publications', 'href' => route('articles_publications')],
+        ['label' => 'Research &amp; Resources', 'href' => route('collection.research_resources')]
     ])
 @endcomponent
 
