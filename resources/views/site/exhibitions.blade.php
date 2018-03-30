@@ -32,7 +32,7 @@
     @slot('cols_medium','2')
     @slot('cols_large','2')
     @slot('cols_xlarge','2')
-    @foreach ($page->apiModels('exhibitionsExhibitions', 'Exhibition') as $item)
+    @foreach ($featured as $item)
         @component('components.molecules._m-listing----exhibition')
             @slot('item', $item)
             @slot('titleFont', 'f-list-4')

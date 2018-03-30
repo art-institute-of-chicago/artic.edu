@@ -42,12 +42,15 @@ class ExhibitionsController extends FrontController
         $events = $this->eventRepository->getEventsFiltered(Carbon::today(), Carbon::tomorrow()->addDay(), null, null, null, 20);
         $eventsByDay = $this->eventRepository->groupByDate($events);
 
+        $featured = $upcoming ? $page->apiModels('exhibitionsUpcoming', 'Exhibition') : $page->apiModels('exhibitionsExhibitions', 'Exhibition');
+
         return view('site.exhibitions', [
             'page' => $page,
             'collection'  => $collection,
             'eventsByDay' => $eventsByDay,
             'events'      => $events,
-            'upcoming'    => $upcoming
+            'upcoming'    => $upcoming,
+            'featured'    => $featured
         ]);
     }
 
