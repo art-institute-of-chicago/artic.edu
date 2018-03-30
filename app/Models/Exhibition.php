@@ -105,6 +105,11 @@ class Exhibition extends Model
         return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
     }
 
+    public function sidebarEvent()
+    {
+        return $this->belongsToMany('App\Models\Event', 'exhibition_event_sidebar')->withPivot('position')->orderBy('position');
+    }
+
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
@@ -135,12 +140,15 @@ class Exhibition extends Model
         if ($this->selectedFeaturedRelated)
             return $this->selectedFeaturedRelated;
 
-        $types = collect(['articles', 'videos', 'sidebarExhibitions'])->shuffle();
+        $types = collect(['articles', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
         foreach ($types as $type) {
             if ($item = $this->$type()->first()) {
                 switch ($type) {
                     case 'videos':
                         $type = 'medias';
+                        break;
+                    case 'sidebarEvent':
+                        $type = 'event';
                         break;
                     case 'sidebarExhibitions':
                         $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();

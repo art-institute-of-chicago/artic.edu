@@ -25,6 +25,7 @@ class ExhibitionRepository extends BaseApiRepository
     public function hydrate($object, $fields)
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
+        $this->hydrateBrowser($object, $fields, 'sidebarEvent', 'position', 'Event');
         $this->hydrateBrowser($object, $fields, 'articles', 'position', 'Article');
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
         $this->hydrateBrowser($object, $fields, 'videos', 'position', 'Video');
@@ -38,6 +39,7 @@ class ExhibitionRepository extends BaseApiRepository
 
         $this->updateBrowserApiRelated($object, $fields, ['exhibitions', 'shopItems', 'sidebarExhibitions']);
         $this->updateBrowser($object, $fields, 'events');
+        $this->updateBrowser($object, $fields, 'sidebarEvent');
         $this->updateBrowser($object, $fields, 'articles');
         $this->updateBrowser($object, $fields, 'videos');
 
@@ -56,6 +58,7 @@ class ExhibitionRepository extends BaseApiRepository
 
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
+        $fields['browsers']['sidebarEvent'] = $this->getFormFieldsForBrowser($object, 'sidebarEvent', 'exhibitions_events', 'title', 'events');
         $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
         $fields['browsers']['videos'] = $this->getFormFieldsForBrowser($object, 'videos', 'collection.articles_publications');
 
