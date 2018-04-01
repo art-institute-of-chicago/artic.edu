@@ -128,7 +128,7 @@
         </thead>
         <tbody>
           @foreach ($admission['ageGroups'] as $ageGroup)
-            @if ($ageGroup['title'] !== 'children' and $ageGroup['title'] !== 'members')
+            @if (strtolower($ageGroup['title']) !== 'children' and strtolower($ageGroup['title']) !== 'members')
               <tr>
                 <th>
                   @component('components.blocks._text')
