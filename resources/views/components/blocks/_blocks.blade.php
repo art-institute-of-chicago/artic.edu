@@ -136,7 +136,7 @@
                                 @if ($block["subtype"] === 'product')
                                     @slot('titleFont','f-list-3')
                                     @slot('imageSettings', array(
-                                        'fit' => 'crop',
+                                        'fit' => 'clamp',
                                         'ratio' => '3:4',
                                         'srcset' => array(200,400,600),
                                         'sizes' => aic_imageSizes(array(
@@ -181,7 +181,7 @@
                         @slot('hideShortDesc', true)
                         @if ($block["subtype"] === 'product')
                             @slot('imageSettings', array(
-                                'fit' => 'crop',
+                                'fit' => 'clamp',
                                 'ratio' => '3:4',
                                 'srcset' => array(200,400,600),
                                 'sizes' => aic_imageSizes(array(
