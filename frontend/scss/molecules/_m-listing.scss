@@ -63,7 +63,7 @@
 
 .m-listing__link:only-child {
   flex-grow: 1;
-  height: 100%;
+  min-height: 100%;
 }
 
 .m-listing__link {
