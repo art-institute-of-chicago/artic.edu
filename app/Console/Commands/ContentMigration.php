@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use App/Libraries/ContentMigrationService;
+use App\Libraries\ContentMigrationService;
 
 class ContentMigration extends Command
 {
@@ -39,10 +39,10 @@ class ContentMigration extends Command
      */
     public function handle()
     {
-        //
+        $service = new ContentMigrationService;
         $type = $this->argument('type');
-
-       $result = $this->migrate($type);
-
+        $result = $service->migrate($type);
+        $output_path = app_path().'/MigrationData/'.$type.'.json';
+        file_put_contents($output_path, json_encode($result['results']));
     }
 }
