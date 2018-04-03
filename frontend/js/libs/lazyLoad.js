@@ -238,7 +238,6 @@
     } else {
       checkType = 'old';
     }
-    console.log(checkType);
     _init();
     if (options.pageUpdatedEventName) {
       document.addEventListener(options.pageUpdatedEventName, _init, true);
