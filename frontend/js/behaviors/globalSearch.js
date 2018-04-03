@@ -1,12 +1,7 @@
 import { purgeProperties, setFocusOnTarget, triggerCustomEvent, ajaxRequest, queryStringHandler } from '@area17/a17-helpers';
 
-//data-search-inner
 const globalSearch = function(container) {
   const autoCompleteUrl = container.getAttribute('data-autocomplete-url');
-
-  if (!autoCompleteUrl || autoCompleteUrl === '') {
-    return;
-  }
 
   const textInput = container.querySelector('input[type="search"]');
   const form = container.querySelector('form');
@@ -158,7 +153,6 @@ const globalSearch = function(container) {
   function _handleSubmit(event){
     event.preventDefault();
     let terms = _fixedEncodeURIComponent(textInput.value);
-    console.log(terms,queryStringHandler.updateParameter(form.action, 'q', terms));
     if (active && terms.length > 0) {
       triggerCustomEvent(document, 'globalSearch:close');
       triggerCustomEvent(document, 'ajax:getPage', {
@@ -182,13 +176,15 @@ const globalSearch = function(container) {
   }
 
   function _init() {
-    textInput.addEventListener('input', _handleInput, false);
-    textInput.addEventListener('propertychange', _handleInput, false);
     form.addEventListener('submit', _handleSubmit, false);
     document.addEventListener('globalSearch:open', _openSearch, false);
     document.addEventListener('globalSearch:close', _closeSearch, false);
     window.addEventListener('keyup', _escape, false);
     window.addEventListener('resized', _resized, false);
+    if (autoCompleteUrl && autoCompleteUrl !== '') {
+      textInput.addEventListener('input', _handleInput, false);
+      textInput.addEventListener('propertychange', _handleInput, false);
+    }
   }
 
   this.destroy = function() {
