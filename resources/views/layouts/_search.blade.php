@@ -1,9 +1,9 @@
 <div class="g-search" data-behavior="globalSearch" data-autocomplete-url="{!! route('search.autocomplete') !!}">
     <div class="g-search__scroll">
         <div class="g-search__inner" data-search-inner>
-            <form action="/search" class="g-search__form">
-                <input type="search" id="q" name="q" class="g-search__input" placeholder="Search" autocomplete="off" />
-                <button type="submit" class="g-search__submit">
+            <form action="/search" class="g-search__form" role="search">
+                <input type="search" id="q" name="q" class="g-search__input" placeholder="Search" autocomplete="off" aria-label="Search the site" />
+                <button type="submit" class="g-search__submit" aria-label="Search">
                     <svg aria-label="Search" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
                 </button>
                 <span class="g-search__loader"></span>
