@@ -15,8 +15,11 @@ class GalleryController extends BaseApiController
         'feature' => false,
         'bulkFeature' => false,
         'restore' => false,
+        'create' => false,
+        'delete' => false,
         'bulkRestore' => false,
         'bulkDelete' => false,
+        'bulkEdit' => false,
         'reorder' => false,
         'permalink' => false,
     ];
