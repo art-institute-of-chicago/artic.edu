@@ -21,6 +21,11 @@ class Exhibition extends Model
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
     protected $apiModel = 'App\Models\Api\Exhibition';
 
+    protected $dispatchesEvents = [
+        'saved' => \App\Events\UpdateExhibition::class,
+        'deleted' => \App\Events\UpdateExhibition::class
+    ];
+
     protected $selectedFeaturedRelated = null;
 
     const BASIC = 0;

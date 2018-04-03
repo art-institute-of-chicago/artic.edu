@@ -19,6 +19,11 @@ class HomeFeature extends Model
         'publish_end_date',
     ];
 
+    protected $dispatchesEvents = [
+        'saved' => \App\Events\UpdateHomeFeature::class,
+        'deleted' => \App\Events\UpdateHomeFeature::class
+    ];
+
     // fill this in if you use the HasMedias traits
     public $mediasParams = [
         'hero' => [

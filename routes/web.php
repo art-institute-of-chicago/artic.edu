@@ -17,7 +17,7 @@ Route::name('collection.autocomplete')->get('/collection/autocomplete', 'Collect
 Route::name('collection.recently-viewed.clear')->get('/collection/recently-viewed/clear', 'CollectionController@clearRecentlyViewed');
 
 // Collection Publications ???
-Route::name('collection.publications')->get('/collection/publications', 'PublicationsController@index');
+// Route::name('collection.publications')->get('/collection/publications', 'PublicationsController@index');
 // Collection Publications Printed Catalogs
 Route::name('collection.publications.printed-catalogs')->get('/collection/publications/printed-catalogs', 'PrintedCatalogsController@index');
 Route::name('collection.publications.printed-catalogs.show')->get('/collection/publications/printed-catalogs/{id}', 'PrintedCatalogsController@show');

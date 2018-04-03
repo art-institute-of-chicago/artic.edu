@@ -20,6 +20,11 @@ class Article extends Model
 
     protected $selectedFeaturedRelated = null;
 
+    protected $dispatchesEvents = [
+        'saved' => \App\Events\UpdateArticle::class,
+        'deleted' => \App\Events\UpdateArticle::class
+    ];
+
     protected $fillable = [
         'published',
         'date',

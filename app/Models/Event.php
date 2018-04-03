@@ -20,6 +20,11 @@ class Event extends Model
 
     protected $appends = ['all_dates', 'all_dates_cms'];
 
+    protected $dispatchesEvents = [
+        'saved' => \App\Events\UpdateEvent::class,
+        'deleted' => \App\Events\UpdateEvent::class
+    ];
+
     protected $fillable = [
         'title',
         'published',

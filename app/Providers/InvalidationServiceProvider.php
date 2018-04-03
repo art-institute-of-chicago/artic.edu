@@ -14,8 +14,23 @@ class InvalidationServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'App\Events\UpdateEvent' => [
+            'App\Listeners\InvalidationListener',
+        ],
+        'App\Events\UpdateExhibition' => [
+            'App\Listeners\InvalidationListener',
+        ],
+        'App\Events\UpdatePage' => [
+            'App\Listeners\InvalidationListener',
+        ],
+        'App\Events\UpdateArticle' => [
+            'App\Listeners\InvalidationListener',
+        ],
+        'App\Events\UpdateHomeFeature' => [
+            'App\Listeners\InvalidationListener',
+        ],
+        'App\Events\UpdateSelection' => [
+            'App\Listeners\InvalidationListener',
         ],
     ];
 
@@ -27,13 +42,5 @@ class InvalidationServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        Event::listen([
-            'eloquent.saved: App\Models\Event',
-            'eloquent.deleted: App\Models\Event',
-        ], function ($event) {
-            Artisan::call('cache:clear');
-            Artisan::call('cache:invalidate-cloudfront', ['urls' => [route('events.show', $event, false), '/']]);
-        });
     }
 }

@@ -14,6 +14,10 @@ class Page extends Model
 {
     use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, Transformable;
 
+    protected $dispatchesEvents = [
+        'saved' => \App\Events\UpdatePage::class
+    ];
+
     public static $types = [
         0 => 'Home',
         1 => 'Exhibitions and Events',
