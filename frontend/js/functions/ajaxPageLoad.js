@@ -3,9 +3,6 @@ import { findAncestorByTagName, ajaxableLink, ajaxableHref } from '../functions'
 
 const ajaxPageLoad = function() {
 
-  var ajaxActive = (A17.env === 'local') ? false : true;
-  var failSafe = (A17.env === 'production') ? true : false;
-
   var ajaxing = false;
   var ajaxTimeOutTime = 3500;
   var ajaxTimer;
@@ -116,7 +113,7 @@ const ajaxPageLoad = function() {
 
   function loadDocument(options) {
 
-    if (!ajaxActive) {
+    if (!A17.ajaxLinksActive) {
       window.location.href = options.href;
       return false;
     }
@@ -206,7 +203,7 @@ const ajaxPageLoad = function() {
           triggerCustomEvent(document, 'loader:error');
           triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
           ajaxing = false;
-          if (failSafe) {
+          if (A17.ajaxLinksFailSafe) {
             location.href = options.href;
           } else {
             console.log(err);
@@ -218,7 +215,7 @@ const ajaxPageLoad = function() {
         triggerCustomEvent(document, 'loader:error');
         triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
         ajaxing = false;
-        if (failSafe) {
+        if (A17.ajaxLinksFailSafe) {
           location.href = options.href;
         } else {
           console.log(data);
@@ -265,7 +262,7 @@ const ajaxPageLoad = function() {
   }
 
   function handleClicks(event) {
-    if (ajaxActive) {
+    if (A17.ajaxLinksActive) {
       var link = findAncestorByTagName(event.target, 'A');
       var ajaxable = ajaxableLink(link, event);
       if (ajaxable) {

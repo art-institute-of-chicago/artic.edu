@@ -20,6 +20,8 @@ if (!A17.browserSpec || A17.browserSpec === 'html4') {
 
 A17.currentMediaQuery = getCurrentMediaQuery();
 A17.env = 'production';
+A17.ajaxActive = false;
+A17.failSafe = false;
 
 document.addEventListener('DOMContentLoaded', function(){
   if (A17.print) {
@@ -41,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function(){
   } catch(err){
     A17.env = 'unknown';
   }
+  // update ajax link active / fail safes
+  A17.ajaxLinksActive = (A17.env === 'local') ? false : true;
+  A17.ajaxLinksFailSafe = (A17.env === 'production') ? true : false;
   // go go go
   manageBehaviors(Behaviors);
   // listen for body lock requests
