@@ -24,7 +24,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <input class="login__button" type="submit" value="Login" tabindex="3">
-                    {{-- <a href="{{ route('saml_login') }}" class="login__google" tabindex="4"> --}}
+                    <a href="{{ route('saml_login') }}" class="login__google" tabindex="4">
                       <span>Sign in with SSO</span>
                     </a>
                 </form>
