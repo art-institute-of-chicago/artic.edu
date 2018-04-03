@@ -13,9 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
-            Commands\ContentMigration::class
-
+        Commands\InvalidateCloudfront::class,
     ];
 
     /**
