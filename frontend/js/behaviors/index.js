@@ -29,6 +29,7 @@ export { default as openNavMobile } from './openNavMobile';
 export { default as closeNavMobile } from './closeNavMobile';
 export { default as infoButtonTrigger } from './infoButtonTrigger';
 export { default as linksBar } from './linksBar';
+export { default as mobileSearch } from './mobileSearch';
 export { default as globalSearch } from './globalSearch';
 export { default as globalSearchOpen } from './globalSearchOpen';
 export { default as globalSearchClose } from './globalSearchClose';

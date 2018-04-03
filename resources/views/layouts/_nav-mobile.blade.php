@@ -12,18 +12,17 @@
             </a>
             <nav class="g-header__nav-primary">
               <ul class="f-secondary">
-                <li class='u-hide@small+'><a href="#">Buy Tickets</a></li>
-                <li><a href="#">Visit</a></li>
+                <li class='u-hide@small+'><a href="{{ $_pages['buy'] }}">Buy Tickets</a></li>
+                <li><a href="{{ $_pages['visit'] }}">Visit</a></li>
               </ul>
             </nav>
           </div>
         </div>
 
-      <div class="g-nav-mobile__search">
-        <form action="/">
-          <input type="search" id="mobile_search" name="mobile_search" placeholder="Search" />
-
-          <button>
+      <div class="g-nav-mobile__search" data-behavior="mobileSearch">
+        <form action="/search" role="search">
+          <input type="search" id="mobile_search" name="q" placeholder="Search" autocomplete="off" aria-label="Search the site" />
+          <button type="submit" aria-label="Search">
             <svg aria-title="Search" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
           </button>
         </form>
@@ -109,20 +108,20 @@
 
         <div class="g-nav-mobile__nav-secondary">
           <ul class="g-nav-mobile__legals">
-            <li><a href="#">Articles</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Venue Rental</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Image License</a></li>
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">Sitemap</a></li>
+            <li><a href="{{ $_pages['legal-articles'] }}">Articles</a></li>
+            <li><a href="{{ $_pages['legal-employment'] }}">Employment</a></li>
+            <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue rental</a></li>
+            <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
+            <li><a href="{{ $_pages['legal-saic'] }}">SAIC</a></li>
+            <li><a href="{{ $_pages['legal-terms'] }}">Terms</a></li>
+            <li><a href="{{ $_pages['legal-image-licensing'] }}">Image licensing</a></li>
           </ul>
 
           <ul class="g-nav-mobile__social">
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Instagram</a></li>
+            <li><a href="{{ $_pages['follow-facebook'] }}">Facebook</a></li>
+            <li><a href="{{ $_pages['follow-twitter'] }}">Twitter</a></li>
+            <li><a href="{{ $_pages['follow-instagram'] }}">Instagram</a></li>
+            <li><a href="{{ $_pages['follow-pinterest'] }}">Pinterest</a></li>
           </ul>
         </div>
       </nav>
