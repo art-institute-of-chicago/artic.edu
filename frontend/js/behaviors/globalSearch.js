@@ -157,10 +157,12 @@ const globalSearch = function(container) {
   // handle form submit
   function _handleSubmit(event){
     event.preventDefault();
-    if (active) {
+    let terms = _fixedEncodeURIComponent(textInput.value);
+    console.log(terms,queryStringHandler.updateParameter(form.action, 'q', terms));
+    if (active && terms.length > 0) {
       triggerCustomEvent(document, 'globalSearch:close');
       triggerCustomEvent(document, 'ajax:getPage', {
-        url: queryStringHandler.updateParameter(form.action, 'q', _fixedEncodeURIComponent(textInput.value)),
+        url: queryStringHandler.updateParameter(form.action, 'q', terms),
       });
     }
   }
