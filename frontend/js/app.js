@@ -1,7 +1,6 @@
-import { manageBehaviors, resized, getCurrentMediaQuery, forEach } from '@area17/a17-helpers';
+import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
 import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals } from './functions';
-import lazyLoad from './libs/lazyLoad';
 /*
 
   A17

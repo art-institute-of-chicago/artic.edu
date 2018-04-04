@@ -3,7 +3,7 @@
   "version": "0.2.2",
   "private": true,
   "dependencies": {
-    "@area17/a17-helpers": "^0.x",
+    "@area17/a17-helpers": "^0.6.5",
     "gulp-cli": "^2.0.1",
     "gulp-sass": "^3.2.1"
   },
