@@ -3,7 +3,6 @@ import { purgeProperties, setFocusOnTarget, scrollToY, getOffset, triggerCustomE
 const anchorLinksScroll = function(container) {
 
   function _handleClicks(event) {
-    let hash = event.target.href;
     if (event.target.host === window.location.host && event.target.hash) {
       event.preventDefault();
       event.stopPropagation();
