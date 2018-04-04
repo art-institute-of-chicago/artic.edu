@@ -33,6 +33,10 @@ const dropdown = function(container) {
     return ignore;
   }
 
+  function _removeClone(clone) {
+    document.body.removeChild(clone);
+  }
+
   function _open(event) {
     if (!allow || $listClone) {
       return;
@@ -68,7 +72,7 @@ const dropdown = function(container) {
     active = true;
   }
 
-  function _close(event) {
+  function _close(event,type) {
     if (!active) {
       return;
     }
@@ -94,7 +98,12 @@ const dropdown = function(container) {
       }
     }
     container.classList.remove('s-active');
-    document.body.removeChild($listClone);
+    if (type === 'touchStart') {
+      // need this 200ms delay for touch devices and the anchor link scrolling
+      setTimeout(_removeClone.bind(null, $listClone), 200);
+    } else {
+      _removeClone($listClone);
+    }
     $listClone = null;
     active = false;
     if (event) {
@@ -129,9 +138,9 @@ const dropdown = function(container) {
   function _touchstart(event) {
     if (active) {
       if (event.target !== container && !container.contains(event.target) && $listClone && event.target !== $listClone && !$listClone.contains(event.target)) {
-        _close(event);
+        _close(event,'touchStart');
       } else {
-        _close();
+        _close(null,'touchStart');
       }
     }
   }
