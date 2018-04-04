@@ -43,6 +43,17 @@ class Artwork extends BaseApiModel
         return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');
     }
 
+    // Generates the id-slug type of URL
+    public function getRouteKeyName()
+    {
+        return 'id_slug';
+    }
+
+    public function getIdSlugAttribute()
+    {
+        return join(array_filter([$this->id, getUtf8Slug($this->title)]), '-');
+    }
+
     public function getSlugAttribute()
     {
         return route('artworks.show', $this->id);

@@ -50,7 +50,8 @@
             "app/Helpers/ImageHelpers.php",
             "app/Helpers/DatesHelpers.php",
             "app/Helpers/QueryHelpers.php",
-            "app/Helpers/SessionHelpers.php"
+            "app/Helpers/SessionHelpers.php",
+            "app/Helpers/StringHelpers.php"
         ]
     },
     "autoload-dev": {
