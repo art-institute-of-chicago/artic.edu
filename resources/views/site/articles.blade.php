@@ -92,7 +92,6 @@
       @foreach ($articles as $item)
           @component('components.molecules._m-listing----article-minimal')
               @slot('item', $item)
-
               {{-- (object) [
                   'image' => $item->hero,
                   'slug'  => $item->slug,
@@ -117,8 +116,7 @@
       @endforeach
   @endcomponent
 
-  @component('components.molecules._m-paginator')
-  @endcomponent
+  {!! $articles->links() !!}
 
 </section>
 

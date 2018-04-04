@@ -24,7 +24,7 @@ class ArticleController extends FrontController
         $featuredArticles = $page->articlesArticles;
         $heroArticle = $featuredArticles->first();
 
-        $articles = Article::published()->whereNotIn('id', $featuredArticles->pluck('id'));
+        $articles = Article::published()->orderBy('date', 'desc')->whereNotIn('id', $featuredArticles->pluck('id'));
         if (request('category')) {
             $articles = $articles->whereHas('categories', function ($query) use ($page){
                 $query->where('category_id', request('category'));
@@ -42,7 +42,7 @@ class ArticleController extends FrontController
         return view('site.articles', [
             'page' => $page,
             'heroArticle' => $heroArticle,
-            'articles' => $articles->get(),
+            'articles' => $articles->paginate(12),
             'categories' => $categories,
             'featuredArticles' => $featuredArticles->forget(0)
         ]);

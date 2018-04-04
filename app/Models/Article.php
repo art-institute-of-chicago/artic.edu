@@ -37,6 +37,7 @@ class Article extends Model
         'citation',
         'layout_type',
         'is_boosted',
+        'migrated_node_id',
     ];
 
     public $slugAttributes = [
