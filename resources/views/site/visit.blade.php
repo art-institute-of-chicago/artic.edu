@@ -29,11 +29,6 @@
           array('label' => 'Tours', 'href' => '#tours'),
           array('label' => 'Families, Teens &amp; Educators', 'href' => '#familes_teens_educators'),
         ))
-        @slot('secondaryHtml')
-            <li class="m-links-bar__item m-links-bar__item--primary">
-
-            </li>
-        @endslot
     @endcomponent
 
     @component('components.molecules._m-header-block')
