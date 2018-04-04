@@ -200,7 +200,7 @@ class ApiModelBuilder
     public function ids(array $ids)
     {
         // Remove slugs from ID-SLUG type of id's
-        $ids = array_map(function($id) { return (integer) $id; }, $ids);
+        // $ids = array_map(function($id) { return (integer) $id; }, $ids);
 
         $this->query->ids($ids);
 
@@ -250,7 +250,7 @@ class ApiModelBuilder
         $builder = clone $this;
 
         // Remove slugs from ID-SLUG type of id's
-        $id = (integer) $id;
+        // $id = (integer) $id;
 
         // Eager load relationships
         if ($result = $builder->getSingle($id, $columns)) {
@@ -418,7 +418,7 @@ class ApiModelBuilder
      *
      * @throws \InvalidArgumentException
      */
-    public function paginate($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    public function getPaginated($perPage = null, $columns = [], $pageName = 'page', $page = null)
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
@@ -432,6 +432,26 @@ class ApiModelBuilder
             'path' => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);
+    }
+
+    /**
+     * Paginate the given query.
+     *
+     * @param  int  $perPage
+     * @param  array  $columns
+     * @param  string  $pageName
+     * @param  int|null  $page
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function paginate($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    {
+        if ($this->performSearch) {
+            return $this->getSearch($perPage, $columns, $pageName, $page);
+        } else {
+            return $this->getPaginated($perPage, $columns, $pageName, $page);
+        }
     }
 
     protected function paginator($items, $total, $perPage, $currentPage, $options)
