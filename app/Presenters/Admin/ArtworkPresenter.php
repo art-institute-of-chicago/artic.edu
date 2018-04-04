@@ -20,4 +20,16 @@ class ArtworkPresenter extends BasePresenter
         return "gallery";
     }
 
+    public function imageThumb()
+    {
+        $image = $this->entity->imageFront('hero', 'default');
+
+        if (!empty($image)) {
+            if (isset($image['src'])) {
+                return $image['src'];
+            }
+        }
+
+    }
+
 }

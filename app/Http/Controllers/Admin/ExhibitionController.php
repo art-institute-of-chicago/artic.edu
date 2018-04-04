@@ -20,6 +20,14 @@ class ExhibitionController extends BaseApiController
     ];
 
     protected $indexColumns = [
+        'image' => [
+            'thumb' => true,
+            'optional' => false,
+            'variant' => [
+                'role' => 'hero',
+                'crop' => 'default',
+            ],
+        ],
         'title' => [
             'title' => 'Title',
             'field' => 'title',

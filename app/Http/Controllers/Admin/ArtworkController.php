@@ -20,6 +20,15 @@ class ArtworkController extends BaseApiController
     ];
 
     protected $indexColumns = [
+        'image' => [
+            'thumb' => true,
+            'present' => true,
+            'presenter' => 'imageThumb',
+            'variant' => [
+                'role' => 'hero',
+                'crop' => 'default',
+            ],
+        ],
         'title' => [
             'title' => 'Title',
             'field' => 'title',
