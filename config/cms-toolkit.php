@@ -80,7 +80,7 @@ return [
                 'component' => 'a17-block-timeline',
             ],
             'link' => [
-                'title' => 'link',
+                'title' => 'Link',
                 'icon' => 'text',
                 'component' => 'a17-block-link',
             ],
@@ -115,12 +115,12 @@ return [
                 'component' => 'a17-block-artwork',
             ],
             'artworks' => [
-                'title' => 'Artworks Gallery',
+                'title' => 'Artworks gallery',
                 'icon' => 'image',
                 'component' => 'a17-block-artworks',
             ],
             'shop_items' => [
-                'title' => 'Shop Items',
+                'title' => 'Featured products',
                 'icon' => 'image',
                 'component' => 'a17-block-shop_items',
             ],
