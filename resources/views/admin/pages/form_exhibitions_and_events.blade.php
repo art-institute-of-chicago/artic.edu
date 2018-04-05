@@ -17,7 +17,7 @@
         'max' => 2,
         'moduleName' => 'exhibitions',
         'name' => 'exhibitionsUpcoming',
-        'label' => 'Featured exhibitinos - upcoming'
+        'label' => 'Featured exhibitions - upcoming'
     ])
 
     @formField('browser', [
