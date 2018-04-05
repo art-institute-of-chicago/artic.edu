@@ -202,7 +202,13 @@ function aic_imageSettings($data) {
 
     if ($sourceType === 'imgix') {
         $base = explode('?', $originalSrc)[0].'?';
+        $originalSrcParams = array();
+        parse_str($originalSrc, $originalSrcParams);
         $imgixSettings = array();
+
+        if (!empty($originalSrcParams['rect'])) {
+            $imgixSettings['rect'] = $originalSrcParams['rect'];
+        }
 
         // work out ratio cropping
         if (!empty($settings['ratio'])) {
