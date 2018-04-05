@@ -9,7 +9,7 @@
         'max' => 2,
         'moduleName' => 'exhibitions',
         'name' => 'exhibitionsExhibitions',
-        'label' => 'Featured exhibitions'
+        'label' => 'Featured exhibitions - current'
     ])
 
     @formField('browser', [
@@ -17,7 +17,7 @@
         'max' => 2,
         'moduleName' => 'exhibitions',
         'name' => 'exhibitionsUpcoming',
-        'label' => 'Featured exhibitinos - Upcoming listing'
+        'label' => 'Featured exhibitinos - upcoming'
     ])
 
     @formField('browser', [
@@ -25,6 +25,6 @@
         'max' => 12,
         'moduleName' => 'exhibitions',
         'name' => 'exhibitionsCurrent',
-        'label' => 'Listing exhibitions'
+        'label' => 'Secondary features - current'
     ])
 @stop
