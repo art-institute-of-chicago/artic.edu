@@ -27,6 +27,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "rlanvin/php-rrule": "1.*",
+        "sentry/sentry-laravel": "^0.8.0",
         "spatie/calendar-links": "^1.0"
     },
     "require-dev": {
