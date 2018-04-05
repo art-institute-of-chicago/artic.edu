@@ -139,18 +139,22 @@ function aic_imageSettings($data) {
     $LQIPDimension = 25;
 
     // trying to fill image dimensions in if dimensions haven't been set but we do have a srcset and a ratio specified
-    if (!$width && !$height && $srcset && $ratio) {
+    if (!$width && !$height && $srcset) {
         $width = array_values($srcset)[0];
-        if ($settings['ratio'] === "1:1") {
-            $height = $width;
-        } else if (sizeof(explode(":",$ratio)) === 2) {
-            $ratioW = explode(":",$settings['ratio'])[0];
-            $ratioH = explode(":",$settings['ratio'])[1];
-            $height = round($width * ($ratioH/$ratioW));
+        if ($ratio) {
+            if ($ratio === "1:1") {
+                $height = $width;
+            } else if (sizeof(explode(":",$ratio)) === 2) {
+                $ratioW = explode(":",$settings['ratio'])[0];
+                $ratioH = explode(":",$settings['ratio'])[1];
+                $height = round($width * ($ratioH/$ratioW));
+            }
+        } else if ($sourceType === 'imgix') {
+            $height = 'auto';
         }
     }
 
-    // return if no datas
+    // return if not enough datas
     if (!$srcset || !$sourceType || !$originalSrc || !$width || !$height) {
         if ($sourceType === 'artinstituteshop') {
             return array(
@@ -211,7 +215,7 @@ function aic_imageSettings($data) {
         }
 
         // work out ratio cropping
-        if (!empty($settings['ratio'])) {
+        if (!empty($settings['ratio']) && $width && $height && $height !== 'auto') {
             if ($settings['ratio'] === "1:1") {
                 // square
                 if ($height > $width) {
@@ -275,13 +279,17 @@ function aic_imageSettings($data) {
         // generate variants
         foreach ($srcset as $size):
             $imgixSettings['w'] = $size;
-            $imgixSettings['h'] = round(($height/$width) * $size);
+            if ($height && $height !== 'auto') {
+                $imgixSettings['h'] = round(($height/$width) * $size);
+            }
             $imgixSettingsString = http_build_query($imgixSettings);
             $stringSrcset .= $base.$imgixSettingsString." ".$size."w, ";
         endforeach;
 
         $imgixSettings['w'] = $LQIPDimension;
-        $imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
+        if ($height && $height !== 'auto') {
+            $imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
+        }
         $imgixSettings['q'] = '10';
         //$imgixSettings['blur'] = '75';
         $imgixSettingsString = http_build_query($imgixSettings);
