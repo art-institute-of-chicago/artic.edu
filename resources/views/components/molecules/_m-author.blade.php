@@ -6,8 +6,14 @@
                 @slot('settings', array(
                     'fit' => 'crop',
                     'ratio' => '1:1',
-                    'srcset' => array(40,80),
-                    'sizes' => '40px',
+                    'srcset' => array(40,88,176),
+                    'sizes' => aic_imageSizes(array(
+                      'xsmall' => '40px',
+                      'small' => '40px',
+                      'medium' => '40px',
+                      'large' => '40px',
+                      'xlarge' => '88px',
+                    )),
                 ))
             @endcomponent
         </div>
