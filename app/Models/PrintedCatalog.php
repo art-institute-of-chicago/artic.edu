@@ -23,6 +23,7 @@ class PrintedCatalog extends Model
         'public',
         'publish_start_date',
         'publish_end_date',
+        'migrated_node_id'
     ];
 
     public $slugAttributes = [
