@@ -44,4 +44,9 @@ return [
         'region' => env('COULDFRONT_REGION')
     ],
 
+    'google_tag_manager' => [
+        'enabled' => env('GTM_ENABLED', false),
+        'id' => env('GTM_ID', '')
+    ],
+
 ];
