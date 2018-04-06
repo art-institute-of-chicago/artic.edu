@@ -27,6 +27,7 @@ class PressRelease extends Model
         'public',
         'publish_start_date',
         'publish_end_date',
+        'migrated_node_id'
     ];
 
     // public $translatedAttributes = [
@@ -67,6 +68,8 @@ class PressRelease extends Model
         ],
     ];
 
+    public $filesParams = ['attachment']; // a list of file roles
+
     // protected $presenter = 'App\Presenters\HoursPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\PressReleasePresenter';
 
@@ -83,7 +86,7 @@ class PressRelease extends Model
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('about.press.show'), '/', $this->id, '-']);
+        return route('about.press.show', $this->id);
     }
 
     public function getSlugAttribute()
