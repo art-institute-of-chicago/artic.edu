@@ -54,6 +54,7 @@ class Event extends Model
         'layout_type',
         'buy_button_text',
         'buy_button_caption',
+        'migrated_node_id',
     ];
 
     const CLASSES_AND_WORKSHOPS = 1;
