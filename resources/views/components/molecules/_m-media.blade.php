@@ -2,7 +2,14 @@
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $media = $item['media'];
+    $fullscreen = (isset($item['fullscreen']) and $item['fullscreen']);
     $tag = (isset($item['url']) && $item['url'] && $type !== 'embed' && $type !== 'video') ? 'a' : 'span';
+    $poster = isset($item['poster']) ? $item['poster'] : false;
+
+
+    if ($type === 'embed' and strrpos($media['embed'],'api.soundcloud.com')) {
+        $size = 's';
+    }
 
     if (empty($imageSettings) && $size === 's') {
         $imageSettings = array(
@@ -42,23 +49,60 @@
 
     if ($type == 'embed') {
         // make embeds lazy load
-        $media['embed'] = preg_replace('/src/i', 'data-src', $media['embed']);
+        if (!$poster or $tag === 'a') {
+            $fullscreen = false;
+        }
+        if (!$fullscreen) {
+            $media['embed'] = preg_replace('/src/i', 'data-embed-src', $media['embed']);
+        }
+        $imageSettings['ratio'] = '16:9';
+
         // fix soundcloud embed height
         if (strrpos($media['embed'],'api.soundcloud.com')) {
             $media['embed'] = preg_replace_callback('/(height=")([^"]*)/i', function($m) { return $m[1].'166'; },$media['embed']);
             $variation = ($variation ?? '').' m-media--soundcloud';
+            $imageSettings['ratio'] = '9:2';
         }
+    }
+
+    $mediaBehavior = false;
+    if ($fullscreen and $type !== 'embed' and $tag !== 'a') {
+      $mediaBehavior = 'openImageFullScreen';
+    }
+    if ($fullscreen and $type == 'embed' and $tag !== 'a') {
+      $mediaBehavior = 'triggerMediaModal';
+    }
+    if (!$fullscreen and $type == 'embed' and $tag !== 'a') {
+      $mediaBehavior = 'triggerMediaInline';
     }
 @endphp
 <figure data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <{{ $tag }}{!! ($tag === 'a') ? ' href="'.$item['url'].'"' : '' !!} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! (isset($item['fullscreen']) and $item['fullscreen'] and $tag !== 'a') ? ' data-behavior="openImageFullScreen"' : '' !!}>
+    <{{ $tag }}{!! ($tag === 'a') ? ' href="'.$item['url'].'"' : '' !!} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'"' : '' !!}>
         @if ($type == 'image')
             @component('components.atoms._img')
                 @slot('image', $media)
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
-        @elseif ($type == 'embed')
+        @elseif ($type == 'embed' and $poster and $tag === 'a')
+            @component('components.atoms._img')
+                @slot('image', $poster)
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
+        @elseif ($type == 'embed' and !$poster and $tag === 'a')
+            {{--  --}}
+        @elseif ($type == 'embed' and !$poster and !$fullscreen)
             {!! $media['embed'] ?? '' !!}
+        @elseif ($type == 'embed' and $poster and !$fullscreen)
+            {!! $media['embed'] ?? '' !!}
+            @component('components.atoms._img')
+                @slot('image', $poster)
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
+        @elseif ($type == 'embed' and $poster and $fullscreen)
+            @component('components.atoms._img')
+                @slot('image', $poster)
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
         @else
             @component('components.atoms._video')
                 @slot('video', $media)
@@ -81,7 +125,7 @@
                 @slot('download', true)
             @endcomponent
         @endif
-        @if (isset($item['fullscreen']) and $item['fullscreen'])
+        @if ($type !== 'embed' and isset($item['fullscreen']) and $item['fullscreen'])
             @component('components.atoms._btn')
                 @slot('variation', 'm-media__btn-fullscreen btn--septenary btn--icon btn--icon-circle-48')
                 @slot('font', '')
@@ -91,6 +135,15 @@
                 @endif
             @endcomponent
         @endif
+
+        @if ($type == 'embed' and $poster)
+            <svg class="icon--play--96"><use xlink:href="#icon--play--96"></use></svg>
+        @endif
+
+        @if ($fullscreen and $type == 'embed' and $tag !== 'a')
+        <textarea style="display: none;">{!! is_array($media['embed']) ? array_first($media['embed']) : $media['embed'] !!}</textarea>
+        @endif
+
     </{{ $tag }}>
     @if (!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption']))
     <figcaption>

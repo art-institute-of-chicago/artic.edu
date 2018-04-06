@@ -21,13 +21,44 @@
   }
 }
 
+.g-modal__close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  padding: 0;
+  border: 0 none;
+  background: transparent;
+  color: $color__text--forms;
+  cursor: pointer;
+}
+
+.g-modal__close:hover {
+  color: $color__text;
+}
+
 
 .g-modal--media {
+  padding-top: 40px;
+
+  @include breakpoint('small+') {
+    background-color: $color__black;
+
+    .g-modal__close {
+      color: $color__white;
+    }
+
+    .g-modal__close:hover {
+      color: $color__black--5;
+    }
+  }
+
   .g-modal__content {
     display: block;
+    position: relative;
     width: 90vw;
     max-width: 160vh; // stops a 16:9 thing growing taller than 90% of total vh
     height: 0;
+    margin: 0 auto;
     padding-bottom: percentage(9 / 16); // 16:9
   }
 
@@ -39,6 +70,25 @@
     bottom: 0;
     width: 100%;
     height: 100%;
+  }
+}
+
+.g-modal--media.g-modal--media-soundcloud {
+
+  @include breakpoint('small+') {
+    background-color: $color__black--5;
+
+    .g-modal__close {
+      color: $color__text--forms;
+    }
+
+    .g-modal__close:hover {
+      color: $color__text;
+    }
+  }
+
+  .g-modal__content {
+    padding-bottom: 166px;
   }
 }
 
@@ -113,18 +163,8 @@
   }
 
   .g-modal__close {
-    position: absolute;
     right: 22px;
     top: 22px;
-    padding: 0;
-    border: 0 none;
-    background: transparent;
-    color: $color__text--forms;
-    cursor: pointer;
-  }
-
-  .g-modal__close:hover {
-    color: $color__text;
   }
 
   .g-modal__title {

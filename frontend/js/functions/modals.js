@@ -11,7 +11,10 @@ const modals = function() {
   function _media(e) {
     let embedCode = e.data.embedCode;
     if (embedCode) {
-      $modal.classList.add('g-modal--'+e.data.type);
+      $modal.classList.add('g-modal--media');
+      if (embedCode.indexOf('api.soundcloud.com') > -1) {
+        $modal.classList.add('g-modal--media-soundcloud');
+      }
       try {
         // auto play the embed
         embedCode = embedCode.replace('data-src', 'src');

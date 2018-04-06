@@ -40,5 +40,6 @@ export { default as blurMyBackground } from './blurMyBackground';
 export { default as loadMore } from './loadMore';
 export { default as getUrl } from './getUrl';
 export { default as triggerMediaModal } from './triggerMediaModal';
+export { default as triggerMediaInline } from './triggerMediaInline';
 export { default as closeRoadblock } from './closeRoadblock';
 export { default as closeModal } from './closeModal';

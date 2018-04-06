@@ -501,6 +501,7 @@ class StaticsController extends FrontController {
             'type' => 'embed',
             'size' => 'l',
             'media' => $this->getEmbed(),
+            "poster" => $this->getImage(),
             'hideCaption' => true
         ],
         'blocks' => [
@@ -1457,7 +1458,8 @@ class StaticsController extends FrontController {
 
   private function getEmbed($type = null) {
     $embed = array();
-    if ($this->faker->boolean() || $type == 'soundcloud') {
+    $soundcloud = ($type !== 'youtube' && ($this->faker->boolean() || $type == 'soundcloud'));
+    if ($soundcloud) {
         $embed = array(
             'embed' => '<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/348258574&color=%23b50938&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>',
         );
@@ -1504,6 +1506,7 @@ class StaticsController extends FrontController {
                   'type' => 'embed',
                   'size' => 'gallery',
                   'media' => $this->getEmbed(),
+                  "poster" => $this->getImage(),
                   'caption' => $this->faker->paragraph(3, false),
               )
             );
@@ -2429,6 +2432,7 @@ class StaticsController extends FrontController {
             'type' => 'video',
             'size' => 's',
             'media' => $this->getVideo(),
+            "poster" => $this->getImage(),
             'caption' => $this->faker->paragraph(3, false)
         )
     ));
@@ -2438,6 +2442,7 @@ class StaticsController extends FrontController {
             'type' => 'embed',
             'size' => 's',
             'media' => $this->getEmbed(),
+            "poster" => $this->getImage(),
             'caption' => $this->faker->paragraph(3, false)
         )
     ));
@@ -3667,7 +3672,11 @@ class StaticsController extends FrontController {
     $blocks = array();
     array_push($blocks, array(
         "type" => 'text',
-         "content" => $this->generateParagraph(3)
+         "content" => $this->generateParagraph(1)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => '<h4>Captions hidden, inline playing (no posters):</h4>'
     ));
     array_push($blocks, array(
         "type" => 'media',
@@ -3687,9 +3696,107 @@ class StaticsController extends FrontController {
         "content" => array(
             'type' => 'embed',
             'size' => 'm',
-            'media' => $this->getEmbed(),
-            'caption' => $this->faker->paragraph(3, false)
+            'media' => $this->getEmbed('youtube'),
+            'hideCaption' => true
         )
+    ));
+
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => '<h4>Captions, inline playing (no posters):</h4>'
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 's',
+            'media' => $this->getEmbed('soundcloud'),
+            'caption' => 'Soundcloud with caption'
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(1)
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 'm',
+            'media' => $this->getEmbed('youtube'),
+            'caption' => 'Youtube with caption'
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => '<h4>Captions hidden, inline playing, with posters:</h4>'
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 's',
+            'media' => $this->getEmbed('soundcloud'),
+            "poster" => $this->getImage(),
+            'hideCaption' => true
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(1)
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 'm',
+            'media' => $this->getEmbed('youtube'),
+            "poster" => $this->getImage(),
+            'hideCaption' => true
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => '<h4>Captions hidden, modal player, with posters:</h4>'
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 's',
+            'media' => $this->getEmbed('soundcloud'),
+            "poster" => $this->getImage(),
+            'hideCaption' => true,
+            'fullscreen' => true,
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(1)
+    ));
+    array_push($blocks, array(
+        "type" => 'media',
+        "content" => array(
+            'type' => 'embed',
+            'size' => 's',
+            'media' => $this->getEmbed('youtube'),
+            "poster" => $this->getImage(),
+            'hideCaption' => true,
+            'fullscreen' => true,
+        )
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => '<h4>As a listing block, they have images, play fullscreen:</h4>'
+    ));
+    array_push($blocks, array(
+        "type" => 'listing',
+        "subtype" => 'media',
+        "items" => $this->getMedias(2),
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(1)
     ));
     array_push($blocks, array(
         "type" => 'gallery',
