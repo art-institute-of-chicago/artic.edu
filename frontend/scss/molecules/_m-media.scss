@@ -53,6 +53,7 @@
 .m-media__img iframe,
 .m-media__img object,
 .m-media__img.m-media__img--video img {
+  @include objectFitFix;
   position: absolute;
   left: 0;
   right: 0;
@@ -168,6 +169,7 @@
 
 .m-media--hero img,
 .m-media--hero video {
+  @include objectFitFix;
   position: absolute;
   left: 0;
   right: 0;

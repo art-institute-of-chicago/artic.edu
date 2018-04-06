@@ -29,6 +29,7 @@
 }
 
 .m-image-stack__img img {
+  @include objectFitFix;
   position: absolute;
   left: 0;
   right: 20px;

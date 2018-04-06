@@ -80,6 +80,21 @@ Creates a load spinner.
   }
 }
 
+@mixin objectFitFix() {
+  .no-objectFit & {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: none;
+  }
+}
 
 @mixin opaqueBg($bg1, $bg2) {
   background-color: $bg1;

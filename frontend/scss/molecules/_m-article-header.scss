@@ -189,6 +189,7 @@
 
 .m-article-header--feature .m-article-header__img img,
 .m-article-header--feature .m-article-header__img video {
+  @include objectFitFix;
   position: absolute;
   left: 0;
   right: 0;
@@ -359,6 +360,7 @@
 
 .m-article-header--hero .m-article-header__img img,
 .m-article-header--hero .m-article-header__img video {
+  @include objectFitFix;
   position: absolute;
   left: 0;
   right: 0;
@@ -439,6 +441,7 @@
 
 .m-article-header--super-hero .m-article-header__img img,
 .m-article-header--super-hero .m-article-header__img video {
+  @include objectFitFix;
   position: absolute;
   left: 0;
   right: 0;
@@ -568,6 +571,7 @@
 
 .m-article-header--generic .m-article-header__img img,
 .m-article-header--generic .m-article-header__img video {
+  @include objectFitFix;
   position: absolute;
   left: 0;
   right: 0;

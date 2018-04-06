@@ -14,9 +14,6 @@
   // test for HTML5 vs HTML4 support, cutting the mustard
   A17.browserSpec = (typeof d.querySelectorAll && 'addEventListener' in w && w.history.pushState && d.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1')) ? 'html5' : 'html4';
 
-  // test for touch support. Caution: this is dangerous: https://hacks.mozilla.org/2013/04/detecting-touch-its-the-why-not-the-how/
-  A17.touch = (('ontouchstart' in w) || w.documentTouch && d instanceof DocumentTouch) ? true : false;
-
   // testing for object fit support
   A17.objectFit = ('objectFit' in de.style);
 
@@ -24,7 +21,7 @@
   window.A17 = A17;
 
   // add class names
-  de.className = de.className.replace(/\bno-js\b/,' js '+A17.browserSpec+(A17.touch ? ' touch' : ' no-touch')+(A17.objectFit ? ' objectFit' : ' no-objectFit'));
+  de.className = de.className.replace(/\bno-js\b/,' js '+A17.browserSpec+(A17.objectFit ? ' objectFit' : ' no-objectFit'));
 
   // disable all the stylesheets, except the html4css one
   function disableSS() {

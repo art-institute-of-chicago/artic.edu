@@ -48,10 +48,12 @@
 
 .ratio-img--cover img,
 .ratio-img--cover video {
+  @include objectFitFix;
   object-fit: cover;
 }
 
 .ratio-img--contain img,
 .ratio-img--contain video {
+  @include objectFitFix;
   object-fit: contain;
 }

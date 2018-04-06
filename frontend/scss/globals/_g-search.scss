@@ -214,6 +214,11 @@ $f-autocomplete: generate-font-obj((
   width: 40px;
   height: 40px;
   object-fit: cover;
+
+  .no-objectFit & {
+    height: auto;
+    max-height: 40px;
+  }
 }
 
 .g-search__autocomplete-all {

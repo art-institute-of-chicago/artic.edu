@@ -151,6 +151,7 @@
 
 .m-listing__img img,
 .m-listing__img video {
+  @include objectFitFix;
   position: absolute;
   left: 0;
   right: 0;
@@ -605,6 +606,14 @@
     bottom: -5px;
     width: calc(100% + 10px);
     height: calc(100% + 5px);
+
+    .no-objectFit & {
+      left: 50%;
+      bottom: auto;
+      right: auto;
+      width: auto;
+      height: auto;
+    }
   }
 
   .m-listing--hero .m-listing__img[data-blur-img-dupe] img,
@@ -1329,6 +1338,7 @@
   margin: 0 auto;
 
   @include breakpoint('small+') {
+    @include objectFitFix;
     position: absolute;
     left: colspan(4, small);
     right: colspan(4, small);
@@ -1340,6 +1350,7 @@
   }
 
   @include breakpoint('medium+') {
+    @include objectFitFix;
     left: colspan(3, medium);
     right: colspan(3, medium);
     top: colspan(3, medium);
@@ -1349,6 +1360,7 @@
   }
 
   @include breakpoint('large+') {
+    @include objectFitFix;
     left: colspan(2, large);
     right: colspan(2, large);
     top: colspan(2, large);
@@ -1358,6 +1370,7 @@
   }
 
   @include breakpoint('xlarge') {
+    @include objectFitFix;
     left: colspan(2, xlarge);
     right: colspan(2, xlarge);
     top: colspan(2, xlarge);
@@ -1427,6 +1440,7 @@
 }
 
 .o-pinboard__item.m-listing--variable-height img {
+  @include objectFitFix;
   object-fit: contain;
 }
 

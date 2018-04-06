@@ -47,6 +47,7 @@
 
 .m-cta-banner__img img,
 .m-cta-banner__img video {
+  @include objectFitFix;
   object-fit: cover;
 }
 

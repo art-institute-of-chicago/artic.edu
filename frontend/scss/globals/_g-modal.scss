@@ -124,6 +124,7 @@
   }
 
   .g-modal__image img {
+    @include objectFitFix;
     position: absolute;
     left: 0;
     right: 0;
