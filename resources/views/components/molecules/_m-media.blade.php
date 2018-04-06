@@ -52,7 +52,10 @@
         if (!$poster or $tag === 'a') {
             $fullscreen = false;
         }
-        if (!$fullscreen) {
+        if (!$fullscreen and !$poster) {
+            $media['embed'] = preg_replace('/src/i', 'data-src', $media['embed']);
+        }
+        if (!$fullscreen and $poster) {
             $media['embed'] = preg_replace('/src/i', 'data-embed-src', $media['embed']);
         }
         $imageSettings['ratio'] = '16:9';
