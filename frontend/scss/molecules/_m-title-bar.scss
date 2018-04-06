@@ -43,6 +43,7 @@
 .m-title-bar .title {
   flex: 0 0 auto;
   margin-top: 0;
+  margin-right: auto;
 }
 
 .m-title-bar .title.f-module-title-2 {
@@ -58,6 +59,7 @@
   flex: 0 0 auto;
   flex-flow: row wrap;
   margin-top: 0;
+  margin-left: auto;
 
   @include breakpoint('small+') {
     display: flex;
