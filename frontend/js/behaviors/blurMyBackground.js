@@ -8,17 +8,31 @@ const blurMyBackground = function(container) {
   let $clipTarget;
 
   function _tests() {
-    let $test = document.createElement('div');
-    $test.style.filter = 'blur(5px)';
-    $test.style.clipPath = 'inset(1px 2px 3px 4px)';
-    $test.style.backdropFilter = 'blur(5px)';
-    $test.style.webkitBackdropFilter = 'blur(5px)';
+    let el;
+    //
+    el = document.createElement('div');
+    el.style.cssText = '-webkit-filter: blur(2px); filter: blur(2px);';
+    let filterTest1 = (el.style.length != 0);
+    // checking for false positives of IE
+    let filterTest2 = (document.documentMode === undefined || document.documentMode > 9);
+    let filterTest = (filterTest1 && filterTest2);
+    el = null;
+    //
+    el = document.createElement('div');
+    el.style.cssText = '-webkit-clip-path: inset(1px 2px 3px 4px); clip-path: inset(1px 2px 3px 4px);';
+    let clippingTest = (el.style.length != 0);
+    el = null;
+    //
+    el = document.createElement('div');
+    el.style.cssText = '-webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);';
+    let backdropFilterTest = (el.style.length != 0);
+
     // we don't the function to run if backdrop filter is support
-    if(window.getComputedStyle($test).webkitBackdropFilter !== undefined || window.getComputedStyle($test).backdropFilter !== undefined) {
+    if(backdropFilterTest || !filterTest || clippingTest) {
       active = false;
     }
     // if backdrop filter isn't supported, lets home filter and clip path are
-    if(!active && window.getComputedStyle($test).filter !== undefined && window.getComputedStyle($test).clipPath !== undefined) {
+    if(!active && !backdropFilterTest && filterTest && clippingTest) {
       active = true;
     }
   }
