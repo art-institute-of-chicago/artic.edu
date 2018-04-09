@@ -1,5 +1,23 @@
 @if (isset($images) and $images)
 
+@foreach ($images as $image)
+    @php
+      $galleryImageThumbSettings = aic_imageSettings(array(
+          'settings' => array(
+              'srcset' => array(200,423,846,1692,3000,6000),
+              'sizes' => aic_imageSizes(array(
+                    'xsmall' => '58',
+                    'small' => '58',
+                    'medium' => '846px',
+                    'large' => '846px',
+                    'xlarge' => '846px',
+              ))
+          ),
+          'image' => $image,
+      ));
+    @endphp
+@endforeach
+
 <{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery">
 
 <div class="m-article-header__img">

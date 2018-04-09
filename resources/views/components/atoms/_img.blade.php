@@ -1,18 +1,6 @@
 @php
     $highlight = ' ';
 
-    if (!isset($image['sourceType']) || empty($image['sourceType'])) {
-        $image['sourceType'] = 'imgix';
-    }
-
-    if (isset($image['src']) && strrpos($image['src'], 'lakeimagesweb.artic.edu') > 0) {
-        $image['sourceType'] = 'lakeview';
-    }
-
-    if (isset($image['src']) && strrpos($image['src'], 'artinstituteshop.org') > 0) {
-        $image['sourceType'] = 'artinstituteshop';
-    }
-
     if (isset($settings)) {
         $settings = aic_imageSettings(array(
             'settings' => $settings,

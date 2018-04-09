@@ -138,6 +138,20 @@ function aic_imageSettings($data) {
 
     $LQIPDimension = 25;
 
+    if ($originalSrc && !$sourceType) {
+        if (strrpos($originalSrc, 'lakeimagesweb.artic.edu') > 0) {
+            $sourceType = 'lakeview';
+        }
+
+        if (strrpos($originalSrc, 'artinstituteshop.org') > 0) {
+            $sourceType = 'artinstituteshop';
+        }
+
+        if (strrpos($originalSrc, 'imgix.net') > 0) {
+            $sourceType = 'imgix';
+        }
+    }
+
     // trying to fill image dimensions in if dimensions haven't been set but we do have a srcset and a ratio specified
     if (!$width && !$height && $srcset) {
         $width = array_values($srcset)[0];
@@ -154,7 +168,7 @@ function aic_imageSettings($data) {
         }
     }
 
-    // return if not enough datas
+    // return if not enough datas, fail safe
     if (!$srcset || !$sourceType || !$originalSrc || !$width || !$height) {
         if ($sourceType === 'artinstituteshop') {
             return array(
