@@ -7,6 +7,7 @@
          @component('components.atoms._img')
             @slot('image', $images[0])
             @slot('settings', array(
+                'lazyload' => false,
                 'srcset' => array(200,423,846,1692,3000,6000),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '58',
@@ -72,9 +73,9 @@
       @endif
     @if (isset($images[0]['creditUrl']))
         <a href="{{ $images[0]['creditUrl'] }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
-            {{ $images[0]['creditUrl'] }}
+            {{ $images[0]['credit'] ?? $images[0]['creditUrl'] ?? '' }}
         </a>
-    @elseif (isset($images[0]['credit']))
+    @else
         <span class="m-article-header__img-credit f-secondary" data-gallery-credit>
             {{ $images[0]['credit'] ?? '' }}
         </span>
@@ -126,6 +127,9 @@
             ));
           @endphp
           <button
+            @if (isset($galleryImageThumbSettings['src']))
+                data-gallery-img-src="{{ $galleryImageThumbSettings['src'] }}"
+            @endif
             @if (isset($galleryImageThumbSettings['srcset']))
                 data-gallery-img-srcset="{{ $galleryImageThumbSettings['srcset'] }}"
             @endif
@@ -158,6 +162,7 @@
           @component('components.atoms._img')
               @slot('image', $image)
               @slot('settings', array(
+                'lazyload' => false,
                 'srcset' => array(300,600),
                 'sizes' => '300px',
               ))

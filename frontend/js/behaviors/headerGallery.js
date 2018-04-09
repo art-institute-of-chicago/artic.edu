@@ -13,6 +13,7 @@ const headerGallery = function(container) {
         activeIndex = index;
       }
       data[index] = {
+        src: button.getAttribute('data-gallery-img-src') || button.previousElementSibling.getAttribute('src'),
         srcset: button.getAttribute('data-gallery-img-srcset') || button.previousElementSibling.getAttribute('srcset'),
         width: button.getAttribute('data-gallery-img-width') || button.previousElementSibling.getAttribute('width'),
         height: button.getAttribute('data-gallery-img-height') || button.previousElementSibling.getAttribute('height'),
@@ -50,7 +51,11 @@ const headerGallery = function(container) {
         button.setAttribute('disabled','disabled');
       }
     });
-    nodes.hero.querySelector('img').setAttribute('srcset', data[activeIndex].srcset);
+    let $hero = nodes.hero.querySelector('img');
+    $hero.src = '';
+    $hero.removeAttribute('srcset');
+    $hero.src = data[activeIndex].src;
+    $hero.setAttribute('srcset', data[activeIndex].srcset);
     nodes.share.setAttribute('data-share-url', data[activeIndex].shareUrl);
     nodes.share.setAttribute('data-share-title', data[activeIndex].shareTitle);
 
@@ -61,7 +66,7 @@ const headerGallery = function(container) {
         creditNode = document.createElement('a');
         creditNode.href = data[activeIndex].creditUrl;
       }
-      creditNode.innerHTML = data[activeIndex].credit;
+      creditNode.innerHTML = data[activeIndex].credit || data[activeIndex].creditUrl;
     } else {
       creditNode.innerHTML = '';
     }
