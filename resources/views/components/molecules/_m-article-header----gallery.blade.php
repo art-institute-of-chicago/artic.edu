@@ -126,10 +126,6 @@
             ));
           @endphp
           <button
-            @php
-                dd($galleryImageThumbSettings);
-            @endphp
-
             @if (isset($galleryImageThumbSettings['srcset']))
                 data-gallery-img-srcset="{{ $galleryImageThumbSettings['srcset'] }}"
             @endif
