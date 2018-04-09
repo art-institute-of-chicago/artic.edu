@@ -38,6 +38,29 @@ class Artwork extends BaseApiModel
         return $this->hasMany(\App\Models\Api\Artist::class, 'alt_artist_ids');
     }
 
+    public function extraImages()
+    {
+        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids');
+    }
+
+    public function allImages()
+    {
+        return collect($this->extraImages)->map(function($image) {
+            $img = $image->imageFront();
+            $img['credit'] = $this->getImageCopyright();
+            return $img;
+        })
+        ->prepend($this->imageFront('hero'))
+        ->reject(function ($name) {
+            return empty($name);
+        });
+    }
+
+    public function getGalleryImagesAttribute()
+    {
+        return $this->allImages();
+    }
+
     public function categories()
     {
         return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');

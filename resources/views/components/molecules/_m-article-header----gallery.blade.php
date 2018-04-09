@@ -74,7 +74,7 @@
         <a href="{{ $images[0]['creditUrl'] }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
             {{ $images[0]['creditUrl'] }}
         </a>
-    @else (isset($images[0]['credit']))
+    @elseif (isset($images[0]['credit']))
         <span class="m-article-header__img-credit f-secondary" data-gallery-credit>
             {{ $images[0]['credit'] ?? '' }}
         </span>
@@ -126,6 +126,10 @@
             ));
           @endphp
           <button
+            @php
+                dd($galleryImageThumbSettings);
+            @endphp
+
             @if (isset($galleryImageThumbSettings['srcset']))
                 data-gallery-img-srcset="{{ $galleryImageThumbSettings['srcset'] }}"
             @endif
