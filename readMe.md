@@ -36,12 +36,6 @@ In case the system didn't update your /etc/hosts file automatically:
 $ npm install
 ```
 
-If you've never used Gulp, you'll likely need the CLI:
-
-```
-npm install gulp-cli
-```
-
 And then for initial compile:
 
 ```
