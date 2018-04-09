@@ -151,4 +151,64 @@ class GenericPage extends Model implements Sortable
         return $this->belongsToMany('App\Models\PageCategory');
     }
 
+    public function buildNav()
+    {
+        $ancestors = clone $this->ancestors;
+        $rootNav = [];
+        $subNav = [];
+
+        $root = $ancestors->shift();
+        $sub = $ancestors->shift();
+        $forceNav = false;
+        if ($sub) {
+            foreach($sub->children as $item) {
+                $subNav[] = ['href' => $item->url, 'label' => $item->title];
+            }
+        } else {
+            if (sizeof($ancestors) == 0) {
+                $forceNav = true;
+                foreach($this->children as $item) {
+                    $subNav[] = ['href' => $item->url, 'label' => $item->title];
+                }
+            }
+        }
+
+        foreach($root->children as $item) {
+            $navItem = ['href' => $item->url, 'label' => $item->title];
+
+            if ($sub && $item->id == $sub->id || ($forceNav && $this->id == $item->id)) {
+                $navItem['links'] = $subNav;
+            }
+            $rootNav[] = $navItem;
+
+        }
+        $nav = array('nav' => $rootNav, 'subNav' => $subNav);
+
+        return $nav;
+    }
+
+    public function buildBreadCrumb()
+    {
+        $crumbs = [];
+
+        $ancestors = clone $this->ancestors;
+
+        foreach($ancestors as $ancestor) {
+            // dd($ancestor);
+            $crumb = [];
+            $crumb['label'] = $ancestor->title;
+            $crumb['href'] = $ancestor->url;
+
+            $crumbs[] = $crumb;
+        }
+
+        $crumb = [];
+        $crumb['label'] = $this->title;
+        $crumb['href'] = $this->url;
+        $crumbs[] = $crumb;
+
+        return $crumbs;
+    }
+
+
 }

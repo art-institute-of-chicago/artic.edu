@@ -94,4 +94,5 @@ Route::name('about.press.show')->get('/about/press/{id}', 'PressReleasesControll
 
 // Generic Page
 // This MUST be the last route
+Route::moduleShowWithPreview('genericpages');
 Route::get('{any}', ['as' => 'genericpages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');

@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 
+use App\Repositories\GenericPageRepository;
 use App\Repositories\PageCategoryRepository;
 
 class GenericPageController extends ModuleController
 {
     protected $moduleName = 'genericPages';
+    protected $previewView = 'site.genericpage.show';
 
     protected $indexColumns = [
         'title' => [
@@ -107,6 +109,15 @@ class GenericPageController extends ModuleController
         return ($item->children ? [
             'children' => $this->getIndexTableData($item->children),
         ] : []);
+    }
+
+    protected function previewData($item)
+    {
+        // The ID is a datahub_id not a local ID
+        $apiRepo = app(GenericPageRepository::class);
+        $apiItem = $apiRepo->getById($item->id);
+
+        return $apiRepo->getShowData($item);
     }
 
 }

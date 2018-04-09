@@ -66,4 +66,25 @@ class GenericPageRepository extends ModuleRepository
 
         return $fields;
     }
+
+    // Show data, moved here to allow preview
+    public function getShowData($item, $slug = null, $previewPage = null)
+    {
+
+        $navs = $item->buildNav();
+
+        return [
+            'subNav' => $navs['subNav'],
+            'nav' => $navs['nav'],
+            'intro' => $item->short_description,
+            'headerImage' => $item->imageFront('banner'),
+            "title" => $item->title,
+            "breadcrumb" => $item->buildBreadCrumb(),
+            "blocks" => null,
+            'featuredRelated' => [],
+            'page' => $item,
+
+        ];
+    }
+
 }

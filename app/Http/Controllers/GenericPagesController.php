@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use A17\CmsToolkit\Http\Controllers\Front\ShowWithPreview;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\GenericPageRepository;
 
@@ -26,8 +27,8 @@ class GenericPagesController extends FrontController
     public function show($slug)
     {
         $page = $this->getPage($slug);
-        $crumbs = $this->buildBreadCrumb($page);
-        $navs = $this->buildNav($page);
+        $crumbs = $page->buildBreadCrumb($page);
+        $navs = $page->buildNav();
 
         return view('site.genericpage.show', [
             'subNav' => $navs['subNav'],
@@ -38,45 +39,14 @@ class GenericPagesController extends FrontController
             "breadcrumb" => $crumbs,
             "blocks" => null,
             'featuredRelated' => $this->getRelated($page),
-            'nav' => $navs['nav'],
             'page' => $page,
         ]);
     }
 
-    protected function buildNav($page)
+    // Show view has been moved to be used with the trait ShowWithPreview
+    protected function showData($slug, $item)
     {
-        $ancestors = clone $page->ancestors;
-        $rootNav = [];
-        $subNav = [];
-
-        $root = $ancestors->shift();
-        $sub = $ancestors->shift();
-        $forceNav = false;
-        if ($sub) {
-            foreach($sub->children as $item) {
-                $subNav[] = ['href' => $item->url, 'label' => $item->title];
-            }
-        } else {
-            if (sizeof($ancestors) == 0) {
-                $forceNav = true;
-                foreach($page->children as $item) {
-                    $subNav[] = ['href' => $item->url, 'label' => $item->title];
-                }
-            }
-        }
-
-        foreach($root->children as $item) {
-            $navItem = ['href' => $item->url, 'label' => $item->title];
-
-            if ($sub && $item->id == $sub->id || ($forceNav && $page->id == $item->id)) {
-                $navItem['links'] = $subNav;
-            }
-            $rootNav[] = $navItem;
-
-        }
-        $nav = array('nav' => $rootNav, 'subNav' => $subNav);
-
-        return $nav;
+        return $this->genericPageRepository->getShowData($item, $slug);
     }
 
     protected function getPage($slug)
@@ -92,29 +62,6 @@ class GenericPagesController extends FrontController
         }
 
         return $page;
-    }
-
-    protected function buildBreadCrumb($page)
-    {
-        $crumbs = [];
-
-        $ancestors = clone $page->ancestors;
-
-        foreach($ancestors as $ancestor) {
-            // dd($ancestor);
-            $crumb = [];
-            $crumb['label'] = $ancestor->title;
-            $crumb['href'] = $ancestor->url;
-
-            $crumbs[] = $crumb;
-        }
-
-        $crumb = [];
-        $crumb['label'] = $page->title;
-        $crumb['href'] = $page->url;
-        $crumbs[] = $crumb;
-
-        return $crumbs;
     }
 
     public function getRelated($page)
