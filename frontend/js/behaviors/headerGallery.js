@@ -122,24 +122,30 @@ const headerGallery = function(container) {
     _gatherDataFromThumbs();
     //
     nodes.thumbs.addEventListener('click', _thumbClick, false);
-    nodes.next.addEventListener('click', _nextClick, false);
-    nodes.previous.addEventListener('click', _previousClick, false);
     nodes.download.addEventListener('click', _downloadClick, false);
     nodes.fullscreen.addEventListener('click', _fullscreen, false);
+    //
+    if (nodes.next && nodes.previous){
+      nodes.next.addEventListener('click', _nextClick, false);
+      nodes.previous.addEventListener('click', _previousClick, false);
+    }
     //
     _update();
   }
 
   this.destroy = function() {
-    nodes = {};
-    data = {};
     // remove specific event handlers
     nodes.thumbs.removeEventListener('click', _thumbClick);
-    nodes.next.removeEventListener('click', _nextClick);
-    nodes.previous.removeEventListener('click', _previousClick);
     nodes.download.removeEventListener('click', _downloadClick);
     nodes.fullscreen.removeEventListener('click', _fullscreen);
-
+    //
+    if (nodes.next && nodes.previous){
+      nodes.next.removeEventListener('click', _nextClick);
+      nodes.previous.removeEventListener('click', _previousClick);
+    }
+    //
+    nodes = {};
+    data = {};
     // remove properties of this behavior
     purgeProperties(this);
   };
