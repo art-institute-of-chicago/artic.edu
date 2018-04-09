@@ -1,4 +1,11 @@
-@extends('cms-toolkit::layouts.form')
+@extends('cms-toolkit::layouts.form', [
+    'additionalFieldsets' => [
+        ['fieldset' => 'attributes', 'label' => 'Attributes'],
+        ['fieldset' => 'dates', 'label' => 'Date Rules'],
+        ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
+        ['fieldset' => 'related_elements', 'label' => 'Related elements'],
+    ]
+])
 
 @section('contentFields')
     @formField('checkbox', [
@@ -61,27 +68,6 @@
     @formField('input', [
         'name' => 'location',
         'label' => 'Location'
-    ])
-
-    @formField('input', [
-        'name' => 'sponsors_description',
-        'label' => 'Sponsors section description',
-        'type' => 'textarea'
-    ])
-
-    @formField('input', [
-        'name' => 'sponsors_sub_copy',
-        'label' => 'Sponsors sub copy',
-        'note' => 'Default: Further support has been provided by'
-    ])
-
-    @formField('browser', [
-        'routePrefix' => 'exhibitions_events',
-        'moduleName' => 'sponsors',
-        'name' => 'sponsors',
-        'label' => 'Sponsors',
-        'note' => 'Select Sponsors',
-        'max' => 20
     ])
 
     @formField('block_editor', [
@@ -192,6 +178,29 @@
         @formField('repeater', [
             'type' => 'dateRules',
             'title' => 'Date rule',
+        ])
+    </a17-fieldset>
+
+    <a17-fieldset id="sponsors" title="Sponsors">
+        @formField('input', [
+            'name' => 'sponsors_description',
+            'label' => 'Sponsors section description',
+            'type' => 'textarea'
+        ])
+
+        @formField('input', [
+            'name' => 'sponsors_sub_copy',
+            'label' => 'Sponsors sub copy',
+            'note' => 'Default: Further support has been provided by'
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'sponsors',
+            'name' => 'sponsors',
+            'label' => 'Sponsors',
+            'note' => 'Select Sponsors',
+            'max' => 20
         ])
     </a17-fieldset>
 

@@ -1,5 +1,6 @@
 @extends('cms-toolkit::layouts.form', [
     'additionalFieldsets' => [
+        ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'related', 'label' => 'Related'],
         ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
@@ -45,27 +46,6 @@
         'toolbarOptions' => ['bold']
     ])
 
-    @formField('input', [
-        'name' => 'sponsors_description',
-        'label' => 'Sponsors section description',
-        'type' => 'textarea'
-    ])
-
-    @formField('input', [
-        'name' => 'sponsors_sub_copy',
-        'label' => 'Sponsors sub copy',
-        'note' => 'E.G. further support provided by'
-    ])
-
-    @formField('browser', [
-        'routePrefix' => 'exhibitions_events',
-        'moduleName' => 'sponsors',
-        'name' => 'sponsors',
-        'label' => 'Sponsors',
-        'note' => 'Select sponsors',
-        'max' => 20
-    ])
-
     @formField('block_editor', [
         'blocks' => [
             'event', 'paragraph', 'image', 'video', 'gallery',
@@ -76,6 +56,29 @@
 @stop
 
 @section('fieldsets')
+    <a17-fieldset id="sponsors" title="Sponsors">
+        @formField('input', [
+            'name' => 'sponsors_description',
+            'label' => 'Sponsors section description',
+            'type' => 'textarea'
+        ])
+
+        @formField('input', [
+            'name' => 'sponsors_sub_copy',
+            'label' => 'Sponsors sub copy',
+            'note' => 'E.G. further support provided by'
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'sponsors',
+            'name' => 'sponsors',
+            'label' => 'Sponsors',
+            'note' => 'Select sponsors',
+            'max' => 20
+        ])
+    </a17-fieldset>
+
     <a17-fieldset id="attributes" title="Attributes">
         @formField('input', [
             'name' => 'datahub_id',
