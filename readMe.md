@@ -19,6 +19,9 @@ In case the system didn't update your /etc/hosts file automatically:
 
 - Hop into the vm with `vagrant ssh` and cd into the aic folder in `/home/vagrant/aic`
 - Ensure dependencies are installed with `composer install`
+- You may get an error with mcrypt - Please do the following:
+-- sudo apt-get update
+-- sudo apt-get install mcrypt php7.1-mcrypt
 - Copy `.env.example` as `.env` and update with your local settings (if necessary).
 - Generate your application key: `php artisan key:generate`
 - Migrate the database schema: `php artisan migrate`
@@ -55,6 +58,18 @@ To generate UI toolkit pages:
 
 ```
 $ npm run toolkit
+```
+
+To generate toolkit with 'watch' task running:
+
+```
+$ npm run cms-dev
+```
+
+To generate UI toolkit:
+
+```
+$ npm run cms-prod
 ```
 
 ### Deployment (staging only for now)
