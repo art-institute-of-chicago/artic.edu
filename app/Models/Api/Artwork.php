@@ -102,7 +102,7 @@ class Artwork extends BaseApiModel
         $details = [];
 
         if ($this->artists != null && $this->artists->count() > 0) {
-            $details[] = array('key' => 'Artist', 'value' => $this->artists->implode('title', ', '));
+            $details[] = array('key' => str_plural('Artist', $this->artists->count()), 'value' => $this->artists->implode('title', ', '));
         } else {
             if (!empty($this->place_of_origin)) {
                 $details[] = array('key' => 'Origin', 'value' => $this->place_of_origin);
