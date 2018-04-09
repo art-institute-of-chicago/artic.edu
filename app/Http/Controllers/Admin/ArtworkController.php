@@ -29,13 +29,9 @@ class ArtworkController extends BaseApiController
                 'crop' => 'default',
             ],
         ],
-        'title' => [
+        'fullTitle' => [
             'title' => 'Title',
-            'field' => 'title',
-        ],
-        'id' => [
-            'title' => 'Datahub ID',
-            'field' => 'id',
+            'field' => 'fullTitle'
         ],
         'main_reference_number' => [
             'title' => 'Reference number',
@@ -44,6 +40,15 @@ class ArtworkController extends BaseApiController
         'artist_display' => [
             'title' => 'Artist',
             'field' => 'artist_display'
+        ]
+    ];
+
+    protected $titleColumnKey = 'fullTitle';
+
+    protected $browserColumns = [
+        'fullTitle' =>  [
+            'title' => 'Title',
+            'field' => 'fullTitle',
         ]
     ];
 

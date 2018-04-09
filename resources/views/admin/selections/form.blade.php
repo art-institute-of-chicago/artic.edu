@@ -1,4 +1,8 @@
-@extends('cms-toolkit::layouts.form')
+@extends('cms-toolkit::layouts.form', [
+    'additionalFieldsets' => [
+        ['fieldset' => 'side_related', 'label' => 'Sidebar Related']
+    ]
+])
 
 @section('contentFields')
     @formField('input', [
@@ -33,16 +37,45 @@
         'max' => 6
     ])
 
-    @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
-        'moduleName' => 'articles',
-        'name' => 'articles',
-        'label' => 'Article'
-    ])
-
     @formField('block_editor', [
         'blocks' => [
             'image', 'video', 'gallery', 'media_embed', 'paragraph', 'artwork', 'artworks'
         ]
     ])
+@stop
+
+@section('fieldsets')
+    <a17-fieldset id="side_related" title="Sidebar Related - Only one will show up randomly">
+        @formField('browser', [
+            'routePrefix' => 'collection.articles_publications',
+            'moduleName' => 'videos',
+            'max' => 1,
+            'name' => 'videos',
+            'label' => 'Related video'
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'collection.articles_publications',
+            'moduleName' => 'articles',
+            'max' => 1,
+            'name' => 'articles',
+            'label' => 'Related article',
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'max' => 1,
+            'name' => 'sidebarExhibitions',
+            'label' => 'Related Exhibition',
+            'moduleName' => 'exhibitions',
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'events',
+            'name' => 'sidebarEvent',
+            'label' => 'Related event',
+            'max' => 1
+        ])
+    </a17-fieldset>
 @stop

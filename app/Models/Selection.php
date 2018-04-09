@@ -88,6 +88,52 @@ class Selection extends Model
         return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
     }
 
+    public function sidebarExhibitions()
+    {
+        return $this->apiElements()->where('relation', 'sidebarExhibitions');
+    }
+
+    public function sidebarEvent()
+    {
+        return $this->belongsToMany('App\Models\Event', 'event_selection_sidebar')->withPivot('position')->orderBy('position');
+    }
+
+    public function videos()
+    {
+        return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
+    }
+
+    public function getFeaturedRelatedAttribute()
+    {
+        // Select a random element from these relationships below and return one per request
+        if ($this->selectedFeaturedRelated)
+            return $this->selectedFeaturedRelated;
+
+        $types = collect(['articles', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
+        foreach ($types as $type) {
+            if ($item = $this->$type()->first()) {
+                switch ($type) {
+                    case 'videos':
+                        $type = 'medias';
+                        break;
+                    case 'sidebarEvent':
+                        $type = 'event';
+                        break;
+                    case 'sidebarExhibitions':
+                        $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
+                        $type = 'exhibition';
+                        break;
+                }
+
+                $this->selectedFeaturedRelated = [
+                    'type' => str_singular($type),
+                    'items' => [$item]
+                ];
+                return $this->selectedFeaturedRelated;
+            }
+        }
+    }
+
     public function getArtworkImages($count = 5)
     {
         $list = collect([]);

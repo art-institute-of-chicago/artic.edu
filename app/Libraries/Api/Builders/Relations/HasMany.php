@@ -39,6 +39,10 @@ class HasMany
         // On this case we just save the Id's array coming from the API
         // And pass it to the query to filter by ID.
         $ids = $this->parent->{$this->localKey};
+
+        // Sometimes it's just an id and not an array
+        $ids = is_array($ids) ? $ids : [$ids];
+
         $this->query->ids($ids);
     }
 

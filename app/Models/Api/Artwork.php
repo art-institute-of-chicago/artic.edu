@@ -22,6 +22,8 @@ class Artwork extends BaseApiModel
     protected $presenter       = 'App\Presenters\Admin\ArtworkPresenter';
     protected $presenterAdmin  = 'App\Presenters\Admin\ArtworkPresenter';
 
+    protected $appends = ['fullTitle'];
+
     public $mediasParams = [
         'hero' => [
             'default' => [
@@ -36,6 +38,18 @@ class Artwork extends BaseApiModel
     public function artists()
     {
         return $this->hasMany(\App\Models\Api\Artist::class, 'alt_artist_ids');
+    }
+
+    public function mainArtist()
+    {
+        return $this->hasMany(\App\Models\Api\Artist::class, 'artist_id');
+    }
+
+    public function getFullTitleAttribute()
+    {
+        $artist = $this->mainArtist ? $this->mainArtist->first() : null;
+        return $this->title . ' (' . ($artist->title ?? '') . ' #' . $this->main_reference_number . ')';
+
     }
 
     public function extraImages()
@@ -102,13 +116,16 @@ class Artwork extends BaseApiModel
         $details = [];
 
         if ($this->artists != null && $this->artists->count() > 0) {
-            $details[] = array('key' => 'Artist', 'value' => $this->artists->implode('title', ', '));
+            $details[] = array('key' => str_plural('Artist', $this->artists->count()), 'value' => $this->artists->implode('title', ', '));
         } else {
             if (!empty($this->place_of_origin)) {
                 $details[] = array('key' => 'Origin', 'value' => $this->place_of_origin);
             }
         }
 
+        if (!empty($this->alt_titles)) {
+            $details[] = array('key' => 'Alternate Names', 'value' => join($this->alt_titles, ', '));
+        }
         if (!empty($this->date_display)) {
             $details[] = array('key' => 'Date', 'value' => $this->date_display);
         }

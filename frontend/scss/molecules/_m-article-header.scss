@@ -746,6 +746,7 @@ $thumbTease: 4px;
 }
 
 .m-article-header--gallery .m-article-header__img-container {
+  @extend %a-loader;
   display: block;
   position: relative;
   flex: 0 0 auto;
@@ -759,6 +760,7 @@ $thumbTease: 4px;
 .m-article-header--gallery .m-article-header__img-container img {
   display: block;
   position: relative;
+  z-index: 1;
   left: 50%;
   top: 50%;
   width: auto;

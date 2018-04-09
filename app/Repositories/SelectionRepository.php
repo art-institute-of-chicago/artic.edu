@@ -21,12 +21,24 @@ class SelectionRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function hydrate($object, $fields)
+    {
+        $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
+        $this->hydrateBrowser($object, $fields, 'sidebarEvent', 'position', 'Event');
+        $this->hydrateBrowser($object, $fields, 'articles', 'position', 'Article');
+        $this->hydrateBrowser($object, $fields, 'videos', 'position', 'Video');
+
+        return parent::hydrate($object, $fields);
+    }
+
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
 
-        $this->updateBrowserApiRelated($object, $fields, ['artworks']);
+        $this->updateBrowserApiRelated($object, $fields, ['artworks', 'sidebarExhibitions']);
         $this->updateBrowser($object, $fields, 'articles');
+        $this->updateBrowser($object, $fields, 'sidebarEvent');
+        $this->updateBrowser($object, $fields, 'videos');
 
         parent::afterSave($object, $fields);
     }
@@ -37,6 +49,10 @@ class SelectionRepository extends ModuleRepository
 
         $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'collection');
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
+        $fields['browsers']['sidebarEvent'] = $this->getFormFieldsForBrowser($object, 'sidebarEvent', 'exhibitions_events', 'title', 'events');
+        $fields['browsers']['videos'] = $this->getFormFieldsForBrowser($object, 'videos', 'collection.articles_publications');
+
+        $fields['browsers']['sidebarExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'sidebarExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
 
         return $fields;
     }
