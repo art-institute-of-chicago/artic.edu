@@ -64,6 +64,7 @@
   @include breakpoint('small+') {
     display: flex;
     margin-top: auto;
+    align-self: flex-end;
   }
 }
 
