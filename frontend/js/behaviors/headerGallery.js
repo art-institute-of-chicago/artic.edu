@@ -13,10 +13,10 @@ const headerGallery = function(container) {
         activeIndex = index;
       }
       data[index] = {
-        src: button.getAttribute('data-gallery-img-src') || button.previousElementSibling.getAttribute('src'),
-        srcset: button.getAttribute('data-gallery-img-srcset') || button.previousElementSibling.getAttribute('srcset'),
-        width: button.getAttribute('data-gallery-img-width') || button.previousElementSibling.getAttribute('width'),
-        height: button.getAttribute('data-gallery-img-height') || button.previousElementSibling.getAttribute('height'),
+        src: button.getAttribute('data-gallery-img-src') || button.nextElementSibling.getAttribute('src') || '',
+        srcset: button.getAttribute('data-gallery-img-srcset') || button.nextElementSibling.getAttribute('srcset') || '',
+        width: button.getAttribute('data-gallery-img-width') || button.nextElementSibling.getAttribute('width') || '',
+        height: button.getAttribute('data-gallery-img-height') || button.nextElementSibling.getAttribute('height') || '',
         credit: button.getAttribute('data-gallery-img-credit') || '',
         creditUrl: button.getAttribute('data-gallery-img-credit-url') || '',
         shareUrl: button.getAttribute('data-gallery-img-share-url') || '',
@@ -41,7 +41,7 @@ const headerGallery = function(container) {
     });
   }
 
-  function _update() {
+  function _update(init) {
     forEach(nodes.thumbButtons, function(index, button) {
       if (index !== activeIndex) {
         data[index].active = false;
@@ -51,13 +51,16 @@ const headerGallery = function(container) {
         button.setAttribute('disabled','disabled');
       }
     });
-    let $hero = nodes.hero.querySelector('img');
-    $hero.src = '';
-    $hero.removeAttribute('srcset');
-    $hero.src = data[activeIndex].src;
-    $hero.setAttribute('srcset', data[activeIndex].srcset);
     nodes.share.setAttribute('data-share-url', data[activeIndex].shareUrl);
     nodes.share.setAttribute('data-share-title', data[activeIndex].shareTitle);
+
+    if (init) {
+      return;
+    }
+
+    let $hero = nodes.hero.querySelector('img');
+    $hero.src = data[activeIndex].src;
+    $hero.setAttribute('srcset', data[activeIndex].srcset);
 
     let creditNode;
     creditNode = document.createElement('span');
@@ -135,7 +138,7 @@ const headerGallery = function(container) {
       nodes.previous.addEventListener('click', _previousClick, false);
     }
     //
-    _update();
+    _update(true);
   }
 
   this.destroy = function() {
