@@ -109,6 +109,9 @@ class Artwork extends BaseApiModel
             }
         }
 
+        if (!empty($this->alt_titles)) {
+            $details[] = array('key' => 'Alternate Names', 'value' => join($this->alt_titles, ', '));
+        }
         if (!empty($this->date_display)) {
             $details[] = array('key' => 'Date', 'value' => $this->date_display);
         }
