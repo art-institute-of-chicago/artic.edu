@@ -4,7 +4,8 @@
   left: 0;
   right: 0;
   top: 0;
-  background-color: rgba($color__white,.9);
+  background-clip: padding-box;
+  background-color: rgba($color__white,.97);
   transition: opacity .2s, transform 0s 0s;
 
   @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {

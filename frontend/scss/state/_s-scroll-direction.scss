@@ -24,3 +24,18 @@
     transition: opacity .2s, transform 0s .2s;
   }
 }
+
+.s-scroll-direction-up.s-header-hide {
+  .g-header {
+    border-bottom: 1px solid rgba($color__black, .1);
+
+    @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+    }
+  }
+
+  .g-header__inner {
+    border-bottom-color: transparent;
+  }
+}
