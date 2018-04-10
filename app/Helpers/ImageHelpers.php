@@ -142,7 +142,7 @@ function aic_imageSettings($data) {
     $LQIPDimension = 25;
 
     if ($originalSrc && !$sourceType) {
-        if (strrpos($originalSrc, 'lakeimagesweb.artic.edu') > 0) {
+        if (strrpos($originalSrc, 'lakeimagesweb.artic.edu') > 0 or strrpos($originalSrc, '/iiif/') > 0) {
             $sourceType = 'lakeview';
         }
 
