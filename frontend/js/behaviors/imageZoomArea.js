@@ -198,6 +198,11 @@ const imageZoomArea = function(container) {
 
     imgWidth = initImgWidth * zoomFactor;
     imgHeight = initImgHeight * zoomFactor;
+
+    img.setAttribute('sizes', Math.round(imgWidth) + 'px');
+    if (window.picturefill) {
+      window.picturefill();
+    }
   }
 
   function _zoomIn(event) {
@@ -257,6 +262,7 @@ const imageZoomArea = function(container) {
     img.removeAttribute('width');
     img.removeAttribute('height');
     img.removeAttribute('srcset');
+    img.removeAttribute('sizes');
     active = false;
   }
 
@@ -314,6 +320,10 @@ const imageZoomArea = function(container) {
     btnShare.setAttribute('data-share-title', event.data.img.shareTitle);
 
     _handleResized();
+    img.setAttribute('sizes', Math.round(initImgWidth * zoomFactor) + 'px');
+    if (window.picturefill) {
+      window.picturefill();
+    }
 
     active = true;
   }
