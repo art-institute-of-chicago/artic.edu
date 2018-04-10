@@ -23,6 +23,7 @@ function aic_convertFromImageProxy($imageUrl, $options = [])
         "downloadName" => '',
         "credit" => '',
         "creditUrl" => '',
+        "lqip" => $lqip ?? null,
     );
 
     return $image;
@@ -56,6 +57,7 @@ function aic_convertFromImage($imageObject, $cropParams = [])
         "downloadName" => $imageObject->filename,
         "credit" => $credit,
         "creditUrl" => $creditUrl,
+        "lqip" => $lqip ?? null,
     );
 
     return $image;
@@ -131,6 +133,7 @@ function aic_imageSettings($data) {
     $originalSrc = $image['src'] ?? false;
     $width = $image['width'] ?? false;
     $height = $image['height'] ?? false;
+    $lqip = $image['lqip'] ?? null;
 
     $ratio = $settings['ratio'] ?? false;
     $ratioW = null;
@@ -177,6 +180,7 @@ function aic_imageSettings($data) {
                 'srcset' => null,
                 'width' => null,
                 'height' => null,
+                'lqip' => $lqip,
             );
         } else {
             return array(
@@ -185,6 +189,7 @@ function aic_imageSettings($data) {
                 'sizes' => $stringSizes,
                 'width' => $stringWidth,
                 'height' => $stringHeight,
+                'lqip' => $lqip,
             );
         }
     }
@@ -376,6 +381,7 @@ function aic_imageSettings($data) {
         'width' => $stringWidth,
         'height' => $stringHeight,
         'lazyload' => $lazyload,
+        'lqip' => $lqip,
     );
 }
 

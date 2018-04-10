@@ -133,7 +133,7 @@
           @endphp
           <button
             @if (isset($galleryImageThumbSettings['src']))
-                data-gallery-img-src="{{ $galleryImageThumbSettings['src'] }}"
+                data-gallery-img-src="{{ $galleryImageThumbSettings['lqip'] ?? $galleryImageThumbSettings['src'] }}"
             @endif
             @if (isset($galleryImageThumbSettings['srcset']))
                 data-gallery-img-srcset="{{ $galleryImageThumbSettings['srcset'] }}"

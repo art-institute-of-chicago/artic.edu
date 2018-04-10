@@ -9,7 +9,7 @@
 
         $srcset = $settings['srcset'];
         $sizes = $settings['sizes'];
-        $src = $settings['src'];
+        $src = $settings['lqip'] ?? $settings['src'];
         $width = $settings['width'];
         $height = $settings['height'];
     }
