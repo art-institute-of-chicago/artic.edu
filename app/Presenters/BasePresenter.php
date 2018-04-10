@@ -37,4 +37,16 @@ abstract class BasePresenter
         }
     }
 
+    public function galleryHeader()
+    {
+        switch ($this->headerType()) {
+            case 'gallery':
+                return true;
+                break;
+
+            default:
+                return false;
+        }
+    }
+
 }

@@ -76,6 +76,7 @@ class ArtworkController extends FrontController
 
         return view('site.articleDetail', [
           'contrastHeader' => $item->present()->contrastHeader,
+          'galleryHeader' => $item->present()->galleryHeader,
           'item' => $item
         ]);
     }
