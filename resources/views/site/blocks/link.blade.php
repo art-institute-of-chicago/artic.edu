@@ -1,8 +1,24 @@
 @php
+    $file = $block->file('attachment');
+
+    $link = $block->input('link');
+    $label = $block->input('title');
+
+    if ($file) {
+        if (empty($link)) {
+            $link = $file;
+        }
+
+        if (empty($label)) {
+            $parts = parse_url($file);
+            $label = basename($parts['path']);
+        }
+    }
+
     $items = [
         [
-            'href'  => $block->input('link'),
-            'label' => $block->input('title'),
+            'href'  => $link,
+            'label' => $label,
             'iconAfter' => 'new-window'
         ]
     ];
