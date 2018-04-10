@@ -3,16 +3,12 @@
   "version": "0.2.2",
   "private": true,
   "dependencies": {
-    "@area17/a17-helpers": "^0.6.5",
-    "gulp-cli": "^2.0.1",
-    "gulp-sass": "^3.2.1"
+    "@area17/a17-helpers": "^0.6.5"
   },
   "devDependencies": {
     "@antoine_a17/a17-node-sassdown": "1.0.7",
     "a17-script": "git+https://code.area17.com/a17/a17-script.git#gulp",
     "concurrently": "^3.5.0",
-    "cross-env": "^5.1.4",
-    "laravel-mix": "^2.0.0",
     "watch": "^1.0.2"
   },
   "scripts": {
@@ -23,11 +19,10 @@
     "build": "a17-script build",
     "toolkit": "a17-script toolkit",
     "production": "a17-script prod",
-    "cms-dev": "npm run cms-copy-blocks && concurrently \"cd vendor/a17/laravel-cms-toolkit && npm install --no-save && npm run hot\" \"npm run cms-watch\" && npm run cms-clean-blocks",
-    "cms-watch": "concurrently \"watch 'npm run cms-development' vendor/a17/laravel-cms-toolkit/public --wait=2 --interval=0.1\" \"npm run cms-watch-blocks\"",
-    "cms-development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "cms-prod": "npm run cms-copy-blocks && cd vendor/a17/laravel-cms-toolkit && npm install --no-save && npm run prod && cd ../../.. && npm run cms-production && npm run cms-clean-blocks",
-    "cms-production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "cms-dev": "mkdir -p vendor/a17/laravel-cms-toolkit/public npm run cms-copy-blocks && concurrently \"cd vendor/a17/laravel-cms-toolkit && npm ci && npm run hot\" \"npm run cms-watch\" && npm run cms-clean-blocks",
+    "cms-watch": "concurrently \"watch 'npm run cms-hot' vendor/a17/laravel-cms-toolkit/public --wait=2 --interval=0.1\" \"npm run cms-watch-blocks\"",
+    "cms-hot": "cd vendor/a17/laravel-cms-toolkit && cp -R public/ ${INIT_CWD}/public",
+    "cms-prod": "npm run cms-copy-blocks && cd vendor/a17/laravel-cms-toolkit && npm ci && npm run prod && cp -R public/ ${INIT_CWD}/public",
     "cms-copy-blocks": "npm run cms-clean-blocks && mkdir -p resources/assets/js/blocks/ && mkdir -p vendor/a17/laravel-cms-toolkit/frontend/js/components/blocks/customs/ && cp -R resources/assets/js/blocks/ vendor/a17/laravel-cms-toolkit/frontend/js/components/blocks/customs/",
     "cms-clean-blocks": "rm -rf vendor/a17/laravel-cms-toolkit/frontend/js/components/blocks/customs/*",
     "cms-watch-blocks": "watch 'npm run cms-copy-blocks' resources/assets/js/blocks --wait=2 --interval=0.1"
