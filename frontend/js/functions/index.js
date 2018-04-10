@@ -13,3 +13,4 @@ export { default as setScrollDirection } from './setScrollDirection';
 export { default as anchorLinksScroll } from './anchorLinksScroll';
 export { default as fontObservers } from './fontObservers';
 export { default as modals } from './modals';
+export { default as mediaQuery } from './mediaQuery';
