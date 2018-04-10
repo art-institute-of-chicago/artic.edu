@@ -7,6 +7,7 @@ const openImageFullScreen = function(container) {
     event.stopPropagation();
 
     let data = {
+      src: container.getAttribute('data-gallery-img-src') || container.parentNode.querySelector('img').src,
       srcset: container.getAttribute('data-gallery-img-srcset') || container.parentNode.querySelector('img').getAttribute('srcset'),
       width: container.getAttribute('data-gallery-img-width') || container.parentNode.querySelector('img').getAttribute('width'),
       height: container.getAttribute('data-gallery-img-height') || container.parentNode.querySelector('img').getAttribute('height'),

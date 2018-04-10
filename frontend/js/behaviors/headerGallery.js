@@ -41,6 +41,17 @@ const headerGallery = function(container) {
     });
   }
 
+  function _fixDisplay() {
+    let $hero = nodes.hero.querySelector('img');
+    if (data[activeIndex].width > data[activeIndex].height) {
+      $hero.style.minWidth = '100%';
+      $hero.style.minHeight = '';
+    } else {
+      $hero.style.minWidth = '';
+      $hero.style.minHeight = '100%';
+    }
+  }
+
   function _update(init) {
     forEach(nodes.thumbButtons, function(index, button) {
       if (index !== activeIndex) {
@@ -55,28 +66,42 @@ const headerGallery = function(container) {
     nodes.share.setAttribute('data-share-title', data[activeIndex].shareTitle);
 
     if (init) {
+      _fixDisplay();
       return;
     }
 
-    let $hero = nodes.hero.querySelector('img');
-    $hero.src = data[activeIndex].src;
-    $hero.setAttribute('srcset', data[activeIndex].srcset);
+    container.classList.add('s-updating');
 
-    let creditNode;
-    creditNode = document.createElement('span');
-    if (data[activeIndex].credit) {
-      if (data[activeIndex].creditUrl) {
-        creditNode = document.createElement('a');
-        creditNode.href = data[activeIndex].creditUrl;
+    setTimeout(function(){
+
+      let $hero = nodes.hero.querySelector('img');
+      $hero.src = data[activeIndex].src;
+      $hero.width = data[activeIndex].width;
+      $hero.height = data[activeIndex].height;
+      $hero.removeAttribute('srcset');
+      _fixDisplay();
+      window.requestAnimationFrame(function(){
+        $hero.setAttribute('srcset', data[activeIndex].srcset);
+      });
+
+      let creditNode;
+      creditNode = document.createElement('span');
+      if (data[activeIndex].credit) {
+        if (data[activeIndex].creditUrl) {
+          creditNode = document.createElement('a');
+          creditNode.href = data[activeIndex].creditUrl;
+        }
+        creditNode.innerHTML = data[activeIndex].credit || data[activeIndex].creditUrl;
+      } else {
+        creditNode.innerHTML = '';
       }
-      creditNode.innerHTML = data[activeIndex].credit || data[activeIndex].creditUrl;
-    } else {
-      creditNode.innerHTML = '';
-    }
-    creditNode.className = 'm-article-header__img-credit f-secondary';
-    creditNode.setAttribute('data-gallery-credit','');
-    nodes.credit.parentNode.replaceChild(creditNode, nodes.credit);
-    nodes.credit = creditNode;
+      creditNode.className = 'm-article-header__img-credit f-secondary';
+      creditNode.setAttribute('data-gallery-credit','');
+      nodes.credit.parentNode.replaceChild(creditNode, nodes.credit);
+      nodes.credit = creditNode;
+
+      container.classList.remove('s-updating');
+    }, 150)
   }
 
   function _thumbClick(event) {

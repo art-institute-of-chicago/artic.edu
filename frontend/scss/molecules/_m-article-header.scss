@@ -746,7 +746,6 @@ $thumbTease: 4px;
 }
 
 .m-article-header--gallery .m-article-header__img-container {
-  @extend %a-loader;
   display: block;
   position: relative;
   flex: 0 0 auto;
@@ -768,6 +767,7 @@ $thumbTease: 4px;
   height: auto;
   max-height: 100%;
   transform: translate(-50%, -50%);
+  transition: opacity .25s;
 }
 
 .m-article-header__img-credit {
@@ -1000,6 +1000,13 @@ $thumbTease: 4px;
     left: 10px;
   }
 
+.m-article-header--gallery .m-article-header__img-container {
+  transition: opacity .15s;
+}
+
+.m-article-header--gallery.s-updating .m-article-header__img-container {
+  opacity: 0;
+}
 
 
 .m-article-header__img-thumbs {

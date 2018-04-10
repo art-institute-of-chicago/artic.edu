@@ -307,6 +307,7 @@ const imageZoomArea = function(container) {
 
     img.setAttribute('width', initImgWidth);
     img.setAttribute('height', initImgHeight);
+    img.setAttribute('src', event.data.img.src);
     img.setAttribute('srcset', event.data.img.srcset);
 
     btnShare.setAttribute('data-share-url', event.data.img.shareUrl);
