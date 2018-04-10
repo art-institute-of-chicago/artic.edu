@@ -21,7 +21,7 @@ class PressReleasesController extends FrontController
 
     public function index(Request $request)
     {
-        $items = PressRelease::current()->published()->paginate();
+        $items = PressRelease::current()->published()->orderBy('publish_start_date', 'desc')->paginate();
         $title = 'Press Releases';
         $subNav = [
             ['label' => $title, 'href' => route('about.press'), 'active' => true],
