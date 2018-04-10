@@ -1,0 +1,28 @@
+
+@include breakpoint('small+') {
+  .o-sticky-filters {
+    position: relative;
+    padding-top: 100px;
+  }
+
+  .o-sticky-filters > .m-links-bar:first-child {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    transition: opacity .2s;
+  }
+
+  .m-links-bar + .o-sticky-filters {
+    margin-top: 0;
+  }
+
+  .m-links-bar + .o-sticky-filters > .m-links-bar:first-child::before {
+    display: none;
+    bottom: 0;
+    height: 100%;
+    border-bottom: 1px solid rgba($color__black, .1);
+    background-color: rgba($color__white, .97);
+    background-clip: padding-box;
+  }
+}

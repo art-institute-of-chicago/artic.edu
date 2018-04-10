@@ -43,3 +43,4 @@ export { default as triggerMediaModal } from './triggerMediaModal';
 export { default as triggerMediaInline } from './triggerMediaInline';
 export { default as closeRoadblock } from './closeRoadblock';
 export { default as closeModal } from './closeModal';
+export { default as stickyFilters } from './stickyFilters';

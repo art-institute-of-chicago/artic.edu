@@ -11,8 +11,12 @@
             }
         }
     }
+    $behavior = isset($behavior) ?? null;
+    if (isset($overflow) and $overflow) {
+        $behavior .= ' linksBar';
+    }
 @endphp
-<nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{!! (isset($overflow) and $overflow) ? ' data-behavior="linksBar"' : '' !!}>
+<nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{!! (isset($behavior)) ? ' data-behavior="'.$behavior.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}>
   @if ((isset($linksPrimary) and $linksPrimary) or (isset($primaryHtml) and $primaryHtml))
     <ul class="m-links-bar__items-primary{{ (isset($primaryVariation) and $primaryVariation) ? ' '.$primaryVariation : '' }}" data-links-bar-primary>
       @if (isset($linksPrimary) and $linksPrimary)
