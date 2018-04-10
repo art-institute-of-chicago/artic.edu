@@ -4,8 +4,12 @@
 
 <div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
+         @php
+            $image = $images[0];
+            $image['sourceType'] = 'lakeview';
+         @endphp
          @component('components.atoms._img')
-            @slot('image', $images[0])
+            @slot('image', $image)
             @slot('settings', array(
                 'lazyload' => false,
                 'srcset' => array(200,423,846,1692,3000,6000),
@@ -112,6 +116,7 @@
       @foreach ($images as $image)
         <li>
           @php
+            $image['sourceType'] = 'lakeview';
             $galleryImageThumbSettings = aic_imageSettings(array(
                 'settings' => array(
                     'srcset' => array(200,423,846,1692,3000,6000),
