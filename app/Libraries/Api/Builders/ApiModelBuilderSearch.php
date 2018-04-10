@@ -26,8 +26,8 @@ class ApiModelBuilderSearch extends ApiModelBuilder
     {
         $builder = clone $this;
 
-        $page    = $page ?: Paginator::resolveCurrentPage($pageName);
-        $perPage = $perPage ?: $this->model->getPerPage();
+        $page    = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
+        $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
         $results        = $this->forPage($page, $perPage)->get($columns);
         $paginationData = $this->query->getPaginationData();
@@ -38,7 +38,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
             $models = $this->extractModelsFlat($results);
         }
 
-        return $this->paginator($models, $paginationData->total, $perPage, $page, [
+        return $this->paginator($models, $paginationData->total, $perPage ?: 1, $page, [
             'path' => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);

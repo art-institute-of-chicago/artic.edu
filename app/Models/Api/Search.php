@@ -45,6 +45,27 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
+    public function scopeAllAggregations($query)
+    {
+        $aggs = [
+            'artist' => [
+                'terms' => [
+                    'field' => 'artist_id',
+                    'size' => 1000
+                ],
+                'aggs' => [
+                    'name' => [
+                        'terms' => [
+                            'field' => 'artist_titles.keyword'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
     public function scopeByGallery($query, $id)
     {
         $params = [

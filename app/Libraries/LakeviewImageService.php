@@ -22,6 +22,11 @@ class LakeviewImageService implements ImageServiceInterface
         $this->version  = config('lakeview.version');
     }
 
+    public function getBaseUrl()
+    {
+        return $this->base_url;
+    }
+
     public function getImage($object, $imageField = 'image_id', $width = '', $height = '')
     {
         $credit = null;

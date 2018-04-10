@@ -38,10 +38,12 @@
 @component('components.molecules._m-search-actions----collection')
 @endcomponent
 
-@component('components.molecules._m-active-filters')
-    @slot('links', $activeFilters)
-    @slot('clearAllLink', route('collection'))
-@endcomponent
+@if (!empty($activeFilters))
+    @component('components.molecules._m-active-filters')
+        @slot('links', $activeFilters)
+        @slot('clearAllLink', route('collection'))
+    @endcomponent
+@endif
 
 @component('components.molecules._m-search-triggers----collection')
 @endcomponent
@@ -51,26 +53,32 @@
 @endcomponent
 
 @component('components.organisms._o-collection-filters')
-    @slot('activeFilters', $activeFilters)
+    @if (!empty($activeFilters))
+        @slot('activeFilters', $activeFilters)
+    @endif
     @slot('clearAllLink', route('collection'))
     @slot('filterCategories', $filterCategories)
 @endcomponent
 
-@component('components.organisms._o-pinboard')
-    @slot('id', 'artworksList')
+@if ($artworks->count() > 0)
+    @component('components.organisms._o-pinboard')
+        @slot('id', 'artworksList')
 
-    @slot('cols_xsmall','2')
-    @slot('cols_small','2')
-    @slot('cols_medium','3')
-    @slot('cols_large','3')
-    @slot('cols_xlarge','4')
-    @slot('maintainOrder','false')
+        @slot('cols_xsmall','2')
+        @slot('cols_small','2')
+        @slot('cols_medium','3')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','4')
+        @slot('maintainOrder','false')
 
-    @component('site.collection._items')
-        @slot('artworks', $artworks)
+        @component('site.collection._items')
+            @slot('artworks', $artworks)
+        @endcomponent
     @endcomponent
-
-@endcomponent
+@else
+    @component('components.molecules._m-no-results')
+    @endcomponent
+@endif
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--buttons')

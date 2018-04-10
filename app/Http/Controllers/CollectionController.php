@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Repositories\Api\ArtworkRepository;
+use App\Repositories\Api\SearchRepository;
 use App\Models\Api\Artwork;
 use App\Models\Page;
 
@@ -13,18 +14,22 @@ use LakeviewImageService;
 class CollectionController extends FrontController
 {
     protected $apiRepository;
+    protected $searchRepository;
 
     const PER_PAGE = 20;
 
-    public function __construct(ArtworkRepository $repository)
+    public function __construct(ArtworkRepository $repository, SearchRepository $searchRepository)
     {
         $this->apiRepository = $repository;
+        $this->searchRepository = $searchRepository;
+
         parent::__construct();
     }
 
     public function index()
     {
-        $page = Page::forType('Art and Ideas')->with('apiElements')->first();
+        $page    = Page::forType('Art and Ideas')->with('apiElements')->first();
+        $filters = $this->searchRepository->generateFilters();
 
         // If we don't have a query let's load the boosted artworks
         if (request('q')) {
@@ -49,7 +54,7 @@ class CollectionController extends FrontController
           'intro' => $page->art_intro,
           'quickSearchLinks' => [],
           'filters' => [],
-          'filterCategories' => [],
+          'filterCategories' => $filters,
           'activeFilters' => array(
             array(
               'href' => '#',
