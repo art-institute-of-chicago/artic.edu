@@ -724,22 +724,28 @@ $thumbTease: 4px;
   flex-flow: column nowrap;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - #{112px - $thumbTease + $imgPadding});
-  min-height: 360px;
+  //height: calc(100vh - #{112px - $thumbTease + $imgPadding});
+  height: calc(100vh - 112px);
+  min-height: 500px;
+  max-height: 600px;
   padding-top: 16px;
-  padding-bottom: 124px;
+  padding-bottom: 88px;
   background-color: $color__bg--primary;
 
   @include breakpoint('small+') {
-    height: calc(100vh - #{128px - $thumbTease + $imgPadding});
-    min-height: 400px;
-    padding-top: 60px;
-    padding-bottom: 140px;
+    //height: calc(100vh - #{128px - $thumbTease + $imgPadding});
+    height: calc(100vh - 320px);
+    min-height: 660px;
+    max-height: 800px;
+    padding-top: 40px;
+    padding-bottom: 120px;
   }
 
   @include breakpoint('medium+') {
-    height: calc(100vh - #{140px - $thumbTease + $imgPadding});
-    min-height: none;
+    //height: calc(100vh - #{140px - $thumbTease + $imgPadding});
+    height: calc(100vh - 180px);
+    min-height: 720px;
+    max-height: 860px;
     padding-top: 48px;
     padding-bottom: 116px;
   }
