@@ -5,6 +5,8 @@ const sharePage = function(container) {
 
   const shareMenu = document.getElementById('shareMenu');
   let shareOpen = false;
+  let icon;
+  let iconClass;
 
   function _position() {
     positionElementToTarget({
@@ -30,6 +32,18 @@ const sharePage = function(container) {
     }
   }
 
+  function _updateIcon(state) {
+    if (icon && iconClass) {
+      if (state === 'default') {
+        icon.setAttribute('class',iconClass);
+        icon.querySelector('use').setAttribute('xlink:href','#'+iconClass);
+      } else {
+        icon.setAttribute('class','icon--close');
+        icon.querySelector('use').setAttribute('xlink:href','#icon--close');
+      }
+    }
+  }
+
   function _closeShareMenu() {
     if (shareOpen) {
       document.documentElement.classList.remove('s-shareMenu-active');
@@ -37,6 +51,8 @@ const sharePage = function(container) {
       shareMenu.removeAttribute('style');
       triggerCustomEvent(document, 'focus:untrap');
       setFocusOnTarget(container.parentNode);
+      container.classList.remove('s-active');
+      _updateIcon('default');
       shareOpen = false;
     }
   }
@@ -59,6 +75,8 @@ const sharePage = function(container) {
       triggerCustomEvent(document, 'focus:trap', {
         element: shareMenu
       });
+      container.classList.add('s-active');
+      _updateIcon('active');
       shareOpen = true;
     } else {
       _closeShareMenu();
@@ -95,6 +113,9 @@ const sharePage = function(container) {
   }
 
   function _init() {
+    icon = container.querySelector('svg[class*=icon--]');
+    iconClass = icon ? icon.getAttribute('class') : null;
+
     container.addEventListener('click', _handleClicks, false);
     document.addEventListener('shareMenu:close', _closeShareMenu, false);
     document.addEventListener('click', _clicksOutside, false);

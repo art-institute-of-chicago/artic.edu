@@ -8,7 +8,8 @@
   z-index: map-get($zindexs, 'shareMenu');
   left: colspan(3, xsmall);
   right: colspan(3, xsmall);
-  bottom: colspan(3, xsmall);
+  top: 50%;
+    margin-top: -144px;
   max-height: 80vh;
   background-color: $color__white;
   box-shadow: $shadow;
@@ -19,7 +20,6 @@
     left: colspan(10, small);
     right: colspan(10, small);
     top: 50%;
-    bottom: auto;
     margin-top: -144px;
   }
 
