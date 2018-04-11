@@ -35,6 +35,11 @@ class Artwork extends BaseApiModel
         ],
     ];
 
+    public function videos()
+    {
+        return $this->hasMany(\App\Models\Api\Video::class, 'video_ids');
+    }
+
     public function artists()
     {
         return $this->hasMany(\App\Models\Api\Artist::class, 'alt_artist_ids');
@@ -146,8 +151,8 @@ class Artwork extends BaseApiModel
         }
 
         $block = array(
-          "type" => 'deflist',
-          "items" =>$details
+          "type"  => 'deflist',
+          "items" => $details
         );
 
         return $block;

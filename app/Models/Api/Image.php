@@ -3,7 +3,6 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
-use A17\CmsToolkit\Models\Behaviors\HasPresenter;
 use LakeviewImageService;
 
 class Image extends BaseApiModel
@@ -46,7 +45,4 @@ class Image extends BaseApiModel
 
         return $image;
     }
-
-    // protected $presenter       = 'App\Presenters\Admin\DepartmentPresenter';
-    // protected $presenterAdmin  = 'App\Presenters\Admin\DepartmentPresenter';
 }
