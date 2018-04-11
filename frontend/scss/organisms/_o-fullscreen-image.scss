@@ -79,6 +79,10 @@
   flex: 0 0 auto;
 }
 
+.o-fullscreen-image:not(.s-zoomable) .o-fullscreen-image__img-actions > li:not(:last-child) {
+  display: none;
+}
+
 .o-fullscreen-image__img-actions > li:not(:first-child) {
   margin-left: 1px;
 }
