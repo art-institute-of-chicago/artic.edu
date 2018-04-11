@@ -281,7 +281,7 @@
                         @slot('items', $block['items']);
                             @if ($block["subtype"] === 'mosaic')
                                 @slot('imageSettings', array(
-                                    'srcset' => array(200,400,600,1000,1500),
+                                    'srcset' => array(200,400,600,1000,1500,3000,4500),
                                     'sizes' => aic_imageSizes(array(
                                           'xsmall' => '58',
                                           'small' => '28',
@@ -293,7 +293,7 @@
                             @endif
                             @if ($block["subtype"] === 'slider')
                                 @slot('imageSettings', array(
-                                    'srcset' => array(200,400,600,1000,1500),
+                                    'srcset' => array(200,400,600,1000,1500,3000,4500),
                                     'sizes' => aic_imageSizes(array(
                                           'xsmall' => '50',
                                           'small' => '35',

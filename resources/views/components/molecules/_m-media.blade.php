@@ -6,14 +6,13 @@
     $tag = (isset($item['url']) && $item['url'] && $type !== 'embed' && $type !== 'video') ? 'a' : 'span';
     $poster = isset($item['poster']) ? $item['poster'] : false;
 
-
     if ($type === 'embed' and strrpos($media['embed'],'api.soundcloud.com')) {
         $size = 's';
     }
 
     if (empty($imageSettings) && $size === 's') {
         $imageSettings = array(
-            'srcset' => array(300,600,800,1200,1600),
+            'srcset' => array(300,600,800,1200,1600,3000,4500),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
@@ -25,7 +24,7 @@
 
     if (empty($imageSettings) && $size === 'm') {
         $imageSettings = array(
-            'srcset' => array(300,600,800,1200,1600,2000),
+            'srcset' => array(300,600,800,1200,1600,2000,3000,4500),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
@@ -37,7 +36,7 @@
 
     if (empty($imageSettings) && $size === 'l') {
         $imageSettings = array(
-            'srcset' => array(300,600,800,1200,1600,2000),
+            'srcset' => array(300,600,800,1200,1600,2000,3000,4500),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
