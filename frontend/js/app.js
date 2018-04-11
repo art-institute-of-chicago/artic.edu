@@ -19,8 +19,6 @@ if (!A17.browserSpec || A17.browserSpec === 'html4') {
 
 A17.currentMediaQuery = getCurrentMediaQuery();
 A17.env = 'production';
-A17.ajaxActive = false;
-A17.failSafe = false;
 
 document.addEventListener('DOMContentLoaded', function(){
   if (A17.print) {
