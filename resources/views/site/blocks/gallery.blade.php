@@ -5,6 +5,7 @@
     foreach ($block->childs as $item) {
         $item->type = 'image';
         $item->size = 'gallery';
+        $item->fullscreen = true;
         $item->media = $item->imageAsArray('image', 'desktop');
         $item->captionTitle = $item->input('captionTitle');
         $item->caption = $item->input('caption');
@@ -15,7 +16,7 @@
 @component('components.organisms._o-gallery----'.$subtype)
     @if ($subtype === 'mosaic')
         @slot('imageSettings', array(
-            'srcset' => array(200,400,600,1000,1500),
+            'srcset' => array(200,400,600,1000,1500,3000,4500),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '28',
@@ -27,7 +28,7 @@
     @endif
     @if ($subtype === 'slider')
         @slot('imageSettings', array(
-            'srcset' => array(200,400,600,1000,1500),
+            'srcset' => array(200,400,600,1000,1500,3000,4500),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '50',
                   'small' => '35',

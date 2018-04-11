@@ -29,9 +29,6 @@
     <div class="o-gallery__media" data-behavior="dragScroll">
         @if (isset($items))
             @foreach ($items as $item)
-                @php
-                    $item['fullscreen'] = true;
-                @endphp
                 @component('components.molecules._m-media')
                     @slot('item', $item)
                     @slot('imageSettings', $imageSettings ?? '')
