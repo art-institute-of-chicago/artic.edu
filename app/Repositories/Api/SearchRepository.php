@@ -41,7 +41,7 @@ class SearchRepository extends BaseApiRepository
 
     public function generateFilters()
     {
-        // Run an empty search with all aggregations
+        // Run an empty search to get all aggregations
         $query = $this->model->query()->forceEndpoint('search')->allAggregations();
         $query->getSearch(0);
 
@@ -56,20 +56,35 @@ class SearchRepository extends BaseApiRepository
         {
             switch($name) {
                 case 'artist':
-                    $list = collect($data->buckets)->map(function ($item) {
+                    // Build all list options and sort by selected (move selected at the beginning)
+                    $activeList = false;
+                    $list = collect($data->buckets)->map(function ($item) use ($name, &$activeList) {
+                        $input = collect(explode(',', request()->input("{$name}_ids")));
+
+                        // If input contains the ID, remove it from the URL (uncheck link)
+                        if ($enabled = $input->contains($item->key)) {
+                            $activeList = true; // Keep the tab open if an element is selected
+                            $newInput = $input->forget($input->search($item->key));
+                        } else {
+                            $newInput = $input->push($item->key);
+                        }
+
+                        $route = route('collection', ["{$name}_ids" => join(',', $newInput->toArray())]);
+
                         return [
-                            'href' => route('collection', request()->input() + ['artist_id' => $item->key]),
+                            'href' => $route,
                             'count' => $item->doc_count,
-                            'label' => $item->name->buckets[0]->key
+                            'label' => $item->name->buckets[0]->key,
+                            'enabled' => $enabled
                         ];
-                    });
+                    })->sortByDesc('enabled');
 
                     $filters[] = [
-                        'type' => 'list',
-                        'title' => ucfirst($name),
-                        'active' => true,
-                        'listSearch' => true,
-                        'list' => $list,
+                        'type'        => 'list',
+                        'title'       => ucfirst($name),
+                        'active'      => $activeList,
+                        'list'        => $list,
+                        'listSearch'  => true,
                         'placeholder' => "Find {$name}"
                     ];
 

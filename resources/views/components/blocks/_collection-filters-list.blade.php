@@ -10,7 +10,7 @@
 @endif
     @foreach ($filterCategory['list'] as $link)
     <li>
-        <a href="{{ $link['href'] }}" class="checkbox f-secondary">{{ $link['label'] }} <em>({{ $link['count'] }})</em></a>
+        <a href="{{ $link['href'] }}" class="checkbox f-secondary {{ $link['enabled'] ? 's-checked' : '' }}">{{ $link['label'] }} <em>({{ $link['count'] }})</em></a>
     </li>
     @endforeach
 </ul>
