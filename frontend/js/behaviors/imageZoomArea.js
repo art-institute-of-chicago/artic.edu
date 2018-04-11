@@ -6,6 +6,7 @@ const imageZoomArea = function(container) {
   const maxZoomLevel = 3;
   const maxImgDim = 3000;
 
+  let eventData = null;
   let active = false;
 
   let btnZoomIn, btnZoomOut, btnClose, btnShare, img;
@@ -201,7 +202,7 @@ const imageZoomArea = function(container) {
 
     img.setAttribute('sizes', Math.round(imgWidth) + 'px');
     if (window.picturefill) {
-      window.picturefill();
+      window.picturefill(img);
     }
   }
 
@@ -256,6 +257,7 @@ const imageZoomArea = function(container) {
       return;
     }
     document.documentElement.classList.remove('s-fullscreenImage-active');
+    container.classList.remove('s-zoomable');
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     setFocusOnTarget(document.getElementById('a17'));
@@ -263,25 +265,17 @@ const imageZoomArea = function(container) {
     img.removeAttribute('height');
     img.removeAttribute('srcset');
     img.removeAttribute('sizes');
+    eventData = null;
     active = false;
   }
 
-  function _open(event) {
-    if (active || !event || !event.data || !event.data.img) {
-      return;
+  function _finishOpen() {
+
+    if (initImgWidth === 0 || initImgHeight === 0) {
+      img.removeEventListener('load', _finishOpen);
+      initImgWidth = img.naturalWidth;
+      initImgHeight = img.naturalHeight;
     }
-
-    document.documentElement.classList.add('s-fullscreenImage-active');
-    triggerCustomEvent(document, 'body:lock', {
-      breakpoints: 'all'
-    });
-    setFocusOnTarget(container);
-    triggerCustomEvent(document, 'focus:trap', {
-      element: container
-    });
-
-    initImgWidth = parseInt(event.data.img.width);
-    initImgHeight = parseInt(event.data.img.height);
 
     // for for if the image is smaller than the max dimension
     if (initImgWidth < maxImgDim && initImgHeight < maxImgDim) {
@@ -311,19 +305,50 @@ const imageZoomArea = function(container) {
       }
     }
 
+    container.classList.add('s-zoomable');
     img.setAttribute('width', initImgWidth);
     img.setAttribute('height', initImgHeight);
-    img.setAttribute('src', event.data.img.src);
-    img.setAttribute('srcset', event.data.img.srcset);
+    img.setAttribute('src', eventData.src);
+    img.setAttribute('srcset', eventData.srcset);
+    _bestFit();
+    img.setAttribute('sizes', Math.round(initImgWidth * zoomFactor) + 'px');
 
-    btnShare.setAttribute('data-share-url', event.data.img.shareUrl);
-    btnShare.setAttribute('data-share-title', event.data.img.shareTitle);
+    if (window.picturefill) {
+      window.picturefill(img);
+    }
+  }
+
+  function _open(event) {
+    if (active || !event || !event.data || !event.data.img) {
+      return;
+    }
+
+    eventData = event.data.img;
+
+    document.documentElement.classList.add('s-fullscreenImage-active');
+    triggerCustomEvent(document, 'body:lock', {
+      breakpoints: 'all'
+    });
+    setFocusOnTarget(container);
+    triggerCustomEvent(document, 'focus:trap', {
+      element: container
+    });
+
+    if (event.data.img.width !== 'auto' && event.data.img.height !== 'auto') {
+      initImgWidth = parseInt(event.data.img.width);
+      initImgHeight = parseInt(event.data.img.height);
+      _finishOpen();
+    } else {
+      initImgWidth = 0;
+      initImgHeight = 0;
+      img.addEventListener('load', _finishOpen, false);
+      img.setAttribute('src', eventData.src);
+    }
+
+    btnShare.setAttribute('data-share-url', eventData.shareUrl);
+    btnShare.setAttribute('data-share-title', eventData.shareTitle);
 
     _handleResized();
-    img.setAttribute('sizes', Math.round(initImgWidth * zoomFactor) + 'px');
-    if (window.picturefill) {
-      window.picturefill();
-    }
 
     active = true;
   }
