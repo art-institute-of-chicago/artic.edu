@@ -166,14 +166,16 @@
                     <strong class="f-caption-title">{!! $item['captionTitle'] !!}</strong> <br>
                 @endif
             @endif
-            @if (isset($item['caption']))<span class="f-caption">{!! $item['caption'] !!}</span>@endif
-            @if (!isset($item['hideShare']))
-            @component('components.atoms._btn')
-                @slot('variation', 'btn--quinary btn--icon m-media__share')
-                @slot('font', '')
-                @slot('icon', 'icon--share--24')
-                @slot('behavior','sharePage')
-            @endcomponent
+            @if (isset($item['caption']))
+                <span class="f-caption">{!! $item['caption'] !!}</span>
+                @if (!isset($item['hideShare']))
+                    @component('components.atoms._btn')
+                        @slot('variation', 'btn--quinary btn--icon m-media__share')
+                        @slot('font', '')
+                        @slot('icon', 'icon--share--24')
+                        @slot('behavior','sharePage')
+                    @endcomponent
+                @endif
             @endif
         @endif
     </figcaption>
