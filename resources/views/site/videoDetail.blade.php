@@ -37,7 +37,7 @@
         </div>
     </article>
 
-    @if ($relatedVideos)
+    @if ($relatedVideos->count() > 0)
         @component('components.molecules._m-title-bar')
             Related Videos
         @endcomponent
@@ -50,10 +50,8 @@
             @slot('cols_xlarge','4')
             @slot('behavior','dragScroll')
             @foreach ($relatedVideos as $item)
-                {{-- TODO: remove and use the Thumbnail from the video --}}
-                {{ $item->videoFront = $item->video_url }}
-                {{ $item->date = null }}
                 @component('components.molecules._m-listing----article-minimal')
+                    @slot('href', route('videos.show', $item))
                     @slot('item', $item)
                     @slot('imageSettings', array(
                         'fit' => 'crop',

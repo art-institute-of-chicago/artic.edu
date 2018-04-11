@@ -20,6 +20,8 @@ class Video extends Model
         'video_url'
     ];
 
+    protected $dates = ['date'];
+
     public $mediasParams = [
         'hero' => [
             'default' => [
@@ -51,6 +53,11 @@ class Video extends Model
     public function getRouteKeyName()
     {
         return 'id_slug';
+    }
+
+    public function getTypeAttribute()
+    {
+        return 'video';
     }
 
     public function getIdSlugAttribute()

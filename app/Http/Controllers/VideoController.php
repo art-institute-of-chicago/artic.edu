@@ -24,9 +24,6 @@ class VideoController extends FrontController
         if (empty($item)) {
             $item = $this->repository->getById((integer) $slug);
         }
-        $item->date = Carbon::createFromTimeString($item->date);
-        $item->type  = 'video';
-        $item->media = array('embed' => \EmbedConverter::convertUrl($item->video_url));
 
         $relatedVideos = Video::published()->limit(4)->whereNotIn('id', array($item['id']))->get();
 
