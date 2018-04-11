@@ -22,7 +22,7 @@ class VideoController extends FrontController
     {
         $item = $this->repository->forSlug($slug);
         if (empty($item)) {
-            $item = $this->repository->getById($slug);
+            $item = $this->repository->getById((integer) $slug);
         }
         $item->date = Carbon::createFromTimeString($item->date);
         $item->type  = 'video';
