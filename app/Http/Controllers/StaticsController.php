@@ -475,6 +475,7 @@ class StaticsController extends FrontController {
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'galleryHeader' => true,
       'article' => $article,
     ]);
   }
