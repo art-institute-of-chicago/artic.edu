@@ -502,7 +502,7 @@ class StaticsController extends FrontController {
         'video' => [
             'type' => 'embed',
             'size' => 'l',
-            'media' => $this->getEmbed(),
+            'media' => $this->getEmbed('youtube'),
             "poster" => $this->getImage(),
             'hideCaption' => true
         ],

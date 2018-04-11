@@ -7,20 +7,26 @@
         @component('components.molecules._m-article-header')
             @slot('title', $item->title)
             @slot('type', $item->type)
-            @slot('intro', $item->heading)
-            {{-- @slot('date', $item->date) --}}
+            @slot('date', $item->date)
         @endcomponent
 
         <div class="o-article__body o-blocks">
-            @component('components.molecules._m-media')
-                @slot('variation', 'o-blocks__block')
-                @slot('item', $item)
-            @endcomponent
-
             @component('components.blocks._blocks')
-                @slot('editorial', false)
-                @slot('blocks', array(array('type' => 'intro', 'content' => $item->heading)))
-                @slot('dropCapFirstPara', false)
+                @slot('blocks', array(
+                    array(
+                        "type" => 'media',
+                        "content" => array(
+                            'type' => 'embed',
+                            'size' => 'l',
+                            'media' => $item,
+                            'hideCaption' => true
+                        )
+                    ),
+                    array(
+                        'type' => 'text',
+                        'content' => '<p>'.$item->heading.'/<p>'
+                    ),
+                ))
             @endcomponent
 
             <div class="o-article__body-actions">
