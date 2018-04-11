@@ -6,6 +6,9 @@
     @foreach ($mainFeatures as $item)
         @component('components.molecules._m-listing----'.$item->type)
             @slot('item', $item)
+            @if ($item->type === 'selection')
+                @slot('singleImage',true)
+            @endif
             @slot('image', $item->feature_image)
             @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
             @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-module-title-2')
