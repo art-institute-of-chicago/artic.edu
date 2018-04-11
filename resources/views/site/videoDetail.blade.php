@@ -24,7 +24,7 @@
                     ),
                     array(
                         'type' => 'text',
-                        'content' => '<p>'.$item->heading.'/<p>'
+                        'content' => '<p>'.$item->heading.'</p>'
                     ),
                 ))
             @endcomponent
