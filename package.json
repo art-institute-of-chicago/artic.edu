@@ -23,7 +23,7 @@
     "cms-watch": "concurrently \"watch 'npm run cms-hot' vendor/a17/laravel-cms-toolkit/public --wait=2 --interval=0.1\" \"npm run cms-watch-blocks\"",
     "cms-hot": "cd vendor/a17/laravel-cms-toolkit && cp -a public/. ${INIT_CWD}/public/",
     "cms-prod": "npm run cms-copy-blocks && cd vendor/a17/laravel-cms-toolkit && npm ci && npm run prod && cp -a public/. ${INIT_CWD}/public/",
-    "cms-copy-blocks": "npm run cms-clean-blocks && mkdir -p resources/assets/js/blocks/ && mkdir -p vendor/a17/laravel-cms-toolkit/frontend/js/components/blocks/customs/ && cp -R resources/assets/js/blocks/ vendor/a17/laravel-cms-toolkit/frontend/js/components/blocks/customs/",
+    "cms-copy-blocks": "npm run cms-clean-blocks && mkdir -p resources/assets/js/blocks/ && mkdir -p vendor/a17/laravel-cms-toolkit/frontend/js/components/blocks/customs/ && cp -a resources/assets/js/blocks/. vendor/a17/laravel-cms-toolkit/frontend/js/components/blocks/customs/",
     "cms-clean-blocks": "rm -rf vendor/a17/laravel-cms-toolkit/frontend/js/components/blocks/customs/*",
     "cms-watch-blocks": "watch 'npm run cms-copy-blocks' resources/assets/js/blocks --wait=2 --interval=0.1"
   },
