@@ -24,6 +24,12 @@ const ajaxPageLoad = function() {
     } else {
       document.documentElement.classList.remove('s-filled-logo');
     }
+    // check to see if we need the gallery header class
+    if (doc.documentElement.classList.contains('s-gallery-header')) {
+      document.documentElement.classList.add('s-gallery-header');
+    } else {
+      document.documentElement.classList.remove('s-gallery-header');
+    }
   }
 
   function defaultStart(options,doc) {
