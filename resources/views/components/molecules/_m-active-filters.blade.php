@@ -14,7 +14,7 @@
     @endforeach
     </ul>
     <p class="m-active-filters__clear">
-        <a href="{{ $clearAllLink }}" class="f-buttons">Clear All</a>
+        <a href="{{ $clearAllLink }}" class="f-link">Clear All</a>
     </p>
 </div>
 @endif
