@@ -72,7 +72,8 @@
   @include untuck;
 }
 
-.dropdown__trigger.f-secondary {
+.dropdown__trigger.f-secondary,
+.dropdown__trigger.f-link {
   padding-top: 11px;
   padding-bottom: 9px;
 
@@ -191,6 +192,17 @@
   border: 0 none;
   border-radius: 0;
   color: $color__link;
+}
+
+.o-article__primary-actions .dropdown--filter .dropdown__trigger.f-secondary,
+.o-article__primary-actions .dropdown--filter .dropdown__trigger.f-link {
+  padding-top: 11px;
+  padding-bottom: 9px;
+
+  @include breakpoint('large+') {
+    padding-top: 7px;
+    padding-bottom: 15px;
+  }
 }
 
 .dropdown--filter .dropdown__trigger:hover {
