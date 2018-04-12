@@ -3841,7 +3841,7 @@ class StaticsController extends FrontController {
       'text' => $this->faker->paragraph(5),
     ));
     $article->push('ticketLink', '#');
-    $article->push('ticketPrices', '<p>$10 <strong>students</strong></p><p>$20 members</p><p>$30 non-members</p>');
+    $article->push('ticketPrices', '<p>$10 students</p><p>$20 members</p><p>$30 non-members</p>');
     $article->push('nav', $nav);
 
     return $article;
