@@ -27,7 +27,8 @@ class PressRelease extends Model
         'public',
         'publish_start_date',
         'publish_end_date',
-        'migrated_node_id'
+        'migrated_node_id',
+        'migrated_at',
     ];
 
     // public $translatedAttributes = [
@@ -41,7 +42,7 @@ class PressRelease extends Model
     ];
 
     public $checkboxes = ['published', 'active', 'public'];
-    public $dates = ['publish_start_date', 'publish_end_date'];
+    public $dates = ['publish_start_date', 'publish_end_date', 'migrated_at'];
 
     public $mediasParams = [
         'listing' => [

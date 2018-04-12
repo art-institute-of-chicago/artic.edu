@@ -55,6 +55,7 @@ class Event extends Model
         'buy_button_text',
         'buy_button_caption',
         'migrated_node_id',
+        'migrated_at'.
     ];
 
     const CLASSES_AND_WORKSHOPS = 1;
@@ -119,7 +120,7 @@ class Event extends Model
         'is_boosted',
     ];
 
-    public $dates = ['date', 'date_end'];
+    public $dates = ['date', 'date_end', 'migrated_at'];
 
     public $mediasParams = [
         'hero' => [

@@ -38,6 +38,7 @@ class Article extends Model
         'layout_type',
         'is_boosted',
         'migrated_node_id',
+        'migrated_at',
     ];
 
     public $slugAttributes = [
@@ -56,7 +57,7 @@ class Article extends Model
 
     public $checkboxes = ['published', 'is_boosted'];
 
-    public $dates = ['date'];
+    public $dates = ['date', 'migrated_at'];
 
     public $mediasParams = [
         'hero' => [
