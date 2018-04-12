@@ -198,7 +198,7 @@
     flex: none;
     margin-top: 0;
     opacity: 1;
-    transition: opacity .25s, top .4s $bezier--bounce, left .4s $bezier--bounce, height .4s $bezier--bounce;
+    transition: opacity .25s, top .4s $bezier--marius-mosaic, left .4s $bezier--marius-mosaic, height .4s $bezier--marius-mosaic;
   }
 
   .o-gallery__media > *:nth-child(1) { transition-delay: .1s; }
