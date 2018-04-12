@@ -29,7 +29,7 @@
                   'xsmall' => '58',
                   'small' => '58',
                   'medium' => '58',
-                  'large' => '58',
+                  'large' => '43',
                   'xlarge' => '43',
         )));
     }

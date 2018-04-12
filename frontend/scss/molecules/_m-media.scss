@@ -183,15 +183,21 @@
 
 
 .o-blocks {
-  @include breakpoint('xlarge') {
+  @include breakpoint('large+') {
     .m-media--m figcaption {
-      @include tucked-align-top($f-caption);
+      @include tucked-align-top($f-caption, 'large');
     }
 
     .m-media--m .m-media__share {
       display: block;
       position: static;
       margin-top: 24px;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    .m-media--m figcaption {
+      @include tucked-align-top($f-caption, 'xlarge');
     }
   }
 }
