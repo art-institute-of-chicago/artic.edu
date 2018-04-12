@@ -572,7 +572,7 @@ $f-secondary: generate-font-obj((
   font-loaded-class: $sans-serif-font-loaded-class,
   settings: (
     'xsmall': (font-size: 16, line-height: 24, font-weight: 'lighter', letter-spacing: .01em, push: 1),
-    'large+': (font-size: 17, line-height: 28, push: 0),
+    'medium+': (font-size: 17, line-height: 28, push: 0),
    )
 ));
 
