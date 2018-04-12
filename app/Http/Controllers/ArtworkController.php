@@ -74,9 +74,15 @@ class ArtworkController extends FrontController
             $item->recentlyViewedArtworks = $recentlyViewed;
         }
 
-        return view('site.articleDetail', [
+        // Build Explore further module
+        $exploreFurtherCollection = $this->apiRepository->exploreFurtherCollection($item, request()->input('exploreFurtherTagId'));
+        $exploreFurtherTags = $this->apiRepository->exploreFurtherTags($item);
+
+        return view('site.artworkDetail', [
           'contrastHeader' => $item->present()->contrastHeader,
-          'galleryHeader' => $item->present()->galleryHeader,
+          'galleryHeader'  => $item->present()->galleryHeader,
+          'exploreFurther'     => $exploreFurtherCollection,
+          'exploreFurtherTags' => $exploreFurtherTags,
           'item' => $item
         ]);
     }

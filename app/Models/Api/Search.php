@@ -56,6 +56,17 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeByIds($query, $ids)
+    {
+        $params = [
+            "terms" => [
+                "id" => $ids
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeMultimedia($query, $id)
     {
         $params = [

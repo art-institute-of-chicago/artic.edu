@@ -35,6 +35,39 @@ class Artwork extends BaseApiModel
         ],
     ];
 
+    public function getClassificationIdsAttribute()
+    {
+        $ids = $this->alt_classificaiton_ids;
+        array_push($ids, $this->classification_id);
+        $ids = array_filter($ids);
+
+        return empty($ids) ? null : $ids;
+    }
+
+    public function scopeAggregationClassification($query)
+    {
+        $aggs = [
+            'types' => [
+                'terms' => [
+                    'field' => 'classification_id'
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
+    public function scopeByClassifications($query, $ids)
+    {
+        $params = [
+            "terms" => [
+                "classification_id" => $ids
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function videos()
     {
         return $this->hasMany(\App\Models\Api\Video::class, 'video_ids');

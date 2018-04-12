@@ -119,6 +119,6 @@ class HomeController extends FrontController
         ,   'membership_module_short_copy' => $membership_module_short_copy
         ];
 
-        return view('home.index', $view_data);
+        return view('site.home', $view_data);
     }
 }
