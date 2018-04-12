@@ -1,21 +1,23 @@
-
-
 .m-header-block {
   position: relative;
-  padding-top: 38px;
+  margin-top: 0;
+  padding-top: 40px;
 
   @include breakpoint('small') {
-    padding-top: 42px;
+    padding-top: 44px;
   }
 
   @include breakpoint('medium+') {
-    padding-top: 48px;
+    padding-top: 52px;
   }
 
-  & + * {
+  & + *,
+  & + .m-intro-block,
+  & + .m-title-bar,
+  .o-visit & + .m-title-bar {
     margin-top: 24px;
 
-    @include breakpoint('small') {
+    @include breakpoint('small+') {
       margin-top: 32px;
     }
 
