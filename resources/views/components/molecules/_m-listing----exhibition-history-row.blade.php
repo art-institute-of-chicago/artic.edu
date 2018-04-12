@@ -19,9 +19,16 @@
         <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->listing_description }}</span>
         <br>
         <span class="m-listing__meta-bottom">
-            @component('components.atoms._date')
-                {!! $item->present()->formattedDate !!}
-            @endcomponent
+            @if (isset($formattedDate))
+              @component('components.atoms._date')
+                  {!! $formattedDate !!}
+              @endcomponent
+            @elseif (isset($date))
+              @component('components.atoms._date')
+                  @slot('tag','p')
+                  {{ $date->format('F j, Y') }}
+              @endcomponent
+            @endif
         </span>
     </span>
   @if ($item->slug)

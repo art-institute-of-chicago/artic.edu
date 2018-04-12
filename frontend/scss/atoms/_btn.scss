@@ -330,3 +330,10 @@
 .btn.s-hidden {
   display: none;
 }
+
+
+
+.btn.btn--icon.s-active .icon--close {
+  transform-origin: 8px 8px;
+  animation: rotate45deg .1s normal forwards;
+}

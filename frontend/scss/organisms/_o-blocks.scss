@@ -260,22 +260,31 @@
   }
 
   .m-media--m {
-    @include breakpoint('xlarge') {
+    @include breakpoint('large+') {
       display: flex;
       flex-flow: row-reverse nowrap;
     }
   }
 
   .m-media--m .m-media__img {
-    @include breakpoint('xlarge') {
+    @include breakpoint('large+') {
       flex: 0 0 auto;
+      width: colspan(43, large);
+    }
+
+    @include breakpoint('xlarge') {
       width: colspan(43, xlarge);
     }
   }
 
   .m-media--m figcaption {
-    @include breakpoint('xlarge') {
+    @include breakpoint('large+') {
       flex: 0 0 auto;
+      width: colspan(15, large);
+      padding-right: colspan(2, large);
+    }
+
+    @include breakpoint('xlarge') {
       width: colspan(15, xlarge);
       padding-right: colspan(2, xlarge);
     }

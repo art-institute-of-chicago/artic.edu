@@ -51,8 +51,8 @@ const sharePage = function(container) {
       shareMenu.removeAttribute('style');
       triggerCustomEvent(document, 'focus:untrap');
       setFocusOnTarget(container.parentNode);
-      container.classList.remove('s-active');
       _updateIcon('default');
+      container.classList.remove('s-active');
       shareOpen = false;
     }
   }

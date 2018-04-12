@@ -46,6 +46,10 @@
     margin-top: 20px;
   }
 
+  & + .m-header-block {
+    margin-top: 0;
+  }
+
   .m-intro-block + & {
     margin-top: 20px;
   }

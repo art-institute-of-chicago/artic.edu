@@ -1,16 +1,3 @@
-
-.o-collection-listing .m-header-block + .m-intro-block {
-  margin-top: 24px;
-
-  @include breakpoint('medium+') {
-    margin-top: 32px;
-  }
-
-  @include breakpoint('large+') {
-    margin-top: 40px;
-  }
-}
-
 .o-collection-listing > .m-search-bar,
 .o-collection-listing > .m-quick-search-links,
 .o-collection-listing > .m-search-actions,
