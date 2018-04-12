@@ -5,7 +5,7 @@
     @foreach ($links as $link)
     <li>
         @if (isset($link['href']))
-        <a href="{{ $link['href'] }}" class="f-buttons">
+        <a href="{{ $link['href'] }}" class="f-link">
             {!! $link['label'] !!}&nbsp;&nbsp;&rsaquo;
         </a>
         @else

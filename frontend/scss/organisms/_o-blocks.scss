@@ -304,7 +304,7 @@
   & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) a:not(.btn),
   & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) a:not(.btn),
   & > .f-body a:not(.btn) {
-    @include text-underline(1.02em, $color__text--tertiary);
+    @include text-underline(1.02em, $color__rules--secondary);
     color: $color__link--accent;
     text-decoration: none;
 
@@ -322,7 +322,7 @@
   .o-article--editorial & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) a,
   .o-article--editorial & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) a,
   & > .f-body-editorial a {
-    @include text-underline(.82em, $color__text--tertiary);
+    @include text-underline(.82em, $color__rules--secondary);
     color: $color__link--editorial;
     text-decoration: none;
 
@@ -389,6 +389,7 @@
   & > .f-body sup a,
   & > .f-body-editorial sub a,
   & > .f-body-editorial sup a {
-    text-decoration: none;
+    text-decoration: none !important;
+    background: none !important;
   }
 }

@@ -82,6 +82,14 @@
   transform: translateY(-50%);
 }
 
+a.m-media__img:hover img,
+a.m-media__img:hover video,
+a.m-media__img:hover embed,
+a.m-media__img:hover iframe,
+a.m-media__img:hover object {
+  opacity: .9;
+}
+
 .m-media__btn-download {
   position: absolute;
   right: 20px;
