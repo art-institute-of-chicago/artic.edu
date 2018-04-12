@@ -149,7 +149,32 @@ pre code {
   vertical-align: middle;
 }
 
-[data-behavior="dragScroll"].s-dragging::before {
+[data-behavior="dragScroll"].s-scrollable {
+  /* autoprefixer: off */
+  cursor: move;
+  cursor: ew-resize;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+  -ms-overflow-style: none;
+  overflow-y: -moz-scrollbars-none;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    display: none;
+  }
+}
+
+[data-behavior="dragScroll"].s-scrollable.s-mousedown {
+  /* autoprefixer: off */
+  cursor: move;
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
+}
+
+[data-behavior="dragScroll"].s-scrollable.s-dragging::before {
   content: '';
   position: fixed;
   z-index: map-get($zindexs, 'dragScrollLock');

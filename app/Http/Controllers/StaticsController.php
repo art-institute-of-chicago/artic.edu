@@ -451,7 +451,7 @@ class StaticsController extends FrontController {
         ),
       ),
     ));
-    $article->push('galleryImages', $this->getImages($this->faker->numberBetween(1,5)));
+    $article->push('galleryImages', $this->getImages($this->faker->numberBetween(1,10)));
     //$article->push('galleryImages', $this->getImages(1));
     $article->push('recentlyViewedArtworks', $this->getArtworks($this->faker->numberBetween(6,20)));
     $article->push('interestedThemes', array(

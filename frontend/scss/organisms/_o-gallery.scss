@@ -308,31 +308,6 @@
     }
   }
 
-  .o-gallery__media {
-    /* autoprefixer: off */
-    cursor: move;
-    cursor: ew-resize;
-    cursor: -webkit-grab;
-    cursor: -moz-grab;
-    cursor: grab;
-    -ms-overflow-style: none;
-    overflow-y: -moz-scrollbars-none;
-    -webkit-overflow-scrolling: touch;
-
-    &::-webkit-scrollbar {
-      -webkit-appearance: none;
-      display: none;
-    }
-  }
-
-  .o-gallery__media.s-mousedown {
-    /* autoprefixer: off */
-    cursor: move;
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-    cursor: grabbing;
-  }
-
   .o-gallery__media > * {
     flex: 0 0 auto;
     width: colspan(50, xsmall);

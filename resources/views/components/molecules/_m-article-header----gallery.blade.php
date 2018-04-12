@@ -112,11 +112,10 @@
         </li>
       </ul>
   </div>
-  <ul class="m-article-header__img-thumbs{{ (sizeof($images) === 1) ? ' m-article-header__img-thumbs--single-img' : ''}}" data-gallery-thumbs>
+  <ul class="m-article-header__img-thumbs{{ (sizeof($images) === 1) ? ' s-single-img' : ''}}" data-behavior="dragScroll" data-gallery-thumbs>
       @foreach ($images as $image)
         <li>
           @php
-            $image['sourceType'] = 'lakeview';
             $galleryImageThumbSettings = aic_imageSettings(array(
                 'settings' => array(
                     'srcset' => array(200,423,846,1692,3000,6000),

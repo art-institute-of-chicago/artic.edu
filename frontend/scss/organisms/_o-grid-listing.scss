@@ -109,31 +109,6 @@ Variant: `o-listing--single-row` - limits to a single row
       overflow-y: hidden;
     }
 
-    .o-grid-listing--single-row[class*="scroll@#{$name}"] {
-      /* autoprefixer: off */
-      cursor: move;
-      cursor: ew-resize;
-      cursor: -webkit-grab;
-      cursor: -moz-grab;
-      cursor: grab;
-      -ms-overflow-style: none;
-      overflow-y: -moz-scrollbars-none;
-      -webkit-overflow-scrolling: touch;
-
-      &::-webkit-scrollbar {
-        -webkit-appearance: none;
-        display: none;
-      }
-    }
-
-    .o-grid-listing--single-row[class*="scroll@#{$name}"].s-mousedown {
-      /* autoprefixer: off */
-      cursor: move;
-      cursor: -webkit-grabbing;
-      cursor: -moz-grabbing;
-      cursor: grabbing;
-    }
-
     .o-grid-listing--single-row[class*="scroll@#{$name}"]::after {
       content: '';
       display: block;
