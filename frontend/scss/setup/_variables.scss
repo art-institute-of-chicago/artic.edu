@@ -113,3 +113,12 @@ $grid-padding-tops: (
     opacity: 1;
   }
 }
+
+@keyframes rotate45deg {
+  0% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
