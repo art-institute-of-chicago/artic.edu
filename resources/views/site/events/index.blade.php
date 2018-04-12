@@ -39,8 +39,8 @@
                 @component('components.atoms._dropdown')
                   @slot('prompt', request('type') ? \App\Models\Event::$eventTypes[request('type')] : 'All event types')
                   @slot('ariaTitle', 'Filter by')
-                  @slot('variation','dropdown--filter f-buttons')
-                  @slot('font', 'f-buttons')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
                   @slot('options', $eventTypesLinks)
                 @endcomponent
             </li>
@@ -48,8 +48,8 @@
                 @component('components.atoms._dropdown')
                   @slot('prompt', request('audience') ? \App\Models\Event::$eventAudiences[request('audience')] : 'All audiences')
                   @slot('ariaTitle', 'Filter by')
-                  @slot('variation','dropdown--filter f-buttons')
-                  @slot('font', 'f-buttons')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
                   @slot('options', $eventAudiencesLinks)
                 @endcomponent
             </li>

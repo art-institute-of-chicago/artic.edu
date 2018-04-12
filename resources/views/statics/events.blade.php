@@ -35,8 +35,8 @@
                 @component('components.atoms._dropdown')
                   @slot('prompt', 'All event types')
                   @slot('ariaTitle', 'Filter by')
-                  @slot('variation','dropdown--filter f-buttons')
-                  @slot('font', 'f-buttons')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
                   @slot('options', array(
                     array('href' => '#', 'label' => 'All event types'),
                     array('href' => '#', 'label' => 'Classes and workshops'),
@@ -52,8 +52,8 @@
                 @component('components.atoms._dropdown')
                   @slot('prompt', 'All audiences')
                   @slot('ariaTitle', 'Filter by')
-                  @slot('variation','dropdown--filter f-buttons')
-                  @slot('font', 'f-buttons')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
                   @slot('options', array(
                     array('href' => '#', 'label' => 'All audiences'),
                     array('href' => '#', 'label' => 'Classes and workshops'),

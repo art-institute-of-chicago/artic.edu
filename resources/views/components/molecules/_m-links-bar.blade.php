@@ -1,5 +1,5 @@
 @php
-    $linksPrimaryFontClass = ' f-buttons';
+    $linksPrimaryFontClass = ' f-link';
     $isTabs = (isset($variation) and $variation === 'm-links-bar--tabs');
     $linksPrimaryFontClass = (isset($variation) and $variation === 'm-links-bar--buttons') ? ' btn f-buttons' : $linksPrimaryFontClass;
     $linksPrimaryFontClass = ($isTabs) ? ' f-module-title-2' : $linksPrimaryFontClass;
@@ -51,7 +51,7 @@
       @if (isset($linksSecondary) and $linksSecondary)
           @foreach ($linksSecondary as $link)
           <li class="m-links-bar__item{{ (isset($link['active']) and $link['active']) ? ' s-active' : '' }}">
-              <a class="m-links-bar__item-trigger{{ (isset($link['variation']) and $link['variation']) ? ' '.$link['variation'] : ' f-buttons' }}" href="{{ $link['href'] }}">{!! $link['label'] !!}@if (isset($link['icon']) and $link['icon'])<svg aria-hidden="true" class="{{ $link['icon'] }}"><use xlink:href="#{{ $link['icon'] }}" /></svg>@endif</a>
+              <a class="m-links-bar__item-trigger{{ (isset($link['variation']) and $link['variation']) ? ' '.$link['variation'] : $linksPrimaryFontClass }}" href="{{ $link['href'] }}">{!! $link['label'] !!}@if (isset($link['icon']) and $link['icon'])<svg aria-hidden="true" class="{{ $link['icon'] }}"><use xlink:href="#{{ $link['icon'] }}" /></svg>@endif</a>
           </li>
           @endforeach
       @endif

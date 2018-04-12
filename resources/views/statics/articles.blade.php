@@ -37,8 +37,8 @@
               @component('components.atoms._dropdown')
                 @slot('prompt', 'Sort by: Date')
                 @slot('ariaTitle', 'Sort list by')
-                @slot('variation','dropdown--filter f-buttons')
-                @slot('font', 'f-buttons')
+                @slot('variation','dropdown--filter f-link')
+                @slot('font', null)
                 @slot('options', array(
                   array('href' => '#', 'label' => 'Date'),
                   array('href' => '#', 'label' => 'Featured'),

@@ -46,8 +46,8 @@
                 @component('components.atoms._dropdown')
                   @slot('prompt', 'Decade: '.$decade_prompt)
                   @slot('ariaTitle', 'Select decade')
-                  @slot('variation','dropdown--filter f-buttons')
-                  @slot('font', 'f-buttons')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
                   @slot('options', $decades)
                 @endcomponent
             </li>
@@ -55,8 +55,8 @@
                 @component('components.atoms._dropdown')
                   @slot('prompt', 'Year: '.$year)
                   @slot('ariaTitle', 'Select decade')
-                  @slot('variation','dropdown--filter f-buttons')
-                  @slot('font', 'f-buttons')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
                   @slot('options', $years)
                 @endcomponent
             </li>

@@ -679,8 +679,8 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
             @component('components.atoms._dropdown')
               @slot('prompt', 'Select language')
               @slot('ariaTitle', 'Select language')
-              @slot('variation','dropdown--filter f-buttons')
-              @slot('font', 'f-buttons')
+              @slot('variation','dropdown--filter f-link')
+              @slot('font', null)
               @slot('options', array(
                 array('href' => '#', 'label' => 'English'),
                 array('href' => '#', 'label' => 'Español'),
@@ -786,8 +786,8 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
             @component('components.atoms._dropdown')
               @slot('prompt', 'All event types')
               @slot('ariaTitle', 'Filter by')
-              @slot('variation','dropdown--filter f-buttons')
-              @slot('font', 'f-buttons')
+              @slot('variation','dropdown--filter f-link')
+              @slot('font', null)
               @slot('options', array(
                 array('href' => '#', 'label' => 'All event types'),
                 array('href' => '#', 'label' => 'Classes and workshops'),

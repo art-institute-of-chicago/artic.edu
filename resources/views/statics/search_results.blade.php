@@ -254,8 +254,8 @@
                     @component('components.atoms._dropdown')
                       @slot('prompt', 'Date: Upcoming')
                       @slot('ariaTitle', 'Filter by')
-                      @slot('variation','dropdown--filter f-buttons')
-                      @slot('font', 'f-buttons')
+                      @slot('variation','dropdown--filter f-link')
+                      @slot('font', null)
                       @slot('options', array(
                         array('href' => '#', 'label' => 'Upcoming', 'active' => true),
                         array('href' => '#', 'label' => 'Past'),
@@ -266,8 +266,8 @@
                     @component('components.atoms._dropdown')
                       @slot('prompt', 'Show: All')
                       @slot('ariaTitle', 'Filter by')
-                      @slot('variation','dropdown--filter f-buttons')
-                      @slot('font', 'f-buttons')
+                      @slot('variation','dropdown--filter f-link')
+                      @slot('font', null)
                       @slot('options', array(
                         array('href' => '#', 'label' => 'All', 'active' => true),
                         array('href' => '#', 'label' => 'Exhibitions'),
@@ -343,8 +343,8 @@
                     @component('components.atoms._dropdown')
                       @slot('prompt', 'Show: All')
                       @slot('ariaTitle', 'Filter by')
-                      @slot('variation','dropdown--filter f-buttons')
-                      @slot('font', 'f-buttons')
+                      @slot('variation','dropdown--filter f-link')
+                      @slot('font', null)
                       @slot('options', array(
                         array('href' => '#', 'label' => 'All', 'active' => true),
                         array('href' => '#', 'label' => 'Articles'),
@@ -424,8 +424,8 @@
                     @component('components.atoms._dropdown')
                       @slot('prompt', 'Show: All')
                       @slot('ariaTitle', 'Filter by')
-                      @slot('variation','dropdown--filter f-buttons')
-                      @slot('font', 'f-buttons')
+                      @slot('variation','dropdown--filter f-link')
+                      @slot('font', null)
                       @slot('options', array(
                         array('href' => '#', 'label' => 'All', 'active' => true),
                         array('href' => '#', 'label' => 'Research'),

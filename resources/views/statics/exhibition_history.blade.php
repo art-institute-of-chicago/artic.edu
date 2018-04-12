@@ -46,8 +46,8 @@
                 @component('components.atoms._dropdown')
                   @slot('prompt', 'Decade: 2010-2017')
                   @slot('ariaTitle', 'Select decade')
-                  @slot('variation','dropdown--filter f-buttons')
-                  @slot('font', 'f-buttons')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
                   @slot('options', array(
                     array('href' => '#', 'label' => '2010-2017', 'active' => true),
                     array('href' => '#', 'label' => '2000-2009'),
@@ -62,8 +62,8 @@
                 @component('components.atoms._dropdown')
                   @slot('prompt', 'Year: 2016')
                   @slot('ariaTitle', 'Select decade')
-                  @slot('variation','dropdown--filter f-buttons')
-                  @slot('font', 'f-buttons')
+                  @slot('variation','dropdown--filter f-link')
+                  @slot('font', null)
                   @slot('options', array(
                     array('href' => '#', 'label' => '2017'),
                     array('href' => '#', 'label' => '2016', 'active' => true),

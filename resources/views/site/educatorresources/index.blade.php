@@ -100,8 +100,8 @@
                         @component('components.atoms._dropdown')
                           @slot('prompt', $filter['prompt'].': '.$filter['links'][array_search(true, array_column($filter['links'], 'active'))]['label'])
                           @slot('ariaTitle', 'Select decade')
-                          @slot('variation','dropdown--filter f-buttons')
-                          @slot('font', 'f-buttons')
+                          @slot('variation','dropdown--filter f-link')
+                          @slot('font', null)
                           @slot('options', $filter['links'])
                         @endcomponent
                     </li>
