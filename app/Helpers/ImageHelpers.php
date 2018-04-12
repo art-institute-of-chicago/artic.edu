@@ -150,6 +150,10 @@ function aic_imageSettings($data) {
             $sourceType = 'artinstituteshop';
         }
 
+        if (strrpos($originalSrc, 'placehold.dev.area17.com') > 0) {
+            $sourceType = 'placehold';
+        }
+
         if (strrpos($originalSrc, 'imgix.net') > 0) {
             $sourceType = 'imgix';
         }
