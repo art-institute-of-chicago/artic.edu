@@ -169,11 +169,9 @@
   }
 
   .g-modal__title {
-    @extend %f-display-1;
   }
 
   .g-modal__intro {
-    @extend %f-module-title-1;
     margin-top: 24px;
     color: $color__text--secondary;
   }
@@ -225,7 +223,6 @@
   }
 
   .g-modal__form-note {
-    @extend %f-caption;
     margin-top: 32px;
     color: $color__text--secondary;
   }

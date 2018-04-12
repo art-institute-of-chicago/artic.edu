@@ -20,8 +20,8 @@
         @endif
 
         <div class="g-modal__main">
-            <h3 class="g-modal__title">{{ $modal['title'] }}</h3>
-            <p class="g-modal__intro">{{ $modal['intro'] }}</p>
+            <h3 class="g-modal__title f-display-1">{{ $modal['title'] }}</h3>
+            <p class="g-modal__intro f-secondary">{{ $modal['intro'] }}</p>
 
             <form action="" class="g-modal__form">
                 <div class="g-modal__form-row g-modal__form-row--split">
@@ -58,7 +58,7 @@
                     @endcomponent
                 </div>
 
-                <p class="g-modal__form-note">By joining you agree to the <a href="#">Terms and Conditions</a></p>
+                <p class="g-modal__form-note f-caption">By joining you agree to the <a href="#">Terms and Conditions</a></p>
             </form>
 
             <button class="g-modal__close" data-behavior="closeRoadblock">
