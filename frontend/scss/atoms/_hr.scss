@@ -14,9 +14,12 @@ hr,
     margin-top: 40px;
   }
 
-  &:first-child,
-  &.hr--flush-top {
+  &:first-child {
     margin-top: 0;
+  }
+
+  &.hr--flush-top {
+    margin-top: -1px;
   }
 
   .m-listing-header + & {
