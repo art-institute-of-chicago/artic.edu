@@ -57,8 +57,14 @@ class Artwork extends BaseApiModel
         $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
 
         $params = [
-            "terms" => [
-                "classification_id" => $ids
+            "bool" => [
+                "must" => [
+                    [
+                        "terms" => [
+                            "classification_id" => $ids
+                        ]
+                    ]
+                ]
             ]
         ];
 
@@ -74,8 +80,14 @@ class Artwork extends BaseApiModel
         $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
 
         $params = [
-            "terms" => [
-                "artist_id" => $ids
+            "bool" => [
+                "must" => [
+                    [
+                        "terms" => [
+                            "artist_id" => $ids
+                        ]
+                    ]
+                ]
             ]
         ];
 
@@ -91,8 +103,14 @@ class Artwork extends BaseApiModel
         $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
 
         $params = [
-            "terms" => [
-                "style_id" => $ids
+            "bool" => [
+                "must" => [
+                    [
+                        "terms" => [
+                            "style_id" => $ids
+                        ]
+                    ]
+                ]
             ]
         ];
 
