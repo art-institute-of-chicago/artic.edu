@@ -26,6 +26,14 @@ hr,
     margin-top: 16px;
   }
 
+  .o-grid-listing + & {
+    margin-top: 36px;
+
+    @include breakpoint('medium+') {
+      margin-top: 60px;
+    }
+  }
+
   &.hr--dark {
     border-top-color: $color__rules--quaternary;
 

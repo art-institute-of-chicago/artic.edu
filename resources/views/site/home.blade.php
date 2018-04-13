@@ -21,15 +21,12 @@
 @endcomponent
 
 @component('components.molecules._m-intro-block')
-    @slot('links', array(array('label' => 'Plan your visit', 'href' => $_pages['visit'], 'variation' => 'btn')))
-    {{ $intro }}
-@endcomponent
-
-@component('components.molecules._m-links-bar')
-    @slot('linksPrimary', array(
+    @slot('links', array(
+        array('label' => 'Plan your visit', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons'),
         array('label' => 'Hours and admission fees&nbsp;&nbsp;&rsaquo;', 'href' => $_pages['hours'], 'variation' => 'arrow-link'),
         array('label' => 'Directions and parking&nbsp;&nbsp;&rsaquo;', 'href' => $_pages['directions'], 'variation' => 'arrow-link')
     ))
+    {{ $intro }}
 @endcomponent
 
 @component('components.molecules._m-title-bar')
@@ -110,6 +107,10 @@
     ))
 @endcomponent
 
+@component('components.atoms._hr')
+    @slot('variation', 'u-show@small+')
+@endcomponent
+
 @component('components.molecules._m-cta-banner----become-a-member')
     @slot('image', $membership_module_image)
     @slot('href', $membership_module_url)
@@ -175,9 +176,10 @@
         @component('components.molecules._m-listing----product')
             @slot('simple', true)
             @slot('item', $item)
+            @slot('imgVariation','m-listing__img--square')
             @slot('imageSettings', array(
                 'fit' => 'clamp',
-                'ratio' => '3:4',
+                'ratio' => '1:1',
                 'srcset' => array(200,400,600),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '216px',

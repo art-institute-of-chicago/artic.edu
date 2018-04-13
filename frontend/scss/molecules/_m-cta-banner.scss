@@ -2,10 +2,28 @@
 .m-cta-banner {
   position: relative;
   height: 240px;
+  margin-top: 36px;
   overflow: hidden;
+
+  & + * {
+    margin-top: 36px;
+  }
 
   @include breakpoint('small+') {
     height: 160px;
+    margin-top: 48px;
+
+    & + * {
+      margin-top: 48px;
+    }
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 60px;
+
+    & + * {
+      margin-top: 60px;
+    }
   }
 }
 

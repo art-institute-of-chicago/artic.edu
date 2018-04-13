@@ -103,8 +103,6 @@ Variant: `o-listing--single-row` - limits to a single row
         margin-left: colspan(3, $name, 0, true);
         padding-left: colspan(1, $name);
       }
-      margin-bottom: -4px;
-      padding-bottom: 4px;
       overflow-x: auto;
       overflow-y: hidden;
     }
@@ -415,13 +413,19 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
 ***/
 
 // draw some keylines to the right of the items
+.o-grid-listing--gridlines-right,
+.o-grid-listing--gridlines-cols {
+  margin-bottom: -4px; // why? because design thats why..
+  padding-bottom: 4px; // why? because design thats why..
+}
+
 .o-grid-listing--gridlines-right > *::after,
 .o-grid-listing--gridlines-cols > *::after {
   content: '';
   display: none;
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: -4px; // why? because design thats why..
   width: 1px;
   background-color: $color__rules--tertiary;
   pointer-events: none;
@@ -435,11 +439,6 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
       }
     }
   }
-}
-
-.o-grid-listing--gridlines-right > *::after,
-.o-grid-listing--single-row.o-grid-listing--gridlines-cols > *::after {
-  bottom: 4px; // why? because design thats why..
 }
 
 // if following a hr and no grid lines, tweak position

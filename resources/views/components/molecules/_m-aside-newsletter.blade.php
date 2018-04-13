@@ -4,7 +4,7 @@
     <span class="m-aside-newsletter__field">
       <label for="email" class="f-secondary">Email address</label>
       <input type="text" name="email" class="f-secondary" placeholder="{{ $placeholder ?? '' }}">
-      <button type="submit" class="{{ $btnFont ?? 'f-buttons' }}">Sign Up</button>
+      <button type="submit" class="{{ $btnFont ?? 'f-buttons' }}">Subscribe</button>
     </span>
     @if (isset($error) and $error)
     <em class="m-aside-newsletter__msg m-aside-newsletter__msg--error f-buttons">{{ $error }}</em>

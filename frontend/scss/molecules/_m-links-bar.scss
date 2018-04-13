@@ -66,6 +66,18 @@
     }
   }
 
+  & + .hr {
+    margin-top: 36px;
+
+    @include breakpoint('small+') {
+      margin-top: 48px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 60px;
+    }
+  }
+
   @include breakpoint('small+') {
     flex-wrap: nowrap;
   }
