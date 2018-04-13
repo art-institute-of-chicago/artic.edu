@@ -37,7 +37,7 @@ class Artwork extends BaseApiModel
 
     public function getClassificationIdsAttribute()
     {
-        $ids = $this->alt_classificaiton_ids;
+        $ids = $this->alt_classificaiton_ids ?? [];
         array_push($ids, $this->classification_id);
         $ids = array_filter($ids);
 
