@@ -94,6 +94,7 @@
           @slot('variation', 'u-show@medium+')
           @slot('type', $article->featuredRelated['type'])
           @slot('items', $article->featuredRelated['items'])
+          @slot('titleFont', "f-list-1")
           @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
           @slot('imageSettings', array(
               'fit' => 'crop',
@@ -147,6 +148,7 @@
     @component('components.blocks._inline-aside')
         @slot('type', $article->featuredRelated['type'])
         @slot('items', $article->featuredRelated['items'])
+        @slot('titleFont', "f-list-1")
         @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
         @slot('imageSettings', array(
             'fit' => 'crop',
