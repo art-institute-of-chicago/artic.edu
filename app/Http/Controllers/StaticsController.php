@@ -206,6 +206,16 @@ class StaticsController extends FrontController {
     ]);
   }
 
+  public function article_cms_blocks() {
+    $article = $this->generateAllBlocksArticle('cms');
+
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'article' => $article,
+      'relatedEventsByDay' => $this->makeEventsByDates(1)
+    ]);
+  }
+
   public function generic_landing() {
     $navs = $this->generateGenericNav('landing');
 
@@ -2182,6 +2192,128 @@ class StaticsController extends FrontController {
         array_push($blocks, array(
             "type" => 'text',
             "content" => $this->generateParagraph(6)
+        ));
+        $article->push('blocks', $blocks);
+    } else if ($type === 'cms') {
+        $blocks = array();
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(12)
+        ));
+        array_push($blocks, array(
+            "type" => 'media',
+            "content" => array(
+                'type' => 'image',
+                'size' => 's',
+                'media' => $this->getImage(),
+                'caption' => $this->faker->paragraph(3, false)
+            )
+        ));
+        array_push($blocks, array(
+            "type" => 'media',
+            "content" => array(
+                'type' => 'video',
+                'size' => 'm',
+                'media' => $this->getVideo(),
+                "poster" => $this->getImage(),
+                'caption' => $this->faker->paragraph(3, false)
+            )
+        ));
+        array_push($blocks, array(
+            "type" => 'media',
+            "content" => array(
+                'type' => 'embed',
+                'size' => 'l',
+                'media' => $this->getEmbed(),
+                "poster" => $this->getImage(),
+                'caption' => $this->faker->paragraph(3, false)
+            )
+        ));
+        array_push($blocks, array(
+            "type" => 'gallery',
+            "subtype" => 'mosaic',
+            "title" => 'Mosaic Gallery',
+            "caption" => $this->faker->paragraph(3, false),
+            "items" => $this->getGalleryImages(6),
+        ));
+        array_push($blocks, array(
+            "type" => 'gallery',
+            "subtype" => 'slider',
+            "title" => 'Slider Gallery',
+            "caption" => $this->faker->paragraph(3, false),
+            "items" => $this->getGalleryImages(6),
+        ));
+        array_push($blocks, array(
+            "type" => 'media',
+            "content" => array(
+                'type' => 'embed',
+                'size' => 'l',
+                'media' => $this->getEmbed(),
+                "poster" => $this->getImage(),
+                'caption' => $this->faker->paragraph(3, false)
+            )
+        ));
+        array_push($blocks, array(
+            "type" => 'quote',
+            "content" => $this->faker->paragraph(6, false)
+        ));
+        array_push($blocks, array(
+            "type" => 'unorderedList',
+            "items" => array(
+              $this->faker->sentence(6),
+              $this->faker->sentence(6),
+              $this->faker->sentence(6),
+            )
+        ));
+        array_push($blocks, array(
+            "type" => 'orderedList',
+            "items" => array(
+              $this->faker->sentence(6),
+              $this->faker->sentence(6),
+              $this->faker->sentence(6),
+            )
+        ));
+        array_push($blocks, array(
+            "type" => 'become-a-member',
+        ));
+        array_push($blocks, array(
+            "type" => 'time-line',
+            "items" => $this->getTimelineEvents(3)
+        ));
+        array_push($blocks, array(
+            "type" => 'link-list',
+            "links" => array(
+                  array('label' => 'Quis finibus maximus', 'href' => '#'),
+                  array('label' => 'Ut fermentum est', 'href' => '#', 'iconAfter' => 'new-window'),
+                  array('label' => 'In tempor velit', 'href' => '#', 'iconAfter' => 'new-window')
+              )
+        ));
+        array_push($blocks, array(
+            "type" => 'listing',
+            "subtype" => 'product',
+            "items" => $this->getProducts(3),
+        ));
+        array_push($blocks, array(
+            "type" => 'gallery',
+            "subtype" => 'mosaic',
+            "title" => 'Mosaic Gallery',
+            "caption" => $this->faker->paragraph(3, false),
+            "items" => $this->getGalleryImages(6),
+        ));
+        array_push($blocks, array(
+            "type" => 'gallery',
+            "subtype" => 'slider',
+            "title" => 'Slider Gallery',
+            "caption" => $this->faker->paragraph(3, false),
+            "items" => $this->getGalleryImages(6),
+        ));
+        array_push($blocks, array(
+            "type" => 'artwork',
+            "item" => $this->getArtwork(),
+        ));
+        $article->push('featuredRelated', array(
+           'type' => 'event',
+           'items' => $this->getEvents(1),
         ));
         $article->push('blocks', $blocks);
     }
