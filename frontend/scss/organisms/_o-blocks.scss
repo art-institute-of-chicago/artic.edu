@@ -2,7 +2,7 @@
 
 .o-blocks {
   & > .f-deck {
-    @include tucked-margin-top($f-deck, ('xsmall': 68));
+    @include tucked-margin-top($f-deck, ('xsmall': 84));
 
     &:first-child {
       @include tucked-align-top($f-deck);
@@ -24,6 +24,11 @@
     @extend %f-module-title-2;
   }
 
+  & > .f-deck + h4:not([class*=f-]),
+  & > .f-deck + .f-module-title-2 {
+    @include tucked-margin-top($f-module-title-2, ('xsmall': 76));
+  }
+
   /*****/
 
   & > h5:not([class*=f-]),
@@ -42,6 +47,11 @@
   & > .hr + h5:not([class*=f-]),
   & > .hr + .f-subheading-1 {
     @include tucked-margin-top($f-subheading-1, ('xsmall': 36));
+  }
+
+  & > .f-deck + h5:not([class*=f-]),
+  & > .f-deck + .f-subheading-1 {
+    @include tucked-margin-top($f-subheading-1, ('xsmall': 76));
   }
 
   /*****/
@@ -106,6 +116,13 @@
   & > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
   & > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
     @extend .list;
+  }
+
+  & > .f-deck + p:not([class*=f-]),
+  & > .f-deck + ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  & > .f-deck + ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  & > .f-deck + .f-body {
+    @include tucked-margin-top($f-body, ('xsmall': 76));
   }
 
   /*****/
@@ -196,8 +213,9 @@
 
   /*****/
 
-  .o-blocks__block {
-    clear: both;
+  .o-blocks__block,
+  .hr {
+    clear: left;
     margin-top: 32px;
 
     @include breakpoint('small+') {
@@ -209,7 +227,8 @@
     }
   }
 
-  .o-blocks__block:first-child {
+  .o-blocks__block:first-child,
+  .hr {
     margin-top: 0;
 
     @include breakpoint('small+') {
@@ -221,11 +240,16 @@
     }
   }
 
-  h4:not([class*=f-]) + .o-blocks__block,
-  h5:not([class*=f-]) + .o-blocks__block,
-  .f-module-title-2 + .o-blocks__block,
-  .f-subheading-1 + .o-blocks__block,
-  .o-blocks__block + .o-blocks__block {
+  p + .o-blocks__block,
+  ul + .o-blocks__block,
+  ol + .o-blocks__block,
+  h4 + .o-blocks__block,
+  h5 + .o-blocks__block,
+  p + .hr,
+  ul + .hr,
+  ol + .hr,
+  h4 + .hr,
+  h5 + .hr {
     margin-top: 24px;
 
     @include breakpoint('small+') {
@@ -233,7 +257,7 @@
     }
 
     @include breakpoint('medium+') {
-      margin-top: 48px;
+      margin-top: 52px;
     }
   }
 

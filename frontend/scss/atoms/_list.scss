@@ -36,6 +36,10 @@ Basic styles to both `ul` and `ol`
   padding-left: 1.1em;
 }
 
+.list > li {
+  padding-left: 12px;
+}
+
 ul.list > li {
   list-style-type: disc;
 }
