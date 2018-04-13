@@ -69,7 +69,7 @@ $bezier--marius-mosaic: cubic-bezier(.5, -.6, .5, 1.6);
 // grid spacing, used in `.o-grid-listing` and `.o-features`
 
 $grid-margin-tops: (
-  xsmall: 28,
+  xsmall: 16,
   small: 28,
   medium: 28,
   large: 32,
@@ -84,7 +84,21 @@ $grid-padding-tops: (
   xlarge: 1.5,
 );
 
+$pinboard-grid-margin-tops: (
+  xsmall: 16,
+  small: 28,
+  medium: 40,
+  large: 60,
+  xlarge: 60,
+);
 
+$pinboard-grid-padding-tops: (
+  xsmall: 28,
+  small: 28,
+  medium: 28,
+  large: 32,
+  xlarge: 32,
+);
 
 @keyframes reveal {
   0% {

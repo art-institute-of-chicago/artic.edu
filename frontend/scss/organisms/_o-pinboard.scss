@@ -1,23 +1,28 @@
-$pinboard-grid-margin-tops: (
-  xsmall: 28,
-  small: 28,
-  medium: 40,
-  large: 60,
-  xlarge: 60,
-);
-
-$pinboard-grid-padding-tops: (
-  xsmall: 28,
-  small: 28,
-  medium: 28,
-  large: 32,
-  xlarge: 32,
-);
-
 .o-pinboard {
   position: relative;
-  margin-top: 40px;
+  margin-top: 20px;
+  padding-top: 0.02px;
   box-shadow: 0 1px 0 $color__rules--primary inset;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @include breakpoint('small+') {
+    margin-top: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  @include breakpoint('medium+') {
+    margin-top: 40px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 }
 
 .m-links-bar + .o-pinboard {
@@ -54,7 +59,28 @@ $pinboard-grid-padding-tops: (
 @each $name, $point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-pinboard > * {
-      margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
+      margin-top: #{map-get($grid-margin-tops, $name)}px;
+      padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+    }
+
+    .o-pinboard > *::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background-color: $color__rules--primary;
+      pointer-events: none;
+    }
+
+    .o-pinboard > *:first-child {
+      padding-top: 0;
+
+      &::before {
+        content: none;
+        display: none;
+      }
     }
 
     .o-pinboard[class*="col@#{$name}"] {
@@ -62,6 +88,7 @@ $pinboard-grid-padding-tops: (
       flex-flow: row wrap;
       align-items: flex-start;
       justify-content: space-between;
+      padding-top: 0;
     }
 
     .o-pinboard[class*="col@#{$name}"] > * {
@@ -73,6 +100,11 @@ $pinboard-grid-padding-tops: (
       border-top: 1px solid $color__rules--primary;
       opacity: 0;
       transition: opacity .25s;
+
+      &::before {
+        content: none;
+        display: none;
+      }
     }
 
     .o-pinboard[class*="col@#{$name}"] > .s-positioned {

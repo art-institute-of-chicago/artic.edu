@@ -539,11 +539,12 @@
 .m-listing--hero .m-listing__img {
   display: block;
   position: relative;
-  max-height: calc(95vh - 112px);
+  height: 120vw;
   overflow: hidden;
 
-  @include breakpoint('small') {
-  max-height: calc(95vh - 128px);
+  @include breakpoint('small+') {
+    height: auto;
+    max-height: calc(95vh - 128px);
   }
 
   @include breakpoint('medium+') {
@@ -643,7 +644,7 @@
   right: 0;
   bottom: 0;
   min-height: 0;
-  padding: colspan(2, xsmall) colspan(3, xsmall);
+  padding: 20px colspan(3, xsmall);
 
   @include breakpoint('small+') {
     padding: colspan(2, small) colspan(3, small);

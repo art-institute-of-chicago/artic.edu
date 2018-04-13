@@ -76,11 +76,8 @@
     @endforeach
 @endcomponent
 
-@component('components.atoms._hr')
-@endcomponent
-
 @component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols')
+    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
     @slot('cols_medium','4')
     @slot('cols_large','4')
     @slot('cols_xlarge','4')
@@ -161,6 +158,9 @@
 @component('components.molecules._m-title-bar')
     @slot('links', array(array('label' => 'Explore the shop', 'href' => '#')))
     From the Shop
+@endcomponent
+
+@component('components.atoms._hr')
 @endcomponent
 
 @component('components.organisms._o-grid-listing')

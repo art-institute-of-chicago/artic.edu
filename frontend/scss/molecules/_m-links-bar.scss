@@ -477,7 +477,7 @@
 .m-links-bar--title-bar-companion {
   display: block;
   margin-top: 32px;
-  padding-top: 0;
+  padding-top: 16px;
   border-top: 0 none;
 
   @include breakpoint('small+') {

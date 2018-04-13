@@ -14,6 +14,8 @@ html {
 
 body {
   @include font-smoothing(on);
+  width: 100vw;
+  overflow-x: hidden;
   background: $color__bg;
   color: $color__text;
   font-family: $sans-serif-font;

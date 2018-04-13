@@ -9,11 +9,13 @@
     flex-flow: row nowrap;
   }
 
-  .m-header-block + & {
+  .m-header-block + &,
+  .o-features + & {
     padding-top: 16px;
   }
 
-  .m-header-block + &::before {
+  .m-header-block + &::before,
+  .o-features + &::before {
     content: '';
     position: absolute;
     z-index: 1;
