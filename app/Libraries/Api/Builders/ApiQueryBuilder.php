@@ -90,6 +90,14 @@ class ApiQueryBuilder {
 
 
     /**
+     * Completely raw ES query.
+     *
+     * @var array
+     */
+    public $rawQuery = [];
+
+
+    /**
      * Aggregations parameters for a raw ES query.
      *
      * @var array
@@ -394,6 +402,19 @@ class ApiQueryBuilder {
     }
 
     /**
+     * Perform a completely raw ES query
+     *
+     * @param  array $search
+     * @return $this
+     */
+    public function rawQuery($search)
+    {
+        $this->rawQuery = $search;
+
+        return $this;
+    }
+
+    /**
      * Add aggregations to the raw ES search
      *
      * @param  array $aggregations
@@ -472,7 +493,6 @@ class ApiQueryBuilder {
     {
         return $this->connection->get($endpoint, $this->resolveParameters());
     }
-
 
     /**
      * Use grammar to generate all parameters from the scopes as an array

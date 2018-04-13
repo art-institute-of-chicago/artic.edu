@@ -58,6 +58,8 @@ class Search extends BaseApiModel
 
     public function scopeByIds($query, $ids)
     {
+        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+
         $params = [
             "terms" => [
                 "id" => $ids

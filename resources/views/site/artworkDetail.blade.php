@@ -508,9 +508,11 @@
         @slot('tags', $exploreFurtherTags)
     @endcomponent
 
-    @component('components.atoms._hr')
+    {{-- Design shows no double bottom line. Commenting this one for now --}}
+    {{-- @component('components.atoms._hr')
         @slot('variation','hr--flush-top')
-    @endcomponent
+    @endcomponent --}}
+
     @component('components.organisms._o-pinboard')
         @slot('cols_small','2')
         @slot('cols_medium','3')

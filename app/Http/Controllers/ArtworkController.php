@@ -6,6 +6,7 @@ use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\SearchRepository;
 
 use App\Models\Page;
+use Input;
 
 use LakeviewImageService;
 
@@ -75,7 +76,7 @@ class ArtworkController extends FrontController
         }
 
         // Build Explore further module
-        $exploreFurtherCollection = $this->apiRepository->exploreFurtherCollection($item, request()->input('exploreFurtherTagId'));
+        $exploreFurtherCollection = $this->apiRepository->exploreFurtherCollection($item, request()->only('exFurther-classification', 'exFurther-style', 'exFurther-artist'));
         $exploreFurtherTags = $this->apiRepository->exploreFurtherTags($item);
 
         return view('site.artworkDetail', [

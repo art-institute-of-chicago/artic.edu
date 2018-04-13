@@ -62,16 +62,19 @@ class AicConnection implements ApiConnectionInterface
         // Guzzle needs to receive ['query' => [ 'par1' => val1, 'par2' => val2 .....]]
         // Let's leave the specific to the clients.
         $adaptedParameters = $this->client->adaptParameters($params);
+        $headers = $this->client->headers($params);
+
+        $options = array_merge($adaptedParameters, $headers);
 
         // Perform API request and caching
         if (config('api.cache_enabled')) {
-            $cacheKey = $this->buildCacheKey($verb, $endpoint, $adaptedParameters, config('api.cache_version'));
+            $cacheKey = $this->buildCacheKey($verb, $endpoint, $options, config('api.cache_version'));
 
-            return \Cache::remember($cacheKey, config('api.cache_ttl'), function () use ($verb, $endpoint, $adaptedParameters) {
-                return $this->client->request($verb, $endpoint, $adaptedParameters);
+            return \Cache::remember($cacheKey, config('api.cache_ttl'), function () use ($verb, $endpoint, $options) {
+                return $this->client->request($verb, $endpoint, $options);
             });
         } else {
-            return $this->client->request($verb, $endpoint, $adaptedParameters);
+            return $this->client->request($verb, $endpoint, $options);
         }
     }
 
