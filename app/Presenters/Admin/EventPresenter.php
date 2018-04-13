@@ -17,7 +17,9 @@ class EventPresenter extends BasePresenter
 
     public function type()
     {
-        return \App\Models\Event::$eventTypes[$this->entity->type];
+        if ($this->entity->type) {
+            return \App\Models\Event::$eventTypes[$this->entity->type];
+        }
     }
 
     public function headerType()
