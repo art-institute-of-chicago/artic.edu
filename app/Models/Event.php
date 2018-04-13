@@ -55,7 +55,7 @@ class Event extends Model
         'buy_button_text',
         'buy_button_caption',
         'migrated_node_id',
-        'migrated_at'.
+        'migrated_at',
     ];
 
     const CLASSES_AND_WORKSHOPS = 1;
