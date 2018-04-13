@@ -35,15 +35,6 @@ class Artwork extends BaseApiModel
         ],
     ];
 
-    public function getClassificationIdsAttribute()
-    {
-        $ids = $this->alt_classificaiton_ids ?? [];
-        array_push($ids, $this->classification_id);
-        $ids = array_filter($ids);
-
-        return empty($ids) ? null : $ids;
-    }
-
     public function scopeAggregationClassification($query)
     {
         $aggs = [
@@ -59,9 +50,49 @@ class Artwork extends BaseApiModel
 
     public function scopeByClassifications($query, $ids)
     {
+        if (empty($ids)) {
+            return $query;
+        }
+
+        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+
         $params = [
             "terms" => [
                 "classification_id" => $ids
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeByArtists($query, $ids)
+    {
+        if (empty($ids)) {
+            return $query;
+        }
+
+        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+
+        $params = [
+            "terms" => [
+                "artist_id" => $ids
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeByStyles($query, $ids)
+    {
+        if (empty($ids)) {
+            return $query;
+        }
+
+        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+
+        $params = [
+            "terms" => [
+                "style_id" => $ids
             ]
         ];
 
@@ -110,7 +141,7 @@ class Artwork extends BaseApiModel
 
     public function getGalleryImagesAttribute()
     {
-        return $this->allImages();
+        return $this->allImages()->count() ? $this->allImages() : null;
     }
 
     public function categories()
@@ -293,8 +324,6 @@ class Artwork extends BaseApiModel
             "content" => $content
         );
 
-
-        // dd($content);
         return $blocks;
     }
 }

@@ -35,7 +35,20 @@ class GuzzleApiConsumer implements ApiConsumerInterface
      *
      */
     public function adaptParameters($params) {
-        return ['query' => $params];
+        return ['body' => json_encode($params)];
+    }
+
+    /**
+     * Add a default header and merge with headers coming from the parameters
+     *
+     */
+    public function headers($params) {
+        $headers = ['Content-Type' => 'application/json'];
+
+        if (isset($params['headers']))
+            $headers = array_merge($default, $params['headers']);
+
+        return ['headers' => $headers];
     }
 
     /**
