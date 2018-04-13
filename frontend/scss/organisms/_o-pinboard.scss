@@ -133,8 +133,8 @@
 
 @include breakpoint('xsmall') {
   .o-pinboard--2-col\@xsmall::before {
-    display: block;
-    left: colspan(29, xsmall);
+    //display: block;
+    //left: colspan(29, xsmall);
   }
 
   .o-pinboard--2-col\@xsmall > * {
@@ -144,8 +144,8 @@
 
 @include breakpoint('small') {
   .o-pinboard--2-col\@small::before {
-    display: block;
-    left: colspan(29, small);
+    //display: block;
+    //left: colspan(29, small);
   }
 
   .o-pinboard--2-col\@small > * {

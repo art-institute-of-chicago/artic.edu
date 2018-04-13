@@ -298,6 +298,14 @@
 }
 
 .g-footer__legals li {
+  @include breakpoint('small') {
+    margin-top: 4px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
   @include breakpoint('medium+') {
     flex: 0 0 auto;
     margin-left: 16px;

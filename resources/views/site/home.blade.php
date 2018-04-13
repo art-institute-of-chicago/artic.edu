@@ -71,8 +71,12 @@
     @endforeach
 @endcomponent
 
+@component('components.atoms._hr')
+@endcomponent
+
 @component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+    @slot('cols_small','2')
     @slot('cols_medium','4')
     @slot('cols_large','4')
     @slot('cols_xlarge','4')

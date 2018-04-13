@@ -435,7 +435,7 @@
 
 // variant `m-listing--feature`
 
-@include breakpoint('small+') {
+@include breakpoint('medium+') {
   .m-listing--feature .m-listing__link {
     display: block;
     position: relative;
@@ -465,7 +465,7 @@
     top: 0;
     bottom: 0;
     min-height: 0;
-    padding: colspan(2, small);
+    padding: colspan(2, medium);
     background-color: rgba(0,0,0,.25);
   }
 
@@ -494,9 +494,6 @@
 }
 
 .m-listing--feature .m-listing__meta {
-  @include breakpoint('medium+') {
-    padding: colspan(2);
-  }
 
   @include breakpoint('large+') {
     padding: colspan(1, large);
@@ -508,7 +505,7 @@
 }
 
 .m-listing--feature .m-listing__meta .f-tag {
-  @include tucked-margin-top($f-tag, ('xsmall': 32, 'small+': 8));
+  @include tucked-margin-top($f-tag, ('xsmall': 32, 'medium+': 8));
 }
 
 .m-listing--feature .m-listing__meta .f-module-title-2:first-child {
@@ -687,6 +684,24 @@
 
 .m-listing--hero .short-description.f-secondary {
   display: none;
+}
+
+.m-listing--hero .title {
+  @include breakpoint('small+') {
+    max-width: colspan(design-cols-to-colspan(10), small);
+  }
+
+  @include breakpoint('medium+') {
+    max-width: colspan(design-cols-to-colspan(10), medium);
+  }
+
+  @include breakpoint('large+') {
+    max-width: colspan(design-cols-to-colspan(10), large);
+  }
+
+  @include breakpoint('xlarge') {
+    max-width: colspan(design-cols-to-colspan(10), xlarge);
+  }
 }
 
 .m-listing--hero .m-listing__link:hover .title {

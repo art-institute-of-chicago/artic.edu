@@ -115,7 +115,7 @@
   width: colspan(design-cols-to-colspan(3), 'xlarge');
 */
 @function design-cols-to-colspan($number-of-design-columns: 1, $total-design-cols: 12, $design-col-spans: 3, $gutter-cols: 2) {
-  @return (($number-of-design-columns * $design-col-spans) + (($number-of-design-columns-1) * $gutter-cols));
+  @return (($number-of-design-columns * $design-col-spans) + (($number-of-design-columns - 1) * $gutter-cols));
 }
 
 /*
