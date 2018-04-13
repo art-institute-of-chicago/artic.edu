@@ -6,7 +6,6 @@
       <div class="m-article-header__img-container" data-gallery-hero>
          @php
             $image = $images[0];
-            $image['sourceType'] = 'lakeview';
          @endphp
          @component('components.atoms._img')
             @slot('image', $image)
