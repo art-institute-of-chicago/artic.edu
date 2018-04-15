@@ -45,19 +45,19 @@
   color: $color__text--title;
 
   @include breakpoint('small+') {
-    width: colspan(20, small);
+    width: colspan(18, small);
   }
 
   @include breakpoint('medium+') {
-    width: colspan(15, medium);
+    width: colspan(8, medium);
   }
 
   @include breakpoint('large+') {
-    width: colspan(15, large);
+    width: colspan(8, large);
   }
 
   @include breakpoint('xlarge') {
-    width: colspan(9, xlarge);
+    width: colspan(8, xlarge);
   }
 }
 
