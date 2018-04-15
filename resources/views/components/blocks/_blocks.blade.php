@@ -32,7 +32,9 @@
                         $block['content'] = preg_replace('/<\/p>/im', '</'.$tag.'>', $block['content']);
                     }
                 @endphp
-                {!! $block['content'] !!}
+                <div class="o-blocks__text-block">
+                    {!! $block['content'] !!}
+                </div>
             @endif
 
             @if ($block['type'] === 'intro')
