@@ -138,6 +138,10 @@ a.m-media__img:hover object {
   display: block;
 }
 
+.m-media figcaption .f-caption {
+  color: $color__text--secondary;
+}
+
 .m-media figcaption > br {
   display: none;
 }
@@ -188,27 +192,6 @@ a.m-media__img:hover object {
   object-fit: cover;
 }
 
-
-
-.o-blocks {
-  @include breakpoint('large+') {
-    .m-media--m figcaption {
-      @include tucked-align-top($f-caption, 'large');
-    }
-
-    .m-media--m .m-media__share {
-      display: block;
-      position: static;
-      margin-top: 24px;
-    }
-  }
-
-  @include breakpoint('xlarge') {
-    .m-media--m figcaption {
-      @include tucked-align-top($f-caption, 'xlarge');
-    }
-  }
-}
 
 .o-article--video .m-media {
   margin-top: 28px;

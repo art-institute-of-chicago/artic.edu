@@ -234,6 +234,11 @@
     }
   }
 
+  .o-blocks__text-block {
+    padding-top: .02px;
+    padding-bottom: .02px;
+  }
+
   .o-blocks__block:first-child,
   .o-blocks__text-block:first-child,
   .hr:first-child {
@@ -301,12 +306,45 @@
     @include breakpoint('large+') {
       flex: 0 0 auto;
       width: colspan(15, large);
+      margin-top: 0;
       padding-right: colspan(2, large);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: colspan(13, large);
+        height: 1px;
+        background-color: $color__rules--primary;
+      }
     }
 
     @include breakpoint('xlarge') {
       width: colspan(15, xlarge);
       padding-right: colspan(2, xlarge);
+
+      &::before {
+        width: colspan(13, xlarge);
+      }
+    }
+  }
+
+  .m-media--m figcaption .f-caption {
+    @include breakpoint('large+') {
+      @include tucked-align-top($f-caption, 'large');
+    }
+
+    @include breakpoint('xlarge') {
+      @include tucked-align-top($f-caption, 'xlarge');
+    }
+  }
+
+  .m-media--m .m-media__share {
+    @include breakpoint('large+') {
+      display: block;
+      position: static;
+      margin-top: 24px;
     }
   }
 

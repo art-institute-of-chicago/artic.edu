@@ -2210,6 +2210,10 @@ class StaticsController extends FrontController {
             )
         ));
         array_push($blocks, array(
+            "type" => 'text',
+            "content" => '<p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h4>Quisque id massa tristique</h4><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h5>Quisque id massa tristique</h5><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h4>Quisque id massa tristique</h4><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus.</p><ul><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ul><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><ol><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ol>'
+        ));
+        array_push($blocks, array(
             "type" => 'media',
             "content" => array(
                 'type' => 'video',
@@ -2220,13 +2224,17 @@ class StaticsController extends FrontController {
             )
         ));
         array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
+        ));
+        array_push($blocks, array(
             "type" => 'media',
             "content" => array(
                 'type' => 'embed',
                 'size' => 'l',
                 'media' => $this->getEmbed(),
                 "poster" => $this->getImage(),
-                'caption' => $this->faker->paragraph(3, false)
+                'caption' => $this->faker->paragraph(12, false)
             )
         ));
         array_push($blocks, array(
@@ -2235,6 +2243,10 @@ class StaticsController extends FrontController {
             "title" => 'Mosaic Gallery',
             "caption" => $this->faker->paragraph(3, false),
             "items" => $this->getGalleryImages(6),
+        ));
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
         ));
         array_push($blocks, array(
             "type" => 'gallery',
@@ -2254,31 +2266,31 @@ class StaticsController extends FrontController {
             )
         ));
         array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
+        ));
+        array_push($blocks, array(
             "type" => 'quote',
             "content" => $this->faker->paragraph(6, false)
         ));
         array_push($blocks, array(
-            "type" => 'unorderedList',
-            "items" => array(
-              $this->faker->sentence(6),
-              $this->faker->sentence(6),
-              $this->faker->sentence(6),
-            )
-        ));
-        array_push($blocks, array(
-            "type" => 'orderedList',
-            "items" => array(
-              $this->faker->sentence(6),
-              $this->faker->sentence(6),
-              $this->faker->sentence(6),
-            )
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
         ));
         array_push($blocks, array(
             "type" => 'become-a-member',
         ));
         array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(6)
+        ));
+        array_push($blocks, array(
             "type" => 'time-line',
             "items" => $this->getTimelineEvents(3)
+        ));
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(20)
         ));
         array_push($blocks, array(
             "type" => 'link-list',
@@ -2287,6 +2299,10 @@ class StaticsController extends FrontController {
                   array('label' => 'Ut fermentum est', 'href' => '#', 'iconAfter' => 'new-window'),
                   array('label' => 'In tempor velit', 'href' => '#', 'iconAfter' => 'new-window')
               )
+        ));
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(20)
         ));
         array_push($blocks, array(
             "type" => 'listing',
@@ -2301,6 +2317,10 @@ class StaticsController extends FrontController {
             "items" => $this->getGalleryImages(6),
         ));
         array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(12)
+        ));
+        array_push($blocks, array(
             "type" => 'gallery',
             "subtype" => 'slider',
             "title" => 'Slider Gallery',
@@ -2308,8 +2328,16 @@ class StaticsController extends FrontController {
             "items" => $this->getGalleryImages(6),
         ));
         array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(20)
+        ));
+        array_push($blocks, array(
             "type" => 'artwork',
             "item" => $this->getArtwork(),
+        ));
+        array_push($blocks, array(
+            "type" => 'text',
+            "content" => $this->generateParagraph(12)
         ));
         $article->push('featuredRelated', array(
            'type' => 'event',

@@ -3,6 +3,7 @@
 .quote {
   position: relative;
   padding-top: 80px;
+  padding-bottom: .02px;
   color: $color__text--title;
 }
 
@@ -20,7 +21,11 @@
   position: absolute;
   left: 0;
   top: 20px;
+  width: 76px;
+  height: 44px;
   color: $color__text--accent;
+  transform: rotate(180deg);
+  transform-origin: 38px 22px;
 }
 
 .quote .f-quote:first-child {
@@ -32,23 +37,27 @@
 }
 
 
-.quote--editorial {
+.quote--editorial,
+.o-article--editorial .o-blocks .quote {
   padding: 20px 40px 80px 20px;
   border-radius: $border-radius;
   background-color: $color__bg--editorial;
 }
 
-.quote--editorial::before {
+.quote--editorial::before,
+.o-article--editorial .o-blocks .quote::before {
   content: none;
   display: none;
 }
 
-.quote--editorial .f-deck {
+.quote--editorial .f-deck,
+.o-article--editorial .o-blocks .quote .f-deck {
   font-style: italic;
   color: $color__text--title;
 }
 
-.quote--editorial .quote__icon {
+.quote--editorial .quote__icon,
+.o-article--editorial .o-blocks .quote_icon {
   position: absolute;
   left: auto;
   right: 20px;

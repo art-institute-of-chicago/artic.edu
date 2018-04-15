@@ -82,8 +82,9 @@
             @if ($block['type'] === 'newsletter-sign-up')
                 @if (isset($block['subtype']) and $block['subtype'] === 'inline')
                     @component('components.molecules._m-inline-aside')
+                        @slot('variation','o-blocks__block')
                         @component('components.molecules._m-aside-newsletter')
-                            @slot('variation','m-aside-newsletter--inline o-blocks__block')
+                            @slot('variation','m-aside-newsletter--inline')
                             @slot('placeholder','Email Address')
                         @endcomponent
                     @endcomponent
