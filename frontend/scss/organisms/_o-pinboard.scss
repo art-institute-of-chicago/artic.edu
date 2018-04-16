@@ -117,9 +117,12 @@
       position: absolute;
       z-index: 1;
       flex: none;
-      margin-top: 0;
       opacity: 1;
       transition: top .4s $bezier--bounce, left .4s $bezier--bounce, height .4s $bezier--bounce;
+    }
+
+    .o-pinboard[class*="col@#{$name}"] > .s-positioned:not(.s-repositioning) {
+      margin-top: 0;
     }
 
     .o-pinboard[class*="col@#{$name}"] > *:nth-child(1) { transition-delay: .1s; }

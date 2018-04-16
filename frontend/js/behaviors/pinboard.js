@@ -57,7 +57,9 @@ const pinboard = function(container){
     let colWidth = firstChild.offsetWidth;
     // margin is the total width, minus how many columns of content, divided by how many gutters (which is columns minus 1)
     let marginLeft = (container.offsetWidth - (colWidth * colCount)) / (colCount - 1);
+    firstChild.classList.add('s-repositioning');
     let marginTop = _getMarginTop(firstChild);
+    firstChild.classList.remove('s-repositioning');
     marginTop = (typeof marginTop === 'number') ? marginTop : 60;
     //
     forEach(blocks, function(index, block) {
