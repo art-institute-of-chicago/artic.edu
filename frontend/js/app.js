@@ -100,7 +100,11 @@ document.addEventListener('DOMContentLoaded', function(){
     ]
   });
   // lazy load images
-  lazyLoad();
+  lazyLoad({
+    rootMargin: '200px 0px',
+    threshold: 0.01,
+    maxFrameCount: 20
+  });
 });
 
 // make console.log safe

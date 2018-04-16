@@ -18,16 +18,16 @@ li {
 
 img {
   border: 0 none;
-  //transition: filter .15s linear;
+  transition: filter .15s linear;
 
   &[data-no-img-settings] {
     outline: 3px solid rgba(yellow,.75);
     outline-offset: -3px;
   }
 
-  &[data-src],
-  &[data-srcset] {
-    //filter: blur(10px);
+  &[data-src]:not([src*='data:image/gif;base64']),
+  &[data-srcset]:not([src*='data:image/gif;base64']) {
+    filter: blur(10px);
   }
 }
 
