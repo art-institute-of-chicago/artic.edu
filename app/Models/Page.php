@@ -265,7 +265,7 @@ class Page extends Model
 
     public function visitTourPages()
     {
-        return $this->belongsToMany('App\Models\GenericPage', 'generic_page_page')->withPivot('position')->orderBy('generic_page_page.position', 'asc');
+        return $this->belongsToMany('App\Models\GenericPage', 'visit_tour_page')->withPivot('position')->orderBy('visit_tour_page.position', 'asc');
     }
 
     protected function transformMappingInternal()
