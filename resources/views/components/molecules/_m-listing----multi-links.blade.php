@@ -7,7 +7,7 @@
     <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
 @endif
 
-        @if ( !empty( $item['image'] ) )
+        @if ( isset ($item['image']) && !empty( $item['image'] ) )
             <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
                 @component('components.atoms._img')
                     @slot('image', $item['image'])

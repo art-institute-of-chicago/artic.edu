@@ -148,4 +148,14 @@
     <a17-fieldset title="Families, teens and educators" id="families">
         @formField('repeater', ['type' => 'families'])
     </a17-fieldset>
+
+    <a17-fieldset title="Tour Pages" id="tourpages">
+        @formField('browser', [
+        'routePrefix' => 'generic',
+            'max' => 3,
+            'moduleName' => 'genericPages',
+            'name' => 'visitTourPages',
+            'label' => 'Tour pages'
+        ])
+    </a17-fieldset>
 @stop

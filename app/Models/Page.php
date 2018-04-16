@@ -263,6 +263,11 @@ class Page extends Model
         return $this->belongsToMany('App\Models\ScholarlyJournal')->withPivot('position')->orderBy('position');
     }
 
+    public function visitTourPages()
+    {
+        return $this->belongsToMany('App\Models\GenericPage', 'generic_page_page')->withPivot('position')->orderBy('generic_page_page.position', 'asc');
+    }
+
     protected function transformMappingInternal()
     {
         return [

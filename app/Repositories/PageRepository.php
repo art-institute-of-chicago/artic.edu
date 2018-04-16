@@ -26,6 +26,7 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'collectionFeatures', 'position', 'CollectionFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
 
         $this->hydrateOrderedBelongsTomany($object, $fields, 'articles', 'position', 'Article');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'printedCatalogs', 'position', 'PrintedCatalog');
@@ -52,6 +53,7 @@ class PageRepository extends ModuleRepository
         $this->updateRepeater($object, $fields, 'dining_hours', 'DiningHour');
         $this->updateRepeater($object, $fields, 'faqs', 'Faq');
         $this->updateRepeater($object, $fields, 'families', 'Family');
+        $this->updateBrowser($object, $fields, 'visitTourPages');
 
         // Articles
         $this->updateBrowser($object, $fields, 'articlesArticles');
@@ -93,6 +95,7 @@ class PageRepository extends ModuleRepository
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'dining_hours', 'DiningHour');
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'faqs', 'Faq');
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'families', 'Family');
+        $fields['browsers']['visitTourPages'] = $this->getFormFieldsForBrowser($object, 'visitTourPages', 'generic', 'title', 'genericPages');
 
         // Articles
         $fields['browsers']['articlesArticles'] = $this->getFormFieldsForBrowser($object, 'articlesArticles', 'collection.articles_publications', 'title', 'articles');

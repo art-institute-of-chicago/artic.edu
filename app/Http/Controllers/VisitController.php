@@ -131,6 +131,23 @@ class VisitController extends FrontController
           ));
         };
 
+        $tours = [];
+        foreach($page->visitTourPages as $item) {
+            $links = [];
+            foreach($item->children as $child) {
+                array_push($links, array(
+                    'href' => $child->url,
+                    'label' => $child->title,
+                  ));
+            }
+            array_push($tours, array(
+                  'title' => $item->title,
+                  'titleLink' => $item->url,
+                  'image' => $item->imageFront('listing'),
+                  'links' => $links
+              ));
+        }
+
         return view('site.visit', [
           'primaryNavCurrent' => 'visit',
           'title' => $page->title,
@@ -143,6 +160,7 @@ class VisitController extends FrontController
           'directions' => $directions,
           'faq' => $faq,
           'families' => $families,
+          'tours' => $tours,
         ]);
     }
 
