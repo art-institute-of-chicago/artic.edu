@@ -35,7 +35,7 @@
   }
 
   @include breakpoint('medium+') {
-    margin-top: 12px;
+    margin-top: 28px;
   }
 
   @include breakpoint('large+') {
@@ -100,7 +100,7 @@
   @include breakpoint('medium+') {
     float: left;
     width: colspan(38, medium);
-    margin-top: 12px;
+    margin-top: 20px;
   }
 
   @include breakpoint('large+') {
@@ -115,7 +115,9 @@
 
 .o-article__secondary-actions {
   position: relative;
-  margin-top: 28px;
+  margin-top: 16px;
+  padding-top: 23px;
+  border-top: 1px solid $color__rules--primary;
 
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
@@ -125,8 +127,10 @@
   @include breakpoint('medium+') {
     float: right;
     width: colspan(18, medium);
-    margin-top: 12px;
+    margin-top: 20px;
     margin-left: colspan(2, medium);
+    padding-top: 0;
+    border-top: 0 none;
 
     &.o-article__secondary-actions--inline-header {
       margin-top: 28px;
@@ -224,8 +228,10 @@
 }
 
 .o-article__intro {
-  padding-top: 11px;
-  border-top: 1px solid $color__rules--primary;
+  @include breakpoint('large+') {
+    padding-top: 11px;
+    border-top: 1px solid $color__rules--primary;
+  }
 }
 
 .o-article__inline-header {

@@ -4,6 +4,10 @@
   flex-flow: column nowrap;
   padding-top: 12px;
 
+  @include breakpoint('medium+') {
+    padding-top: 16px;
+  }
+
   @include breakpoint('large+') {
     justify-content: space-between;
     min-height: 180px;
@@ -24,11 +28,11 @@
 }
 
 .m-article-header .title {
-  @include tucked-margin-top($f-headline, ('xsmall': 48));
+  @include tucked-margin-top($f-headline, ('xsmall': 44, 'small+': 48));
 }
 
 .m-article-header .date {
-  @include tucked-margin-top($f-secondary, ('xsmall': 32));
+  @include tucked-margin-top($f-secondary, ('xsmall': 72, 'medium+': 96));
 }
 
 .m-article-header .type {
