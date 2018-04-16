@@ -271,7 +271,10 @@
   // }
 }
 
-.btn.s-loading {
+.btn.s-loading,
+.btn.s-loading:hover,
+.btn.s-loading:focus,
+.btn.s-loading:active {
   @extend %a-loader;
   border: 1px solid $color__rules--secondary;
   background-color: $color__white;
