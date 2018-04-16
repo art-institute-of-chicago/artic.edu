@@ -7,20 +7,3 @@
 .m-inline-aside .f-module-title-1 {
   @include tucked-margin-top($f-module-title-1, ('xsmall': 32));
 }
-
-
-.m-inline-aside .m-listing {
-  margin-top: 28px;
-
-  @include breakpoint('medium+') {
-    margin-top: 40px;
-  }
-
-  .o-article__secondary & {
-    margin-top: 16px;
-
-    @include breakpoint('medium+') {
-      margin-top: 24px;
-    }
-  }
-}
