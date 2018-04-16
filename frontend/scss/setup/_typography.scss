@@ -593,6 +593,38 @@ $f-secondary: generate-font-obj((
   @include f-secondary;
 }
 
+/***
+
+f-tertiary
+
+```
+<p class="f-tertiary">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-tertiary: generate-font-obj((
+  font-family: $sans-serif-font,
+  font-family-loaded: $sans-serif-font--loaded,
+  font-loaded-class: $sans-serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 12, line-height: 16, font-weight: 'lighter', letter-spacing: .01em, push: 0),
+    'small+': (font-size: 16, line-height: 24, push: 1),
+    'medium+': (font-size: 17, line-height: 28, push: 0),
+   )
+));
+
+@mixin f-tertiary() {
+  @include font-styles($f-tertiary);
+  font-feature-settings: "lnum" on;
+  color: $color__text--secondary;
+}
+
+%f-tertiary,
+.f-tertiary {
+  @include f-tertiary;
+}
+
 /*
   adds underlines all over the site!
 */
@@ -751,6 +783,40 @@ $f-caption: generate-font-obj((
 %f-caption,
 .f-caption {
   @include f-caption;
+}
+
+/***
+
+f-list-7
+
+```
+<p class="f-list-7">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-list-7: generate-font-obj((
+  font-family: $serif-font,
+  font-family-loaded: $serif-font--loaded,
+  font-loaded-class: $serif-font-loaded-class,
+  settings: (
+    'xsmall': (font-size: 12, line-height: 16, push: 0),
+    'small+': (font-size: 20, line-height: 28, push: -2),
+   )
+));
+
+@mixin f-list-7() {
+  @include font-styles($f-list-7);
+  color: $color__text--title;
+
+  @include breakpoint('xsmall') {
+    @include font-smoothing('off');
+  }
+}
+
+%f-list-7,
+.f-list-7 {
+  @include f-list-7;
 }
 
 

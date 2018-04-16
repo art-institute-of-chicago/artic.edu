@@ -22,7 +22,7 @@
 
 
 @php
-$typespecs = array("f-display-1", "f-headline", "f-headline-editorial", "f-deck", "f-module-title-2", "f-module-title-1", "f-subheading-1", "f-body", "f-body-emphasis", "f-body-editorial", "f-body-editorial-emphasis", "f-body-editorial-reference", "f-buttons", "f-secondary", "f-link", "f-tag-2", "f-tag", "f-caption-title", "f-caption", "f-list-5", "f-list-4", "f-list-3", "f-list-2", "f-list-1", "f-quote", "f-main-nav");
+$typespecs = array("f-display-1", "f-headline", "f-headline-editorial", "f-deck", "f-module-title-2", "f-module-title-1", "f-subheading-1", "f-body", "f-body-emphasis", "f-body-editorial", "f-body-editorial-emphasis", "f-body-editorial-reference", "f-buttons", "f-secondary", "f-tertiary", "f-link", "f-tag-2", "f-tag", "f-caption-title", "f-caption", "f-list-7", "f-list-6", "f-list-5", "f-list-4", "f-list-3", "f-list-2", "f-list-1", "f-quote", "f-main-nav");
 @endphp
 
 <ul class="sg-type-spec">

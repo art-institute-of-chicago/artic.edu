@@ -95,9 +95,15 @@
       left: 0;
       top: 0;
       flex: 0 0 auto;
-      margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
-      padding-top: #{map-get($pinboard-grid-padding-tops, $name) - 1}px;
-      border-top: 1px solid $color__rules--primary;
+      @if ($name == 'xsmall') {
+        margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
+        margin-top: 0;
+        padding-top: #{map-get($pinboard-grid-padding-tops, $name)}px;
+      } @else {
+        margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
+        padding-top: #{map-get($pinboard-grid-padding-tops, $name) - 1}px;
+        border-top: 1px solid $color__rules--primary;
+      }
       opacity: 0;
       transition: opacity .25s;
 

@@ -25,7 +25,7 @@
                 {{ $item->title }}
             @endcomponent
             <br>
-            <span class="subtitle f-secondary">{{ $item->artist_display }}</span>
+            <span class="subtitle {{ $subtitleFont ?? 'f-secondary'}}">{{ $item->artist_display }}</span>
         </span>
     </a>
 </{{ $tag or 'li' }}>
