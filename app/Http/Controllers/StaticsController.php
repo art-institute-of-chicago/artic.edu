@@ -844,7 +844,7 @@ class StaticsController extends FrontController {
         array_push($questionsAndAnswers, array(
             "type" => 'text',
             "subtype" => 'heading-2',
-            "content" => $this->generateHeading(6, 'h5')
+            "content" => $this->generateHeading(6, 'h3')
         ));
         array_push($questionsAndAnswers, array(
             "type" => 'text',
@@ -937,7 +937,7 @@ class StaticsController extends FrontController {
     array_push($blocks, array(
         "type" => 'text',
         "subtype" => 'heading-2',
-        "content" => $this->generateHeading(6, 'h5')
+        "content" => $this->generateHeading(6, 'h3')
     ));
     array_push($blocks, array(
         "type" => 'text',
@@ -946,7 +946,7 @@ class StaticsController extends FrontController {
     array_push($blocks, array(
         "type" => 'text',
         "subtype" => 'heading-2',
-        "content" => $this->generateHeading(6, 'h5')
+        "content" => $this->generateHeading(6, 'h3')
     ));
     array_push($blocks, array(
         "type" => 'text',
@@ -2211,7 +2211,7 @@ class StaticsController extends FrontController {
         ));
         array_push($blocks, array(
             "type" => 'text',
-            "content" => '<p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h4>Quisque id massa tristique</h4><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h5>Quisque id massa tristique</h5><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h4>Quisque id massa tristique</h4><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus.</p><ul><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ul><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><ol><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ol>'
+            "content" => '<p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h2>Quisque id massa tristique</h2><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h3>Quisque id massa tristique</h3><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h2>Quisque id massa tristique</h2><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus.</p><ul><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ul><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><ol><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ol>'
         ));
         array_push($blocks, array(
             "type" => 'media',
@@ -2458,7 +2458,7 @@ class StaticsController extends FrontController {
     return $blocks;
   }
 
-  private function generateHeading($num = 6, $tag = 'h4') {
+  private function generateHeading($num = 6, $tag = 'h2') {
     return '<'.$tag.'>'.$this->faker->sentence($num).'</'.$tag.'>';
   }
 
@@ -2472,7 +2472,7 @@ class StaticsController extends FrontController {
 
     array_push($blocks, array(
         "type" => 'text',
-        "content" => '<p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h4>Quisque id massa tristique</h4><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h5>Quisque id massa tristique</h5><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h4>Quisque id massa tristique</h4><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus.</p><ul><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ul><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><ol><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ol>'
+        "content" => '<p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h2>Quisque id massa tristique</h2><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h3>Quisque id massa tristique</h3><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><h2>Quisque id massa tristique</h2><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus.</p><ul><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ul><p>Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p><ol><li>Qui sunt sint non repudiandae culpa.</li><li>Dignissimos unde et optio quam consequatur excepturi sunt.</li><li>In saepe quia explicabo quidem eos asperiores iure voluptatem.</li></ol>'
     ));
     /*
     array_push($blocks, array(
@@ -3817,7 +3817,7 @@ class StaticsController extends FrontController {
     ));
     array_push($blocks, array(
         "type" => 'text',
-         "content" => '<h4>Captions hidden, inline playing (no posters):</h4>'
+         "content" => '<h2>Captions hidden, inline playing (no posters):</h2>'
     ));
     array_push($blocks, array(
         "type" => 'media',
@@ -3844,7 +3844,7 @@ class StaticsController extends FrontController {
 
     array_push($blocks, array(
         "type" => 'text',
-         "content" => '<h4>Captions, inline playing (no posters):</h4>'
+         "content" => '<h2>Captions, inline playing (no posters):</h2>'
     ));
     array_push($blocks, array(
         "type" => 'media',
@@ -3870,7 +3870,7 @@ class StaticsController extends FrontController {
     ));
     array_push($blocks, array(
         "type" => 'text',
-         "content" => '<h4>Captions hidden, inline playing, with posters:</h4>'
+         "content" => '<h2>Captions hidden, inline playing, with posters:</h2>'
     ));
     array_push($blocks, array(
         "type" => 'media',
@@ -3898,7 +3898,7 @@ class StaticsController extends FrontController {
     ));
     array_push($blocks, array(
         "type" => 'text',
-         "content" => '<h4>Captions hidden, modal player, with posters:</h4>'
+         "content" => '<h2>Captions hidden, modal player, with posters:</h2>'
     ));
     array_push($blocks, array(
         "type" => 'media',
@@ -3928,7 +3928,7 @@ class StaticsController extends FrontController {
     ));
     array_push($blocks, array(
         "type" => 'text',
-         "content" => '<h4>As a listing block, they have images, play fullscreen:</h4>'
+         "content" => '<h2>As a listing block, they have images, play fullscreen:</h2>'
     ));
     array_push($blocks, array(
         "type" => 'listing',

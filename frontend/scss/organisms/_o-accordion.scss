@@ -25,6 +25,10 @@
   @include breakpoint('small+') {
     padding-top: 48px - 28px - 1px;
   }
+
+  &[aria-expanded=true] {
+    border-top-color: $color__rules--secondary;
+  }
 }
 
 .o-accordion__trigger.f-tag-2 {
@@ -221,7 +225,11 @@
 .o-accordion__panel-content.o-blocks > p:not([class*=f-]),
 .o-accordion__panel-content.o-blocks > .f-body,
 .o-accordion__panel-content.o-blocks > .f-body-editorial {
-  @include tucked-margin-top($f-body, ('xsmall': 56));
+  @include tucked-margin-top($f-body, ('xsmall': 40, 'small+': 56));
+
+  &:first-child {
+    @include tucked-margin-top($f-body, ('xsmall': 60, 'small+': 76));
+  }
 
   @include breakpoint('small+') {
     padding-right: colspan(3, small);
@@ -246,19 +254,31 @@
   @include tucked-align-top($f-body);
 }
 
-.o-accordion__panel-content.o-blocks > h4:not([class*=f-]),
+.o-accordion__panel-content.o-blocks > h2:not([class*=f-]),
 .o-accordion__panel-content.o-blocks > .f-module-title-2 {
-  @include tucked-margin-top($f-module-title-2, ('xsmall': 56));
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 48, 'small+': 68));
+
+  &:first-child {
+    @include tucked-margin-top($f-module-title-2, ('xsmall': 68, 'small+': 88));
+  }
 }
 
-.o-accordion__panel-content.o-blocks > h5:not([class*=f-]),
+.o-accordion__panel-content.o-blocks > h3:not([class*=f-]),
 .o-accordion__panel-content.o-blocks > .f-subheading-1 {
-  @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
+  @include tucked-margin-top($f-subheading-1, ('xsmall': 40, 'small+': 56));
+
+  &:first-child {
+    @include tucked-margin-top($f-subheading-1, ('xsmall': 60, 'small+': 76));
+  }
 }
 
 .o-accordion__panel-content.o-blocks > small,
 .o-accordion__panel-content.o-blocks > .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 56));
+  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small+': 56));
+
+  &:first-child {
+    @include tucked-margin-top($f-secondary, ('xsmall': 60, 'small+': 76));
+  }
 }
 
 .o-accordion__panel-content.o-blocks > .o-blocks__block:first-child {
