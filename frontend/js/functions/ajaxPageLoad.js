@@ -1,4 +1,4 @@
-import { triggerCustomEvent, ajaxRequest } from '@area17/a17-helpers';
+import { triggerCustomEvent, ajaxRequest, getOffset, scrollToY, setFocusOnTarget } from '@area17/a17-helpers';
 import { findAncestorByTagName, ajaxableLink, ajaxableHref } from '../functions';
 
 const ajaxPageLoad = function() {
@@ -39,25 +39,34 @@ const ajaxPageLoad = function() {
   function defaultComplete(options,doc) {
     // fade out content
     document.documentElement.classList.add('s-page-nav-swapping');
+    // wait for fade to finish
     setTimeout(function(){
       // replace content
       document.querySelector('#a17').innerHTML = doc.querySelector('#a17').innerHTML;
-      // fix scroll
-      if(options.popstate && options.popstate.data.scrollY) {
-        document.documentElement.scrollTop = options.popstate.data.scrollY;
-        document.body.scrollTop = options.popstate.data.scrollY;
-      } else {
-        // scroll to top
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }
       // check states
       stateChecks(doc);
-      // reveal content
-      document.documentElement.classList.remove('s-page-nav');
-      document.documentElement.classList.remove('s-page-nav-swapping');
-      // tell page about update
-      triggerCustomEvent(document, 'page:updated');
+      window.requestAnimationFrame(function(){
+        // fix scroll
+        let scrollTarget = 0; // scroll to top
+        let focusTarget = null;
+        if(options.popstate && options.popstate.data.scrollY) {
+          scrollTarget = options.popstate.data.scrollY;
+        } else if (window.location.hash) {
+          focusTarget = document.getElementById(window.location.hash.replace('#',''));
+          scrollTarget = Math.round(getOffset(focusTarget).top - 20);
+        }
+        document.documentElement.scrollTop = scrollTarget;
+        document.body.scrollTop = scrollTarget;
+        // reveal content
+        document.documentElement.classList.remove('s-page-nav');
+        document.documentElement.classList.remove('s-page-nav-swapping');
+        // tell page about update
+        triggerCustomEvent(document, 'page:updated');
+        //
+        if (focusTarget) {
+          setFocusOnTarget(focusTarget);
+        }
+      });
     }, 250);
     // replace title
     docTitle = doc.title;
@@ -70,8 +79,7 @@ const ajaxPageLoad = function() {
         title: docTitle,
       });
     }
-    // so we know what to do on replace states
-    A17.previousAjaxPageLoadType = options.type;
+    A17.currentPathname = window.location.pathname;
   }
 
   function tabStart(options,doc) {
@@ -87,8 +95,7 @@ const ajaxPageLoad = function() {
     if (!options.popstate) {
       triggerCustomEvent(document, 'history:pushstate', { url: options.href, type: options.type, title: docTitle });
     }
-    // so we know what to do on replace states
-    A17.previousAjaxPageLoadType = options.type;
+    A17.currentPathname = window.location.pathname;
   }
 
   function modalStart(options,doc) {
@@ -235,12 +242,15 @@ const ajaxPageLoad = function() {
   }
 
   function popstate(event) {
-    loadDocument({
-      href: event.data.url,
-      type: event.data.type,
-      title: event.data.title,
-      popstate: event
-    });
+    event.preventDefault();
+    if (A17.currentPathname !== window.location.pathname && (!event.data.type || event.data.type === 'page')) {
+      loadDocument({
+        href: event.data.url,
+        type: event.data.type,
+        title: event.data.title,
+        popstate: event
+      });
+    }
   }
 
   function getPage(event) {
@@ -252,7 +262,6 @@ const ajaxPageLoad = function() {
             type: event.data.type || 'page',
             scrollY: window.scrollY || 0,
           });
-          A17.previousAjaxPageLoadType = event.data.type || 'page';
         }
         loadDocument({
           href: event.data.url,
@@ -278,7 +287,6 @@ const ajaxPageLoad = function() {
           type: 'page',
           scrollY: window.scrollY || 0,
         });
-        A17.previousAjaxPageLoadType = 'page';
         loadDocument({
           href: ajaxable.href,
           type: 'page',

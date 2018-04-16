@@ -77,6 +77,15 @@
           <li>
             <a href="/statics/visit">visit</a>
             <ul class="list">
+                <li><a href="/statics/visit#hours">visit#hours</a></li>
+                <li><a href="/statics/visit#admission">visit#admission</a></li>
+                <li><a href="/statics/visit#directions">visit#directions</a></li>
+                <li><a href="/statics/visit#dining">visit#dining</a></li>
+                <li><a href="/statics/visit#faq">visit#faq</a></li>
+                <li><a href="/statics/visit#tours">visit#tours</a></li>
+                <li><a href="/statics/visit#familes_teens_educators">visit#familes_teens_educators</a></li>
+            </ul>
+            <ul class="list">
                 <li><a href="/statics/visit_video">visit video</a></li>
             </ul>
           </li>

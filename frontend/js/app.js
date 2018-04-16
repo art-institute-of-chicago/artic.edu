@@ -19,6 +19,7 @@ if (!A17.browserSpec || A17.browserSpec === 'html4') {
 
 A17.currentMediaQuery = getCurrentMediaQuery();
 A17.env = 'production';
+A17.currentPathname = window.location.pathname;
 
 document.addEventListener('DOMContentLoaded', function(){
   if (A17.print) {
@@ -109,6 +110,10 @@ if (typeof console === 'undefined') {
       return;
     }
   };
+}
+
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
 }
 
 // polyfil .closest
