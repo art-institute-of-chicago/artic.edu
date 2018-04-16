@@ -51,17 +51,20 @@
 }
 
 .quote--editorial .f-deck,
-.o-article--editorial .o-blocks .quote .f-deck {
+.o-article--editorial .o-blocks .quote .f-deck,
+.quote--editorial .f-quote,
+.o-article--editorial .o-blocks .quote .f-quote {
   font-style: italic;
   color: $color__text--title;
 }
 
 .quote--editorial .quote__icon,
-.o-article--editorial .o-blocks .quote_icon {
+.o-article--editorial .o-blocks .quote__icon {
   position: absolute;
   left: auto;
   right: 20px;
   top: auto;
   bottom: 20px;
   color: $color__text--editorial;
+  transform: none;
 }
