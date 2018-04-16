@@ -410,6 +410,7 @@
   padding-top: 0;
 
   @include breakpoint('large+') {
+    min-height: 150vh;
     padding-top: 0;
     padding-right: 0;
     padding-left: 0;
