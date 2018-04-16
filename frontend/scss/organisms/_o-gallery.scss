@@ -110,7 +110,7 @@
 
 .o-gallery__share {
   display: block;
-  margin-top: 24px;
+  margin-top: 20px;
 
   @include breakpoint('small+') {
     position: absolute;
@@ -346,14 +346,6 @@
 
     @include breakpoint('small+') {
       max-height: 480px;
-    }
-
-    @include breakpoint('medium+') {
-      max-height: 480px;
-    }
-
-    @include breakpoint('large+') {
-      max-height: 420px;
     }
 
     @include breakpoint('xlarge') {

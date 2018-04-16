@@ -294,6 +294,10 @@
   @include tucked-margin-top($f-tag, ('xsmall': 32, 'large+': 28));
 }
 
+.m-listing__meta .f-secondary + br + .f-tag {
+  @include tucked-margin-top($f-tag, ('xsmall': 32, 'large+': 36));
+}
+
 .m-listing__meta .f-headline-editorial {
   @include tucked-margin-top($f-headline-editorial, ('xsmall': 36, 'small+': 60, 'medium+': 64));
 }
@@ -319,7 +323,7 @@
 }
   .m-listing__meta .f-list-3:first-child,
   .m-listing__meta .date + .f-list-3 {
-    @include tucked-margin-top($f-list-3, ('xsmall': 44));
+    @include tucked-margin-top($f-list-3, ('xsmall': 36, 'small+': 40));
   }
 
 .m-listing__meta .f-list-4 {
@@ -355,7 +359,7 @@
 }
 
 .m-listing__meta .f-list-3 + .f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 32));
+  @include tucked-margin-top($f-body, ('xsmall': 36, 'small+': 44, 'medium+': 48));
 }
 
 .m-listing__meta .f-list-4 + br + .f-body {
@@ -1048,7 +1052,7 @@
     }
 
     .m-listing__meta .f-tag {
-      @include tucked-margin-top($f-tag, ('small': 12), 'small');
+      @include tucked-margin-top($f-tag, ('xsmall': 12), 'small');
     }
 
     .m-listing__meta .f-tag:first-child {
@@ -1155,14 +1159,29 @@
     }
   }
 
-  .o-grid-listing & {
-    border-top: 0;
+  .m-inline-aside .m-listing {
+    margin-top: 28px;
+
+    @include breakpoint('medium+') {
+      margin-top: 40px;
+    }
   }
 
-  .f-subheading-1 + .o-row-listing &,
-  .f-module-title-1 + .o-row-listing & {
-    padding-top: 0;
-    border-top: 0;
+  .m-inline-aside .o-row-listing &,
+  .m-inline-aside .o-row-listing & + & {
+    margin-top: 20px;
+
+    @include breakpoint('large+') {
+      margin-top: 24px;
+    }
+  }
+
+  .o-article__secondary & {
+    margin-top: 16px;
+
+    @include breakpoint('medium+') {
+      margin-top: 24px;
+    }
   }
 }
 
@@ -1240,6 +1259,10 @@
 .m-listing--inline .m-listing__meta .type {
   display: inline-block;
   @include tucked-align-top($f-tag);
+}
+
+.m-listing--inline .m-listing__meta .m-listing__types {
+  margin-top: 0;
 }
 
 .m-listing--inline .m-listing__meta .f-list-2 {
@@ -1401,7 +1424,7 @@
 
 // variant `m-listing--inline` inside `.m-inline-aside`
 
-.m-inline-aside .m-listing--inline:first-child {
+.m-inline-aside .f-module-title-1 + .o-row-listing .m-listing--inline:first-child {
   padding-top: 0;
   border-top: 0 none;
 

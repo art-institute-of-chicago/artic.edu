@@ -181,7 +181,7 @@ Creates a load spinner.
       // now set the margin top
       @if ($new-pull != $pull) {
         $pull: $new-pull;
-        $base-height-into-pull: round($pull / $base-height); // round or floor? erm
+        $base-height-into-pull: floor($pull / $base-height); // round or floor? erm
         // round will be closer but has the risk of drawing too much negative margin
         $margin-top: 0 - ($base-height-into-pull * $base-height);
         @if ($name == 'xsmall' or $single-bp == $name) {

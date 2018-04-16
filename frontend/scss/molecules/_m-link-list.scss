@@ -18,19 +18,27 @@
 .m-link-list__sub-list {
   margin-top: 16px;
   padding-left: 20px;
+
+  .o-blocks__block & {
+    margin-top: 20px;
+  }
 }
 
 .m-link-list__item {
   position: relative;
   margin-top: 16px;
   padding-top: 8px;
+
+  .o-blocks__block & {
+    margin-top: 20px;
+  }
 }
 
 .m-link-list__item:first-child {
   margin-top: 0;
 }
 
-.m-link-list__item:only-child::before,
+//.m-link-list__item:only-child::before,
 .m-link-list__item::after {
   content: '';
   position: absolute;
@@ -109,11 +117,7 @@ a.m-link-list__trigger.f-secondary {
   }
 }
 
-.m-link-list__trigger svg {
-  display: inline-block;
-  vertical-align: middle;
-}
-
+.m-link-list__trigger svg,
 .m-link-list--download .m-link-list__trigger .icon--download--24 {
   position: absolute;
   right: 0;
