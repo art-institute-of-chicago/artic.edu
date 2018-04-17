@@ -3,9 +3,9 @@ import { mediaQuery } from '../functions';
 
 const dropdown = function(container) {
 
-  var setup = false;
-  var active = false;
-  var allow = true;
+  let setup = false;
+  let active = false;
+  let allow = true;
   let breakpoints = container.getAttribute('data-dropdown-breakpoints') || 'all';
 
   function _open(event) {
@@ -40,7 +40,7 @@ const dropdown = function(container) {
         element is. If its an input, then blurring the input to then re-focus it after
         the event.stopPropagation().
       */
-      var activeElement = null;
+      let activeElement = null;
       if (event.type === 'focus' && document.activeElement.tagName === 'INPUT') {
         activeElement = document.activeElement;
         activeElement.blur();
