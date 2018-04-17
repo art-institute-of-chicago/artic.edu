@@ -2,6 +2,7 @@
 .m-active-filters {
   display: flex;
   position: relative;
+  z-index: 0;
   flex-flow: row nowrap;
   justify-content: space-between;
   margin-top: 20px;
