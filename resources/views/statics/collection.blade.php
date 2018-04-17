@@ -15,7 +15,11 @@
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
     @slot('overflow', true)
-    @slot('linksPrimary', array(array('label' => 'Artworks', 'href' => '#', 'active' => true), array('label' => 'Articles &amp; Publications', 'href' => '#'), array('label' => 'Research', 'href' => '#')))
+    @slot('linksPrimary', array(
+        array('label' => 'Artworks', 'href' => '#', 'active' => true),
+        array('label' => 'Articles &amp; Publications', 'href' => '#'),
+        array('label' => 'Research', 'href' => '#'),
+    ))
 @endcomponent
 
 @component('components.molecules._m-search-bar')

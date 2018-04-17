@@ -363,10 +363,6 @@
 .m-links-bar--tabs::before {
   top: auto;
   bottom: 0;
-
-  @include breakpoint('xsmall') {
-    top: 43px;
-  }
 }
 
 .m-links-bar--tabs .m-links-bar__items-primary {
@@ -431,13 +427,20 @@
   width: 100%;
   margin-right: 0;
 
-  &::before {
+  &::before,
+  &::after {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    top: 0;
     height: 1px;
+    background-color: $color__rules--primary;
+  }
+
+  &::after {
+    top: auto;
+    bottom: 0;
     background-color: $color__rules--brand;
   }
 
@@ -453,8 +456,19 @@
   .dropdown > button {
     display: block;
     width: 100%;
-    margin-bottom: 32px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     color: $color__link--tab-active;
+
+    @include breakpoint('small+') {
+      padding-top: 11px;
+      padding-bottom: 17px;
+    }
+
+    @include breakpoint('medium+') {
+      padding-top: 23px;
+      padding-bottom: 21px;
+    }
   }
 
   .dropdown > button:hover,
