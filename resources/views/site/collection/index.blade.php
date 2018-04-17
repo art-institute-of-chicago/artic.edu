@@ -5,7 +5,7 @@
 <section class="o-collection-listing">
 
 @component('components.molecules._m-header-block')
-    {{ $title }}
+    The Collection
 @endcomponent
 
 @component('components.molecules._m-intro-block')
@@ -36,6 +36,7 @@
 @endcomponent
 
 @component('components.molecules._m-search-actions----collection')
+    @slot('total', $artworks->total())
 @endcomponent
 
 @if (!empty($activeFilters))

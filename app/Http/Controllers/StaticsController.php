@@ -580,7 +580,6 @@ class StaticsController extends FrontController {
       'title' => 'The Collection',
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
       'quickSearchLinks' => $quickSearchLinks,
-      'filters' => $filters,
       'filterCategories' => $this->generateCollectionFilterCategories(),
       'activeFilters' => array(
         array(
@@ -2854,6 +2853,7 @@ class StaticsController extends FrontController {
           'href' => '#',
           'label' => $this->faker->word(),
           'count' => $this->faker->numberBetween(13,1312),
+          'enabled' => false,
         )
       );
     }

@@ -53,6 +53,29 @@ class CollectionService
     }
 
     /**
+     * Extract only active filters to build quick buttons
+     *
+     */
+    public function activeFilters()
+    {
+        $activeFilters = collect([]);
+
+        // Walk through filters and extract the active ones
+        foreach ($this->generateFilters() as $category) {
+            foreach ($category['list'] as $item) {
+                if ($item['enabled']) {
+                    $activeFilters->push([
+                        'href'  => $item['href'],
+                        'label' => $item['label']
+                    ]);
+                }
+            }
+        }
+
+        return $activeFilters;
+    }
+
+    /**
      * Go through all aggregations and process the buckets with the proper
      * filter class.
      * Filter class could be a list, date range, checkbox.

@@ -27,8 +27,9 @@ class CollectionController extends BaseScopedController
     {
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
 
-        $filters    = $this->collection()->generateFilters();
-        $collection = $this->collection()->results(static::PER_PAGE);
+        $collection    = $this->collection()->results(static::PER_PAGE);
+        $filters       = $this->collection()->generateFilters();
+        $activeFilters = $this->collection()->activeFilters();
 
         // TODO: REIMPLEMENT
         // If we don't have a query let's load the boosted artworks
@@ -47,27 +48,20 @@ class CollectionController extends BaseScopedController
 
         return view('site.collection.index', [
           'primaryNavCurrent' => 'collection',
-          'title' => 'The Collection',
-          'intro' => $page->art_intro,
-          'quickSearchLinks' => [],
-          'filters' => [],
+          'intro'            => $page->art_intro,
+          'artworks'         => $collection,
           'filterCategories' => $filters,
-          'artworks' => $collection,
+          'activeFilters'    => $activeFilters,
+          'quickSearchLinks' => [],
           'recentlyViewedArtworks' => [],
-          'activeFilters' => array(
-            array(
-              'href' => '#',
-              'label' => "Arms",
-            )
-          ),
+          'featuredArticlesHero'   => [],
+          'featuredArticles'       => [],
           'interestedThemes' => array(
             array(
               'href' => '#',
               'label' => "Picasso",
             )
           ),
-          'featuredArticlesHero' => [],
-          'featuredArticles' => [],
         ]);
 
     }
