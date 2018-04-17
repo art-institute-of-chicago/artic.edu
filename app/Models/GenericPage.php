@@ -173,14 +173,16 @@ class GenericPage extends Model implements Sortable
             }
         }
 
-        foreach($root->children as $item) {
-            $navItem = ['href' => $item->url, 'label' => $item->title];
+        if ($root) {
+            foreach($root->children as $item) {
+                $navItem = ['href' => $item->url, 'label' => $item->title];
 
-            if ($sub && $item->id == $sub->id || ($forceNav && $this->id == $item->id)) {
-                $navItem['links'] = $subNav;
+                if ($sub && $item->id == $sub->id || ($forceNav && $this->id == $item->id)) {
+                    $navItem['links'] = $subNav;
+                }
+                $rootNav[] = $navItem;
+
             }
-            $rootNav[] = $navItem;
-
         }
         $nav = array('nav' => $rootNav, 'subNav' => $subNav);
 
