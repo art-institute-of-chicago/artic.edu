@@ -13,6 +13,10 @@
 .m-link-list {
   @include untuck;
   margin-top: 40px;
+
+  .o-blocks &.o-blocks__block + & {
+    margin-top: 20px;
+  }
 }
 
 .m-link-list__sub-list {
