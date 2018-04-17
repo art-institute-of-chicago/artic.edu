@@ -1,5 +1,10 @@
 const mediaQuery = function(mq) {
 
+  // all breakpoints
+  if (mq === 'all') {
+    return true;
+  }
+
   // specific breakpoint
   if (mq === A17.currentMediaQuery) {
     return true;
