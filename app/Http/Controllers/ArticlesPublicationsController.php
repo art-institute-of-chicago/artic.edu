@@ -24,7 +24,7 @@ class ArticlesPublicationsController extends Controller
             'intro' => 'Explore <em>over 100,000 artworks</em> and information about works of art from all areas in our online encyclopedic collections.',
             'linksBar' => [
                 [
-                    'href' => route('artworks'),
+                    'href' => route('collections'),
                     'label' => 'Artworks',
                 ],
                 [
