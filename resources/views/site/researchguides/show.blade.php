@@ -18,19 +18,9 @@
 
   @if (isset($nav) && !empty($nav))
   <div class="o-article__primary-actions">
-    @if (isset($subNav))
-        @component('components.atoms._dropdown')
-          @slot('prompt', $title)
-          @slot('variation', 'dropdown--filter u-hide@large+')
-          @slot('ariaTitle', 'Sub navigation')
-          @slot('options', $subNav)
-        @endcomponent
-    @endif
-
     @if (isset($nav))
-        @component('components.molecules._m-link-list')
-            @slot('font', 'f-module-title-1')
-            @slot('variation','u-show@large+')
+        @component('components.organisms._o-collapsing-nav')
+            @slot('title', $title)
             @slot('links', $nav);
         @endcomponent
     @endif

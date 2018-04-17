@@ -16,27 +16,16 @@
     @slot('breadcrumb', $breadcrumb ?? null)
   @endcomponent
 
+  @if (isset($nav) && !empty($nav))
   <div class="o-article__primary-actions">
-    @if (isset($subNav) and false)
-        @component('components.atoms._dropdown')
-          @slot('prompt', $title)
-          @slot('variation', 'dropdown--filter dropdown--navigation u-hide@large+')
-          @slot('listVariation', 'dropdown__list--navigation')
-          @slot('ariaTitle', 'Sub navigation')
-          @slot('options', $subNav)
+    @if (isset($nav))
+        @component('components.organisms._o-collapsing-nav')
+            @slot('title', $title)
+            @slot('links', $nav);
         @endcomponent
     @endif
-
-    @if (isset($nav))
-        <div class="o-collapsing-nav" data-behavior="dropdown" data-dropdown-breakpoints="medium-">
-            <button class="o-collapsing-nav__trigger f-secondary">{{ $title }}<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-            @component('components.molecules._m-link-list')
-                @slot('font', 'f-module-title-1')
-                @slot('links', $nav);
-            @endcomponent
-        </div>
-    @endif
   </div>
+  @endif
 
   @if (!$isWideBody)
       <div class="o-article__secondary-actions">
