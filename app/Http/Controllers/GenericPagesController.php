@@ -31,6 +31,7 @@ class GenericPagesController extends FrontController
         $navs = $page->buildNav();
 
         return view('site.genericpage.show', [
+            'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => $navs['subNav'],
             'nav' => $navs['nav'],
             'intro' => $page->short_description,

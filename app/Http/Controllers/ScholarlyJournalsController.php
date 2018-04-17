@@ -82,6 +82,7 @@ class ScholarlyJournalsController extends FrontController
         ];
 
         return view('site.scholarlyjournals.show', [
+            'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,
             'intro' => $page->short_description,

@@ -82,6 +82,7 @@ class PrintedCatalogsController extends FrontController
         ];
 
         return view('site.printedcatalogs.show', [
+            'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,
             'intro' => $page->short_description,

@@ -220,6 +220,7 @@ class StaticsController extends FrontController {
     $navs = $this->generateGenericNav('landing');
 
     return view('statics/generic', [
+        'borderlessHeader' => true,
         'subNav' => $navs['subNav'],
         'nav' => $navs['nav'],
         'headerImage' => $this->getImage(),
@@ -248,6 +249,7 @@ class StaticsController extends FrontController {
     $navs = $this->generateGenericNav('detail');
 
     return view('statics/generic', [
+        'borderlessHeader' => true,
         'subNav' => $navs['subNav'],
         'nav' => $navs['nav'],
         'headerImage' => $this->getImage(),
@@ -485,7 +487,7 @@ class StaticsController extends FrontController {
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
-      'galleryHeader' => true,
+      'borderlessHeader' => true,
       'article' => $article,
     ]);
   }

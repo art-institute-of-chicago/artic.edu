@@ -37,7 +37,7 @@ abstract class BasePresenter
         }
     }
 
-    public function galleryHeader()
+    public function borderlessHeader()
     {
         switch ($this->headerType()) {
             case 'gallery':

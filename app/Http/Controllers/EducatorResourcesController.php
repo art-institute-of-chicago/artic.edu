@@ -82,6 +82,7 @@ class EducatorResourcesController extends FrontController
         ];
 
         return view('site.educatorresources.show', [
+            'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,
             'intro' => $page->short_description,

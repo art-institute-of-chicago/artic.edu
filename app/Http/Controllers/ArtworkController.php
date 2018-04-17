@@ -81,7 +81,7 @@ class ArtworkController extends FrontController
 
         return view('site.artworkDetail', [
           'contrastHeader' => $item->present()->contrastHeader,
-          'galleryHeader'  => $item->present()->galleryHeader,
+          'borderlessHeader'  => $item->present()->borderlessHeader,
           'exploreFurther'     => $exploreFurtherCollection,
           'exploreFurtherTags' => $exploreFurtherTags,
           'item' => $item

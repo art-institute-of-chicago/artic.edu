@@ -82,6 +82,7 @@ class ResearchGuidesController extends FrontController
         ];
 
         return view('site.researchguides.show', [
+            'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,
             'intro' => $page->short_description,

@@ -125,6 +125,7 @@ class PressReleasesController extends FrontController
         ];
 
         return view('site.pressreleases.show', [
+            'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,
             'intro' => $page->short_description,
