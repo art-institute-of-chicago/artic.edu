@@ -47,7 +47,7 @@ class Sort
                 'label'   => ucfirst($option),
                 'enabled' => $enabled ?? false
             ];
-        })->sortByDesc('enabled');
+        });
 
         return $list;
     }
