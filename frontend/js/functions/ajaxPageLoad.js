@@ -146,6 +146,7 @@ const ajaxPageLoad = function() {
     triggerCustomEvent(document, 'roadblock:close');
     triggerCustomEvent(document, 'globalSearch:close');
     triggerCustomEvent(document, 'navMobile:close');
+    triggerCustomEvent(document, 'dropdown:close');
 
     docTitle = null;
     docContent = null;

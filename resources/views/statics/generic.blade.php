@@ -17,21 +17,24 @@
   @endcomponent
 
   <div class="o-article__primary-actions">
-    @if (isset($subNav))
+    @if (isset($subNav) and false)
         @component('components.atoms._dropdown')
           @slot('prompt', $title)
-          @slot('variation', 'dropdown--filter u-hide@large+')
+          @slot('variation', 'dropdown--filter dropdown--navigation u-hide@large+')
+          @slot('listVariation', 'dropdown__list--navigation')
           @slot('ariaTitle', 'Sub navigation')
           @slot('options', $subNav)
         @endcomponent
     @endif
 
     @if (isset($nav))
-        @component('components.molecules._m-link-list')
-            @slot('font', 'f-module-title-1')
-            @slot('variation','u-show@large+')
-            @slot('links', $nav);
-        @endcomponent
+        <div class="o-collapsing-nav" data-behavior="collapsingNav" data-dropdown-breakpoints="medium-">
+            <button class="o-collapsing-nav__trigger f-secondary">{{ $title }}<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+            @component('components.molecules._m-link-list')
+                @slot('font', 'f-module-title-1')
+                @slot('links', $nav);
+            @endcomponent
+        </div>
     @endif
   </div>
 
