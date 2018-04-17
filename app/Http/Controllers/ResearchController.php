@@ -25,7 +25,7 @@ class ResearchController extends Controller
             ];
         }
 
-        $items = [];
+        $features = [];
         foreach($featuredPages as $item) {
             $links = [];
             foreach($item->children as $child) {
@@ -35,13 +35,27 @@ class ResearchController extends Controller
                   ));
             }
 
-            array_push($items, [
+            array_push($features, [
                 'image' => $item->imageFront('listing'),
                 'title' => $item->title,
                 'titleLink' => $item->url,
                 'text' => $item->short_description,
                 'links' => $links
             ]);
+        }
+
+        $studyRooms = [];
+        foreach($page->researchResourcesStudyRooms as $room) {
+            array_push($studyRooms, [
+                'title' => $room->title,
+                'titleLink' => $room->url,
+                'text' => $room->short_description,
+            ]);
+        }
+
+        $studyRoomsLink = '';
+        foreach($page->researchResourcesStudyRoomMore as $room) {
+            $studyRoomsLink = $room->url;
         }
 
         return view('site.research_resources.index', [
@@ -64,24 +78,9 @@ class ResearchController extends Controller
                 ],
             ],
             'hero' => $hero,
-            'items' => $items,
-            'studyRooms' => [
-                [
-                    'title' => 'Prints and Drawings',
-                    'titleLink' => '#',
-                    'text' => 'The Ryerson & Burnham Libraries constitute a major art and architecure research collection service The Art Institute of Chicago...',
-                ],
-                [
-                    'title' => 'Photography',
-                    'titleLink' => '#',
-                    'text' => 'The Archives’ collections are notably strong in late 19th- and 20th-century American architecture, with particular depth...',
-                ],
-                [
-                    'title' => 'Ryerson Special Collections',
-                    'titleLink' => '#',
-                    'text' => 'When starting your research, explore the guides. To consult with an actual librarian, visit the reference desk...',
-                ],
-            ]
+            'items' => $features,
+            'studyRooms' => $studyRooms,
+            'studyRoomsLink' => $studyRoomsLink
         ]);
 
     }

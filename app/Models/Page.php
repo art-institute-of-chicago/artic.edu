@@ -273,6 +273,16 @@ class Page extends Model
         return $this->belongsToMany('App\Models\GenericPage', 'research_resource_feature_page')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
     }
 
+    public function researchResourcesStudyRooms()
+    {
+        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_pages')->withPivot('position')->orderBy('research_resource_study_room_pages.position', 'asc');
+    }
+
+    public function researchResourcesStudyRoomMore()
+    {
+        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_study_room_more_pages')->withPivot('position')->orderBy('research_resource_study_room_more_pages.position', 'asc');
+    }
+
     protected function transformMappingInternal()
     {
         return [

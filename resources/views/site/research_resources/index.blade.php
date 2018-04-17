@@ -71,7 +71,7 @@
 
         <section>
             @component('components.molecules._m-title-bar')
-                @slot('links', array(array('label' => 'More about Study rooms', 'href' => '#')))
+                @slot('links', array(array('label' => 'More about Study rooms', 'href' => $studyRoomsLink)))
                 Study Rooms
             @endcomponent
 
