@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Libraries\Search;
+use App\Libraries\Search\Filters\Sort as SortFilters;
 
 class CollectionService
 {
@@ -8,6 +9,7 @@ class CollectionService
 
     protected $results;
     protected $aggregationsData;
+    protected $sortingOptions = ['title', 'name'];
 
     protected $perPage = 20;
 
@@ -39,7 +41,7 @@ class CollectionService
     }
 
     /**
-     * Generate filters for the sidebar. See FiltersList namespace classes.
+     * Generate filters for the sidebar. See Filters namespace classes.
      * There the array is generated with options to be used at the FE.
      *
      */
@@ -48,8 +50,13 @@ class CollectionService
         // Ensure the a search query has been executed
         $this->results();
 
-        // Return Filters
-        return $this->buildFilters($this->aggregationsData);
+        // Generate listing filters
+        $filters = $this->buildListFilters($this->aggregationsData);
+
+        // Prepend sorting filters at the beginning
+        $filters->prepend($this->buildSortFilters());
+
+        return $filters;
     }
 
     /**
@@ -81,19 +88,32 @@ class CollectionService
      * Filter class could be a list, date range, checkbox.
      *
      */
-    protected function buildFilters($aggregations)
+    protected function buildListFilters($aggregations)
     {
         $filters = collect([]);
 
         foreach($aggregations as $name => $data)
         {
-            $filterClass = __NAMESPACE__ . '\\FiltersList\\' . ucfirst($name);
+            $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst($name);
             $filter = new $filterClass($data->buckets);
 
             $filters->push($filter->generate());
         }
 
         return $filters->filter();
+    }
+
+    /**
+     * Go through all aggregations and process the buckets with the proper
+     * filter class.
+     * Filter class could be a list, date range, checkbox.
+     *
+     */
+    protected function buildSortFilters()
+    {
+        $sortFilters = new SortFilters($this->sortingOptions);
+        $allFilters  = $sortFilters->generate();
+        return $allFilters;
     }
 
     /**

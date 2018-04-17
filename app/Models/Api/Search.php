@@ -125,6 +125,29 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeBySubjects($query, $ids)
+    {
+        if (empty($ids)) {
+            return $query;
+        }
+
+        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "terms" => [
+                            "subject_id" => $ids
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeByStyles($query, $ids)
     {
         if (empty($ids)) {

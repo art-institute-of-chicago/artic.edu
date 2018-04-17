@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Libraries\Search\FiltersList;
+namespace App\Libraries\Search\Filters;
 
-class Classifications extends BaseFilteredList
+class Styles extends BaseFilteredList
 {
-    protected $parameter  = 'classification_ids';
+    protected $parameter  = 'style_ids';
 
     public function __construct($buckets)
     {
@@ -17,8 +17,8 @@ class Classifications extends BaseFilteredList
 
         if (!$list->isEmpty()) {
             return [
-                'placeholder' => "Find Classifications",
-                'title'       => "Classifications",
+                'placeholder' => "Find Styles",
+                'title'       => "Styles",
                 'active'      => $this->activeList,
                 'list'        => $list,
                 'listSearch'  => true,

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Libraries\Search\FiltersList;
+namespace App\Libraries\Search\Filters;
 
-class Artists extends BaseFilteredList
+class Subjects extends BaseFilteredList
 {
-    protected $parameter  = 'artist_ids';
+    protected $parameter  = 'subject_ids';
 
     public function __construct($buckets)
     {
@@ -17,8 +17,8 @@ class Artists extends BaseFilteredList
 
         if (!$list->isEmpty()) {
             return [
-                'placeholder' => "Find Artists",
-                'title'       => "Artists",
+                'placeholder' => "Find Subjects",
+                'title'       => "Subjects",
                 'active'      => $this->activeList,
                 'list'        => $list,
                 'listSearch'  => true,

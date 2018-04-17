@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\Search\FiltersList;
+namespace App\Libraries\Search\Filters;
 
 class BaseFilteredList
 {
@@ -34,8 +34,9 @@ class BaseFilteredList
                 'label' => $item->key,
                 'enabled' => $enabled
             ];
-        })->sortByDesc('enabled'); // Move selected ones to the timezone_open()
+        })->sortByDesc('enabled'); // Move selected ones to the top
 
         return $list;
     }
+
 }

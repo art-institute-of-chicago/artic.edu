@@ -17,11 +17,33 @@ class CollectionController extends BaseScopedController
     protected $searchRepository;
 
     protected $scopes = [
-        'q'          => 'search',
-        'artist_ids' => 'byArtists',
-        'style_ids'  => 'byStyles',
+        'q'            => 'search',
+        'artist_ids'   => 'byArtists',
+        'style_ids'    => 'byStyles',
+        'subject_ids'  => 'bySubjects',
+        'material_ids' => 'byMaterials',
         'classification_ids' => 'byClassifications',
     ];
+
+    /**
+     * Implementation for BaseScopedController.
+     * This is the beginning for the chain of scoped results
+     * The remaining scopes are applied following the $scopes
+     * array defined at the controller
+     *
+     */
+    protected function beginOfAssociationChain()
+    {
+        // Define base entity
+        $collectionService = new CollectionService;
+
+        // Implement default filters and scopes
+        $collectionService->resources(['artworks'])
+            ->allAggregations()
+            ->forceEndpoint('search');
+
+        return $collectionService;
+    }
 
     public function index()
     {
@@ -64,26 +86,6 @@ class CollectionController extends BaseScopedController
           ),
         ]);
 
-    }
-
-    /**
-     * Implementation for BaseScopedController.
-     * This is the beginning of the chain of scoped results
-     * The rest of the scopes are applied following the $scopes
-     * array defined at the controller
-     *
-     */
-    protected function beginOfAssociationChain()
-    {
-        // Define base entity
-        $collectionService = new CollectionService;
-
-        // Implement default filters and scopes
-        $collectionService->resources(['artworks'])
-            ->allAggregations()
-            ->forceEndpoint('search');
-
-        return $collectionService;
     }
 
     public function clearRecentlyViewed()

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\Search\FiltersList;
+namespace App\Libraries\Search\Filters;
 
 class Materials extends BaseFilteredList
 {
