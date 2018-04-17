@@ -4,49 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Repositories\Api\ArtworkRepository;
-use App\Repositories\Api\SearchRepository;
-use App\Models\Api\Artwork;
 use App\Models\Page;
+use App\Libraries\Search\CollectionService;
 
 use LakeviewImageService;
 
-class CollectionController extends FrontController
+class CollectionController extends BaseScopedController
 {
+    const PER_PAGE = 20;
+
     protected $apiRepository;
     protected $searchRepository;
 
-    const PER_PAGE = 20;
-
-    public function __construct(ArtworkRepository $repository, SearchRepository $searchRepository)
-    {
-        $this->apiRepository = $repository;
-        $this->searchRepository = $searchRepository;
-
-        parent::__construct();
-    }
+    protected $scopes = [
+        'q'          => 'search',
+        'artist_ids' => 'byArtists',
+        'style_ids'  => 'byStyles',
+        'classification_ids' => 'byClassifications',
+    ];
 
     public function index()
     {
-        $page    = Page::forType('Art and Ideas')->with('apiElements')->first();
-        $filters = $this->searchRepository->generateFilters();
+        $page = Page::forType('Art and Ideas')->with('apiElements')->first();
 
+        $filters    = $this->collection()->generateFilters();
+        $collection = $this->collection()->results(static::PER_PAGE);
+
+        // TODO: REIMPLEMENT
         // If we don't have a query let's load the boosted artworks
-        if (request('q')) {
-            $collection = \App\Models\Api\Search::search(request('q'))->resources(['artworks'])->getSearch(self::PER_PAGE);
-        } else {
-            $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->paginate(self::PER_PAGE);
-        }
+        // $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->paginate(self::PER_PAGE);
 
+        // TODO: Move ajaxed pagination to it's own action
         // If it's ajax, just load more elements.
-        if (request()->ajax() && request()->has('page')) {
-            return [
-                'page' => request('page'),
-                'html' => view('site.collection._items', [
-                    'artworks' => $collection
-                ])->render()
-            ];
-        }
+        // if (request()->ajax() && request()->has('page')) {
+        //     return [
+        //         'page' => request('page'),
+        //         'html' => view('site.collection._items', [
+        //             'artworks' => $collection
+        //         ])->render()
+        //     ];
+        // }
 
         return view('site.collection.index', [
           'primaryNavCurrent' => 'collection',
@@ -55,36 +52,44 @@ class CollectionController extends FrontController
           'quickSearchLinks' => [],
           'filters' => [],
           'filterCategories' => $filters,
+          'artworks' => $collection,
+          'recentlyViewedArtworks' => [],
           'activeFilters' => array(
             array(
               'href' => '#',
               'label' => "Arms",
-            ),
-            array(
-              'href' => '#',
-              'label' => "Legs",
-            ),
+            )
           ),
-          'artworks' => $collection,
-          'recentlyViewedArtworks' => [],
           'interestedThemes' => array(
             array(
               'href' => '#',
               'label' => "Picasso",
-            ),
-            array(
-              'href' => '#',
-              'label' => "Modern Art",
-            ),
-            array(
-              'href' => '#',
-              'label' => "European Art",
-            ),
+            )
           ),
           'featuredArticlesHero' => [],
           'featuredArticles' => [],
         ]);
 
+    }
+
+    /**
+     * Implementation for BaseScopedController.
+     * This is the beginning of the chain of scoped results
+     * The rest of the scopes are applied following the $scopes
+     * array defined at the controller
+     *
+     */
+    protected function beginOfAssociationChain()
+    {
+        // Define base entity
+        $collectionService = new CollectionService;
+
+        // Implement default filters and scopes
+        $collectionService->resources(['artworks'])
+            ->allAggregations()
+            ->forceEndpoint('search');
+
+        return $collectionService;
     }
 
     public function clearRecentlyViewed()
@@ -95,16 +100,16 @@ class CollectionController extends FrontController
 
     public function autocomplete()
     {
-        // Collection autocomplete is just a text one. Images and rich suggestions are used on General ones.
-
+        // Collection autocomplete is just text.
+        // So we use a raw query directly.
         $results = \App\Models\Api\Search::search(request('q'))->forceEndpoint('autocomplete')->getRaw();
-        $items   = [];
+        $items   = collect([]);
 
-        foreach($results as $i) {
-            array_push($items, array(
-                'href' => route('collection', ['q' => request('q')]),
-                'label' => $i,
-            ));
+        foreach($results as $label) {
+            $items->push([
+                'href'  => route('collection', request()->except('q') + ['q' => $label]),
+                'label' => $label,
+            ]);
         }
 
         return view('components/molecules/_m-search-bar__autocomplete', [

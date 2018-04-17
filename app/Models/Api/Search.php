@@ -48,22 +48,104 @@ class Search extends BaseApiModel
     public function scopeAllAggregations($query)
     {
         $aggs = [
-            'artist' => [
+            'artists' => [
                 'terms' => [
-                    'field' => 'artist_id',
-                    'size' => 1000
-                ],
-                'aggs' => [
-                    'name' => [
-                        'terms' => [
-                            'field' => 'artist_titles.keyword'
+                    'field' => 'artist_ids',
+                    // 'size' => 20
+                ]
+            ],
+            'styles' => [
+                'terms' => [
+                    'field' => 'style_ids'
+                ]
+            ],
+            'materials' => [
+                'terms' => [
+                    'field' => 'material_ids'
+                ]
+            ],
+            'classifications' => [
+                'terms' => [
+                    'field' => 'classification_ids'
+                ]
+            ],
+            'subjects' => [
+                'terms' => [
+                    'field' => 'subject_ids'
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
+    public function scopeByClassifications($query, $ids)
+    {
+        if (empty($ids)) {
+            return $query;
+        }
+
+        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "terms" => [
+                            "classification_id" => $ids
                         ]
                     ]
                 ]
             ]
         ];
 
-        return $query->aggregations($aggs);
+        return $query->rawSearch($params);
+    }
+
+    public function scopeByArtists($query, $ids)
+    {
+        if (empty($ids)) {
+            return $query;
+        }
+
+        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "terms" => [
+                            "artist_id" => $ids
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeByStyles($query, $ids)
+    {
+        if (empty($ids)) {
+            return $query;
+        }
+
+        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "terms" => [
+                            "style_id" => $ids
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
     }
 
     public function scopeByGallery($query, $id)
