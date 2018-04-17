@@ -94,7 +94,15 @@
   vertical-align: middle;
 }
 
+.m-search-bar__loader {
+  @extend %a-loader;
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 70px;
+}
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ subtle
 
 .m-search-bar--subtle input[type=text],
 .m-search-bar--subtle .m-search-bar__submit,
@@ -114,15 +122,46 @@
   }
 }
 
-.m-search-bar__loader {
-  @extend %a-loader;
-  display: none;
-  position: absolute;
-  top: 14px;
-  right: 70px;
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ inside o-collection-search
+
+.o-collection-search {
+
+  .m-search-bar input[type=text] {
+    color: $color__text--secondary;
+
+    @include placeholder() {
+      color: $color__text--tertiary;
+    }
+  }
+
+  .m-search-bar input[type=text]:focus {
+    border-color: transparent;
+    background-color: $color__bg--primary;
+    color: $color__text--title;
+  }
+
+  .m-search-bar .m-search-bar__submit {
+    color: $color__text--tertiary;
+  }
+
+  .m-search-bar .m-search-bar__submit:hover,
+  .m-search-bar .m-search-bar__submit:focus {
+    color: $color__text--secondary;
+  }
+
+  .m-search-bar .m-search-bar__submit:active {
+    color: $color__text--title;
+  }
+
+  .m-search-bar input[type=text]:focus + .m-search-bar__submit {
+    background-color: $color__bg--primary;
+    color: $color__text--title;
+  }
+
 }
 
-// autocomplete
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ autocomplete
 
 .m-search-bar__autocomplete {
   @include untuck;
