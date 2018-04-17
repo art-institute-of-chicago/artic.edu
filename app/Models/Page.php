@@ -268,6 +268,11 @@ class Page extends Model
         return $this->belongsToMany('App\Models\GenericPage', 'visit_tour_page')->withPivot('position')->orderBy('visit_tour_page.position', 'asc');
     }
 
+    public function researchResourcesFeaturePages()
+    {
+        return $this->belongsToMany('App\Models\GenericPage', 'research_resource_feature_page')->withPivot('position')->orderBy('research_resource_feature_page.position', 'asc');
+    }
+
     protected function transformMappingInternal()
     {
         return [

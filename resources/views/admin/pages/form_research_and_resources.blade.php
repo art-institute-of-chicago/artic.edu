@@ -1,3 +1,9 @@
 @section('contentFields')
-    Research and Resource <br />TODO
+    @formField('browser', [
+    'routePrefix' => 'generic',
+        'max' => 7,
+        'moduleName' => 'genericPages',
+        'name' => 'researchResourcesFeaturePages',
+        'label' => 'Featured pages'
+    ])
 @stop

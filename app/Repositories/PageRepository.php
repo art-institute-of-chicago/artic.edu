@@ -27,6 +27,7 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'collectionFeatures', 'position', 'CollectionFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
 
         $this->hydrateOrderedBelongsTomany($object, $fields, 'articles', 'position', 'Article');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'printedCatalogs', 'position', 'PrintedCatalog');
@@ -63,6 +64,9 @@ class PageRepository extends ModuleRepository
 
         // Art & Ideas
         $this->updateBrowser($object, $fields, 'artArticles');
+
+        // Research
+        $this->updateBrowser($object, $fields, 'researchResourcesFeaturePages');
 
         $this->updateBrowser($object, $fields, 'articles');
         $this->updateBrowser($object, $fields, 'printedCatalogs');
@@ -105,6 +109,9 @@ class PageRepository extends ModuleRepository
 
         // Art & Ideas
         $fields['browsers']['artArticles'] = $this->getFormFieldsForBrowser($object, 'artArticles', 'collection.articles_publications', 'title', 'articles');
+
+        // Research
+        $fields['browsers']['researchResourcesFeaturePages'] = $this->getFormFieldsForBrowser($object, 'researchResourcesFeaturePages', 'generic', 'title', 'genericPages');
 
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications', 'title', 'articles');
         $fields['browsers']['printedCatalogs'] = $this->getFormFieldsForBrowser($object, 'printedCatalogs', 'collection.articles_publications', 'title', 'printedCatalogs');
