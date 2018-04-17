@@ -1,78 +1,33 @@
-import { purgeProperties, setFocusOnTarget } from '@area17/a17-helpers';
-import { positionElementToTarget } from '../functions';
+import { purgeProperties, setFocusOnTarget, triggerCustomEvent } from '@area17/a17-helpers';
+import { mediaQuery } from '../functions';
 
 const dropdown = function(container) {
 
-  let active = false;
-  let allow = true;
-  let $list;
-  let $listClone;
-
-  /*
-      Find a html element's position.
-      Adapted from Peter-Paul Koch of QuirksMode at   http://www.quirksmode.org/js/findpos.html
-  */
-  function _findScrollLeft(obj) {
-    var scrollLeft = 0;
-    while(obj && obj.parentNode)
-    {
-      scrollLeft += (obj.parentNode.scrollLeft) ? obj.parentNode.scrollLeft : 0;
-      obj = obj.parentNode;
-    }
-    return scrollLeft;
-  }
-
-  function _ignore(el) {
-    let ignore = false;
-    while (container.contains(el) && el !== container) {
-      if (el.getAttribute('data-dropdown-ignore') !== null) {
-        ignore = true;
-      }
-      el = el.parentNode;
-    }
-    return ignore;
-  }
-
-  function _removeClone(clone) {
-    document.body.removeChild(clone);
-  }
+  var setup = false;
+  var active = false;
+  var allow = true;
+  let breakpoints = container.getAttribute('data-dropdown-breakpoints') || 'all';
 
   function _open(event) {
-    if (!allow || $listClone) {
+    if (!allow) {
       return;
     }
     if (event) {
       event.stopPropagation();
     }
-    $listClone = $list.cloneNode(true);
-    let minWidth = Math.round(container.offsetWidth);
-    let top = 0;
-    let left = 0;
-    document.body.appendChild($listClone);
-    if (A17.currentMediaQuery === 'xsmall') {
-      left = 'auto';
-    }
-    if (container.classList.contains('dropdown--filter')) {
-      minWidth = Math.round(container.offsetWidth + 32);
-      top = Math.round(container.offsetHeight * -1);
-      left = -16;
-    }
-    $listClone.style.minWidth = minWidth + 'px';
-    $listClone.style.display = 'block';
-    positionElementToTarget({
-      element: $listClone,
-      target: container,
-      padding: {
-        left: left,
-        top: top
-      }
-    });
+    triggerCustomEvent(document, 'dropdown:close');
     container.classList.add('s-active');
-    setFocusOnTarget($listClone);
+    setFocusOnTarget(container.querySelector('ul'));
     active = true;
   }
 
-  function _close(event,type) {
+  function _globalOpen(event) {
+    if (event && event.data.el && event.data.el === container && allow && !active) {
+      _open();
+    }
+  }
+
+  function _close(event) {
     if (!active) {
       return;
     }
@@ -85,7 +40,7 @@ const dropdown = function(container) {
         element is. If its an input, then blurring the input to then re-focus it after
         the event.stopPropagation().
       */
-      let activeElement = null;
+      var activeElement = null;
       if (event.type === 'focus' && document.activeElement.tagName === 'INPUT') {
         activeElement = document.activeElement;
         activeElement.blur();
@@ -98,50 +53,38 @@ const dropdown = function(container) {
       }
     }
     container.classList.remove('s-active');
-    if (type === 'touchStart') {
-      // need this 200ms delay for touch devices and the anchor link scrolling
-      setTimeout(_removeClone.bind(null, $listClone), 200);
-    } else {
-      _removeClone($listClone);
-    }
-    $listClone = null;
     active = false;
-    if (event) {
-      setFocusOnTarget(container.parentNode);
-    }
   }
 
-  function _focus(event) {
-    if (document.activeElement === container || container.contains(document.activeElement) || ($listClone && (document.activeElement === $listClone || $listClone.contains(document.activeElement)))) {
-      if (!active) {
-        if (document.activeElement.getAttribute('data-dropdown-ignore') === null) {
-          _open(event);
-        }
-      } else if (document.activeElement === container || document.activeElement === container.firstElementChild) {
-        _close(event);
-      }
-    } else {
+  function _globalClose(event) {
+    if (active) {
       _close();
     }
   }
 
-  function _clicks(event) {
-    if (active) {
-      if (document.activeElement !== container && !container.contains(document.activeElement) && $listClone && document.activeElement !== $listClone && !$listClone.contains(document.activeElement)) {
+  function _focus(event) {
+    if (document.activeElement === container || container.contains(document.activeElement)) {
+      event.stopPropagation();
+      if (!active) {
+        _open(event);
+      } else if (document.activeElement === container || document.activeElement === container.firstElementChild) {
         _close(event);
-      } else {
-        _close();
+        setFocusOnTarget(container.parentNode);
       }
+    } else {
+      _close(event);
+    }
+  }
+
+  function _clicks(event) {
+    if (document.activeElement !== container && !container.contains(document.activeElement) && active) {
+      _close(event);
     }
   }
 
   function _touchstart(event) {
-    if (active) {
-      if (event.target !== container && !container.contains(event.target) && $listClone && event.target !== $listClone && !$listClone.contains(event.target)) {
-        _close(event,'touchStart');
-      } else {
-        _close(null,'touchStart');
-      }
+    if (event.target !== container && !container.contains(event.target) && active) {
+      _close(event);
     }
   }
 
@@ -159,26 +102,49 @@ const dropdown = function(container) {
     }
   }
 
+  function _setup() {
+    if (!setup) {
+      container.setAttribute('tabindex','0');
+      active = container.classList.contains('s-active');
+      document.addEventListener('focus', _focus, true);
+      document.addEventListener('click', _clicks, false);
+      document.addEventListener('touchstart', _touchstart, false);
+      document.addEventListener('touchend', _touchend, false);
+      document.addEventListener('dropdown:open', _globalOpen, false);
+      document.addEventListener('dropdown:close', _globalClose, false);
+      setup = true;
+    }
+  }
+
+  function _destroy() {
+    if (setup) {
+      active = false;
+      document.removeEventListener('focus', _focus);
+      document.removeEventListener('click', _clicks);
+      document.removeEventListener('touchstart', _touchstart);
+      document.removeEventListener('touchend', _touchend);
+      document.removeEventListener('dropdown:open', _globalOpen);
+      document.removeEventListener('dropdown:close', _globalClose);
+      setup = false;
+    }
+  }
+
+  function _mediaQueryUpdated() {
+    if (!setup && mediaQuery(breakpoints)) {
+      _setup();
+    } else if (setup && !mediaQuery(breakpoints)) {
+      _destroy();
+    }
+  }
+
   function _init() {
-    container.setAttribute('tabindex','0');
-    $list = container.querySelector('[data-dropdown-list]');
-    active = container.classList.contains('s-active');
-    document.addEventListener('focus', _focus, true);
-    document.addEventListener('click', _clicks, false);
-    document.addEventListener('touchstart', _touchstart, false);
-    document.addEventListener('touchend', _touchend, false);
-    container.addEventListener('dropdown:open', _open, false);
-    container.addEventListener('dropdown:close', _close, false);
+    document.addEventListener('mediaQueryUpdated', _mediaQueryUpdated, true);
+    _mediaQueryUpdated();
   }
 
   this.destroy = function() {
-    // remove specific event handlers
-    document.removeEventListener('focus', _focus);
-    document.removeEventListener('click', _clicks);
-    document.removeEventListener('touchstart', _touchstart);
-    document.removeEventListener('touchend', _touchend);
-    container.removeEventListener('dropdown:open', _open);
-    container.removeEventListener('dropdown:close', _close);
+    document.removeEventListener('mediaQueryUpdated', _mediaQueryUpdated);
+    _destroy();
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);

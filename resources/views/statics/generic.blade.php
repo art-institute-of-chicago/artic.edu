@@ -28,7 +28,7 @@
     @endif
 
     @if (isset($nav))
-        <div class="o-collapsing-nav" data-behavior="collapsingNav" data-dropdown-breakpoints="medium-">
+        <div class="o-collapsing-nav" data-behavior="dropdown" data-dropdown-breakpoints="medium-">
             <button class="o-collapsing-nav__trigger f-secondary">{{ $title }}<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
             @component('components.molecules._m-link-list')
                 @slot('font', 'f-module-title-1')

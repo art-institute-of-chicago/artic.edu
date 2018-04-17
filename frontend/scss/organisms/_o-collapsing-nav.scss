@@ -6,9 +6,8 @@
 }
 
 .o-collapsing-nav__trigger {
-  display: block;
+  display: inline-block;
   position: relative;
-  width: 100%;
   padding: 0 40px 0 0;
   border: 0 none;
   background: transparent;
@@ -22,11 +21,6 @@
 
   &:active:hover {
     color: $color__link--active;
-  }
-
-  @include breakpoint('medium+') {
-    display: inline-block;
-    width: auto;
   }
 
   @include breakpoint('large+') {
@@ -123,6 +117,11 @@
 
     & > .m-link-list__item {
       padding-left: 0;
+    }
+
+    & > .m-link-list__item:first-child::after {
+      content: '';
+      display: block;
     }
   }
 }
