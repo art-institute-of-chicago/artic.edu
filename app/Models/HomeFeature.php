@@ -4,13 +4,14 @@ namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
+use A17\CmsToolkit\Models\Behaviors\HasFiles;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 use A17\CmsToolkit\Models\Model;
 
 class HomeFeature extends Model
 {
-    use HasMedias, HasBlocks, HasApiRelations, HasMediasEloquent;
+    use HasMedias, HasBlocks, HasApiRelations, HasMediasEloquent, HasFiles;
 
     protected $fillable = [
         'title',
@@ -45,6 +46,7 @@ class HomeFeature extends Model
             ],
         ],
     ];
+    public $filesParams = ['video']; // a list of file roles
 
     public $checkboxes = ['published'];
 

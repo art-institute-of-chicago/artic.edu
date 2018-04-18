@@ -5,6 +5,7 @@ namespace App\Repositories;
 use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
+use A17\CmsToolkit\Repositories\Behaviors\HandleFiles;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Models\HomeFeature;
 use App\Repositories\Behaviors\HandleApiRelations;
@@ -14,7 +15,7 @@ use App\Repositories\Api\BaseApiRepository;
 
 class HomeFeatureRepository extends ModuleRepository
 {
-    use  HandleMedias, HandleBLocks, HandleApiBlocks, HandleApiRelations {
+    use  HandleMedias, HandleBLocks, HandleApiBlocks, HandleFiles, HandleApiRelations {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 

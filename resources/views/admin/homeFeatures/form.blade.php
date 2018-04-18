@@ -6,6 +6,12 @@
         'name' => 'hero'
     ])
 
+    @formField('files', [
+        'name' => 'video',
+        'label' => 'Video file',
+        'note' => 'Add an MP4 file'
+    ])
+
     @php
         $selectedFeature = 'articles';
         foreach (['articles', 'events', 'exhibitions'] as $featureType) {

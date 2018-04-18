@@ -253,7 +253,8 @@ return [
             ],
         ],
         'files' => [
-            'attachment'
+            'attachment',
+            'video'
         ],
         'browser_route_prefixes' => [
             'events' => 'exhibitions_events',

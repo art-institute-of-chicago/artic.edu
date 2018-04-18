@@ -50,9 +50,30 @@ class HomeController extends FrontController
                     $item->dateStart = Carbon::now();
                     $item->dateEnd = Carbon::now();
                     $item->feature_image = $feature->imageFront('hero');
+
+                    $video_url = $feature->file('video');
+                    if($video_url != null) {
+                        $poster_url = isset($item->feature_image['src']) ? $item->feature_image['src'] : '';
+                        $video = [
+                            'src' => $video_url,
+                            'poster' => $poster_url,
+                        ];
+                        $item->videoFront = $video;
+                    }
+
                 } else if ($feature->exhibitions->count()) {
                     $item = $this->exhibitionRepository->getById($feature->exhibitions()->first()->datahub_id);
                     $item->feature_image = $feature->imageFront('hero');
+
+                    $video_url = $feature->file('video');
+                    if($video_url != null) {
+                        $poster_url = isset($item->feature_image['src']) ? $item->feature_image['src'] : '';
+                        $video = [
+                            'src' => $video_url,
+                            'poster' => $poster_url,
+                        ];
+                        $item->videoFront = $video;
+                    }
 
                     $item->type = 'exhibition';
                 } else if ($feature->articles->count()) {
@@ -61,6 +82,17 @@ class HomeController extends FrontController
                     $item->dateStart = Carbon::now();
                     $item->dateEnd = Carbon::now();
                     $item->feature_image = $feature->imageFront('hero');
+
+                    $video_url = $feature->file('video');
+                    if($video_url != null) {
+                        $poster_url = isset($item->feature_image['src']) ? $item->feature_image['src'] : '';
+                        $video = [
+                            'src' => $video_url,
+                            'poster' => $poster_url,
+                        ];
+                        $item->videoFront = $video;
+                    }
+
                 }
 
                 if ($item) {
