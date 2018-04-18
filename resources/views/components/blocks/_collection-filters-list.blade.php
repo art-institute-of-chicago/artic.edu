@@ -1,7 +1,7 @@
 @if (isset($filterCategory['listSearch']) and $filterCategory['listSearch'])
     <form class="m-filters__whittle-down" data-behavior="filterWhittleDown">
-        <label>Find Location</label>
-        <input type="text" class="f-secondary" placeholder="Find location">
+        <label>{{$filterCategory['placeholder'] ?? 'Find Location'}}</label>
+        <input type="text" class="f-secondary" placeholder="{{$filterCategory['placeholder'] ?? 'Find Location'}}">
         <button><svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg></button>
     </form>
     <ul class="m-filters__list">
@@ -10,7 +10,7 @@
 @endif
     @foreach ($filterCategory['list'] as $link)
     <li>
-        <a href="{{ $link['href'] }}" class="checkbox f-secondary">{{ $link['label'] }} <em>({{ $link['count'] }})</em></a>
+        <a href="{{ $link['href'] }}" class="checkbox f-secondary {{ $link['enabled'] ? 's-checked' : '' }}">{{ $link['label'] }} <em>({{ $link['count'] }})</em></a>
     </li>
     @endforeach
 </ul>

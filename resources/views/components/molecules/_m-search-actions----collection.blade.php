@@ -11,6 +11,12 @@
         </a>
     </li>
     <li class="u-hide@xsmall">
-        <span class="f-secondary">108,789 results</span>
+        <span class="f-secondary">
+            @if (isset($total))
+                {{ $total }} {{ str_plural('result', $total) }}
+            @else
+                108,789 results
+            @endif
+        </span>
     </li>
 </ul>

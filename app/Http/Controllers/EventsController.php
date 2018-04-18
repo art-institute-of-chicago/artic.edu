@@ -38,7 +38,7 @@ class EventsController extends FrontController
             $ongoing = null;
             $eventsByDay = $this->repository->groupByDate($collection);
         } else {
-            // Divide the collection on normal events, and ongoing ones
+            // Divide the collection by normal events and ongoing ones
             $ongoing = $collection->filter(function ($item) {
                 return ($item->date <= Carbon::now()) && ($item->date_end > Carbon::now());
             });
@@ -101,11 +101,6 @@ class EventsController extends FrontController
         ];
 
         return \Response::make($content, 200, $headers);
-
-
-        // Response::make($ical)->header("Content-type","text/calendar; charset=utf-8")
-
-        // return response()->download(;, $event->title . ".ics");
     }
 
     protected function collection()

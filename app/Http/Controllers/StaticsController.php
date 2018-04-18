@@ -582,7 +582,6 @@ class StaticsController extends FrontController {
       'onViewLink' => (isset($_GET['onview']) && $_GET['onview'] === 'true') ? '/statics/collection' : '/statics/collection?onview=true',
       'onViewActive' => (isset($_GET['onview']) && $_GET['onview'] === 'true'),
       'quickSearchLinks' => $quickSearchLinks,
-      'filters' => $filters,
       'filterCategories' => $this->generateCollectionFilterCategories(),
       'activeFilters' => array(
         array(
@@ -2856,6 +2855,7 @@ class StaticsController extends FrontController {
           'href' => '/statics/collection?filter='.$i,
           'label' => $this->faker->word(),
           'count' => $this->faker->numberBetween(13,1312),
+          'enabled' => false,
         )
       );
     }
