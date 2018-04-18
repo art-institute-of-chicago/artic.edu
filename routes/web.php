@@ -32,6 +32,7 @@ Route::name('collection.publications.scholarly-journals.show')->get('/collection
 Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');
 // Collection Resources Research Guides
 Route::name('collection.resources.research-guides')->get('/collection/resources/research-guides', 'ResearchGuidesController@index');
+Route::moduleShowWithPreview('researchguides');
 Route::name('collection.resources.research-guides.show')->get('/collection/resources/research-guides/{id}', 'ResearchGuidesController@show');
 // Collection Resources Educator Resources
 Route::name('collection.resources.educator-resources')->get('/collection/resources/educator-resources', 'EducatorResourcesController@index');

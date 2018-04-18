@@ -19,4 +19,23 @@ class ResearchGuideRepository extends ModuleRepository
     {
         $this->model = $model;
     }
+
+    public function getShowData($item, $slug = null, $previewPage = null)
+    {
+
+        return [
+            'borderlessHeader' => !(empty($item->imageFront('banner'))),
+            'subNav' => null,
+            'nav' => null,
+            'intro' => $item->short_description,
+            'headerImage' => $item->imageFront('banner'),
+            "title" => $item->title,
+            "breadcrumb" => [],
+            "blocks" => null,
+            'featuredRelated' => [],
+            'nav' => [],
+            'page' => $item,
+        ];
+    }
+
 }
