@@ -2,6 +2,7 @@
 
 namespace App\Libraries\Search;
 use App\Libraries\Search\Filters\Sort as SortFilters;
+use App\Libraries\Search\Filters\DateRange;
 
 class CollectionService
 {
@@ -54,11 +55,7 @@ class CollectionService
         $filters = $this->buildListFilters($this->aggregationsData);
 
         //TODO: Integrate this hardcoded filter to be generated with proper date ranges
-        $filters->prepend([
-            'type' => 'date',
-            'title' => 'Date',
-            'active' => true,
-        ]);
+        $filters->prepend($this->buildDateFilters());
 
         // Prepend sorting filters at the beginning
         $filters->prepend($this->buildSortFilters());
@@ -90,13 +87,12 @@ class CollectionService
                     break;
 
                 case 'date':
-                    // TODO: Implement code to remove dates filter here
-                    // if ($item['enabled']) {
-                    //     $activeFilters->push([
-                    //         'href'  => $item['href'],
-                    //         'label' => $item['label']
-                    //     ]);
-                    // }
+                    if ($category['enabled']) {
+                        $activeFilters->push([
+                            'href'  => $category['href'],
+                            'label' => $category['label']
+                        ]);
+                    }
                     break;
             }
         }
@@ -134,8 +130,13 @@ class CollectionService
     protected function buildSortFilters()
     {
         $sortFilters = new SortFilters($this->sortingOptions);
-        $allFilters  = $sortFilters->generate();
-        return $allFilters;
+        return $sortFilters->generate();
+    }
+
+    protected function buildDateFilters()
+    {
+        $dateFilters = new DateRange();
+        return $dateFilters->generate();
     }
 
     /**
