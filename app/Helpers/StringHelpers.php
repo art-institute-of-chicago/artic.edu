@@ -109,3 +109,13 @@ if (!function_exists('getUtf8Slug')) {
         return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
     }
 }
+
+if (!function_exists('truncateStr')) {
+    function truncateStr($string, $length = 150) {
+        $limit = abs((int)$length);
+           if(strlen($string) > $limit) {
+              $string = preg_replace("/^(.{1,$limit})(\s.*|$)/s", '\1...', $string);
+           }
+        return $string;
+   }
+}
