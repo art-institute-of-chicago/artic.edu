@@ -129,6 +129,68 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeDateMin($query, $date)
+    {
+        if (empty($date)) {
+            return $query;
+        }
+
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "date_start" => [
+                                "gte" => $this->transformDate($date)
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeDateMax($query, $date)
+    {
+        if (empty($date)) {
+            return $query;
+        }
+
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "date_end" => [
+                                "lte" => $this->transformDate($date)
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    protected function transformDate($date) {
+        // Date could come with BC, AD, or 'Present'
+
+        if (str_contains($date, 'BC')) {
+            $date = - (integer) $date;
+        } else {
+            if (str_contains($date, 'Present')) {
+                $date = Carbon::now()->year;
+            } else {
+                $date = (integer) $date;
+            }
+        }
+
+        return $date;
+    }
+
     public function scopeByGallery($query, $id)
     {
         $params = [

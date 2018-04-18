@@ -23,6 +23,8 @@ class CollectionController extends BaseScopedController
         'subject_ids'  => 'bySubjects',
         'material_ids' => 'byMaterials',
         'sort_by'      => 'sortBy',
+        'date-start'   => 'dateMin',
+        'date-end'     => 'dateMax',
         'classification_ids' => 'byClassifications',
     ];
 
@@ -48,9 +50,12 @@ class CollectionController extends BaseScopedController
 
     public function index()
     {
+        // If we don't have a query let's load the boosted artworks
+        // $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->paginate(self::PER_PAGE);
+
         $collection = $this->collection()->results(static::PER_PAGE);
 
-        // If it's a call to the Load More, just show the items and do not generate a full page
+        // If it's a call to Load More, just show the items and do not generate a full page
         if (\Route::current()->getName() == 'collection.more') {
             $view['html'] = view('site.collection._items', [
                 'artworks' => $collection
@@ -65,20 +70,6 @@ class CollectionController extends BaseScopedController
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
-
-        // If we don't have a query let's load the boosted artworks
-        // $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->paginate(self::PER_PAGE);
-
-        // TODO: Move ajaxed pagination to it's own action
-        // If it's ajax, just load more elements.
-        // if (request()->ajax() && request()->has('page')) {
-        //     return [
-        //         'page' => request('page'),
-        //         'html' => view('site.collection._items', [
-        //             'artworks' => $collection
-        //         ])->render()
-        //     ];
-        // }
 
         return view('site.collection.index', [
           'primaryNavCurrent' => 'collection',

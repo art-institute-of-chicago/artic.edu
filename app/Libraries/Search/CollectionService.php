@@ -53,6 +53,13 @@ class CollectionService
         // Generate listing filters
         $filters = $this->buildListFilters($this->aggregationsData);
 
+        //TODO: Integrate this hardcoded filter to be generated with proper date ranges
+        $filters->prepend([
+            'type' => 'date',
+            'title' => 'Date',
+            'active' => true,
+        ]);
+
         // Prepend sorting filters at the beginning
         $filters->prepend($this->buildSortFilters());
 
@@ -69,13 +76,28 @@ class CollectionService
 
         // Walk through filters and extract the active ones
         foreach ($this->generateFilters() as $category) {
-            foreach ($category['list'] as $item) {
-                if ($item['enabled']) {
-                    $activeFilters->push([
-                        'href'  => $item['href'],
-                        'label' => $item['label']
-                    ]);
-                }
+            switch($category['type']) {
+                case 'list':
+                case 'dropdown':
+                    foreach ($category['list'] as $item) {
+                        if ($item['enabled']) {
+                            $activeFilters->push([
+                                'href'  => $item['href'],
+                                'label' => $item['label']
+                            ]);
+                        }
+                    }
+                    break;
+
+                case 'date':
+                    // TODO: Implement code to remove dates filter here
+                    // if ($item['enabled']) {
+                    //     $activeFilters->push([
+                    //         'href'  => $item['href'],
+                    //         'label' => $item['label']
+                    //     ]);
+                    // }
+                    break;
             }
         }
 
