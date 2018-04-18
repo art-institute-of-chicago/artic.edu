@@ -22,10 +22,12 @@ class CollectionController extends BaseScopedController
         'style_ids'    => 'byStyles',
         'subject_ids'  => 'bySubjects',
         'material_ids' => 'byMaterials',
+        'place_ids'    => 'byPlaces',
         'sort_by'      => 'sortBy',
         'date-start'   => 'dateMin',
         'date-end'     => 'dateMax',
         'classification_ids' => 'byClassifications',
+        'department_ids'     => 'byDepartments',
     ];
 
     /**

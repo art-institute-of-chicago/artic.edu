@@ -44,7 +44,8 @@ class BaseFilteredList
 
     public function findLabel($id)
     {
-        return $this->loadLabels()->get($id);
+        $label = $this->loadLabels()->get($id);
+        return ucfirst($label);
     }
 
     public function loadLabels()

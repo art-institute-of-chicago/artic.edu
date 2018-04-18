@@ -72,10 +72,30 @@ class Search extends BaseApiModel
                 'terms' => [
                     'field' => 'subject_ids'
                 ]
+            ],
+            "places" => [
+                "terms" => [
+                    "field" => "place_of_origin.keyword"
+                ]
+            ],
+            "departments" => [
+                "terms" => [
+                    "field" => "department_id"
+                ]
             ]
         ];
 
         return $query->aggregations($aggs);
+    }
+
+    public function scopeByDepartments($query, $ids)
+    {
+        return $this->scopeByListType($query, $ids, 'department_id');
+    }
+
+    public function scopeByPlaces($query, $ids)
+    {
+        return $this->scopeByListType($query, $ids, 'place_of_origin.keyword');
     }
 
     public function scopeByClassifications($query, $ids)
