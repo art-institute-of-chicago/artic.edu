@@ -5,6 +5,7 @@ namespace App\Libraries\Search\Filters;
 class Classifications extends BaseFilteredList
 {
     protected $parameter  = 'classification_ids';
+    protected $entity     = \App\Models\Api\CategoryTerm::class;
 
     public function __construct($buckets)
     {

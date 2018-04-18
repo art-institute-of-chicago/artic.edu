@@ -21,7 +21,7 @@ class Sort
         if (!$list->isEmpty()) {
             return [
                 'list'        => $list,
-                'title'       => 'Sort By',
+                'title'       => 'Sort',
                 'active'      => $this->activeList,
                 'type'        => 'dropdown',
                 'collapsible' => false,
@@ -44,7 +44,7 @@ class Sort
 
             return [
                 'href'    => $route,
-                'label'   => ucfirst($option),
+                'label'   => 'By ' . ucfirst($option),
                 'enabled' => $enabled ?? false
             ];
         });

@@ -153,6 +153,17 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeSortBy($query, $field)
+    {
+        $params = [
+            "sort" => [
+                "{$field}.keyword"
+            ]
+        ];
+
+        return $query->rawQuery($params);
+    }
+
     public function scopeMultimedia($query, $id)
     {
         $params = [

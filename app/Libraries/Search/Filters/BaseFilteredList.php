@@ -5,6 +5,9 @@ namespace App\Libraries\Search\Filters;
 class BaseFilteredList
 {
     protected $buckets;
+    protected $labels;
+    protected $entity;
+
     protected $parameter;
 
     protected $activeList = false;
@@ -31,12 +34,34 @@ class BaseFilteredList
             return [
                 'href' => $route,
                 'count' => $item->doc_count,
-                'label' => $item->key,
+                'label' => $this->findLabel($item->key),
                 'enabled' => $enabled
             ];
         })->sortByDesc('enabled'); // Move selected ones to the top
 
         return $list;
+    }
+
+    public function findLabel($id)
+    {
+        return $this->loadLabels()->get($id);
+    }
+
+    public function loadLabels()
+    {
+        if ($this->labels)
+            return $this->labels;
+
+        // Get ID's from buckets
+        $ids = $this->buckets->pluck('key')->toArray();
+
+        // Load entities and build an array with ID => Title
+        $this->labels = $this->entity::query()
+            ->ids($ids)
+            ->get(['id', 'title'])
+            ->pluck('title','id');
+
+        return $this->labels;
     }
 
 }

@@ -22,6 +22,7 @@ class CollectionController extends BaseScopedController
         'style_ids'    => 'byStyles',
         'subject_ids'  => 'bySubjects',
         'material_ids' => 'byMaterials',
+        'sort_by'      => 'sortBy',
         'classification_ids' => 'byClassifications',
     ];
 

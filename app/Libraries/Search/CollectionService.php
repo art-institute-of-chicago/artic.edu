@@ -9,7 +9,7 @@ class CollectionService
 
     protected $results;
     protected $aggregationsData;
-    protected $sortingOptions = ['title', 'name'];
+    protected $sortingOptions = ['title'];
 
     protected $perPage = 20;
 

@@ -5,6 +5,7 @@ namespace App\Libraries\Search\Filters;
 class Materials extends BaseFilteredList
 {
     protected $parameter  = 'material_ids';
+    protected $entity     = \App\Models\Api\CategoryTerm::class;
 
     public function __construct($buckets)
     {

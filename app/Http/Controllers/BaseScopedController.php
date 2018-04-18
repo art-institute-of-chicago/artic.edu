@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 
 class BaseScopedController extends FrontController
 {
-    // Collection resultset memoization
     protected $entity;
+
+    // Collection resultset memoization
+    protected $collection;
 
     // Default elements per page
     const PER_PAGE = 20;
@@ -34,8 +36,10 @@ class BaseScopedController extends FrontController
      */
     protected function collection()
     {
-        $chain = $this->endOfAssociationChain();
-        return $chain;
+        if (!$this->collection)
+            $this->collection = $this->endOfAssociationChain();
+
+        return $this->collection;
     }
 
     /**

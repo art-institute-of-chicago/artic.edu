@@ -5,6 +5,7 @@ namespace App\Libraries\Search\Filters;
 class Artists extends BaseFilteredList
 {
     protected $parameter  = 'artist_ids';
+    protected $entity     = \App\Models\Api\Artist::class;
 
     public function __construct($buckets)
     {
