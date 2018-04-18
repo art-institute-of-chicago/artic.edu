@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use App\Repositories\SelectionRepository;
 use App\Repositories\SiteTagRepository;
 
 class SelectionController extends ModuleController
 {
     protected $moduleName = 'selections';
+    protected $previewView = 'site.articleDetail';
 
     protected $indexOptions = [
         'permalink' => true,
@@ -62,6 +64,15 @@ class SelectionController extends ModuleController
         return [
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
         ];
+    }
+
+    protected function previewData($item)
+    {
+        // The ID is a datahub_id not a local ID
+        $apiRepo = app(SelectionRepository::class);
+        $apiItem = $apiRepo->getById($item->id);
+
+        return $apiRepo->getShowData($item);
     }
 
 }

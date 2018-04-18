@@ -4,6 +4,7 @@ namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
+use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasApiRelations;
@@ -13,7 +14,7 @@ use App\Models\Api\Artwork;
 
 class Selection extends Model
 {
-    use HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
     protected $presenter = 'App\Presenters\Admin\SelectionPresenter';

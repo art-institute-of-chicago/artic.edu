@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
 
+use App\Repositories\VideoRepository;
+
 class VideoController extends ModuleController
 {
     protected $moduleName = 'videos';
+    protected $previewView = 'site.videoDetail';
 
     protected $indexColumns = [
         'title' => [
@@ -40,6 +43,15 @@ class VideoController extends ModuleController
     protected function formData($request)
     {
         return [];
+    }
+
+    protected function previewData($item)
+    {
+        // The ID is a datahub_id not a local ID
+        $apiRepo = app(VideoRepository::class);
+        $apiItem = $apiRepo->getById($item->id);
+
+        return $apiRepo->getShowData($item);
     }
 
 }

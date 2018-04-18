@@ -68,6 +68,7 @@ Route::name('articles.show')->get('/articles/{id}', 'ArticleController@show');
 
 // Videos routes
 Route::name('videos')->get('videos', function() { return abort(404); });
+Route::moduleShowWithPreview('videos');
 Route::name('videos.show')->get('/videos/{slug}', 'VideoController@show');
 
 // Exhibition history routes
@@ -88,6 +89,7 @@ Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
 Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');
 
 // Selections
+Route::moduleShowWithPreview('selection');
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
 // About

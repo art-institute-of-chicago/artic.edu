@@ -32,5 +32,4 @@ class VideoController extends FrontController
             'relatedVideos' => $relatedVideos
         ]);
     }
-
 }

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
+use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Models\Selection;
@@ -12,7 +13,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 
 class SelectionRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleMedias, HandleBLocks, HandleApiBlocks, HandleApiRelations {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBLocks, HandleApiBlocks, HandleApiRelations {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -55,5 +56,14 @@ class SelectionRepository extends ModuleRepository
         $fields['browsers']['sidebarExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'sidebarExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
 
         return $fields;
+    }
+
+    // Show data, moved here to allow preview
+    public function getShowData($item, $slug = null, $previewPage = null)
+    {
+        return [
+            'contrastHeader' => $item->present()->contrastHeader,
+            'item' => $item,
+        ];
     }
 }

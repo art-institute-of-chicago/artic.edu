@@ -5,12 +5,13 @@ namespace App\Models;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasFiles;
+use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class Video extends Model
 {
-    use HasSlug, HasMedias, HasFiles, HasMediasEloquent;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent;
 
     protected $fillable = [
         'published',
