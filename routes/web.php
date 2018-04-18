@@ -35,6 +35,7 @@ Route::name('collection.resources.research-guides')->get('/collection/resources/
 Route::name('collection.resources.research-guides.show')->get('/collection/resources/research-guides/{id}', 'ResearchGuidesController@show');
 // Collection Resources Educator Resources
 Route::name('collection.resources.educator-resources')->get('/collection/resources/educator-resources', 'EducatorResourcesController@index');
+Route::moduleShowWithPreview('educatorresources');
 Route::name('collection.resources.educator-resources.show')->get('/collection/resources/educator-resources/{id}', 'EducatorResourcesController@show');
 
 // Newsletter subscription
