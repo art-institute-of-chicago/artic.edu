@@ -17,3 +17,15 @@
     opacity: 1;
   }
 }
+
+
+.s-collection-search-active.s-page-nav,
+.s-collection-filters-active.s-page-nav,
+.s-collection-search-active.s-page-nav-swapping,
+.s-collection-filters-active.s-page-nav-swapping {
+  .g-mask {
+    opacity: 1;
+    background-color: rgba($color__black, .6);
+  }
+}
+

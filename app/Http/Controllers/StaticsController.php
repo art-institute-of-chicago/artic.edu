@@ -579,6 +579,8 @@ class StaticsController extends FrontController {
       'primaryNavCurrent' => 'collection',
       'title' => 'The Collection',
       'intro' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget laoreet <em>tortor quisque tristique laoreet</em> lectus sit amet tempus. Aliquam vel eleifend nisi.',
+      'onViewLink' => (isset($_GET['onview']) && $_GET['onview'] === 'true') ? '/statics/collection' : '/statics/collection?onview=true',
+      'onViewActive' => (isset($_GET['onview']) && $_GET['onview'] === 'true'),
       'quickSearchLinks' => $quickSearchLinks,
       'filters' => $filters,
       'filterCategories' => $this->generateCollectionFilterCategories(),
@@ -2851,7 +2853,7 @@ class StaticsController extends FrontController {
     for ($i = 0; $i < $num; $i++) {
       array_push($filters,
         array(
-          'href' => '#',
+          'href' => '/statics/collection?filter='.$i,
           'label' => $this->faker->word(),
           'count' => $this->faker->numberBetween(13,1312),
         )

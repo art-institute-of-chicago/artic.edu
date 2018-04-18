@@ -6,7 +6,7 @@
         </button>
     </li>
     <li>
-        <a href="#" class="checkbox f-secondary">
+        <a href="{{ $onViewLink }}" class="checkbox f-secondary{{ $onViewActive ? ' s-checked' : '' }}">
             On view
         </a>
     </li>

@@ -28,6 +28,7 @@
     @slot('behaviors','autocomplete')
     @slot('dataAttributes','data-autocomplete-url="/collections/search/"')
     @slot('action','/statics/collection')
+    @slot('value',isset($_GET['q']) ? $_GET['q'] : null)
 @endcomponent
 
 @component('components.molecules._m-quick-search-links----collection')
@@ -35,6 +36,8 @@
 @endcomponent
 
 @component('components.molecules._m-search-actions----collection')
+    @slot('onViewLink',$onViewLink)
+    @slot('onViewActive',$onViewActive)
 @endcomponent
 
 @if (!empty($activeFilters))

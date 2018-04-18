@@ -76,7 +76,7 @@
 
 .o-collection-filters .m-active-filters {
   display: block;
-  margin: -20px -20px 0;
+  margin: 0;
   padding: 20px;
   background: $color__bg--primary;
 }
@@ -102,4 +102,9 @@
 
 .o-collection-filters .m-active-filters__clear {
   margin-left: 0;
+}
+
+.o-collection-filters .m-active-filters__clear::before {
+  content: none;
+  display: none;
 }

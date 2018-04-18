@@ -7,3 +7,12 @@
     opacity: 0;
   }
 }
+
+
+.s-collection-search-active.s-ajaxPageLoadMask-active,
+.s-collection-filters-active.s-ajaxPageLoadMask-active {
+  .g-mask {
+    opacity: 1;
+    background-color: rgba($color__black, .6);
+  }
+}
