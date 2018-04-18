@@ -14,7 +14,31 @@ class VisitController extends FrontController
     {
         $page = Page::forType('Visit')->first();
 
-        $headerMedia = $page->imageFront('visit_hero');
+
+        $video_url = $page->file('video');
+        if ($video_url)  {
+            $headerImage = $page->imageFront('visit_hero');
+
+            $poster_url = isset($headerImage['src']) ? $headerImage['src'] : '';
+            $video = [
+                'src' => $video_url,
+                'poster' => $poster_url,
+            ];
+
+            $headerMedia = array(
+                'type' => 'video',
+                'size' => 'hero',
+                'media' => $video,
+                'hideCaption' => true,
+            );
+        } else {
+            $headerMedia = array(
+                'type' => 'image',
+                'size' => 'hero',
+                'media' => $page->imageFront('visit_hero'),
+                'hideCaption' => true,
+            );
+        }
 
         $hours = array(
             'media' => array(

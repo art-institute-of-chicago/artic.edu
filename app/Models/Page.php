@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
+use A17\CmsToolkit\Models\Behaviors\HasFiles;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Model;
@@ -12,7 +13,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Page extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable;
 
     protected $dispatchesEvents = [
         'saved' => \App\Events\UpdatePage::class
@@ -153,6 +154,7 @@ class Page extends Model
             ]
         ],
     ];
+    public $filesParams = ['video']; // a list of file roles
 
     public function scopeForType($query, $type) {
         return $query->where('type', array_flip(self::$types)[$type]);

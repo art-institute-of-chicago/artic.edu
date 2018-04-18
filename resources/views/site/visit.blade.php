@@ -5,16 +5,11 @@
   <section class="o-visit">
 
     @component('components.molecules._m-media')
-      @slot('item', array(
-          'type' => 'image',
-          'size' => 'hero',
-          'media' => $headerMedia,
-          'hideCaption' => true,
-      ))
-      @slot('imageSettings', array(
-          'srcset' => array(300,600,1000,1500,3000),
-          'sizes' => '100vw',
-      ))
+        @slot('item', $headerMedia)
+        @slot('imageSettings', array(
+            'srcset' => array(300,600,1000,1500,3000),
+            'sizes' => '100vw',
+        ))
     @endcomponent
 
     @component('components.molecules._m-links-bar')

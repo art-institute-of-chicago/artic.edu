@@ -1,7 +1,13 @@
 @section('contentFields')
     @formField('medias', [
         'name' => 'visit_hero',
-        'label' => 'Hero image/video',
+        'label' => 'Hero image',
+    ])
+
+    @formField('files', [
+        'name' => 'video',
+        'label' => 'Hero video',
+        'note' => 'Add an MP4 file'
     ])
 
     @formField('medias', [

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
+use A17\CmsToolkit\Repositories\Behaviors\HandleFiles;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRepeaters;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
@@ -12,7 +13,7 @@ use App\Repositories\Behaviors\HandleApiRelations;
 
 class PageRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleRepeaters, HandleApiRelations;
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleFiles, HandleRepeaters, HandleApiRelations;
 
     public function __construct(Page $model)
     {
