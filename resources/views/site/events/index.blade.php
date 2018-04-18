@@ -29,7 +29,7 @@
                     @if (request('start') && request('end'))
                         {{ \Carbon\Carbon::parse(request('start'))->format('d M, Y') }} - {{ \Carbon\Carbon::parse(request('end'))->format('d M, Y') }}
                     @else
-                        Select dates
+                        Pick a date
                     @endif
                 @endcomponent
             </li>

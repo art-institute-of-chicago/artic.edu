@@ -127,6 +127,14 @@
     display: block;
   }
 
+  .m-links-bar__item & {
+    top: calc(100% + 13px);
+
+    @include breakpoint('small+') {
+      top: 0;
+    }
+  }
+
   .m-links-bar__items-secondary &,
   .m-links-bar__item--overflow & {
     left: auto;
@@ -171,6 +179,13 @@
 
     @include breakpoint('xlarge+') {
       width: colspan(58,'xlarge');
+    }
+  }
+
+  .m-links-bar__secondary-split .m-links-bar__item & {
+    @include breakpoint('small') {
+      left: 0;
+      right: auto;
     }
   }
 }

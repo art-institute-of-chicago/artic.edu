@@ -1,3 +1,3 @@
-<div class="o-sticky-filters" data-behavior="stickyFilters" data-stickyElement-breakpoints="small+">
+<div class="o-sticky-filters" data-behavior="stickyFilters" data-stickyElement-breakpoints="medium+">
     {{ $slot }}
 </div>

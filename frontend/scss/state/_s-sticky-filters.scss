@@ -54,3 +54,9 @@
     opacity: 0;
   }
 }
+
+.s-sticky-filters--fixed .o-sticky-filters > .m-links-bar:first-child::after,
+.s-sticky-filters--bottom .o-sticky-filters > .m-links-bar:first-child::after {
+  content: none;
+  display: none;
+}

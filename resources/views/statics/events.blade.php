@@ -18,15 +18,16 @@
 @component('components.organisms._o-sticky-filters')
 
     @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar__secondary-split')
         @slot('linksPrimary', array(
             array('label' => 'Today', 'href' => '#', 'active' => true),
-            array('label' => 'Tomorrow', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium"),
-            array('label' => 'This weekend', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small")
+            array('label' => 'Tomorrow', 'href' => '#', 'liVariation' => "u-hide@xsmall"),
+            array('label' => 'This weekend', 'href' => '#')
         ))
         @slot('primaryHtml')
             <li class="m-links-bar__item">
                 @component('components.atoms._date-select-trigger')
-                    Select dates
+                    Pick a date
                 @endcomponent
             </li>
         @endslot
