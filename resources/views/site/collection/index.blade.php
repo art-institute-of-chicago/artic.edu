@@ -84,10 +84,12 @@
     @endcomponent
 @endif
 
-@component('components.molecules._m-links-bar')
-    @slot('variation', 'm-links-bar--buttons')
-    @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection'), 'loadMoreTarget' => '#artworksList')))
-@endcomponent
+@if ($artworks->hasMorePages())
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--buttons')
+        @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection.more', request()->input()), 'loadMoreTarget' => '#artworksList')))
+    @endcomponent
+@endif
 
 
 @if ($featuredArticles)

@@ -48,13 +48,24 @@ class CollectionController extends BaseScopedController
 
     public function index()
     {
-        $page = Page::forType('Art and Ideas')->with('apiElements')->first();
+        $collection = $this->collection()->results(static::PER_PAGE);
 
-        $collection    = $this->collection()->results(static::PER_PAGE);
+        // If it's a call to the Load More, just show the items and do not generate a full page
+        if (\Route::current()->getName() == 'collection.more') {
+            $view['html'] = view('site.collection._items', [
+                'artworks' => $collection
+            ])->render();
+
+            if ($collection->hasMorePages())
+                $view['page'] = request('page');
+
+            return $view;
+        }
+
+        $page = Page::forType('Art and Ideas')->with('apiElements')->first();
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
-        // TODO: REIMPLEMENT
         // If we don't have a query let's load the boosted artworks
         // $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->paginate(self::PER_PAGE);
 
@@ -86,7 +97,6 @@ class CollectionController extends BaseScopedController
             )
           ),
         ]);
-
     }
 
     public function clearRecentlyViewed()
