@@ -1476,11 +1476,11 @@ class StaticsController extends FrontController {
     $soundcloud = ($type !== 'youtube' && ($this->faker->boolean() || $type == 'soundcloud'));
     if ($soundcloud) {
         $embed = array(
-            'embed' => '<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/348258574&color=%23b50938&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>',
+            'embed' => '<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/348258574&color=%23b50938&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>',
         );
     } else {
         $embed = array(
-            'embed' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
+            'embed' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/LjV3OcqI_CY?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay" gesture="media" allow="encrypted-media" allowfullscreen></iframe>',
         );
     }
     return $embed;

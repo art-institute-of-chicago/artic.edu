@@ -38,12 +38,20 @@
 
 
 .g-modal--media {
-  padding-top: 40px;
+  padding-top: 60px;
+
+  .g-modal__close {
+    right: 22px;
+    top: 22px;
+  }
 
   @include breakpoint('small+') {
+    padding-top: 40px;
     background-color: $color__black;
 
     .g-modal__close {
+      right: 12px;
+      top: 12px;
       color: $color__white;
     }
 
@@ -89,6 +97,14 @@
 
   .g-modal__content {
     padding-bottom: 166px;
+
+    @include breakpoint('large+') {
+      width: colspan(28,'large');
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(28,'xlarge');
+    }
   }
 }
 

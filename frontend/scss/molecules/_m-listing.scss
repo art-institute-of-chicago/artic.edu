@@ -208,6 +208,11 @@
   z-index: 5;
   margin: 0 auto;
   transform: translateY(-50%);
+
+  @include breakpoint('xsmall') {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .m-listing__img-prompt {

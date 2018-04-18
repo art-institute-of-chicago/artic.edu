@@ -53,7 +53,6 @@
 .m-media__img iframe,
 .m-media__img object,
 .m-media__img.m-media__img--video img {
-  @include objectFitFix;
   position: absolute;
   left: 0;
   right: 0;
@@ -61,6 +60,13 @@
   bottom: 0;
   width: 100%;
   height: 100%;
+}
+
+.m-media--m .m-media__img img,
+.m-media--l .m-media__img img,
+.m-media__img video,
+.m-media__img.m-media__img--video img {
+  @include objectFitFix;
   object-fit: contain;
 }
 
@@ -70,9 +76,7 @@
   object-fit: cover;
 }
 
-.m-media__img .icon--play--48,
-.m-media__img .icon--play--64,
-.m-media__img .icon--play--96 {
+.m-media__img .icon--play-multi {
   position: absolute;
   top: 50%;
   left: 0;
@@ -103,9 +107,7 @@ a.m-media__img:hover object {
 }
 
 .m-media__img iframe[data-embed-src][src] ~ img,
-.m-media__img iframe[data-embed-src][src] ~ .icon--play--48,
-.m-media__img iframe[data-embed-src][src] ~ .icon--play--64,
-.m-media__img iframe[data-embed-src][src] ~ .icon--play--96,
+.m-media__img iframe[data-embed-src][src] ~ .icon--play-multi,
 .m-media__img iframe[data-embed-src][src] ~ .m-media__btn-download,
 .m-media__img iframe[data-embed-src][src] ~ .m-media__btn-fullscreen {
   display: none;

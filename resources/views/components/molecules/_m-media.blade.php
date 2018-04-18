@@ -139,7 +139,11 @@
         @endif
 
         @if ($type == 'embed' and $poster)
-            <svg class="icon--play--96"><use xlink:href="#icon--play--96"></use></svg>
+            <svg class="icon--play-multi">
+                <use xlink:href="#icon--play--48" />
+                <use xlink:href="#icon--play--64" />
+                <use xlink:href="#icon--play--96" />
+            </svg>
         @endif
 
         @if ($fullscreen and $type == 'embed' and $tag !== 'a')

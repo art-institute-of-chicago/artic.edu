@@ -95,6 +95,17 @@ const modals = function() {
     document.documentElement.classList.remove(roadblockActiveClass);
   }
 
+  function _resized() {
+    // safari isn't repositioning on resize for some reason
+    if (active) {
+      console.log('resized');
+      $modal.style.display = 'none';
+      window.requestAnimationFrame(function(){
+        $modal.style.display = '';
+      });
+    }
+  }
+
   function _escape(event) {
     if (document.documentElement.classList.contains(modalActiveClass) && event.keyCode === 27) {
       triggerCustomEvent(document, 'modal:close');
@@ -107,6 +118,7 @@ const modals = function() {
   document.addEventListener('modal:close', _closeModal, false);
   document.addEventListener('modal:open', _openModal, false);
   document.addEventListener('roadblock:close', _closeRoadblock, false);
+  window.addEventListener('resized', _resized, false);
   window.addEventListener('keyup', _escape, false);
 
   _roadblockOpen();

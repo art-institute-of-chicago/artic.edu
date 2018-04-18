@@ -144,6 +144,48 @@ pre code {
   padding-bottom: 40px;
 }
 
+.icon--play-multi {
+  width: 48px;
+  height: 48px;
+
+  use {
+    display: none;
+  }
+
+  use:nth-child(1) {
+    display: block;
+  }
+
+  @include breakpoint('small+') {
+    width: 64px;
+    height: 64px;
+
+    use:nth-child(1) {
+      display: none;
+    }
+
+    use:nth-child(2) {
+      display: block;
+    }
+  }
+
+  @include breakpoint('medium+') {
+    .m-media--m &,
+    .m-media--l & {
+      width: 96px;
+      height: 96px;
+
+      use:nth-child(2) {
+        display: none;
+      }
+
+      use:nth-child(3) {
+        display: block;
+      }
+    }
+  }
+}
+
 [class*=icon--] {
   display: inline-block;
   vertical-align: middle;
