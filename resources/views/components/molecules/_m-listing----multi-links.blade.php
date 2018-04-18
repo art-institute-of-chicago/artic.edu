@@ -43,7 +43,7 @@
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')
                 @slot('tag', 'span')
-                {{ $item['text'] }}
+                {!! $item['text'] !!}
             @endcomponent
         @endif
         @if (isset($item['links']) and $item['links'])
