@@ -6,7 +6,7 @@ use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class Family extends Model 
+class Family extends Model
 {
     use HasMedias, HasMediasEloquent;
 
@@ -32,7 +32,7 @@ class Family extends Model
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 3 / 4,
+                    'ratio' => 16 / 9,
                 ],
             ]
         ],
