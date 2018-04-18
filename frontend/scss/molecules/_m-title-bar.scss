@@ -28,6 +28,18 @@
       display: none;
     }
   }
+
+  & + .o-row-listing {
+    margin-top: 28px;
+
+    @include breakpoint('small+') {
+      margin-top: 36px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 40px;
+    }
+  }
 }
 
 .m-title-bar::before {

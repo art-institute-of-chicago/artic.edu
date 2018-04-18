@@ -37,7 +37,7 @@
 }
 
 .day__date.f-numeral-date {
-  @include tucked-margin-top($f-numeral-date, ('xsmall': 52));
+  @include tucked-margin-top($f-numeral-date, ('xsmall': 48, 'small+': 52));
 }
 
 .day__month {

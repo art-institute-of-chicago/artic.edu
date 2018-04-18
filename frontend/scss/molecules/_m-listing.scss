@@ -305,7 +305,7 @@
 }
 
 .m-listing__meta .f-tag {
-  @include tucked-margin-top($f-tag, ('xsmall': 32, 'large+': 28));
+  @include tucked-margin-top($f-tag, ('xsmall': 28, 'medium+': 32, 'large+': 28));
 }
 
 .m-listing__meta .f-secondary + br + .f-tag,
@@ -334,7 +334,7 @@
 }
 
 .m-listing__meta .f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 32, 'large+': 40));
+  @include tucked-margin-top($f-list-3, ('xsmall': 32, 'large+': 44));
 }
   .m-listing__meta .f-list-3:first-child,
   .m-listing__meta .date + .f-list-3 {
@@ -342,7 +342,7 @@
   }
 
 .m-listing__meta .f-list-4 {
-  @include tucked-margin-top($f-list-4, ('xsmall': 32, 'large+': 44));
+  @include tucked-margin-top($f-list-4, ('xsmall': 36, 'large+': 44));
 
   &:first-child {
     @include tucked-margin-top($f-list-4, ('xsmall': 44, 'large+': 48));
@@ -409,6 +409,12 @@
   .m-listing__meta .f-list-6 + br + .f-secondary,
   .m-listing__meta .f-list-7 + br + .f-secondary {
     @include tucked-margin-top($f-secondary, ('xsmall': 28));
+  }
+  .m-listing__meta .m-listing__meta-bottom .f-secondary {
+    @include tucked-margin-top($f-secondary, ('xsmall': 40));
+  }
+  .m-listing__meta .f-list-4 + br + .m-listing__meta-bottom .f-secondary {
+    @include tucked-margin-top($f-secondary, ('xsmall': 60, 'small+': 40));
   }
 
 .m-listing__meta .f-tertiary {
@@ -946,7 +952,7 @@
   }
 
   & + & {
-    margin-top: 24px;
+    margin-top: 20px;
     padding-top: 16px;
     border-top: 1px solid $color__rules--primary;
 
@@ -1055,7 +1061,7 @@
 
   @include breakpoint('medium+') {
     margin-left: colspan(2, medium);
-    padding-right: colspan(15, medium);
+    padding-right: colspan(12, medium);
 
     &:first-child {
       margin-left: 0;
@@ -1085,12 +1091,16 @@
   @include breakpoint('small+') {
     position: absolute;
     right: 0;
-    top: 0;
+    top: -4px;
     width: colspan(13, small);
   }
 
   @include breakpoint('medium+') {
-    width: colspan(13, medium);
+    width: colspan(11, medium);
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: colspan(10, medium);
   }
 
   @include breakpoint('large+') {
@@ -1102,6 +1112,23 @@
   }
 }
 
+.m-listing--row .m-listing__meta .m-listing__meta-bottom .f-secondary {
+  @include breakpoint('small+') {
+    @include tucked-align-top($f-secondary, 'small');
+  }
+
+  @include breakpoint('medium+') {
+    @include tucked-align-top($f-secondary, 'medium');
+  }
+
+  @include breakpoint('large+') {
+    @include tucked-align-top($f-secondary, 'large');
+  }
+
+  @include breakpoint('xlarge') {
+    @include tucked-align-top($f-secondary, 'xlarge');
+  }
+}
 
 // variant 'm-listing--row@small'
 // variant 'm-listing--row@medium'

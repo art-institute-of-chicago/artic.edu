@@ -159,5 +159,9 @@
     @endforeach
 @endcomponent
 
+@component('components.molecules._m-links-bar')
+    @slot('variation', 'm-links-bar--buttons')
+    @slot('linksPrimary', array(array('label' => 'Browse events', 'href' => '#', 'variation' => 'btn--secondary')))
+@endcomponent
 
 @endsection

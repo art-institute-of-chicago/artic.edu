@@ -1572,18 +1572,20 @@ class StaticsController extends FrontController {
       "title" => $this->faker->sentence(6, true),
       "dateStart" => $this->makeDate(),
       "dateEnd" => $this->makeDate(),
+      "formattedDate" => $this->makeDate()->format('F j, Y'),
       "closingSoon" => $this->faker->boolean(10),
       "exclusive" => $this->faker->boolean(10),
       "nowOpen" => $this->faker->boolean(10),
       "listingType" => 'exhibition',
-      "list_description" => $this->faker->paragraph(1, false),
+      "list_description" => $this->faker->paragraph(10),
       "imageFront" => function () {
         return $this->getImage();
       },
 
       "present" => function () use ($upcoming) {
         return new StaticObjectPresenter([
-            'exhibitionType' => $this->getExhibitionType($upcoming)
+            'exhibitionType' => $this->getExhibitionType($upcoming),
+            "formattedDate" => $this->makeDate()->format('F j, Y'),
         ]);
       },
 

@@ -519,7 +519,11 @@
 // Variant `.m-links-bar--btns`
 
 .m-links-bar--buttons {
-  padding-top: 28px;
+  padding-top: 12px;
+
+  @include breakpoint('small+') {
+    padding-top: 20px;
+  }
 }
 
 .m-links-bar--buttons .m-links-bar__items-secondary .m-links-bar__item-trigger.f-buttons {
