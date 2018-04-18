@@ -23,14 +23,14 @@
     @formField('input', [
         'name' => 'visit_transportation_link',
         'field_name' => 'visit_transportation_link',
-        'label' => 'Public Transportation Link',
+        'label' => 'Public transportation link',
         'required' => true
     ])
 
     @formField('input', [
         'name' => 'visit_parking_link',
         'field_name' => 'visit_parking_link',
-        'label' => 'Direction & Parking Link',
+        'label' => 'Direction & parking link',
         'required' => true
     ])
 @stop
@@ -40,27 +40,27 @@
         @formField('wysiwyg', [
             'name' => 'visit_admission_description',
             'field_name' => 'visit_admission_description',
-            'label' => 'Admission Table Description'
+            'label' => 'Admission table description'
         ])
         @formField('input', [
             'name' => 'visit_buy_tickets_label',
             'field_name' => 'visit_buy_tickets_label',
-            'label' => 'Buy Tickets Label'
+            'label' => 'Buy tickets label'
         ])
         @formField('input', [
             'name' => 'visit_buy_tickets_link',
             'field_name' => 'visit_buy_tickets_link',
-            'label' => 'Buy Tickets Link'
+            'label' => 'Buy tickets link'
         ])
         @formField('input', [
             'name' => 'visit_become_member_label',
             'field_name' => 'visit_become_member_label',
-            'label' => 'Become a member Label'
+            'label' => 'Become a member label'
         ])
         @formField('input', [
             'name' => 'visit_become_member_link',
             'field_name' => 'visit_become_member_link',
-            'label' => 'Become a member Link'
+            'label' => 'Become a member link'
         ])
     </a17-fieldset>
 
@@ -85,13 +85,13 @@
         @formField('input', [
             'name' => 'visit_city_pass_button_label',
             'field_name' => 'visit_city_pass_button_label',
-            'label' => 'Button Label',
+            'label' => 'Button label',
             'required' => true
         ])
         @formField('input', [
             'name' => 'visit_city_pass_link',
             'field_name' => 'visit_city_pass_link',
-            'label' => 'Button Link',
+            'label' => 'Button link',
             'required' => true
         ])
     </a17-fieldset>
