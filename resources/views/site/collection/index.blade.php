@@ -36,6 +36,9 @@
 @endcomponent
 
 @component('components.molecules._m-search-actions----collection')
+    @slot('onViewLink', $onViewLink ?? '#')
+    @slot('onViewActive', $onViewActive ?? false)
+
     @slot('total', $artworks->total())
 @endcomponent
 

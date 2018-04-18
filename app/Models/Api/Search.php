@@ -80,117 +80,42 @@ class Search extends BaseApiModel
 
     public function scopeByClassifications($query, $ids)
     {
-        if (empty($ids)) {
-            return $query;
-        }
-
-        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
-        $elements = [];
-
-        foreach($ids as $id) {
-            $elements[] = [
-                "term" => [
-                    "classification_ids" => $id
-                ]
-            ];
-        }
-
-        $params = [
-            "bool" => [
-                "must" => $elements
-            ]
-        ];
-
-        return $query->rawSearch($params);
+        return $this->scopeByListType($query, $ids, 'classification_ids');
     }
 
     public function scopeByMaterials($query, $ids)
     {
-        if (empty($ids)) {
-            return $query;
-        }
-
-        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
-
-        foreach($ids as $id) {
-            $elements[] = [
-                "term" => [
-                    "material_ids" => $id
-                ]
-            ];
-        }
-
-        $params = [
-            "bool" => [
-                "must" => $elements
-            ]
-        ];
-
-        return $query->rawSearch($params);
+        return $this->scopeByListType($query, $ids, 'material_ids');
     }
 
     public function scopeByArtists($query, $ids)
     {
-        if (empty($ids)) {
-            return $query;
-        }
-
-        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
-
-        foreach($ids as $id) {
-            $elements[] = [
-                "term" => [
-                    "artist_ids" => $id
-                ]
-            ];
-        }
-
-        $params = [
-            "bool" => [
-                "must" => $elements
-            ]
-        ];
-
-        return $query->rawSearch($params);
+        return $this->scopeByListType($query, $ids, 'artist_ids');
     }
 
     public function scopeBySubjects($query, $ids)
     {
-        if (empty($ids)) {
-            return $query;
-        }
-
-        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
-
-        foreach($ids as $id) {
-            $elements[] = [
-                "term" => [
-                    "subject_ids" => $id
-                ]
-            ];
-        }
-
-        $params = [
-            "bool" => [
-                "must" => $elements
-            ]
-        ];
-
-        return $query->rawSearch($params);
+        return $this->scopeByListType($query, $ids, 'subject_ids');
     }
 
     public function scopeByStyles($query, $ids)
+    {
+        return $this->scopeByListType($query, $ids, 'style_ids');
+    }
+
+    public function scopeByListType($query, $ids, $parameter)
     {
         if (empty($ids)) {
             return $query;
         }
 
-        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
+        //Transform the ID into an array. It could be multiple items comma separated
+        $ids = is_array($ids) ? $ids : explode(",", $ids);
 
         foreach($ids as $id) {
             $elements[] = [
                 "term" => [
-                    "style_ids" => $id
+                    $parameter => $id
                 ]
             ];
         }
