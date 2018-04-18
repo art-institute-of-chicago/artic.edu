@@ -51,7 +51,6 @@ class Search extends BaseApiModel
             'artists' => [
                 'terms' => [
                     'field' => 'artist_ids',
-                    // 'size' => 20
                 ]
             ],
             'styles' => [
@@ -85,17 +84,45 @@ class Search extends BaseApiModel
             return $query;
         }
 
-        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
+        $elements = [];
+
+        foreach($ids as $id) {
+            $elements[] = [
+                "term" => [
+                    "classification_ids" => $id
+                ]
+            ];
+        }
 
         $params = [
             "bool" => [
-                "must" => [
-                    [
-                        "terms" => [
-                            "classification_id" => $ids
-                        ]
-                    ]
+                "must" => $elements
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeByMaterials($query, $ids)
+    {
+        if (empty($ids)) {
+            return $query;
+        }
+
+        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
+
+        foreach($ids as $id) {
+            $elements[] = [
+                "term" => [
+                    "material_ids" => $id
                 ]
+            ];
+        }
+
+        $params = [
+            "bool" => [
+                "must" => $elements
             ]
         ];
 
@@ -108,17 +135,19 @@ class Search extends BaseApiModel
             return $query;
         }
 
-        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
+
+        foreach($ids as $id) {
+            $elements[] = [
+                "term" => [
+                    "artist_ids" => $id
+                ]
+            ];
+        }
 
         $params = [
             "bool" => [
-                "must" => [
-                    [
-                        "terms" => [
-                            "artist_id" => $ids
-                        ]
-                    ]
-                ]
+                "must" => $elements
             ]
         ];
 
@@ -131,17 +160,19 @@ class Search extends BaseApiModel
             return $query;
         }
 
-        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
+
+        foreach($ids as $id) {
+            $elements[] = [
+                "term" => [
+                    "subject_ids" => $id
+                ]
+            ];
+        }
 
         $params = [
             "bool" => [
-                "must" => [
-                    [
-                        "terms" => [
-                            "subject_id" => $ids
-                        ]
-                    ]
-                ]
+                "must" => $elements
             ]
         ];
 
@@ -154,17 +185,19 @@ class Search extends BaseApiModel
             return $query;
         }
 
-        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
+
+        foreach($ids as $id) {
+            $elements[] = [
+                "term" => [
+                    "style_ids" => $id
+                ]
+            ];
+        }
 
         $params = [
             "bool" => [
-                "must" => [
-                    [
-                        "terms" => [
-                            "style_id" => $ids
-                        ]
-                    ]
-                ]
+                "must" => $elements
             ]
         ];
 
@@ -184,7 +217,7 @@ class Search extends BaseApiModel
 
     public function scopeByIds($query, $ids)
     {
-        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
 
         $params = [
             "terms" => [
