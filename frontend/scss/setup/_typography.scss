@@ -235,6 +235,20 @@ $f-deck: generate-font-obj((
   @include f-deck;
 }
 
+%f-deck em,
+.f-deck em,
+%f-deck i,
+.f-deck i {
+  font-style: italic;
+}
+
+%f-deck strong,
+.f-deck strong,
+%f-deck b,
+.f-deck b {
+  font-weight: bold;
+}
+
 /***
 
 f-module-title-2 (f-subheading-2)
@@ -407,6 +421,17 @@ $f-body-emphasis: generate-font-obj((
   @include untuck;
 }
 
+%f-body-emphasis strong,
+.f-body-emphasis strong,
+%f-body-emphasis b,
+.f-body-emphasis b,
+%f-body strong,
+.f-body strong,
+%f-body b,
+.f-body b {
+  font-weight: bold;
+}
+
 /***
 
 f-body-editorial
@@ -477,6 +502,17 @@ $f-body-editorial-emphasis: generate-font-obj((
 %f-body-editorial i,
 .f-body-editorial i {
   @include untuck;
+}
+
+%f-body-editorial-emphasis strong,
+.f-body-editorial-emphasis strong,
+%f-body-editorial-emphasis b,
+.f-body-editorial-emphasis b,
+%f-body-editorial strong,
+.f-body-editorial strong,
+%f-body-editorial b,
+.f-body-editorial b {
+  font-weight: bold;
 }
 
 /***
@@ -1033,6 +1069,20 @@ $f-quote: generate-font-obj((
 %f-quote,
 .f-quote {
   @include f-quote;
+}
+
+%f-quote em,
+.f-quote em,
+%f-quote i,
+.f-quote i {
+  font-style: italic;
+}
+
+%f-quote strong,
+.f-quote strong,
+%f-quote b,
+.f-quote b {
+  font-weight: bold;
 }
 
 /***
