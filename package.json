@@ -3,7 +3,7 @@
   "version": "0.2.2",
   "private": true,
   "dependencies": {
-    "@area17/a17-helpers": "^0.6.5"
+    "@area17/a17-helpers": "^0.6.7"
   },
   "devDependencies": {
     "@antoine_a17/a17-node-sassdown": "1.0.7",
