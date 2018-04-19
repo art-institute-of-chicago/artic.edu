@@ -67,10 +67,10 @@ class Article extends Model
                     'ratio' => 16 / 9,
                 ],
             ],
-            'square' => [
+            'special' => [
                 [
-                    'name' => 'square',
-                    'ratio' => 1,
+                    'name' => 'default',
+                    'ratio' => 21 / 9,
                 ],
             ],
         ],
