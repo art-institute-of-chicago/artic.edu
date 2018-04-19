@@ -1,7 +1,7 @@
 import { purgeProperties, forEach, ajaxRequest, triggerCustomEvent } from '@area17/a17-helpers';
 
 const loadMore = function(container) {
-  var url = container.getAttribute('data-load-more-url');
+  var ajaxUrl = container.getAttribute('data-load-more-url');
   var target = container.getAttribute('data-load-more-target');
   var $target = document.querySelector(target);
   var page = 1;
@@ -9,12 +9,12 @@ const loadMore = function(container) {
   var loaderKlass = 's-loading';
   var hideKlass = 's-hidden';
 
-  function _handleClicks(e){
-    page++;
+  function _showLoader() {
+    container.classList.add(loaderKlass);
+  }
 
-    _doAjax();
-
-    e.preventDefault();
+  function _hideLoader() {
+    container.classList.remove(loaderKlass);
   }
 
   function _doAjax() {
@@ -24,7 +24,7 @@ const loadMore = function(container) {
 
     ajaxTimer = setTimeout(function(){
       ajaxRequest({
-        url: url,
+        url: ajaxUrl,
         data: { page: page },
         type: 'GET',
         requestHeaders: [
@@ -59,12 +59,11 @@ const loadMore = function(container) {
     }, 250);
   }
 
-  function _showLoader() {
-    container.classList.add(loaderKlass);
-  }
-
-  function _hideLoader() {
-    container.classList.remove(loaderKlass);
+  function _handleClicks(event){
+    event.preventDefault();
+    event.stopPropagation();
+    page++;
+    _doAjax();
   }
 
   function _init() {
