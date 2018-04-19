@@ -19,7 +19,7 @@
         </a>
 
         <ul class="g-footer__link-list">
-          <li>{{ $_hours['opening_today'] }}</li>
+          <li>{!! $_hours['opening_today'] !!}</li>
           <li><a href="{{ $_pages['visit'] }}">Visit</a></li>
           <li><a href="{{ $_pages['exhibitions'] }}">Exhibitions and events</a></li>
           <li><a href="{{ $_pages['collection'] }}">The collection</a></li>
