@@ -189,10 +189,10 @@
     @endif
 @endif
 
-@if (isset($artworks) && $artworks->pagination->total > 0)
+@if (isset($artworks) && $artworks->total() > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $artworks->pagination->total .' artworks', 'href' => route('search.artworks', request()->input()))))
+            @slot('links', array(array('label' => 'See all '. $artworks->total() .' artworks', 'href' => route('search.artworks', request()->input()))))
         @endunless
         Artworks
     @endcomponent
@@ -200,14 +200,18 @@
         @component('components.atoms._hr')
         @endcomponent
         @component('components.molecules._m-search-actions----collection')
+            @slot('onViewLink', route('collection', (request()->filled('is_on_view') ? [] : request()->input() + ['is_on_view' => true])))
+            @slot('onViewActive', request()->filled('is_on_view'))
+
+            @slot('total', $artworks->total())
         @endcomponent
         @component('components.molecules._m-active-filters')
             @slot('links', $activeFilters)
-            @slot('clearAllLink', '/statics/collection')
+            @slot('clearAllLink', route('search.artworks'))
         @endcomponent
         @component('components.organisms._o-collection-filters')
             @slot('activeFilters', $activeFilters)
-            @slot('clearAllLink', '/statics/search_results_artworks')
+            @slot('clearAllLink', route('search.artworks'))
             @slot('filterCategories', $filterCategories)
         @endcomponent
     @endif
@@ -217,13 +221,13 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('maintainOrder','true')
-        @foreach ($artworks->items as $item)
+        @foreach ($artworks as $item)
             @component('components.molecules._m-listing----artwork')
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
                 @slot('imageSettings', array(
-                    'fit' => ($item->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->type !== 'artwork') ? '16:9' : null,
+                    'fit' => null,
+                    'ratio' => null,
                     'srcset' => array(200,400,600),
                     'sizes' => aic_gridListingImageSizes(array(
                           'xsmall' => '1',
@@ -239,7 +243,7 @@
 
     @if (isset($allResultsView) && $allResultsView)
         {{-- Pagination --}}
-        {!! $artworks->items->appends(request()->input())->links() !!}
+        {!! $artworks->appends(request()->input())->links() !!}
     @endif
 
 @endif

@@ -198,6 +198,8 @@
         @component('components.atoms._hr')
         @endcomponent
         @component('components.molecules._m-search-actions----collection')
+            @slot('onViewLink', '#')
+            @slot('onViewActive', false)
         @endcomponent
         @component('components.molecules._m-active-filters')
             @slot('links', $artworks['activeFilters'])

@@ -14,7 +14,7 @@ class DateRange
         ];
 
         if (request()->filled('date-start') || request()->filled('date-end')) {
-            $base['href']  = route('collection', request()->except(['date-start', 'date-end']));
+            $base['href']  = route('collection', request()->except(['page', 'date-start', 'date-end']));
             $base['label'] = $this->generateLabel();
             $base['enabled'] = true;
         }

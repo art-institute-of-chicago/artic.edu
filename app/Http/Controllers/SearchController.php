@@ -14,9 +14,11 @@ use App\Repositories\Api\ExhibitionRepository;
 
 use App\Http\Controllers\StaticsController;
 
+use App\Libraries\Search\CollectionService;
+
 use LakeviewImageService;
 
-class SearchController extends FrontController
+class SearchController extends BaseScopedController
 {
     const ALL_PER_PAGE = 5;
     const ALL_PER_PAGE_ARTWORKS = 8;
@@ -34,6 +36,23 @@ class SearchController extends FrontController
     protected $artistsRepository;
     protected $searchRepository;
     protected $exhibitionsRepository;
+
+    // Scopes defined to filter Artworks based on BaseScopedController.
+    protected $scopes = [
+        'q'            => 'search',
+        'artist_ids'   => 'byArtists',
+        'style_ids'    => 'byStyles',
+        'subject_ids'  => 'bySubjects',
+        'material_ids' => 'byMaterials',
+        'place_ids'    => 'byPlaces',
+        'sort_by'      => 'sortBy',
+        'date-start'   => 'dateMin',
+        'date-end'     => 'dateMax',
+        'is_on_view'   => 'onView',
+        'classification_ids' => 'byClassifications',
+        'department_ids'     => 'byDepartments',
+        'is_public_domain'   => 'publicDomain',
+    ];
 
     public function __construct(
         ArtworkRepository $artworks,
@@ -53,11 +72,11 @@ class SearchController extends FrontController
     public function index()
     {
         // General search to get featured elements and general metadata.
-        $general = $this->searchRepository->forSearchQuery(request('q'), 2);
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
 
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
-        $artworks    = $this->artworksRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE_ARTWORKS);
+        $artworks    = $this->collection()->results(self::ALL_PER_PAGE_ARTWORKS);
         $artists     = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
         $exhibitions = $this->exhibitionsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
 
@@ -110,11 +129,11 @@ class SearchController extends FrontController
 
     public function artworks()
     {
-        // TODO: THIS IS A FULL COLLECTION SEARCH
-        // Integrate it after collections search are done.
-
         $general  = $this->searchRepository->forSearchQuery(request('q'), 2);
-        $artworks = $this->artworksRepository->forSearchQuery(request('q'), self::ARTWORKS_PER_PAGE);
+
+        $artworks      = $this->collection()->results(self::ARTWORKS_PER_PAGE);
+        $filters       = $this->collection()->generateFilters();
+        $activeFilters = $this->collection()->activeFilters();
 
         $links = $this->buildSearchLinks($general, $general->aggregations->types->buckets, 'artworks');
 
@@ -122,18 +141,29 @@ class SearchController extends FrontController
             'artworks' => $artworks,
             'allResultsView' => true,
             'searchResultsTypeLinks' => $links,
-            'filterCategories' => [],
-            'activeFilters' => array(
-              array(
-                'href' => '#',
-                'label' => "Arms",
-              ),
-              array(
-                'href' => '#',
-                'label' => "Legs",
-              )
-            ),
+            'filterCategories' => $filters,
+            'activeFilters'    => $activeFilters
         ]);
+    }
+
+    /**
+     * Implementation for BaseScopedController.
+     * This is the beginning for the chain of scoped results
+     * The remaining scopes are applied following the $scopes
+     * array defined at the controller
+     *
+     */
+    protected function beginOfAssociationChain()
+    {
+        // Define base entity
+        $collectionService = new CollectionService;
+
+        // Implement default filters and scopes
+        $collectionService->resources(['artworks'])
+            ->allAggregations()
+            ->forceEndpoint('search');
+
+        return $collectionService;
     }
 
     public function exhibitionsEvents()

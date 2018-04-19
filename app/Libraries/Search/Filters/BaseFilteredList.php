@@ -29,7 +29,7 @@ class BaseFilteredList
             }
 
             // Build the checkbox route using previously calculated inputs
-            $route = route('collection', request()->except($this->parameter) + [$this->parameter => join(',', $newInput->toArray())]);
+            $route = route('collection', request()->except(['page', $this->parameter]) + [$this->parameter => join(',', $newInput->toArray())]);
 
             return [
                 'href' => $route,

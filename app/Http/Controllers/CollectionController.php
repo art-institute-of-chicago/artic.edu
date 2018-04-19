@@ -89,6 +89,10 @@ class CollectionController extends BaseScopedController
             array(
               'href' => '#',
               'label' => "Picasso",
+            ),
+            array(
+              'href' => '#',
+              'label' => "Monet",
             )
           ),
         ]);
