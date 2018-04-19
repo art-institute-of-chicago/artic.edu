@@ -66,7 +66,7 @@ class GenericPage extends Model implements Sortable
             'default' => [
                 [
                     'name' => 'landscape',
-                    'ratio' => 200 / 24,
+                    'ratio' => 25 / 3,
                 ],
             ]
         ],
