@@ -42,11 +42,10 @@ return [
                 'title' => 'Admission Categories',
                 'module' => true,
             ],
-
-            'hours' => [
-                'title' => 'Hours',
-                'module' => true,
-            ],
+            // 'hours' => [
+            //     'title' => 'Hours',
+            //     'module' => true,
+            // ],
             'closures' => [
                 'title' => 'Closures',
                 'module' => true,
