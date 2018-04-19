@@ -12,7 +12,7 @@
 
     @formField('medias', [
         'name' => 'visit_mobile',
-        'label' => 'Hero mobile image',
+        'label' => 'Hero image, mobile',
     ])
 
     @formField('medias', [
