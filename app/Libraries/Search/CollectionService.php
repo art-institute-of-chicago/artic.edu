@@ -3,6 +3,7 @@
 namespace App\Libraries\Search;
 use App\Libraries\Search\Filters\Sort as SortFilters;
 use App\Libraries\Search\Filters\DateRange;
+use App\Libraries\Search\Filters\BooleanFilter;
 
 class CollectionService
 {
@@ -10,7 +11,14 @@ class CollectionService
 
     protected $results;
     protected $aggregationsData;
+
+    // Options for Sort Filter. Sort by these fields
     protected $sortingOptions = ['title'];
+
+    // Options for BooleanFilter class. [ parameter => label, ... ]
+    protected $booleanOptions = [
+        'is_public_domain' => 'Public Domain'
+    ];
 
     protected $perPage = 20;
 
@@ -60,6 +68,9 @@ class CollectionService
         // Prepend sorting filters at the beginning
         $filters->prepend($this->buildSortFilters());
 
+        // Appends boolean filters
+        $filters->push($this->buildBooleanFilters());
+
         return $filters;
     }
 
@@ -103,7 +114,6 @@ class CollectionService
     /**
      * Go through all aggregations and process the buckets with the proper
      * filter class.
-     * Filter class could be a list, date range, checkbox.
      *
      */
     protected function buildListFilters($aggregations)
@@ -113,18 +123,18 @@ class CollectionService
         foreach($aggregations as $name => $data)
         {
             $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst($name);
-            $filter = new $filterClass($data->buckets);
-
-            $filters->push($filter->generate());
+            if (class_exists($filterClass)) {
+                $filter = new $filterClass($data->buckets);
+                $filters->push($filter->generate());
+            }
         }
 
         return $filters->filter();
     }
 
     /**
-     * Go through all aggregations and process the buckets with the proper
-     * filter class.
-     * Filter class could be a list, date range, checkbox.
+     * Sort filters receive all possible sorting values and create
+     * the proper dropdown options.
      *
      */
     protected function buildSortFilters()
@@ -137,6 +147,12 @@ class CollectionService
     {
         $dateFilters = new DateRange();
         return $dateFilters->generate();
+    }
+
+    protected function buildBooleanFilters()
+    {
+        $booleanFilters = new BooleanFilter($this->booleanOptions);
+        return $booleanFilters->generate();
     }
 
     /**

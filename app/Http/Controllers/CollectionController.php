@@ -28,6 +28,7 @@ class CollectionController extends BaseScopedController
         'date-end'     => 'dateMax',
         'classification_ids' => 'byClassifications',
         'department_ids'     => 'byDepartments',
+        'is_public_domain'   => 'publicDomain',
     ];
 
     /**

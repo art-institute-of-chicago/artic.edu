@@ -82,6 +82,11 @@ class Search extends BaseApiModel
                 "terms" => [
                     "field" => "department_id"
                 ]
+            ],
+            "is_public_domain" => [
+                "terms" => [
+                    "field" => "is_public_domain"
+                ]
             ]
         ];
 
@@ -121,6 +126,22 @@ class Search extends BaseApiModel
     public function scopeByStyles($query, $ids)
     {
         return $this->scopeByListType($query, $ids, 'style_ids');
+    }
+
+    public function scopePublicDomain($query, $value = true)
+    {
+
+        $params = [
+            "bool" => [
+                "must" => [
+                        "term" => [
+                            'is_public_domain' => ($value == true)
+                        ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
     }
 
     public function scopeByListType($query, $ids, $parameter)
