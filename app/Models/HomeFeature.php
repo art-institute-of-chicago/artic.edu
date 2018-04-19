@@ -33,13 +33,7 @@ class HomeFeature extends Model
                     'name' => 'landscape',
                     'ratio' => 16 / 9,
                 ]
-            ],
-            'mobile' => [
-                [
-                    'name' => 'mobile',
-                    'ratio' => 1,
-                ],
-            ],
+            ]
         ],
     ];
     public $filesParams = ['video']; // a list of file roles
