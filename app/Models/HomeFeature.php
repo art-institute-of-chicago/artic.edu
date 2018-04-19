@@ -32,11 +32,7 @@ class HomeFeature extends Model
                 [
                     'name' => 'landscape',
                     'ratio' => 16 / 9,
-                ],
-                [
-                    'name' => 'portrait',
-                    'ratio' => 3 / 4,
-                ],
+                ]
             ],
             'mobile' => [
                 [
