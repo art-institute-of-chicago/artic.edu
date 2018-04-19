@@ -80,12 +80,13 @@ class AppServiceProvider extends ServiceProvider
     private function composeTemplatesViews()
     {
       view()->composer('*', function ($view) {
-        $hours_today = Hour::getOpeningToday();
+        // $hours_today = Hour::getOpeningToday();
+        $hours_general = Hour::getOpeningWithClosure();
 
         $view->with([
             '_hours' => [
-                'general' => 'Open daily 10:30&ndash;5:00, Thursdays until 8:00'
-            ,   'opening_today' => $hours_today
+                'general' => $hours_general
+            ,   'opening_today' => ''
             ],
             '_pages' => [
                 'visit' => route('visit')

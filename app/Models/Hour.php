@@ -82,6 +82,17 @@ class Hour extends Model
         ];
     }
 
+    public static function getOpeningWithClosure($type=0)
+    {
+        $today = Carbon::today();
+        $closure = Closure::published()->where('type', $type)->where('date_start', '<=', $today)->where('date_end', '>=', $today)->first();
+        if ($closure) {
+            return $closure->closure_copy;
+        }
+
+        return 'Open daily 10:30&ndash;5:00, Thursdays until 8:00';
+    }
+
     public static function getOpeningToday($type=0)
     {
         $day = date('N');
