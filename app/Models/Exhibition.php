@@ -63,7 +63,7 @@ class Exhibition extends Model
             'special' => [
                 [
                     'name' => 'special',
-                    'ratio' => 9 / 16,
+                    'ratio' => 16 / 9,
                 ],
             ],
         ],
