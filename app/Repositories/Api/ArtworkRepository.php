@@ -63,7 +63,7 @@ class ArtworkRepository extends BaseApiRepository
 
         // Build Classification Tags
         if ($item->classification_id) {
-            $exploreFurtherTags = Search::query()->resources(['terms'])->forceEndpoint('search')->byIds($item->classification_id)->get();
+            $exploreFurtherTags = Search::query()->resources(['category-terms'])->forceEndpoint('search')->byIds($item->classification_id)->get();
             $tags['classification'] = $exploreFurtherTags->mapWithKeys(function ($item) {
                 return [$item['id'] => $item['title']];
             });
@@ -77,7 +77,7 @@ class ArtworkRepository extends BaseApiRepository
 
         // Build Style Tags
         if ($item->style_id) {
-            $exploreFurtherTags = Search::query()->resources(['terms'])->byIds($item->style_id)->get();
+            $exploreFurtherTags = Search::query()->resources(['category-terms'])->byIds($item->style_id)->get();
 
             $tags['style'] = $exploreFurtherTags->mapWithKeys(function ($item) {
                 return [$item['id'] => $item['title']];
