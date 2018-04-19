@@ -129,13 +129,7 @@ class Event extends Model
                     'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
-            ],
-            'square' => [
-                [
-                    'name' => 'square',
-                    'ratio' => 1,
-                ],
-            ],
+            ]
         ],
     ];
 
