@@ -130,13 +130,31 @@ class Search extends BaseApiModel
 
     public function scopePublicDomain($query, $value = true)
     {
-
         $params = [
             "bool" => [
                 "must" => [
+                    [
                         "term" => [
-                            'is_public_domain' => ($value == true)
+                            'is_public_domain' => ($value == true) //Value could be 1, "1"
                         ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeOnView($query, $value = true)
+    {
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "term" => [
+                            'is_on_view' => ($value == true) //Value could be 1, "1"
+                        ]
+                    ]
                 ]
             ]
         ];

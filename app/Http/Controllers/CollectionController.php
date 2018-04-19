@@ -26,6 +26,7 @@ class CollectionController extends BaseScopedController
         'sort_by'      => 'sortBy',
         'date-start'   => 'dateMin',
         'date-end'     => 'dateMax',
+        'is_on_view'   => 'onView',
         'classification_ids' => 'byClassifications',
         'department_ids'     => 'byDepartments',
         'is_public_domain'   => 'publicDomain',
