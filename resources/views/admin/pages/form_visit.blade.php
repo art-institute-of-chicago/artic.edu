@@ -15,12 +15,6 @@
         'label' => 'Hero mobile image',
     ])
 
-    @formField('map', [
-        'name' => 'location',
-        'label' => 'Museum Location',
-        'showMap' => true,
-    ])
-
     @formField('medias', [
         'name' => 'visit_map',
         'label' => 'Museum map',
