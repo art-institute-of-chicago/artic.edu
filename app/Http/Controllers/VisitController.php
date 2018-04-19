@@ -131,7 +131,7 @@ class VisitController extends FrontController
         foreach ($page->faqs as $faq) {
           array_push($questions, array(
             'label' => $faq->title,
-            'href' => $hour->link
+            'href' => $faq->link
           ));
         };
 

@@ -60,10 +60,14 @@ class ExhibitionController extends BaseApiController
 
     protected function formData($request)
     {
+        $item = $this->repository->getById(request('exhibition'));
+        $baseUrl = '//'.config('app.url').'/exhibitions/'.$item->datahub_id.'-';
+
         return [
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
             'exhibitionTypesList' => $this->repository->getExhibitionTypesList(),
             'editableTitle' => false,
+            'baseUrl' => $baseUrl,
         ];
     }
 

@@ -42,7 +42,12 @@ class VideoController extends ModuleController
 
     protected function formData($request)
     {
-        return [];
+        $item = $this->repository->getById(request('video'));
+        $baseUrl = '//'.config('app.url').'/videos/'.$item->id.'-';
+
+        return [
+            'baseUrl' => $baseUrl
+        ];
     }
 
     protected function previewData($item)
