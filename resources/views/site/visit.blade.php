@@ -82,7 +82,7 @@
           <div class="o-blocks">
             @component('components.blocks._text')
                 @slot('font','f-secondary')
-                {{ $section['copy'] }}
+                {!! $section['copy'] !!}
             @endcomponent
           </div>
       @endcomponent
