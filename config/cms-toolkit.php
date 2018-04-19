@@ -209,15 +209,9 @@ return [
                 'desktop' => [
                     [
                         'name' => 'desktop',
-                        'ratio' => 16 / 9,
+                        'ratio' => 0,
                     ],
-                ],
-                'mobile' => [
-                    [
-                        'name' => 'mobile',
-                        'ratio' => 1,
-                    ],
-                ],
+                ]
             ],
             'family_cover' => [
                 'default' => [
