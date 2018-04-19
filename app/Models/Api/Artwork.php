@@ -324,7 +324,7 @@ class Artwork extends BaseApiModel
             }
 
             $block = array(
-                'title' => 'Classroom Resources',
+                'title' => 'Educational Resources',
                 'blocks' => [
                     [
                         "type" => 'link-list',

@@ -2438,7 +2438,7 @@ class StaticsController extends FrontController {
                 ),
             ),
             array(
-                'title' => 'Classroom Resources',
+                'title' => 'Educational Resources',
                 'blocks' => array(
                     array(
                         "type" => 'link-list',
