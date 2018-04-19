@@ -76,7 +76,7 @@ a.checkbox::before {
   border-radius: $border-radius;
   background-color: $color__white;
 
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     top: 6px;
   }
 }
