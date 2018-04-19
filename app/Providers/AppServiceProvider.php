@@ -126,7 +126,6 @@ class AppServiceProvider extends ServiceProvider
             ,   'legal-employment' => '/employment'
             ,   'legal-venue-rental' => '/rental'
             ,   'legal-contact' => '/contact'
-            ,   'legal-saic' => '/saic'
             ,   'legal-terms' => '/terms'
             ,   'legal-image-licensing' => '/image-licensing'
             ],
