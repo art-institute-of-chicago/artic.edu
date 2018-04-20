@@ -148,7 +148,7 @@ const calendar = function(container) {
       // clone $template, update and insert
       for (let i = 0; i < monthsVisible; i++) {
         let $thisCopy = $template.cloneNode(true);
-        $thisCopy.removeAttribute('data-calendar-month-$template');
+        $thisCopy.removeAttribute('data-calendar-month-template');
         $thisCopy.removeAttribute('style');
         $monthsContainer.insertBefore($thisCopy, $template);
         monthDivs.push($thisCopy);
