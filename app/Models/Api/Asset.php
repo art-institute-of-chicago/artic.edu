@@ -12,7 +12,7 @@ class Asset extends BaseApiModel
         'search'     => '/api/v1/assets/search'
     ];
 
-    public function scopeMultimedias($query)
+    public function scopeMultimediaAssets($query)
     {
         $params = [
             'resources' => ['assets', 'sections', 'sites']
@@ -60,8 +60,37 @@ class Asset extends BaseApiModel
                                             ]
                                         ]
                                     ]
+                                ],
+                                [
+                                    "bool" => [
+                                        "must_not" => [
+                                            "terms" => [
+                                                "api_model" => ['videos', 'images', 'sounds', 'texts']
+                                            ]
+                                        ]
+                                    ]
                                 ]
                             ]
+                        ]
+                    ],
+                    [
+                        "bool" => [
+                            "should" => [
+                                [
+                                    "prefix" => [
+                                        "content.keyword" => 'http://www.youtube.com'
+                                    ]
+                                ],
+                                [
+                                    "bool" => [
+                                        "must_not" => [
+                                            "term" => [
+                                                "api_model" => "videos"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ],
                         ]
                     ]
                 ]

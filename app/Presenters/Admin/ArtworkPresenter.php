@@ -35,28 +35,20 @@ class ArtworkPresenter extends BasePresenter
     public function blocks()
     {
         $blocks = [];
-        array_push($blocks, array(
-          "type" => 'text',
+
+        array_push($blocks, [
+          "type"    => 'text',
           "content" => $this->entity->description
-        ));
+        ]);
 
         if ($this->entity->is_on_view) {
-            $label = '';
-            if (!empty($this->entity->collection_status)) {
-                $label .= $this->entity->collection_status . ', ';
-            }
-            if (!empty($this->entity->gallery_title)) {
-                $label .= $this->entity->gallery_title;
-            }
-            $this->entity->onView = array('label' => $label, 'href' => route('galleries.show', [$this->entity->gallery_id]));
-
-            array_push($blocks, array(
-              "type" => 'deflist',
-              "variation" => 'deflist--free-spacing u-hide@large+',
-              "items" => array(
-                array('key' => 'On View', 'value' => $label),
-              )
-            ));
+            array_push($blocks, [
+                "type"      => 'deflist',
+                "variation" => 'deflist--free-spacing u-hide@large+',
+                "items"     => [
+                    [ 'key' => 'On View', 'value' => $this->entity->isOnViewTitle ],
+                ]
+            ]);
         }
 
         array_push($blocks, $this->getArtworkDetailsBlock());
@@ -65,104 +57,67 @@ class ArtworkPresenter extends BasePresenter
         return $blocks;
     }
 
-    public function getArtworkDetailsBlock()
+    protected function getArtworkDetailsBlock()
     {
-
         $details = [];
 
         if ($this->entity->artists != null && $this->entity->artists->count() > 0) {
-            $details[] = array('key' => str_plural('Artist', $this->entity->artists->count()), 'value' => $this->entity->artists->implode('title', ', '));
+            $details[] = [
+                'key' => str_plural('Artist', $this->entity->artists->count()),
+                'value' => $this->entity->artists->implode('title', ', ')
+            ];
         } else {
             if (!empty($this->entity->place_of_origin)) {
-                $details[] = array('key' => 'Origin', 'value' => $this->entity->place_of_origin);
+                $details[] = [
+                    'key' => 'Origin',
+                    'value' => $this->entity->place_of_origin
+                ];
             }
         }
 
         if (!empty($this->entity->alt_titles)) {
-            $details[] = array('key' => 'Alternate Names', 'value' => join($this->entity->alt_titles, ', '));
-        }
-        if (!empty($this->entity->date_display)) {
-            $details[] = array('key' => 'Date', 'value' => $this->entity->date_display);
-        }
-        if (!empty($this->entity->medium)) {
-            $details[] = array('key' => 'Medium', 'value' => $this->entity->medium);
-        }
-        if (!empty($this->entity->dimensions)) {
-            $details[] = array('key' => 'Dimensions', 'value' => $this->entity->dimensions);
-        }
-        if (!empty($this->entity->credit_line)) {
-            $details[] = array('key' => 'Credit line', 'value' => $this->entity->credit_line);
-        }
-        if (!empty($this->entity->main_reference_number)) {
-            $details[] = array('key' => 'Reference Number', 'value' => $this->entity->main_reference_number);
-        }
-        if (!empty($this->entity->copyright_notice)) {
-            $details[] = array('key' => 'Copyright', 'value' => $this->entity->copyright_notice);
+            $details[] = [
+                'key' => 'Alternate Names',
+                'value' => join($this->entity->alt_titles, ', ')
+            ];
         }
 
-        $block = array(
-          "type"  => 'deflist',
-          "items" => $details
-        );
+        $details = array_merge($details, $this->formatDetailBlocks([
+            'Date'             => $this->entity->date_display,
+            'Medium'           => $this->entity->medium,
+            'Dimensions'       => $this->entity->dimensions,
+            'Credit line'      => $this->entity->credit_line,
+            'Reference Number' => $this->entity->main_reference_number,
+            'Copyright'        => $this->entity->copyright_notice,
+        ]));
 
-        return $block;
+        return [
+            "type"  => 'deflist',
+            "items" => $details
+        ];
     }
 
-    public function getArtworkDescriptionBlocks()
+    protected function formatDetailBlocks($elements)
     {
         $blocks = [];
-
-        $content = [];
-        if (!empty($this->entity->publication_history)) {
-            $block = array(
-                'title' => 'Publication History',
-                'blocks' => []
-            );
-            foreach(explode("\n", $this->entity->publication_history) as $txt) {
-                if (!empty($txt)) {
-                    $block['blocks'][] = array(
-                        "type" => 'text',
-                        "content" => '<p>'.$txt.'</p>'
-                    );
-                }
+        foreach ($elements as $key => $value) {
+            if (!empty($value)) {
+                $blocks[] = ['key' => $key, 'value' => $value];
             }
-            $content[] = $block;
         }
 
-        if (!empty($this->entity->exhibition_history)) {
-            $block = array(
-                'title' => 'Exhibition History',
-                'blocks' => []
-            );
-            foreach(explode("\n", $this->entity->exhibition_history) as $txt) {
-                if (!empty($txt)) {
-                    $block['blocks'][] = array(
-                        "type" => 'text',
-                        "content" => '<p>'.$txt.'</p>'
-                    );
-                }
-            }
-            $content[] = $block;
-        }
+        return $blocks;
+    }
 
-        if (!empty($this->entity->provenance_text)) {
-            $block = array(
-                'title' => 'Provenance',
-                'blocks' => []
-            );
-            foreach(explode("\n", $this->entity->provenance_text) as $txt) {
-                if (!empty($txt)) {
-                    $block['blocks'][] = array(
-                        "type" => 'text',
-                        "content" => '<p>'.$txt.'</p>'
-                    );
-                }
-            }
-            $content[] = $block;
-        }
+    protected function getArtworkDescriptionBlocks()
+    {
+        $content = $this->formatDescriptionBlocks([
+            'publication_history' => 'Publication History',
+            'exhibition_history'  => 'Exhibition History',
+            'provenance_text'     => 'Provenance'
+        ]);
 
         if ($this->entity->multimediaElements && !$this->entity->multimediaElements->isEmpty()) {
-
             $items = [];
             foreach($this->entity->multimediaElements as $media) {
                 $media->title = $media->publication_title;
@@ -174,9 +129,9 @@ class ArtworkPresenter extends BasePresenter
                 'title' => 'Multimedia',
                 'blocks' => [
                     [
-                        "type" => 'listing',
+                        "type"    => 'listing',
                         "subtype" => 'media',
-                        "items" => $items,
+                        "items"   => $items,
                     ]
                 ]
             );
@@ -185,17 +140,19 @@ class ArtworkPresenter extends BasePresenter
         }
 
         if ($this->entity->resources && !$this->entity->resources->isEmpty()) {
-
             $items = [];
             foreach($this->entity->resources as $resource) {
-                $items[] = array('label' => $resource->publication_title, 'href' => $resource->web_url);
+                $items[] = [
+                    'label' => $resource->publication_title,
+                    'href'  => $resource->web_url
+                ];
             }
 
             $block = array(
                 'title' => 'Educational Resources',
                 'blocks' => [
                     [
-                        "type" => 'link-list',
+                        "type"  => 'link-list',
                         "links" => $items,
                     ]
                 ]
@@ -205,10 +162,32 @@ class ArtworkPresenter extends BasePresenter
         }
 
 
-        $blocks = array(
-            "type" => 'accordion',
+        return [
+            "type"    => 'accordion',
             "content" => $content
-        );
+        ];
+    }
+
+    protected function formatDescriptionBlocks($elements)
+    {
+        $blocks = [];
+        foreach ($elements as $key => $value) {
+            if (!empty($this->entity->$key)) {
+                $block = array(
+                    'title' => $value,
+                    'blocks' => []
+                );
+                foreach(explode("\n", $this->entity->$key) as $txt) {
+                    if (!empty($txt)) {
+                        $block['blocks'][] = array(
+                            "type" => 'text',
+                            "content" => '<p>'.$txt.'</p>'
+                        );
+                    }
+                }
+                $blocks[] = $block;
+            }
+        }
 
         return $blocks;
     }

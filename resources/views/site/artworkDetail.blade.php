@@ -38,7 +38,7 @@
         @endcomponent
     @endif
 
-    @if ($item->onView)
+    @if ($item->is_on_view)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.atoms._title')
             @slot('variation', 'u-show@large+')
@@ -50,7 +50,7 @@
             @slot('variation', 'u-show@large+')
             @slot('tag','p')
             @slot('font', 'f-secondary')
-            <a href="{{ $item->onView['href'] }}">{{ $item->onView['label'] }}</a>
+            <a href="{!! route('galleries.show', [$item->gallery_id]) !!}">{{ $item->isOnViewTitle }}</a>
         @endcomponent
     @endif
   </div>

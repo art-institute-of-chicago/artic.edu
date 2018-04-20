@@ -50,20 +50,30 @@ class Artwork extends BaseApiModel
 
     public function getMultimediaElementsAttribute()
     {
-        // return Asset::query()->multimediaForArtwork($this->id)->multimedias()->getSearch(self::RELATED_MULTIMEDIA);
+        return Asset::query()
+            ->multimediaForArtwork($this->id)
+            ->multimediaAssets()
+            ->getSearch(self::RELATED_MULTIMEDIA, ["id","title","content","api_model","is_multimedia_resource"]);
     }
 
     public function getResourcesAttribute()
     {
-        // return Asset::query()->multimediaForArtwork($this->id)->getSearch(self::RELATED_MULTIMEDIA);
+        return;
     }
 
-    public function getTypeAttribute() {
+    public function getTypeAttribute()
+    {
         return 'artwork';
     }
 
-    public function getHeaderTypeAttribute(){
+    public function getHeaderTypeAttribute()
+    {
         return 'gallery';
+    }
+
+    public function getIsOnViewTitleAttribute()
+    {
+        return join(', ', array_filter([$this->collection_status, $this->gallery_title]));
     }
 
     public function getGalleryImagesAttribute()
