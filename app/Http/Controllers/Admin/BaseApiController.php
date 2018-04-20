@@ -62,6 +62,11 @@ class BaseApiController extends ModuleController
         }
     }
 
+    protected function getBrowserTableData($items)
+    {
+        return array_values(parent::getBrowserTableData($items));
+    }
+
     protected function getApiRepository()
     {
         return $this->app->make("$this->namespace\Repositories\\Api\\" . $this->modelName . "Repository");
