@@ -2,14 +2,16 @@
 
 namespace App\Models\Api;
 
-use App\Libraries\Api\Models\BaseApiModel;
-use App\Presenters\StaticObjectPresenter;
 use A17\CmsToolkit\Models\Behaviors\HasPresenter;
-use LakeviewImageService;
+use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Behaviors\HasMediasApi;
+use App\Models\Api\Asset;
+use LakeviewImageService;
 
 class Artwork extends BaseApiModel
 {
+    const RELATED_MULTIMEDIA = 100;
+
     use HasMediasApi, HasPresenter;
 
     protected $endpoints = [
@@ -34,6 +36,103 @@ class Artwork extends BaseApiModel
             ],
         ],
     ];
+
+    public function getFullTitleAttribute()
+    {
+        $artist = $this->mainArtist ? $this->mainArtist->first() : null;
+        return $this->title . ' (' . ($artist->title ?? '') . ' #' . $this->main_reference_number . ')';
+    }
+
+    public function getSubtitleAttribute()
+    {
+        return $this->place_of_origin . ', ' . $this->date_display;
+    }
+
+    public function getMultimediaElementsAttribute()
+    {
+        // return Asset::query()->multimediaForArtwork($this->id)->getSearch(self::RELATED_MULTIMEDIA);
+    }
+
+    public function getResourcesAttribute()
+    {
+        // return Asset::query()->multimediaForArtwork($this->id)->getSearch(self::RELATED_MULTIMEDIA);
+    }
+
+    public function getTypeAttribute() {
+        return 'artwork';
+    }
+
+    public function getHeaderTypeAttribute(){
+        return 'gallery';
+    }
+
+    public function getGalleryImagesAttribute()
+    {
+        return $this->allImages()->count() ? $this->allImages() : null;
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(\App\Models\Api\Video::class, 'video_ids');
+    }
+
+    public function artists()
+    {
+        return $this->hasMany(\App\Models\Api\Artist::class, 'alt_artist_ids');
+    }
+
+    public function mainArtist()
+    {
+        return $this->hasMany(\App\Models\Api\Artist::class, 'artist_id');
+    }
+
+    public function extraImages()
+    {
+        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids');
+    }
+
+    public function allImages()
+    {
+        return collect($this->extraImages)->map(function($image) {
+            $img = $image->imageFront();
+            $img['credit'] = $this->getImageCopyright();
+            return $img;
+        })
+        ->prepend($this->imageFront('hero'))
+        ->reject(function ($name) {
+            return empty($name);
+        });
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');
+    }
+
+    // Generates the id-slug type of URL
+    public function getRouteKeyName()
+    {
+        return 'id_slug';
+    }
+
+    public function getIdSlugAttribute()
+    {
+        return join(array_filter([$this->id, getUtf8Slug($this->title)]), '-');
+    }
+
+    public function getSlugAttribute()
+    {
+        return route('artworks.show', $this->id);
+    }
+
+    public function getImageCopyright()
+    {
+        if (!empty($this->copyright_notice)) {
+            return $this->copyright_notice;
+        }
+
+        return '';
+    }
 
     public function scopeAggregationClassification($query)
     {
@@ -117,86 +216,6 @@ class Artwork extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function videos()
-    {
-        return $this->hasMany(\App\Models\Api\Video::class, 'video_ids');
-    }
-
-    public function artists()
-    {
-        return $this->hasMany(\App\Models\Api\Artist::class, 'alt_artist_ids');
-    }
-
-    public function mainArtist()
-    {
-        return $this->hasMany(\App\Models\Api\Artist::class, 'artist_id');
-    }
-
-    public function getFullTitleAttribute()
-    {
-        $artist = $this->mainArtist ? $this->mainArtist->first() : null;
-        return $this->title . ' (' . ($artist->title ?? '') . ' #' . $this->main_reference_number . ')';
-
-    }
-
-    public function extraImages()
-    {
-        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids');
-    }
-
-    public function allImages()
-    {
-        return collect($this->extraImages)->map(function($image) {
-            $img = $image->imageFront();
-            $img['credit'] = $this->getImageCopyright();
-            return $img;
-        })
-        ->prepend($this->imageFront('hero'))
-        ->reject(function ($name) {
-            return empty($name);
-        });
-    }
-
-    public function getGalleryImagesAttribute()
-    {
-        return $this->allImages()->count() ? $this->allImages() : null;
-    }
-
-    public function categories()
-    {
-        return $this->hasMany(\App\Models\Api\Category::class, 'category_ids');
-    }
-
-    // Generates the id-slug type of URL
-    public function getRouteKeyName()
-    {
-        return 'id_slug';
-    }
-
-    public function getIdSlugAttribute()
-    {
-        return join(array_filter([$this->id, getUtf8Slug($this->title)]), '-');
-    }
-
-    public function getSlugAttribute()
-    {
-        return route('artworks.show', $this->id);
-    }
-
-    public function getImageCopyright()
-    {
-        if (!empty($this->copyright_notice)) {
-            return $this->copyright_notice;
-        }
-
-        return '';
-    }
-
-    public function getTypeAttribute()
-    {
-        return 'artwork';
-    }
-
     public function getArtworkDetailsBlock()
     {
 
@@ -240,7 +259,7 @@ class Artwork extends BaseApiModel
         return $block;
     }
 
-    public function getArtworkDescriptionBlocks($multimedia, $resources)
+    public function getArtworkDescriptionBlocks($resources = null)
     {
         $blocks = [];
 
@@ -293,10 +312,10 @@ class Artwork extends BaseApiModel
             $content[] = $block;
         }
 
-        if (!empty($multimedia) && $multimedia->count()) {
+        if ($this->multimediaElements && !$this->multimediaElements->isEmpty()) {
 
             $items = [];
-            foreach($multimedia as $media) {
+            foreach($this->multimediaElements as $media) {
                 $media->title = $media->publication_title;
                 $media->slug = $media->web_url;
                 $items[] = $media;
@@ -316,7 +335,7 @@ class Artwork extends BaseApiModel
             $content[] = $block;
         }
 
-        if (!empty($resources) && $resources->count()) {
+        if ($this->resources && !$this->resources->isEmpty()) {
 
             $items = [];
             foreach($resources as $resource) {
