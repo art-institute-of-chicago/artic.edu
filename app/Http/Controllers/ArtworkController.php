@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\SearchRepository;
-use App\Repositories\Api\AssetRepository;
 use App\Models\Page;
 
 use LakeviewImageService;
@@ -13,17 +12,14 @@ class ArtworkController extends FrontController
 {
     protected $artworkRepository;
     protected $searchRepository;
-    protected $assetRepository;
 
     public function __construct(
         ArtworkRepository $repository,
-        SearchRepository  $searchRepository,
-        AssetRepository   $assetRepository
+        SearchRepository  $searchRepository
     )
     {
         $this->artworkRepository = $repository;
         $this->searchRepository  = $searchRepository;
-        $this->assetRepository   = $assetRepository;
 
         parent::__construct();
     }
@@ -50,8 +46,8 @@ class ArtworkController extends FrontController
         return view('site.artworkDetail', [
           'item' => $item,
           'contrastHeader'   => $item->present()->contrastHeader,
-          'exploreFurther'   => $exploreFurtherCollection,
           'borderlessHeader' => $item->present()->borderlessHeader,
+          'exploreFurther'   => $exploreFurtherCollection,
           'exploreFurtherTags' => $exploreFurtherTags,
           'recentlyViewedArtworks' => $recentlyViewed
         ]);

@@ -12,6 +12,15 @@ class Asset extends BaseApiModel
         'search'     => '/api/v1/assets/search'
     ];
 
+    public function scopeMultimedias($query)
+    {
+        $params = [
+            'resources' => ['assets', 'sections', 'sites']
+        ];
+
+        return $query->rawQuery($params);
+    }
+
     public function scopeMultimediaForArtwork($query, $artworkId)
     {
         $params = [
@@ -23,7 +32,7 @@ class Asset extends BaseApiModel
                                 [
                                     "term" => [
                                         "artwork_ids" => $artworkId
-                                    ]
+                                    ],
                                 ],
                                 [
                                     "term" => [
@@ -48,15 +57,6 @@ class Asset extends BaseApiModel
                                                 "term" => [
                                                     "is_multimedia_resource" => true
                                                 ]
-                                            ]
-                                        ]
-                                    ]
-                                ],
-                                [
-                                    "bool" => [
-                                        "must_not" => [
-                                            "terms" => [
-                                                "api_model" => [ "assets" ]
                                             ]
                                         ]
                                     ]

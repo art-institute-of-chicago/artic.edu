@@ -24,6 +24,7 @@ class Places extends BaseFilteredList
                 'list'        => $list,
                 'listSearch'  => true,
                 'type'        => 'list',
+                'listSearchUrl' => '#'
             ];
         }
     }

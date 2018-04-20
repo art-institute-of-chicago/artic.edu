@@ -24,6 +24,7 @@ class Departments extends BaseFilteredList
                 'list'        => $list,
                 'listSearch'  => true,
                 'type'        => 'list',
+                'listSearchUrl' => '#'
             ];
         }
     }

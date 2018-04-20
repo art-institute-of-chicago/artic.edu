@@ -24,6 +24,7 @@ class Classifications extends BaseFilteredList
                 'list'        => $list,
                 'listSearch'  => true,
                 'type'        => 'list',
+                'listSearchUrl' => '#'
             ];
         }
     }
