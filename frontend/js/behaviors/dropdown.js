@@ -8,6 +8,17 @@ const dropdown = function(container) {
   let allow = true;
   let breakpoints = container.getAttribute('data-dropdown-breakpoints') || 'all';
 
+  function _ignore(el) {
+    var ignore = false;
+    while (container.contains(el) && el !== container) {
+      if (el.getAttribute('data-dropdown-ignore') !== null) {
+        ignore = true;
+      }
+      el = el.parentNode;
+    }
+    return ignore;
+  }
+
   function _open(event) {
     if (!allow) {
       return;

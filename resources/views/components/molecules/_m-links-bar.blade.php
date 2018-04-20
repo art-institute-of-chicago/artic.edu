@@ -34,7 +34,7 @@
               @component('components.atoms._dropdown')
                 @slot('prompt', ($isTabs && $activePrimaryLink > -1 ? $linksPrimary[$activePrimaryLink]['label'] : "More"))
                 @slot('ariaTitle', 'More links')
-                @slot('variation','dropdown--filter dropdown--tabs')
+                @slot('variation','dropdown--filter dropdown--tabs f-link')
                 @slot('font', $linksPrimaryFontClass)
                 @slot('options', $linksPrimary)
               @endcomponent

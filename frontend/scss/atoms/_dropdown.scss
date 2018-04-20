@@ -154,7 +154,7 @@
       max-width: colspan(58,'large');
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       max-width: colspan(58,'xlarge');
     }
   }
@@ -177,7 +177,7 @@
       width: colspan(58,'large');
     }
 
-    @include breakpoint('xlarge+') {
+    @include breakpoint('xlarge') {
       width: colspan(58,'xlarge');
     }
   }
