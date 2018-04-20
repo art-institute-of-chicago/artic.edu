@@ -1,36 +1,72 @@
-import { purgeProperties, forEach } from '@area17/a17-helpers';
+import { purgeProperties, ajaxRequest} from '@area17/a17-helpers';
 
 const filterWhittleDown = function(container) {
 
-  const input = container.querySelector('input');
-  const list = container.nextElementSibling;
+  const $input = container.querySelector('input');
+  const ajaxUrl = container.getAttribute('data-filter-whittle-down-url');
+  const $target = container.nextElementSibling;
+  let ajaxTimer;
+
+  function _showLoader() {
+    container.classList.add('s-loading');
+  }
+
+  function _hideLoader() {
+    container.classList.remove('s-loading');
+  }
+
+  function _fixedEncodeURIComponent(str) {
+    return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+      return '%' + c.charCodeAt(0).toString(16);
+    });
+  }
 
   function _whittleDown() {
-    if (input.value.length > 0) {
-      forEach(list.children, function(index, item) {
-        if (item.textContent.indexOf(input.value) > -1) {
-          item.classList.add('s-visible');
-        } else {
-          item.classList.remove('s-visible');
+    clearTimeout(ajaxTimer);
+
+    _showLoader();
+
+    ajaxTimer = setTimeout(function(){
+      if ($input.value === '') {
+        container.classList.remove('s-whittling');
+      } else {
+        container.classList.add('s-whittling');
+      }
+      ajaxRequest({
+        url: ajaxUrl,
+        data: { q: _fixedEncodeURIComponent($input.value) },
+        type: 'GET',
+        requestHeaders: [
+          {
+            header: 'Content-Type',
+            value: 'application/x-www-form-urlencoded; charset=UTF-8'
+          }
+        ],
+        onSuccess: function(data){
+          try {
+            var parsed = JSON.parse(data);
+            $target.innerHTML = parsed.html;
+          } catch (err) {
+            console.error('Error updating filters: '+ err);
+          }
+          _hideLoader();
+        },
+        onError: function(data){
+          console.error('Error: '+ data);
+          _hideLoader();
         }
       });
-      container.classList.add('s-whittling');
-    } else {
-      forEach(list.children, function(index, item) {
-        item.classList.remove('s-visible');
-      });
-      container.classList.remove('s-whittling');
-    }
+    }, 250);
   }
 
   function _init() {
-    input.addEventListener('input', _whittleDown, false);
+    $input.addEventListener('input', _whittleDown, false);
     container.addEventListener('submit', _whittleDown, false);
   }
 
   this.destroy = function() {
     // remove specific event handlers
-    input.removeEventListener('input', _whittleDown);
+    $input.removeEventListener('input', _whittleDown);
     container.removeEventListener('submit', _whittleDown);
 
     // remove properties of this behavior

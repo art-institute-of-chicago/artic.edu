@@ -614,6 +614,16 @@ class StaticsController extends FrontController {
     ]);
   }
 
+  public function collection_filters_search() {
+    $filters = [];
+
+    return [
+        'html' => view('statics.collection_filters_search', [
+            'links' => $this->generateFilterList(8)
+        ])->render(),
+    ];
+  }
+
   public function collection_no_results() {
     $quickSearchLinks = array();
     for ($i = 0; $i < 20; $i++) {
@@ -2887,7 +2897,8 @@ class StaticsController extends FrontController {
         'title' => 'Geography',
         'active' => true,
         'listSearch' => true,
-        'list' => $this->generateFilterList(40),
+        'listSearchUrl' => '/statics/collection_filters_search',
+        'list' => $this->generateFilterList(5),
     ));
 
     array_push($filtersCategories, array(
@@ -2902,7 +2913,8 @@ class StaticsController extends FrontController {
         'title' => 'Artist',
         'active' => true,
         'listSearch' => true,
-        'list' => $this->generateFilterList(40),
+        'listSearchUrl' => '/statics/collection_filters_search',
+        'list' => $this->generateFilterList(5),
     ));
 
     array_push($filtersCategories, array(

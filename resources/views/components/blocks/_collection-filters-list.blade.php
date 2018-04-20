@@ -1,5 +1,5 @@
 @if (isset($filterCategory['listSearch']) and $filterCategory['listSearch'])
-    <form class="m-filters__whittle-down" data-behavior="filterWhittleDown">
+    <form class="m-filters__whittle-down" data-behavior="filterWhittleDown" data-filter-whittle-down-url="{{ $filterCategory['listSearchUrl'] }}">
         <label>{{$filterCategory['placeholder'] ?? 'Find Location'}}</label>
         <input type="text" class="f-secondary" placeholder="{{$filterCategory['placeholder'] ?? 'Find Location'}}">
         <button><svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg></button>
