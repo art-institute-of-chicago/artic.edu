@@ -23,6 +23,7 @@ class VisitController extends FrontController
             $video = [
                 'src' => $video_url,
                 'poster' => $poster_url,
+                'fallbackImage' => $headerImage
             ];
 
             $headerMedia = array(

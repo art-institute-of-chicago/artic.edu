@@ -194,6 +194,22 @@ a.m-media__img:hover object {
   object-fit: cover;
 }
 
+.m-media--hero img:not(:only-child) {
+  display: block;
+
+  @include breakpoint('small+') {
+    display: none;
+  }
+}
+
+
+.m-media--hero video {
+  display: none;
+
+  @include breakpoint('small+') {
+    display: block;
+  }
+}
 
 .o-article--video .m-media {
   margin-top: 28px;

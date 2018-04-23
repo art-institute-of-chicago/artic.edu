@@ -1466,14 +1466,17 @@ class StaticsController extends FrontController {
         array(
             'src' => 'http://1312img.s3.amazonaws.com/aic/feature-1.mp4',
             'poster' => 'http://1312img.s3.amazonaws.com/aic/feature-1.jpg',
+            'fallbackImage' => $this->getImage(),
         ),
         array(
             'src' => 'http://1312img.s3.amazonaws.com/aic/feature-2.mp4',
             'poster' => 'http://1312img.s3.amazonaws.com/aic/feature-2.jpg',
+            'fallbackImage' => $this->getImage(),
         ),
         array(
             'src' => 'http://1312img.s3.amazonaws.com/aic/feature-3.mp4',
             'poster' => 'http://1312img.s3.amazonaws.com/aic/feature-3.jpg',
+            'fallbackImage' => $this->getImage(),
         ),
     );
     return $this->faker->randomElement($videos);

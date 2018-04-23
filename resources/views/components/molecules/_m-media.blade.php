@@ -106,6 +106,12 @@
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
         @else
+            @if ($size === 'hero')
+                @component('components.atoms._img')
+                    @slot('image', $media['fallbackImage'])
+                    @slot('settings', $imageSettings ?? '')
+                @endcomponent
+            @endif
             @component('components.atoms._video')
                 @slot('video', $media)
                 @if ($size === 'hero')
