@@ -125,7 +125,7 @@ class CollectionService
         {
             $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst($name);
             if (class_exists($filterClass)) {
-                $filter = new $filterClass($data->buckets);
+                $filter = new $filterClass($data->buckets, $name);
                 $filters->push($filter->generate());
             }
         }

@@ -34,7 +34,7 @@ const filterWhittleDown = function(container) {
       }
       ajaxRequest({
         url: ajaxUrl,
-        data: { q: _fixedEncodeURIComponent($input.value) },
+        data: { categoryQuery: _fixedEncodeURIComponent($input.value) },
         type: 'GET',
         requestHeaders: [
           {
