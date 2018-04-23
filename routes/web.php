@@ -15,6 +15,7 @@ if (!app()->environment('production')) {
 Route::name('collection')->get('/collection', 'CollectionController@index');
 Route::name('collection.more')->get('/collection/more', 'CollectionController@index');
 Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
+Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
 Route::name('collection.recently-viewed.clear')->get('/collection/recently-viewed/clear', 'CollectionController@clearRecentlyViewed');
 
 // Collection Publications ???

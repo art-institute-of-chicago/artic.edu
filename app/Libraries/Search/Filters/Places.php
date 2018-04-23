@@ -7,11 +7,6 @@ class Places extends BaseFilteredList
     protected $parameter  = 'place_ids';
     protected $entity     = \App\Models\Api\Place::class;
 
-    public function __construct($buckets)
-    {
-        $this->buckets = collect($buckets);
-    }
-
     public function generate()
     {
         $list = $this->generateFilteredCategory();
@@ -24,7 +19,8 @@ class Places extends BaseFilteredList
                 'list'        => $list,
                 'listSearch'  => true,
                 'type'        => 'list',
-                'listSearchUrl' => '#'
+                'aggregation' => $this->aggregationName,
+                'listSearchUrl' => route('collection.categorySearch', request()->input() + ['categoryName' => 'places'])
             ];
         }
     }

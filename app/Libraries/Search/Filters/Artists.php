@@ -7,11 +7,6 @@ class Artists extends BaseFilteredList
     protected $parameter  = 'artist_ids';
     protected $entity     = \App\Models\Api\Artist::class;
 
-    public function __construct($buckets)
-    {
-        $this->buckets = collect($buckets);
-    }
-
     public function generate()
     {
         $list = $this->generateFilteredCategory();
@@ -24,7 +19,8 @@ class Artists extends BaseFilteredList
                 'list'        => $list,
                 'listSearch'  => true,
                 'type'        => 'list',
-                'listSearchUrl' => '#'
+                'aggregation' => $this->aggregationName,
+                'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryName']) + ['categoryName' => 'artists'])
             ];
         }
     }

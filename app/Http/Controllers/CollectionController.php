@@ -46,7 +46,7 @@ class CollectionController extends BaseScopedController
 
         // Implement default filters and scopes
         $collectionService->resources(['artworks'])
-            ->allAggregations(request()->get('categoryName'), request()->get('categoryQuery'))
+            ->allAggregations(request()->route('categoryName'), request()->get('categoryQuery'))
             ->forceEndpoint('search');
 
         return $collectionService;
@@ -96,6 +96,26 @@ class CollectionController extends BaseScopedController
             )
           ),
         ]);
+    }
+
+    // Endpoint to search within filters.
+    // To perform this we hit the same collection endpoint (with no results)
+    // And build filters from the returned aggregations
+    public function categorySearch($category)
+    {
+        // Search through the facets including current parameters. Get only aggregations.
+        $collection = $this->collection()->results(0);
+        $filters    = $this->collection()->generateFilters();
+
+        // Get the correct aggregation
+        $list = $filters->where('aggregation', $category)->first();
+
+        // Print just those links
+        $view['html'] = view('site.collection._filtersItems', [
+            'links' => ($list && !empty($list['list']) ? $list['list'] : [])
+        ])->render();
+
+        return $view;
     }
 
     public function clearRecentlyViewed()

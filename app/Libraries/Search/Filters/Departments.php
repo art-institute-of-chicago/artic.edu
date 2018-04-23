@@ -7,11 +7,6 @@ class Departments extends BaseFilteredList
     protected $parameter  = 'department_ids';
     protected $entity     = \App\Models\Api\Category::class;
 
-    public function __construct($buckets)
-    {
-        $this->buckets = collect($buckets);
-    }
-
     public function generate()
     {
         $list = $this->generateFilteredCategory();
@@ -24,7 +19,8 @@ class Departments extends BaseFilteredList
                 'list'        => $list,
                 'listSearch'  => true,
                 'type'        => 'list',
-                'listSearchUrl' => '#'
+                'aggregation' => $this->aggregationName,
+                'listSearchUrl' => route('collection.categorySearch', request()->input() + ['categoryName' => 'departments'])
             ];
         }
     }

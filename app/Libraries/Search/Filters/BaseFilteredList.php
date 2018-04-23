@@ -12,6 +12,14 @@ class BaseFilteredList
 
     protected $activeList = false;
 
+    protected $aggregationName;
+
+    public function __construct($buckets, $aggregationName)
+    {
+        $this->buckets = collect($buckets);
+        $this->aggregationName = $aggregationName;
+    }
+
     public function generateFilteredCategory()
     {
         // Build options list and sort by selected (move selected at the beginning)

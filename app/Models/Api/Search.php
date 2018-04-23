@@ -42,9 +42,14 @@ class Search extends BaseApiModel
             ]
         ];
 
-        if ($queryFilter && !empty($queryFilter))
-        {
-            $agg[$name]['terms']['include'] = ".*[Pp]icasso.*";
+        // To search within a facet build a string with the form: ".*[{FirstUC}{FirstLC}]{Rest}.*"
+        // This is defined by AIC.
+        if ($queryFilter && !empty($queryFilter)) {
+            $firstLetter = substr($queryFilter, 0, 1);
+            $rest = substr($queryFilter, 1);
+            $searchString = ".*[" . ucfirst($firstLetter) . lcfirst($firstLetter) . "]" .$rest.".*";
+
+            $agg[$name]['terms']['include'] = $searchString;
         }
 
         return $agg;
