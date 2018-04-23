@@ -93,6 +93,83 @@ function aic_imageSizesCSSsettings() {
     );
 }
 
+
+function aic_determineImageSourceType($src = '') {
+    $sourceType = 'imgix';
+
+    if (strrpos($src, 'lakeimagesweb.artic.edu') > 0 or strrpos($src, '/iiif/') > 0) {
+        $sourceType = 'lakeview';
+    }
+
+    if (strrpos($src, 'artinstituteshop.org') > 0) {
+        $sourceType = 'artinstituteshop';
+    }
+
+    if (strrpos($src, 'placehold.dev.area17.com') > 0) {
+        $sourceType = 'placehold';
+    }
+
+    if (strrpos($src, 'imgix.net') > 0) {
+        $sourceType = 'imgix';
+    }
+
+    return $sourceType;
+}
+
+/***
+
+aic_makePosterUrl
+
+Returns an array of CSS settings for the site - see _variable.scss
+
+***/
+
+function aic_makePosterSrc($src = false) {
+    $sourceType = 'imgix';
+    $posterSrc = '';
+
+    if ($src) {
+        $sourceType = aic_determineImageSourceType($src);
+
+        if ($sourceType === 'placeholder') {
+            $posterSrc = "//placehold.dev.area17.com/image/150x84";
+        }
+
+        if ($sourceType === 'imgix') {
+            $base = explode('?', $src)[0].'?';
+            $originalSrcParams = array();
+            parse_str($src, $originalSrcParams);
+            $imgixSettings = array();
+
+            if (!empty($originalSrcParams['rect'])) {
+                $imgixSettings['rect'] = $originalSrcParams['rect'];
+            }
+
+            $imgixSettings['fit'] = 'crop';
+            $imgixSettings['crop'] = 'faces,edges,entropy';
+            $imgixSettings['auto'] = 'compress';
+            $imgixSettings['fm'] = 'jpg';
+            $imgixSettings['q'] = '20';
+            $imgixSettings['w'] = '150';
+            $imgixSettings['h'] = '84';
+            $imgixSettings['q'] = '10';
+            $imgixSettings['blur'] = '75';
+            $imgixSettingsString = http_build_query($imgixSettings);
+            $posterSrc = $base.$imgixSettingsString;
+        }
+
+        if ($sourceType === 'lakeview') {
+            $base = explode('/full/full/0/default.jpg', $originalSrc)[0];
+            $resizeVal = 'full';
+            $strposterSrcingSrc = $base."/".$resizeVal."/150,/0/default.jpg";
+        }
+    }
+
+    return $posterSrc;
+}
+
+
+
 /***
 
 aic_imageSettings
@@ -142,21 +219,7 @@ function aic_imageSettings($data) {
     $LQIPDimension = 25;
 
     if ($originalSrc && !$sourceType) {
-        if (strrpos($originalSrc, 'lakeimagesweb.artic.edu') > 0 or strrpos($originalSrc, '/iiif/') > 0) {
-            $sourceType = 'lakeview';
-        }
-
-        if (strrpos($originalSrc, 'artinstituteshop.org') > 0) {
-            $sourceType = 'artinstituteshop';
-        }
-
-        if (strrpos($originalSrc, 'placehold.dev.area17.com') > 0) {
-            $sourceType = 'placehold';
-        }
-
-        if (strrpos($originalSrc, 'imgix.net') > 0) {
-            $sourceType = 'imgix';
-        }
+        $sourceType = aic_determineImageSourceType($originalSrc);
     }
 
     // trying to fill image dimensions in if dimensions haven't been set but we do have a srcset and a ratio specified
@@ -177,6 +240,7 @@ function aic_imageSettings($data) {
 
     // return if not enough datas, fail safe
     if (!$srcset || !$sourceType || !$originalSrc || !$width || !$height) {
+
         if ($sourceType === 'artinstituteshop') {
             return array(
                 'src' => $originalSrc,
