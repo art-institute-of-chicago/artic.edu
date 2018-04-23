@@ -20,4 +20,22 @@ class CategoryTerm extends BaseApiModel
 
     protected $augmented = true;
     protected $augmentedModelClass = 'App\Models\CategoryTerm';
+
+    public $subtypeToParameter = [
+        'style'      => 'style_ids',
+        'material'   => 'material_ids',
+        'subject'    => 'subject_ids',
+        'department' => 'department_ids',
+        'classification' => 'classification_ids',
+
+        // Hidden ones. Implement scopes
+        'technique'  => 'technique_ids',
+        'theme'      => 'theme_ids'
+    ];
+
+    public function getParameterName()
+    {
+        return collect($this->subtypeToParameter)->get($this->subtype);
+    }
+
 }

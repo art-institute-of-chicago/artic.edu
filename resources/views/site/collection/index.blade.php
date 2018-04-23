@@ -9,7 +9,7 @@
 @endcomponent
 
 @component('components.molecules._m-intro-block')
-    {!! $intro !!}
+    {!! $page->art_intro !!}
 @endcomponent
 
 @component('components.molecules._m-links-bar')
@@ -31,9 +31,32 @@
     @slot('action', route('collection'))
 @endcomponent
 
-@component('components.molecules._m-quick-search-links----collection')
-    @slot('links', $quickSearchLinks)
-@endcomponent
+{{-- Component extraction to have a clearer code --}}
+{{-- 'components.molecules._m-quick-search-links----collection' --}}
+@if (empty(request()->input()))
+    <div class="m-quick-search-links">
+        <ul class="m-quick-search-links__links" data-behavior="dragScroll">
+        @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
+            <li>
+                @component('components.atoms._tag')
+                    @slot('variation', 'tag--w-image')
+                    @slot('href', $category->present()->collectionUrl)
+                    @component('components.atoms._img')
+                        @slot('image', $category->imageFront('thumb', 'default'))
+                        @slot('settings', array(
+                            'fit' => 'crop',
+                            'ratio' => '1:1',
+                            'srcset' => array(20,40),
+                            'sizes' => '40px',
+                        ))
+                    @endcomponent
+                    {{ $category->title }}
+                @endcomponent
+            </li>
+        @endforeach
+        </ul>
+    </div>
+@endif
 
 @component('components.molecules._m-search-actions----collection')
     @slot('onViewLink', route('collection', (request()->filled('is_on_view') ? [] : request()->input() + ['is_on_view' => true])))
