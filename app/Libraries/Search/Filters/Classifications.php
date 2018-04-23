@@ -29,4 +29,9 @@ class Classifications extends BaseFilteredList
         }
     }
 
+    public function findLabel($key)
+    {
+        return ucfirst($key);
+    }
+
 }

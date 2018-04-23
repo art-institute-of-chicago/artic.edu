@@ -29,4 +29,9 @@ class Artists extends BaseFilteredList
         }
     }
 
+    public function findLabel($key)
+    {
+        return ucfirst($key);
+    }
+
 }

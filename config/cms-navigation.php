@@ -105,7 +105,7 @@ return [
                 'route' => 'admin.collection.landing',
             ],
             'categoryTerms' => [
-                'title' => 'Quick Facets',
+                'title' => 'Quick Filters',
                 'module' => true,
             ],
             'articles_publications' => [

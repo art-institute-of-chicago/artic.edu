@@ -9,7 +9,7 @@
         'max' => 10,
         'moduleName' => 'categoryTerms',
         'name' => 'artCategoryTerms',
-        'label' => 'Category Terms'
+        'label' => 'Quick Filters'
     ])
 
     @formField('browser', [
