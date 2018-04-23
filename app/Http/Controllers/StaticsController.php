@@ -615,8 +615,6 @@ class StaticsController extends FrontController {
   }
 
   public function collection_filters_search() {
-    $filters = [];
-
     return [
         'html' => view('statics.collection_filters_search', [
             'links' => $this->generateFilterList(8)
