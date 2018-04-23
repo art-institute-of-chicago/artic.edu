@@ -37,3 +37,54 @@
     }
   }
 }
+
+
+.o-collection-listing__colset {
+  @include breakpoint('medium+') {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 20px;
+  }
+}
+
+.o-collection-listing__col-left {
+  @include breakpoint('medium+') {
+    display: none;
+    flex: 0 0 auto;
+    width: colspan(20, 'medium');
+    margin-right: colspan(1, 'medium', -1px);
+    padding-right: colspan(1, 'medium');
+    border-right: 1px solid $color__rules--tertiary;
+  }
+
+  @include breakpoint('large+') {
+    width: colspan(19, 'large');
+    margin-right: colspan(1, 'large');
+    padding-right: colspan(1, 'large');
+  }
+
+  @include breakpoint('xlarge') {
+    width: colspan(14, 'xlarge');
+    margin-right: colspan(1, 'xlarge');
+    padding-right: colspan(1, 'xlarge');
+  }
+}
+
+.o-collection-listing__col-right {
+  @include breakpoint('medium+') {
+    flex: 1;
+  }
+}
+
+.o-collection-listing__col-left .o-collection-filters {
+  @include breakpoint('medium+') {
+    padding-top: 39px;
+    border-top: 1px solid $color__rules--primary;
+  }
+}
+
+.o-collection-listing__col-right .m-active-filters {
+  @include breakpoint('medium+') {
+    margin-top: 0;
+  }
+}

@@ -11,7 +11,7 @@ const collectionFilters = function(container) {
     }
     document.documentElement.classList.add('s-collection-filters-active');
     triggerCustomEvent(document, 'body:lock', {
-      breakpoints: 'all'
+      breakpoints: 'xsmall small'
     });
     setFocusOnTarget(container);
     triggerCustomEvent(document, 'focus:trap', {

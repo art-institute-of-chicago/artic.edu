@@ -11,12 +11,25 @@
   flex-flow: column nowrap;
   border-right: 1px solid $color__rules--primary;
   background: $color__bg;
+
+  @include breakpoint('medium+') {
+    position: static;
+    width: auto;
+    background-color: transparent;
+    border-right: 0 none;
+  }
 }
 
 .o-collection-filters__scroll-area {
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+
+  @include breakpoint('medium+') {
+    flex: 0 0 auto;
+    overflow-y: initial;
+    -webkit-overflow-scrolling: auto;
+  }
 }
 
 .o-collection-filters .o-accordion__trigger:not(:first-child) {
@@ -44,6 +57,10 @@
 
 .o-collection-filters__filters {
   padding: 20px;
+
+  @include breakpoint('medium+') {
+    padding: 0;
+  }
 }
 
 .o-collection-filters__close {
@@ -52,4 +69,14 @@
   padding: 19px 20px 20px;
   border-top: 1px solid $color__rules--primary;
   background: $color__bg;
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
+.o-collection-filters .m-active-filters {
+  @include breakpoint('medium+') {
+    display: none;
+  }
 }

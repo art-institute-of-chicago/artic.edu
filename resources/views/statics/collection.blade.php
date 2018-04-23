@@ -40,12 +40,60 @@
     @slot('onViewActive',$onViewActive)
 @endcomponent
 
-@if (!empty($activeFilters))
-    @component('components.molecules._m-active-filters')
-        @slot('links', $activeFilters)
-        @slot('clearAllLink', '/statics/collection')
-    @endcomponent
-@endif
+
+
+<div class="o-collection-listing__colset">
+    <div class="o-collection-listing__col-left">
+        @component('components.organisms._o-collection-filters')
+            @if (!empty($activeFilters))
+                @slot('activeFilters', $activeFilters)
+            @endif
+            @slot('clearAllLink', '/statics/collection')
+            @slot('filterCategories', $filterCategories)
+        @endcomponent
+    </div>
+    <div class="o-collection-listing__col-right">
+        @if (!empty($activeFilters))
+            @component('components.molecules._m-active-filters')
+                @slot('links', $activeFilters)
+                @slot('clearAllLink', '/statics/collection')
+            @endcomponent
+        @endif
+        @if (!empty($activeFilters))
+            @component('components.organisms._o-pinboard')
+                @slot('cols_xsmall','2')
+                @slot('cols_small','2')
+                @slot('cols_medium','3')
+                @slot('cols_large','3')
+                @slot('cols_xlarge','4')
+                @slot('maintainOrder','false')
+                @foreach ($artworks as $item)
+                    @component('components.molecules._m-listing----'.$item->type)
+                        @slot('variation', 'o-pinboard__item')
+                        @slot('item', $item)
+                        @slot('titleFont',($item->type == 'artwork') ? 'f-list-7' : null)
+                        @slot('subtitleFont',($item->type == 'artwork') ? 'f-tertiary' : null)
+                        @slot('imageSettings', array(
+                            'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
+                            'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
+                            'srcset' => array(200,400,600,1000),
+                            'sizes' => aic_gridListingImageSizes(array(
+                                  'xsmall' => '2',
+                                  'small' => '2',
+                                  'medium' => '3',
+                                  'large' => '3',
+                                  'xlarge' => '4',
+                            )),
+                        ))
+                    @endcomponent
+                @endforeach
+            @endcomponent
+        @else
+            @component('components.molecules._m-no-results')
+            @endcomponent
+        @endif
+    </div>
+</div>
 
 @component('components.molecules._m-search-triggers----collection')
 @endcomponent
@@ -54,47 +102,8 @@
     @slot('links', $quickSearchLinks)
 @endcomponent
 
-@component('components.organisms._o-collection-filters')
-    @if (!empty($activeFilters))
-        @slot('activeFilters', $activeFilters)
-    @endif
-    @slot('clearAllLink', '/statics/collection')
-    @slot('filterCategories', $filterCategories)
-@endcomponent
 
-@if (!empty($activeFilters))
-    @component('components.organisms._o-pinboard')
-        @slot('cols_xsmall','2')
-        @slot('cols_small','2')
-        @slot('cols_medium','3')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','4')
-        @slot('maintainOrder','false')
-        @foreach ($artworks as $item)
-            @component('components.molecules._m-listing----'.$item->type)
-                @slot('variation', 'o-pinboard__item')
-                @slot('item', $item)
-                @slot('titleFont',($item->type == 'artwork') ? 'f-list-7' : null)
-                @slot('subtitleFont',($item->type == 'artwork') ? 'f-tertiary' : null)
-                @slot('imageSettings', array(
-                    'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
-                    'srcset' => array(200,400,600,1000),
-                    'sizes' => aic_gridListingImageSizes(array(
-                          'xsmall' => '2',
-                          'small' => '2',
-                          'medium' => '3',
-                          'large' => '3',
-                          'xlarge' => '4',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endcomponent
-@else
-    @component('components.molecules._m-no-results')
-    @endcomponent
-@endif
+
 
 
 @if (!empty($featuredArticles))
