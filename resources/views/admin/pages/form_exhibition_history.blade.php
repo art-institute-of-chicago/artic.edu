@@ -14,11 +14,4 @@
         'name' => 'exhibition_history_intro_copy',
         'label' => 'Hero text',
     ])
-
-{{--     @formField('input', [
-        'type' => 'textarea',
-        'name' => 'exhibition_history_popup_copy',
-        'label' => 'Popup text',
-    ])
- --}}
 @stop

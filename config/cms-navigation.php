@@ -104,6 +104,10 @@ return [
                 'title' => 'Landing',
                 'route' => 'admin.collection.landing',
             ],
+            'categoryTerms' => [
+                'title' => 'Quick Facets',
+                'module' => true,
+            ],
             'articles_publications' => [
                 'title' => 'Articles & Publications',
                 'route' => 'admin.collection.articles_publications.landing',
