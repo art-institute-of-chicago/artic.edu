@@ -109,7 +109,19 @@ class CollectionService
             }
         }
 
+        // Add links to remove Hidden filters coming from Quick Facets.
+        $activeFilters = $activeFilters->merge($this->getActiveHiddenFilters());
+
         return $activeFilters;
+    }
+
+    protected function getActiveHiddenFilters()
+    {
+        // These filters won't show up on the Menu but they are present as quick facets
+        $themes     = (new Filters\Themes())->generate();
+        $techniques = (new Filters\Techniques())->generate();
+
+        return array_merge($themes, $techniques);
     }
 
     /**

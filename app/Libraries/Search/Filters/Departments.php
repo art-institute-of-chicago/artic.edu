@@ -5,7 +5,7 @@ namespace App\Libraries\Search\Filters;
 class Departments extends BaseFilteredList
 {
     protected $parameter  = 'department_ids';
-    protected $entity     = \App\Models\Api\Category::class;
+    protected $entity     = \App\Models\Api\Department::class;
 
     public function generate()
     {
