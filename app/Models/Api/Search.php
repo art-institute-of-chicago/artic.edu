@@ -129,6 +129,16 @@ class Search extends BaseApiModel
         return $this->scopeByListType($query, $ids, 'style_titles.keyword');
     }
 
+    public function scopeByTechniques($query, $ids)
+    {
+        return $this->scopeByListType($query, $ids, 'technique_ids');
+    }
+
+    public function scopeByThemes($query, $ids)
+    {
+        return $this->scopeByListType($query, $ids, 'category_ids');
+    }
+
     public function scopePublicDomain($query, $value = true)
     {
         $params = [
