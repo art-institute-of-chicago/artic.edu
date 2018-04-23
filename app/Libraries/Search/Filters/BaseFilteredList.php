@@ -36,8 +36,9 @@ class BaseFilteredList
                 $newInput = $input->push($item->key)->filter();
             }
 
+            $extraParams = $newInput->isEmpty() ? [] : [$this->parameter => join(',', $newInput->toArray())];
             // Build the checkbox route using previously calculated inputs
-            $route = route('collection', request()->except(['page', $this->parameter]) + [$this->parameter => join(',', $newInput->toArray())]);
+            $route = route('collection', request()->except(['page', $this->parameter]) + $extraParams);
 
             return [
                 'href' => $route,
