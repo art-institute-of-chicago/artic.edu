@@ -24,7 +24,7 @@
                 {{ $item->title }}
             @endcomponent
             <br>
-            <span class="intro {{ $captionFont ?? 'f-caption' }}">{{ $item->heading }}</span>
+            <span class="intro {{ $captionFont ?? 'f-caption' }}">{{ truncateStr($item->heading) }}</span>
             <br>
             <span class="m-listing__meta-bottom">
                 @component('components.atoms._type')

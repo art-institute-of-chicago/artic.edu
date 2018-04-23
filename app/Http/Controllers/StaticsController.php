@@ -1957,6 +1957,7 @@ class StaticsController extends FrontController {
       "id" => $this->faker->uuid,
       "slug" => "/statics/article",
       "title" => $this->faker->sentence(6, true),
+      "heading" => $this->faker->sentence(6, true),
       "author" => array(
         'img' => $this->getImage(),
         'name' => $this->faker->firstName.' '.$this->faker->lastName,

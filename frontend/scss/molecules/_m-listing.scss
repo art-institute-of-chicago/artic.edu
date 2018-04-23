@@ -747,6 +747,7 @@
 .m-listing--hero .title,
 .m-listing--hero .date,
 .m-listing--hero .subtitle,
+.m-listing--hero .intro,
 .m-listing--hero .f-secondary + br + .f-secondary,
 .m-listing--hero .f-tertiary + br + .f-tertiary {
   color: $color__text--title-contrast;
@@ -866,7 +867,8 @@
   opacity: 1;
 }
 
-.m-listing--hero-editorial .date {
+.m-listing--hero-editorial .date,
+.m-listing--hero-editorial .intro {
   color: $color__text--secondary;
 }
 
