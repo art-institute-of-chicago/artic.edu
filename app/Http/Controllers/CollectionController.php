@@ -46,7 +46,7 @@ class CollectionController extends BaseScopedController
 
         // Implement default filters and scopes
         $collectionService->resources(['artworks'])
-            ->allAggregations()
+            ->allAggregations(request()->get('categoryName'), request()->get('categoryQuery'))
             ->forceEndpoint('search');
 
         return $collectionService;

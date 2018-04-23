@@ -32,6 +32,50 @@ class Search extends BaseApiModel
         return new ApiModelBuilderSearch($query);
     }
 
+    protected function buildListAggregation($name, $parameter, $queryFilter = null)
+    {
+        $agg = [
+            $name => [
+                'terms' => [
+                    'field' => $parameter,
+                ]
+            ]
+        ];
+
+        if ($queryFilter && !empty($queryFilter))
+        {
+            $agg[$name]['terms']['include'] = ".*[Pp]icasso.*";
+        }
+
+        return $agg;
+    }
+
+    public function scopeAllAggregations($query, $categoryFilter = null, $queryFilter = null)
+    {
+        // AggregationName => Parameter
+        $aggsParams = [
+            'classifications'  => 'classification_titles.keyword',
+            'artists'          => 'artist_titles.keyword',
+            'styles'           => 'style_titles.keyword',
+            'materials'        => 'material_titles.keyword',
+            'subjects'         => 'subject_titles.keyword',
+            'places'           => 'place_of_origin.keyword',
+            'departments'      => 'department_title.keyword',
+            'is_public_domain' => 'is_public_domain'
+        ];
+
+        $aggs = [];
+        foreach ($aggsParams as $facet => $parameter) {
+            if ($categoryFilter == $facet) {
+                $aggs = array_merge($aggs ,$this->buildListAggregation($facet, $parameter, $queryFilter));
+            } else {
+                $aggs = array_merge($aggs, $this->buildListAggregation($facet, $parameter));
+            }
+        }
+
+        return $query->aggregations($aggs);
+    }
+
     public function scopeAggregationType($query)
     {
         $aggs = [
@@ -45,57 +89,9 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
-    public function scopeAllAggregations($query)
-    {
-        $aggs = [
-            'artists' => [
-                'terms' => [
-                    'field' => 'artist_ids',
-                ]
-            ],
-            'styles' => [
-                'terms' => [
-                    'field' => 'style_ids'
-                ]
-            ],
-            'materials' => [
-                'terms' => [
-                    'field' => 'material_ids'
-                ]
-            ],
-            'classifications' => [
-                'terms' => [
-                    'field' => 'classification_ids'
-                ]
-            ],
-            'subjects' => [
-                'terms' => [
-                    'field' => 'subject_ids'
-                ]
-            ],
-            "places" => [
-                "terms" => [
-                    "field" => "place_of_origin.keyword"
-                ]
-            ],
-            "departments" => [
-                "terms" => [
-                    "field" => "department_id"
-                ]
-            ],
-            "is_public_domain" => [
-                "terms" => [
-                    "field" => "is_public_domain"
-                ]
-            ]
-        ];
-
-        return $query->aggregations($aggs);
-    }
-
     public function scopeByDepartments($query, $ids)
     {
-        return $this->scopeByListType($query, $ids, 'department_id');
+        return $this->scopeByListType($query, $ids, 'department_title.keyword');
     }
 
     public function scopeByPlaces($query, $ids)
@@ -105,27 +101,27 @@ class Search extends BaseApiModel
 
     public function scopeByClassifications($query, $ids)
     {
-        return $this->scopeByListType($query, $ids, 'classification_ids');
+        return $this->scopeByListType($query, $ids, 'classification_titles.keyword');
     }
 
     public function scopeByMaterials($query, $ids)
     {
-        return $this->scopeByListType($query, $ids, 'material_ids');
+        return $this->scopeByListType($query, $ids, 'material_titles.keyword');
     }
 
     public function scopeByArtists($query, $ids)
     {
-        return $this->scopeByListType($query, $ids, 'artist_ids');
+        return $this->scopeByListType($query, $ids, 'artist_titles.keyword');
     }
 
     public function scopeBySubjects($query, $ids)
     {
-        return $this->scopeByListType($query, $ids, 'subject_ids');
+        return $this->scopeByListType($query, $ids, 'subject_titles.keyword');
     }
 
     public function scopeByStyles($query, $ids)
     {
-        return $this->scopeByListType($query, $ids, 'style_ids');
+        return $this->scopeByListType($query, $ids, 'style_titles.keyword');
     }
 
     public function scopePublicDomain($query, $value = true)
