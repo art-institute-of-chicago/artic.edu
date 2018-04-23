@@ -245,6 +245,11 @@ class Page extends Model
         return $this->belongsToMany('App\Models\Article', 'page_art_article')->withPivot('position')->orderBy('position');
     }
 
+    public function artCategoryTerms()
+    {
+        return $this->apiElements()->where('relation', 'artCategoryTerms');
+    }
+
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');

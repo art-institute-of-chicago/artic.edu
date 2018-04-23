@@ -64,6 +64,7 @@ class BaseApiController extends ModuleController
 
     protected function getBrowserTableData($items)
     {
+        // Ensure data is an array and not an object to avoid json_encode wrong conversion
         return array_values(parent::getBrowserTableData($items));
     }
 

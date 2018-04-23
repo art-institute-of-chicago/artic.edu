@@ -68,7 +68,7 @@ Route::name('articles.show')->get('/articles/{id}', 'ArticleController@show');
 
 // Videos routes
 Route::name('videos')->get('videos', function() { return abort(404); });
-Route::moduleShowWithPreview('videos');
+// Route::moduleShowWithPreview('videos');
 Route::name('videos.show')->get('/videos/{slug}', 'VideoController@show');
 
 // Exhibition history routes
