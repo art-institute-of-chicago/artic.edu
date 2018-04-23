@@ -7,10 +7,12 @@ use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
 
 use App\Models\Behaviors\HasApiModel;
+use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasApiRelations;
 
 class CategoryTerm extends Model
 {
-    use HasApiModel, Transformable, HasMedias;
+    use HasApiModel, Transformable, HasMedias, HasMediasEloquent, HasApiRelations;
 
     protected $apiModel = 'App\Models\Api\CategoryTerm';
 
@@ -30,4 +32,5 @@ class CategoryTerm extends Model
             ]
         ],
     ];
+
 }

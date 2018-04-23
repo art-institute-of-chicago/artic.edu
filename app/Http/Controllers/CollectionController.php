@@ -77,7 +77,7 @@ class CollectionController extends BaseScopedController
 
         return view('site.collection.index', [
           'primaryNavCurrent' => 'collection',
-          'intro'            => $page->art_intro,
+          'page'              => $page,
           'artworks'         => $collection,
           'filterCategories' => $filters,
           'activeFilters'    => $activeFilters,

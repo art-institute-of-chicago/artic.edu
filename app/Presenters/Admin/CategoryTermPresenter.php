@@ -16,4 +16,8 @@ class CategoryTermPresenter extends BasePresenter
             return $this->entity->getAugmentedModel()->title;
         }
     }
+
+    protected function collectionUrl() {
+        return route('collection', request()->except(['page', $this->entity->getParameterName()]) + [$this->entity->getParameterName() => $this->entity->id]);
+    }
 }
