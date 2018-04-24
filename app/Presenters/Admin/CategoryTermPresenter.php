@@ -18,6 +18,14 @@ class CategoryTermPresenter extends BasePresenter
     }
 
     protected function collectionUrl() {
-        return route('collection', request()->except(['page', $this->entity->getParameterName()]) + [$this->entity->getParameterName() => $this->entity->title]);
+        switch($this->entity->subtype) {
+            case 'technique':
+            case 'theme':
+                $value = $this->entity->id;
+            default:
+                $value = $this->entity->title;
+        }
+
+        return route('collection', request()->except(['page', $this->entity->getParameterName()]) + [$this->entity->getParameterName() => $value]);
     }
 }
