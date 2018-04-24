@@ -1,26 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Repositories\Api\ArtworkRepository;
-use App\Repositories\Api\SearchRepository;
-use App\Models\Page;
-
-use LakeviewImageService;
 
 class ArtworkController extends FrontController
 {
     protected $artworkRepository;
-    protected $searchRepository;
 
-    public function __construct(
-        ArtworkRepository $repository,
-        SearchRepository  $searchRepository
-    )
+    public function __construct(ArtworkRepository $repository)
     {
         $this->artworkRepository = $repository;
-        $this->searchRepository  = $searchRepository;
-
         parent::__construct();
     }
 

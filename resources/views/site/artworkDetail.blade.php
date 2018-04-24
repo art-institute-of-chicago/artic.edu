@@ -5,39 +5,20 @@
 <article class="o-article">
 
   @component('components.molecules._m-article-header')
-    @slot('editorial', false)
+    {{-- @slot('editorial', false) --}}
     @slot('headerType', $item->headerType)
-    @slot('variation', ($item->headerVariation ?? null))
+    {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
     @slot('title', $item->title)
-    @slot('date', $item->date)
-    @slot('type', $item->type)
+    @slot('date',  $item->date)
+    @slot('type',  $item->type)
     @slot('intro', $item->heading)
-    @slot('img', $item->imageFront('hero'))
+    @slot('img',   $item->imageFront('hero'))
     @slot('galleryImages', $item->galleryImages)
-    @slot('nextArticle', $item->nextArticle)
-    @slot('prevArticle', $item->prevArticle)
+    @slot('nextArticle',   $item->nextArticle)
+    @slot('prevArticle',   $item->prevArticle)
   @endcomponent
 
   <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+">
-    @if ($item->author)
-        @component('components.molecules._m-author')
-            @slot('variation', 'm-author---keyline-top')
-            @slot('editorial', false)
-            @slot('img', $item->imageFront('author', 'square'));
-            @slot('name', $item->author ?? null);
-            @slot('link', null);
-            @slot('date', $item->date ?? null);
-        @endcomponent
-    @endif
-
-    @if ($item->nav)
-        {{-- dupe 😢 - shows xlarge+ --}}
-        @component('components.molecules._m-link-list')
-            @slot('variation', 'u-show@large+')
-            @slot('links', $item->nav);
-        @endcomponent
-    @endif
-
     @if ($item->is_on_view)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.atoms._title')
@@ -54,17 +35,6 @@
         @endcomponent
     @endif
   </div>
-
-  {{-- dupe 😢 - hides xlarge+ --}}
-  @if ($item->nav)
-  <div class="o-article__meta">
-    @if ($item->nav)
-        @component('components.molecules._m-link-list')
-            @slot('links', $item->nav);
-        @endcomponent
-    @endif
-  </div>
-  @endif
 
   <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">
 
@@ -112,15 +82,7 @@
     @endif
   </div>
 
-  @if ($item->heading and $item->headerType !== 'super-hero')
-  <div class="o-article__intro">
-    @component('components.blocks._text')
-        @slot('font', 'f-deck')
-        {{ $item->heading }}
-    @endcomponent
-  </div>
-  @endif
-
+  {{-- TODO: Integrate related elements. Should be loaded indirectly from related entities --}}
   @if ($item->featuredRelated)
   {{-- dupe 😢 - hidden medium+ --}}
   <div class="o-article__related">
@@ -150,93 +112,6 @@
     @component('components.blocks._blocks')
         @slot('blocks', $item->present()->blocks ?? null)
     @endcomponent
-
-    @if ($item->catalogues)
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-subheading-1')
-            @slot('tag', 'h4')
-            Catalogue{{ sizeof($item->catalogues) > 1 ? 's' : '' }}
-        @endcomponent
-        @foreach ($item->catalogues as $catalogue)
-            @component('components.molecules._m-download-file')
-                @slot('file', $catalogue)
-                @slot('imageSettings', array(
-                    'srcset' => array(120,240),
-                    'sizes' => '120px',
-                ))
-            @endcomponent
-        @endforeach
-    @endif
-
-    @if ($item->pictures)
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-subheading-1')
-            @slot('tag', 'h4')
-            Picture{{ sizeof($item->pictures) > 1 ? 's' : '' }}
-        @endcomponent
-        @foreach ($item->pictures as $picture)
-            @component('components.molecules._m-media')
-                @slot('variation', 'o-blocks__block')
-                @slot('item', $picture)
-                @slot('imageSettings', array(
-                    'srcset' => array(300,600,800,1200,1600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '58',
-                          'medium' => '38',
-                          'large' => '28',
-                          'xlarge' => '28',
-                    ))
-                ))
-            @endcomponent
-        @endforeach
-    @endif
-
-    @if ($item->otherResources)
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-subheading-1')
-            @slot('tag', 'h4')
-            Other Resource{{ sizeof($item->otherResources) > 1 ? 's' : '' }}
-        @endcomponent
-        @component('components.molecules._m-link-list')
-            @slot('variation', 'm-link-list--download')
-            @slot('links', $item->otherResources);
-        @endcomponent
-    @endif
-
-    @if ($item->speakers)
-        @component('components.blocks._text')
-            @slot('font', 'f-module-title-2')
-            @slot('tag', 'h4')
-            Speaker{{ sizeof($item->speakers) > 1 ? 's' : '' }}
-        @endcomponent
-        @foreach ($item->speakers as $speaker)
-            @component('components.molecules._m-row-block')
-                @slot('variation', 'm-row-block--inline-title m-row-block--keyline-top')
-                @slot('title', $speaker['title'] ?? null)
-                @slot('img', $speaker['img'] ?? null)
-                @slot('text', $speaker['text'] ?? null)
-                @slot('titleFont', 'f-subheading-1')
-                @slot('textFont', 'f-body')
-                @slot('imageSettings', array(
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '13',
-                          'small' => '13',
-                          'medium' => '8',
-                          'large' => '8',
-                          'xlarge' => '8',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endif
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
