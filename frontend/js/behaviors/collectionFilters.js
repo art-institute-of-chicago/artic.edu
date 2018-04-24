@@ -4,6 +4,7 @@ import { focusTrap, mediaQuery } from '../functions';
 const collectionFilters = function(container) {
 
   let active = false;
+  let locked = false;
 
   function _showFilters() {
     if (active) {
@@ -18,6 +19,7 @@ const collectionFilters = function(container) {
       triggerCustomEvent(document, 'focus:trap', {
         element: container
       });
+      locked = true;
     }
     triggerCustomEvent(document, 'collectionFilters:visible');
     active = true;
@@ -27,12 +29,13 @@ const collectionFilters = function(container) {
     if (!active) {
       return;
     }
-    document.documentElement.classList.remove('s-collection-filters-active');
-    if (mediaQuery('small-')) {
+    if (locked) {
       triggerCustomEvent(document, 'body:unlock');
       triggerCustomEvent(document, 'focus:untrap');
       setFocusOnTarget(document.getElementById('a17'));
+      locked = false;
     }
+    document.documentElement.classList.remove('s-collection-filters-active');
     triggerCustomEvent(document, 'collectionFilters:hidden');
     active = false;
   }

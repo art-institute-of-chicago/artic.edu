@@ -5,8 +5,12 @@ const focusTrap = function() {
   let element;
 
   function _focus() {
-    if (element && !element.contains(document.activeElement)) {
-      setFocusOnTarget(element);
+    if (element) {
+      if (document.activeElement !== element && !element.contains(document.activeElement)) {
+        setFocusOnTarget(element);
+      }
+    } else {
+      document.removeEventListener('focus', _trap);
     }
   }
 
@@ -25,6 +29,7 @@ const focusTrap = function() {
 
   function _untrap() {
     document.removeEventListener('focus', _trap);
+    element = null;
   }
 
   document.addEventListener('focus:trap', _trap, false);

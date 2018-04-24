@@ -18,9 +18,17 @@
 .o-collection-listing .o-pinboard {
   margin-top: 15px;
 
+  &:first-child {
+    margin-top: 0;
+  }
+
   @include breakpoint('small-') {
     box-shadow: 0 1px 0 $color__white inset;
     margin-top: 15px;
+
+    &:first-child {
+      margin-top: 0;
+    }
 
     &::after {
       content: '';

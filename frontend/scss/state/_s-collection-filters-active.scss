@@ -7,7 +7,8 @@
   @include breakpoint('small-') {
     #a17 > *:not(#content),
     .o-collection-listing > *:not(.o-collection-listing__colset),
-    .o-collection-listing__colset > *:not(.o-collection-listing__col-left){
+    .o-collection-listing__colset > *:not(.o-collection-listing__col-left),
+    .o-search-results > *:not(.o-collection-listing__colset) {
       @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
         filter: blur(5px);
       }

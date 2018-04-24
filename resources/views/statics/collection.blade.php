@@ -41,7 +41,6 @@
 @endcomponent
 
 
-
 <div class="o-collection-listing__colset">
     <div class="o-collection-listing__col-left">
         @component('components.organisms._o-collection-filters')
@@ -59,7 +58,7 @@
                 @slot('clearAllLink', '/statics/collection')
             @endcomponent
         @endif
-        @if (!empty($activeFilters))
+        @if ($artworks->count() > 0)
             @component('components.organisms._o-pinboard')
                 @slot('cols_xsmall','2')
                 @slot('cols_small','2')
