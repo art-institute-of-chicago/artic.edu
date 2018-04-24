@@ -22,8 +22,10 @@ class CategoryTermPresenter extends BasePresenter
             case 'technique':
             case 'theme':
                 $value = $this->entity->id;
+                break;
             default:
                 $value = $this->entity->title;
+                break;
         }
 
         return route('collection', request()->except(['page', $this->entity->getParameterName()]) + [$this->entity->getParameterName() => $value]);

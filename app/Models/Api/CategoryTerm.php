@@ -28,7 +28,7 @@ class CategoryTerm extends BaseApiModel
         'department' => 'department_ids',
         'classification' => 'classification_ids',
 
-        // Hidden ones. Implement scopes
+        // Hidden ones from the filters.
         'technique'  => 'technique_ids',
         'theme'      => 'theme_ids'
     ];
