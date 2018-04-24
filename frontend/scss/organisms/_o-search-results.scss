@@ -1,0 +1,16 @@
+
+
+.o-search-results .m-search-actions {
+  display: none;
+
+  @include breakpoint('medium+') {
+    display: flex;
+  }
+}
+
+.o-search-results .m-search-triggers {
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}

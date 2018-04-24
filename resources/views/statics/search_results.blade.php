@@ -201,41 +201,79 @@
             @slot('onViewLink', '#')
             @slot('onViewActive', false)
         @endcomponent
-        @component('components.molecules._m-active-filters')
-            @slot('links', $artworks['activeFilters'])
-            @slot('clearAllLink', '/statics/collection')
+        <div class="o-collection-listing__colset">
+            <div class="o-collection-listing__col-left">
+                @component('components.organisms._o-collection-filters')
+                    @slot('activeFilters', $artworks['activeFilters'])
+                    @slot('clearAllLink', '/statics/search_results_artworks')
+                    @slot('filterCategories', $artworks['filterCategories'])
+                @endcomponent
+            </div>
+            <div class="o-collection-listing__col-right">
+                @component('components.molecules._m-active-filters')
+                    @slot('links', $artworks['activeFilters'])
+                    @slot('clearAllLink', '/statics/collection')
+                @endcomponent
+                @component('components.organisms._o-pinboard')
+                    @slot('cols_xsmall','2')
+                    @slot('cols_small','2')
+                    @slot('cols_medium','3')
+                    @slot('cols_large','3')
+                    @slot('cols_xlarge','4')
+                    @slot('maintainOrder','false')
+                    @slot('optionLayout','o-pinboard--2-col@xsmall o-pinboard--2-col@small o-pinboard--2-col@medium o-pinboard--2-col@large o-pinboard--3-col@xlarge')
+                    @foreach ($artworks['results'] as $item)
+                        @component('components.molecules._m-listing----artwork')
+                            @slot('variation', 'o-pinboard__item')
+                            @slot('item', $item)
+                            @slot('imageSettings', array(
+                                'fit' => ($item->type !== 'artwork') ? 'crop' : null,
+                                'ratio' => ($item->type !== 'artwork') ? '16:9' : null,
+                                'srcset' => array(200,400,600),
+                                'sizes' => aic_gridListingImageSizes(array(
+                                      'xsmall' => '1',
+                                      'small' => '2',
+                                      'medium' => '3',
+                                      'large' => '4',
+                                      'xlarge' => '4',
+                                )),
+                            ))
+                        @endcomponent
+                    @endforeach
+                @endcomponent
+            </div>
+        </div>
+
+        @component('components.molecules._m-search-triggers----collection')
+            @slot('showSearch',false)
         @endcomponent
-        @component('components.organisms._o-collection-filters')
-            @slot('activeFilters', $artworks['activeFilters'])
-            @slot('clearAllLink', '/statics/search_results_artworks')
-            @slot('filterCategories', $artworks['filterCategories'])
+    @else
+        @component('components.organisms._o-pinboard')
+            @slot('cols_small','2')
+            @slot('cols_medium','3')
+            @slot('cols_large','4')
+            @slot('cols_xlarge','4')
+            @slot('maintainOrder','true')
+            @foreach ($artworks['results'] as $item)
+                @component('components.molecules._m-listing----artwork')
+                    @slot('variation', 'o-pinboard__item')
+                    @slot('item', $item)
+                    @slot('imageSettings', array(
+                        'fit' => ($item->type !== 'artwork') ? 'crop' : null,
+                        'ratio' => ($item->type !== 'artwork') ? '16:9' : null,
+                        'srcset' => array(200,400,600),
+                        'sizes' => aic_gridListingImageSizes(array(
+                              'xsmall' => '1',
+                              'small' => '2',
+                              'medium' => '3',
+                              'large' => '4',
+                              'xlarge' => '4',
+                        )),
+                    ))
+                @endcomponent
+            @endforeach
         @endcomponent
     @endif
-    @component('components.organisms._o-pinboard')
-        @slot('cols_small','2')
-        @slot('cols_medium','3')
-        @slot('cols_large','4')
-        @slot('cols_xlarge','4')
-        @slot('maintainOrder','true')
-        @foreach ($artworks['results'] as $item)
-            @component('components.molecules._m-listing----artwork')
-                @slot('variation', 'o-pinboard__item')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => ($item->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->type !== 'artwork') ? '16:9' : null,
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_gridListingImageSizes(array(
-                          'xsmall' => '1',
-                          'small' => '2',
-                          'medium' => '3',
-                          'large' => '4',
-                          'xlarge' => '4',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endcomponent
     @if(isset($artworks['pagination']) and $artworks['pagination'])
         @component('components.molecules._m-paginator')
         @endcomponent
