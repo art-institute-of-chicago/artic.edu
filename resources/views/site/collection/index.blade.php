@@ -65,12 +65,63 @@
     @slot('total', $artworks->total())
 @endcomponent
 
-@if (!empty($activeFilters))
-    @component('components.molecules._m-active-filters')
-        @slot('links', $activeFilters)
-        @slot('clearAllLink', route('collection'))
-    @endcomponent
-@endif
+<div class="o-collection-listing__colset">
+    <div class="o-collection-listing__col-left">
+        @component('components.organisms._o-collection-filters')
+            @if (!empty($activeFilters))
+                @slot('activeFilters', $activeFilters)
+            @endif
+            @slot('clearAllLink', route('collection'))
+            @slot('filterCategories', $filterCategories)
+        @endcomponent
+    </div>
+    <div class="o-collection-listing__col-right">
+        @if (!empty($activeFilters))
+            @component('components.molecules._m-active-filters')
+                @slot('links', $activeFilters)
+                @slot('clearAllLink', route('collection'))
+            @endcomponent
+        @endif
+        @if (!empty($activeFilters))
+            @component('components.organisms._o-pinboard')
+                @slot('id', 'artworksList')
+                @slot('cols_xsmall','2')
+                @slot('cols_small','2')
+                @slot('cols_medium','3')
+                @slot('cols_large','3')
+                @slot('cols_xlarge','4')
+                @slot('maintainOrder','false')
+                @slot('optionLayout','o-pinboard--2-col@xsmall o-pinboard--2-col@small o-pinboard--2-col@medium o-pinboard--2-col@large o-pinboard--3-col@xlarge')
+
+                @if ($artworks->count() > 0)
+                    @foreach ($artworks as $item)
+                        @component('components.molecules._m-listing----artwork')
+                            @slot('variation', 'o-pinboard__item')
+                            @slot('item', $item)
+                            @slot('titleFont', 'f-list-7')
+                            @slot('subtitleFont', 'f-tertiary')
+                            @slot('imageSettings', array(
+                                'fit' => null,
+                                'ratio' => null,
+                                'srcset' => array(200,400,600,1000),
+                                'sizes' => aic_gridListingImageSizes(array(
+                                      'xsmall' => '2',
+                                      'small' => '2',
+                                      'medium' => '3',
+                                      'large' => '3',
+                                      'xlarge' => '4',
+                                )),
+                            ))
+                        @endcomponent
+                    @endforeach
+                @endif
+            @endcomponent
+        @else
+            @component('components.molecules._m-no-results')
+            @endcomponent
+        @endif
+    </div>
+</div>
 
 @component('components.molecules._m-search-triggers----collection')
 @endcomponent
@@ -78,34 +129,6 @@
 @component('components.organisms._o-collection-search')
     @slot('links', $quickSearchLinks)
 @endcomponent
-
-@component('components.organisms._o-collection-filters')
-    @if (!empty($activeFilters))
-        @slot('activeFilters', $activeFilters)
-    @endif
-    @slot('clearAllLink', route('collection'))
-    @slot('filterCategories', $filterCategories)
-@endcomponent
-
-@if ($artworks->count() > 0)
-    @component('components.organisms._o-pinboard')
-        @slot('id', 'artworksList')
-
-        @slot('cols_xsmall','2')
-        @slot('cols_small','2')
-        @slot('cols_medium','3')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','4')
-        @slot('maintainOrder','false')
-
-        @component('site.collection._items')
-            @slot('artworks', $artworks)
-        @endcomponent
-    @endcomponent
-@else
-    @component('components.molecules._m-no-results')
-    @endcomponent
-@endif
 
 @if ($artworks->hasMorePages())
     @component('components.molecules._m-links-bar')
