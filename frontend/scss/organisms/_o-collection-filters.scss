@@ -34,6 +34,16 @@
 
 .o-collection-filters .o-accordion__trigger:not(:first-child) {
   margin-top: 12px;
+
+  @include breakpoint('medium+') {
+    margin-top: 16px;
+  }
+}
+
+.o-collection-filters .o-accordion__trigger:not(:first-child) .icon--arrow {
+  @include breakpoint('medium+') {
+    margin-top: -16px;
+  }
 }
 
 .o-collection-filters .o-accordion__trigger.s-inactive:not(:first-child) {
@@ -42,6 +52,10 @@
 
 .o-collection-filters .o-accordion__panel-content {
   padding-bottom: 20px;
+
+  @include breakpoint('medium+') {
+    padding-bottom: 32px;
+  }
 }
 
 .o-collection-filters .dropdown {
@@ -53,6 +67,12 @@
 .o-collection-filters .dropdown button {
   display: block;
   width: 100%;
+}
+
+.o-collection-filters .range-slider {
+  @include breakpoint('medium+') {
+    margin-top: 8px;
+  }
 }
 
 .o-collection-filters__filters {

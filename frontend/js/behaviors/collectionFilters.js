@@ -28,22 +28,19 @@ const collectionFilters = function(container) {
       return;
     }
     document.documentElement.classList.remove('s-collection-filters-active');
-    //if (mediaQuery('small-')) {
+    if (mediaQuery('small-')) {
       triggerCustomEvent(document, 'body:unlock');
       triggerCustomEvent(document, 'focus:untrap');
       setFocusOnTarget(document.getElementById('a17'));
-    //}
+    }
     triggerCustomEvent(document, 'collectionFilters:hidden');
     active = false;
   }
 
   function _toggleFilters() {
-    console.log('_toggleFilters', active);
     if (!active) {
-      console.log('!active, open!');
       triggerCustomEvent(document, 'collectionFilters:open');
     } else {
-      console.log('active, close!');
       triggerCustomEvent(document, 'collectionFilters:close');
     }
   }

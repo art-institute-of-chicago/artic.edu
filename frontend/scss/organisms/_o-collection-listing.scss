@@ -16,11 +16,11 @@
 }
 
 .o-collection-listing .o-pinboard {
-  margin-top: 16px;
+  margin-top: 15px;
 
   @include breakpoint('small-') {
     box-shadow: 0 1px 0 $color__white inset;
-    margin-top: 0;
+    margin-top: 15px;
 
     &::after {
       content: '';
@@ -78,7 +78,7 @@
 
 .o-collection-listing__col-left .o-collection-filters {
   @include breakpoint('medium+') {
-    padding-top: 39px;
+    padding-top: 32px - 1px;
     border-top: 1px solid $color__rules--primary;
   }
 }

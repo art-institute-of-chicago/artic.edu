@@ -1,8 +1,8 @@
 .o-pinboard {
   position: relative;
-  margin-top: 20px;
+  margin-top: 19px;
   padding-top: 0.02px;
-  box-shadow: 0 1px 0 $color__rules--primary inset;
+  border-top: 1px solid $color__rules--primary;
 
   &:first-child {
     margin-top: 0;
@@ -149,6 +149,11 @@
   .o-pinboard--2-col\@xsmall > * {
     width: colspan(grid-cols-to-colspan(2), 'xsmall');
   }
+
+  .o-pinboard--2-col\@xsmall > *:nth-child(1),
+  .o-pinboard--2-col\@xsmall > *:nth-child(2) {
+    border-top-color: transparent;
+  }
 }
 
 @include breakpoint('small') {
@@ -159,6 +164,11 @@
 
   .o-pinboard--2-col\@small > * {
     width: colspan(grid-cols-to-colspan(2), 'small');
+  }
+
+  .o-pinboard--2-col\@small > *:nth-child(1),
+  .o-pinboard--2-col\@small > *:nth-child(2) {
+    border-top-color: transparent;
   }
 }
 
@@ -184,6 +194,14 @@
 
   .o-pinboard--3-col\@medium > * {
     width: colspan(grid-cols-to-colspan(3), 'medium');
+  }
+
+  .o-pinboard--2-col\@medium > *:nth-child(1),
+  .o-pinboard--2-col\@medium > *:nth-child(2),
+  .o-pinboard--3-col\@medium > *:nth-child(1),
+  .o-pinboard--3-col\@medium > *:nth-child(2),
+  .o-pinboard--3-col\@medium > *:nth-child(3) {
+    border-top-color: transparent;
   }
 }
 
@@ -228,9 +246,30 @@
   .o-pinboard--4-col\@large > * {
     width: colspan(grid-cols-to-colspan(4), 'large');
   }
+
+  .o-pinboard--2-col\@large > *:nth-child(1),
+  .o-pinboard--2-col\@large > *:nth-child(2),
+  .o-pinboard--3-col\@large > *:nth-child(1),
+  .o-pinboard--3-col\@large > *:nth-child(2),
+  .o-pinboard--3-col\@large > *:nth-child(3),
+  .o-pinboard--4-col\@large > *:nth-child(1),
+  .o-pinboard--4-col\@large > *:nth-child(2),
+  .o-pinboard--4-col\@large > *:nth-child(3),
+  .o-pinboard--4-col\@large > *:nth-child(4) {
+    border-top-color: transparent;
+  }
 }
 
 @include breakpoint('xlarge') {
+  .o-pinboard--2-col\@xlarge::before {
+    display: block;
+    left: colspan(19, xlarge);
+  }
+
+  .o-pinboard--2-col\@xlarge > * {
+    width: colspan(grid-cols-to-colspan(2), 'xlarge');
+  }
+
   .o-pinboard--3-col\@xlarge::before {
     display: block;
     left: colspan(19, xlarge);
@@ -261,6 +300,18 @@
 
   .o-pinboard--4-col\@xlarge > * {
     width: colspan(grid-cols-to-colspan(4), 'xlarge');
+  }
+
+  .o-pinboard--2-col\@xlarge > *:nth-child(1),
+  .o-pinboard--2-col\@xlarge > *:nth-child(2),
+  .o-pinboard--3-col\@xlarge > *:nth-child(1),
+  .o-pinboard--3-col\@xlarge > *:nth-child(2),
+  .o-pinboard--3-col\@xlarge > *:nth-child(3),
+  .o-pinboard--4-col\@xlarge > *:nth-child(1),
+  .o-pinboard--4-col\@xlarge > *:nth-child(2),
+  .o-pinboard--4-col\@xlarge > *:nth-child(3),
+  .o-pinboard--4-col\@xlarge > *:nth-child(4) {
+    border-top-color: transparent;
   }
 }
 
