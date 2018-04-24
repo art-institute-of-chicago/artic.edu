@@ -18,6 +18,6 @@ class CategoryTermPresenter extends BasePresenter
     }
 
     protected function collectionUrl() {
-        return route('collection', request()->except(['page', $this->entity->getParameterName()]) + [$this->entity->getParameterName() => $this->entity->id]);
+        return route('collection', request()->except(['page', $this->entity->getParameterName()]) + [$this->entity->getParameterName() => $this->entity->title]);
     }
 }
