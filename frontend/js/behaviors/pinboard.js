@@ -149,7 +149,7 @@ const pinboard = function(container){
       setTimeout(function(){
         _getColCounts(optionLayout);
         _setupBlocks();
-      }, 250);
+      }, 432);
     }
   }
 
@@ -158,7 +158,7 @@ const pinboard = function(container){
       setTimeout(function(){
         _getColCounts(container.className);
         _setupBlocks();
-      }, 250);
+      }, 432);
     }
   }
 
