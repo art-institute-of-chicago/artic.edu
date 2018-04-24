@@ -54,6 +54,9 @@
         @slot('editorial', $editorial ?? null)
         @slot('variation', $variation ?? null)
         @slot('images', $galleryImages ?? null)
+        @slot('isZoomable', $isZoomable ?? null)
+        @slot('isPublicDomain', $isPublicDomain ?? null)
+        @slot('maxZoomWindowSize', $maxZoomWindowSize ?? null)
         @slot('nextArticle', $nextArticle ?? null)
         @slot('prevArticle', $prevArticle ?? null)
     @endcomponent

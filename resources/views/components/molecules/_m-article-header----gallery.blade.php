@@ -85,20 +85,24 @@
     @endif
       <ul class="m-article-header__img-actions">
         <li>
-          @component('components.atoms._btn')
-              @slot('variation', 'btn--septenary btn--icon-sq')
-              @slot('font', '')
-              @slot('icon', 'icon--zoom--24')
-              @slot('dataAttributes', 'data-gallery-fullscreen')
-          @endcomponent
+            @if(isset($isZoomable) && $isZoomable)
+                @component('components.atoms._btn')
+                  @slot('variation', 'btn--septenary btn--icon-sq')
+                  @slot('font', '')
+                  @slot('icon', 'icon--zoom--24')
+                  @slot('dataAttributes', 'data-gallery-fullscreen')
+                @endcomponent
+            @endif
         </li>
         <li>
-          @component('components.atoms._btn')
-              @slot('variation', 'btn--septenary btn--icon-sq')
-              @slot('font', '')
-              @slot('icon', 'icon--download--24')
-              @slot('dataAttributes', 'data-gallery-download')
-          @endcomponent
+            @if(isset($isPublicDomain) && $isPublicDomain)
+                @component('components.atoms._btn')
+                  @slot('variation', 'btn--septenary btn--icon-sq')
+                  @slot('font', '')
+                  @slot('icon', 'icon--download--24')
+                  @slot('dataAttributes', 'data-gallery-download')
+                @endcomponent
+            @endif
         </li>
         <li>
           @component('components.atoms._btn')

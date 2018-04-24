@@ -36,10 +36,13 @@ class ArtworkPresenter extends BasePresenter
     {
         $blocks = [];
 
-        array_push($blocks, [
-          "type"    => 'text',
-          "content" => $this->entity->description
-        ]);
+        if (!empty($this->entity->description)) {
+            array_push($blocks, [
+              "type"    => 'text',
+              "content" => $this->entity->description
+            ]);
+        }
+
 
         if ($this->entity->is_on_view) {
             array_push($blocks, [
@@ -54,7 +57,7 @@ class ArtworkPresenter extends BasePresenter
         array_push($blocks, $this->getArtworkDetailsBlock());
         array_push($blocks, $this->getArtworkDescriptionBlocks());
 
-        return $blocks;
+        return array_filter($blocks);
     }
 
     protected function getArtworkDetailsBlock()
@@ -161,11 +164,17 @@ class ArtworkPresenter extends BasePresenter
             $content[] = $block;
         }
 
+        $content = array_filter($content);
 
-        return [
-            "type"    => 'accordion',
-            "content" => $content
-        ];
+        if (empty($content)) {
+            return [];
+        } else {
+            return [
+                "type"    => 'accordion',
+                "content" => $content
+            ];
+        }
+
     }
 
     protected function formatDescriptionBlocks($elements)

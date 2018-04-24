@@ -45,7 +45,7 @@ class Artwork extends BaseApiModel
 
     public function getSubtitleAttribute()
     {
-        return $this->place_of_origin . ', ' . $this->date_display;
+        return join(', ', array_filter([$this->place_of_origin, $this->date_display]));
     }
 
     public function getMultimediaElementsAttribute()
@@ -103,12 +103,15 @@ class Artwork extends BaseApiModel
 
     public function allImages()
     {
+        $main = $this->imageFront('hero');
+        empty($main) ?: $main['credit'] = $this->getImageCopyright();
+
         return collect($this->extraImages)->map(function($image) {
             $img = $image->imageFront();
             $img['credit'] = $this->getImageCopyright();
             return $img;
         })
-        ->prepend($this->imageFront('hero'))
+        ->prepend($main)
         ->reject(function ($name) {
             return empty($name);
         });
@@ -137,11 +140,7 @@ class Artwork extends BaseApiModel
 
     public function getImageCopyright()
     {
-        if (!empty($this->copyright_notice)) {
-            return $this->copyright_notice;
-        }
-
-        return '';
+        return empty($this->copyright_notice) ? '' : $this->copyright_notice;
     }
 
     public function scopeAggregationClassification($query)

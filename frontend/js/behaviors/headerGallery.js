@@ -154,9 +154,15 @@ const headerGallery = function(container) {
     //
     _gatherDataFromThumbs();
     //
-    nodes.thumbs.addEventListener('click', _thumbClick, false);
-    nodes.download.addEventListener('click', _downloadClick, false);
-    nodes.fullscreen.addEventListener('click', _fullscreen, false);
+    if (nodes.thumbs) {
+      nodes.thumbs.addEventListener('click', _thumbClick, false);
+    }
+    if (nodes.download) {
+      nodes.download.addEventListener('click', _downloadClick, false);
+    }
+    if (nodes.fullscreen) {
+      nodes.fullscreen.addEventListener('click', _fullscreen, false);
+    }
     //
     if (nodes.next && nodes.previous){
       nodes.next.addEventListener('click', _nextClick, false);
