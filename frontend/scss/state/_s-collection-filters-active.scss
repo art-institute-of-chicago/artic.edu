@@ -1,24 +1,83 @@
 .s-collection-filters-active {
 
-  #a17 > *:not(#content),
-  .o-collection-listing > *:not(.o-collection-filters) {
-    @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
-      filter: blur(5px);
-    }
-  }
-
   .o-collection-filters {
     display: flex;
   }
 
-  .g-mask {
-    right: 0;
-    bottom: 0;
-    opacity: 1;
+  @include breakpoint('small-') {
+    #a17 > *:not(#content),
+    .o-collection-listing > *:not(.o-collection-listing__colset),
+    .o-collection-listing__colset > *:not(.o-collection-listing__col-left){
+      @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+        filter: blur(5px);
+      }
+    }
 
-    @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
+    .g-mask {
+      right: 0;
+      bottom: 0;
+      opacity: 1;
+
+      @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+      }
+    }
+  }
+
+  @include breakpoint('medium+') {
+    .o-collection-listing__col-left {
+      opacity: 1;
+    }
+  }
+
+  @include breakpoint('medium') {
+    .o-collection-listing__col-left {
+      width: colspan(19, 'medium');
+      margin-right: colspan(1, 'medium');
+      padding-right: colspan(1, 'medium');
+    }
+
+    .o-collection-listing__col-right {
+      width: colspan(38, 'medium');
+    }
+
+    .o-collection-listing__col-right .o-pinboard--3-col\@medium::after {
+      display: none;
+    }
+  }
+
+  @include breakpoint('large') {
+    .o-collection-listing__col-left {
+      width: colspan(19, 'large');
+      margin-right: colspan(1, 'large');
+      padding-right: colspan(1, 'large');
+    }
+
+    .o-collection-listing__col-right {
+      width: colspan(38, 'large');
+    }
+
+    .o-collection-listing__col-right .o-pinboard--3-col\@large::after,
+    .o-collection-listing__col-right .o-pinboard--4-col\@large::after {
+      display: none;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    .o-collection-listing__col-left {
+      width: colspan(14, 'xlarge');
+      margin-right: colspan(1, 'xlarge');
+      padding-right: colspan(1, 'xlarge');
+    }
+
+    .o-collection-listing__col-right {
+      width: colspan(42, 'xlarge');
+    }
+
+    .o-collection-listing__col-right .o-pinboard--3-col\@xlarge::after,
+    .o-collection-listing__col-right .o-pinboard--4-col\@xlarge::after {
+      display: none;
     }
   }
 }

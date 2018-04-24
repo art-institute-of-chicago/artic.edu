@@ -47,6 +47,10 @@
 .m-filters__list {
   margin-top: 0;
 
+  @include breakpoint('medium+') {
+    padding-top: 12px;
+  }
+
   form + & {
     padding-top: 4px;
   }

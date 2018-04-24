@@ -4,7 +4,7 @@ const showCollectionFilters = function(container) {
 
   function _handleClicks(event) {
     event.preventDefault();
-    triggerCustomEvent(document, 'collectionFilters:open');
+    triggerCustomEvent(document, 'collectionFilters:toggle');
     container.blur();
   }
 

@@ -16,11 +16,11 @@
 }
 
 .o-collection-listing .o-pinboard {
-  margin-top: 16px;
+  margin-top: 15px;
 
   @include breakpoint('small-') {
     box-shadow: 0 1px 0 $color__white inset;
-    margin-top: 0;
+    margin-top: 15px;
 
     &::after {
       content: '';
@@ -35,5 +35,52 @@
       height: 1px;
       background: $color__white;
     }
+  }
+}
+
+
+.o-collection-listing__colset {
+  @include breakpoint('medium+') {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 20px;
+  }
+}
+
+.o-collection-listing__col-left {
+  @include breakpoint('medium+') {
+    flex: 0 0 auto;
+    width: 0;
+    border-right: 1px solid $color__rules--tertiary;
+    opacity: 0;
+    overflow: hidden;
+    transition: width .4s $bezier--marius-ease, .4s margin-right $bezier--marius-ease, .4s padding-right $bezier--marius-ease, opacity .4s;
+  }
+}
+
+.o-collection-listing__col-right {
+  @include breakpoint('medium+') {
+    flex: 1;
+    transition: width .4s $bezier--marius-ease;
+  }
+}
+
+.o-collection-listing__col-left .o-collection-filters {
+  @include breakpoint('medium+') {
+    padding-top: 32px - 1px;
+    border-top: 1px solid $color__rules--primary;
+  }
+}
+
+.o-collection-listing__col-right .m-active-filters {
+  @include breakpoint('small-') {
+    padding-top: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+  @include breakpoint('medium+') {
+    margin-top: 0;
   }
 }
