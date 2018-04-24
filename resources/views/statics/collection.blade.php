@@ -67,6 +67,7 @@
                 @slot('cols_large','3')
                 @slot('cols_xlarge','4')
                 @slot('maintainOrder','false')
+                @slot('optionLayout','o-pinboard--2-col@xsmall o-pinboard--2-col@small o-pinboard--2-col@medium o-pinboard--2-col@large o-pinboard--3-col@xlarge')
                 @foreach ($artworks as $item)
                     @component('components.molecules._m-listing----'.$item->type)
                         @slot('variation', 'o-pinboard__item')

@@ -1,25 +1,18 @@
 .s-collection-filters-active {
 
-  @include breakpoint('small-') {
-    #a17 > *:not(#content),
-    .o-collection-listing > *:not(.o-collection-filters) {
-      @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
-        filter: blur(5px);
-      }
-    }
-  }
-
   .o-collection-filters {
     display: flex;
   }
 
-  .o-collection-listing__col-left {
-    @include breakpoint('medium+') {
-      display: block;
-    }
-  }
-
   @include breakpoint('small-') {
+    #a17 > *:not(#content),
+    .o-collection-listing > *:not(.o-collection-listing__colset),
+    .o-collection-listing__colset > *:not(.o-collection-listing__col-left){
+      @supports (not (backdrop-filter: blur(5px))) and (not (-webkit-backdrop-filter: blur(5px))) {
+        filter: blur(5px);
+      }
+    }
+
     .g-mask {
       right: 0;
       bottom: 0;
@@ -29,6 +22,30 @@
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
       }
+    }
+  }
+
+  @include breakpoint('medium+') {
+    .o-collection-listing__col-left {
+      display: block;
+    }
+  }
+
+  @include breakpoint('medium') {
+    .o-collection-listing__col-right .o-pinboard--3-col\@medium::after {
+      display: none;
+    }
+  }
+
+  @include breakpoint('large') {
+    .o-collection-listing__col-right .o-pinboard--3-col\@large::after {
+      display: none;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    .o-collection-listing__col-right .o-pinboard--3-col\@xlarge::after {
+      display: none;
     }
   }
 }

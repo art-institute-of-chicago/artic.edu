@@ -1,4 +1,5 @@
 import { purgeProperties, forEach, triggerCustomEvent } from '@area17/a17-helpers';
+import { mediaQuery } from '../functions';
 
 const pinboard = function(container){
 
@@ -8,15 +9,19 @@ const pinboard = function(container){
   let cols;
   let active = false;
   let maintainOrder = false;
+  let primeLayout = container.className;
+  let optionLayout = container.getAttribute('data-pinboard-option-layout');
   const re = /([0-9])-col@(\w*)/gi;
 
-  function _getColCounts() {
+  // prime and option layouts *is* an F1 tyre reference 🏎
+
+  function _getColCounts(classes) {
     // do a looped exec regex search on the class name to find matches
     // look for a number before -col@
     // and look for a breakpoint name after the -col@
     // then add to a local js obj
     let classListColInfo;
-    while ((classListColInfo = re.exec(container.className)) !== null) {
+    while ((classListColInfo = re.exec(classes)) !== null) {
       colCounts[classListColInfo[2]] = classListColInfo[1];
     }
   }
@@ -139,18 +144,36 @@ const pinboard = function(container){
     setTimeout(_setupBlocks, 32);
   }
 
+  function _showFilters() {
+    if (mediaQuery('medium+')) {
+      _getColCounts(optionLayout);
+      _setupBlocks();
+    }
+  }
+
+  function _hideFilters() {
+    if (mediaQuery('medium+')) {
+      _getColCounts(container.className);
+      _setupBlocks();
+    }
+  }
+
   function _init() {
     maintainOrder = (container.getAttribute('data-pinboard-maintain-order') === 'true');
-    _getColCounts();
+    _getColCounts(container.className);
     _setupBlocks();
     container.addEventListener('pinboard:contentAdded', _contentAdded, false);
     document.addEventListener('resized', _resized, false);
+    document.addEventListener('collectionFilters:open', _showFilters, false);
+    document.addEventListener('collectionFilters:close', _hideFilters, false);
   }
 
   this.destroy = function() {
     // remove specific event handlers
     container.removeEventListener('pinboard:contentAdded', _contentAdded);
     document.removeEventListener('resized', _resized);
+    document.removeEventListener('collectionFilters:open', _showFilters);
+    document.removeEventListener('collectionFilters:close', _hideFilters);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);

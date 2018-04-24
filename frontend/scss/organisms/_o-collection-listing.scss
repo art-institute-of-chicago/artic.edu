@@ -51,8 +51,8 @@
   @include breakpoint('medium+') {
     display: none;
     flex: 0 0 auto;
-    width: colspan(20, 'medium');
-    margin-right: colspan(1, 'medium', -1px);
+    width: colspan(19, 'medium');
+    margin-right: colspan(1, 'medium');
     padding-right: colspan(1, 'medium');
     border-right: 1px solid $color__rules--tertiary;
   }
@@ -84,6 +84,13 @@
 }
 
 .o-collection-listing__col-right .m-active-filters {
+  @include breakpoint('small-') {
+    padding-top: 0;
+
+    &::before {
+      display: none;
+    }
+  }
   @include breakpoint('medium+') {
     margin-top: 0;
   }

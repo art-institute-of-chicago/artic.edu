@@ -118,7 +118,7 @@
       z-index: 1;
       flex: none;
       opacity: 1;
-      transition: top .4s $bezier--bounce, left .4s $bezier--bounce, height .4s $bezier--bounce;
+      transition: top .4s $bezier--marius-ease, left .4s $bezier--marius-ease, height .4s $bezier--marius-ease;
     }
 
     .o-pinboard[class*="col@#{$name}"] > .s-positioned:not(.s-repositioning) {
@@ -163,6 +163,15 @@
 }
 
 @include breakpoint('medium') {
+  .o-pinboard--2-col\@medium::before {
+    display: block;
+    left: colspan(19, medium);
+  }
+
+  .o-pinboard--2-col\@medium > * {
+    width: colspan(grid-cols-to-colspan(2), 'medium');
+  }
+
   .o-pinboard--3-col\@medium::before {
     display: block;
     left: colspan(19, medium);
@@ -179,6 +188,15 @@
 }
 
 @include breakpoint('large') {
+  .o-pinboard--2-col\@large::before {
+    display: block;
+    left: colspan(19, large);
+  }
+
+  .o-pinboard--2-col\@large > * {
+    width: colspan(grid-cols-to-colspan(2), 'large');
+  }
+
   .o-pinboard--3-col\@large::before {
     display: block;
     left: colspan(19, large);
