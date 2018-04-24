@@ -146,15 +146,19 @@ const pinboard = function(container){
 
   function _showFilters() {
     if (mediaQuery('medium+')) {
-      _getColCounts(optionLayout);
-      _setupBlocks();
+      setTimeout(function(){
+        _getColCounts(optionLayout);
+        _setupBlocks();
+      }, 250);
     }
   }
 
   function _hideFilters() {
     if (mediaQuery('medium+')) {
-      _getColCounts(container.className);
-      _setupBlocks();
+      setTimeout(function(){
+        _getColCounts(container.className);
+        _setupBlocks();
+      }, 250);
     }
   }
 

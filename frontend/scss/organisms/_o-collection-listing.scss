@@ -49,24 +49,12 @@
 
 .o-collection-listing__col-left {
   @include breakpoint('medium+') {
-    display: none;
     flex: 0 0 auto;
-    width: colspan(19, 'medium');
-    margin-right: colspan(1, 'medium');
-    padding-right: colspan(1, 'medium');
+    width: 0;
     border-right: 1px solid $color__rules--tertiary;
-  }
-
-  @include breakpoint('large+') {
-    width: colspan(19, 'large');
-    margin-right: colspan(1, 'large');
-    padding-right: colspan(1, 'large');
-  }
-
-  @include breakpoint('xlarge') {
-    width: colspan(14, 'xlarge');
-    margin-right: colspan(1, 'xlarge');
-    padding-right: colspan(1, 'xlarge');
+    opacity: 0;
+    overflow: hidden;
+    transition: width .25s $bezier--marius-ease, .25s margin-right $bezier--marius-ease, .25s padding-right $bezier--marius-ease, opacity .24s;
   }
 }
 
