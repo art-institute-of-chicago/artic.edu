@@ -94,4 +94,24 @@ class BaseScopedController extends FrontController
         return $query;
     }
 
+    /**
+     *
+     * Returns a boolean indicating if any scope is present
+     *
+     */
+    protected function hasAnyScope()
+    {
+        if (empty($this->scopes)) {
+            return true;
+        } else {
+            foreach ($this->scopes as $parameter => $scope) {
+                if (request()->input($parameter) != null) {
+                    return true;
+                }
+            }
+        }
+
+        return;
+    }
+
 }
