@@ -120,12 +120,6 @@ class CollectionController extends BaseScopedController
         return $view;
     }
 
-    public function clearRecentlyViewed()
-    {
-        aic_clearRecentlyViewedArtworks();
-        return redirect()->back();
-    }
-
     public function autocomplete()
     {
         // Collection autocomplete is just text.
