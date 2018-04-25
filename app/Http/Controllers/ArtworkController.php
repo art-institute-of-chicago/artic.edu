@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
+use App\Libraries\RecentlyViewedService;
 
 class ArtworkController extends FrontController
 {
@@ -14,19 +15,17 @@ class ArtworkController extends FrontController
         parent::__construct();
     }
 
-    public function show($idSlug)
+    public function show($idSlug, RecentlyViewedService $recentlyViewed)
     {
-        $item = Artwork::query()->include(['artist_pivots', 'place_pivots'])->findOrFail((Integer) $idSlug);
+        $item = Artwork::query()
+            ->include(['artist_pivots', 'place_pivots'])
+            ->findOrFail((Integer) $idSlug);
+
         if (empty($item)) {
             abort(404);
-        }
-
-        // TODO: refactor these out
-        aic_addToRecentlyViewedArtworks($item);
-        $recentlyViewed = aic_getRecentlyViewedArtworks();
-
-        if (sizeof($recentlyViewed) > 2) {
-            $recentlyViewed = null;
+        } else {
+            // Add artwork to the Recently Viewed collection
+            $recentlyViewed->addArtwork($item);
         }
 
         // Build Explore further module
@@ -35,12 +34,40 @@ class ArtworkController extends FrontController
 
         return view('site.artworkDetail', [
           'item' => $item,
-          'contrastHeader'   => $item->present()->contrastHeader,
-          'borderlessHeader' => $item->present()->borderlessHeader,
-          'exploreFurther'   => $exploreFurtherCollection,
+          'contrastHeader'     => $item->present()->contrastHeader,
+          'borderlessHeader'   => $item->present()->borderlessHeader,
+          'exploreFurther'     => $exploreFurtherCollection,
           'exploreFurtherTags' => $exploreFurtherTags,
-          'recentlyViewedArtworks' => $recentlyViewed
         ]);
+    }
+
+    public function recentlyViewed(RecentlyViewedService $service)
+    {
+        $recentlyViewed = $service->getArtworks();
+
+        // TODO: Integrate themes
+        $view['html'] = view('site.shared._recentlyViewed', [
+            'artworks' => $recentlyViewed,
+            'interestedThemes'   => [
+                [
+                  'href' => '#',
+                  'label' => "Picasso",
+                ],
+                [
+                  'href' => '#',
+                  'label' => "Monet",
+                ]
+            ]
+        ])->render();
+
+        return $view;
+    }
+
+    public function clearRecentlyViewed(RecentlyViewedService $service)
+    {
+        $service->clear();
+
+        return redirect()->back();
     }
 
 }

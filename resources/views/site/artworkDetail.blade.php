@@ -129,7 +129,7 @@
         Explore Further
     @endcomponent
 
-    @component('shared._explore-further-menu')
+    @component('site.shared._explore-further-menu')
         @slot('tags', $exploreFurtherTags)
     @endcomponent
 
@@ -165,6 +165,8 @@
     @endcomponent
 @endif
 
+{{-- TODO: Move recently viewed artworks to an Ajaxified request --}}
+{{--
 @component('components.organisms._o-recently-viewed')
     @slot('artworks',$recentlyViewedArtworks)
 @endcomponent
@@ -172,5 +174,6 @@
 @component('components.organisms._o-interested-themes')
     @slot('themes',$item->interestedThemes)
 @endcomponent
+--}}
 
 @endsection

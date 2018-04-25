@@ -57,13 +57,13 @@ class CollectionService
      */
     public function generateFilters()
     {
-        // Ensure the a search query has been executed
+        // Ensure search query has been executed
         $this->results();
 
         // Generate listing filters
         $filters = $this->buildListFilters($this->aggregationsData);
 
-        //TODO: Integrate this hardcoded filter to be generated with proper date ranges
+        // Date Filter
         $filters->prepend($this->buildDateFilters());
 
         // Prepend sorting filters at the beginning
@@ -189,7 +189,9 @@ class CollectionService
             return $this->$method($parameters);
         }
 
-        return $this->chain->{$method}(...$parameters);
+        $this->chain->{$method}(...$parameters);
+
+        return $this;
     }
 
 }

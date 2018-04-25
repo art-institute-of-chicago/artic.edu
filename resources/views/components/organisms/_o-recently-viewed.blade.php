@@ -1,6 +1,6 @@
 @if (!empty($artworks))
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Clear your history', 'href' => route('collection.recently-viewed.clear'))))
+        @slot('links', array(array('label' => 'Clear your history', 'href' => route('artworks.clearRecentlyViewed'))))
         Recently Viewed
     @endcomponent
     @component('components.atoms._hr')
