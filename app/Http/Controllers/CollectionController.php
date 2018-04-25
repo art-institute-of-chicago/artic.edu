@@ -58,10 +58,7 @@ class CollectionController extends BaseScopedController
 
     public function index()
     {
-        // If we don't have a query let's load the boosted artworks
-        // $collection = \App\Models\Api\Artwork::query()->forceEndpoint('boosted')->paginate(self::PER_PAGE);
-
-        $collection = $this->collection()->results(static::PER_PAGE);
+        $collection = $this->collection()->perPage(static::PER_PAGE)->results();
 
         // If it's a call to Load More, just show the items and do not generate a full page
         if (\Route::current()->getName() == 'collection.more') {
