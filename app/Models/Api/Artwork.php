@@ -45,7 +45,7 @@ class Artwork extends BaseApiModel
 
     public function getSubtitleAttribute()
     {
-        return join(', ', array_filter([$this->place_of_origin, $this->date_display]));
+        return join(', ', array_filter([$this->artist_display ?? $this->place_of_origin, $this->date_display]));
     }
 
     public function getMultimediaElementsAttribute()
