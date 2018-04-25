@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Repositories\Api\ArtworkRepository;
+use App\Models\Api\Artwork;
 
 class ArtworkController extends FrontController
 {
@@ -15,7 +16,7 @@ class ArtworkController extends FrontController
 
     public function show($idSlug)
     {
-        $item = $this->artworkRepository->getById((Integer) $idSlug);
+        $item = Artwork::query()->include(['artist_pivots', 'place_pivots'])->findOrFail((Integer) $idSlug);
         if (empty($item)) {
             abort(404);
         }

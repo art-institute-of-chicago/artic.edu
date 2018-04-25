@@ -16,6 +16,7 @@ class AicGrammar
         'orders',
         'ids',
         'columns',
+        'include',
         'searchText',
         'searchParameters',
         'searchResources',
@@ -96,6 +97,17 @@ class AicGrammar
     protected function compileColumns($query, $columns)
     {
         return empty($columns) ? [] : ['fields' => join(',', $columns)];
+    }
+
+    /**
+     * Compile the "include" portions of the query.
+     *
+     * @param  ApiQueryBuilder $query
+     * @return array
+     */
+    protected function compileInclude($query, $columns)
+    {
+        return empty($columns) ? [] : ['include' => join(',', $columns)];
     }
 
     /**

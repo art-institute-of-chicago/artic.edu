@@ -68,6 +68,13 @@ class ApiQueryBuilder {
     public $ids = [];
 
     /**
+     * The list of extra fields to be included
+     *
+     * @var array
+     */
+    public $include = [];
+
+    /**
      * The where constraints for the query.
      *
      * @var array
@@ -241,6 +248,22 @@ class ApiQueryBuilder {
     {
         if (!empty($ids)) {
             $this->ids = $ids;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add an "includes" clause to the query. This will add those attributes
+     *
+     * @param  string  $column
+     * @param  string  $direction
+     * @return $this
+     */
+    public function include($inclusions = [])
+    {
+        if (!empty($inclusions)) {
+            $this->include = $inclusions;
         }
 
         return $this;

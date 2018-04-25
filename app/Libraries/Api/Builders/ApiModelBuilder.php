@@ -222,6 +222,19 @@ class ApiModelBuilder
     }
 
     /**
+     * Include fields at the results
+     *
+     * @param  array $include
+     * @return $this
+     */
+    public function include(array $inclusions)
+    {
+        $this->query->include($inclusions);
+
+        return $this;
+    }
+
+    /**
      * Find a model by its primary key.
      *
      * @param  mixed  $id
