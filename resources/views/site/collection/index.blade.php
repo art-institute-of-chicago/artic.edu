@@ -104,6 +104,7 @@
 </div>
 
 @component('components.molecules._m-search-triggers----collection')
+    @slot('filtersCount',isset($activeFilters) ? count($activeFilters) : 0)
 @endcomponent
 
 @component('components.organisms._o-collection-search')
