@@ -125,6 +125,11 @@ class Exhibition extends Model
         return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
     }
 
+    public function offers()
+    {
+        return $this->hasMany('App\Models\Offer')->orderBy('position');
+    }
+
     public function eventsCount()
     {
         $query = $this->events()->rightJoin('event_metas', function ($join) {

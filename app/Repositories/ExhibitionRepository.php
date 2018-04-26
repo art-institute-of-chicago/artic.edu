@@ -6,6 +6,7 @@ use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
+use A17\CmsToolkit\Repositories\Behaviors\HandleRepeaters;
 use A17\CmsToolkit\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Models\Exhibition;
@@ -13,7 +14,7 @@ use App\Repositories\Api\BaseApiRepository;
 
 class ExhibitionRepository extends BaseApiRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleRepeaters, HandleApiBlocks {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -45,6 +46,8 @@ class ExhibitionRepository extends BaseApiRepository
 
         $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
 
+        $this->updateRepeater($object, $fields, 'offers', 'Offer');
+
         parent::afterSave($object, $fields);
     }
 
@@ -61,6 +64,8 @@ class ExhibitionRepository extends BaseApiRepository
         $fields['browsers']['sidebarEvent'] = $this->getFormFieldsForBrowser($object, 'sidebarEvent', 'exhibitions_events', 'title', 'events');
         $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
         $fields['browsers']['videos'] = $this->getFormFieldsForBrowser($object, 'videos', 'collection.articles_publications');
+
+        $fields = $this->getFormFieldsForRepeater($object, $fields, 'offers', 'Offer');
 
         return $fields;
     }

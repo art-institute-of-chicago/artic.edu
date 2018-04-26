@@ -1782,6 +1782,7 @@ class StaticsController extends FrontController {
       "slug" => "#",
       "web_url" => "#",
       "title" => $this->faker->sentence(4, true),
+      "label" => strtoupper($this->faker->word(1, true)),
       "shortDesc" => $this->faker->paragraph(1, false),
       "description" => $this->faker->paragraph(1, false),
       "imageFront" => function () {
