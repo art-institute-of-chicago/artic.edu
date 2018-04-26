@@ -77,7 +77,7 @@ class ResearchController extends Controller
                     'active' => true,
                 ],
             ],
-            'hero' => $hero,
+            'hero' => $hero ?? null,
             'items' => $features,
             'studyRooms' => $studyRooms,
             'studyRoomsLink' => $studyRoomsLink
