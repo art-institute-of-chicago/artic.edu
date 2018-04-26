@@ -3,8 +3,9 @@ import { focusTrap, mediaQuery } from '../functions';
 
 const collectionFilters = function(container) {
 
-  let active = false;
+  let active = document.documentElement.classList.contains('s-collection-filters-active');
   let locked = false;
+
 
   function _showFilters() {
     if (active) {
@@ -15,10 +16,13 @@ const collectionFilters = function(container) {
       triggerCustomEvent(document, 'body:lock', {
         breakpoints: 'all'
       });
-      setFocusOnTarget(container);
-      triggerCustomEvent(document, 'focus:trap', {
-        element: container
-      });
+      let container = document.getElementById('collectionFilters');
+      if (container) {
+        setFocusOnTarget(container);
+        triggerCustomEvent(document, 'focus:trap', {
+          element: container
+        });
+      }
       locked = true;
     }
     triggerCustomEvent(document, 'collectionFilters:visible');
@@ -29,12 +33,12 @@ const collectionFilters = function(container) {
     if (!active) {
       return;
     }
-    if (locked) {
+    //if (locked) {
       triggerCustomEvent(document, 'body:unlock');
       triggerCustomEvent(document, 'focus:untrap');
       setFocusOnTarget(document.getElementById('a17'));
       locked = false;
-    }
+    //}
     document.documentElement.classList.remove('s-collection-filters-active');
     triggerCustomEvent(document, 'collectionFilters:hidden');
     active = false;
@@ -55,34 +59,10 @@ const collectionFilters = function(container) {
     }
   }
 
-  function _init() {
-    document.addEventListener('collectionFilters:open', _showFilters, false);
-    document.addEventListener('collectionFilters:close', _hideFilters, false);
-    document.addEventListener('collectionFilters:toggle', _toggleFilters, false);
-    document.addEventListener('mediaQueryUpdated',_mediaQueryUpdated, false);
-  }
-
-  this.destroy = function() {
-    // remove specific event handlers
-    document.removeEventListener('collectionFilters:open', _showFilters);
-    document.removeEventListener('collectionFilters:close', _hideFilters);
-    document.removeEventListener('collectionFilters:toggle', _hideFilters);
-    document.removeEventListener('mediaQueryUpdated',_mediaQueryUpdated);
-
-    // remove properties of this behavior
-    A17.Helpers.purgeProperties(this);
-  };
-
-  this.destroy = function() {
-    // remove specific event handlers
-
-    // remove properties of this behavior
-    A17.Helpers.purgeProperties(this);
-  };
-
-  this.init = function() {
-    _init();
-  };
+  document.addEventListener('collectionFilters:open', _showFilters, false);
+  document.addEventListener('collectionFilters:close', _hideFilters, false);
+  document.addEventListener('collectionFilters:toggle', _toggleFilters, false);
+  document.addEventListener('mediaQueryUpdated',_mediaQueryUpdated, false);
 };
 
 export default collectionFilters;

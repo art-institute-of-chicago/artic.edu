@@ -1,4 +1,4 @@
-<div class="o-collection-filters" data-behavior="collectionFilters">
+<div class="o-collection-filters" id="collectionFilters">
 
     <div class="o-collection-filters__scroll-area">
 

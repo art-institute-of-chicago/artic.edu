@@ -8,11 +8,18 @@
   }
 }
 
-
 .s-collection-search-active.s-ajaxPageLoadMask-active,
 .s-collection-filters-active.s-ajaxPageLoadMask-active {
   .g-mask {
-    opacity: 1;
-    background-color: rgba($color__black, .6);
+
+    @include breakpoint('medium+') {
+      background-color: rgba($color__white, 1);
+      opacity: .5;
+    }
+
+    @include breakpoint('small-') {
+      opacity: 1;
+      background-color: rgba($color__black, .6);
+    }
   }
 }

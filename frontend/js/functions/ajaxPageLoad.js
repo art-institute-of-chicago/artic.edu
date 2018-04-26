@@ -4,12 +4,27 @@ import { findAncestorByTagName, ajaxableLink, ajaxableHref } from '../functions'
 const ajaxPageLoad = function() {
 
   var ajaxing = false;
-  var ajaxTimeOutTime = 3500;
+  var ajaxTimeOutTime = 5000;
   var ajaxTimer;
 
   var docContent;
   var documentContent;
   var docTitle;
+
+  function _ajaxPageLoadComplete() {
+    // fix images
+    if (window.picturefill) {
+      window.picturefill();
+    }
+    // tell the page and hide the loaders
+    window.requestAnimationFrame(function(){
+      triggerCustomEvent(document, 'page:updated');
+      triggerCustomEvent(document, 'loader:complete');
+      triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
+    });
+    //
+    ajaxing = false;
+  }
 
   function stateChecks(doc) {
     // check to see if we need the contrasted header
@@ -66,8 +81,10 @@ const ajaxPageLoad = function() {
         if (focusTarget) {
           setFocusOnTarget(focusTarget);
         }
+        //
+        _ajaxPageLoadComplete();
       });
-    }, 250);
+    },250); // 250 is transition time
     // replace title
     docTitle = doc.title;
     document.title = docTitle;
@@ -96,6 +113,8 @@ const ajaxPageLoad = function() {
       triggerCustomEvent(document, 'history:pushstate', { url: options.href, type: options.type, title: docTitle });
     }
     A17.currentPathname = window.location.pathname;
+    //
+    _ajaxPageLoadComplete();
   }
 
   function modalStart(options,doc) {
@@ -106,6 +125,8 @@ const ajaxPageLoad = function() {
     document.querySelector('[data-modal]').className = 'g-modal ' + (options.modalClass ? options.modalClass : '');
     document.querySelector('[data-modal-content]').innerHTML = doc.querySelector('body').innerHTML;
     triggerCustomEvent(document, 'modal:show', { opener: options.opener });
+    //
+    _ajaxPageLoadComplete();
   }
 
   function parseHTML(data,type) {
@@ -203,16 +224,6 @@ const ajaxPageLoad = function() {
               // essentially, type = page
               defaultComplete(options, doc);
           }
-          // fix images
-          if (window.picturefill) {
-            window.picturefill();
-          }
-          // tell the page and hide the loaders
-          triggerCustomEvent(document, 'page:updated');
-          triggerCustomEvent(document, 'loader:complete');
-          triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
-          //
-          ajaxing = false;
         } catch (err) {
           triggerCustomEvent(document, 'loader:error');
           triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
@@ -238,7 +249,11 @@ const ajaxPageLoad = function() {
     });
 
     ajaxTimer = setTimeout(function(){
-      location.href = options.href;
+      if (A17.ajaxLinksFailSafe) {
+        location.href = options.href;
+      } else {
+        alert('ajax response taking a long time to complete');
+      }
     }, ajaxTimeOutTime);
   }
 
