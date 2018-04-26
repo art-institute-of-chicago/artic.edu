@@ -9,7 +9,8 @@ class ArticleRequest extends Request
     public function rules()
     {
         $rules = [
-            'title' => 'required'
+            'title'   => 'required',
+            'heading' => 'max:255'
         ];
 
         // $rules['date'] = 'date_format:m/d/Y H:i';

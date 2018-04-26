@@ -1,5 +1,5 @@
 @extends('cms-toolkit::layouts.form', [
-    'contentFieldsetLabel' => !empty($feeAges) ? $feeAges->first()->title: 'No fee ages created',
+    'contentFieldsetLabel' => $feeAges->isEmpty() ? 'Please create Admission ages and categories' : $feeAges->first()->title,
     'additionalFieldsets' => $feeAges->reject(function ($feeAge, $index) {
         return $index == 0;
     })->map(function ($feeAge) {

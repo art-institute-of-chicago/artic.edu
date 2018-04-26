@@ -21,19 +21,21 @@
             @slot('linksPrimary', $linksBar)
         @endcomponent
 
-        @component('components.molecules._m-post-hero')
-            @slot('post', $hero)
-            @slot('imageSettings', array(
-                'srcset' => array(300,600,800,1000,1500),
-                'sizes' => aic_imageSizes(array(
-                      'xsmall' => 58,
-                      'small' => 38,
-                      'medium' => 38,
-                      'large' => 38,
-                      'xlarge' => 38,
-                )),
-            ))
-        @endcomponent
+        @if ($hero)
+            @component('components.molecules._m-post-hero')
+                @slot('post', $hero)
+                @slot('imageSettings', array(
+                    'srcset' => array(300,600,800,1000,1500),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => 58,
+                          'small' => 38,
+                          'medium' => 38,
+                          'large' => 38,
+                          'xlarge' => 38,
+                    )),
+                ))
+            @endcomponent
+        @endif
 
 {{--         @component('components.organisms._o-grid-listing')
             @slot('cols_medium','2')
