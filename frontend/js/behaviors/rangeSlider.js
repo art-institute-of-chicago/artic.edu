@@ -59,6 +59,7 @@ const rangeSlider = function(container){
     // trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: windowLocationHref,
+      ajaxScrollTarget: 'collection'
     });
   }
 

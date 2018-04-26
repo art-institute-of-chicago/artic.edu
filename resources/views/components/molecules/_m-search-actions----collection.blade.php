@@ -6,7 +6,7 @@
         </button>
     </li>
     <li>
-        <a href="{{ $onViewLink }}" class="checkbox f-secondary{{ $onViewActive ? ' s-checked' : '' }}">
+        <a href="{{ $onViewLink }}" data-ajax-scroll-target="collection" class="checkbox f-secondary{{ $onViewActive ? ' s-checked' : '' }}">
             On view
         </a>
     </li>

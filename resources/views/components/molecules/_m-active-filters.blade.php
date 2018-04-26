@@ -7,6 +7,7 @@
                 @slot('font', 'f-tag-2')
                 @slot('variation', 'tag--quaternary tag--l')
                 @slot('href', $link['href'])
+                @slot('dataAttributes',' data-ajax-scroll-target="collection"')
                 {{ $link['label'] }}
                 <svg class="icon--close"><use xlink:href="#icon--close" /></svg>
             @endcomponent

@@ -21,6 +21,7 @@ const ajaxPageLoad = function() {
       triggerCustomEvent(document, 'page:updated');
       triggerCustomEvent(document, 'loader:complete');
       triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
+      triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': false });
     });
     //
     ajaxing = false;
@@ -68,6 +69,10 @@ const ajaxPageLoad = function() {
           scrollTarget = options.popstate.data.scrollY;
         } else if (window.location.hash) {
           focusTarget = document.getElementById(window.location.hash.replace('#',''));
+        } else if (options.ajaxScrollTarget) {
+          focusTarget = document.getElementById(options.ajaxScrollTarget);
+        }
+        if (focusTarget) {
           scrollTarget = Math.round(getOffset(focusTarget).top - 20);
         }
         document.documentElement.scrollTop = scrollTarget;
@@ -210,6 +215,7 @@ const ajaxPageLoad = function() {
           clearTimeout(ajaxTimer);
         } catch(err) {}
         try {
+          triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': true });
           // parse returned page
           var doc = parseHTML(data,'native');
           // do on complete func
@@ -285,6 +291,7 @@ const ajaxPageLoad = function() {
           popstate: false,
           modalClass: event.data.modalClass ? event.data.modalClass : null,
           opener: event.data.opener ? event.data.opener : null,
+          ajaxScrollTarget: event.data.ajaxScrollTarget ? event.data.ajaxScrollTarget : null
         });
       } else {
         window.location.href = event.data.url;
@@ -308,6 +315,7 @@ const ajaxPageLoad = function() {
           type: 'page',
           popstate: false,
           link: link,
+          ajaxScrollTarget: link.getAttribute('data-ajax-scroll-target') ? link.getAttribute('data-ajax-scroll-target') : null
         });
       }
     }

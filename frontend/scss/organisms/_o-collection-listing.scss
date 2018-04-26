@@ -1,7 +1,7 @@
 .o-collection-listing > .m-search-bar,
 .o-collection-listing > .m-quick-search-links,
 .o-collection-listing > .m-search-actions,
-.o-collection-listing > .m-active-filters {
+.o-collection-listing__col-right > .m-active-filters {
 
   @include breakpoint('small-') {
     display: none;
@@ -24,7 +24,7 @@
 
   @include breakpoint('small-') {
     box-shadow: 0 1px 0 $color__white inset;
-    margin-top: 15px;
+    margin-top: 0;
 
     &:first-child {
       margin-top: 0;
