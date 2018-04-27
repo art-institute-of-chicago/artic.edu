@@ -41,17 +41,6 @@ const headerGallery = function(container) {
     });
   }
 
-  function _fixDisplay() {
-    let $hero = nodes.hero.querySelector('img');
-    if (data[activeIndex].width > data[activeIndex].height) {
-      $hero.style.minWidth = '100%';
-      $hero.style.minHeight = '';
-    } else {
-      $hero.style.minWidth = '';
-      $hero.style.minHeight = '100%';
-    }
-  }
-
   function _update(init) {
     forEach(nodes.thumbButtons, function(index, button) {
       if (index !== activeIndex) {
@@ -66,7 +55,6 @@ const headerGallery = function(container) {
     nodes.share.setAttribute('data-share-title', data[activeIndex].shareTitle);
 
     if (init) {
-      _fixDisplay();
       return;
     }
 
