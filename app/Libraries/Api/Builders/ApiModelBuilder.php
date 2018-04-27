@@ -411,7 +411,7 @@ class ApiModelBuilder
      * @param  string  $name
      * @return array
      */
-    protected function eagerLoadRelation(array $models, $name)
+    protected function eagerLoadRelation($models, $name)
     {
         foreach ($models as $model) {
             // For each model get the relationship

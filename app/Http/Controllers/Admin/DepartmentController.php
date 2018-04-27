@@ -21,7 +21,7 @@ class DepartmentController extends BaseApiController
         'bulkDelete' => false,
         'bulkEdit' => false,
         'reorder' => false,
-        'permalink' => false,
+        'permalink' => true,
     ];
 
     protected $indexColumns = [
