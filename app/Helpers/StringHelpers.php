@@ -119,3 +119,17 @@ if (!function_exists('truncateStr')) {
         return $string;
    }
 }
+
+if (!function_exists('convertReferenceLinks')) {
+    function convertReferenceLinks($text, $_collectedReferences) {
+        $codes = \App\Libraries\ShortcodeService::parse_shortcodes($text);
+        foreach($codes as $index => $code) {
+            $_collectedReferences[] = ['id' => sizeof($_collectedReferences)+1, 'reference' => $code['content']];
+            $pos = sizeof($_collectedReferences);
+            $ref = '<sup id="ref_cite-'.$pos.'"><a href="#ref_note-'.$pos.'">['.$pos.']</a></sup>';
+            $text = str_replace($code['shortcode'], $ref, $text);
+        }
+
+        return [$text, $_collectedReferences];
+    }
+}

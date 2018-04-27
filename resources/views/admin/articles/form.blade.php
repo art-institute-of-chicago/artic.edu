@@ -66,9 +66,10 @@
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
-            'list', 'artwork', 'artworks', 'references', 'citation'
+            'list', 'artwork', 'artworks', 'citation'
         ]
     ])
+
 @stop
 
 @section('fieldsets')
