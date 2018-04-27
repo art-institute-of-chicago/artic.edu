@@ -26,12 +26,4 @@ class Gallery extends BaseApiModel
         return 'gallery';
     }
 
-    // // Generates the id-slug type of URL
-    // public function getRouteKeyName() {
-    //     return 'id_slug';
-    // }
-
-    // public function getIdSlugAttribute() {
-    //     return join(array_filter([$this->id, $this->getSlug()]), '-');
-    // }
 }

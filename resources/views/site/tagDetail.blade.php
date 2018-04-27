@@ -61,7 +61,7 @@
         @slot('linksPrimary', array(
             [
                 'label' => "See all {$artworks->total()} artworks",
-                'href'  => route('collection', [$item->type . '_ids' => $item->id]),
+                'href'  => $item->present()->collectionFilteredUrl,
                 'variation' => 'btn--secondary'
             ]
         ));

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Api\GalleryRepository;
+use App\Repositories\Api\ArtistRepository;
 
-class GalleryController extends FrontController
+class ArtistController extends FrontController
 {
     protected $repository;
 
-    public function __construct(GalleryRepository $repository)
+    public function __construct(ArtistRepository $repository)
     {
         $this->repository = $repository;
         parent::__construct();
