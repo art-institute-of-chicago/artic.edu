@@ -94,6 +94,30 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
+    public function scopeAggregationClassifications($query, $max = 3)
+    {
+        $aggs = [
+            'classifications' => [
+                'terms' => [
+                    'field' => 'classification_titles.keyword',
+                    'size'  => $max
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
+    public function scopeByGalleryIds($query, $ids)
+    {
+        return $this->scopeByListType($query, $ids, 'gallery_id');
+    }
+
+    public function scopeByDepartmentIds($query, $ids)
+    {
+        return $this->scopeByListType($query, $ids, 'department_id');
+    }
+
     public function scopeByDepartments($query, $ids)
     {
         return $this->scopeByListType($query, $ids, 'department_title.keyword');
@@ -259,17 +283,6 @@ class Search extends BaseApiModel
         }
 
         return $date;
-    }
-
-    public function scopeByGallery($query, $id)
-    {
-        $params = [
-            "term" => [
-                "gallery_id" => $id
-            ]
-        ];
-
-        return $query->rawSearch($params);
     }
 
     public function scopeByIds($query, $ids)

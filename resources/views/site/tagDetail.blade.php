@@ -34,13 +34,13 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('maintainOrder','true')
-        @foreach ($artworks as $item)
+        @foreach ($artworks as $artwork)
             @component('components.molecules._m-listing----artwork')
                 @slot('variation', 'o-pinboard__item')
-                @slot('item', $item)
+                @slot('item', $artwork)
                 @slot('imageSettings', array(
-                    'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
+                    'fit' => null,
+                    'ratio' => null,
                     'srcset' => array(200,400,600,1000),
                     'sizes' => aic_gridListingImageSizes(array(
                           'xsmall' => '1',
@@ -61,7 +61,7 @@
         @slot('linksPrimary', array(
             [
                 'label' => "See all {$artworks->total()} artworks",
-                'href' => route('collection', ['gallery' => $item->id]),
+                'href'  => route('collection', [$item->type . '_ids' => $item->id]),
                 'variation' => 'btn--secondary'
             ]
         ));
@@ -102,29 +102,29 @@
     @endcomponent
 @endif
 
-@if ($item->exploreFuther)
+@if ($exploreFurther)
     @component('components.molecules._m-title-bar')
         Explore Further
     @endcomponent
-    @component('components.molecules._m-links-bar')
-        @slot('variation', '')
-        @slot('linksPrimary', $item->exploreFuther['nav'])
+
+    @component('shared._explore-further-menu')
+        @slot('tags', $exploreFurtherTags)
     @endcomponent
+
     @component('components.organisms._o-pinboard')
         @slot('cols_small','2')
         @slot('cols_medium','3')
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
         @slot('maintainOrder','false')
-        @slot('moreLink',$item->exploreMoreLink)
-        @foreach ($item->exploreFuther['items'] as $item)
-            @component('components.molecules._m-listing----'.$item->type)
+        @foreach ($exploreFurther as $item)
+            @component('components.molecules._m-listing----artwork')
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
                 @slot('imageSettings', array(
-                    'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
-                    'srcset' => array(200,400,600,1000),
+                    'fit' => null,
+                    'ratio' => null,
+                    'srcset' => array(200,400,600),
                     'sizes' => aic_gridListingImageSizes(array(
                           'xsmall' => '1',
                           'small' => '2',

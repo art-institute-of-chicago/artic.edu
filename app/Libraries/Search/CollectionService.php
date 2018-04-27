@@ -116,8 +116,9 @@ class CollectionService
         // These filters won't show up on the Menu but they are present as quick facets
         $themes     = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
+        $galleries  = (new Filters\Galleries())->generate();
 
-        return array_merge($themes, $techniques);
+        return array_merge($themes, $techniques, $galleries);
     }
 
     /**

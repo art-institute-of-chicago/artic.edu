@@ -21,6 +21,11 @@ class Gallery extends BaseApiModel
     protected $presenter       = 'App\Presenters\Admin\GalleryPresenter';
     protected $presenterAdmin  = 'App\Presenters\Admin\GalleryPresenter';
 
+    public function getTypeAttribute()
+    {
+        return 'gallery';
+    }
+
     // // Generates the id-slug type of URL
     // public function getRouteKeyName() {
     //     return 'id_slug';

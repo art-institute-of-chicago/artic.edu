@@ -11,24 +11,25 @@ class GalleryController extends FrontController
 {
     protected $repository;
 
-    const ARTWORKS_PER_PAGE = 8;
-
     public function __construct(GalleryRepository $repository)
     {
         $this->repository = $repository;
-
         parent::__construct();
     }
 
     public function show($idSlug)
     {
-        // The ID is a datahub_id not a local ID
-        $item = $this->repository->getById((Integer) $idSlug);
-        $artworks = Search::query()->resources(['artworks'])->byGallery($item->id)->getSearch(self::ARTWORKS_PER_PAGE);
+        $item     = $this->repository->getById((Integer) $idSlug);
+        $artworks = $this->repository->getArtworks($item->id);
+
+        $exploreFurtherCollection = $this->repository->exploreFurtherCollection($item->id, request()->only('exFurther-classification'));
+        $exploreFurtherTags       = $this->repository->exploreFurtherTags($item->id);
 
         return view('site.tagDetail', [
-            'item' => $item,
+            'item'     => $item,
             'artworks' => $artworks,
+            'exploreFurther'     => $exploreFurtherCollection,
+            'exploreFurtherTags' => $exploreFurtherTags,
         ]);
     }
 
