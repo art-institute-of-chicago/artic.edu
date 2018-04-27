@@ -465,19 +465,22 @@ class ApiQueryBuilder {
         }
 
         $results = $this->runGet($endpoint);
-
-        $this->paginationData = $results->body->pagination ?? null;
-        $this->aggregationsData = $results->body->aggregations ?? null;
-        $this->suggestionsData = $results->body->suggest ?? null;
-
         $this->columns = $original;
 
         // If it's a single element return as a collection with 1 element
         if (is_array($results->body->data)) {
-            return collect($results->body->data);
+            $collection = collectApi($results->body->data);
         } else {
-            return collect([$results->body->data]);
+            $collection = collectApi([$results->body->data]);
         }
+
+        $collection->setMetadata([
+            'pagination'   => $results->body->pagination ?? null,
+            'aggregations' => $results->body->aggregations ?? null,
+            'suggestions'  => $results->body->suggest ?? null
+        ]);
+
+        return $collection;
     }
 
     /**
@@ -497,10 +500,18 @@ class ApiQueryBuilder {
         $results = $this->runGet($endpoint);
 
         if (is_array($results->body)) {
-            return collect($results->body);
+            $collection = collectApi($results->body);
         } else {
-            return collect([$results->body]);
+            $collection = collectApi([$results->body]);
         }
+
+        $collection->setMetadata([
+            'pagination'   => $results->body->pagination ?? null,
+            'aggregations' => $results->body->aggregations ?? null,
+            'suggestions'  => $results->body->suggest ?? null
+        ]);
+
+        return $collection;
     }
 
     public function getPaginationData() {

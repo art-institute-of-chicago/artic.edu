@@ -73,6 +73,7 @@ class SearchController extends BaseScopedController
     {
         // General search to get featured elements and general metadata.
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $links = $this->buildSearchLinks($general, 'all');
 
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
@@ -80,10 +81,9 @@ class SearchController extends BaseScopedController
         $artists     = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
         $exhibitions = $this->exhibitionsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
 
-        $links = $this->buildSearchLinks($general, $general->aggregations->types->buckets, 'all');
 
         return view('site.search.index', [
-            'featuredResults'      => $general->items->where('is_boosted', true),
+            'featuredResults'      => $general->where('is_boosted', true),
             'eventsAndExhibitions' => $exhibitions,
             'artworks' => $artworks,
             'artists'  => $artists,
@@ -97,8 +97,9 @@ class SearchController extends BaseScopedController
     {
         // TODO: Integrate this search for all types and use a better approach than overwriting the results
 
-        $query = GeneralSearch::search(request('q'))->resources(['artworks', 'exhibitions', 'artists', 'agents']);
-        $collection = $query->getSearch(self::AUTOCOMPLETE_PER_PAGE);
+        $collection = GeneralSearch::search(request('q'))
+            ->resources(['artworks', 'exhibitions', 'artists', 'agents'])
+            ->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
         foreach($collection as &$item) {
             switch ($item->type) {
@@ -135,7 +136,7 @@ class SearchController extends BaseScopedController
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
-        $links = $this->buildSearchLinks($general, $general->aggregations->types->buckets, 'artworks');
+        $links = $this->buildSearchLinks($general, 'artworks');
 
         return view('site.search.index', [
             'artworks' => $artworks,
@@ -171,7 +172,7 @@ class SearchController extends BaseScopedController
         $general     = $this->searchRepository->forSearchQuery(request('q'), 2);
         $exhibitions = $this->exhibitionsRepository->forSearchQuery(request('q'), self::EXHIBITIONS_PER_PAGE);
 
-        $links = $this->buildSearchLinks($general, $general->aggregations->types->buckets, 'exhibitions');
+        $links = $this->buildSearchLinks($general, 'exhibitions');
 
         return view('site.search.index', [
             'eventsAndExhibitions' => $exhibitions,
@@ -196,7 +197,7 @@ class SearchController extends BaseScopedController
         $general = $this->searchRepository->forSearchQuery(request('q'), 2);
         $artists = $this->artistsRepository->forSearchQuery(request('q'), self::ARTISTS_PER_PAGE);
 
-        $links = $this->buildSearchLinks($general, $general->aggregations->types->buckets, 'artists');
+        $links = $this->buildSearchLinks($general, 'artists');
 
         return view('site.search.index', [
             'artists' => $artists,
@@ -216,11 +217,12 @@ class SearchController extends BaseScopedController
         ]);
     }
 
-    protected function buildSearchLinks($all, $aggregations, $active = 'all')
+    protected function buildSearchLinks($all, $active = 'all')
     {
         $links = [];
+        $aggregations = $all->getMetadata('aggregations')->types->buckets;
 
-        array_push($links, $this->buildLabel('All', $all->pagination->total, route('search', ['q' => request('q')]), $active == 'all'));
+        array_push($links, $this->buildLabel('All', $all->getMetadata('pagination')->total, route('search', ['q' => request('q')]), $active == 'all'));
         if (extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }

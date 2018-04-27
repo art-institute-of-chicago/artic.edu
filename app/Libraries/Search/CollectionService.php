@@ -10,7 +10,6 @@ class CollectionService
     protected $chain;
 
     protected $results;
-    protected $aggregationsData;
 
     // Options for Sort Filter. Sort by these fields
     protected $sortingOptions = ['title'];
@@ -44,9 +43,6 @@ class CollectionService
         $builder = clone $this->chain;
         $this->results = $builder->getSearch($this->perPage);
 
-        // Save aggregations data
-        $this->aggregationsData = $builder->aggregationsData;
-
         return $this->results;
     }
 
@@ -61,7 +57,7 @@ class CollectionService
         $this->results();
 
         // Generate listing filters
-        $filters = $this->buildListFilters($this->aggregationsData);
+        $filters = $this->buildListFilters($this->results->getMetadata('aggregations'));
 
         //TODO: Integrate this hardcoded filter to be generated with proper date ranges
         $filters->prepend($this->buildDateFilters());

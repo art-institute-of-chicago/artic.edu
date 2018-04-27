@@ -29,8 +29,10 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $page    = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
         $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
-        $results        = $this->forPage($page, $perPage)->get($columns);
-        $paginationData = $this->query->getPaginationData();
+        $results = $this->forPage($page, $perPage)->get($columns);
+
+        $paginationData = $results->getMetadata('pagination');
+        $total = $paginationData ? $paginationData->total : $results->count();
 
         if (isset($options['segregated']) && $options['segregated']) {
             $models = $this->extractModels($results);
@@ -38,7 +40,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
             $models = $this->extractModelsFlat($results);
         }
 
-        return $this->paginator($models, $paginationData->total, $perPage ?: 1, $page, [
+        return $this->paginator($models, $total, $perPage ?: 1, $page, [
             'path' => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);
@@ -52,7 +54,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $segregatedResults = $this->extractModels($results);
 
         // Mix them all up together
-        $flatResults = collect(array_filter(array_flatten($segregatedResults)));
+        $flatResults = collectApi(array_filter(array_flatten($segregatedResults)));
 
         // Sort results in their original order
         $sorted = $flatResults->sortBy(function($model, $key) use ($original) {
@@ -61,13 +63,17 @@ class ApiModelBuilderSearch extends ApiModelBuilder
                     return $this->getTypeMap()[$item->api_model] == (string) get_class($model) && $item->id == $model->id;
                 }
             });
-
         });
+
+        // Preserve metadata
+        $sorted->setMetadata($original->getMetadata());
 
         return $sorted;
     }
 
     protected function extractModels($results) {
+        $original = clone $results;
+
         // Group results by type
         $resultsByType = $results->groupBy('api_model');
 
