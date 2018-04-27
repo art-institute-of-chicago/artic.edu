@@ -92,6 +92,9 @@ Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');
 // Artist / tag page
 Route::name('artists.show')->get('/artists/{id}', 'ArtistController@show');
 
+// Department / tag page
+Route::name('departments.show')->get('/departments/{id}', 'DepartmentController@show');
+
 // Selections
 Route::moduleShowWithPreview('selection');
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');

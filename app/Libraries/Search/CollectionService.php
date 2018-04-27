@@ -113,7 +113,8 @@ class CollectionService
 
     protected function getActiveHiddenFilters()
     {
-        // These filters won't show up on the Menu but they are present as quick facets
+        // These filters won't show up on the Filters Menu, but they can be present
+        // as selected ones coming from Quick Filters or Gallery tag.
         $themes     = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
         $galleries  = (new Filters\Galleries())->generate();
