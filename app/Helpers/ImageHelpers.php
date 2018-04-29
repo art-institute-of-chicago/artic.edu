@@ -26,7 +26,7 @@ function aic_convertFromImageProxy($imageUrl, $options = [])
         "lqip" => $lqip ?? null,
         "alt" => $options['alt_text'] ?? null,
         "caption" => $options['caption'] ?? null,
-        "iiifId" => $options['iiifId'] ?? null
+        "iiifId" => $options['iiifId'] ?? null,
     );
 
     return $image;
@@ -63,7 +63,7 @@ function aic_convertFromImage($imageObject, $cropParams = [])
         "lqip" => $lqip ?? null,
         "alt" => $imageObject->alt_text ?? null,
         "caption" => $imageObject->caption ?? null,
-        "iiifId" => $imageObject->iiifId ?? null
+        "iiifId" => $imageObject->iiifId ?? null,
     );
 
     return $image;
