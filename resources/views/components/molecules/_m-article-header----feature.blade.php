@@ -38,8 +38,7 @@
             {{ $type }}
         @endcomponent
       @endif
-
-      @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit'])))
+      @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))
         @if (isset($creditUrl))
             <a href="{{ $creditUrl ?? $img['creditUrl'] }}" class="m-article-header__info-trigger">
                 <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
