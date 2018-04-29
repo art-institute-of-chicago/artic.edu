@@ -22,6 +22,10 @@
             <svg class="icon--play--48"><use xlink:href="#icon--play--48"></use></svg>
         </span>
         <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
+            @if ($item->embed)
+                <em class="type f-tag">{{ (strrpos((is_array($item->embed) ? array_first($item->embed) : $item->embed), "api.soundcloud.com") > 0) ? 'Audio' : 'Video' }}</em>
+                <br>
+            @endif
             <strong class="title {{ $titleFont ?? 'f-list-3' }}">{{ $item->title }}</strong>
             @if ($item->timeStamp)
                 <br>
