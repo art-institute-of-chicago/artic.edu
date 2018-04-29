@@ -5,5 +5,6 @@
     @slot('imgVariation', $imgVariation ?? null)
     @slot('imageSettings', $imageSettings ?? null)
     @slot('embed', $embed ?? null)
+    @slot('fullscreen', $fullscreen ?? null)
     @slot('item', $item)
 @endcomponent

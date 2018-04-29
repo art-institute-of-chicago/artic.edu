@@ -99,6 +99,7 @@
                     @foreach ($block['items'] as $item)
                         @component('components.molecules._m-listing----timeline')
                             @slot('item', $item)
+                            @slot('fullscreen', true)
                             @slot('imageSettings', array(
                                 'srcset' => array(300,600,800,1200,1600),
                                 'sizes' => aic_imageSizes(array(
@@ -131,6 +132,7 @@
                             @component('components.molecules._m-listing----'.$block["subtype"].'-row')
                                 @slot('variation', 'm-listing--inline'.(($block["subtype"] === 'product') ? ' m-listing--inline-feature' : ''))
                                 @slot('item', $item)
+                                @slot('fullscreen', true)
                                 @if ($block["subtype"] === 'media' or $block["subtype"] === 'event')
                                     @slot('titleFont','f-list-2')
                                 @endif
@@ -218,6 +220,7 @@
                         @foreach ($block['items'] as $item)
                             @component('components.molecules._m-listing----'.$block["subtype"])
                                 @slot('item', $item)
+                                @slot('fullscreen',true)
                                 @slot('imageSettings', array(
                                     'fit' => 'crop',
                                     'ratio' => '16:9',
