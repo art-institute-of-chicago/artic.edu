@@ -24,6 +24,8 @@ function aic_convertFromImageProxy($imageUrl, $options = [])
         "credit" => '',
         "creditUrl" => '',
         "lqip" => $lqip ?? null,
+        "alt" => $options['alt_text'] ?? null,
+        "caption" => $options['caption'] ?? null,
     );
 
     return $image;
@@ -58,6 +60,8 @@ function aic_convertFromImage($imageObject, $cropParams = [])
         "credit" => $credit,
         "creditUrl" => $creditUrl,
         "lqip" => $lqip ?? null,
+        "alt" => $imageObject->alt_text ?? null,
+        "caption" => $imageObject->caption ?? null,
     );
 
     return $image;
