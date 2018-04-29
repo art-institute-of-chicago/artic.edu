@@ -25,7 +25,7 @@
             {{ $title }}
         @endcomponent
       @endif
-      @if ($img and isset($img['credit']))
+      @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))
         @if ($img['creditUrl'])
             <a href="{{ $img['creditUrl'] }}" class="m-article-header__info-trigger">
                 <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
@@ -35,7 +35,7 @@
               <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
             </button>
             <div class="m-article-header__info" id="image-credit" aria-labelledby="image-info-trigger" aria-hidden="true" role="Tooltip">
-              <p class="f-caption">{{ $img['credit'] }}</p>
+              <p class="f-caption">{{ $credit ?? $img['credit'] }}</p>
             </div>
         @endif
       @endif

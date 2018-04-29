@@ -157,7 +157,7 @@
         @endif
 
     </{{ $tag }}>
-    @if (!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption']))
+    @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>
         @if ($size == 'gallery')
             @if (isset($item['captionTitle']))
