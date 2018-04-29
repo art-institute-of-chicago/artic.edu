@@ -2093,7 +2093,10 @@ class StaticsController extends FrontController {
     }
     $_items = $this->faker->shuffle($_items);
     for ($i = 0; $i < $num; $i++) {
-      array_push($items, $_items[$i]);
+        $thisItem = $_items[$i];
+        $thisItemTitle = $thisItem->__get('title');
+        $thisItem->push('title',($i+1).' '.$thisItemTitle);
+        array_push($items, $thisItem);
     }
     return $items;
   }

@@ -132,7 +132,7 @@
     @slot('cols_medium','3')
     @slot('cols_large','3')
     @slot('cols_xlarge','3')
-    @slot('maintainOrder','false')
+    @slot('maintainOrder','true')
     @foreach ($theCollection as $item)
         @component('components.molecules._m-listing----'.$item->type)
             @slot('variation', 'o-pinboard__item')
