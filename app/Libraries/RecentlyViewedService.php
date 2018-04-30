@@ -43,7 +43,7 @@ class RecentlyViewedService
      */
     function clear()
     {
-        session(['recently_viewed_artwork' => collect([])]);
+        session()->forget('recently_viewed_artwork');
     }
 
     /**
