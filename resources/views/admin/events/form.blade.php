@@ -44,7 +44,8 @@
     @formField('input', [
         'name' => 'hero_caption',
         'label' => 'Hero image Caption',
-        'note' => 'Usually used for copyright'
+        'note' => 'Usually used for copyright',
+        'maxlength' => 150
     ])
 
     @formField('input', [
