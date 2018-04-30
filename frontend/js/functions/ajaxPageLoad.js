@@ -233,6 +233,8 @@ const ajaxPageLoad = function() {
         } catch (err) {
           triggerCustomEvent(document, 'loader:error');
           triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
+          document.documentElement.classList.remove('s-page-nav');
+          document.documentElement.classList.remove('s-page-nav-swapping');
           ajaxing = false;
           if (A17.ajaxLinksFailSafe) {
             location.href = options.href;
@@ -245,6 +247,8 @@ const ajaxPageLoad = function() {
         clearTimeout(ajaxTimer);
         triggerCustomEvent(document, 'loader:error');
         triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
+        document.documentElement.classList.remove('s-page-nav');
+        document.documentElement.classList.remove('s-page-nav-swapping');
         ajaxing = false;
         if (A17.ajaxLinksFailSafe) {
           location.href = options.href;
