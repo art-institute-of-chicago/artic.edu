@@ -1,7 +1,18 @@
 @if (isset($images) and $images)
 
-<{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery">
+@php
+$maxZoomWindowSize = (isset($maxZoomWindowSize) && $maxZoomWindowSize) ? $maxZoomWindowSize : 1280;
+if ($maxZoomWindowSize === -1) {
+    $maxZoomWindowSize = 1280;
+}
+if ($maxZoomWindowSize > 843) {
+    $mainImgSize = '843px';
+} else {
+    $mainImgSize = maxZoomWindowSize.'px';
+}
+@endphp
 
+<{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery" data-headerGallery-maxZoomWindowSize="{{ $maxZoomWindowSize }}">
 <div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
          @php
@@ -15,9 +26,9 @@
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '58',
                       'small' => '58',
-                      'medium' => '846px',
-                      'large' => '846px',
-                      'xlarge' => '846px',
+                      'medium' => $mainImgSize,
+                      'large' => $mainImgSize,
+                      'xlarge' => $mainImgSize,
                 )),
             ))
         @endcomponent
@@ -85,7 +96,7 @@
     @endif
       <ul class="m-article-header__img-actions">
         <li>
-            @if(isset($isZoomable) && $isZoomable)
+            @if(isset($isZoomable) && $isZoomable && $maxZoomWindowSize >= 1280)
                 @component('components.atoms._btn')
                   @slot('variation', 'btn--septenary btn--icon-sq')
                   @slot('font', '')

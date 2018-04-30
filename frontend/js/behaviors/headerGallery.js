@@ -5,6 +5,7 @@ const headerGallery = function(container) {
   let nodes = {};
   let data = {};
   let activeIndex = 0;
+  let maxZoomWindowSize = container.getAttribute('data-headerGallery-maxZoomWindowSize') * 1;
 
   function _gatherDataFromThumbs() {
     forEach(nodes.thumbButtons, function(index, button) {
