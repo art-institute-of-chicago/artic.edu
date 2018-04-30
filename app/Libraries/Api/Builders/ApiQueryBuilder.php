@@ -465,6 +465,12 @@ class ApiQueryBuilder {
         }
 
         $results = $this->runGet($endpoint);
+
+        // If we got anything different than a HIT return the body
+        if (isset($results->status) && $results->status != 200) {
+            return $results->body;
+        }
+
         $this->columns = $original;
 
         // If it's a single element return as a collection with 1 element
