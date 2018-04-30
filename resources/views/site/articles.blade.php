@@ -4,27 +4,29 @@
 
 <section class="o-articles">
 
-    @component('components.organisms._o-features')
-        @component('components.molecules._m-listing----article-hero')
-            @slot('item', $heroArticle)
+    @if (isset($heroArticle) && $heroArticle)
+        @component('components.organisms._o-features')
+            @component('components.molecules._m-listing----article-hero')
+                @slot('item', $heroArticle)
 
-            {{-- (object) [
-              'image' => $heroArticle->hero,
-              'slug'  => $heroArticle->slug,
-              'title' => $heroArticle->title,
-              'intro' => $heroArticle->heading,
-              'subtype' => $heroArticle->articleType,
-            ]) --}}
+                {{-- (object) [
+                  'image' => $heroArticle->hero,
+                  'slug'  => $heroArticle->slug,
+                  'title' => $heroArticle->title,
+                  'intro' => $heroArticle->heading,
+                  'subtype' => $heroArticle->articleType,
+                ]) --}}
 
-            @slot('variation', 'm-listing--hero m-listing--hero-editorial')
-            @slot('titleFont', 'f-headline-editorial')
-            @slot('captionFont', 'f-secondary')
-            @slot('imageSettings', array(
-                'srcset' => array(200,400,600,1000,1500,2000,3000),
-                'sizes' => '100vw',
-            ))
+                @slot('variation', 'm-listing--hero m-listing--hero-editorial')
+                @slot('titleFont', 'f-headline-editorial')
+                @slot('captionFont', 'f-secondary')
+                @slot('imageSettings', array(
+                    'srcset' => array(200,400,600,1000,1500,2000,3000),
+                    'sizes' => '100vw',
+                ))
+            @endcomponent
         @endcomponent
-    @endcomponent
+    @endif
 
   @component('components.molecules._m-title-bar')
       Explore Articles
