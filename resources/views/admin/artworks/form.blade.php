@@ -33,3 +33,14 @@
         'max' => 1
     ])
 @stop
+
+
+@section('fieldsets')
+    <a17-fieldset id="api" title="Datahub fields">
+        @formField('input', [
+            'name' => 'datahub_id',
+            'label' => 'Datahub ID',
+            'disabled' => true
+        ])
+    </a17-fieldset>
+@stop

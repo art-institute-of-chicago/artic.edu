@@ -20,6 +20,7 @@ class Artwork extends BaseApiModel
         'boosted'    => '/api/v1/artworks/boosted'
     ];
 
+    protected $augmented = true;
     protected $augmentedModelClass = 'App\Models\Artwork';
 
     protected $presenter       = 'App\Presenters\Admin\ArtworkPresenter';
