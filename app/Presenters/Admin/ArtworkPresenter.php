@@ -6,6 +6,11 @@ use App\Presenters\BasePresenter;
 
 class ArtworkPresenter extends BasePresenter
 {
+    protected function augmented()
+    {
+        return $this->entity->getAugmentedModel() ? 'Yes' : 'No';
+    }
+
     public function titleInBucket()
     {
         if ($this->entity->title) {
