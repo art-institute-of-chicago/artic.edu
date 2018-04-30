@@ -63,10 +63,10 @@
                 @slot('cols_xsmall','2')
                 @slot('cols_small','2')
                 @slot('cols_medium','3')
-                @slot('cols_large','3')
+                @slot('cols_large','4')
                 @slot('cols_xlarge','4')
                 @slot('maintainOrder','false')
-                @slot('optionLayout','o-pinboard--2-col@xsmall o-pinboard--2-col@small o-pinboard--2-col@medium o-pinboard--2-col@large o-pinboard--3-col@xlarge')
+                @slot('optionLayout','o-pinboard--2-col@xsmall o-pinboard--2-col@small o-pinboard--2-col@medium o-pinboard--3-col@large o-pinboard--3-col@xlarge')
                 @foreach ($artworks as $item)
                     @component('components.molecules._m-listing----'.$item->type)
                         @slot('variation', 'o-pinboard__item')
@@ -81,7 +81,7 @@
                                   'xsmall' => '2',
                                   'small' => '2',
                                   'medium' => '3',
-                                  'large' => '3',
+                                  'large' => '4',
                                   'xlarge' => '4',
                             )),
                         ))
