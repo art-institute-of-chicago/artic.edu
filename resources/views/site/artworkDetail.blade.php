@@ -165,17 +165,6 @@
     @endcomponent
 @endif
 
-{{-- TODO: Move recently viewed artworks to an Ajaxified request --}}
-{{--
-@component('components.organisms._o-recently-viewed')
-    @slot('artworks',$recentlyViewedArtworks)
-@endcomponent
-
-@component('components.organisms._o-interested-themes')
-    @slot('themes',$item->interestedThemes)
-@endcomponent
---}}
 <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="/artworks/recentlyViewed" data-user-artwork-history></div>
-
 
 @endsection
