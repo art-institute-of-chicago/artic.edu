@@ -1,7 +1,9 @@
-@component('components.organisms._o-recently-viewed')
-    @slot('artworks', $artworks)
-@endcomponent
+@unless ($artworks->isEmpty())
+    @component('components.organisms._o-recently-viewed')
+        @slot('artworks', $artworks)
+    @endcomponent
 
-@component('components.organisms._o-interested-themes')
-    @slot('themes', $interestedThemes)
-@endcomponent
+    @component('components.organisms._o-interested-themes')
+        @slot('themes', $interestedThemes)
+    @endcomponent
+@endunless
