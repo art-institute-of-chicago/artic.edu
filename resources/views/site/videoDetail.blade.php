@@ -19,6 +19,7 @@
                             'type' => 'embed',
                             'size' => 'l',
                             'media' => $item,
+                            'poster' => $item->imageFront('hero'),
                             'hideCaption' => true
                         )
                     ),
