@@ -12,7 +12,7 @@
                   'xsmall' => '2',
                   'small' => '2',
                   'medium' => '3',
-                  'large' => '3',
+                  'large' => '4',
                   'xlarge' => '4',
             )),
         ))

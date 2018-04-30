@@ -50,13 +50,13 @@
 
   @include breakpoint('large') {
     .o-collection-listing__col-left {
-      width: colspan(19, 'large');
+      width: colspan(14, 'large');
       margin-right: colspan(1, 'large');
       padding-right: colspan(1, 'large');
     }
 
     .o-collection-listing__col-right {
-      width: colspan(38, 'large');
+      width: colspan(43, 'large');
     }
 
     .o-collection-listing__col-right .o-pinboard--3-col\@large::after,
