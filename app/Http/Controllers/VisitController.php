@@ -60,23 +60,25 @@ class VisitController extends FrontController
         $titles = array();
         $i = 0;
         foreach(Fee::orderBy('fee_age_id')->get() as $admission){
-            $key = strtolower(str_replace(' ', '', $admission->fee_category->title));
-            $title = $admission->fee_category->title;
-            $tooltip = $admission->fee_category->tooltip;
-            if($ageName !== $admission->fee_age->title){
+            if ($admission->fee_category) {
+                $key = strtolower(str_replace(' ', '', $admission->fee_category->title));
+                $title = $admission->fee_category->title;
+                $tooltip = $admission->fee_category->tooltip;
+                if($ageName !== $admission->fee_age->title){
 
-                if($ageName !== ''){
-                    array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
-                }
+                    if($ageName !== ''){
+                        array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
+                    }
 
-                $ageName = $admission->fee_age->title;
-                $prices = array();
-                $i = 0;
-            };
-            $prices[$key] = $admission->price;
-            $titles[$i] = array('title' => $title, 'tooltip' => $tooltip);
-            $keys[$i] = $key;
-            $i += 1;
+                    $ageName = $admission->fee_age->title;
+                    $prices = array();
+                    $i = 0;
+                };
+                $prices[$key] = $admission->price;
+                $titles[$i] = array('title' => $title, 'tooltip' => $tooltip);
+                $keys[$i] = $key;
+                $i += 1;
+            }
         };
         array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
 
