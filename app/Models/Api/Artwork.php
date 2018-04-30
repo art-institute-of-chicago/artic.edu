@@ -6,7 +6,6 @@ use A17\CmsToolkit\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Behaviors\HasMediasApi;
 use App\Models\Api\Asset;
-use LakeviewImageService;
 
 class Artwork extends BaseApiModel
 {
@@ -20,6 +19,8 @@ class Artwork extends BaseApiModel
         'search'     => '/api/v1/artworks/search',
         'boosted'    => '/api/v1/artworks/boosted'
     ];
+
+    protected $augmentedModelClass = 'App\Models\Artwork';
 
     protected $presenter       = 'App\Presenters\Admin\ArtworkPresenter';
     protected $presenterAdmin  = 'App\Presenters\Admin\ArtworkPresenter';

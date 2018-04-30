@@ -8,11 +8,6 @@ class ArtworkRequest extends Request
 {
     public function rules()
     {
-        $rules = [
-            'title' => 'required',
-            'datahub_id' => 'required'
-        ];
-
-        return $rules;
+        return [];
     }
 }
