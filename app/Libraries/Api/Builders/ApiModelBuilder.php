@@ -259,6 +259,10 @@ class ApiModelBuilder
     {
         $result = $this->find($id, $columns);
 
+        if (isset($result->status) && $result->status == 404) {
+            abort(404);
+        }
+
         if (is_array($id)) {
             if (count($result) == count(array_unique($id))) {
                 return $result;
@@ -436,14 +440,17 @@ class ApiModelBuilder
     public function getSingle($id, $columns = [])
     {
         $builder = clone $this;
-
         $endpoint = $this->getEndpoint($this->resolveResourceEndpoint(), ['id' => $id]);
 
-        $result = $this->model->hydrate(
-            $this->query->get($columns, $endpoint)->all()
-        );
+        $results = $this->query->get($columns, $endpoint);
 
-        return $result[0];
+        // Return direct body if status is different than a HIT
+        if (isset($results->status) && $results->status != 200) {
+            return $results;
+        }
+
+        $models = $result = $this->model->hydrate($results->all());
+        return collect($models)->first();
     }
 
     /**
