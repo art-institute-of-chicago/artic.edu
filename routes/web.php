@@ -16,7 +16,6 @@ Route::name('collection')->get('/collection', 'CollectionController@index');
 Route::name('collection.more')->get('/collection/more', 'CollectionController@index');
 Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
 Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
-Route::name('collection.recently-viewed.clear')->get('/collection/recently-viewed/clear', 'CollectionController@clearRecentlyViewed');
 
 // Collection Publications ???
 // Route::name('collection.publications')->get('/collection/publications', 'PublicationsController@index');
@@ -84,6 +83,8 @@ Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/related
 Route::moduleShowWithPreview('exhibitions');
 
 // Artwork routes
+Route::name('artworks.recentlyViewed')->get('/artworks/recentlyViewed', 'ArtworkController@recentlyViewed');
+Route::name('artworks.clearRecentlyViewed')->get('/artworks/clearRecentlyViewed', 'ArtworkController@clearRecentlyViewed');
 Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
 
 // Gallery / tag page

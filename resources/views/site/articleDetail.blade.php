@@ -539,12 +539,6 @@
     @endcomponent
 @endif
 
-@component('components.organisms._o-recently-viewed')
-    @slot('artworks',$item->recentlyViewedArtworks)
-@endcomponent
-
-@component('components.organisms._o-interested-themes')
-    @slot('themes',$item->interestedThemes)
-@endcomponent
+<div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
 
 @endsection
