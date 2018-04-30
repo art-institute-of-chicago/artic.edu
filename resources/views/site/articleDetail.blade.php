@@ -539,6 +539,6 @@
     @endcomponent
 @endif
 
-<div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="/artworks/recentlyViewed" data-user-artwork-history></div>
+<div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
 
 @endsection
