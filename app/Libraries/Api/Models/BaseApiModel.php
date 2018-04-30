@@ -13,13 +13,13 @@ use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Contracts\Routing\UrlRoutable;
 
 use ArrayAccess;
 use DateTime;
 use JsonSerializable;
 
+use App\Libraries\Api\Models\ApiCollection as BaseCollection;
 use App\Libraries\Api\Models\Behaviors\HasApiCalls;
 use App\Libraries\Api\Models\Behaviors\HasAugmentedModel;
 use App\Libraries\Api\Models\Behaviors\HasRelationships;
@@ -936,9 +936,13 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @param  array  $models
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function newCollection(array $models = [])
+    public function newCollection($models = [])
     {
-        return new BaseCollection($models);
+        if ($models instanceof BaseCollection) {
+            return $models;
+        } else {
+            return new BaseCollection($models);
+        }
     }
 
     /**

@@ -53,7 +53,8 @@
             "app/Helpers/QueryHelpers.php",
             "app/Helpers/SessionHelpers.php",
             "app/Helpers/StringHelpers.php",
-            "app/Helpers/UrlHelpers.php"
+            "app/Helpers/UrlHelpers.php",
+            "app/Libraries/Api/Helpers/CollectionHelper.php"
         ]
     },
     "autoload-dev": {

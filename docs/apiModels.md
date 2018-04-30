@@ -193,9 +193,13 @@ $query = App\Models\Api\Search::search('monet')->resources(['exhibitions']);
 $results = $query->getSearch(10);
 
 // Useful data loaded after execution
-$query->suggestionsData;
-$query->aggregationsData;
-$query->paginationData;
+$results->getMetadata('aggregations');
+$results->getMetadata('pagination');
+$results->getMetadata('suggestions');
+
+// All metadata
+$results->getMetadata();
+
 ```
 
 `getSearch` function prototype is:
@@ -343,15 +347,20 @@ $aggs = [
     ]
 ];
 
-$query = \App\Models\Api\Search::query()->search('picasso')->aggregations($aggs);
-$results = $query->getSearch();
+$results = \App\Models\Api\Search::query()
+    ->search('picasso')
+    ->aggregations($aggs);
+    ->getSearch();
 
 // Results metadata are stored at the query.
-$query->aggregationsData,
+$query->getMetadata('aggregations');
 
 // Also pagination and suggestions
-$query->paginationData
-$query->suggestionsData,
+$query->getMetadata('pagination');
+$query->getMetadata('suggestions');
+
+// All of them at once
+$query->getMetadata();
 
 ```
 

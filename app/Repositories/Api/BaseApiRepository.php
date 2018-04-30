@@ -47,13 +47,7 @@ abstract class BaseApiRepository extends ModuleRepository
         // Perform the query
         $results = $search->getSearch($perPage, $columns, $pageName, $page, $options);
 
-        // Build metadata and results
-        return (object) [
-            'pagination'   => $search->paginationData,
-            'aggregations' => $search->aggregationsData,
-            'suggestions'  => $search->suggestionsData,
-            'items'        => $results
-        ];
+        return $results;
     }
 
 }

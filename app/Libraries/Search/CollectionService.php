@@ -10,7 +10,6 @@ class CollectionService
     protected $chain;
 
     protected $results;
-    protected $aggregationsData;
 
     // Options for Sort Filter. Sort by these fields
     protected $sortingOptions = ['title'];
@@ -44,9 +43,6 @@ class CollectionService
         $builder = clone $this->chain;
         $this->results = $builder->getSearch($this->perPage);
 
-        // Save aggregations data
-        $this->aggregationsData = $builder->aggregationsData;
-
         return $this->results;
     }
 
@@ -61,7 +57,7 @@ class CollectionService
         $this->results();
 
         // Generate listing filters
-        $filters = $this->buildListFilters($this->aggregationsData);
+        $filters = $this->buildListFilters($this->results->getMetadata('aggregations'));
 
         //TODO: Integrate this hardcoded filter to be generated with proper date ranges
         $filters->prepend($this->buildDateFilters());
@@ -117,11 +113,13 @@ class CollectionService
 
     protected function getActiveHiddenFilters()
     {
-        // These filters won't show up on the Menu but they are present as quick facets
+        // These filters won't show up on the Filters Menu, but they can be present
+        // as selected ones coming from Quick Filters or Gallery tag.
         $themes     = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
+        $galleries  = (new Filters\Galleries())->generate();
 
-        return array_merge($themes, $techniques);
+        return array_merge($themes, $techniques, $galleries);
     }
 
     /**

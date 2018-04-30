@@ -32,8 +32,9 @@ class CollectionController extends BaseScopedController
         'is_public_domain'   => 'publicDomain',
 
         // Hidden from filters but present in Quick facets
-        'theme_ids' => 'byThemes',
-        'technique_ids' => 'byTechniques'
+        'theme_ids'     => 'byThemes',
+        'gallery_ids'   => 'byGalleryIds',
+        'technique_ids' => 'byTechniques',
     ];
 
     /**

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Api\GalleryRepository;
+use App\Repositories\Api\DepartmentRepository;
 
-class GalleryController extends FrontController
+class DepartmentController extends FrontController
 {
     protected $repository;
 
-    public function __construct(GalleryRepository $repository)
+    public function __construct(DepartmentRepository $repository)
     {
         $this->repository = $repository;
         parent::__construct();
@@ -16,7 +16,7 @@ class GalleryController extends FrontController
 
     public function show($idSlug)
     {
-        $item     = $this->repository->getById((Integer) $idSlug);
+        $item     = $this->repository->getById($idSlug);
         $artworks = $this->repository->getArtworks($item);
 
         $exploreFurtherCollection = $this->repository->exploreFurtherCollection($item, request()->only('exFurther-classification'));

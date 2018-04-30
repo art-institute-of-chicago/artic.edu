@@ -332,9 +332,11 @@ class ApiModelBuilder
      */
     public function getModels($columns = [])
     {
-        return $this->model->hydrate(
-            $this->query->get($columns, $this->getEndpoint($this->resolveCollectionEndpoint()))->all()
-        );
+        $results = $this->query->get($columns, $this->getEndpoint($this->resolveCollectionEndpoint()));
+        $models  = $this->model->hydrate($results->all());
+
+        // Preserve metadata after hydrating the collection
+        return collectApi($models)->setMetadata($results->getMetadata());
     }
 
     /**
@@ -349,27 +351,32 @@ class ApiModelBuilder
         $page    = is_null($page) ? Paginator::resolveCurrentPage($pageName) : $page;
         $perPage = is_null($perPage) ? $this->model->getPerPage() : $perPage;
 
-        $results        = $this->forPage($page, $perPage)->get($columns);
-        $paginationData = $this->query->getPaginationData();
+        $results = $this->forPage($page, $perPage)->get($columns);
+
+        $paginationData = $results->getMetadata('pagination');
+        $total = $paginationData ? $paginationData->total : $results->count();
 
         // Extract IDS
         $ids = $results->pluck('id')->toArray();
 
         // Load the actual models using the IDS returned by search
         if (empty($ids)) {
-            $models = collect();
+            $models = collectApi();
         } else {
             $models = $this->model->newQuery()->ids($ids)->get();
         }
 
         // Sort them by the original ids listing
         $sorted = $models->sortBy(function($model, $key) use ($ids) {
-            return collect($ids)->search(function($id, $key) use ($model) {
+            return collectApi($ids)->search(function($id, $key) use ($model) {
                 return $id == $model->id;
             });
         });
 
-        return $this->paginator($sorted, $paginationData->total, $perPage ?: 1, $page, [
+        // Preserve original metadata
+        $sorted->setMetadata($results->getMetadata());
+
+        return $this->paginator($sorted, $total, $perPage ?: 1, $page, [
             'path' => Paginator::resolveCurrentPath(),
             'pageName' => $pageName,
         ]);
@@ -383,13 +390,18 @@ class ApiModelBuilder
      * @param  array  $models
      * @return array
      */
-    public function eagerLoadRelations(array $models)
+    public function eagerLoadRelations($models)
     {
+        // Preserve metadata when loading relationships
+        if ($models instanceof ApiCollection) {
+            $metadata = $models->getMetadata();
+        }
+
         foreach ($this->eagerLoad as $name) {
             $models = $this->eagerLoadRelation($models, $name);
         }
 
-        return $models;
+        return isset($metadata) ? $models->setMetadata($metadata) : $models;
     }
 
     /**
@@ -399,7 +411,7 @@ class ApiModelBuilder
      * @param  string  $name
      * @return array
      */
-    protected function eagerLoadRelation(array $models, $name)
+    protected function eagerLoadRelation($models, $name)
     {
         foreach ($models as $model) {
             // For each model get the relationship
@@ -452,7 +464,7 @@ class ApiModelBuilder
         $perPage = $perPage ?: $this->model->getPerPage();
 
         $results        = $this->forPage($page, $perPage)->get($columns);
-        $paginationData = $this->query->getPaginationData();
+        $paginationData = $results->getMetadata('pagination');
         $total = $paginationData ? $paginationData->total : $results->count();
 
         return $this->paginator($results, $total, $perPage, $page, [

@@ -85,10 +85,10 @@
     @endcomponent
 @endunless
 
-@if (isset($artists) && $artists->pagination->total > 0)
+@if (isset($artists) && $artists->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $artists->pagination->total.' artists', 'href' => route('search.artists', request()->input()))))
+            @slot('links', array(array('label' => 'See all '. $artists->getMetadata('pagination')->total.' artists', 'href' => route('search.artists', request()->input()))))
         @endunless
         Artists
     @endcomponent
@@ -100,7 +100,7 @@
         @slot('cols_medium','2')
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
-        @foreach ($artists->items as $item)
+        @foreach ($artists as $item)
             @component('components.molecules._m-listing----artist')
                 @slot('variation', 'm-listing--inline m-listing--inline-narrow-image')
                 @slot('item', $item)
@@ -122,7 +122,7 @@
 
     @if (isset($allResultsView) && $allResultsView)
         {{-- Pagination --}}
-        {!! $artists->items->appends(request()->input())->links() !!}
+        {!! $artists->appends(request()->input())->links() !!}
     @endif
 @endif
 
@@ -288,10 +288,10 @@
 
 @endif
 
-@if (isset($eventsAndExhibitions) && $eventsAndExhibitions->pagination->total > 0)
+@if (isset($eventsAndExhibitions) && $eventsAndExhibitions->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless (isset($allResultsView) and $allResultsView)
-            @slot('links', array(array('label' => 'See all '. $eventsAndExhibitions->pagination->total .' events and exhibitions', 'href' => route('search.exhibitionsEvents', request()->input()))))
+            @slot('links', array(array('label' => 'See all '. $eventsAndExhibitions->getMetadata('pagination')->total .' events and exhibitions', 'href' => route('search.exhibitionsEvents', request()->input()))))
         @endif
         Events and Exhibitions
     @endcomponent
@@ -345,7 +345,7 @@
             @slot('cols_large','4')
             @slot('cols_xlarge','4')
         @endif
-        @foreach ($eventsAndExhibitions->items as $item)
+        @foreach ($eventsAndExhibitions as $item)
             @if($item->getClassName() == 'Exhibition')
                 @component('components.molecules._m-listing----exhibition')
             @else
@@ -385,7 +385,7 @@
 
     @if (isset($allResultsView) && $allResultsView)
         {{-- Pagination --}}
-        {!! $eventsAndExhibitions->items->appends(request()->input())->links() !!}
+        {!! $eventsAndExhibitions->appends(request()->input())->links() !!}
     @endif
 @endif
 
