@@ -194,13 +194,7 @@
     </div>
 @endif
 
-@component('components.organisms._o-recently-viewed')
-    @slot('artworks',$recentlyViewedArtworks ?? null)
-@endcomponent
-
-@component('components.organisms._o-interested-themes')
-    @slot('themes',$interestedThemes ?? null)
-@endcomponent
+<div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="/artworks/recentlyViewed" data-user-artwork-history></div>
 
 </section>
 
