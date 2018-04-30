@@ -25,10 +25,30 @@ class VideoController extends FrontController
             $item = $this->repository->getById((integer) $slug);
         }
 
+
+        $item->articleType = 'video';
+        $item->type = 'video';
+
+        $video = [
+            'type' => 'embed',
+            'size' => 'l',
+            'media' => $item,
+            "poster" => $item->imageFront('hero'),
+            'hideCaption' => true
+        ];
+
+        $blocks = array([
+                        'type' => 'text',
+                        'content' => '<p>'.$item->heading.'</p>'
+                    ]);
+        // dd($blocks);
+
         $relatedVideos = Video::published()->limit(4)->whereNotIn('id', array($item['id']))->get();
 
         return view('site.videoDetail', [
             'item' => $item,
+            'video' => $video,
+            'blocks' => $blocks,
             'relatedVideos' => $relatedVideos
         ]);
     }

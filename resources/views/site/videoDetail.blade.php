@@ -11,23 +11,15 @@
         @endcomponent
 
         <div class="o-article__body o-blocks">
+            @component('components.molecules._m-media')
+                @slot('variation', 'o-blocks__block')
+                @slot('item', $video)
+            @endcomponent
+
             @component('components.blocks._blocks')
-                @slot('blocks', array(
-                    array(
-                        "type" => 'media',
-                        "content" => array(
-                            'type' => 'embed',
-                            'size' => 'l',
-                            'media' => $item,
-                            'poster' => $item->imageFront('hero'),
-                            'hideCaption' => true
-                        )
-                    ),
-                    array(
-                        'type' => 'text',
-                        'content' => '<p>'.$item->heading.'</p>'
-                    ),
-                ))
+                @slot('editorial', ($item->articleType === 'editorial'))
+                @slot('blocks', $blocks ?? null)
+                @slot('dropCapFirstPara', ($item->articleType === 'editorial'))
             @endcomponent
 
             <div class="o-article__body-actions">
