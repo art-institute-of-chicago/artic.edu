@@ -107,7 +107,7 @@
         Explore Further
     @endcomponent
 
-    @component('shared._explore-further-menu')
+    @component('site.shared._explore-further-menu')
         @slot('tags', $exploreFurtherTags)
     @endcomponent
 
