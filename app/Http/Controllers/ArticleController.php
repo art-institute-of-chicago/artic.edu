@@ -52,6 +52,10 @@ class ArticleController extends FrontController
     {
         $item = $this->repository->find((Integer) $id);
 
+        if (!$item) {
+            abort(404);
+        }
+
         if ($item->categories->first()) {
             $item->topics = $item->categories;
         }
