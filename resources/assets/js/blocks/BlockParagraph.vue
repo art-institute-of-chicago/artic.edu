@@ -1,7 +1,7 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <a17-wysiwyg label="Paragraph" :name="fieldName('paragraph')" :options='{"modules":{"toolbar":[{"header":2},"bold","italic","underline","link",{"list":"ordered"},{"list":"bullet"}],"syntax":false}}' in-store="value" ></a17-wysiwyg>
+        <a17-wysiwyg label="Paragraph" :name="fieldName('paragraph')" :options='{"modules":{"toolbar":[{"header":2},{"header":3},"bold","italic","underline","link",{"list":"ordered"},{"list":"bullet"}],"syntax":false}}' in-store="value" ></a17-wysiwyg>
     </div>
 </template>
 

@@ -1,5 +1,8 @@
 @formField('wysiwyg', [
     'name' => 'paragraph',
     'label' => 'Paragraph',
-    'toolbarOptions' => [ 'h2', 'bold', 'italic', 'underline', 'link', 'list-ordered', 'list-unordered' ],
+    'toolbarOptions' => [
+        ['header' => 2],
+        ['header' => 3],
+        'bold', 'italic', 'underline', 'link', 'list-ordered', 'list-unordered' ],
 ])
