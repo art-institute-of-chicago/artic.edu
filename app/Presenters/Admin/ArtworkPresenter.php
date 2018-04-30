@@ -64,12 +64,13 @@ class ArtworkPresenter extends BasePresenter
     {
         $details = [];
 
-        if ($this->entity->artist_pivots != null && $this->entity->artist_pivots->count() > 0) {
-            $details[] = [
-                'key' => str_plural('Artist', $this->entity->artist_pivots->count()),
-                'value' => $this->entity->artist_pivots->implode('artist_title', ', ')
-            ];
-        }
+        // if ($this->entity->artist_pivots != null && $this->entity->artist_pivots->count() > 0) {
+        //     $details[] = [
+        //         'key' => str_plural('Artist', $this->entity->artist_pivots->count()),
+        //         'value' => $this->entity->artist_pivots->implode('artist_title', ', ')
+        //     ];
+        // }
+
         if (!empty($this->entity->place_of_origin)) {
             $details[] = [
                 'key' => 'Origin',
