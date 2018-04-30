@@ -2,7 +2,7 @@
     <li>
         <button class="f-secondary" data-behavior="showCollectionFilters">
             <svg class="icon--filter--24"><use xlink:href="#icon--filter--24" /></svg>
-            Filter <em>(1)</em>
+            Filter{!! (isset($filtersCount) and $filtersCount > 0) ? ' <em>('.$filtersCount.')</em>' : '' !!}
         </button>
     </li>
     @unless (isset($showSearch) and !$showSearch)

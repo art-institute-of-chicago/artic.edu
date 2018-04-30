@@ -58,7 +58,7 @@
                 @slot('clearAllLink', '/statics/collection')
             @endcomponent
         @endif
-        @if ($artworks->count() > 0)
+        @if (count($artworks) > 0)
             @component('components.organisms._o-pinboard')
                 @slot('cols_xsmall','2')
                 @slot('cols_small','2')
@@ -96,6 +96,7 @@
 </div>
 
 @component('components.molecules._m-search-triggers----collection')
+    @slot('filtersCount',isset($activeFilters) ? count($activeFilters) : 0)
 @endcomponent
 
 @component('components.organisms._o-collection-search')

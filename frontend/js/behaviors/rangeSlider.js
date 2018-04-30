@@ -2,14 +2,6 @@ import { purgeProperties, queryStringHandler, forEach, getUrlParameterByName, tr
 import noUiSlider from '../libs/nouislider';
 
 const rangeSlider = function(container){
-
-  // get range values
-  const rangeValues = window[container.getAttribute('data-range-values')];
-
-  if (!rangeValues) {
-    return;
-  }
-
   // objects
   const $slideTrack = container.querySelector('[data-range-slider]');
   const $min = container.querySelector('[data-range-thumb-min]');
@@ -25,9 +17,10 @@ const rangeSlider = function(container){
   const adText = 'AD';
   const inputs = [$customFrom, $customTo];
   const displays = [$minDisplay, $maxDisplay];
-  var rangeStart = 0;
-  var rangeEnd = rangeValues.length - 1;
-  var timer;
+  let rangeValues;
+  let rangeStart = 0;
+  let rangeEnd = 0;
+  let timer;
 
   function _findInArray(array, value) {
     let returnIndex = -1;
@@ -66,6 +59,7 @@ const rangeSlider = function(container){
     // trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: windowLocationHref,
+      ajaxScrollTarget: 'collection'
     });
   }
 
@@ -224,6 +218,8 @@ const rangeSlider = function(container){
   }
 
   function _init() {
+    rangeValues = A17[container.getAttribute('data-range-values')] || ['0','25','50','75','100'];
+    rangeEnd = rangeValues.length - 1;
     _prepData();
     _createSlider();
     $customBtn.addEventListener('click', _handleClick, false);

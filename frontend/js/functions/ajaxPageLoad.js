@@ -4,12 +4,28 @@ import { findAncestorByTagName, ajaxableLink, ajaxableHref } from '../functions'
 const ajaxPageLoad = function() {
 
   var ajaxing = false;
-  var ajaxTimeOutTime = 3500;
+  var ajaxTimeOutTime = 5000;
   var ajaxTimer;
 
   var docContent;
   var documentContent;
   var docTitle;
+
+  function _ajaxPageLoadComplete() {
+    // fix images
+    if (window.picturefill) {
+      window.picturefill();
+    }
+    // tell the page and hide the loaders
+    window.requestAnimationFrame(function(){
+      triggerCustomEvent(document, 'page:updated');
+      triggerCustomEvent(document, 'loader:complete');
+      triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
+      triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': false });
+    });
+    //
+    ajaxing = false;
+  }
 
   function stateChecks(doc) {
     // check to see if we need the contrasted header
@@ -53,6 +69,10 @@ const ajaxPageLoad = function() {
           scrollTarget = options.popstate.data.scrollY;
         } else if (window.location.hash) {
           focusTarget = document.getElementById(window.location.hash.replace('#',''));
+        } else if (options.ajaxScrollTarget) {
+          focusTarget = document.getElementById(options.ajaxScrollTarget);
+        }
+        if (focusTarget) {
           scrollTarget = Math.round(getOffset(focusTarget).top - 20);
         }
         document.documentElement.scrollTop = scrollTarget;
@@ -66,8 +86,10 @@ const ajaxPageLoad = function() {
         if (focusTarget) {
           setFocusOnTarget(focusTarget);
         }
+        //
+        _ajaxPageLoadComplete();
       });
-    }, 250);
+    },250); // 250 is transition time
     // replace title
     docTitle = doc.title;
     document.title = docTitle;
@@ -96,6 +118,8 @@ const ajaxPageLoad = function() {
       triggerCustomEvent(document, 'history:pushstate', { url: options.href, type: options.type, title: docTitle });
     }
     A17.currentPathname = window.location.pathname;
+    //
+    _ajaxPageLoadComplete();
   }
 
   function modalStart(options,doc) {
@@ -106,6 +130,8 @@ const ajaxPageLoad = function() {
     document.querySelector('[data-modal]').className = 'g-modal ' + (options.modalClass ? options.modalClass : '');
     document.querySelector('[data-modal-content]').innerHTML = doc.querySelector('body').innerHTML;
     triggerCustomEvent(document, 'modal:show', { opener: options.opener });
+    //
+    _ajaxPageLoadComplete();
   }
 
   function parseHTML(data,type) {
@@ -189,6 +215,7 @@ const ajaxPageLoad = function() {
           clearTimeout(ajaxTimer);
         } catch(err) {}
         try {
+          triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': true });
           // parse returned page
           var doc = parseHTML(data,'native');
           // do on complete func
@@ -203,16 +230,6 @@ const ajaxPageLoad = function() {
               // essentially, type = page
               defaultComplete(options, doc);
           }
-          // fix images
-          if (window.picturefill) {
-            window.picturefill();
-          }
-          // tell the page and hide the loaders
-          triggerCustomEvent(document, 'page:updated');
-          triggerCustomEvent(document, 'loader:complete');
-          triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
-          //
-          ajaxing = false;
         } catch (err) {
           triggerCustomEvent(document, 'loader:error');
           triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
@@ -238,13 +255,18 @@ const ajaxPageLoad = function() {
     });
 
     ajaxTimer = setTimeout(function(){
-      location.href = options.href;
+      if (A17.ajaxLinksFailSafe) {
+        location.href = options.href;
+      } else {
+        alert('ajax response taking a long time to complete');
+      }
     }, ajaxTimeOutTime);
   }
 
   function popstate(event) {
     event.preventDefault();
-    if (A17.currentPathname !== window.location.pathname && (!event.data.type || event.data.type === 'page')) {
+    //if (A17.currentPathname !== window.location.pathname && (!event.data.type || event.data.type === 'page')) {
+    if (!event.data.type || event.data.type === 'page') {
       loadDocument({
         href: event.data.url,
         type: event.data.type,
@@ -270,6 +292,7 @@ const ajaxPageLoad = function() {
           popstate: false,
           modalClass: event.data.modalClass ? event.data.modalClass : null,
           opener: event.data.opener ? event.data.opener : null,
+          ajaxScrollTarget: event.data.ajaxScrollTarget ? event.data.ajaxScrollTarget : null
         });
       } else {
         window.location.href = event.data.url;
@@ -293,6 +316,7 @@ const ajaxPageLoad = function() {
           type: 'page',
           popstate: false,
           link: link,
+          ajaxScrollTarget: link.getAttribute('data-ajax-scroll-target') ? link.getAttribute('data-ajax-scroll-target') : null
         });
       }
     }

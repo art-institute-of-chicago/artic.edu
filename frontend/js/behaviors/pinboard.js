@@ -141,7 +141,10 @@ const pinboard = function(container){
   }
 
   function _resized() {
-    setTimeout(_setupBlocks, 32);
+    setTimeout(function(){
+      _getColCounts(document.documentElement.classList.contains('s-collection-filters-active') && optionLayout ? optionLayout : container.className);
+      _setupBlocks();
+    }, 32);
   }
 
   function _showFilters() {
@@ -164,7 +167,7 @@ const pinboard = function(container){
 
   function _init() {
     maintainOrder = (container.getAttribute('data-pinboard-maintain-order') === 'true');
-    _getColCounts(container.className);
+    _getColCounts(document.documentElement.classList.contains('s-collection-filters-active') && optionLayout ? optionLayout : container.className);
     _setupBlocks();
     container.addEventListener('pinboard:contentAdded', _contentAdded, false);
     document.addEventListener('resized', _resized, false);

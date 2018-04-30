@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals } from './functions';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters } from './functions';
 /*
 
   A17
@@ -20,6 +20,8 @@ if (!A17.browserSpec || A17.browserSpec === 'html4') {
 A17.currentMediaQuery = getCurrentMediaQuery();
 A17.env = 'production';
 A17.currentPathname = window.location.pathname;
+A17.dateRangeValues = [
+    '8000BC','7000BC','6000BC','5000BC','4000BC','3000BC','2000BC','1000BC','1AD','500AD','1000AD','1200AD','1400AD','1600AD','1700AD','1800AD','1900AD','1910AD','1920AD','1930AD','1940AD','1950AD','1960AD','1970AD','1980AD','1990AD','2000AD','2010AD','Present']; // for collection filters
 
 document.addEventListener('DOMContentLoaded', function(){
   if (A17.print) {
@@ -42,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function(){
     A17.env = 'unknown';
   }
   // update ajax link active / fail safes
-  A17.ajaxLinksActive = (A17.env === 'local') ? false : true;
+  A17.ajaxLinksActive = true;
   A17.ajaxLinksFailSafe = (A17.env === 'production') ? true : false;
   // go go go
   manageBehaviors(Behaviors);
@@ -56,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function(){
   anchorLinksScroll();
   // listen for modal open/close requests (including roadblock close)
   modals();
+  // listen for calls to show/hide collection filters
+  collectionFilters();
   // listen for ajax page load type events
   ajaxPageLoad();
   ajaxPageLoadMaskToggle();

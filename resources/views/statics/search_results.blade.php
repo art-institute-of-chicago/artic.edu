@@ -245,6 +245,7 @@
         </div>
 
         @component('components.molecules._m-search-triggers----collection')
+            @slot('filtersCount',isset($artworks['activeFilters']) ? count($artworks['activeFilters']) : 0)
             @slot('showSearch',false)
         @endcomponent
     @else

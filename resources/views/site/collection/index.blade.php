@@ -41,6 +41,7 @@
                 @component('components.atoms._tag')
                     @slot('variation', 'tag--w-image')
                     @slot('href', $category->present()->collectionUrl)
+                    @slot('dataAttributes',' data-ajax-scroll-target="collection"')
                     @component('components.atoms._img')
                         @slot('image', $category->imageFront('thumb', 'default'))
                         @slot('settings', array(
@@ -57,6 +58,8 @@
         </ul>
     </div>
 @endif
+
+<a name="collection" id="collection"></a>
 
 @component('components.molecules._m-search-actions----collection')
     @slot('onViewLink', route('collection', (request()->filled('is_on_view') ? [] : request()->input() + ['is_on_view' => true])))
@@ -104,6 +107,7 @@
 </div>
 
 @component('components.molecules._m-search-triggers----collection')
+    @slot('filtersCount',isset($activeFilters) ? count($activeFilters) : 0)
 @endcomponent
 
 @component('components.organisms._o-collection-search')

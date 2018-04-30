@@ -1,4 +1,4 @@
-<div class="o-collection-filters" data-behavior="collectionFilters">
+<div class="o-collection-filters" id="collectionFilters">
 
     <div class="o-collection-filters__scroll-area">
 
@@ -7,7 +7,7 @@
             <ul class="m-active-filters__items">
             @foreach ($activeFilters as $link)
                 <li class="m-active-filters__item">
-                    <a href="{{ $link['href'] }}" class="tag tag--quaternary f-tag">
+                    <a href="{{ $link['href'] }}" class="tag tag--quaternary f-tag" data-ajax-scroll-target="collection">
                         {{ $link['label'] }}
                         <svg class="icon--close"><use xlink:href="#icon--close" /></svg>
                     </a>

@@ -97,7 +97,7 @@ a.checkbox::after {
   transform: rotate(45deg) scale(.1);
   transition: all .15s $bezier__bounce;
 
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     top: 7px;
   }
 }
