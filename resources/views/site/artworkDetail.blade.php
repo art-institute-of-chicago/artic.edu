@@ -175,5 +175,7 @@
     @slot('themes',$item->interestedThemes)
 @endcomponent
 --}}
+<div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="/artworks/recentlyViewed" data-user-artwork-history></div>
+
 
 @endsection

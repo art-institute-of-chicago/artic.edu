@@ -1,6 +1,11 @@
 @if (!empty($artworks))
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Clear your history', 'href' => route('artworks.clearRecentlyViewed'))))
+        @slot('links', array(
+            array('label' => 'Clear your history',
+                'href' => route('artworks.clearRecentlyViewed'),
+                'dataAttributes' => 'data-behavior="clearHistory" data-no-ajax'
+            )
+        ))
         Recently Viewed
     @endcomponent
     @component('components.atoms._hr')
@@ -28,8 +33,5 @@
                 ))
             @endcomponent
         @endforeach
-    @endcomponent
-    @component('components.atoms._hr')
-        @slot('variation','hr--flush-topp')
     @endcomponent
 @endif

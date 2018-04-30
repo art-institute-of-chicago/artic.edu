@@ -15,3 +15,4 @@ export { default as fontObservers } from './fontObservers';
 export { default as modals } from './modals';
 export { default as mediaQuery } from './mediaQuery';
 export { default as collectionFilters } from './collectionFilters';
+export { default as displayNotification } from './displayNotification';
