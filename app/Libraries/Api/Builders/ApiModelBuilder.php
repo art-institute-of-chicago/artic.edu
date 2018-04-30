@@ -313,6 +313,11 @@ class ApiModelBuilder
             $models = $builder->eagerLoadRelations($models);
         }
 
+        // Return direct body if status is different than a HIT
+        if (isset($models->status) && $models->status != 200) {
+            return $models;
+        }
+
         return $builder->getModel()->newCollection($models);
     }
 
@@ -337,6 +342,12 @@ class ApiModelBuilder
     public function getModels($columns = [])
     {
         $results = $this->query->get($columns, $this->getEndpoint($this->resolveCollectionEndpoint()));
+
+        // Return direct body if status is different than a HIT
+        if (isset($results->status) && $results->status != 200) {
+            return $results;
+        }
+
         $models  = $this->model->hydrate($results->all());
 
         // Preserve metadata after hydrating the collection

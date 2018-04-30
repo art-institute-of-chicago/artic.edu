@@ -468,7 +468,11 @@ class ApiQueryBuilder {
 
         // If we got anything different than a HIT return the body
         if (isset($results->status) && $results->status != 200) {
-            return $results->body;
+            if (isset($results->body)) {
+                return $results->body;
+            } else {
+                return $results;
+            }
         }
 
         $this->columns = $original;
