@@ -58,7 +58,7 @@
                 @slot('clearAllLink', '/statics/collection')
             @endcomponent
         @endif
-        @if ($artworks->count() > 0)
+        @if (count($artworks) > 0)
             @component('components.organisms._o-pinboard')
                 @slot('cols_xsmall','2')
                 @slot('cols_small','2')
