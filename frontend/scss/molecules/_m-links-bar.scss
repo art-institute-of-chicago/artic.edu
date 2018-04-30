@@ -563,7 +563,10 @@
   margin-top: 20px;
 }
 
-.m-links-bar--title-bar-companion .m-links-bar__item-trigger {
+.m-links-bar--title-bar-companion .m-links-bar__item-trigger,
+.m-links-bar--title-bar-companion .m-links-bar__item-trigger:hover,
+.m-links-bar--title-bar-companion .m-links-bar__item-trigger:focus,
+.m-links-bar--title-bar-companion .m-links-bar__item-trigger:active {
   display: block;
   width: 100%;
 }
