@@ -65,7 +65,7 @@ class ArtworkPresenter extends BasePresenter
         }
 
         array_push($blocks, $this->getArtworkDetailsBlock());
-        array_push($blocks, $this->getArtworkDescriptionBlocks());
+        array_push($blocks, $this->getArtworkAccordionBlocks());
 
         return array_filter($blocks);
     }
@@ -133,7 +133,42 @@ class ArtworkPresenter extends BasePresenter
         return $blocks;
     }
 
-    protected function getArtworkDescriptionBlocks()
+    protected function buildMultimediaBlocks($resultsByType, $title)
+    {
+        $block = [
+            'title'  => $title,
+            'blocks' => []
+        ];
+
+        foreach($resultsByType as $type => $medias) {
+            $localBlock = [];
+
+            switch ($type) {
+                case 'videos':
+                case 'sounds':
+                    $localBlock = [
+                        "type"    => 'listing',
+                        "subtype" => 'media',
+                        "items"   => $medias,
+                    ];
+                    break;
+                case 'texts':
+                    $localBlock = [
+                        "type"  => 'link-list',
+                        "links" => $medias->toArray(),
+                    ];
+                    break;
+            }
+
+            if (!empty($localBlock)) {
+                $block['blocks'][] = $localBlock;
+            }
+        }
+
+        return $block;
+    }
+
+    protected function getArtworkAccordionBlocks()
     {
         $content = $this->formatDescriptionBlocks([
             'publication_history' => 'Publication History',
@@ -142,47 +177,14 @@ class ArtworkPresenter extends BasePresenter
         ]);
 
         if ($this->entity->multimediaElements && !$this->entity->multimediaElements->isEmpty()) {
-            $items = [];
-            foreach($this->entity->multimediaElements as $media) {
-                $media->title = $media->publication_title;
-                $media->slug = $media->web_url;
-                $items[] = $media;
-            }
-
-            $block = array(
-                'title' => 'Multimedia',
-                'blocks' => [
-                    [
-                        "type"    => 'listing',
-                        "subtype" => 'media',
-                        "items"   => $items,
-                    ]
-                ]
-            );
-
-            $content[] = $block;
+            $resultsByType = $this->entity->multimediaElements->groupBy('api_model')->sortKeys();
+            $content[] = $this->buildMultimediaBlocks($resultsByType, 'Multimedia');
         }
 
-        if ($this->entity->resources && !$this->entity->resources->isEmpty()) {
-            $items = [];
-            foreach($this->entity->resources as $resource) {
-                $items[] = [
-                    'label' => $resource->publication_title,
-                    'href'  => $resource->web_url
-                ];
-            }
-
-            $block = array(
-                'title' => 'Educational Resources',
-                'blocks' => [
-                    [
-                        "type"  => 'link-list',
-                        "links" => $items,
-                    ]
-                ]
-            );
-
-            $content[] = $block;
+        if ($this->entity->educationalResources && !$this->entity->educationalResources->isEmpty())
+        {
+            $resultsByType = $this->entity->educationalResources->groupBy('api_model')->sort();
+            $content[] = $this->buildMultimediaBlocks($resultsByType, 'Educational Resources');
         }
 
         $content = array_filter($content);
@@ -195,7 +197,6 @@ class ArtworkPresenter extends BasePresenter
                 "content" => $content
             ];
         }
-
     }
 
     protected function formatDescriptionBlocks($elements)

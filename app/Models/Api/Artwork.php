@@ -52,16 +52,20 @@ class Artwork extends BaseApiModel
 
     public function getMultimediaElementsAttribute()
     {
-        return;
-        // Asset::query()
-        //     ->multimediaForArtwork($this->id)
-        //     ->multimediaAssets()
-        //     ->getSearch(self::RELATED_MULTIMEDIA, ["id","title","content","api_model","is_multimedia_resource"]);
+        return Asset::query()
+            ->multimediaForArtwork($this->id)
+            ->multimediaAssets()
+            ->forPage(null, self::RELATED_MULTIMEDIA)
+            ->get(["id","title","content","api_model","is_multimedia_resource", "is_educational_resource"]);
     }
 
-    public function getResourcesAttribute()
+    public function getEducationalResourcesAttribute()
     {
-        return;
+        return Asset::query()
+            ->educationalForArtwork($this->id)
+            ->resources(['assets'])
+            ->forPage(null, self::RELATED_MULTIMEDIA)
+            ->get(["id","title","content","api_model","is_multimedia_resource", "is_educational_resource"]);
     }
 
     public function getTypeAttribute()
