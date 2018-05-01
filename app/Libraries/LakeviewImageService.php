@@ -27,6 +27,11 @@ class LakeviewImageService implements ImageServiceInterface
         return $this->base_url;
     }
 
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
     public function getImage($object, $imageField = 'image_id', $width = '', $height = '')
     {
         $credit = null;
@@ -51,6 +56,7 @@ class LakeviewImageService implements ImageServiceInterface
             "downloadName" => $downloadName,
             "credit" => $credit,
             "creditUrl" => $creditUrl,
+            "iiifId" => $this->base_url.$this->version.'/'.$object->$imageField,
         );
 
         if (isset($preLoadedInfo['lqip']) && !empty($preLoadedInfo['lqip'])) {

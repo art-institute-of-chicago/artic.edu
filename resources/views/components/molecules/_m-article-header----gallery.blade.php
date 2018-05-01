@@ -5,14 +5,14 @@ $maxZoomWindowSize = (isset($maxZoomWindowSize) && $maxZoomWindowSize) ? $maxZoo
 if ($maxZoomWindowSize === -1) {
     $maxZoomWindowSize = 1280;
 }
-if ($maxZoomWindowSize > 843) {
-    $mainImgSize = '843px';
+if ($maxZoomWindowSize >= 843) {
+    $mainImgSize = '100%';
 } else {
     $mainImgSize = $maxZoomWindowSize.'px';
 }
 @endphp
 
-<{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery" data-headerGallery-maxZoomWindowSize="{{ $maxZoomWindowSize }}" data-headerGallery-zoomable="true">
+<{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery">
 <div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
          @php
@@ -20,16 +20,16 @@ if ($maxZoomWindowSize > 843) {
          @endphp
          @component('components.atoms._img')
             @slot('image', $image)
-            @slot('style', 'max-width: '.$mainImgSize.'; max-height: '.$mainImgSize.';')
+            @slot('style', 'max-width: '.$mainImgSize.';max-height: '.$mainImgSize.';')
             @slot('settings', array(
                 'lazyload' => false,
                 'srcset' => array(200,423,846,1692,3000,6000),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '58',
                       'small' => '58',
-                      'medium' => $mainImgSize,
-                      'large' => $mainImgSize,
-                      'xlarge' => $mainImgSize,
+                      'medium' => '843px',
+                      'large' => '843px',
+                      'xlarge' => '843px',
                 )),
             ))
         @endcomponent
@@ -96,26 +96,26 @@ if ($maxZoomWindowSize > 843) {
         </span>
     @endif
       <ul class="m-article-header__img-actions">
+        @if(isset($isZoomable) && $isZoomable && $maxZoomWindowSize >= 1280)
         <li>
-            @if(isset($isZoomable) && $isZoomable && $maxZoomWindowSize >= 1280)
-                @component('components.atoms._btn')
-                  @slot('variation', 'btn--septenary btn--icon-sq')
-                  @slot('font', '')
-                  @slot('icon', 'icon--zoom--24')
-                  @slot('dataAttributes', 'data-gallery-fullscreen')
-                @endcomponent
-            @endif
+            @component('components.atoms._btn')
+              @slot('variation', 'btn--septenary btn--icon-sq')
+              @slot('font', '')
+              @slot('icon', 'icon--zoom--24')
+              @slot('dataAttributes', 'data-gallery-fullscreen')
+            @endcomponent
         </li>
+        @endif
+        @if(isset($isPublicDomain) && $isPublicDomain)
         <li>
-            @if(isset($isPublicDomain) && $isPublicDomain)
-                @component('components.atoms._btn')
-                  @slot('variation', 'btn--septenary btn--icon-sq')
-                  @slot('font', '')
-                  @slot('icon', 'icon--download--24')
-                  @slot('dataAttributes', 'data-gallery-download')
-                @endcomponent
-            @endif
+            @component('components.atoms._btn')
+              @slot('variation', 'btn--septenary btn--icon-sq')
+              @slot('font', '')
+              @slot('icon', 'icon--download--24')
+              @slot('dataAttributes', 'data-gallery-download')
+            @endcomponent
         </li>
+        @endif
         <li>
           @component('components.atoms._btn')
               @slot('variation', 'btn--septenary btn--icon-sq')
@@ -175,6 +175,9 @@ if ($maxZoomWindowSize > 843) {
             @endif
             @if (isset($image['downloadName']))
                 data-gallery-img-download-name="{{ $image['downloadName'] }}"
+            @endif
+            @if (isset($image['iiifId']))
+                data-gallery-img-iiifId="{{ $image['iiifId'] }}"
             @endif
             disabled
           >Show this image</button>

@@ -34,6 +34,7 @@ const openImageFullScreen = function(container) {
       shareTitle: container.getAttribute('data-gallery-img-share-title') || '',
       downloadUrl: container.getAttribute('data-gallery-img-download-url') || '',
       downloadName: container.getAttribute('data-gallery-img-download-name') || '',
+      iiifId: container.getAttribute('data-gallery-img-iiifId') || container.parentNode.querySelector('img').getAttribute('data-iiifId'),
     };
 
     triggerCustomEvent(document, 'fullScreenImage:open', {

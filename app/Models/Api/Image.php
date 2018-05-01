@@ -37,6 +37,7 @@ class Image extends BaseApiModel
             "downloadName" => $shareTitle,
             "credit" => $credit,
             "creditUrl" => $creditUrl,
+            "iiifId" => $lake->getBaseUrl().$lake->getVersion().'/'.$this->id,
         );
 
         if (isset($this->lqip) && !empty($this->lqip)) {
