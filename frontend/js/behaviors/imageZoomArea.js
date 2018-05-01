@@ -72,7 +72,7 @@ const imageZoomArea = function(container) {
 
     osd = OpenSeadragon({
       id: "openseadragon",
-      prefixUrl: "http://openseadragon.github.io/openseadragon/images/",
+      prefixUrl: location.protocol + "//openseadragon.github.io/openseadragon/images/",
       preserveViewport: true,
       springStiffness: 15,
       visibilityRatio: 1,
