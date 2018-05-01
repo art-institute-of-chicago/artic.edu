@@ -2,6 +2,7 @@
 
 @php
 $maxZoomWindowSize = (isset($maxZoomWindowSize) && $maxZoomWindowSize) ? $maxZoomWindowSize : 1280;
+$style = "";
 if ($maxZoomWindowSize === -1) {
     $maxZoomWindowSize = 1280;
 }
@@ -9,6 +10,7 @@ if ($maxZoomWindowSize >= 843) {
     $mainImgSize = '100%';
 } else {
     $mainImgSize = $maxZoomWindowSize.'px';
+    $style .= 'max-width:'.$mainImgSize.';max-height:'.$mainImgSize.';';
 }
 @endphp
 
@@ -20,7 +22,7 @@ if ($maxZoomWindowSize >= 843) {
          @endphp
          @component('components.atoms._img')
             @slot('image', $image)
-            @slot('style', 'max-width: '.$mainImgSize.';max-height: '.$mainImgSize.';')
+            @slot('style', $style)
             @slot('settings', array(
                 'lazyload' => false,
                 'srcset' => array(200,423,846,1692,3000,6000),

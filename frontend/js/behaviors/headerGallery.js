@@ -42,6 +42,17 @@ const headerGallery = function(container) {
     });
   }
 
+  function _fixDisplay() {
+    let $hero = nodes.hero.querySelector('img');
+    if (nodes.hero.offsetWidth >= nodes.hero.offsetHeight) {
+      $hero.style.height = nodes.hero.offsetHeight + 'px';
+      $hero.style.width = null;
+    } else {
+      $hero.style.width = nodes.hero.offsetWidth + 'px';
+      $hero.style.height = null;
+    }
+  }
+
   function _update(init) {
     forEach(nodes.thumbButtons, function(index, button) {
       if (index !== activeIndex) {
@@ -56,9 +67,7 @@ const headerGallery = function(container) {
     nodes.share.setAttribute('data-share-title', data[activeIndex].shareTitle);
 
     if (init) {
-      let $hero = nodes.hero.querySelector('img');
-      $hero.style.width = data[activeIndex].width + 'px';
-      $hero.style.height = data[activeIndex].height + 'px';
+      _fixDisplay();
       return;
     }
 
@@ -70,8 +79,7 @@ const headerGallery = function(container) {
       $hero.src = data[activeIndex].src;
       $hero.width = data[activeIndex].width;
       $hero.height = data[activeIndex].height;
-      $hero.style.width = data[activeIndex].width + 'px';
-      $hero.style.height = data[activeIndex].height + 'px';
+      _fixDisplay();
       $hero.removeAttribute('srcset');
       window.requestAnimationFrame(function(){
         $hero.setAttribute('srcset', data[activeIndex].srcset);
@@ -133,6 +141,10 @@ const headerGallery = function(container) {
     });
   }
 
+  function _resized() {
+    _update(true);
+  }
+
   function _init() {
     //input.addEventListener('input', _updateOutput, false);
     nodes.hero = container.querySelector('[data-gallery-hero]') || false;
@@ -162,6 +174,7 @@ const headerGallery = function(container) {
       nodes.previous.addEventListener('click', _previousClick, false);
     }
     //
+    document.addEventListener('resized',_resized);
     _update(true);
   }
 
