@@ -1,4 +1,3 @@
-
 .s-sticky-filters--fixed .o-sticky-filters > .m-links-bar:first-child,
 .s-sticky-filters--bottom .o-sticky-filters > .m-links-bar:first-child {
   @include breakpoint('small+') {
@@ -9,11 +8,6 @@
     top: 0;
     padding-right: map-get($outer-gutters, small);
     padding-left: map-get($outer-gutters, small);
-
-    @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
-    }
   }
 
   @include breakpoint('medium+') {
@@ -44,7 +38,7 @@
   @include breakpoint('xlarge') {
     left: 50%;
     width: 100vw;
-    margin-left:-50vw;
+    margin-left: -50vw;
   }
 }
 
