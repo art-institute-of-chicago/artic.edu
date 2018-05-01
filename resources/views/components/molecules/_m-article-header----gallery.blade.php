@@ -3,9 +3,7 @@
 @php
 $maxZoomWindowSize = (isset($maxZoomWindowSize) && $maxZoomWindowSize) ? $maxZoomWindowSize : 1280;
 $style = "";
-if ($maxZoomWindowSize === -1) {
-    $maxZoomWindowSize = 1280;
-}
+$maxZoomWindowSize = ($maxZoomWindowSize === -1) ? 1280 : $maxZoomWindowSize;
 if ($maxZoomWindowSize >= 843) {
     $mainImgSize = '100%';
 } else {

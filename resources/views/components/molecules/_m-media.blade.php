@@ -1,4 +1,5 @@
 @php
+
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $media = $item['media'];
@@ -77,6 +78,17 @@
     if (!$fullscreen and $type == 'embed' and $tag !== 'a') {
       $mediaBehavior = 'triggerMediaInline';
     }
+
+    if (isset($item['isArtwork'])) {
+        $variation = ($variation ?? '').' m-media--artwork';
+        $isZoomable = $item['isZoomable'] ?? false;
+        $maxZoomWindowSize = $item['maxZoomWindowSize'] ?? 843;
+        $maxZoomWindowSize = ($maxZoomWindowSize === -1) ? 1280 : $maxZoomWindowSize;
+        if (!$isZoomable or $maxZoomWindowSize < 1280) {
+            $mediaBehavior = '';
+            $fullscreen = false;
+        }
+    }
 @endphp
 <figure data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <{{ $tag }}{!! ($tag === 'a') ? ' href="'.$item['url'].'"' : '' !!} class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'"' : '' !!}>
@@ -133,7 +145,7 @@
                 @slot('download', true)
             @endcomponent
         @endif
-        @if ($type !== 'embed' and isset($item['fullscreen']) and $item['fullscreen'])
+        @if ($type !== 'embed' and $fullscreen)
             @component('components.atoms._btn')
                 @slot('variation', 'm-media__btn-fullscreen btn--septenary btn--icon btn--icon-circle-48')
                 @slot('font', '')

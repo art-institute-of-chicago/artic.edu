@@ -28,12 +28,17 @@
 
         $artworkItem = array();
         $artworkItem['type'] = 'image';
+        $artworkItem['size'] = 's';
         $artworkItem['media'] = $image;
         $artworkItem['captionTitle'] = $artwork->title;
         $artworkItem['caption'] = $caption.'<br>'.$galleryLocation;
         $artworkItem['hideShare'] = true;
         $artworkItem['fullscreen'] = true;
         $artworkItem['urlTitle'] = route('artworks.show', $artwork);
+        $artworkItem['isArtwork'] = true;
+        $artworkItem['isZoomable'] = $artwork->is_zoomable;
+        $artworkItem['isPublicDomain'] = $artwork->is_public_domain;
+        $artworkItem['maxZoomWindowSize'] = $artwork->max_zoom_window_size;
     }
 @endphp
 @component('components.molecules._m-media')

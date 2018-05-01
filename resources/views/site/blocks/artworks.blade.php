@@ -27,6 +27,10 @@
         $item['caption'] = $caption;
         $item['url'] = route('artworks.show', $artwork);
         $item['urlTitle'] = route('artworks.show', $artwork);
+        $item['isArtwork'] = true;
+        $item['isZoomable'] = $artwork->is_zoomable;
+        $item['isPublicDomain'] = $artwork->is_public_domain;
+        $item['maxZoomWindowSize'] = $artwork->max_zoom_window_size;
         $items[] = $item;
     }
 @endphp
@@ -34,7 +38,7 @@
 @component('components.organisms._o-gallery----'.$subtype)
     @if ($subtype === 'mosaic')
         @slot('imageSettings', array(
-            'srcset' => array(200,400,600,1000,1500,3000,4500),
+            'srcset' => array(200,400,600,1000,1500,3000),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '28',
@@ -46,7 +50,7 @@
     @endif
     @if ($subtype === 'slider')
         @slot('imageSettings', array(
-            'srcset' => array(200,400,600,1000,1500,3000,4500),
+            'srcset' => array(200,400,600,1000,1500,3000),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '50',
                   'small' => '35',
