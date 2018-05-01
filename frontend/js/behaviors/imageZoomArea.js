@@ -7,6 +7,7 @@ const imageZoomArea = function(container) {
   const maxImgDim = 3000;
 
   let eventData = null;
+  let zoomable = null;
   let active = false;
 
   let btnZoomIn, btnZoomOut, btnClose, btnShare, img;
@@ -22,234 +23,17 @@ const imageZoomArea = function(container) {
   let containerDims = [];
   let imgDims = [];
 
-  let leftDragPos = -50;
-  let topDragPos = -50;
-  let maxMovementW = 0;
-  let maxMovementH = 0;
-
-  let xDown, yDown, xDiff, yDiff, leftDragPosInit, topDragPosInit;
-  let dragging = false;
-
-  function _checkOutOfBounds() {
-    // max movement in px
-    maxMovementW = (imgWidth - containerDims[0]) / 2;
-    maxMovementH = (imgHeight - containerDims[1]) / 2;
-    // covert to % of img
-    maxMovementW = (maxMovementW / initImgWidth) * 100;
-    maxMovementH = (maxMovementH / initImgHeight) * 100;
-    // set max/mins
-    let maxDragLeft = -50 + maxMovementW;
-    let minDragLeft = -50 - maxMovementW;
-    let maxDragTop = -50 + maxMovementH;
-    let minDragTop = -50 - maxMovementH;
-    // restrict
-    if (maxMovementW > 0) {
-      leftDragPos = leftDragPos > maxDragLeft ? maxDragLeft : leftDragPos;
-      leftDragPos = leftDragPos < minDragLeft ? minDragLeft : leftDragPos;
-    } else {
-      leftDragPos = -50;
-    }
-    if (maxMovementH > 0) {
-      topDragPos = topDragPos > maxDragTop ? maxDragTop : topDragPos;
-      topDragPos = topDragPos < minDragTop ? minDragTop : topDragPos;
-    } else {
-      topDragPos = -50;
-    }
-  }
-
-  function _position() {
-    img.style['-webkit-transform'] = 'translate(' + leftDragPos + '%, ' + topDragPos + '%) scale('+zoomFactor+')';
-    img.style['-moz-transform'] = 'translate(' + leftDragPos + '%, ' + topDragPos + '%) scale('+zoomFactor+')';
-    img.style['-ms-transform'] = 'translate(' + leftDragPos + '%, ' + topDragPos + '%) scale('+zoomFactor+')';
-    img.style.transform = 'translate(' + leftDragPos + '%, ' + topDragPos + '%) scale('+zoomFactor+')';
-  }
-
-  function _onDraggingStart() {
-    if (!dragging && currentZoomLevel > 0) {
-      dragging = true;
-      leftDragPosInit = leftDragPos;
-      topDragPosInit = topDragPos;
-      img.classList.add('s-dragging');
-    }
-  }
-
-  function _onDragging(event, xNow, yNow) {
-    if (dragging && currentZoomLevel > 0) {
-      if (!xDown || !yDown) {
-        return;
-      }
-      // img dims
-      let imgW = initImgWidth * zoomFactor;
-      let imgH = initImgHeight * zoomFactor;
-      // diffs
-      xDiff = xDown - xNow;
-      yDiff = yDown - yNow;
-      // new values
-      leftDragPos = leftDragPosInit - ((xDiff / imgWidth) * 100);
-      topDragPos = topDragPosInit - ((yDiff / imgHeight) * 100);
-      // stop dragging off the screen
-      _checkOutOfBounds();
-      // update position
-      _position();
-    }
-  }
-
-  function _onDraggingEnd() {
-    if (dragging) {
-      dragging = false;
-      img.classList.remove('s-dragging');
-      // reset
-      xDown = undefined;
-      yDown = undefined;
-      xDiff = undefined;
-      yDiff = undefined;
-    }
-  }
-
-  function _setUpDragging() {
-    // dragging
-    img.addEventListener('mousedown', function(event){
-      event.preventDefault();
-      if (event.which === 1 && currentZoomLevel > 0) {
-        xDown = event.pageX;
-        yDown = event.pageY;
-        _onDraggingStart();
-      }
-    }, false);
-
-    img.addEventListener('mousemove', function(event){
-      if (currentZoomLevel > 0) {
-        _onDragging(
-          event,
-          event.pageX,
-          event.pageY
-        );
-      }
-    }, false);
-
-    img.addEventListener('mouseup', function(event){
-      if (currentZoomLevel > 0) {
-        _onDraggingEnd(event);
-      }
-    }, false);
-
-    // touch versions
-    img.addEventListener('touchstart', function(event){
-      if (currentZoomLevel > 0) {
-        event.preventDefault();
-        event.stopPropagation();
-        xDown = event.touches[0].clientX;
-        yDown = event.touches[0].clientY;
-        _onDraggingStart();
-      }
-    }, false);
-
-    img.addEventListener('touchmove', function(event){
-      if (currentZoomLevel > 0) {
-        event.preventDefault();
-        event.stopPropagation();
-        _onDragging(event,event.changedTouches[0].clientX, event.changedTouches[0].clientY);
-      }
-    }, false);
-
-    img.addEventListener('touchend', function(event){
-      if (currentZoomLevel > 0) {
-        _onDraggingEnd(event);
-      }
-    }, false);
-  }
-
-  function _bestFit() {
-    containerDims = [];
-    containerDims.push(container.offsetWidth);
-    containerDims.push(container.offsetHeight);
-    containerDims.push(containerDims[1]/containerDims[0]);
-
-    imgDims = [];
-    imgDims.push(initImgWidth);
-    imgDims.push(initImgHeight);
-    imgDims.push(imgDims[1]/imgDims[0]);
-
-    if (imgDims[2] === containerDims[2]) {
-      imgDims[0] = Math.min.apply(null, [containerDims[0], containerDims[1]]);
-      imgDims[1] = Math.min.apply(null, [containerDims[0], containerDims[1]]);
-    } else if (imgDims[2] > containerDims[2]) {
-      imgDims[0] = Math.round((imgDims[0]/imgDims[1]) * containerDims[1]);
-      imgDims[1] = containerDims[1];
-    } else {
-      imgDims[1] = Math.round((imgDims[1]/imgDims[0]) * containerDims[0]);
-      imgDims[0] = containerDims[0];
-    }
-
-    zoomFactor = imgDims[0] / initImgWidth;
-    initZoomFactor = zoomFactor;
-
-    _checkOutOfBounds();
-    _position();
-  }
-
-  function _updateZoom() {
-    if (currentZoomLevel === maxZoomLevel) {
-      zoomFactor = 1;
-    } else if (currentZoomLevel === 0) {
-      zoomFactor = initZoomFactor;
-    } else {
-      zoomFactor = (((1 - initZoomFactor) / maxZoomLevel) * currentZoomLevel) + initZoomFactor;
-    }
-
-    imgWidth = initImgWidth * zoomFactor;
-    imgHeight = initImgHeight * zoomFactor;
-
-    img.setAttribute('sizes', Math.round(imgWidth) + 'px');
-    if (window.picturefill) {
-      window.picturefill(img);
-    }
-  }
-
   function _zoomIn(event) {
     event.preventDefault();
     btnZoomIn.blur();
-    currentZoomLevel = currentZoomLevel + 1;
-    if (currentZoomLevel === maxZoomLevel) {
-      btnZoomIn.disabled = true;
-      btnZoomOut.disabled = false;
-    } else {
-      btnZoomIn.disabled = false;
-      btnZoomOut.disabled = false;
-    }
-    _updateZoom();
-    _checkOutOfBounds();
-    _position();
-    img.classList.add('s-draggable');
   }
 
   function _zoomOut(event) {
     event.preventDefault();
     btnZoomOut.blur();
-    currentZoomLevel = currentZoomLevel - 1;
-    if (currentZoomLevel === 0) {
-      btnZoomIn.disabled = false;
-      btnZoomOut.disabled = true;
-      img.classList.remove('s-draggable');
-    } else {
-      btnZoomIn.disabled = false;
-      btnZoomOut.disabled = false;
-    }
-    _updateZoom();
-    _checkOutOfBounds();
-    _position();
   }
 
   function _handleResized() {
-    currentZoomLevel = 0;
-    zoomFactor = 0;
-    initZoomFactor = 0;
-    btnZoomIn.disabled = false;
-    btnZoomOut.disabled = true;
-    img.classList.remove('s-draggable');
-    leftDragPos = -50;
-    topDragPos = -50;
-    _bestFit();
   }
 
   function _close(event) {
@@ -266,52 +50,23 @@ const imageZoomArea = function(container) {
     img.removeAttribute('srcset');
     img.removeAttribute('sizes');
     eventData = null;
+    zoomable = null;
     active = false;
   }
 
-  function _finishOpen() {
+  function _finishNonZoomOpen() {
 
     if (initImgWidth === 0 || initImgHeight === 0) {
-      img.removeEventListener('load', _finishOpen);
+      img.removeEventListener('load', _finishNonZoomOpen);
       initImgWidth = img.naturalWidth;
       initImgHeight = img.naturalHeight;
     }
 
-    // for for if the image is smaller than the max dimension
-    if (initImgWidth < maxImgDim && initImgHeight < maxImgDim) {
-      if (initImgWidth === initImgHeight) {
-        initImgWidth = maxImgDim;
-        initImgHeight = maxImgDim;
-      } else if (initImgWidth > initImgHeight) {
-        initImgHeight = Math.round((initImgHeight/initImgWidth) * maxImgDim);
-        initImgWidth = maxImgDim;
-      } else {
-        initImgWidth = Math.round((initImgWidth/initImgHeight) * maxImgDim);
-        initImgHeight = maxImgDim;
-      }
-    }
-
-    // trap for too large images
-    if (initImgWidth > maxImgDim || initImgHeight > maxImgDim) {
-      if (initImgWidth === initImgHeight) {
-        initImgWidth = maxImgDim;
-        initImgHeight = maxImgDim;
-      } else if (initImgWidth > initImgHeight) {
-        initImgHeight = Math.round((initImgHeight/initImgWidth) * maxImgDim);
-        initImgWidth = maxImgDim;
-      } else {
-        initImgWidth = Math.round((initImgWidth/initImgHeight) * maxImgDim);
-        initImgHeight = maxImgDim;
-      }
-    }
-
-    container.classList.add('s-zoomable');
     img.setAttribute('width', initImgWidth);
     img.setAttribute('height', initImgHeight);
     img.setAttribute('src', eventData.src);
     img.setAttribute('srcset', eventData.srcset);
-    _bestFit();
-    img.setAttribute('sizes', Math.round(initImgWidth * zoomFactor) + 'px');
+    img.setAttribute('sizes','(min-width: 1280px) 1280px, (min-height: 1024px) 1280px, 100vw');
 
     if (window.picturefill) {
       window.picturefill(img);
@@ -324,6 +79,7 @@ const imageZoomArea = function(container) {
     }
 
     eventData = event.data.img;
+    zoomable = (event.data.zoomable && event.data.zoomable === true);
 
     document.documentElement.classList.add('s-fullscreenImage-active');
     triggerCustomEvent(document, 'body:lock', {
@@ -334,15 +90,20 @@ const imageZoomArea = function(container) {
       element: container
     });
 
-    if (event.data.img.width !== 'auto' && event.data.img.height !== 'auto') {
-      initImgWidth = parseInt(event.data.img.width);
-      initImgHeight = parseInt(event.data.img.height);
-      _finishOpen();
+    if (zoomable) {
+      container.classList.add('s-zoomable');
     } else {
-      initImgWidth = 0;
-      initImgHeight = 0;
-      img.addEventListener('load', _finishOpen, false);
-      img.setAttribute('src', eventData.src);
+      container.classList.remove('s-zoomable');
+      if (event.data.img.width !== 'auto' && event.data.img.height !== 'auto') {
+        initImgWidth = parseInt(event.data.img.width);
+        initImgHeight = parseInt(event.data.img.height);
+        _finishNonZoomOpen();
+      } else {
+        initImgWidth = 0;
+        initImgHeight = 0;
+        img.addEventListener('load', _finishNonZoomOpen, false);
+        img.setAttribute('srcset', eventData.srcset);
+      }
     }
 
     btnShare.setAttribute('data-share-url', eventData.shareUrl);
@@ -370,8 +131,6 @@ const imageZoomArea = function(container) {
     document.addEventListener('resized', _handleResized);
     document.addEventListener('fullScreenImage:open', _open, false);
     document.addEventListener('fullScreenImage:close', _close, false);
-
-    _setUpDragging();
   }
 
   this.destroy = function() {

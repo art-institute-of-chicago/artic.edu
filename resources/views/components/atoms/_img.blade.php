@@ -46,5 +46,8 @@
     sizes="{{ $sizes ?? '' }}"
     width="{{ $width ?? '' }}"
     height="{{ $height ?? '' }}"
+    @if (isset($style))
+    style="{!! $style !!}"
+    @endif
     {{ $highlight }}
 >

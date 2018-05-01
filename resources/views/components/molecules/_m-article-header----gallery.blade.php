@@ -8,11 +8,11 @@ if ($maxZoomWindowSize === -1) {
 if ($maxZoomWindowSize > 843) {
     $mainImgSize = '843px';
 } else {
-    $mainImgSize = maxZoomWindowSize.'px';
+    $mainImgSize = $maxZoomWindowSize.'px';
 }
 @endphp
 
-<{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery" data-headerGallery-maxZoomWindowSize="{{ $maxZoomWindowSize }}">
+<{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery" data-headerGallery-maxZoomWindowSize="{{ $maxZoomWindowSize }}" data-headerGallery-zoomable="true">
 <div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
          @php
@@ -20,6 +20,7 @@ if ($maxZoomWindowSize > 843) {
          @endphp
          @component('components.atoms._img')
             @slot('image', $image)
+            @slot('style', 'max-width: '.$mainImgSize.'; max-height: '.$mainImgSize.';')
             @slot('settings', array(
                 'lazyload' => false,
                 'srcset' => array(200,423,846,1692,3000,6000),

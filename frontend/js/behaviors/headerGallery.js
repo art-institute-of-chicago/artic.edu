@@ -5,6 +5,7 @@ const headerGallery = function(container) {
   let nodes = {};
   let data = {};
   let activeIndex = 0;
+  let zoomable = (container.getAttribute('data-headerGallery-zoomable') === 'true');
   let maxZoomWindowSize = container.getAttribute('data-headerGallery-maxZoomWindowSize') * 1;
 
   function _gatherDataFromThumbs() {
@@ -42,17 +43,6 @@ const headerGallery = function(container) {
     });
   }
 
-  function _fixDisplay() {
-    let $hero = nodes.hero.querySelector('img');
-    if (data[activeIndex].width > data[activeIndex].height) {
-      $hero.style.minWidth = '100%';
-      $hero.style.minHeight = '';
-    } else {
-      $hero.style.minWidth = '';
-      $hero.style.minHeight = '100%';
-    }
-  }
-
   function _update(init) {
     forEach(nodes.thumbButtons, function(index, button) {
       if (index !== activeIndex) {
@@ -67,7 +57,6 @@ const headerGallery = function(container) {
     nodes.share.setAttribute('data-share-title', data[activeIndex].shareTitle);
 
     if (init) {
-      _fixDisplay();
       return;
     }
 
@@ -80,7 +69,6 @@ const headerGallery = function(container) {
       $hero.width = data[activeIndex].width;
       $hero.height = data[activeIndex].height;
       $hero.removeAttribute('srcset');
-      _fixDisplay();
       window.requestAnimationFrame(function(){
         $hero.setAttribute('srcset', data[activeIndex].srcset);
       });
@@ -138,6 +126,7 @@ const headerGallery = function(container) {
     event.preventDefault();
     triggerCustomEvent(document, 'fullScreenImage:open', {
       img: data[activeIndex],
+      zoomable: zoomable,
     });
   }
 
