@@ -12,8 +12,8 @@ const imageZoomArea = function(container) {
 
   let $btnZoomIn, $btnZoomOut, $btnClose, $btnShare, $img, $osd;
 
-  let initImgWidth = 0;
-  let initImgHeight = 0;
+  let imgWidth = 0;
+  let imgHeight = 0;
 
   function _zoomIn(event) {
     event.preventDefault();
@@ -41,23 +41,24 @@ const imageZoomArea = function(container) {
     $img.removeAttribute('src');
     if (osd) {
       osd.removeAllHandlers();
+      osd.destroy();
+      osd = null;
+      $osd.innerHTML = '';
     }
-    osd = null;
-    $osd.innerHTML = '';
     eventData = null;
     active = false;
   }
 
   function _finishNonZoomOpen() {
 
-    if (initImgWidth === 0 || initImgHeight === 0) {
+    if (imgWidth === 0 || imgHeight === 0) {
       $img.removeEventListener('load', _finishNonZoomOpen);
-      initImgWidth = $img.naturalWidth;
-      initImgHeight = $img.naturalHeight;
+      imgWidth = $img.naturalWidth;
+      imgHeight = $img.naturalHeight;
     }
 
-    $img.setAttribute('width', initImgWidth);
-    $img.setAttribute('height', initImgHeight);
+    $img.setAttribute('width', imgWidth);
+    $img.setAttribute('height', imgHeight);
     $img.setAttribute('src', eventData.src);
     $img.setAttribute('srcset', eventData.srcset);
     $img.setAttribute('sizes','(min-width: 1280px) 1280px, (min-height: 1024px) 1280px, 100vw');
@@ -67,18 +68,25 @@ const imageZoomArea = function(container) {
     }
   }
 
-  function _finishZoomOpen(id, width, height) {
-
-    $btnZoomIn.disabled = false;
-    $btnZoomOut.disabled = true;
+  function _finishZoomOpen(id) {
 
     osd = OpenSeadragon({
       id: "openseadragon",
       prefixUrl: "http://openseadragon.github.io/openseadragon/images/",
       preserveViewport: true,
+      springStiffness: 15,
       visibilityRatio: 1,
-      defaultZoomLevel: 1,
-      minZoomLevel: 1,
+      zoomPerScroll: 1,
+      zoomPerClick: 1.3,
+      immediateRender:false,
+      constrainDuringPan: true,
+      animationTime: 1.5,
+      minZoomLevel: 0,
+      minZoomImageRatio: 0.8,
+      defaultZoomLevel: 0,
+      gestureSettingsMouse: {
+        scrollToZoom: false
+      },
       zoomInButton: "osd_zoomInButton",
       zoomOutButton: "osd_zoomOutButton",
       showZoomControl: true,
@@ -91,8 +99,8 @@ const imageZoomArea = function(container) {
           "@context":"http://iiif.io/api/image/2/context.json",
           "@id": id,
           "protocol":"http://iiif.io/api/image",
-          "width": parseInt(width),
-          "height": parseInt(height),
+          "width": imgWidth,
+          "height": imgHeight,
           "tile_height": 256,
           "tile_width": 256,
           "scale_factors": [1, 2, 4, 8],
@@ -107,8 +115,9 @@ const imageZoomArea = function(container) {
       ]
     });
 
+
     osd.addHandler("zoom", function (data) {
-      if (data.zoom <= 1) {
+      if (data.zoom <= osd.viewport.getMinZoom()) {
         $btnZoomIn.disabled = false;
         $btnZoomOut.disabled = true;
       } else if (data.zoom >= osd.viewport.getMaxZoom()) {
@@ -139,16 +148,18 @@ const imageZoomArea = function(container) {
 
     if (event.data.img.iiifId && event.data.img.width && event.data.img.height) {
       container.classList.add('s-zoomable');
-      _finishZoomOpen(event.data.img.iiifId, event.data.img.width, event.data.img.height);
+      imgWidth = parseInt(event.data.img.width);
+      imgHeight = parseInt(event.data.img.height);
+      _finishZoomOpen(event.data.img.iiifId);
     } else {
       container.classList.remove('s-zoomable');
       if (event.data.img.width !== 'auto' && event.data.img.height !== 'auto') {
-        initImgWidth = parseInt(event.data.img.width);
-        initImgHeight = parseInt(event.data.img.height);
+        imgWidth = parseInt(event.data.img.width);
+        imgHeight = parseInt(event.data.img.height);
         _finishNonZoomOpen();
       } else {
-        initImgWidth = 0;
-        initImgHeight = 0;
+        imgWidth = 0;
+        imgHeight = 0;
         $img.addEventListener('load', _finishNonZoomOpen, false);
         $img.setAttribute('srcset', eventData.srcset);
       }
