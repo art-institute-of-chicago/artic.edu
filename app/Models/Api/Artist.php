@@ -15,6 +15,7 @@ class Artist extends BaseApiModel
         'search'     => '/api/v1/agents/search'
     ];
 
+    protected $augmented = true;
     protected $augmentedModelClass = 'App\Models\Artist';
 
     protected $presenter       = 'App\Presenters\Admin\ArtistPresenter';
