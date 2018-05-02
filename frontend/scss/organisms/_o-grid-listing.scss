@@ -606,6 +606,7 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
     .o-grid-listing--gridlines-top > *,
     .o-grid-listing--gridlines-rows > * {
       padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+      border-top: 0 none;
     }
 
     .o-grid-listing--gridlines-top:not([class*=col\@#{$name}]) > *:first-child,
