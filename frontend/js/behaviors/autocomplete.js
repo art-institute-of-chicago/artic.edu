@@ -68,7 +68,7 @@ const autocomplete = function(container) {
     ajaxTimer = setTimeout(function(){
       ajaxRequest({
         url: autoCompleteUrl,
-        data: { q: _fixedEncodeURIComponent(textInput.value) },
+        data: { q: textInput.value },
         type: 'GET',
         requestHeaders: [
           {
