@@ -1,4 +1,3 @@
-
 /*****************************/
 /*
 /* Sort out text spacings
@@ -15,7 +14,7 @@
 
 /*****/
 
-.o-blocks > h2:not([class*=f-]),
+.o-blocks > h2:not([class*='f-']),
 .o-blocks > .f-module-title-2 {
   @include tucked-margin-top($f-module-title-2, ('xsmall': 48, 'small+': 68));
 
@@ -24,18 +23,18 @@
   }
 }
 
-.o-blocks > h2:not([class*=f-]) {
+.o-blocks > h2:not([class*='f-']) {
   @extend %f-module-title-2;
 }
 
-.o-blocks > .f-deck + h2:not([class*=f-]),
+.o-blocks > .f-deck + h2:not([class*='f-']),
 .o-blocks > .f-deck + .f-module-title-2 {
   @include tucked-margin-top($f-module-title-2, ('xsmall': 76));
 }
 
 /*****/
 
-.o-blocks > h3:not([class*=f-]),
+.o-blocks > h3:not([class*='f-']),
 .o-blocks > .f-subheading-1 {
   @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
 
@@ -44,16 +43,16 @@
   }
 }
 
-.o-blocks > h3:not([class*=f-]) {
+.o-blocks > h3:not([class*='f-']) {
   @extend %f-subheading-1;
 }
 
-.o-blocks > .hr + h3:not([class*=f-]),
+.o-blocks > .hr + h3:not([class*='f-']),
 .o-blocks > .hr + .f-subheading-1 {
   @include tucked-margin-top($f-subheading-1, ('xsmall': 36));
 }
 
-.o-blocks > .f-deck + h3:not([class*=f-]),
+.o-blocks > .f-deck + h3:not([class*='f-']),
 .o-blocks > .f-deck + .f-subheading-1 {
   @include tucked-margin-top($f-subheading-1, ('xsmall': 76));
 }
@@ -100,9 +99,9 @@
 
 /*****/
 
-.o-blocks > p:not([class*=f-]),
-.o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
-.o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+.o-blocks > p:not([class*='f-']),
+.o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .f-body {
   @include tucked-margin-top($f-body, ('xsmall': 40, 'small+': 56));
 
@@ -111,36 +110,36 @@
   }
 }
 
-.o-blocks > p:not([class*=f-]),
-.o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
-.o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+.o-blocks > p:not([class*='f-']),
+.o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) {
   @extend %f-body;
 }
 
-.o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
-.o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+.o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) {
   @extend .list;
 }
 
-.o-blocks > .f-deck + p:not([class*=f-]),
-.o-blocks > .f-deck + ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
-.o-blocks > .f-deck + ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+.o-blocks > .f-deck + p:not([class*='f-']),
+.o-blocks > .f-deck + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-blocks > .f-deck + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .f-deck + .f-body {
   @include tucked-margin-top($f-body, ('xsmall': 76));
 }
 
-.o-blocks > .o-blocks__block + p:not([class*=f-]),
-.o-blocks > .o-blocks__block + ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
-.o-blocks > .o-blocks__block + ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+.o-blocks > .o-blocks__block + p:not([class*='f-']),
+.o-blocks > .o-blocks__block + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-blocks > .o-blocks__block + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .o-blocks__block + .f-body {
   @include tucked-margin-top($f-body, ('xsmall': 32, 'small+': 60));
 }
 
 /*****/
 
-.o-article--editorial .o-blocks > p:not([class*=f-]),
+.o-article--editorial .o-blocks > p:not([class*='f-']),
 .o-blocks > .f-body-editorial,
-.o-blocks > p:not([class*=f-]),
+.o-blocks > p:not([class*='f-']),
 .o-blocks > .f-body-editorial {
   @include tucked-margin-top($f-body-editorial, ('xsmall': 40, 'small+': 56));
 
@@ -149,15 +148,15 @@
   }
 }
 
-.o-article--editorial .o-blocks > p:not([class*=f-]),
-.o-article--editorial .o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
-.o-article--editorial .o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+.o-article--editorial .o-blocks > p:not([class*='f-']),
+.o-article--editorial .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-article--editorial .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) {
   @extend %f-body-editorial;
 }
 
-.o-article--editorial .o-blocks > .o-blocks__block + p:not([class*=f-]),
-.o-article--editorial .o-blocks > .o-blocks__block + ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
-.o-article--editorial .o-blocks > .o-blocks__block + ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+.o-article--editorial .o-blocks > .o-blocks__block + p:not([class*='f-']),
+.o-article--editorial .o-blocks > .o-blocks__block + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-article--editorial .o-blocks > .o-blocks__block + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-article--editorial .o-blocks > .o-blocks__block + .f-body-editorial {
   @include tucked-margin-top($f-body-editorial, ('xsmall': 60));
 }
@@ -220,20 +219,20 @@
 /*
 /**/
 
-.o-blocks > h3:not([class*=f-]) + p:not([class*=f-]),
+.o-blocks > h3:not([class*='f-']) + p:not([class*='f-']),
 .o-blocks > .f-subheading-1 + .f-body,
 .o-blocks > .f-subheading-1 + .f-body-editorial {
   margin-top: 0;
 }
 
-.o-blocks > p:not([class*=f-]),
-.o-blocks > h2:not([class*=f-]),
-.o-blocks > h3:not([class*=f-]),
-.o-blocks > *[class*=f-] .f-link {
+.o-blocks > p:not([class*='f-']),
+.o-blocks > h2:not([class*='f-']),
+.o-blocks > h3:not([class*='f-']),
+.o-blocks > *[class*='f-'] .f-link {
   //@include untuck;
 }
 
-.o-blocks > p:not([class*=f-]),
+.o-blocks > p:not([class*='f-']),
 .o-blocks > .f-deck,
 .o-blocks > .f-body,
 .o-blocks > .f-body-editorial {
@@ -270,9 +269,9 @@
     }
   }
 
-  .o-blocks {
-    padding-top: .02px;
-    padding-bottom: .02px;
+  .o-blocks:not(.m-info-bar) {
+    padding-top: 0.02px;
+    padding-bottom: 0.02px;
   }
 
   .o-blocks__block:first-child,
@@ -297,7 +296,6 @@
 /**/
 
 .o-blocks {
-
   .o-gallery,
   .m-media--m,
   .m-media--l,
@@ -435,9 +433,9 @@
 /*
 /**/
 
-.o-blocks > p:not([class*=f-]) a:not(.btn),
-.o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) a:not(.btn),
-.o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) a:not(.btn),
+.o-blocks > p:not([class*='f-']) a:not(.btn),
+.o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
+.o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks > .f-body a:not(.btn) {
   @include text-underline(1.02em, $color__rules--secondary);
   color: $color__link--accent;
@@ -453,32 +451,32 @@
   }
 }
 
-.o-article--editorial .o-blocks > p:not([class*=f-]) a,
-.o-article--editorial .o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) a,
-.o-article--editorial .o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) a,
+.o-article--editorial .o-blocks > p:not([class*='f-']) a,
+.o-article--editorial .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
+.o-article--editorial .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
 .o-blocks > .f-body-editorial a {
-  @include text-underline(.82em, $color__rules--secondary);
+  @include text-underline(0.82em, $color__rules--secondary);
   color: $color__link--editorial;
   text-decoration: none;
 
   &:hover,
   &:focus:hover {
-    @include text-underline(.82em, $color__link--editorial);
+    @include text-underline(0.82em, $color__link--editorial);
   }
 
   &:active:hover {
-    @include text-underline(.82em, $color__rules--secondary);
+    @include text-underline(0.82em, $color__rules--secondary);
   }
 }
 
 .o-blocks > .f-deck a {
-  @include text-underline(.82em, $color__text--tertiary);
+  @include text-underline(0.82em, $color__text--tertiary);
   color: inherit;
   text-decoration: none;
 
   &:hover,
   &:focus:hover {
-    @include text-underline(.82em, $color__text--secondary);
+    @include text-underline(0.82em, $color__text--secondary);
     color: $color__text;
   }
 
@@ -501,12 +499,12 @@
   }
 }
 
-.o-blocks > p:not([class*=f-]) sub,
-.o-blocks > p:not([class*=f-]) sup,
-.o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) sub,
-.o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) sup,
-.o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) sub,
-.o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) sup,
+.o-blocks > p:not([class*='f-']) sub,
+.o-blocks > p:not([class*='f-']) sup,
+.o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) sub,
+.o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) sup,
+.o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) sub,
+.o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) sup,
 .o-blocks > .f-body sub,
 .o-blocks > .f-body sup,
 .o-blocks > .f-body-editorial sub,
@@ -514,12 +512,12 @@
   font-size: 60%;
 }
 
-.o-blocks > p:not([class*=f-]) sub a,
-.o-blocks > p:not([class*=f-]) sup a,
-.o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) sub a,
-.o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) sup a,
-.o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) sub a,
-.o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]) sup a,
+.o-blocks > p:not([class*='f-']) sub a,
+.o-blocks > p:not([class*='f-']) sup a,
+.o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) sub a,
+.o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) sup a,
+.o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) sub a,
+.o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) sup a,
 .o-blocks > .f-body sub a,
 .o-blocks > .f-body sup a,
 .o-blocks > .f-body-editorial sub a,
