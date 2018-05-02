@@ -57,6 +57,14 @@ class ArtworkPresenter extends BasePresenter
         array_push($blocks, $this->getArtworkDetailsBlock());
         array_push($blocks, $this->getArtworkDescriptionBlocks());
 
+        array_push($blocks, [
+            "type" => 'hr',
+        ]);
+        array_push($blocks, [
+            "type" => 'text',
+            "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu"></a>.</p>',
+        ]);
+
         return array_filter($blocks);
     }
 

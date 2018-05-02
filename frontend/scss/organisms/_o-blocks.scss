@@ -192,6 +192,28 @@
   @extend %f-secondary;
 }
 
+/*****/
+
+.o-blocks > .f-caption {
+  @include tucked-margin-top($f-caption, ('xsmall': 48));
+  color: $color__text--secondary;
+
+  &:first-child {
+    @include tucked-align-top($f-caption);
+  }
+}
+
+.o-blocks > .f-caption a {
+  color: $color__text--secondary;
+  text-decoration: none;
+
+  &:hover,
+  &:focus:hover,
+  &:active:hover {
+    @include text-underline(1.02em, $color__rules--secondary);
+  }
+}
+
 /*****************************/
 /*
 /* Special text spacings
