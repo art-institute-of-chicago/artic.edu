@@ -19,6 +19,11 @@
     padding-bottom: percentage(10 / 16);
   }
 
+  .m-media--m &.m-media__img--video,
+  .m-media--l &.m-media__img--video {
+    max-height: 80vh;
+  }
+
   &.m-media__img--video::before {
     padding-bottom: percentage(9 / 16);
   }
@@ -111,10 +116,7 @@ a.m-media__img:hover object {
   top: 20px;
 }
 
-.m-media__img iframe[data-embed-src][src] ~ img,
-.m-media__img iframe[data-embed-src][src] ~ .icon--play-multi,
-.m-media__img iframe[data-embed-src][src] ~ .m-media__btn-download,
-.m-media__img iframe[data-embed-src][src] ~ .m-media__btn-fullscreen {
+.m-media__img.s-inline-media-activated *:not(iframe) {
   display: none;
 }
 
