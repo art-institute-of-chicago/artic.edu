@@ -246,7 +246,7 @@ $f-deck: generate-font-obj((
 .f-deck strong,
 %f-deck b,
 .f-deck b {
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 /***
@@ -429,7 +429,9 @@ $f-body-emphasis: generate-font-obj((
 .f-body strong,
 %f-body b,
 .f-body b {
-  font-weight: bold;
+  @include font-smoothing(off);
+  font-weight: bolder;
+  color: $color__black;
 }
 
 /***
@@ -512,7 +514,8 @@ $f-body-editorial-emphasis: generate-font-obj((
 .f-body-editorial strong,
 %f-body-editorial b,
 .f-body-editorial b {
-  font-weight: bold;
+  font-weight: bolder;
+  color: $color__text--title;
 }
 
 /***
@@ -1082,7 +1085,7 @@ $f-quote: generate-font-obj((
 .f-quote strong,
 %f-quote b,
 .f-quote b {
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 /***
