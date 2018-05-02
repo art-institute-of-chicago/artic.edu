@@ -60,6 +60,11 @@
 .m-aside-newsletter {
   position: relative;
   margin-top: 40px;
+
+  .m-inline-aside &,
+  &.o-blocks__block {
+    border-top: 1px solid $color__rules--primary;
+  }
 }
 
 .m-aside-newsletter.s-loading {
@@ -72,15 +77,13 @@
   margin: 0;
   padding: 0;
 }
-  .m-aside-newsletter.s-loading fieldset {
-    opacity: .4;
-  }
+.m-aside-newsletter.s-loading fieldset {
+  opacity: 0.4;
+}
 
 .m-aside-newsletter legend {
   float: left;
 }
-
-
 
 .m-aside-newsletter legend .title {
   display: block;
@@ -184,7 +187,6 @@
   background-color: $color__error;
 }
 
-
 // variation `.m-aside-newsletter--inline
 
 .m-aside-newsletter--inline .m-aside-newsletter__field {
@@ -238,6 +240,10 @@
 .m-aside-newsletter--wide {
   @include background-fill;
   background-color: $color__bg--secondary;
+
+  &.o-blocks__block {
+    border-top: 0;
+  }
 }
 
 .m-aside-newsletter--wide fieldset {
@@ -259,7 +265,6 @@
 }
 
 .m-aside-newsletter--wide legend .title {
-
   @include breakpoint('large+') {
     width: colspan(29, large);
   }
@@ -274,7 +279,7 @@
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__field {
-  padding-top: .02px;
+  padding-top: 0.02px;
   padding-bottom: 28px;
 
   @include breakpoint('small+') {
