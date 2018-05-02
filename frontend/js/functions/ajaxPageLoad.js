@@ -73,7 +73,7 @@ const ajaxPageLoad = function() {
           focusTarget = document.getElementById(options.ajaxScrollTarget);
         }
         if (focusTarget) {
-          scrollTarget = Math.round(getOffset(focusTarget).top - 20);
+          scrollTarget = Math.round(getOffset(focusTarget).top);
         }
         document.documentElement.scrollTop = scrollTarget;
         document.body.scrollTop = scrollTarget;

@@ -60,7 +60,7 @@ const loadProgressBar = function() {
 
   document.addEventListener('loader:start',showLoader);
   document.addEventListener('loader:complete',loadComplete);
-  document.addEventListener('loader:error',loadComplete);
+  document.addEventListener('loader:error',loadError);
 };
 
 export default loadProgressBar;

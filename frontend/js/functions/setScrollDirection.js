@@ -9,10 +9,11 @@ const setScrollDirection = function() {
   let allowTopLink = false;
   let machineScroll = false;
 
+
   function _init() {
     var sT = document.documentElement.scrollTop || document.body.scrollTop;
 
-    if (sT !== lastScrollTop && machineScroll !== true) {
+    if (sT !== lastScrollTop && !machineScroll) {
       //triggerCustomEvent(document, 'scroll:active', { 'y': sT });
       if (sT > 0 && !hideHeader){
         dE.classList.add('s-header-hide');
@@ -43,14 +44,19 @@ const setScrollDirection = function() {
       }
     }
 
-    lastScrollTop = sT;
+    //if (!machineScroll) {
+      lastScrollTop = sT;
+    //}
 
     window.requestAnimationFrame(_init);
   }
 
   document.addEventListener('setScrollDirection:machineScroll', function(event){
-    machineScroll = event.data.machineScroll;
-  });
+    window.requestAnimationFrame(function(){
+      lastScrollTop = -1;
+      machineScroll = event.data.machineScroll;
+    });
+  }, false);
 
   _init();
 };
