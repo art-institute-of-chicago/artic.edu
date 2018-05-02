@@ -174,7 +174,7 @@ const headerGallery = function(container) {
       nodes.previous.addEventListener('click', _previousClick, false);
     }
     //
-    document.addEventListener('resized',_resized);
+    document.addEventListener('resized', _resized, false);
     _update(true);
   }
 
@@ -188,6 +188,7 @@ const headerGallery = function(container) {
       nodes.next.removeEventListener('click', _nextClick);
       nodes.previous.removeEventListener('click', _previousClick);
     }
+    document.removeEventListener('resized', _resized);
     //
     nodes = {};
     data = {};
