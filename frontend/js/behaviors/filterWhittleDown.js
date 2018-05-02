@@ -15,12 +15,6 @@ const filterWhittleDown = function(container) {
     container.classList.remove('s-loading');
   }
 
-  function _fixedEncodeURIComponent(str) {
-    return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
-      return '%' + c.charCodeAt(0).toString(16);
-    });
-  }
-
   function _whittleDown() {
     clearTimeout(ajaxTimer);
 
@@ -34,7 +28,7 @@ const filterWhittleDown = function(container) {
       }
       ajaxRequest({
         url: ajaxUrl,
-        data: { categoryQuery: _fixedEncodeURIComponent($input.value) },
+        data: { categoryQuery: $input.value },
         type: 'GET',
         requestHeaders: [
           {
