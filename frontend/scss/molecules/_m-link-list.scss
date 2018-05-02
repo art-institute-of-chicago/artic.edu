@@ -32,7 +32,7 @@
   position: relative;
   margin-top: 16px;
   padding-top: 8px;
-  padding-bottom: .02px;
+  padding-bottom: 0.02px;
 
   .o-blocks__block & {
     margin-top: 20px;
@@ -101,10 +101,10 @@ a.m-link-list__trigger.f-module-title-1 {
 }
 
 a.m-link-list__trigger.f-secondary {
-
   &:hover,
   &:focus:hover {
     color: $color__link--hover;
+    text-decoration: underline;
   }
 
   &:active:hover {
@@ -159,4 +159,12 @@ a.m-link-list__trigger.f-secondary {
 .m-link-list__trigger-file-meta {
   width: 33%;
   color: $color__text--secondary;
+}
+
+.m-link-list--icon-left .m-link-list__trigger {
+  padding-left: 25px;
+}
+
+.m-link-list--icon-left .m-link-list__trigger svg {
+  left: 0;
 }
