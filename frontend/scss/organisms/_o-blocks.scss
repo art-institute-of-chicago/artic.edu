@@ -132,7 +132,7 @@
 .o-blocks > .o-blocks__block + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .o-blocks__block + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
 .o-blocks > .o-blocks__block + .f-body {
-  @include tucked-margin-top($f-body, ('xsmall': 32, 'small+': 60));
+  @include tucked-margin-top($f-body, ('xsmall': 32, 'small+': 68));
 }
 
 /*****/
