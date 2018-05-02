@@ -85,6 +85,7 @@ Route::moduleShowWithPreview('exhibitions');
 // Artwork routes
 Route::name('artworks.recentlyViewed')->get('/artworks/recentlyViewed', 'ArtworkController@recentlyViewed');
 Route::name('artworks.clearRecentlyViewed')->get('/artworks/clearRecentlyViewed', 'ArtworkController@clearRecentlyViewed');
+Route::name('artworks.addRecentlyViewed')->get('/artworks/addRecentlyViewed/{id}', 'ArtworkController@addRecentlyViewed');
 Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
 
 // Gallery / tag page

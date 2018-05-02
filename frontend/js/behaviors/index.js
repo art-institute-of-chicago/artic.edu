@@ -45,3 +45,4 @@ export { default as closeModal } from './closeModal';
 export { default as stickyFilters } from './stickyFilters';
 export { default as injectContent } from './injectContent';
 export { default as clearHistory } from './clearHistory';
+export { default as addHistory } from './addHistory';
