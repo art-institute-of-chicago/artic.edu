@@ -227,7 +227,7 @@
   }
 }
 
-.o-accordion__panel-content.o-blocks {
+.o-blocks .o-blocks.o-accordion__panel-content {
   padding-bottom: 4px;
 
   @include breakpoint('small+') {
