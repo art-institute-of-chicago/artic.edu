@@ -209,6 +209,7 @@
 .o-accordion__panel-content {
   position: relative;
   padding-top: .02px;
+  padding-bottom: 4px;
 
   .o-accordion--section & {
     padding-top: 28px;
@@ -223,6 +224,14 @@
     .o-accordion--section & {
       padding-top: 36px;
     }
+  }
+}
+
+.o-accordion__panel-content.o-blocks {
+  padding-bottom: 4px;
+
+  @include breakpoint('small+') {
+    padding-bottom: 8px;
   }
 }
 
