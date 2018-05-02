@@ -7,16 +7,18 @@ use App\Repositories\SiteTagRepository;
 class ArtworkController extends BaseApiController
 {
     protected $moduleName = 'artworks';
-    protected $hasAugmentedModel = false;
+    protected $hasAugmentedModel = true;
 
     protected $indexOptions = [
         'publish' => false,
-        'bulkEdit' => false,
+        'bulkPublish' => false,
         'feature' => false,
+        'bulkFeature' => false,
         'restore' => false,
-        'permalink' => false,
-        'create' => false,
-        'edit' => false,
+        'bulkRestore' => false,
+        'bulkDelete' => false,
+        'reorder' => false,
+        'permalink' => true,
     ];
 
     protected $indexColumns = [
@@ -37,6 +39,11 @@ class ArtworkController extends BaseApiController
             'title' => 'Reference number',
             'field' => 'main_reference_number'
         ],
+        'augmented' => [
+            'title' => 'Augmented?',
+            'field' => 'augmented',
+            'present' => true
+        ],
         'artist_display' => [
             'title' => 'Artist',
             'field' => 'artist_display'
@@ -55,7 +62,7 @@ class ArtworkController extends BaseApiController
     /*
      * Relations to eager load for the form view
      */
-    protected $formWith = ['siteTags'];
+    protected $formWith = [];
 
     protected function indexData($request)
     {
@@ -64,8 +71,12 @@ class ArtworkController extends BaseApiController
 
     protected function formData($request)
     {
+        $item = $this->repository->getById(request('artwork'));
+        $baseUrl = '//'.config('app.url').'//artworks//'.$item->id.'-';
+
         return [
-            'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+            'editableTitle' => false,
+            'baseUrl' => $baseUrl
         ];
     }
 
