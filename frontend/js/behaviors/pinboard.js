@@ -171,6 +171,7 @@ const pinboard = function(container){
     _setupBlocks();
     container.addEventListener('pinboard:contentAdded', _contentAdded, false);
     document.addEventListener('resized', _resized, false);
+    document.addEventListener('ajaxPageLoad:complete', _resized, false);
     document.addEventListener('collectionFilters:open', _showFilters, false);
     document.addEventListener('collectionFilters:close', _hideFilters, false);
   }
@@ -179,6 +180,7 @@ const pinboard = function(container){
     // remove specific event handlers
     container.removeEventListener('pinboard:contentAdded', _contentAdded);
     document.removeEventListener('resized', _resized);
+    document.removeEventListener('ajaxPageLoad:complete', _resized);
     document.removeEventListener('collectionFilters:open', _showFilters);
     document.removeEventListener('collectionFilters:close', _hideFilters);
 

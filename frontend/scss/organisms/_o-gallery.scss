@@ -54,7 +54,8 @@
 }
 
 .o-gallery__title,
-.o-gallery figcaption strong {
+.o-gallery figcaption strong,
+.o-gallery .m-media figcaption strong.f-caption {
   color: $color__text--title-contrast;
 }
 
@@ -144,6 +145,7 @@
 
   .o-gallery__media {
     padding-bottom: 56px;
+    transition: height .4s .8s $bezier--marius-ease;
 
     @include breakpoint('small+') {
       display: flex;
@@ -196,9 +198,12 @@
     position: absolute;
     z-index: 1;
     flex: none;
-    margin-top: 0;
     opacity: 1;
     transition: opacity .25s, top .4s $bezier--marius-mosaic, left .4s $bezier--marius-mosaic, height .4s $bezier--marius-mosaic;
+  }
+
+  .o-gallery__media > *.s-positioned:not(.s-repositioning) {
+    margin-top: 0;
   }
 
   .o-gallery__media > *:nth-child(1) { transition-delay: .1s; }
