@@ -11,7 +11,7 @@
     @endif
     @if (isset($buttonCaption) and $buttonCaption)
         <li class="m-ticket-actions__inline-list">
-            <div class="m-ticket-actions__inline-list-items f-secondary">
+            <div class="m-ticket-actions__inline-list-items f-caption">
                 {!! $buttonCaption !!}
             </div>
         </li>
