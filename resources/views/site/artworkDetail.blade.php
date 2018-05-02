@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article class="o-article">
+<article class="o-article" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}">
 
   @component('components.molecules._m-article-header')
     {{-- @slot('editorial', false) --}}

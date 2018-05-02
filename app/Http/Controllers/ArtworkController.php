@@ -23,9 +23,6 @@ class ArtworkController extends FrontController
 
         if (empty($item)) {
             abort(404);
-        } else {
-            // Add artwork to the Recently Viewed collection
-            $recentlyViewed->addArtwork($item);
         }
 
         // Build Explore further module
@@ -68,6 +65,18 @@ class ArtworkController extends FrontController
         $service->clear();
 
         return redirect()->back();
+    }
+
+    public function addRecentlyViewed($idSlug, RecentlyViewedService $service)
+    {
+        $item = Artwork::query()->findOrFail((Integer) $idSlug);
+
+        if (empty($item)) {
+            abort(404);
+        } else {
+            // Add artwork to the Recently Viewed collection
+            $service->addArtwork($item);
+        }
     }
 
 }
