@@ -18,7 +18,7 @@
 
 @component('components.organisms._o-sticky-filters')
 
-    @component('components.molecules._m-links-bar')
+    @component('components.molecules._m-links-bar', ['primaryVariation' => 'm-links-bar--centered@xsmall'])
         @slot('linksPrimary', array(
             array('label' => 'Today', 'href' => route('events'), 'active' => !request('start') && !request('time')),
             array('label' => 'Tomorrow', 'href' => route('events', ['time' => 'tomorrow']), 'active' => (!request('start') && request('time') == 'tomorrow'), 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium"),

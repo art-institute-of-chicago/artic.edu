@@ -78,6 +78,14 @@
     }
   }
 
+  & + .o-sticky-filters {
+    margin-top: 0;
+  }
+
+  .o-sticky-filters > &:first-child::before {
+    display: none;
+  }
+
   @include breakpoint('small+') {
     flex-wrap: nowrap;
 
@@ -726,6 +734,10 @@
   margin-left: 0;
   padding-top: 12px;
 
+  @include breakpoint(medium) {
+    padding-top: 16px;
+  }
+
   @include breakpoint('small-') {
     position: relative;
     z-index: 1;
@@ -771,5 +783,11 @@
   @include breakpoint('large+') {
     height: 48px;
     line-height: 48px;
+  }
+}
+
+.m-links-bar--centered\@xsmall {
+  @include breakpoint(xsmall) {
+    justify-content: center;
   }
 }
