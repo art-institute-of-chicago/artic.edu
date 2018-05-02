@@ -1,10 +1,12 @@
-
-
 .quote {
   position: relative;
   padding-top: 80px;
-  padding-bottom: .02px;
+  padding-bottom: 0.02px;
   color: $color__text--title;
+
+  &.o-blocks__block {
+    padding-bottom: 20px;
+  }
 }
 
 .quote::before {
@@ -35,7 +37,6 @@
 .quote .f-deck:first-child {
   @include tucked-align-top($f-deck);
 }
-
 
 .quote--editorial,
 .o-article--editorial .o-blocks .quote {
