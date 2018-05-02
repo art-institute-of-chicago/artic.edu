@@ -373,9 +373,9 @@
 @if (!empty($articlesAndPublications))
     @component('components.molecules._m-title-bar')
         @if (isset($articlesAndPublications['totalResults']) and isset($articlesAndPublications['allResultsHref']))
-            @slot('links', array(array('label' => 'See all '.$articlesAndPublications['totalResults'].' articles &amp; publications', 'href' => $articlesAndPublications['allResultsHref'])))
+            @slot('links', array(array('label' => 'See all '.$articlesAndPublications['totalResults'].' writings', 'href' => $articlesAndPublications['allResultsHref'])))
         @endif
-        Articles &amp; Publications
+        Writings
     @endcomponent
     @if (isset($articlesAndPublications['allResultsView']) and $articlesAndPublications['allResultsView'])
         @component('components.molecules._m-links-bar')
@@ -454,9 +454,9 @@
 @if (!empty($researchAndResources))
     @component('components.molecules._m-title-bar')
         @if (isset($researchAndResources['totalResults']) and isset($researchAndResources['allResultsHref']))
-            @slot('links', array(array('label' => 'See all '.$researchAndResources['totalResults'].' research &amp; resources', 'href' => $researchAndResources['allResultsHref'])))
+            @slot('links', array(array('label' => 'See all '.$researchAndResources['totalResults'].' resources', 'href' => $researchAndResources['allResultsHref'])))
         @endif
-        Research &amp; Resources
+        Resources
     @endcomponent
     @if (isset($researchAndResources['allResultsView']) and $researchAndResources['allResultsView'])
         @component('components.molecules._m-links-bar')

@@ -69,11 +69,11 @@ class ResearchController extends Controller
                 ],
                 [
                     'href' => route('articles_publications'),
-                    'label' => 'Articles & Publications',
+                    'label' => 'Writings',
                 ],
                 [
                     'href' => route('collection.research_resources'),
-                    'label' => 'Research & Resources',
+                    'label' => 'Resources',
                     'active' => true,
                 ],
             ],
