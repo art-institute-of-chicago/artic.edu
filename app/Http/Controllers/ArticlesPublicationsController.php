@@ -29,12 +29,12 @@ class ArticlesPublicationsController extends Controller
                 ],
                 [
                     'href' => route('articles_publications'),
-                    'label' => 'Articles & Publications',
+                    'label' => 'Writings',
                     'active' => true,
                 ],
                 [
                     'href' => route('collection.research_resources'),
-                    'label' => 'Research & Resources',
+                    'label' => 'Resources',
                 ],
             ],
             'featureHero' => $featureHero,

@@ -3491,8 +3491,8 @@ class StaticsController extends FrontController {
       array('label' => 'Pages (6)', 'href' => '#', 'active' => ($active === 'pages')),
       array('label' => 'Artworks (1,242)', 'href' => '#', 'active' => ($active === 'artworks')),
       array('label' => 'Exhibitions &amp; Events (6)', 'href' => '#', 'active' => ($active === 'exhibitionsAndEvents')),
-      array('label' => 'Articles &amp; Publications (3)', 'href' => '#', 'active' => ($active === 'articlesAndPublications')),
-      array('label' => 'Research &amp; Resources (11)', 'href' => '#', 'active' => ($active === 'researchAndResources')),
+      array('label' => 'Writings (3)', 'href' => '#', 'active' => ($active === 'articlesAndPublications')),
+      array('label' => 'Resources (11)', 'href' => '#', 'active' => ($active === 'researchAndResources')),
     );
   }
 
