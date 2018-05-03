@@ -426,6 +426,7 @@
   bottom: 0;
   width: 100vw;
   margin-left: -50vw;
+  overflow: hidden;
 }
 
 .m-article-header--super-hero .m-article-header__img::after {
@@ -573,6 +574,7 @@
   bottom: 0;
   width: 100vw;
   margin-left: -50vw;
+  overflow: hidden;
 }
 
 .m-article-header--generic .m-article-header__img img,
