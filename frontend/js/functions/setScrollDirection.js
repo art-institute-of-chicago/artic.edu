@@ -15,38 +15,38 @@ const setScrollDirection = function() {
 
     if (sT !== lastScrollTop && !machineScroll) {
       //triggerCustomEvent(document, 'scroll:active', { 'y': sT });
-      if (sT > 0 && !hideHeader){
+      if (sT > 100 && !hideHeader){
         dE.classList.add('s-header-hide');
         hideHeader = true;
-      } else if (sT <= 0 && hideHeader) {
+      } else if (sT <= 100 && hideHeader) {
         dE.classList.remove('s-header-hide');
         hideHeader = false;
       }
 
-      if (sT > 400 && !allowTopLink){
+      if (sT > 500 && !allowTopLink){
         dE.classList.add('s-allow-top-link');
         allowTopLink = true;
-      } else if (sT <= 400 && allowTopLink) {
+      } else if (sT <= 500 && allowTopLink) {
         dE.classList.remove('s-allow-top-link');
         allowTopLink = false;
       }
 
-      if (sT > lastScrollTop && scrollDirection !== 'down') {
+      if (sT > lastScrollTop + 10 && scrollDirection !== 'down') {
         scrollDirection = 'down';
         dE.classList.remove('s-scroll-direction-up');
         dE.classList.add('s-scroll-direction-down');
         //triggerCustomEvent(document, 'scroll:down', { 'y': sT });
-      } else if (sT < lastScrollTop && scrollDirection !== 'up') {
+      } else if (sT < lastScrollTop - 10 && scrollDirection !== 'up') {
         scrollDirection = 'up';
         dE.classList.remove('s-scroll-direction-down');
         dE.classList.add('s-scroll-direction-up');
         //triggerCustomEvent(document, 'scroll:up', { 'y': sT });
+      } else {
+        lastScrollTop = sT;
       }
-    }
-
-    //if (!machineScroll) {
+    } else {
       lastScrollTop = sT;
-    //}
+    }
 
     window.requestAnimationFrame(_init);
   }
