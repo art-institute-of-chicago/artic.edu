@@ -145,7 +145,6 @@
 
   .o-gallery__media {
     padding-bottom: 56px;
-    transition: height .4s .8s $bezier--marius-ease;
 
     @include breakpoint('small+') {
       display: flex;

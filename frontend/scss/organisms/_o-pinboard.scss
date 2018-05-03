@@ -89,7 +89,6 @@
       align-items: flex-start;
       justify-content: space-between;
       padding-top: 0;
-      transition: height .4s .8s $bezier--marius-ease;
     }
 
     .o-pinboard[class*="col@#{$name}"] > * {
