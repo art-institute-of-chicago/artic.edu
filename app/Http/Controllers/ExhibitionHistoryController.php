@@ -110,6 +110,5 @@ class ExhibitionHistoryController extends FrontController
     public function show($idSlug)
     {
         $resource = Exhibition::with('artworks')->find((Integer) $idSlug);
-        dd($resource);
     }
 }
