@@ -85,7 +85,16 @@ class Asset extends BaseApiModel
     public function scopeMultimediaAssets($query)
     {
         $params = [
-            'resources' => ['assets', 'sections', 'sites']
+            'resources' => ['images', 'sounds', 'texts', 'videos', 'sections', 'sites']
+        ];
+
+        return $query->rawQuery($params);
+    }
+
+    public function scopeEducationalAssets($query)
+    {
+        $params = [
+            'resources' => ['images', 'sounds', 'texts', 'videos']
         ];
 
         return $query->rawQuery($params);
@@ -118,11 +127,6 @@ class Asset extends BaseApiModel
                                 [
                                     "bool" => [
                                         "must" => [
-                                            [
-                                                "term" => [
-                                                    "artwork_ids" => $artworkId
-                                                ]
-                                            ],
                                             [
                                                 "term" => [
                                                     "is_multimedia_resource" => true

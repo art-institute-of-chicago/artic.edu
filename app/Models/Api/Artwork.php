@@ -76,7 +76,7 @@ class Artwork extends BaseApiModel
         return Asset::query()
             ->forceEndpoint('generalSearch')
             ->educationalForArtwork($this->id)
-            ->resources(['assets'])
+            ->educationalAssets()
             ->forPage(null, self::RELATED_MULTIMEDIA)
             ->get(["id","title","content","api_model","is_multimedia_resource", "is_educational_resource"]);
     }
