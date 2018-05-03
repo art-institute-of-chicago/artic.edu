@@ -37,17 +37,22 @@ class ArtworkPresenter extends BasePresenter
 
     }
 
+    /**
+     * Here blocks will be built with all data to be presented properly
+     * as it's used by the views.
+     * TODO: Views should be refactored for simplicity.
+     *
+     */
     public function blocks()
     {
         $blocks = [];
 
-        if (!empty($this->entity->description)) {
+        if ($this->entity->description) {
             array_push($blocks, [
               "type"    => 'text',
               "content" => $this->entity->description
             ]);
         }
-
 
         if ($this->entity->is_on_view) {
             array_push($blocks, [
@@ -69,12 +74,23 @@ class ArtworkPresenter extends BasePresenter
     {
         $details = [];
 
-        // if ($this->entity->artist_pivots != null && $this->entity->artist_pivots->count() > 0) {
-        //     $details[] = [
-        //         'key' => str_plural('Artist', $this->entity->artist_pivots->count()),
-        //         'value' => $this->entity->artist_pivots->implode('artist_title', ', ')
-        //     ];
-        // }
+        if ($this->entity->artist_pivots != null && count($this->entity->artist_pivots) > 0) {
+            $artistLinks = collect($this->entity->artist_pivots)->map(function($item) {
+                return ['label' => $item->artist_title, 'href' => route('artists.show', $item->artist_id)];
+            });
+            $details[] = [
+                'key'   => str_plural('Artist', count($this->entity->artist_pivots)),
+                'links' => $artistLinks
+            ];
+        }
+
+        if ($this->entity->place_pivots != null && count($this->entity->place_pivots) > 0) {
+            $places = collect($this->entity->place_pivots)->pluck('place_title')->toArray();
+            $details[] = [
+                'key'   => str_plural('Place', count($this->entity->place_pivots)),
+                'value' => join(', ', $places)
+            ];
+        }
 
         if (!empty($this->entity->place_of_origin)) {
             $details[] = [
@@ -82,14 +98,6 @@ class ArtworkPresenter extends BasePresenter
                 'value' => $this->entity->place_of_origin
             ];
         }
-
-        // TODO: To be integrated when place_pivots contains any data.
-        // if ($this->entity->place_pivots != null && $this->entity->place_pivots->count() > 0) {
-        //     $details[] = [
-        //         'key' => str_plural('Artist', $this->entity->place_pivots->count()),
-        //         'value' => $this->entity->place_pivots->implode('place_title', ', ')
-        //     ];
-        // }
 
         if (!empty($this->entity->alt_titles)) {
             $details[] = [
