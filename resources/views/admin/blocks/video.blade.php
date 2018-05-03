@@ -31,7 +31,7 @@
 
 @formField('input', [
     'name' => 'caption_title',
-    'label' => 'Caption Title'
+    'label' => 'Caption title'
 ])
 
 
