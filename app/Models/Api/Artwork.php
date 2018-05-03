@@ -53,6 +53,7 @@ class Artwork extends BaseApiModel
     public function getMultimediaElementsAttribute()
     {
         return Asset::query()
+            ->forceEndpoint('generalSearch')
             ->multimediaForArtwork($this->id)
             ->multimediaAssets()
             ->forPage(null, self::RELATED_MULTIMEDIA)
@@ -62,6 +63,7 @@ class Artwork extends BaseApiModel
     public function getEducationalResourcesAttribute()
     {
         return Asset::query()
+            ->forceEndpoint('generalSearch')
             ->educationalForArtwork($this->id)
             ->resources(['assets'])
             ->forPage(null, self::RELATED_MULTIMEDIA)

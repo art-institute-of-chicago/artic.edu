@@ -9,7 +9,8 @@ class Asset extends BaseApiModel
     protected $endpoints = [
         'collection' => '/api/v1/assets',
         'resource'   => '/api/v1/assets/{id}',
-        'search'     => '/api/v1/assets/search'
+        'search'     => '/api/v1/assets/search',
+        'generalSearch' => '/api/v1/search'
     ];
 
     // Elements created to ease integration with blade views when converting to an array
