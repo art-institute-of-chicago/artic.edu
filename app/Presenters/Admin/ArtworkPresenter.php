@@ -3,6 +3,7 @@
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
+use Carbon\Carbon;
 
 class ArtworkPresenter extends BasePresenter
 {
@@ -76,39 +77,69 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->artist_pivots != null && count($this->entity->artist_pivots) > 0) {
             $artistLinks = collect($this->entity->artist_pivots)->map(function($item) {
-                return ['label' => $item->artist_title, 'href' => route('artists.show', $item->artist_id)];
+                $title = $item->role_title ? $item->artist_title . " ({$item->role_title})" : $item->artist_title;
+                return ['label' => $title, 'href' => route('artists.show', $item->artist_id)];
             });
             $details[] = [
                 'key'   => str_plural('Artist', count($this->entity->artist_pivots)),
                 'links' => $artistLinks
             ];
+        } else {
+            if ($this->entity->artist_id) {
+                $details[] = [
+                    'key'   => 'Artist',
+                    'links' => [['label' => $this->entity->artist_title, 'href' => route('artists.show', $this->entity->artist_id)]]
+                ];
+            } else {
+                $details[] = [
+                    'key'   => 'Artist',
+                    'value' => $this->entity->artist_title ?? $this->entity->artist_display
+                ];
+            }
         }
 
         if ($this->entity->place_pivots != null && count($this->entity->place_pivots) > 0) {
-            $places = collect($this->entity->place_pivots)->pluck('place_title')->toArray();
+            $places = collect($this->entity->place_pivots)->map(function($item) {
+                $title = $item->place_title;
+                return  $item->qualifier_title ? $title . " ({$item->qualifier_title})" : $title;
+            });
+
             $details[] = [
                 'key'   => str_plural('Place', count($this->entity->place_pivots)),
-                'value' => join(', ', $places)
+                'value' => join(', ', $places->toArray())
             ];
+        } else {
+            if (!empty($this->entity->place_of_origin)) {
+                $details[] = [
+                    'key' => 'Origin',
+                    'value' => $this->entity->place_of_origin
+                ];
+            }
         }
 
-        if (!empty($this->entity->place_of_origin)) {
-            $details[] = [
-                'key' => 'Origin',
-                'value' => $this->entity->place_of_origin
-            ];
-        }
+        if ($this->entity->dates != null && count($this->entity->dates) > 0) {
+            $dates = collect($this->entity->dates)->map(function($item) {
+                $joined = join('/', [ Carbon::parse($item->date_earliest)->year, Carbon::parse($item->date_latest)->year]);
+                return join(' ', [$item->qualifier_title, $joined]);
+            });
 
-        if (!empty($this->entity->alt_titles)) {
             $details[] = [
-                'key' => 'Alternate Names',
-                'value' => join($this->entity->alt_titles, ', ')
+                'key'   => str_plural('Date', count($this->entity->dates)),
+                'value' => join(', ', $dates->toArray())
             ];
+        } else {
+            if (!empty($this->entity->date_block)) {
+                $details[] = [
+                    'key' => 'Date',
+                    'value' => $this->entity->date_block
+                ];
+            }
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Date'             => $this->entity->date_display,
-            'Medium'           => $this->entity->medium,
+            'Title'            => $this->entity->all_titles,
+            'Medium'           => $this->entity->medium_display,
+            'Inscriptions'     => $this->entity->inscriptions,
             'Dimensions'       => $this->entity->dimensions,
             'Credit line'      => $this->entity->credit_line,
             'Reference Number' => $this->entity->main_reference_number,

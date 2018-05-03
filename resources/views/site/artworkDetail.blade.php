@@ -30,13 +30,15 @@
             @slot('font', 'f-module-title-1')
             On View
         @endcomponent
-        @component('components.blocks._text')
-            @slot('variation', 'u-show@large+')
-            @slot('tag','p')
-            @slot('font', 'f-secondary')
-            <a href="{!! route('galleries.show', [$item->gallery_id]) !!}">{{ $item->isOnViewTitle }}</a>
-        @endcomponent
     @endif
+
+    @component('components.blocks._text')
+        @slot('variation', 'u-show@large+')
+        @slot('tag','p')
+        @slot('font', 'f-secondary')
+        <a href="{!! route('departments.show', [$item->department_id]) !!}">{{ $item->detailDepartmentTitle }}</a>
+        <a href="{!! route('galleries.show', [$item->gallery_id]) !!}">{{ $item->gallery_title }}</a>
+    @endcomponent
   </div>
 
   <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">

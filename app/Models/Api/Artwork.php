@@ -47,7 +47,18 @@ class Artwork extends BaseApiModel
 
     public function getSubtitleAttribute()
     {
-        return join(', ', array_filter([$this->artist_display ?? $this->place_of_origin, $this->date_display]));
+        return join(', ', array_filter([$this->artist_display, $this->date_display]));
+    }
+
+    public function getAllTitlesAttribute()
+    {
+        $titles = collect($this->title)->push($this->alt_titles)->filter()->flatten();
+        return join(', ', $titles->toArray());
+    }
+
+    public function getDateBlockAttribute()
+    {
+        return join('/', array_filter([$this->date_start, $this->date_end]));
     }
 
     public function getMultimediaElementsAttribute()
@@ -83,6 +94,11 @@ class Artwork extends BaseApiModel
     public function getIsOnViewTitleAttribute()
     {
         return join(', ', array_filter([$this->collection_status, $this->gallery_title]));
+    }
+
+    public function getDetailDepartmentTitleAttribute()
+    {
+        return join(' ', array_filter([$this->department_id, $this->department_title]));
     }
 
     public function getGalleryImagesAttribute()
