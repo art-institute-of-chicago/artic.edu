@@ -124,9 +124,12 @@ class CollectionController extends BaseScopedController
     {
         // Collection autocomplete is just text.
         // So we use a raw query directly.
-        $results = \App\Models\Api\Search::search(request('q'))->forceEndpoint('autocomplete')->resources(['artworks'])->getRaw();
+        $results = \App\Models\Api\Search::search(request('q'))
+            ->forceEndpoint('autocomplete')
+            ->resources(['artworks', 'agents'])
+            ->getRaw();
 
-        $items   = collect([]);
+        $items = collect([]);
 
         foreach($results as $label) {
             $items->push([
