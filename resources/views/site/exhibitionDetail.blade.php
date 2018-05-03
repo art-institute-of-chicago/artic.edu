@@ -15,6 +15,7 @@
     @slot('type', $item->present()->exhibitionType)
     @slot('intro', $item->header_copy)
     @slot('img', $item->imageAsArray('hero'))
+    @slot('credit', $item->hero_caption)
   @endcomponent
 
   <div class="o-article__primary-actions">
