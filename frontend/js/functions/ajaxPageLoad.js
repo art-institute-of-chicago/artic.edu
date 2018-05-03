@@ -310,18 +310,29 @@ const ajaxPageLoad = function() {
       var ajaxable = ajaxableLink(link, event);
       if (ajaxable) {
         event.preventDefault();
-        triggerCustomEvent(document, 'history:replacestate', {
-          url: location.href,
-          type: 'page',
-          scrollY: window.scrollY || 0,
-        });
-        loadDocument({
-          href: ajaxable.href,
-          type: 'page',
-          popstate: false,
-          link: link,
-          ajaxScrollTarget: link.getAttribute('data-ajax-scroll-target') ? link.getAttribute('data-ajax-scroll-target') : null
-        });
+        if (!ajaxing) {
+          // give immediate feedback to checkboxes
+          if (link.classList.contains('checkbox')) {
+            if (link.classList.contains('s-checked')) {
+              link.classList.remove('s-checked');
+            } else {
+              link.classList.add('s-checked');
+            }
+          }
+          // then start the ajax process
+          triggerCustomEvent(document, 'history:replacestate', {
+            url: location.href,
+            type: 'page',
+            scrollY: window.scrollY || 0,
+          });
+          loadDocument({
+            href: ajaxable.href,
+            type: 'page',
+            popstate: false,
+            link: link,
+            ajaxScrollTarget: link.getAttribute('data-ajax-scroll-target') ? link.getAttribute('data-ajax-scroll-target') : null
+          });
+        }
       }
     }
   }
