@@ -1,4 +1,5 @@
 <form class="o-form o-blocks{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($action)) ? ' action="'.$action.'"' : '' !!}{!! (isset($method)) ? ' method="'.$method.'"' : '' !!}>
+    @csrf
     @component('components.blocks._blocks')
         @slot('blocks', $blocks)
     @endcomponent
