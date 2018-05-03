@@ -324,7 +324,6 @@
 
 
 .m-article-header--hero {
-  min-height: 95vh;
   padding-top: 0;
 
   @include breakpoint('large+') {
@@ -382,9 +381,12 @@
   z-index: 2;
   flex-flow: column nowrap;
   justify-content: center;
+  align-items: center;
+  min-height: 95vh;
 }
 
 .m-article-header--hero .m-article-header__text .title {
+  width: 100%; // ie11 text wrap fix
   text-align: center;
   color: $color__text--title-contrast;
 }
