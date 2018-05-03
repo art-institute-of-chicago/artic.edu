@@ -9,14 +9,30 @@
   bottom: 0;
   width: 300px;
   flex-flow: column nowrap;
-  border-right: 1px solid $color__rules--primary;
   background: $color__bg;
 
   @include breakpoint('medium+') {
     position: static;
     width: auto;
     background-color: transparent;
-    border-right: 0 none;
+  }
+}
+
+.o-collection-filters::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 100%;
+  top: 0;
+  bottom: 100%;
+  background-color: $color__white;
+  opacity: 0;
+  transition: .15s opacity;
+
+  @include breakpoint('medium+') {
+    content: none;
+    display: none;
   }
 }
 

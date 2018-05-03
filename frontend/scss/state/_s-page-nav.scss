@@ -31,7 +31,15 @@
 
     @include breakpoint('small-') {
       opacity: 1;
-      background-color: rgba($color__black, .6);
+      background-color: rgba($color__bg--tertiary, .25);
+    }
+  }
+
+  .o-collection-filters::after {
+    @include breakpoint('small-') {
+      right: 0;
+      bottom: 0;
+      opacity: .2;
     }
   }
 }

@@ -2,7 +2,7 @@
 
     <div class="o-collection-filters__scroll-area">
 
-        @if (!empty($activeFilters))
+        @if (!empty($activeFilters) and sizeof($activeFilters) > 0)
         <div class="m-active-filters o-collection-filters__active-filters">
             <ul class="m-active-filters__items">
             @foreach ($activeFilters as $link)
