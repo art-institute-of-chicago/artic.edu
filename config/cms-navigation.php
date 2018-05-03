@@ -109,7 +109,7 @@ return [
                 'module' => true,
             ],
             'articles_publications' => [
-                'title' => 'Articles & Publications',
+                'title' => 'Writings',
                 'route' => 'admin.collection.articles_publications.landing',
                 'secondary_navigation' => [
                     'landing' => [
@@ -147,7 +147,7 @@ return [
                 ],
             ],
             'research_resources' => [
-                'title' => 'Research and Resources',
+                'title' => 'Resources',
                 'route' => 'admin.collection.research_resources.landing',
                 'secondary_navigation' => [
                     'landing' => [
