@@ -22,7 +22,7 @@
     "styles": "scss/",
     "scripts": "js/",
     "dist": "public/dist/",
-    "toolkit": "toolkit/",
+    "toolkit": "public/styleguide/",
     "iconsTemplate": "frontend/iconsTemplate.scss"
   },
   "config": {
