@@ -36,7 +36,7 @@ var dateRangeValues = ['8000BC','7000BC','6000BC','5000BC','4000BC','3000BC','20
 
 .range-slider {
   position: relative;
-  max-height: 185px;
+  max-height: 188px;
   overflow: hidden;
 }
 
@@ -47,7 +47,7 @@ var dateRangeValues = ['8000BC','7000BC','6000BC','5000BC','4000BC','3000BC','20
 }
 
 .range-slider__custom {
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
 .range-slider__custom-row {
@@ -73,7 +73,7 @@ var dateRangeValues = ['8000BC','7000BC','6000BC','5000BC','4000BC','3000BC','20
   @extend %f-tag;
   @include untuck;
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 16px;
   padding: 8px 12px;
   border: 0;
   border-radius: $border-radius;
@@ -87,7 +87,7 @@ var dateRangeValues = ['8000BC','7000BC','6000BC','5000BC','4000BC','3000BC','20
 }
 
 .range-slider.s-capped {
-  max-height: 62px;
+  max-height: 64px;
 }
 
 .range-slider.s-capped + .m-filters__show-more-toggle svg {

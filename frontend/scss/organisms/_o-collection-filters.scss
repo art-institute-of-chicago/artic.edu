@@ -67,7 +67,7 @@
 }
 
 .o-collection-filters .o-accordion__panel-content {
-  padding-bottom: 20px;
+  padding-bottom: 16px;
 
   @include breakpoint('medium+') {
     padding-bottom: 32px;
@@ -77,18 +77,28 @@
 .o-collection-filters .dropdown {
   display: block;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 16px;
+  margin-bottom: -4px;
 }
 
-.o-collection-filters .dropdown button {
+.o-collection-filters .dropdown__trigger {
   display: block;
   width: 100%;
 }
 
-.o-collection-filters .range-slider {
-  @include breakpoint('medium+') {
-    margin-top: 8px;
+.o-collection-filters .dropdown__trigger.f-secondary,
+.o-collection-filters .dropdown__trigger.f-link {
+  padding-top: 9px;
+  padding-bottom: 11px;
+
+  @include breakpoint('large+') {
+    padding-top: 7px;
+    padding-bottom: 15px;
   }
+}
+
+.o-collection-filters .range-slider {
+  margin-top: 8px;
 }
 
 .o-collection-filters__filters {
@@ -102,7 +112,7 @@
 .o-collection-filters__close {
   flex: 0 0 auto;
   width: 100%;
-  padding: 19px 20px 20px;
+  padding: 11px 12px 12px;
   border-top: 1px solid $color__rules--primary;
   background: $color__bg;
 

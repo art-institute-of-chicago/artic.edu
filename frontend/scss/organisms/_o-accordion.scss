@@ -32,12 +32,8 @@
 }
 
 .o-accordion__trigger.f-tag-2 {
-  padding-bottom: 16px - 1px;
+  padding-bottom: 24px - 1px;
   border-bottom: 1px solid $color__rules--primary;
-
-  @include breakpoint('medium+') {
-    padding-bottom: 24px - 1px;
-  }
 }
 
 .o-accordion__trigger.f-module-title-2:not(:first-child),
@@ -51,6 +47,10 @@
   @include breakpoint('medium+') {
     margin-top: 48px;
   }
+}
+
+.o-accordion__trigger.f-tag-2 .icon--arrow {
+  margin-top: -16px;
 }
 
 .o-accordion__trigger.f-list-4 {

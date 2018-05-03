@@ -93,6 +93,10 @@
     @slot('error', 'Error message')
   @endcomponent
 </p>
+<p style="margin-top: 20px;">
+  <a href="#" class="checkbox f-secondary">Lorem <em>(13)</em></a>
+  <a href="#" class="checkbox f-secondary">Ipsum <em>(12)</em></a>
+</p>
 @component('components.atoms._hr')
 @endcomponent
 

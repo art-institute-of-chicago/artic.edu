@@ -19,7 +19,7 @@
     <label for="option3">Option 3 disabled</label>
   </span>
 </span>
-<a href="#" class="checkbox f-secondary">Lorem <i>(1312)</i></a>
+<a href="#" class="checkbox f-secondary">Lorem <em>(1312)</em></a>
 ```
 
 
@@ -47,7 +47,9 @@ a.checkbox {
 }
 
 .checkbox label em,
-a.checkbox em {
+a.checkbox em,
+.checkbox label i,
+a.checkbox i {
   color: $color__text--forms;
   font-style: normal;
 }

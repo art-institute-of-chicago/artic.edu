@@ -43,21 +43,33 @@
 }
 
 
-
 .m-filters__list {
   margin-top: 0;
+  padding-top: 11px;
+  padding-bottom: 1px;
 
   @include breakpoint('medium+') {
     padding-top: 12px;
+    padding-bottom: 0;
   }
 
   form + & {
-    padding-top: 4px;
+    padding-top: 7px;
+    padding-bottom: 1px;
+
+    @include breakpoint('medium+') {
+      padding-top: 4px;
+      padding-bottom: 0;
+    }
   }
 }
 
 .m-filters__list > li {
-  margin-top: 4px;
+  margin-top: 8px;
+
+  @include breakpoint('medium+') {
+    margin-top: 4px;
+  }
 }
 
 .m-filters__list.s-capped > li:nth-child(5) ~ li,
@@ -91,7 +103,7 @@
 .m-filters__show-more-toggle svg {
   position: absolute;
   left: 0;
-  top: 6px;
+  top: 2px;
   width: 16px;
   height: 16px;
   transform: rotate(-90deg);
@@ -100,4 +112,9 @@
   .m-filters__list.s-capped + & {
     transform: rotate(90deg);
   }
+}
+
+.m-filters__show-more-toggle.f-secondary span {
+  position: relative;
+  top: -1px;
 }
