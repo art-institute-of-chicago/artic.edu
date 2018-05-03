@@ -28,6 +28,24 @@ class EmbedConverterService
         return '';
     }
 
+    public function getYoutubeThumbnailImage($url)
+    {
+        if ($id = $this->getYouTubeIdCode($url)) {
+            return 'https://img.youtube.com/vi/' . $id . '/mqdefault.jpg';
+        }
+    }
+
+    /**
+     * getYouTubeIDCode description
+     * @param  string $url YouTube video url, eg: https://www.youtube.com/watch?v=SZFVhIji7sY
+     * @return string youtube ID
+     */
+    private function getYouTubeIdCode($url)
+    {
+        preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+        return $match[1] ?? null;
+    }
+
     /**
      * getYouTubeEmbedCode description
      * @param  string $url YouTube video url, eg: https://www.youtube.com/watch?v=SZFVhIji7sY
@@ -35,9 +53,11 @@ class EmbedConverterService
      */
     private function getYouTubeEmbedCode($url)
     {
-        preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
-        $videoId = $match[1];
-        return '<iframe src="https://www.youtube.com/embed/'.$videoId.'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+        $videoId = $this->getYouTubeIdCode($url);
+
+        if ($videoId) {
+            return '<iframe src="https://www.youtube.com/embed/'.$videoId.'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+        }
     }
 
     /**

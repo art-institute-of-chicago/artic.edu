@@ -23,6 +23,15 @@ class Asset extends BaseApiModel
         return '<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/348258574&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>';
     }
 
+    public function imageFront($role = 'hero', $crop = 'default')
+    {
+        $image = \EmbedConverter::getYoutubeThumbnailImage($this->content);
+
+        if (!empty($image)) {
+            return aic_convertFromImageProxy($image, ['source' => 'misc']);
+        }
+    }
+
     public function getVideoContentAttribute()
     {
         return \EmbedConverter::convertUrl($this->content);

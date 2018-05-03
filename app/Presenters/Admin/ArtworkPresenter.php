@@ -171,6 +171,7 @@ class ArtworkPresenter extends BasePresenter
             'blocks' => []
         ];
 
+
         foreach($resultsByType as $type => $medias) {
             $localBlock = [];
 
