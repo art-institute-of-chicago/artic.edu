@@ -1,5 +1,5 @@
-<nav class="m-links-bar" data-behavior="">
-    <ul class="m-links-bar__items-primary" data-links-bar-primary="">
+<nav class="m-links-bar">
+    <ul class="m-links-bar__items-primary" data-links-bar-primary>
         @foreach ($tags as $category => $items)
             @foreach ($items as $id => $name)
 
@@ -10,12 +10,10 @@
                 @else
                     <li class="m-links-bar__item {{ (request()->input("exFurther-{$category}") == $id) ? 's-active' : '' }} ">
                 @endif
-
-                    <a class="m-links-bar__item-trigger f-buttons" href="{!! currentUrlWithQuery(["exFurther-{$category}" => $id]) !!}">
+                    <a class="m-links-bar__item-trigger f-link" href="{!! currentUrlWithQuery(["exFurther-{$category}" => $id]) !!}" data-ajax-tab-target="exploreFurther">
                         {{ ucfirst($name) }}
                     </a>
                 </li>
-
             @endforeach
         @endforeach
     </ul>

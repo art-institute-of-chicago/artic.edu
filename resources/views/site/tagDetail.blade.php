@@ -103,6 +103,7 @@
 @endif
 
 @if ($exploreFurther)
+<div id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further
     @endcomponent
@@ -136,6 +137,7 @@
             @endcomponent
         @endforeach
     @endcomponent
+</div>
 @endif
 
 @if ($item->exhibitions)

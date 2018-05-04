@@ -125,6 +125,7 @@
 </article>
 
 @if ($exploreFurther)
+<div id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further
     @endcomponent
@@ -163,6 +164,7 @@
             @endcomponent
         @endforeach
     @endcomponent
+</div>
 @endif
 
 <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>

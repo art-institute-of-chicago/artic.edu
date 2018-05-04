@@ -523,42 +523,52 @@
     @endcomponent
 @endif
 
-@if ($item->exploreFuther)
+@if ($item->exploreFurther)
+<div id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further
     @endcomponent
     @component('components.molecules._m-links-bar')
         @slot('variation', '')
-        @slot('linksPrimary', $item->exploreFuther['nav'])
+        @slot('linksPrimary', $item->exploreFurther['nav'])
     @endcomponent
-    @component('components.atoms._hr')
-        @slot('variation','hr--flush-top')
-    @endcomponent
-    @component('components.organisms._o-pinboard')
-        @slot('cols_small','2')
-        @slot('cols_medium','3')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @slot('maintainOrder','false')
-        @foreach ($item->exploreFuther['items'] as $item)
-            @component('components.molecules._m-listing----'.$item->type)
-                @slot('variation', 'o-pinboard__item')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_gridListingImageSizes(array(
-                          'xsmall' => '1',
-                          'small' => '2',
-                          'medium' => '3',
-                          'large' => '3',
-                          'xlarge' => '3',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endcomponent
+    @if (!empty($article->exploreFurther['items']))
+        @component('components.organisms._o-pinboard')
+            @slot('cols_small','2')
+            @slot('cols_medium','3')
+            @slot('cols_large','3')
+            @slot('cols_xlarge','3')
+            @slot('maintainOrder','false')
+            @foreach ($article->exploreFurther['items'] as $item)
+                @component('components.molecules._m-listing----'.$item->type)
+                    @slot('variation', 'o-pinboard__item')
+                    @slot('item', $item)
+                    @slot('imageSettings', array(
+                        'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
+                        'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
+                        'srcset' => array(200,400,600),
+                        'sizes' => aic_gridListingImageSizes(array(
+                              'xsmall' => '1',
+                              'small' => '2',
+                              'medium' => '3',
+                              'large' => '3',
+                              'xlarge' => '3',
+                        )),
+                    ))
+                @endcomponent
+            @endforeach
+        @endcomponent
+    @endif
+    @if (!empty($article->exploreFurther['tags']))
+        @component('components.molecules._m-multi-col-list')
+            @slot('cols_small','2')
+            @slot('cols_medium','3')
+            @slot('cols_large','4')
+            @slot('cols_xlarge','4')
+            @slot('items',$article->exploreFurther['tags'])
+        @endcomponent
+    @endif
+</div>
 @endif
 
 <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
