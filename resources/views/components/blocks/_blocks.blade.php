@@ -356,6 +356,8 @@
                 @component('components.organisms._o-form')
                     @slot('variation', 'o-blocks__block '.($block['variation'] ?? ''))
                     @slot('blocks', $block['blocks'] ?? null)
+                    @slot('action', $block['action'] ?? null)
+                    @slot('method', $block['method'] ?? null)
                     @slot('actions', $block['actions'] ?? null)
                 @endcomponent
             @endif
@@ -372,6 +374,7 @@
                 @component('components.atoms._label')
                   @slot('optional', $block['$optional'] ?? null)
                   @slot('hint', $block['$hint'] ?? null)
+                  @slot('error', $block['error'] ?? null)
                   {!! $block['label'] !!}
                 @endcomponent
             @endif
@@ -412,6 +415,7 @@
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('value', $block['value'] ?? null)
                     @slot('options', $block['options'] ?? null)
                     @slot('error', $block['error'] ?? null)
                     @slot('optional', $block['optional'] ?? null)
@@ -425,7 +429,8 @@
                 @component('components.atoms._checkbox')
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
-                    @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('name', $block['name'] ?? 'i_'.$loop->iteration)
+                    @slot('value', $block['value'] ?? null)
                     @slot('error', $block['error'] ?? null)
                     @slot('optional', $block['optional'] ?? null)
                     @slot('hint', $block['hint'] ?? null)
@@ -440,6 +445,7 @@
                     @slot('variation', $block['variation'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['name'] ?? 'i_'.$loop->iteration)
+                    @slot('value', $block['value'] ?? null)
                     @slot('error', $block['error'] ?? null)
                     @slot('optional', $block['optional'] ?? null)
                     @slot('hint', $block['hint'] ?? null)

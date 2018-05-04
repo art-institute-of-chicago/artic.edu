@@ -10,7 +10,7 @@
     <span class="select__select" data-behavior="formSelectFocus">
       <select class="f-secondary" name="{{ $name ?? '' }}" id="{{ $id ?? '' }}" {{ $disabled ?? '' }}>
         @foreach ($options as $option)
-            <option{{ (isset($option['value'])) ? ' value="'.$option['value'].'"' : '' }}>{{ $option['label'] ?? '' }}</option>
+            <option {{ ($option['value'] == $value) ? 'selected' : '' }} {!! (isset($option['value'])) ? ' value="'.$option['value'].'"' : '' !!}>{{ $option['label'] ?? '' }}</option>
         @endforeach
       </select>
     </span>
