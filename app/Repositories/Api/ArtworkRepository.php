@@ -12,6 +12,7 @@ use App\Repositories\Api\BaseApiRepository;
 class ArtworkRepository extends BaseApiRepository
 {
     const PER_PAGE_EXPLORE_FURTHER = 8;
+    const EXPLORE_FURTHER_TAGS = 55;
 
     public function __construct(Artwork $model)
     {
@@ -57,6 +58,23 @@ class ArtworkRepository extends BaseApiRepository
         return $query->getSearch(self::PER_PAGE_EXPLORE_FURTHER);
     }
 
+    public function exploreFurtherAllTags()
+    {
+       // Build All Tags tab
+        $exploreFurtherTags = Search::query()
+            ->forceEndpoint('search')
+            ->resources(['artworks'])
+            ->aggregationClassifications(self::EXPLORE_FURTHER_TAGS)
+            ->forPage(1, 0)
+            ->get();
+
+        $buckets = $exploreFurtherTags->getMetadata('aggregations')->classifications->buckets;
+
+        return collect($buckets)->mapWithKeys(function ($item) {
+            return [$item->key => ucfirst($item->key)];
+        });
+    }
+
     public function exploreFurtherTags($item)
     {
         $tags = [];
@@ -83,6 +101,8 @@ class ArtworkRepository extends BaseApiRepository
                 return [$item['id'] => $item['title']];
             });
         }
+
+        $tags['all'] = [true => 'All Tags'];
 
         return $tags;
     }
