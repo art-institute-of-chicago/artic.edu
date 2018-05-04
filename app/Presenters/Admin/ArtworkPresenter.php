@@ -86,9 +86,10 @@ class ArtworkPresenter extends BasePresenter
             ];
         } else {
             if ($this->entity->artist_id) {
+                $label = $this->entity->artist_title ?? $this->entity->artist_display;
                 $details[] = [
                     'key'   => 'Artist',
-                    'links' => [['label' => $this->entity->artist_title, 'href' => route('artists.show', $this->entity->artist_id)]]
+                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id)]]
                 ];
             } else {
                 $details[] = [
