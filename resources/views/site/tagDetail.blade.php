@@ -68,7 +68,7 @@
     @endcomponent
 @endif
 
-@if ($item->relatedArticles)
+@if ($item->articles)
     @component('components.molecules._m-title-bar')
         Related
     @endcomponent
@@ -82,7 +82,7 @@
         @slot('cols_medium','3')
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
-        @foreach ($item->relatedArticles as $item)
+        @foreach ($item->articles as $item)
             @component('components.molecules._m-listing----article')
                 @slot('item', $item)
                 @slot('imageSettings', array(
