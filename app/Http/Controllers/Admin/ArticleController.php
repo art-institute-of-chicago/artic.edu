@@ -15,7 +15,7 @@ class ArticleController extends ModuleController
             'thumb' => true,
             'variant' => [
                 'role' => 'hero',
-                'crop' => 'square',
+                'crop' => 'default',
             ],
         ],
         'title' => [
