@@ -39,7 +39,7 @@
     ])
 
     @formField('browser', [
-        'routePrefix' => 'visit',
+        'routePrefix' => 'general',
         'max' => 5,
         'moduleName' => 'shopItems',
         'name' => 'homeShopItems',

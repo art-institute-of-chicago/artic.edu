@@ -17,14 +17,6 @@ Route::group(['prefix' => 'visit'], function () {
     Route::module('feeCategories');
     Route::name('visit.fees')->get('fees', 'FeeController@index');
     Route::name('visit.fees.update')->post('fees', 'FeeController@update');
-
-    Route::module('galleries');
-    Route::name('visit.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');
-
-    Route::module('departments');
-    Route::name('visit.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
-
-    Route::module('shopItems');
 });
 
 Route::group(['prefix' => 'exhibitions_events'], function () {
@@ -73,6 +65,12 @@ Route::group(['prefix' => 'collection'], function () {
 Route::group(['prefix' => 'generic'], function () {
     Route::module('genericPages');
     Route::module('pressReleases');
+
+    Route::module('galleries');
+    Route::name('generic.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');
+
+    Route::module('departments');
+    Route::name('generic.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
 });
 
 Route::group(['prefix' => 'general'], function () {
@@ -81,6 +79,7 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('pageCategories');
     Route::module('catalogCategories');
     Route::module('resourceCategories');
+    Route::module('shopItems');
 });
 
 Route::get('/', function () {

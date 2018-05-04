@@ -111,7 +111,7 @@
         ])
 
         @formField('browser', [
-            'routePrefix' => 'visit',
+            'routePrefix' => 'general',
             'moduleName' => 'shopItems',
             'name' => 'shopItems',
             'label' => 'Related offers',
