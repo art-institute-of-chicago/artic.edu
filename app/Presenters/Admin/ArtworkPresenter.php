@@ -208,6 +208,24 @@ class ArtworkPresenter extends BasePresenter
             'provenance_text'     => 'Provenance'
         ]);
 
+        if ($this->entity->catalogues)
+        {
+            $rows = $this->entity->catalogues->map(function($item) {
+                $content = "Title: {$item->catalogue_title} - Catalogue number: {$item->number} - ID: {$item->catalogue_id}";
+                return [
+                    "type" => 'text',
+                    "content" => '<p>'. $content .'</p>'
+                ];
+            });
+
+            $block = [
+                'title'  => 'Catalogue Raisonnés',
+                'blocks' => $rows
+            ];
+
+            $content[] = $block;
+        }
+
         if ($this->entity->multimediaElements && !$this->entity->multimediaElements->isEmpty()) {
             $resultsByType = $this->entity->multimediaElements->groupBy('api_model')->sortKeys();
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Multimedia');

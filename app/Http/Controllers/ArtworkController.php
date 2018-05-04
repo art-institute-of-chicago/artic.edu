@@ -18,7 +18,7 @@ class ArtworkController extends FrontController
     public function show($idSlug, RecentlyViewedService $recentlyViewed)
     {
         $item = Artwork::query()
-            ->include(['artist_pivots', 'place_pivots', 'dates'])
+            ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
             ->findOrFail((Integer) $idSlug);
 
         if (empty($item)) {

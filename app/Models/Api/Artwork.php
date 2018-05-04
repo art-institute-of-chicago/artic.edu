@@ -56,6 +56,12 @@ class Artwork extends BaseApiModel
         return join(', ', $titles->toArray());
     }
 
+    public function getCataloguesAttribute()
+    {
+        if (!empty($this->catalogue_pivots))
+            return collect($this->catalogue_pivots);
+    }
+
     public function getDateBlockAttribute()
     {
         return join('/', array_filter([$this->date_start, $this->date_end]));
