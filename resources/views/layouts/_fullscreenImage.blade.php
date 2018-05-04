@@ -1,11 +1,13 @@
 <div class="o-fullscreen-image" id="fullscreenImage" data-behavior="imageZoomArea">
-    <img>
+    <img class="o-fullscreen-image__img">
+    <div class="o-fullscreen-image__osd" id="openseadragon"></div>
     <ul class="o-fullscreen-image__img-actions">
       <li>
         @component('components.atoms._btn')
             @slot('variation', 'btn--septenary btn--icon-sq')
             @slot('font', '')
             @slot('icon', 'icon--zoom-in--24')
+            @slot('id','osd_zoomInButton')
             @slot('dataAttributes', 'data-fullscreen-zoom-in')
         @endcomponent
       </li>
@@ -14,6 +16,7 @@
             @slot('variation', 'btn--septenary btn--icon-sq')
             @slot('font', '')
             @slot('icon', 'icon--zoom-out--24')
+            @slot('id','osd_zoomOutButton')
             @slot('dataAttributes', 'data-fullscreen-zoom-out')
         @endcomponent
       </li>

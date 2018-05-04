@@ -25,4 +25,16 @@ class LakeviewImageServiceFacade extends Facade
         $service = \App::make('lakeviewimageservice');
         return $service->getUrl($id, $params);
     }
+
+    public static function getBaseUrl()
+    {
+        $service = \App::make('lakeviewimageservice');
+        return $service->getBaseUrl();
+    }
+
+    public static function getVersion()
+    {
+        $service = \App::make('lakeviewimageservice');
+        return $service->getVersion();
+    }
 }

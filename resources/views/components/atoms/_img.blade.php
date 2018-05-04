@@ -12,6 +12,7 @@
         $src = $settings['lqip'] ?? $settings['src'];
         $width = $settings['width'];
         $height = $settings['height'];
+        $iiifId = $settings['iiifId'];
     }
 
     if (empty($srcset) && empty($src)) {
@@ -46,5 +47,11 @@
     sizes="{{ $sizes ?? '' }}"
     width="{{ $width ?? '' }}"
     height="{{ $height ?? '' }}"
+    @if (isset($style))
+    style="{!! $style !!}"
+    @endif
+    @if (isset($iiifId))
+    data-iiifId="{{ $iiifId }}"
+    @endif
     {{ $highlight }}
 >

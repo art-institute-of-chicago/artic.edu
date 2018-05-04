@@ -23,6 +23,7 @@ const headerGallery = function(container) {
         shareTitle: button.getAttribute('data-gallery-img-share-title') || '',
         downloadUrl: button.getAttribute('data-gallery-img-download-url') || '',
         downloadName: button.getAttribute('data-gallery-img-download-name') || '',
+        iiifId: button.getAttribute('data-gallery-img-iiifId') || button.nextElementSibling.getAttribute('data-gallery-img-iiifId') || null,
         active: isActive,
       };
       //
@@ -43,12 +44,12 @@ const headerGallery = function(container) {
 
   function _fixDisplay() {
     let $hero = nodes.hero.querySelector('img');
-    if (data[activeIndex].width > data[activeIndex].height) {
-      $hero.style.minWidth = '100%';
-      $hero.style.minHeight = '';
+    if (nodes.hero.offsetWidth >= nodes.hero.offsetHeight) {
+      $hero.style.height = nodes.hero.offsetHeight + 'px';
+      $hero.style.width = null;
     } else {
-      $hero.style.minWidth = '';
-      $hero.style.minHeight = '100%';
+      $hero.style.width = nodes.hero.offsetWidth + 'px';
+      $hero.style.height = null;
     }
   }
 
@@ -78,8 +79,8 @@ const headerGallery = function(container) {
       $hero.src = data[activeIndex].src;
       $hero.width = data[activeIndex].width;
       $hero.height = data[activeIndex].height;
-      $hero.removeAttribute('srcset');
       _fixDisplay();
+      $hero.removeAttribute('srcset');
       window.requestAnimationFrame(function(){
         $hero.setAttribute('srcset', data[activeIndex].srcset);
       });
@@ -140,6 +141,10 @@ const headerGallery = function(container) {
     });
   }
 
+  function _resized() {
+    _update(true);
+  }
+
   function _init() {
     //input.addEventListener('input', _updateOutput, false);
     nodes.hero = container.querySelector('[data-gallery-hero]') || false;
@@ -169,6 +174,7 @@ const headerGallery = function(container) {
       nodes.previous.addEventListener('click', _previousClick, false);
     }
     //
+    document.addEventListener('resized', _resized, false);
     _update(true);
   }
 
@@ -182,6 +188,7 @@ const headerGallery = function(container) {
       nodes.next.removeEventListener('click', _nextClick);
       nodes.previous.removeEventListener('click', _previousClick);
     }
+    document.removeEventListener('resized', _resized);
     //
     nodes = {};
     data = {};

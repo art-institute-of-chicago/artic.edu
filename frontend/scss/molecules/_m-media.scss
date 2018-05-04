@@ -44,6 +44,11 @@
   width: 100%;
   height: auto;
   margin: 0 auto;
+
+  .m-media--artwork & {
+    max-width: 843px;
+    max-height: 843px;
+  }
 }
 
 .m-media--m .m-media__img img,

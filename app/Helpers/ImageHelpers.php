@@ -26,6 +26,7 @@ function aic_convertFromImageProxy($imageUrl, $options = [])
         "lqip" => $lqip ?? null,
         "alt" => $options['alt_text'] ?? null,
         "caption" => $options['caption'] ?? null,
+        "iiifId" => $options['iiifId'] ?? null,
     );
 
     return $image;
@@ -62,6 +63,7 @@ function aic_convertFromImage($imageObject, $cropParams = [])
         "lqip" => $lqip ?? null,
         "alt" => $imageObject->alt_text ?? null,
         "caption" => $imageObject->caption ?? null,
+        "iiifId" => $imageObject->iiifId ?? null,
     );
 
     return $image;
@@ -215,6 +217,7 @@ function aic_imageSettings($data) {
     $width = $image['width'] ?? false;
     $height = $image['height'] ?? false;
     $lqip = $image['lqip'] ?? null;
+    $iiifId = $image['iiifId'] ?? null;
 
     $ratio = $settings['ratio'] ?? false;
     $ratioW = null;
@@ -262,6 +265,7 @@ function aic_imageSettings($data) {
                 'width' => $stringWidth,
                 'height' => $stringHeight,
                 'lqip' => $lqip,
+                'iiifId' => $iiifId,
             );
         }
     }
@@ -397,6 +401,10 @@ function aic_imageSettings($data) {
         $base = explode('/full/full/0/default.jpg', $originalSrc)[0];
         $resizeVal = 'full';
 
+        if (!$iiifId) {
+            $iiifId = $base;
+        }
+
         // check to see if a ratio is defined
         if (!empty($settings['ratio'])) {
             if ($settings['ratio'] === "1:1") {
@@ -454,6 +462,7 @@ function aic_imageSettings($data) {
         'height' => $stringHeight,
         'lazyload' => $lazyload,
         'lqip' => $lqip,
+        'iiifId' => $iiifId,
     );
 }
 
