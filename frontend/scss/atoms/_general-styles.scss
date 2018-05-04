@@ -236,3 +236,27 @@ pre code {
 .a17s_transition {
   transition: transform .5s $bezier--ease-in-out;
 }
+
+.skip-nav {
+  position: fixed;
+  z-index: 999;
+  left: 40px;
+  top: -100px;
+  padding: 10px;
+  border-radius: $border-radius;
+  background-color: #fff;
+  box-shadow: $shadow;
+  color: $color__link--accent;
+  transition: top .25s .5s;
+}
+
+.skip-nav::before,
+.skip-nav::after {
+    content: none;
+}
+
+.skip-nav:focus,
+.skip-nav:active {
+  top: 40px;
+  transition: top .25s;
+}
