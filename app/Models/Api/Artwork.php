@@ -47,21 +47,44 @@ class Artwork extends BaseApiModel
 
     public function getSubtitleAttribute()
     {
-        return join(', ', array_filter([$this->artist_display ?? $this->place_of_origin, $this->date_display]));
+        return join(', ', array_filter([$this->artist_display, $this->date_display]));
+    }
+
+    public function getAllTitlesAttribute()
+    {
+        $titles = collect($this->title)->push($this->alt_titles)->filter()->flatten();
+        return join(', ', $titles->toArray());
+    }
+
+    public function getCataloguesAttribute()
+    {
+        if (!empty($this->catalogue_pivots))
+            return collect($this->catalogue_pivots);
+    }
+
+    public function getDateBlockAttribute()
+    {
+        return join('/', array_filter([$this->date_start, $this->date_end]));
     }
 
     public function getMultimediaElementsAttribute()
     {
-        return;
-        // Asset::query()
-        //     ->multimediaForArtwork($this->id)
-        //     ->multimediaAssets()
-        //     ->getSearch(self::RELATED_MULTIMEDIA, ["id","title","content","api_model","is_multimedia_resource"]);
+        return Asset::query()
+            ->forceEndpoint('generalSearch')
+            ->multimediaForArtwork($this->id)
+            ->multimediaAssets()
+            ->forPage(null, self::RELATED_MULTIMEDIA)
+            ->get(["id","title","content","api_model","is_multimedia_resource", "is_educational_resource"]);
     }
 
-    public function getResourcesAttribute()
+    public function getEducationalResourcesAttribute()
     {
-        return;
+        return Asset::query()
+            ->forceEndpoint('generalSearch')
+            ->educationalForArtwork($this->id)
+            ->educationalAssets()
+            ->forPage(null, self::RELATED_MULTIMEDIA)
+            ->get(["id","title","content","api_model","is_multimedia_resource", "is_educational_resource"]);
     }
 
     public function getTypeAttribute()
@@ -77,6 +100,11 @@ class Artwork extends BaseApiModel
     public function getIsOnViewTitleAttribute()
     {
         return join(', ', array_filter([$this->collection_status, $this->gallery_title]));
+    }
+
+    public function getDetailDepartmentTitleAttribute()
+    {
+        return join(' ', array_filter([$this->department_id, $this->department_title]));
     }
 
     public function getGalleryImagesAttribute()

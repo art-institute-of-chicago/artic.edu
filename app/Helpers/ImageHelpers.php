@@ -13,7 +13,7 @@ function aic_convertFromImageProxy($imageUrl, $options = [])
     $src = $imageUrl;
 
     $image = array(
-        "sourceType" => 'imgix',
+        "sourceType" => $options['sourceType'] ?? 'imgix',
         "src" => $src,
         "width" => $options['width'] ?? '',
         "height" => $options['height'] ?? '',

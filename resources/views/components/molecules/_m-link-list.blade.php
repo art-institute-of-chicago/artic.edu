@@ -22,13 +22,13 @@
             @if (isset($link['href']))
             <a class="m-link-list__trigger {{ $font ?? 'f-secondary' }}{{ (isset($link['variation'])) ? ' '.$link['variation'] : '' }}" href="{{ $link['href'] }}">
                 @if (isset($link['iconBefore']) and $link['iconBefore'])<svg aria-hidden="true" class="icon--{{ $link['iconBefore'] }}"><use xlink:href="#icon--{{ $link['iconBefore'] }}" /></svg>@endif
-                {{ $link['label'] }}
+                {!! $link['label'] !!}
                 @if (isset($link['iconAfter']) and $link['iconAfter'])<svg aria-hidden="true" class="icon--{{ $link['iconAfter'] }}"><use xlink:href="#icon--{{ $link['iconAfter'] }}" /></svg>@endif
             </a>
             @else
             <span class="m-link-list__trigger {{ $font ?? 'f-secondary' }}{{ (isset($link['variation'])) ? ' '.$link['variation'] : '' }}">
                 @if (isset($link['iconBefore']) and $link['iconBefore'])<svg aria-hidden="true" class="icon--{{ $link['iconBefore'] }}"><use xlink:href="#icon--{{ $link['iconBefore'] }}" /></svg>@endif
-                {{ $link['label'] }}
+                {!! $link['label'] !!}
                 @if (isset($link['iconAfter']) and $link['iconAfter'])<svg aria-hidden="true" class="icon--{{ $link['iconAfter'] }}"><use xlink:href="#icon--{{ $link['iconAfter'] }}" /></svg>@endif
             </span>
             @endif
