@@ -63,6 +63,13 @@
         'label' => 'Boost this article on search results'
     ])
 
+    @formField('input', [
+        'name' => 'citations',
+        'label' => 'Citation',
+        'rows' => 3,
+        'type' => 'textarea'
+    ])
+
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',

@@ -39,6 +39,8 @@ class Article extends Model
         'is_boosted',
         'migrated_node_id',
         'migrated_at',
+        'migrated_at',
+        'citations',
     ];
 
     public $slugAttributes = [

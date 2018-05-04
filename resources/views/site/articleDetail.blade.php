@@ -314,19 +314,6 @@
         @endcomponent
     @endif
 
-    @if ($item->citation)
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-subheading-1')
-            @slot('tag', 'h4')
-            Citation
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-secondary')
-            {{ $item->citation }}
-        @endcomponent
-    @endif
 
     @if ($item->references)
         @component('components.organisms._o-accordion')
@@ -344,6 +331,20 @@
                 ),
             ))
             @slot('loopIndex', 'references')
+        @endcomponent
+    @endif
+
+    @if ($item->citations)
+        @component('components.atoms._hr')
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-subheading-1')
+            @slot('tag', 'h4')
+            Citation
+        @endcomponent
+        @component('components.blocks._text')
+            @slot('font', 'f-secondary')
+            {{ $item->citations }}
         @endcomponent
     @endif
 
