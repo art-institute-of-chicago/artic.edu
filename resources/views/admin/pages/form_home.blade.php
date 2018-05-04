@@ -14,14 +14,6 @@
     ])
 
     @formField('browser', [
-    'routePrefix' => 'homepage',
-        'max' => 10,
-        'moduleName' => 'collectionFeatures',
-        'name' => 'collectionFeatures',
-        'label' => 'Collection features'
-    ])
-
-    @formField('browser', [
         'routePrefix' => 'exhibitions_events',
         'max' => 2,
         'moduleName' => 'exhibitions',
@@ -36,6 +28,14 @@
         'name' => 'homeEvents',
         'label' => 'Featured events',
         'note' => 'Select up to 4 events you want to feature on the homepage'
+    ])
+
+    @formField('browser', [
+    'routePrefix' => 'homepage',
+        'max' => 10,
+        'moduleName' => 'collectionFeatures',
+        'name' => 'collectionFeatures',
+        'label' => 'Collection features'
     ])
 
     @formField('browser', [
