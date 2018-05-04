@@ -36,7 +36,8 @@
         @slot('variation', 'u-show@large+')
         @slot('tag','p')
         @slot('font', 'f-secondary')
-        <a href="{!! route('departments.show', [$item->department_id]) !!}">{{ $item->detailDepartmentTitle }}</a>
+        <a href="{!! route('departments.show', [$item->department_id]) !!}">{{ $item->department_title }}</a>
+        @if ($item->department_id && $item->gallery_id), @endif
         <a href="{!! route('galleries.show', [$item->gallery_id]) !!}">{{ $item->gallery_title }}</a>
     @endcomponent
   </div>
