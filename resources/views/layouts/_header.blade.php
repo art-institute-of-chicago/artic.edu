@@ -17,6 +17,7 @@
         </svg>
       </a>
       @endif
+      <a href="#content" class="skip-nav f-body">Skip Nav</a>
       <nav class="g-header__nav-primary">
         <ul class="f-main-nav">
           <li class='u-hide@small+'><a href="#">Buy Tickets</a></li>
