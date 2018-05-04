@@ -16,7 +16,7 @@
     @slot('value', request('q'))
     @slot('name', 'search')
     @slot('behaviors','autocomplete')
-    @slot('dataAttributes','data-autocomplete-url="'. route('search.autocomplete') . '"')
+    @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') . '"')
     @slot('action', route('search'))
 @endcomponent
 
