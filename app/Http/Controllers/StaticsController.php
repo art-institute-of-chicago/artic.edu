@@ -430,6 +430,7 @@ class StaticsController extends FrontController {
   }
 
   public function artwork() {
+    $exploreFurtherTab = (isset($_GET['exploreFurtherTab'])) ? intval($_GET['exploreFurtherTab']) : 1;
     // get an artwork
     $article = $this->getArtwork();
     // generate some blocks
@@ -441,25 +442,32 @@ class StaticsController extends FrontController {
     $article->push('headerType', 'gallery');
     $article->push('onView', array('label' => 'European Painting and Sculpture, Galleries 239', 'href' => '#'));
     $article->push('blocks', $blocks);
-    $article->push('exploreFuther', array(
+    $article->push('exploreFurther', array(
       'items' => $this->getArtworks(8),
       'nav' => array(
         array(
-          'href' => '#',
+          'href' => '/statics/artwork?exploreFurtherTab=1',
           'label' => "Renaissance",
+          'active' => ($exploreFurtherTab === 1) ? true : false,
+          'ajaxTabTarget' => 'exploreFurther',
         ),
         array(
-          'href' => '#',
+          'href' => '/statics/artwork?exploreFurtherTab=2',
           'label' => "Arms",
-          'active' => true,
+          'active' => ($exploreFurtherTab === 2) ? true : false,
+          'ajaxTabTarget' => 'exploreFurther',
         ),
         array(
-          'href' => '#',
+          'href' => '/statics/artwork?exploreFurtherTab=3',
           'label' => "Northern Italy",
+          'active' => ($exploreFurtherTab === 3) ? true : false,
+          'ajaxTabTarget' => 'exploreFurther',
         ),
         array(
-          'href' => '#',
+          'href' => '/statics/artwork?exploreFurtherTab=4',
           'label' => "All tags",
+          'active' => ($exploreFurtherTab === 4) ? true : false,
+          'ajaxTabTarget' => 'exploreFurther',
         ),
       ),
     ));
@@ -2959,6 +2967,7 @@ class StaticsController extends FrontController {
   }
 
   function getArtistTag($intro = false) {
+    $exploreFurtherTab = (isset($_GET['exploreFurtherTab'])) ? $_GET['exploreFurtherTab'] : 1;
     $article = $this->getArtist($intro);
     $article->push('interestedThemes', array(
       array(
@@ -2982,25 +2991,32 @@ class StaticsController extends FrontController {
     ));
     $article->push('exhibitions', $this->getExhibitions(2));
     $article->push('recentlyViewedArtworks', $this->getArtworks($this->faker->numberBetween(6,20)));
-    $article->push('exploreFuther', array(
+    $article->push('exploreFurther', array(
       'items' => $this->getArtworks(8),
       'nav' => array(
         array(
-          'href' => '#',
+          'href' => '/statics/artwork?exploreFurtherTab=1',
           'label' => "Renaissance",
+          'active' => ($exploreFurtherTab === 1) ? true : false,
+          'ajaxTabTarget' => 'exploreFurther',
         ),
         array(
-          'href' => '#',
+          'href' => '/statics/artwork?exploreFurtherTab=2',
           'label' => "Arms",
-          'active' => true,
+          'active' => ($exploreFurtherTab === 2) ? true : false,
+          'ajaxTabTarget' => 'exploreFurther',
         ),
         array(
-          'href' => '#',
+          'href' => '/statics/artwork?exploreFurtherTab=3',
           'label' => "Northern Italy",
+          'active' => ($exploreFurtherTab === 3) ? true : false,
+          'ajaxTabTarget' => 'exploreFurther',
         ),
         array(
-          'href' => '#',
+          'href' => '/statics/artwork?exploreFurtherTab=4',
           'label' => "All tags",
+          'active' => ($exploreFurtherTab === 4) ? true : false,
+          'ajaxTabTarget' => 'exploreFurther',
         ),
       ),
     ));

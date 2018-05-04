@@ -536,16 +536,14 @@
     @endcomponent
 @endif
 
-@if ($article->exploreFuther)
+@if ($article->exploreFurther)
+<div class="o-ajax-tab-area" id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further
     @endcomponent
     @component('components.molecules._m-links-bar')
         @slot('variation', '')
-        @slot('linksPrimary', $article->exploreFuther['nav'])
-    @endcomponent
-    @component('components.atoms._hr')
-        @slot('variation','hr--flush-top')
+        @slot('linksPrimary', $article->exploreFurther['nav'])
     @endcomponent
     @component('components.organisms._o-pinboard')
         @slot('cols_small','2')
@@ -553,7 +551,7 @@
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
         @slot('maintainOrder','false')
-        @foreach ($article->exploreFuther['items'] as $item)
+        @foreach ($article->exploreFurther['items'] as $item)
             @component('components.molecules._m-listing----'.$item->type)
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
@@ -572,6 +570,7 @@
             @endcomponent
         @endforeach
     @endcomponent
+</div>
 @endif
 
 @component('components.organisms._o-recently-viewed')

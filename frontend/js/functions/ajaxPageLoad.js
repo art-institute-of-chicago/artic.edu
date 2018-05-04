@@ -105,19 +105,26 @@ const ajaxPageLoad = function() {
   }
 
   function tabStart(options,doc) {
+    document.documentElement.classList.add('s-page-nav');
   }
 
   function tabComplete(options,doc) {
     // replace content
-    document.querySelector('[data-tab-content]').innerHTML = doc.querySelector('[data-tab-content]').innerHTML;
-    // replace titles
-    docTitle = doc.title;
-    document.title = docTitle;
-    // update history
-    if (!options.popstate) {
-      triggerCustomEvent(document, 'history:pushstate', { url: options.href, type: options.type, title: docTitle });
-    }
-    A17.currentPathname = window.location.pathname;
+    let tabTarget = document.getElementById(options.ajaxTabTarget);
+    tabTarget.innerHTML = doc.getElementById(options.ajaxTabTarget).innerHTML;
+    let scrollTarget = Math.round(getOffset(tabTarget).top);
+    scrollToY({
+      el: document,
+      offset: scrollTarget,
+      duration: 500,
+      easing: 'easeInOut',
+      onComplete: function() {
+        setFocusOnTarget(tabTarget);
+      }
+    });
+    document.documentElement.classList.remove('s-page-nav');
+    // tell page about update
+    triggerCustomEvent(document, 'page:updated');
     //
     _ajaxPageLoadComplete();
   }
@@ -310,17 +317,33 @@ const ajaxPageLoad = function() {
       var ajaxable = ajaxableLink(link, event);
       if (ajaxable) {
         event.preventDefault();
-        triggerCustomEvent(document, 'history:replacestate', {
-          url: location.href,
-          type: 'page',
-          scrollY: window.scrollY || 0,
-        });
+        var ajaxTabTarget = link.getAttribute('data-ajax-tab-target');
+        var ajaxScrollTarget = link.getAttribute('data-ajax-scroll-target');
+        var ajaxTabTargetNode = null;
+        if (ajaxTabTarget !== null && ajaxScrollTarget !== null) {
+          ajaxTabTarget = null;
+        }
+        if (ajaxTabTarget !== null) {
+          ajaxTabTargetNode = document.getElementById(ajaxTabTarget);
+          if (!ajaxTabTargetNode) {
+            ajaxScrollTarget = ajaxTabTarget;
+            ajaxTabTarget = null;
+          }
+        }
+        if (!ajaxTabTargetNode) {
+          triggerCustomEvent(document, 'history:replacestate', {
+            url: location.href,
+            type: 'page',
+            scrollY: window.scrollY || 0,
+          });
+        }
         loadDocument({
           href: ajaxable.href,
-          type: 'page',
+          type: ajaxTabTarget ? 'tab' : 'page',
           popstate: false,
           link: link,
-          ajaxScrollTarget: link.getAttribute('data-ajax-scroll-target') ? link.getAttribute('data-ajax-scroll-target') : null
+          ajaxTabTarget: ajaxTabTarget ? ajaxTabTarget : null,
+          ajaxScrollTarget: ajaxScrollTarget ? ajaxScrollTarget : null,
         });
       }
     }

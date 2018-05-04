@@ -95,13 +95,13 @@
     @endcomponent
 @endif
 
-@if ($article->exploreFuther)
+@if ($article->exploreFurther)
     @component('components.molecules._m-title-bar')
         Explore Further
     @endcomponent
     @component('components.molecules._m-links-bar')
         @slot('variation', '')
-        @slot('linksPrimary', $article->exploreFuther['nav'])
+        @slot('linksPrimary', $article->exploreFurther['nav'])
     @endcomponent
     @component('components.organisms._o-pinboard')
         @slot('cols_small','2')
@@ -110,7 +110,7 @@
         @slot('cols_xlarge','3')
         @slot('maintainOrder','false')
         @slot('moreLink',$article->exploreMoreLink)
-        @foreach ($article->exploreFuther['items'] as $item)
+        @foreach ($article->exploreFurther['items'] as $item)
             @component('components.molecules._m-listing----'.$item->type)
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item)
