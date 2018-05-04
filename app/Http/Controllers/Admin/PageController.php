@@ -79,13 +79,14 @@ class PageController extends ModuleController
         Session::put("pages_back_link", route('admin.homepage.landing'));
 
         $additionalFieldsets = [
-            ['fieldset' => 'locations', 'label' => 'Locations'],
+            ['fieldset' => 'hours', 'label' => 'Hours'],
             ['fieldset' => 'admissions', 'label' => 'Admissions'],
-            ['fieldset' => 'featured_offer', 'label' => 'Featured Offer'],
-            ['fieldset' => 'featured_hours', 'label' => 'Featured hours'],
-            ['fieldset' => 'dining_hours', 'label' => 'Dining hours'],
+            ['fieldset' => 'featured_offer', 'label' => 'Featured offer'],
+            ['fieldset' => 'museum_address', 'label' => 'Museum address'],
+            ['fieldset' => 'dining', 'label' => 'Dining'],
             ['fieldset' => 'faq', 'label' => 'FAQ'],
-            ['fieldset' => 'families', 'label' => 'Families, teens and educators'],
+            ['fieldset' => 'tours', 'label' => 'Tours'],
+            ['fieldset' => 'families', 'label' => 'Families, teens and educators']
         ];
 
         $fields = $this->form($page->id);
