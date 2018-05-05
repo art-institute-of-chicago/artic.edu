@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
+
 use App\Repositories\PressReleaseRepository;
 use App\Models\PressRelease;
 
@@ -21,7 +23,14 @@ class PressReleasesController extends FrontController
 
     public function index(Request $request)
     {
-        $items = PressRelease::current()->published()->orderBy('publish_start_date', 'desc')->paginate();
+        $year = $request->get('year') ? (int) $request->get('year') : null;
+        $model = PressRelease::current()->published()->orderBy('publish_start_date', 'desc');
+
+        if (!empty($year)) {
+            $model = $model->where(DB::raw('YEAR(publish_start_date)'), $year);
+        }
+
+        $items = $model->paginate();
         $title = 'Press Releases';
         $subNav = [
             ['label' => $title, 'href' => route('about.press'), 'active' => true],
@@ -37,12 +46,27 @@ class PressReleasesController extends FrontController
             ['label' => $title, 'href' => '']
         ];
 
+        $startYear = date('Y');
+        $endYear = 2012;
+        $yearLinks = [];
+
+        $active = false;
+        if ($year == null) {
+            $active = true;
+        }
+        $yearLinks[] = array('href' => '?', 'label' => 'All', 'active' => $active);
+        for($i = $startYear; $i >= $endYear; $i--) {
+            $active = false;
+            if ($year == $i) {
+                $active = true;
+            }
+            $yearLinks[] = array('href' => '?year='.$i, 'label' => $i, 'active' => $active);
+        }
+
         $filters = array(
             array(
                 'prompt' => 'Year',
-                'links' => array(
-                    array('href' => '#', 'label' => 'All', 'active' => true),
-                ),
+                'links' => $yearLinks
             ),
         );
 
@@ -52,6 +76,7 @@ class PressReleasesController extends FrontController
             'nav' => $nav,
             "breadcrumb" => $crumbs,
             'wideBody' => true,
+            'year' => $year,
             'filters' => $filters,
             'listingCountText' => 'Showing '.$items->total().' press releases',
             'listingItems' => $items,
