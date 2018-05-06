@@ -1611,18 +1611,20 @@
   object-fit: contain;
 }
 
-@media (hover: hover) {
-  .o-pinboard__item.m-listing--variable-height .m-listing__img:hover {
-    z-index: 2;
-    overflow: visible;
-  }
+@include breakpoint('medium+') {
+  @media (hover: hover) {
+    .o-pinboard__item.m-listing--variable-height .m-listing__img:hover {
+      z-index: 2;
+      overflow: visible;
+    }
 
-  .o-pinboard__item.m-listing--variable-height .m-listing__img:hover img {
-    filter: none;
-  }
+    .o-pinboard__item.m-listing--variable-height .m-listing__img:hover img {
+      filter: none;
+    }
 
-  .o-pinboard__item.m-listing--variable-height .m-listing__img img {
-    object-fit: unset;
+    .o-pinboard__item.m-listing--variable-height .m-listing__img img {
+      object-fit: unset;
+    }
   }
 }
 
