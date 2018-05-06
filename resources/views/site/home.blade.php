@@ -102,7 +102,7 @@
         array(
             'label' => 'All current exhibitions and events',
             'href' => $_pages['exhibitions'],
-            'variation' => 'btn btn--secondary f-buttons',
+            'variation' => 'btn btn--secondary',
         ),
     ))
 @endcomponent
@@ -153,7 +153,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary f-buttons')))
+    @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary')))
 @endcomponent
 
 
@@ -195,7 +195,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary f-buttons')))
+    @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary')))
 @endcomponent
 
 @endsection

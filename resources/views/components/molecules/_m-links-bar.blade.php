@@ -1,7 +1,7 @@
 @php
     $linksPrimaryFontClass = ' f-link';
     $isTabs = (isset($variation) and $variation === 'm-links-bar--tabs');
-    $linksPrimaryFontClass = (isset($variation) and $variation === 'm-links-bar--buttons') ? ' btn f-buttons' : $linksPrimaryFontClass;
+    $linksPrimaryFontClass = (isset($variation) and ($variation === 'm-links-bar--buttons' or $variation === 'm-links-bar--title-bar-companion')) ? ' btn f-buttons' : $linksPrimaryFontClass;
     $linksPrimaryFontClass = ($isTabs) ? ' f-module-title-2' : $linksPrimaryFontClass;
     $activePrimaryLink = false;
     if (isset($linksPrimary)) {
