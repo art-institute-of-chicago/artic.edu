@@ -92,6 +92,17 @@
                     @endcomponent
                 @endforeach
             @endcomponent
+
+            @component('components.molecules._m-links-bar')
+                @slot('variation', 'm-links-bar--title-bar-companion')
+                @slot('linksPrimary', array(
+                    array(
+                        'label' => 'More about Study rooms',
+                        'href' => $studyRoomsLink,
+                        'variation' => 'btn btn--secondary'
+                    ),
+                ))
+            @endcomponent
         </section>
     </article>
 
