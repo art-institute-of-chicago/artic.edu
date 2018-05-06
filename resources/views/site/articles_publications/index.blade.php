@@ -97,6 +97,17 @@
                 @endforeach
                 </ul>
             </div>
+
+            @component('components.molecules._m-links-bar')
+                @slot('variation', 'm-links-bar--title-bar-companion')
+                @slot('linksPrimary', array(
+                    array(
+                        'label' => 'Browse all articles',
+                        'href' => route('articles'),
+                        'variation' => 'btn btn--secondary'
+                    ),
+                ))
+            @endcomponent
         </section>
 
         <section>
@@ -127,6 +138,17 @@
                         ))
                     @endcomponent
                 @endforeach
+            @endcomponent
+
+            @component('components.molecules._m-links-bar')
+                @slot('variation', 'm-links-bar--title-bar-companion')
+                @slot('linksPrimary', array(
+                    array(
+                        'label' => 'Browse all digital catalogs',
+                        'href' => route('collection.publications.digital-catalogs'),
+                        'variation' => 'btn btn--secondary'
+                    ),
+                ))
             @endcomponent
         </section>
 
@@ -167,11 +189,22 @@
                     @endcomponent
                 @endforeach
             @endcomponent
+
+            @component('components.molecules._m-links-bar')
+                @slot('variation', 'm-links-bar--title-bar-companion')
+                @slot('linksPrimary', array(
+                    array(
+                        'label' => 'Browse all printed catalogs',
+                        'href' => route('collection.publications.printed-catalogs'),
+                        'variation' => 'btn btn--secondary'
+                    ),
+                ))
+            @endcomponent
         </section>
 
         <section>
             @component('components.molecules._m-title-bar')
-                @slot('links', array(array('label' => 'Browse all journals', 'href' => route('collection.publications.scholarly-journals'))))
+                @slot('links', array(array('label' => 'Browse all journal entries', 'href' => route('collection.publications.scholarly-journals'))))
                 Scholarly Journals
             @endcomponent
 
@@ -238,6 +271,17 @@
                 @endforeach
                 </ul>
             </div>
+
+            @component('components.molecules._m-links-bar')
+                @slot('variation', 'm-links-bar--title-bar-companion')
+                @slot('linksPrimary', array(
+                    array(
+                        'label' => 'Browse all journal entries',
+                        'href' => route('collection.publications.scholarly-journals'),
+                        'variation' => 'btn btn--secondary'
+                    ),
+                ))
+            @endcomponent
         </section>
     </article>
 
