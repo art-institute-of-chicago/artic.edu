@@ -442,8 +442,8 @@ Variants: `.o-grid-listing--gridlines-right` and `o-listing--gridlines-cols`
 }
 
 // if following a hr and no grid lines, tweak position
-hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::after,
-.hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top) > *::after {
+hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-grid-listing--gridlines-rows) > *::after,
+.hr + .o-grid-listing--gridlines-cols:not(.o-grid-listing--gridlines-top):not(.o-grid-listing--gridlines-rows) > *::after {
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
       //top: #{0 - map-get($grid-margin-tops, $name)}px;

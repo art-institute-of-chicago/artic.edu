@@ -14,7 +14,8 @@
 }
 
 a.title:hover,
-a:hover .title {
+a:hover .title,
+.m-listing__link:hover + .m-listing__meta .title {
   color: $color__text--secondary;
 }
 
