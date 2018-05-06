@@ -81,14 +81,14 @@
 }
 
 .o-collection-listing__col-right .m-active-filters {
-  @include breakpoint('small-') {
-    padding-top: 0;
-
-    &::before {
-      display: none;
-    }
-  }
   @include breakpoint('medium+') {
     margin-top: 0;
+  }
+}
+
+.o-collection-listing__col-right .o-pinboard {
+  @include breakpoint('small-') {
+    padding-top: 20px;
+    border-top: 0 none;
   }
 }
