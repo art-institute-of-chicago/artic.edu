@@ -5,7 +5,7 @@
 
   <div class="range-slider__slider" data-range-slider></div>
 
-  <div class="range-slider__custom">
+  <div class="range-slider__custom">m
       <div class="range-slider__custom-row">
           <div class="range-slider__custom-input">
               <input type="num" id="rangeFrom" name="rangeFrom" data-range-custom-from />

@@ -25,7 +25,7 @@
   min-width: 48px;
   height: 48px;
   margin: 0;
-  padding: 0 8px;
+  padding: 0 16px;
   border: 0 none;
   border-radius: $border-radius;
   background: $color__bg;
@@ -33,6 +33,10 @@
   line-height: 44px;
   cursor: pointer;
   box-shadow: $shadow;
+
+  &.m-search-triggers__search {
+    padding: 0 8px;
+  }
 
   &:hover,
   &:focus:hover {

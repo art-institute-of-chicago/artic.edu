@@ -2,12 +2,12 @@
 
     <div class="o-collection-filters__scroll-area">
 
-        @if (!empty($activeFilters))
+        @if (!empty($activeFilters) and sizeof($activeFilters) > 0)
         <div class="m-active-filters o-collection-filters__active-filters">
             <ul class="m-active-filters__items">
             @foreach ($activeFilters as $link)
                 <li class="m-active-filters__item">
-                    <a href="{{ $link['href'] }}" class="tag tag--quaternary f-tag" data-ajax-scroll-target="collection">
+                    <a href="{{ $link['href'] }}" class="tag tag--quaternary tag--l f-tag" data-ajax-scroll-target="collection">
                         {{ $link['label'] }}
                         <svg class="icon--close"><use xlink:href="#icon--close" /></svg>
                     </a>

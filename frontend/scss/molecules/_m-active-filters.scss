@@ -5,8 +5,8 @@
   z-index: 0;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: flex-start;
   margin-top: 20px;
-  padding-top: 16px;
 }
 
 .m-active-filters::before {
@@ -23,17 +23,13 @@
 .m-active-filters__items {
   display: flex;
   flex: 1 1 auto;
-  flex-flow: row nowrap;
-  margin-bottom: -16px;
-  padding-bottom: 16px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  flex-flow: row wrap;
 }
 
-.m-active-filters__item,
-.m-active-filters__clear {
+.m-active-filters__item {
   flex: 0 0 auto;
-  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 16px;
 }
 
 .m-active-filters__item:first-child {
@@ -42,6 +38,9 @@
 
 .m-active-filters__clear {
   position: relative;
+  flex: 0 0 auto;
+  margin-left: 20px;
+  margin-top: 12px;
 }
 
 .m-active-filters__clear::before {
@@ -77,7 +76,7 @@
 .o-collection-filters .m-active-filters {
   display: block;
   margin: 0;
-  padding: 20px;
+  padding: 16px 20px 24px;
   background: $color__bg--primary;
 }
 
@@ -90,18 +89,17 @@
   flex-flow: row wrap;
   margin-bottom: 0;
   padding-bottom: 0;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: default;
 }
 
 .o-collection-filters .m-active-filters__item {
   margin-right: 4px;
-  margin-bottom: 4px;
-  margin-left: 0;
+  margin-top: 4px;
 }
 
 .o-collection-filters .m-active-filters__clear {
+  margin-top: 8px;
   margin-left: 0;
+  margin-top: 12px;
 }
 
 .o-collection-filters .m-active-filters__clear::before {
