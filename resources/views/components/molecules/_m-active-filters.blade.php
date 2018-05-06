@@ -1,6 +1,6 @@
 @if (isset($links) and sizeof($links) > 0)
 <div class="m-active-filters">
-    <ul class="m-active-filters__items" data-behavior="dragScroll">
+    <ul class="m-active-filters__items">
     @foreach ($links as $link)
         <li class="m-active-filters__item">
             @component('components.atoms._tag')

@@ -43,20 +43,6 @@
   margin-top: 12px;
 }
 
-.m-active-filters__clear::before {
-  content: '';
-  position: absolute;
-  z-index: 2;
-  right: 100%;
-  top: 0;
-  bottom: 0;
-  width: 12px;
-  height: 100%;
-  margin-left: -20px;
-  background: linear-gradient(to left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
-  pointer-events: none;
-}
-
 .m-active-filters__clear a {
   color: $color__link;
 
@@ -100,9 +86,4 @@
   margin-top: 8px;
   margin-left: 0;
   margin-top: 12px;
-}
-
-.o-collection-filters .m-active-filters__clear::before {
-  content: none;
-  display: none;
 }
