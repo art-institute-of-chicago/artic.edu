@@ -3,7 +3,7 @@
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'dates', 'label' => 'Date Rules'],
         ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
-        ['fieldset' => 'related_elements', 'label' => 'Related elements'],
+        ['fieldset' => 'related_elements', 'label' => 'Right rail related slot'],
     ]
 ])
 
@@ -205,12 +205,12 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="related_elements" title="Related elements">
+    <a17-fieldset id="related_elements" title="Right rail related slot">
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'events',
             'name' => 'events',
-            'label' => 'Related Events',
+            'label' => 'Related events',
             'note' => 'Select upto 4 events',
             'max' => 4
         ])

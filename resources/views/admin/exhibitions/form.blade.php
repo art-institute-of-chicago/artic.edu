@@ -3,7 +3,7 @@
         ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'related', 'label' => 'Related'],
-        ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
+        ['fieldset' => 'side_related', 'label' => 'Right rail related slot'],
         ['fieldset' => 'api', 'label' => 'Datahub fields'],
     ]
 ])
@@ -120,7 +120,7 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="side_related" title="Sidebar Related - Only one will show up randomly">
+    <a17-fieldset id="side_related" title="Right rail related slot - Only one will show up randomly">
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'videos',
@@ -141,7 +141,7 @@
             'routePrefix' => 'exhibitions_events',
             'max' => 1,
             'name' => 'sidebarExhibitions',
-            'label' => 'Related Exhibition',
+            'label' => 'Related exhibition',
             'moduleName' => 'exhibitions',
         ])
 
