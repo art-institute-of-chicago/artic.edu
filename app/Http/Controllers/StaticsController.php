@@ -263,6 +263,23 @@ class StaticsController extends FrontController {
     ]);
   }
 
+  public function generic_detail_no_image() {
+    $navs = $this->generateGenericNav('detail');
+
+    return view('statics/generic', [
+        'borderlessHeader' => true,
+        'subNav' => $navs['subNav'],
+        'nav' => $navs['nav'],
+        "title" => "Scheduling a tour",
+        "breadcrumb" => $this->generateGenericBreadcrumb(),
+        "blocks" => $this->generateBlocks(3),
+        'featuredRelated' => array(
+          'type' => 'media',
+          'items' => $this->getMedias(1),
+        ),
+    ]);
+  }
+
   public function exhibition() {
     // make some left rail links
     $locationLink = array('label' => 'Galleries 182-184', 'href' => '#', 'iconBefore' => 'location');

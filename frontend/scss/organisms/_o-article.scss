@@ -420,4 +420,27 @@
       margin-top: 28px;
     }
   }
+
+  .m-article-header--generic:not(.m-article-header--generic-w-img) ~ .o-article__body {
+    @include breakpoint('large+') {
+      padding-top: 4px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 1px;
+        background-color: $color__rules--primary;
+      }
+
+      & > .m-links-bar:first-child,
+      & > .hr:first-child,
+      & > .m-article-actions:first-child,
+      & > .o-blocks__block:first-child {
+        margin-top: -4px;
+      }
+    }
+  }
 }

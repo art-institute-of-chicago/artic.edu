@@ -55,6 +55,7 @@
         <ul class="list f-body">
           <li><a href="/statics/generic_landing">generic landing</a></li>
           <li><a href="/statics/generic_detail">generic detail</a></li>
+          <li><a href="/statics/generic_detail_no_image">generic detail, no header image</a></li>
         </ul>
         <ul class="list f-body">
           <li><a href="/statics/exhibition">exhibition, super hero header</a></li>
