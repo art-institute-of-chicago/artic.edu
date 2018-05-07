@@ -34,6 +34,9 @@
 .m-article-header .date {
   @include tucked-margin-top($f-secondary, ('xsmall': 72, 'medium+': 96));
 }
+  .m-article-header--editorial .date {
+    display: none;
+  }
 
 .m-article-header .type {
   @include tucked-align-top($f-tag);
