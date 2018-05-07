@@ -29,15 +29,20 @@ class ArtworkController extends FrontController
         }
 
         // Build Explore further module
-        $exploreFurtherCollection = $this->artworkRepository->exploreFurtherCollection($item, request()->only('exFurther-classification', 'exFurther-style', 'exFurther-artist'));
         $exploreFurtherTags = $this->artworkRepository->exploreFurtherTags($item);
+        if (request()->has('exFurther-all')) {
+            $exploreFurtherAllTags = $this->artworkRepository->exploreFurtherAllTags();
+        } else {
+            $exploreFurtherCollection = $this->artworkRepository->exploreFurtherCollection($item, request()->only('exFurther-classification', 'exFurther-style', 'exFurther-artist'));
+        }
 
         return view('site.artworkDetail', [
           'item' => $item,
           'contrastHeader'     => $item->present()->contrastHeader,
           'borderlessHeader'   => $item->present()->borderlessHeader,
-          'exploreFurther'     => $exploreFurtherCollection,
+          'exploreFurther'     => $exploreFurtherCollection ?? null,
           'exploreFurtherTags' => $exploreFurtherTags,
+          'exploreFurtherAllTags' => $exploreFurtherAllTags ?? null,
         ]);
     }
 

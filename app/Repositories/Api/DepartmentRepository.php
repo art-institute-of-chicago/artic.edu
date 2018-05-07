@@ -15,6 +15,7 @@ class DepartmentRepository extends BaseApiRepository
     use ExploreFurtherTags;
 
     const PER_PAGE_EXPLORE_FURTHER = 20;
+    const EXPLORE_FURTHER_TAGS = 55;
     const ARTWORKS_PER_PAGE = 8;
 
     public function __construct(Department $model)

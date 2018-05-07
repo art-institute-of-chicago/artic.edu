@@ -1,0 +1,112 @@
+/***
+
+```
+<ul class="m-multi-col-list m-multi-col-list--2-col@small m-multi-col-list--3-col@medium m-multi-col-list--4-col@large m-multi-col-list--4-col@xlarge">
+  <li class="f-link"><a href="/statics/collection?filter=0">Et adipisci ipsa.</a></li>
+  <li class="f-link"><a href="/statics/collection?filter=1">Accusamus tenetur aspernatur.</a></li>
+  <li class="f-link"><a href="/statics/collection?filter=2">Ullam rerum.</a></li>
+  <li class="f-link"><a href="/statics/collection?filter=3">Eos non.</a></li>
+  <li class="f-link"><a href="/statics/collection?filter=4">Et praesentium velit.</a></li>
+  <li class="f-link"><a href="/statics/collection?filter=5">Dolores enim quia.</a></li>
+  <li class="f-link"><a href="/statics/collection?filter=6">Distinctio dolor ipsam.</a></li>
+  <li class="f-link"><a href="/statics/collection?filter=7">Nulla impedit.</a></li>
+  <li class="f-link"><a href="/statics/collection?filter=8">Illo deserunt non.</a></li>
+  <li class="f-link"><a href="/statics/collection?filter=9">Mollitia ea in.</a></li>
+</ul>
+```
+
+***/
+
+.m-multi-col-list {
+  position: relative;
+  margin-top: 40px;
+
+  .m-links-bar + & {
+    margin-top: 0;
+  }
+}
+
+.m-multi-col-list::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background-color: $color__rules--primary;
+}
+
+.m-multi-col-list > li {
+  display: block;
+  margin-top: 4px;
+  break-inside: avoid;
+}
+
+@each $name, $point in $breakpoints {
+  @include breakpoint('#{$name}') {
+    .m-multi-col-list[class*="col@#{$name}"] {
+      column-fill: auto;
+      column-gap: colspan(2,$name);
+      column-rule: 1px solid $color__rules--primary;
+    }
+  }
+}
+
+@include breakpoint('xsmall') {
+  .m-multi-col-list--2-col\@xsmall {
+    column-count: 2;
+  }
+}
+
+@include breakpoint('small') {
+  .m-multi-col-list--2-col\@small {
+    column-count: 2;
+  }
+
+  .m-multi-col-list--3-col\@small {
+    column-count: 3;
+  }
+}
+
+@include breakpoint('medium') {
+  .m-multi-col-list--2-col\@medium {
+    column-count: 2;
+  }
+
+  .m-multi-col-list--3-col\@medium {
+    column-count: 3;
+  }
+
+  .m-multi-col-list--4-col\@medium {
+    column-count: 4;
+  }
+}
+
+@include breakpoint('large') {
+  .m-multi-col-list--2-col\@large {
+    column-count: 2;
+  }
+
+  .m-multi-col-list--3-col\@large {
+    column-count: 3;
+  }
+
+  .m-multi-col-list--4-col\@large {
+    column-count: 4;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .m-multi-col-list--2-col\@xlarge {
+    column-count: 2;
+  }
+
+  .m-multi-col-list--3-col\@xlarge {
+    column-count: 3;
+  }
+
+  .m-multi-col-list--4-col\@xlarge {
+    column-count: 4;
+  }
+}

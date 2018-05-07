@@ -19,14 +19,19 @@ class DepartmentController extends FrontController
         $item     = $this->repository->getById($idSlug);
         $artworks = $this->repository->getArtworks($item);
 
-        $exploreFurtherCollection = $this->repository->exploreFurtherCollection($item, request()->only('exFurther-classification'));
-        $exploreFurtherTags       = $this->repository->exploreFurtherTags($item);
+        $exploreFurtherTags = $this->repository->exploreFurtherTags($item);
+        if (request()->has('exFurther-all')) {
+            $exploreFurtherAllTags = $this->repository->exploreFurtherAllTags();
+        } else {
+            $exploreFurtherCollection = $this->repository->exploreFurtherCollection($item, request()->only('exFurther-classification'));
+        }
 
         return view('site.tagDetail', [
             'item'     => $item,
             'artworks' => $artworks,
-            'exploreFurther'     => $exploreFurtherCollection,
-            'exploreFurtherTags' => $exploreFurtherTags,
+            'exploreFurtherTags' => $exploreFurtherTags ,
+            'exploreFurther'     => $exploreFurtherCollection ?? null,
+            'exploreFurtherAllTags' => $exploreFurtherAllTags ?? null,
         ]);
     }
 

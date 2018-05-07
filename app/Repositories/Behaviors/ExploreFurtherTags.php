@@ -17,6 +17,23 @@ trait ExploreFurtherTags
         return $this->artworks;
     }
 
+    public function exploreFurtherAllTags()
+    {
+       // Build All Tags tab
+        $exploreFurtherTags = Search::query()
+            ->forceEndpoint('search')
+            ->resources(['artworks'])
+            ->aggregationClassifications(self::EXPLORE_FURTHER_TAGS)
+            ->forPage(1, 0)
+            ->get();
+
+        $buckets = $exploreFurtherTags->getMetadata('aggregations')->classifications->buckets;
+
+        return collect($buckets)->mapWithKeys(function ($item) {
+            return [$item->key => ucfirst($item->key)];
+        });
+    }
+
     public function exploreFurtherTags($element)
     {
         $tags = collect([]);
@@ -32,7 +49,10 @@ trait ExploreFurtherTags
             };
         }
 
-        return [ 'classification' => $tags ];
+        return [
+            'classification' => $tags,
+            'all' => [true => 'All Tags']
+        ];
     }
 
     public function exploreFurtherCollection($element, $options = [])
