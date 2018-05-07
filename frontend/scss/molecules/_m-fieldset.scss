@@ -25,17 +25,16 @@
 .m-fieldset__legend > span {
   display: block;
   width: 100%;
+  padding-bottom: .2px;
 }
 
 .m-fieldset__legend + * {
   clear: both;
+  padding-top: 28px;
 }
 
 .m-fieldset__fields {
-
-  .m-fieldset__legend + & {
-    padding-top: .02px;
-  }
+  margin-top: 28px;
 }
 
 .m-fieldset__field {
