@@ -162,7 +162,7 @@
   @include tucked-margin-top($f-body-editorial, ('xsmall': 60));
 }
 
-.o-article--editorial .o-blocks.o-article__body .o-blocks  > p:not([class*=f-]) .f-dropcap-editorial {
+.o-article--editorial .o-blocks.o-article__body > p:not([class*=f-]) .f-dropcap-editorial {
   float: left;
   margin-top: -17px;
   margin-right: 4px;
@@ -235,7 +235,8 @@
 .o-blocks {
   .o-blocks__block,
   .hr {
-    clear: left;
+    //clear: left;
+    min-width: 100%;
     margin-top: 32px;
 
     @include breakpoint('small+') {
