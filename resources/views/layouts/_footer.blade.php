@@ -49,7 +49,7 @@
           <h3 class="f-list-6"><a href="{{ $_pages['about-us'] }}">About us<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></h3>
 
           <ul class="g-footer__link-list">
-            <li><a href="{{ $_pages['about-us-inside-the-museum'] }}">Mission and history</a></li>
+            <li><a href="{{ $_pages['about-us-mission-and-history'] }}">Mission and history</a></li>
             <li><a href="{{ $_pages['about-us-leadership'] }}">Leadership</a></li>
             <li><a href="{{ $_pages['about-us-financials'] }}">Financial Reporting</a></li>
                         <li><a href="{{ $_pages['about-us-departments'] }}">Departments</a></li>
@@ -64,7 +64,7 @@
             <li><a href="{{ $_pages['support-us-membership'] }}">Membership</a></li>
             <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to give</a></li>
             <li><a href="{{ $_pages['support-us-ways-to-give-corporate-sponsorship'] }}">Corporate sponsorship</a></li>
-             <li><a href="{{ $_pages['support-us-arts-interest-groups'] }}">Arts Interest Groups</a></li>
+             <li><a href="{{ $_pages['support-us-art-interest-groups'] }}">Arts Interest Groups</a></li>
           </ul>
         </div>
       </li>
