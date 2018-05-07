@@ -1,8 +1,8 @@
 @php
     $variation = isset($variation) ? $variation : '';
-    $variation = (isset($editorial) and $editorial) ? $variation.' m-article-header--editorial' : $variation;
-    if ($editorial) {
+    if (isset($editorial) and $editorial) {
         $date = null;
+        $variation .= ' m-article-header--editorial';
     }
 @endphp
 @if (isset($headerType) and $headerType === 'feature')
