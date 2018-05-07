@@ -57,3 +57,19 @@
   position: relative;
   top: -2px;
 }
+
+.m-search-actions button .m-search-actions__label-show {
+  display: inline;
+
+  .s-collection-filters-active & {
+    display: none;
+  }
+}
+
+.m-search-actions button .m-search-actions__label-hide {
+  display: none;
+
+  .s-collection-filters-active & {
+    display: inline;
+  }
+}
