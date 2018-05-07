@@ -110,9 +110,29 @@
     @slot('filtersCount',isset($activeFilters) ? count($activeFilters) : 0)
 @endcomponent
 
-@component('components.organisms._o-collection-search')
-    @slot('links', $quickSearchLinks)
-@endcomponent
+<div class="o-collection-search" data-behavior="collectionSearch">
+    @component('components.molecules._m-search-bar')
+        @slot('placeholder','Search...')
+        @slot('name', 'collection-search')
+        @slot('value', request('q'))
+        @slot('action', route('collection'))
+    @endcomponent
+    <div class="o-collection-search__scroll-area">
+        <p class="o-collection-search__title f-tag-2">Quick Search</p>
+        <ul class="o-collection-search__quick-search-links">
+            @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
+                <li>
+                    <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag">
+                        {{ $category->title }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    <p class="o-collection-search__close">
+        <button class="btn btn--tertiary btn--full f-buttons" data-behavior="hideCollectionSearch">Close Search</button>
+    </p>
+</div>
 
 @if ($artworks->hasMorePages())
     @component('components.molecules._m-links-bar')

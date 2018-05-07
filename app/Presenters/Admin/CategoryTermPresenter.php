@@ -28,6 +28,6 @@ class CategoryTermPresenter extends BasePresenter
                 break;
         }
 
-        return route('collection', request()->except(['page', $this->entity->getParameterName()]) + [$this->entity->getParameterName() => $value]);
+        return route('collection', [$this->entity->getParameterName() => $value]);
     }
 }

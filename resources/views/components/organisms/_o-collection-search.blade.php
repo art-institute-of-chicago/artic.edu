@@ -1,3 +1,8 @@
+{{-- INTEGRATION DEPRECATION NOTICE: --}}
+
+{{-- This partial has been moved directly to site.collections.index --}}
+{{-- It's used only once and for integration purposes works better to have it there --}}
+
 <div class="o-collection-search" data-behavior="collectionSearch">
     @component('components.molecules._m-search-bar')
         @slot('placeholder','Search...')

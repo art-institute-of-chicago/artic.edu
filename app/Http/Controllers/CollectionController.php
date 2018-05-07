@@ -83,20 +83,8 @@ class CollectionController extends BaseScopedController
           'artworks'         => $collection,
           'filterCategories' => $filters,
           'activeFilters'    => $activeFilters,
-          'quickSearchLinks' => [],
-          'recentlyViewedArtworks' => [],
           'featuredArticlesHero'   => [],
-          'featuredArticles'       => [],
-          'interestedThemes' => array(
-            array(
-              'href' => '#',
-              'label' => "Picasso",
-            ),
-            array(
-              'href' => '#',
-              'label' => "Monet",
-            )
-          ),
+          'featuredArticles'       => []
         ]);
     }
 
