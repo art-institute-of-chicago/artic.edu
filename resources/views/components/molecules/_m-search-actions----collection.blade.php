@@ -1,8 +1,8 @@
 <ul class="m-search-actions">
     <li>
-        <button class="f-secondary" data-behavior="showCollectionFilters">
+        <button class="f-secondary" data-behavior="showCollectionFilters" aria-label="Toggle filter display">
             <svg class="icon--filter--24"><use xlink:href="#icon--filter--24" /></svg>
-            Show Filters
+            <span class="m-search-actions__label-show">Show</span><span class="m-search-actions__label-hide">Hide</span> Filters
         </button>
     </li>
     <li>
