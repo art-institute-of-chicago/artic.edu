@@ -21,6 +21,7 @@ const ajaxPageLoad = function() {
       triggerCustomEvent(document, 'page:updated');
       triggerCustomEvent(document, 'loader:complete');
       triggerCustomEvent(document, 'ajaxPageLoadMask:hide');
+      triggerCustomEvent(document, 'ajaxPageLoad:complete');
       triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': false });
     });
     //

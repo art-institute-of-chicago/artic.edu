@@ -46,6 +46,26 @@
   pointer-events: none;
 }
 
+.o-pinboard > *::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
+  pointer-events: none;
+}
+
+.o-pinboard > *:first-child {
+  padding-top: 0;
+
+  &::before {
+    content: none;
+    display: none;
+  }
+}
+
 .o-pinboard__footer {
   margin-top: 40px;
   padding-top: 25px;
@@ -61,26 +81,6 @@
     .o-pinboard > * {
       margin-top: #{map-get($grid-margin-tops, $name)}px;
       padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
-    }
-
-    .o-pinboard > *::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 1px;
-      background-color: $color__rules--primary;
-      pointer-events: none;
-    }
-
-    .o-pinboard > *:first-child {
-      padding-top: 0;
-
-      &::before {
-        content: none;
-        display: none;
-      }
     }
 
     .o-pinboard[class*="col@#{$name}"] {
