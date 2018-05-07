@@ -64,7 +64,7 @@
             <li><a href="{{ $_pages['support-us-membership'] }}">Membership</a></li>
             <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to give</a></li>
             <li><a href="{{ $_pages['support-us-ways-to-give-corporate-sponsorship'] }}">Corporate sponsorship</a></li>
-             <li><a href="{{ $_pages['support-us-arts-interest-groups'] }}">Arts Interest Groups</a></li>
+             <li><a href="{{ $_pages['support-us-art-interest-groups'] }}">Arts Interest Groups</a></li>
           </ul>
         </div>
       </li>
