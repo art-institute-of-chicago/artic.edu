@@ -67,7 +67,6 @@ const headerGallery = function(container) {
     nodes.share.setAttribute('data-share-title', data[activeIndex].shareTitle);
 
     if (init) {
-      _fixDisplay();
       return;
     }
 
