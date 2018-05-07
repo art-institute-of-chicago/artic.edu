@@ -54,18 +54,6 @@ return [
                 'title' => 'FAQ',
                 'module' => true,
             ],
-            'galleries' => [
-                'title' => 'Galleries',
-                'module' => true,
-            ],
-            'departments' => [
-                'title' => 'Departments',
-                'module' => true,
-            ],
-            'shopItems' => [
-                'title' => 'Shop',
-                'module' => true,
-            ],
         ]
     ],
 
@@ -204,7 +192,15 @@ return [
             'pressReleases' => [
                 'title' => 'Press Releases',
                 'module' => true,
-            ]
+            ],
+            'galleries' => [
+                'title' => 'Galleries',
+                'module' => true,
+            ],
+            'departments' => [
+                'title' => 'Departments',
+                'module' => true,
+            ],
         ],
     ],
 
@@ -231,6 +227,10 @@ return [
             ],
             'resourceCategories' => [
                 'title' => 'Resource Categories',
+                'module' => true,
+            ],
+            'shopItems' => [
+                'title' => 'Shop',
                 'module' => true,
             ],
         ],
