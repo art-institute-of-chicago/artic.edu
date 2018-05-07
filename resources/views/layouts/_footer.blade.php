@@ -49,21 +49,22 @@
           <h3 class="f-list-6"><a href="{{ $_pages['about-us'] }}">About us<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></h3>
 
           <ul class="g-footer__link-list">
-            <li><a href="{{ $_pages['about-us-inside-the-museum'] }}">Inside the museum</a></li>
             <li><a href="{{ $_pages['about-us-inside-the-museum'] }}">Mission and history</a></li>
             <li><a href="{{ $_pages['about-us-leadership'] }}">Leadership</a></li>
-            <li><a href="{{ $_pages['about-us-financials'] }}">Financial records</a></li>
+            <li><a href="{{ $_pages['about-us-financials'] }}">Financial Reporting</a></li>
+                        <li><a href="{{ $_pages['about-us-departments'] }}">Departments</a></li>
+
           </ul>
         </div>
 
         <div class="g-footer__grid__group">
-          <h3 class="f-list-6">Support us</h3>
+          <h3 class="f-list-6"><a href="{{ $_pages['support-us'] }}">Support us</a></h3>
 
           <ul class="g-footer__link-list">
             <li><a href="{{ $_pages['support-us-membership'] }}">Membership</a></li>
             <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to give</a></li>
-            <li><a href="{{ $_pages['support-us-affiliate-groups'] }}">Affiliate groups</a></li>
-            <li><a href="{{ $_pages['support-us-corporate-sponsorship'] }}">Corporate sponsorship</a></li>
+            <li><a href="{{ $_pages['support-us-ways-to-give-corporate-sponsorship'] }}">Corporate sponsorship</a></li>
+             <li><a href="{{ $_pages['support-us-art-interest-groups'] }}">Arts Interest Groups</a></li>
           </ul>
         </div>
       </li>
@@ -97,10 +98,10 @@
   <ul class="g-footer__legals f-secondary">
     <li><a href="{{ $_pages['legal-articles'] }}">Articles</a></li>
     <li><a href="{{ $_pages['legal-employment'] }}">Employment</a></li>
-    <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue rental</a></li>
     <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
-    <li><a href="{{ $_pages['legal-terms'] }}">Terms</a></li>
     <li><a href="{{ $_pages['legal-image-licensing'] }}">Image licensing</a></li>
+    <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue rental</a></li>
+    <li><a href="{{ $_pages['legal-terms'] }}">Terms</a></li>
   </ul>
 </footer>
 <a class="top-link" href="#a17">

@@ -102,14 +102,17 @@ class AppServiceProvider extends ServiceProvider
 
             ,   'about-us' => '/about-us'
             ,   'about-us-inside-the-museum' => '/about-us/inside-the-museum'
-            ,   'about-us-mission-history' => '/about-us/mission-history'
+            ,   'about-us-mission-history' => '/about-us/mission-and-history'
             ,   'about-us-leadership' => '/about-us/leadership'
-            ,   'about-us-financials' => '/about-us/financial-records'
+            ,   'about-us-financials' => '/about-us/financial-reporting'
+            ,   'about-us-departments' => '/about-us/departments'
 
+            ,   'support-us' => '/support-us'
             ,   'support-us-membership' => '/support-us/membership'
             ,   'support-us-ways-to-give' => '/support-us/ways-to-give'
             ,   'support-us-affiliate-groups' => '/support-us/affiliate-groups'
-            ,   'support-us-corporate-sponsorship' => '/support-us/corporate-sponsorship'
+            ,   'support-us-ways-to-give-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship'
+            ,   'support-us-art-interest-groups' => '/support-us/art-interest-groups'
 
             ,   'learn' => '/learn'
             ,   'learn-families' => '/learn/families'
