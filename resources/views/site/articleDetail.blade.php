@@ -39,7 +39,7 @@
     @if ($item->nav)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.molecules._m-link-list')
-            @slot('variation', 'u-show@large+')
+            @slot('variation', 'm-link-list--icon-left u-show@large+')
             @slot('links', $item->nav);
         @endcomponent
     @endif
