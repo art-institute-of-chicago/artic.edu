@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 use App\Libraries\RecentlyViewedService;
+use App\Libraries\Search\CollectionService;
 
-class ArtworkController extends FrontController
+class ArtworkController extends BaseScopedController
 {
+    const PER_PAGE = 20;
+
     protected $artworkRepository;
 
     public function __construct(ArtworkRepository $repository)
@@ -15,7 +18,7 @@ class ArtworkController extends FrontController
         parent::__construct();
     }
 
-    public function show($idSlug, RecentlyViewedService $recentlyViewed)
+    public function show($idSlug)
     {
         $item = Artwork::query()
             ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
@@ -23,10 +26,11 @@ class ArtworkController extends FrontController
 
         if (empty($item)) {
             abort(404);
-        } else {
-            // Add artwork to the Recently Viewed collection
-            $recentlyViewed->addArtwork($item);
         }
+
+        // Get previous and next artwork using BaseScopedController filters
+        // Basically it performs a search again and locates both prev/next works
+        $prevNext = $this->collection()->getPrevNext($item);
 
         // Build Explore further module
         $exploreFurtherTags = $this->artworkRepository->exploreFurtherTags($item);
@@ -36,6 +40,7 @@ class ArtworkController extends FrontController
             $exploreFurtherCollection = $this->artworkRepository->exploreFurtherCollection($item, request()->only('exFurther-classification', 'exFurther-style', 'exFurther-artist'));
         }
 
+
         return view('site.artworkDetail', [
           'item' => $item,
           'contrastHeader'     => $item->present()->contrastHeader,
@@ -43,7 +48,34 @@ class ArtworkController extends FrontController
           'exploreFurther'     => $exploreFurtherCollection ?? null,
           'exploreFurtherTags' => $exploreFurtherTags,
           'exploreFurtherAllTags' => $exploreFurtherAllTags ?? null,
+          'prevArticle'        => $prevNext->prev,
+          'nextArticle'        => $prevNext->next
         ]);
+    }
+
+    /**
+     * Implementation for BaseScopedController.
+     * This is the beginning for the chain of scoped results
+     * The remaining scopes are applied following the $scopes
+     * array defined at the controller
+     *
+     */
+    protected function beginOfAssociationChain()
+    {
+        // Define base entity
+        $collectionService = new CollectionService;
+
+        // Implement default filters and scopes
+        $collectionService->resources(['artworks'])
+            ->allAggregations()
+            ->forceEndpoint('search');
+
+        return $collectionService;
+    }
+
+    protected function getPrevNext()
+    {
+        $collection = $this->collection()->perPage(static::PER_PAGE)->results();
     }
 
     public function recentlyViewed(RecentlyViewedService $service)
