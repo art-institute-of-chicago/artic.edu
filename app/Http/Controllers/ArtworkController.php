@@ -15,7 +15,7 @@ class ArtworkController extends FrontController
         parent::__construct();
     }
 
-    public function show($idSlug, RecentlyViewedService $recentlyViewed)
+    public function show($idSlug)
     {
         $item = Artwork::query()
             ->include(['artist_pivots', 'place_pivots'])
@@ -23,9 +23,6 @@ class ArtworkController extends FrontController
 
         if (empty($item)) {
             abort(404);
-        } else {
-            // Add artwork to the Recently Viewed collection
-            $recentlyViewed->addArtwork($item);
         }
 
         // Build Explore further module
