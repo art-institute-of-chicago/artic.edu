@@ -65,7 +65,7 @@
     @slot('onViewLink', route('collection', (request()->filled('is_on_view') ? [] : request()->input() + ['is_on_view' => true])))
     @slot('onViewActive', request()->filled('is_on_view'))
 
-    @slot('total', $artworks->total())
+    @slot('total', number_format($artworks->total()))
 @endcomponent
 
 <div class="o-collection-listing__colset">
