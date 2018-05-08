@@ -21,8 +21,8 @@
         <ul class="g-footer__link-list">
           <li>{!! $_hours['opening_today'] !!}</li>
           <li><a href="{{ $_pages['visit'] }}">Visit</a></li>
-          <li><a href="{{ $_pages['exhibitions'] }}">Exhibitions and events</a></li>
-          <li><a href="{{ $_pages['collection'] }}">The collection</a></li>
+          <li><a href="{{ $_pages['exhibitions'] }}">Exhibitions and Events</a></li>
+          <li><a href="{{ $_pages['collection'] }}">The Collection</a></li>
         </ul>
       </li>
 
@@ -49,7 +49,7 @@
           <h3 class="f-list-6"><a href="{{ $_pages['about-us'] }}">About us<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></h3>
 
           <ul class="g-footer__link-list">
-            <li><a href="{{ $_pages['about-us-mission-history'] }}">Mission and history</a></li>
+            <li><a href="{{ $_pages['about-us-mission-history'] }}">Mission and History</a></li>
             <li><a href="{{ $_pages['about-us-leadership'] }}">Leadership</a></li>
             <li><a href="{{ $_pages['about-us-financials'] }}">Financial Reporting</a></li>
                         <li><a href="{{ $_pages['about-us-departments'] }}">Departments</a></li>
@@ -62,8 +62,8 @@
 
           <ul class="g-footer__link-list">
             <li><a href="{{ $_pages['support-us-membership'] }}">Membership</a></li>
-            <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to give</a></li>
-            <li><a href="{{ $_pages['support-us-ways-to-give-corporate-sponsorship'] }}">Corporate sponsorship</a></li>
+            <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to Give</a></li>
+            <li><a href="{{ $_pages['support-us-ways-to-give-corporate-sponsorship'] }}">Corporate Sponsorship</a></li>
              <li><a href="{{ $_pages['support-us-art-interest-groups'] }}">Arts Interest Groups</a></li>
           </ul>
         </div>
@@ -99,8 +99,8 @@
     <li><a href="{{ $_pages['legal-articles'] }}">Articles</a></li>
     <li><a href="{{ $_pages['legal-employment'] }}">Employment</a></li>
     <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
-    <li><a href="{{ $_pages['legal-image-licensing'] }}">Image licensing</a></li>
-    <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue rental</a></li>
+    <li><a href="{{ $_pages['legal-image-licensing'] }}">Image Licensing</a></li>
+    <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue Rental</a></li>
     <li><a href="{{ $_pages['legal-terms'] }}">Terms</a></li>
   </ul>
 </footer>
