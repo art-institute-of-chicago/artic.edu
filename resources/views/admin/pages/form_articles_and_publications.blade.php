@@ -29,6 +29,6 @@
         'max' => 3,
         'moduleName' => 'scholarlyJournals',
         'name' => 'scholarlyJournals',
-        'label' => 'Scholarly Journals'
+        'label' => 'Scholarly journals'
     ])
 @stop
