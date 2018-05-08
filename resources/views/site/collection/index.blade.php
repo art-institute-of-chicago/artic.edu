@@ -130,6 +130,7 @@
     @component('components.atoms._hr')
     @endcomponent
     <div class="o-feature-plus-4">
+        @if ($featuredArticlesHero)
         @component('components.molecules._m-listing----article')
             @slot('tag', 'p')
             @slot('titleFont', 'f-list-5')
@@ -149,6 +150,7 @@
                 )),
             ))
         @endcomponent
+        @endif
         <ul class="o-feature-plus-4__items-1">
         @foreach ($featuredArticles as $item)
             @if ($loop->index < 2)

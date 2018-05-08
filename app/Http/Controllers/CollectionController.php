@@ -77,6 +77,12 @@ class CollectionController extends BaseScopedController
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
+        $featuredArticlesHero = null;
+        $featuredArticles = $page->artArticles;
+        if ($featuredArticles->count()) {
+            $featuredArticlesHero = $featuredArticles->shift();
+        }
+
         return view('site.collection.index', [
           'primaryNavCurrent' => 'collection',
           'page'              => $page,
@@ -85,8 +91,8 @@ class CollectionController extends BaseScopedController
           'activeFilters'    => $activeFilters,
           'quickSearchLinks' => [],
           'recentlyViewedArtworks' => [],
-          'featuredArticlesHero'   => [],
-          'featuredArticles'       => [],
+          'featuredArticlesHero'   => $featuredArticlesHero,
+          'featuredArticles'       => $featuredArticles,
           'interestedThemes' => array(
             array(
               'href' => '#',

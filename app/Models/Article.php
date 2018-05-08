@@ -86,6 +86,11 @@ class Article extends Model
         ]
     ];
 
+    public function getIntroAttribute()
+    {
+        return $this->heading;
+    }
+
     public function getArticleTypeattribute()
     {
         return 'editorial';
