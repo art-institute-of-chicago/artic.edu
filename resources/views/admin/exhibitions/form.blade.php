@@ -30,6 +30,12 @@
     ])
 
     @formField('input', [
+        'name' => 'hero_caption',
+        'label' => 'Hero image Caption',
+        'note' => 'Usually used for copyright'
+    ])
+
+    @formField('input', [
         'name' => 'header_copy',
         'label' => 'Header',
     ])
