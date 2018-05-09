@@ -8,23 +8,24 @@
             @slot('title', $item->title)
             @slot('type', $item->type)
             @slot('date', $item->date)
+            @slot('intro', $item->heading)
         @endcomponent
 
         <div class="o-article__body o-blocks">
             @component('components.molecules._m-media')
                 @slot('variation', 'o-blocks__block')
-                @slot('item', $video)
+                @slot('item', $item->present()->videoBlock)
             @endcomponent
 
             @component('components.blocks._blocks')
-                @slot('editorial', ($item->articleType === 'editorial'))
+                @slot('editorial', false)
                 @slot('blocks', $blocks ?? null)
-                @slot('dropCapFirstPara', ($item->articleType === 'editorial'))
+                @slot('dropCapFirstPara', false)
             @endcomponent
 
             <div class="o-article__body-actions">
                 @component('components.molecules._m-article-actions')
-                    @slot('articleType', $item->articleType)
+                    @slot('articleType', $item->type)
                 @endcomponent
             </div>
         </div>

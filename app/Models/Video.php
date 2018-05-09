@@ -6,12 +6,16 @@ use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasFiles;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
+use A17\CmsToolkit\Models\Behaviors\HasPresenter;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class Video extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasPresenter;
+
+    protected $presenter      = 'App\Presenters\Admin\VideoPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\VideoPresenter';
 
     protected $fillable = [
         'published',
@@ -21,7 +25,8 @@ class Video extends Model
         'video_url'
     ];
 
-    protected $dates = ['date'];
+    protected $dates   = ['date'];
+    protected $appends = ['embed'];
 
     public $mediasParams = [
         'hero' => [
@@ -68,6 +73,7 @@ class Video extends Model
 
     public function getUrlWithoutSlugAttribute()
     {
+        // Workaround for the CMS, should be moved away from the model
         return join([route('videos'), '/', $this->id, '-']);
     }
 }

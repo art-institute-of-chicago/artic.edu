@@ -26,4 +26,10 @@ class VideoRepository extends ModuleRepository
         ];
     }
 
+    public function getRelatedVideos($item)
+    {
+        return $this->model::published()->limit(4)->whereNotIn('id', [$item->id])->get();
+    }
+
+
 }
