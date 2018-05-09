@@ -224,6 +224,7 @@
   display: block;
 }
 
+.m-search-bar.s-loading .m-search-bar__clear,
 .m-search-bar.s-loading .m-search-bar__autocomplete-close {
   display: none;
 }

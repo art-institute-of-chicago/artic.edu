@@ -147,6 +147,14 @@ const autocomplete = function(container) {
     }
   }
 
+  function _setFocus(){
+    if( textInput.value !== '' ){
+      textInput.focus();
+      textInput.selectionStart = textInput.selectionEnd = textInput.value.length;
+      container.classList.add(autocompleteActiveKlass);
+    }
+  }
+
   function _init() {
     textInput.addEventListener('input', _handleInput, false);
     textInput.addEventListener('propertychange', _handleInput, false);
@@ -155,6 +163,8 @@ const autocomplete = function(container) {
     document.addEventListener('click', _clicks, false);
     document.addEventListener('touchstart', _touchstart, false);
     window.addEventListener('keyup', _escape, false);
+
+    _setFocus();
   }
 
   this.destroy = function() {
