@@ -7,13 +7,21 @@ use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\ModuleRepository;
+
 use App\Models\Selection;
+use App\Models\Api\Search;
+
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\ExploreFurtherTags;
 
 class SelectionRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBLocks, HandleApiBlocks, HandleApiRelations {
+    const PER_PAGE_EXPLORE_FURTHER = 20;
+    const EXPLORE_FURTHER_TAGS = 55;
+    const ARTWORKS_PER_PAGE = 8;
+
+    use ExploreFurtherTags, HandleSlugs, HandleRevisions, HandleMedias, HandleBLocks, HandleApiBlocks, HandleApiRelations {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -65,5 +73,15 @@ class SelectionRepository extends ModuleRepository
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
         ];
+    }
+
+    public function getArtworksCollection($item)
+    {
+        return Search::query()
+                ->resources(['artworks'])
+                ->forceEndpoint('search')
+                ->byIds($item->artworks->pluck('datahub_id')->toArray())
+                ->aggregationClassifications()
+                ->getSearch(self::ARTWORKS_PER_PAGE);
     }
 }

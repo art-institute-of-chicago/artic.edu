@@ -40,11 +40,11 @@ trait ExploreFurtherTags
 
         // Build Classification Tags
         if ($element->id) {
-            $results = $this->getArtworks($element->id);
+            $results = $this->getArtworks($element);
 
             foreach($results->getMetadata('aggregations')->classifications->buckets as $item) {
                 $tags = $tags->merge(
-                    [$item->key => (ucfirst($item->key) . ' (' . $item->doc_count . ')')]
+                    [$item->key => ucfirst($item->key)]
                 );
             };
         }

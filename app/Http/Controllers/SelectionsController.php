@@ -37,35 +37,19 @@ class SelectionsController extends FrontController
             $item->type = $item->siteTags->first()->name;
         }
 
-        // dd($item->articles);
-        // $item->featuredRelated = array(
-        //   'type' => 'article',
-        //   'items' => $item->articles
-        // );
+        $exploreFurtherTags = $this->repository->exploreFurtherTags($item);
+        if (request()->has('exFurther-all')) {
+            $exploreFurtherAllTags = $this->repository->exploreFurtherAllTags();
+        } else {
+            $exploreFurtherCollection = $this->repository->exploreFurtherCollection($item, request()->only('exFurther-classification'));
+        }
 
-        // $item->featuredRelated = array(
-        //   'type' => 'article',
-        //   'items' => array(
-        //     new StaticObjectPresenter([
-        //           "id" => 'abc',
-        //           "slug" => "/statics/article",
-        //           "title" => 'related',
-        //           "author" => array(
-        //             'img' => ['src' => "//placeimg.com/320/320/nature", 'srcset' => "//placeimg.com/320/320/nature", 'width' => 320, 'height' => 320],
-        //             'name' => 'ABC DEF',
-        //             'link' => '#',
-        //           ),
-        //           "intro" => 'Intro',
-        //           "date" => \Carbon\Carbon::now(),
-        //           "image" => ['src' => "//placeimg.com/320/320/nature", 'srcset' => "//placeimg.com/320/320/nature", 'width' => 320, 'height' => 320],
-        //           "type" => 'article',
-        //           "subtype" => "SUB",
-        //         ])
-        // ));
-
-        return view('site.articleDetail', [
+        return view('site.selectionDetail', [
             'contrastHeader' => $item->present()->contrastHeader,
-            'item' => $item
+            'item' => $item,
+            'exploreFurtherTags' => $exploreFurtherTags ,
+            'exploreFurther'     => $exploreFurtherCollection ?? null,
+            'exploreFurtherAllTags' => $exploreFurtherAllTags ?? null,
         ]);
     }
 
