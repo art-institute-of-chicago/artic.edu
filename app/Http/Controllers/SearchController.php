@@ -87,15 +87,15 @@ class SearchController extends BaseScopedController
         foreach($collection as &$item) {
             switch ($item->type) {
                 case 'artwork':
-                    $item->url = route('search.artworks', ['q' => $item->title]);
+                    $item->url = route('artworks.show', $item);
                     $item->section = 'Artworks';
                     break;
                 case 'exhibition':
-                    $item->url = route('search.exhibitionsEvents', ['q' => $item->title]);
+                    $item->url = route('exhibitions.show', $item);
                     $item->section = 'Exhibitions and Events';
                     break;
                 case 'artist':
-                    $item->url = route('search.artists', ['q' => $item->title]);
+                    $item->url = route('artists.show', $item);
                     $item->section = 'Artists';
                     break;
             }
