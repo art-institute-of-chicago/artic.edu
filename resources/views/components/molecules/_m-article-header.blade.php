@@ -60,8 +60,7 @@
         @slot('isZoomable', $isZoomable ?? null)
         @slot('isPublicDomain', $isPublicDomain ?? null)
         @slot('maxZoomWindowSize', $maxZoomWindowSize ?? null)
-        @slot('nextArticle', $nextArticle ?? null)
-        @slot('prevArticle', $prevArticle ?? null)
+        @slot('prevNextObject', $prevNextObject ?? null)
     @endcomponent
 @else
     {{-- Default header --}}

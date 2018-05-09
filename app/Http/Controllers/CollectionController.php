@@ -7,35 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Libraries\Search\CollectionService;
 
-use LakeviewImageService;
-
 class CollectionController extends BaseScopedController
 {
     const PER_PAGE = 20;
 
     protected $apiRepository;
     protected $searchRepository;
-
-    protected $scopes = [
-        'q'            => 'search',
-        'artist_ids'   => 'byArtists',
-        'style_ids'    => 'byStyles',
-        'subject_ids'  => 'bySubjects',
-        'material_ids' => 'byMaterials',
-        'place_ids'    => 'byPlaces',
-        'sort_by'      => 'sortBy',
-        'date-start'   => 'dateMin',
-        'date-end'     => 'dateMax',
-        'is_on_view'   => 'onView',
-        'classification_ids' => 'byClassifications',
-        'department_ids'     => 'byDepartments',
-        'is_public_domain'   => 'publicDomain',
-
-        // Hidden from filters but present in Quick facets
-        'theme_ids'     => 'byThemes',
-        'gallery_ids'   => 'byGalleryIds',
-        'technique_ids' => 'byTechniques',
-    ];
 
     /**
      * Implementation for BaseScopedController.
@@ -77,7 +54,6 @@ class CollectionController extends BaseScopedController
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
-        $featuredArticlesHero = null;
         $featuredArticles = $page->artArticles;
         if ($featuredArticles->count()) {
             $featuredArticlesHero = $featuredArticles->shift();
@@ -86,29 +62,18 @@ class CollectionController extends BaseScopedController
         return view('site.collection.index', [
           'primaryNavCurrent' => 'collection',
           'page'              => $page,
-          'artworks'         => $collection,
-          'filterCategories' => $filters,
-          'activeFilters'    => $activeFilters,
-          'quickSearchLinks' => [],
-          'recentlyViewedArtworks' => [],
-          'featuredArticlesHero'   => $featuredArticlesHero,
-          'featuredArticles'       => $featuredArticles,
-          'interestedThemes' => array(
-            array(
-              'href' => '#',
-              'label' => "Picasso",
-            ),
-            array(
-              'href' => '#',
-              'label' => "Monet",
-            )
-          ),
+          'artworks'          => $collection,
+          'filterCategories'  => $filters,
+          'activeFilters'     => $activeFilters,
+          'quickSearchLinks'  => [],
+          'featuredArticlesHero' => $featuredArticlesHero ?? null,
+          'featuredArticles'     => $featuredArticles,
         ]);
     }
 
     // Endpoint to search within filters.
     // To perform this we hit the same collection endpoint (with no results)
-    // And build filters from the returned aggregations
+    // and then build filters from the returned aggregations
     public function categorySearch($category)
     {
         // Search through the facets including current parameters. Get only aggregations.

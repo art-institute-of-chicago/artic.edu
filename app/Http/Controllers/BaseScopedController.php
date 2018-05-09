@@ -26,8 +26,31 @@ class BaseScopedController extends FrontController
      *
      * [ parameter => scopeName, .... ]
      *
+     * Scopes should better be defined on each controller but given we use this
+     * on 3 places (general search, collections and artwork prev/next functionality)
+     * better to place them here to have a single control point
+     *
      */
-    protected $scopes = [];
+    protected $scopes = [
+        'q'            => 'search',
+        'artist_ids'   => 'byArtists',
+        'style_ids'    => 'byStyles',
+        'subject_ids'  => 'bySubjects',
+        'material_ids' => 'byMaterials',
+        'place_ids'    => 'byPlaces',
+        'sort_by'      => 'sortBy',
+        'date-start'   => 'dateMin',
+        'date-end'     => 'dateMax',
+        'is_on_view'   => 'onView',
+        'classification_ids' => 'byClassifications',
+        'department_ids'     => 'byDepartments',
+        'is_public_domain'   => 'publicDomain',
+
+        // Hidden from filters but present in Quick facets
+        'theme_ids'     => 'byThemes',
+        'gallery_ids'   => 'byGalleryIds',
+        'technique_ids' => 'byTechniques',
+    ];
 
     /**
      * Returns the processed collection.

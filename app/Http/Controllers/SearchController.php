@@ -37,23 +37,6 @@ class SearchController extends BaseScopedController
     protected $searchRepository;
     protected $exhibitionsRepository;
 
-    // Scopes defined to filter Artworks based on BaseScopedController.
-    protected $scopes = [
-        'q'            => 'search',
-        'artist_ids'   => 'byArtists',
-        'style_ids'    => 'byStyles',
-        'subject_ids'  => 'bySubjects',
-        'material_ids' => 'byMaterials',
-        'place_ids'    => 'byPlaces',
-        'sort_by'      => 'sortBy',
-        'date-start'   => 'dateMin',
-        'date-end'     => 'dateMax',
-        'is_on_view'   => 'onView',
-        'classification_ids' => 'byClassifications',
-        'department_ids'     => 'byDepartments',
-        'is_public_domain'   => 'publicDomain',
-    ];
-
     public function __construct(
         ArtworkRepository $artworks,
         ArtistRepository $artists,

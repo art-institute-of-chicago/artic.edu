@@ -20,7 +20,11 @@ class CollectionService
         'is_on_view' => 'On view'
     ];
 
+    // Default perPage option
     protected $perPage = 20;
+
+    // Pagination index used as a flag to get prev/next elements
+    protected $page = null;
 
     public function __construct()
     {
@@ -33,15 +37,22 @@ class CollectionService
      * to build filters.
      *
      */
-    public function results()
+    public function results($page = null)
     {
-        // Memoize results to avoid double search
-        if ($this->results)
+        // Memoize results to avoid double search. Consider page number (prev/next)
+        if ($this->results && $page == $this->page) {
             return $this->results;
+        }
 
         // Run the actual search query
         $builder = clone $this->chain;
-        $this->results = $builder->getSearch($this->perPage);
+
+        if ($page) {
+            $this->results = $builder->getSearch($this->perPage, [], null, $page);
+            $this->page    = $page;
+        } else {
+            $this->results = $builder->getSearch($this->perPage);
+        }
 
         return $this->results;
     }
@@ -174,6 +185,74 @@ class CollectionService
     {
         $this->perPage = $perPage;
         return $this;
+    }
+
+    /**
+     * Get previous & next artworks. This function basically tries to locate the element
+     * within the collection, and get's prev/next elements from there. On edge cases it has
+     * to perform another query to load the previous or next page (if those are available)
+     *
+     */
+    public function getPrevNext($item, $manualResults = null)
+    {
+        $collection = $manualResults ?: $this->results();
+
+        $position = $collection->values()->search(function($element, $key) use ($item) {
+            return $element->id == $item->id;
+        });
+
+        // --- Section to get previous element
+
+        if (($prevPos = $position - 1) < 0) {
+            // If position is < 0 then check that previous pages exists and load the last element
+
+            $page = $collection->currentPage();
+
+            if ($page == 1) {
+                // If it's the first element and first page then null
+                $prev = null;
+            } else {
+                // If it's not the first page then get previous page and repeat
+                $prevPage = $page - 1;
+                $prev = $this->results($prevPage)->values()->last();
+            }
+        } else {
+            // If the element exists on current collection just load it
+            $prev = $collection->values()[$prevPos];
+        }
+
+
+        // --- Section to get next element
+
+        if (($nextPos = $position + 1) >= $collection->count()) {
+            // If position > last element then check that we have a next page and load the first element
+
+            if ($collection->hasMorePages()) {
+                // If it's not the last page then get next page and repeat
+                $nextPage = $collection->currentPage() + 1;
+                $next = $this->results($nextPage)->values()->first();
+            } else {
+                // If it's the last page then it's the last element, so null
+                $next = null;
+            }
+        } else {
+            // If the element exists on current collection just load it
+            $next = $collection->values()[$nextPos];
+        }
+
+        // -- Include link parameters, this fix a bug on edge cases when you click next or prev
+        // enough times to move to a different page.
+
+        $prevParams = $nextParams = request()->input();
+        if (isset($prevPage)) { $prevParams = request()->except('page') + ['page' => $prevPage]; }
+        if (isset($nextPage)) { $nextParams = request()->except('page') + ['page' => $nextPage]; }
+
+        return (object) [
+            'prev' => $prev,
+            'prevParams' => $prevParams,
+            'next' => $next,
+            'nextParams' => $nextParams
+        ];
     }
 
     /**

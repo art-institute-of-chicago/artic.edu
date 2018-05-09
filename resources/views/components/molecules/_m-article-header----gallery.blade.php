@@ -34,7 +34,7 @@ if ($maxZoomWindowSize >= 843) {
             ))
         @endcomponent
       </div>
-      @if (sizeof($images) > 1 or $nextArticle or $prevArticle)
+      @if (sizeof($images) > 1 or $prevNextObject->next or $prevNextObject->prev)
       <ul class="m-article-header__img-nav">
         @if (sizeof($images) > 1)
         <li class="m-article-header__img-nav-next-img">
@@ -44,12 +44,12 @@ if ($maxZoomWindowSize >= 843) {
           <button data-gallery-previous></button>
         </li>
         @endif
-        @if ($nextArticle)
+        @if ($prevNextObject->next)
         <li class="m-article-header__img-nav-next-artwork">
-          <a href="#" class="m-article-header__img-nav-artwork-preview">
+          <a href="{!! route('artworks.show', ['id' => $prevNextObject->next ] + $prevNextObject->nextParams) !!}" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('image', $nextArticle->imageFront())
+                  @slot('image', $prevNextObject->next->imageFront())
                   @slot('settings', array(
                     'srcset' => array(120,240),
                     'sizes' => '120px',
@@ -57,19 +57,19 @@ if ($maxZoomWindowSize >= 843) {
               @endcomponent
             </span>
             <span class="f-caption">
-              <strong>{{ str_limit($nextArticle->title, 18) }}</strong> <br>
-              {{ str_limit($nextArticle->subtitle, 25) }}
+              <strong>{{ str_limit($prevNextObject->next->title, 18) }}</strong> <br>
+              {{ str_limit($prevNextObject->next->subtitle, 25) }}
             </span>
             <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
           </a>
         </li>
         @endif
-        @if ($prevArticle)
+        @if ($prevNextObject->prev)
         <li class="m-article-header__img-nav-prev-artwork">
-          <a href="#" class="m-article-header__img-nav-artwork-preview">
+          <a href="{!! route('artworks.show', ['id' => $prevNextObject->prev ] + $prevNextObject->prevParams) !!}" class="m-article-header__img-nav-artwork-preview">
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
-                  @slot('image', $prevArticle->imageFront())
+                  @slot('image', $prevNextObject->prev->imageFront())
                   @slot('settings', array(
                     'srcset' => array(120,240),
                     'sizes' => '120px',
@@ -77,8 +77,8 @@ if ($maxZoomWindowSize >= 843) {
               @endcomponent
             </span>
             <span class="f-caption">
-              <strong>{{ str_limit($prevArticle->title, 18) }}</strong> <br>
-              {{ str_limit($prevArticle->subtitle, 25) }}
+              <strong>{{ str_limit($prevNextObject->prev->title, 18) }}</strong> <br>
+              {{ str_limit($prevNextObject->prev->subtitle, 25) }}
             </span>
             <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
           </a>
