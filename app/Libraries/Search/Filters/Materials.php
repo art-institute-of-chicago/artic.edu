@@ -14,7 +14,7 @@ class Materials extends BaseFilteredList
         if (!$list->isEmpty()) {
             return [
                 'placeholder' => "Find Materials",
-                'title'       => "Materials",
+                'title'       => "Medium",
                 'active'      => $this->activeList,
                 'list'        => $list,
                 'listSearch'  => true,
