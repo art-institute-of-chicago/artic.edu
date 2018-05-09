@@ -206,12 +206,15 @@ class CollectionService
         if (($prevPos = $position - 1) < 0) {
             // If position is < 0 then check that previous pages exists and load the last element
 
-            if ($page = $collection->currentPage() == 1) {
+            $page = $collection->currentPage();
+
+            if ($page == 1) {
                 // If it's the first element and first page then null
                 $prev = null;
             } else {
                 // If it's not the first page then get previous page and repeat
-                $prev = $this->results($page - 1)->values()->last();
+                $prevPage = $page - 1;
+                $prev = $this->results($prevPage)->values()->last();
             }
         } else {
             // If the element exists on current collection just load it
@@ -226,7 +229,8 @@ class CollectionService
 
             if ($collection->hasMorePages()) {
                 // If it's not the last page then get next page and repeat
-                $next = $this->results($collection->currentPage() + 1)->values()->first();
+                $nextPage = $collection->currentPage() + 1;
+                $next = $this->results($nextPage)->values()->first();
             } else {
                 // If it's the last page then it's the last element, so null
                 $next = null;
@@ -236,9 +240,18 @@ class CollectionService
             $next = $collection->values()[$nextPos];
         }
 
+        // -- Include link parameters, this fix a bug on edge cases when you click next or prev
+        // enough times to move to a different page.
+
+        $prevParams = $nextParams = request()->input();
+        if (isset($prevPage)) { $prevParams = request()->except('page') + ['page' => $prevPage]; }
+        if (isset($nextPage)) { $nextParams = request()->except('page') + ['page' => $nextPage]; }
+
         return (object) [
             'prev' => $prev,
-            'next' => $next
+            'prevParams' => $prevParams,
+            'next' => $next,
+            'nextParams' => $nextParams
         ];
     }
 
