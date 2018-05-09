@@ -87,7 +87,8 @@ class AppServiceProvider extends ServiceProvider
             '_hours' => [
                 'general' => $hours_general
             ,   'opening_today' => ''
-            ],
+            ]
+            ,
             '_pages' => [
                 'visit' => route('visit')
             ,   'hours' => route('visit').'#hours'
@@ -97,7 +98,7 @@ class AppServiceProvider extends ServiceProvider
             ,   'become-a-member' => '/become-a-member'
             ,   'shop' => 'http://www.artinstituteshop.org'
 
-            ,   'collection' => '/collection'
+            ,   'collection' => route('collection')
             ,   'exhibitions' => route('exhibitions')
 
             ,   'about-us' => '/about-us'
@@ -139,6 +140,7 @@ class AppServiceProvider extends ServiceProvider
                     'children' => [
                         [
                             'name' => 'Plan Your Visit',
+                            'slug' => route('visit')
                         ],
                         [
                             'name' => 'Museum Spaces',
@@ -197,11 +199,12 @@ class AppServiceProvider extends ServiceProvider
                     ],
                 ],
                 [
-                    'name' => 'Exhibition &amp; Events',
-                    'slug' => '#',
+                    'name' => 'Exhibition & Events',
+                    'slug' => route('exhibitions'),
                 ],
                 [
                     'name' => 'The Collection',
+                    'slug' => route('collection'),
                     'children' => [
                         [
                             'name' => 'Lorem Ipsum',
@@ -222,7 +225,7 @@ class AppServiceProvider extends ServiceProvider
                 ],
                 [
                     'name' => 'About Us',
-                    'slug' => '#',
+                    'slug' => route('about.press'),
                     'class' => 'g-nav-mobile__nav--muted',
                 ],
                 [
