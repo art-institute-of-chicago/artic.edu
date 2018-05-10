@@ -23,7 +23,7 @@
 @endcomponent
 
 @component('components.molecules._m-search-bar')
-    @slot('placeholder','Search by keyword, artist or reference')
+    @slot('placeholder','Search by keyword, artist, or reference')
     @slot('name', 'collection-search')
     @slot('value', request('q'))
     @slot('behaviors','autocomplete')
