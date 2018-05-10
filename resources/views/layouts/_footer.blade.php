@@ -33,13 +33,13 @@
 
         <ul class="g-footer__link-list g-footer__link-list--spaced">
           <li>
-            Historic Building <br>
-            <a href="https://www.google.co.uk/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">111 South Michigan Avenue, <br>Chicago, IL 60603</a>
+            Michigan Avenue Entrance <br>
+            <a href="https://www.google.co.uk/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">111 South Michigan Avenue <br>Chicago, IL 60603</a>
           </li>
 
           <li>
-            Modern Wing <br>
-            <a href="https://www.google.co.uk/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">159 East Monroe Street, <br>Chicago, IL 60603</a>
+            Modern Wing Entrance <br>
+            <a href="https://www.google.co.uk/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">159 East Monroe Street <br>Chicago, IL 60603</a>
           </li>
         </ul>
       </li>
@@ -49,7 +49,7 @@
           <h3 class="f-list-6"><a href="{{ $_pages['about-us'] }}">About us<svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></a></h3>
 
           <ul class="g-footer__link-list">
-            <li><a href="{{ $_pages['about-us-mission-history'] }}">Mission and history</a></li>
+            <li><a href="{{ $_pages['about-us-mission-history'] }}">Mission and History</a></li>
             <li><a href="{{ $_pages['about-us-leadership'] }}">Leadership</a></li>
             <li><a href="{{ $_pages['about-us-financials'] }}">Financial Reporting</a></li>
                         <li><a href="{{ $_pages['about-us-departments'] }}">Departments</a></li>
@@ -62,9 +62,9 @@
 
           <ul class="g-footer__link-list">
             <li><a href="{{ $_pages['support-us-membership'] }}">Membership</a></li>
-            <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to give</a></li>
-            <li><a href="{{ $_pages['support-us-ways-to-give-corporate-sponsorship'] }}">Corporate sponsorship</a></li>
-             <li><a href="{{ $_pages['support-us-art-interest-groups'] }}">Arts Interest Groups</a></li>
+            <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to Give</a></li>
+            <li><a href="{{ $_pages['support-us-ways-to-give-corporate-sponsorship'] }}">Corporate Sponsorship</a></li>
+             <li><a href="{{ $_pages['support-us-art-interest-groups'] }}">Art Interest Groups</a></li>
           </ul>
         </div>
       </li>
@@ -76,8 +76,8 @@
           <ul class="g-footer__link-list">
             <li><a href="{{ $_pages['learn-families'] }}">Families</a></li>
             <li><a href="{{ $_pages['learn-teens'] }}">Teens</a></li>
-            <li><a href="{{ $_pages['learn-adults'] }}">Adults</a></li>
             <li><a href="{{ $_pages['learn-educators'] }}">Educators</a></li>
+            <li><a href="{{ $_pages['learn-adults'] }}">Adults</a></li>
           </ul>
         </div>
 
@@ -99,8 +99,8 @@
     <li><a href="{{ $_pages['legal-articles'] }}">Articles</a></li>
     <li><a href="{{ $_pages['legal-employment'] }}">Employment</a></li>
     <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
-    <li><a href="{{ $_pages['legal-image-licensing'] }}">Image licensing</a></li>
-    <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue rental</a></li>
+    <li><a href="{{ $_pages['legal-image-licensing'] }}">Image Licensing</a></li>
+    <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue Rental</a></li>
     <li><a href="{{ $_pages['legal-terms'] }}">Terms</a></li>
   </ul>
 </footer>
