@@ -13,11 +13,17 @@ class FrontController extends BaseController
         parent::__construct();
 
         $this->loadSearchTerms();
+        $this->loadBaseSeo();
     }
 
     protected function loadSearchTerms()
     {
         $terms = \App\Models\SearchTerm::ordered()->limit(10)->get()->pluck('name');
         View::share('searchTerms', $terms);
+    }
+
+    protected function loadBaseSeo()
+    {
+        View::share('globalSuffix', 'The Art Institute of Chicago');
     }
 }

@@ -9,7 +9,10 @@ $print = isset($_GET['print']);
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="format-detection" content="telephone=no">
 
-  <title>AIC</title>
+  @section('meta_title') @include('partials.metas._title') @show
+  @section('meta_description') @include('partials.metas._description') @show
+  @section('meta_url') @include('partials.metas._url') @show
+  @section('meta_image') @include('partials.metas._image') @show
 
   <!-- Main Favicon -->
   <link rel="shortcut icon" type="image/png" href="{{revAsset('images/favicon-16.png')}}">
