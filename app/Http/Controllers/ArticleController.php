@@ -20,6 +20,8 @@ class ArticleController extends FrontController
 
     public function index()
     {
+        $this->seo->setTitle('Articles');
+
         $page = Page::forType('Articles')->with('articlesArticles')->first();
         $heroArticle = $page->articlesArticles->first();
 

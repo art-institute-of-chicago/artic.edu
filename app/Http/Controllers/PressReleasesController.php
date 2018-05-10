@@ -40,6 +40,8 @@ class PressReleasesController extends BaseScopedController
 
     public function index()
     {
+        $this->seo->setTitle('Press');
+
         $items = $this->collection()->current()->paginate();
 
         $navElements = $this->getNavElements('Press Releases');

@@ -23,6 +23,9 @@ class HomeController extends FrontController
 
     public function index()
     {
+        $this->seo->setTitle("Downtown Chicago's #1 Museum");
+        $this->seo->setDescription("Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.");
+
         $page = Page::where('type', 0)->first();
 
         $exhibitions = $page->apiModels('homeExhibitions', 'Exhibition');

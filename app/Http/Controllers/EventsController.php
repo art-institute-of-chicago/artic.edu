@@ -30,6 +30,9 @@ class EventsController extends FrontController
 
     public function index()
     {
+        $this->seo->setTitle('Events');
+        $this->seo->setDescription("Looking for things to do this weekend? Find Chicago's best events—family art making, tours, performances, lectures, workshops & more.");
+
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
         $collection = $this->collection();
 

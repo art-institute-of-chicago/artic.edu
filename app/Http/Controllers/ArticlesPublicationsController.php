@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Models\Page;
 
-class ArticlesPublicationsController extends Controller
+class ArticlesPublicationsController extends FrontController
 {
     public function index()
     {
+        $this->seo->setTitle('Publications');
+
         $page = Page::forType('Articles and Publications')->first();
         $artIdeasPage = Page::forType('Art and Ideas')->first();
 

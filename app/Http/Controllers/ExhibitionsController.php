@@ -30,6 +30,9 @@ class ExhibitionsController extends FrontController
 
     public function index($upcoming = false)
     {
+        $this->seo->setTitle('Exhibitions');
+        $this->seo->setDescription("Now on view—explore the Art Institute's current and upcoming exhibits to plan your visit.");
+
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
         if ($upcoming) {
