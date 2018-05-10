@@ -103,7 +103,7 @@ class SearchController extends BaseScopedController
             $item->text = $item->title;
         }
 
-        return view('layouts/_autocomplete', [
+        return view('partials/_autocomplete', [
             'term' => request('q'),
             'resultCount' => $collection->total(),
             'items' => $collection,

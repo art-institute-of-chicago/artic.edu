@@ -34,7 +34,7 @@ $print = isset($_GET['print']);
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  @include('layouts._head-js')
+  @include('partials._head-js')
   @if ($print)
       <script>A17.print = true;</script>
   @endif
@@ -62,34 +62,34 @@ $print = isset($_GET['print']);
 
 <div id="a17">
 
-  @include('layouts._header')
+  @include('partials._header')
 
   <main id="content">
     @yield('content')
   </main>
 
-  @include('layouts._footer')
+  @include('partials._footer')
 
   @if ( !app()->environment('production'))
-    @include('layouts._designgrids')
+    @include('partials._designgrids')
   @endif
 </div>
 
-@include('layouts._mask')
-@include('layouts._calendar')
-@include('layouts._fullscreenImage')
-@include('layouts._share-menu')
-@include('layouts._info-button-info')
-@include('layouts._nav-mobile')
-@include('layouts._search')
-@include('layouts._modal')
+@include('partials._mask')
+@include('partials._calendar')
+@include('partials._fullscreenImage')
+@include('partials._share-menu')
+@include('partials._info-button-info')
+@include('partials._nav-mobile')
+@include('partials._search')
+@include('partials._modal')
 
 @if (!empty($roadblock))
-    @component('layouts._modal-promo', [ 'modal' => $roadblock])
+    @component('partials._modal-promo', [ 'modal' => $roadblock])
     @endcomponent
 @endif
 
-@include('layouts._scripts')
+@include('partials._scripts')
 @if ($print)
     <script>window.print();</script>
 @endif
