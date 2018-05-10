@@ -24,7 +24,7 @@ class Sort
                 'title'       => 'Sort',
                 'active'      => $this->activeList,
                 'type'        => 'dropdown',
-                'collapsible' => false,
+                'collapsible' => true,
             ];
         }
     }

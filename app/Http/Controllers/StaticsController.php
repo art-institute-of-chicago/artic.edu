@@ -2929,16 +2929,16 @@ class StaticsController extends FrontController {
 
     array_push($filtersCategories, array(
         'type' => 'dropdown',
-        'collapsible' => false,
+        'collapsible' => true,
         'title' => 'Sort By',
-        'active' => true,
+        'active' => false,
         'list' => $this->generateFilterList(5),
     ));
 
     array_push($filtersCategories, array(
         'type' => 'date',
         'title' => 'Date',
-        'active' => true,
+        'active' => false,
     ));
 
     array_push($filtersCategories, array(
