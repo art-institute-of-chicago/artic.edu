@@ -121,7 +121,7 @@ class VisitController extends FrontController
             'links' => array(
                 array(
                   'href' => $page->visit_parking_link,
-                  'label' => 'Direction & Parking',
+                  'label' => 'Directions & Parking',
                 ),
                 array(
                   'href' => $page->visit_transportation_link,
