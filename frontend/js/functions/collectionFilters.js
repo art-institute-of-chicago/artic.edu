@@ -11,22 +11,29 @@ const collectionFilters = function(container) {
     if (active) {
       return;
     }
-    document.documentElement.classList.add('s-collection-filters-active');
+
+    active = true;
+
     if (mediaQuery('small-')) {
       triggerCustomEvent(document, 'body:lock', {
         breakpoints: 'all'
       });
-      let container = document.getElementById('collectionFilters');
-      if (container) {
-        setFocusOnTarget(container);
-        triggerCustomEvent(document, 'focus:trap', {
-          element: container
-        });
-      }
       locked = true;
+      window.requestAnimationFrame(function(){
+        document.documentElement.classList.add('s-collection-filters-active');
+        let container = document.getElementById('collectionFilters');
+        if (container) {
+          setFocusOnTarget(container);
+          triggerCustomEvent(document, 'focus:trap', {
+            element: container
+          });
+        }
+        triggerCustomEvent(document, 'collectionFilters:visible');
+      });
+    } else {
+      document.documentElement.classList.add('s-collection-filters-active');
+      triggerCustomEvent(document, 'collectionFilters:visible');
     }
-    triggerCustomEvent(document, 'collectionFilters:visible');
-    active = true;
   }
 
   function _hideFilters() {

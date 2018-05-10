@@ -29,11 +29,11 @@ const imageZoomArea = function(container) {
     if (!active) {
       return;
     }
-    document.documentElement.classList.remove('s-fullscreenImage-active');
-    container.classList.remove('s-zoomable');
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
+    document.documentElement.classList.remove('s-fullscreenImage-active');
     setFocusOnTarget(document.getElementById('a17'));
+    container.classList.remove('s-zoomable');
     $img.removeAttribute('width');
     $img.removeAttribute('height');
     $img.removeAttribute('srcset');
@@ -137,38 +137,41 @@ const imageZoomArea = function(container) {
 
     eventData = event.data.img;
 
-    document.documentElement.classList.add('s-fullscreenImage-active');
     triggerCustomEvent(document, 'body:lock', {
       breakpoints: 'all'
     });
-    setFocusOnTarget(container);
-    triggerCustomEvent(document, 'focus:trap', {
-      element: container
-    });
 
-    if (event.data.img.iiifId && event.data.img.width && event.data.img.height) {
-      container.classList.add('s-zoomable');
-      imgWidth = parseInt(event.data.img.width);
-      imgHeight = parseInt(event.data.img.height);
-      _finishZoomOpen(event.data.img.iiifId);
-    } else {
-      container.classList.remove('s-zoomable');
-      if (event.data.img.width !== 'auto' && event.data.img.height !== 'auto') {
+    window.requestAnimationFrame(function(){
+      document.documentElement.classList.add('s-fullscreenImage-active');
+      setFocusOnTarget(container);
+      triggerCustomEvent(document, 'focus:trap', {
+        element: container
+      });
+
+      if (event.data.img.iiifId && event.data.img.width && event.data.img.height) {
+        container.classList.add('s-zoomable');
         imgWidth = parseInt(event.data.img.width);
         imgHeight = parseInt(event.data.img.height);
-        _finishNonZoomOpen();
+        _finishZoomOpen(event.data.img.iiifId);
       } else {
-        imgWidth = 0;
-        imgHeight = 0;
-        $img.addEventListener('load', _finishNonZoomOpen, false);
-        $img.setAttribute('srcset', eventData.srcset);
+        container.classList.remove('s-zoomable');
+        if (event.data.img.width !== 'auto' && event.data.img.height !== 'auto') {
+          imgWidth = parseInt(event.data.img.width);
+          imgHeight = parseInt(event.data.img.height);
+          _finishNonZoomOpen();
+        } else {
+          imgWidth = 0;
+          imgHeight = 0;
+          $img.addEventListener('load', _finishNonZoomOpen, false);
+          $img.setAttribute('srcset', eventData.srcset);
+        }
       }
-    }
 
-    $btnShare.setAttribute('data-share-url', eventData.shareUrl);
-    $btnShare.setAttribute('data-share-title', eventData.shareTitle);
+      $btnShare.setAttribute('data-share-url', eventData.shareUrl);
+      $btnShare.setAttribute('data-share-title', eventData.shareTitle);
 
-    active = true;
+      active = true;
+    });
   }
 
   function _init() {

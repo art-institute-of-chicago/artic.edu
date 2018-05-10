@@ -11,6 +11,8 @@
   background-color: $color__white;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  opacity: 0;
+  transition: opacity .35s;
 
   @include breakpoint('small+') {
     left: 50%;

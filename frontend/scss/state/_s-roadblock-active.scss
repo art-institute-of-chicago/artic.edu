@@ -8,18 +8,14 @@
 
   .g-modal--promo {
     display: block;
-    animation: reveal .2s $bezier--bounce normal forwards;
-
-    @include breakpoint('small+') {
-      animation: reveal-fullscren-lg .2s $bezier--bounce normal forwards;
-    }
+    animation: reveal .3s normal forwards;
   }
 
   .g-mask {
     right: 0;
     bottom: 0;
     background-color: rgba($color__black--80, .5);
-      opacity: 1;
+    opacity: 1;
 
     @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
       -webkit-backdrop-filter: blur(5px);

@@ -53,6 +53,11 @@
 .m-calendar:not(.m-calendar--inline) {
   display: none;
   box-shadow: $shadow;
+  transition: opacity .15s;
+
+  @include breakpoint('small-') {
+    transition: none;
+  }
 }
 
 .m-calendar--inline {

@@ -10,11 +10,8 @@
 
   .o-fullscreen-image {
     display: block;
-    animation: reveal .2s normal forwards;
-
-    @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
-      animation-name: reveal-fullscren-lg;
-    }
+    animation: reveal .3s normal forwards;
+    opacity: 1;
   }
 
   .g-mask {

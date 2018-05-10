@@ -1,6 +1,4 @@
 
-
-
 .m-share-menu {
   @extend %styled-scrollbars;
   display: none;
@@ -15,6 +13,7 @@
   box-shadow: $shadow;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  transition: opacity .15s;
 
   @include breakpoint('small+') {
     left: colspan(10, small);

@@ -42,6 +42,17 @@ const ajaxPageLoad = function() {
     } else {
       document.documentElement.classList.remove('s-gallery-header');
     }
+    // check to see if we need the roadblock class
+    if (doc.documentElement.classList.contains('s-roadblock-active')) {
+      let promo = doc.querySelector('#modal-promo');
+      if (promo) {
+        let promoClone = promo.cloneNode(true);
+        document.body.append(promoClone);
+        document.documentElement.classList.add('s-roadblock-active');
+      }
+    } else {
+      document.documentElement.classList.remove('s-roadblock-active');
+    }
   }
   function defaultStart(options,doc) {
     document.documentElement.classList.add('s-page-nav');
