@@ -3563,7 +3563,7 @@ class StaticsController extends FrontController {
   }
 
   public function autocomplete($slug) {
-    return view('layouts/_autocomplete', [
+    return view('partials/_autocomplete', [
         'term' => $slug,
         'resultCount' => $this->faker->numerify('#,###'),
         'items' => (object) [

@@ -15,7 +15,7 @@ $print = isset($_GET['print']);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
   <![endif]-->
 
-  @include('layouts._head-js')
+  @include('partials._head-js')
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
   <style>
   @import url("//hello.myfonts.net/count/3545d5");
@@ -37,6 +37,6 @@ $print = isset($_GET['print']);
   </main>
 </div>
 
-@include('layouts._scripts')
+@include('partials._scripts')
 </body>
 </html>

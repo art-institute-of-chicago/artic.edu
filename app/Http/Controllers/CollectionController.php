@@ -36,6 +36,10 @@ class CollectionController extends BaseScopedController
 
     public function index()
     {
+        $this->seo->setTitle('Discover Art & Artists');
+        $this->seo->setDescription("Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.");
+        $this->seo->nofollow = $this->setNofollowMeta();
+
         $collection = $this->collection()->perPage(static::PER_PAGE)->results();
 
         // If it's a call to Load More, just show the items and do not generate a full page
@@ -112,6 +116,29 @@ class CollectionController extends BaseScopedController
         return view('components/molecules/_m-search-bar__autocomplete', [
             'items' => $items
         ]);
+    }
+
+    /**
+     * If you have more than 1 filter, or more than 1 option selected
+     * on the same filter add a nofollow flag. (only 1 possible option selected)
+     *
+     */
+    protected function setNofollowMeta()
+    {
+        $count = count(request()->input());
+
+        if ($count > 1) {
+            return true;
+        } else {
+            if ($count == 1) {
+                // If there's only one selected filter, check if it has more than one active element
+                $input = request()->input();
+
+                if (count(explode(',', array_shift($input))) > 1) {
+                    return true;
+                }
+            }
+        }
     }
 
 }
