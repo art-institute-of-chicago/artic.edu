@@ -32,6 +32,13 @@ const sharePage = function(container) {
     }
   }
 
+  function _mediaQueryUpdated() {
+    if (shareOpen) {
+      _closeShareMenu();
+      _openShareMenu();
+    }
+  }
+
   function _updateIcon(state) {
     if (icon && iconClass) {
       if (state === 'default') {
@@ -58,32 +65,36 @@ const sharePage = function(container) {
   }
 
   function _openShareMenu(event) {
-    event.preventDefault();
-    event.stopPropagation();
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     container.blur();
     if (!shareOpen) {
-      document.documentElement.classList.add('s-shareMenu-active');
-      triggerCustomEvent(shareMenu, 'shareMenu:opened', {
-        url: container.getAttribute('data-share-url'),
-        title: container.getAttribute('data-share-title'),
-      });
       triggerCustomEvent(document, 'body:lock', {
         breakpoints: 'xsmall small'
       });
-      _position();
-      setFocusOnTarget(shareMenu);
-      triggerCustomEvent(document, 'focus:trap', {
-        element: shareMenu
+      window.requestAnimationFrame(function(){
+        shareOpen = true;
+        container.classList.add('s-active');
+        _updateIcon('active');
+        document.documentElement.classList.add('s-shareMenu-active');
+        _position();
+        setFocusOnTarget(shareMenu);
+        triggerCustomEvent(document, 'focus:trap', {
+          element: shareMenu
+        });
+        triggerCustomEvent(shareMenu, 'shareMenu:opened', {
+          url: container.getAttribute('data-share-url'),
+          title: container.getAttribute('data-share-title'),
+        });
       });
-      container.classList.add('s-active');
-      _updateIcon('active');
-      shareOpen = true;
     } else {
       _closeShareMenu();
     }
   }
 
-  function _toggleCalendar(event) {
+  function _toggleShareOpen(event) {
     if (shareOpen) {
       _closeShareMenu();
     } else {
@@ -94,7 +105,7 @@ const sharePage = function(container) {
   function _handleClicks(event) {
     event.preventDefault();
     event.stopPropagation();
-    _toggleCalendar(event);
+    _toggleShareOpen(event);
   }
 
   function _clicksOutside(event) {
@@ -120,6 +131,7 @@ const sharePage = function(container) {
     document.addEventListener('shareMenu:close', _closeShareMenu, false);
     document.addEventListener('click', _clicksOutside, false);
     window.addEventListener('resized', _reposition, false);
+    document.addEventListener('mediaQueryUpdated',_mediaQueryUpdated, false);
     window.addEventListener('keyup', _escape, false);
   }
 
@@ -129,6 +141,7 @@ const sharePage = function(container) {
     document.removeEventListener('shareMenu:close', _closeShareMenu);
     document.removeEventListener('click', _clicksOutside);
     window.removeEventListener('resized', _reposition);
+    document.removeEventListener('mediaQueryUpdated',_mediaQueryUpdated);
     window.removeEventListener('keyup', _escape);
 
     // remove properties of this behavior

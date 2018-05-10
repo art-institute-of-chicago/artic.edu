@@ -9,14 +9,28 @@ const navMobile = function(container) {
   var subnavKlass = 'js-subnav-open';
   var navLevel = 0;
 
+  let active = false;
+
   function _openNav(e){
-    document.documentElement.classList.add(klass);
-    _lockBody();
+    triggerCustomEvent(document, 'body:lock', {
+      breakpoints: 'all'
+    });
+    window.requestAnimationFrame(function(){
+      document.documentElement.classList.add(klass);
+      setFocusOnTarget(container);
+      triggerCustomEvent(document, 'focus:trap', {
+        element: container
+      });
+    });
+    active = true;
   }
 
   function _closeNav(e){
+    triggerCustomEvent(document, 'body:unlock');
+    triggerCustomEvent(document, 'focus:untrap');
     document.documentElement.classList.remove(klass);
-    _unlockBody();
+    setFocusOnTarget(document.getElementById('a17'));
+    active = false;
   }
 
   function _openSubNav(e){
@@ -51,25 +65,19 @@ const navMobile = function(container) {
     }
   }
 
-  function _lockBody(){
-    triggerCustomEvent(document, 'body:lock', {
-      breakpoints: 'all'
-    });
-    setFocusOnTarget(container);
-    triggerCustomEvent(document, 'focus:trap', {
-      element: container
-    });
-  }
-
-  function _unlockBody(){
-    triggerCustomEvent(document, 'body:unlock');
-    triggerCustomEvent(document, 'focus:untrap');
-    setFocusOnTarget(document.getElementById('a17'));
+  function _mediaQueryUpdated() {
+    if (active && mediaQuery('small+')) {
+      triggerCustomEvent(document, 'navMobile:close');
+      setTimeout(function(){
+        window.scrollTo(0, 0);
+      }, 5);
+    }
   }
 
   function _init() {
     document.addEventListener('navMobile:open', _openNav, false);
     document.addEventListener('navMobile:close', _closeNav, false);
+    document.addEventListener('mediaQueryUpdated',_mediaQueryUpdated, false);
 
     forEach(openTriggers, function(index, openTrigger) {
       openTrigger.addEventListener('click', _openSubNav, false);
@@ -84,6 +92,7 @@ const navMobile = function(container) {
     // remove specific event handlers
     document.removeEventListener('navMobile:open', _openNav);
     document.removeEventListener('navMobile:close', _closeNav);
+    document.removeEventListener('mediaQueryUpdated',_mediaQueryUpdated);
 
     forEach(openTriggers, function(index, openTrigger) {
       openTrigger.removeEventListener('click', _openSubNav);

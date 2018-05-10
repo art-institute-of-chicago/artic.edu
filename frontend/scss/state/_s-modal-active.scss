@@ -8,11 +8,7 @@
 
   .g-modal:not(.g-modal--promo) {
     display: block;
-    animation: reveal .2s $bezier--bounce normal forwards;
-
-    @include breakpoint('small+') {
-      animation: reveal-fullscren-lg .2s $bezier--bounce normal forwards;
-    }
+    animation: reveal .3s normal forwards;
   }
 
   .g-mask {

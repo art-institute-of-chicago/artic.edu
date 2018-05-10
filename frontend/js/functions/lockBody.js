@@ -1,3 +1,5 @@
+import { triggerCustomEvent } from '@area17/a17-helpers';
+
 const lockBody = function() {
 
   let lockBodyScrollTop = 0;
@@ -8,27 +10,30 @@ const lockBody = function() {
       event.data.breakpoints = 'xsmall small medium large xlarge';
     }
     if (event.data.breakpoints.indexOf(A17.currentMediaQuery) > -1) {
+      triggerCustomEvent(document, 'setScrollDirection:machineScroll', {
+        'machineScroll': true
+      });
       locked = true;
       lockBodyScrollTop = window.pageYOffset;
-      document.documentElement.classList.add('s-body-locked');
       document.getElementById('a17').style.top = (lockBodyScrollTop * -1) + 'px';
-      let vpH = window.innerHeight.toString();
-      document.documentElement.style.height = vpH.toString() + 'px';
-      document.body.style.height = vpH.toString() + 'px';
+      window.requestAnimationFrame(function(){
+        document.documentElement.classList.add('s-body-locked');
+      });
     }
   }
 
   function _unlock() {
     if (locked) {
       locked = false;
-      document.documentElement.classList.remove('s-body-locked');
       document.getElementById('a17').style.top = '';
-      document.documentElement.style.height = '';
-      document.body.style.height = '';
+      document.documentElement.classList.remove('s-body-locked');
       window.scrollTo(0, lockBodyScrollTop);
       setTimeout(function(){
         window.scrollTo(0, lockBodyScrollTop);
         lockBodyScrollTop = 0;
+        triggerCustomEvent(document, 'setScrollDirection:machineScroll', {
+          'machineScroll': false
+        });
       }, 1);
     }
   }

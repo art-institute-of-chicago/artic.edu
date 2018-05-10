@@ -114,12 +114,16 @@ const globalSearch = function(container) {
     triggerCustomEvent(document, 'body:lock', {
       breakpoints: 'all'
     });
-    setFocusOnTarget(container);
-    triggerCustomEvent(document, 'focus:trap', {
-      element: container
+    window.requestAnimationFrame(function(){
+      document.documentElement.classList.add(stateKlass);
+      setFocusOnTarget(container);
+      triggerCustomEvent(document, 'focus:trap', {
+        element: container
+      });
+      setTimeout(function(){
+        textInput.focus();
+      },250);
     });
-    document.documentElement.classList.add(stateKlass);
-    textInput.focus();
     active = true;
   }
 
@@ -127,10 +131,10 @@ const globalSearch = function(container) {
   function _closeSearch() {
     active = false;
     clearTimeout(ajaxTimer);
-    document.documentElement.classList.remove(stateKlass);
     _hideAutocomplete();
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
+    document.documentElement.classList.remove(stateKlass);
     setFocusOnTarget(document.getElementById('a17'));
     textInput.value = '';
   }

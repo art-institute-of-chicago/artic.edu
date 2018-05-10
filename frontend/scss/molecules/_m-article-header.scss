@@ -813,6 +813,7 @@ $thumbTease: 4px;
 .m-article-header__img-actions {
   display: flex;
   position: absolute;
+  z-index: 2;
   left: 0;
   right: 0;
   bottom: 20px;
@@ -854,6 +855,7 @@ $thumbTease: 4px;
 
   @include breakpoint('medium+') {
     position: absolute;
+    z-index: 1;
     left: 50%;
     top: 0;
     bottom: 0;

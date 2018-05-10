@@ -102,29 +102,9 @@ $pinboard-grid-padding-tops: (
 
 @keyframes reveal {
   0% {
-    transform: scale(1);
     opacity: 0;
   }
-  10% {
-    transform: scale(.85);
-  }
   100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-
-@keyframes reveal-fullscren-lg {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-  }
-  10% {
-    transform: translate(-50%, -50%) scale(.85);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
 }

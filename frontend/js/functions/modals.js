@@ -48,11 +48,11 @@ const modals = function() {
       }
 
       if (active) {
+        triggerCustomEvent(document, 'body:lock', {
+          breakpoints: 'all'
+        });
         window.requestAnimationFrame(function(){
           document.documentElement.classList.add(modalActiveClass);
-          triggerCustomEvent(document, 'body:lock', {
-            breakpoints: 'all'
-          });
           setFocusOnTarget($modal);
           triggerCustomEvent(document, 'focus:trap', {
             element: $modal
@@ -67,14 +67,14 @@ const modals = function() {
     if (!active) {
       return;
     }
-    document.documentElement.classList.remove(modalActiveClass);
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
+    document.documentElement.classList.remove(modalActiveClass);
     setFocusOnTarget(document.getElementById('a17'));
     setTimeout(function(){
       $modal.className = 'g-modal';
       $modal.querySelector('[data-modal-content]').innerHTML = '';
-    },250);
+    },300);
     active = false;
   }
 

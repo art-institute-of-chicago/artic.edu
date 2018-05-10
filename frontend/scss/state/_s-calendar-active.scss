@@ -20,7 +20,6 @@
 
   .m-calendar:not(.m-calendar--inline) {
     display: block;
-    animation: reveal .2s normal forwards;
   }
 
   @include breakpoint('small-') {
@@ -44,3 +43,4 @@
   }
 
 }
+
