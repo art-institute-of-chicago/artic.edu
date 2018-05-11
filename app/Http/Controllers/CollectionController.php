@@ -69,7 +69,6 @@ class CollectionController extends BaseScopedController
           'artworks'          => $collection,
           'filterCategories'  => $filters,
           'activeFilters'     => $activeFilters,
-          'quickSearchLinks'  => [],
           'featuredArticlesHero' => $featuredArticlesHero ?? null,
           'featuredArticles'     => $featuredArticles,
         ]);

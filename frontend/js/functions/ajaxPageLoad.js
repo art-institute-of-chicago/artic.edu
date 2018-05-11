@@ -258,7 +258,7 @@ const ajaxPageLoad = function() {
       if (A17.ajaxLinksFailSafe) {
         location.href = options.href;
       } else {
-        alert('ajax response taking a long time to complete');
+        console.log('Ajax response taking a long time to complete');
       }
     }, ajaxTimeOutTime);
   }
