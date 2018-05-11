@@ -118,7 +118,7 @@
         @formField('input', [
             'name' => 'visit_parking_link',
             'field_name' => 'visit_parking_link',
-            'label' => 'Direction & parking link',
+            'label' => 'Directions & parking link',
             'required' => true
         ])
 
