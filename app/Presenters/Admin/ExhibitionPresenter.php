@@ -102,11 +102,18 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     protected function closingSoonLink() {
-        if ($this->entity->closingSoon) {
+        if ($this->entity->status == 'Closed') {
             return [
-                'label' => 'Closing Soon',
+                'label' => 'Closed',
                 'variation' => 'closing-soon'
             ];
+        } else {
+            if ($this->entity->closingSoon) {
+                return [
+                    'label' => 'Closing Soon',
+                    'variation' => 'closing-soon'
+                ];
+            }
         }
     }
 

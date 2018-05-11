@@ -43,9 +43,11 @@
 
   <div class="o-article__secondary-actions">
 
-    @component('components.molecules._m-ticket-actions----exhibition')
-        @slot('pricingAttendanceMessage', $item->exhibition_message)
-    @endcomponent
+    @unless ($item->isClosed)
+        @component('components.molecules._m-ticket-actions----exhibition')
+            @slot('pricingAttendanceMessage', $item->exhibition_message)
+        @endcomponent
+    @endunless
 
     {{-- This is the featured element at the side --}}
     @if ($item->featuredRelated)
