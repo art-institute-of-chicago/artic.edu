@@ -112,7 +112,7 @@
   </div>
   @endif
 
-  <div class="o-article__body o-blocks">
+  <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">
 
     @component('components.blocks._blocks')
         @slot('blocks', $item->present()->blocks ?? null)

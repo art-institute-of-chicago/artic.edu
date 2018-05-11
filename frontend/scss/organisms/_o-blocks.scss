@@ -270,18 +270,6 @@
     }
   }
 
-  .deflist.o-blocks__block + .deflist.o-blocks__block {
-    margin-top: 16px;
-
-    @include breakpoint('small+') {
-      margin-top: 44px;
-    }
-
-    @include breakpoint('medium+') {
-      margin-top: 60px;
-    }
-  }
-
   .o-blocks {
     padding-top: .02px;
     padding-bottom: .02px;
@@ -403,6 +391,36 @@
       width: colspan(23, small);
       margin-bottom: colspan(3, small);
       margin-left: colspan(3, small);
+    }
+  }
+
+  .deflist.o-blocks__block {
+    margin-top: 32px;
+
+    @include breakpoint('small+') {
+      margin-top: 44px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 48px;
+    }
+  }
+
+  .deflist.o-blocks__block + .deflist.o-blocks__block {
+    margin-top: 16px;
+
+    @include breakpoint('small+') {
+      margin-top: 44px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 60px;
+    }
+  }
+
+  .deflist.o-blocks__block + .o-accordion.o-blocks__block {
+    @include breakpoint('medium+') {
+      margin-top: 74px;
     }
   }
 }
