@@ -102,15 +102,22 @@ Route::moduleShowWithPreview('selection');
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
 // About
+Route::name('about-us')->get('/about', 'GenericPagesController@show');
 Route::name('about.press')->get('/about/press', 'PressReleasesController@index');
 Route::name('about.press.archive')->get('/about/press/archive', 'PressReleasesController@archive');
 Route::moduleShowWithPreview('pressreleases');
 Route::name('about.press.show')->get('/about/press/{id}', 'PressReleasesController@show');
 
+// Footer Head Links
+Route::name('learn')->get('/learn', 'GenericPagesController@show');
+Route::name('support-us')->get('/support-us', 'GenericPagesController@show');
+
+
 // Sample Form
 Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@index');
 Route::name('forms.contact.store')->post('/forms/contact', 'Forms\ContactsController@store');
 Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\ContactsController@thanks');
+
 
 // Generic Page
 // This MUST be the last route

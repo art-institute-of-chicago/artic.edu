@@ -136,76 +136,36 @@ class AppServiceProvider extends ServiceProvider
             'mobileNav' => [
                 [
                     'name' => 'Visit',
-                    'children' => [
-                        [
-                            'name' => 'Plan Your Visit',
-                        ],
-                        [
-                            'name' => 'Museum Spaces',
-                        ],
-                        [
-                            'name' => 'Group Visits',
-                            'children' => [
-                                [
-                                    'name' => 'Adults &amp; Universities',
-                                    'slug' => '#',
-                                ],
-                                [
-                                    'name' => 'Students',
-                                    'children' => [
-                                        [
-                                            'name' => 'Tours',
-                                            'slug' => '#'
-                                        ],
-                                        [
-                                            'name' => 'Scheduling a Tour',
-                                            'slug' => '#',
-                                        ],
-                                        [
-                                            'name' => 'Preparing For a Museum Visit',
-                                            'slug' => '#',
-                                        ],
-                                        [
-                                            'name' => 'Bus Scholarship',
-                                            'slug' => '#',
-                                        ],
-                                        [
-                                            'name' => 'Students with Disabilities',
-                                            'slug' => '#',
-                                        ],
-                                        [
-                                            'name' => 'For Tour Companies',
-                                            'slug' => '#',
-                                        ],
-                                    ]
-                                ],
-                                [
-                                    'name' => 'Groups FAQs',
-                                    'slug' => '#',
-                                ],
-                            ],
-                        ],
-                        [
-                            'name' => 'Families',
-                        ],
-                        [
-                            'name' => 'Accessibility &amp; FAQs',
-                        ],
-                        [
-                            'name' => 'Maps &amp; Guides',
-                        ],
-                    ],
+                    'slug' => route('visit')
                 ],
                 [
                     'name' => 'Exhibition &amp; Events',
-                    'slug' => '#',
+                    'children' => [
+                        [
+                            'name' => 'Exhibitions',
+                            'slug' => route('exhibitions')
+                        ],
+                        [
+                            'name' => 'Events',
+                            'slug' => route('events')
+                        ]
+                    ],
                 ],
                 [
                     'name' => 'The Collection',
                     'children' => [
                         [
-                            'name' => 'Lorem Ipsum',
+                            'name' => 'Artworks',
+                            'slug' => route('collection')
                         ],
+                        [
+                            'name' => 'Writings',
+                            'slug' => route('articles_publications')
+                        ],
+                        [
+                            'name' => 'Resources',
+                            'slug' => route('collection.research_resources')
+                        ]
                     ],
                 ],
                 [
@@ -222,18 +182,15 @@ class AppServiceProvider extends ServiceProvider
                 ],
                 [
                     'name' => 'About Us',
-                    'slug' => '#',
-                    'class' => 'g-nav-mobile__nav--muted',
+                    'slug' => route('about-us'),
                 ],
                 [
                     'name' => 'Learn With Us',
-                    'slug' => '#',
-                    'class' => 'g-nav-mobile__nav--muted',
+                    'slug' => route('learn'),
                 ],
                 [
                     'name' => 'Support Us',
-                    'slug' => '#',
-                    'class' => 'g-nav-mobile__nav--muted',
+                    'slug' => route('support-us'),
                 ],
             ]
         ]);
