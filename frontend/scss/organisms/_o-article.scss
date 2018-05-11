@@ -264,7 +264,7 @@
 }
 
 .o-article__inline-header .f-headline-editorial:first-child {
-  @include tucked-margin-top($f-headline-editorial, ('xsmall': 32, 'small+': 40, 'medium+': 44));
+  @include tucked-margin-top($f-headline-editorial, ('xsmall': 36, 'small+': 40, 'medium+': 44));
 }
 
 .o-article__inline-header .f-secondary {
@@ -272,7 +272,7 @@
 }
 
 .o-article__inline-header .f-headline-editorial + .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 80));
+  @include tucked-margin-top($f-secondary, ('xsmall': 68, 'medium+': 80));
 }
 
 .o-article__intro .f-deck:first-child {
@@ -285,14 +285,23 @@
   @include float-clear;
   position: relative;
   margin-top: 28px;
+  padding-top: 12px;
 
   .o-article__inline-header ~ & {
-    margin-top: 12px;
+    margin-top: 8px;
   }
 
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
     width: 100%;
+  }
+
+  @include breakpoint('medium+') {
+    padding-top: 0;
+
+    .o-article__inline-header ~ & {
+      margin-top: 12px;
+    }
   }
 
   @include breakpoint('large+') {

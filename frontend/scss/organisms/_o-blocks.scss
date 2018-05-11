@@ -270,6 +270,18 @@
     }
   }
 
+  .deflist.o-blocks__block + .deflist.o-blocks__block {
+    margin-top: 16px;
+
+    @include breakpoint('small+') {
+      margin-top: 44px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 60px;
+    }
+  }
+
   .o-blocks {
     padding-top: .02px;
     padding-bottom: .02px;

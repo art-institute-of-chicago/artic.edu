@@ -53,7 +53,14 @@
   position: relative;
   flex-flow: column nowrap;
 
-  .o-article__related &,
+  .o-article__related .m-inline-aside & {
+    margin-top: 36px;
+
+    @include breakpoint('medium+') {
+      margin-top: 24px;
+    }
+  }
+
   .o-article__secondary-actions .m-inline-aside & {
     margin-top: 16px;
 

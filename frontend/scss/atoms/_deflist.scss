@@ -93,5 +93,5 @@
 }
 
 .deflist dd.f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 32));
+  @include tucked-margin-top($f-secondary, ('xsmall': 24, 'small+': 32));
 }

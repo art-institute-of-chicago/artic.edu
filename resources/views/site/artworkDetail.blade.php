@@ -136,11 +136,6 @@
         @slot('tags', $exploreFurtherTags)
     @endcomponent
 
-    {{-- Design shows no double bottom line. Commenting this one for now --}}
-    {{-- @component('components.atoms._hr')
-        @slot('variation','hr--flush-top')
-    @endcomponent --}}
-
     @if ($exploreFurther && !$exploreFurther->isEmpty())
         @component('components.organisms._o-pinboard')
             @slot('cols_small','2')

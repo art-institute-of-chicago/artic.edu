@@ -1,4 +1,4 @@
-<nav class="m-links-bar">
+<nav class="m-links-bar" data-behavior="linksBar">
     <ul class="m-links-bar__items-primary" data-links-bar-primary>
         @foreach ($tags as $category => $items)
             @foreach ($items as $id => $name)
@@ -16,5 +16,26 @@
                 </li>
             @endforeach
         @endforeach
+
+        <li class="m-links-bar__item m-links-bar__item--push m-links-bar__item--overflow" data-links-bar-primary-overflow="">
+          <span aria-title="More links" class="dropdown dropdown--filter dropdown--tabs f-link" data-behavior="dropdown" tabindex="0">
+            <button class="dropdown__trigger  f-link">More<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button>
+            <ul class="dropdown__list f-secondary" data-dropdown-list>
+                @foreach ($tags as $category => $items)
+                    @foreach ($items as $id => $name)
+                        @if (empty(request()->input()) && $loop->parent->first && $loop->first)
+                            <li class="s-active">
+                        @else
+                            <li class="{{ (request()->input("exFurther-{$category}") == $id) ? 's-active' : '' }} ">
+                        @endif
+                            <a href="{!! currentUrlWithQuery(["exFurther-{$category}" => $id]) !!}" data-ajax-tab-target="exploreFurther">
+                                {{ ucfirst($name) }}
+                            </a>
+                        </li>
+                    @endforeach
+                @endforeach
+            </ul>
+          </span>
+        </li>
     </ul>
 </nav>
