@@ -420,7 +420,13 @@
   .m-listing__meta .f-list-2 + br + .f-tertiary,
   .m-listing__meta .f-list-6 + br + .f-tertiary,
   .m-listing__meta .f-list-7 + br + .f-tertiary {
-    @include tucked-margin-top($f-tertiary, ('xsmall': 16, 'small+': 28));
+    @include tucked-margin-top($f-tertiary, ('xsmall': 20, 'small+': 28));
+
+    @include breakpoint('xsmall') {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 
 .m-listing__meta .f-link {
