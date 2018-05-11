@@ -1866,12 +1866,17 @@ class StaticsController extends FrontController {
       'dod' => strtotime('October 4 1669'),
       'nationality' => $this->faker->randomElement($nationalities),
       'blocks' => ($intro) ? $this->generateBlocks(2) : null,
+      'intro' => ($intro) ? $this->generateParagraph() : null,
       'tags' => ($intro) ? array(
         array('label' => 'Baroque', 'href' => '#'),
         array('label' => 'Dutch Painters', 'href' => '#'),
        ) : null,
       "type" => 'artist',
       "listingType" => 'artist',
+      "image" => ($intro) ? function(){
+        return $this->getImage(); } : null,
+      "imageAsArray" => ($intro) ? function(){
+        return $this->getImage(); } : null,
     ]);
   }
 

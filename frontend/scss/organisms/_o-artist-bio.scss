@@ -4,9 +4,26 @@ $bioBreakpoints: (
 );
 
 .o-artist-bio {
-  margin-top: 40px;
-  padding-top: 40px;
-  border-top: 1px solid $color__rules--primary;
+  position: relative;
+  margin-top: 24px;
+
+  @include breakpoint('small+') {
+    margin-top: 40px;
+  }
+
+  @include breakpoint('large+') {
+    padding-top: 40px;
+  }
+}
+
+.o-artist-bio::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background-color: $color__rules--primary;
 }
 
 .o-artist-bio__inner {
@@ -38,6 +55,15 @@ $bioBreakpoints: (
   display: block;
   max-width: 100%;
   height: auto;
+  margin-top: 16px;
+
+  @include breakpoint('small+') {
+    margin-top: 40px;
+  }
+
+  @include breakpoint('large+') {
+    margin-top: 0;
+  }
 }
 
 .o-artist-bio__image figcaption {
@@ -53,14 +79,10 @@ $bioBreakpoints: (
   display: flex;
   position: relative;
   flex-flow: row wrap;
-  margin-top: 14px;
-
-  @include breakpoint('small+') {
-    margin-top: 28px;
-  }
+  margin-top: 16px;
 
   @include breakpoint('large+') {
-    margin-top: -18px;
+    margin-top: -16px;
   }
 
   @each $name, $point in $breakpoints {
@@ -152,18 +174,18 @@ $bioBreakpoints: (
 }
 
 .o-artist-bio__main dl + .o-artist-bio__body {
-  margin-top: 20px;
-
-  @include breakpoint('small+') {
-    margin-top: 40px;
-  }
+  margin-top: 24px;
 }
 
 .o-artist-bio__tags {
   display: flex;
   flex-flow: row wrap;
-  margin-top: 32px;
+  margin-top: 24px;
   padding-top: .02px;
+
+  @include breakpoint('small+') {
+    margin-top: 32px;
+  }
 }
 
 .o-artist-bio__tags > li {

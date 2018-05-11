@@ -6,7 +6,7 @@
     {{ $article->title }}
 @endcomponent
 
-@component('components.organisms._o-artist-bio_BACKUP')
+@component('components.organisms._o-artist-bio')
     @slot('item', $article)
     @slot('imageSettings', array(
         'srcset' => array(200,400,600,1000,1500,2000),

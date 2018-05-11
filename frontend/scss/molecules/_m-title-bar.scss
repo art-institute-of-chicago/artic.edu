@@ -40,6 +40,18 @@
       margin-top: 40px;
     }
   }
+
+  & + .o-artist-bio {
+    margin-top: 36px;
+
+    @include breakpoint('small+') {
+      margin-top: 60px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 72px;
+    }
+  }
 }
 
 .m-title-bar::before {
