@@ -12,7 +12,6 @@ use App\Models\Page;
 
 class ExhibitionHistoryController extends FrontController
 {
-
     protected $apiRepository;
 
     public function __construct(ExhibitionRepository $repository)
@@ -32,13 +31,19 @@ class ExhibitionHistoryController extends FrontController
 
         $exhibitions = $this->apiRepository->history($activeYear, request()->get('q'));
 
+        // If we have no results, try to find them across the entire archive
+        if ($exhibitions->isEmpty()) {
+            $extraResults = $this->apiRepository->forSearchQuery(request('q'));
+        }
+
         $viewData = [
             'page'    => $page,
             'years'   => $years,
             'decades' => $decades,
             'activeYear'    => $activeYear,
             'decade_prompt' => $service->getDecadePrompt(),
-            'exhibitions'   => $exhibitions
+            'exhibitions'   => $exhibitions,
+            'extraResults'  => $extraResults ?? null
         ];
 
         return view('site.exhibitionHistory', $viewData);

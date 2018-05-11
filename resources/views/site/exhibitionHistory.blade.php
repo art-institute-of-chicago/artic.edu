@@ -75,14 +75,19 @@
     @endcomponent
 
     @component('components.molecules._m-title-bar')
-        @if (isset($exhibitions) and sizeof($exhibitions) > 0)
-            @slot('links', array(array('label' => 'Showing '.$exhibitions->count().' out of '.$exhibitions->total().' Exhibitions')))
+        @if ($exhibitions->count() > 0)
+            @slot('links', [
+                [
+                    'label' => 'Showing '.$exhibitions->count().' out of '.$exhibitions->total().' Exhibitions'
+                ]
+            ])
         @endif
         @slot('titleFont', 'f-numeral-date')
+
         {{ $activeYear }}
     @endcomponent
 
-    @if (isset($exhibitions) and sizeof($exhibitions) > 0)
+    @if ($exhibitions->count() > 0)
         @component('components.atoms._hr')
         @endcomponent
         @component('components.organisms._o-row-listing')
@@ -104,11 +109,23 @@
             @endforeach
         @endcomponent
     @else
-        @component('components.molecules._m-no-results')
-        @endcomponent
+        {{-- Extracted from components.molecules._m-no-results--}}
+        <div class="m-no-results">
+            @component('components.atoms._hr')
+            @endcomponent
+            @component('components.atoms._title')
+                @slot('tag','h2')
+                @slot('font', 'f-list-3')
+                @if ($extraResults && !$extraResults->isEmpty())
+                    There are no results in this year. However, there are <a href={!! route('search.exhibitionsEvents', request()->only('q')) !!}>{{ $extraResults->total() }}</a> results across the rest of the archive.
+                @else
+                    Sorry, we couldn't find any results matching your criteria
+                @endif
+            @endcomponent
+        </div>
     @endif
 
-    {!! $exhibitions->appends(['year' => $activeYear])->links() !!}
+    {!! $exhibitions->appends(request()->all())->links() !!}
 
     <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
 
