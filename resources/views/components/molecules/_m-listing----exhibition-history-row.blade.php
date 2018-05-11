@@ -15,23 +15,20 @@
             @slot('font', $titleFont ?? 'f-list-4')
             {{ $item->title }}
         @endcomponent
+
         <br>
-        <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->listing_description }}</span>
+        <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->list_description }}</span>
         <br>
+
         <span class="m-listing__meta-bottom">
-            @if (isset($formattedDate))
-              @component('components.atoms._date')
-                  {!! $formattedDate !!}
-              @endcomponent
-            @elseif (isset($date))
-              @component('components.atoms._date')
-                  @slot('tag','p')
-                  {{ $date->format('F j, Y') }}
-              @endcomponent
-            @endif
+            @component('components.atoms._date')
+                {!! $item->present()->formattedDate !!}
+            @endcomponent
         </span>
     </span>
+
   @if ($item->slug)
   </a>
   @endif
+
 </{{ $tag ?? 'li' }}>
