@@ -53,13 +53,9 @@
   position: relative;
   flex-flow: column nowrap;
 
-  .o-article__related &,
+  .o-article__related .m-inline-aside &,
   .o-article__secondary-actions .m-inline-aside & {
-    margin-top: 16px;
-
-    @include breakpoint('medium+') {
-      margin-top: 24px;
-    }
+    margin-top: 36px;
   }
 }
 
@@ -318,7 +314,7 @@
 }
 
 .m-listing__meta .f-list-1 {
-  @include tucked-margin-top($f-list-1, ('xsmall': 32));
+  @include tucked-margin-top($f-list-1, ('xsmall': 32, 'medium+': 36));
 
   &:first-child {
     @include tucked-margin-top($f-list-1, ('xsmall': 44, 'large+': 38));

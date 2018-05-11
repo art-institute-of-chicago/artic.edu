@@ -50,7 +50,8 @@ class ExhibitionsController extends FrontController
             'eventsByDay' => $eventsByDay,
             'events'      => $events,
             'upcoming'    => $upcoming,
-            'featured'    => $featured
+            'featured'    => $featured,
+            'primaryNavCurrent'  => 'exhibitions_and_events',
         ]);
     }
 

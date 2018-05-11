@@ -112,7 +112,7 @@
   </div>
   @endif
 
-  <div class="o-article__body o-blocks">
+  <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">
 
     @component('components.blocks._blocks')
         @slot('blocks', $item->present()->blocks ?? null)
@@ -135,11 +135,6 @@
     @component('site.shared._explore-further-menu')
         @slot('tags', $exploreFurtherTags)
     @endcomponent
-
-    {{-- Design shows no double bottom line. Commenting this one for now --}}
-    {{-- @component('components.atoms._hr')
-        @slot('variation','hr--flush-top')
-    @endcomponent --}}
 
     @if ($exploreFurther && !$exploreFurther->isEmpty())
         @component('components.organisms._o-pinboard')

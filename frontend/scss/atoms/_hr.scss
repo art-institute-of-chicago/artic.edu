@@ -18,10 +18,6 @@ hr,
     margin-top: 0;
   }
 
-  &.hr--flush-top {
-    margin-top: -1px;
-  }
-
   .m-listing-header + & {
     margin-top: 16px;
   }
@@ -31,6 +27,15 @@ hr,
 
     @include breakpoint('medium+') {
       margin-top: 60px;
+    }
+  }
+
+  &.hr--flush-top,
+  .o-grid-listing + &.hr--flush-top {
+    margin-top: -1px;
+
+    @include breakpoint('medium+') {
+      margin-top: -1px;
     }
   }
 

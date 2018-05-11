@@ -789,3 +789,25 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
     bottom: 0;
   }
 }
+
+
+// variation with just artwork thumbs in needs adjusting
+.o-grid-listing--gridlines-right.o-grid-listing--basic-artworks,
+.o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.o-grid-listing--gridlines-right.o-grid-listing--basic-artworks > *,
+.o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks > * {
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      padding-bottom: colspan(map-get($grid-padding-tops, $name), #{$name});
+    }
+  }
+}
+
+.o-grid-listing--gridlines-right.o-grid-listing--basic-artworks > *::after,
+.o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks > *::after {
+  bottom: 0;
+}

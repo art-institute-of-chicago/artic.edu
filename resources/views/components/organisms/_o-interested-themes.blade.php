@@ -1,5 +1,6 @@
 @if (!empty($themes))
     @component('components.atoms._hr')
+        @slot('variation','hr--flush-top')
     @endcomponent
     @php
         $themeString = 'It seems it you could also be interested in ';

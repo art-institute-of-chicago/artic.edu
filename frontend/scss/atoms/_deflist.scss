@@ -24,7 +24,7 @@
 }
 
 .deflist__row:not(:first-child) {
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .deflist__row::before {
@@ -89,9 +89,9 @@
 }
 
 .deflist dt.f-module-title-1 {
-  @include tucked-margin-top($f-module-title-1, ('xsmall': 32));
+  @include tucked-margin-top($f-module-title-1, ('xsmall': 28));
 }
 
 .deflist dd.f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 32));
+  @include tucked-margin-top($f-secondary, ('xsmall': 24, 'small+': 28));
 }

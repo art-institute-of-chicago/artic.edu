@@ -59,7 +59,8 @@ class EventsController extends FrontController
             'page'        => $page,
             'eventsByDay' => $eventsByDay,
             'collection'  => $collection,
-            'ongoing'     => $ongoing
+            'ongoing'     => $ongoing,
+            'primaryNavCurrent'  => 'exhibitions_and_events',
         ]);
     }
 
