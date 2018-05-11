@@ -34,11 +34,11 @@
                 </dl>
             @endif
 
-            {{-- @if (!empty($item->intro)) --}}
+            @if (gettype($item->intro) === 'string' and $item->intro !== "")
                 <div class="o-artist-bio__body o-blocks">
                     {!! $item->intro !!}
                 </div>
-            {{-- @endif --}}
+            @endif
 
             @if ($item->tags)
                 <ul class="o-artist-bio__tags">

@@ -79,7 +79,13 @@
 @each $name, $point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-pinboard > * {
-      margin-top: #{map-get($grid-margin-tops, $name)}px;
+      @if ($name == 'xsmall') {
+        margin-top: 56px;
+
+        &:first-child:not(.s-positioned) {
+          margin-top: 16px;
+        }
+      }
       padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
     }
 
