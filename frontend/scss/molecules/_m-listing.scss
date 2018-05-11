@@ -325,7 +325,7 @@
 }
 
 .m-listing__meta .f-list-1 {
-  @include tucked-margin-top($f-list-1, ('xsmall': 32));
+  @include tucked-margin-top($f-list-1, ('xsmall': 32, 'medium+': 36));
 
   &:first-child {
     @include tucked-margin-top($f-list-1, ('xsmall': 44, 'large+': 38));

@@ -133,7 +133,7 @@
     border-top: 0 none;
 
     &.o-article__secondary-actions--inline-header {
-      margin-top: 28px;
+      margin-top: 40px;
     }
   }
 
@@ -239,7 +239,7 @@
   padding-top: .02px;
   padding-bottom: 28px;
 
-  @include breakpoint('large+') {
+  @include breakpoint('medium+') {
     margin-top: 40px;
     margin-bottom: 12px;
   }
@@ -264,7 +264,7 @@
 }
 
 .o-article__inline-header .f-headline-editorial:first-child {
-  @include tucked-margin-top($f-headline-editorial, ('xsmall': 36, 'small+': 40, 'medium+': 44));
+  @include tucked-margin-top($f-headline-editorial, ('xsmall': 36, 'small+': 40, 'medium+': 48));
 }
 
 .o-article__inline-header .f-secondary {
