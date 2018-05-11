@@ -67,8 +67,8 @@ class Event extends Model
     const COMMUNITIES = 7;
 
     public static $eventTypes = [
-        self::CLASSES_AND_WORKSHOPS => 'Classes and workshops',
-        self::LIVE_ARTS => 'Live arts',
+        self::CLASSES_AND_WORKSHOPS => 'Classes and Workshops',
+        self::LIVE_ARTS => 'Live Arts',
         self::SCREENINGS => 'Screenings',
         self::SPECIAL_EVENT => 'Special Event',
         self::TALKS => 'Talks',
