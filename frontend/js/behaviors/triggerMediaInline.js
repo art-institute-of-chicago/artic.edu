@@ -5,12 +5,17 @@ const triggerMediaInline = function(container) {
   function _handleClicks(event) {
     event.preventDefault();
     event.stopPropagation();
-    let iframe = container.querySelector('iframe[data-embed-src]');
+    let iframe = container.querySelector('iframe');
     if (iframe) {
       var src = iframe.getAttribute('data-embed-src');
-      src = queryStringHandler.updateParameter(src, 'autoplay', '1');
-      src = queryStringHandler.updateParameter(src, 'auto_play', '1');
-      iframe.src = src;
+      src = (!src) ? iframe.getAttribute('data-src') : src;
+      src = (!src) ? iframe.getAttribute('src') : src;
+      if (src) {
+        src = queryStringHandler.updateParameter(src, 'autoplay', '1');
+        src = queryStringHandler.updateParameter(src, 'auto_play', '1');
+        iframe.src = src;
+        container.classList.add('s-inline-media-activated');
+      }
     }
   }
 

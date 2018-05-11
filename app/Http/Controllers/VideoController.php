@@ -14,7 +14,6 @@ class VideoController extends FrontController
     public function __construct(VideoRepository $repository)
     {
         $this->repository = $repository;
-
         parent::__construct();
     }
 
@@ -25,7 +24,7 @@ class VideoController extends FrontController
             $item = $this->repository->getById((integer) $slug);
         }
 
-        $relatedVideos = Video::published()->limit(4)->whereNotIn('id', array($item['id']))->get();
+        $relatedVideos = $this->repository->getRelatedVideos($item);
 
         return view('site.videoDetail', [
             'item' => $item,
