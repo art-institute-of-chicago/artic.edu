@@ -87,11 +87,11 @@ if ($maxZoomWindowSize >= 843) {
       </ul>
       @endif
     @if (isset($images[0]['creditUrl']))
-        <a href="{{ $images[0]['creditUrl'] }}" class="m-article-header__img-credit f-secondary" data-gallery-credit>
+        <a href="{{ $images[0]['creditUrl'] }}" class="m-article-header__img-credit f-caption" data-gallery-credit>
             {{ $images[0]['credit'] ?? $images[0]['creditUrl'] ?? '' }}
         </a>
     @else
-        <span class="m-article-header__img-credit f-secondary" data-gallery-credit>
+        <span class="m-article-header__img-credit f-caption" data-gallery-credit>
             {{ $images[0]['credit'] ?? '' }}
         </span>
     @endif

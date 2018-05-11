@@ -738,7 +738,8 @@ $thumbTease: 4px;
   justify-content: center;
   width: 100%;
   //height: calc(100vh - #{112px - $thumbTease + $imgPadding});
-  height: calc(100vh - 112px);
+  //height: calc(100vh - 112px);
+  height: calc(100vh - 156px);
   min-height: 500px;
   max-height: 600px;
   padding-top: 16px;
@@ -791,6 +792,7 @@ $thumbTease: 4px;
 
 .m-article-header__img-credit {
   position: absolute;
+  z-index: 2;
   left: 0;
   right: 0;
   bottom: 88px;
@@ -799,15 +801,22 @@ $thumbTease: 4px;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: $color__text--secondary;
   overflow: hidden;
 
   @include breakpoint('small+') {
-    right: 166px;
+    right: auto;
     bottom: 36px;
+    max-width: calc(100% - 166px);
     text-align: left;
     white-space: normal;
     overflow: visible;
   }
+}
+
+a.m-article-header__img-credit {
+  color: $color__text--secondary;
+  text-decoration: none;
 }
 
 .m-article-header__img-actions {
