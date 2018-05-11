@@ -133,7 +133,7 @@
                     @endcomponent
                 @endforeach
             @endcomponent
-            {!! $listingItems->appends(['year' => $year])->links() !!}
+            {!! $listingItems->appends(request()->all())->links() !!}
         @else
             @component('components.molecules._m-no-results')
             @endcomponent
