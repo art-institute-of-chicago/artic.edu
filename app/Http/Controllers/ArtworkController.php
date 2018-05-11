@@ -49,6 +49,7 @@ class ArtworkController extends BaseScopedController
           'exploreFurtherTags' => $exploreFurtherTags,
           'exploreFurtherAllTags' => $exploreFurtherAllTags ?? null,
           'prevNextObject'        => $prevNext,
+          'primaryNavCurrent'  => 'collection',
         ]);
     }
 

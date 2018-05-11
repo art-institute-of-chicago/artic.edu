@@ -73,6 +73,7 @@ class ExhibitionHistoryController extends FrontController
         $exhibitions = $this->apiRepository->history($year);
 
         $view_data = [
+            'primaryNavCurrent' => 'exhibitions_and_events',
             'title' => 'Exhibition History',
             'intro' => $page->exhibition_history_sub_heading,
             'media' => array(
