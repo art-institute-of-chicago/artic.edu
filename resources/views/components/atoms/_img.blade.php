@@ -1,3 +1,5 @@
+@unless (empty($image['src']))
+
 @php
     $highlight = ' ';
 
@@ -55,3 +57,6 @@
     @endif
     {{ $highlight }}
 >
+@else
+<span class="img-placeholder {{ $image['class'] ?? '' }} {{ $class ?? '' }}"></span>
+@endunless

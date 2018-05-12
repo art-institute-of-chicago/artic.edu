@@ -198,7 +198,7 @@
     z-index: 1;
     flex: none;
     opacity: 1;
-    transition: opacity .25s, top .4s $bezier--marius-mosaic, left .4s $bezier--marius-mosaic, height .4s $bezier--marius-mosaic;
+    transition: opacity .25s, top .3s $bezier--marius-mosaic, left .3s $bezier--marius-mosaic, height .3s $bezier--marius-mosaic;
   }
 
   .o-gallery__media > *.s-positioned:not(.s-repositioning) {

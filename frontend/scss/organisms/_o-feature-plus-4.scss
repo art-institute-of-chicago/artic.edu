@@ -97,7 +97,7 @@
   }
 
   .o-feature-plus-4__items-2 > *:first-child::after {
-    top:  #{map-get($grid-margin-tops, small) * -1}px;
+    top: #{map-get($grid-margin-tops, small) * -1}px;
   }
 }
 
@@ -213,6 +213,20 @@ hr + .o-feature-plus-4,
     @include breakpoint('#{$name}') {
       margin-top: 0;
       padding-top: #{map-get($grid-margin-tops, $name)}px;
+    }
+  }
+
+  @include breakpoint('large') {
+    .o-feature-plus-4__items-1::after,
+    .o-feature-plus-4__items-2::after {
+      top: #{map-get($grid-margin-tops, 'large') * -1}px;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    .o-feature-plus-4__items-1::after,
+    .o-feature-plus-4__items-2::after {
+      top: #{map-get($grid-margin-tops, 'xlarge') * -1}px;
     }
   }
 }

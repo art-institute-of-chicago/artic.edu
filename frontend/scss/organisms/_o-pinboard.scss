@@ -124,7 +124,7 @@
       z-index: 1;
       flex: none;
       opacity: 1;
-      transition: top .4s $bezier--marius-ease, left .4s $bezier--marius-ease, height .4s $bezier--marius-ease;
+      transition: top .3s $bezier--marius-mosaic, left .3s $bezier--marius-mosaic, height .3s $bezier--marius-mosaic;
     }
 
     .o-pinboard[class*="col@#{$name}"] > .s-positioned:not(.s-repositioning) {

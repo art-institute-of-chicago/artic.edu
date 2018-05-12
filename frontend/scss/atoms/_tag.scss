@@ -8,7 +8,8 @@
 <a href="#" class="tag tag--quaternary f-tag">Caleb Dume</a> <br>
 <a href="#" class="tag tag--quinary f-tag">Caleb Dume</a> <br>
 <a href="#" class="tag f-tag-2">Ezra</a> <br>
-<a href="#" class="tag tag--w-image f-tag">Sabine</a>
+<a href="#" class="tag tag--senary f-tag">Chopper</a> <br>
+<a href="#" class="tag tag--senary tag--w-image f-tag">Sabine</a>
 ```
 
 ***/
@@ -186,17 +187,21 @@ a.tag--quinary:active {
 
 
 
-.tag--w-image {
+.tag--senary {
   position: relative;
   height: 40px;
   padding-right: 16px;
-  padding-left: 56px;
+  padding-left: 16px;
   background: transparent;
   color: $color__text--secondary;
   line-height: 40px;
+
+  &.tag--w-image {
+    padding-left: 56px;
+  }
 }
 
-.tag--w-image[class*=f-]::before {
+.tag--senary[class*=f-]::before {
   content: '';
   display: block;
   position: absolute;
@@ -209,13 +214,13 @@ a.tag--quinary:active {
   border-radius: $border-radius;
 }
 
-.tag--w-image.f-tag,
-.tag--w-image.f-tag-2 {
+.tag--senary.f-tag,
+.tag--senary.f-tag-2 {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.tag--w-image img {
+.tag--senary.tag--w-image img {
   position: absolute;
   z-index: 0;
   left: 0;
@@ -226,12 +231,12 @@ a.tag--quinary:active {
   border-bottom-left-radius: 2px;
 }
 
-a.tag--w-image::before {
+a.tag--senary::before {
   @extend %link-transition;
 }
 
-a.tag--w-image:hover,
-a.tag--w-image:focus {
+a.tag--senary:hover,
+a.tag--senary:focus {
   background-color: transparent;
   color: $color__text--secondary;
 
@@ -240,7 +245,7 @@ a.tag--w-image:focus {
   }
 }
 
-a.tag--w-image:active {
+a.tag--senary:active {
   background-color: transparent;
   color: $color__text--secondary;
 
