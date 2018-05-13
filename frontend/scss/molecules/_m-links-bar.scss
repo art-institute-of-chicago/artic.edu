@@ -418,7 +418,18 @@
 .m-links-bar--tabs .m-links-bar__item {
   position: relative;
   height: auto;
+  margin-right: 24px;
   padding-top: 0;
+}
+
+.m-links-bar--tabs .m-links-bar__items-primary .m-links-bar__item {
+  width: 100%;
+  margin-right: 0;
+
+  @include breakpoint('medium+') {
+    width: auto;
+    margin-right: 24px;
+  }
 }
 
 .m-links-bar--tabs .m-links-bar__items-primary .m-links-bar__item.s-active::before {
@@ -503,6 +514,16 @@
     @include breakpoint('medium+') {
       padding-top: 23px;
       padding-bottom: 21px;
+    }
+  }
+
+  .dropdown > button.f-module-title-2 {
+    padding-top: 10px;
+    padding-bottom: 14px;
+
+    @include breakpoint('small+') {
+      padding-top: 15px;
+      padding-bottom: 17px;
     }
   }
 

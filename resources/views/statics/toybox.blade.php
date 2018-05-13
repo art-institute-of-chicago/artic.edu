@@ -484,14 +484,21 @@
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._tag')
-        @slot('variation', 'tag--w-image')
+        @slot('variation', 'tag--senary')
+        @slot('href','#')
+        Senary
+    @endcomponent
+</p>
+<p style="margin-top: 20px;">
+    @component('components.atoms._tag')
+        @slot('variation', 'tag--senary tag--w-image')
         @slot('href','#')
         @component('components.atoms._img')
             @slot('src', 'http://placehold.dev.area17.com/image/60x60')
             @slot('width', '60')
             @slot('height', '60')
         @endcomponent
-        With Image
+        Senary, with Image
     @endcomponent
 </p>
 

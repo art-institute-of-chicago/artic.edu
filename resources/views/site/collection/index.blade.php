@@ -39,18 +39,22 @@
         @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
             <li>
                 @component('components.atoms._tag')
-                    @slot('variation', 'tag--w-image')
                     @slot('href', $category->present()->collectionUrl)
                     @slot('dataAttributes',' data-ajax-scroll-target="collection"')
-                    @component('components.atoms._img')
-                        @slot('image', $category->imageFront('thumb', 'default'))
-                        @slot('settings', array(
-                            'fit' => 'crop',
-                            'ratio' => '1:1',
-                            'srcset' => array(20,40),
-                            'sizes' => '40px',
-                        ))
-                    @endcomponent
+                    @if (!empty($category->imageFront('thumb', 'default')))
+                        @slot('variation', 'tag--senary tag--w-image')
+                        @component('components.atoms._img')
+                            @slot('image', $category->imageFront('thumb', 'default'))
+                            @slot('settings', array(
+                                'fit' => 'crop',
+                                'ratio' => '1:1',
+                                'srcset' => array(20,40),
+                                'sizes' => '40px',
+                            ))
+                        @endcomponent
+                    @else
+                        @slot('variation', 'tag--senary')
+                    @endif
                     {{ $category->title }}
                 @endcomponent
             </li>
@@ -153,7 +157,7 @@
         @if ($featuredArticlesHero)
         @component('components.molecules._m-listing----article')
             @slot('tag', 'p')
-            @slot('titleFont', 'f-list-5')
+            @slot('titleFont', 'f-headline-editorial')
             @slot('captionFont', 'f-body-editorial')
             @slot('variation', 'o-feature-plus-4__feature')
             @slot('item', $featuredArticlesHero)

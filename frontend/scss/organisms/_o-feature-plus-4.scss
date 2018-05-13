@@ -55,11 +55,15 @@
 
 @include breakpoint('small') {
 
+  .o-feature-plus-4__feature {
+    padding-bottom: 32px;
+  }
+
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
     width: colspan(28, small);
     margin-top: #{map-get($grid-margin-tops, small)}px;
-    padding-top: #{map-get($grid-margin-tops, xsmall)}px;
+    padding-top: colspan(1.5, small);
   }
 
   .o-feature-plus-4__items-1 > *:not(:first-child),
@@ -97,7 +101,7 @@
   }
 
   .o-feature-plus-4__items-2 > *:first-child::after {
-    top:  #{map-get($grid-margin-tops, small) * -1}px;
+    top: #{map-get($grid-margin-tops, small) * -1}px;
   }
 }
 
@@ -106,6 +110,16 @@
   .o-feature-plus-4__items-1 {
     width: colspan(18, medium);
     margin-left: colspan(2, medium)
+  }
+
+  .o-feature-plus-4__items-1::before {
+    content: '';
+    position: absolute;
+    left: colspan(1, medium, 0, true);
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: $color__rules--primary;
   }
 
   .o-feature-plus-4__items-1 > *:first-child {
@@ -120,6 +134,22 @@
 
   .o-feature-plus-4__items-2 {
     width: 100%;
+  }
+
+  .o-feature-plus-4__items-2::before,
+  .o-feature-plus-4__items-2::after {
+    content: '';
+    position: absolute;
+    left: colspan(19, medium);
+    top: #{map-get($grid-margin-tops, xsmall)}px;
+    bottom: 0;
+    width: 1px;
+    background-color: $color__rules--primary;
+  }
+
+  .o-feature-plus-4__items-2::after {
+    left: colspan(39, medium);
+    top: 0;
   }
 
   .o-feature-plus-4__items-2 > * {
@@ -213,6 +243,26 @@ hr + .o-feature-plus-4,
     @include breakpoint('#{$name}') {
       margin-top: 0;
       padding-top: #{map-get($grid-margin-tops, $name)}px;
+    }
+  }
+
+  @include breakpoint('medium') {
+    .o-feature-plus-4__items-1::before {
+      top: #{map-get($grid-margin-tops, 'medium') * -1}px;
+    }
+  }
+
+  @include breakpoint('large') {
+    .o-feature-plus-4__items-1::after,
+    .o-feature-plus-4__items-2::after {
+      top: #{map-get($grid-margin-tops, 'large') * -1}px;
+    }
+  }
+
+  @include breakpoint('xlarge') {
+    .o-feature-plus-4__items-1::after,
+    .o-feature-plus-4__items-2::after {
+      top: #{map-get($grid-margin-tops, 'xlarge') * -1}px;
     }
   }
 }

@@ -64,7 +64,8 @@ $bezier--ease-in-out: cubic-bezier(.445, .05, .55, .95);
 $bezier--ease-out-circ: cubic-bezier(.075, .82, .165, 1);
 $bezier--ease-in-circ: cubic-bezier(.6, .04, .98, .335);
 $bezier--marius-ease: cubic-bezier(.59, .01, .28, 1);
-$bezier--marius-mosaic: cubic-bezier(.5, -.6, .5, 1.6);
+//$bezier--marius-mosaic: cubic-bezier(.5, -.6, .5, 1.6);
+$bezier--marius-mosaic: ease-in-out;
 
 // grid spacing, used in `.o-grid-listing` and `.o-features`
 

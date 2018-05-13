@@ -3,7 +3,7 @@
     @foreach ($links as $link)
         <li>
             @component('components.atoms._tag')
-                @slot('variation', 'tag--w-image')
+                @slot('variation', 'tag--senary tag--w-image')
                 @slot('href', $link['href'])
                 @component('components.atoms._img')
                     @slot('image', $link['image'])
