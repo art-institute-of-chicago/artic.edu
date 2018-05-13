@@ -34,7 +34,7 @@
             <div class="o-feature-plus-4">
                 @component('components.molecules._m-listing----article')
                     @slot('tag', 'p')
-                    @slot('titleFont', 'f-list-5')
+                    @slot('titleFont', 'f-headline-editorial')
                     @slot('captionFont', 'f-body-editorial')
                     @slot('variation', 'o-feature-plus-4__feature')
                     @slot('item', $featureHero)
@@ -211,7 +211,7 @@
             <div class="o-feature-plus-4">
                 @component('components.molecules._m-listing----article')
                     @slot('tag', 'p')
-                    @slot('titleFont', 'f-list-5')
+                    @slot('titleFont', 'f-headline-editorial')
                     @slot('captionFont', 'f-body-editorial')
                     @slot('variation', 'o-feature-plus-4__feature')
                     @slot('item', $journalHero)

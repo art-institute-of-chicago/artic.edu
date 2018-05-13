@@ -55,11 +55,15 @@
 
 @include breakpoint('small') {
 
+  .o-feature-plus-4__feature {
+    padding-bottom: 32px;
+  }
+
   .o-feature-plus-4__items-1 > *,
   .o-feature-plus-4__items-2 > * {
     width: colspan(28, small);
     margin-top: #{map-get($grid-margin-tops, small)}px;
-    padding-top: #{map-get($grid-margin-tops, xsmall)}px;
+    padding-top: colspan(1.5, small);
   }
 
   .o-feature-plus-4__items-1 > *:not(:first-child),
