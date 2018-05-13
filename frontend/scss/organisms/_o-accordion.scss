@@ -54,7 +54,7 @@
 }
 
 .o-accordion__trigger.f-list-4 {
-  padding-top: 16px - 1px;
+  padding-top: 20px - 1px;
   border-top: 1px solid $color__rules--primary;
 
   @include breakpoint('small+') {
@@ -65,20 +65,24 @@
     padding-top: 32px - 1px;
   }
 
+  @include breakpoint('large+') {
+    padding-top: 28px - 1px;
+  }
+
   &[aria-expanded="true"] {
     border-top-color: $color__rules--quaternary;
   }
 }
 
 .o-accordion__trigger.f-list-4:not(:first-child) {
-  margin-top: 24px;
+  margin-top: 32px;
 
   @include breakpoint('small+') {
-    margin-top: 32px;
+    margin-top: 40px;
   }
 
   @include breakpoint('medium+') {
-    margin-top: 36px;
+    margin-top: 48px;
   }
 }
 
@@ -86,7 +90,7 @@
   color: $color__link--tab-hover;
 }
 
-.o-accordion__trigger:not(.s-inactive):focus {
+.o-accordion__trigger:not(.s-inactive):focus:not([data-focus-method="mouse"]) {
   outline-color: Highlight;
   outline-style: solid;
   outline-width: 3px;
@@ -94,7 +98,7 @@
 
 // WebKit gets its native focus styles.
 @media (-webkit-min-device-pixel-ratio:0) {
-  .o-accordion__trigger:not(.s-inactive):focus {
+  .o-accordion__trigger:not(.s-inactive):focus:not([data-focus-method="mouse"]) {
     outline-color: -webkit-focus-ring-color;
     outline-style: auto;
     outline-width: auto;
@@ -272,7 +276,7 @@
   @include tucked-margin-top($f-module-title-2, ('xsmall': 48, 'small+': 68));
 
   &:first-child {
-    @include tucked-margin-top($f-module-title-2, ('xsmall': 68, 'small+': 88));
+    @include tucked-margin-top($f-module-title-2, ('xsmall': 64, 'small+': 76));
   }
 }
 
@@ -281,7 +285,7 @@
   @include tucked-margin-top($f-subheading-1, ('xsmall': 40, 'small+': 56));
 
   &:first-child {
-    @include tucked-margin-top($f-subheading-1, ('xsmall': 60, 'small+': 76));
+    @include tucked-margin-top($f-subheading-1, ('xsmall': 56, 'small+': 64));
   }
 }
 
@@ -290,7 +294,18 @@
   @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small+': 56));
 
   &:first-child {
-    @include tucked-margin-top($f-secondary, ('xsmall': 60, 'small+': 76));
+    @include tucked-margin-top($f-secondary, ('xsmall': 56, 'small+': 64));
+  }
+}
+
+.o-accordion__panel-content.o-blocks > p:not([class*=f-]),
+.o-accordion__panel-content.o-blocks > ul:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+.o-accordion__panel-content.o-blocks > ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+.o-accordion__panel-content.o-blocks > .f-body {
+  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small+': 56));
+
+  &:first-child {
+    @include tucked-margin-top($f-secondary, ('xsmall': 56, 'small+': 64));
   }
 }
 

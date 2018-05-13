@@ -138,9 +138,6 @@
             @component('components.molecules._m-no-results')
             @endcomponent
         @endif
-    @else
-        @component('components.molecules._m-no-results')
-        @endcomponent
     @endif
 
     @component('components.molecules._m-article-actions')
