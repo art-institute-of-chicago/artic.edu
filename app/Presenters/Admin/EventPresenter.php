@@ -36,6 +36,10 @@ class EventPresenter extends BasePresenter
 
     public function ticketStatus()
     {
+        if (empty($this->nextOcurrence)) {
+            return null;
+        }
+
         if ($this->entity->is_private) {
             return 'rsvp';
         }
