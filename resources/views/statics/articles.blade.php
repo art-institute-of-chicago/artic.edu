@@ -10,7 +10,6 @@
             @slot('variation', 'm-listing--hero m-listing--hero-editorial')
             @slot('titleFont', 'f-headline-editorial')
             @slot('captionFont', 'f-secondary')
-            @slot('imageSizes', '100vw')
             @slot('imageSettings', array(
                 'srcset' => array(200,400,600,1000,1500,2000,3000),
                 'sizes' => '100vw',

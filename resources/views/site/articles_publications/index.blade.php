@@ -127,14 +127,17 @@
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
-                        @slot('imageSizes', aic_imageSizes(
-                          array(
-                              'xsmall' => '58',
-                              'small' => '23',
-                              'medium' => '22',
-                              'large' => '18',
-                              'xlarge' => '18',
-                          )
+                        @slot('imageSettings', array(
+                            'fit' => 'crop',
+                            'ratio' => '16:9',
+                            'srcset' => array(200,400,600),
+                            'sizes' => aic_imageSizes(array(
+                                  'xsmall' => '58',
+                                  'small' => '23',
+                                  'medium' => '22',
+                                  'large' => '18',
+                                  'xlarge' => '18',
+                            )),
                         ))
                     @endcomponent
                 @endforeach
@@ -176,15 +179,13 @@
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
+                        @slot('image', $item->imageFront('listing') ?? null)
                         @slot('imgVariation', 'm-listing__img--padded')
-                        @slot('imageSizes', aic_imageSizes(
-                          array(
-                              'xsmall' => '58',
-                              'small' => '23',
-                              'medium' => '22',
-                              'large' => '13',
-                              'xlarge' => '13',
-                          )
+                        @slot('imageSettings', array(
+                            'crop' => 'default',
+                            'fit' => 'default',
+                            'srcset' => array(160,240,320),
+                            'sizes' => '160px',
                         ))
                     @endcomponent
                 @endforeach
@@ -239,14 +240,17 @@
                     @if ($loop->index < 2)
                         @component('components.molecules._m-listing----article-minimal')
                             @slot('item', $editorial)
-                            @slot('imageSizes', aic_imageSizes(
-                              array(
-                                  'xsmall' => '58',
-                                  'small' => '28',
-                                  'medium' => '18',
-                                  'large' => '13',
-                                  'xlarge' => '13',
-                              )
+                            @slot('imageSettings', array(
+                                'fit' => 'crop',
+                                'ratio' => '16:9',
+                                'srcset' => array(200,400,600),
+                                'sizes' => aic_imageSizes(array(
+                                      'xsmall' => '58',
+                                      'small' => '28',
+                                      'medium' => '18',
+                                      'large' => '13',
+                                      'xlarge' => '13',
+                                )),
                             ))
                         @endcomponent
                     @endif
@@ -257,14 +261,17 @@
                     @if ($loop->index > 1)
                         @component('components.molecules._m-listing----article-minimal')
                             @slot('item', $editorial)
-                            @slot('imageSizes', aic_imageSizes(
-                              array(
-                                  'xsmall' => '58',
-                                  'small' => '28',
-                                  'medium' => '18',
-                                  'large' => '13',
-                                  'xlarge' => '13',
-                              )
+                            @slot('imageSettings', array(
+                                'fit' => 'crop',
+                                'ratio' => '16:9',
+                                'srcset' => array(200,400,600),
+                                'sizes' => aic_imageSizes(array(
+                                      'xsmall' => '58',
+                                      'small' => '28',
+                                      'medium' => '18',
+                                      'large' => '13',
+                                      'xlarge' => '13',
+                                )),
                             ))
                         @endcomponent
                     @endif
