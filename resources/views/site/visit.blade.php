@@ -267,14 +267,11 @@
 
     <div class="m-directions-block">
       <div class="m-directions-block__map">
-        @component('components.molecules._m-media')
-          @slot('item', array(
-              'type' => 'image',
-              'size' => 's',
-              'media' => $directions['image'],
-              'hideCaption' => true,
-          ))
-        @endcomponent
+        <figure class="m-media">
+            <a href="{{ $directions['links'][0]['href'] ?? '#' }}" class="m-media__img">
+                @include('partials._map')
+            </a>
+        </figure>
       </div>
       <div class="m-directions-block__text o-blocks">
         @foreach ($directions['locations'] as $location)
