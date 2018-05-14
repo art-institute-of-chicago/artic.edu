@@ -101,17 +101,20 @@ class HomeController extends FrontController
             if ($feature->published) {
                 if ($feature->articles->count()) {
                     $item = $feature->articles()->first();
-                    $item->type = 'article';
+                    $item->type= 'article';
+                    $item->subtype='Article';
 
                 } else if ($feature->artworks->count()) {
                     $item = $this->artworkRepository->getById($feature->artworks()->first()->datahub_id);
-                    $item->type = 'artwork';
+                    $item->type= 'artwork';
+                     $item->subtype='Artwork';
 
                 } else if ($feature->selections->count()) {
                     $item = $feature->selections()->first();
 
                     $item->type = 'selection';
                     $item->images = $item->getArtworkImages();
+                    $item->subtype='Selection';
                 }
 
                 if ($item) {
