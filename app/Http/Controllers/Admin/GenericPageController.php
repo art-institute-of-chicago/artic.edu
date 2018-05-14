@@ -45,13 +45,13 @@ class GenericPageController extends ModuleController
     {
         $pagesList = $this->repository->withDepth()->defaultOrder()->get()->filter(function ($page) {
             return $page->depth < 3;
-        })->pluck('title');
+        })->pluck('title', 'id');
 
         $pagesList = $pagesList->prepend('None', '');
 
         return [
             'nested' => true,
-            'nestedDepth' => 3,
+            'nestedDepth' => 10,
             'pages' => $pagesList,
         ];
     }

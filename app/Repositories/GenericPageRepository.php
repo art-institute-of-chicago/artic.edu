@@ -3,16 +3,16 @@
 namespace App\Repositories;
 
 use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
-use App\Repositories\Behaviors\HandleApiRelations;
-use App\Repositories\Behaviors\HandleApiBlocks;
-// use A17\CmsToolkit\Repositories\Behaviors\HandleTranslations;
 use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
 use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
 use A17\CmsToolkit\Repositories\Behaviors\HandleFiles;
 use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
 use A17\CmsToolkit\Repositories\ModuleRepository;
-use App\Models\GenericPage;
 use App\Repositories\Api\BaseApiRepository;
+use App\Repositories\Behaviors\HandleApiRelations;
+use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Jobs\ReorderPages;
+use App\Models\GenericPage;
 use DB;
 
 class GenericPageRepository extends ModuleRepository
@@ -29,9 +29,7 @@ class GenericPageRepository extends ModuleRepository
     public function setNewOrder($ids)
     {
         if (is_array(array_first($ids))) {
-            DB::transaction(function () use ($ids) {
-                GenericPage::saveTreeFromIds($ids);
-            }, 3);
+            ReorderPages::dispatch($ids);
         } else {
             parent::setNewOrder($ids);
         }
