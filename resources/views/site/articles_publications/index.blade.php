@@ -179,6 +179,7 @@
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
+                        @slot('image', $item->imageFront('listing') ?? null)
                         @slot('imgVariation', 'm-listing__img--padded')
                         @slot('imageSettings', array(
                             'crop' => 'default',
