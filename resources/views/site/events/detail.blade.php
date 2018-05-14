@@ -9,16 +9,9 @@
     @slot('headerType', $item->present()->headerType)
     @slot('title', $item->title)
     @slot('formattedDate', $item->present()->formattedNextOcurrence)
-    {{-- @slot('date', $item->date)
-    @slot('dateStart', $item->dateStart)
-    @slot('dateEnd', $item->dateEnd) --}}
     @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : $item->present()->type)
-    {{-- @slot('intro', $item->hero_caption) --}}
     @slot('img', $item->imageAsArray('hero'))
     @slot('credit', $item->hero_caption)
-    {{-- @slot('galleryImages', $item->galleryImages) --}}
-    {{-- @slot('nextArticle', $item->nextArticle) --}}
-    {{-- @slot('prevArticle', $item->prevArticle) --}}
   @endcomponent
 
   <div class="o-article__primary-actions{{ ($item->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}">
@@ -200,81 +193,6 @@
 
 </article>
 
-{{-- @if (isset($relatedEventsByDay))
-    @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all events', 'href' => '#')))
-        @slot('id', 'related_events')
-        Related Events
-    @endcomponent
-    @component('components.organisms._o-row-listing')
-        @foreach ($relatedEventsByDay as $date => $events)
-            @component('components.molecules._m-date-listing')
-                @slot('date', $date)
-                @slot('events', $events)
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '13',
-                          'medium' => '13',
-                          'large' => '13',
-                          'xlarge' => '13',
-                    )),
-                ))
-                @slot('imageSettingsOnGoing', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '58',
-                          'small' => '7',
-                          'medium' => '7',
-                          'large' => '7',
-                          'xlarge' => '7',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endcomponent
-    @component('components.molecules._m-links-bar')
-        @slot('variation', 'm-links-bar--buttons')
-        @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary')))
-    @endcomponent
-@endif --}}
-
-@if ($item->relatedExhibitions)
-    @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all exhibitions', 'href' => '#')))
-        {{ $item->relatedExhibitionsTitle ? $item->relatedExhibitionsTitle : "Related Exhibitions" }}
-    @endcomponent
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
-        @slot('cols_medium','3')
-        @slot('cols_large','4')
-        @slot('cols_xlarge','4')
-        @slot('behavior','dragScroll')
-        @foreach ($item->relatedExhibitions as $item)
-            @component('components.molecules._m-listing----exhibition')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '216px',
-                          'small' => '216px',
-                          'medium' => '18',
-                          'large' => '13',
-                          'xlarge' => '13',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endcomponent
-@endif
-
 @if ($item->events()->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => route('events'))))
@@ -301,24 +219,6 @@
                           'xlarge' => '13',
                     )),
                 ))
-            @endcomponent
-        @endforeach
-    @endcomponent
-@endif
-
-@if ($item->relatedArticles)
-    @component('components.molecules._m-title-bar')
-        Further Reading
-    @endcomponent
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
-        @slot('cols_medium','3')
-        @slot('cols_large','4')
-        @slot('cols_xlarge','4')
-        @slot('behavior','dragScroll')
-        @foreach ($item->relatedArticles as $item)
-            @component('components.molecules._m-listing----article')
-                @slot('item', $item)
             @endcomponent
         @endforeach
     @endcomponent
