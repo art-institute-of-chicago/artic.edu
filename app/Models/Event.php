@@ -250,6 +250,11 @@ class Event extends Model
         return $this->eventMetas()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->first();
     }
 
+    public function getLastOcurrenceAttribute()
+    {
+        return $this->eventMetas()->orderBy('date', 'DESC')->first();
+    }
+
     public function getAudienceDisplay()
     {
         $display = '';
