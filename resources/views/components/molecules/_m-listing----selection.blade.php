@@ -1,6 +1,6 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! route('selections.show', $item) !!}" class="m-listing__link">
-        <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : ' m-listing__img--square' }}">
+        <span class="m-listing__img m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : ' m-listing__img--square' }}{{ (isset($singleImage) and $singleImage) ? '' : ' m-listing__img--w-overflow' }}">
             @if (isset($singleImage) and $singleImage)
                 @component('components.atoms._img')
                     @slot('image', $item->imageFront('hero') ?? $item->images[0])
