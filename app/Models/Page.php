@@ -76,7 +76,10 @@ class Page extends Model
         'visit_become_member_label',
         'visit_become_member_link',
         'visit_faq_accessibility_link',
-        'visit_faq_more_link'
+        'visit_faq_more_link',
+
+        // Printed catalogs
+        'printed_catalogs_intro'
     ];
 
     public $slugAttributes = [
@@ -266,11 +269,6 @@ class Page extends Model
     public function printedCatalogs()
     {
         return $this->belongsToMany('App\Models\PrintedCatalog')->withPivot('position')->orderBy('position');
-    }
-
-    public function scholarlyJournals()
-    {
-        return $this->belongsToMany('App\Models\ScholarlyJournal')->withPivot('position')->orderBy('position');
     }
 
     public function visitTourPages()

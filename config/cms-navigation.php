@@ -127,11 +127,7 @@ return [
                     'digitalCatalogs' => [
                         'title' => 'Digital Catalogs',
                         'module' => true,
-                    ],
-                    // 'scholarlyJournals' => [
-                    //     'title' => 'Scholarly Journals',
-                    //     'module' => true,
-                    // ]
+                    ]
                 ],
             ],
             'research_resources' => [

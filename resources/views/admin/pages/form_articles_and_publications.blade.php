@@ -11,14 +11,6 @@
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
         'max' => 3,
-        'moduleName' => 'printedCatalogs',
-        'name' => 'printedCatalogs',
-        'label' => 'Printed catalogs'
-    ])
-
-    @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
-        'max' => 3,
         'moduleName' => 'digitalCatalogs',
         'name' => 'digitalCatalogs',
         'label' => 'Digital catalogs'
@@ -27,8 +19,14 @@
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
         'max' => 3,
-        'moduleName' => 'scholarlyJournals',
-        'name' => 'scholarlyJournals',
-        'label' => 'Scholarly journals'
+        'moduleName' => 'printedCatalogs',
+        'name' => 'printedCatalogs',
+        'label' => 'Printed catalogs'
+    ])
+
+    @formField('input', [
+        'type' => 'textarea',
+        'name' => 'printed_catalogs_intro',
+        'label' => 'Printed Catalogs intro text',
     ])
 @stop
