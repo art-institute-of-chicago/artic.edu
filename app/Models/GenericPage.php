@@ -25,8 +25,6 @@ class GenericPage extends Model implements Sortable
         'title',
         'published',
         'position',
-        'public',
-        // 'featured',
         'publish_start_date',
         'publish_end_date',
         'parent_id',
@@ -44,7 +42,7 @@ class GenericPage extends Model implements Sortable
         'title',
     ];
 
-    public $checkboxes = ['published', 'active', 'public'];
+    public $checkboxes = ['published', 'active'];
 
     // fill this in if you use the HasMedias traits
     public $mediasParams = [
