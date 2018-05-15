@@ -181,7 +181,7 @@
 
 .o-blocks > small,
 .o-blocks > .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 48));
+  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'medium+': 52));
 
   &:first-child {
     @include tucked-align-top($f-secondary);

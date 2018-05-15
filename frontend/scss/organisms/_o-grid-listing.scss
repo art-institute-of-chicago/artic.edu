@@ -29,6 +29,16 @@ Basic flexed set up
       margin-top: 0;
     }
   }
+
+  .m-table + & {
+    @include breakpoint('small+') {
+      margin-top: 32px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 40px;
+    }
+  }
 }
 
 .o-grid-listing > * {
@@ -180,6 +190,50 @@ hr + .o-grid-listing,
   }
 }
 
+/***
+
+Variant `o-grid-listing--info-block`
+
+***/
+
+@each $name, $point in $breakpoints {
+  @include breakpoint('#{$name}') {
+    .o-grid-listing:not([class*="col@#{$name}"]):not(.o-grid-listing--info-block) + .o-grid-listing--info-block[class*="col@#{$name}"] {
+      margin-top: 60px;
+    }
+
+    .o-grid-listing--info-block[class*="col@#{$name}"] + .o-grid-listing--info-block[class*="col@#{$name}"] {
+      @if ($name == 'xsmall') {
+        margin-top: 36px;
+      } @else {
+        margin-top: 52px;
+      }
+    }
+
+    .o-grid-listing--gridlines-top.o-grid-listing--info-block:not([class*="col@#{$name}"]) > *,
+    .o-grid-listing--gridlines-rows.o-grid-listing--info-block:not([class*="col@#{$name}"]) > * {
+      margin-top: #{map-get($grid-margin-tops, $name)}px;
+      padding-top: 0;
+
+      &::before {
+        display: none;
+      }
+
+      &:first-child {
+        padding-top: colspan(map-get($grid-padding-tops, $name), #{$name});
+        padding-top: #{map-get($grid-margin-tops, $name)}px;
+      }
+
+      &:first-child::before {
+        display: block;
+      }
+    }
+
+    .o-grid-listing--info-block:not([class*="col@#{$name}"]) .m-ticket-actions:first-child {
+      margin-top: 20px;
+    }
+  }
+}
 
 /***
 

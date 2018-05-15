@@ -45,6 +45,18 @@
       <div class="o-blocks">
         @component('components.molecules._m-media')
           @slot('item', $hours['media'])
+          @slot('imageSettings', array(
+              'fit' => 'crop',
+              'ratio' => '16:9',
+              'srcset' => array(300,600,800,1200,1600,3000,4500),
+              'sizes' => aic_imageSizes(array(
+                    'xsmall' => '58',
+                    'small' => '58',
+                    'medium' => '38',
+                    'large' => '28',
+                    'xlarge' => '28',
+              )),
+          ))
         @endcomponent
       </div>
       <div class="o-blocks">
@@ -62,14 +74,14 @@
   @foreach ($hours['sections'] as $section)
 
     @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--gridlines-rows')
+        @slot('variation', 'o-grid-listing--gridlines-rows o-grid-listing--info-block')
         @slot('cols_small','2')
         @slot('cols_medium','2')
         @slot('cols_large','2')
         @slot('cols_xlarge','2')
         @slot('tag', 'div')
         <div class="o-blocks">
-          @component('components.blocks._text')
+          @component('components.atoms._title')
               @slot('font','f-list-3')
               @slot('tag','h3')
               @component('components.atoms._arrow-link')
@@ -208,7 +220,7 @@
   </div>
 
   @component('components.organisms._o-grid-listing')
-      @slot('variation', 'o-grid-listing--gridlines-rowss')
+      @slot('variation', 'o-grid-listing--info-block')
       @slot('cols_medium','2')
       @slot('cols_large','2')
       @slot('cols_xlarge','2')
@@ -221,7 +233,7 @@
         @endcomponent
       </div>
       <div class="o-blocks">
-        <ul class="m-ticket-actions">
+        <ul class="m-ticket-actions o-blocks__block">
             <li class="m-ticket-actions__action">
                 @component('components.atoms._btn')
                     @slot('variation', 'btn--full')
@@ -366,7 +378,7 @@
   @endcomponent
 
   @component('components.molecules._m-link-list')
-      @slot('links', $faq['questions']);
+      @slot('links', $faq['questions'])
   @endcomponent
 
   @component('components.molecules._m-links-bar')
