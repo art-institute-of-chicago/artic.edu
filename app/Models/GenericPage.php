@@ -31,7 +31,8 @@ class GenericPage extends Model implements Sortable
         'publish_end_date',
         'parent_id',
         'listing',
-        'banner'
+        'banner',
+        'redirect_url',
     ];
 
     // public $translatedAttributes = [
@@ -74,8 +75,12 @@ class GenericPage extends Model implements Sortable
 
     public function getUrlAttribute()
     {
-        $url = "";
 
+        if (!empty($this->redirect_url)) {
+            return $this->redirect_url;
+        }
+
+        $url = "";
         foreach($this->ancestors as $item) {
             $url = $url ."/".$item->slug;
         }
