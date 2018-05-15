@@ -16,7 +16,7 @@ if ($maxZoomWindowSize >= 843) {
 <div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
          @php
-            $image = $images[0];
+            $image = $images->first();
          @endphp
          @component('components.atoms._img')
             @slot('image', $image)
@@ -86,13 +86,13 @@ if ($maxZoomWindowSize >= 843) {
         @endif
       </ul>
       @endif
-    @if (isset($images[0]['creditUrl']))
-        <a href="{{ $images[0]['creditUrl'] }}" class="m-article-header__img-credit f-caption" data-gallery-credit>
-            {{ $images[0]['credit'] ?? $images[0]['creditUrl'] ?? '' }}
+    @if (isset($images->first()['creditUrl']))
+        <a href="{{ $images->first()['creditUrl'] }}" class="m-article-header__img-credit f-caption" data-gallery-credit>
+            {{ $images->first()['credit'] ?? $images->first()['creditUrl'] ?? '' }}
         </a>
     @else
         <span class="m-article-header__img-credit f-caption" data-gallery-credit>
-            {{ $images[0]['credit'] ?? '' }}
+            {{ $images->first()['credit'] ?? '' }}
         </span>
     @endif
       <ul class="m-article-header__img-actions">
