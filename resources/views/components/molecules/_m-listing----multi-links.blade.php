@@ -53,6 +53,11 @@
                 @component('components.atoms._arrow-link')
                     @slot('href', $link['href'])
                     {!! $link['label'] !!}
+
+                    {{-- MIKE: PLEASE integrate this --}}
+                    @if (isset($link['external']))
+                        @slot('external', $link['external'])
+                    @endif
                 @endcomponent
                 </li>
             @endforeach

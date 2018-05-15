@@ -37,6 +37,11 @@
         'label' => 'Redirect URL',
     ])
 
+    @formField('checkbox', [
+        'name'  => 'is_redirect_url_external',
+        'label' => 'Is Redirect URL external?',
+    ])
+
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image', 'video', 'media_embed', 'list',
