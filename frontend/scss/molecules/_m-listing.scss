@@ -102,6 +102,10 @@
   }
 }
 
+.m-listing__img.m-listing__img--w-overflow {
+  overflow: visible;
+}
+
 .m-listing__img--no-bg {
   background: none;
 }
@@ -532,6 +536,10 @@
     overflow: hidden;
   }
 
+  .m-listing--feature .m-listing__img.m-listing__img--w-overflow {
+    overflow: visible;
+  }
+
   .m-listing--feature .m-listing__img::before {
     padding-bottom: percentage(9 / 16); // 16:9
   }
@@ -636,6 +644,10 @@
   @include breakpoint('medium+') {
     max-height: 95vh;
   }
+}
+
+.m-listing--hero .m-listing__img.m-listing__img--w-overflow {
+  overflow: visible;
 }
 
 .m-listing--hero .m-listing__img::before {
@@ -1625,6 +1637,10 @@
 .o-pinboard__item.m-listing--variable-height .m-listing__img {
   max-height: percentage(4 / 3);
   overflow: hidden;
+}
+
+.o-pinboard__item.m-listing--variable-height .m-listing__img.m-listing__img--w-overflow {
+  overflow: visible;
 }
 
 .o-pinboard__item.m-listing--variable-height .m-listing__img img {
