@@ -1,4 +1,4 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag or 'li' }} class="m-listing m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $href ?? route('articles.show', $item) !!}" class="m-listing__link">
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
             @if ($item->videoFront)

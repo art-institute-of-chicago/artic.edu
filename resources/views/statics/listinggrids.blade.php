@@ -194,7 +194,7 @@
 
 <ul class="o-grid-listing o-grid-listing--gridlines-cols o-grid-listing--gridlines-top o-grid-listing--3-col@large o-grid-listing--3-col@xlarge">
   <?php for ($i = 0; $i < 3; $i++): ?>
-    <li class="m-listing m-listing--row@small m-listing--row@medium">
+    <li class="m-listing m-listing--w-meta-bottom m-listing--row@small m-listing--row@medium">
       <a href="#" class="m-listing__link">
         <span class="m-listing__img" style="height: 200px !important;">
           <img src="http://placehold.dev.area17.com/image/400x100" style="height: 200px !important;">

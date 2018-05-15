@@ -1,4 +1,4 @@
-<{{ $tag ?? 'li' }} class="m-listing m-listing--hover-bar{{ (!$item->slug) ? ' s-no-link' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }} class="m-listing m-listing--w-meta-bottom m-listing--hover-bar{{ (!$item->slug) ? ' s-no-link' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
 
   <a href="{{ route('exhibitions.show', $item) }}" class="m-listing__link">
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
@@ -21,7 +21,11 @@
 
         <span class="m-listing__meta-bottom">
             @component('components.atoms._date')
-                {!! $item->present()->formattedDate !!}
+                @if (!empty($item->present()->formattedDate))
+                    {!! $item->present()->formattedDate !!}
+                @elseif ($item->dateStart and $item->dateEnd)
+                    {{ $item->dateStart->format('M j, Y') }} &ndash; {{ $item->dateEnd->format('M j, Y') }}
+                @endif
             @endcomponent
         </span>
     </span>
