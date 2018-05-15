@@ -55,7 +55,6 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('videos');
         Route::module('printedCatalogs');
         Route::module('digitalCatalogs');
-        Route::module('scholarlyJournals');
     });
 
     Route::module('selections');

@@ -10,13 +10,10 @@ class ArticlesPublicationsController extends Controller
 {
     public function index()
     {
-        $page = Page::where('type', 8)->first();
+        $page = Page::forType('Articles and Publications')->first();
 
         $articles = $page->articles;
         $featureHero = $articles->shift();
-
-        $journals = $page->scholarlyJournals;
-        $journalHero = $journals->shift();
 
         return view('site.articles_publications.index', [
             'primaryNavCurrent' => 'collection',
@@ -43,11 +40,9 @@ class ArticlesPublicationsController extends Controller
                 'items' => $page->digitalCatalogs
             ],
             'printedCatalogs' => [
-                'intro' => 'Intro text',
+                'intro' => $page->printed_catalogs_intro,
                 'items' => $page->printedCatalogs
-            ],
-            'journalHero' => $journalHero,
-            'journals' => $journals,
+            ]
         ]);
 
     }

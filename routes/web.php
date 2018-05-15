@@ -25,9 +25,6 @@ Route::name('collection.publications.printed-catalogs.show')->get('/collection/p
 // Collection Publications Digital Catalogs
 Route::name('collection.publications.digital-catalogs')->get('/collection/publications/digital-catalogs', 'DigitalCatalogsController@index');
 Route::name('collection.publications.digital-catalogs.show')->get('/collection/publications/digital-catalogs/{id}', 'DigitalCatalogsController@show');
-// Collection Publications Scholarly Journals
-Route::name('collection.publications.scholarly-journals')->get('/collection/publications/scholarly-journals', 'ScholarlyJournalsController@index');
-Route::name('collection.publications.scholarly-journals.show')->get('/collection/publications/scholarly-journals/{id}', 'ScholarlyJournalsController@show');
 
 // Collection Research and Resources ???
 Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');
