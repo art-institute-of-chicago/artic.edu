@@ -117,11 +117,6 @@ class Article extends Model
         return $this->belongsToMany('App\Models\Category', 'article_category');
     }
 
-    public function selections()
-    {
-        return $this->belongsToMany('App\Models\Selection')->withPivot('position')->orderBy('position');
-    }
-
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
@@ -130,16 +125,6 @@ class Article extends Model
     public function apiElements()
     {
         return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
-    }
-
-    public function artworks()
-    {
-        return $this->apiElements()->where('relation', 'artworks');
-    }
-
-    public function exhibitions()
-    {
-        return $this->apiElements()->where('relation', 'exhibitions');
     }
 
     public function sidebarExhibitions()

@@ -1,7 +1,7 @@
 @extends('cms-toolkit::layouts.form', [
     'additionalFieldsets' => [
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
-        ['fieldset' => 'related', 'label' => 'Related'],
+        ['fieldset' => 'related', 'label' => 'Further Reading'],
         ['fieldset' => 'side_related', 'label' => 'Sidebar Related']
     ]
 ])
@@ -80,38 +80,14 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="related" title="Related">
+    <a17-fieldset id="related" title="Furter Reading">
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
             'name' => 'articles',
             'moduleName' => 'articles',
-            'max' => 1,
+            'max' => 4,
             'label' => 'Related articles',
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'name' => 'selections',
-            'moduleName' => 'selections',
-            'max' => 1,
-            'label' => 'Related selections',
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'name' => 'artworks',
-            'moduleName' => 'artworks',
-            'label' => 'Related artwork',
-            'max' => 500
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'name' => 'exhibitions',
-            'moduleName' => 'exhibitions',
-            'max' => 1,
-            'label' => 'Related exhibitions',
         ])
 
     </a17-fieldset>
