@@ -47,7 +47,7 @@
         @endif
         @if (isset($item['links']) and $item['links'])
             <br>
-            <ul>
+            <ul class="f-secondary">
             @foreach ($item['links'] as $link)
                 <li>
                     @if (isset($link['external']) and $link['external'])

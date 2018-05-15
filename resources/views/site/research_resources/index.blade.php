@@ -28,11 +28,11 @@
                         @component('components.atoms._img')
                             @slot('image', $page->imageFront('research_landing_image'))
                             @slot('settings', [
-                                'srcset' => array(300,600,800,1000,1500),
+                                'srcset' => array(300,600,800,1200,1600,3000,4500),
                                 'sizes' => aic_imageSizes(array(
                                       'xsmall' => 58,
-                                      'small' => 38,
-                                      'medium' => 38,
+                                      'small' => 58,
+                                      'medium' => 58,
                                       'large' => 38,
                                       'xlarge' => 38,
                                 ))
