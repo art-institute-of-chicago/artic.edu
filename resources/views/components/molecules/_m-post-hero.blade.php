@@ -1,3 +1,7 @@
+
+{{-- DEPRECATED: Used only in 1 view so moved there.  --}}
+{{-- site/research_resources/index.blade.php --}}
+
 <article class="m-post-hero">
     <div class="m-post-hero__inner">
         <figure class="m-post-hero__image">

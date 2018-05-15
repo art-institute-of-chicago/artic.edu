@@ -1,4 +1,20 @@
 @section('contentFields')
+    @formField('input', [
+        'name' => 'resources_landing_title',
+        'label' => 'Title',
+    ])
+
+    @formField('input', [
+        'name' => 'resources_landing_intro',
+        'label' => 'Intro text',
+        'type' => 'textarea'
+    ])
+
+    @formField('medias', [
+        'label' => 'Hero image',
+        'name' => 'research_landing_image'
+    ])
+
     @formField('browser', [
     'routePrefix' => 'generic',
         'max' => 7,

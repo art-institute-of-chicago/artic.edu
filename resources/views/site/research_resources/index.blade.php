@@ -6,12 +6,12 @@
         <header>
             @component('components.molecules._m-header-block')
                 @slot('tag', 'div')
-                {{ $title }}
+                {{ $page->resources_landing_title }}
             @endcomponent
 
             @component('components.molecules._m-intro-block')
                 @slot('variation', 'm-intro-block--tight')
-                {!! $intro !!}
+                {!! $page->resources_landing_intro !!}
             @endcomponent
         </header>
 
@@ -21,29 +21,43 @@
             @slot('linksPrimary', $linksBar)
         @endcomponent
 
-        @if ($hero)
-            @component('components.molecules._m-post-hero')
-                @slot('post', $hero)
-                @slot('imageSettings', array(
-                    'srcset' => array(300,600,800,1000,1500),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => 58,
-                          'small' => 38,
-                          'medium' => 38,
-                          'large' => 38,
-                          'xlarge' => 38,
-                    )),
-                ))
-            @endcomponent
+        @if ($page->imageFront('research_landing_image'))
+            <article class="m-post-hero">
+                <div class="m-post-hero__inner">
+                    <figure class="m-post-hero__image">
+                        @component('components.atoms._img')
+                            @slot('image', $page->imageFront('research_landing_image'))
+                            @slot('settings', [
+                                'srcset' => array(300,600,800,1000,1500),
+                                'sizes' => aic_imageSizes(array(
+                                      'xsmall' => 58,
+                                      'small' => 38,
+                                      'medium' => 38,
+                                      'large' => 38,
+                                      'xlarge' => 38,
+                                ))
+                            ])
+                        @endcomponent
+                    </figure>
+
+                    <div class="m-post-hero__main">
+                        @component('components.blocks._text')
+                            @slot('font','f-list-4')
+                            @slot('tag','h3')
+                            {{ $page->resources_landing_title }}
+                        @endcomponent
+
+                        @if (!empty($page->resources_landing_intro))
+                            @component('components.blocks._text')
+                                @slot('font','f-body')
+                                {{ $page->resources_landing_intro }}
+                            @endcomponent
+                        @endif
+                    </div>
+                </div>
+            </article>
         @endif
 
-{{--         @component('components.organisms._o-grid-listing')
-            @slot('cols_medium','2')
-            @slot('cols_large','2')
-            @slot('cols_xlarge','2')
-            @slot('tag', 'div')
-        @endcomponent
- --}}
         @component('components.atoms._hr')
         @endcomponent
 
