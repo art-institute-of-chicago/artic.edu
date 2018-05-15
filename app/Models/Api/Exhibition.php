@@ -35,6 +35,11 @@ class Exhibition extends BaseApiModel
         return 'exhibition';
     }
 
+    public function getisClosedAttribute()
+    {
+        return $this->status == 'Closed';
+    }
+
     public function getIdSlugAttribute()
     {
         return join(array_filter([$this->id, $this->getSlug()]), '-');

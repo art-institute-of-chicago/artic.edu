@@ -38,18 +38,32 @@
             @endcomponent
         @endif
 
-        @if ($item->closingSoon)
+        @if ($item->isClosed)
             @component('components.atoms._type')
                 @slot('variation', 'type--limited')
                 @slot('font', '')
-                Closing Soon
+                Closed
             @endcomponent
-        @elseif ($item->nowOpen)
-            @component('components.atoms._type')
-                @slot('variation', 'type--new')
-                @slot('font', '')
-                Now Open
-            @endcomponent
+        @else
+            @if ($item->closingSoon)
+                @component('components.atoms._type')
+                    @slot('variation', 'type--limited')
+                    @slot('font', '')
+                    Closing Soon
+                @endcomponent
+            @elseif ($item->nowOpen)
+                @component('components.atoms._type')
+                    @slot('variation', 'type--new')
+                    @slot('font', '')
+                    Now Open
+                @endcomponent
+            @elseif ($item->exclusive)
+                @component('components.atoms._type')
+                    @slot('variation', 'type--membership')
+                    @slot('font', '')
+                    Member Exclusive
+                @endcomponent
+            @endif
         @endif
       </span>
       <br>

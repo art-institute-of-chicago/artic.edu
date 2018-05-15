@@ -17,8 +17,6 @@ class Exhibition extends Model
 {
     use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiModel, HasApiRelations, Transformable;
 
-    protected $presenter      = 'App\Presenters\Admin\ExhibitionPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
     protected $apiModel = 'App\Models\Api\Exhibition';
 
     protected $dispatchesEvents = [
