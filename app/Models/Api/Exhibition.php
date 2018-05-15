@@ -148,7 +148,7 @@ class Exhibition extends BaseApiModel
                 'must' => [
                   0 => [
                     'range' => [
-                      'end_at' => [
+                      'start_at' => [
                         'lte' => $end
                       ],
                     ],
