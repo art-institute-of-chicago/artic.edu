@@ -17,7 +17,7 @@
 
     @formField('browser', [
     'routePrefix' => 'generic',
-        'max' => 7,
+        'max' => 6,
         'moduleName' => 'genericPages',
         'name' => 'researchResourcesFeaturePages',
         'label' => 'Featured pages'
