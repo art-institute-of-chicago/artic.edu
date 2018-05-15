@@ -14,6 +14,10 @@
     align-items: flex-start;
     width: 100%;
   }
+
+  @include breakpoint('large+') {
+    margin-top: 60px;
+  }
 }
 
 .m-mini-promo::before {

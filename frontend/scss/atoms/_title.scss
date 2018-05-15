@@ -9,11 +9,13 @@
 
 ***/
 
-.title {
+.title,
+.title a {
   color: $color__text--title;
 }
 
 a.title:hover,
+.title a:hover,
 a:hover .title,
 .m-listing__link:hover + .m-listing__meta .title {
   color: $color__text--secondary;

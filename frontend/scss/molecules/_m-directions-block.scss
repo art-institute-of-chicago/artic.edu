@@ -77,3 +77,20 @@
     margin-left: colspan(2, xlarge);
   }
 }
+
+.m-directions-block__links ul[class*=f-] {
+  @include untuck;
+}
+
+.m-directions-block__links.o-blocks > ul[class*=f-] a {
+  background: none;
+
+  &:hover,
+  &:focus:hover {
+    @include text-underline(1.02em, $color__text--secondary);
+  }
+
+  &:active {
+    @include text-underline(1.02em, transparent);
+  }
+}

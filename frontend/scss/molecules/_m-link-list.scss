@@ -95,6 +95,7 @@ a.m-link-list__trigger.f-module-title-1 {
   color: $color__link;
 }
 
+
 .m-link-list__trigger.f-secondary.closing-soon {
   color: $color__text--limited;
 }
@@ -108,6 +109,15 @@ a.m-link-list__trigger.f-secondary {
 
   &:active:hover {
     color: $color__link--active;
+  }
+
+  &:hover .m-link-list__label,
+  &:focus:hover .m-link-list__label {
+    @include text-underline(1.02em, $color__link--hover);
+  }
+
+  &:active:hover .m-link-list__label {
+    @include text-underline(1.02em, $color__link--active);
   }
 }
 
