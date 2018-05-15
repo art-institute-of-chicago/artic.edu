@@ -102,10 +102,10 @@ Route::moduleShowWithPreview('selection');
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
 // About
-Route::name('about.press')->get('/about/press', 'PressReleasesController@index');
-Route::name('about.press.archive')->get('/about/press/archive', 'PressReleasesController@archive');
+Route::name('about.press')->get('/press', 'PressReleasesController@index');
+Route::name('about.press.archive')->get('/press/archive', 'PressReleasesController@archive');
 Route::moduleShowWithPreview('pressreleases');
-Route::name('about.press.show')->get('/about/press/{id}', 'PressReleasesController@show');
+Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@show');
 
 // Sample Form
 Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@index');
