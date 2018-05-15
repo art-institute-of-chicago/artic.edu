@@ -1,4 +1,4 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
+<{{ $tag or 'li' }} class="m-listing m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
     <a href="{!! route('articles.show', $item) !!}" class="m-listing__link">
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}" data-blur-img>
             @if ($item->videoFront)

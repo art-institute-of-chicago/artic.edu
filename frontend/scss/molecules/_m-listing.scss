@@ -456,7 +456,7 @@
   color: $color__text;
 }
 
-.m-listing__meta .f-secondary + br + .f-secondary:not(ul) {
+.m-listing__meta .f-secondary + br + .f-secondary:not(ul):not(.date) {
   @include tucked-align-top($f-secondary);
   color: $color__text--tertiary;
 }
@@ -1082,7 +1082,6 @@
     min-height: 0;
     margin-top: 0;
     margin-left: colspan(2, small);
-    padding-right: colspan(15, small);
 
     &:first-child {
       margin-left: 0;
@@ -1091,7 +1090,6 @@
 
   @include breakpoint('medium+') {
     margin-left: colspan(2, medium);
-    padding-right: colspan(12, medium);
 
     &:first-child {
       margin-left: 0;
@@ -1100,7 +1098,7 @@
 
   @include breakpoint('large+') {
     margin-left: colspan(1, large);
-    padding-right: colspan(10, large);
+    padding-right: colspan(5, large);
 
     &:first-child {
       margin-left: 0;
@@ -1109,7 +1107,7 @@
 
   @include breakpoint('xlarge') {
     margin-left: colspan(1, xlarge);
-    padding-right: colspan(10, xlarge);
+    padding-right: colspan(5, xlarge);
 
     &:first-child {
       margin-left: 0;
@@ -1117,7 +1115,26 @@
   }
 }
 
-.m-listing--row .m-listing__meta .m-listing__meta-bottom {
+.m-listing--row.m-listing--w-meta-bottom .m-listing__meta {
+  @include breakpoint('small+') {
+    padding-right: colspan(15, small);
+
+  }
+
+  @include breakpoint('medium+') {
+    padding-right: colspan(12, medium);
+  }
+
+  @include breakpoint('large+') {
+    padding-right: colspan(10, large);
+  }
+
+  @include breakpoint('xlarge') {
+    padding-right: colspan(10, xlarge);
+  }
+}
+
+.m-listing--row.m-listing--w-meta-bottom .m-listing__meta .m-listing__meta-bottom {
   @include breakpoint('small+') {
     position: absolute;
     right: 0;
@@ -1142,7 +1159,7 @@
   }
 }
 
-.m-listing--row .m-listing__meta .m-listing__meta-bottom .f-secondary {
+.m-listing--row.m-listing--w-meta-bottom .m-listing__meta .m-listing__meta-bottom .f-secondary {
   @include breakpoint('small+') {
     @include tucked-align-top($f-secondary, 'small');
   }
