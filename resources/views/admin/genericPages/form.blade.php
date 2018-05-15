@@ -32,6 +32,11 @@
         'placeholder' => 'Select some categories',
     ])
 
+    @formField('input', [
+        'name' => 'redirect_url',
+        'label' => 'Redirect URL',
+    ])
+
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image', 'video', 'media_embed', 'list',
