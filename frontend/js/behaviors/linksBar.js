@@ -18,6 +18,7 @@ const linksBar = function(container) {
     let tooWide = false;
     let marginLeft = 20;
     // reset the lists
+    container.classList.remove('s-overflowing');
     primaryLinksOverflow.classList.add('s-hidden');
     primaryLinks.classList.add('s-measuring');
     forEach(primaryLinks.children, function(index, li) {
@@ -66,6 +67,7 @@ const linksBar = function(container) {
           }
         });
       }
+      container.classList.add('s-overflowing');
     }
     primaryLinks.classList.remove('s-measuring');
   }

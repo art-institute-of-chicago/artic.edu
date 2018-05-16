@@ -12,6 +12,7 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
+    @slot('overflow', true)
     @slot('linksPrimary', array(array('label' => 'Exhibitions', 'href' => route('exhibitions'), 'active' => true), array('label' => 'Events', 'href' => route('events'), 'active' => false)))
 @endcomponent
 
