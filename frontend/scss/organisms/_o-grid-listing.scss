@@ -98,19 +98,16 @@ Variant: `o-listing--single-row` - limits to a single row
 @each $name, $point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-grid-listing--single-row[class*="scroll@#{$name}"] {
+      position: relative;
+      left: 50%;
+      width: 100vw;
+      margin-right: 0;
+      margin-left: -50vw;
       @if ($name == 'xlarge') {
-        left: 50%;
-        width: 100vw;
-        margin-right: 0;
-        margin-left: -50vw;
         padding-left: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
       } @elseif ($name == 'xsmall') {
-        margin-right: colspan(7, $name, 0, true);
-        margin-left: colspan(7, $name, 0, true);
         padding-left: colspan(1, $name);
       } @else {
-        margin-right: colspan(3, $name, 0, true);
-        margin-left: colspan(3, $name, 0, true);
         padding-left: colspan(1, $name);
       }
       overflow-x: auto;
@@ -159,6 +156,19 @@ Variant: `o-listing--single-row` - limits to a single row
       display: none;
     }
 
+    .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"] > *::before {
+      left: colspan(1, #{$name}, 0, true);
+      right: colspan(1, #{$name}, 0, true);
+      width: auto;
+    }
+
+    .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:first-child::before {
+      left: 0;
+    }
+
+    .o-grid-listing--gridlines-rows.o-grid-listing--single-row[class*="scroll@#{$name}"] > *:last-child::before {
+      right: 0;
+    }
   }
 }
 
@@ -663,8 +673,8 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
       border-top: 0 none;
     }
 
-    .o-grid-listing--gridlines-top:not([class*=col\@#{$name}]) > *:first-child,
-    .o-grid-listing--gridlines-rows:not([class*=col\@#{$name}]) > *:first-child {
+    .o-grid-listing--gridlines-top:not([class*=col\@#{$name}]):not([class*=scroll\@#{$name}]) > *:first-child,
+    .o-grid-listing--gridlines-rows:not([class*=col\@#{$name}]):not([class*=scroll\@#{$name}]) > *:first-child {
       padding-top: 0;
 
       &::before {
