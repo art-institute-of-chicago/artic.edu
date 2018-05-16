@@ -55,6 +55,8 @@ const ajaxPageLoad = function() {
     }
   }
   function defaultStart(options,doc) {
+    let $a17 = document.querySelector('#a17');
+    $a17.style.minHeight = $a17.offsetHeight + 'px';
     document.documentElement.classList.add('s-page-nav');
   }
   function defaultComplete(options,doc) {
@@ -63,7 +65,9 @@ const ajaxPageLoad = function() {
     // wait for fade to finish
     setTimeout(function(){
       // replace content
-      document.querySelector('#a17').innerHTML = doc.querySelector('#a17').innerHTML;
+      let $a17 = document.querySelector('#a17');
+      $a17.innerHTML = doc.querySelector('#a17').innerHTML;
+      $a17.style.minHeight = '';
       // check states
       stateChecks(doc);
       window.requestAnimationFrame(function(){
