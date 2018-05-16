@@ -18,7 +18,7 @@
 
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
-        'max' => 3,
+        'max' => 4,
         'moduleName' => 'printedCatalogs',
         'name' => 'printedCatalogs',
         'label' => 'Printed catalogs'
