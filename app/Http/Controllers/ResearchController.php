@@ -15,16 +15,6 @@ class ResearchController extends Controller
         $page = Page::forType('Research and Resources')->first();
 
         $featuredPages = $page->researchResourcesFeaturePages;
-
-        if (sizeof($featuredPages) > 0) {
-            $feature = $featuredPages->pop();
-            $hero = (object)[
-                'image' => $feature->imageFront('listing'),
-                'primary' => $feature->title,
-                'secondary' => $feature->short_description,
-            ];
-        }
-
         $features = [];
         foreach($featuredPages as $item) {
             $links = [];
@@ -62,6 +52,7 @@ class ResearchController extends Controller
             'primaryNavCurrent' => 'collection',
             'title' => 'The Collection',
             'intro' => 'Explore <em>over 100,000 artworks</em> and information about works of art from all areas in our online encyclopedic collections.',
+            'page'  => $page,
             'linksBar' => [
                 [
                     'href' => route('collection'),

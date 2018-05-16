@@ -79,7 +79,11 @@ class Page extends Model
         'visit_faq_more_link',
 
         // Printed catalogs
-        'printed_catalogs_intro'
+        'printed_catalogs_intro',
+
+        // Resources Landing page
+        'resources_landing_title',
+        'resources_landing_intro'
     ];
 
     public $slugAttributes = [
@@ -156,6 +160,14 @@ class Page extends Model
                 [
                     'name' => 'default',
                     'ratio' => 25 / 3,
+                ],
+            ]
+        ],
+        'research_landing_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 40 / 27,
                 ],
             ]
         ],
