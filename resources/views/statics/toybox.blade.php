@@ -581,6 +581,7 @@ array_push($linksBarPrimary, array('label' => 'Events', 'href' => '#', 'active' 
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
+    @slot('overflow', true)
     @slot('linksPrimary', $linksBarPrimary)
 @endcomponent
 
@@ -609,6 +610,7 @@ array_push($linksBarSecondary, array('label' => 'Exhibitions', 'href' => '#'));
 @endphp
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
+    @slot('overflow', true)
     @slot('linksPrimary', $linksBarPrimary)
     @slot('linksSecondary', $linksBarSecondary)
 @endcomponent

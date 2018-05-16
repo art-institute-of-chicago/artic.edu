@@ -1,3 +1,6 @@
+.m-links-bar + .o-sticky-filters {
+  margin-top: 0;
+}
 
 @include breakpoint('medium+') {
   .o-sticky-filters {
@@ -11,10 +14,6 @@
     right: 0;
     top: 0;
     transition: opacity .2s;
-  }
-
-  .m-links-bar + .o-sticky-filters {
-    margin-top: 0;
   }
 
   .m-links-bar + .o-sticky-filters > .m-links-bar:first-child::before {
