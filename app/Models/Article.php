@@ -117,6 +117,17 @@ class Article extends Model
         return $this->belongsToMany('App\Models\Category', 'article_category');
     }
 
+    public function scopeByCategory($query, $category = null)
+    {
+        if (empty($category)) {
+            return $query;
+        }
+
+        return $query->whereHas('categories', function ($query) use ($category){
+            $query->where('category_id', $category);
+        });
+    }
+
     public function selections()
     {
         return $this->belongsToMany('App\Models\Selection')->withPivot('position')->orderBy('position');
