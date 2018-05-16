@@ -9,7 +9,7 @@
     @slot('headerType', $item->present()->headerType)
     @slot('variation', ($item->headerVariation ?? null))
     @slot('title', $item->title)
-    @slot('type', $item->type)
+    @slot('type', $item->present()->type)
     @slot('img', $item->imageFront('hero'))
     @slot('credit', $item->hero_caption)
   @endcomponent
@@ -70,6 +70,15 @@
     @endcomponent
   </div>
   @endif
+
+  @if ($item->short_copy)
+        <div class="o-article__intro">
+          @component('components.blocks._text')
+              @slot('font', 'f-deck')
+              {{ $item->short_copy }}
+          @endcomponent
+        </div>
+    @endif
 
   <div class="o-article__body o-blocks">
     @php

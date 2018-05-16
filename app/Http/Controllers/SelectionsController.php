@@ -29,14 +29,6 @@ class SelectionsController extends FrontController
             $item = $this->repository->getById((Integer) $slug);
         }
 
-        if ($item->imageFront('hero')) {
-            $item->headerImage = $item->imageFront('hero');
-        }
-
-        if ($item->siteTags->first()) {
-            $item->type = $item->siteTags->first()->name;
-        }
-
         $exploreFurtherTags = $this->repository->exploreFurtherTags($item);
         if (request()->has('exFurther-all')) {
             $exploreFurtherAllTags = $this->repository->exploreFurtherAllTags($item);

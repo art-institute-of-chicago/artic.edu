@@ -16,4 +16,13 @@ class SelectionPresenter extends BasePresenter
         return "hero";
     }
 
+    public function type()
+    {
+        if ($this->entity->siteTags->first()) {
+            return $this->entity->type = $this->entity->siteTags->first()->name;
+        } else {
+            return 'Selection';
+        }
+    }
+
 }
