@@ -80,7 +80,7 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="related" title="Furter Reading">
+    <a17-fieldset id="related" title="Further Reading">
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
