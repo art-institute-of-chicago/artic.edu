@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-// use A17\CmsToolkit\Models\Behaviors\HasTranslation;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasFiles;
@@ -17,7 +16,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class GenericPage extends Model implements Sortable
 {
-    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait; // HasTranslation,
+    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait;
 
     protected $fillable = [
         'short_description',
@@ -31,19 +30,14 @@ class GenericPage extends Model implements Sortable
         'listing',
         'banner',
         'redirect_url',
+        'is_redirect_url_external'
     ];
-
-    // public $translatedAttributes = [
-    //     'title',
-    //     'short_description',
-    //     'active',
-    // ];
 
     public $slugAttributes = [
         'title',
     ];
 
-    public $checkboxes = ['published', 'active'];
+    public $checkboxes = ['published', 'active', 'is_redirect_url_external'];
 
     // fill this in if you use the HasMedias traits
     public $mediasParams = [
@@ -199,7 +193,6 @@ class GenericPage extends Model implements Sortable
         $ancestors = clone $this->ancestors;
 
         foreach($ancestors as $ancestor) {
-            // dd($ancestor);
             $crumb = [];
             $crumb['label'] = $ancestor->title;
             $crumb['href'] = $ancestor->url;

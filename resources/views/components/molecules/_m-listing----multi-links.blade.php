@@ -50,10 +50,16 @@
             <ul>
             @foreach ($item['links'] as $link)
                 <li>
-                @component('components.atoms._arrow-link')
-                    @slot('href', $link['href'])
-                    {!! $link['label'] !!}
-                @endcomponent
+                    @if (isset($link['external']) and $link['external'])
+                        <a href="{{ $link['href'] }}" target="_blank" class="external-link f-link">
+                            {!! $link['label'] !!}<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
+                        </a>
+                    @else
+                        @component('components.atoms._arrow-link')
+                            @slot('href', $link['href'])
+                            {!! $link['label'] !!}
+                        @endcomponent
+                    @endif
                 </li>
             @endforeach
             </ul>

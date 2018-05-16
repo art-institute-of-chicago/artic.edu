@@ -22,6 +22,7 @@ class ResearchController extends Controller
                 array_push($links, array(
                     'href' => $child->url,
                     'label' => $child->title,
+                    'external' => $child->is_redirect_url_external
                   ));
             }
 

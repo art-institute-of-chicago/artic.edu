@@ -1,0 +1,17 @@
+/***
+
+```
+  <a href="#" target="_blank" class="external-link f-link">
+      External Link<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
+  </a>
+```
+***/
+
+.external-link {
+}
+
+.external-link svg {
+  margin-left: 8px;
+  outline: 8px solid $color__bg;
+  background: $color__bg;
+}
