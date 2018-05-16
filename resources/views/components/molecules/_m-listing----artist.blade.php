@@ -1,5 +1,5 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
-    <a href="{{ $item->slug }}" class="m-listing__link">
+    <a href="{!! route('artists.show', $item) !!}" class="m-listing__link">
         @if ($item->imageFront())
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--square' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
             @if ($item->videoFront)
@@ -22,20 +22,20 @@
                 @slot('font', $titleFont ?? 'f-list-3')
                 {{ $item->title }}
             @endcomponent
-            @if ($item->nationality or $item->dob or $item->dod)
+            @if ($item->nationality or $item->birth_date or $item->death_date)
             <br>
             <span class="intro {{ $captionFont ?? 'f-secondary' }}">
                 @if ($item->nationality)
                     {{ $item->nationality }},
                 @endif
-                @if ($item->dob)
-                    {{ date( 'Y', $item->dob ) }}
+                @if ($item->birth_date)
+                    {{ $item->birth_date }}
                 @endif
-                @if ($item->dob and $item->dod)
+                @if ($item->birth_date and $item->death_date)
                     {{ ' - ' }}
                 @endif
-                @if ($item->dod)
-                    {{ date( 'Y', $item->dod ) }}
+                @if ($item->death_date)
+                    {{ $item->death_date }}
                 @endif
             </span>
             @endif

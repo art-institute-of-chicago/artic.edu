@@ -15,21 +15,21 @@
         @endif
 
         <div class="o-artist-bio__main">
-            @if ($item->aka or $item->dob or $item->dod)
+            @if ($item->also_known_as or $item->birth_date or $item->death_date)
                 <dl>
-                    @if ($item->aka)
+                    @if ($item->also_known_as)
                         <dt>Also known as</dt>
-                        <dd>{{ $item->aka }}</dd>
+                        <dd>{{ $item->also_known_as }}</dd>
                     @endif
 
-                    @if ($item->dob)
+                    @if ($item->birth_date)
                         <dt>Date of birth</dt>
-                        <dd>{{ date( 'F j, Y', $item->dob ) }}</dd>
+                        <dd>{{ $item->birth_date }}</dd>
                     @endif
 
-                    @if ($item->dod)
+                    @if ($item->death_date)
                         <dt>Date of death</dt>
-                        <dd>{{ date( 'F j, Y', $item->dod )  }}</dd>
+                        <dd>{{ $item->death_date  }}</dd>
                     @endif
                 </dl>
             @endif

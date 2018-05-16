@@ -17,7 +17,8 @@ class Department extends Model
 
     protected $fillable = [
         'datahub_id',
-        'intro'
+        'intro',
+        'caption'
     ];
 
     public $slugAttributes = [
@@ -35,8 +36,8 @@ class Department extends Model
         ],
     ];
 
-    public function artworks()
-    {
-        return $this->apiElements()->where('relation', 'artworks');
-    }
+    // public function artworks()
+    // {
+    //     return $this->apiElements()->where('relation', 'artworks');
+    // }
 }

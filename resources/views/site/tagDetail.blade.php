@@ -23,11 +23,11 @@
     @endcomponent
 @endif
 
-@component('components.molecules._m-title-bar')
-    Artworks
-@endcomponent
+@unless ($artworks->isEmpty())
+    @component('components.molecules._m-title-bar')
+        Artworks
+    @endcomponent
 
-@if ($artworks)
     @component('components.organisms._o-pinboard')
         @slot('cols_small','2')
         @slot('cols_medium','3')
@@ -53,7 +53,7 @@
             @endcomponent
         @endforeach
     @endcomponent
-@endif
+@endunless
 
 @if ($artworks->total() > 8)
     @component('components.molecules._m-links-bar')
