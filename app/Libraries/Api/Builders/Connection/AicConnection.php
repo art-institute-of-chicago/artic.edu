@@ -70,9 +70,15 @@ class AicConnection implements ApiConnectionInterface
         if (config('api.cache_enabled')) {
             $cacheKey = $this->buildCacheKey($verb, $endpoint, $options, config('api.cache_version'));
 
-            return \Cache::remember($cacheKey, config('api.cache_ttl'), function () use ($verb, $endpoint, $options) {
+            $response =  \Cache::remember($cacheKey, config('api.cache_ttl'), function () use ($verb, $endpoint, $options) {
                 return $this->client->request($verb, $endpoint, $options);
             });
+
+            if (isset($response->status) && $response->status != 200) {
+                \Cache::forget($cacheKey);
+            }
+
+            return $response;
         } else {
             return $this->client->request($verb, $endpoint, $options);
         }
