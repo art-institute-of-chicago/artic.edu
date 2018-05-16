@@ -81,7 +81,7 @@
           @slot('cols_xlarge','2')
           @slot('tag', 'div')
           <div class="o-blocks">
-            @component('components.blocks._title')
+            @component('components.atoms._title')
                 @slot('font','f-list-3')
                 @slot('tag','h3')
                 @component('components.atoms._arrow-link')
