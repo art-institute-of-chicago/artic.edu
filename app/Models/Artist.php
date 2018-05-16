@@ -3,25 +3,38 @@
 namespace App\Models;
 
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
+use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Model;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 
 class Artist extends Model
 {
-    use HasSlug, HasApiModel, HasApiRelations, Transformable;
+    use HasSlug, HasApiModel, HasMedias, HasApiRelations, Transformable;
 
     protected $apiModel = 'App\Models\Api\Artist';
 
     protected $fillable = [
         'also_known_as',
-        'intro_copy',
+        'intro',
         'datahub_id',
-        'title'
+        'title',
+        'caption'
     ];
 
     public $slugAttributes = [
         'title',
+    ];
+
+    public $mediasParams = [
+        'hero' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ]
+        ],
     ];
 
     public function articles()

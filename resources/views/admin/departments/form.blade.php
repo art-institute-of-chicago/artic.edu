@@ -10,9 +10,13 @@
     ])
 
     @formField('input', [
+        'name' => 'caption',
+        'label' => 'Caption'
+    ])
+
+    @formField('wysiwyg', [
         'name' => 'intro',
         'label' => 'Intro',
-        'type' => 'textarea'
     ])
 
     @formField('input', [
@@ -21,11 +25,4 @@
         'disabled' => true
     ])
 
-    @formField('browser', [
-        'routePrefix' => 'collection',
-        'name' => 'artworks',
-        'moduleName' => 'artworks',
-        'label' => 'Artworks',
-        'max' => 500
-    ])
 @stop

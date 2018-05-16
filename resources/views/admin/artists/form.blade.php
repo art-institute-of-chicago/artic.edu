@@ -6,6 +6,19 @@
         'label' => 'Datahub ID',
         'disabled' => true
     ])
+
+    @formField('medias', [
+        'with_multiple' => false,
+        'no_crop' => false,
+        'label' => 'Hero Image',
+        'name' => 'hero'
+    ])
+
+    @formField('input', [
+        'name' => 'caption',
+        'label' => 'Caption'
+    ])
+
     @formField('input', [
         'name' => 'also_known_as',
         'label' => 'Also known as...',
@@ -23,17 +36,16 @@
         'disabled' => true
     ])
 
-    @formField('input', [
-        'name' => 'intro_copy',
-        'label' => 'Intro Copy',
-        'type' => 'textarea'
+    @formField('wysiwyg', [
+        'name' => 'intro',
+        'label' => 'Intro',
     ])
 @stop
 
 @section('fieldsets')
     <a17-fieldset id="attributes" title="Related">
 
-        @formField('browser', [
+        {{-- @formField('browser', [
             'routePrefix' => 'collection',
             'max' => 1,
             'moduleName' => 'artworks',
@@ -42,7 +54,7 @@
             'params' => [
                 'artwork_ids' => $item->artwork_ids
             ]
-        ])
+        ]) --}}
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
