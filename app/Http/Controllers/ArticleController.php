@@ -8,6 +8,7 @@ use App\Models\Article;
 
 class ArticleController extends FrontController
 {
+    const ARTICLES_PER_PAGE = 12;
     protected $repository;
 
     public function __construct(ArticleRepository $repository)
@@ -19,32 +20,52 @@ class ArticleController extends FrontController
 
     public function index()
     {
-        $page = Page::forType('Articles')->first();
+        $page = Page::forType('Articles')->with('articlesArticles')->first();
+        $heroArticle = $page->articlesArticles->first();
 
-        $featuredArticles = $page->articlesArticles;
-        $heroArticle = $featuredArticles->first();
+        $articles = Article::published()
+            ->byCategory(request('category'))
+            ->whereNotIn('id', $page->articlesArticles->pluck('id'))
+            ->orderBy('date', 'desc')
+            ->paginate(self::ARTICLES_PER_PAGE);
 
-        $articles = Article::published()->orderBy('date', 'desc')->whereNotIn('id', $featuredArticles->pluck('id'));
-        if (request('category')) {
-            $articles = $articles->whereHas('categories', function ($query) use ($page){
-                $query->where('category_id', request('category'));
-            });
+        // Featured articles are the selected ones if no filters are applied
+        // otherwise those are just the first two from the collection
+        if (empty(request()->get('category', null))) {
+            $featuredArticles = $page->articlesArticles->slice(1, 2);
+        } else {
+            $featuredArticles = $articles->getCollection()->slice(0, 2);
+            $newCollection = $articles->slice(2);
+
+            // Replace pagination collection with
+            $articles->setCollection($newCollection);
         }
-        $baseurl = route('articles');
-        $categories = array(array('label' => 'All', 'href' => $baseurl, 'active' => true));
+
+        // These should be moved away from the controller.
+        $categories = [
+            [
+                'label' => 'All',
+                'href' => route('articles'),
+                'active' => empty(request()->all())
+            ]
+        ];
 
         foreach ($page->articlesCategories as $category) {
             array_push($categories,
-                array('label' => $category->name, 'href' => $baseurl.'?category='.$category->id)
+                [
+                    'label'  => $category->name,
+                    'href'   => route('articles', ['category' => $category->id]),
+                    'active' => request()->get('category') == $category->id
+                ]
             );
         }
 
         return view('site.articles', [
             'page' => $page,
             'heroArticle' => $heroArticle,
-            'articles' => $articles->paginate(12),
+            'articles' => $articles,
             'categories' => $categories,
-            'featuredArticles' => $featuredArticles->forget(0)
+            'featuredArticles' => $featuredArticles
         ]);
     }
 
