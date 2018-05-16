@@ -20,7 +20,7 @@
       <a href="#content" class="skip-nav f-body">Skip Nav</a>
       <nav class="g-header__nav-primary">
         <ul class="f-main-nav">
-          <li class='u-hide@small+'><a href="#">Buy Tickets</a></li>
+          <li class='u-hide@small+'><a href="{{ $_pages['buy'] }}">Buy Tickets</a></li>
           <li{!! (isset($primaryNavCurrent) && $primaryNavCurrent == 'visit') ? ' class="s-current"' : '' !!}><a href="{{ $_pages['visit'] }}">Visit</a></li>
           <li class="u-show@small+{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'exhibitions_and_events') ? ' s-current' : '' }}"><a href="{{ $_pages['exhibitions'] }}">Exhibitions &amp; Events</a></li>
           <li class="u-show@small+{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'collection') ? ' s-current' : '' }}"><a href="{{ $_pages['collection'] }}">The Collection</a></li>
