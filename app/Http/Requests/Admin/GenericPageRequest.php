@@ -8,6 +8,8 @@ class GenericPageRequest extends Request
 {
     public function rules()
     {
-        return [];
+        return [
+            'listing_description' => 'max:255'
+        ];
     }
 }
