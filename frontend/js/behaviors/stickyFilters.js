@@ -9,6 +9,7 @@ const stickyFilters = function(container){
   let topBudge = 0;
   let dE = document.documentElement;
   let breakpoints = container.getAttribute('data-stickyElement-breakpoints') || 'all';
+  let halt = true;
 
   function _posDefault() {
     dE.classList.remove('s-sticky-filters--fixed');
@@ -29,7 +30,7 @@ const stickyFilters = function(container){
   }
 
   function _decidePos() {
-    if (mediaQuery(breakpoints)) {
+    if (mediaQuery(breakpoints) && !halt) {
       let sT = document.documentElement.scrollTop || document.body.scrollTop;
       if (sT >= lockBottom && position !== 'bottom') {
         _posBottom();
@@ -44,11 +45,15 @@ const stickyFilters = function(container){
 
   function _calcLockPositions() {
     _posDefault();
-    if (mediaQuery(breakpoints)) {
-      let fixedBoundingClientRect = getOffset(container);
-      lockTop = Math.round(fixedBoundingClientRect.top) - topBudge;
-      lockBottom = lockTop + Math.round(fixedBoundingClientRect.height);
-    }
+    halt = true;
+    window.requestAnimationFrame(function(){
+      if (mediaQuery(breakpoints)) {
+        let fixedBoundingClientRect = getOffset(container);
+        lockTop = Math.round(fixedBoundingClientRect.top) - topBudge;
+        lockBottom = lockTop + Math.round(fixedBoundingClientRect.height);
+        halt = false;
+      }
+    });
   }
 
   function _destroy() {
