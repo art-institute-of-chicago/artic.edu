@@ -29,6 +29,13 @@
         'label' => 'Hero image'
     ])
 
+    @formField('input', [
+        'name' => 'hero_caption',
+        'label' => 'Hero image Caption',
+        'note' => 'Usually used for copyright',
+        'maxlength' => 150
+    ])
+
     @formField('browser', [
         'routePrefix' => 'collection',
         'name' => 'artworks',

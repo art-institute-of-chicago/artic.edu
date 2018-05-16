@@ -41,6 +41,8 @@
         @slot('title', $title ?? null)
         @slot('articleType', $type ?? null)
         @slot('img', $img ?? null)
+        @slot('credit', $credit ?? null)
+        @slot('creditUrl', $creditUrl ?? null)
     @endcomponent
 @elseif (isset($headerType) and $headerType === 'generic')
     {{-- Generic header --}}

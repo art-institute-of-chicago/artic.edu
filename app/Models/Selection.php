@@ -24,6 +24,7 @@ class Selection extends Model
         'content',
         'title',
         'short_copy',
+        'hero_caption'
     ];
 
     public $slugAttributes = [
