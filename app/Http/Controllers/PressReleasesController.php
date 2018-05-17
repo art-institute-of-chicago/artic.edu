@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use DB;
-
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use App\Repositories\PressReleaseRepository;
 use App\Models\PressRelease;
 
-class PressReleasesController extends FrontController
+class PressReleasesController extends BaseScopedController
 {
 
     protected $repository;
+
+    protected $entity = \App\Models\PressRelease::class;
+
+    protected $scopes = [
+        'year'    => 'byYear',
+        'month'   => 'byMonth'
+    ];
+
 
     public function __construct(PressReleaseRepository $repository)
     {
@@ -21,112 +28,119 @@ class PressReleasesController extends FrontController
         parent::__construct();
     }
 
-    public function index(Request $request)
-    {
-        $year = $request->get('year') ? (int) $request->get('year') : null;
-        $model = PressRelease::current()->published()->orderBy('publish_start_date', 'desc');
 
-        if (!empty($year)) {
-            $model = $model->where(DB::raw('YEAR(publish_start_date)'), $year);
+    protected function beginOfAssociationChain()
+    {
+        // Apply default scopes to the beginning of the chain
+        return parent::beginOfAssociationChain()
+            ->published()
+            ->orderBy('publish_start_date', 'desc');
+    }
+
+
+    public function index()
+    {
+        $items = $this->collection()->current()->paginate();
+
+        $navElements = $this->getNavElements('Press Releases');
+
+        $viewData = [
+            'wideBody' => true,
+            'filters' => $this->getFilters(),
+            'listingCountText' => 'Showing '.$items->total().' press releases',
+            'listingItems' => $items,
+        ] + $navElements;
+
+        return view('site.pressreleases.index', $viewData);
+    }
+
+    
+    public function archive()
+    {
+        $items = $this->collection()->archive()->paginate();
+
+        $navElements = $this->getNavElements('Press Releases Archive');
+
+        $filters = [
+            [
+                'prompt' => 'Year',
+                'links' => collect([['href' => '#', 'label' => 'All', 'active' => true]]),
+            ],
+        ];
+
+        $viewData = [
+            'wideBody' => true,
+            'filters'  => $filters,
+            'listingCountText' => 'Showing '.$items->total().' press releases',
+            'listingItems' => $items,
+        ] + $navElements;
+
+        return view('site.pressreleases.index', $viewData);
+    }
+
+
+    protected function getFilters()
+    {
+        $yearLinks[] = ['href' => '', 'label' => 'All', 'active' => empty(request('year', null))];
+
+        foreach (range(date('Y'), 2012) as $year) {
+            $yearLinks[] = [
+                'href'   => route('about.press', request()->except('year') + ['year' => $year]),
+                'label'  => $year,
+                'active' => request('year') == $year
+            ];
         }
 
-        $items = $model->paginate();
-        $title = 'Press Releases';
+        $monthLinks[] = ['href' => '', 'label' => 'All', 'active' => empty(request('month', null))];
+
+        foreach (range(1,12) as $month) {
+            $monthLinks[] = [
+                'href'   => route('about.press', request()->except('month') + ['month' => $month]),
+                'label'  => Carbon::create(date('Y'), $month)->format('F'),
+                'active' => request('month') == $month
+            ];
+        }
+
+        return [
+            [
+                'prompt' => 'Year',
+                'links'  => collect($yearLinks)
+            ],
+            [
+                'prompt' => 'Month',
+                'links'  => collect($monthLinks)
+            ],
+        ];
+    }
+
+
+    protected function getNavElements($title)
+    {
         $subNav = [
-            ['label' => $title, 'href' => route('about.press'), 'active' => true],
-            ['label' => 'Press Releases Archive', 'href' => route('about.press.archive')]
+            [
+                'label'  => 'Press Releases',
+                'href'   => route('about.press'),
+                'active' => request()->route()->getName() == 'about.press'
+            ],
+            [
+                'label'  => 'Press Releases Archive',
+                'href'   => route('about.press.archive'),
+                'active' => request()->route()->getName() == 'about.press.archive'
+            ]
         ];
 
         $nav = [
-            ['label' => 'About', 'href' => '/about', 'links' => $subNav]
+            [ 'label' => 'About', 'href' => route('about-us'), 'links' => $subNav ]
         ];
 
         $crumbs = [
-            ['label' => 'About', 'href' => '/about'],
-            ['label' => $title, 'href' => '']
+            [ 'label' => 'About', 'href' => route('about-us') ],
+            [ 'label' => $title,  'href' => '' ]
         ];
 
-        $startYear = date('Y');
-        $endYear = 2012;
-        $yearLinks = [];
-
-        $active = false;
-        if ($year == null) {
-            $active = true;
-        }
-        $yearLinks[] = array('href' => '?', 'label' => 'All', 'active' => $active);
-        for($i = $startYear; $i >= $endYear; $i--) {
-            $active = false;
-            if ($year == $i) {
-                $active = true;
-            }
-            $yearLinks[] = array('href' => '?year='.$i, 'label' => $i, 'active' => $active);
-        }
-
-        $filters = array(
-            array(
-                'prompt' => 'Year',
-                'links' => $yearLinks
-            ),
-        );
-
-        $view_data = [
-            'title' => $title,
-            'subNav' => $subNav,
-            'nav' => $nav,
-            "breadcrumb" => $crumbs,
-            'wideBody' => true,
-            'year' => $year,
-            'filters' => $filters,
-            'listingCountText' => 'Showing '.$items->total().' press releases',
-            'listingItems' => $items,
-        ];
-
-
-        return view('site.pressreleases.index', $view_data);
+        return compact('title', 'subNav', 'nav', 'crumbs');
     }
 
-    public function archive(Request $request)
-    {
-        $title = 'Press Releases Archive';
-        $items = PressRelease::archive()->published()->paginate();
-        $subNav = [
-            ['label' => 'Press Releases', 'href' => route('about.press')],
-            ['label' => $title, 'href' => route('about.press.archive'), 'active' => true]
-        ];
-
-        $nav = [
-            ['label' => 'About', 'href' => '/about', 'links' => $subNav]
-        ];
-
-        $crumbs = [
-            ['label' => 'About', 'href' => '/about'],
-            ['label' => $title, 'href' => '']
-        ];
-
-        $filters = array(
-            array(
-                'prompt' => 'Year',
-                'links' => array(
-                    array('href' => '#', 'label' => 'All', 'active' => true),
-                ),
-            ),
-        );
-
-        $view_data = [
-            'title' => $title,
-            'subNav' => $subNav,
-            'nav' => $nav,
-            "breadcrumb" => $crumbs,
-            'wideBody' => true,
-            'filters' => $filters,
-            'listingCountText' => 'Showing '.$items->total().' press releases',
-            'listingItems' => $items,
-        ];
-
-
-        return view('site.pressreleases.index', $view_data);
-    }
 
     public function show($id)
     {
