@@ -494,7 +494,7 @@
     @endcomponent
 @endif
 
-@if ($item->relatedArticles)
+@if ($item->articles()->count())
     @component('components.molecules._m-title-bar')
         Further Reading
     @endcomponent
@@ -504,7 +504,7 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($item->relatedArticles as $item)
+        @foreach ($item->articles as $item)
             @component('components.molecules._m-listing----article')
                 @slot('item', $item)
                 @slot('imageSettings', array(
