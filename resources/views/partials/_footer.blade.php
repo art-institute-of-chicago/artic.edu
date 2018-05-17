@@ -33,13 +33,14 @@
 
         <ul class="g-footer__link-list g-footer__link-list--spaced">
           <li>
-            Historic Building <br>
-            <a href="https://www.google.com/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">111 South Michigan Avenue, <br>Chicago, IL 60603</a>
+
+            Michigan Avenue Entrance <br>
+            <a href="https://www.google.co.uk/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">111 South Michigan Avenue <br>Chicago, IL 60603</a>
           </li>
 
           <li>
-            Modern Wing <br>
-            <a href="https://www.google.co.uk/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">159 East Monroe Street, <br>Chicago, IL 60603</a>
+            Modern Wing Entrance <br>
+            <a href="https://www.google.co.uk/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">159 East Monroe Street <br>Chicago, IL 60603</a>
           </li>
         </ul>
       </li>
@@ -76,8 +77,8 @@
           <ul class="g-footer__link-list">
             <li><a href="{{ $_pages['learn-families'] }}">Families</a></li>
             <li><a href="{{ $_pages['learn-teens'] }}">Teens</a></li>
-            <li><a href="{{ $_pages['learn-adults'] }}">Adults</a></li>
             <li><a href="{{ $_pages['learn-educators'] }}">Educators</a></li>
+            <li><a href="{{ $_pages['learn-adults'] }}">Adults</a></li>
           </ul>
         </div>
 
