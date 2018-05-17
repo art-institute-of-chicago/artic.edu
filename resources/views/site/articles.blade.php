@@ -20,6 +20,7 @@
     @endif
 
   @component('components.molecules._m-title-bar')
+      @slot('id','listing')
       Explore Articles
   @endcomponent
 
@@ -101,7 +102,13 @@
       @endforeach
   @endcomponent
 
+  @php
+    $GLOBALS['paginationAjaxScrollTarget'] = 'listing';
+  @endphp
   {!! $articles->links() !!}
+  @php
+    $GLOBALS['paginationAjaxScrollTarget'] = null;
+  @endphp
 
 </section>
 

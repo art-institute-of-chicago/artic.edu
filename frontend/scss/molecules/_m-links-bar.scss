@@ -66,7 +66,7 @@
     }
   }
 
-  & + .hr {
+  & + .hr:not(.hr--flush-top) {
     margin-top: 36px;
 
     @include breakpoint('small+') {

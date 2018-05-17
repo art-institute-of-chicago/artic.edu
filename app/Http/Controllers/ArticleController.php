@@ -46,7 +46,8 @@ class ArticleController extends FrontController
             [
                 'label' => 'All',
                 'href' => route('articles'),
-                'active' => empty(request()->all())
+                'active' => empty(request()->all()),
+                'ajaxScrollTarget' => 'listing',
             ]
         ];
 
@@ -55,7 +56,8 @@ class ArticleController extends FrontController
                 [
                     'label'  => $category->name,
                     'href'   => route('articles', ['category' => $category->id]),
-                    'active' => request()->get('category') == $category->id
+                    'active' => request()->get('category') == $category->id,
+                    'ajaxScrollTarget' => 'listing',
                 ]
             );
         }
