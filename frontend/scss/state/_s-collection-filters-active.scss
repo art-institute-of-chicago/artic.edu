@@ -16,6 +16,7 @@
   @include breakpoint('medium+') {
     .o-collection-listing__col-left {
       opacity: 1;
+      overflow: visible;
     }
   }
 

@@ -9,7 +9,7 @@ class DateRange
         $base = [
             'title'   => 'Date',
             'type'    => 'date',
-            'active'  => true,
+            'active'  => false,
             'enabled' => false
         ];
 

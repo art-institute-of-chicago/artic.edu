@@ -98,6 +98,11 @@
   outline-color: Highlight;
   outline-style: solid;
   outline-width: 3px;
+
+  &[data-focus-method="mouse"],
+  &[data-focus-method="touch"] {
+    outline: none;
+  }
 }
 
 // WebKit gets its native focus styles.
@@ -205,11 +210,12 @@
 
   &[aria-hidden="false"] {
     height: auto;
+    overflow: initial;
   }
 
   &.s-inactive {
     height: auto;
-    overflow: visible;
+    overflow: initial;
     transition: none;
   }
 }
