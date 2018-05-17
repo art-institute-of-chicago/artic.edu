@@ -98,7 +98,7 @@
 
   <ul class="g-footer__legals f-secondary">
     <li><a href="{{ $_pages['legal-articles'] }}">Articles</a></li>
-    <li><a href="{{ $_pages['legal-employment'] }}">Employment</a></li>
+    <li><a href="{{ $_pages['legal-employment'] }}">Careers</a></li>
     <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
     <li><a href="{{ $_pages['legal-image-licensing'] }}">Image Licensing</a></li>
     <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue Rental</a></li>
