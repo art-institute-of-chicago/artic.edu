@@ -210,11 +210,12 @@
 
   &[aria-hidden="false"] {
     height: auto;
+    overflow: initial;
   }
 
   &.s-inactive {
     height: auto;
-    overflow: visible;
+    overflow: initial;
     transition: none;
   }
 }

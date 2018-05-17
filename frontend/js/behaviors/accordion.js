@@ -79,9 +79,11 @@ const accordion = function(container) {
           target.setAttribute('aria-hidden', 'true');
           let thrash = target.offsetHeight;
           target.style.height = 0;
+          target.style.overflow = 'hidden';
         } else {
           // open
           target.style.height = 0;
+          target.style.overflow = 'hidden';
           trigger.setAttribute('aria-expanded', 'true');
           target.setAttribute('aria-hidden', 'false');
           setFocusOnTarget(target);
