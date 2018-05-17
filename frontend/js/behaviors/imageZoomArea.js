@@ -83,6 +83,7 @@ const imageZoomArea = function(container) {
       animationTime: 1.5,
       minZoomLevel: 0,
       minZoomImageRatio: 0.8,
+      maxZoomPixelRatio: 1.0,
       defaultZoomLevel: 0,
       gestureSettingsMouse: {
         scrollToZoom: false
