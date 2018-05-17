@@ -435,8 +435,8 @@
     @include tucked-margin-top($f-tertiary, ('xsmall': 20, 'small+': 28));
 
     @include breakpoint('xsmall') {
-      padding-bottom: 2px;
-      margin-bottom: -2px; // to not crop text
+      padding-bottom: 4px;
+      margin-bottom: -4px; // to not crop letters with descenders
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
