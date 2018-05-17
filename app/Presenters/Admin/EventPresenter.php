@@ -68,6 +68,8 @@ class EventPresenter extends BasePresenter
         } else {
             if ($next = $this->entity->nextOcurrence) {
                 return $next->date->format('F j, Y h:ia') . '&ndash;' . $next->date_end->format('h:ia');
+            } elseif ($last = $this->entity->lastOcurrence) {
+                return $last->date->format('F j, Y h:ia') . '&ndash;' . $last->date_end->format('h:ia');
             }
         }
     }
