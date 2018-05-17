@@ -45,7 +45,7 @@
 }
 
 .m-media__img img,
-.m-media__img > svg {
+.m-media__img > svg:not([class*=icon--]) {
   display: block;
   width: 100%;
   height: auto;
