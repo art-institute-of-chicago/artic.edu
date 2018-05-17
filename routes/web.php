@@ -103,7 +103,7 @@ Route::name('about-us')->get('/about', 'GenericPagesController@show');
 Route::name('about.press')->get('/about/press', 'PressReleasesController@index');
 Route::name('about.press.archive')->get('/about/press/archive', 'PressReleasesController@archive');
 Route::moduleShowWithPreview('pressreleases');
-Route::name('about.press.show')->get('/about/press/{id}', 'PressReleasesController@show');
+Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@show');
 
 // Footer Head Links
 Route::name('learn')->get('/learn', 'GenericPagesController@show');

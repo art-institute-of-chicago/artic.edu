@@ -145,7 +145,7 @@ class PressReleasesController extends FrontController
         ];
         $crumbs = [
             ['label' => 'About', 'href' => '/about'],
-            ['label' => 'Press Releases', 'href' => '/about/press'],
+            ['label' => 'Press Releases', 'href' => route('about.press')],
             ['label' => $page->title, 'href' => '']
         ];
 
