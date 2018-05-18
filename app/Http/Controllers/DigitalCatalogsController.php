@@ -36,28 +36,19 @@ class DigitalCatalogsController extends FrontController
             ['label' => $title, 'href' => '']
         ];
 
-        $filters = array(
-            array(
-                'prompt' => 'Type',
-                'links' => array(
-                    array('href' => '#', 'label' => 'All', 'active' => true),
-                ),
-            ),
-        );
-
         $view_data = [
             'title' => $title,
             'subNav' => $subNav,
             'nav' => $nav,
             "breadcrumb" => $crumbs,
             'wideBody' => true,
-            'filters' => $filters,
+            'filters' => null,
             'listingCountText' => 'Showing '.$items->total().' digital catalogs',
             'listingItems' => $items,
         ];
 
 
-        return view('site.digitalcatalogs.index', $view_data);
+        return view('site.genericListing', $view_data);
     }
 
     public function show($id)
