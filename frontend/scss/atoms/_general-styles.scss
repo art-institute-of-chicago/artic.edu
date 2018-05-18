@@ -247,16 +247,18 @@ pre code {
   background-color: #fff;
   box-shadow: $shadow;
   color: $color__link--accent;
+  opacity: 0;
   transition: top .25s .5s;
 }
 
 .skip-nav::before,
 .skip-nav::after {
-    content: none;
+  content: none;
 }
 
 .skip-nav:focus,
 .skip-nav:active {
   top: 40px;
+  opacity: 1;
   transition: top .25s;
 }
