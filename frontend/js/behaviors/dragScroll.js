@@ -8,6 +8,7 @@ const dragScroll = function(container) {
   let allowClicks = true;
   let xVelocity = 0;
   let allow = false;
+  let scrollPositionCheck = 0;
 
   function _wideEnoughToScroll() {
     allow = container.scrollWidth > container.clientWidth;
@@ -27,18 +28,6 @@ const dragScroll = function(container) {
       let newScrollLeft = lastScrollLeft - x;
       container.scrollLeft = newScrollLeft;
       lastScrollLeft = newScrollLeft;
-
-      if (lastScrollLeft > 0) {
-        container.parentElement.classList.add('s-scroll-start');
-      } else {
-        container.parentElement.classList.remove('s-scroll-start');
-      }
-
-      if (container.clientWidth + newScrollLeft >= container.scrollWidth){
-        container.parentElement.classList.add('s-scroll-end');
-      } else {
-        container.parentElement.classList.remove('s-scroll-end');
-      }
     }
   }
 
@@ -109,9 +98,30 @@ const dragScroll = function(container) {
     }
   }
 
+  function _scroll() {
+    lastScrollLeft = container.scrollLeft;
+
+    if (lastScrollLeft !== scrollPositionCheck) {
+      scrollPositionCheck = lastScrollLeft;
+
+      if (lastScrollLeft > 0) {
+        container.parentElement.classList.add('s-scroll-start');
+      } else {
+        container.parentElement.classList.remove('s-scroll-start');
+      }
+
+      if (container.clientWidth + lastScrollLeft >= container.scrollWidth){
+        container.parentElement.classList.add('s-scroll-end');
+      } else {
+        container.parentElement.classList.remove('s-scroll-end');
+      }
+    }
+  }
+
   function _init() {
     container.addEventListener('click', _clicks, false);
     container.addEventListener('mousedown', _mouseDown, false);
+    container.addEventListener('scroll', _scroll, false);
     window.addEventListener('mouseup', _mouseUp, false);
     window.addEventListener('mousemove', _mouseMove, false);
     window.addEventListener('resized', _wideEnoughToScroll, false);
@@ -123,6 +133,7 @@ const dragScroll = function(container) {
     // remove specific event handlers
     container.removeEventListener('click', _clicks);
     container.removeEventListener('mousedown', _mouseDown);
+    container.removeEventListener('scroll', _scroll);
     window.removeEventListener('mouseup', _mouseUp);
     window.removeEventListener('mousemove', _mouseMove);
     window.removeEventListener('resized', _wideEnoughToScroll);
