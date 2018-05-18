@@ -77,7 +77,11 @@ class PressReleasesController extends BaseScopedController
         $filters = [];
 
         if ($yearRange) {
-            $yearLinks[] = ['href' => '', 'label' => 'All', 'active' => empty(request('year', null))];
+            $yearLinks[] = [
+                'href' => route('about.press', request()->except('year')),
+                'label' => 'All',
+                'active' => empty(request('year', null))
+            ];
     
             foreach ($yearRange as $year) {
                 $yearLinks[] = [
@@ -94,7 +98,11 @@ class PressReleasesController extends BaseScopedController
         }
 
         if ($monthRange) {
-            $monthLinks[] = ['href' => '', 'label' => 'All', 'active' => empty(request('month', null))];
+            $monthLinks[] = [
+                'href' => route('about.press', request()->except('month')),
+                'label' => 'All',
+                'active' => empty(request('month', null))
+            ];
 
             foreach ($monthRange as $month) {
                 $monthLinks[] = [
