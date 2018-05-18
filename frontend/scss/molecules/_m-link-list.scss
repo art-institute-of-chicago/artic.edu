@@ -132,7 +132,11 @@ a.m-link-list__trigger.f-secondary {
   }
 }
 
-.m-link-list__trigger svg,
+.m-link-list__icon-before {
+  margin-right: 4px;
+}
+
+.m-link-list__icon-after,
 .m-link-list--download .m-link-list__trigger .icon--download--24 {
   position: absolute;
   right: 0;
@@ -159,12 +163,4 @@ a.m-link-list__trigger.f-secondary {
 .m-link-list__trigger-file-meta {
   width: 33%;
   color: $color__text--secondary;
-}
-
-.m-link-list--icon-left .m-link-list__trigger {
-  padding-left: 25px;
-}
-
-.m-link-list--icon-left .m-link-list__trigger svg {
-  left: 0;
 }

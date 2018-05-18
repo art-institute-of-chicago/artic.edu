@@ -1,8 +1,16 @@
 .quote {
   position: relative;
-  padding-top: 80px;
+  padding-top: 56px;
   padding-bottom: 0.02px;
   color: $color__text--title;
+
+  @include breakpoint('small+') {
+    padding-top: 68px;
+  }
+
+  @include breakpoint('medium+') {
+    padding-top: 80px;
+  }
 
   &.o-blocks__block {
     padding-bottom: 20px;
@@ -22,12 +30,51 @@
 .quote__icon {
   position: absolute;
   left: 0;
-  top: 20px;
-  width: 76px;
-  height: 44px;
+  top: 16px;
+  width: 48px;
+  height: 29px;
   color: $color__text--accent;
   transform: rotate(180deg);
-  transform-origin: 38px 22px;
+  transform-origin: 24px 14.5px;
+
+  @include breakpoint('small+') {
+    width: 68px;
+    height: 40px;
+    transform-origin: 34px 20px;
+  }
+
+  @include breakpoint('medium+') {
+    top: 20px;
+    width: 76px;
+    height: 44px;
+    transform-origin: 38px 22px;
+  }
+}
+
+.quote__icon *:nth-child(1) {
+  @include breakpoint('small+') {
+    display: none;
+  }
+}
+
+.quote__icon *:nth-child(2) {
+  display: none;
+
+  @include breakpoint('small+') {
+    display: block;
+  }
+
+  @include breakpoint('medium+') {
+    display: none;
+  }
+}
+
+.quote__icon *:nth-child(3) {
+  display: none;
+
+  @include breakpoint('medium+') {
+    display: block;
+  }
 }
 
 .quote .f-quote:first-child {
@@ -40,9 +87,18 @@
 
 .quote--editorial,
 .o-article--editorial .o-blocks .quote {
-  padding: 20px 40px 80px 20px;
+  padding: 12px 40px 60px 12px;
   border-radius: $border-radius;
   background-color: $color__bg--editorial;
+
+  @include breakpoint('small+') {
+    padding: 16px 40px 80px 20px;
+  }
+
+  @include breakpoint('medium+') {
+    padding-top: 20px;
+    padding-bottom: 116px;
+  }
 }
 
 .quote--editorial::before,
@@ -63,9 +119,14 @@
 .o-article--editorial .o-blocks .quote__icon {
   position: absolute;
   left: auto;
-  right: 20px;
+  right: 16px;
   top: auto;
-  bottom: 20px;
+  bottom: 16px;
   color: $color__text--editorial;
   transform: none;
+
+  @include breakpoint('medium+') {
+    right: 20px;
+    bottom: 20px;
+  }
 }

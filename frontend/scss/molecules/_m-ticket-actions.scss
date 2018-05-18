@@ -13,6 +13,19 @@
 ```
 
 ***/
+/***
+
+The original intention was for this to be a list, but the CMS outputs in '<p>' tags..
+
+```
+<div class="m-ticket-actions__inline-list-items f-caption">
+    <p>$10 students</p>
+    <p>$20 members</p>
+    <p>$30 non-members</p>
+</div>
+```
+
+***/
 
 .m-ticket-actions {
   margin-top: 0;

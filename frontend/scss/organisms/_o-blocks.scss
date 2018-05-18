@@ -265,6 +265,10 @@
     }
 
     @include breakpoint('medium+') {
+      margin-top: 48px;
+    }
+
+    @include breakpoint('large+') {
       margin-top: 60px;
     }
   }
@@ -412,6 +416,10 @@
     }
 
     @include breakpoint('medium+') {
+      margin-top: 48px;
+    }
+
+    @include breakpoint('large+') {
       margin-top: 60px;
     }
   }
