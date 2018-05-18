@@ -121,4 +121,4 @@ Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\Contact
 // Generic Page
 // This MUST be the last route
 Route::moduleShowWithPreview('genericpages');
-Route::get('{any}', ['as' => 'genericpages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');
+Route::get('{any}', ['as' => 'genericPages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');
