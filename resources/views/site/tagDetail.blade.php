@@ -12,7 +12,7 @@
         @slot('item', $item)
         @slot('imageSettings', array(
             'srcset' => array(200,400,600,1000,1500,2000),
-            'sizes' => aic_gridListingImageSizes(array(
+            'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
                   'medium' => '58',
