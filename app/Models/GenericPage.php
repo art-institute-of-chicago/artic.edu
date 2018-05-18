@@ -33,6 +33,8 @@ class GenericPage extends Model implements Sortable
         'is_redirect_url_external'
     ];
 
+    public $dates = ['publish_start_date', 'publish_end_date'];
+
     public $slugAttributes = [
         'title',
     ];

@@ -107,6 +107,8 @@ Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@sho
 Route::name('about.exhibitionPressRooms')->get('/about/exhibition-press-room', 'ExhibitionPressRoomController@index');
 Route::name('about.exhibitionPressRooms.show')->get('/about/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
 
+Route::name('about-us')->get('/about', 'GenericPagesController@show');
+
 // Footer Head Links
 Route::name('learn')->get('/learn', 'GenericPagesController@show');
 Route::name('support-us')->get('/support-us', 'GenericPagesController@show');
