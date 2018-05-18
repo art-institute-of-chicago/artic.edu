@@ -1,49 +1,53 @@
 <?php
+// Copy/paste from other generic listings...
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Repositories\DigitalCatalogRepository;
-use App\Models\DigitalCatalog;
+use App\Repositories\ExhibitionPressRoomRepository;
+use App\Models\ExhibitionPressRoom;
 
-class DigitalCatalogsController extends FrontController
+class ExhibitionPressRoomController extends FrontController
 {
 
     protected $repository;
 
-    public function __construct(DigitalCatalogRepository $repository)
+
+    public function __construct(ExhibitionPressRoomRepository $repository)
     {
         $this->repository = $repository;
 
         parent::__construct();
     }
 
+
     public function index(Request $request)
     {
-        $items = DigitalCatalog::published()->paginate();
-        $title = 'Digital catalogs';
+        $items = ExhibitionPressRoom::published()->paginate();
+        $title = 'Exhibition Press Room';
+
         $subNav = [
-            ['label' => $title, 'href' => route('collection.publications.digital-catalogs'), 'active' => true]
+            ['label' => $title, 'href' => route('about.exhibitionPressRooms'), 'active' => true]
         ];
 
         $nav = [
-            ['label' => 'Collection', 'href' => route('collection'), 'links' => $subNav]
+            [ 'label' => 'About', 'href' => route('about-us'), 'links' => $subNav ]
         ];
 
         $crumbs = [
-            ['label' => 'The Collection', 'href' => route('collection')],
+            ['label' => 'About', 'href' => route('about-us')],
             ['label' => $title, 'href' => '']
         ];
 
         $view_data = [
-            'title' => $title,
+            'title'  => $title,
             'subNav' => $subNav,
-            'nav' => $nav,
+            'nav'    => $nav,
             "breadcrumb" => $crumbs,
-            'wideBody' => true,
-            'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' digital catalogs',
+            'wideBody'   => true,
+            'filters'    => null,
+            'listingCountText' => 'Showing '.$items->total().' exhibition press rooms',
             'listingItems' => $items,
         ];
 
@@ -66,9 +70,10 @@ class DigitalCatalogsController extends FrontController
             'nav' => [],
             'subNav' => []
         ];
+
         $crumbs = [
-            ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Digital catalogs', 'href' => route('collection.publications.digital-catalogs')],
+            ['label' => 'About', 'href' => route('about-us')],
+            ['label' => 'Exhibition press rooms', 'href' => route('about.exhibitionPressRooms')],
             ['label' => $page->title, 'href' => '']
         ];
 

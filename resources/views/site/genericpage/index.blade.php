@@ -29,7 +29,7 @@
             @endcomponent
 
             @if (isset($featuredRelated) and $featuredRelated)
-                {{-- dupe 😢 - shows medium+ --}}
+                {{-- dupe ð¢ - shows medium+ --}}
                 @component('components.blocks._inline-aside')
                     @slot('variation', 'u-show@medium+')
                     @slot('type', $featuredRelated['type'])
@@ -53,7 +53,7 @@
 
 
         @if (isset($featuredRelated) and $featuredRelated)
-        {{-- dupe 😢 - hidden medium+ --}}
+        {{-- dupe ð¢ - hidden medium+ --}}
             <div class="o-article__related">
                 @component('components.blocks._inline-aside')
                     @slot('type', $featuredRelated['type'])

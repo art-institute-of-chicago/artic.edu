@@ -30,7 +30,7 @@ class GenericPagesController extends FrontController
         $crumbs = $page->buildBreadCrumb($page);
         $navs = $page->buildNav();
 
-        return view('site.genericpage.show', [
+        return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => $navs['subNav'],
             'nav' => $navs['nav'],

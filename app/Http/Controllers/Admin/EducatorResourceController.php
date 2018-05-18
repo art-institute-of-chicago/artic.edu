@@ -10,7 +10,7 @@ use App\Repositories\ResourceCategoryRepository;
 class EducatorResourceController extends ModuleController
 {
     protected $moduleName = 'educatorResources';
-    protected $previewView = 'site.educatorresources.show';
+    protected $previewView = 'site.genericPage.show';
 
     protected function formData($request)
     {

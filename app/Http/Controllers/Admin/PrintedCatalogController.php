@@ -10,7 +10,7 @@ use App\Repositories\PrintedCatalogRepository;
 class PrintedCatalogController extends ModuleController
 {
     protected $moduleName = 'printedCatalogs';
-    protected $previewView = 'site.printedcatalogs.show';
+    protected $previewView = 'site.genericPage.show';
 
     protected function formData($request)
     {

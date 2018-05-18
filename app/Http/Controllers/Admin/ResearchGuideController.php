@@ -9,7 +9,7 @@ use App\Repositories\ResearchGuideRepository;
 class ResearchGuideController extends ModuleController
 {
     protected $moduleName = 'researchGuides';
-    protected $previewView = 'site.genericpage.show';
+    protected $previewView = 'site.genericPage.show';
 
     protected function formData($request)
     {

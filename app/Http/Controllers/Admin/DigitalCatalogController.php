@@ -9,7 +9,7 @@ use App\Repositories\DigitalCatalogRepository;
 class DigitalCatalogController extends ModuleController
 {
     protected $moduleName = 'digitalCatalogs';
-    protected $previewView = 'site.digitalcatalogs.show';
+    protected $previewView = 'site.genericPage.show';
 
     protected function formData($request)
     {

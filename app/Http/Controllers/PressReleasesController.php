@@ -51,7 +51,7 @@ class PressReleasesController extends BaseScopedController
             'listingItems' => $items,
         ] + $navElements;
 
-        return view('site.genericListing', $viewData);
+        return view('site.genericPage.index', $viewData);
     }
 
 
@@ -68,7 +68,7 @@ class PressReleasesController extends BaseScopedController
             'listingItems' => $items,
         ] + $navElements;
 
-        return view('site.genericListing', $viewData);
+        return view('site.genericPage.index', $viewData);
     }
 
 
@@ -82,7 +82,7 @@ class PressReleasesController extends BaseScopedController
                 'label' => 'All',
                 'active' => empty(request('year', null))
             ];
-    
+
             foreach ($yearRange as $year) {
                 $yearLinks[] = [
                     'href'   => route('about.press', request()->except('year') + ['year' => $year]),
@@ -171,7 +171,7 @@ class PressReleasesController extends BaseScopedController
             ['label' => $page->title, 'href' => '']
         ];
 
-        return view('site.pressreleases.show', [
+        return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,

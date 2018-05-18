@@ -36,28 +36,19 @@ class EducatorResourcesController extends FrontController
             ['label' => $title, 'href' => '']
         ];
 
-        $filters = array(
-            array(
-                'prompt' => 'Type',
-                'links' => array(
-                    array('href' => '#', 'label' => 'All', 'active' => true),
-                ),
-            ),
-        );
-
         $view_data = [
             'title' => $title,
             'subNav' => $subNav,
             'nav' => $nav,
             "breadcrumb" => $crumbs,
             'wideBody' => true,
-            'filters' => $filters,
+            'filters' => null,
             'listingCountText' => 'Showing '.$items->total().' educator resources',
             'listingItems' => $items,
         ];
 
 
-        return view('site.educatorresources.index', $view_data);
+        return view('site.genericPage.index', $view_data);
     }
 
     public function show($id)
@@ -81,7 +72,7 @@ class EducatorResourcesController extends FrontController
             ['label' => $page->title, 'href' => '']
         ];
 
-        return view('site.educatorresources.show', [
+        return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,

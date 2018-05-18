@@ -36,20 +36,18 @@ class PrintedCatalogsController extends BaseScopedController
     public function index(Request $request)
     {
         $items = $this->collection()->paginate();
-        
-        $navElements = $this->getNavElements('Printed catalogs');
 
-        $filters = $this->getFilters();
+        $navElements = $this->getNavElements('Printed catalogs');
 
         $view_data = [
             'wideBody' => true,
-            'filters' => $filters,
+            'filters' => $this->getFilters(),
             'listingCountText' => 'Showing '.$items->total().' printed catalogs',
             'listingItems' => $items,
         ] + $navElements;
 
 
-        return view('site.genericListing', $view_data);
+        return view('site.genericPage.index', $view_data);
     }
 
     public function show($id)
@@ -73,7 +71,7 @@ class PrintedCatalogsController extends BaseScopedController
             ['label' => $page->title, 'href' => '']
         ];
 
-        return view('site.printedcatalogs.show', [
+        return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,

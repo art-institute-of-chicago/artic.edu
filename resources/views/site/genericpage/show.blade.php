@@ -81,7 +81,6 @@
   @endif
 
   <div class="o-article__body o-blocks">
-
     @if (!empty($intro))
         @component('components.blocks._text')
             @slot('font','f-deck')

@@ -50,7 +50,7 @@ class ResearchGuidesController extends FrontController
         ];
 
 
-        return view('site.genericListing', $view_data);
+        return view('site.genericPage.index', $view_data);
     }
 
     public function show($id)
@@ -74,7 +74,7 @@ class ResearchGuidesController extends FrontController
             ['label' => $page->title, 'href' => '']
         ];
 
-        return view('site.researchguides.show', [
+        return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,
