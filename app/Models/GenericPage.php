@@ -39,6 +39,9 @@ class GenericPage extends Model implements Sortable
 
     public $checkboxes = ['published', 'active', 'is_redirect_url_external'];
 
+    protected $presenter = 'App\Presenters\Admin\GenericListingPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\GenericListingPresenter';
+
     // fill this in if you use the HasMedias traits
     public $mediasParams = [
         'listing' => [
