@@ -28,7 +28,7 @@
 }
 
 .m-article-header .title {
-  @include tucked-margin-top($f-headline, ('xsmall': 44, 'small+': 48));
+  @include tucked-margin-top($f-headline, ('xsmall': 44, 'medium+': 48));
 }
 
 .m-article-header .date {
@@ -39,13 +39,26 @@
   }
 
 .m-article-header .type {
-  @include tucked-align-top($f-tag);
+  @include tucked-align-top($f-tag, 'xsmall');
   order: 0;
 
+  @include breakpoint('small+') {
+    @include tucked-margin-top($f-tag, ('xsmall': 16), 'small');
+  }
+
+  @include breakpoint('medium+') {
+    @include tucked-align-top($f-tag, 'medium');
+  }
+
   @include breakpoint('large+') {
+    @include tucked-align-top($f-tag, 'large');
     position: absolute;
     left: 0;
     top: 12px;
+  }
+
+  @include breakpoint('xlarge') {
+    @include tucked-align-top($f-tag, 'xlarge');
   }
 }
 

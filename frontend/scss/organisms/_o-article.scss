@@ -32,6 +32,7 @@
 .o-article__primary-actions {
   position: relative;
   margin-top: 28px;
+  padding-top: 8px;
 
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
@@ -61,15 +62,13 @@
 }
 
   .o-article__primary-actions::before {
-    @include breakpoint('large+') {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 1px;
-      background-color: $color__rules--primary;
-    }
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background-color: $color__rules--primary;
   }
 
   .o-article__primary-actions > *:not(:first-child):not([class*=f-]) {
@@ -90,6 +89,18 @@
     }
   }
 
+  .m-article-header--feature ~ .o-article__primary-actions,
+  .m-article-header--hero ~ .o-article__primary-actions,
+  .m-article-header--super-hero ~ .o-article__primary-actions {
+    @include breakpoint('medium-') {
+      margin-top: 0;
+
+      &::before {
+        content: none;
+        display: none;
+      }
+    }
+  }
 
 
 .o-article__meta {
@@ -398,6 +409,8 @@
 .o-article--generic-page {
 
   .o-article__primary-actions {
+    padding-top: 0;
+
     @include breakpoint('medium-') {
       @include background-fill;
       margin-top: 0;
@@ -409,6 +422,11 @@
 
       & ~ .o-article__body {
         margin-top: 20px;
+      }
+
+      &::before {
+        height: auto;
+        background-color: inherit;
       }
     }
 
