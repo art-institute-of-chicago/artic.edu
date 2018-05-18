@@ -54,7 +54,8 @@
   flex-flow: column nowrap;
 
   .o-article__related .m-inline-aside &,
-  .o-article__secondary-actions .m-inline-aside & {
+  .o-article__secondary-actions .m-inline-aside &,
+  .f-module-title-1 + & {
     margin-top: 36px;
   }
 }
