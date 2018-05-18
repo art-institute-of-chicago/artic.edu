@@ -12,12 +12,14 @@ class ResearchGuidesController extends FrontController
 
     protected $repository;
 
+
     public function __construct(ResearchGuideRepository $repository)
     {
         $this->repository = $repository;
 
         parent::__construct();
     }
+
 
     public function index(Request $request)
     {

@@ -46,71 +46,71 @@ class PressReleasesController extends BaseScopedController
 
         $viewData = [
             'wideBody' => true,
-            'filters' => $this->getFilters(),
+            'filters' => $this->getFilters(range(date('Y'), 2012), range(1,12)),
             'listingCountText' => 'Showing '.$items->total().' press releases',
             'listingItems' => $items,
         ] + $navElements;
 
-        return view('site.pressreleases.index', $viewData);
+        return view('site.genericListing', $viewData);
     }
 
-    
+
     public function archive()
     {
         $items = $this->collection()->archive()->paginate();
 
         $navElements = $this->getNavElements('Press Releases Archive');
 
-        $filters = [
-            [
-                'prompt' => 'Year',
-                'links' => collect([['href' => '#', 'label' => 'All', 'active' => true]]),
-            ],
-        ];
-
         $viewData = [
             'wideBody' => true,
-            'filters'  => $filters,
+            'filters'  => $this->getFilters(range(2011, 1939)),
             'listingCountText' => 'Showing '.$items->total().' press releases',
             'listingItems' => $items,
         ] + $navElements;
 
-        return view('site.pressreleases.index', $viewData);
+        return view('site.genericListing', $viewData);
     }
 
 
-    protected function getFilters()
+    protected function getFilters(Array $yearRange = null, Array $monthRange = null)
     {
-        $yearLinks[] = ['href' => '', 'label' => 'All', 'active' => empty(request('year', null))];
+        $filters = [];
 
-        foreach (range(date('Y'), 2012) as $year) {
-            $yearLinks[] = [
-                'href'   => route('about.press', request()->except('year') + ['year' => $year]),
-                'label'  => $year,
-                'active' => request('year') == $year
-            ];
-        }
+        if ($yearRange) {
+            $yearLinks[] = ['href' => '', 'label' => 'All', 'active' => empty(request('year', null))];
+    
+            foreach ($yearRange as $year) {
+                $yearLinks[] = [
+                    'href'   => route('about.press', request()->except('year') + ['year' => $year]),
+                    'label'  => $year,
+                    'active' => request('year') == $year
+                ];
+            }
 
-        $monthLinks[] = ['href' => '', 'label' => 'All', 'active' => empty(request('month', null))];
-
-        foreach (range(1,12) as $month) {
-            $monthLinks[] = [
-                'href'   => route('about.press', request()->except('month') + ['month' => $month]),
-                'label'  => Carbon::create(date('Y'), $month)->format('F'),
-                'active' => request('month') == $month
-            ];
-        }
-
-        return [
-            [
+            $filters[] = [
                 'prompt' => 'Year',
                 'links'  => collect($yearLinks)
-            ],
-            [
+            ];
+        }
+
+        if ($monthRange) {
+            $monthLinks[] = ['href' => '', 'label' => 'All', 'active' => empty(request('month', null))];
+
+            foreach ($monthRange as $month) {
+                $monthLinks[] = [
+                    'href'   => route('about.press', request()->except('month') + ['month' => $month]),
+                    'label'  => Carbon::create(date('Y'), $month)->format('F'),
+                    'active' => request('month') == $month
+                ];
+            }
+
+            $filters[] = [
                 'prompt' => 'Month',
                 'links'  => collect($monthLinks)
-            ],
-        ];
+            ];
+        }
+
+        return $filters;
     }
 
 
@@ -158,8 +158,8 @@ class PressReleasesController extends BaseScopedController
             'subNav' => []
         ];
         $crumbs = [
-            ['label' => 'About', 'href' => '/about'],
-            ['label' => 'Press Releases', 'href' => '/about/press'],
+            ['label' => 'About', 'href' => route('about-us')],
+            ['label' => 'Press Releases', 'href' => route('about.press')],
             ['label' => $page->title, 'href' => '']
         ];
 
