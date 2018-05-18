@@ -14,7 +14,7 @@ use DB;
 
 class PressRelease extends Model
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;
+    use HasBlocks,  HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
 
     protected $fillable = [
         'short_description',
@@ -101,12 +101,16 @@ class PressRelease extends Model
         return $query->where('publish_start_date', '<=', Carbon::parse('2011-12-31'));
     }
 
-    public function scopeByYear($query, $year) {
-        return $query->where(DB::raw('YEAR(publish_start_date)'), $year);
+    public function getUrlAttribute() {
+        return url(route('about.press.show', $this->id_slug));
     }
 
-    public function scopeByMonth($query, $month) {
-        return $query->where(DB::raw('MONTH(publish_start_date)'), $month);
+    public function scopeByYear($query, $year) {
+        return $query->where(DB::raw('EXTRACT( YEAR FROM publish_start_date )'), $year);
+    }
+
+    public function scopeByMonth($query, $year) {
+        return $query->where(DB::raw('EXTRACT( MONTH FROM publish_start_date )'), $year);
     }
 
 }

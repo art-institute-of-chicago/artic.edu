@@ -29,6 +29,9 @@ class ResearchGuide extends Model
         'title'
     ];
 
+    protected $presenter = 'App\Presenters\Admin\GenericListingPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\GenericListingPresenter';
+
     public $checkboxes = ['published', 'active', 'public'];
     public $dates = ['publish_start_date', 'publish_end_date'];
 
