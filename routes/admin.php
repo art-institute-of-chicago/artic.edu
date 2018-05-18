@@ -64,6 +64,7 @@ Route::group(['prefix' => 'collection'], function () {
 Route::group(['prefix' => 'generic'], function () {
     Route::module('genericPages');
     Route::module('pressReleases');
+    Route::module('exhibitionPressRooms');
 
     Route::module('galleries');
     Route::name('generic.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');

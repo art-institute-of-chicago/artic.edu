@@ -34,6 +34,9 @@ class PrintedCatalog extends Model
     public $checkboxes = ['published', 'active', 'public'];
     public $dates = ['publish_start_date', 'publish_end_date', 'migrated_at'];
 
+    protected $presenter = 'App\Presenters\Admin\GenericListingPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\GenericListingPresenter';
+
     public $mediasParams = [
         'listing' => [
             'default' => [
@@ -62,6 +65,17 @@ class PrintedCatalog extends Model
     public function categories()
     {
         return $this->belongsToMany('App\Models\CatalogCategory');
+    }
+
+    public function scopeByCategory($query, $category = null)
+    {
+        if (empty($category)) {
+            return $query;
+        }
+
+        return $query->whereHas('categories', function ($query) use ($category){
+            $query->where('catalog_category_id', $category);
+        });
     }
 
     // Generates the id-slug type of URL

@@ -12,12 +12,14 @@ class ResearchGuidesController extends FrontController
 
     protected $repository;
 
+
     public function __construct(ResearchGuideRepository $repository)
     {
         $this->repository = $repository;
 
         parent::__construct();
     }
+
 
     public function index(Request $request)
     {
@@ -36,28 +38,19 @@ class ResearchGuidesController extends FrontController
             ['label' => $title, 'href' => '']
         ];
 
-        $filters = array(
-            array(
-                'prompt' => 'Type',
-                'links' => array(
-                    array('href' => '#', 'label' => 'All', 'active' => true),
-                ),
-            ),
-        );
-
         $view_data = [
             'title' => $title,
             'subNav' => $subNav,
             'nav' => $nav,
             "breadcrumb" => $crumbs,
             'wideBody' => true,
-            'filters' => $filters,
+            'filters' => null,
             'listingCountText' => 'Showing '.$items->total().' research guides',
             'listingItems' => $items,
         ];
 
 
-        return view('site.researchguides.index', $view_data);
+        return view('site.genericPage.index', $view_data);
     }
 
     public function show($id)
@@ -81,7 +74,7 @@ class ResearchGuidesController extends FrontController
             ['label' => $page->title, 'href' => '']
         ];
 
-        return view('site.researchguides.show', [
+        return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
             'nav' => null,

@@ -2026,6 +2026,11 @@ class StaticsController extends FrontController {
       },
       "type" => 'generic',
       "listingType" => 'generic',
+      "present" => function () {
+        return new StaticObjectPresenter([
+            "date" => $this->makeDate()->format('F j, Y'),
+        ]);
+      },
     ]);
   }
 

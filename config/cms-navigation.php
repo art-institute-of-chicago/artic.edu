@@ -189,6 +189,10 @@ return [
                 'title' => 'Press Releases',
                 'module' => true,
             ],
+            'exhibitionPressRooms' => [
+                'title' => 'Exhibition Press Rooms',
+                'module' => true,
+            ],
             'galleries' => [
                 'title' => 'Galleries',
                 'module' => true,

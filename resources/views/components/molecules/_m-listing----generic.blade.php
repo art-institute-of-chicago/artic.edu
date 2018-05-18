@@ -36,10 +36,10 @@
             <br>
             <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->listing_description }}</span>
             @endif
-            @if ($item->date)
+            @if ($item->present()->date)
             <br>
             @component('components.atoms._date')
-                {{ $item->date->format('F j, Y') }}
+                {{ $item->present()->date }}
             @endcomponent
             @endif
         </span>

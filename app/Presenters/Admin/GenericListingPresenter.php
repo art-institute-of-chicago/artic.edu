@@ -3,10 +3,8 @@
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
-use App\Models\PressRelease;
-use Carbon\Carbon;
 
-class PressReleasePresenter extends BasePresenter
+class GenericListingPresenter extends BasePresenter
 {
 
     public function presentPublishStartDate() {
@@ -17,6 +15,12 @@ class PressReleasePresenter extends BasePresenter
         }
 
         return "No";
+    }
+
+    public function date() {
+        if (!empty($this->entity->publish_start_date)) {
+            return $this->entity->publish_start_date->format('F j, Y');
+        }
     }
 
 }

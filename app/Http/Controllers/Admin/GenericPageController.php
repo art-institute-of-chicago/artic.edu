@@ -10,7 +10,7 @@ use App\Repositories\PageCategoryRepository;
 class GenericPageController extends ModuleController
 {
     protected $moduleName = 'genericPages';
-    protected $previewView = 'site.genericpage.show';
+    protected $previewView = 'site.genericPage.show';
 
     protected $indexColumns = [
         'title' => [

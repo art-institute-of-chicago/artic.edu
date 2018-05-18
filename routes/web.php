@@ -103,7 +103,10 @@ Route::name('about-us')->get('/about', 'GenericPagesController@show');
 Route::name('about.press')->get('/about/press', 'PressReleasesController@index');
 Route::name('about.press.archive')->get('/about/press/archive', 'PressReleasesController@archive');
 Route::moduleShowWithPreview('pressreleases');
+
 Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@show');
+Route::name('about.exhibitionPressRooms')->get('/about/exhibition-press-room', 'ExhibitionPressRoomController@index');
+Route::name('about.exhibitionPressRooms.show')->get('/about/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
 
 // Footer Head Links
 Route::name('learn')->get('/learn', 'GenericPagesController@show');
@@ -119,4 +122,4 @@ Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\Contact
 // Generic Page
 // This MUST be the last route
 Route::moduleShowWithPreview('genericpages');
-Route::get('{any}', ['as' => 'genericpages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');
+Route::get('{any}', ['as' => 'genericPages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');

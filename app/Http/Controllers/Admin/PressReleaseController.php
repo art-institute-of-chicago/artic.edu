@@ -9,7 +9,7 @@ use App\Repositories\PressReleaseRepository;
 class PressReleaseController extends ModuleController
 {
     protected $moduleName = 'pressReleases';
-    protected $previewView = 'site.pressreleases.show';
+    protected $previewView = 'site.genericPage.show';
 
     protected $defaultOrders = ['publish_start_date' => 'desc'];
 

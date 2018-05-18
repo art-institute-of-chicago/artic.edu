@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
+use A17\CmsToolkit\Models\Model;
 use A17\CmsToolkit\Models\Behaviors\HasBlocks;
 use A17\CmsToolkit\Models\Behaviors\HasSlug;
 use A17\CmsToolkit\Models\Behaviors\HasMedias;
 use A17\CmsToolkit\Models\Behaviors\HasFiles;
 use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Model;
-
 use App\Models\Behaviors\HasMediasEloquent;
 
-class DigitalCatalog extends Model
+class ExhibitionPressRoom extends Model
 {
+
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;
 
     protected $fillable = [
@@ -20,10 +20,13 @@ class DigitalCatalog extends Model
         'short_description',
         'title',
         'published',
-        'public',
         'publish_start_date',
         'publish_end_date',
+        'public'
     ];
+
+    public $checkboxes = ['published', 'public'];
+    public $dates = ['publish_start_date', 'publish_end_date'];
 
     public $slugAttributes = [
         'title',
@@ -31,9 +34,6 @@ class DigitalCatalog extends Model
 
     protected $presenter = 'App\Presenters\Admin\GenericListingPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericListingPresenter';
-
-    public $checkboxes = ['published', 'active', 'public'];
-    public $dates = ['publish_start_date', 'publish_end_date'];
 
     public $mediasParams = [
         'listing' => [
@@ -73,12 +73,12 @@ class DigitalCatalog extends Model
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('collection.publications.digital-catalogs'), '/', $this->id, '-']);
+        return join([route('about.exhibitionPressRooms'), '/', $this->id, '-']);
     }
 
     public function getSlugAttribute()
     {
-        return route('collection.publications.digital-catalogs.show', $this);
+        return route('about.exhibitionPressRooms.show', $this);
     }
 
 }
