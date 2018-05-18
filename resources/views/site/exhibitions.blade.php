@@ -27,34 +27,36 @@
 @component('components.atoms._hr')
 @endcomponent
 
-@component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-    @slot('cols_small','2')
-    @slot('cols_medium','2')
-    @slot('cols_large','2')
-    @slot('cols_xlarge','2')
-    @foreach ($featured as $item)
-        @component('components.molecules._m-listing----exhibition')
-            @slot('item', $item)
-            @slot('titleFont', 'f-list-4')
-            @slot('imageSettings', array(
-                'fit' => 'crop',
-                'ratio' => '16:9',
-                'srcset' => array(200,400,600,1000,1500),
-                'sizes' => aic_gridListingImageSizes(array(
-                      'xsmall' => '1',
-                      'small' => '2',
-                      'medium' => '2',
-                      'large' => '2',
-                      'xlarge' => '2',
-                )),
-            ))
-        @endcomponent
-    @endforeach
-@endcomponent
+@if ($featured->count() > 0)
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
+        @slot('cols_medium','2')
+        @slot('cols_large','2')
+        @slot('cols_xlarge','2')
+        @foreach ($featured as $item)
+            @component('components.molecules._m-listing----exhibition')
+                @slot('item', $item)
+                @slot('titleFont', 'f-list-4')
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600,1000,1500),
+                    'sizes' => aic_gridListingImageSizes(array(
+                          'xsmall' => '1',
+                          'small' => '2',
+                          'medium' => '2',
+                          'large' => '2',
+                          'xlarge' => '2',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
 
-@component('components.atoms._hr')
-@endcomponent
+    @component('components.atoms._hr')
+    @endcomponent
+@endif
 
 @if ($collection->count() > 0)
     @component('components.organisms._o-grid-listing')
