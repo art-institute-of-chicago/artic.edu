@@ -63,7 +63,7 @@ class PressReleasesController extends BaseScopedController
 
         $viewData = [
             'wideBody' => true,
-            'filters'  => $this->getFilters(range(2011, 1939)),
+            'filters'  => $this->getFilters(range(2011, 1939), null, 'about.press.archive'),
             'listingCountText' => 'Showing '.$items->total().' press releases',
             'listingItems' => $items,
         ] + $navElements;
@@ -72,20 +72,20 @@ class PressReleasesController extends BaseScopedController
     }
 
 
-    protected function getFilters(Array $yearRange = null, Array $monthRange = null)
+    protected function getFilters(Array $yearRange = null, Array $monthRange = null, $baseRoute = 'about.press')
     {
         $filters = [];
 
         if ($yearRange) {
             $yearLinks[] = [
-                'href' => route('about.press', request()->except('year')),
+                'href' => route($baseRoute, request()->except('year')),
                 'label' => 'All',
                 'active' => empty(request('year', null))
             ];
 
             foreach ($yearRange as $year) {
                 $yearLinks[] = [
-                    'href'   => route('about.press', request()->except('year') + ['year' => $year]),
+                    'href'   => route($baseRoute, request()->except('year') + ['year' => $year]),
                     'label'  => $year,
                     'active' => request('year') == $year
                 ];
@@ -99,14 +99,14 @@ class PressReleasesController extends BaseScopedController
 
         if ($monthRange) {
             $monthLinks[] = [
-                'href' => route('about.press', request()->except('month')),
+                'href' => route($baseRoute, request()->except('month')),
                 'label' => 'All',
                 'active' => empty(request('month', null))
             ];
 
             foreach ($monthRange as $month) {
                 $monthLinks[] = [
-                    'href'   => route('about.press', request()->except('month') + ['month' => $month]),
+                    'href'   => route($baseRoute, request()->except('month') + ['month' => $month]),
                     'label'  => Carbon::create(date('Y'), $month)->format('F'),
                     'active' => request('month') == $month
                 ];
