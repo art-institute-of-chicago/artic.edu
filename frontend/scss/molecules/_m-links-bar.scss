@@ -277,7 +277,6 @@
 
 
 @mixin overflowOverrides() {
-  margin-top: 16px;
 
   .m-links-bar__item {
     min-height: 48px;
@@ -316,6 +315,7 @@
 .s-overflowing .m-links-bar__items-secondary {
   @include overflowOverrides;
 }
+
 .m-links-bar__items-secondary {
   @include breakpoint('xsmall') {
     @include overflowOverrides;
