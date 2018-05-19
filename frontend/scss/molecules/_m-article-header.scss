@@ -672,6 +672,14 @@
   height: 48px;
   padding-right: 6px;
   line-height: 48px;
+
+  @include breakpoint('small+') {
+    line-height: 46px;
+  }
+
+  @include breakpoint('medium+') {
+    line-height: 45px;
+  }
 }
 
 .m-article-header__breadcrumb .f-secondary {
