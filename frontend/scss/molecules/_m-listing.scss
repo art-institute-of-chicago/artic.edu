@@ -848,22 +848,21 @@
 
 .m-listing--hero-editorial .m-listing__meta {
   @include opaqueBg(rgba($color__bg--editorial, .85), rgba($color__bg--editorial, .85));
+  padding: 0 colspan(3, xsmall) 24px;
 
   @include breakpoint('small') {
     left: 50%;
     right: auto;
-    top: 50%;
-    bottom: auto;
+    top: auto;
+    bottom: 60px;
     width: colspan(29, small);
     min-width: 400px;
     margin-left: colspan(29, small, 0, true);
-    padding-right: 40px;
-    padding-bottom: 40px;
-    padding-left: 40px;
-    transform: translateY(-50%);
+    padding: 12px 40px 36px 40px;
   }
 
   @include breakpoint('medium+') {
+    padding-top: 20px;
     padding-right: 40px;
     padding-bottom: 40px;
     padding-left: 40px;
@@ -871,6 +870,7 @@
 
   @include breakpoint('large+') {
     width: colspan(25, large);
+    padding-top: 12px;
     padding-bottom: 40px;
   }
 
@@ -902,7 +902,7 @@
 }
 
 .m-listing--hero-editorial .m-listing__meta > .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 44, 'small+': 44, 'medium+': 48));
+  @include tucked-margin-top($f-secondary, ('xsmall': 44));
   display: none;
 
   @include breakpoint('small+') {
@@ -926,7 +926,7 @@
   margin-top: 60px;
 
   @include breakpoint('small+') {
-    margin-top: 40px;
+    margin-top: 32px;
   }
 
   @include breakpoint('medium+') {
