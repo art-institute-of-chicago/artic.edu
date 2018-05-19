@@ -7,11 +7,12 @@
 
 
 .m-author {
+  display: flex;
   position: relative;
-  padding-left: 52px;
+  flex-flow: row nowrap;
 
   @include breakpoint('xlarge') {
-    padding-left: 0;
+    flex-flow: column nowrap;
   }
 }
 
@@ -31,24 +32,17 @@
 
 
 .m-author__img {
-  position: absolute;
-  left: 0;
-  top: 0;
+  position: relative;
+  flex: 0 0 auto;
   width: 40px;
   height: 40px;
-
-  .m-author---keyline-top & {
-    top: 16px;
-  }
+  margin-right: 12px;
 
   @include breakpoint('xlarge') {
-    position: relative;
     width: 88px;
     height: 88px;
-
-    .m-author---keyline-top & {
-      top: 0;
-    }
+    margin-right: 0;
+    margin-bottom: 16px;
   }
 }
 
@@ -66,15 +60,8 @@
 }
 
 .m-author .f-secondary {
-  margin-top: -12px;
-
-  @include breakpoint('large+') {
-    margin-top: -16px;
-  }
-
-  @include breakpoint('xlarge') {
-    margin-top: 0;
-  }
+  @include tucked-margin-top($f-secondary, ('xsmall': 12, 'medium+': 12));
+  flex: 0 0 auto;
 }
 
 .m-author a {
