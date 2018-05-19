@@ -36,6 +36,11 @@
 .o-collapsing-nav__trigger.f-link {
   padding-top: 11px;
   padding-bottom: 9px;
+
+  @include breakpoint('medium+') {
+    padding-top: 8px;
+    padding-bottom: 12px;
+  }
 }
 
 .o-collapsing-nav__trigger > .icon--arrow {
@@ -45,6 +50,10 @@
   margin-top: -6px;
   transform: rotate(90deg);
   transform-origin: 8px 8px;
+
+  @include breakpoint('medium+') {
+    margin-top: -9px;
+  }
 }
 
 .o-collapsing-nav .m-link-list {
