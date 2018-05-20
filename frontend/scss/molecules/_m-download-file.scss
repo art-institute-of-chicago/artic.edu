@@ -37,8 +37,11 @@
 }
 
 .m-download-file__meta {
-  flex: 0 0 auto;
+  flex: 1;
   margin-bottom: 80px;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  word-break: break-all;
 }
 
 .m-download-file__meta.f-secondary {
