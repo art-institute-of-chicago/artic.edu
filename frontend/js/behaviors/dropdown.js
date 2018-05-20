@@ -119,8 +119,8 @@ const dropdown = function(container) {
       active = container.classList.contains('s-active');
       document.addEventListener('focus', _focus, true);
       document.addEventListener('click', _clicks, false);
-      document.addEventListener('touchstart', _touchstart, false);
-      document.addEventListener('touchend', _touchend, false);
+      //document.addEventListener('touchstart', _touchstart, false);
+      //document.addEventListener('touchend', _touchend, false);
       document.addEventListener('dropdown:open', _globalOpen, false);
       document.addEventListener('dropdown:close', _globalClose, false);
       setup = true;
@@ -132,8 +132,9 @@ const dropdown = function(container) {
       active = false;
       document.removeEventListener('focus', _focus);
       document.removeEventListener('click', _clicks);
-      document.removeEventListener('touchstart', _touchstart);
-      document.removeEventListener('touchend', _touchend);
+      //document.removeEventListener('touchstart', _touchstart);
+      //document.removeEventListener('touchmove', _touchmove);
+      //document.removeEventListener('touchend', _touchend);
       document.removeEventListener('dropdown:open', _globalOpen);
       document.removeEventListener('dropdown:close', _globalClose);
       setup = false;
