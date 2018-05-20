@@ -72,6 +72,18 @@
   @include untuck;
 }
 
+.dropdown.s-active .dropdown__trigger::before {
+  content: '' !important;
+  display: block !important;
+  position: fixed;
+  z-index: map-get($zindexs, 'dropdown');
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0);
+}
+
 .dropdown__trigger.f-secondary,
 .dropdown__trigger.f-link {
   padding-top: 11px;
