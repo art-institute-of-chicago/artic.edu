@@ -37,6 +37,12 @@
   .o-blocks__block & {
     margin-top: 20px;
   }
+
+  .m-link-list--download & {
+    @include breakpoint('medium+') {
+      padding-top: 0.02px;
+    }
+  }
 }
 
 .m-link-list__item:first-child {
@@ -150,17 +156,34 @@ a.m-link-list__trigger.f-secondary {
 
 .m-link-list--download .m-link-list__trigger {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
+
+  @include breakpoint('medium+') {
+    flex-flow: row nowrap;
+  }
 }
 
 .m-link-list__trigger-file-name,
 .m-link-list__trigger-file-meta {
   flex: 0 0 auto;
-  width: 66%;
+  width: 100%;
   padding-right: 32px;
+
+  @include breakpoint('medium+') {
+    width: 66%;
+  }
+}
+
+.m-link-list__trigger-file-name {
+  overflow-wrap: break-word;
+  hyphens: auto;
+  word-break: break-all;
 }
 
 .m-link-list__trigger-file-meta {
-  width: 33%;
   color: $color__text--secondary;
+
+  @include breakpoint('medium+') {
+    width: 33%;
+  }
 }
