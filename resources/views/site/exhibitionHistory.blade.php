@@ -42,6 +42,7 @@
     @endcomponent
 
     @component('components.molecules._m-links-bar')
+        @slot('id','listing')
         @slot('variation','m-links-bar--filters')
         @slot('primaryHtml')
             <li class="m-links-bar__item m-links-bar__item--primary">
@@ -71,6 +72,8 @@
                     @slot('clearLink', route('exhibitions.history', request()->except('q')))
                     @slot('value', request()->get('q'))
                     @slot('hiddenFields', ['year' => $activeYear])
+                    @slot('behaviors','ajaxFormSubmit')
+                    @slot('dataAttributes', 'data-ajax-scroll-target="listing"')
                 @endcomponent
             </li>
         @endslot
