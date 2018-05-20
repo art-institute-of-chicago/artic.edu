@@ -3,6 +3,8 @@
 .m-intro-block {
   position: relative;
   margin-top: 40px;
+  padding-top: 0.02px;
+  padding-bottom: 0.02px;
 
   @include breakpoint('medium+') {
     display: flex;
@@ -33,6 +35,22 @@
     @include breakpoint('large+') {
       padding-top: 36px;
       margin-top: 60px;
+    }
+  }
+
+  & + .o-grid-listing {
+    margin-top: 32px;
+
+    @include breakpoint('small+') {
+      margin-top: 28px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-top: 48px;
+    }
+
+    @include breakpoint('large+') {
+      margin-top: 56px;
     }
   }
 

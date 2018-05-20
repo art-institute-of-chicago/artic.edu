@@ -21,7 +21,9 @@
           @component('components.molecules._m-media')
             @slot('item', $page->present()->exhibitionHistoryMedia)
             @slot('imageSettings', array(
-                'srcset' => array(108,216,400,600),
+                'fit' => 'crop',
+                'ratio' => '16:9',
+                'srcset' => array(200,300,600,1000,1500),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => 58,
                       'small' => 58,
@@ -82,8 +84,7 @@
                 ]
             ])
         @endif
-        @slot('titleFont', 'f-numeral-date')
-
+        @slot('titleFont', 'f-display-1')
         {{ $activeYear }}
     @endcomponent
 

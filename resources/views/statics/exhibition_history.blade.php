@@ -21,7 +21,9 @@
           @component('components.molecules._m-media')
             @slot('item', $media)
             @slot('imageSettings', array(
-                'srcset' => array(108,216,400,600),
+                'fit' => 'crop',
+                'ratio' => '16:9',
+                'srcset' => array(200,300,600,1000,1500),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => 58,
                       'small' => 58,
@@ -93,7 +95,7 @@
         @if (sizeof($exhibitions) > 0)
             @slot('links', array(array('label' => 'Showing 10 out of 23 Exhibitions')))
         @endif
-        @slot('titleFont', 'f-numeral-date')
+        @slot('titleFont', 'f-display-1')
         2016
     @endcomponent
 
