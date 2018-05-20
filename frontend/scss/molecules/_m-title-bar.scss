@@ -78,6 +78,10 @@
   @include tucked-margin-top($f-numeral-date, ('xsmall': 60, 'small+': 68, 'medium+': 80));
 }
 
+.m-title-bar .title.f-display-1 {
+  @include tucked-margin-top($f-display-1, ('xsmall': 60, 'small+': 68, 'medium+': 80));
+}
+
 .m-title-bar__links {
   display: none;
   flex: 0 0 auto;
