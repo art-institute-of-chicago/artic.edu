@@ -42,6 +42,7 @@
     @endcomponent
 
     @component('components.molecules._m-links-bar')
+        @slot('id','listing')
         @slot('variation','m-links-bar--filters')
         @slot('primaryHtml')
             <li class="m-links-bar__item m-links-bar__item--primary">
@@ -51,12 +52,12 @@
                   @slot('variation','dropdown--filter f-link')
                   @slot('font', null)
                   @slot('options', array(
-                    array('href' => '#', 'label' => '2010-2017', 'active' => true),
-                    array('href' => '#', 'label' => '2000-2009'),
-                    array('href' => '#', 'label' => '1990-1999'),
-                    array('href' => '#', 'label' => '1980-1989'),
-                    array('href' => '#', 'label' => '1970-1979'),
-                    array('href' => '#', 'label' => '1960-1969'),
+                    array('href' => '#', 'label' => '2010-2017', 'ajaxScrollTarget' => 'listing', 'active' => true,),
+                    array('href' => '#', 'label' => '2000-2009', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '1990-1999', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '1980-1989', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '1970-1979', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '1960-1969', 'ajaxScrollTarget' => 'listing'),
                   ))
                 @endcomponent
             </li>
@@ -67,14 +68,14 @@
                   @slot('variation','dropdown--filter f-link')
                   @slot('font', null)
                   @slot('options', array(
-                    array('href' => '#', 'label' => '2017'),
-                    array('href' => '#', 'label' => '2016', 'active' => true),
-                    array('href' => '#', 'label' => '2015'),
-                    array('href' => '#', 'label' => '2014'),
-                    array('href' => '#', 'label' => '2013'),
-                    array('href' => '#', 'label' => '2012'),
-                    array('href' => '#', 'label' => '2011'),
-                    array('href' => '#', 'label' => '2010'),
+                    array('href' => '#', 'label' => '2017', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '2016', 'ajaxScrollTarget' => 'listing', 'active' => true),
+                    array('href' => '#', 'label' => '2015', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '2014', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '2013', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '2012', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '2011', 'ajaxScrollTarget' => 'listing'),
+                    array('href' => '#', 'label' => '2010', 'ajaxScrollTarget' => 'listing'),
                   ))
                 @endcomponent
             </li>
@@ -85,6 +86,8 @@
                     @slot('name', 'keyword')
                     @slot('action', '/statics/exhibition_history')
                     @slot('clearLink', '/statics/exhibition_history')
+                    @slot('behaviors','ajaxFormSubmit')
+                    @slot('dataAttributes', 'data-ajax-scroll-target="listing"')
                     @slot('value', $_GET['keyword'] ?? null)
                 @endcomponent
             </li>

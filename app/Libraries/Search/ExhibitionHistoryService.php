@@ -30,7 +30,8 @@ class ExhibitionHistoryService
                 'href'  => route('exhibitions.history', ['year' => $decade]),
                 'label' => join('-', [$decade, $decadeEnd]),
                 'start' => $decade,
-                'end'   => $decadeEnd
+                'end'   => $decadeEnd,
+                'ajaxScrollTarget' => 'listing'
             ];
 
             if ($this->activeYear() >= $decade && $this->activeYear() < $decadeEnd) {
@@ -53,7 +54,8 @@ class ExhibitionHistoryService
                 $years[] = [
                     'href'   => route('exhibitions.history', ['year' => $year]),
                     'label'  => $year,
-                    'active' => $this->activeYear() == $year
+                    'active' => $this->activeYear() == $year,
+                    'ajaxScrollTarget' => 'listing'
                 ];
             }
         }

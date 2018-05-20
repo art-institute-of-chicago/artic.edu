@@ -47,3 +47,4 @@ export { default as injectContent } from './injectContent';
 export { default as clearHistory } from './clearHistory';
 export { default as addHistory } from './addHistory';
 export { default as maskEmail } from './maskEmail';
+export { default as ajaxFormSubmit } from './ajaxFormSubmit';

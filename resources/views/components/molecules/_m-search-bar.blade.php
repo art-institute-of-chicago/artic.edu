@@ -5,12 +5,6 @@
 
         <input class="f-secondary{{ (isset($value) and $value and isset($clearLink) and $clearLink) ? ' s-populated' : '' }}" id="{{ $name ?? '' }}" name="{{ $name ?? '' }}" placeholder="{{ $placeholder ?? '' }}" type="text" value="{{ $value ?? '' }}" autocomplete="off">
 
-        @if (isset($hiddenFields))
-            @foreach ($hiddenFields as $name => $value)
-                <input name="{{ $name }}" type="hidden" value="{{ $value }}">
-            @endforeach
-        @endif
-
         <button class="m-search-bar__submit" type="submit"><svg aria-label="Search" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg></button>
 
         @if (isset($clearLink))
@@ -24,6 +18,12 @@
         @endif
 
         <span class="m-search-bar__loader"></span>
+
+        @if (isset($hiddenFields))
+            @foreach ($hiddenFields as $name => $value)
+                <input name="{{ $name }}" type="hidden" value="{{ $value }}">
+            @endforeach
+        @endif
 
     </div>
 </form>
