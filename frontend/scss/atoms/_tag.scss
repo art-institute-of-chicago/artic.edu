@@ -140,6 +140,15 @@ a.tag--tertiary:active {
   color: $color__text--secondary;
 }
 
+.tag--l .icon--close {
+  position: relative;
+  top: -1px;
+
+  @include breakpoint('medium+') {
+    top: -2px;
+  }
+}
+
 a.tag--quaternary:hover,
 a.tag--quaternary:focus {
   background-color: $color__black--80;
