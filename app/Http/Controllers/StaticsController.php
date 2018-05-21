@@ -3885,7 +3885,7 @@ class StaticsController extends FrontController {
   function getEventPageContents($headerType = null) {
     // make some left rail links
     $locationLink = array('label' => 'Rubloff Auditorium', 'href' => '#', 'iconBefore' => 'location');
-    $registrationLink = array('label' => 'Registration required', 'href' => "#");
+    $registrationLink = array('label' => 'Registration required', 'href' => "#", 'iconBefore' => 'pencil');
     // make left rail nav array
     $nav = array();
     array_push($nav, $locationLink);
