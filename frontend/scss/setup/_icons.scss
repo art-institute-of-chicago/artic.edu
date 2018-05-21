@@ -109,6 +109,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--no-image">
     <use xlink:href="#icon--no-image"></use>
   </svg>
+  <svg class="icon--pencil">
+    <use xlink:href="#icon--pencil"></use>
+  </svg>
   <svg class="icon--play--48">
     <use xlink:href="#icon--play--48"></use>
   </svg>
@@ -312,6 +315,11 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
 .icon--no-image {
   width: 80px;
   height: 56px;
+}
+
+.icon--pencil {
+  width: 16px;
+  height: 16px;
 }
 
 .icon--play--48 {

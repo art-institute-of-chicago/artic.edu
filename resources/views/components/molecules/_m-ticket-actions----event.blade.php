@@ -1,6 +1,6 @@
 <ul class="m-ticket-actions">
     @if (isset($ticketLink) and $ticketLink)
-        <li class="m-ticket-actions__action">
+        <li class="m-ticket-actions__action m-ticket-actions__action--single-action">
             @component('components.atoms._btn')
                 @slot('variation', 'btn--full')
                 @slot('tag', 'a')

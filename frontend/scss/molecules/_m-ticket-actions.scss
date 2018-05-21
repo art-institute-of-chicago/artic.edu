@@ -8,21 +8,24 @@
     <li class="m-ticket-actions__action">
         <a class="btn f-buttons btn--secondary btn--full" href="#">Become a member</a>
     </li>
-    <li class="m-ticket-actions__note f-secondary">Exhibitions are free with museum admission.</li>
+    <li class="m-ticket-actions__inline-list">
+        <ul class="m-ticket-actions__inline-list-items f-caption">
+            <li>as list</li>
+            <li>$10 students</li>
+            <li>$20 members</li>
+            <li>$30 non-members</li>
+        </ul>
+    </li>
+    <li class="m-ticket-actions__inline-list">
+        <div class="m-ticket-actions__inline-list-items f-caption">
+            <p>as paragraphs from CMS</p>
+            <p>$10 students</p>
+            <p>$20 members</p>
+            <p>$30 non-members</p>
+        </div>
+    </li>
+    li class="m-ticket-actions__note f-secondary">Exhibitions are free with museum admission.</li>
 </ul>
-```
-
-***/
-/***
-
-The original intention was for this to be a list, but the CMS outputs in '<p>' tags..
-
-```
-<div class="m-ticket-actions__inline-list-items f-caption">
-    <p>$10 students</p>
-    <p>$20 members</p>
-    <p>$30 non-members</p>
-</div>
 ```
 
 ***/
@@ -92,6 +95,10 @@ The original intention was for this to be a list, but the CMS outputs in '<p>' t
     width: colspan(28, small);
     margin-top: 12px;
     margin-left: colspan(2, small);
+  }
+
+  .o-article__secondary-actions .m-ticket-actions__action--single-action {
+    width: colspan(58, small);
   }
 
   .m-ticket-actions__note,
