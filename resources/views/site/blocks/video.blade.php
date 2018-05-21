@@ -9,6 +9,8 @@
 
 @if ($source_url)
     @component('components.molecules._m-media')
+        {{-- variation 'o-blocks__block' ONLY for inline in article pages and NOT for inside of galleries or anywhere else --}}
+        @slot('variation', 'o-blocks__block')
         @slot('item', [
             'type' => 'embed',
             'size' => $size,
