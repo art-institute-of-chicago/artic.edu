@@ -57,7 +57,11 @@ $print = isset($_GET['print']);
   @endif
 </head>
 
+@if ($print)
+<body onload="window.print()">
+@else
 <body>
+@endif
     @if (config('services.google_tag_manager.enabled'))
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={!! config('services.google_tag_manager.id') !!}"
@@ -95,8 +99,5 @@ $print = isset($_GET['print']);
 @endif
 
 @include('partials._scripts')
-@if ($print)
-    <script>window.print();</script>
-@endif
 </body>
 </html>
