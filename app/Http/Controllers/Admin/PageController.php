@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\PageRepository;
 use Session;
 
@@ -86,7 +86,7 @@ class PageController extends ModuleController
             ['fieldset' => 'dining', 'label' => 'Dining'],
             ['fieldset' => 'faq', 'label' => 'FAQ'],
             ['fieldset' => 'tours', 'label' => 'Tours'],
-            ['fieldset' => 'families', 'label' => 'Families, teens and educators']
+            ['fieldset' => 'families', 'label' => 'Families, teens and educators'],
         ];
 
         $fields = $this->form($page->id);

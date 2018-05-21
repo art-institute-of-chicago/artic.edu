@@ -1,4 +1,4 @@
-@extends('cms-toolkit::layouts.form', [
+@extends('twill::layouts.form', [
     'contentFieldsetLabel' => $feeAges->isEmpty() ? 'Please create Admission ages and categories' : $feeAges->first()->title,
     'additionalFieldsets' => $feeAges->reject(function ($feeAge, $index) {
         return $index == 0;

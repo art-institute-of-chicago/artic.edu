@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-
 class ShopItemController extends BaseApiController
 {
     protected $moduleName = 'shopItems';
@@ -32,7 +30,7 @@ class ShopItemController extends BaseApiController
         'description' => [
             'title' => 'Description',
             'field' => 'description',
-        ]
+        ],
     ];
 
 }

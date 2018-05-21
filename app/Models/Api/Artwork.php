@@ -2,10 +2,10 @@
 
 namespace App\Models\Api;
 
-use A17\CmsToolkit\Models\Behaviors\HasPresenter;
+use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
-use App\Models\Behaviors\HasMediasApi;
 use App\Models\Api\Asset;
+use App\Models\Behaviors\HasMediasApi;
 
 class Artwork extends BaseApiModel
 {
@@ -15,26 +15,26 @@ class Artwork extends BaseApiModel
 
     protected $endpoints = [
         'collection' => '/api/v1/artworks',
-        'resource'   => '/api/v1/artworks/{id}',
-        'search'     => '/api/v1/artworks/search',
-        'boosted'    => '/api/v1/artworks/boosted'
+        'resource' => '/api/v1/artworks/{id}',
+        'search' => '/api/v1/artworks/search',
+        'boosted' => '/api/v1/artworks/boosted',
     ];
 
     protected $augmented = true;
     protected $augmentedModelClass = 'App\Models\Artwork';
 
-    protected $presenter       = 'App\Presenters\Admin\ArtworkPresenter';
-    protected $presenterAdmin  = 'App\Presenters\Admin\ArtworkPresenter';
+    protected $presenter = 'App\Presenters\Admin\ArtworkPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\ArtworkPresenter';
 
     protected $appends = ['fullTitle'];
 
     public $mediasParams = [
         'hero' => [
             'default' => [
-                'field'  => 'image_id',
+                'field' => 'image_id',
             ],
             'thumbnail' => [
-                'field'  => 'image_id',
+                'field' => 'image_id',
             ],
         ],
     ];
@@ -58,8 +58,10 @@ class Artwork extends BaseApiModel
 
     public function getCataloguesAttribute()
     {
-        if (!empty($this->catalogue_pivots))
+        if (!empty($this->catalogue_pivots)) {
             return collect($this->catalogue_pivots);
+        }
+
     }
 
     public function getDateBlockAttribute()
@@ -74,7 +76,7 @@ class Artwork extends BaseApiModel
             ->multimediaForArtwork($this->id)
             ->multimediaAssets()
             ->forPage(null, self::RELATED_MULTIMEDIA)
-            ->get(["id","title","content","api_model","is_multimedia_resource", "is_educational_resource"]);
+            ->get(["id", "title", "content", "api_model", "is_multimedia_resource", "is_educational_resource"]);
     }
 
     public function getEducationalResourcesAttribute()
@@ -84,7 +86,7 @@ class Artwork extends BaseApiModel
             ->educationalForArtwork($this->id)
             ->educationalAssets()
             ->forPage(null, self::RELATED_MULTIMEDIA)
-            ->get(["id","title","content","api_model","is_multimedia_resource", "is_educational_resource"]);
+            ->get(["id", "title", "content", "api_model", "is_multimedia_resource", "is_educational_resource"]);
     }
 
     public function getTypeAttribute()
@@ -137,15 +139,15 @@ class Artwork extends BaseApiModel
         $main = $this->imageFront('hero');
         empty($main) ?: $main['credit'] = $this->getImageCopyright();
 
-        return collect($this->extraImages)->map(function($image) {
+        return collect($this->extraImages)->map(function ($image) {
             $img = $image->imageFront();
             $img['credit'] = ($image->copyright_notice ?? $this->getImageCopyright());
             return $img;
         })
-        ->prepend($main)
-        ->reject(function ($name) {
-            return empty($name);
-        });
+            ->prepend($main)
+            ->reject(function ($name) {
+                return empty($name);
+            });
     }
 
     public function categories()
@@ -179,9 +181,9 @@ class Artwork extends BaseApiModel
         $aggs = [
             'types' => [
                 'terms' => [
-                    'field' => 'classification_id'
-                ]
-            ]
+                    'field' => 'classification_id',
+                ],
+            ],
         ];
 
         return $query->aggregations($aggs);
@@ -200,11 +202,11 @@ class Artwork extends BaseApiModel
                 "must" => [
                     [
                         "terms" => [
-                            "classification_id" => $ids
-                        ]
-                    ]
-                ]
-            ]
+                            "classification_id" => $ids,
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         return $query->rawSearch($params);
@@ -223,11 +225,11 @@ class Artwork extends BaseApiModel
                 "must" => [
                     [
                         "terms" => [
-                            "artist_id" => $ids
-                        ]
-                    ]
-                ]
-            ]
+                            "artist_id" => $ids,
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         return $query->rawSearch($params);
@@ -246,11 +248,11 @@ class Artwork extends BaseApiModel
                 "must" => [
                     [
                         "terms" => [
-                            "style_id" => $ids
-                        ]
-                    ]
-                ]
-            ]
+                            "style_id" => $ids,
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         return $query->rawSearch($params);

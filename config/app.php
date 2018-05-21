@@ -151,7 +151,7 @@ return [
          * Package Service Providers...
          */
 
-        A17\CmsToolkit\CmsToolkitServiceProvider::class,
+        A17\Twill\TwillServiceProvider::class,
 
         /*
          * Application Service Providers...

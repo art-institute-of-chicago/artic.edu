@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\EducatorResourceRepository;
 use App\Repositories\ResourceCategoryRepository;
 
@@ -14,19 +13,15 @@ class EducatorResourceController extends ModuleController
 
     protected function formData($request)
     {
-        $baseUrl = '//'.config('app.url')."/collection/resources/educator-resources/";
+        $baseUrl = '//' . config('app.url') . "/collection/resources/educator-resources/";
         return [
             'categoriesList' => app(ResourceCategoryRepository::class)->listAll('name'),
-            'baseUrl' => $baseUrl
+            'baseUrl' => $baseUrl,
         ];
     }
 
     protected function previewData($item)
     {
-        // The ID is a datahub_id not a local ID
-        $apiRepo = app(EducatorResourceRepository::class);
-        $apiItem = $apiRepo->getById($item->id);
-
-        return $apiRepo->getShowData($item);
+        return $this->repository->getShowData($item);
     }
 }

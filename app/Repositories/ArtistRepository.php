@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
-use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
-use App\Repositories\Api\BaseApiRepository;
+use A17\Twill\Repositories\Behaviors\HandleMedias;
+use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\Artist;
+use App\Repositories\Api\BaseApiRepository;
 
 class ArtistRepository extends BaseApiRepository
 {

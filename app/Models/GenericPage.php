@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasFiles;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Behaviors\HasPosition;
-use A17\CmsToolkit\Models\Behaviors\Sortable;
-use A17\CmsToolkit\Models\Model;
-
-use Kalnoy\Nestedset\NodeTrait;
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Behaviors\Sortable;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
+use Kalnoy\Nestedset\NodeTrait;
 
 class GenericPage extends Model implements Sortable
 {
@@ -30,7 +29,7 @@ class GenericPage extends Model implements Sortable
         'listing',
         'banner',
         'redirect_url',
-        'is_redirect_url_external'
+        'is_redirect_url_external',
     ];
 
     public $dates = ['publish_start_date', 'publish_end_date'];
@@ -66,7 +65,7 @@ class GenericPage extends Model implements Sortable
                     'name' => 'landscape',
                     'ratio' => 25 / 3,
                 ],
-            ]
+            ],
         ],
     ];
 
@@ -78,17 +77,17 @@ class GenericPage extends Model implements Sortable
         }
 
         $url = "";
-        foreach($this->ancestors as $item) {
-            $url = $url ."/".$item->slug;
+        foreach ($this->ancestors as $item) {
+            $url = $url . "/" . $item->slug;
         }
-        $url = $url ."/".$this->slug;
+        $url = $url . "/" . $this->slug;
 
         return $url;
     }
 
-    public function getUrl($prefix="")
+    public function getUrl($prefix = "")
     {
-        return $prefix."/".$this->slug;
+        return $prefix . "/" . $this->slug;
     }
 
     public static function saveTreeFromIds($nodesArray)
@@ -163,20 +162,20 @@ class GenericPage extends Model implements Sortable
         $sub = $ancestors->shift();
         $forceNav = false;
         if ($sub) {
-            foreach($sub->children as $item) {
+            foreach ($sub->children as $item) {
                 $subNav[] = ['href' => $item->url, 'label' => $item->title];
             }
         } else {
             if (sizeof($ancestors) == 0) {
                 $forceNav = true;
-                foreach($this->children as $item) {
+                foreach ($this->children as $item) {
                     $subNav[] = ['href' => $item->url, 'label' => $item->title];
                 }
             }
         }
 
         if ($root) {
-            foreach($root->children as $item) {
+            foreach ($root->children as $item) {
                 $navItem = ['href' => $item->url, 'label' => $item->title];
 
                 if ($sub && $item->id == $sub->id || ($forceNav && $this->id == $item->id)) {
@@ -197,7 +196,7 @@ class GenericPage extends Model implements Sortable
 
         $ancestors = clone $this->ancestors;
 
-        foreach($ancestors as $ancestor) {
+        foreach ($ancestors as $ancestor) {
             $crumb = [];
             $crumb['label'] = $ancestor->title;
             $crumb['href'] = $ancestor->url;
@@ -212,6 +211,5 @@ class GenericPage extends Model implements Sortable
 
         return $crumbs;
     }
-
 
 }

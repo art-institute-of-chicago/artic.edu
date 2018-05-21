@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-
 class DepartmentController extends BaseApiController
 {
     protected $moduleName = 'departments';
@@ -32,8 +30,8 @@ class DepartmentController extends BaseApiController
         'augmented' => [
             'title' => 'Augmented?',
             'field' => 'augmented',
-            'present' => true
-        ]
+            'present' => true,
+        ],
     ];
 
 }

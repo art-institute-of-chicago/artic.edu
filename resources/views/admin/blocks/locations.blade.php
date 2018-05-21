@@ -4,7 +4,7 @@
     'required' => true
 ])
 
-@component('cms-toolkit::partials.form.utils._collapsed_fields', ['label' => 'Edit location'])
+@component('twill::partials.form.utils._collapsed_fields', ['label' => 'Edit location'])
     @formField('input', [
         'name' => 'street',
         'label' => 'Street',

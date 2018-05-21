@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\ResearchGuideRepository;
 
 class ResearchGuideController extends ModuleController
@@ -13,19 +12,15 @@ class ResearchGuideController extends ModuleController
 
     protected function formData($request)
     {
-        $baseUrl = '//'.config('app.url')."/collection/resources/research-guides/";
+        $baseUrl = '//' . config('app.url') . "/collection/resources/research-guides/";
         return [
-            'baseUrl' => $baseUrl
+            'baseUrl' => $baseUrl,
         ];
     }
 
     protected function previewData($item)
     {
-        // The ID is a datahub_id not a local ID
-        $apiRepo = app(ResearchGuideRepository::class);
-        $apiItem = $apiRepo->getById($item->id);
-
-        return $apiRepo->getShowData($item);
+        return $this->repository->getShowData($item);
     }
 
 }

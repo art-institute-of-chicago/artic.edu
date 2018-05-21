@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-
 class GalleryController extends BaseApiController
 {
     protected $moduleName = 'galleries';
@@ -32,8 +30,8 @@ class GalleryController extends BaseApiController
         'augmented' => [
             'title' => 'Augmented?',
             'field' => 'augmented',
-            'present' => true
-        ]
+            'present' => true,
+        ],
     ];
 
 }

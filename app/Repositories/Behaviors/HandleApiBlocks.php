@@ -24,10 +24,11 @@ trait HandleApiBlocks
                 // If it's an API model and has an augmented model setup the correct edit link
                 if (method_exists($relatedElement, 'hasAugmentedModel')) {
                     if ($relatedElement->hasAugmentedModel() && $relatedElement->getAugmentedModel()) {
-                        $data['edit'] = moduleRoute($relation, config('cms-toolkit.block_editor.browser_route_prefixes.' . $relation), 'edit', $relatedElement->getAugmentedModel()->id);
+                        $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', $relatedElement->getAugmentedModel()->id);
                     }
-                } else { // Load a normal edit
-                    $data['edit'] = moduleRoute($relation, config('cms-toolkit.block_editor.browser_route_prefixes.' . $relation), 'edit', $relatedElement->id);
+                } else {
+                    // Load a normal edit
+                    $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', $relatedElement->id);
                 }
 
                 return [
@@ -49,14 +50,13 @@ trait HandleApiBlocks
         }
 
         // Always load the API repository first and fallback to the augmented or regular one.
-        $apiRepo = config('cms-toolkit.namespace') . "\\Repositories\\Api\\" . ucfirst($model) . "Repository";
+        $apiRepo = config('twill.namespace') . "\\Repositories\\Api\\" . ucfirst($model) . "Repository";
 
         if (class_exists($apiRepo)) {
             return app($apiRepo);
         } else {
-            return app(config('cms-toolkit.namespace') . "\\Repositories\\" . ucfirst($model) . "Repository");
+            return app(config('twill.namespace') . "\\Repositories\\" . ucfirst($model) . "Repository");
         }
     }
 
 }
-

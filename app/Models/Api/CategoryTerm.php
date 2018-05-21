@@ -2,8 +2,8 @@
 
 namespace App\Models\Api;
 
+use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
-use A17\CmsToolkit\Models\Behaviors\HasPresenter;
 
 class CategoryTerm extends BaseApiModel
 {
@@ -11,26 +11,26 @@ class CategoryTerm extends BaseApiModel
 
     protected $endpoints = [
         'collection' => '/api/v1/category-terms',
-        'resource'   => '/api/v1/category-terms/{id}',
-        'search'     => '/api/v1/category-terms/search'
+        'resource' => '/api/v1/category-terms/{id}',
+        'search' => '/api/v1/category-terms/search',
     ];
 
-    protected $presenter       = 'App\Presenters\Admin\CategoryTermPresenter';
-    protected $presenterAdmin  = 'App\Presenters\Admin\CategoryTermPresenter';
+    protected $presenter = 'App\Presenters\Admin\CategoryTermPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\CategoryTermPresenter';
 
     protected $augmented = true;
     protected $augmentedModelClass = 'App\Models\CategoryTerm';
 
     public $subtypeToParameter = [
-        'style'      => 'style_ids',
-        'material'   => 'material_ids',
-        'subject'    => 'subject_ids',
+        'style' => 'style_ids',
+        'material' => 'material_ids',
+        'subject' => 'subject_ids',
         'department' => 'department_ids',
         'classification' => 'classification_ids',
 
         // Hidden ones from the filters.
-        'technique'  => 'technique_ids',
-        'theme'      => 'theme_ids'
+        'technique' => 'technique_ids',
+        'theme' => 'theme_ids',
     ];
 
     public function getParameterName()

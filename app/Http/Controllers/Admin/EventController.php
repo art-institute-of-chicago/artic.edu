@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 
 class EventController extends ModuleController
 {
@@ -26,7 +26,7 @@ class EventController extends ModuleController
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-        ]
+        ],
     ];
 
     protected $featureField = 'landing';
@@ -47,7 +47,7 @@ class EventController extends ModuleController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('event'));
-        $baseUrl = '//'.config('app.url').'/events/'.$item->id.'-';
+        $baseUrl = '//' . config('app.url') . '/events/' . $item->id . '-';
 
         return [
             'eventTypesList' => $this->repository->getEventTypesList(),

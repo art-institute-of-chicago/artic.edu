@@ -1,4 +1,4 @@
-@extends('cms-toolkit::layouts.form', [
+@extends('twill::layouts.form', [
     'additionalFieldsets' => [
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'related', 'label' => 'Further Reading'],

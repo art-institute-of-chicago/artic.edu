@@ -13,6 +13,7 @@ return [
         'buckets' => true,
         'media-library' => true,
         'file-library' => true,
+        'dashboard' => true,
     ],
 
     'block_editor' => [
@@ -306,4 +307,5 @@ return [
             ],
         ],
     ],
+
 ];

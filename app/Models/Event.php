@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
+use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRecurrentDates;
 use Carbon\Carbon;
-use App\Models\Behaviors\HasMediasEloquent;
 
 class Event extends Model
 {
@@ -22,7 +22,7 @@ class Event extends Model
 
     protected $dispatchesEvents = [
         'saved' => \App\Events\UpdateEvent::class,
-        'deleted' => \App\Events\UpdateEvent::class
+        'deleted' => \App\Events\UpdateEvent::class,
     ];
 
     protected $fillable = [
@@ -73,7 +73,7 @@ class Event extends Model
         self::SPECIAL_EVENT => 'Special Event',
         self::TALKS => 'Talks',
         self::TOUR => 'Tour',
-        self::COMMUNITIES => 'Programs in Communities'
+        self::COMMUNITIES => 'Programs in Communities',
     ];
 
     const FAMILIES = 1;
@@ -131,7 +131,7 @@ class Event extends Model
                     'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
-            ]
+            ],
         ],
     ];
 
@@ -170,7 +170,7 @@ class Event extends Model
     public function getAllDatesCmsAttribute()
     {
         $dates_string = '';
-        foreach($this->all_dates as $date) {
+        foreach ($this->all_dates as $date) {
             $dates_string .= $date['date']->format('F j, Y h:ia') . ' - ' . $date['date_end']->format('F j, Y h:ia') . "\n";
         }
 
@@ -235,8 +235,8 @@ class Event extends Model
 
     public static function groupByDay($collection)
     {
-        return $collection->groupBy(function($item) {
-          return $item->date->format('Y-m-d');
+        return $collection->groupBy(function ($item) {
+            return $item->date->format('Y-m-d');
         });
     }
 

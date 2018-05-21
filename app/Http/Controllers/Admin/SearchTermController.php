@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 
 class SearchTermController extends ModuleController
 {
@@ -12,7 +12,7 @@ class SearchTermController extends ModuleController
         'publish' => false,
         'reorder' => true,
         'editInModal' => true,
-        'permalink' => false
+        'permalink' => false,
     ];
 
     protected $titleColumnKey = 'name';

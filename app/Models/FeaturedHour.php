@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
+use A17\Twill\Models\Model;
 
-use A17\CmsToolkit\Models\Model;
-
-class FeaturedHour extends Model 
+class FeaturedHour extends Model
 {
-    
 
     protected $fillable = [
         'published',

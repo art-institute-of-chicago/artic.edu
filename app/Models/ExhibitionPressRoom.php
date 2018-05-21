@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasFiles;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class ExhibitionPressRoom extends Model
@@ -22,7 +22,7 @@ class ExhibitionPressRoom extends Model
         'published',
         'publish_start_date',
         'publish_end_date',
-        'public'
+        'public',
     ];
 
     public $checkboxes = ['published', 'public'];
@@ -56,7 +56,7 @@ class ExhibitionPressRoom extends Model
                     'name' => 'landscape',
                     'ratio' => 200 / 24,
                 ],
-            ]
+            ],
         ],
     ];
 

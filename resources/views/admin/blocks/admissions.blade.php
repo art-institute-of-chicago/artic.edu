@@ -4,7 +4,7 @@
     'required' => true
 ])
 
-@component('cms-toolkit::partials.form.utils._collapsed_fields', ['label' => 'Edit admission'])
+@component('twill::partials.form.utils._collapsed_fields', ['label' => 'Edit admission'])
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Date',

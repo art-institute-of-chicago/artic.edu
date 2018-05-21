@@ -2,15 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use A17\CmsToolkit\Http\Controllers\Front\ShowWithPreview;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\GenericPageRepository;
-
-use App\Models\Event;
-use App\Models\Exhibition;
-use App\Models\GenericPage;
 
 class GenericPagesController extends FrontController
 {
@@ -91,7 +84,7 @@ class GenericPagesController extends FrontController
                 if ($item) {
                     $featured = [
                         'type' => 'event'
-                    ,   'items' => [$item]
+                        , 'items' => [$item],
                     ];
                 }
             }
@@ -100,7 +93,7 @@ class GenericPagesController extends FrontController
                 if ($item) {
                     $featured = [
                         'type' => 'article'
-                    ,   'items' => [$item]
+                        , 'items' => [$item],
                     ];
                 }
             }
@@ -110,7 +103,7 @@ class GenericPagesController extends FrontController
                     $exhibition = $this->exhibitionRepository->getById($item->datahub_id);
                     $featured = [
                         'type' => 'exhibition'
-                    ,   'items' => [$exhibition]
+                        , 'items' => [$exhibition],
                     ];
                 }
             }

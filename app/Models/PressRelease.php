@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasFiles;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 use Carbon\Carbon;
 use DB;
 
 class PressRelease extends Model
 {
-    use HasBlocks,  HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
 
     protected $fillable = [
         'short_description',
@@ -29,7 +29,7 @@ class PressRelease extends Model
     ];
 
     public $slugAttributes = [
-        'title'
+        'title',
     ];
 
     public $checkboxes = ['published', 'active', 'public'];
@@ -57,7 +57,7 @@ class PressRelease extends Model
                     'name' => 'landscape',
                     'ratio' => 200 / 24,
                 ],
-            ]
+            ],
         ],
     ];
 
@@ -92,24 +92,29 @@ class PressRelease extends Model
         return $query->orderBy('publish_start_date', 'desc');
     }
 
-    public function scopeCurrent($query) {
+    public function scopeCurrent($query)
+    {
         return $query->whereNull('publish_start_date')
             ->orWhere('publish_start_date', '>', Carbon::parse('2011-12-31'));
     }
 
-    public function scopeArchive($query) {
+    public function scopeArchive($query)
+    {
         return $query->where('publish_start_date', '<=', Carbon::parse('2011-12-31'));
     }
 
-    public function getUrlAttribute() {
+    public function getUrlAttribute()
+    {
         return url(route('about.press.show', $this->id_slug));
     }
 
-    public function scopeByYear($query, $year) {
+    public function scopeByYear($query, $year)
+    {
         return $query->where(DB::raw('EXTRACT( YEAR FROM publish_start_date )'), $year);
     }
 
-    public function scopeByMonth($query, $year) {
+    public function scopeByMonth($query, $year)
+    {
         return $query->where(DB::raw('EXTRACT( MONTH FROM publish_start_date )'), $year);
     }
 

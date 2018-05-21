@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 
 class PageCategory extends Model
 {

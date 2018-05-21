@@ -13,7 +13,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 use Illuminate\Http\Request;
 
 class BaseApiController extends ModuleController
@@ -27,7 +27,7 @@ class BaseApiController extends ModuleController
         'search' => 'search',
     ];
 
-    // Remove CMS toolkit table filters.
+    // Remove Twill table filters.
     public function getIndexTableMainFilters($items, $scopes = [])
     {
         return [];

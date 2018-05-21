@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 
 class SiteTag extends Model
 {
@@ -29,8 +29,8 @@ class SiteTag extends Model
                 "name" => 'name',
                 "doc" => "Name of this tag",
                 "type" => "string",
-                "value" => function() { return $this->name; }
-            ]
+                "value" => function () {return $this->name;},
+            ],
         ];
     }
 }

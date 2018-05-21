@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
-use A17\CmsToolkit\Models\Model;
 
 class HomeFeature extends Model
 {
@@ -22,7 +22,7 @@ class HomeFeature extends Model
 
     protected $dispatchesEvents = [
         'saved' => \App\Events\UpdateHomeFeature::class,
-        'deleted' => \App\Events\UpdateHomeFeature::class
+        'deleted' => \App\Events\UpdateHomeFeature::class,
     ];
 
     // fill this in if you use the HasMedias traits
@@ -32,8 +32,8 @@ class HomeFeature extends Model
                 [
                     'name' => 'landscape',
                     'ratio' => 16 / 9,
-                ]
-            ]
+                ],
+            ],
         ],
     ];
     public $filesParams = ['video']; // a list of file roles

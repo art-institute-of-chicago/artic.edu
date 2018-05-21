@@ -3,10 +3,10 @@
 namespace App\Repositories;
 
 
-use A17\CmsToolkit\Repositories\ModuleRepository;
+use A17\Twill\Repositories\ModuleRepository;
 use App\Models\CollectionFeature;
 
-use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
+use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 

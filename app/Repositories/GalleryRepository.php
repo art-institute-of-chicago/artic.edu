@@ -2,9 +2,7 @@
 
 namespace App\Repositories;
 
-use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
-use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
-use A17\CmsToolkit\Repositories\ModuleRepository;
+use A17\Twill\Repositories\Behaviors\HandleMedias;
 use App\Models\Gallery;
 use App\Repositories\Api\BaseApiRepository;
 

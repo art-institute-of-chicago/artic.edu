@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\PressReleaseRepository;
 
 class PressReleaseController extends ModuleController
@@ -16,7 +15,7 @@ class PressReleaseController extends ModuleController
     protected $indexColumns = [
         'title' => [
             'field' => 'title',
-            'title' => 'Title'
+            'title' => 'Title',
         ],
         'publish_start_date' => [
             'title' => 'Publish Date',
@@ -28,18 +27,14 @@ class PressReleaseController extends ModuleController
 
     protected function formData($request)
     {
-        $baseUrl = '//'.config('app.url')."/press/";
+        $baseUrl = '//' . config('app.url') . "/press/";
         return [
-            'baseUrl' => $baseUrl
+            'baseUrl' => $baseUrl,
         ];
     }
 
     protected function previewData($item)
     {
-        // The ID is a datahub_id not a local ID
-        $apiRepo = app(PressReleaseRepository::class);
-        $apiItem = $apiRepo->getById($item->id);
-
-        return $apiRepo->getShowData($item);
+        return $this->repository->getShowData($item);
     }
 }

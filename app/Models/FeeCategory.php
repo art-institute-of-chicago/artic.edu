@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
-use A17\CmsToolkit\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Model;
 
 class FeeCategory extends Model
 {
@@ -12,7 +12,7 @@ class FeeCategory extends Model
     protected $fillable = [
         'title',
         'tooltip',
-        'position'
+        'position',
     ];
 
     // those fields get auto set to null if not submited

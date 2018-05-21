@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-use A17\CmsToolkit\Models\Model;
+
+use A17\Twill\Models\Model;
 
 class DateRule extends Model
 {
@@ -26,13 +27,13 @@ class DateRule extends Model
     public static $ruleTypes = [
         0 => 'Recurring event',
         1 => 'Include specific date (all fields ignored except Start Date)',
-        2 => 'Exclude specific date (all fields ignored except Start Date)'
+        2 => 'Exclude specific date (all fields ignored except Start Date)',
     ];
 
     public static $recurringTypes = [
         0 => 'Days',
         1 => 'Week/s',
-        2 => 'Month/s'
+        2 => 'Month/s',
     ];
 
     public static $monthlyRepeat = [
@@ -62,32 +63,39 @@ class DateRule extends Model
         return collect(self::$monthlyRepeat);
     }
 
-    public function getRuleType() {
+    public function getRuleType()
+    {
         switch ($this->type) {
-            case 0: return 'recurrent';
-            case 1: return 'include';
-            case 2: return 'exclude';
+            case 0:return 'recurrent';
+            case 1:return 'include';
+            case 2:return 'exclude';
         }
     }
 
-    public function getMonthlyRepeatType() {
+    public function getMonthlyRepeatType()
+    {
         switch ($this->monthly_repeat_pattern) {
-            case 0: return 'numeral';
-            case 1: return 'first_day';
+            case 0:return 'numeral';
+            case 1:return 'first_day';
         }
     }
 
-    public function getRecurringType() {
+    public function getRecurringType()
+    {
         switch ($this->recurring_type) {
-            case 0: return 'DAILY';
-            case 1: return 'WEEKLY';
-            case 2: return 'MONTHLY';
+            case 0:return 'DAILY';
+            case 1:return 'WEEKLY';
+            case 2:return 'MONTHLY';
         }
     }
 
-    public function getDays() {
-        return array_filter(array_map(function($element) {
-            if ($this->$element) return strtoupper(substr($element,0,2));
+    public function getDays()
+    {
+        return array_filter(array_map(function ($element) {
+            if ($this->$element) {
+                return strtoupper(substr($element, 0, 2));
+            }
+
         }, ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']));
     }
 }

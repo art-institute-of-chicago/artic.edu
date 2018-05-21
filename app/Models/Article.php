@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Model;
-use App\Models\Behaviors\HasMediasEloquent;
-
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class Article extends Model
 {
@@ -22,7 +21,7 @@ class Article extends Model
 
     protected $dispatchesEvents = [
         'saved' => \App\Events\UpdateArticle::class,
-        'deleted' => \App\Events\UpdateArticle::class
+        'deleted' => \App\Events\UpdateArticle::class,
     ];
 
     protected $fillable = [
@@ -82,8 +81,8 @@ class Article extends Model
                     'name' => 'square',
                     'ratio' => 1,
                 ],
-            ]
-        ]
+            ],
+        ],
     ];
 
     public function getIntroAttribute()
@@ -117,14 +116,13 @@ class Article extends Model
         return $this->belongsToMany('App\Models\Category', 'article_category');
     }
 
-
     public function scopeByCategory($query, $category = null)
     {
         if (empty($category)) {
             return $query;
         }
 
-        return $query->whereHas('categories', function ($query) use ($category){
+        return $query->whereHas('categories', function ($query) use ($category) {
             $query->where('category_id', $category);
         });
     }
@@ -133,7 +131,6 @@ class Article extends Model
     {
         return $this->belongsToMany('App\Models\Selection')->withPivot('position')->orderBy('position');
     }
-
 
     public function articles()
     {
@@ -168,8 +165,9 @@ class Article extends Model
     public function getFeaturedRelatedAttribute()
     {
         // Select a random element from those relationships below and return one per request
-        if ($this->selectedFeaturedRelated)
+        if ($this->selectedFeaturedRelated) {
             return $this->selectedFeaturedRelated;
+        }
 
         $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
         foreach ($types as $type) {
@@ -192,7 +190,7 @@ class Article extends Model
 
                 $this->selectedFeaturedRelated = [
                     'type' => str_singular($type),
-                    'items' => [$item]
+                    'items' => [$item],
                 ];
                 return $this->selectedFeaturedRelated;
             }
@@ -206,25 +204,25 @@ class Article extends Model
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function() { return $this->published; }
+                "value" => function () {return $this->published;},
             ],
             [
                 "name" => 'date',
                 "doc" => "Date",
                 "type" => "date",
-                "value" => function() { return $this->date; }
+                "value" => function () {return $this->date;},
             ],
             [
                 "name" => 'copy',
                 "doc" => "Copy",
                 "type" => "text",
-                "value" => function() { return $this->blocks; }
+                "value" => function () {return $this->blocks;},
             ],
             [
                 "name" => 'is_boosted',
                 "doc" => "Is Boosted",
                 "type" => "boolean",
-                "value" => function() { return $this->is_boosted; }
+                "value" => function () {return $this->is_boosted;},
             ],
             [
                 "name" => "slug",

@@ -8,7 +8,7 @@ use LakeviewImageService;
 trait HasMediasEloquent
 {
 
-    // Implement an image helper to avoid overwriting the CMS-TOOLKIT ones.
+    // Implement an image helper to avoid overwriting the Twill ones.
     // If it has an image run it through aic_convertFromImage
 
     public function imageFront( ...$parameters ) {

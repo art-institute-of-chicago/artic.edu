@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\CategoryRepository;
 
 class ArticleController extends ModuleController
@@ -59,12 +59,12 @@ class ArticleController extends ModuleController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('article'));
-        $baseUrl = '//'.config('app.url').'/articles/'.$item->id.'-';
+        $baseUrl = '//' . config('app.url') . '/articles/' . $item->id . '-';
 
         return [
             'categoriesList' => app(CategoryRepository::class)->listAll('name'),
             'articleLayoutsList' => $this->repository->getArticleLayoutsList(),
-            'baseUrl' => $baseUrl
+            'baseUrl' => $baseUrl,
         ];
     }
 }

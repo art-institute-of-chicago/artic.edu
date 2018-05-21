@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasFiles;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Model;
-
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class ResearchGuide extends Model
@@ -22,11 +21,11 @@ class ResearchGuide extends Model
         'published',
         'public',
         'publish_start_date',
-        'publish_end_date'
+        'publish_end_date',
     ];
 
     public $slugAttributes = [
-        'title'
+        'title',
     ];
 
     protected $presenter = 'App\Presenters\Admin\GenericListingPresenter';
@@ -56,10 +55,9 @@ class ResearchGuide extends Model
                     'name' => 'landscape',
                     'ratio' => 200 / 24,
                 ],
-            ]
+            ],
         ],
     ];
-
 
     // Generates the id-slug type of URL
     public function getRouteKeyName()
