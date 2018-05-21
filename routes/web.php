@@ -105,10 +105,10 @@ Route::name('selections.show')->get('/selections/{id}/{slug?}', 'SelectionsContr
 Route::name('about.press')->get('/press', 'PressReleasesController@index');
 Route::name('about.press.archive')->get('/press/archive', 'PressReleasesController@archive');
 Route::moduleShowWithPreview('pressreleases');
-Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@show');
+Route::name('about.press.show')->get('/press/{id}/{slug?}', 'PressReleasesController@show');
 
 Route::name('about.exhibitionPressRooms')->get('/about/exhibition-press-room', 'ExhibitionPressRoomController@index');
-Route::name('about.exhibitionPressRooms.show')->get('/about/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
+Route::name('about.exhibitionPressRooms.show')->get('/about/exhibition-press-room/{id}/{slug?}', 'ExhibitionPressRoomController@show');
 
 // Footer Head Links
 Route::name('learn')->get('/learn', 'GenericPagesController@show');
