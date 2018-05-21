@@ -112,8 +112,8 @@
 
         <section>
             @component('components.molecules._m-title-bar')
-                @slot('links', array(array('label' => 'Browse all digital catalogs', 'href' => route('collection.publications.digital-catalogs'))))
-                Digital Catalogs
+                @slot('links', array(array('label' => 'Browse all digital catalogues', 'href' => route('collection.publications.digital-catalogs'))))
+                Digital Catalogues
             @endcomponent
 
             @component('components.atoms._hr')
@@ -148,7 +148,7 @@
                 @slot('variation', 'm-links-bar--title-bar-companion')
                 @slot('linksPrimary', array(
                     array(
-                        'label' => 'Browse all digital catalogs',
+                        'label' => 'Browse all digital catalogues',
                         'href' => route('collection.publications.digital-catalogs'),
                         'variation' => 'btn btn--secondary'
                     ),
@@ -158,7 +158,7 @@
 
         <section>
             @component('components.molecules._m-title-bar')
-                @slot('links', array(array('label' => 'Browse all printed catalogs', 'href' => route('collection.publications.printed-catalogs'))))
+                @slot('links', array(array('label' => 'Browse all printed catalogues', 'href' => route('collection.publications.printed-catalogs'))))
                 Printed Catalogs
             @endcomponent
 
@@ -196,7 +196,7 @@
                 @slot('variation', 'm-links-bar--title-bar-companion')
                 @slot('linksPrimary', array(
                     array(
-                        'label' => 'Browse all printed catalogs',
+                        'label' => 'Browse all printed catalogues',
                         'href' => route('collection.publications.printed-catalogs'),
                         'variation' => 'btn btn--secondary'
                     ),

@@ -42,7 +42,7 @@ class PrintedCatalogsController extends BaseScopedController
         $view_data = [
             'wideBody' => true,
             'filters' => $this->getFilters(),
-            'listingCountText' => 'Showing '.$items->total().' printed catalogs',
+            'listingCountText' => 'Showing '.$items->total().' printed catalogues',
             'listingItems' => $items,
         ] + $navElements;
 
@@ -67,7 +67,7 @@ class PrintedCatalogsController extends BaseScopedController
         ];
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Printed catalogs', 'href' => route('collection.publications.printed-catalogs')],
+            ['label' => 'Printed catalogues', 'href' => route('collection.publications.printed-catalogs')],
             ['label' => $page->title, 'href' => '']
         ];
 

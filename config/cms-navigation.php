@@ -121,11 +121,11 @@ return [
                         'module' => true,
                     ],
                     'printedCatalogs' => [
-                        'title' => 'Printed Catalogs',
+                        'title' => 'Printed Catalogues',
                         'module' => true,
                     ],
                     'digitalCatalogs' => [
-                        'title' => 'Digital Catalogs',
+                        'title' => 'Digital Catalogues',
                         'module' => true,
                     ]
                 ],

@@ -13,7 +13,7 @@
         'max' => 3,
         'moduleName' => 'digitalCatalogs',
         'name' => 'digitalCatalogs',
-        'label' => 'Digital catalogs'
+        'label' => 'Digital catalogues'
     ])
 
     @formField('browser', [
@@ -21,7 +21,7 @@
         'max' => 4,
         'moduleName' => 'printedCatalogs',
         'name' => 'printedCatalogs',
-        'label' => 'Printed catalogs'
+        'label' => 'Printed catalogues'
     ])
 
     @formField('input', [
