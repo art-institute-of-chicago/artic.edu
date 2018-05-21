@@ -501,6 +501,15 @@
         Senary, with Image
     @endcomponent
 </p>
+<p style="margin-top: 20px;">
+    @component('components.atoms._tag')
+        @slot('font', 'f-tag-2')
+        @slot('variation', 'tag--quaternary tag--l')
+        @slot('href','#')
+        Large, quaternary with icon
+        <svg class="icon--close"><use xlink:href="#icon--close" /></svg>
+    @endcomponent
+</p>
 
 @component('components.atoms._hr')
 @endcomponent
