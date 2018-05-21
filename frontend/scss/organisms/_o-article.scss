@@ -59,6 +59,13 @@
     width: colspan(13, xlarge);
     margin-right: colspan(2, xlarge);
   }
+
+  .m-article-header--default ~ & {
+    @include breakpoint('medium') {
+      float: left;
+      width: colspan(38, medium);
+    }
+  }
 }
 
   .o-article__primary-actions::before {
@@ -149,6 +156,16 @@
 
     &.o-article__secondary-actions--inline-header {
       margin-top: 40px;
+    }
+  }
+
+  @include breakpoint('medium') {
+    .m-article-header--default ~ & {
+      margin-top: 28px;
+    }
+
+    .m-article-header--default ~ .o-article__meta ~ & {
+      margin-top: -40px;
     }
   }
 
