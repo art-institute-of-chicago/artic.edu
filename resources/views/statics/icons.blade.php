@@ -96,6 +96,9 @@
   <svg class="icon--no-image">
     <use xlink:href="#icon--no-image"></use>
   </svg>
+  <svg class="icon--pencil">
+    <use xlink:href="#icon--pencil"></use>
+  </svg>
   <svg class="icon--play--48">
     <use xlink:href="#icon--play--48"></use>
   </svg>
