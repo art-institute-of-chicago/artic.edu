@@ -5,7 +5,7 @@
 <article class="o-article" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}" itemscope itemtype="http://schema.org/CreativeWork">
 
   @component('site.shared._schemaItemProps')
-    @slot('itemprops',$item->present()->buildSchemaItemProps())
+    @slot('itemprops',$item->present()->buildSchemaItemProps() ?? null)
   @endcomponent
 
   @component('components.molecules._m-article-header')

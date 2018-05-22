@@ -7,7 +7,7 @@
     <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings "/>
     <link itemprop="additionalType" href="http://schema.org/LocalBusiness"/>
     @component('site.shared._schemaItemProps')
-      @slot('itemprops',$itemprops)
+      @slot('itemprops',$itemprops ?? null)
     @endcomponent
 
     @component('components.molecules._m-media')

@@ -25,12 +25,13 @@
         @endcomponent
       @elseif ($dateStart and $dateEnd)
         @component('components.atoms._date')
-            {{ $dateStart->format('M j, Y') }} &ndash; {{ $dateEnd->format('M j, Y') }}
+            @slot('tag','p')
+            <time datetime="{{ $date->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time> &ndash; <time datetime="{{ $date->format("Y-m-d") }}" itemprop="endDate">{{ $dateEnd->format('M j, Y') }}</time>
         @endcomponent
       @elseif (isset($date))
         @component('components.atoms._date')
             @slot('tag','p')
-            {{ $date->format('F j, Y') }}
+            <time datetime="{{ $date->format("Y-m-d") }}" itemprop="startDate">{{ $date->format('F j, Y') }}</time>
         @endcomponent
       @endif
       @if (isset($type))

@@ -67,9 +67,9 @@ class EventPresenter extends BasePresenter
             return $this->entity->forced_date;
         } else {
             if ($next = $this->entity->nextOcurrence) {
-                return $next->date->format('F j, Y g:i') . '&ndash;' . $next->date_end->format('g:i');
+                return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('F j, Y h:ia').'</time> &ndash; <time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('h:ia').'</time>';
             } elseif ($last = $this->entity->lastOcurrence) {
-                return $last->date->format('F j, Y g:i') . '&ndash;' . $last->date_end->format('g:i');
+                return '<time datetime="'.$last->date->format("c").'" itemprop="startDate">'.$last->date->format('F j, Y h:ia').'</time> &ndash; <time datetime="'.$last->date_end->format("c").'" itemprop="endDate">'.$last->date_end->format('h:ia').'</time>';
             }
         }
     }
@@ -77,14 +77,14 @@ class EventPresenter extends BasePresenter
     public function nextOcurrenceDate()
     {
         if ($next = $this->entity->nextOcurrence) {
-            return $next->date->format('F j, Y');
+            return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('M j, Y').'</time>';
         }
     }
 
     public function nextOcurrenceTime()
     {
         if ($next = $this->entity->nextOcurrence) {
-            return $next->date->format('g:i') . '&ndash;' . $next->date_end->format('g:i');
+            return '<time datetime="'.$next->date->format("H:i:s").'" itemprop="startDate">'.$next->date->format('c').'</time> &ndash; <time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('h:ia').'</time>';
         }
     }
 

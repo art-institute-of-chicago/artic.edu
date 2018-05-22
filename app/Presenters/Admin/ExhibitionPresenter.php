@@ -55,10 +55,10 @@ class ExhibitionPresenter extends BasePresenter
         $date = '';
 
         if (!empty($this->entity->dateStart)) {
-            $date .= $this->entity->dateStart->format('M j, Y');
+            $date .= '<time datetime="'.$this->entity->dateStart->format("Y-m-d").'" itemprop="startDate">'.$this->entity->dateStart->format('M j, Y').'</time>';
         }
         if (!empty($this->entity->dateEnd)) {
-            $date .= '&ndash; ' . $this->entity->dateEnd->format('M j, Y');
+            $date .= '&ndash;  <time datetime="'.$this->entity->dateEnd->format("Y-m-d").'" itemprop="endDate">'.$this->entity->dateEnd->format('M j, Y').'</time>';
         }
 
         return $date;
