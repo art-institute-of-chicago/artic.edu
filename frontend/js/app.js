@@ -21,7 +21,7 @@ A17.currentMediaQuery = getCurrentMediaQuery();
 A17.env = 'production';
 A17.currentPathname = window.location.pathname;
 A17.dateRangeValues = [
-    '8000BC','7000BC','6000BC','5000BC','4000BC','3000BC','2000BC','1000BC','1AD','500AD','1000AD','1200AD','1400AD','1600AD','1700AD','1800AD','1900AD','1910AD','1920AD','1930AD','1940AD','1950AD','1960AD','1970AD','1980AD','1990AD','2000AD','2010AD','Present']; // for collection filters
+    '8000 BC','7000 BC','6000 BC','5000 BC','4000 BC','3000 BC','2000 BC','1000 BC','1 AD','500 AD','1000 AD','1200','1400','1600','1700','1800','1900','1910','1920','1930','1940','1950','1960','1970','1980','1990','2000','2010','Present']; // for collection filters
 
 document.addEventListener('DOMContentLoaded', function(){
   if (A17.print) {

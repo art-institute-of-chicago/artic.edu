@@ -1,6 +1,6 @@
 <div class="range-slider s-capped" data-behavior="rangeSlider" data-param="date" data-range-values="dateRangeValues">
   <em class="range-slider__display f-secondary">
-    <span data-range-min-display></span> - <span data-range-max-display></span>
+    <span data-range-min-display></span>&ndash;<span data-range-max-display></span>
   </em>
 
   <div class="range-slider__slider" data-range-slider></div>
