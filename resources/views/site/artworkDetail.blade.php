@@ -2,8 +2,14 @@
 
 @section('content')
 
-<article class="o-article" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}">
-
+<article class="o-article" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}" itemscope itemtype="http://schema.org/CreativeWork">
+@php
+    foreach($item->present()->buildSchemaItemProps() as $key => $value){
+        if (!empty($value)) {
+            echo '<meta itemprop="'.$key.'" content="'.$value.'"/>';
+        }
+    }
+@endphp
   @component('components.molecules._m-article-header')
     {{-- @slot('editorial', false) --}}
     @slot('headerType', $item->headerType)

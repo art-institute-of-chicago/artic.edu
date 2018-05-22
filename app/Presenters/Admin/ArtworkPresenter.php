@@ -54,8 +54,12 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->description) {
             array_push($blocks, [
-              "type"    => 'text',
-              "content" => $this->entity->description
+              "type"    => 'itemprop',
+              "content" => [[
+                "type"    => 'text',
+                "content" => $this->entity->description,
+              ]],
+              'itemprop' => 'description',
             ]);
         }
 
@@ -94,19 +98,22 @@ class ArtworkPresenter extends BasePresenter
             });
             $details[] = [
                 'key'   => str_plural('Artist', count($this->entity->artist_pivots)),
-                'links' => $artistLinks
+                'links' => $artistLinks,
+                'itemprop' => 'creator',
             ];
         } else {
             if ($this->entity->artist_id) {
                 $label = $this->entity->artist_title ?? $this->entity->artist_display;
                 $details[] = [
                     'key'   => 'Artist',
-                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id)]]
+                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id)]],
+                    'itemprop' => 'creator',
                 ];
             } else {
                 $details[] = [
                     'key'   => 'Artist',
-                    'value' => $this->entity->artist_title ?? $this->entity->artist_display
+                    'value' => $this->entity->artist_title ?? $this->entity->artist_display,
+                    'itemprop' => 'creator',
                 ];
             }
         }
@@ -123,13 +130,15 @@ class ArtworkPresenter extends BasePresenter
 
             $details[] = [
                 'key'   => str_plural('Place', count($this->entity->place_pivots)),
-                'value' => join(', ', $places->toArray())
+                'value' => join(', ', $places->toArray()),
+                'itemprop' => 'locationCreated',
             ];
         } else {
             if (!empty($this->entity->place_of_origin)) {
                 $details[] = [
                     'key' => 'Origin',
-                    'value' => $this->entity->place_of_origin
+                    'value' => $this->entity->place_of_origin,
+                    'itemprop' => 'locationCreated',
                 ];
             }
         }
@@ -142,24 +151,27 @@ class ArtworkPresenter extends BasePresenter
 
             $details[] = [
                 'key'   => str_plural('Date', count($this->entity->dates)),
-                'value' => join(', ', $dates->toArray())
+                'value' => join(', ', $dates->toArray()),
+                'itemprop' => 'dateCreated',
             ];
         } else {
             if (!empty($this->entity->date_block)) {
                 $details[] = [
                     'key' => 'Date',
-                    'value' => $this->entity->date_block
+                    'value' => $this->entity->date_block,
+                    'itemprop' => 'dateCreated',
                 ];
             }
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Medium'           => $this->entity->medium_display,
-            'Inscriptions'     => $this->entity->inscriptions,
-            'Dimensions'       => $this->entity->dimensions,
-            'Credit line'      => $this->entity->credit_line,
-            'Reference Number' => $this->entity->main_reference_number,
-            'Copyright'        => $this->entity->copyright_notice,
+            'Title'            => array($this->entity->all_titles,'name'),
+            'Medium'           => array($this->entity->medium_display,'material'),
+            'Inscriptions'     => array($this->entity->inscriptions),
+            'Dimensions'       => array($this->entity->dimensions),
+            'Credit line'      => array($this->entity->credit_line),
+            'Reference Number' => array($this->entity->main_reference_number),
+            'Copyright'        => array($this->entity->copyright_notice),
         ]));
 
         return [
@@ -171,12 +183,14 @@ class ArtworkPresenter extends BasePresenter
     protected function formatDetailBlocks($elements)
     {
         $blocks = [];
-        foreach ($elements as $key => $value) {
+
+        foreach ($elements as $key => $element) {
+            $value = $element[0] ?? null;
+            $itemprop = $element[1] ?? null;
             if (!empty($value)) {
-                $blocks[] = ['key' => $key, 'value' => $value];
+                $blocks[] = ['key' => $key, 'value' => $value, 'itemprop' => $itemprop];
             }
         }
-
         return $blocks;
     }
 
@@ -290,4 +304,19 @@ class ArtworkPresenter extends BasePresenter
         return $blocks;
     }
 
+    public function buildSchemaItemProps() {
+        $itemprops = [];
+
+        $itemprops = array_merge($itemprops, [
+            'accessMode'            => 'visual',
+            'alternativeHeadline'   =>(isset($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
+            'thumbnailUrl'          => $this->entity->thumbnail->url.'/full/,150/0/default.jpg',
+            'image'                 => $this->entity->thumbnail->url,
+            'contributor'           => (isset($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
+            'about'                 => (isset($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
+            'provider'              => $this->entity->department_title,
+        ]);
+
+        return $itemprops;
+    }
 }

@@ -15,6 +15,7 @@
         @component('components.atoms._title')
             @slot('tag','h1')
             @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-display-2')
+            @slot('itemprop','name')
             {{ $title }}
         @endcomponent
       @endif

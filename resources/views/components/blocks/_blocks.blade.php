@@ -324,20 +324,30 @@
                 {!! $block['content'] !!}
             @endif
 
+            @if ($block['type'] === 'itemprop')
+                <div class='o-blocks' itemprop="{{ $block['itemprop'] }}">
+                    @component('components.blocks._blocks')
+                        @slot('blocks', $block['content'])
+                    @endcomponent
+                </div>
+            @endif
+
             @if ($block['type'] === 'deflist')
                 <dl class="deflist o-blocks__block {{ $block['variation'] ?? ''}}">
                 @foreach ($block['items'] as $item)
                     <div class="deflist__row">
                     <dt class="f-module-title-1">{{ $item['key'] }}</dt>
                         @if (isset($item['links']) && $item['links'])
-                            <dd class="f-secondary">
+                            <dd class="f-secondary"{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
                                 @foreach ($item['links'] as $link)
-                                    <a href="{!! $link['href'] !!}">{{ $link['label'] }}</a>
+                                    <a href="{!! $link['href'] !!}">{!! $link['label'] !!}</a>
                                     @if ($loop->remaining), @endif
                                 @endforeach
                             </dd>
                         @else
-                            <dd class="f-secondary">{{ $item['value'] }}</dd>
+                            <dd class="f-secondary"{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
+                                {!! $item['value'] ?? '' !!}
+                            </dd>
                         @endif
                     </div>
                 @endforeach
