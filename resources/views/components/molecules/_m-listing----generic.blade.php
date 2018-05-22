@@ -37,12 +37,7 @@
             <br>
             <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->listing_description }}</span>
             @endif
-            @if ($item->date)
-            <br>
-            @component('components.atoms._date')
-                {{ $item->date }}
-            @endcomponent
-            @endif
+          
         </span>
     </a>
 </{{ $tag or 'li' }}>
