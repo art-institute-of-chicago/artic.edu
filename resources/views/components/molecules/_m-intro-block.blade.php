@@ -1,5 +1,5 @@
-<div class="m-intro-block{{ (isset($variation)) ? ' '.$variation : '' }}">
-  <p class="m-intro-block__intro {{ $font ?? 'f-deck' }}">{!! $slot !!}</p>
+<div class="m-intro-block{{ (isset($variation)) ? ' '.$variation : '' }}"">
+  <p class="m-intro-block__intro {{ $font ?? 'f-deck' }}"{!! (isset($itemprop)) ? ' itemprop="'.$itemprop.'"' : '' !!}>{!! $slot !!}</p>
   @if (isset($links))
   <ul class="m-intro-block__links">
     @foreach ($links as $link)

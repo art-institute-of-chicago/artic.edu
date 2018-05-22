@@ -2,7 +2,13 @@
 
 @section('content')
 
-  <section class="o-visit">
+  <section class="o-visit" itemscope itemtype="http://schema.org/TouristAttraction">
+    <link itemprop="additionalType" href="http://schema.org/Museum"/>
+    <link itemprop="additionalType" href="http://schema.org/LandmarksOrHistoricalBuildings "/>
+    <link itemprop="additionalType" href="http://schema.org/LocalBusiness"/>
+    @component('site.shared._schemaItemProps')
+      @slot('itemprops',$itemprops)
+    @endcomponent
 
     @component('components.molecules._m-media')
         @slot('item', $headerMedia)
@@ -209,7 +215,7 @@
         <div class="o-blocks">
           @component('components.blocks._text')
               @slot('font','f-secondary')
-              {{ $admission['text'] }}
+              {!! $admission['text'] !!}
           @endcomponent
         </div>
         <div class="o-blocks">
@@ -278,23 +284,24 @@
     @endcomponent
 
     @component('components.molecules._m-intro-block')
+        @slot('itemprop','description')
         {{ $directions['intro'] }}
     @endcomponent
 
     <div class="m-directions-block">
       <div class="m-directions-block__map">
         <figure class="m-media">
-            <a href="{{ $directions['links'][0]['href'] ?? '#' }}" class="m-media__img">
+            <a itemprop="hasMap" href="{{ $directions['links'][0]['href'] ?? '#' }}" class="m-media__img">
                 @include('partials._map')
             </a>
         </figure>
       </div>
       <div class="m-directions-block__text o-blocks">
         @foreach ($directions['locations'] as $location)
-          <p class="f-secondary">
+          <p class="f-secondary" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
             {!! $location['name'] !!}<br />
-            {!! $location['street'] !!} {!! $location['addres'] !!}<br />
-            {!! $location['city'] !!} {!! $location['state'] !!} {!! $location['zip'] !!}
+            <span itemprop="streetAddress">{!! $location['street'] !!} {!! $location['addres'] !!}</span><br />
+            <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}
           </p>
         @endforeach
       </div>
@@ -304,6 +311,7 @@
           <li>
             @component('components.atoms._arrow-link')
                 @slot('href', $link['href'])
+                @slot('itemprop','hasMap')
                 {{ $link['label'] }}
             @endcomponent
           </li>
