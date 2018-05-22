@@ -1,5 +1,4 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{{ $item->url }}" class="m-listing__link">
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
             @if (isset($video) || $item->videoFront)
