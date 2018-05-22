@@ -82,6 +82,4 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('shopItems');
 });
 
-Route::get('/', function () {
-    return redirect()->route('admin.homepage.landing');
-})->name('home');
+Route::redirect('/', '/dashboard');

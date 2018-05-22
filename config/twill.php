@@ -308,4 +308,37 @@ return [
         ],
     ],
 
+    'dashboard' => [
+        'modules' => [
+            'events' => [
+                'name' => 'events',
+                'routePrefix' => 'exhibitions_events',
+                'count' => true,
+                'create' => true,
+                'search' => true,
+                'activity' => true,
+                'drafts' => true,
+            ],
+            'articles' => [
+                'name' => 'articles',
+                'routePrefix' => 'collection.articles_publications',
+                'count' => true,
+                'create' => true,
+                'search' => true,
+                'activity' => true,
+                'drafts' => true,
+            ],
+            'genericPages' => [
+                'label' => 'Generic pages',
+                'label_singular' => 'Generic page',
+                'name' => 'genericPages',
+                'routePrefix' => 'generic',
+                'count' => true,
+                'create' => true,
+                'search' => true,
+                'activity' => true,
+                'drafts' => true,
+            ],
+        ],
+    ],
 ];
