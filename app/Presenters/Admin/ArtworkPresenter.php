@@ -153,15 +153,23 @@ class ArtworkPresenter extends BasePresenter
 
             $details[] = [
                 'key'   => str_plural('Date', count($this->entity->dates)),
-                'value' => join(', ', $dates->toArray()),
                 'itemprop' => 'dateCreated',
+                // TODO: Replace `value` w/ `link` as shown below
+                'value' => join(', ', $dates->toArray())
             ];
         } else {
             if (!empty($this->entity->date_block)) {
                 $details[] = [
                     'key' => 'Date',
-                    'value' => $this->entity->date_block,
                     'itemprop' => 'dateCreated',
+                    'links' => [[
+                        'label' => $this->entity->date_block, // See getDateBlockAttribute
+                        'href' => route('collection', [
+                            // TODO: Check if we can use the date filter to generate this query for us..?
+                            'date-start' => $this->entity->date_start . ( $this->entity->date_start < 0 ? 'BC' : 'AD' ),
+                            'date-end' => $this->entity->date_end . ( $this->entity->date_end < 0 ? 'BC' : 'AD' ),
+                        ])
+                    ]],
                 ];
             }
         }
