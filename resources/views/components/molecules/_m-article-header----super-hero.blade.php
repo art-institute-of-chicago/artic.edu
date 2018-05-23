@@ -22,7 +22,7 @@
       @if ($dateStart and $dateEnd)
         @component('components.atoms._date')
             @slot('tag','p')
-            <time datetime="{{ $date->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time> &ndash; <time datetime="{{ $date->format("Y-m-d") }}" itemprop="endDate">{{ $dateEnd->format('M j, Y') }}</time>
+            <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time> &ndash; <time datetime="{{ $dateEnd->format("Y-m-d") }}" itemprop="endDate">{{ $dateEnd->format('M j, Y') }}</time>
         @endcomponent
       @elseif (isset($date))
         @component('components.atoms._date')
