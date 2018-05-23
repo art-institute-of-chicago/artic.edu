@@ -61,6 +61,7 @@ class ArticleController extends FrontController
         }
 
         return view('site.articles', [
+            'primaryNavCurrent' => 'collection',
             'page' => $page,
             'heroArticle' => $heroArticle,
             'articles' => $articles,
