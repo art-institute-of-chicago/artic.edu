@@ -2,7 +2,13 @@
 
 @section('content')
 
+<article itemscope itemtype="http://schema.org/Person">
+    @component('site.shared._schemaItemProps')
+      @slot('itemprops',$item->present()->itemprops ?? null)
+    @endcomponent
+
 @component('components.molecules._m-header-block')
+    @slot('itemprop','name')
     {{ $item->title }}
 @endcomponent
 
@@ -19,6 +25,8 @@
             )),
         ))
     @endcomponent
+
+</article>
 
 @unless ($artworks->isEmpty())
     @component('components.molecules._m-title-bar')
