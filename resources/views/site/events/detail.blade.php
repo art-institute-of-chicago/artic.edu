@@ -3,13 +3,8 @@
 @section('content')
 
 <article class="o-article" itemscope itemtype="http://schema.org/VisualArtsEvent">
-  @php
-    $itemprops = [
-        'isAccessibleForFree' => ($item->present()->ticketStatus === 'free') ? 'true' : 'false',
-    ];
-  @endphp
   @component('site.shared._schemaItemProps')
-    @slot('itemprops',$itemprops ?? null)
+    @slot('itemprops',$item->present()->itemprops ?? null)
   @endcomponent
 
   @component('components.molecules._m-article-header')
