@@ -328,23 +328,19 @@
   }
 
   .o-gallery__media > * {
-    flex: 0 0 auto;
-    width: colspan(50, xsmall);
+    flex: 1;
     margin-top: 0;
     margin-left: colspan(2, xsmall);
 
     @include breakpoint('small+') {
-      width: colspan(35, small);
       margin-left: colspan(1, small);
     }
 
     @include breakpoint('medium+') {
-      width: colspan(23, medium);
       margin-left: colspan(1, medium);
     }
 
     @include breakpoint('large+') {
-      width: colspan(23, large);
       margin-left: colspan(1, large);
     }
 
@@ -359,6 +355,9 @@
   }
 
   .m-media__img img {
+    width: auto;
+    min-width: 200px;
+    max-width: 600px;
     max-height: 400px;
     object-fit: contain;
     object-position: center top;
@@ -367,31 +366,96 @@
       max-height: 480px;
     }
 
+    @include breakpoint('medium+') {
+      max-height: 420px;
+    }
+
+    @include breakpoint('large+') {
+      max-height: 480px;
+    }
+
     @include breakpoint('xlarge') {
+      min-width: none;
+      max-width: none;
       max-height: #{colspan(21, xlarge) * 4/3};
     }
   }
 
-  .m-media__img video,
-  .m-media__img embed,
-  .m-media__img iframe,
-  .m-media__img object {
+  .o-gallery__media > *[data-type="embed"],
+  .o-gallery__media > .m-media--video,
+  .o-gallery__media > .m-media--soundcloud {
+    flex: 0 0 auto;
+    width: colspan(50, xsmall);
+
+    @include breakpoint('small+') {
+      width: colspan(35, small);
+    }
+
+    @include breakpoint('medium+') {
+      width: colspan(23, medium);
+    }
+
+    @include breakpoint('large+') {
+      width: colspan(23, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(18, xlarge);
+    }
+  }
+
+  .m-media__img--video,
+  .m-media__img--video img,
+  .m-media__img--video video,
+  .m-media__img--video embed,
+  .m-media__img--video iframe,
+  .m-media__img--video object {
+    width: 100%;
+    min-width: none;
+    max-width: none;
     height: colspan(50, xsmall) * 9/16;
+    max-height: none;
 
     @include breakpoint('small+') {
       height: colspan(35, small) * 9/16;
+      max-height: none;
     }
 
     @include breakpoint('medium+') {
       height: colspan(23, medium) * 9/16;
+      max-height: none;
     }
 
     @include breakpoint('large+') {
-      height: colspan(23, medium) * 9/16;
+      height: colspan(23, large) * 9/16;
+      max-height: none;
     }
 
     @include breakpoint('xlarge') {
       height: #{colspan(18, xlarge) * 9/16};
+      max-height: none;
+    }
+  }
+
+  .m-media--soundcloud .m-media__img--video,
+  .m-media--soundcloud .m-media__img--video img,
+  .m-media--soundcloud .m-media__img--video iframe {
+    height: colspan(50, xsmall) * 2/9;
+
+    @include breakpoint('small+') {
+      height: colspan(35, small) * 2/9;
+    }
+
+    @include breakpoint('medium+') {
+      height: colspan(23, medium) * 2/9;
+    }
+
+    @include breakpoint('large+') {
+      height: colspan(23, large) * 2/9;
+    }
+
+    @include breakpoint('xlarge') {
+      height: #{colspan(18, xlarge) * 2/9};
     }
   }
 
