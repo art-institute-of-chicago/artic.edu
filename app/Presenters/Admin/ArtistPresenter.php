@@ -10,7 +10,7 @@ class ArtistPresenter extends BasePresenter
     public function itemprops() {
         return [
             'sameAs' => $this->entity->ulan_uri,
-            'birthPlace' => $this->entity->birth_date,
+            'birthPlace' => $this->entity->birth_place,
             'deathPlace' => $this->entity->death_place,
         ];
     }
