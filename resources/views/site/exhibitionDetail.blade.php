@@ -2,7 +2,10 @@
 
 @section('content')
 
-<article class="o-article">
+<article class="o-article" itemscope itemtype="http://schema.org/ExhibitionEvent">
+  @component('site.shared._schemaItemProps')
+    @slot('itemprops',$item->present()->itemprops ?? null)
+  @endcomponent
 
   @component('components.molecules._m-article-header')
     @slot('editorial', false)

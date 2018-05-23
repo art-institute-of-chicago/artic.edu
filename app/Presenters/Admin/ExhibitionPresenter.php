@@ -79,6 +79,13 @@ class ExhibitionPresenter extends BasePresenter
         return array_filter([$this->galleryLink(), $this->relatedEventsLink(), $this->closingSoonLink()]);
     }
 
+    public function itemprops() {
+        return [
+            'description' => $this->entity->short_description,
+            'department'  => $this->entity->department_display,
+        ];
+    }
+
     protected function galleryLink() {
         if ($this->entity->gallery_id) {
             return [
