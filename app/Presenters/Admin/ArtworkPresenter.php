@@ -145,6 +145,14 @@ class ArtworkPresenter extends BasePresenter
             }
         }
 
+        // TODO: Abstract this into a proper method, somewhere appropriate
+        $generateDateRangeHref = function( $date_start, $date_end ) {
+            return route('collection', [
+                'date-start' => $date_start . ( $date_start < 0 ? 'BC' : 'AD' ),
+                'date-end' => $date_end . ( $date_end < 0 ? 'BC' : 'AD' ),
+            ]);
+        };
+
         if ($this->entity->dates != null && count($this->entity->dates) > 0) {
             $dates = collect($this->entity->dates)->map(function($item) {
                 $joined = join(' – ', array_unique([convertArtworkDates(Carbon::parse($item->date_earliest)->year), convertArtworkDates(Carbon::parse($item->date_latest)->year)]));
@@ -164,11 +172,7 @@ class ArtworkPresenter extends BasePresenter
                     'itemprop' => 'dateCreated',
                     'links' => [[
                         'label' => $this->entity->date_block, // See getDateBlockAttribute
-                        'href' => route('collection', [
-                            // TODO: Check if we can use the date filter to generate this query for us..?
-                            'date-start' => $this->entity->date_start . ( $this->entity->date_start < 0 ? 'BC' : 'AD' ),
-                            'date-end' => $this->entity->date_end . ( $this->entity->date_end < 0 ? 'BC' : 'AD' ),
-                        ])
+                        'href' => $generateDateRangeHref( $this->entity->date_start, $this->entity->date_end ),
                     ]],
                 ];
             }
