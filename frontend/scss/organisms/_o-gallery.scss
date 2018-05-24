@@ -345,6 +345,7 @@
     }
 
     @include breakpoint('xlarge') {
+      flex: 0 0 auto;
       width: colspan(18, xlarge);
       margin-left: colspan(1, xlarge);
 
@@ -375,9 +376,10 @@
     }
 
     @include breakpoint('xlarge') {
-      min-width: none;
-      max-width: none;
-      max-height: #{colspan(21, xlarge) * 4/3};
+      width: 100%;
+      min-width: unset;
+      max-width: unset;
+      max-height: #{colspan(18, xlarge) * 4/3};
     }
   }
 
