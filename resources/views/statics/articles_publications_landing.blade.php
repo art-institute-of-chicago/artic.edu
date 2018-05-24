@@ -109,8 +109,8 @@
 
         <section>
             @component('components.molecules._m-title-bar')
-                @slot('links', array(array('label' => 'Browse all digital catalogs', 'href' => '#')))
-                Digital Catalogs
+                @slot('links', array(array('label' => 'Browse all digital catalogues', 'href' => '#')))
+                Digital Catalogues
             @endcomponent
 
             @component('components.atoms._hr')
@@ -144,7 +144,7 @@
                 @slot('variation', 'm-links-bar--title-bar-companion')
                 @slot('linksPrimary', array(
                     array(
-                        'label' => 'Browse all digital catalogs',
+                        'label' => 'Browse all digital catalogues',
                         'href' => '#',
                         'variation' => 'btn btn--secondary'
                     ),

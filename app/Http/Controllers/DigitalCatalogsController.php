@@ -22,7 +22,7 @@ class DigitalCatalogsController extends FrontController
     public function index(Request $request)
     {
         $items = DigitalCatalog::published()->paginate();
-        $title = 'Digital catalogs';
+        $title = 'Digital catalogues';
         $subNav = [
             ['label' => $title, 'href' => route('collection.publications.digital-catalogs'), 'active' => true]
         ];
@@ -43,7 +43,7 @@ class DigitalCatalogsController extends FrontController
             "breadcrumb" => $crumbs,
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' digital catalogs',
+            'listingCountText' => 'Showing '.$items->total().' digital catalogues',
             'listingItems' => $items,
         ];
 
@@ -68,7 +68,7 @@ class DigitalCatalogsController extends FrontController
         ];
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Digital catalogs', 'href' => route('collection.publications.digital-catalogs')],
+            ['label' => 'Digital cataloguess', 'href' => route('collection.publications.digital-catalogs')],
             ['label' => $page->title, 'href' => '']
         ];
 
