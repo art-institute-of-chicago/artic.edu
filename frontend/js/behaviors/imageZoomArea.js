@@ -97,21 +97,16 @@ const imageZoomArea = function(container) {
       showSequenceControl: false,
       tileSources: [
         {
-          "@context":"http://iiif.io/api/image/2/context.json",
+          "@context": "http://iiif.io/api/image/2/context.json",
           "@id": id,
-          "protocol":"http://iiif.io/api/image",
           "width": imgWidth,
           "height": imgHeight,
-          "tile_height": 256,
-          "tile_width": 256,
-          "scale_factors": [1, 2, 4, 8],
-          "profile":[
-            "http://iiif.io/api/image/2/level2.json",
-            {
-              "formats": ["jpg","tif","gif","png"],
-              "qualities": ["bitonal","default","gray","color"],
-            }
-          ]
+          "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+          "protocol": "http://iiif.io/api/image",
+          "tiles": [{
+            "scaleFactors": [ 1, 2, 4, 8, 16 ],
+            "width": 256
+          }]
         }
       ]
     });
