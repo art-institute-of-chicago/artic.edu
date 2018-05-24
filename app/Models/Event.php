@@ -45,6 +45,7 @@ class Event extends Model
         'is_boosted',
         'is_member_exclusive',
         'is_registration_required',
+        'is_admission_required',
         'hidden',
         'rsvp_link',
         'buy_tickets_link',
@@ -121,6 +122,7 @@ class Event extends Model
         'is_ticketed',
         'is_free',
         'is_member_exclusive',
+        'is_admission_required',
         'is_sold_out',
         'is_boosted',
         'is_registration_required'
@@ -374,6 +376,12 @@ class Event extends Model
                 "value" => function () {return $this->is_registration_required;},
             ],
             [
+                "name" => "is_admission_required",
+                "doc" => "Is admission required",
+                "type" => "boolean",
+                "value" => function () {return $this->is_admission_required;},
+            ],
+            [
                 "name" => "hidden",
                 "doc" => "Hidden",
                 "type" => "boolean",
@@ -489,4 +497,20 @@ class Event extends Model
             ],
         ];
     }
+
+    /**
+     * Validate an id. Useful for validating routes or query string params.
+     *
+     * By default, only numeric ids greater than zero are accepted. Override this
+     * method in child classes to implement different validation rules (e.g. UUID).
+     *
+     * @param mixed $id
+     * @return boolean
+     */
+    public static function validateId( $id )
+    {
+        // By default, only allow numeric ids greater than 0
+        return is_numeric($id) && intval($id) > 0;
+    }
+
 }

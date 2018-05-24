@@ -127,6 +127,11 @@
             'label' => 'Ticketed Event'
         ])
 
+        @formField('checkbox', [
+            'name' => 'is_admission_required',
+            'label' => 'Admission Required'
+        ])
+
         @formField('input', [
             'name' => 'buy_tickets_link',
             'label' => 'Buy tickets link'
