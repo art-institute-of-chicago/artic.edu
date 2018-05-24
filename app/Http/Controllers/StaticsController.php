@@ -2263,7 +2263,7 @@ class StaticsController extends FrontController {
             "subtype" => 'mosaic',
             "title" => 'Mosaic Gallery',
             "caption" => $this->faker->paragraph(3, false),
-            "items" => $this->getGalleryImages(6),
+            "items" => $this->getGalleryImages(20),
         ));
         array_push($blocks, array(
             "type" => 'text',
@@ -2274,7 +2274,7 @@ class StaticsController extends FrontController {
             "subtype" => 'slider',
             "title" => 'Slider Gallery',
             "caption" => $this->faker->paragraph(3, false),
-            "items" => $this->getGalleryImages(6),
+            "items" => $this->getGalleryImages(20),
         ));
         array_push($blocks, array(
             "type" => 'text',
@@ -2285,7 +2285,7 @@ class StaticsController extends FrontController {
             "subtype" => 'mosaic',
             "title" => 'Mosaic Gallery',
             "caption" => $this->faker->paragraph(3, false),
-            "items" => $this->getGalleryImages(6),
+            "items" => $this->getGalleryImages(20),
             "allLink" => array(
               'href' => '#',
               'label' => "See all exhibition objects",
@@ -2300,7 +2300,7 @@ class StaticsController extends FrontController {
             "subtype" => 'slider',
             "title" => 'Slider Gallery',
             "caption" => $this->faker->paragraph(3, false),
-            "items" => $this->getGalleryImages(10),
+            "items" => $this->getGalleryImages(20),
             "allLink" => array(
               'href' => '#',
               'label' => "See all exhibition objects",
