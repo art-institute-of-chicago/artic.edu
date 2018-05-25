@@ -159,7 +159,7 @@
         <section>
             @component('components.molecules._m-title-bar')
                 @slot('links', array(array('label' => 'Browse all printed catalogues', 'href' => route('collection.publications.printed-catalogs'))))
-                Printed Catalogs
+                Printed Catalogues
             @endcomponent
 
             @component('components.atoms._hr')
