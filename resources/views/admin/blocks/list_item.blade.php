@@ -16,12 +16,13 @@
     'maxlength' => 60
 ])
 
-@formField('input', [
-    'type' => 'textarea',
+@formField('wysiwyg', [
     'name' => 'description',
     'label' => 'Description',
     'rows' => 4,
-    'maxlength' => 100
+    'toolbarOptions' => [
+        'italic', 'link'
+    ],
 ])
 
 @formField('input', [
