@@ -24,6 +24,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-quote',
             ],
+            'hr' => [
+                'title' => 'Horizontal rule',
+                'icon' => 'text',
+                'component' => 'a17-block-hr',
+            ],
             'image' => [
                 'title' => 'Image',
                 'icon' => 'image',
