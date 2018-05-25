@@ -77,7 +77,7 @@
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
-            'list', 'artwork', 'artworks', 'citation'
+            'list', 'artwork', 'artworks', 'hr', 'citation'
         ]
     ])
 
