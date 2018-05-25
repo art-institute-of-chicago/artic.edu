@@ -15,6 +15,7 @@ Route::group(['prefix' => 'visit'], function () {
     Route::module('questions');
     Route::module('feeAges');
     Route::module('feeCategories');
+    Route::module('shopItems');
     Route::name('visit.fees')->get('fees', 'FeeController@index');
     Route::name('visit.fees.update')->post('fees', 'FeeController@update');
 });
