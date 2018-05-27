@@ -57,13 +57,15 @@
     @formField('input', [
         'name' => 'short_description',
         'label' => 'Short description',
-        'note' => 'Used for SEO'
+        'note' => 'Used for SEO',
+        'maxlength' => 255
     ])
 
     @formField('input', [
         'name' => 'list_description',
         'label' => 'List description',
-        'type' => 'textarea'
+        'type' => 'textarea',
+        'maxlength' => 255
     ])
 
     @formField('input', [

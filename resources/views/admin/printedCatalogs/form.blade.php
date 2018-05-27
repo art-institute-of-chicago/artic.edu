@@ -4,25 +4,29 @@
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Banner image',
-        'name' => 'banner'
+        'name' => 'banner',
+        'note' => 'Minimum image width 2000px'
     ])
 
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Listing image',
-        'name' => 'listing'
+        'name' => 'listing',
+        'note' => 'Minimum image width 3000px'
     ])
 
     @formField('input', [
         'name' => 'listing_description',
         'label' => 'Listing Description',
-        'type' => 'textarea'
+        'type' => 'textarea',
+        'maxlength' => 190
     ])
 
     @formField('input', [
         'name' => 'short_description',
         'label' => 'Short Description',
-        'type' => 'textarea'
+        'type' => 'textarea',
+        'maxlength' => 255
     ])
 
     @formField('multi_select', [

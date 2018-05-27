@@ -21,12 +21,14 @@
     @formField('input', [
         'name' => 'short_copy',
         'label' => 'Short intro copy',
-        'type' => 'textarea'
+        'type' => 'textarea',
+        'maxlength' => 255
     ])
 
     @formField('medias', [
         'name' => 'hero',
-        'label' => 'Hero image'
+        'label' => 'Hero image',
+        'note' => 'Minimum image width 3000px'
     ])
 
     @formField('input', [

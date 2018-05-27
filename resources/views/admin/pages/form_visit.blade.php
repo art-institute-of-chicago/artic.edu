@@ -2,6 +2,7 @@
     @formField('medias', [
         'name' => 'visit_hero',
         'label' => 'Hero image',
+        'note' => 'Minimum image width 3000px'
     ])
 
     @formField('files', [
@@ -13,6 +14,7 @@
     @formField('medias', [
         'name' => 'visit_mobile',
         'label' => 'Hero image, mobile',
+        'note' => 'Minimum image width 2000px'
     ])
 @stop
 
@@ -22,7 +24,8 @@
         @formField('medias', [
             'name' => 'visit_featured_hour',
             'label' => 'Image',
-            'max' => '1'
+            'max' => '1',
+            'note' => 'Minimum image width 2000px'
         ])
         @formField('input', [
             'name' => 'visit_hour_header',
@@ -73,6 +76,7 @@
         @formField('medias', [
             'name' => 'visit_city_pass',
             'label' => 'Image',
+            'note' => 'Minimum image width 2000px'
         ])
         @formField('input', [
             'name' => 'visit_city_pass_title',

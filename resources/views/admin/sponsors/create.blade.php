@@ -9,5 +9,6 @@
         'name' => 'copy',
         'required' => true,
         'label' => 'Sponsor copy',
+        'maxlength' => 255
     ])
 @endif
