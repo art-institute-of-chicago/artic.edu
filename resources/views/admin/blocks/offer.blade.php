@@ -1,7 +1,8 @@
 @formField('medias', [
     'name' => 'image',
     'label' => 'Image',
-    'max' => '1'
+    'max' => '1',
+    'note' => 'Minimum image width 2000px'
 ])
 
 @formField('input', [

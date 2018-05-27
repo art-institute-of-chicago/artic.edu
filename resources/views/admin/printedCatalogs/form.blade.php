@@ -19,7 +19,7 @@
         'name' => 'listing_description',
         'label' => 'Listing Description',
         'type' => 'textarea',
-        'maxlength' => 190
+        'maxlength' => 255
     ])
 
     @formField('input', [

@@ -13,7 +13,7 @@
     @formField('input', [
         'name' => 'caption',
         'label' => 'Caption',
-        'maxlength' => 190
+        'maxlength' => 255
     ])
 
     @formField('wysiwyg', [

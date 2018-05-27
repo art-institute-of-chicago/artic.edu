@@ -16,7 +16,7 @@
     @formField('input', [
         'name' => 'local_title',
         'label' => 'Augmented Title',
-        'maxlength' => 190
+        'maxlength' => 255
     ])
  --}}
 

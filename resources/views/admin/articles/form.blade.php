@@ -44,7 +44,7 @@
         'label' => 'Header',
         'rows' => 3,
         'type' => 'textarea',
-        'maxlength' => 190
+        'maxlength' => 255
     ])
 
     @formField('input', [
