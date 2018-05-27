@@ -67,9 +67,9 @@ class EventPresenter extends BasePresenter
             return $this->entity->forced_date;
         } else {
             if ($next = $this->entity->nextOcurrence) {
-                return $next->date->format('F j, Y h:ia') . '&ndash;' . $next->date_end->format('h:ia');
+                return $next->date->format('F j, Y g:i') . '&ndash;' . $next->date_end->format('g:i');
             } elseif ($last = $this->entity->lastOcurrence) {
-                return $last->date->format('F j, Y h:ia') . '&ndash;' . $last->date_end->format('h:ia');
+                return $last->date->format('F j, Y g:i') . '&ndash;' . $last->date_end->format('g:i');
             }
         }
     }
@@ -84,7 +84,7 @@ class EventPresenter extends BasePresenter
     public function nextOcurrenceTime()
     {
         if ($next = $this->entity->nextOcurrence) {
-            return $next->date->format('h:ia') . ' &ndash; ' . $next->date_end->format('h:ia');
+            return $next->date->format('g:i') . '&ndash;' . $next->date_end->format('g:i');
         }
     }
 
