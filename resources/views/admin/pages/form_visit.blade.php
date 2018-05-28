@@ -118,7 +118,7 @@
         @formField('input', [
             'name' => 'visit_parking_link',
             'field_name' => 'visit_parking_link',
-            'label' => 'Directions & parking link',
+            'label' => 'Directions & Parking',
             'required' => true
         ])
 
@@ -135,14 +135,14 @@
         @formField('repeater', ['type' => 'dining_hours'])
     </a17-fieldset>
 
-    <a17-fieldset title="Faq" id="faq">
+    <a17-fieldset title="FAQs" id="faq">
         @formField('input', [
             'name' => 'visit_faq_accessibility_link',
             'label' => 'Accessibility information link'
         ])
         @formField('input', [
             'name' => 'visit_faq_more_link',
-            'label' => "More FAQ's and guidelines link"
+            'label' => "More FAQs and guidelines link"
         ])
 
         @formField('repeater', ['type' => 'faqs'])
