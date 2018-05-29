@@ -46,6 +46,7 @@ class Event extends Model
         'is_member_exclusive',
         'is_registration_required',
         'is_admission_required',
+        'ticketed_event_id',
         'hidden',
         'rsvp_link',
         'buy_tickets_link',
@@ -192,6 +193,12 @@ class Event extends Model
     public function sponsors()
     {
         return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
+    }
+
+    public function ticketedEvent()
+    {
+        return $this->apiElements()->where('relation', 'ticketedEvent');
+        //return $this->belongsTo(\App\Models\TicketedEvent::class);
     }
 
     public function scopeLanding($query)

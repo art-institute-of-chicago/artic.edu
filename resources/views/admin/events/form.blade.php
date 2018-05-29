@@ -132,6 +132,14 @@
             'label' => 'Admission Required'
         ])
 
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'max' => 1,
+            'moduleName' => 'ticketedEvents',
+            'name' => 'ticketedEvent',
+            'label' => 'Ticketed event from Galaxy'
+        ])
+
         @formField('input', [
             'name' => 'buy_tickets_link',
             'label' => 'Buy tickets link'
