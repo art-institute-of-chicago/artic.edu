@@ -26,14 +26,17 @@ const fontObservers = function(fonts) {
 
     // if we reached the total
     if (counter >= total) {
-      // add class
-      document.documentElement.className += ' s-'+fonts.name+'-loaded';
-
       // write cookie
       cookieHandler.create(cookieName, total, 1);
 
-      // trigger event
-      triggerCustomEvent(document, 'content:populated');
+      var klass = 's-'+fonts.name+'-loaded';
+      var dE = document.documentElement;
+      if (!dE.classList.contains(klass)) {
+        // add class
+        dE.classList.add(klass);
+        // trigger event
+        triggerCustomEvent(document, 'content:populated');
+      }
     }
 
   }
