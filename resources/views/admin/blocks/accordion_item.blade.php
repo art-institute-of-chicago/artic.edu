@@ -1,6 +1,7 @@
 @formField('input', [
     'name' => 'header',
-    'label' => 'Header'
+    'label' => 'Header',
+    'maxlength' => 60
 ])
 
 @formField('wysiwyg', [

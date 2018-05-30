@@ -32,6 +32,7 @@
 @formField('input', [
     'type' => 'textarea',
     'name' => 'caption',
-    'label' => 'Caption'
+    'label' => 'Caption',
+    'maxlength' => 200
 ])
 

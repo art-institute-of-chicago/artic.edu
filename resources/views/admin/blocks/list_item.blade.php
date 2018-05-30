@@ -6,19 +6,22 @@
 
 @formField('input', [
     'name' => 'tag',
-    'label' => 'Tag'
+    'label' => 'Tag',
+    'maxlength' => 20
 ])
 
 @formField('input', [
     'name' => 'header',
-    'label' => 'Header'
+    'label' => 'Header',
+    'maxlength' => 60
 ])
 
 @formField('input', [
     'type' => 'textarea',
     'name' => 'description',
     'label' => 'Description',
-    'rows' => 4
+    'rows' => 4,
+    'maxlength' => 100
 ])
 
 @formField('input', [
