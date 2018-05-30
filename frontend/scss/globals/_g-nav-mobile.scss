@@ -260,6 +260,12 @@
 
 .g-nav-mobile .g-header {
   position: relative;
+  width: auto;
+  margin-right: - map-get($outer-gutters, 'xsmall');
+  margin-left: - map-get($outer-gutters, 'xsmall');
+  padding-right: map-get($outer-gutters, 'xsmall');
+  padding-left: map-get($outer-gutters, 'xsmall');
+  border-bottom: 1px solid $color__rules--primary;
   transform: translateY(0);
 
   @supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0)) {
@@ -271,12 +277,31 @@
 .g-nav-mobile .g-header__inner {
   margin-left: 0;
   margin-right: 0;
+  border: 0;
 }
 
-.g-nav-mobile .g-header__logo {
-  color: $color__grey--100;
+.g-nav-mobile .g-header .g-header__logo {
+  &,
+  .s-contrast-header & {
+    color: $color__grey--100;
+  }
 }
 
 .g-nav-mobile .g-header__logo:hover {
-  color: $color__red--100;
+  &,
+  .s-contrast-header & {
+    color: $color__red--100;
+  }
+}
+
+.g-nav-mobile .g-header .g-header__nav-primary a,
+.g-nav-mobile .g-header .g-header__nav-primary button {
+  &,
+  .s-contrast-header & {
+    color: $color__text--secondary;
+  }
+}
+
+.g-nav-mobile .g-header .g-header__nav-primary a:hover {
+  @include text-underline(1.12em, $color__text--title);
 }
