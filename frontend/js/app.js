@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters } from './functions';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager } from './functions';
 /*
 
   A17
@@ -48,6 +48,8 @@ document.addEventListener('DOMContentLoaded', function(){
   A17.ajaxLinksFailSafe = (A17.env === 'production') ? true : false;
   // go go go
   manageBehaviors(Behaviors);
+  // listen for google tag manager dataLayer pushes
+  googleTagManager();
   // listen for body lock requests
   lockBody();
   // listen for focus trap requests

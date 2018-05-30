@@ -111,6 +111,11 @@ const ajaxPageLoad = function() {
       });
     }
     A17.currentPathname = window.location.pathname;
+    // tell GTM
+    triggerCustomEvent(document, 'gtm:push', {
+      'event': 'Pageview',
+      'url': options.href
+    });
   }
   function tabStart(options,doc) {
     document.documentElement.classList.add('s-page-nav');
