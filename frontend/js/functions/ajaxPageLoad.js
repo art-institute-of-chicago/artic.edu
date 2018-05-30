@@ -1,5 +1,5 @@
 import { triggerCustomEvent, ajaxRequest, getOffset, scrollToY, setFocusOnTarget } from '@area17/a17-helpers';
-import { findAncestorByTagName, ajaxableLink, ajaxableHref } from '../functions';
+import { findAncestorByTagName, ajaxableLink, ajaxableHref, googleTagManagerDataFromLink } from '../functions';
 const ajaxPageLoad = function() {
   var ajaxing = false;
   var ajaxTimeOutTime = 5000;
@@ -137,6 +137,11 @@ const ajaxPageLoad = function() {
     document.documentElement.classList.remove('s-page-nav');
     // tell page about update
     triggerCustomEvent(document, 'page:updated');
+    // tell GTM
+    triggerCustomEvent(document, 'gtm:push', {
+      'event': 'Pageview',
+      'url': options.href
+    });
     //
     _ajaxPageLoadComplete();
   }
@@ -307,8 +312,10 @@ const ajaxPageLoad = function() {
     }
   }
   function handleClicks(event) {
+    var link = findAncestorByTagName(event.target, 'A');
+    var googleTagManagerObject = googleTagManagerDataFromLink(link);
+    //
     if (A17.ajaxLinksActive) {
-      var link = findAncestorByTagName(event.target, 'A');
       var ajaxable = ajaxableLink(link, event);
       if (ajaxable) {
         event.preventDefault();
@@ -320,6 +327,10 @@ const ajaxPageLoad = function() {
             } else {
               link.classList.add('s-checked');
             }
+          }
+          // if the link has some google tag manager props, tell GTM
+          if (googleTagManagerObject) {
+            triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
           }
           // then start the ajax process
           var ajaxTabTarget = link.getAttribute('data-ajax-tab-target');
