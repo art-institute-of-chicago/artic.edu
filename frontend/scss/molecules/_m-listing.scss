@@ -425,6 +425,13 @@
   .m-listing__meta .f-list-4 + br + .m-listing__meta-bottom .f-secondary {
     @include tucked-margin-top($f-secondary, ('xsmall': 60, 'small+': 40));
   }
+  .m-listing__meta ul.f-secondary:last-child {
+    padding-bottom: 20px;
+
+    @include breakpoint('small+') {
+      padding-bottom: 8px;
+    }
+  }
 
 .m-listing__meta .f-tertiary {
   @include tucked-margin-top($f-tertiary, ('xsmall': 36, 'small+': 36));
