@@ -103,7 +103,6 @@
       flex: 0 0 auto;
       @if ($name == 'xsmall') {
         margin-top: #{map-get($pinboard-grid-margin-tops, $name)}px;
-        margin-top: 0;
         padding-top: #{map-get($pinboard-grid-padding-tops, $name)}px;
       } @elseif ($name == 'small') {
         margin-top: colspan(1.5, small);
@@ -120,6 +119,15 @@
       &::before {
         content: none;
         display: none;
+      }
+    }
+
+    .o-pinboard[class*="col@#{$name}"] >.m-listing--variable-height {
+      @if ($name == 'xsmall') {
+        margin-top: 32px;
+      }
+      @if ($name == 'small') {
+        margin-top: 60px;
       }
     }
 

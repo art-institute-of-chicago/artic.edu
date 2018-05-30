@@ -370,7 +370,7 @@
   @include tucked-margin-top($f-list-7, ('xsmall': 32));
 
   &:first-child {
-    @include tucked-margin-top($f-list-7, ('xsmall': 28, 'small+': 44, 'large+': 38));
+    @include tucked-margin-top($f-list-7, ('xsmall': 28, 'small+': 36, 'medium+': 44, 'large+': 38));
   }
 }
 
