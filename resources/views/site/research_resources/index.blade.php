@@ -23,37 +23,35 @@
 
         @if ($page->imageFront('research_landing_image'))
             <article class="m-post-hero">
-                <div class="m-post-hero__inner">
-                    <figure class="m-post-hero__image">
-                        @component('components.atoms._img')
-                            @slot('image', $page->imageFront('research_landing_image'))
-                            @slot('settings', [
-                                'srcset' => array(300,600,800,1200,1600,3000,4500),
-                                'sizes' => aic_imageSizes(array(
-                                      'xsmall' => 58,
-                                      'small' => 58,
-                                      'medium' => 58,
-                                      'large' => 38,
-                                      'xlarge' => 38,
-                                ))
-                            ])
-                        @endcomponent
-                    </figure>
+                <figure class="m-post-hero__image">
+                    @component('components.atoms._img')
+                        @slot('image', $page->imageFront('research_landing_image'))
+                        @slot('settings', [
+                            'srcset' => array(300,600,800,1200,1600,3000,4500),
+                            'sizes' => aic_imageSizes(array(
+                                  'xsmall' => 58,
+                                  'small' => 58,
+                                  'medium' => 58,
+                                  'large' => 38,
+                                  'xlarge' => 38,
+                            ))
+                        ])
+                    @endcomponent
+                </figure>
 
-                    <div class="m-post-hero__main">
+                <div class="m-post-hero__main">
+                    @component('components.blocks._text')
+                        @slot('font','f-list-4')
+                        @slot('tag','h3')
+                        {{ $page->resources_landing_title }}
+                    @endcomponent
+
+                    @if (!empty($page->resources_landing_intro))
                         @component('components.blocks._text')
-                            @slot('font','f-list-4')
-                            @slot('tag','h3')
-                            {{ $page->resources_landing_title }}
+                            @slot('font','f-body')
+                            {{ $page->resources_landing_intro }}
                         @endcomponent
-
-                        @if (!empty($page->resources_landing_intro))
-                            @component('components.blocks._text')
-                                @slot('font','f-body')
-                                {{ $page->resources_landing_intro }}
-                            @endcomponent
-                        @endif
-                    </div>
+                    @endif
                 </div>
             </article>
         @endif
