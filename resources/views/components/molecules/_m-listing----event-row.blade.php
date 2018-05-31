@@ -1,5 +1,5 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--w-meta-bottom m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}">
-  <a href="{{ route('events.show', $item) }}" class="m-listing__link">
+  <a href="{{ route('events.show', $item) }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
         @if ($item->videoFront)
             @component('components.atoms._video')

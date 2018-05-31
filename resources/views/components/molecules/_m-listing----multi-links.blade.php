@@ -2,7 +2,7 @@
 
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
     <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
-        <a href="{!! $item['titleLink'] !!}" class="m-listing__link">
+        <a href="{!! $item['titleLink'] !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
 @else
     <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
 @endif

@@ -7,4 +7,5 @@
     @slot('embed', $embed ?? null)
     @slot('fullscreen', $fullscreen ?? null)
     @slot('item', $item)
+    @slot('gtmAttributes', $gtmAttributes)
 @endcomponent
