@@ -5,7 +5,14 @@ const googleTagManager = function() {
   document.addEventListener('gtm:push',function(event){
     if (event.data) {
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push(event.data);
+      if (event.data.event === 'Pageview') {
+        window.dataLayer.push(event.data);
+      } else {
+        window.dataLayer.push({
+          event: 'dataLayerPush',
+          data: event.data
+        });
+      }
     }
   }, false);
 
