@@ -332,7 +332,7 @@
                         @if (isset($item['links']) && $item['links'])
                             <dd class="f-secondary">
                                 @foreach ($item['links'] as $link)
-                                    <a href="{!! $link['href'] !!}">{{ $link['label'] }}</a>
+                                    <a href="{!! $link['href'] !!}"{!! (isset($link['gtmAttributes'])) ? ' '.$link['gtmAttributes'].'' : '' !!}>{{ $link['label'] }}</a>
                                     @if ($loop->remaining), @endif
                                 @endforeach
                             </dd>

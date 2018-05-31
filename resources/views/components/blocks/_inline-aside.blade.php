@@ -10,6 +10,7 @@
             @slot('imageSettings', $imageSettings ?? null)
             @slot('titleFont', $titleFont ?? null)
             @slot('hideShortDesc', $hideShortDesc ?? null)
+            @slot('gtmAttributes', $gtmAttributes ?? null)
         @endcomponent
     @else
         @slot('title', 'Related '.ucfirst($type).'s')
@@ -22,6 +23,7 @@
                     @slot('imageSettings', $imageSettings ?? null)
                     @slot('titleFont', $titleFont ?? null)
                     @slot('hideShortDesc', $hideShortDesc ?? null)
+                    @slot('gtmAttributes', $gtmAttributes ?? null)
                 @endcomponent
             @endforeach
         @endcomponent

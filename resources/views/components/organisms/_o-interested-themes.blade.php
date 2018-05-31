@@ -13,7 +13,7 @@
             if ($themesIndex === $themesLength) {
                 $themeString .= ' and ';
             }
-            $themeString .= '<a href="'.$theme['href'].'">'.$theme['label'].'</a>';
+            $themeString .= '<a href="'.$theme['href'].'" data-gtm-event-category="collection-nav" data-gtm-event="you-might-like">'.$theme['label'].'</a>';
             if ($themesIndex === $themesLength) {
                 $themeString .= '.';
             }
