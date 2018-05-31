@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function(){
   // update ajax link active / fail safes
   A17.ajaxLinksActive = true;
   A17.ajaxLinksFailSafe = (A17.env === 'production') ? true : false;
-  // go go go
-  manageBehaviors(Behaviors);
   // listen for google tag manager dataLayer pushes
   googleTagManager();
+  // go go go
+  manageBehaviors(Behaviors);
   // listen for body lock requests
   lockBody();
   // listen for focus trap requests
