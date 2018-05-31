@@ -10,7 +10,7 @@
 @endif
     @foreach ($filterCategory['list'] as $link)
     <li>
-        <a href="{{ $link['href'] }}" class="checkbox f-secondary {{ $link['enabled'] ? 's-checked' : '' }}"  data-ajax-scroll-target="collection">
+        <a href="{{ $link['href'] }}" class="checkbox f-secondary {{ $link['enabled'] ? 's-checked' : '' }}" data-ajax-scroll-target="collection" data-gtm-event="click" data-gtm-event-category="collection-filter" data-gtm-filter="{{ getUtf8Slug($link['label']) }}">
             {{ $link['label'] }} @unless(isset($link['disableCount'])) <em>({{ $link['count'] }})</em> @endunless
         </a>
     </li>

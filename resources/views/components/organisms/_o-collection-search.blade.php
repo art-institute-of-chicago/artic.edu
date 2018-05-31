@@ -8,13 +8,15 @@
         @slot('placeholder','Search...')
         @slot('name', 'collection-search')
         @slot('action','/statics/collection')
+        @slot('behaviors','ajaxFormSubmit')
+        @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
     @endcomponent
     <div class="o-collection-search__scroll-area">
         <p class="o-collection-search__title f-tag-2">Quick Search</p>
         <ul class="o-collection-search__quick-search-links">
         @foreach ($links as $link)
             <li>
-                <a href="{{ $link['href'] }}" class="tag tag--quinary f-tag">
+                <a href="{{ $link['href'] }}" class="tag tag--quinary f-tag" data-gtm-event="quick-search-click" data-gtm-event-category="collection-search" data-gtm-term="{{ getUtf8Slug($link['label']) }}">
                     {{ $link['label'] }}
                 </a>
             </li>

@@ -1,4 +1,5 @@
 import { purgeProperties, ajaxRequest, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
+import { googleTagManagerDataFromLink } from '../functions';
 
 const autocomplete = function(container) {
   const autoCompleteUrl = container.getAttribute('data-autocomplete-url');
@@ -100,6 +101,11 @@ const autocomplete = function(container) {
     triggerCustomEvent(document, 'ajax:getPage', {
       url: queryStringHandler.updateParameter(container.action, 'q', _fixedEncodeURIComponent(textInput.value)),
     });
+    // if the form has some google tag manager props, tell GTM
+    let googleTagManagerObject = googleTagManagerDataFromLink(container);
+    if (googleTagManagerObject) {
+      triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
+    }
   }
 
   // handle search input

@@ -1,4 +1,4 @@
-<form class="m-search-bar{{ (isset($variation)) ? ' '.$variation : '' }}" action="{{ $action ?? '' }}"{!! (isset($behaviors)) ? ' data-behavior="'.$behaviors.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}>
+<form class="m-search-bar{{ (isset($variation)) ? ' '.$variation : '' }}" action="{{ $action ?? '' }}"{!! (isset($behaviors)) ? ' data-behavior="'.$behaviors.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     <div class="m-search-bar__inner">
 
         <label for="{{ $name ?? '' }}">Search</label>
