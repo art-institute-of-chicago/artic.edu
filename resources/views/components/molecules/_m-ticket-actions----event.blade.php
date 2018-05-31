@@ -5,6 +5,7 @@
                 @slot('variation', 'btn--full')
                 @slot('tag', 'a')
                 @slot('href', $ticketLink)
+                @slot('gtmAttributes', 'data-gtm-event="event-buy-tickets" data-gtm-event-category="nav-cta-button"')
                 {{ $buttonText ?? 'Buy tickets' }}
             @endcomponent
         </li>
