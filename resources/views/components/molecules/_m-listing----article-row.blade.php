@@ -4,5 +4,5 @@
     @slot('imgVariation', $imgVariation ?? null)
     @slot('imageSettings', $imageSettings ?? null)
     @slot('item', $item)
-    @slot('gtmAttributes', $gtmAttributes)
+    @slot('gtmAttributes', $gtmAttributes ?? null)
 @endcomponent
