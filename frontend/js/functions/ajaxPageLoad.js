@@ -1,4 +1,4 @@
-import { triggerCustomEvent, ajaxRequest, getOffset, scrollToY, setFocusOnTarget } from '@area17/a17-helpers';
+import { triggerCustomEvent, ajaxRequest, getOffset, forEach, scrollToY, setFocusOnTarget } from '@area17/a17-helpers';
 import { findAncestorByTagName, ajaxableLink, ajaxableHref, googleTagManagerDataFromLink } from '../functions';
 const ajaxPageLoad = function() {
   var ajaxing = false;
@@ -53,6 +53,16 @@ const ajaxPageLoad = function() {
     } else {
       document.documentElement.classList.remove('s-roadblock-active');
     }
+    // update page class (p-xxxx)
+    let pClassReg = /p-\S*/g;
+    let oldDocPclasses = document.documentElement.className.match(pClassReg);
+    let newDocPclasses = doc.documentElement.className.match(pClassReg);
+    forEach(oldDocPclasses, function(index, item) {
+      document.documentElement.classList.remove(item);
+    });
+    forEach(newDocPclasses, function(index, item) {
+      document.documentElement.classList.add(item);
+    });
   }
   function defaultStart(options,doc) {
     let $a17 = document.querySelector('#a17');
