@@ -39,7 +39,7 @@
         <ul class="f-secondary">
           <li><a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event="tickets-button">Buy Tickets</a></li>
           <li><a href="{{ $_pages['become-a-member'] }}" data-gtm-event-category="top-nav" data-gtm-event="member-button">Become a Member</a></li>
-          <li><a href="{{ $_pages['shop'] }}" data-gtm-event-category="top-nav" data-gtm-event="shop-button">Shop</a></li>
+          <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-category="top-nav" data-gtm-event="shop-button">Shop</a></li>
         </ul>
       </nav>
       <p class="g-header__opening-hours f-secondary"><a href="{{ $_pages['visit'] }}">{!! $_hours['general'] !!}</a></p>
