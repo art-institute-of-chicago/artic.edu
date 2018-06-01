@@ -1,26 +1,69 @@
-import { purgeProperties, queryStringHandler } from '@area17/a17-helpers';
+import { purgeProperties, queryStringHandler, triggerCustomEvent } from '@area17/a17-helpers';
+import { youtubePercentTracking } from '../functions';
 
 const triggerMediaInline = function(container) {
+  let iframe;
+  let src;
+  let embedType;
+  let embedSrcType;
 
   function _handleClicks(event) {
     event.preventDefault();
     event.stopPropagation();
-    let iframe = container.querySelector('iframe');
-    if (iframe) {
-      var src = iframe.getAttribute('data-embed-src');
-      src = (!src) ? iframe.getAttribute('data-src') : src;
-      src = (!src) ? iframe.getAttribute('src') : src;
-      if (src) {
-        src = queryStringHandler.updateParameter(src, 'autoplay', '1');
-        src = queryStringHandler.updateParameter(src, 'auto_play', '1');
-        iframe.src = src;
-        container.classList.add('s-inline-media-activated');
-      }
-    }
+    container.removeEventListener('click', _handleClicks);
+    src = queryStringHandler.updateParameter(src, 'autoplay', '1');
+    src = queryStringHandler.updateParameter(src, 'auto_play', '1');
+    iframe.src = src;
+    container.classList.add('s-inline-media-activated');
   }
 
   function _init() {
-    container.addEventListener('click', _handleClicks, false);
+    iframe = container.querySelector('iframe');
+
+    if (!iframe) {
+      return;
+    }
+
+    src = iframe.getAttribute('data-embed-src');
+    embedSrcType = 'data-embed-src';
+
+    if (src === '' || !src) {
+      src = iframe.getAttribute('data-src');
+      embedSrcType = 'data-src';
+    }
+
+    if (src === '' || !src) {
+      src = iframe.getAttribute('src');
+      embedSrcType = 'src';
+    }
+
+    if (src === '' || !src) {
+      return;
+    }
+
+    if (src.indexOf('youtube.com') > -1) {
+      src = queryStringHandler.updateParameter(src, 'enablejsapi', '1');
+      src = queryStringHandler.updateParameter(src, 'origin', window.location.origin);
+
+      if (embedSrcType === 'data-src') {
+        iframe.setAttribute('data-src', src);
+      }
+
+      if (embedSrcType === 'src') {
+        iframe.src = src;
+        youtubePercentTracking(iframe);
+      } else {
+        iframe.addEventListener('load',function(){
+          youtubePercentTracking(iframe);
+        }, false);
+      }
+    }
+
+    if (embedSrcType !== 'data-src') {
+      container.addEventListener('click', _handleClicks, false);
+    } else {
+      container.classList.add('s-inline-media-activated');
+    }
   }
 
   this.destroy = function() {

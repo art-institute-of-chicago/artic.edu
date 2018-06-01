@@ -1,5 +1,5 @@
 import { triggerCustomEvent, ajaxRequest, getOffset, forEach, scrollToY, setFocusOnTarget } from '@area17/a17-helpers';
-import { findAncestorByTagName, ajaxableLink, ajaxableHref, googleTagManagerDataFromLink } from '../functions';
+import { findAncestorByTagName, ajaxableLink, ajaxableHref, googleTagManagerDataFromLink, parseHTML } from '../functions';
 const ajaxPageLoad = function() {
   var ajaxing = false;
   var ajaxTimeOutTime = 5000;
@@ -164,21 +164,6 @@ const ajaxPageLoad = function() {
     triggerCustomEvent(document, 'modal:show', { opener: options.opener });
     //
     _ajaxPageLoadComplete();
-  }
-  function parseHTML(data,type) {
-    if (type === 'native') {
-      var parser = new DOMParser();
-      return parser.parseFromString(data, 'text/html');
-    } else {
-      var doc = document.implementation.createHTMLDocument('');
-      if (data.toLowerCase().indexOf('<!doctype') > -1) {
-        doc.documentElement.innerHTML = data;
-      }
-      else {
-        doc.body.innerHTML = data;
-      }
-      return doc;
-    }
   }
   function loadDocument(options) {
     if (!A17.ajaxLinksActive) {

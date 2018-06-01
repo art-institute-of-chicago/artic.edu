@@ -22,6 +22,7 @@ A17.env = 'production';
 A17.currentPathname = window.location.pathname;
 A17.dateRangeValues = [
     '8000 BC','7000 BC','6000 BC','5000 BC','4000 BC','3000 BC','2000 BC','1000 BC','1 AD','500 AD','1000 AD','1200','1400','1600','1700','1800','1900','1910','1920','1930','1940','1950','1960','1970','1980','1990','2000','2010','Present']; // for collection filters
+A17.onYouTubeIframeAPIReady = false;
 
 document.addEventListener('DOMContentLoaded', function(){
   if (A17.print) {
@@ -112,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function(){
     maxFrameCount: 20
   });
 });
+
+window.onYouTubeIframeAPIReady = function() {
+  A17.onYouTubeIframeAPIReady = true;
+}
 
 // make console.log safe
 if (typeof console === 'undefined') {
