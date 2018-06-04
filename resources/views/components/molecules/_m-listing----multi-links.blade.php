@@ -2,7 +2,7 @@
 
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
     <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
-        <a href="{{ $item['titleLink'] }}" class="m-listing__link">
+        <a href="{!! $item['titleLink'] !!}" class="m-listing__link">
 @else
     <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
 @endif
@@ -51,7 +51,7 @@
             @foreach ($item['links'] as $link)
                 <li>
                     @if (isset($link['external']) and $link['external'])
-                        <a href="{{ $link['href'] }}" target="_blank" class="external-link f-link">
+                        <a href="{!! $link['href'] !!}" target="_blank" class="external-link f-link">
                             {!! $link['label'] !!}<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
                         </a>
                     @else
