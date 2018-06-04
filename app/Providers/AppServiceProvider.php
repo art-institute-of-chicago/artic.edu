@@ -115,7 +115,7 @@ class AppServiceProvider extends ServiceProvider
             ,   'support-us-ways-to-give-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship'
             ,   'support-us-art-interest-groups' => '/support-us/art-interest-groups'
 
-            ,   'learn' => '/learn'
+            ,   'learn' => '/learn-with-us'
             ,   'learn-families' => '/learn/families'
             ,   'learn-teens' => '/learn/teens'
             ,   'learn-adults' => '/learn/adults'
