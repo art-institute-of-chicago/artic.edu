@@ -76,9 +76,8 @@ class DigitalCatalog extends Model
         return join([route('collection.publications.digital-catalogs'), '/', $this->id, '-']);
     }
 
-    public function getSlugAttribute()
-    {
-        return route('collection.publications.digital-catalogs.show', $this);
+    public function getUrlAttribute() {
+        return route('collection.publications.digital-catalogs.show', $this->slug);
     }
 
 }

@@ -68,7 +68,7 @@ class DigitalCatalogsController extends FrontController
         ];
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Digital cataloguess', 'href' => route('collection.publications.digital-catalogs')],
+            ['label' => 'Digital catalogues', 'href' => route('collection.publications.digital-catalogs')],
             ['label' => $page->title, 'href' => '']
         ];
 
