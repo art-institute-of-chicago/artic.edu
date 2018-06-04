@@ -21,10 +21,10 @@ Route::name('collection.categorySearch')->get('/collection/categorySearch/{categ
 // Route::name('collection.publications')->get('/collection/publications', 'PublicationsController@index');
 // Collection Publications Printed Catalogs
 Route::name('collection.publications.printed-catalogs')->get('/collection/publications/printed-catalogs', 'PrintedCatalogsController@index');
-Route::name('collection.publications.printed-catalogs.show')->get('/collection/publications/printed-catalogs/{id}/{slug?}', 'PrintedCatalogsController@show');
+Route::name('collection.publications.printed-catalogs.show')->get('/collection/publications/printed-catalogs/{id}', 'PrintedCatalogsController@show');
 // Collection Publications Digital Catalogs
 Route::name('collection.publications.digital-catalogs')->get('/collection/publications/digital-catalogs', 'DigitalCatalogsController@index');
-Route::name('collection.publications.digital-catalogs.show')->get('/collection/publications/digital-catalogs/{id}/{slug?}', 'DigitalCatalogsController@show');
+Route::name('collection.publications.digital-catalogs.show')->get('/collection/publications/digital-catalogs/{id}', 'DigitalCatalogsController@show');
 
 // Collection Research and Resources ???
 Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');
@@ -62,7 +62,7 @@ Route::name('articles_publications')->get('/articles_publications', 'ArticlesPub
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');
-Route::name('articles.show')->get('/articles/{id}/{slug?}', 'ArticleController@show');
+Route::name('articles.show')->get('/articles/{id}', 'ArticleController@show');
 
 // Videos routes
 Route::name('videos')->get('videos', function() { return abort(404); });
@@ -99,7 +99,7 @@ Route::name('departments.show')->get('/departments/{id}', 'DepartmentController@
 
 // Selections
 Route::moduleShowWithPreview('selection');
-Route::name('selections.show')->get('/selections/{id}/{slug?}', 'SelectionsController@show');
+Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
 // About
 Route::name('about.press')->get('/press', 'PressReleasesController@index');
