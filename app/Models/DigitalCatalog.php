@@ -68,7 +68,7 @@ class DigitalCatalog extends Model
 
     public function getIdSlugAttribute()
     {
-        return join([$this->id, $this->getSlug()], '/');
+        return join([$this->id, $this->getSlug()], '-');
     }
 
     public function getUrlWithoutSlugAttribute()
