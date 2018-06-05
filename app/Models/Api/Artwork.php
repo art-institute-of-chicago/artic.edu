@@ -161,7 +161,7 @@ class Artwork extends BaseApiModel
 
     public function getIdSlugAttribute()
     {
-        return join(array_filter([$this->id, getUtf8Slug($this->title)]), '/');
+        return join(array_filter([$this->id, getUtf8Slug($this->title)]), '-');
     }
 
     public function getSlugAttribute()

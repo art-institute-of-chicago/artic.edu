@@ -68,7 +68,7 @@ class DigitalCatalog extends Model
 
     public function getIdSlugAttribute()
     {
-        return join([$this->id, $this->getSlug()], '/');
+        return join([$this->id, $this->getSlug()], '-');
     }
 
     public function getUrlWithoutSlugAttribute()
@@ -76,9 +76,68 @@ class DigitalCatalog extends Model
         return join([route('collection.publications.digital-catalogs'), '/', $this->id, '-']);
     }
 
-    public function getSlugAttribute()
+    public function getUrlAttribute() {
+        return route('collection.publications.digital-catalogs.show', $this->slug);
+    }
+
+    protected function transformMappingInternal()
     {
-        return route('collection.publications.digital-catalogs.show', $this);
+        return [
+            [
+                "name" => 'title',
+                "doc" => "Title",
+                "type" => "string",
+                "value" => function() { return $this->title; }
+            ],
+            [
+                "name" => 'web_url',
+                "doc" => "Web URL",
+                "type" => "string",
+                "value" => function() { return url($this->url); }
+            ],
+            [
+                "name" => 'slug',
+                "doc" => "Slug",
+                "type" => "string",
+                "value" => function() { return $this->getSlug(); }
+            ],
+            [
+                "name" => 'listing_description',
+                "doc" => "Listing Description",
+                "type" => "string",
+                "value" => function() { return $this->listing_description; }
+            ],
+            [
+                "name" => 'short_description',
+                "doc" => "Short Description",
+                "type" => "string",
+                "value" => function() { return $this->short_description; }
+            ],
+            [
+                "name" => 'published',
+                "doc" => "Published",
+                "type" => "boolean",
+                "value" => function() { return $this->published; }
+            ],
+            [
+                "name" => 'publish_start_date',
+                "doc" => "Publish Start Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_start_date; }
+            ],
+            [
+                "name" => 'publish_end_date',
+                "doc" => "Publish End Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_end_date; }
+            ],
+            [
+                "name" => 'content',
+                "doc" => "Content",
+                "type" => "text",
+                "value" => function() { return $this->blocks; }
+            ],
+        ];
     }
 
 }

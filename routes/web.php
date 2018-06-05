@@ -21,10 +21,10 @@ Route::name('collection.categorySearch')->get('/collection/categorySearch/{categ
 // Route::name('collection.publications')->get('/collection/publications', 'PublicationsController@index');
 // Collection Publications Printed Catalogs
 Route::name('collection.publications.printed-catalogs')->get('/collection/publications/printed-catalogs', 'PrintedCatalogsController@index');
-Route::name('collection.publications.printed-catalogs.show')->get('/collection/publications/printed-catalogs/{id}/{slug?}', 'PrintedCatalogsController@show');
+Route::name('collection.publications.printed-catalogs.show')->get('/collection/publications/printed-catalogs/{id}', 'PrintedCatalogsController@show');
 // Collection Publications Digital Catalogs
 Route::name('collection.publications.digital-catalogs')->get('/collection/publications/digital-catalogs', 'DigitalCatalogsController@index');
-Route::name('collection.publications.digital-catalogs.show')->get('/collection/publications/digital-catalogs/{id}/{slug?}', 'DigitalCatalogsController@show');
+Route::name('collection.publications.digital-catalogs.show')->get('/collection/publications/digital-catalogs/{id}', 'DigitalCatalogsController@show');
 
 // Collection Research and Resources ???
 Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');
@@ -53,7 +53,6 @@ Route::name('search.exhibitionsEvents')->get('/search/exhibitions_and_events', '
 // Events routes
 Route::name('events')->get('/events', 'EventsController@index');
 Route::name('events.more')->get('/events-more', 'EventsController@indexMore');
-Route::name('events.show')->get('/events/{id}/{slug?}', 'EventsController@show');
 Route::moduleShowWithPreview('events');
 Route::name('events.ics')->get('/events/{id}/ics', 'EventsController@ics');
 
@@ -62,7 +61,7 @@ Route::name('articles_publications')->get('/articles_publications', 'ArticlesPub
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');
-Route::name('articles.show')->get('/articles/{id}/{slug?}', 'ArticleController@show');
+Route::name('articles.show')->get('/articles/{id}', 'ArticleController@show');
 
 // Videos routes
 Route::name('videos')->get('videos', function() { return abort(404); });
@@ -78,15 +77,13 @@ Route::name('exhibitions.history.show')->get('exhibitions/history/{id}', 'Exhibi
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionsController@index');
 Route::name('exhibitions.upcoming')->get('/exhibitions/upcoming', 'ExhibitionsController@upcoming');
 Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/relatedEvents', 'ExhibitionsController@loadMoreRelatedEvents');
-Route::name('exhibitions.show')->get('/exhibitions/{id}/{slug?}', 'ExhibitionsController@show');
-
 Route::moduleShowWithPreview('exhibitions');
 
 // Artwork routes
 Route::name('artworks.recentlyViewed')->get('/artworks/recentlyViewed', 'ArtworkController@recentlyViewed');
 Route::name('artworks.clearRecentlyViewed')->get('/artworks/clearRecentlyViewed', 'ArtworkController@clearRecentlyViewed');
 Route::name('artworks.addRecentlyViewed')->get('/artworks/addRecentlyViewed/{id}', 'ArtworkController@addRecentlyViewed');
-Route::name('artworks.show')->get('/artworks/{id}/{slug?}', 'ArtworkController@show');
+Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
 
 // Gallery / tag page
 Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');
@@ -99,16 +96,16 @@ Route::name('departments.show')->get('/departments/{id}', 'DepartmentController@
 
 // Selections
 Route::moduleShowWithPreview('selection');
-Route::name('selections.show')->get('/selections/{id}/{slug?}', 'SelectionsController@show');
+Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
 // About
 Route::name('about.press')->get('/press', 'PressReleasesController@index');
 Route::name('about.press.archive')->get('/press/archive', 'PressReleasesController@archive');
 Route::moduleShowWithPreview('pressreleases');
-Route::name('about.press.show')->get('/press/{id}/{slug?}', 'PressReleasesController@show');
+Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@show');
 
 Route::name('about.exhibitionPressRooms')->get('/about/exhibition-press-room', 'ExhibitionPressRoomController@index');
-Route::name('about.exhibitionPressRooms.show')->get('/about/exhibition-press-room/{id}/{slug?}', 'ExhibitionPressRoomController@show');
+Route::name('about.exhibitionPressRooms.show')->get('/about/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
 
 // Footer Head Links
 Route::name('learn')->get('/learn', 'GenericPagesController@show');
