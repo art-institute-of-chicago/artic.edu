@@ -29,8 +29,8 @@ class DigitalCatalog extends Model
         'title',
     ];
 
-    protected $presenter = 'App\Presenters\Admin\GenericListingPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\GenericListingPresenter';
+    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
 
     public $checkboxes = ['published', 'active', 'public'];
     public $dates = ['publish_start_date', 'publish_end_date'];

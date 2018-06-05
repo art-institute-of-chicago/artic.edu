@@ -26,14 +26,13 @@ class GenericPagesController extends FrontController
 
     public function show($slug)
     {
-        $page = $this->getPage($slug);
-        $crumbs = $page->buildBreadCrumb($page);
-        $navs = $page->buildNav();
+        $page       = $this->getPage($slug);
+        $crumbs     = $page->present()->breadCrumb($page);
+        $navigation = $page->present()->navigation();
 
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
-            'subNav' => $navs['subNav'],
-            'nav' => $navs['nav'],
+            'nav' => $navigation,
             'intro' => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
