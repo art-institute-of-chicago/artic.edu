@@ -13,10 +13,13 @@ use A17\CmsToolkit\Models\Model;
 
 use Kalnoy\Nestedset\NodeTrait;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasApiRelations;
 
 class GenericPage extends Model implements Sortable
 {
-    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait;
+    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait, Transformable, HasApiRelations;
+
+    protected $selectedFeaturedRelated = null;
 
     protected $fillable = [
         'short_description',
@@ -128,11 +131,6 @@ class GenericPage extends Model implements Sortable
         }
     }
 
-    public function apiElements()
-    {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
-    }
-
     public function exhibitions()
     {
         return $this->apiElements()->where('relation', 'exhibitions');
@@ -151,6 +149,98 @@ class GenericPage extends Model implements Sortable
     public function categories()
     {
         return $this->belongsToMany('App\Models\PageCategory');
+    }
+
+    public function getFeaturedRelatedAttribute()
+    {
+        // Select a random element from these relationships below and return one per request
+        if ($this->selectedFeaturedRelated)
+            return $this->selectedFeaturedRelated;
+
+        $types = collect(['articles', 'events', 'exhibitions'])->shuffle();
+        foreach ($types as $type) {
+            if ($item = $this->$type()->first()) {
+                switch ($type) {
+                    case 'events':
+                        $type = 'event';
+                        break;
+                    case 'articles':
+                        $type = 'article';
+                        break;
+                    case 'exhibitions':
+                        $item = $this->apiModels('exhibitions', 'Exhibition')->first();
+                        $type = 'exhibition';
+                        break;
+                }
+
+
+                $this->selectedFeaturedRelated = [
+                    'type' => str_singular($type),
+                    'items' => [$item]
+                ];
+                return $this->selectedFeaturedRelated;
+            }
+        }
+    }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'title',
+                "doc" => "Title",
+                "type" => "string",
+                "value" => function() { return $this->title; }
+            ],
+            [
+                "name" => 'web_url',
+                "doc" => "Web URL",
+                "type" => "string",
+                "value" => function() { return url($this->url); }
+            ],
+            [
+                "name" => 'slug',
+                "doc" => "Slug",
+                "type" => "string",
+                "value" => function() { return $this->slug; }
+            ],
+            [
+                "name" => 'listing_description',
+                "doc" => "Listing Description",
+                "type" => "string",
+                "value" => function() { return $this->listing_description; }
+            ],
+            [
+                "name" => 'short_description',
+                "doc" => "Short Description",
+                "type" => "string",
+                "value" => function() { return $this->short_description; }
+            ],
+            [
+                "name" => 'published',
+                "doc" => "Published",
+                "type" => "boolean",
+                "value" => function() { return $this->published; }
+            ],
+            [
+                "name" => 'publish_start_date',
+                "doc" => "Publish Start Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_start_date; }
+            ],
+            [
+                "name" => 'publish_end_date',
+                "doc" => "Publish End Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_end_date; }
+            ],
+            [
+                "name" => 'content',
+                "doc" => "Content",
+                "type" => "text",
+                "value" => function() { return $this->blocks; }
+            ],
+        ];
     }
 
 }
