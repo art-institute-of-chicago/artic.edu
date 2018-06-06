@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasPosition;
-use A17\CmsToolkit\Models\Behaviors\Sortable;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\Sortable;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
-use A17\CmsToolkit\Models\Model;
 
 class Offer extends Model implements Sortable
 {
@@ -31,7 +31,7 @@ class Offer extends Model implements Sortable
                     'name' => 'landscape',
                     'ratio' => 16 / 9,
                 ],
-            ]
+            ],
         ],
     ];
 
