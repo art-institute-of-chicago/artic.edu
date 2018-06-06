@@ -26,7 +26,8 @@
         'with_multiple' => false,
         'no_crop' => false,
         'label' => 'Hero image',
-        'name' => 'hero'
+        'name' => 'hero',
+        'note' => 'Minimum image width 3000px'
     ])
 
     @formField('input', [
@@ -38,12 +39,14 @@
     @formField('input', [
         'name' => 'header_copy',
         'label' => 'Header',
+        'maxlength' => 255
     ])
 
     @formField('input', [
         'name' => 'list_description',
         'label' => 'List description',
-        'type' => 'textarea'
+        'type' => 'textarea',
+        'maxlength' => 255
     ])
 
     @formField('wysiwyg', [

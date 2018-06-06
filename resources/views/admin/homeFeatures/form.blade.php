@@ -3,7 +3,8 @@
 @section('contentFields')
     @formField('medias', [
         'label' => 'Hero',
-        'name' => 'hero'
+        'name' => 'hero',
+        'note' => 'Minimum image width 3000px'
     ])
 
     @formField('files', [

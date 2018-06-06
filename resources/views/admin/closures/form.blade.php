@@ -25,6 +25,7 @@
     @formField('input', [
         'name' => 'closure_copy',
         'label' => 'Closure Copy',
+        'maxlength' => 255
     ])
 @stop
 

@@ -16,6 +16,7 @@
     @formField('input', [
         'name' => 'local_title',
         'label' => 'Augmented Title',
+        'maxlength' => 255
     ])
  --}}
 
@@ -29,6 +30,7 @@
         'with_multiple' => false,
         'no_crop' => false,
         'label' => 'Thumbnail Image',
-        'name' => 'thumb'
+        'name' => 'thumb',
+        'note' => 'Minimum image width 1500px'
     ])
 @stop

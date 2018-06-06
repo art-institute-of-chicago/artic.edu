@@ -11,7 +11,8 @@
         'with_multiple' => false,
         'no_crop' => false,
         'label' => 'Hero Image',
-        'name' => 'hero'
+        'name' => 'hero',
+        'note' => 'Minimum image width 2000px'
     ])
 
     @formField('input', [

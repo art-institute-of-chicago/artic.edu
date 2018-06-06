@@ -23,7 +23,8 @@
         'with_multiple' => false,
         'no_crop' => false,
         'label' => 'Hero image',
-        'name' => 'hero'
+        'name' => 'hero',
+        'note' => 'Minimum image width 3000px'
     ])
 
     @formField('multi_select', [
@@ -43,12 +44,13 @@
         'label' => 'Header',
         'rows' => 3,
         'type' => 'textarea',
-        'maxlength' => 190
+        'maxlength' => 255
     ])
 
     @formField('input', [
         'name' => 'author',
-        'label' => 'Author'
+        'label' => 'Author',
+        'maxlength' => 255
     ])
 
     @formField('medias', [
@@ -56,6 +58,7 @@
         'no_crop' => false,
         'label' => 'Author thumbnail',
         'name' => 'author'
+        'note' => 'Minimum image width 600px'
     ])
 
     @formField('checkbox', [
@@ -67,7 +70,8 @@
         'name' => 'citations',
         'label' => 'Citation',
         'rows' => 3,
-        'type' => 'textarea'
+        'type' => 'textarea',
+        'maxlength' => 255
     ])
 
     @formField('block_editor', [

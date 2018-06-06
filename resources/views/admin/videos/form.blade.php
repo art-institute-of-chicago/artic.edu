@@ -10,7 +10,8 @@
         'with_multiple' => false,
         'no_crop' => false,
         'label' => 'Hero Image',
-        'name' => 'hero'
+        'name' => 'hero',
+        'note' => 'Minimum image width 3000px'
     ])
 
     @formField('date_picker', [
