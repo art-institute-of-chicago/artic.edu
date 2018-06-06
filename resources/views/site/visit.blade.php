@@ -158,7 +158,11 @@
                       @component('components.blocks._text')
                           @slot('font', 'f-secondary')
                           @slot('tag','span')
+                          @if($ageGroup['prices'][$ageGroupPrice] == 0)
+                          Free
+                          @else
                           ${{ $ageGroup['prices'][$ageGroupPrice] }}
+                          #endif
                       @endcomponent
                     @endif
                   </td>
