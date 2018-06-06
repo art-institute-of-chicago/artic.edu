@@ -92,35 +92,42 @@ class GenericPage extends Model implements Sortable
 
     public static function saveTreeFromIds($nodesArray)
     {
-        self::updateTreeRoots($nodesArray);
-        self::rebuildTree($nodesArray);
+        $parentNodes = self::find(array_pluck($nodesArray, 'id'));
+
+        self::updateTreeRoots($nodesArray, $parentNodes);
+
+        $parentNodes = self::find(array_pluck($nodesArray, 'id'));
+
+        self::rebuildTree($nodesArray, $parentNodes);
     }
 
-    public static function updateTreeRoots($nodesArray)
+    public static function updateTreeRoots($nodesArray, $parentNodes)
     {
         if (is_array($nodesArray)) {
             $position = 1;
             foreach ($nodesArray as $nodeArray) {
-                $node = self::find($nodeArray['id']);
+                $node = $parentNodes->where('id', $nodeArray['id'])->first();
                 $node->position = $position++;
                 $node->saveAsRoot();
             }
         }
     }
 
-    public static function rebuildTree($nodesArray)
+    public static function rebuildTree($nodesArray, $parentNodes)
     {
         if (is_array($nodesArray)) {
             foreach ($nodesArray as $nodeArray) {
-                $parent = self::find($nodeArray['id']);
+                $parent = $parentNodes->where('id', $nodeArray['id'])->first();
                 if (isset($nodeArray['children']) && is_array($nodeArray['children'])) {
                     $position = 1;
+                    $nodes = self::find(array_pluck($nodeArray['children'], 'id'));
                     foreach ($nodeArray['children'] as $child) {
                         //append the children to their (old/new)parents
-                        $descendant = self::find($child['id']);
+                        $descendant = $nodes->where('id', $child['id'])->first();
                         $descendant->position = $position++;
-                        $descendant->appendToNode($parent)->save();
-                        self::rebuildTree($nodeArray['children']);
+                        $descendant->parent_id = $parent->id;
+                        $descendant->save();
+                        self::rebuildTree($nodeArray['children'], $nodes);
                     }
                 }
             }
