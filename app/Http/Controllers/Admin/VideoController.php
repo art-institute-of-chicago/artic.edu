@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\VideoRepository;
 
 class VideoController extends ModuleController
@@ -15,7 +14,7 @@ class VideoController extends ModuleController
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-            'sort' => true
+            'sort' => true,
         ],
     ];
 
@@ -43,20 +42,16 @@ class VideoController extends ModuleController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('video'));
-        $baseUrl = '//'.config('app.url').'/videos/'.$item->id.'-';
+        $baseUrl = '//' . config('app.url') . '/videos/' . $item->id . '-';
 
         return [
-            'baseUrl' => $baseUrl
+            'baseUrl' => $baseUrl,
         ];
     }
 
     protected function previewData($item)
     {
-        // The ID is a datahub_id not a local ID
-        $apiRepo = app(VideoRepository::class);
-        $apiItem = $apiRepo->getById($item->id);
-
-        return $apiRepo->getShowData($item);
+        return $this->repository->getShowData($item);
     }
 
 }

@@ -1,4 +1,4 @@
-@extends('cms-toolkit::layouts.form')
+@extends('twill::layouts.form')
 
 @section('contentFields')
     @formField('medias', [
@@ -44,7 +44,7 @@
     ])
 
 
-    @component('cms-toolkit::partials.form.utils._connected_fields', [
+    @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => '_featureType',
         'renderForBlocks' => false,
         'fieldValues' => 'articles'
@@ -57,7 +57,7 @@
         ])
     @endcomponent
 
-    @component('cms-toolkit::partials.form.utils._connected_fields', [
+    @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => '_featureType',
         'renderForBlocks' => false,
         'fieldValues' => 'events'
@@ -70,7 +70,7 @@
         ])
     @endcomponent
 
-    @component('cms-toolkit::partials.form.utils._connected_fields', [
+    @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => '_featureType',
         'renderForBlocks' => false,
         'fieldValues' => 'exhibitions'

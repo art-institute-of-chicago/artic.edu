@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Api;
 
-use A17\CmsToolkit\Models\Model;
-use A17\CmsToolkit\Repositories\ModuleRepository;
+use A17\Twill\Models\Model;
+use A17\Twill\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleApiRelations;
 
 abstract class BaseApiRepository extends ModuleRepository
@@ -39,10 +39,10 @@ abstract class BaseApiRepository extends ModuleRepository
         }
     }
 
-    public function forSearchQuery($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [] )
+    public function forSearchQuery($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [])
     {
         // Build the search query
-        $search  = $this->model->search($string);
+        $search = $this->model->search($string);
 
         // Perform the query
         $results = $search->getSearch($perPage, $columns, $pageName, $page, $options);

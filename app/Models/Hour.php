@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
-use A17\CmsToolkit\Models\Behaviors\HasPresenter;
-
+use A17\Twill\Models\Behaviors\HasPresenter;
+use A17\Twill\Models\Model;
 use Carbon\Carbon;
 
 class Hour extends Model
@@ -21,7 +20,7 @@ class Hour extends Model
         3 => 'Wednesday',
         4 => 'Thursday',
         5 => 'Friday',
-        6 => 'Saturday'
+        6 => 'Saturday',
     );
 
     protected $fillable = [
@@ -29,13 +28,13 @@ class Hour extends Model
         'opening_time',
         'closing_time',
         'type',
-        'closed'
+        'closed',
     ];
 
     public static $types = [
         0 => 'Museum',
         1 => 'Shop',
-        2 => 'Library'
+        2 => 'Library',
     ];
 
     public $dates = ['opening_time', 'closing_time'];
@@ -53,36 +52,36 @@ class Hour extends Model
                 "name" => 'opening_time',
                 "doc" => "Opening Time",
                 "type" => "datetime",
-                "value" => function() { return $this->opening_time; }
+                "value" => function () {return $this->opening_time;},
             ],
             [
                 "name" => 'closing_time',
                 "doc" => "Closing Time",
                 "type" => "datetime",
-                "value" => function() { return $this->closing_time; }
+                "value" => function () {return $this->closing_time;},
             ],
             [
                 "name" => 'type',
                 "doc" => "Type",
                 "type" => "number",
-                "value" => function() { return $this->type; }
+                "value" => function () {return $this->type;},
             ],
             [
                 "name" => 'day_of_week',
                 "doc" => "Day of Week",
                 "type" => "number",
-                "value" => function() { return $this->day_of_week; }
+                "value" => function () {return $this->day_of_week;},
             ],
             [
                 "name" => 'closed',
                 "doc" => "Closed",
                 "type" => "boolean",
-                "value" => function() { return $this->closed; }
-            ]
+                "value" => function () {return $this->closed;},
+            ],
         ];
     }
 
-    public static function getOpeningWithClosure($type=0)
+    public static function getOpeningWithClosure($type = 0)
     {
         $today = Carbon::today();
         $closure = Closure::published()->where('type', $type)->where('date_start', '<=', $today)->where('date_end', '>=', $today)->first();
@@ -93,7 +92,7 @@ class Hour extends Model
         return 'Open daily 10:30&ndash;5:00, Thursdays until 8:00';
     }
 
-    public static function getOpeningToday($type=0)
+    public static function getOpeningToday($type = 0)
     {
         $day = date('N');
         $today = Carbon::today();
@@ -104,7 +103,7 @@ class Hour extends Model
         } else {
             $hours = Hour::where('type', $type)->where('day_of_week', $day)->first();
             if ($hours && $hours->opening_time && $hours->closing_time) {
-                return "Open today " . $hours->opening_time->format('g:i') . '&ndash;'. $hours->closing_time->format('g:i');
+                return "Open today " . $hours->opening_time->format('g:i') . '&ndash;' . $hours->closing_time->format('g:i');
             }
         }
 

@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasFiles;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Behaviors\HasPosition;
-use A17\CmsToolkit\Models\Behaviors\Sortable;
-use A17\CmsToolkit\Models\Model;
-
-use Kalnoy\Nestedset\NodeTrait;
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Behaviors\Sortable;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasApiRelations;
+use Kalnoy\Nestedset\NodeTrait;
 
 class GenericPage extends Model implements Sortable
 {
@@ -33,7 +32,7 @@ class GenericPage extends Model implements Sortable
         'listing',
         'banner',
         'redirect_url',
-        'is_redirect_url_external'
+        'is_redirect_url_external',
     ];
 
     public $dates = ['publish_start_date', 'publish_end_date'];
@@ -69,7 +68,7 @@ class GenericPage extends Model implements Sortable
                     'name' => 'landscape',
                     'ratio' => 25 / 3,
                 ],
-            ]
+            ],
         ],
     ];
 
@@ -81,50 +80,57 @@ class GenericPage extends Model implements Sortable
         }
 
         $url = "";
-        foreach($this->ancestors as $item) {
-            $url = $url ."/".$item->slug;
+        foreach ($this->ancestors as $item) {
+            $url = $url . "/" . $item->slug;
         }
-        $url = $url ."/".$this->slug;
+        $url = $url . "/" . $this->slug;
 
         return $url;
     }
 
-    public function getUrl($prefix="")
+    public function getUrl($prefix = "")
     {
-        return $prefix."/".$this->slug;
+        return $prefix . "/" . $this->slug;
     }
 
     public static function saveTreeFromIds($nodesArray)
     {
-        self::updateTreeRoots($nodesArray);
-        self::rebuildTree($nodesArray);
+        $parentNodes = self::find(array_pluck($nodesArray, 'id'));
+
+        self::updateTreeRoots($nodesArray, $parentNodes);
+
+        $parentNodes = self::find(array_pluck($nodesArray, 'id'));
+
+        self::rebuildTree($nodesArray, $parentNodes);
     }
 
-    public static function updateTreeRoots($nodesArray)
+    public static function updateTreeRoots($nodesArray, $parentNodes)
     {
         if (is_array($nodesArray)) {
             $position = 1;
             foreach ($nodesArray as $nodeArray) {
-                $node = self::find($nodeArray['id']);
+                $node = $parentNodes->where('id', $nodeArray['id'])->first();
                 $node->position = $position++;
                 $node->saveAsRoot();
             }
         }
     }
 
-    public static function rebuildTree($nodesArray)
+    public static function rebuildTree($nodesArray, $parentNodes)
     {
         if (is_array($nodesArray)) {
             foreach ($nodesArray as $nodeArray) {
-                $parent = self::find($nodeArray['id']);
+                $parent = $parentNodes->where('id', $nodeArray['id'])->first();
                 if (isset($nodeArray['children']) && is_array($nodeArray['children'])) {
                     $position = 1;
+                    $nodes = self::find(array_pluck($nodeArray['children'], 'id'));
                     foreach ($nodeArray['children'] as $child) {
                         //append the children to their (old/new)parents
-                        $descendant = self::find($child['id']);
+                        $descendant = $nodes->where('id', $child['id'])->first();
                         $descendant->position = $position++;
-                        $descendant->appendToNode($parent)->save();
-                        self::rebuildTree($nodeArray['children']);
+                        $descendant->parent_id = $parent->id;
+                        $descendant->save();
+                        self::rebuildTree($nodeArray['children'], $nodes);
                     }
                 }
             }
@@ -172,7 +178,6 @@ class GenericPage extends Model implements Sortable
                         $type = 'exhibition';
                         break;
                 }
-
 
                 $this->selectedFeaturedRelated = [
                     'type' => str_singular($type),
@@ -242,5 +247,4 @@ class GenericPage extends Model implements Sortable
             ],
         ];
     }
-
 }

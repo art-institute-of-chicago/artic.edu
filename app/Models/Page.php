@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasFiles;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasPresenter;
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasPresenter;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 use App\Models\Admission as Admission;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -19,13 +19,13 @@ class Page extends Model
     protected $presenter = 'App\Presenters\Admin\PagePresenter';
 
     protected $dispatchesEvents = [
-        'saved' => \App\Events\UpdatePage::class
+        'saved' => \App\Events\UpdatePage::class,
     ];
 
     public static $types = [
         0 => 'Home',
         1 => 'Exhibitions and Events',
-        2 => 'Art and Ideas',               // now The Collection?
+        2 => 'Art and Ideas', // now The Collection?
         3 => 'Visit',
         4 => 'Articles',
         5 => 'Exhibition History',
@@ -83,7 +83,7 @@ class Page extends Model
 
         // Resources Landing page
         'resources_landing_title',
-        'resources_landing_intro'
+        'resources_landing_intro',
     ];
 
     public $slugAttributes = [
@@ -105,33 +105,33 @@ class Page extends Model
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 1
+                    'ratio' => 1,
                 ],
-            ]
+            ],
         ],
         'visit_featured_hour' => [
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 1
+                    'ratio' => 1,
                 ],
-            ]
+            ],
         ],
         'visit_map' => [
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 1
+                    'ratio' => 1,
                 ],
-            ]
+            ],
         ],
         'visit_city_pass' => [
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 1
+                    'ratio' => 1,
                 ],
-            ]
+            ],
         ],
         'hero' => [
             'default' => [
@@ -153,7 +153,7 @@ class Page extends Model
                     'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
-            ]
+            ],
         ],
         'home_membership_module_image' => [
             'default' => [
@@ -161,7 +161,7 @@ class Page extends Model
                     'name' => 'default',
                     'ratio' => 25 / 3,
                 ],
-            ]
+            ],
         ],
         'research_landing_image' => [
             'default' => [
@@ -169,12 +169,13 @@ class Page extends Model
                     'name' => 'default',
                     'ratio' => 40 / 27,
                 ],
-            ]
+            ],
         ],
     ];
     public $filesParams = ['video']; // a list of file roles
 
-    public function scopeForType($query, $type) {
+    public function scopeForType($query, $type)
+    {
         return $query->where('type', array_flip(self::$types)[$type]);
     }
 
@@ -310,42 +311,42 @@ class Page extends Model
                 "name" => 'published',
                 "doc" => "Published?",
                 "type" => "boolean",
-                "value" => function() { return $this->published; }
+                "value" => function () {return $this->published;},
             ],
 
             [
                 "name" => 'type',
                 "doc" => "Type of Page",
                 "type" => "integer",
-                "value" => function() { return $this->type; }
+                "value" => function () {return $this->type;},
             ],
 
             [
                 "name" => 'home_intro',
                 "doc" => "Home Intro",
                 "type" => "string",
-                "value" => function() { return $this->home_intro; }
+                "value" => function () {return $this->home_intro;},
             ],
 
             [
                 "name" => 'exhibition_intro',
                 "doc" => "Exhibition Intro",
                 "type" => "string",
-                "value" => function() { return $this->exhibition_intro; }
+                "value" => function () {return $this->exhibition_intro;},
             ],
 
             [
                 "name" => 'art_intro',
                 "doc" => "Art Intro",
                 "type" => "string",
-                "value" => function() { return $this->art_intro; }
+                "value" => function () {return $this->art_intro;},
             ],
 
             [
                 "name" => 'visit_intro',
                 "doc" => "Visit Intro",
                 "type" => "string",
-                "value" => function() { return $this->visit_intro; }
+                "value" => function () {return $this->visit_intro;},
             ],
 
             [

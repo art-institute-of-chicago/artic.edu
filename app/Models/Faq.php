@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
+use A17\Twill\Models\Model;
 
-use A17\CmsToolkit\Models\Model;
-
-class Faq extends Model 
+class Faq extends Model
 {
-    
 
     protected $fillable = [
         'published',
         'position',
         'title',
         'link',
-        'page_id'
+        'page_id',
     ];
 
     public $checkboxes = ['published'];

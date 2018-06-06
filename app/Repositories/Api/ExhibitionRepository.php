@@ -2,8 +2,6 @@
 
 namespace App\Repositories\Api;
 
-use A17\CmsToolkit\Repositories\ModuleRepository;
-
 use App\Models\Api\Exhibition;
 use App\Repositories\Api\BaseApiRepository;
 use App\Repositories\EventRepository;
@@ -18,11 +16,13 @@ class ExhibitionRepository extends BaseApiRepository
     }
 
     // Upcoming exhibitions
-    public function upcoming() {
+    public function upcoming()
+    {
         return $this->model->query()->upcoming()->getSearch();
     }
 
-    public function history( $year = null, $q = null ) {
+    public function history($year = null, $q = null)
+    {
         return $this->model->query()->history($year)->search($q)->getSearch();
     }
 
@@ -35,7 +35,7 @@ class ExhibitionRepository extends BaseApiRepository
         return [
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
-            'relatedEventsByDay' => $relatedEventsByDay
+            'relatedEventsByDay' => $relatedEventsByDay,
         ];
     }
 

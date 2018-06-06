@@ -1,4 +1,4 @@
-@extends('cms-toolkit::layouts.form', [
+@extends('twill::layouts.form', [
     'additionalFieldsets' => [
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'dates', 'label' => 'Date Rules'],
@@ -155,7 +155,7 @@
             'rows' => 2
         ])
 
-        @component('cms-toolkit::partials.form.utils._columns')
+        @component('twill::partials.form.utils._columns')
             @slot('left')
                 @formField('select', [
                     'name' => 'start_time',

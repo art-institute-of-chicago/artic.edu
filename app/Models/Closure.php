@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasPresenter;
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Behaviors\HasPresenter;
+use A17\Twill\Models\Model;
 
 class Closure extends Model
 {
@@ -39,32 +39,32 @@ class Closure extends Model
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function() { return $this->published; }
+                "value" => function () {return $this->published;},
             ],
             [
                 "name" => 'date_start',
                 "doc" => "Start of closure",
                 "type" => "date",
-                "value" => function() { return $this->date_start; }
+                "value" => function () {return $this->date_start;},
             ],
             [
                 "name" => 'date_end',
                 "doc" => "End of closure",
                 "type" => "date",
-                "value" => function() { return $this->date_end; }
+                "value" => function () {return $this->date_end;},
             ],
             [
                 "name" => 'closure_copy',
                 "doc" => "Description of Closure",
                 "type" => "text",
-                "value" => function() { return $this->closure_copy; }
+                "value" => function () {return $this->closure_copy;},
             ],
             [
                 "name" => 'type',
                 "doc" => "Type of Closure",
                 "type" => "number",
-                "value" => function() { return $this->type; }
-            ]
+                "value" => function () {return $this->type;},
+            ],
         ];
     }
 

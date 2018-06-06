@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Model;
-
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiModel;
-use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class CategoryTerm extends Model
 {
@@ -19,7 +17,7 @@ class CategoryTerm extends Model
     protected $fillable = [
         'datahub_id',
         'local_subtype',
-        'local_title'
+        'local_title',
     ];
 
     public $mediasParams = [
@@ -29,7 +27,7 @@ class CategoryTerm extends Model
                     'name' => 'default',
                     'ratio' => 1,
                 ],
-            ]
+            ],
         ],
     ];
 

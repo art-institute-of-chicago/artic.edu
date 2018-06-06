@@ -1,5 +1,5 @@
 @formField('browser', [
-    'routePrefix' => 'visit',
+    'routePrefix' => 'general',
     'name' => 'shopItems',
     'moduleName' => 'shopItems',
     'label' => 'Shop Items',

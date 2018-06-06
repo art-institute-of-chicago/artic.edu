@@ -2,12 +2,13 @@
 
 namespace App\Repositories;
 
-use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
-use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
-use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
-use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
-use A17\CmsToolkit\Repositories\Behaviors\HandleRepeaters;
-use A17\CmsToolkit\Repositories\ModuleRepository;
+use A17\Twill\Repositories\Behaviors\HandleSlugs;
+use A17\Twill\Repositories\Behaviors\HandleBlocks;
+use A17\Twill\Repositories\Behaviors\HandleMedias;
+use A17\Twill\Repositories\Behaviors\HandleRevisions;
+use A17\Twill\Repositories\Behaviors\HandleRepeaters;
+use A17\Twill\Repositories\ModuleRepository;
+
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Models\Exhibition;
 use App\Repositories\Api\BaseApiRepository;

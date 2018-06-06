@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
-
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\GenericPageRepository;
 use App\Repositories\PageCategoryRepository;
 
@@ -45,13 +44,13 @@ class GenericPageController extends ModuleController
     {
         $pagesList = $this->repository->withDepth()->defaultOrder()->get()->filter(function ($page) {
             return $page->depth < 3;
-        })->pluck('title');
+        })->pluck('title', 'id');
 
         $pagesList = $pagesList->prepend('None', '');
 
         return [
             'nested' => true,
-            'nestedDepth' => 3,
+            'nestedDepth' => 10,
             'pages' => $pagesList,
         ];
     }
@@ -67,9 +66,9 @@ class GenericPageController extends ModuleController
     {
         $page = $this->repository->getById(request('genericPage'));
 
-        $baseUrl = '//'.config('app.url')."/";
-        foreach($page->ancestors as $item) {
-            $baseUrl = $baseUrl.$item->slug."/";
+        $baseUrl = '//' . config('app.url') . "/";
+        foreach ($page->ancestors as $item) {
+            $baseUrl = $baseUrl . $item->slug . "/";
         }
 
         $breadcrumb = $page->ancestors->map(function ($parentPage) {
@@ -93,7 +92,7 @@ class GenericPageController extends ModuleController
                 ],
             ]),
 
-           'baseUrl' => $baseUrl,
+            'baseUrl' => $baseUrl,
 
             'categoriesList' => app(PageCategoryRepository::class)->listAll('name'),
         ];
@@ -113,11 +112,7 @@ class GenericPageController extends ModuleController
 
     protected function previewData($item)
     {
-        // The ID is a datahub_id not a local ID
-        $apiRepo = app(GenericPageRepository::class);
-        $apiItem = $apiRepo->getById($item->id);
-
-        return $apiRepo->getShowData($item);
+        return $this->repository->getShowData($item);
     }
 
 }

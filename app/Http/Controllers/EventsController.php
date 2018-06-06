@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use A17\CmsToolkit\Http\Controllers\Front\ShowWithPreview;
-use App\Repositories\EventRepository;
-use App\Models\Page;
+use A17\Twill\Http\Controllers\Front\ShowWithPreview;
 use App\Models\Event;
+use App\Models\Page;
+use App\Repositories\EventRepository;
 use Carbon\Carbon;
 use View;
 
@@ -14,7 +14,7 @@ class EventsController extends FrontController
     use ShowWithPreview;
 
     protected $repository;
-    protected $moduleName   = 'events';
+    protected $moduleName = 'events';
     protected $showViewName = 'site.events.detail';
 
     const PER_PAGE = 10;
@@ -31,7 +31,7 @@ class EventsController extends FrontController
     public function index()
     {
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
-        $collection  = $this->collection();
+        $collection = $this->collection();
 
         // If it's filtered just show everything instead of dividing the listing on ongoing
         if ($this->isFiltered()) {
@@ -49,32 +49,33 @@ class EventsController extends FrontController
             // Show ongoing events as regular if there's no more events for the day
             if ($recurrent->isEmpty() && !$ongoing->isEmpty()) {
                 $recurrent = $ongoing;
-                $ongoing   = null;
+                $ongoing = null;
             }
 
             $eventsByDay = $this->repository->groupByDate($recurrent);
         }
 
         return view('site.events.index', [
-            'page'        => $page,
+            'page' => $page,
             'eventsByDay' => $eventsByDay,
-            'collection'  => $collection,
-            'ongoing'     => $ongoing,
-            'primaryNavCurrent'  => 'exhibitions_and_events',
+            'collection' => $collection,
+            'ongoing' => $ongoing,
+            'primaryNavCurrent' => 'exhibitions_and_events',
         ]);
     }
 
     public function indexMore()
     {
-        $collection  = $this->collection();
+        $collection = $this->collection();
         $eventsByDay = $this->repository->groupByDate($collection);
 
         $view['html'] = view('site.events._items', [
-            'eventsByDay' => $eventsByDay
+            'eventsByDay' => $eventsByDay,
         ])->render();
 
-        if ($collection->hasMorePages())
+        if ($collection->hasMorePages()) {
             $view['page'] = request('page');
+        }
 
         return $view;
     }
@@ -97,7 +98,7 @@ class EventsController extends FrontController
         $content = $vCalendar->render();
 
         $headers = [
-            'Content-type'        => 'text/calendar',
+            'Content-type' => 'text/calendar',
             'Content-Disposition' => 'attachment; filename="' . $event->title . '.ics"',
         ];
 
@@ -130,8 +131,8 @@ class EventsController extends FrontController
         $links = [
             [
                 'href' => route('events', request()->except('type')),
-                'label' => 'All event types'
-            ]
+                'label' => 'All event types',
+            ],
         ];
 
         foreach (Event::$eventTypes as $key => $type) {
@@ -146,8 +147,8 @@ class EventsController extends FrontController
         $links = [
             [
                 'href' => route('events', request()->except('audience')),
-                'label' => 'All audiences'
-            ]
+                'label' => 'All audiences',
+            ],
         ];
 
         foreach (Event::$eventAudiences as $key => $audience) {

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use A17\CmsToolkit\Http\Controllers\Front\Controller as BaseController;
+
+use A17\Twill\Http\Controllers\Front\Controller as BaseController;
 use View;
 
 class FrontController extends BaseController

@@ -2,7 +2,7 @@
     $pageType = App\Models\Page::$types[$item->type];
 @endphp
 
-@extends('cms-toolkit::layouts.form', [
+@extends('twill::layouts.form', [
     'additionalFieldsets' => $additionalFieldsets
 ])
 

@@ -5,7 +5,7 @@
     'default' => 0
 ])
 
-@component('cms-toolkit::partials.form.utils._columns')
+@component('twill::partials.form.utils._columns')
     @slot('left')
         @formField('date_picker', [
             'name' => 'start_date',
@@ -30,7 +30,7 @@
 @endcomponent
 
 
-@component('cms-toolkit::partials.form.utils._columns')
+@component('twill::partials.form.utils._columns')
     @slot('left')
         @formField('input', [
             'name' => 'every',
@@ -49,11 +49,11 @@
     @endslot
 @endcomponent
 
-@component('cms-toolkit::partials.form.utils._collapsed_fields')
+@component('twill::partials.form.utils._collapsed_fields')
     @slot('label', 'Edit weekly/monthly options')
 
 
-    @component('cms-toolkit::partials.form.utils._inline_checkboxes')
+    @component('twill::partials.form.utils._inline_checkboxes')
         @slot('label', 'If repeated weekly, which days?')
 
         @formField('checkbox', [

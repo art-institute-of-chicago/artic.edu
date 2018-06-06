@@ -57,7 +57,7 @@ Twitter: @13twelve
 PG Tips for excellent pyramid tea bags.
 
 /* SITE */
-Built on top of AREA 17 FE boilerplate and AREA 17 CMS Toolkit.
+Built on top of AREA 17 FE boilerplate and AREA 17 Twill.
 
 Standards: HTML5, CSS3
 Components: SCSS, Vanilla JS, PHP

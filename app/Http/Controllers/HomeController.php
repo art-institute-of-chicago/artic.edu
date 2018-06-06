@@ -2,19 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use A17\CmsToolkit\Models\Feature;
-
-use App\Presenters\StaticObjectPresenter;
-use App\Repositories\Api\ShopItemRepository;
-use App\Repositories\Api\ExhibitionRepository;
-use App\Repositories\Api\EventRepository;
-use App\Repositories\Api\ArtworkRepository;
-
-use App\Models\Event;
-use App\Models\Exhibition;
 use App\Models\Page;
-use App\Models\Api\ShopItem;
-
+use App\Repositories\Api\ArtworkRepository;
+use App\Repositories\Api\ExhibitionRepository;
 use Carbon\Carbon;
 
 class HomeController extends FrontController
@@ -23,7 +13,8 @@ class HomeController extends FrontController
     protected $shopItemRepository;
     protected $exhibitionRepository;
 
-    public function __construct(ExhibitionRepository $exhibitionRepository, ArtworkRepository $artworkRepository) {
+    public function __construct(ExhibitionRepository $exhibitionRepository, ArtworkRepository $artworkRepository)
+    {
         $this->exhibitionRepository = $exhibitionRepository;
         $this->artworkRepository = $artworkRepository;
 
@@ -41,18 +32,18 @@ class HomeController extends FrontController
 
         $mainFeatures = collect([]);
         $mainFeatureBucket = $page->homeFeatures;
-        foreach($mainFeatureBucket as $feature) {
+        foreach ($mainFeatureBucket as $feature) {
             $item = null;
             if ($feature->published) {
                 if ($feature->events->count()) {
                     $item = $feature->events()->first();
-                    $item->type= 'event';
+                    $item->type = 'event';
                     $item->dateStart = Carbon::now();
                     $item->dateEnd = Carbon::now();
                     $item->feature_image = $feature->imageFront('hero');
 
                     $video_url = $feature->file('video');
-                    if($video_url != null) {
+                    if ($video_url != null) {
                         $poster_url = isset($item->feature_image['src']) ? $item->feature_image['src'] : '';
                         $video = [
                             'src' => $video_url,
@@ -66,7 +57,7 @@ class HomeController extends FrontController
                     $item->feature_image = $feature->imageFront('hero');
 
                     $video_url = $feature->file('video');
-                    if($video_url != null) {
+                    if ($video_url != null) {
                         $poster_url = isset($item->feature_image['src']) ? $item->feature_image['src'] : '';
                         $video = [
                             'src' => $video_url,
@@ -78,13 +69,13 @@ class HomeController extends FrontController
                     $item->type = 'exhibition';
                 } else if ($feature->articles->count()) {
                     $item = $feature->articles()->first();
-                    $item->type= 'article';
+                    $item->type = 'article';
                     $item->dateStart = Carbon::now();
                     $item->dateEnd = Carbon::now();
                     $item->feature_image = $feature->imageFront('hero');
 
                     $video_url = $feature->file('video');
-                    if($video_url != null) {
+                    if ($video_url != null) {
                         $poster_url = isset($item->feature_image['src']) ? $item->feature_image['src'] : '';
                         $video = [
                             'src' => $video_url,
@@ -105,16 +96,16 @@ class HomeController extends FrontController
 
         $collectionFeatures = collect([]);
         $collectionFeatureBucket = $page->collectionFeatures;
-        foreach($collectionFeatureBucket as $feature) {
+        foreach ($collectionFeatureBucket as $feature) {
             $item = null;
             if ($feature->published) {
                 if ($feature->articles->count()) {
                     $item = $feature->articles()->first();
-                    $item->type= 'article';
+                    $item->type = 'article';
 
                 } else if ($feature->artworks->count()) {
                     $item = $this->artworkRepository->getById($feature->artworks()->first()->datahub_id);
-                    $item->type= 'artwork';
+                    $item->type = 'artwork';
 
                 } else if ($feature->selections->count()) {
                     $item = $feature->selections()->first();
@@ -129,7 +120,6 @@ class HomeController extends FrontController
             }
         }
 
-
         $membership_module_url = $page->home_membership_module_url;
         $membership_module_headline = $page->home_membership_module_headline;
         $membership_module_button_text = $page->home_membership_module_button_text;
@@ -137,18 +127,18 @@ class HomeController extends FrontController
 
         $view_data = [
             'contrastHeader' => sizeof($mainFeatures) > 0 ? true : false
-        ,   'filledLogo' => sizeof($mainFeatures) > 0 ? true : false
-        ,   'mainFeatures' => $mainFeatures
-        ,   'intro' => $page->home_intro
-        ,   'exhibitions' => $exhibitions
-        ,   'events' => $events
-        ,   'theCollection' => $collectionFeatures
-        ,   'products' => $products
-        ,   'membership_module_image' => $page->imageFront('home_membership_module_image')
-        ,   'membership_module_url' => $membership_module_url
-        ,   'membership_module_headline' => $membership_module_headline
-        ,   'membership_module_button_text' => $membership_module_button_text
-        ,   'membership_module_short_copy' => $membership_module_short_copy
+            , 'filledLogo' => sizeof($mainFeatures) > 0 ? true : false
+            , 'mainFeatures' => $mainFeatures
+            , 'intro' => $page->home_intro
+            , 'exhibitions' => $exhibitions
+            , 'events' => $events
+            , 'theCollection' => $collectionFeatures
+            , 'products' => $products
+            , 'membership_module_image' => $page->imageFront('home_membership_module_image')
+            , 'membership_module_url' => $membership_module_url
+            , 'membership_module_headline' => $membership_module_headline
+            , 'membership_module_button_text' => $membership_module_button_text
+            , 'membership_module_short_copy' => $membership_module_short_copy,
         ];
 
         return view('site.home', $view_data);

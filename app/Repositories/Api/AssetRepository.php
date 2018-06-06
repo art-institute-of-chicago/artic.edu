@@ -2,8 +2,6 @@
 
 namespace App\Repositories\Api;
 
-use A17\CmsToolkit\Repositories\ModuleRepository;
-
 use App\Models\Api\Asset;
 use App\Repositories\Api\BaseApiRepository;
 

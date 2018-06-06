@@ -2,11 +2,8 @@
 
 namespace App\Repositories\Api;
 
-use A17\CmsToolkit\Repositories\ModuleRepository;
-
 use App\Models\Api\Artwork;
 use App\Models\Api\Search;
-use App\Models\Api\Artist;
 use App\Repositories\Api\BaseApiRepository;
 
 class ArtworkRepository extends BaseApiRepository
@@ -28,8 +25,8 @@ class ArtworkRepository extends BaseApiRepository
             $parameters = collect($options);
 
             $query->byClassifications($parameters->get('exFurther-classification'))
-                  ->byArtists($parameters->get('exFurther-artist'))
-                  ->byStyles($parameters->get('exFurther-style'));
+                ->byArtists($parameters->get('exFurther-artist'))
+                ->byStyles($parameters->get('exFurther-style'));
         } else {
             // When no filter selected, use the first filter available.
             $tags = collect($this->exploreFurtherTags($item));
@@ -60,7 +57,7 @@ class ArtworkRepository extends BaseApiRepository
 
     public function exploreFurtherAllTags()
     {
-       // Build All Tags tab
+        // Build All Tags tab
         $exploreFurtherTags = Search::query()
             ->forceEndpoint('search')
             ->resources(['artworks'])

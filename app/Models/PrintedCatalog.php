@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasFiles;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Model;
-
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class PrintedCatalog extends Model
@@ -58,7 +57,7 @@ class PrintedCatalog extends Model
                     'name' => 'landscape',
                     'ratio' => 200 / 24,
                 ],
-            ]
+            ],
         ],
     ];
 
@@ -73,7 +72,7 @@ class PrintedCatalog extends Model
             return $query;
         }
 
-        return $query->whereHas('categories', function ($query) use ($category){
+        return $query->whereHas('categories', function ($query) use ($category) {
             $query->where('catalog_category_id', $category);
         });
     }

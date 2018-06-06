@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use A17\CmsToolkit\Exceptions\Handler as ExceptionHandler;
+use A17\Twill\Exceptions\Handler as ExceptionHandler;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 
@@ -38,8 +38,6 @@ class Handler extends ExceptionHandler
 
         parent::report($exception);
     }
-
-
 
     /**
      * Render an exception into an HTTP response.

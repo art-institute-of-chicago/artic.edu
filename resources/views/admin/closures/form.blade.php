@@ -1,4 +1,4 @@
-@extends('cms-toolkit::layouts.form', ['contentFieldsetLabel' => 'Edit closure'])
+@extends('twill::layouts.form', ['contentFieldsetLabel' => 'Edit closure'])
 
 @section('contentFields')
     @formField('select', [

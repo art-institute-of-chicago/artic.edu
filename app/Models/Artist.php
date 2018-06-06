@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 
@@ -19,7 +19,7 @@ class Artist extends Model
         'intro',
         'datahub_id',
         'title',
-        'caption'
+        'caption',
     ];
 
     public $slugAttributes = [
@@ -33,7 +33,7 @@ class Artist extends Model
                     'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
-            ]
+            ],
         ],
     ];
 
@@ -54,20 +54,20 @@ class Artist extends Model
                 "name" => 'also_known_as',
                 "doc" => "Also Known As",
                 "type" => "string",
-                "value" => function() { return $this->also_known_as; }
+                "value" => function () {return $this->also_known_as;},
             ],
             [
                 "name" => 'intro_copy',
                 "doc" => "Intro Copy",
                 "type" => "string",
-                "value" => function() { return $this->intro_copy; }
+                "value" => function () {return $this->intro_copy;},
             ],
             [
                 "name" => 'datahub_id',
                 "doc" => "Type",
                 "type" => "string",
-                "value" => function() { return $this->datahub_id; }
-            ]
+                "value" => function () {return $this->datahub_id;},
+            ],
         ];
     }
 

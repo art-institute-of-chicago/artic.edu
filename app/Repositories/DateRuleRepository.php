@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use A17\CmsToolkit\Repositories\ModuleRepository;
+use A17\Twill\Repositories\ModuleRepository;
 use App\Models\DateRule;
 
 class DateRuleRepository extends ModuleRepository

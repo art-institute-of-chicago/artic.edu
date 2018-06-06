@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use A17\CmsToolkit\Repositories\UserRepository;
+use A17\Twill\Repositories\UserRepository;
 use Auth;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -37,11 +37,11 @@ class EventServiceProvider extends ServiceProvider
                 // 'id' => $user->getUserId(),
                 'email' => array_first($user->getAttribute('email')),
                 'name' => array_first($user->getAttribute('email')),
-                'role' => 'VIEW_ONLY'
+                'role' => 'VIEW_ONLY',
             ];
 
             $aicUser = app(UserRepository::class)->firstOrCreate(['email' => $userData['email']], $userData);
-             Auth::login($aicUser);
+            Auth::login($aicUser);
         });
 
         Event::listen('Aacotroneo\Saml2\Events\Saml2LogoutEvent', function ($event) {

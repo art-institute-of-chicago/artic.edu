@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use A17\CmsToolkit\Http\Controllers\Front\ShowWithPreview;
+use A17\Twill\Http\Controllers\Front\ShowWithPreview;
+use App\Models\Page;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\EventRepository;
-use App\Models\Page;
-use App\Models\Api\Exhibition;
 use Carbon\Carbon;
 
 class ExhibitionsController extends FrontController
@@ -46,12 +45,12 @@ class ExhibitionsController extends FrontController
 
         return view('site.exhibitions', [
             'page' => $page,
-            'collection'  => $collection,
+            'collection' => $collection,
             'eventsByDay' => $eventsByDay,
-            'events'      => $events,
-            'upcoming'    => $upcoming,
-            'featured'    => $featured,
-            'primaryNavCurrent'  => 'exhibitions_and_events',
+            'events' => $events,
+            'upcoming' => $upcoming,
+            'featured' => $featured,
+            'primaryNavCurrent' => 'exhibitions_and_events',
         ]);
     }
 
@@ -78,11 +77,12 @@ class ExhibitionsController extends FrontController
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
 
         $view['html'] = view('statics.exhibitions_load_more', [
-                'items' => $relatedEventsByDay
+            'items' => $relatedEventsByDay,
         ])->render();
 
-        if ($collection->hasMorePages())
+        if ($collection->hasMorePages()) {
             $view['page'] = request('page');
+        }
 
         return $view;
     }

@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
+use App\Models\Api\Artwork;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
-
-use App\Models\Api\Artwork;
 
 class Selection extends Model
 {
@@ -24,7 +23,7 @@ class Selection extends Model
         'content',
         'title',
         'short_copy',
-        'hero_caption'
+        'hero_caption',
     ];
 
     public $slugAttributes = [
@@ -108,8 +107,9 @@ class Selection extends Model
     public function getFeaturedRelatedAttribute()
     {
         // Select a random element from these relationships below and return one per request
-        if ($this->selectedFeaturedRelated)
+        if ($this->selectedFeaturedRelated) {
             return $this->selectedFeaturedRelated;
+        }
 
         $types = collect(['articles', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
         foreach ($types as $type) {
@@ -129,7 +129,7 @@ class Selection extends Model
 
                 $this->selectedFeaturedRelated = [
                     'type' => str_singular($type),
-                    'items' => [$item]
+                    'items' => [$item],
                 ];
                 return $this->selectedFeaturedRelated;
             }
@@ -141,12 +141,12 @@ class Selection extends Model
         $list = collect([]);
 
         $artwork_ids = collect([]);
-        foreach($this->blocks as $block) {
+        foreach ($this->blocks as $block) {
             if ($block->type == 'artwork') {
                 if (isset($block->content['browsers'])) {
                     if (isset($block->content['browsers']['artworks'])) {
                         $ids = $block->content['browsers']['artworks'];
-                        foreach($ids as $id) {
+                        foreach ($ids as $id) {
                             $artwork_ids->push($id);
                         }
                     }
@@ -155,7 +155,7 @@ class Selection extends Model
                 if (isset($block->content['browsers'])) {
                     if (isset($block->content['browsers']['artworks'])) {
                         $ids = $block->content['browsers']['artworks'];
-                        foreach($ids as $id) {
+                        foreach ($ids as $id) {
                             $artwork_ids->push($id);
                         }
 
@@ -166,7 +166,7 @@ class Selection extends Model
 
         // load artworks and get the images
         $artworks = Artwork::query()->ids($artwork_ids->toArray())->get();
-        foreach($artworks as $artwork) {
+        foreach ($artworks as $artwork) {
             if ($artwork->imageFront()) {
                 $list[] = $artwork->imageFront();
             }
@@ -186,25 +186,25 @@ class Selection extends Model
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
-                "value" => function() { return $this->published; }
+                "value" => function () {return $this->published;},
             ],
             [
                 "name" => 'updated_at',
                 "doc" => "Updated",
                 "type" => "date",
-                "value" => function() { return $this->updated_at; }
+                "value" => function () {return $this->updated_at;},
             ],
             [
                 "name" => 'content',
                 "doc" => "Content",
                 "type" => "text",
-                "value" => function() { return $this->blocks; }
+                "value" => function () {return $this->blocks;},
             ],
             [
                 "name" => 'short_copy',
                 "doc" => "Short Copy",
                 "type" => "text",
-                "value" => function() { return $this->short_copy; }
+                "value" => function () {return $this->short_copy;},
             ],
             [
                 "name" => "slug",

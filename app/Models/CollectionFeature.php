@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Behaviors\HasBlocks;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
-
-use A17\CmsToolkit\Models\Model;
 
 class CollectionFeature extends Model
 {

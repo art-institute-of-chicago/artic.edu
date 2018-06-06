@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Model;
-
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiModel;
 
 class Gallery extends Model
@@ -17,7 +15,7 @@ class Gallery extends Model
     protected $fillable = [
         'datahub_id',
         'intro',
-        'caption'
+        'caption',
     ];
 
     public $slugAttributes = [
@@ -31,7 +29,7 @@ class Gallery extends Model
                     'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
-            ]
+            ],
         ],
     ];
 }

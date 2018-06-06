@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasSlug;
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
-use A17\CmsToolkit\Models\Behaviors\HasFiles;
-use A17\CmsToolkit\Models\Behaviors\HasRevisions;
-use A17\CmsToolkit\Models\Behaviors\HasPresenter;
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Behaviors\HasFiles;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasPresenter;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class Video extends Model
 {
     use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasPresenter;
 
-    protected $presenter      = 'App\Presenters\Admin\VideoPresenter';
+    protected $presenter = 'App\Presenters\Admin\VideoPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\VideoPresenter';
 
     protected $fillable = [
@@ -22,10 +22,10 @@ class Video extends Model
         'date',
         'title',
         'heading',
-        'video_url'
+        'video_url',
     ];
 
-    protected $dates   = ['date'];
+    protected $dates = ['date'];
     protected $appends = ['embed'];
 
     public $mediasParams = [
@@ -35,7 +35,7 @@ class Video extends Model
                     'name' => 'default',
                     'ratio' => 16 / 9,
                 ],
-            ]
+            ],
         ],
     ];
 

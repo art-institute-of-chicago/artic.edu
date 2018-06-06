@@ -2,8 +2,6 @@
 
 namespace App\Repositories\Api;
 
-use A17\CmsToolkit\Repositories\ModuleRepository;
-
 use App\Models\Api\Artist;
 use App\Models\Api\Search;
 use App\Repositories\Api\BaseApiRepository;
@@ -26,11 +24,11 @@ class ArtistRepository extends BaseApiRepository
     public function getArtworksCollection($item)
     {
         return Search::query()
-                ->resources(['artworks'])
-                ->forceEndpoint('search')
-                ->byArtists($item->title)
-                ->aggregationClassifications()
-                ->getSearch(self::ARTWORKS_PER_PAGE);
+            ->resources(['artworks'])
+            ->forceEndpoint('search')
+            ->byArtists($item->title)
+            ->aggregationClassifications()
+            ->getSearch(self::ARTWORKS_PER_PAGE);
     }
 
 }

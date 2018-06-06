@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
     <head>
-        @include('cms-toolkit::partials.head')
+        @include('twill::partials.head')
     </head>
     <body class="env env--{{ app()->environment() }}">
         <div class="a17 a17--login">
@@ -24,12 +24,12 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <input class="login__button" type="submit" value="Login" tabindex="3">
-                    {{-- <a href="{{ route('saml_login') }}" class="login__google" tabindex="4"> --}}
+                    <a href="{{ route('saml_login') }}" class="login__google" tabindex="4">
                       <span>Sign in with SSO</span>
                     </a>
                 </form>
             </section>
-            @include('cms-toolkit::partials.footer')
+            @include('twill::partials.footer')
         </div>
     </body>
 </html>

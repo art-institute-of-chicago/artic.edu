@@ -2,15 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use A17\CmsToolkit\Http\Controllers\Front\ShowWithPreview;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\GenericPageRepository;
-
-use App\Models\Event;
-use App\Models\Exhibition;
-use App\Models\GenericPage;
 
 class GenericPagesController extends FrontController
 {

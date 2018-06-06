@@ -2,8 +2,6 @@
 
 namespace App\Repositories\Api;
 
-use A17\CmsToolkit\Repositories\ModuleRepository;
-
 use App\Models\Api\Search;
 use App\Repositories\Api\BaseApiRepository;
 
@@ -16,10 +14,10 @@ class SearchRepository extends BaseApiRepository
         $this->model = $model;
     }
 
-    public function forSearchQuery($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [] )
+    public function forSearchQuery($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [])
     {
         // Build the search query
-        $search  = $this->model->search($string)
+        $search = $this->model->search($string)
             ->resources(['artworks', 'events', 'exhibitions', 'agents', 'sections'])
             ->aggregationType();
 

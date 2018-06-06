@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'auth_login_redirect_path' => '/featured/homepage',
-
     'templates_on_frontend_domain' => true,
 
     'frontend' => [
@@ -13,6 +11,7 @@ return [
         'buckets' => true,
         'media-library' => true,
         'file-library' => true,
+        'dashboard' => true,
     ],
 
     'block_editor' => [
@@ -309,6 +308,40 @@ return [
                     ],
                     'max_items' => 2,
                 ],
+            ],
+        ],
+    ],
+
+    'dashboard' => [
+        'modules' => [
+            'events' => [
+                'name' => 'events',
+                'routePrefix' => 'exhibitions_events',
+                'count' => true,
+                'create' => true,
+                'search' => true,
+                'activity' => true,
+                'drafts' => true,
+            ],
+            'articles' => [
+                'name' => 'articles',
+                'routePrefix' => 'collection.articles_publications',
+                'count' => true,
+                'create' => true,
+                'search' => true,
+                'activity' => true,
+                'drafts' => true,
+            ],
+            'genericPages' => [
+                'label' => 'Generic pages',
+                'label_singular' => 'Generic page',
+                'name' => 'genericPages',
+                'routePrefix' => 'generic',
+                'count' => true,
+                'create' => true,
+                'search' => true,
+                'activity' => true,
+                'drafts' => true,
             ],
         ],
     ],

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
-use A17\CmsToolkit\Http\Requests\Admin\Request;
+use A17\Twill\Http\Requests\Admin\Request;
 
 class HourRequest extends Request
 {
@@ -10,7 +10,7 @@ class HourRequest extends Request
     {
         $rules = [
             'opening_time' => 'required',
-            'closing_time' => 'required'
+            'closing_time' => 'required',
         ];
 
         return $rules;

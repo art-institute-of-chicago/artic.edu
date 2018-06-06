@@ -81,7 +81,3 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('resourceCategories');
     Route::module('shopItems');
 });
-
-Route::get('/', function () {
-    return redirect()->route('admin.homepage.landing');
-})->name('home');

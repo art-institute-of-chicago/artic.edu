@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\CmsToolkit\Http\Controllers\Admin\ModuleController;
+use A17\Twill\Http\Controllers\Admin\ModuleController;
 
 class CollectionFeatureController extends ModuleController
 {
@@ -12,7 +12,7 @@ class CollectionFeatureController extends ModuleController
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-            'sort' => true
+            'sort' => true,
         ],
     ];
 

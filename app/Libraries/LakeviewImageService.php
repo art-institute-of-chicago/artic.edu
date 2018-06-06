@@ -2,9 +2,8 @@
 
 namespace App\Libraries;
 
-use A17\CmsToolkit\Services\MediaLibrary\ImageServiceInterface;
-use A17\CmsToolkit\Services\MediaLibrary\ImageServiceDefaults;
-
+use A17\Twill\Services\MediaLibrary\ImageServiceDefaults;
+use A17\Twill\Services\MediaLibrary\ImageServiceInterface;
 use Cache;
 
 class LakeviewImageService implements ImageServiceInterface
@@ -19,7 +18,7 @@ class LakeviewImageService implements ImageServiceInterface
     public function __construct()
     {
         $this->base_url = config('lakeview.cdn_enabled') ? config('lakeview.base_url_cdn') : config('lakeview.base_url');
-        $this->version  = config('lakeview.version');
+        $this->version = config('lakeview.version');
     }
 
     public function getBaseUrl()
@@ -42,7 +41,7 @@ class LakeviewImageService implements ImageServiceInterface
         $preLoadedInfo = $this->getInfo($object, $imageField);
 
         $src = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]);
-        $srcset = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height])." 300w";
+        $srcset = $this->getUrl($object->$imageField, ['width' => $width, 'height' => $height]) . " 300w";
 
         $image = array(
             "type" => 'lakeview',
@@ -56,7 +55,7 @@ class LakeviewImageService implements ImageServiceInterface
             "downloadName" => $downloadName,
             "credit" => $credit,
             "creditUrl" => $creditUrl,
-            "iiifId" => $this->base_url.$this->version.'/'.$object->$imageField,
+            "iiifId" => $this->base_url . $this->version . '/' . $object->$imageField,
         );
 
         if (isset($preLoadedInfo['lqip']) && !empty($preLoadedInfo['lqip'])) {
@@ -74,10 +73,10 @@ class LakeviewImageService implements ImageServiceInterface
 
         $dimensions = 'full';
         if ($width != '' || $height != '') {
-            $dimensions = $width.','.$height;
+            $dimensions = $width . ',' . $height;
         }
 
-        return $this->base_url.$this->version.'/'.$id.'/'.$size.'/'.$dimensions.'/0/default.jpg';
+        return $this->base_url . $this->version . '/' . $id . '/' . $size . '/' . $dimensions . '/0/default.jpg';
     }
 
     public function getUrlWithCrop($id, array $cropParams, array $params = [])
@@ -107,12 +106,11 @@ class LakeviewImageService implements ImageServiceInterface
     public function getInfo($object, $imageField = 'image_id')
     {
         // Try returning already loaded information
-        if (!empty($object->thumbnail) && $object->thumbnail->width && $object->thumbnail->height)
-        {
+        if (!empty($object->thumbnail) && $object->thumbnail->width && $object->thumbnail->height) {
             return [
-                'width'  => $object->thumbnail->width,
+                'width' => $object->thumbnail->width,
                 'height' => $object->thumbnail->height,
-                'lqip'   => $object->thumbnail->lqip,
+                'lqip' => $object->thumbnail->lqip,
             ];
         } else {
             // Hit the server to get the info if not available
@@ -127,7 +125,7 @@ class LakeviewImageService implements ImageServiceInterface
 
             return [
                 'width' => $imageMetadata->width,
-                'height' => $imageMetadata->height
+                'height' => $imageMetadata->height,
             ];
         } catch (\Exception $e) {
             return [
@@ -145,10 +143,11 @@ class LakeviewImageService implements ImageServiceInterface
     {
     }
 
-    protected function fetchImageInfo($id) {
-        $json = Cache::remember('lakeview-image-'.$id.$this->cacheVersion, 24*60, function () use ($id) {
+    protected function fetchImageInfo($id)
+    {
+        $json = Cache::remember('lakeview-image-' . $id . $this->cacheVersion, 24 * 60, function () use ($id) {
             try {
-                return json_decode(@file_get_contents($this->base_url.$this->version.'/'.$id.'/info.json'));
+                return json_decode(@file_get_contents($this->base_url . $this->version . '/' . $id . '/info.json'));
             } catch (Exception $e) {
                 return [];
             }

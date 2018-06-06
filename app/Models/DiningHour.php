@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
-use A17\CmsToolkit\Models\Model;
 
-class DiningHour extends Model 
+class DiningHour extends Model
 {
     use HasMedias, HasMediasEloquent;
 
@@ -33,7 +33,7 @@ class DiningHour extends Model
                     'name' => 'default',
                     'ratio' => 3 / 4,
                 ],
-            ]
+            ],
         ],
     ];
 }

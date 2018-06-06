@@ -1,6 +1,6 @@
 # Art Institute of Chicago
 
-This development repository for the AIC build, uses as its foundation the AREA 17 FE boilerplate and the AREA 17 CMS Toolkit.
+This development repository for the AIC build, uses as its foundation the AREA 17 FE boilerplate and the AREA 17 Twill.
 
 #### Homestead config
 
@@ -25,7 +25,7 @@ In case the system didn't update your /etc/hosts file automatically:
 - Copy `.env.example` as `.env` and update with your local settings (if necessary).
 - Generate your application key: `php artisan key:generate`
 - Migrate the database schema: `php artisan migrate`
-- Create a superadmin user: `php artisan cms-toolkit:superadmin`
+- Create a superadmin user: `php artisan twill:superadmin`
 - Seed the database: `php artisan db:seed`
 - Access the CMS [here](http://admin.aic.dev.a17.io/login).
 - Access Templates Here [here](http://admin.aic.dev.a17.io/templates/home).
@@ -121,7 +121,7 @@ Redeploy to clear config caches and you should be all set.
 To create the superadmin user for the CMS, ssh into the server and run:
 ```shell
 # @ /home/web/www/aic.stage.a17.io/current/
-$ php artisan cms-toolkit:superadmin
+$ php artisan twill:superadmin
 ```
 
 #### API Documentation setup

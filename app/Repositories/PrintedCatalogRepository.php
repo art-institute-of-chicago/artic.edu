@@ -2,12 +2,12 @@
 
 namespace App\Repositories;
 
-use A17\CmsToolkit\Repositories\Behaviors\HandleBlocks;
-use A17\CmsToolkit\Repositories\Behaviors\HandleSlugs;
-use A17\CmsToolkit\Repositories\Behaviors\HandleMedias;
-use A17\CmsToolkit\Repositories\Behaviors\HandleFiles;
-use A17\CmsToolkit\Repositories\Behaviors\HandleRevisions;
-use A17\CmsToolkit\Repositories\ModuleRepository;
+use A17\Twill\Repositories\Behaviors\HandleBlocks;
+use A17\Twill\Repositories\Behaviors\HandleFiles;
+use A17\Twill\Repositories\Behaviors\HandleMedias;
+use A17\Twill\Repositories\Behaviors\HandleRevisions;
+use A17\Twill\Repositories\Behaviors\HandleSlugs;
+use A17\Twill\Repositories\ModuleRepository;
 use App\Models\PrintedCatalog;
 
 class PrintedCatalogRepository extends ModuleRepository
@@ -24,7 +24,6 @@ class PrintedCatalogRepository extends ModuleRepository
         $object->categories()->sync($fields['categories'] ?? []);
         parent::afterSave($object, $fields);
     }
-
 
     public function getShowData($item, $slug = null, $previewPage = null)
     {

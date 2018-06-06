@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use A17\CmsToolkit\Models\Model;
+use A17\Twill\Models\Model;
 
 class Fee extends Model
 {
     protected $fillable = [
         'fee_age_id',
         'fee_category_id',
-        'price'
+        'price',
     ];
 
     // those fields get auto set to null if not submited

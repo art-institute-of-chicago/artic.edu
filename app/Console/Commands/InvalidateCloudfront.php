@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use A17\CmsToolkit\Services\Cache\CloudfrontCacheService;
+use A17\Twill\Services\Cache\CloudfrontCacheService;
 use Illuminate\Console\Command;
 
 class InvalidateCloudfront extends Command
