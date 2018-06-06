@@ -57,7 +57,7 @@
         'with_multiple' => false,
         'no_crop' => false,
         'label' => 'Author thumbnail',
-        'name' => 'author'
+        'name' => 'author',
         'note' => 'Minimum image width 600px'
     ])
 
