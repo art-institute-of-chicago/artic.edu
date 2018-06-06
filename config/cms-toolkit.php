@@ -197,6 +197,12 @@ return [
                 'component' => 'a17-block-offer',
                 'max' => 10,
             ],
+            'offers' => [
+                'title' => 'Offers',
+                'trigger' => 'Add offer',
+                'component' => 'a17-block-offers',
+                'max' => 10,
+            ],
             'timeline_item' => [
                 'title' => 'Timeline Item',
                 'trigger' => 'Add Timeline',

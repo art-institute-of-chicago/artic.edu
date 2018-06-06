@@ -253,6 +253,37 @@
     @endcomponent
 @endif
 
+@if ($item->offers() && $item->offers()->count() > 0)
+    @component('components.molecules._m-title-bar')
+        Related Offers
+    @endcomponent
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+        @slot('cols_medium','3')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+        @slot('behavior','dragScroll')
+        @foreach ($item->offers as $offer)
+            @component('components.molecules._m-listing----offer')
+                @slot('item', $offer)
+                @slot('img', $offer->imageFront('hero') ?? null)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '18',
+                          'xlarge' => '18',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
+
 @if ($relatedEventsByDay)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => route('events'))))
@@ -333,7 +364,7 @@
 
 @if ($item->shopItems() && $item->shopItems()->count() > 0)
     @component('components.molecules._m-title-bar')
-        Releated Offers
+        Related Offers
     @endcomponent
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')

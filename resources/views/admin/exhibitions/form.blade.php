@@ -4,10 +4,10 @@
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'related', 'label' => 'Related'],
         ['fieldset' => 'side_related', 'label' => 'Right rail related slot'],
+        ['fieldset' => 'offers', 'label' => 'Offers'],
         ['fieldset' => 'api', 'label' => 'Datahub fields'],
     ]
 ])
-
 
 @section('contentFields')
     @formField('checkbox', [
@@ -118,15 +118,10 @@
             'note' => 'Select related events',
             'max' => 20
         ])
+    </a17-fieldset>
 
-        @formField('browser', [
-            'routePrefix' => 'general',
-            'moduleName' => 'shopItems',
-            'name' => 'shopItems',
-            'label' => 'Related offers',
-            'note' => 'Select related products',
-            'max' => 3
-        ])
+    <a17-fieldset id="offers" title="Offers">
+        @formField('repeater', ['type' => 'offers'])
     </a17-fieldset>
 
     <a17-fieldset id="side_related" title="Right rail related slot - Only one will show up randomly">
