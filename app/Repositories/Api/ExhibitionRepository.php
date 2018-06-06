@@ -6,6 +6,8 @@ use App\Models\Api\Exhibition;
 use App\Repositories\Api\BaseApiRepository;
 use App\Repositories\EventRepository;
 
+use App\Models\Api\Search;
+
 class ExhibitionRepository extends BaseApiRepository
 {
     const RELATED_EVENTS_PER_PAGE = 3;
@@ -37,6 +39,16 @@ class ExhibitionRepository extends BaseApiRepository
             'item' => $item,
             'relatedEventsByDay' => $relatedEventsByDay,
         ];
+    }
+
+    public function searchExhibitionEvents($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [] )
+    {
+        $search  = Search::query()->search($string)->resources(['events', 'exhibitions']);
+
+        // Perform the query
+        $results = $search->getSearch($perPage, $columns, $pageName, $page, $options);
+
+        return $results;
     }
 
 }

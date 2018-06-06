@@ -20,7 +20,8 @@ class Search extends BaseApiModel
         'artworks'    => 'App\Models\Api\Artwork',
         'exhibitions' => 'App\Models\Api\Exhibition',
         'agents'      => 'App\Models\Api\Artist',
-        'sections'    => 'App\Models\Api\Section'
+        'sections'    => 'App\Models\Api\Section',
+        'events'      => 'App\Models\Event'
     ];
 
     // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).

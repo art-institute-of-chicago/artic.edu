@@ -62,8 +62,7 @@ class SearchController extends BaseScopedController
         // in all sections. A general search sorting might cause empty categories.
         $artworks    = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
         $artists     = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
-        $exhibitions = $this->exhibitionsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
-
+        $exhibitions = $this->exhibitionsRepository->searchExhibitionEvents(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
 
         return view('site.search.index', [
             'featuredResults'      => $general->where('is_boosted', true),
@@ -153,7 +152,7 @@ class SearchController extends BaseScopedController
     public function exhibitionsEvents()
     {
         $general     = $this->searchRepository->forSearchQuery(request('q'), 2);
-        $exhibitions = $this->exhibitionsRepository->forSearchQuery(request('q'), self::EXHIBITIONS_PER_PAGE);
+        $exhibitions = $this->exhibitionsRepository->searchExhibitionEvents(request('q'), self::EXHIBITIONS_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'exhibitions');
 

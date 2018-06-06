@@ -40,7 +40,7 @@
 
         @if ($featuredResults->count() == 1)
             @slot('title', 'Featured Result')
-            @component('components.molecules._m-listing----'.strtolower($featuredResults->first()->getClassName()))
+            @component('components.molecules._m-listing----'.strtolower(class_basename($featuredResults->first())))
                 @slot('tag', 'p')
                 @slot('variation', 'm-listing--row m-listing--tertiary')
                 @slot('imgVariation', 'm-listing__img--square')
@@ -62,7 +62,7 @@
             @slot('title', 'Featured Results')
             @component('components.organisms._o-row-listing')
                 @foreach ($featuredResults as $featuredResult)
-                    @component('components.molecules._m-listing----'.strtolower($featuredResult->getClassName()))
+                    @component('components.molecules._m-listing----'.strtolower(class_basename($featuredResult)))
                         @slot('variation', 'm-listing--row m-listing--tertiary')
                         @slot('imgVariation', 'm-listing__img--square')
                         @slot('item', $featuredResult)
@@ -346,7 +346,7 @@
             @slot('cols_xlarge','4')
         @endif
         @foreach ($eventsAndExhibitions as $item)
-            @if($item->getClassName() == 'Exhibition')
+            @if(class_basename($item) == 'Exhibition')
                 @component('components.molecules._m-listing----exhibition')
             @else
                 @component('components.molecules._m-listing----event')
