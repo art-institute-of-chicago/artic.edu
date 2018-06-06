@@ -71,7 +71,7 @@
         </div>
     @endcomponent
 
-    @foreach ($hours['sections'] as $section)
+    @foreach($hours['sections'] as $section)
 
       @component('components.organisms._o-grid-listing')
           @slot('variation', 'o-grid-listing--gridlines-rows o-grid-listing--info-block')
@@ -162,7 +162,7 @@
                           Free
                           @else
                           ${{ $ageGroup['prices'][$ageGroupPrice] }}
-                          #endif
+                          @endif
                       @endcomponent
                     @endif
                   </td>
