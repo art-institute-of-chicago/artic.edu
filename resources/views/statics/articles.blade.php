@@ -18,18 +18,19 @@
     @endcomponent
 
   @component('components.molecules._m-title-bar')
+      @slot('id','listing')
       Explore Articles
   @endcomponent
 
   @component('components.molecules._m-links-bar')
       @slot('overflow', true)
       @slot('linksPrimary', array(
-        array('label' => 'All', 'href' => '#', 'active' => true),
-        array('label' => 'Collection', 'href' => '#'),
-        array('label' => 'Exhibitions', 'href' => '#'),
-        array('label' => 'People', 'href' => '#'),
-        array('label' => 'Programs', 'href' => '#'),
-        array('label' => 'Technology', 'href' => '#'),
+        array('label' => 'All', 'href' => '/statics/articles', 'ajaxScrollTarget' => 'listing', 'active' => true),
+        array('label' => 'Collection', 'href' => '/statics/articles?collection', 'ajaxScrollTarget' => 'listing'),
+        array('label' => 'Exhibitions', 'href' => '/statics/articles?exhbitions', 'ajaxScrollTarget' => 'listing'),
+        array('label' => 'People', 'href' => '/statics/articles?people', 'ajaxScrollTarget' => 'listing'),
+        array('label' => 'Programs', 'href' => '/statics/articles?programs', 'ajaxScrollTarget' => 'listing'),
+        array('label' => 'Technology', 'href' => '/statics/articles?technology', 'ajaxScrollTarget' => 'listing'),
       ))
       @slot('secondaryHtml')
           <li class="m-links-bar__item m-links-bar__item--primary">
@@ -39,8 +40,8 @@
                 @slot('variation','dropdown--filter f-link')
                 @slot('font', null)
                 @slot('options', array(
-                  array('href' => '#', 'label' => 'Date'),
-                  array('href' => '#', 'label' => 'Featured'),
+                  array('href' => '/statics/articles?date', 'label' => 'Date', 'ajaxScrollTarget' => 'listing'),
+                  array('href' => '/statics/articles?featured', 'label' => 'Featured', 'ajaxScrollTarget' => 'listing'),
                 ))
               @endcomponent
           </li>

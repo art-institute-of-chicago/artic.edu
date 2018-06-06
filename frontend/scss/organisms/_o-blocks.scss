@@ -430,7 +430,7 @@
     }
   }
 
-  .m-listing-header + .hr {
+  .m-listing-header + .hr:not(.hr--flush-top) {
     margin-top: 20px;
   }
 }
