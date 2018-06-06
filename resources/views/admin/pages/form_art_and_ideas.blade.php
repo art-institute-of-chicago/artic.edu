@@ -6,7 +6,7 @@
 
     @formField('browser', [
         'routePrefix' => 'collection',
-        'max' => 10,
+        'max' => 25,
         'moduleName' => 'categoryTerms',
         'name' => 'artCategoryTerms',
         'label' => 'Quick filters'
