@@ -63,8 +63,8 @@ class PressRelease extends Model
 
     public $filesParams = ['attachment']; // a list of file roles
 
-    protected $presenter = 'App\Presenters\Admin\GenericListingPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\GenericListingPresenter';
+    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
 
     // Generates the id-slug type of URL
     public function getRouteKeyName()

@@ -32,8 +32,8 @@ class ExhibitionPressRoom extends Model
         'title',
     ];
 
-    protected $presenter = 'App\Presenters\Admin\GenericListingPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\GenericListingPresenter';
+    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
 
     public $mediasParams = [
         'listing' => [

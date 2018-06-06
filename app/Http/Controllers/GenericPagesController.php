@@ -26,20 +26,19 @@ class GenericPagesController extends FrontController
 
     public function show($slug)
     {
-        $page = $this->getPage($slug);
-        $crumbs = $page->buildBreadCrumb($page);
-        $navs = $page->buildNav();
+        $page       = $this->getPage($slug);
+        $crumbs     = $page->present()->breadCrumb($page);
+        $navigation = $page->present()->navigation();
 
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
-            'subNav' => $navs['subNav'],
-            'nav' => $navs['nav'],
+            'nav' => $navigation,
             'intro' => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             "breadcrumb" => $crumbs,
             "blocks" => null,
-            'featuredRelated' => $this->getRelated($page),
+            'featuredRelated' => $page->featuredRelated,
             'page' => $page,
         ]);
     }
@@ -53,9 +52,9 @@ class GenericPagesController extends FrontController
     protected function getPage($slug)
     {
         $parts = collect(explode("/", $slug));
-        $page = $this->genericPageRepository->forSlug($parts->last());
+        $page = $this->genericPageRepository->forSlug($parts->last(), ['parent', 'children']);
         if (empty($page)) {
-            $page = $this->genericPageRepository->getById((integer) $parts->last());
+            $page = $this->genericPageRepository->getById((integer) $parts->last(), ['parent', 'children']);
         }
 
         if (!$page) {
@@ -65,59 +64,4 @@ class GenericPagesController extends FrontController
         return $page;
     }
 
-    public function getRelated($page)
-    {
-        $items = collect([]);
-
-        $types = collect([]);
-        if ($page->events) {
-            $types[] = 'events';
-        }
-        if ($page->articles) {
-            $types[] = 'articles';
-        }
-        if ($page->exhibitions) {
-            $types[] = 'exhibitions';
-        }
-
-        $types = $types->shuffle();
-
-        $featured = null;
-        $type = $types->first();
-        // $type = 'exhibitions';
-        if ($type) {
-            if ($type == 'events') {
-                $item = $page->events->first();
-                if ($item) {
-                    $featured = [
-                        'type' => 'event'
-                    ,   'items' => [$item]
-                    ];
-                }
-            }
-            if ($type == 'articles') {
-                $item = $page->articles->first();
-                if ($item) {
-                    $featured = [
-                        'type' => 'article'
-                    ,   'items' => [$item]
-                    ];
-                }
-            }
-            if ($type == 'exhibitions') {
-                $item = $page->exhibitions->first();
-                if ($item) {
-                    $exhibition = $this->exhibitionRepository->getById($item->datahub_id);
-                    $featured = [
-                        'type' => 'exhibition'
-                    ,   'items' => [$exhibition]
-                    ];
-                }
-            }
-        } else {
-            $featured = [];
-        }
-
-        return $featured;
-    }
 }

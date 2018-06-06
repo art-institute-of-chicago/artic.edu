@@ -70,16 +70,14 @@ class GenericPageRepository extends ModuleRepository
     // Show data, moved here to allow preview
     public function getShowData($item, $slug = null, $previewPage = null)
     {
-
-        $navs = $item->buildNav();
+        $navigation = $item->present()->navigation();
 
         return [
-            'subNav' => $navs['subNav'],
-            'nav' => $navs['nav'],
+            'nav' => $navigation,
             'intro' => $item->short_description,
             'headerImage' => $item->imageFront('banner'),
             "title" => $item->title,
-            "breadcrumb" => $item->buildBreadCrumb(),
+            "breadcrumb" => $item->present()->breadCrumb(),
             "blocks" => null,
             'featuredRelated' => [],
             'page' => $item,
