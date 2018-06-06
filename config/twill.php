@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'auth_login_redirect_path' => '/featured/homepage',
-
     'templates_on_frontend_domain' => true,
 
     'frontend' => [

@@ -81,5 +81,3 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('resourceCategories');
     Route::module('shopItems');
 });
-
-Route::redirect('/', '/dashboard');
