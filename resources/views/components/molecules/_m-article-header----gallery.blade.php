@@ -32,6 +32,9 @@ if ($maxZoomWindowSize >= 843) {
                       'xlarge' => '843px',
                 )),
             ))
+            @if(isset($isZoomable) && $isZoomable && $maxZoomWindowSize >= 1280)
+                @slot('dataAttributes', 'data-gallery-fullscreen')
+            @endif
         @endcomponent
       </div>
       @if (sizeof($images) > 1 or $prevNextObject->next or $prevNextObject->prev)

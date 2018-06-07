@@ -863,7 +863,7 @@ $thumbTease: 4px;
 
 .m-article-header__img-credit {
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   left: 0;
   right: 0;
   bottom: 88px;
@@ -893,7 +893,7 @@ a.m-article-header__img-credit {
 .m-article-header__img-actions {
   display: flex;
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   left: 0;
   right: 0;
   bottom: 20px;
@@ -934,14 +934,6 @@ a.m-article-header__img-credit {
   display: none;
 
   @include breakpoint('medium+') {
-    position: absolute;
-    z-index: 1;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 100vw;
-    margin-left: -50vw;
-
     @media (hover: hover) {
       // only show this layer if hover is available
       display: block;
@@ -952,6 +944,7 @@ a.m-article-header__img-credit {
 .m-article-header__img-nav-next-img,
 .m-article-header__img-nav-prev-img {
   position: absolute;
+  z-index: 2;
   top: 0;
   bottom: 0;
   width: calc(50vw - 160px);
@@ -959,7 +952,8 @@ a.m-article-header__img-credit {
 }
 
   .m-article-header__img-nav-next-img {
-    right: 160px;
+    right: 50%;
+    margin-right: calc((50vw - 160px) * -1);
 
     button {
       cursor: e-resize;
@@ -967,7 +961,8 @@ a.m-article-header__img-credit {
   }
 
   .m-article-header__img-nav-prev-img {
-    left: 160px;
+    left: 50%;
+    margin-left: calc((50vw - 160px) * -1);
 
     button {
       cursor: w-resize;
@@ -991,6 +986,7 @@ a.m-article-header__img-credit {
 .m-article-header__img-nav-next-artwork,
 .m-article-header__img-nav-prev-artwork {
   position: absolute;
+  z-index: 3;
   top: 0;
   bottom: 0;
   width: 160px;
@@ -998,12 +994,15 @@ a.m-article-header__img-credit {
 }
 
   .m-article-header__img-nav-next-artwork {
-    right: 0;
+    right: 50%;
+    margin-right: -50vw;
   }
 
   .m-article-header__img-nav-prev-artwork {
-    left: 0;
+    left: 50%;
+    margin-left: -50vw;
   }
+
 
 .m-article-header__img-nav-artwork-preview {
   position: absolute;

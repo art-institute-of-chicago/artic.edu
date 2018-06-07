@@ -76,7 +76,7 @@ const imageZoomArea = function(container) {
       preserveViewport: true,
       springStiffness: 15,
       visibilityRatio: 1,
-      zoomPerScroll: 1,
+      zoomPerScroll: 1.2,
       zoomPerClick: 1.3,
       immediateRender:false,
       constrainDuringPan: true,
@@ -86,7 +86,7 @@ const imageZoomArea = function(container) {
       maxZoomPixelRatio: 1.0,
       defaultZoomLevel: 0,
       gestureSettingsMouse: {
-        scrollToZoom: false
+        scrollToZoom: true
       },
       zoomInButton: "osd_zoomInButton",
       zoomOutButton: "osd_zoomOutButton",

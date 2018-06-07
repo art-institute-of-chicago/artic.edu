@@ -63,8 +63,10 @@ const headerGallery = function(container) {
         button.setAttribute('disabled','disabled');
       }
     });
-    nodes.share.setAttribute('data-share-url', data[activeIndex].shareUrl);
-    nodes.share.setAttribute('data-share-title', data[activeIndex].shareTitle);
+    forEach(nodes.share, function(index, node) {
+      node.setAttribute('data-share-url', data[activeIndex].shareUrl);
+      node.setAttribute('data-share-title', data[activeIndex].shareTitle);
+    });
 
     if (init) {
       return;
@@ -148,11 +150,11 @@ const headerGallery = function(container) {
     //input.addEventListener('input', _updateOutput, false);
     nodes.hero = container.querySelector('[data-gallery-hero]') || false;
     nodes.credit = container.querySelector('[data-gallery-credit]') || false;
-    nodes.next = container.querySelector('[data-gallery-next]') || false;
-    nodes.previous = container.querySelector('[data-gallery-previous]') || false;
-    nodes.fullscreen = container.querySelector('[data-gallery-fullscreen]') || false;
-    nodes.download = container.querySelector('[data-gallery-download]') || false;
-    nodes.share = container.querySelector('[data-gallery-share]') || false;
+    nodes.next = container.querySelectorAll('[data-gallery-next]') || false;
+    nodes.previous = container.querySelectorAll('[data-gallery-previous]') || false;
+    nodes.fullscreen = container.querySelectorAll('[data-gallery-fullscreen]') || false;
+    nodes.download = container.querySelectorAll('[data-gallery-download]') || false;
+    nodes.share = container.querySelectorAll('[data-gallery-share]') || false;
     nodes.thumbs = container.querySelector('[data-gallery-thumbs]') || false;
     nodes.thumbButtons = nodes.thumbs.querySelectorAll('button') || false;
     //
@@ -162,15 +164,23 @@ const headerGallery = function(container) {
       nodes.thumbs.addEventListener('click', _thumbClick, false);
     }
     if (nodes.download) {
-      nodes.download.addEventListener('click', _downloadClick, false);
+      forEach(nodes.download, function(index, node) {
+        node.addEventListener('click', _downloadClick, false);
+      });
     }
     if (nodes.fullscreen) {
-      nodes.fullscreen.addEventListener('click', _fullscreen, false);
+      forEach(nodes.fullscreen, function(index, node) {
+        node.addEventListener('click', _fullscreen, false);
+      });
     }
     //
     if (nodes.next && nodes.previous){
-      nodes.next.addEventListener('click', _nextClick, false);
-      nodes.previous.addEventListener('click', _previousClick, false);
+      forEach(nodes.next, function(index, node) {
+        node.addEventListener('click', _nextClick, false);
+      });
+      forEach(nodes.previous, function(index, node) {
+        node.addEventListener('click', _previousClick, false);
+      });
     }
     //
     document.addEventListener('resized', _resized, false);
