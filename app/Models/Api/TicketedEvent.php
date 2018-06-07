@@ -11,4 +11,10 @@ class TicketedEvent extends BaseApiModel
         'resource'   => '/api/v1/ticketed-events/{id}',
         'search'     => '/api/v1/ticketed-events/search'
     ];
+
+    public function getTitleInBrowserAttribute()
+    {
+        return "{$this->title} (#{$this->id})";
+    }
+
 }
