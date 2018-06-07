@@ -34,7 +34,6 @@
 
 /*****/
 
-.o-blocks > h3:not([class*='f-']),
 .o-blocks > .f-subheading-1 {
   @include tucked-margin-top($f-subheading-1, ('xsmall': 56));
 
@@ -43,16 +42,10 @@
   }
 }
 
-.o-blocks > h3:not([class*='f-']) {
-  @extend %f-subheading-1;
-}
-
-.o-blocks > .hr + h3:not([class*='f-']),
 .o-blocks > .hr + .f-subheading-1 {
   @include tucked-margin-top($f-subheading-1, ('xsmall': 36));
 }
 
-.o-blocks > .f-deck + h3:not([class*='f-']),
 .o-blocks > .f-deck + .f-subheading-1 {
   @include tucked-margin-top($f-subheading-1, ('xsmall': 76));
 }
@@ -69,12 +62,27 @@
 
 /*****/
 
+.o-blocks > h3:not([class*='f-']),
 .o-blocks > .f-list-3 {
-  @include tucked-margin-top($f-list-3, ('xsmall': 56));
+  @include tucked-margin-top($f-list-3, ('xsmall': 56, 'large+': 60, 'xlarge': 72));
 
   &:first-child {
     @include tucked-align-top($f-list-3);
   }
+}
+
+.o-blocks > h3:not([class*='f-']) {
+  @extend %f-list-3;
+}
+
+.o-blocks > .hr + h3:not([class*='f-']),
+.o-blocks > .hr + .f-list-3 {
+  @include tucked-margin-top($f-list-3, ('xsmall': 36));
+}
+
+.o-blocks > .f-deck + h3:not([class*='f-']),
+.o-blocks > .f-deck + .f-list-3 {
+  @include tucked-margin-top($f-list-3, ('xsmall': 76));
 }
 
 /*****/
@@ -219,7 +227,6 @@
 /*
 /**/
 
-.o-blocks > h3:not([class*='f-']) + p:not([class*='f-']),
 .o-blocks > .f-subheading-1 + .f-body,
 .o-blocks > .f-subheading-1 + .f-body-editorial {
   margin-top: 0;
