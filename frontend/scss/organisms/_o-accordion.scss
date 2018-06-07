@@ -31,6 +31,19 @@
   }
 }
 
+.o-accordion__trigger.f-list-3 {
+  padding-top: 44px - 24px - 1px;
+  border-top: 1px solid $color__rules--primary;
+
+  @include breakpoint('small+') {
+    padding-top: 48px - 28px - 1px;
+  }
+
+  &[aria-expanded=true] {
+    border-top-color: $color__rules--secondary;
+  }
+}
+
 .o-accordion__trigger.f-tag-2 {
   padding-bottom: 22px - 1px;
   border-bottom: 1px solid $color__rules--primary;
@@ -41,6 +54,7 @@
 }
 
 .o-accordion__trigger.f-module-title-2:not(:first-child),
+.o-accordion__trigger.f-list-3:not(:first-child),
 .o-accordion__trigger.f-tag-2:not(:first-child) {
   margin-top: 30px;
 
