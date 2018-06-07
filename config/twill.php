@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'auth_login_redirect_path' => '/homepage/landing',
+
     'templates_on_frontend_domain' => true,
 
     'frontend' => [
@@ -11,7 +13,7 @@ return [
         'buckets' => true,
         'media-library' => true,
         'file-library' => true,
-        'dashboard' => true,
+        'dashboard' => false,
     ],
 
     'block_editor' => [
