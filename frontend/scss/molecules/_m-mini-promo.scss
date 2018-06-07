@@ -1,6 +1,9 @@
 
 .m-mini-promo {
   position: relative;
+  display: flex;
+  flex-flow: row-reverse wrap;
+  align-items: flex-start;
   margin-top: 60px;
   padding-top: .2px;
 
@@ -9,10 +12,7 @@
   }
 
   @include breakpoint('small+') {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: flex-start;
-    width: 100%;
+    flex-flow: row wrap;
   }
 
   @include breakpoint('large+') {
@@ -32,14 +32,13 @@
 
 .m-mini-promo img,
 .m-mini-promo video {
-  float: right;
+  flex: 0 0 auto;
   width: colspan(23, xsmall);
   height: auto;
   margin-top: 20px;
   margin-left: colspan(3, xsmall);
 
   @include breakpoint('small+') {
-    flex: 0 0 auto;
     width: colspan(13, small);
     margin-top: 40px;
     margin-right: colspan(2, small);
@@ -63,9 +62,7 @@
 }
 
 .m-mini-promo__text {
-  @include breakpoint('small+') {
-    flex: 1;
-  }
+  flex: 1;
 }
 
 .m-mini-promo .title {
@@ -78,12 +75,13 @@
 
 .m-mini-promo .btn {
   display: block;
-  clear: both;
+  flex: 0 0 auto;
   width: 100%;
   margin-top: 28px;
+  padding-right: 0;
+  padding-left: 0;
 
   @include breakpoint('small+') {
-    flex: 0 0 auto;
     width: colspan(13, small);
     margin-top: 40px;
     margin-left: colspan(2, small);
