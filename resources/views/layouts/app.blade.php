@@ -92,6 +92,7 @@ $print = isset($_GET['print']);
 @include('partials._nav-mobile')
 @include('partials._search')
 @include('partials._modal')
+@include('partials._ajax-loader')
 
 @if (!empty($roadblock))
     @component('partials._modal-promo', [ 'modal' => $roadblock])
