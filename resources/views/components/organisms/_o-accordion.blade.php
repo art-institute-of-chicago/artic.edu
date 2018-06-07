@@ -1,6 +1,6 @@
 <div class="o-accordion{{ (isset($variation)) ? ' '.$variation : '' }}" role="tablist" multiselectable="true" data-behavior="accordion">
     @foreach ($items as $item)
-    <h3 id="tab_{{ $loopIndex }}_{{ $loop->iteration }}" class="o-accordion__trigger {{ $titleFont ?? 'f-module-title-2' }}" aria-selected="{{ (isset($item['active']) and $item['active']) ? 'true' : 'false' }}" aria-controls="panel_{{ $loopIndex }}_{{ $loop->iteration }}" aria-expanded="{{ (isset($item['active']) and $item['active']) ? 'true' : 'false' }}" role="tab" tabindex="0">
+    <h3 id="tab_{{ $loopIndex }}_{{ $loop->iteration }}" class="o-accordion__trigger {{ $titleFont ?? 'f-list-3' }}" aria-selected="{{ (isset($item['active']) and $item['active']) ? 'true' : 'false' }}" aria-controls="panel_{{ $loopIndex }}_{{ $loop->iteration }}" aria-expanded="{{ (isset($item['active']) and $item['active']) ? 'true' : 'false' }}" role="tab" tabindex="0">
         {{ $item['title'] }}
         <span class="o-accordion__trigger-icon">
             <svg class="icon--plus"><use xlink:href="#icon--plus" /></svg>

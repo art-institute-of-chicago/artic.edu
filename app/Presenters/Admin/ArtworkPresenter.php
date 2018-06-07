@@ -253,7 +253,8 @@ class ArtworkPresenter extends BasePresenter
         } else {
             return [
                 "type"    => 'accordion',
-                "content" => $content
+                "content" => $content,
+                "titleFont" => "f-module-title-2"
             ];
         }
     }
