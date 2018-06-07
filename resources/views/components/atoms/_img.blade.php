@@ -55,6 +55,9 @@
     @if (isset($iiifId))
     data-iiifId="{{ $iiifId }}"
     @endif
+    @if (isset($dataAttributes))
+    {!! " ".$dataAttributes !!}
+    @endif
     {{ $highlight }}
 >
 @else
