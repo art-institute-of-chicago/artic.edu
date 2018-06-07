@@ -11,6 +11,7 @@ use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\ArtistRepository;
 use App\Repositories\Api\SearchRepository;
 use App\Repositories\Api\ExhibitionRepository;
+use App\Repositories\ArticleRepository;
 
 use App\Http\Controllers\StaticsController;
 
@@ -23,6 +24,7 @@ class SearchController extends BaseScopedController
     const ALL_PER_PAGE = 5;
     const ALL_PER_PAGE_ARTWORKS = 8;
     const ALL_PER_PAGE_EXHIBITIONS = 4;
+    const ALL_PER_PAGE_ARTICLES = 4;
 
     const ARTWORKS_PER_PAGE = 20;
 
@@ -36,17 +38,20 @@ class SearchController extends BaseScopedController
     protected $artistsRepository;
     protected $searchRepository;
     protected $exhibitionsRepository;
+    protected $articlesRepository;
 
     public function __construct(
         ArtworkRepository $artworks,
         ArtistRepository $artists,
         SearchRepository $search,
-        ExhibitionRepository $exhibitions
+        ExhibitionRepository $exhibitions,
+        ArticleRepository $articles
     ) {
         $this->artworksRepository = $artworks;
         $this->artistsRepository = $artists;
         $this->searchRepository = $search;
         $this->exhibitionsRepository = $exhibitions;
+        $this->articlesRepository = $articles;
 
         parent::__construct();
     }
@@ -61,6 +66,7 @@ class SearchController extends BaseScopedController
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
         $artworks    = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
+        $articles    = $this->articlesRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
         $artists     = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
         $exhibitions = $this->exhibitionsRepository->searchExhibitionEvents(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
 
@@ -69,7 +75,7 @@ class SearchController extends BaseScopedController
             'eventsAndExhibitions' => $exhibitions,
             'artworks' => $artworks,
             'artists'  => $artists,
-
+            'articlesAndPublications' => $articles,
             'allResultsView' => false,
             'searchResultsTypeLinks' => $links
         ]);

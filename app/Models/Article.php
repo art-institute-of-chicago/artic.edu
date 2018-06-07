@@ -116,6 +116,11 @@ class Article extends Model
         return $this->belongsToMany('App\Models\Category', 'article_category');
     }
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     public function scopeByCategory($query, $category = null)
     {
         if (empty($category)) {
