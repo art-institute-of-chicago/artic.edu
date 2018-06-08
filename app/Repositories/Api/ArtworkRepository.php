@@ -76,6 +76,15 @@ class ArtworkRepository extends BaseApiRepository
     {
         $tags = [];
 
+        // Build Style Tags
+        if ($item->style_id) {
+            $exploreFurtherTags = Search::query()->resources(['category-terms'])->byIds($item->style_id)->get();
+
+            $tags['style'] = $exploreFurtherTags->mapWithKeys(function ($item) {
+                return [$item['id'] => $item['title']];
+            });
+        }
+
         // Build Classification Tags
         if ($item->classification_id) {
             $exploreFurtherTags = Search::query()->resources(['category-terms'])->forceEndpoint('search')->byIds($item->classification_id)->get();
@@ -88,15 +97,6 @@ class ArtworkRepository extends BaseApiRepository
         if ($item->mainArtist && $item->mainArtist->count()) {
             $artist = $item->mainArtist->first();
             $tags['artist'] = [$artist->id => $artist->title];
-        }
-
-        // Build Style Tags
-        if ($item->style_id) {
-            $exploreFurtherTags = Search::query()->resources(['category-terms'])->byIds($item->style_id)->get();
-
-            $tags['style'] = $exploreFurtherTags->mapWithKeys(function ($item) {
-                return [$item['id'] => $item['title']];
-            });
         }
 
         $tags['all'] = [true => 'All Tags'];
