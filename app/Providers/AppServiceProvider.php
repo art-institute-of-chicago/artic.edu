@@ -189,11 +189,11 @@ class AppServiceProvider extends ServiceProvider
                 ],
                 [
                     'name' => 'Learn With Us',
-                    'slug' => route('learn'),
+                    'slug' => 'learn-with-us',
                 ],
                 [
                     'name' => 'Support Us',
-                    'slug' => route('support-us'),
+                    'slug' => 'support-us',
                 ]
             ]
 
