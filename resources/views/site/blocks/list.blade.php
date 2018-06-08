@@ -4,7 +4,7 @@
         $item->subtype = $item->input('tag');
         $item->title = $item->input('header');
         $item->shortDesc = $item->input('description');
-        $item->slug = $item->input('external_link');
+        $item->url = $item->input('external_link');
         $items[] = $item;
     }
 @endphp
