@@ -15,10 +15,16 @@ class ResearchController extends Controller
         $page = Page::forType('Research and Resources')->first();
 
         $featuredPages = $page->researchResourcesFeaturePages;
+
+        // TODO: Building links should be moved away from the controller to a presenter.
         $features = [];
         foreach($featuredPages as $item) {
             $links = [];
-            foreach($item->children as $child) {
+            foreach($item->children as $index => $child) {
+                if ($index == 4) {
+                    break; // Show only the top 4 children.
+                }
+
                 array_push($links, array(
                     'href' => $child->url,
                     'label' => $child->title,
