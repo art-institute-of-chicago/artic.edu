@@ -129,7 +129,7 @@ class AppServiceProvider extends ServiceProvider
 
             ,   'legal-articles' => route('articles')
             ,   'legal-employment' => '/employment'
-            ,   'legal-venue-rental' => '/venue-rental'
+            ,   'legal-venue-rental' => '/rental'
             ,   'legal-contact' => '/contact'
             ,   'legal-press' => route('about.press')
             ,   'legal-terms' => '/terms'
