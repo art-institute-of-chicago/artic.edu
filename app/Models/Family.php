@@ -17,6 +17,7 @@ class Family extends Model
         'text',
         'link_label',
         'external_link',
+        'associated_generic_page_link',
         'page_id',
     ];
     // those fields get auto set to false if not submited

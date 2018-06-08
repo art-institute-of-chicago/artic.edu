@@ -150,7 +150,7 @@ class VisitController extends FrontController
             'image' => $item->imageFront('family_cover'),
             'title' => $item->title,
             'text' => $item->text,
-            'titleLink' => $item->external_link,
+            'titleLink' => $item->associated_generic_page_link ?? $item->external_link,
             'links' => array(array(
                 'href' => $item->external_link,
                 'label' => $item->link_label,
