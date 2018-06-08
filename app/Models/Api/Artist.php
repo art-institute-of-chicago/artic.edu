@@ -10,9 +10,9 @@ class Artist extends BaseApiModel
     use HasPresenter;
 
     protected $endpoints = [
-        'collection' => '/api/v1/agents',
-        'resource' => '/api/v1/agents/{id}',
-        'search' => '/api/v1/agents/search',
+        'collection' => '/api/v1/artists',
+        'resource'   => '/api/v1/artists/{id}',
+        'search'     => '/api/v1/artists/search'
     ];
 
     protected $augmented = true;
