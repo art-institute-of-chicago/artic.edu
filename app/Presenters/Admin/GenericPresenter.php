@@ -43,7 +43,7 @@ class GenericPresenter extends BasePresenter
     public function navigation()
     {
         $subNav = [];
-        foreach($this->entity->children()->published()->defaultOrder()->get() as $item) {
+        foreach($this->entity->children()->published()->get() as $item) {
             $subNav[] = [
                 'href' => $item->url,
                 'label' => $item->title
@@ -61,7 +61,7 @@ class GenericPresenter extends BasePresenter
             // Build it with siblings
             $nav = [];
 
-            foreach($this->entity->parent->children as $element) {
+            foreach($this->entity->parent->children()->published()->get() as $element) {
                 $item = [
                     'href'  => $element->url,
                     'label' => $element->title,
