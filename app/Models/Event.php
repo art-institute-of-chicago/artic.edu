@@ -480,6 +480,12 @@ class Event extends Model
                 "value" => function () {return $this->buy_tickets_link;},
             ],
             [
+                "name" => "ticketed_event_id",
+                "doc" => "Unique identifer of the event in our central ticketing system",
+                "type" => "string",
+                "value" => function () {return $this->apiModels('ticketedEvent', 'TicketedEvent')->first()->id;},
+            ],
+            [
                 "name" => "is_sold_out",
                 "doc" => "is_sold_out",
                 "type" => "boolean",
