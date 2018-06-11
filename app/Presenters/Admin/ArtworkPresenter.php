@@ -107,6 +107,10 @@ class ArtworkPresenter extends BasePresenter
             }
         }
 
+        $details = array_merge($details, $this->formatDetailBlocks([
+            'Title' => array($this->entity->all_titles,'name')
+        ]));
+
         if ($this->entity->place_pivots != null && count($this->entity->place_pivots) > 0) {
             $places = collect($this->entity->place_pivots)->map(function($item) {
                 $title = $item->place_title;
@@ -146,13 +150,12 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Title'            => $this->entity->all_titles,
-            'Medium'           => $this->entity->medium_display,
-            'Inscriptions'     => $this->entity->inscriptions,
-            'Dimensions'       => $this->entity->dimensions,
-            'Credit line'      => $this->entity->credit_line,
-            'Reference Number' => $this->entity->main_reference_number,
-            'Copyright'        => $this->entity->copyright_notice,
+            'Medium'           => array($this->entity->medium_display,'material'),
+            'Inscriptions'     => array($this->entity->inscriptions),
+            'Dimensions'       => array($this->entity->dimensions),
+            'Credit line'      => array($this->entity->credit_line),
+            'Reference Number' => array($this->entity->main_reference_number),
+            'Copyright'        => array($this->entity->copyright_notice),
         ]));
 
         return [
