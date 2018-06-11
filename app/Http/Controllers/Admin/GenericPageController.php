@@ -65,13 +65,15 @@ class GenericPageController extends ModuleController
     protected function formData($request)
     {
         $page = $this->repository->getById(request('genericPage'));
+        $ancestors = $page->ancestors()->defaultOrder()->get();
 
         $baseUrl = '//' . config('app.url') . "/";
-        foreach ($page->ancestors as $item) {
+
+        foreach ($ancestors as $item) {
             $baseUrl = $baseUrl . $item->slug . "/";
         }
 
-        $breadcrumb = $page->ancestors->map(function ($parentPage) {
+        $breadcrumb = $ancestors->map(function ($parentPage) {
             return [
                 'label' => $parentPage->title,
                 'url' => $this->getModuleRoute($parentPage->id, 'edit'),
@@ -86,12 +88,7 @@ class GenericPageController extends ModuleController
                     'edit' => $this->getModuleRoute($page->id, 'edit'),
                 ];
             }),
-            'breadcrumb' => empty($breadcrumb) ? null : array_merge($breadcrumb, [
-                [
-                    'label' => $page->title,
-                ],
-            ]),
-
+            'breadcrumb' => (empty($breadcrumb) ? null : $breadcrumb),
             'baseUrl' => $baseUrl,
 
             'categoriesList' => app(PageCategoryRepository::class)->listAll('name'),

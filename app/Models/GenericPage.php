@@ -80,7 +80,7 @@ class GenericPage extends Model implements Sortable
         }
 
         $url = "";
-        foreach ($this->ancestors as $item) {
+        foreach ($this->ancestors()->defaultOrder()->get() as $item) {
             $url = $url . "/" . $item->slug;
         }
         $url = $url . "/" . $this->slug;
