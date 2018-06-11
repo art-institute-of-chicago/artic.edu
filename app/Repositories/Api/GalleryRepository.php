@@ -27,7 +27,7 @@ class GalleryRepository extends BaseApiRepository
             ->resources(['artworks'])
             ->forceEndpoint('search')
             ->byGalleryIds($item->id)
-            ->aggregationClassifications()
+            ->aggregationClassifications(self::EXPLORE_FURTHER_TAGS)
             ->getSearch(self::ARTWORKS_PER_PAGE);
     }
 

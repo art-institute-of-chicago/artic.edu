@@ -27,7 +27,7 @@ class DepartmentRepository extends BaseApiRepository
             ->resources(['artworks'])
             ->forceEndpoint('search')
             ->byDepartments($item->title)
-            ->aggregationClassifications()
+            ->aggregationClassifications(self::EXPLORE_FURTHER_TAGS)
             ->getSearch(self::ARTWORKS_PER_PAGE);
     }
 

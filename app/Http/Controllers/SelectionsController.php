@@ -39,7 +39,7 @@ class SelectionsController extends FrontController
 
         $exploreFurtherTags = $this->repository->exploreFurtherTags($item);
         if (request()->has('exFurther-all')) {
-            $exploreFurtherAllTags = $this->repository->exploreFurtherAllTags();
+            $exploreFurtherAllTags = $this->repository->exploreFurtherAllTags($item);
         } else {
             $exploreFurtherCollection = $this->repository->exploreFurtherCollection($item, request()->only('exFurther-classification'));
         }

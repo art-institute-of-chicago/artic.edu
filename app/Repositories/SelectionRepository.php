@@ -81,7 +81,8 @@ class SelectionRepository extends ModuleRepository
                 ->resources(['artworks'])
                 ->forceEndpoint('search')
                 ->byIds($item->artworks->pluck('datahub_id')->toArray())
-                ->aggregationClassifications()
+                ->aggregationClassifications(self::EXPLORE_FURTHER_TAGS)
                 ->getSearch(self::ARTWORKS_PER_PAGE);
     }
+
 }
