@@ -4,7 +4,7 @@
       <div class="g-header">
         <div class="g-header__inner">
             <a class="g-header__logo" href="/">
-              <svg aria-title="Art Institute of Chicago">
+              <svg aria-label="Art Institute of Chicago">
                 <use xlink:href="#icon--logo--80" />
                 <use xlink:href="#icon--logo--88" />
                 <use xlink:href="#icon--logo--92" />
@@ -23,7 +23,7 @@
         <form action="/search" role="search">
           <input type="search" id="mobile_search" name="q" placeholder="Search" autocomplete="off" aria-label="Search the site" />
           <button type="submit" aria-label="Search">
-            <svg aria-title="Search" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
+            <svg aria-label="Search" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
           </button>
         </form>
       </div>

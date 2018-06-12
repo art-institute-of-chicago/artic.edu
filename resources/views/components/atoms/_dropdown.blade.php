@@ -1,4 +1,4 @@
-<span aria-title="{{ $ariaTitle }}" class="dropdown{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="dropdown">
+<span aria-label="{{ $ariaTitle }}" class="dropdown{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="dropdown">
   <button class="dropdown__trigger {{ $font ?? "f-secondary" }}">{{ $prompt ?? 'Select' }}<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
   <ul class="dropdown__list{{ (isset($listVariation)) ? ' '.$listVariation : '' }} f-secondary" data-dropdown-list>
     @foreach ($options as $option)

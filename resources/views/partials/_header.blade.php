@@ -2,7 +2,7 @@
   <div class="g-header__inner">
       @if (isset($filledLogo) and $filledLogo)
       <a class="g-header__logo" href="/">
-        <svg aria-title="Art Institute of Chicago">
+        <svg aria-label="Art Institute of Chicago">
           <use xlink:href="#icon--logo--80" />
           <use xlink:href="#icon--logo--88" />
           <use xlink:href="#icon--logo--92" />
@@ -10,7 +10,7 @@
       </a>
       @else
       <a class="g-header__logo" href="/">
-        <svg aria-title="Art Institute of Chicago">
+        <svg aria-label="Art Institute of Chicago">
           <use xlink:href="#icon--logo--outline--80" />
           <use xlink:href="#icon--logo--outline--88" />
           <use xlink:href="#icon--logo--outline--92" />
