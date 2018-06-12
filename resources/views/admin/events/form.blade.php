@@ -132,14 +132,6 @@
             'label' => 'Admission Required'
         ])
 
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'max' => 1,
-            'moduleName' => 'ticketedEvents',
-            'name' => 'ticketedEvent',
-            'label' => 'Ticketed event from Galaxy'
-        ])
-
         @formField('input', [
             'name' => 'buy_tickets_link',
             'label' => 'Buy tickets link'
@@ -157,9 +149,19 @@
             'toolbarOptions' => ['bold']
         ])
 
-        @formField('input', [
-            'name' => 'survey_link',
-            'label' => 'Survey URL',
+        @formField('checkbox', [
+            'name' => 'is_boosted',
+            'label' => 'Boost this event on search results'
+        ])
+    </a17-fieldset>
+
+    <a17-fieldset id="ticketing" title="Ticketing information">
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'max' => 1,
+            'moduleName' => 'ticketedEvents',
+            'name' => 'ticketedEvent',
+            'label' => 'Event from ticketing system'
         ])
 
         @formField('select', [
@@ -178,9 +180,9 @@
             'default' => 'No',
         ])
 
-        @formField('checkbox', [
-            'name' => 'is_boosted',
-            'label' => 'Boost this event on search results'
+        @formField('input', [
+            'name' => 'survey_link',
+            'label' => 'Survey URL',
         ])
     </a17-fieldset>
 
