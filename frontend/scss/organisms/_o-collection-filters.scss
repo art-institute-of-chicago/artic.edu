@@ -18,6 +18,24 @@
   }
 }
 
+.o-collection-filters::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  left: 100%;
+  right: 100%;
+  top: 0;
+  bottom: 100%;
+  background-color: rgba($color__bg--tertiary, .25);
+  opacity: 0;
+  transition: .15s opacity;
+
+  @include breakpoint('medium+') {
+    content: none;
+    display: none;
+  }
+}
+
 .o-collection-filters::after {
   content: '';
   position: absolute;

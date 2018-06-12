@@ -25,21 +25,27 @@
 .s-collection-filters-active.s-page-nav-swapping {
   .g-mask {
     @include breakpoint('medium+') {
-      background-color: rgba($color__white, 1);
-      opacity: .5;
+      background-color: rgba($color__white, .75);
+      opacity: 1;
     }
 
     @include breakpoint('small-') {
-      opacity: 1;
       background-color: rgba($color__bg--tertiary, .25);
+      opacity: 1;
     }
+  }
+
+  .g-ajax-loader {
+    left: 50%;
+    top: 50%;
+    opacity: 1;
   }
 
   .o-collection-filters::after {
     @include breakpoint('small-') {
       right: 0;
       bottom: 0;
-      opacity: .2;
+      opacity: .5;
     }
   }
 }
