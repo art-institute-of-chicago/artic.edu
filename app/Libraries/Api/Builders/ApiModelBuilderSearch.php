@@ -63,7 +63,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
                     return $this->getTypeMap()[$item->api_model] == (string) get_class($model) && $item->id == $model->id;
                 }
             });
-        });
+        })->values();
 
         // Preserve metadata
         $sorted->setMetadata($original->getMetadata());
