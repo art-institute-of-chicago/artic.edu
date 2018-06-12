@@ -43,11 +43,6 @@ class Artwork extends BaseApiModel
         ],
     ];
 
-    // public function newQuery()
-    // {
-    //     return $this->newQueryWithoutScopes()->include();
-    // }
-
     public function getFullTitleAttribute()
     {
         $artist = $this->mainArtist ? $this->mainArtist->first() : null;
