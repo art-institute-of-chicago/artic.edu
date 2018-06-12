@@ -7,5 +7,5 @@
     <p class="m-notification__text f-secondary">
         {{ $slot }}
     </p>
-    <button class="m-notification__close" data-notification-closer><svg class="icon--close" aria-title="Close message"><use xlink:href="#icon--close" /></svg></button>
+    <button class="m-notification__close" data-notification-closer><svg class="icon--close" aria-label="Close message"><use xlink:href="#icon--close" /></svg></button>
 </div>

@@ -7,5 +7,5 @@
     <li><a href="#" class="f-secondary" data-shareMenu="email">Email</a></li>
     <li><button class="f-secondary" data-shareMenu="copy">Copy link</button></li>
   </ul>
-  <button class="m-share-menu__close"><svg class="icon--close" aria-title="Close share menu"><use xlink:href="#icon--close" /></svg></button>
+  <button class="m-share-menu__close"><svg class="icon--close" aria-label="Close share menu"><use xlink:href="#icon--close" /></svg></button>
 </div>

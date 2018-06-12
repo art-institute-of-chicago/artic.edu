@@ -2,7 +2,7 @@
     <div class="m-calendar__header">
         <button class="btn btn--sm btn--secondary f-buttons s-active" data-calendar-start>From</button>
         <button class="btn btn--sm btn--secondary f-buttons" data-calendar-end>To</button>
-        <button class="m-calendar__close" data-calendar-close><svg class="icon--close" aria-title="Close date select"><use xlink:href="#icon--close" /></svg></button>
+        <button class="m-calendar__close" data-calendar-close><svg class="icon--close" aria-label="Close date select"><use xlink:href="#icon--close" /></svg></button>
     </div>
     <div class="m-calendar__months" data-calendar-months>
         <div class="m-calendar__month" style="display: none;" data-calendar-month-template>
@@ -23,8 +23,8 @@
                 </tbody>
             </table>
         </div>
-        <button class="m-calendar__next" data-calendar-next><svg aria-title="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-        <button class="m-calendar__prev" data-calendar-prev><svg aria-title="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+        <button class="m-calendar__next" data-calendar-next><svg aria-label="Next month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
+        <button class="m-calendar__prev" data-calendar-prev><svg aria-label="Previous month" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
     </div>
     <div class="m-calendar__footer">
         <button class="btn btn--sm f-buttons" data-calendar-done>Done</button>
