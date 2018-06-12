@@ -38,6 +38,7 @@ class Event extends Model
         'forced_date',
         'start_time',
         'end_time',
+        'door_time',
         'is_private',
         'is_after_hours',
         'is_ticketed',
@@ -201,7 +202,6 @@ class Event extends Model
     public function ticketedEvent()
     {
         return $this->apiElements()->where('relation', 'ticketedEvent');
-        //return $this->belongsTo(\App\Models\TicketedEvent::class);
     }
 
     public function scopeLanding($query)
@@ -519,6 +519,12 @@ class Event extends Model
                 "doc" => "slug",
                 "type" => "string",
                 "value" => function () {return $this->slug;},
+            ],
+            [
+                "name" => "door_time",
+                "doc" => "door_time",
+                "type" => "string",
+                "value" => function () {return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%i') : null;},
             ],
             [
                 "name" => "web_url",

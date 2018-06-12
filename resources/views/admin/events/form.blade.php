@@ -203,6 +203,12 @@
                     'label' => 'Start Time',
                     'options' => hoursSelectOptions()
                 ])
+
+                @formField('select', [
+                    'name' => 'door_time',
+                    'label' => 'Door Time',
+                    'options' => hoursSelectOptions()
+                ])
             @endslot
             @slot('right')
                 @formField('select', [
