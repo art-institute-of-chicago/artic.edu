@@ -59,6 +59,22 @@ class Artwork extends BaseApiModel
         return join(', ', array_filter([$this->artist_display, $this->date_display]));
     }
 
+    public function getListingSubtitleAttribute()
+    {
+        if ($this->artist_pivots != null && count($this->artist_pivots) > 0) {
+            if ($artist = collect($this->artist_pivots)->first()) {
+                return $artist->artist_title;
+            } else {
+                return $this->artist_title ?? $this->artist_display;
+            }
+        }
+    }
+
+    public function getListingTitleAttribute()
+    {
+        return join(', ', array_filter([$this->title, $this->date_display]));
+    }
+
     public function getAllTitlesAttribute()
     {
         $titles = collect($this->title)->push($this->alt_titles)->filter()->flatten();
