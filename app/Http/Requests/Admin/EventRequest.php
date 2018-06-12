@@ -6,17 +6,17 @@ use A17\Twill\Http\Requests\Admin\Request;
 
 class EventRequest extends Request
 {
-    public function rules()
-    {
-        // $rules = [
-        //     'title' => 'required',
-        //     'rsvp_link' => 'url'
-        // ];
-
-        // if (!empty($this->input('price'))) {
-        //     $rules['price'] = "required|regex:/^\d*(\.\d{1,2})?$/";
-        // }
-
+    public function rulesForCreate() {
         return [];
+    }
+
+    public function rulesForUpdate()
+    {
+        $rules = [
+            'start_time' => 'required',
+            'end_time'   => 'required',
+        ];
+
+        return $rules;
     }
 }
