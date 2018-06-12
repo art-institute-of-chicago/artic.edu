@@ -26,7 +26,7 @@ function hoursSelectOptions()
         $ampm = ($i >= 12 ? 'pm' : 'am');
         foreach(['00', '15', '30', '45'] as $time) {
             // Save hours on DatetimeInterval format to be added later
-            $hours["PT{$i}H{$time}M"] =  "{$hour}:{$time}";
+            $hours["PT{$i}H{$time}M"] =  "{$hour}:{$time}{$ampm}";
         }
     }
 
