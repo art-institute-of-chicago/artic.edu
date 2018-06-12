@@ -10,6 +10,13 @@ trait HasApiCalls
 {
 
     /**
+     * The array of default scopes on the model.
+     *
+     * @var array
+     */
+    protected static $defaultScopes = [];
+
+    /**
      * Begin querying a model with eager loading.
      *
      * @param  array|string $relations
@@ -49,7 +56,37 @@ trait HasApiCalls
      */
     public function newQuery()
     {
-        return $this->newQueryWithoutScopes();
+        // return $this->newQueryWithoutScopes();
+        return $this->registerDefaultScopes($this->newQueryWithoutScopes());
+    }
+
+    /**
+     * Register the global scopes for this builder instance.
+     *
+     * @param  App\Libraries\Api\Builders\ApiModelBuilder $builder
+     * @return App\Libraries\Api\Builders\ApiModelBuilder
+     */
+    public function registerDefaultScopes($builder)
+    {
+        foreach ($this->getDefaultScopes() as $name => $parameters) {
+            if (empty($parameters)) {
+                $builder->$name();
+            } else {
+                $builder->$name($parameters);
+            }
+        }
+
+        return $builder;
+    }
+
+    /**
+     * Get the default scopes for this class instance.
+     *
+     * @return array
+     */
+    public function getDefaultScopes()
+    {
+        return static::$defaultScopes;
     }
 
     /**

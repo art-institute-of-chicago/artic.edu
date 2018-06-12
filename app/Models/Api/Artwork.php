@@ -28,6 +28,10 @@ class Artwork extends BaseApiModel
 
     protected $appends = ['fullTitle'];
 
+    protected static $defaultScopes = [
+        'include' => ['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots']
+    ];
+
     public $mediasParams = [
         'hero' => [
             'default' => [
@@ -38,6 +42,11 @@ class Artwork extends BaseApiModel
             ],
         ],
     ];
+
+    // public function newQuery()
+    // {
+    //     return $this->newQueryWithoutScopes()->include();
+    // }
 
     public function getFullTitleAttribute()
     {
