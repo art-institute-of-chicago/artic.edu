@@ -48,6 +48,7 @@ class Event extends Model
         'is_registration_required',
         'is_admission_required',
         'ticketed_event_id',
+        'survey_link',
         'hidden',
         'rsvp_link',
         'buy_tickets_link',
@@ -487,6 +488,12 @@ class Event extends Model
                     $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
                     return $ticketedEvent ? $ticketedEvent->id : null;
                 },
+            ],
+            [
+                "name" => "survey_url",
+                "doc" => "URL to the survey associated with this event",
+                "type" => "string",
+                "value" => function () {return $this->survey_link;},
             ],
             [
                 "name" => "is_sold_out",

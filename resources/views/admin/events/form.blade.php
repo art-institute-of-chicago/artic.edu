@@ -157,6 +157,11 @@
             'toolbarOptions' => ['bold']
         ])
 
+        @formField('input', [
+            'name' => 'survey_link',
+            'label' => 'Survey URL',
+        ])
+
         @formField('checkbox', [
             'name' => 'is_boosted',
             'label' => 'Boost this event on search results'
