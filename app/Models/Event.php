@@ -30,7 +30,9 @@ class Event extends Model
         'title',
         'published',
         'event_type',
+        'alt_types',
         'audience',
+        'alt_audiences',
         'short_description',
         'list_description',
         'description',
@@ -65,6 +67,11 @@ class Event extends Model
         'migrated_at',
         'meta_title',
         'meta_description',
+    ];
+
+    protected $casts = [
+        'alt_types' => 'array',
+        'alt_audiences' => 'array',
     ];
 
     const CLASSES_AND_WORKSHOPS = 1;
@@ -194,6 +201,40 @@ class Event extends Model
         return $dates_string;
     }
 
+    public function getAltTypesAttribute($value)
+    {
+        return $this->getMultiSelectFromJsonColumn($value);
+    }
+
+    public function getAltAudiencesAttribute($value)
+    {
+        return $this->getMultiSelectFromJsonColumn($value);
+    }
+
+    public function setAltTypesAttribute($value)
+    {
+        $this->attributes['alt_types'] = $this->getJsonColumnFromMultiSelect($value);
+    }
+
+    public function setAltAudiencesAttribute($value)
+    {
+        $this->attributes['alt_audiences'] = $this->getJsonColumnFromMultiSelect($value);
+    }
+
+    // This emulates an Eloquent collection from a JSON column
+    // TODO: Move this somewhere more appropriate - presenter?
+    private function getMultiSelectFromJsonColumn($value)
+    {
+        return collect(json_decode($value))->map(function($item) { return ['id' => $item]; })->all();
+    }
+
+    // Without this, we get `null` values in array
+    // TODO: Move this somewhere more appropriate - presenter?
+    private function getJsonColumnFromMultiSelect($value)
+    {
+        return collect($value)->filter()->values();
+    }
+
     public function sponsors()
     {
         return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
@@ -240,14 +281,18 @@ class Event extends Model
         return $query;
     }
 
+    // NOTE: This works only while there are less than 10 types
+    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByType($query, $type)
     {
-        return $query->where('event_type', '=', $type);
+        return $query->where('event_type', '=', $type)->orWhere('alt_types', 'LIKE', '%'.$type.'%');
     }
 
+    // NOTE: This works only while there are less than 10 audiences
+    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByAudience($query, $audience)
     {
-        return $query->where('audience', '=', $audience);
+        return $query->where('audience', '=', $audience)->orWhere('alt_audiences', 'LIKE', '%'.$audience.'%');
     }
 
     public function scopeDefault($query)

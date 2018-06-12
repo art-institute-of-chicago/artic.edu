@@ -22,16 +22,30 @@
 
     @formField('select', [
         'name' => 'event_type',
-        'label' => 'Event type',
+        'label' => 'Event type (preferred)',
         'options' => $eventTypesList,
         'default' => '1'
     ])
 
+    @formField('multi_select', [
+        'name' => 'alt_types',
+        'label' => 'Event type (alternative)',
+        'note' => 'Used to enhance filtering',
+        'options' => $eventTypesList,
+    ])
+
     @formField('select', [
         'name' => 'audience',
-        'label' => 'Event audience',
+        'label' => 'Event audience (preferred)',
         'options' => $eventAudiencesList,
         'default' => '1'
+    ])
+
+    @formField('multi_select', [
+        'name' => 'alt_audiences',
+        'label' => 'Event audience (alternative)',
+        'note' => 'Used to enhance filtering',
+        'options' => $eventAudiencesList,
     ])
 
     @formField('medias', [
