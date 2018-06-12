@@ -127,6 +127,11 @@
             'label' => 'Ticketed Event'
         ])
 
+        @formField('checkbox', [
+            'name' => 'is_admission_required',
+            'label' => 'Admission Required'
+        ])
+
         @formField('input', [
             'name' => 'buy_tickets_link',
             'label' => 'Buy tickets link'
@@ -150,6 +155,37 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset id="ticketing" title="Ticketing information">
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'max' => 1,
+            'moduleName' => 'ticketedEvents',
+            'name' => 'ticketedEvent',
+            'label' => 'Event from ticketing system'
+        ])
+
+        @formField('select', [
+            'name' => 'email_series',
+            'label' => 'Add to event email series?',
+            'options' => [
+                [
+                    'value' => 'Yes',
+                    'label' => 'Yes'
+                ],
+                [
+                    'value' => 'No',
+                    'label' => 'No'
+                ],
+            ],
+            'default' => 'No',
+        ])
+
+        @formField('input', [
+            'name' => 'survey_link',
+            'label' => 'Survey URL',
+        ])
+    </a17-fieldset>
+
     <a17-fieldset id="dates" title="Date rules">
         @formField('input', [
             'name' => 'all_dates_cms',
@@ -165,6 +201,12 @@
                 @formField('select', [
                     'name' => 'start_time',
                     'label' => 'Start Time',
+                    'options' => hoursSelectOptions()
+                ])
+
+                @formField('select', [
+                    'name' => 'door_time',
+                    'label' => 'Door Time',
                     'options' => hoursSelectOptions()
                 ])
             @endslot

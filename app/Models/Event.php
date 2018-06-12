@@ -10,10 +10,11 @@ use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRecurrentDates;
 use Carbon\Carbon;
+use App\Models\Behaviors\HasApiRelations;
 
 class Event extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable;
+    use HasSlug, HasRevisions, HasApiRelations, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
     protected $presenter = 'App\Presenters\Admin\EventPresenter';
@@ -37,6 +38,7 @@ class Event extends Model
         'forced_date',
         'start_time',
         'end_time',
+        'door_time',
         'is_private',
         'is_after_hours',
         'is_ticketed',
@@ -45,6 +47,10 @@ class Event extends Model
         'is_boosted',
         'is_member_exclusive',
         'is_registration_required',
+        'is_admission_required',
+        'ticketed_event_id',
+        'survey_link',
+        'email_series',
         'hidden',
         'rsvp_link',
         'buy_tickets_link',
@@ -121,6 +127,7 @@ class Event extends Model
         'is_ticketed',
         'is_free',
         'is_member_exclusive',
+        'is_admission_required',
         'is_sold_out',
         'is_boosted',
         'is_registration_required'
@@ -190,6 +197,11 @@ class Event extends Model
     public function sponsors()
     {
         return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
+    }
+
+    public function ticketedEvent()
+    {
+        return $this->apiElements()->where('relation', 'ticketedEvent');
     }
 
     public function scopeLanding($query)
@@ -374,6 +386,12 @@ class Event extends Model
                 "value" => function () {return $this->is_registration_required;},
             ],
             [
+                "name" => "is_admission_required",
+                "doc" => "Is admission required",
+                "type" => "boolean",
+                "value" => function () {return $this->is_admission_required;},
+            ],
+            [
                 "name" => "hidden",
                 "doc" => "Hidden",
                 "type" => "boolean",
@@ -464,6 +482,27 @@ class Event extends Model
                 "value" => function () {return $this->buy_tickets_link;},
             ],
             [
+                "name" => "ticketed_event_id",
+                "doc" => "Unique identifer of the event in our central ticketing system",
+                "type" => "string",
+                "value" => function () {
+                    $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
+                    return $ticketedEvent ? $ticketedEvent->id : null;
+                },
+            ],
+            [
+                "name" => "survey_url",
+                "doc" => "URL to the survey associated with this event",
+                "type" => "string",
+                "value" => function () {return $this->survey_link;},
+            ],
+            [
+                "name" => "email_series",
+                "doc" => "Email series",
+                "type" => "string",
+                "value" => function () {return $this->email_series;},
+            ],
+            [
                 "name" => "is_sold_out",
                 "doc" => "is_sold_out",
                 "type" => "boolean",
@@ -482,6 +521,12 @@ class Event extends Model
                 "value" => function () {return $this->slug;},
             ],
             [
+                "name" => "door_time",
+                "doc" => "door_time",
+                "type" => "string",
+                "value" => function () {return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%i') : null;},
+            ],
+            [
                 "name" => "web_url",
                 "doc" => "web_url",
                 "type" => "string",
@@ -489,4 +534,20 @@ class Event extends Model
             ],
         ];
     }
+
+    /**
+     * Validate an id. Useful for validating routes or query string params.
+     *
+     * By default, only numeric ids greater than zero are accepted. Override this
+     * method in child classes to implement different validation rules (e.g. UUID).
+     *
+     * @param mixed $id
+     * @return boolean
+     */
+    public static function validateId( $id )
+    {
+        // By default, only allow numeric ids greater than 0
+        return is_numeric($id) && intval($id) > 0;
+    }
+
 }

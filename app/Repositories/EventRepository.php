@@ -10,13 +10,14 @@ use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\HandleApiRelations;
 use App\Models\Event;
 use App\Models\Api\Search;
 use Carbon\Carbon;
 
 class EventRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleBlocks, HandleRepeaters, HandleRecurrence {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleApiRelations, HandleBlocks, HandleRepeaters, HandleRecurrence {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -35,6 +36,8 @@ class EventRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
+
+        $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent']);
         $this->updateBrowser($object, $fields, 'sponsors');
         $this->updateBrowser($object, $fields, 'events');
 
@@ -49,6 +52,7 @@ class EventRepository extends ModuleRepository
 
         $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
+        $fields['browsers']['ticketedEvent'] = $this->getFormFieldsForBrowserApi($object, 'ticketedEvent', 'App\Models\Api\TicketedEvent', 'exhibitions_events', 'title', 'ticketedEvent');
 
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');
 
