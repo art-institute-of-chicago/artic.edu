@@ -162,6 +162,22 @@
             'label' => 'Survey URL',
         ])
 
+        @formField('select', [
+            'name' => 'email_series',
+            'label' => 'Add to event email series?',
+            'options' => [
+                [
+                    'value' => 'Yes',
+                    'label' => 'Yes'
+                ],
+                [
+                    'value' => 'No',
+                    'label' => 'No'
+                ],
+            ],
+            'default' => 'No',
+        ])
+
         @formField('checkbox', [
             'name' => 'is_boosted',
             'label' => 'Boost this event on search results'

@@ -49,6 +49,7 @@ class Event extends Model
         'is_admission_required',
         'ticketed_event_id',
         'survey_link',
+        'email_series',
         'hidden',
         'rsvp_link',
         'buy_tickets_link',
@@ -494,6 +495,12 @@ class Event extends Model
                 "doc" => "URL to the survey associated with this event",
                 "type" => "string",
                 "value" => function () {return $this->survey_link;},
+            ],
+            [
+                "name" => "email_series",
+                "doc" => "Email series",
+                "type" => "string",
+                "value" => function () {return $this->email_series;},
             ],
             [
                 "name" => "is_sold_out",
