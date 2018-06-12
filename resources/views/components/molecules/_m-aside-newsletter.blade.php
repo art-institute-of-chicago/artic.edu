@@ -1,9 +1,12 @@
+@php
+    $rand = rand(1, 1000);
+@endphp
 <form class="m-aside-newsletter{{ (isset($variation)) ? ' '.$variation : ' ' }}{{ (isset($error) and $error) ? ' s-error' : '' }}{{ (isset($success) and $success) ? ' s-success' : '' }}" action="/subscribe" data-behavior="newsletter">
   <fieldset>
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
     <span class="m-aside-newsletter__field">
-      <label for="email" class="f-secondary">Email address</label>
-      <input type="email" name="email" class="f-secondary" placeholder="{{ $placeholder ?? '' }}">
+      <label for="email{{ $rand }}" class="f-secondary">Email address</label>
+      <input type="email" name="email" id="email{{ $rand }}" class="f-secondary" placeholder="{{ $placeholder ?? '' }}">
       <button type="submit" class="{{ $btnFont ?? 'f-buttons' }}">Subscribe</button>
     </span>
     @if (isset($error) and $error)
