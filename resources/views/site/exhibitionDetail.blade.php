@@ -321,6 +321,7 @@
                           'xlarge' => '7',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="exhibition-events" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
@@ -357,6 +358,7 @@
                           'xlarge' => '13',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="exhibition-recirculation" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
