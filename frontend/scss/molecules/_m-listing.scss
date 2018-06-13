@@ -1660,7 +1660,7 @@
 
 // variant `m-listing` inside `.o-pinboard`
 .o-pinboard__item.m-listing--variable-height .m-listing__img {
-  max-height: percentage(4 / 3);
+  max-height: 500px; // formally 4/3 ratio max: percentage(4 / 3)
   overflow: hidden;
 }
 
@@ -1674,23 +1674,7 @@
   position: static;
   height: auto;
   object-fit: contain;
-}
-
-@include breakpoint('medium+') {
-  @media (hover: hover) {
-    .o-pinboard__item.m-listing--variable-height .m-listing__img:hover {
-      z-index: 2;
-      overflow: visible;
-    }
-
-    .o-pinboard__item.m-listing--variable-height .m-listing__img:hover img {
-      filter: none;
-    }
-
-    .o-pinboard__item.m-listing--variable-height .m-listing__img img {
-      object-fit: unset;
-    }
-  }
+  object-position: center top;
 }
 
 .o-pinboard__item.m-listing--variable-height .m-listing__img::before,
