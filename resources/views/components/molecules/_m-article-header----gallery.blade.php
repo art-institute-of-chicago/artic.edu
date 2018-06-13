@@ -37,16 +37,8 @@ if ($maxZoomWindowSize >= 843) {
             @endif
         @endcomponent
       </div>
-      @if (sizeof($images) > 1 or $prevNextObject->next or $prevNextObject->prev)
+      @if ($prevNextObject->next or $prevNextObject->prev)
       <ul class="m-article-header__img-nav">
-        @if (sizeof($images) > 1)
-        <li class="m-article-header__img-nav-next-img">
-          <button data-gallery-next></button>
-        </li>
-        <li class="m-article-header__img-nav-prev-img">
-          <button data-gallery-previous></button>
-        </li>
-        @endif
         @if ($prevNextObject->next)
         <li class="m-article-header__img-nav-next-artwork">
           <a href="{!! route('artworks.show', ['id' => $prevNextObject->next ] + $prevNextObject->nextParams) !!}" class="m-article-header__img-nav-artwork-preview">
