@@ -90,8 +90,10 @@ const dragScroll = function(container) {
       // set so we can compare
       lastClientX = event.clientX;
       // if it looks like the user is trying to scroll, block link clicks
-      if (Math.abs(xVelocity) > 30) {
+      if (Math.abs(xVelocity) > 3) {
         allowClicks = false;
+      } else {
+        allowClicks = true;
       }
       //
       container.classList.add('s-dragging');
