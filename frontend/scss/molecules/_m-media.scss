@@ -51,9 +51,22 @@
   height: auto;
   margin: 0 auto;
 
+  .m-media--s.o-blocks__block & {
+    width: auto;
+    max-width: 100%;
+    max-height: 80vh;
+  }
+
   .m-media--artwork & {
+    width: auto;
     max-width: 843px;
     max-height: 843px;
+  }
+
+  .m-media--s.m-media--artwork.o-blocks__block & {
+    width: auto;
+    max-width: 843px;
+    max-height: 700;
   }
 }
 
