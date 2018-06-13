@@ -104,6 +104,7 @@
                 @slot('optionLayout','o-pinboard--2-col@xsmall o-pinboard--2-col@small o-pinboard--2-col@medium o-pinboard--3-col@large o-pinboard--3-col@xlarge')
                 @component('site.collection._items')
                     @slot('artworks', $artworks)
+                    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-filter"')
                 @endcomponent
             @endcomponent
         @else
