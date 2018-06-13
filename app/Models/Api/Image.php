@@ -38,6 +38,7 @@ class Image extends BaseApiModel
             "credit" => $credit,
             "creditUrl" => $creditUrl,
             "iiifId" => $lake->getBaseUrl().$lake->getVersion().'/'.$this->id,
+            "alt"    => $this->alt_text
         );
 
         if (isset($this->lqip) && !empty($this->lqip)) {
