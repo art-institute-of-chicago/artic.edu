@@ -59,6 +59,21 @@
   color: $color__text--title-contrast;
 }
 
+.o-gallery .m-media figcaption strong a {
+  color: $color__text--title-contrast;
+}
+
+.o-gallery .m-media figcaption strong a:hover,
+.o-gallery .m-media a.m-media__img:hover + figcaption strong a {
+  @include text-underline(1.05em, $color__text--title-contrast, $color__bg--gallery);
+}
+
+.o-gallery .m-media figcaption strong a:active {
+  background-image: none;
+  color: $color__text--title-contrast;
+  text-shadow: 0;
+}
+
 .o-gallery hr,
 .o-gallery .hr {
   margin-top: 0;

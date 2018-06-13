@@ -174,7 +174,7 @@
         @if ($size == 'gallery')
             @if (isset($item['captionTitle']))
                 @if(isset($item['urlTitle']) && $item['urlTitle'])
-                    <a href="{!! $item['urlTitle'] !!}"><strong class="f-caption">{!! $item['captionTitle'] !!}</strong></a> <br>
+                    <strong class="f-caption"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></strong> <br>
                 @else
                     <strong class="f-caption">{!! $item['captionTitle'] !!}</strong> <br>
                 @endif
@@ -183,7 +183,7 @@
         @else
             @if (isset($item['captionTitle']))
                 @if(isset($item['urlTitle']) && $item['urlTitle'])
-                    <a href="{!! $item['urlTitle'] !!}"><strong class="f-caption-title">{!! $item['captionTitle'] !!}</strong></a> <br>
+                    <strong class="f-caption-title"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></strong> <br>
                 @else
                     <strong class="f-caption-title">{!! $item['captionTitle'] !!}</strong> <br>
                 @endif
