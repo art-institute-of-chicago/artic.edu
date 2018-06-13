@@ -17,14 +17,15 @@
 @formField('input', [
     'name' => 'title',
     'label' => 'Title',
-    'maxlength' => 150
+    'maxlength' => 60
 ])
 
 @formField('input', [
     'type' => 'textarea',
     'name' => 'description',
     'label' => 'Description',
-    'rows' => 4
+    'rows' => 4,
+    'maxlength' => 500
 ])
 
 @formField('repeater', ['type' => 'gallery_item'])

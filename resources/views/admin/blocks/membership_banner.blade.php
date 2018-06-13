@@ -8,12 +8,14 @@
     'type' => 'text',
     'name' => 'headline',
     'label' => 'Headline',
+    'maxlength' => 50
 ])
 
 @formField('input', [
     'type' => 'text',
     'name' => 'short_copy',
     'label' => 'Short copy',
+    'maxlength' => 80
 ])
 
 @formField('input', [

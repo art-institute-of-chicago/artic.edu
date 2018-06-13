@@ -1,6 +1,7 @@
 @formField('input', [
     'name' => 'title',
-    'label' => 'Title'
+    'label' => 'Title',
+     'maxlength' => 60
 ])
 
 @formField('input', [

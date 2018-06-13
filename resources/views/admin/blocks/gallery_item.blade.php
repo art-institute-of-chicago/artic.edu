@@ -7,11 +7,11 @@
 @formField('input', [
     'name' => 'captionTitle',
     'label' => 'Caption title',
-    'maxlength' => 150
+    'maxlength' => 80
 ])
 
 @formField('input', [
     'name' => 'caption',
     'label' => 'Caption',
-    'maxlength' => 150
+    'maxlength' => 200
 ])
