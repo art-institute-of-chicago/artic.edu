@@ -38,7 +38,7 @@
   vertical-align: middle;
 }
 
-.top-link::after {
+.top-link::before {
   content: '';
   position: absolute;
   right: 18px;
@@ -46,4 +46,13 @@
   bottom: 16px;
   width: 1.5px;
   background-color: $color__white;
+}
+
+.top-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
