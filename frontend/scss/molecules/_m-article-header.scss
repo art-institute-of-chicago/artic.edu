@@ -941,48 +941,6 @@ a.m-article-header__img-credit {
   }
 }
 
-.m-article-header__img-nav-next-img,
-.m-article-header__img-nav-prev-img {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  bottom: 0;
-  width: calc(50vw - 160px);
-  height: 100%;
-}
-
-  .m-article-header__img-nav-next-img {
-    right: 50%;
-    margin-right: calc((50vw - 160px) * -1);
-
-    button {
-      cursor: e-resize;
-    }
-  }
-
-  .m-article-header__img-nav-prev-img {
-    left: 50%;
-    margin-left: calc((50vw - 160px) * -1);
-
-    button {
-      cursor: w-resize;
-    }
-  }
-
-.m-article-header__img-nav-next-img button,
-.m-article-header__img-nav-prev-img button {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  border: 0 none;
-  opacity: 0;
-}
-
 .m-article-header__img-nav-next-artwork,
 .m-article-header__img-nav-prev-artwork {
   position: absolute;
