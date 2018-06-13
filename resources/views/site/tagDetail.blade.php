@@ -6,8 +6,6 @@
     {{ $item->title }}
 @endcomponent
 
-{{-- Do not show extra data when no augmented model exists --}}
-@if (!empty($item->getAugmentedModel()))
     @component('components.organisms._o-artist-bio')
         @slot('item', $item)
         @slot('imageSettings', array(
@@ -21,7 +19,6 @@
             )),
         ))
     @endcomponent
-@endif
 
 @unless ($artworks->isEmpty())
     @component('components.molecules._m-title-bar')

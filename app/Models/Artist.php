@@ -7,10 +7,11 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class Artist extends Model
 {
-    use HasSlug, HasApiModel, HasMedias, HasApiRelations, Transformable;
+    use HasSlug, HasApiModel, HasMedias, HasApiRelations, HasMediasEloquent, Transformable;
 
     protected $apiModel = 'App\Models\Api\Artist';
 
