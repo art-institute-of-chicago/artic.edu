@@ -169,6 +169,21 @@ a.m-media__img:hover object {
   display: none;
 }
 
+.m-media figcaption strong a {
+  color: $color__text;
+}
+
+.m-media figcaption strong a:hover,
+.m-media a.m-media__img:hover + figcaption strong a {
+  @include text-underline(1.05em, $color__text, $color__bg);
+}
+
+.m-media figcaption strong a:active {
+  background-image: none;
+  color: $color__text;
+  text-shadow: 0;
+}
+
 .m-media .m-media__share {
   position: absolute;
   right: 0;
