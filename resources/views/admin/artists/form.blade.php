@@ -21,11 +21,6 @@
     ])
 
     @formField('input', [
-        'name' => 'also_known_as',
-        'label' => 'Also known as...',
-    ])
-
-    @formField('input', [
         'name' => 'birth_date',
         'label' => 'Birth Date',
         'disabled' => true

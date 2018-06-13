@@ -16,7 +16,6 @@ class Artist extends Model
     protected $apiModel = 'App\Models\Api\Artist';
 
     protected $fillable = [
-        'also_known_as',
         'intro',
         'datahub_id',
         'title',
@@ -51,12 +50,6 @@ class Artist extends Model
     protected function transformMappingInternal()
     {
         return [
-            [
-                "name" => 'also_known_as',
-                "doc" => "Also Known As",
-                "type" => "string",
-                "value" => function () {return $this->also_known_as;},
-            ],
             [
                 "name" => 'intro_copy',
                 "doc" => "Intro Copy",
