@@ -68,6 +68,7 @@
 @component('components.molecules._m-search-actions----collection')
     @slot('onViewLink', route('collection', (request()->filled('is_on_view') ? [] : request()->input() + ['is_on_view' => true])))
     @slot('onViewActive', request()->filled('is_on_view'))
+    @slot('hasAnyFilter', $hasAnyFilter)
 
     @slot('total', number_format($artworks->total()))
 @endcomponent

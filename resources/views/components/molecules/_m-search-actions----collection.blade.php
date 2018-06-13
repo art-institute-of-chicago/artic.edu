@@ -13,7 +13,11 @@
     <li class="u-hide@xsmall">
         <span class="f-secondary">
             @if (isset($total))
-                {{ $total }} {{ str_plural('result', $total) }}
+                @if ($hasAnyFilter)
+                    {{ $total }} {{ str_plural('result', $total) }}
+                @else
+                    All results
+                @endif
             @else
                 108,789 results
             @endif

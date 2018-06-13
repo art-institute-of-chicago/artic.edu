@@ -609,6 +609,7 @@ class StaticsController extends FrontController {
       'onViewActive' => (isset($_GET['onview']) && $_GET['onview'] === 'true'),
       'quickSearchLinks' => $quickSearchLinks,
       'filterCategories' => $this->generateCollectionFilterCategories(),
+      'hasAnyFilter' => false,
       'activeFilters' => array(
         array(
           'href' => '#',
