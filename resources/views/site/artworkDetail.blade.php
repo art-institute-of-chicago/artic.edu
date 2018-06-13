@@ -73,7 +73,11 @@
           @slot('tag','h1')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
-          {{ $item->title }}
+          @if (!empty(route('artists.show', $item->artist_id)))
+            <a href="{{ route('artists.show', $item->artist_id) }}" data-gtm-event="artist" data-gtm-event-category="collection-nav">{{ $item->title }}</a>
+          @else
+            {{ $item->title }}
+          @endif
       @endcomponent
     @endif
 
