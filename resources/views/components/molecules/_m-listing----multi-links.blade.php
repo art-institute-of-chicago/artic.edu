@@ -28,6 +28,7 @@
                     @slot('font', $titleFont ?? 'f-list-3')
                     @slot('tag', 'a')
                     @slot('href', $item['titleLink'])
+                    @slot('gtmAttributes', $gtmAttributes ?? null)
                     {{ $item['title'] }} <span class='title__arrow'>&rsaquo;</span>
                 @endcomponent
             @else
@@ -57,6 +58,7 @@
                     @else
                         @component('components.atoms._arrow-link')
                             @slot('href', $link['href'])
+                            @slot('gtmAttributes', $gtmAttributes ?? null)
                             {!! $link['label'] !!}
                         @endcomponent
                     @endif

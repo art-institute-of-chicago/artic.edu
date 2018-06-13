@@ -405,6 +405,7 @@
                           'xlarge' => '18',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="visit-tours" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
@@ -437,6 +438,7 @@
                           'xlarge' => '18',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="visit-special-audiences" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
