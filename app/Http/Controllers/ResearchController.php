@@ -11,8 +11,8 @@ class ResearchController extends Controller
 
     public function index()
     {
-
         $page = Page::forType('Research and Resources')->first();
+        $artIdeasPage = Page::forType('Art and Ideas')->first();
 
         $featuredPages = $page->researchResourcesFeaturePages;
 
@@ -58,7 +58,7 @@ class ResearchController extends Controller
         return view('site.research_resources.index', [
             'primaryNavCurrent' => 'collection',
             'title' => 'The Collection',
-            'intro' => 'Explore <em>over 100,000 artworks</em> and information about works of art from all areas in our online encyclopedic collections.',
+            'intro' => $artIdeasPage->art_intro,
             'page'  => $page,
             'linksBar' => [
                 [

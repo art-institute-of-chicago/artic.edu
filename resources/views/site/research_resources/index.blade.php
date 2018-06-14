@@ -6,12 +6,12 @@
         <header>
             @component('components.molecules._m-header-block')
                 @slot('tag', 'div')
-                {{ $page->resources_landing_title }}
+                {{ $title }}
             @endcomponent
 
             @component('components.molecules._m-intro-block')
                 @slot('variation', 'm-intro-block--tight')
-                {!! $page->resources_landing_intro !!}
+                {!! $intro !!}
             @endcomponent
         </header>
 
