@@ -13,6 +13,8 @@
                     @slot('image', $item->imageFront())
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
+            @else
+                <span class="default-img"></span>
             @endif
         </span>
     </a>
