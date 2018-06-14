@@ -1,9 +1,9 @@
 <section class="o-artist-bio">
     <div class="o-artist-bio__inner">
-        @if ($item->image('hero'))
+        @if ($item->imageFront('hero'))
             <figure class="o-artist-bio__image">
                 @component('components.atoms._img')
-                    @slot('image', $item->imageAsArray('hero'))
+                    @slot('image', $item->imageFront('hero'))
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
                 @if ($item->caption)

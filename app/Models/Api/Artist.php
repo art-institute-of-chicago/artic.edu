@@ -30,4 +30,11 @@ class Artist extends BaseApiModel
     {
         return $this->hasMany(\App\Models\Api\Artwork::class, 'artwork_ids');
     }
+
+    public function getAlsoKnownAsAttribute()
+    {
+        if (!empty($this->alt_titles)) {
+            return join(', ', $this->alt_titles);
+        }
+    }
 }

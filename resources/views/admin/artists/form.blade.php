@@ -21,11 +21,6 @@
     ])
 
     @formField('input', [
-        'name' => 'also_known_as',
-        'label' => 'Also known as...',
-    ])
-
-    @formField('input', [
         'name' => 'birth_date',
         'label' => 'Birth Date',
         'disabled' => true
@@ -45,17 +40,6 @@
 
 @section('fieldsets')
     <a17-fieldset id="attributes" title="Related">
-
-        {{-- @formField('browser', [
-            'routePrefix' => 'collection',
-            'max' => 1,
-            'moduleName' => 'artworks',
-            'name' => 'featuredArtworks',
-            'label' => 'Featured Artwork',
-            'params' => [
-                'artwork_ids' => $item->artwork_ids
-            ]
-        ]) --}}
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
