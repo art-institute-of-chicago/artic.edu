@@ -50,7 +50,7 @@ trait ExploreFurtherTags
 
         return [
             'classification' => $tags,
-            'all' => [true => 'All Tags']
+            // 'all' => [true => 'All Tags']
         ];
     }
 
