@@ -112,7 +112,7 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Title' => array($this->entity->all_titles,'name')
+            'Title' => $this->entity->all_titles
         ]));
 
         if ($this->entity->place_pivots != null && count($this->entity->place_pivots) > 0) {
@@ -154,12 +154,12 @@ class ArtworkPresenter extends BasePresenter
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
-            'Medium'           => array($this->entity->medium_display,'material'),
-            'Inscriptions'     => array($this->entity->inscriptions),
-            'Dimensions'       => array($this->entity->dimensions),
-            'Credit line'      => array($this->entity->credit_line),
-            'Reference Number' => array($this->entity->main_reference_number),
-            'Copyright'        => array($this->entity->copyright_notice),
+            'Medium'           => $this->entity->medium_display,
+            'Inscriptions'     => $this->entity->inscriptions,
+            'Dimensions'       => $this->entity->dimensions,
+            'Credit line'      => $this->entity->credit_line,
+            'Reference Number' => $this->entity->main_reference_number,
+            'Copyright'        => $this->entity->copyright_notice,
         ]));
 
         return [
@@ -242,12 +242,12 @@ class ArtworkPresenter extends BasePresenter
             $content[] = $block;
         }
 
-        if ($this->entity->multimediaElements && !$this->entity->multimediaElements->isEmpty()) {
+        if ($this->entity->multimediaElements && $this->entity->multimediaElements->isNotEmpty()) {
             $resultsByType = $this->entity->multimediaElements->groupBy('api_model')->sortKeys();
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Multimedia');
         }
 
-        if ($this->entity->educationalResources && !$this->entity->educationalResources->isEmpty())
+        if ($this->entity->educationalResources && $this->entity->educationalResources->isNotEmpty())
         {
             $resultsByType = $this->entity->educationalResources->groupBy('api_model')->sort();
             $content[] = $this->buildMultimediaBlocks($resultsByType, 'Educational Resources');
