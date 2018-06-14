@@ -163,6 +163,23 @@ class Search extends BaseApiModel
         return $this->scopeByListType($query, $ids, 'category_ids');
     }
 
+    public function scopeByArtworkIds($query, $ids)
+    {
+        if (empty($ids)) {
+            return $query;
+        }
+
+        $ids = is_array($ids) ? $ids : [$ids]; //Transform the ID into an array
+
+        $params = [
+            "terms" => [
+                "id" => $ids,
+            ],
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopePublicDomain($query, $value = true)
     {
         $params = [

@@ -80,21 +80,12 @@ class ArtworkController extends BaseScopedController
 
     public function recentlyViewed(RecentlyViewedService $service)
     {
-        $recentlyViewed = $service->getArtworks();
+        $recentlyViewed  = $service->getArtworks();
+        $suggestedThemes = $service->getThemes();
 
-        // TODO: Integrate themes
         $view['html'] = view('site.shared._recentlyViewed', [
             'artworks' => $recentlyViewed,
-            'interestedThemes'   => [
-                [
-                  'href' => '#',
-                  'label' => "Picasso",
-                ],
-                [
-                  'href' => '#',
-                  'label' => "Monet",
-                ]
-            ]
+            'interestedThemes' => $suggestedThemes
         ])->render();
 
         return $view;
