@@ -68,7 +68,7 @@
   }
 }
 
-  .o-article__primary-actions::before {
+  .m-article-header ~ .o-article__primary-actions::before {
     content: '';
     position: absolute;
     left: 0;
@@ -283,7 +283,6 @@
 
 .o-article__inline-header::before,
 .o-article__inline-header::after {
-  content: '';
   position: absolute;
   left: 0;
   right: 0;
@@ -291,11 +290,13 @@
   background-color: $color__rules--primary;
 }
 
-.o-article__inline-header::before {
+.m-article-header ~ .o-article__inline-header::before {
+  content: '';
   top: 0;
 }
 
 .o-article__inline-header::after {
+  content: '';
   bottom: 0;
 }
 
