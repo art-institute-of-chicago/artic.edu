@@ -27,7 +27,7 @@ class ArtistRepository extends BaseApiRepository
             ->resources(['artworks'])
             ->forceEndpoint('search')
             ->byArtists($item->title)
-            ->aggregationClassifications()
+            ->aggregationClassifications(self::EXPLORE_FURTHER_TAGS)
             ->getSearch(self::ARTWORKS_PER_PAGE);
     }
 

@@ -6,6 +6,7 @@ use App\Models\Api\Search;
 trait ExploreFurtherTags
 {
     protected $artworks;
+    protected $maxTags = 3;
 
     public function getArtworks($item)
     {
@@ -17,16 +18,10 @@ trait ExploreFurtherTags
         return $this->artworks;
     }
 
-    public function exploreFurtherAllTags()
+    public function exploreFurtherAllTags($item)
     {
-       // Build All Tags tab
-        $exploreFurtherTags = Search::query()
-            ->forceEndpoint('search')
-            ->resources(['artworks'])
-            ->aggregationClassifications(self::EXPLORE_FURTHER_TAGS)
-            ->forPage(1, 0)
-            ->get();
-
+        // Use same query as search to hit the cache instead of creating a new one.
+        $exploreFurtherTags = $this->getArtworksCollection($item);
         $buckets = $exploreFurtherTags->getMetadata('aggregations')->classifications->buckets;
 
         return collect($buckets)->mapWithKeys(function ($item) {
@@ -42,7 +37,11 @@ trait ExploreFurtherTags
         if ($element->id) {
             $results = $this->getArtworks($element);
 
-            foreach($results->getMetadata('aggregations')->classifications->buckets as $item) {
+            foreach($results->getMetadata('aggregations')->classifications->buckets as $index => $item) {
+                if ($index == $this->maxTags) {
+                    break;
+                }
+
                 $tags = $tags->merge(
                     [$item->key => ucfirst($item->key)]
                 );
