@@ -386,7 +386,7 @@ class ApiModelBuilder
             return collectApi($ids)->search(function($id, $key) use ($model) {
                 return $id == $model->id;
             });
-        });
+        })->values();
 
         // Preserve original metadata
         $sorted->setMetadata($results->getMetadata());

@@ -94,7 +94,7 @@ class BaseApiController extends ModuleController
         return $items;
     }
 
-    // DISABLE ORDERS, this only works when using ES search.
+    // Disable sorting by default for API listings. This has to be implemented individually on each controller
     protected function orderScope()
     {
         return [];

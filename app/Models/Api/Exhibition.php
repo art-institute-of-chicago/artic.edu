@@ -85,6 +85,17 @@ class Exhibition extends BaseApiModel
 
     }
 
+    public function scopeOrderBy($query, $field, $direction = 'asc')
+    {
+        $params = [
+            "sort" => [
+                "{$field}.keyword" => $direction
+            ]
+        ];
+
+        return $query->rawQuery($params);
+    }
+
     // EXAMPLE SCOPE:
     // Search for all exhibitions for the next 2 weeks, not closed
     public function scopeCurrent($query)

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use A17\Twill\Http\Controllers\Admin\ModuleController;
+
 use App\Repositories\SiteTagRepository;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Models\Api\Exhibition;
@@ -31,6 +33,7 @@ class ExhibitionController extends BaseApiController
         'title' => [
             'title' => 'Title',
             'field' => 'title',
+            'sort' => true
         ],
         'augmented' => [
             'title' => 'Augmented?',
@@ -52,6 +55,14 @@ class ExhibitionController extends BaseApiController
     protected $defaultOrders = ['title' => 'desc'];
 
     protected $filters = [];
+
+    protected function orderScope()
+    {
+        // Use the default order scope from Twill.
+        // Added this as an exception on exhibitions because it's the only API listing that
+        // sorting has been implemented. See the scope on Models\Api\Exhibition
+        return ModuleController::orderScope();
+    }
 
     protected function indexData($request)
     {
