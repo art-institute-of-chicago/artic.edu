@@ -24,7 +24,11 @@
           @foreach ($breadcrumb as $link)
               @if ($loop->last)
                   <li class="f-secondary">
-                      {{ $link['label'] }}
+                      @component('components.atoms._link')
+                        @slot('font','f-null')
+                        @slot('href', $link['href'])
+                        {{ $link['label'] }}
+                      @endcomponent
                   </li>
               @else
                   <li class="f-secondary">

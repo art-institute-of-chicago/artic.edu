@@ -27,7 +27,7 @@ class GenericPresenter extends BasePresenter
     {
         $crumbs = [];
 
-        $ancestors = clone $this->entity->ancestors;
+        $ancestors = $this->entity->ancestors()->defaultOrder()->published()->get();
 
         foreach($ancestors as $ancestor) {
             $crumb = [];
@@ -37,18 +37,14 @@ class GenericPresenter extends BasePresenter
             $crumbs[] = $crumb;
         }
 
-        $crumb = [];
-        $crumb['label'] = $this->entity->title;
-        $crumb['href'] = $this->entity->url;
-        $crumbs[] = $crumb;
-
         return $crumbs;
     }
 
     public function navigation()
     {
         $subNav = [];
-        foreach($this->entity->children as $item) {
+
+        foreach($this->entity->children()->orderBy('position')->published()->get() as $item) {
             $subNav[] = [
                 'href' => $item->url,
                 'label' => $item->title
@@ -66,7 +62,7 @@ class GenericPresenter extends BasePresenter
             // Build it with siblings
             $nav = [];
 
-            foreach($this->entity->parent->children as $element) {
+            foreach($this->entity->parent->children()->orderBy('position')->published()->get() as $element) {
                 $item = [
                     'href'  => $element->url,
                     'label' => $element->title,
