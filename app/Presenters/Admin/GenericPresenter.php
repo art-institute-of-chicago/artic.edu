@@ -45,10 +45,16 @@ class GenericPresenter extends BasePresenter
         $subNav = [];
 
         foreach($this->entity->children()->orderBy('position')->published()->get() as $item) {
-            $subNav[] = [
-                'href' => $item->url,
+            $element = [
+                'href'  => $item->url,
                 'label' => $item->title
             ];
+
+            if ($item->id == $this->entity->id) {
+                $element['active'] = true;
+            }
+
+            $subNav[] = $element;
         }
 
         if ($this->entity->isRoot()) {
@@ -56,7 +62,8 @@ class GenericPresenter extends BasePresenter
             $nav[] = [
                 'href'  => $this->entity->url,
                 'label' => $this->entity->title,
-                'links' => $subNav
+                'links' => $subNav,
+                'active' => true
             ];
         } else {
             // Build it with siblings
@@ -68,8 +75,12 @@ class GenericPresenter extends BasePresenter
                     'label' => $element->title,
                 ];
 
-                if ($element->id == $this->entity->id && !empty($subNav)) {
-                    $item['links'] = $subNav;
+                if ($element->id == $this->entity->id) {
+                    $item['active'] = true;
+
+                    if (!empty($subNav)) {
+                        $item['links']  = $subNav;
+                    }
                 }
 
                 $nav[] = $item;
