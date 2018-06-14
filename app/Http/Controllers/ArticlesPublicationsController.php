@@ -11,6 +11,7 @@ class ArticlesPublicationsController extends Controller
     public function index()
     {
         $page = Page::forType('Articles and Publications')->first();
+        $artIdeasPage = Page::forType('Art and Ideas')->first();
 
         $articles = $page->articles;
         $featureHero = $articles->shift();
@@ -18,7 +19,7 @@ class ArticlesPublicationsController extends Controller
         return view('site.articles_publications.index', [
             'primaryNavCurrent' => 'collection',
             'title' => 'The Collection',
-            'intro' => 'Explore <em>over 100,000 artworks</em> and information about works of art from all areas in our online encyclopedic collections.',
+            'intro' => $artIdeasPage->art_intro,
             'linksBar' => [
                 [
                     'href' => route('collection'),
