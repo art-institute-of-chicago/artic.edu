@@ -18,6 +18,8 @@
                 @slot('image', $item->imageFront('hero'))
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
+        @else
+            <span class="default-img"></span>
         @endif
         <span class="m-listing__img-prompt f-buttons">
             {{ $item->label }}
