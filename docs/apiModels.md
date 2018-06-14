@@ -332,6 +332,22 @@ You can move all this to a scope as well. Just add it to the `Search` model as s
 
 *Something to remember:* Scopes are good for every query on this document, not only searching.
 
+## Default scopes
+
+If you need scopes to be applied by default to every query within a model, just add the static variable $defaultScopes with the scope name as key, and the value as the scope value.
+
+Very simple implementation with only 1 possible parameter, this should be generalized.
+
+
+```php
+protected static $defaultScopes = [
+    'include' => ['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots']
+];
+```
+
+
+This lines will apply the 'include' scope passing an array as the parameter. This is used for example in artworks, to always load the pivot elements as those are used when listing and in a detail page.
+
 
 ## Aggregations
 

@@ -22,10 +22,10 @@
             @endif
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-1')
-                {{ $item->title }}
+                {{ $item->listingTitle }}
             @endcomponent
             <br>
-            <span class="subtitle {{ $subtitleFont ?? 'f-secondary'}}">{{ $item->artist_display }}</span>
+            <span class="subtitle {{ $subtitleFont ?? 'f-secondary'}}">{{ $item->listingSubtitle }}</span>
         </span>
     </a>
 </{{ $tag or 'li' }}>

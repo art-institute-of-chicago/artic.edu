@@ -53,7 +53,7 @@ if ($maxZoomWindowSize >= 843) {
             </span>
             <span class="f-caption">
               <strong>{{ str_limit($prevNextObject->next->title, 18) }}</strong> <br>
-              {{ str_limit($prevNextObject->next->subtitle, 25) }}
+              {{ str_limit($prevNextObject->next->listingSubtitle, 25) }}
             </span>
             <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
           </a>
@@ -73,7 +73,7 @@ if ($maxZoomWindowSize >= 843) {
             </span>
             <span class="f-caption">
               <strong>{{ str_limit($prevNextObject->prev->title, 18) }}</strong> <br>
-              {{ str_limit($prevNextObject->prev->subtitle, 25) }}
+              {{ str_limit($prevNextObject->prev->listingSubtitle, 25) }}
             </span>
             <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
           </a>
