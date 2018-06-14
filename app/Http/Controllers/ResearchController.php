@@ -36,7 +36,7 @@ class ResearchController extends Controller
                 'image' => $item->imageFront('listing'),
                 'title' => $item->title,
                 'titleLink' => $item->url,
-                'text' => $item->short_description,
+                'text' => $item->listing_description,
                 'links' => $links
             ]);
         }
@@ -46,7 +46,7 @@ class ResearchController extends Controller
             array_push($studyRooms, [
                 'title' => $room->title,
                 'titleLink' => $room->url,
-                'text' => $room->short_description,
+                'text' => $room->listing_description,
             ]);
         }
 
