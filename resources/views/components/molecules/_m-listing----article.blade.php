@@ -13,6 +13,8 @@
                     @slot('image', $image ?? $item->imageFront('hero'))
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
+            @else
+                <span class="default-img"></span>
             @endif
             @if ($item->isVideo)
                 <svg class="icon--play--48"><use xlink:href="#icon--play--48" /></svg>

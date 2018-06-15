@@ -31,6 +31,26 @@ img {
   }
 }
 
+/***
+
+.default-img
+
+```
+<span class="default-img"></span>
+```
+
+***/
+
+.default-img {
+  display: block;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background-color: $color__bg--primary;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='56' viewBox='0 0 80 56'%3E%3Cpath fill='%23ccc' d='M4 52l28-28 28 28H4z'/%3E%3Cpath fill='%23ccc' d='M44 52l16-16 16 16H44z'/%3E%3Ccircle cx='58' cy='18' r='6' fill='%23ccc'/%3E%3Cpath fill='%23ccc' d='M79 1v54H1V1h78m1-1H0v56h80V0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
 a {
   color: $color__link;
   text-decoration: none;

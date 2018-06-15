@@ -6,11 +6,13 @@
                     @slot('image', $item->imageFront('hero') ?? $item->images[0])
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
-            @else
+            @elseif (isset($item->images) and $item->images)
                 @component('components.molecules._m-image-stack')
                     @slot('images', $item->images)
                     @slot('imageSettings', $imageSettings ?? null)
                 @endcomponent
+            @else
+                <span class="default-img"></span>
             @endif
         </span>
         <span class="m-listing__meta">
