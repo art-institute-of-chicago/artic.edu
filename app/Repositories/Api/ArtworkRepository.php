@@ -99,7 +99,7 @@ class ArtworkRepository extends BaseApiRepository
             $tags['artist'] = [$artist->id => $artist->title];
         }
 
-        $tags['all'] = [true => 'All Tags'];
+        // $tags['all'] = [true => 'All Tags'];
 
         return $tags;
     }
