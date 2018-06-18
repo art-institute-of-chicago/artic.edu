@@ -96,6 +96,17 @@ class Exhibition extends BaseApiModel
         return $query->rawQuery($params);
     }
 
+    public function scopeOrderByDate($query, $direction = 'asc')
+    {
+        $params = [
+            "sort" => [
+                'start_at' => $direction
+            ]
+        ];
+
+        return $query->rawQuery($params);
+    }
+
     // EXAMPLE SCOPE:
     // Search for all exhibitions for the next 2 weeks, not closed
     public function scopeCurrent($query)
@@ -194,7 +205,7 @@ class Exhibition extends BaseApiModel
             ];
         }
 
-        return $query->orderBy('start_at', 'asc')->rawSearch($params);
+        return $query->orderByDate('asc')->rawSearch($params);
     }
 
     // Solve this using casts. Because it returns an object it can't be used on the CMS
