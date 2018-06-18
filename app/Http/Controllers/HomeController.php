@@ -106,7 +106,7 @@ class HomeController extends FrontController
 
                 } else if ($feature->artworks->count()) {
                     $item = $this->artworkRepository->getById($feature->artworks()->first()->datahub_id);
-                    $item->sku = "Artwork"l
+                    $item->sku = "Artwork";
                     $item->type= 'artwork';
                      $item->subtype='Artwork';
 

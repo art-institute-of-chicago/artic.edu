@@ -16,7 +16,7 @@
             @endif
         </span>
         <span class="m-listing__meta">
-            <em class="type f-tag">{{ $item->sub_type }}</em>
+            <em class="type f-tag">{{ $item->subtype }}</em>
             <br>
             <strong class="title f-list-3">{{ $item->title }}</strong>
         </span>
