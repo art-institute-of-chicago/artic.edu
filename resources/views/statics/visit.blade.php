@@ -259,7 +259,7 @@
         @slot('image', $admission['cityPass']['image'])
         @slot('settings', array(
             'fit' => 'crop',
-            'ratio' => '1:1',
+            'ratio' => '9:5',
             'srcset' => array(200,400,600),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '23',
