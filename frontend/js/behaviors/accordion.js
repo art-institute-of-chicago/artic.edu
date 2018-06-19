@@ -1,4 +1,5 @@
 import { purgeProperties, triggerCustomEvent, setFocusOnTarget, forEach, getOffset } from '@area17/a17-helpers';
+import { googleTagManagerDataFromLink } from '../functions';
 
 const accordion = function(container) {
 
@@ -88,6 +89,11 @@ const accordion = function(container) {
           target.setAttribute('aria-hidden', 'false');
           setFocusOnTarget(target);
           _getHeightAndSet(target);
+          // if the form has some google tag manager props, tell GTM
+          let googleTagManagerObject = googleTagManagerDataFromLink(trigger);
+          if (googleTagManagerObject) {
+            triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
+          }
         }
         target.addEventListener('transitionend', _unsetAfterAnimation, false);
       }

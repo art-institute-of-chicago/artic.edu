@@ -19,23 +19,23 @@
                 <dl>
                     @if ($item->also_known_as)
                         <dt>Also known as</dt>
-                        <dd>{{ $item->also_known_as }}</dd>
+                        <dd itemprop="additionalName">{{ $item->also_known_as }}</dd>
                     @endif
 
                     @if ($item->birth_date)
                         <dt>Date of birth</dt>
-                        <dd>{{ $item->birth_date }}</dd>
+                        <dd><time datetime="{{ $item->birth_date }}" itemprop="birthDate">{{ $item->birth_date }}</time></dd>
                     @endif
 
                     @if ($item->death_date)
                         <dt>Date of death</dt>
-                        <dd>{{ $item->death_date  }}</dd>
+                        <dd><time datetime="{{ $item->death_date }}" itemprop="deathDate">{{ $item->death_date }}</time></dd>
                     @endif
                 </dl>
             @endif
 
             @if (gettype($item->intro) === 'string' and $item->intro !== "")
-                <div class="o-artist-bio__body o-blocks">
+                <div class="o-artist-bio__body o-blocks" itemprop="description">
                     {!! $item->intro !!}
                 </div>
             @endif

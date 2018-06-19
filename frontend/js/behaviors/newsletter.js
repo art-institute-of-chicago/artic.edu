@@ -1,4 +1,4 @@
-import { purgeProperties, ajaxRequest, objectifyForm } from '@area17/a17-helpers';
+import { purgeProperties, ajaxRequest, objectifyForm, triggerCustomEvent } from '@area17/a17-helpers';
 
 const newsletter = function(container) {
 
@@ -44,6 +44,7 @@ const newsletter = function(container) {
     event.stopPropagation();
     _removePreviousState();
     _disable();
+    let formData = objectifyForm(container);
     ajaxRequest({
       url: container.action || '/subscribe',
       type: 'POST',
@@ -57,17 +58,23 @@ const newsletter = function(container) {
           value: document.querySelector('meta[name=csrf-token]').getAttribute('content') || ''
         }
       ],
-      data: objectifyForm(container),
+      data: formData,
       onSuccess: function(data){
         try {
           data = JSON.parse(data);
           container.classList.remove('s-loading');
           container.setAttribute('disabled', 'disabled');
-          container.querySelector('input[type=text]').value = '';
+          container.querySelector('input[name=email]').value = '';
           _updateState('success');
+          // tell GTM
+          triggerCustomEvent(document, 'gtm:push', {
+            'event': 'sign-up',
+            'eventCategory': 'subscribe',
+            'email': formData.email
+          });
         } catch (err) {
           console.error('Error submitting newsletter sign up (a)');
-          console.log(data);
+          console.log(err,data);
         }
         _enable();
       },

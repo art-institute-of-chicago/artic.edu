@@ -15,6 +15,7 @@
         @component('components.atoms._title')
             @slot('tag','h1')
             @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
+            @slot('itemprop','name')
             {{ $title }}
         @endcomponent
       @endif
@@ -24,12 +25,13 @@
         @endcomponent
       @elseif ($dateStart and $dateEnd)
         @component('components.atoms._date')
-            {{ $dateStart->format('M j, Y') }} &ndash; {{ $dateEnd->format('M j, Y') }}
+            @slot('tag','p')
+            <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time> &ndash; <time datetime="{{ $dateEnd->format("Y-m-d") }}" itemprop="endDate">{{ $dateEnd->format('M j, Y') }}</time>
         @endcomponent
       @elseif (isset($date))
         @component('components.atoms._date')
             @slot('tag','p')
-            {{ $date->format('F j, Y') }}
+            <time datetime="{{ $date->format("Y-m-d") }}" itemprop="startDate">{{ $date->format('F j, Y') }}</time>
         @endcomponent
       @endif
       @if (isset($type))

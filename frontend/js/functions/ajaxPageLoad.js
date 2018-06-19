@@ -1,5 +1,5 @@
-import { triggerCustomEvent, ajaxRequest, getOffset, scrollToY, setFocusOnTarget } from '@area17/a17-helpers';
-import { findAncestorByTagName, ajaxableLink, ajaxableHref } from '../functions';
+import { triggerCustomEvent, ajaxRequest, getOffset, forEach, scrollToY, setFocusOnTarget } from '@area17/a17-helpers';
+import { findAncestorByTagName, ajaxableLink, ajaxableHref, googleTagManagerDataFromLink, parseHTML } from '../functions';
 const ajaxPageLoad = function() {
   var ajaxing = false;
   var ajaxTimeOutTime = 5000;
@@ -53,6 +53,16 @@ const ajaxPageLoad = function() {
     } else {
       document.documentElement.classList.remove('s-roadblock-active');
     }
+    // update page class (p-xxxx)
+    let pClassReg = /p-\S*/g;
+    let oldDocPclasses = document.documentElement.className.match(pClassReg);
+    let newDocPclasses = doc.documentElement.className.match(pClassReg);
+    forEach(oldDocPclasses, function(index, item) {
+      document.documentElement.classList.remove(item);
+    });
+    forEach(newDocPclasses, function(index, item) {
+      document.documentElement.classList.add(item);
+    });
   }
   function defaultStart(options,doc) {
     let $a17 = document.querySelector('#a17');
@@ -111,6 +121,11 @@ const ajaxPageLoad = function() {
       });
     }
     A17.currentPathname = window.location.pathname;
+    // tell GTM
+    triggerCustomEvent(document, 'gtm:push', {
+      'event': 'Pageview',
+      'url': options.href
+    });
   }
   function tabStart(options,doc) {
     document.documentElement.classList.add('s-page-nav');
@@ -132,6 +147,11 @@ const ajaxPageLoad = function() {
     document.documentElement.classList.remove('s-page-nav');
     // tell page about update
     triggerCustomEvent(document, 'page:updated');
+    // tell GTM
+    triggerCustomEvent(document, 'gtm:push', {
+      'event': 'Pageview',
+      'url': options.href
+    });
     //
     _ajaxPageLoadComplete();
   }
@@ -144,21 +164,6 @@ const ajaxPageLoad = function() {
     triggerCustomEvent(document, 'modal:show', { opener: options.opener });
     //
     _ajaxPageLoadComplete();
-  }
-  function parseHTML(data,type) {
-    if (type === 'native') {
-      var parser = new DOMParser();
-      return parser.parseFromString(data, 'text/html');
-    } else {
-      var doc = document.implementation.createHTMLDocument('');
-      if (data.toLowerCase().indexOf('<!doctype') > -1) {
-        doc.documentElement.innerHTML = data;
-      }
-      else {
-        doc.body.innerHTML = data;
-      }
-      return doc;
-    }
   }
   function loadDocument(options) {
     if (!A17.ajaxLinksActive) {
@@ -302,8 +307,10 @@ const ajaxPageLoad = function() {
     }
   }
   function handleClicks(event) {
+    var link = findAncestorByTagName(event.target, 'A');
+    var googleTagManagerObject = googleTagManagerDataFromLink(link);
+    //
     if (A17.ajaxLinksActive) {
-      var link = findAncestorByTagName(event.target, 'A');
       var ajaxable = ajaxableLink(link, event);
       if (ajaxable) {
         event.preventDefault();
@@ -315,6 +322,10 @@ const ajaxPageLoad = function() {
             } else {
               link.classList.add('s-checked');
             }
+          }
+          // if the link has some google tag manager props, tell GTM
+          if (googleTagManagerObject) {
+            triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
           }
           // then start the ajax process
           var ajaxTabTarget = link.getAttribute('data-ajax-tab-target');

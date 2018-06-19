@@ -1,5 +1,5 @@
 import { setFocusOnTarget, purgeProperties, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
-import { positionElementToTarget } from '../functions';
+import { positionElementToTarget, googleTagManagerDataFromLink } from '../functions';
 
 const selectDate = function(container) {
 
@@ -69,6 +69,11 @@ const selectDate = function(container) {
         element: calendar
       });
       calendarOpen = true;
+      // if the opener has some google tag manager props, tell GTM
+      let googleTagManagerObject = googleTagManagerDataFromLink(container);
+      if (googleTagManagerObject) {
+        triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
+      }
     } else {
       _closeCalendar();
     }

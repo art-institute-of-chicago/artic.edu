@@ -111,6 +111,10 @@ const headerGallery = function(container) {
       event.preventDefault();
       activeIndex = getIndex(event.target, nodes.thumbButtons);
       _update();
+      triggerCustomEvent(document, 'gtm:push', {
+        'event': 'artwork-alternate-image',
+        'eventCategory': 'in-page',
+      });
     }
   }
 
@@ -118,12 +122,20 @@ const headerGallery = function(container) {
   //   event.preventDefault();
   //   activeIndex = (activeIndex < nodes.thumbButtons.length - 1) ? activeIndex + 1 : 0;
   //   _update();
+  //   triggerCustomEvent(document, 'gtm:push', {
+  //     'event': 'artwork-alternate-image',
+  //     'eventCategory': 'in-page',
+  //   );
   // }
 
   // function _previousClick(event) {
   //   event.preventDefault();
   //   activeIndex = (activeIndex === 0) ? nodes.thumbButtons.length - 1 : activeIndex - 1;
   //   _update();
+  //   triggerCustomEvent(document, 'gtm:push', {
+  //     'event': 'artwork-alternate-image',
+  //     'eventCategory': 'in-page',
+  //   );
   // }
 
   function _downloadClick(event) {
@@ -131,8 +143,13 @@ const headerGallery = function(container) {
     document.body.appendChild(a);
     a.download = data[activeIndex].downloadName;
     a.href = data[activeIndex].downloadUrl;
+    a.setAttribute('target','_blank');
     a.click();
     document.body.removeChild(a);
+    triggerCustomEvent(document, 'gtm:push', {
+      'event': 'artwork-download',
+      'eventCategory': 'in-page',
+    });
   }
 
   function _fullscreen(event) {

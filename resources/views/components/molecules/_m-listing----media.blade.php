@@ -4,9 +4,9 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
 
     @if ($fullscreen)
-        <a href="{{ route('videos.show', $item) }}" class="m-listing__link" data-behavior="triggerMediaModal">
+        <a href="{{ route('videos.show', $item) }}" class="m-listing__link" data-behavior="triggerMediaModal"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     @else
-        <a href="{{ route('videos.show', $item) }}" class="m-listing__link">
+        <a href="{{ route('videos.show', $item) }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     @endif
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-blur-img' : '' }}>
             @if ($item->videoFront)

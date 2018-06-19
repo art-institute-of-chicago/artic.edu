@@ -5,4 +5,5 @@
     @slot('imageSettings', $imageSettings ?? null)
     @slot('image', $image ?? null)
     @slot('item', $item)
+    @slot('gtmAttributes', $gtmAttributes ?? null)
 @endcomponent

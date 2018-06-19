@@ -1,5 +1,5 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <a href="{!! route('artworks.show', $item) !!}" class="m-listing__link">
+<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}" itemscope itemtype="http://schema.org/CreativeWork">
+    <a href="{!! route('artworks.show', $item) !!}" class="m-listing__link" itemprop="url"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <span class="m-listing__img m-listing__img--contain m-listing__img--no-bg{{ (isset($imgVariation)) ? ' '.$imgVariation : '  m-listing__img--tall' }}">
             @if ($item->videoFront)
                 @component('components.atoms._video')

@@ -16,5 +16,6 @@
                   'xlarge' => '4',
             )),
         ))
+        @slot('gtmAttributes', $gtmAttributes ?? null)
     @endcomponent
 @endforeach

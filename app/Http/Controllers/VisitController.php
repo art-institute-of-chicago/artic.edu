@@ -175,6 +175,12 @@ class VisitController extends FrontController
               ));
         }
 
+        $itemprops = [
+            'name'             => 'Art Institute of Chicago',
+            'telephone'        => '+13124433600',
+            'publicAccess'     => 'true',
+        ];
+
         return view('site.visit', [
           'primaryNavCurrent' => 'visit',
           'title' => $page->title,
@@ -188,6 +194,7 @@ class VisitController extends FrontController
           'faq' => $faq,
           'families' => $families,
           'tours' => $tours,
+          'itemprops' => $itemprops,
         ]);
     }
 

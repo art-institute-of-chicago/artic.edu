@@ -119,6 +119,7 @@
           @slot('tag','h1')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
+          @slot('itemprop','name')
           {{ $article->title }}
       @endcomponent
     @endif

@@ -2,7 +2,10 @@
 
 @section('content')
 
-<article class="o-article">
+<article class="o-article" itemscope itemtype="http://schema.org/ExhibitionEvent">
+  @component('site.shared._schemaItemProps')
+    @slot('itemprops',$item->present()->itemprops ?? null)
+  @endcomponent
 
   @component('components.molecules._m-article-header')
     @slot('editorial', false)
@@ -321,6 +324,7 @@
                           'xlarge' => '7',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="exhibition-events" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
@@ -357,6 +361,7 @@
                           'xlarge' => '13',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="exhibition-recirculation" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
