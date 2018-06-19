@@ -109,6 +109,19 @@
     }
   }
 
+  .o-article__primary-actions *:not(.m-author):not(.m-link-list) .f-secondary a {
+    @include text-underline(1.02em, $color__link);
+
+    &:hover,
+    &:focus:hover {
+      @include text-underline(1.02em, $color__link--hover);
+    }
+
+    &:active:hover {
+      @include text-underline(1.02em, $color__link--active);
+    }
+  }
+
 
 .o-article__meta {
   position: relative;

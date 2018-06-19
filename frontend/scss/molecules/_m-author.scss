@@ -69,10 +69,12 @@
 
   &:hover,
   &:focus:hover {
+    @include text-underline(1.02em, $color__link--accent-hover);
     color: $color__link--accent-hover;
   }
 
   &:active:hover {
+    @include text-underline(1.02em, $color__link--accent-active);
     color: $color__link--accent-active;
   }
 }
@@ -82,10 +84,12 @@
 
   &:hover,
   &:focus:hover {
+    @include text-underline(1.02em, $color__link--editorial-hover);
     color: $color__link--editorial-hover;
   }
 
   &:active:hover {
+    @include text-underline(1.02em, $color__link--editorial-active);
     color: $color__link--editorial-active;
   }
 }
