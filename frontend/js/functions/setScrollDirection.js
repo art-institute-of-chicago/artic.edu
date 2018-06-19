@@ -8,10 +8,60 @@ const setScrollDirection = function() {
   let hideHeader = false;
   let allowTopLink = false;
   let machineScroll = false;
+  let maxScroll = 0;
+  let lastMaxScroll = -1;
+  let scrollChecks = {
+    25: {
+      pos: 0,
+      hit: false
+    },
+    50: {
+      pos: 0,
+      hit: false
+    },
+    75: {
+      pos: 0,
+      hit: false
+    },
+    100: {
+      pos: 0,
+      hit: false
+    }
+  };
 
+  function _scrollPercentVars() {
+    for (let scrollCheck in scrollChecks) {
+      let percent = (scrollCheck === 100) ? (scrollCheck - 5)/100 : scrollCheck/100;
+      scrollChecks[scrollCheck].pos = parseInt(maxScroll * percent, 10);
+      scrollChecks[scrollCheck].hit = false;
+    }
+  }
+
+  function _calcMaxScroll() {
+    return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight) - window.innerHeight;
+  }
 
   function _init() {
-    var sT = document.documentElement.scrollTop || document.body.scrollTop;
+    let sT = document.documentElement.scrollTop || document.body.scrollTop;
+    maxScroll = _calcMaxScroll();
+
+    if (lastMaxScroll != maxScroll) {
+      lastMaxScroll = maxScroll;
+      _scrollPercentVars();
+    }
+
+    if (sT !== lastScrollTop) {
+
+      for (let scrollCheck in scrollChecks) {
+        if (sT >= scrollChecks[scrollCheck].pos && !scrollChecks[scrollCheck].hit) {
+          scrollChecks[scrollCheck].hit = true;
+          triggerCustomEvent(document, 'gtm:push', {
+            'event': (dE.classList.contains('p-artworks-show') ? 'artwork-' : '' ) + scrollCheck + '%',
+            'eventCategory': 'scroll-tracking',
+          });
+        }
+      }
+    }
 
     if (sT !== lastScrollTop && !machineScroll) {
       //triggerCustomEvent(document, 'scroll:active', { 'y': sT });
@@ -56,6 +106,10 @@ const setScrollDirection = function() {
       lastScrollTop = -1;
       machineScroll = event.data.machineScroll;
     });
+  }, false);
+
+  document.addEventListener('page:updated', function(event){
+    lastMaxScroll = -1;
   }, false);
 
   _init();

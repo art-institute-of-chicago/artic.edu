@@ -1,6 +1,6 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--w-meta-bottom m-listing--hover-bar{{ (!$item->slug) ? ' s-no-link' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}" itemscope itemtype="http://schema.org/ExhibitionEvent">
 
-  <a href="{{ route('exhibitions.show', $item) }}" class="m-listing__link">
+  <a href="{{ route('exhibitions.show', $item) }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
         @if ($item->imageFront('hero'))
             @component('components.atoms._img')

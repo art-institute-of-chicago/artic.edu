@@ -39,8 +39,8 @@
         @slot('variation', 'u-show@large+')
         @slot('tag','p')
         @slot('font', 'f-secondary')
-        <a href="{!! route('departments.show', [$item->department_id]) !!}">{{ $item->department_title }}</a>@if ($item->department_id && $item->gallery_id), @endif
-        <a href="{!! route('galleries.show', [$item->gallery_id]) !!}">{{ $item->gallery_title }}</a>
+        <a href="{!! route('departments.show', [$item->department_id]) !!}" data-gtm-event="collection-nav" data-gtm-event-category="department">{{ $item->department_title }}</a>@if ($item->department_id && $item->gallery_id), @endif
+        <a href="{!! route('galleries.show', [$item->gallery_id]) !!}" data-gtm-event="collection-nav" data-gtm-event-category="gallery">{{ $item->gallery_title }}</a>
     @endcomponent
   </div>
 
@@ -66,6 +66,7 @@
                     'xlarge' => '13',
               )),
           ))
+          @slot('gtmAttributes', 'data-gtm-event="related-article" data-gtm-event-category="collection-nav"')
       @endcomponent
     @endif
   </div>
@@ -76,7 +77,11 @@
           @slot('tag','h1')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
-          {{ $item->title }}
+          @if (!empty($item->artist_id))
+            <a href="{{ route('artists.show', $item->artist_id) }}" data-gtm-event="artist" data-gtm-event-category="collection-nav">{{ $item->title }}</a>
+          @else
+            {{ $item->title }}
+          @endif
       @endcomponent
     @endif
 
@@ -111,6 +116,7 @@
                   'xlarge' => '0',
             )),
         ))
+        @slot('gtmAttributes', 'data-gtm-event="related-article" data-gtm-event-category="collection-nav"')
     @endcomponent
   </div>
   @endif

@@ -1,4 +1,5 @@
 import { triggerCustomEvent, setFocusOnTarget, queryStringHandler } from '@area17/a17-helpers';
+import { parseHTML, youtubePercentTracking } from '../functions';
 
 const modals = function() {
 
@@ -16,17 +17,27 @@ const modals = function() {
         $modal.classList.add('g-modal--media-soundcloud');
       }
       try {
-        // auto play the embed
-        embedCode = embedCode.replace('data-src', 'src');
-        embedCode = embedCode.replace(/(src=")([^"]*)/gi, function(a, b){
-            let eC = queryStringHandler.updateParameter(a, 'autoplay', '1');
-            eC = queryStringHandler.updateParameter(eC, 'auto_play', '1');
-            return eC;
-        });
+        let doc = parseHTML(embedCode,'native');
+        let iframe = doc.body.firstElementChild;
+        let src = iframe.getAttribute('data-embed-src');
+        src = (!src) ? iframe.getAttribute('data-src') : src;
+        src = (!src) ? iframe.getAttribute('src') : src;
+        src = queryStringHandler.updateParameter(src, 'autoplay', '1');
+        src = queryStringHandler.updateParameter(src, 'auto_play', '1');
+        if (src.indexOf('youtube.com') > -1) {
+          src = queryStringHandler.updateParameter(src, 'enablejsapi', '1');
+          src = queryStringHandler.updateParameter(src, 'origin', window.location.origin);
+        }
+        iframe.src = src;
+        $modal.querySelector('[data-modal-content]').innerHTML = '';
+        $modal.querySelector('[data-modal-content]').appendChild(iframe);
+        if (src.indexOf('youtube.com') > -1) {
+          youtubePercentTracking(iframe);
+        }
       } catch(err) {
         console.log(err);
+        $modal.querySelector('[data-modal-content]').innerHTML = embedCode;
       }
-      $modal.querySelector('[data-modal-content]').innerHTML = embedCode;
       return true;
     } else {
       return false;

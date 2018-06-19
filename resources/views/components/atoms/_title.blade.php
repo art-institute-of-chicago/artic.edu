@@ -1,1 +1,1 @@
-<{{ $tag ?? 'strong' }}{!! (isset($href)) ? ' href="'.$href.'"' : '' !!} class="title {{ $font ?? 'f-list-2' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($itemprop)) ? ' itemprop="'.$itemprop.'"' : '' !!}>{{ $slot }}</{{ $tag ?? 'strong' }}>
+<{{ $tag ?? 'strong' }}{!! (isset($href)) ? ' href="'.$href.'"' : '' !!} class="title {{ $font ?? 'f-list-2' }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($itemprop)) ? ' itemprop="'.$itemprop.'"' : '' !!}{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>{{ $slot }}</{{ $tag ?? 'strong' }}>

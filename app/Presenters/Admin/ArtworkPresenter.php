@@ -94,7 +94,7 @@ class ArtworkPresenter extends BasePresenter
         if ($this->entity->artist_pivots != null && count($this->entity->artist_pivots) > 0) {
             $artistLinks = collect($this->entity->artist_pivots)->map(function($item) {
                 $title = $item->role_title ? $item->artist_title . " ({$item->role_title})" : $item->artist_title;
-                return ['label' => $title, 'href' => route('artists.show', $item->artist_id)];
+                return ['label' => $title, 'href' => route('artists.show', $item->artist_id), 'gtmAttributes' => 'data-gtm-event="artist" data-gtm-event-category="collection-nav"'];
             });
             $details[] = [
                 'key'   => str_plural('Artist', count($this->entity->artist_pivots)),
@@ -106,7 +106,7 @@ class ArtworkPresenter extends BasePresenter
                 $label = $this->entity->artist_title ?? $this->entity->artist_display;
                 $details[] = [
                     'key'   => 'Artist',
-                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id)]],
+                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id), 'gtmAttributes' => 'data-gtm-event="artist" data-gtm-event-category="collection-nav"']],
                     'itemprop' => 'creator',
                 ];
             } else {
@@ -198,6 +198,7 @@ class ArtworkPresenter extends BasePresenter
     {
         $block = [
             'title'  => $title,
+            'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.getUtf8Slug($title).'"',
             'blocks' => []
         ];
 
@@ -250,7 +251,8 @@ class ArtworkPresenter extends BasePresenter
 
             $block = [
                 'title'  => 'Catalogue Raisonnés',
-                'blocks' => $rows
+                'blocks' => $rows,
+                'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="catalogue-raisonnes"'
             ];
 
             $content[] = $block;
@@ -287,6 +289,7 @@ class ArtworkPresenter extends BasePresenter
             if (!empty($this->entity->$key)) {
                 $block = array(
                     'title' => $value,
+                    'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.getUtf8Slug($value).'"',
                     'blocks' => []
                 );
                 foreach(explode("\n", $this->entity->$key) as $txt) {

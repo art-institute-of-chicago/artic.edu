@@ -48,3 +48,4 @@ export { default as clearHistory } from './clearHistory';
 export { default as addHistory } from './addHistory';
 export { default as maskEmail } from './maskEmail';
 export { default as ajaxFormSubmit } from './ajaxFormSubmit';
+export { default as reportSearchToGoogleTagManager } from './reportSearchToGoogleTagManager';

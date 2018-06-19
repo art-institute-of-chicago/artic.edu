@@ -1,5 +1,5 @@
 <{{ $tag or 'li' }} class="m-listing m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <a href="{!! $href ?? route('articles.show', $item) !!}" class="m-listing__link">
+    <a href="{!! $href ?? route('articles.show', $item) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
             @if ($item->videoFront)
                 @component('components.atoms._video')

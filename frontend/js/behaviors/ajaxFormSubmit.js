@@ -1,4 +1,5 @@
 import { purgeProperties, triggerCustomEvent, queryStringHandler } from '@area17/a17-helpers';
+import { googleTagManagerDataFromLink } from '../functions';
 
 const ajaxFormSubmit = function(container) {
 
@@ -22,6 +23,11 @@ const ajaxFormSubmit = function(container) {
         type: 'page',
         ajaxScrollTarget: ajaxScrollTarget
       });
+      // if the form has some google tag manager props, tell GTM
+      let googleTagManagerObject = googleTagManagerDataFromLink(container);
+      if (googleTagManagerObject) {
+        triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
+      }
     }
   }
 

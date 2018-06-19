@@ -2,7 +2,7 @@
 
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
     <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
-        <a href="{!! $item['titleLink'] !!}" class="m-listing__link">
+        <a href="{!! $item['titleLink'] !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
 @else
     <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
 @endif
@@ -28,6 +28,7 @@
                     @slot('font', $titleFont ?? 'f-list-3')
                     @slot('tag', 'a')
                     @slot('href', $item['titleLink'])
+                    @slot('gtmAttributes', $gtmAttributes ?? null)
                     {{ $item['title'] }} <span class='title__arrow'>&rsaquo;</span>
                 @endcomponent
             @else
@@ -57,6 +58,7 @@
                     @else
                         @component('components.atoms._arrow-link')
                             @slot('href', $link['href'])
+                            @slot('gtmAttributes', $gtmAttributes ?? null)
                             {!! $link['label'] !!}
                         @endcomponent
                     @endif

@@ -124,9 +124,19 @@ const imageZoomArea = function(container) {
       } else if (data.zoom >= osd.viewport.getMaxZoom()) {
         $btnZoomIn.disabled = true;
         $btnZoomOut.disabled = false;
+        triggerCustomEvent(document, 'gtm:push', {
+          'event': 'artwork-terminal-zoom',
+          'eventCategory': 'in-page',
+          'artwork': window.location.href
+        });
       } else {
         $btnZoomIn.disabled = false;
         $btnZoomOut.disabled = false;
+        triggerCustomEvent(document, 'gtm:push', {
+          'event': 'artwork-zoom',
+          'eventCategory': 'in-page',
+          'artwork': window.location.href
+        });
       }
     });
   }

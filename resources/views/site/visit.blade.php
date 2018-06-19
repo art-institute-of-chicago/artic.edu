@@ -93,6 +93,7 @@
                 @component('components.atoms._arrow-link')
                     @slot('font','f-null')
                     @slot('href', $section['external_link'])
+                    @slot('gtmAttributes', 'data-gtm-event="visit-'.getUtf8Slug($section['title'] ?? 'unknown title').'" data-gtm-event-category="nav-link"')
                     {{ $section['title'] }}
                 @endcomponent
             @endcomponent
@@ -225,6 +226,7 @@
                       @slot('variation', 'btn--full')
                       @slot('tag', 'a')
                       @slot('href', $admission['buy_tickets']['link'])
+                      @slot('gtmAttributes', 'data-gtm-event="visit-buy-tickets" data-gtm-event-category="nav-cta-button"')
                       {{ $admission['buy_tickets']['label'] }}
                   @endcomponent
               </li>
@@ -233,6 +235,7 @@
                       @slot('variation', 'btn--secondary btn--full')
                       @slot('tag', 'a')
                       @slot('href', $admission['become_member']['link'])
+                      @slot('gtmAttributes', 'data-gtm-event="visit-become-member" data-gtm-event-category="nav-cta-button"')
                       {{ $admission['become_member']['label'] }}
                   @endcomponent
               </li>
@@ -271,6 +274,7 @@
           @slot('variation', 'btn--tertiary')
           @slot('tag', 'a')
           @slot('href', $admission['cityPass']['link']['href'])
+          @slot('gtmAttributes', 'data-gtm-event="visit-buy-city-pass" data-gtm-event-category="nav-cta-button"')
           {{ $admission['cityPass']['link']['label'] }}
       @endcomponent
     </div>
@@ -321,7 +325,7 @@
     </div>
 
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Explore all dining', 'href' => '#')))
+        @slot('links', array(array('label' => 'Explore all dining', 'href' => '#', 'gtmAttributes' => 'data-gtm-event="visit-dining" data-gtm-event-category="nav-link"')))
         @slot('id', 'dining')
         Dining
     @endcomponent
@@ -356,14 +360,14 @@
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
-          array('label' => 'Explore all dining', 'href' => '#'),
+          array('label' => 'Explore all dining', 'href' => '#', 'gtmAttributes' => 'data-gtm-event="visit-dining" data-gtm-event-category="nav-link"'),
         ))
     @endcomponent
 
     @component('components.molecules._m-title-bar')
         @slot('links', array(
           array('label' => 'Accessibility information', 'href' => $faq['accesibility_link']),
-          array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'])
+          array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
         ))
         @slot('id', 'faq')
         FAQ
@@ -377,7 +381,7 @@
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
           array('label' => 'Accessibility information', 'href' => $faq['accesibility_link']),
-          array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'])
+          array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
         ))
     @endcomponent
 
@@ -409,6 +413,7 @@
                           'xlarge' => '18',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="visit-tours" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
@@ -441,6 +446,7 @@
                           'xlarge' => '18',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="visit-special-audiences" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent

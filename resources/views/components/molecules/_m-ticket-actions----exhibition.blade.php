@@ -4,6 +4,7 @@
             @slot('variation', 'btn--full')
             @slot('tag', 'a')
             @slot('href', '#')
+            @slot('gtmAttributes', 'data-gtm-event="exhibition-buy-tickets" data-gtm-event-category="nav-cta-button"')
             Buy tickets
         @endcomponent
     </li>
@@ -12,6 +13,7 @@
             @slot('variation', 'btn--secondary btn--full')
             @slot('tag', 'a')
             @slot('href', '#')
+            @slot('gtmAttributes', 'data-gtm-event="event-become-member" data-gtm-event-category="nav-cta-button"')
             Become a member
         @endcomponent
     </li>

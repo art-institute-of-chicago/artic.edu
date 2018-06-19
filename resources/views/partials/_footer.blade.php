@@ -86,10 +86,10 @@
           <h3 class="f-list-6">Follow us</h3>
 
           <ul class="g-footer__link-list">
-            <li><a href="{{ $_pages['follow-facebook'] }}">Facebook</a></li>
-            <li><a href="{{ $_pages['follow-twitter'] }}">Twitter</a></li>
-            <li><a href="{{ $_pages['follow-instagram'] }}">Instagram</a></li>
-            <li><a href="{{ $_pages['follow-pinterest'] }}">Pinterest</a></li>
+            <li><a href="{{ $_pages['follow-facebook'] }}" data-gtm-event="facebook" data-gtm-event-category="follow" target="_blank">Facebook</a></li>
+            <li><a href="{{ $_pages['follow-twitter'] }}" data-gtm-event="twitter" data-gtm-event-category="follow" target="_blank">Twitter</a></li>
+            <li><a href="{{ $_pages['follow-instagram'] }}" data-gtm-event="instagram" data-gtm-event-category="follow" target="_blank">Instagram</a></li>
+            <li><a href="{{ $_pages['follow-pinterest'] }}" data-gtm-event="pinterest" data-gtm-event-category="follow" target="_blank">Pinterest</a></li>
           </ul>
         </div>
       </li>

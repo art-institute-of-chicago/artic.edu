@@ -16,3 +16,7 @@ export { default as modals } from './modals';
 export { default as mediaQuery } from './mediaQuery';
 export { default as collectionFilters } from './collectionFilters';
 export { default as displayNotification } from './displayNotification';
+export { default as googleTagManager } from './googleTagManager';
+export { default as googleTagManagerDataFromLink } from './googleTagManagerDataFromLink';
+export { default as youtubePercentTracking } from './youtubePercentTracking';
+export { default as parseHTML } from './parseHTML';

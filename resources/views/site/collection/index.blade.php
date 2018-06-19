@@ -26,8 +26,9 @@
     @slot('placeholder','Search by keyword, artist, or reference')
     @slot('name', 'collection-search')
     @slot('value', request('q'))
-    @slot('behaviors','autocomplete')
+    @slot('behaviors','autocomplete reportSearchToGoogleTagManager')
     @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
+    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
     @slot('action', route('collection'))
 @endcomponent
 
@@ -55,6 +56,7 @@
                     @else
                         @slot('variation', 'tag--senary')
                     @endif
+                    @slot('gtmAttributes', 'data-gtm-event="quick-search-click" data-gtm-event-category="collection-search"')
                     {{ $category->title }}
                 @endcomponent
             </li>
@@ -102,6 +104,7 @@
                 @slot('optionLayout','o-pinboard--2-col@xsmall o-pinboard--2-col@small o-pinboard--2-col@medium o-pinboard--3-col@large o-pinboard--3-col@xlarge')
                 @component('site.collection._items')
                     @slot('artworks', $artworks)
+                    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-filter"')
                 @endcomponent
             @endcomponent
         @else
@@ -121,13 +124,15 @@
         @slot('name', 'collection-search')
         @slot('value', request('q'))
         @slot('action', route('collection'))
+        @slot('behaviors','ajaxFormSubmit')
+        @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
     @endcomponent
     <div class="o-collection-search__scroll-area">
         <p class="o-collection-search__title f-tag-2">Quick Search</p>
         <ul class="o-collection-search__quick-search-links">
             @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
                 <li>
-                    <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag">
+                    <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag" data-gtm-event="quick-search-click" data-gtm-event-category="collection-search" data-gtm-term="{{ getUtf8Slug($category->title) }}">
                         {{ $category->title }}
                     </a>
                 </li>
@@ -174,6 +179,7 @@
                       'xlarge' => '28',
                 )),
             ))
+            @slot('gtmAttributes', 'data-gtm-event="collection-feature" data-gtm-event-category="collection-nav"')
         @endcomponent
         @endif
         <ul class="o-feature-plus-4__items-1">
@@ -193,6 +199,7 @@
                               'xlarge' => '13',
                         )),
                     ))
+                    @slot('gtmAttributes', 'data-gtm-event="collection-personalization" data-gtm-event-category="collection-nav"')
                 @endcomponent
             @endif
         @endforeach
@@ -214,6 +221,7 @@
                               'xlarge' => '13',
                         )),
                     ))
+                    @slot('gtmAttributes', 'data-gtm-event="collection-personalization" data-gtm-event-category="collection-nav"')
                 @endcomponent
             @endif
         @endforeach

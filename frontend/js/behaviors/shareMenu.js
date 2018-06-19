@@ -47,10 +47,18 @@ const shareMenu = function(container) {
     let networkClicked = event.target.getAttribute('data-shareMenu');
     if (networkClicked === 'copy') {
       _copyLink();
+      triggerCustomEvent(document, 'gtm:push', {
+        'event': 'Link copied:'+shareUrl,
+        'eventCategory': 'share',
+      });
     } else {
       forEach(networks, function(index, network) {
         if (network.name === networkClicked) {
           _openWindow(event.target.href, network.windowOptions);
+          triggerCustomEvent(document, 'gtm:push', {
+            'event': network.name+':'+shareUrl,
+            'eventCategory': 'share',
+          });
         }
       });
     }
