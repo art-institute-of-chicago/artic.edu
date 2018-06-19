@@ -95,3 +95,17 @@
 .deflist dd.f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 24, 'small+': 28));
 }
+
+
+.deflist dd.f-secondary a {
+  @include text-underline(1.02em, $color__rules--secondary);
+
+  &:hover,
+  &:focus:hover {
+    @include text-underline(1.02em, $color__link--hover);
+  }
+
+  &:active:hover {
+    @include text-underline(1.02em, $color__link--active);
+  }
+}
