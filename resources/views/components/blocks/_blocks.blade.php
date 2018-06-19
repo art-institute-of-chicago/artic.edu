@@ -314,7 +314,7 @@
             @if ($block['type'] === 'references')
                 <ol class="list f-secondary">
                 @foreach ($block['items'] as $item)
-                    <li id="ref_note-{{ $item['id'] }}">{{ $item['reference'] }} <a class="return-link" href="#ref_cite-{{ $item['id'] }}"><svg class="icon--return" aria-label="back to reference"><use xlink:href="#icon--return"></use></svg></a></li>
+                    <li id="ref_note-{{ $item['id'] }}">{!! $item['reference'] !!} <a class="return-link" href="#ref_cite-{{ $item['id'] }}"><svg class="icon--return" aria-label="back to reference"><use xlink:href="#icon--return"></use></svg></a></li>
                 @endforeach
                 </ol>
             @endif
