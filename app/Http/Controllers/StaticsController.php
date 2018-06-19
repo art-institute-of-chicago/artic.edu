@@ -892,7 +892,7 @@ class StaticsController extends FrontController {
     $accordion = array();
     for ($i = 0; $i < 10; $i++) {
         array_push($accordion, array(
-            'title' => $this->faker->sentence(6),
+            'title' => "Static question title ".($i + 1),
             'blocks' => $questionsAndAnswers,
         ));
     }
@@ -3767,20 +3767,20 @@ class StaticsController extends FrontController {
         'faq' => array(
           'questions' => array(
               array(
-                'href' => '#',
-                'label' => $this->faker->sentence(2),
+                'href' => '/statics/faq#'.getUtf8Slug('Static question title 2'),
+                'label' => "Static question title 2",
               ),
               array(
-                'href' => '#',
-                'label' => $this->faker->sentence(2),
+                'href' => '/statics/faq#'.getUtf8Slug('Static question title 3'),
+                'label' =>"Static question title 3",
               ),
               array(
-                'href' => '#',
-                'label' => $this->faker->sentence(2),
+                'href' => '/statics/faq#'.getUtf8Slug('Static question title 4'),
+                'label' => "Static question title 4",
               ),
               array(
-                'href' => '#',
-                'label' => $this->faker->sentence(2),
+                'href' => '/statics/faq#'.getUtf8Slug('Static question title 5'),
+                'label' => "Static question title 5",
               ),
           ),
         ),
