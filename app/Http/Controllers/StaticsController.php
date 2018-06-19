@@ -426,7 +426,7 @@ class StaticsController extends FrontController {
     $article->push('references', array(
       array(
         'id' => '1',
-        'reference' => $this->faker->sentence(9),
+        'reference' => "Accusamus <strong>nam dolorem</strong> velit <em>sapiente facilis dolore</em> quae",
       ),
       array(
         'id' => '2',

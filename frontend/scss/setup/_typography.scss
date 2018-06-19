@@ -665,6 +665,21 @@ $f-secondary: generate-font-obj(
   @include f-secondary;
 }
 
+%f-secondary em,
+.f-secondary em,
+%f-secondary i,
+.f-secondary i {
+  font-style: italic;
+}
+
+%f-secondary strong,
+.f-secondary strong,
+%f-secondary b,
+.f-secondary b {
+  font-weight: 400;
+  color: $color__text;
+}
+
 /***
 
 f-tertiary
