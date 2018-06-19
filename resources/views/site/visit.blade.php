@@ -325,7 +325,14 @@
     </div>
 
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Explore all dining', 'href' => '#', 'gtmAttributes' => 'data-gtm-event="visit-dining" data-gtm-event-category="nav-link"')))
+        @slot('links', [
+            [
+                'label' => 'Explore all dining',
+                'href'  => $page->visit_dining_link,
+                'gtmAttributes' => 'data-gtm-event="visit-dining" data-gtm-event-category="nav-link"'
+            ]
+        ]
+        )
         @slot('id', 'dining')
         Dining
     @endcomponent

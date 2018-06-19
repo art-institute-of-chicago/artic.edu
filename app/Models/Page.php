@@ -62,6 +62,7 @@ class Page extends Model
 
         // Visit
         'visit_intro',
+        'visit_dining_link',
         'visit_hour_header',
         'visit_hour_subheader',
         'visit_city_pass_title',
@@ -340,13 +341,6 @@ class Page extends Model
                 "doc" => "Art Intro",
                 "type" => "string",
                 "value" => function () {return $this->art_intro;},
-            ],
-
-            [
-                "name" => 'visit_intro',
-                "doc" => "Visit Intro",
-                "type" => "string",
-                "value" => function () {return $this->visit_intro;},
             ],
 
             [
