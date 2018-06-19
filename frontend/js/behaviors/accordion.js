@@ -1,4 +1,4 @@
-import { purgeProperties, triggerCustomEvent, setFocusOnTarget, forEach } from '@area17/a17-helpers';
+import { purgeProperties, triggerCustomEvent, setFocusOnTarget, forEach, getOffset } from '@area17/a17-helpers';
 
 const accordion = function(container) {
 
@@ -120,10 +120,22 @@ const accordion = function(container) {
     }
   }
 
+  function _checkHashOnLoad() {
+    if (window.location.hash && window.location.hash !== '#') {
+      let hashTarget = document.getElementById(window.location.hash.replace(/#/ig,''));
+      if (container.contains(hashTarget)) {
+        let scrollTarget = Math.round(getOffset(hashTarget).top);
+        window.scrollTo(0, scrollTarget);
+        hashTarget.click();
+      }
+    }
+  }
+
   function _init() {
     container.addEventListener('click', _handleClicks, false);
     container.addEventListener('keyup', _handleKeyPress, false);
     window.addEventListener('keyup', _handleFocus, false);
+    _checkHashOnLoad();
   }
 
   this.destroy = function() {
