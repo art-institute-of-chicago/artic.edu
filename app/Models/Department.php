@@ -6,10 +6,11 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasMediasEloquent;
 
 class Department extends Model
 {
-    use HasApiModel, Transformable, HasMedias, HasApiRelations;
+    use HasApiModel, Transformable, HasMedias, HasApiRelations, HasMediasEloquent;
 
     protected $apiModel = 'App\Models\Api\Department';
 
