@@ -46,8 +46,8 @@ class BaseApiController extends ModuleController
         // Force the datahub_id field
         $data = $apiItem->toArray() + ['datahub_id' => $apiItem->id];
 
-        // Create a new model with this data
-        $item = $this->repository->create($data);
+        // Find if we have an existing model before creating an augmented one
+        $item = $this->getRepository()->firstOrCreate(['datahub_id' => $apiItem->id], $data);
 
         // Redirect to edit this model
         return $this->redirectToForm($item->id);
