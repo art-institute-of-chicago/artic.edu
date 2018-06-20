@@ -32,3 +32,18 @@ function hoursSelectOptions()
 
     return collect($hours);
 }
+
+function convertArtworkDates($date) 
+{
+    $formatdate = "";
+
+    if($date < 0) {
+        $formatdate = abs($date) . " BC";
+    } else if($date < 1000) {
+        $formatdate = $date . " AD";
+    } else {
+        $formatdate = $date;
+    }
+
+    return $formatdate;
+}

@@ -7,6 +7,7 @@
 namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
+use App\Helpers\DatesHelpers;
 use Carbon\Carbon;
 
 class ArtworkPresenter extends BasePresenter
@@ -145,7 +146,7 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->dates != null && count($this->entity->dates) > 0) {
             $dates = collect($this->entity->dates)->map(function($item) {
-                $joined = join('–', [ Carbon::parse($item->date_earliest)->year, Carbon::parse($item->date_latest)->year]);
+                $joined = join(' – ', [convertArtworkDates(Carbon::parse($item->date_earliest)->year), convertArtworkDates(Carbon::parse($item->date_latest)->year)]);
                 return join(' ', [$item->qualifier_title, $joined]);
             });
 
