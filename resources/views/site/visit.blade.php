@@ -381,7 +381,7 @@
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
           array('label' => 'Accessibility information', 'href' => $faq['accesibility_link']),
-          array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
+          array('label' => 'More FAQs and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
         ))
     @endcomponent
 
