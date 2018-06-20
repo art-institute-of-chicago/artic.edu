@@ -28,7 +28,7 @@
           array('label' => 'Dining', 'href' => '#dining'),
           array('label' => 'FAQ', 'href' => '#faq'),
           array('label' => 'Tours', 'href' => '#tours'),
-          array('label' => 'Families, Teens &amp; Educators', 'href' => '#familes_teens_educators'),
+          array('label' => 'Families, Teens and Educators', 'href' => '#familes_teens_educators'),
         ))
     @endcomponent
 
@@ -420,7 +420,7 @@
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'familes_teens_educators')
-        Families, Teens &amp; Educators
+        Families, Teens and Educators
     @endcomponent
 
     @component('components.atoms._hr')
