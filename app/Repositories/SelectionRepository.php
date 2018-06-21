@@ -13,15 +13,11 @@ use App\Models\Api\Search;
 
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
-use App\Repositories\Behaviors\ExploreFurtherTags;
 
 class SelectionRepository extends ModuleRepository
 {
-    const PER_PAGE_EXPLORE_FURTHER = 20;
-    const EXPLORE_FURTHER_TAGS = 55;
-    const ARTWORKS_PER_PAGE = 8;
 
-    use ExploreFurtherTags, HandleSlugs, HandleRevisions, HandleMedias, HandleBLocks, HandleApiBlocks, HandleApiRelations {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBLocks, HandleApiBlocks, HandleApiRelations {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -44,7 +40,7 @@ class SelectionRepository extends ModuleRepository
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
 
-        $this->updateBrowserApiRelated($object, $fields, ['artworks', 'sidebarExhibitions']);
+        $this->updateBrowserApiRelated($object, $fields, ['sidebarExhibitions']);
         $this->updateBrowser($object, $fields, 'articles');
         $this->updateBrowser($object, $fields, 'sidebarEvent');
         $this->updateBrowser($object, $fields, 'videos');
@@ -56,7 +52,6 @@ class SelectionRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
 
-        $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'collection');
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
         $fields['browsers']['sidebarEvent'] = $this->getFormFieldsForBrowser($object, 'sidebarEvent', 'exhibitions_events', 'title', 'events');
         $fields['browsers']['videos'] = $this->getFormFieldsForBrowser($object, 'videos', 'collection.articles_publications');
@@ -73,16 +68,6 @@ class SelectionRepository extends ModuleRepository
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
         ];
-    }
-
-    public function getArtworksCollection($item)
-    {
-        return Search::query()
-                ->resources(['artworks'])
-                ->forceEndpoint('search')
-                ->byIds($item->artworks->pluck('datahub_id')->toArray())
-                ->aggregationClassifications(self::EXPLORE_FURTHER_TAGS)
-                ->getSearch(self::ARTWORKS_PER_PAGE);
     }
 
 }

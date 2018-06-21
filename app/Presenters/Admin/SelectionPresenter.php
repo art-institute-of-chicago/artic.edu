@@ -8,7 +8,7 @@ class SelectionPresenter extends BasePresenter
 {
     public function artworksCount()
     {
-        return $this->artworks->count();
+        return $this->entity->artworks()->count();
     }
 
     public function headerType()

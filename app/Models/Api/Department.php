@@ -4,6 +4,7 @@ namespace App\Models\Api;
 
 use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Models\Api\Search;
 
 class Department extends BaseApiModel
 {
@@ -20,4 +21,14 @@ class Department extends BaseApiModel
 
     protected $presenter = 'App\Presenters\Admin\DepartmentPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\DepartmentPresenter';
+
+    public function artworks($perPage = 20)
+    {
+        return Search::query()
+            ->resources(['artworks'])
+            ->forceEndpoint('search')
+            ->byDepartments($this->title)
+            ->aggregationClassifications(55)
+            ->getSearch($perPage);
+    }
 }

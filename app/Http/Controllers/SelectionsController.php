@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\SelectionRepository;
 use App\Models\Selection;
-
-use App\Presenters\StaticObjectPresenter;
+use App\Libraries\ExploreFurther\BaseService as ExploreFurther;
 
 class SelectionsController extends FrontController
 {
@@ -18,10 +17,6 @@ class SelectionsController extends FrontController
         parent::__construct();
     }
 
-    public function index()
-    {
-    }
-
     public function show($slug)
     {
         $item = $this->repository->forSlug($slug);
@@ -29,19 +24,16 @@ class SelectionsController extends FrontController
             $item = $this->repository->getById((Integer) $slug);
         }
 
-        $exploreFurtherTags = $this->repository->exploreFurtherTags($item);
-        if (request()->has('exFurther-all')) {
-            $exploreFurtherAllTags = $this->repository->exploreFurtherAllTags($item);
-        } else {
-            $exploreFurtherCollection = $this->repository->exploreFurtherCollection($item, request()->only('exFurther-classification'));
-        }
+        $artworks = $item->artworks(0);
+        $exploreFurther = new ExploreFurther($item, $artworks->getMetadata('aggregations'));
 
         return view('site.selectionDetail', [
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
-            'exploreFurtherTags' => $exploreFurtherTags ,
-            'exploreFurther'     => $exploreFurtherCollection ?? null,
-            'exploreFurtherAllTags' => $exploreFurtherAllTags ?? null,
+            'exploreFurtherTags'    => $exploreFurther->tags(),
+            'exploreFurther'        => $exploreFurther->collection(request()->all()),
+            'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
+            'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
         ]);
     }
 
