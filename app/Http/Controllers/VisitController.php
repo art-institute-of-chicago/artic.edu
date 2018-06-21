@@ -83,7 +83,7 @@ class VisitController extends FrontController
         array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
 
         $admission = array(
-            'text' => $page->visit_admission_description,
+            'text' => preg_replace('/<p>/i', '<p class="f-secondary">', $page->visit_admission_description),
             'cityPass' => array(
                 'title' => $page->visit_city_pass_title,
                 'text' => $page->visit_city_pass_text,
