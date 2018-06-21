@@ -224,10 +224,7 @@
       @slot('tag', 'div')
 
       <div class="o-blocks">
-        @component('components.blocks._text')
-            @slot('font','f-secondary')
-            {{ $admission['text'] }}
-        @endcomponent
+        {!! $admission['text'] !!}
       </div>
       <div class="o-blocks">
         <ul class="m-ticket-actions o-blocks__block">

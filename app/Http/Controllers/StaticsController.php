@@ -3679,7 +3679,7 @@ class StaticsController extends FrontController {
            )
          ),
         'admission' => array(
-          'text' => $this->faker->paragraph(3),
+          'text' => '<p class="f-secondary">Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus.</p>',
           'cityPass' => array(
               'title' => 'CityPass',
               'text' => $this->faker->paragraph(3),
