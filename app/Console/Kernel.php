@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\InvalidateCloudfront::class,
         Commands\ContentMigration::class,
-        Commands\ContentImport::class
+        Commands\ContentImport::class,
+        Commands\GenerateSitemap::class
     ];
 
     /**
@@ -28,6 +29,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('sitemap:generate')->daily();
     }
 
     /**
