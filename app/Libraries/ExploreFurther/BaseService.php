@@ -13,13 +13,13 @@ use App\Models\Api\Search;
 class BaseService
 {
     const MAX_TAGS = 3;
-    const PER_PAGE_EXPLORE_FURTHER = 20;
+    const PER_PAGE_EXPLORE_FURTHER = 8;
 
     // Array with valid filters for the Explore Further section.
     const VALID_FILTERS = [
-        'classification_ids',
-        'artist_ids',
-        'style_ids'
+        'ef-classification_ids',
+        'ef-artist_ids',
+        'ef-style_ids'
     ];
 
     protected $resource;
@@ -42,7 +42,7 @@ class BaseService
     {
         $parameters = collect($parameters);
 
-        if ($parameters->has('all_ids')) {
+        if ($parameters->has('ef-all_ids')) {
             // Use same query as search to hit the cache instead of creating a new one.
             $buckets = $this->aggregations()->classifications->buckets;
 
@@ -84,9 +84,9 @@ class BaseService
             ->forceEndpoint('search');
 
         if ($parameters->isNotEmpty()) {
-            $query->byClassifications($parameters->get('classification_ids'))
-                  ->byArtists($parameters->get('artist_ids'))
-                  ->byStyles($parameters->get('style_ids'));
+            $query->byClassifications($parameters->get('ef-classification_ids'))
+                  ->byArtists($parameters->get('ef-artist_ids'))
+                  ->byStyles($parameters->get('ef-style_ids'));
         } else {
             // When no filter selected, use the first filter available.
             $category = key($this->tags());
@@ -121,7 +121,7 @@ class BaseService
         if ($parameters->isNotEmpty()) {
             foreach ($parameters as $key => $value) {
                 if (in_array($key, self::VALID_FILTERS)) {
-                    return route('collection', [$key => $value]);
+                    return route('collection', [str_replace('ef-', '', $key) => $value]);
                 }
             }
         } else {

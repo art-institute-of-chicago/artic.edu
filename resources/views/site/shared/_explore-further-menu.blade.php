@@ -8,9 +8,9 @@
                 @if (empty(request()->input()) && $loop->parent->first && $loop->first)
                     <li class="m-links-bar__item s-active">
                 @else
-                    <li class="m-links-bar__item {{ (request()->input("{$category}_ids") == $id) ? 's-active' : '' }} ">
+                    <li class="m-links-bar__item {{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                 @endif
-                    <a class="m-links-bar__item-trigger f-link" href="{!! currentUrlWithQuery(["{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
+                    <a class="m-links-bar__item-trigger f-link" href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
                         {{ ucfirst($name) }}
                     </a>
                 </li>
@@ -26,9 +26,9 @@
                         @if (empty(request()->input()) && $loop->parent->first && $loop->first)
                             <li class="s-active">
                         @else
-                            <li class="{{ (request()->input("{$category}_ids") == $id) ? 's-active' : '' }} ">
+                            <li class="{{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                         @endif
-                            <a href="{!! currentUrlWithQuery(["{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
+                            <a href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
                                 {{ ucfirst($name) }}
                             </a>
                         </li>
