@@ -2,7 +2,7 @@
     @unless (empty($items))
         @foreach ($items as $key => $label)
             <li class="f-link">
-                <a href="{!! route('collection', ['classification_ids' => $key]) !!}">
+                <a href="{!! $key !!}">
                     {{ $label }}
                 </a>
             </li>

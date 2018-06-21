@@ -47,7 +47,7 @@ class BaseService
             $buckets = $this->aggregations()->classifications->buckets;
 
             return collect($buckets)->mapWithKeys(function ($item) {
-                return [$item->key => ucfirst($item->key)];
+                return [route('collection', ['classification_ids' => $item->key]) => ucfirst($item->key)];
             });
         }
     }
