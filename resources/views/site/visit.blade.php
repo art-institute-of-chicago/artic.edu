@@ -99,10 +99,7 @@
             @endcomponent
           </div>
           <div class="o-blocks">
-            @component('components.blocks._text')
-                @slot('font','f-secondary')
-                {!! $section['copy'] !!}
-            @endcomponent
+            {!! $section['copy'] !!}
           </div>
       @endcomponent
 

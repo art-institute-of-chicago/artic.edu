@@ -3664,17 +3664,17 @@ class StaticsController extends FrontController {
               array(
                   'title' => 'The Ryan Learning Center',
                   'link' => '#',
-                  'text' => '10:30-5:00 and Thursday until 8:00 <br>Free Admission',
+                  'text' => '<p>10:30-5:00 and Thursday until 8:00 <br>Free Admission</p>',
               ),
               array(
                   'title' => 'The Ryerson and Burnham Libraries',
                   'link' => '#',
-                  'text' => 'Monday-Wednesday 1:00-5:00 <br>Thursday 10:30-8:00 <br>Friday 1:00-5:00 <br>Saturday-Sunday Closed',
+                  'text' => '<p>Monday-Wednesday 1:00-5:00 <br>Thursday 10:30-8:00 <br>Friday 1:00-5:00 <br>Saturday-Sunday Closed</p>',
               ),
               array(
                   'title' => 'Museum Shops',
                   'link' => '#',
-                  'text' => '10:30-5:00 and Thursday until 8:00',
+                  'text' => '<p>10:30-5:00 and Thursday until 8:00</p>',
               ),
            )
          ),
