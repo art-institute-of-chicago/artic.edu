@@ -99,7 +99,7 @@
             @endcomponent
           </div>
           <div class="o-blocks">
-            {!! $section['copy'] !!}
+            {!! preg_replace('/<p>/i', '<p class="f-secondary">', $section['copy']); !!}
           </div>
       @endcomponent
 
