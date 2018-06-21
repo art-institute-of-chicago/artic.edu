@@ -17,11 +17,11 @@ Route::name('collection.autocomplete')->get('/collection/autocomplete', 'Collect
 Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
 
 // Collection Publications Printed Catalogs
-Route::name('collection.publications.printed-catalogs')->get('/collection/publications/printed-catalogues', 'PrintedCatalogsController@index');
-Route::name('collection.publications.printed-catalogs.show')->get('/collection/publications/printed-catalogues/{id}', 'PrintedCatalogsController@show');
+Route::name('collection.publications.printed-catalogs')->get('/printed-catalogs', 'PrintedCatalogsController@index');
+Route::name('collection.publications.printed-catalogs.show')->get('/printed-catalogs/{id}', 'PrintedCatalogsController@show');
 // Collection Publications Digital Catalogs
-Route::name('collection.publications.digital-catalogs')->get('/collection/publications/digital-catalogues', 'DigitalCatalogsController@index');
-Route::name('collection.publications.digital-catalogs.show')->get('/collection/publications/digital-catalogues/{id}', 'DigitalCatalogsController@show');
+Route::name('collection.publications.digital-catalogs')->get('/digital-catalogs', 'DigitalCatalogsController@index');
+Route::name('collection.publications.digital-catalogs.show')->get('/digital-catalogs/{id}', 'DigitalCatalogsController@show');
 
 // Collection Research
 Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');
@@ -94,12 +94,12 @@ Route::name('departments.show')->get('/departments/{id}', 'DepartmentController@
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
 // About
-Route::name('about.press')->get('/press', 'PressReleasesController@index');
+Route::name('about.press')->get('/press/press-releases', 'PressReleasesController@index');
 Route::name('about.press.archive')->get('/press/archive', 'PressReleasesController@archive');
 Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@show');
 
-Route::name('about.exhibitionPressRooms')->get('/about/exhibition-press-room', 'ExhibitionPressRoomController@index');
-Route::name('about.exhibitionPressRooms.show')->get('/about/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
+Route::name('about.exhibitionPressRooms')->get('/press/exhibition-press-room', 'ExhibitionPressRoomController@index');
+Route::name('about.exhibitionPressRooms.show')->get('/press/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
 
 // Sample Form
 Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@index');
