@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    @if (isset($wideBody) && $wideBody)
+    @if (!(isset($wideBody) && $wideBody))
         <div class="o-article__secondary-actions">
             @component('components.molecules._m-article-actions')
             @endcomponent
