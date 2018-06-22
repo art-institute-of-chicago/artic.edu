@@ -118,6 +118,11 @@
   background-color: transparent;
 }
 
+.m-aside-newsletter input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #fff inset;
+}
+
+
 .m-aside-newsletter button {
   @include untuck;
   display: block;
@@ -262,6 +267,10 @@
     left: 0;
     top: 0;
   }
+}
+
+.m-aside-newsletter--wide input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px $color__bg--secondary inset;
 }
 
 .m-aside-newsletter--wide legend .title {

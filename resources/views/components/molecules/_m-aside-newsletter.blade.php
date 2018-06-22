@@ -1,7 +1,7 @@
 @php
     $rand = rand(1, 1000);
 @endphp
-<form class="m-aside-newsletter{{ (isset($variation)) ? ' '.$variation : ' ' }}{{ (isset($error) and $error) ? ' s-error' : '' }}{{ (isset($success) and $success) ? ' s-success' : '' }}" action="/subscribe" data-behavior="newsletter">
+<form class="m-aside-newsletter{{ (isset($variation)) ? ' '.$variation : ' ' }}{{ (isset($error) and $error) ? ' s-error' : '' }}{{ (isset($success) and $success) ? ' s-success' : '' }}" action="/subscribe" data-behavior="newsletter" novalidate>
   <fieldset>
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
     <span class="m-aside-newsletter__field">
