@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Api\Asset;
+use App\Helpers\DatesHelpers;
 use App\Models\Behaviors\HasMediasApi;
 
 class Artwork extends BaseApiModel
@@ -86,7 +87,7 @@ class Artwork extends BaseApiModel
 
     public function getDateBlockAttribute()
     {
-        return join('—', array_filter([$this->date_start, $this->date_end]));
+        return join(' — ', array_filter([convertArtworkDates($this->date_start), convertArtworkDates($this->date_end)]));
     }
 
     public function getMultimediaElementsAttribute()
