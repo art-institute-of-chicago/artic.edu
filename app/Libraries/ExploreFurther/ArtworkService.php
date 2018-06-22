@@ -40,7 +40,7 @@ class ArtworkService extends BaseService
         // Build Artist Tags
         if ($this->resource->mainArtist && $this->resource->mainArtist->count()) {
             $artist = $this->resource->mainArtist->first();
-            $tags['artist'] = [$artist->title => $artist->title];
+            $tags['artist'] = collect([$artist->title => $artist->title]);
         }
 
         $tags['all'] = [true => 'All Tags'];

@@ -308,17 +308,18 @@ class ArtworkPresenter extends BasePresenter
     }
 
     public function buildSchemaItemProps() {
-        $itemprops = [];
-
-        $itemprops = array_merge($itemprops, [
+        $itemprops = [
             'accessMode'            => 'visual',
             'alternativeHeadline'   =>(isset($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
-            'thumbnailUrl'          => $this->entity->thumbnail->url.'/full/,150/0/default.jpg',
-            'image'                 => $this->entity->thumbnail->url,
             'contributor'           => (isset($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
             'about'                 => (isset($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
             'provider'              => $this->entity->department_title,
-        ]);
+        ];
+
+        if ($this->entity->thumbnail) {
+            $itemprops['thumbnailUrl'] = $this->entity->thumbnail->url.'/full/,150/0/default.jpg';
+            $itemprops['image'] = $this->entity->thumbnail->url;
+        }
 
         return $itemprops;
     }
