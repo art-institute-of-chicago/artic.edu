@@ -109,8 +109,8 @@
     }
   }
 
-  .o-article__primary-actions *:not(.m-author):not(.m-link-list) .f-secondary a {
-    @include text-underline(1.02em, $color__link);
+  .o-article__primary-actions *.f-secondary:not(.m-author):not(.m-link-list) a {
+    @include text-underline(1.02em, $color__rules--secondary);
 
     &:hover,
     &:focus:hover {
