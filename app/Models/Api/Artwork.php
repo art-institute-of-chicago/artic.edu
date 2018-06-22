@@ -160,13 +160,11 @@ class Artwork extends BaseApiModel
         $main = $this->imageFront('hero');
         if (!empty($main)) {
             $main['credit'] = $this->getImageCopyright();
-            $main['alt']    = $this->image_alt_text;
         }
 
         return collect($this->extraImages)->map(function ($image) {
             $img = $image->imageFront();
             $img['credit'] = ($image->copyright_notice ?? $this->getImageCopyright());
-            $img['alt'] = $image->alt_text;
             return $img;
         })
             ->prepend($main)

@@ -62,6 +62,10 @@ class LakeviewImageService implements ImageServiceInterface
             $image['lqip'] = $preLoadedInfo['lqip'];
         }
 
+        if (isset($preLoadedInfo['alt']) && !empty($preLoadedInfo['alt'])) {
+            $image['alt'] = $preLoadedInfo['alt'];
+        }
+
         return $image;
     }
 
@@ -111,6 +115,7 @@ class LakeviewImageService implements ImageServiceInterface
                 'width' => $object->thumbnail->width,
                 'height' => $object->thumbnail->height,
                 'lqip' => $object->thumbnail->lqip,
+                'alt' => $object->thumbnail->alt_text,
             ];
         } else {
             // Hit the server to get the info if not available
