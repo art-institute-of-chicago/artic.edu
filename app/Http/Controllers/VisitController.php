@@ -115,7 +115,7 @@ class VisitController extends FrontController
         };
 
         $directions = array(
-            'intro' => 'Located in the heart of the Chicago-across from Millenium Park and steps from Lake Michigan-the Art Institute wecomes visitors at two entrances',
+            'intro' => 'Located in the heart of the Chicago—across from Millennium Park and steps from Lake Michigan—the Art Institute welcomes visitors at two entrances.',
             'image' => $page->imageFront('visit_map'),
             'locations' => $page->locations,
             'links' => array(
