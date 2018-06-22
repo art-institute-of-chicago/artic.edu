@@ -26,7 +26,7 @@
           array('label' => 'Admission', 'href' => '#admission'),
           array('label' => 'Directions', 'href' => '#directions'),
           array('label' => 'Dining', 'href' => '#dining'),
-          array('label' => 'FAQ', 'href' => '#faq'),
+          array('label' => 'FAQs', 'href' => '#faqs'),
           array('label' => 'Tours', 'href' => '#tours'),
           array('label' => 'Families, Teens, and Educators', 'href' => '#familes_teens_educators'),
         ))
@@ -361,10 +361,10 @@
     @component('components.molecules._m-title-bar')
         @slot('links', array(
           array('label' => 'Accessibility information', 'href' => $faq['accesibility_link']),
-          array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
+          array('label' => 'More FAQs and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
         ))
-        @slot('id', 'faq')
-        FAQ
+        @slot('id', 'faqs')
+        FAQs
     @endcomponent
 
     @component('components.molecules._m-link-list')
@@ -375,7 +375,7 @@
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
           array('label' => 'Accessibility information', 'href' => $faq['accesibility_link']),
-          array('label' => 'More FAQ\'s and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
+          array('label' => 'More FAQs and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
         ))
     @endcomponent
 
