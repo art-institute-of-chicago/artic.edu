@@ -250,6 +250,12 @@
     }
   }
 
+  .m-media--artwork .m-media__img img {
+    width: 100%;
+    max-width: 843px;
+    //max-height: 843px; // rules above stop this from happening
+  }
+
   .o-gallery__all-link-btn {
     margin-top: -28px;
 

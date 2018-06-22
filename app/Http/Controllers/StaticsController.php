@@ -1552,7 +1552,6 @@ class StaticsController extends FrontController {
           $artworkItem['hideShare'] = true;
           $artworkItem['fullscreen'] = true;
 
-
         for ($i = 0; $i < $num; $i++) {
           if ($i == 5) {
             array_push($images, array(
@@ -1561,6 +1560,7 @@ class StaticsController extends FrontController {
                   'media' => $this->getEmbed(),
                   "poster" => $this->getImage(),
                   'caption' => $this->faker->paragraph(3, false),
+                  'isArtwork' => true,
               )
             );
           } else if ($i == 1 || $i === 2) {
@@ -1575,6 +1575,7 @@ class StaticsController extends FrontController {
                   'media' => $this->getImage(),
                   'caption' => $this->faker->paragraph(3, false),
                   'url' => $this->faker->boolean() ? '#' : null,
+                  'isArtwork' => true,
               )
             );
           }
