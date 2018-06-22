@@ -26,9 +26,14 @@ class Artist extends BaseApiModel
         return 'artist';
     }
 
-    public function artworks()
+    public function artworks($perPage = 20)
     {
-        return $this->hasMany(\App\Models\Api\Artwork::class, 'artwork_ids');
+        return Search::query()
+            ->resources(['artworks'])
+            ->forceEndpoint('search')
+            ->byArtists($this->title)
+            ->aggregationClassifications(55)
+            ->getSearch($perPage);
     }
 
     public function getAlsoKnownAsAttribute()

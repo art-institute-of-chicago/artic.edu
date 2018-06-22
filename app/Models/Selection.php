@@ -8,6 +8,7 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Model;
 use App\Models\Api\Artwork;
+use App\Models\Api\Search;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 
@@ -79,9 +80,14 @@ class Selection extends Model
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
     }
 
-    public function artworks()
+    public function artworks($perPage = 20)
     {
-        return $this->apiElements()->where('relation', 'artworks');
+        return Search::query()
+            ->resources(['artworks'])
+            ->forceEndpoint('search')
+            ->byIds($this->getArtworkIds()->toArray())
+            ->aggregationClassifications(50)
+            ->getSearch($perPage);
     }
 
     public function articles()
@@ -136,43 +142,40 @@ class Selection extends Model
         }
     }
 
-    public function getArtworkImages($count = 5)
+    public function getArtworkIds()
     {
-        $list = collect([]);
-
         $artwork_ids = collect([]);
         foreach ($this->blocks as $block) {
-            if ($block->type == 'artwork') {
+            if (in_array($block->type, ['artwork', 'artworks'])) {
                 if (isset($block->content['browsers'])) {
                     if (isset($block->content['browsers']['artworks'])) {
                         $ids = $block->content['browsers']['artworks'];
                         foreach ($ids as $id) {
                             $artwork_ids->push($id);
                         }
-                    }
-                }
-            } else if ($block->type == 'artworks') {
-                if (isset($block->content['browsers'])) {
-                    if (isset($block->content['browsers']['artworks'])) {
-                        $ids = $block->content['browsers']['artworks'];
-                        foreach ($ids as $id) {
-                            $artwork_ids->push($id);
-                        }
-
                     }
                 }
             }
         }
 
-        // load artworks and get the images
-        $artworks = Artwork::query()->ids($artwork_ids->toArray())->get();
-        foreach ($artworks as $artwork) {
-            if ($artwork->imageFront()) {
-                $list[] = $artwork->imageFront();
-            }
+        return $artwork_ids;
+    }
 
-            if ($list->count() >= $count) {
-                break;
+    public function getArtworkImages($count = 5)
+    {
+        $list = collect([]);
+        $artwork_ids = $this->getArtworkIds();
+
+        if ($artwork_ids->isNotEmpty()) {
+            $artworks = Artwork::query()->ids($artwork_ids->toArray())->get();
+            foreach ($artworks as $artwork) {
+                if ($artwork->imageFront()) {
+                    $list[] = $artwork->imageFront();
+                }
+
+                if ($list->count() >= $count) {
+                    break;
+                }
             }
         }
 

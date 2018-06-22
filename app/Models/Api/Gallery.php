@@ -4,6 +4,7 @@ namespace App\Models\Api;
 
 use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Models\Api\Search;
 
 class Gallery extends BaseApiModel
 {
@@ -24,6 +25,16 @@ class Gallery extends BaseApiModel
     public function getTypeAttribute()
     {
         return 'gallery';
+    }
+
+    public function artworks($perPage = 20)
+    {
+        return Search::query()
+            ->resources(['artworks'])
+            ->forceEndpoint('search')
+            ->byGalleryIds($this->id)
+            ->aggregationClassifications(55)
+            ->getSearch($perPage);
     }
 
 }

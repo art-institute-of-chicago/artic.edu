@@ -35,8 +35,4 @@ class Department extends Model
         ],
     ];
 
-    // public function artworks()
-    // {
-    //     return $this->apiElements()->where('relation', 'artworks');
-    // }
 }

@@ -117,7 +117,7 @@
         @slot('tags', $exploreFurtherTags)
     @endcomponent
 
-    @if ($exploreFurther && !$exploreFurther->isEmpty())
+    @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
         @component('components.organisms._o-pinboard')
             @slot('cols_small','2')
             @slot('cols_medium','3')
@@ -152,6 +152,19 @@
             @slot('cols_large','4')
             @slot('cols_xlarge','4')
             @slot('items', $exploreFurtherAllTags)
+        @endcomponent
+    @endif
+
+    @if ($exploreFurtherCollectionUrl)
+        @component('components.molecules._m-links-bar')
+            @slot('variation', 'm-links-bar--buttons')
+            @slot('linksPrimary', [
+                [
+                    'label' => 'View More',
+                    'href' => $exploreFurtherCollectionUrl,
+                    'variation' => 'btn--secondary'
+                ]
+            ])
         @endcomponent
     @endif
 </div>

@@ -5,6 +5,7 @@ use App\Repositories\Api\ArtworkRepository;
 use App\Models\Api\Artwork;
 use App\Libraries\RecentlyViewedService;
 use App\Libraries\Search\CollectionService;
+use App\Libraries\ExploreFurther\ArtworkService as ExploreFurther;
 
 class ArtworkController extends BaseScopedController
 {
@@ -33,23 +34,18 @@ class ArtworkController extends BaseScopedController
         $prevNext = $this->collection()->getPrevNext($item);
 
         // Build Explore further module
-        $exploreFurtherTags = $this->artworkRepository->exploreFurtherTags($item);
-        if (request()->has('exFurther-all')) {
-            $exploreFurtherAllTags = $this->artworkRepository->exploreFurtherAllTags();
-        } else {
-            $exploreFurtherCollection = $this->artworkRepository->exploreFurtherCollection($item, request()->only('exFurther-classification', 'exFurther-style', 'exFurther-artist'));
-        }
-
+        $exploreFurther = new ExploreFurther($item);
 
         return view('site.artworkDetail', [
           'item' => $item,
-          'contrastHeader'     => $item->present()->contrastHeader,
-          'borderlessHeader'   => $item->present()->borderlessHeader,
-          'exploreFurther'     => $exploreFurtherCollection ?? null,
-          'exploreFurtherTags' => $exploreFurtherTags,
-          'exploreFurtherAllTags' => $exploreFurtherAllTags ?? null,
-          'prevNextObject'        => $prevNext,
-          'primaryNavCurrent'  => 'collection',
+          'contrastHeader'    => $item->present()->contrastHeader,
+          'borderlessHeader'  => $item->present()->borderlessHeader,
+          'prevNextObject'    => $prevNext,
+          'primaryNavCurrent' => 'collection',
+          'exploreFurtherTags'    => $exploreFurther->tags(),
+          'exploreFurther'        => $exploreFurther->collection(request()->all()),
+          'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
+          'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
         ]);
     }
 

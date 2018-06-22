@@ -38,14 +38,6 @@
         'maxlength' => 150
     ])
 
-    @formField('browser', [
-        'routePrefix' => 'collection',
-        'name' => 'artworks',
-        'moduleName' => 'artworks',
-        'label' => 'Artworks for listing display',
-        'max' => 6
-    ])
-
     @formField('block_editor', [
         'blocks' => [
             'image', 'video', 'gallery', 'media_embed', 'paragraph', 'artwork', 'artworks'

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Api\GalleryRepository;
+use App\Libraries\ExploreFurther\BaseService as ExploreGalleries;
 
 class GalleryController extends FrontController
 {
+    const ARTWORKS_PER_PAGE = 8;
+
     protected $repository;
 
     public function __construct(GalleryRepository $repository)
@@ -16,22 +19,18 @@ class GalleryController extends FrontController
 
     public function show($idSlug)
     {
-        $item     = $this->repository->getById((Integer) $idSlug);
-        $artworks = $this->repository->getArtworks($item);
+        $item = $this->repository->getById((Integer) $idSlug);
+        $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
 
-        $exploreFurtherTags = $this->repository->exploreFurtherTags($item);
-        if (request()->has('exFurther-all')) {
-            $exploreFurtherAllTags = $this->repository->exploreFurtherAllTags($item);
-        } else {
-            $exploreFurtherCollection = $this->repository->exploreFurtherCollection($item, request()->only('exFurther-classification'));
-        }
+        $exploreFurther = new ExploreGalleries($item, $artworks->getMetadata('aggregations'));
 
         return view('site.tagDetail', [
             'item'     => $item,
             'artworks' => $artworks,
-            'exploreFurtherTags' => $exploreFurtherTags ,
-            'exploreFurther'     => $exploreFurtherCollection ?? null,
-            'exploreFurtherAllTags' => $exploreFurtherAllTags ?? null,
+            'exploreFurtherTags'    => $exploreFurther->tags(),
+            'exploreFurther'        => $exploreFurther->collection(request()->all()),
+            'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
+            'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
         ]);
     }
 
