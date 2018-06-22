@@ -183,6 +183,7 @@ class VisitController extends FrontController
 
         return view('site.visit', [
           'primaryNavCurrent' => 'visit',
+          'page' => $page,
           'title' => $page->title,
           'contrastHeader' => true,
           'filledLogo' => true,

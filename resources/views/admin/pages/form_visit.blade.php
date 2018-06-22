@@ -132,7 +132,7 @@
 
     <a17-fieldset title="Dining" id="dining_hours">
         @formField('input', [
-            'name' => 'visit_intro',
+            'name' => 'visit_dining_link',
             'label' => 'Explore all dining link'
         ])
 
