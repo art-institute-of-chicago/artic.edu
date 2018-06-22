@@ -29,7 +29,7 @@ const newsletter = function(container) {
     msg.className = 'm-aside-newsletter__msg f-buttons';
     if (type === 'success') {
       msg.className += ' m-aside-newsletter__msg--success';
-      msg.textContent = 'Successfully signed up to the newsletter';
+      msg.textContent = message || 'Successfully signed up to the newsletter';
       container.classList.add('s-success');
     } else if (type === 'error') {
       msg.className += ' m-aside-newsletter__msg--error';
@@ -65,7 +65,7 @@ const newsletter = function(container) {
           container.classList.remove('s-loading');
           container.setAttribute('disabled', 'disabled');
           container.querySelector('input[name=email]').value = '';
-          _updateState('success');
+          _updateState('success', data.message || data.email);
           // tell GTM
           triggerCustomEvent(document, 'gtm:push', {
             'event': 'sign-up',
@@ -75,16 +75,18 @@ const newsletter = function(container) {
         } catch (err) {
           console.error('Error submitting newsletter sign up (a)');
           console.log(err,data);
+          _updateState('error');
         }
         _enable();
       },
       onError: function(data){
         try {
           data = JSON.parse(data);
-          _updateState('error', data.message);
+          _updateState('error', data.message || data.email);
         } catch(err) {
           console.error('Error submitting newsletter sign up (b)');
           console.log(data, err);
+          _updateState('error');
         }
         _enable();
       }

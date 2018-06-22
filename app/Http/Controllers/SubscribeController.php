@@ -12,13 +12,14 @@ class SubscribeController extends Controller
         $data = $request->validate(['email'=>'required|email']);
 
         // TODO Subscribe to list via ExactTarget API
+
         $response = true;
         if ($response) {
-            return ['message' => 'Added successfully'];
+            return ['message' => 'Successfully signed up to the newsletter.'];
         }
 
         return response()->json([
-            'message' => 'Invalid email address',
+            'message' => 'The email must be a valid email address.',
         ], 500);
 
     }
