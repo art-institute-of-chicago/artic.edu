@@ -18,6 +18,7 @@ const headerGallery = function(container) {
         width: button.getAttribute('data-gallery-img-width') || button.nextElementSibling.getAttribute('width') || '',
         height: button.getAttribute('data-gallery-img-height') || button.nextElementSibling.getAttribute('height') || '',
         credit: button.getAttribute('data-gallery-img-credit') || '',
+        alt: button.getAttribute('data-gallery-img-alt') || button.nextElementSibling.getAttribute('alt') || '',
         creditUrl: button.getAttribute('data-gallery-img-credit-url') || '',
         shareUrl: button.getAttribute('data-gallery-img-share-url') || '',
         shareTitle: button.getAttribute('data-gallery-img-share-title') || '',
@@ -53,6 +54,13 @@ const headerGallery = function(container) {
     }
   }
 
+  function _loaded() {
+    let $hero = nodes.hero.querySelector('img');
+    $hero.removeEventListener('load', _loaded);
+    $hero.setAttribute('srcset', data[activeIndex].srcset);
+    container.classList.remove('s-updating');
+  }
+
   function _update(init) {
     forEach(nodes.thumbButtons, function(index, button) {
       if (index !== activeIndex) {
@@ -77,14 +85,17 @@ const headerGallery = function(container) {
     setTimeout(function(){
 
       let $hero = nodes.hero.querySelector('img');
+      $hero.removeAttribute('srcset');
+      $hero.removeAttribute('data-srcset');
+
+      $hero.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+      $hero.addEventListener('load', _loaded, false);
       $hero.src = data[activeIndex].src;
+
       $hero.width = data[activeIndex].width;
       $hero.height = data[activeIndex].height;
+      $hero.alt = data[activeIndex].alt;
       _fixDisplay();
-      $hero.removeAttribute('srcset');
-      window.requestAnimationFrame(function(){
-        $hero.setAttribute('srcset', data[activeIndex].srcset);
-      });
 
       let creditNode;
       creditNode = document.createElement('span');
@@ -101,8 +112,6 @@ const headerGallery = function(container) {
       creditNode.setAttribute('data-gallery-credit','');
       nodes.credit.parentNode.replaceChild(creditNode, nodes.credit);
       nodes.credit = creditNode;
-
-      container.classList.remove('s-updating');
     }, 150)
   }
 
