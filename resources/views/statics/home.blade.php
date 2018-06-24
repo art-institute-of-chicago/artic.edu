@@ -179,10 +179,10 @@
         @component('components.molecules._m-listing----product')
             @slot('simple', true)
             @slot('item', $item)
-            @slot('imgVariation','m-listing__img--square')
+            @slot('imgVariation','m-listing__img--tall')
             @slot('imageSettings', array(
                 'fit' => 'clamp',
-                'ratio' => '1:1',
+                'ratio' => '3:4',
                 'srcset' => array(200,400,600),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '216px',
