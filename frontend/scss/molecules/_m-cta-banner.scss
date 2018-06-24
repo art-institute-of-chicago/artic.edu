@@ -1,16 +1,12 @@
 
 .m-cta-banner {
-  position: relative;
-  height: 240px;
   margin-top: 36px;
-  overflow: hidden;
 
   & + * {
     margin-top: 36px;
   }
 
   @include breakpoint('small+') {
-    height: 160px;
     margin-top: 48px;
 
     & + * {
@@ -27,7 +23,18 @@
   }
 }
 
-.m-cta-banner::after {
+.m-cta-banner__link {
+  display: block;
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+
+  @include breakpoint('small+') {
+    height: 200px;
+  }
+}
+
+.m-cta-banner__link::after {
   content: '';
   position: absolute;
   top: 0;
@@ -59,7 +66,7 @@
   height: 340px;
 
   @include breakpoint('small+') {
-    height: 260px;
+    height: 280px;
   }
 }
 
@@ -78,6 +85,7 @@
   z-index: 3;
 
   @include breakpoint('small+') {
+    top: 20px;
     left: colspan(3, small);
     right: colspan(3, small);
     padding-right: colspan(17, small);
@@ -144,4 +152,11 @@
 .m-cta-banner__action .btn {
   display: block;
   width: 100%;
+
+  .m-cta-banner__link:hover &,
+  .m-cta-banner__link:focus:hover & {
+    border-color: $color__link--accent-hover;
+    background-color: $color__link--accent-hover;
+    color: $color__white;
+  }
 }
