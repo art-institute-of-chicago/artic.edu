@@ -2,6 +2,11 @@
 .o-visit .m-links-bar {
   margin-top: 0;
 }
+  .o-visit .m-link-list + .m-links-bar {
+    @include breakpoint('xsmall') {
+      margin-top: 24px;
+    }
+  }
 
 .o-visit .m-title-bar {
   margin-top: 52px;

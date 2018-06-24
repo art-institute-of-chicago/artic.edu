@@ -361,7 +361,7 @@
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
-          array('label' => 'Explore all dining', 'href' => '#', 'gtmAttributes' => 'data-gtm-event="visit-dining" data-gtm-event-category="nav-link"'),
+          array('label' => 'Explore all dining', 'href' => $page->visit_dining_link, 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="visit-dining" data-gtm-event-category="nav-link"'),
         ))
     @endcomponent
 
@@ -381,8 +381,8 @@
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
-          array('label' => 'Accessibility information', 'href' => $faq['accesibility_link']),
-          array('label' => 'More FAQs and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
+          array('label' => 'Accessibility information', 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
+          array('label' => 'More FAQs and guidelines', 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
         ))
     @endcomponent
 

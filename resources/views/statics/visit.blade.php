@@ -358,7 +358,7 @@
   @component('components.molecules._m-links-bar')
       @slot('variation', 'm-links-bar--title-bar-companion')
       @slot('linksPrimary', array(
-        array('label' => 'Explore all dining', 'href' => '#'),
+        array('label' => 'Explore all dining', 'href' => '#', 'variation' => 'btn--secondary'),
       ))
   @endcomponent
 
@@ -378,8 +378,8 @@
   @component('components.molecules._m-links-bar')
       @slot('variation', 'm-links-bar--title-bar-companion')
       @slot('linksPrimary', array(
-        array('label' => 'Accessibility information', 'href' => '#'),
-        array('label' => 'More FAQ\'s and guidelines', 'href' => '#')
+        array('label' => 'Accessibility information', 'href' => '#', 'variation' => 'btn--secondary'),
+        array('label' => 'More FAQ\'s and guidelines', 'href' => '#', 'variation' => 'btn--secondary')
       ))
   @endcomponent
 
