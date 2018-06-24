@@ -24,6 +24,10 @@ class StaticsController extends FrontController {
       return view(($slug != "") ? "statics/{$slug}" : "statics/index");
   }
 
+  public function error404() {
+    return view('errors/404');
+  }
+
   public function typetest() {
     return view('statics/typetest', [
       'exhibitions1' => $this->getExhibitions(2),
