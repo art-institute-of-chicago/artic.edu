@@ -124,7 +124,8 @@
         @slot('name', 'collection-search')
         @slot('value', request('q'))
         @slot('action', route('collection'))
-        @slot('behaviors','ajaxFormSubmit')
+        @slot('behaviors','autocomplete')
+        @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
         @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
     @endcomponent
     <div class="o-collection-search__scroll-area">

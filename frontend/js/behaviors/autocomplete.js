@@ -120,7 +120,11 @@ const autocomplete = function(container) {
     }
   }
 
-  function _clearInput() {
+  function _clearInput(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     _closeAutocomplete();
     textInput.value = '';
   }
@@ -147,14 +151,6 @@ const autocomplete = function(container) {
     }
   }
 
-  function _setFocus(){
-    if( textInput.value !== '' ){
-      textInput.focus();
-      textInput.selectionStart = textInput.selectionEnd = textInput.value.length;
-      container.classList.add(autocompleteActiveKlass);
-    }
-  }
-
   function _init() {
     textInput.addEventListener('input', _handleInput, false);
     textInput.addEventListener('propertychange', _handleInput, false);
@@ -164,7 +160,9 @@ const autocomplete = function(container) {
     document.addEventListener('touchstart', _touchstart, false);
     window.addEventListener('keyup', _escape, false);
 
-    _setFocus();
+    if(textInput.value !== '') {
+      container.classList.add(autocompleteActiveKlass);
+    }
   }
 
   this.destroy = function() {

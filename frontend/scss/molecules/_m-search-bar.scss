@@ -39,11 +39,13 @@
   }
 }
 
+.m-search-bar.s-autocomplete-active input[type=text],
 .m-search-bar input[type=text]:focus {
   border-color: $color__rules--focus;
   background-color: $color__white;
 }
 
+.m-search-bar.s-autocomplete-active input[type=text] + .m-search-bar__submit,
 .m-search-bar input[type=text]:focus + .m-search-bar__submit {
   background-color: $color__rules--focus;
   color: $color__white;
@@ -135,6 +137,7 @@
     }
   }
 
+  .m-search-bar.s-autocomplete-active input[type=text]:focus,
   .m-search-bar input[type=text]:focus {
     border-color: transparent;
     background-color: $color__bg--primary;
@@ -154,6 +157,7 @@
     color: $color__text--title;
   }
 
+  .m-search-bar.s-autocomplete-active input[type=text]:focus + .m-search-bar__submit,
   .m-search-bar input[type=text]:focus + .m-search-bar__submit {
     background-color: $color__bg--primary;
     color: $color__text--title;
@@ -218,6 +222,12 @@
   border: 0 none;
   background-color: transparent;
   color: $color__text--title;
+
+  &:focus:hover,
+  &:hover {
+    background-color: transparent;
+    color: $color__text--title;
+  }
 }
 
 .m-search-bar.s-loading .m-search-bar__loader {
