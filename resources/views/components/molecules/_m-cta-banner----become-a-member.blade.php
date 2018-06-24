@@ -16,7 +16,7 @@
     }
 @endphp
 <aside class="m-cta-banner m-cta-banner--parallax{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="bannerParallax">
-    <a href="{{ $href }}"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+    <a href="{{ $href }}" class="m-cta-banner__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <div class="m-cta-banner__img" data-parallax-img>
             @component('components.atoms._img')
                 @slot('image', $image)
