@@ -4,7 +4,23 @@
     right: 0;
     bottom: 0;
     background-color: rgba($color__white, 1);
-    opacity: 0;
+    opacity: .25;
+  }
+
+  &.s-ajax-mode-2 {
+    .g-mask {
+      opacity: .5;
+    }
+
+    .g-ajax-loader {
+      left: 50%;
+      top: 50%;
+      opacity: 1;
+    }
+
+    .progress-bar {
+      display: none;
+    }
   }
 }
 
@@ -15,6 +31,12 @@
     bottom: 0;
     background-color: rgba($color__white, 1);
     opacity: 1;
+  }
+
+  &.s-ajax-mode-2 {
+    .progress-bar {
+      display: none;
+    }
   }
 }
 
@@ -39,6 +61,10 @@
     left: 50%;
     top: 50%;
     opacity: 1;
+  }
+
+  .progress-bar {
+    display: none;
   }
 
   .o-collection-filters::after {

@@ -25,13 +25,18 @@
       <path fill="currentColor" d="M9,1v8H1V1H9 M10,0H0v10h10V0L10,0z"/>
     </svg>
   </span>
+
+  <span class="design-grid-toggle design-grid-toggle--ajax{{ !isset($_COOKIE["A17_ajaxDeactivated"]) ? ' js-active' : '' }}" title="Toggle Ajax Page Loading">
+      <svg xmlns="http://www.w3.org/2000/svg" width="221" height="184" viewBox="0 0 221 184"><path fill="currentColor" d="M53.822 47.904L26.669 56.21 3.028 169.937l22.362-7.028c4.792-15.653 23.001-24.917 23.001-24.917l3.194 17.569 17.57-5.749L53.822 47.904zm-23.001 77.628l8.945-41.849 5.431 32.904s-1.278-2.236-14.376 8.945z"/><path fill="currentColor" d="M61.17 168.659s8.945-1.279 9.584-17.89l3.194-107.657 21.723-6.389-5.111 108.616s-1.597 28.432-29.39 35.779v-12.459zM193.744 64.835l17.89-60.058-23.32 6.07-7.986 29.709-13.418-24.278-20.445 6.07 24.598 46.321-15.015 44.404-13.098-89.767-27.153 7.667-23.959 113.726 22.042-7.027c6.389-17.251 22.682-23.321 22.682-23.321l2.874 16.931 35.779-9.903 9.265-29.39 13.098 23.959 19.487-6.389-23.321-44.724zm-73.155 36.099l7.667-42.807 4.792 34.821s-5.751 1.278-12.459 7.986z"/></svg>
+      <span>1</span>
+  </span>
 </div>
 
 <span class="design-grid design-grid--baseline js-hide"></span>
 <span class="design-grid design-grid--columns js-hide"></span>
 
 <script>
-  var imgBaseline = function(el) {
+  var imgBaseline = function() {
     // get baseline - assumes 5px baseline
     var el = document.querySelector('.design-grid-toggle--img');
     var active = false;
@@ -49,13 +54,74 @@
       e.preventDefault();
     }
 
-    if( el ){
+    if(el){
       el.addEventListener('click', _handleClicks, false);
     }
   };
 
+  var ajaxToggler = function() {
+    var el = document.querySelector('.design-grid-toggle--ajax');
+    var modeDisplay = el.querySelector('span');
+    var active = el.classList.contains('js-active');
+    var mode = document.documentElement.classList.contains('s-ajax-mode-2') ? 2 : 1;
+
+    function _cookie(name,value,days) {
+      if (days) {
+          var date = new Date();
+          date.setTime(date.getTime()+(days*24*60*60*1000));
+          var expires = "; expires="+date.toGMTString();
+      }
+      else var expires = "";
+      document.cookie = name+"="+value+expires+"; path=/";
+    }
+
+    function _deactivate() {
+        A17.ajaxLinksActive = false;
+        el.classList.remove('js-active');
+        _cookie('A17_ajaxDeactivated',true,1);
+        active = false;
+        mode = 1;
+        modeDisplay.textContent = mode;
+        document.documentElement.classList.remove('s-ajax-mode-2');
+    }
+
+    function _activate() {
+        A17.ajaxLinksActive = true;
+        el.classList.add('js-active');
+        _cookie('A17_ajaxDeactivated','',-1);
+        active = true;
+    }
+
+    function _handleClicks(e) {
+      if(active){
+        if (mode === 1) {
+            mode = 2;
+            modeDisplay.textContent = mode;
+            document.documentElement.classList.add('s-ajax-mode-2');
+        } else {
+            _deactivate();
+        }
+      }else{
+        _activate();
+      }
+      e.preventDefault();
+    }
+
+    if (!active) {
+        _deactivate();
+    }
+    modeDisplay.textContent = mode;
+    el.addEventListener('click', _handleClicks, false);
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
     imgBaseline();
+    ajaxToggler();
+  });
+
+  document.addEventListener('page:updated', function(){
+    imgBaseline();
+    ajaxToggler();
   });
 </script>
 <!-- END DESIGN GRIDS -->
