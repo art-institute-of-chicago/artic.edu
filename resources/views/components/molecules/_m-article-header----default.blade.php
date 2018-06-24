@@ -1,5 +1,5 @@
 <{{ $tag or 'header' }} class="m-article-header m-article-header--default{{ (isset($variation)) ? ' '.$variation : '' }}">
-    @if (isset($title))
+    @if (!empty($title))
         @component('components.atoms._title')
             @slot('tag','h1')
             @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
@@ -23,7 +23,7 @@
             <time datetime="{{ $date->format("Y-m-d") }}" itemprop="startDate">{{ $date->format('F j, Y') }}</time>
         @endcomponent
     @endif
-    @if (isset($type))
+    @if (!empty($type))
         @component('components.atoms._type')
             @slot('tag','p')
             {{ $type }}

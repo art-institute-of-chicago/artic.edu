@@ -159,6 +159,14 @@
     width: 100%;
   }
 
+  @include breakpoint('small-') {
+    &.o-article__secondary-actions--empty\@small- {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0 none;
+    }
+  }
+
   @include breakpoint('medium+') {
     float: right;
     width: colspan(18, medium);

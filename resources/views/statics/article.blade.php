@@ -75,7 +75,7 @@
   </div>
   @endif
 
-  <div class="o-article__secondary-actions{{ ($article->headerType === 'gallery') ? ' o-article__secondary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@medium+' : '' }}">
+  <div class="o-article__secondary-actions{{ ($article->headerType === 'gallery') ? ' o-article__secondary-actions--inline-header' : '' }}{{ ($article->articleType === 'artwork') ? ' u-show@medium+' : '' }}{{ ($article->articleType === 'event' && empty($article->ticketLink) && empty($article->ticketPrices)) ? ' o-article__secondary-actions--empty@small-' : '' }}">
     @if ($article->articleType === 'exhibition')
         @component('components.molecules._m-ticket-actions----exhibition')
         @endcomponent

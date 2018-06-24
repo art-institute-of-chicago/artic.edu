@@ -2,9 +2,15 @@
   display: flex;
   position: relative;
   flex-flow: column nowrap;
+  min-height: 140px;
   padding-top: 12px;
 
+  @include breakpoint('small+') {
+    min-height: 144px;
+  }
+
   @include breakpoint('medium+') {
+    min-height: 172px;
     padding-top: 16px;
   }
 
@@ -30,6 +36,19 @@
 .m-article-header .title {
   @include tucked-margin-top($f-headline, ('xsmall': 44, 'medium+': 48));
 }
+  .m-article-header--default .title:only-child {
+    @include breakpoint('xsmall') {
+      @include tucked-align-top($f-headline, 'xsmall');
+    }
+
+    @include breakpoint('small') {
+      @include tucked-align-top($f-headline, 'small');
+    }
+
+    @include breakpoint('medium') {
+      @include tucked-align-top($f-headline, 'medium');
+    }
+  }
 
 .m-article-header .date {
   @include tucked-margin-top($f-secondary, ('xsmall': 72, 'medium+': 96));

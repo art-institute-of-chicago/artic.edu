@@ -1,3 +1,4 @@
+@if (!empty($ticketLink) and !empty($buttonCaption))
 <ul class="m-ticket-actions">
     @if (isset($ticketLink) and $ticketLink)
         <li class="m-ticket-actions__action m-ticket-actions__action--single-action">
@@ -18,3 +19,4 @@
         </li>
     @endif
 </ul>
+@endif

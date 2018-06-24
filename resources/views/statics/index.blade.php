@@ -64,7 +64,9 @@
           <li><a href="/statics/event_hero">event, hero header</a></li>
           <li><a href="/statics/event_superhero">event, super hero header</a></li>
           <li><a href="/statics/event_past">event past, standard header</a></li>
+          <li><a href="/statics/event_past_minimal">event past, standard header, minimal</a></li>
           <li><a href="/statics/editorial">editorial, feature header</a></li>
+          <li><a href="/statics/editorial_minimal">editorial, standard header, minimal</a></li>
         </ul>
         <h4 class="title f-subheading-1">Batch 02</h4>
         <ul class="list f-body">

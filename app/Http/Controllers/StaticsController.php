@@ -352,6 +352,37 @@ class StaticsController extends FrontController {
     ]);
   }
 
+  public function event_past_minimal() {
+    $article = $this->getEventPageContents();
+
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(12)
+    ));
+    array_push($blocks, array(
+        "type" => 'text',
+         "content" => $this->generateParagraph(6)
+    ));
+    $article->push('blocks', $blocks);
+    $article->push('ticketLink', null);
+    $article->push('ticketPrices', null);
+    $article->push('nav', null);
+    //article->push('intro', null);
+    $article->push('date', null);
+    $article->push('dateStart', null);
+    $article->push('dateEnd', null);
+    $article->push('type', null);
+    $article->push('speakers', null);
+    $article->push('sponsors', null);
+    $article->push('futherSupport', null);
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'article' => $article,
+    ]);
+  }
+
   public function event_feature() {
     $article = $this->getEventPageContents('feature');
     // now push to a view
@@ -443,6 +474,30 @@ class StaticsController extends FrontController {
     ));
     $article->push('citation', $this->faker->paragraph(5));
     $article->push('comments', '<p class="f-secondary">comments embed code</p>');
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'article' => $article,
+    ]);
+  }
+
+  public function editorial_minimal() {
+    $blocks = array();
+    array_push($blocks, array(
+        "type" => 'text',
+        "content" => '<p><span class="f-dropcap-editorial">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula libero vel quam fringilla dignissim. Praesent finibus sem sed arcu tempor, non tincidunt magna luctus. Maecenas lacinia interdum lacinia. Pellentesque ac felis vehicula, fermentum mauris sed, ornare ex. Mauris cursus, nulla eget fermentum molestie, metus velit sodales turpis, nec tempus felis orci id erat. Curabitur velit libero, pretium sed ullamcorper eget, rutrum a nisl. Maecenas lacinia sit amet magna dignissim dapibus. Cras convallis <a href="#">lectus eget pulvinar tristique</a>. Maecenas <strong>consequat</strong> egestas est, in <em>luctus urna</em> porta rhoncus. Quisque id massa tristique, tincidunt risus vel, gravida justo.</p>'
+    ));
+    $blocks = array_merge($blocks, $this->generateBlocks(3));
+    // get an event
+    $article = $this->getArticle();
+    $article->push('articleType', 'editorial');
+    $article->push('blocks', $blocks);
+    //$article->push('intro', null);
+    $article->push('type', null);
+    $article->push('author',array(
+      'img' => $this->getImage(),
+      'name' => $this->faker->firstName.' '.$this->faker->lastName,
+    ));
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
