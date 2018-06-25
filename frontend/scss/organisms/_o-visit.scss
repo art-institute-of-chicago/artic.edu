@@ -2,7 +2,9 @@
 .o-visit .m-links-bar {
   margin-top: 0;
 }
-  .o-visit .m-link-list + .m-links-bar {
+  .m-links-bar--title-bar-companion,
+  .o-visit .o-grid-listing + .m-links-bar--title-bar-companion,
+  .o-visit .m-link-list + .m-links-bar--title-bar-companion {
     @include breakpoint('xsmall') {
       margin-top: 24px;
     }
