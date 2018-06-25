@@ -295,10 +295,8 @@
     }
 
     @include breakpoint('xlarge') {
-      width: colspan(46, xlarge);
-      width: calc(100vw - #{colspan(20, xlarge)});
+      width: calc(100vw - #{colspan(15, xlarge)} - ((100vw - #{colspan(58, xlarge)})/2));
       margin-right: calc((100vw - #{colspan(58, xlarge)})/-2);
-      margin-right: -50vw;
       margin-left: colspan(2, xlarge);
       padding-left: 0;
     }
@@ -323,7 +321,8 @@
       }
 
       @include breakpoint('xlarge') {
-        width: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
+        //width: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
+        width: colspan(1, xlarge);
       }
     }
   }
