@@ -299,10 +299,10 @@
                                 @slot('imageSettings', array(
                                     'srcset' => array(200,400,600,1000,1500,3000,4500),
                                     'sizes' => aic_imageSizes(array(
-                                          'xsmall' => '50',
-                                          'small' => '35',
-                                          'medium' => '23',
-                                          'large' => '23',
+                                          'xsmall' => '600px',
+                                          'small' => '600px',
+                                          'medium' => '600px',
+                                          'large' => '600px',
                                           'xlarge' => '18',
                                     )),
                                 ))
