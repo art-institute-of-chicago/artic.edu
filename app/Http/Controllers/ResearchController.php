@@ -20,7 +20,7 @@ class ResearchController extends Controller
         $features = [];
         foreach($featuredPages as $item) {
             $links = [];
-            foreach($item->children as $index => $child) {
+            foreach($item->children()->orderBy('position')->published()->get() as $index => $child) {
                 if ($index == 4) {
                     break; // Show only the top 4 children.
                 }

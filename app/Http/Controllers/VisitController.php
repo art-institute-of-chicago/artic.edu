@@ -161,7 +161,7 @@ class VisitController extends FrontController
         $tours = [];
         foreach($page->visitTourPages as $item) {
             $links = [];
-            foreach($item->children as $child) {
+            foreach($item->children()->orderBy('position')->published()->get() as $child) {
                 array_push($links, array(
                     'href' => $child->url,
                     'label' => $child->title,
