@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Fee;
+use App\Models\FeeCategory;
+use App\Models\FeeAge;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +15,6 @@ class VisitController extends FrontController
     public function index()
     {
         $page = Page::forType('Visit')->first();
-
 
         $video_url = $page->file('video');
         if ($video_url)  {
@@ -53,34 +54,24 @@ class VisitController extends FrontController
             'sections' => $page->featured_hours,
         );
 
-        $ageGroups = array();
-        $ageName = '';
-        $prices = array();
-        $keys = array();
-        $titles = array();
-        $i = 0;
-        foreach(Fee::orderBy('fee_age_id')->get() as $admission){
-            if ($admission->fee_category) {
-                $key = strtolower(str_replace(' ', '', $admission->fee_category->title));
-                $title = $admission->fee_category->title;
-                $tooltip = $admission->fee_category->tooltip;
-                if($ageName !== $admission->fee_age->title){
+        // Get prices grid for admissions
+        // This should be moved away from the controller.
+        $fees   = Fee::all();
+        $prices = [];
+        $titles = [];
+        foreach (FeeCategory::ordered()->get() as $category) {
+            $titles[$category->id]['title'] = $category->title;
+            $titles[$category->id]['tooltip'] = $category->tooltip;
 
-                    if($ageName !== ''){
-                        array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
-                    }
+            foreach (FeeAge::ordered()->get() as $age) {
+                $fee = $fees->where('fee_age_id', $age->id)->where('fee_category_id', $category->id)->first();
 
-                    $ageName = $admission->fee_age->title;
-                    $prices = array();
-                    $i = 0;
-                };
-                $prices[$key] = $admission->price;
-                $titles[$i] = array('title' => $title, 'tooltip' => $tooltip);
-                $keys[$i] = $key;
-                $i += 1;
+                if ($fee) {
+                    $prices[$age->id]['title'] = $age->title;
+                    $prices[$age->id][$category->id] = $fee->price;
+                }
             }
-        };
-        array_push($ageGroups, array('title' => $ageName, 'prices' => $prices));
+        }
 
         $admission = array(
             'text' => preg_replace('/<p>/i', '<p class="f-secondary">', $page->visit_admission_description),
@@ -93,9 +84,9 @@ class VisitController extends FrontController
                     'href' => $page->visit_city_pass_link,
                 ),
             ),
-            'ageGroups' => $ageGroups,
-            'keys' => $keys,
+            // 'keys' => $keys,
             'titles' => $titles,
+            'prices' => $prices,
             'become_member' => array(
                 'label' => $page->visit_become_member_label,
                 'link' => $page->visit_become_member_link
