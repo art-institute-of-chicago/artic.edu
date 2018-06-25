@@ -2,7 +2,7 @@ import { purgeProperties } from '@area17/a17-helpers';
 
 const bannerParallax = function(container) {
 
-  let parallaxAmount = 100;
+  let parallaxAmount = 60;
   let active = false;
   let img;
 
