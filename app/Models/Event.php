@@ -218,6 +218,12 @@ class Event extends Model
         return $query->where('audience', '=', $audience);
     }
 
+    public function scopeDefault($query)
+    {
+        return $query->betweenDates(Carbon::today(), Carbon::today()->addDay(14));
+    }
+
+    // TODO: "Today" on the website actually uses scopeDefault now. Remove this..?
     public function scopeToday($query)
     {
         return $query->betweenDates(Carbon::today(), Carbon::tomorrow());

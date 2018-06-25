@@ -94,7 +94,8 @@ class ArtworkPresenter extends BasePresenter
 
         if ($this->entity->artist_pivots != null && count($this->entity->artist_pivots) > 0) {
             $artistLinks = collect($this->entity->artist_pivots)->map(function($item) {
-                $title = $item->role_title ? $item->artist_title . " ({$item->role_title})" : $item->artist_title;
+                // Don't show role if the role is "Artist" or [TODO] "Creator"
+                $title = $item->artist_title . ( ( $item->role_title && $item->role_id !== 219 ) ? " ({$item->role_title})" : '' );
                 return ['label' => $title, 'href' => route('artists.show', $item->artist_id), 'gtmAttributes' => 'data-gtm-event="artist" data-gtm-event-category="collection-nav"'];
             });
             $details[] = [
