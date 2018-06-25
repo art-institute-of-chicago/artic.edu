@@ -56,13 +56,20 @@ const stickyFilters = function(container){
     });
   }
 
+  function _pageUpdated() {
+    window.requestAnimationFrame(function(){
+      _calcLockPositions();
+      _decidePos();
+    });
+  }
+
   function _destroy() {
     _posDefault();
     window.removeEventListener('load', _calcLockPositions);
     window.removeEventListener('resized', _calcLockPositions);
     window.removeEventListener('mediaQueryUpdated', _calcLockPositions);
     document.removeEventListener('fonts:loaded', _calcLockPositions);
-    document.removeEventListener('page:updated', _calcLockPositions);
+    document.removeEventListener('page:updated', _pageUpdated);
     /*
     min$('img').off('load',_calcLockPositions);
     */
@@ -73,7 +80,7 @@ const stickyFilters = function(container){
     window.addEventListener('resized', _calcLockPositions, false);
     window.addEventListener('mediaQueryUpdated', _calcLockPositions, false);
     document.addEventListener('fonts:loaded', _calcLockPositions, false);
-    document.addEventListener('page:updated', _calcLockPositions, false);
+    document.addEventListener('page:updated', _pageUpdated, false);
     /*
     min$('img').on('load',_calcLockPositions).each(function(){
       try {
