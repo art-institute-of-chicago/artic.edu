@@ -22,21 +22,23 @@
         @endif
     </span>
     <span class="m-listing__meta">
-        @if ($item->is_member_exclusive)
-            @component('components.atoms._type')
-                @slot('variation', 'type--membership')
-                Member Exclusive
-            @endcomponent
-        @else
-            @component('components.atoms._type')
-                @if (method_exists($item, 'present'))
-                    {{ $item->present()->type }}
-                @else
-                    {{ $item->type }}
-                @endif
-            @endcomponent
+        @if (!request('type'))
+            @if ($item->is_member_exclusive)
+                @component('components.atoms._type')
+                    @slot('variation', 'type--membership')
+                    Member Exclusive
+                @endcomponent
+            @else
+                @component('components.atoms._type')
+                    @if (method_exists($item, 'present'))
+                        {{ $item->present()->type }}
+                    @else
+                        {{ $item->type }}
+                    @endif
+                @endcomponent
+            @endif
+            <br>
         @endif
-        <br>
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-4')
             {{ $item->title }}
