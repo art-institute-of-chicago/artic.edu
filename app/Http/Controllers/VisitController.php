@@ -84,7 +84,6 @@ class VisitController extends FrontController
                     'href' => $page->visit_city_pass_link,
                 ),
             ),
-            // 'keys' => $keys,
             'titles' => $titles,
             'prices' => $prices,
             'become_member' => array(
