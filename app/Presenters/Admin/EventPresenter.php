@@ -84,7 +84,7 @@ class EventPresenter extends BasePresenter
     public function nextOcurrenceTime()
     {
         if ($next = $this->entity->nextOcurrence) {
-            return '<time datetime="'.$next->date->format("H:i:s").'" itemprop="startDate">'.$next->date->format('h:ia').'</time> &ndash; <time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('h:ia').'</time>';
+            return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('h:ia').'</time> &ndash; <time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('h:ia').'</time>';
         }
     }
 
