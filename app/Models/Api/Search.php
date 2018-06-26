@@ -197,6 +197,59 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeRecentAcquisition($query, $value = 2017)
+    {
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "fiscal_year" => [
+                                "gte" => $value
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeHasMultimedia($query, $value = false)
+    {
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "term" => [
+                            'has_multimedia_resources' => ($value == true) //Value could be 1, "1"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeHasEducationalResources($query, $value = false)
+    {
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "term" => [
+                            'has_educational_resources' => ($value == true) //Value could be 1, "1"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeOnView($query, $value = true)
     {
         $params = [
