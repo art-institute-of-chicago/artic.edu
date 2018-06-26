@@ -58,7 +58,7 @@ class ArtworkPresenter extends BasePresenter
               "type"    => 'itemprop',
               "content" => [[
                 "type"    => 'text',
-                "content" => $this->entity->description,
+                "content" => $this->entity->descriptionFiltered,
               ]],
               'itemprop' => 'description',
             ]);
