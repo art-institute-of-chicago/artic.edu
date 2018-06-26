@@ -62,7 +62,7 @@
   var ajaxToggler = function() {
     var el = document.querySelector('.design-grid-toggle--ajax');
     var modeDisplay = el.querySelector('span');
-    var active = !el.classList.contains('js-active');
+    var active = el.classList.contains('js-active');
     var mode = document.documentElement.classList.contains('s-ajax-mode-2') ? 2 : 1;
 
     function _cookie(name,value,days) {
