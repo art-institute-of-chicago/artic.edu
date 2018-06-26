@@ -72,6 +72,12 @@ class GenericPage extends Model implements Sortable
         ],
     ];
 
+    public function getDateAttribute()
+    {
+        if ($this->publish_start_date)
+            return $this->publish_start_date->format('M j, Y');
+    }
+
     public function getUrlAttribute()
     {
 
