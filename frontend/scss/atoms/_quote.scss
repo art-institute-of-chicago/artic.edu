@@ -27,6 +27,11 @@
   background-color: $color__rules--primary;
 }
 
+.quote cite {
+  @include tucked-margin-top($f-secondary, ('xsmall': 40, 'medium': 56));
+  display: block;
+}
+
 .quote__icon {
   position: absolute;
   left: 0;
