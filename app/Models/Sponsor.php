@@ -13,7 +13,6 @@ class Sponsor extends Model
     protected $fillable = [
         'published',
         'title',
-        'copy',
     ];
 
     // those fields get auto set to null if not submited

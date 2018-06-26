@@ -1,11 +1,6 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('input', [
-        'name' => 'copy',
-        'label' => 'Sponsor copy',
-    ])
-
     @formField('medias', [
         'name' => 'profile',
         'label' => 'Logo',

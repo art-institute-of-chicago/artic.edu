@@ -5,10 +5,5 @@
 ])
 
 @if(!isset($item))
-    @formField('input', [
-        'name' => 'copy',
-        'required' => true,
-        'label' => 'Sponsor copy',
-        'maxlength' => 255
-    ])
+    {{-- TODO: Clarify why certain fields go into create.blade.php..? --}}
 @endif

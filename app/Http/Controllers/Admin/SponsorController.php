@@ -23,12 +23,6 @@ class SponsorController extends ModuleController
             'sort' => true,
             'field' => 'title',
         ],
-        'copy' => [
-            'title' => 'Sponsor copy',
-            'copy' => 'Sponsor copy',
-            'edit_link' => true,
-            'field' => 'copy',
-        ],
     ];
 
     /*
