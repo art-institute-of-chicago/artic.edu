@@ -158,7 +158,9 @@ class Artwork extends BaseApiModel
     public function allImages()
     {
         $main = $this->imageFront('hero');
-        empty($main) ?: $main['credit'] = $this->getImageCopyright();
+        if (!empty($main)) {
+            $main['credit'] = $this->getImageCopyright();
+        }
 
         return collect($this->extraImages)->map(function ($image) {
             $img = $image->imageFront();
