@@ -40,6 +40,10 @@ class EventPresenter extends BasePresenter
             return null;
         }
 
+        if ($this->entity->is_sold_out) {
+            return 'sold-out';
+        }
+
         if ($this->entity->is_private) {
             return 'rsvp';
         }
@@ -53,15 +57,15 @@ class EventPresenter extends BasePresenter
         }
 
         if ($this->entity->is_free) {
-            return 'free';
+            if ($this->entity->is_ticketed) {
+                return 'rsvp';
+            } else {
+                return 'free';
+            }
         }
 
         if ($this->entity->is_ticketed) {
-            if ($this->entity->is_sold_out) {
-                return 'sold-out';
-            } else {
-                return 'buy-ticket';
-            }
+            return 'buy-ticket';
         }
     }
 

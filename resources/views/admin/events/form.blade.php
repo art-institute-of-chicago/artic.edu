@@ -87,17 +87,6 @@
 
     <a17-fieldset id="attributes" title="Event entrance attributes">
         @formField('checkbox', [
-            'name' => 'is_private',
-            'label' => 'Is Private',
-        ])
-
-        @formField('input', [
-            'name' => 'rsvp_link',
-            'label' => 'External RSVP Link',
-            'note' => 'URL used when an event is private for the RSVP link'
-        ])
-
-        @formField('checkbox', [
             'name' => 'is_registration_required',
             'label' => 'Requires registration'
         ])
@@ -115,6 +104,17 @@
         @formField('checkbox', [
             'name' => 'is_sold_out',
             'label' => 'Sold Out',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_private',
+            'label' => 'Is Private',
+        ])
+
+        @formField('input', [
+            'name' => 'rsvp_link',
+            'label' => 'External RSVP Link',
+            'note' => 'RSVP link used when an event is private, or when is Free and Ticketed'
         ])
 
         @formField('checkbox', [
