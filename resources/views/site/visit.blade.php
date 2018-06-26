@@ -115,17 +115,17 @@
         <thead>
           <tr>
             <td>&nbsp;</td>
-            @foreach ($admission['titles'] as $category)
+            @foreach ($admission['titles'] as $categoryId => $categoryData)
               <th>
                 @component('components.blocks._text')
                     @slot('font', 'f-module-title-1')
                     @slot('tag','span')
-                    {{ $category['title'] }}
+                    {{ $categoryData['title'] }}
                 @endcomponent
-                @if (isset($category['tooltip']))
+                @if (isset($categoryData['tooltip']))
                   &nbsp;
                   @component('components.atoms._info-button-trigger')
-                      {{ $category['tooltip'] }}
+                      {{ $categoryData['tooltip'] }}
                   @endcomponent
                 @endif
               </th>
@@ -133,26 +133,27 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($admission['ageGroups'] as $ageGroup)
-            @if (strtolower($ageGroup['title']) !== 'children' and strtolower($ageGroup['title']) !== 'members')
-              <tr>
-                <th>
-                  @component('components.blocks._text')
-                      @slot('font', 'f-module-title-1')
-                      @slot('tag','span')
-                      {{ $ageGroup['title'] }}
-                  @endcomponent
-                  @if (isset($ageGroup['subtitle']))
-                    @component('components.blocks._text')
-                        @slot('font', 'f-secondary')
-                        @slot('tag','em')
-                        &nbsp;({{ $ageGroup['subtitle'] }})
-                    @endcomponent
-                  @endif
-                </th>
-                @foreach ($admission['keys'] as $ageGroupPrice)
+          @foreach ($admission['prices'] as $ageId => $ageData)
+            @if (strtolower($ageData['title']) !== 'children' and strtolower($ageData['title']) !== 'members')
+                <tr>
+                    <th>
+                      @component('components.blocks._text')
+                          @slot('font', 'f-module-title-1')
+                          @slot('tag','span')
+                          {{ $ageData['title'] }}
+                      @endcomponent
+                      @if (isset($ageData['subtitle']))
+                        @component('components.blocks._text')
+                            @slot('font', 'f-secondary')
+                            @slot('tag','em')
+                            &nbsp;({{ $ageData['subtitle'] }})
+                        @endcomponent
+                      @endif
+                    </th>
+
+                @foreach ($admission['titles'] as $categoryId => $data)
                   <td>
-                    @if (strtolower($ageGroup['prices'][$ageGroupPrice]) === 'free')
+                    @if (strtolower($ageData['title']) === 'free')
                       @component('components.blocks._text')
                           @slot('font','f-tag')
                           @slot('tag','span')
@@ -162,15 +163,16 @@
                       @component('components.blocks._text')
                           @slot('font', 'f-secondary')
                           @slot('tag','span')
-                          @if($ageGroup['prices'][$ageGroupPrice] == 0)
+                          @if($ageData[$categoryId] == 0)
                           Free
                           @else
-                          ${{ $ageGroup['prices'][$ageGroupPrice] }}
+                          ${{ $ageData[$categoryId] }}
                           @endif
                       @endcomponent
                     @endif
                   </td>
-                @endforeach
+                  @endforeach
+
             @endif
           </tr>
           @endforeach
