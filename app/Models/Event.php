@@ -58,7 +58,6 @@ class Event extends Model
         'buy_tickets_link',
         'location',
         'sponsors_description',
-        'sponsors_sub_copy',
         'content',
         'layout_type',
         'buy_button_text',
@@ -483,12 +482,6 @@ class Event extends Model
                 "doc" => "sponsors_description",
                 "type" => "string",
                 "value" => function () {return $this->sponsors_description;},
-            ],
-            [
-                "name" => "sponsors_sub_copy",
-                "doc" => "sponsors_sub_copy",
-                "type" => "string",
-                "value" => function () {return $this->sponsors_sub_copy;},
             ],
             [
                 "name" => "content",

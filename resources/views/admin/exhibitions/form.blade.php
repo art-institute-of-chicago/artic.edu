@@ -72,13 +72,6 @@
             'toolbarOptions' => ['bold']
         ])
 
-        @formField('wysiwyg', [
-            'name' => 'sponsors_sub_copy',
-            'label' => 'Sponsors sub copy',
-            'note' => 'E.G. further support provided by',
-            'toolbarOptions' => ['bold']
-        ])
-
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'sponsors',

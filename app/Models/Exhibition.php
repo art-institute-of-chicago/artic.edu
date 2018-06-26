@@ -39,7 +39,6 @@ class Exhibition extends Model
         'exhibition_message',
         'list_description',
         'sponsors_description',
-        'sponsors_sub_copy',
         'cms_exhibition_type',
         'hero_caption',
         'meta_title',
@@ -233,12 +232,6 @@ class Exhibition extends Model
                 "doc" => "CMS Type",
                 "type" => "number",
                 "value" => function () {return $this->cms_exhibition_type;},
-            ],
-            [
-                "name" => 'sponsors_sub_copy',
-                "doc" => "Sub Copy",
-                "type" => "string",
-                "value" => function () {return $this->sponsors_sub_copy;},
             ],
             [
                 "name" => 'sponsors_description',
