@@ -26,7 +26,7 @@
     </svg>
   </span>
 
-  <span class="design-grid-toggle design-grid-toggle--ajax{{ !isset($_COOKIE["A17_ajaxDeactivated"]) ? ' js-active' : '' }}" title="Toggle Ajax Page Loading">
+  <span class="design-grid-toggle design-grid-toggle--ajax{{ isset($_COOKIE["A17_ajaxDeactivated"]) ? '' : ' js-active' }}" title="Toggle Ajax Page Loading">
       <svg xmlns="http://www.w3.org/2000/svg" width="221" height="184" viewBox="0 0 221 184"><path fill="currentColor" d="M53.822 47.904L26.669 56.21 3.028 169.937l22.362-7.028c4.792-15.653 23.001-24.917 23.001-24.917l3.194 17.569 17.57-5.749L53.822 47.904zm-23.001 77.628l8.945-41.849 5.431 32.904s-1.278-2.236-14.376 8.945z"/><path fill="currentColor" d="M61.17 168.659s8.945-1.279 9.584-17.89l3.194-107.657 21.723-6.389-5.111 108.616s-1.597 28.432-29.39 35.779v-12.459zM193.744 64.835l17.89-60.058-23.32 6.07-7.986 29.709-13.418-24.278-20.445 6.07 24.598 46.321-15.015 44.404-13.098-89.767-27.153 7.667-23.959 113.726 22.042-7.027c6.389-17.251 22.682-23.321 22.682-23.321l2.874 16.931 35.779-9.903 9.265-29.39 13.098 23.959 19.487-6.389-23.321-44.724zm-73.155 36.099l7.667-42.807 4.792 34.821s-5.751 1.278-12.459 7.986z"/></svg>
       <span>1</span>
   </span>
@@ -62,7 +62,7 @@
   var ajaxToggler = function() {
     var el = document.querySelector('.design-grid-toggle--ajax');
     var modeDisplay = el.querySelector('span');
-    var active = el.classList.contains('js-active');
+    var active = !el.classList.contains('js-active');
     var mode = document.documentElement.classList.contains('s-ajax-mode-2') ? 2 : 1;
 
     function _cookie(name,value,days) {
@@ -73,6 +73,17 @@
       }
       else var expires = "";
       document.cookie = name+"="+value+expires+"; path=/";
+    }
+
+    function _readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
     }
 
     function _deactivate() {
@@ -107,9 +118,14 @@
       e.preventDefault();
     }
 
+    if (_readCookie('A17_ajaxDeactivated')) {
+        active = false;
+    }
+
     if (!active) {
         _deactivate();
     }
+
     modeDisplay.textContent = mode;
     el.addEventListener('click', _handleClicks, false);
   }
