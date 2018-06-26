@@ -160,21 +160,7 @@
 
         @foreach ($item->sponsors as $sponsor)
             @component('components.molecules._m-row-block')
-                {{-- @slot('title', $sponsor->title ?? null) --}}
-                @slot('img', $sponsor->imageFront('profile', 'default') ?? null)
-                @slot('variation', 'm-row-block--squared')
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '1:1',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '13',
-                          'small' => '10',
-                          'medium' => '5',
-                          'large' => '5',
-                          'xlarge' => '5',
-                    )),
-                ))
+                @slot('title', $sponsor->title ?? null)
             @endcomponent
         @endforeach
     @endif
