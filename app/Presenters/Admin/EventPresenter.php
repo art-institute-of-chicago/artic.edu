@@ -36,7 +36,7 @@ class EventPresenter extends BasePresenter
 
     public function ticketStatus()
     {
-        if (empty($this->nextOcurrence)) {
+        if ($this->nextOcurrence == null) {
             return null;
         }
 
@@ -45,6 +45,10 @@ class EventPresenter extends BasePresenter
         }
 
         if ($this->entity->is_member_exclusive) {
+            return 'member-exclusive';
+        }
+
+        if ($this->entity->is_registration_required) {
             return 'register';
         }
 

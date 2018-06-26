@@ -98,6 +98,11 @@
         ])
 
         @formField('checkbox', [
+            'name' => 'is_registration_required',
+            'label' => 'Requires registration'
+        ])
+
+        @formField('checkbox', [
             'name' => 'is_member_exclusive',
             'label' => 'Members exclusive event'
         ])
