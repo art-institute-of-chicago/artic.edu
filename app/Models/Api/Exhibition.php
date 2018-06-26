@@ -47,16 +47,16 @@ class Exhibition extends BaseApiModel
 
     public function getDateStartAttribute()
     {
-        if (!empty($this->start_at)) {
-            return new Carbon($this->start_at);
+        if (!empty($this->aic_start_at)) {
+            return new Carbon($this->aic_start_at);
         }
 
     }
 
     public function getDateEndAttribute()
     {
-        if (!empty($this->end_at)) {
-            return new Carbon($this->end_at);
+        if (!empty($this->aic_end_at)) {
+            return new Carbon($this->aic_end_at);
         }
 
     }
@@ -100,7 +100,7 @@ class Exhibition extends BaseApiModel
     {
         $params = [
             "sort" => [
-                'start_at' => $direction
+                'aic_start_at' => $direction
             ]
         ];
 
@@ -116,14 +116,14 @@ class Exhibition extends BaseApiModel
                 'must' => [
                     0 => [
                         'range' => [
-                            'end_at' => [
+                            'aic_end_at' => [
                                 'gte' => 'now',
                             ],
                         ],
                     ],
                     1 => [
                         'range' => [
-                            'start_at' => [
+                            'aic_start_at' => [
                                 'lte' => 'now',
                             ],
                         ],
@@ -147,7 +147,7 @@ class Exhibition extends BaseApiModel
                 'must' => [
                     0 => [
                         'range' => [
-                            'start_at' => [
+                            'aic_start_at' => [
                                 'gte' => 'now',
                             ],
                         ],
@@ -167,7 +167,7 @@ class Exhibition extends BaseApiModel
                     'must' => [
                         0 => [
                             'range' => [
-                                'end_at' => [
+                                'aic_end_at' => [
                                     'lte' => 'now',
                                 ],
                             ],
@@ -183,14 +183,14 @@ class Exhibition extends BaseApiModel
                     'must' => [
                         0 => [
                             'range' => [
-                                'start_at' => [
+                                'aic_start_at' => [
                                     'lte' => $end,
                                 ],
                             ],
                         ],
                         1 => [
                             'range' => [
-                                'start_at' => [
+                                'aic_start_at' => [
                                     'gte' => $start,
                                 ],
                             ],

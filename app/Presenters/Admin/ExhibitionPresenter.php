@@ -16,8 +16,8 @@ class ExhibitionPresenter extends BasePresenter
 
     public function date()
     {
-        $start = $this->entity->asDateTime($this->start_at);
-        $end   = $this->entity->asDateTime($this->end_at);
+        $start = $this->entity->asDateTime($this->aic_start_at);
+        $end   = $this->entity->asDateTime($this->aic_end_at);
 
         return $start->format('m d Y') . ' - ' . $end->format('m d Y');
     }
@@ -66,12 +66,12 @@ class ExhibitionPresenter extends BasePresenter
 
     public function startAt()
     {
-        return new Carbon($this->entity->start_at);
+        return new Carbon($this->entity->aic_start_at);
     }
 
     public function endAt()
     {
-        return new Carbon($this->entity->end_at);
+        return new Carbon($this->entity->aic_end_at);
     }
 
     public function navigation()
