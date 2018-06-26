@@ -9,6 +9,8 @@ use Illuminate\Support\Carbon;
 class Search extends BaseApiModel
 {
 
+    const RECENT_ACQUISITION_CONSIDERED_YEAR = 2017;
+
     protected $endpoints = [
         'search' => '/api/v1/search',
         'autocomplete' => '/api/v1/autocomplete'
@@ -197,7 +199,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeRecentAcquisition($query, $value = 2017)
+    public function scopeRecentAcquisition($query, $value = null)
     {
         $params = [
             "bool" => [
@@ -205,7 +207,7 @@ class Search extends BaseApiModel
                     [
                         "range" => [
                             "fiscal_year" => [
-                                "gte" => $value
+                                "gte" => self::RECENT_ACQUISITION_CONSIDERED_YEAR
                             ]
                         ]
                     ]
