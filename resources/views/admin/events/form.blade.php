@@ -186,16 +186,17 @@
     </a17-fieldset>
 
     <a17-fieldset id="sponsors" title="Sponsors">
-        @formField('input', [
+        @formField('wysiwyg', [
             'name' => 'sponsors_description',
             'label' => 'Sponsors section description',
-            'type' => 'textarea'
+            'toolbarOptions' => ['bold']
         ])
 
-        @formField('input', [
+        @formField('wysiwyg', [
             'name' => 'sponsors_sub_copy',
             'label' => 'Sponsors sub copy',
-            'note' => 'Default: Further support has been provided by'
+            'note' => 'Default: Further support has been provided by',
+            'toolbarOptions' => ['bold']
         ])
 
         @formField('browser', [
