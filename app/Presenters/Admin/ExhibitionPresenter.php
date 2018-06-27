@@ -16,10 +16,35 @@ class ExhibitionPresenter extends BasePresenter
 
     public function date()
     {
-        $start = $this->entity->asDateTime($this->start_at);
-        $end   = $this->entity->asDateTime($this->end_at);
+     
+        $date = "";
 
-        return $start->format('m d Y') . ' - ' . $end->format('m d Y');
+        $start = $this->entity->asDateTime($this->aic_start_at);
+        $end   = $this->entity->asDateTime($this->aic_end_at);
+
+        $date = $start->format('m d Y') . ' - ' . $end->format('m d Y');
+
+        if(empty($this->aic_end_at)) {
+            if($start->format("Y") > 2010) {
+             $this->entity->status = "Ongoing";
+            } else if($start->format("Y") < 2010) {
+             $this->entity->status = "Closed";
+            }
+            $date = $start->format('m d Y');
+
+        }
+
+        if(empty($this->aic_start_at)) {
+            $this->entity->status = "Closed";
+            $date = $end->format('m d Y');  
+        }
+
+         if(empty($this->aic_start_at) && empty($this->aic_end_at) ) {
+            $this->entity->status = "Closed";
+            $date = "";  
+        }
+
+        return $date;
     }
 
     public function headerType()
