@@ -12,8 +12,8 @@
   <div class="g-footer__inner">
     <ul class="g-footer__grid">
       <li>
-        <a class="g-footer__logo" href="/">
-          <svg aria-label="Art Institute of Chicago">
+        <a class="g-footer__logo" aria-label="Art Institute of Chicago" href="/">
+          <svg aria-hidden="true">
             <use xlink:href="#icon--logo--outline--92" />
           </svg>
         </a>
