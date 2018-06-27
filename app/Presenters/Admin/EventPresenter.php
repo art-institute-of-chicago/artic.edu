@@ -67,9 +67,9 @@ class EventPresenter extends BasePresenter
             return $this->entity->forced_date;
         } else {
             if ($next = $this->entity->nextOcurrence) {
-                return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('F j, Y h:ia').'</time> &ndash; <time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('h:ia').'</time>';
+                return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('F j, Y h:ia').'</time>&ndash;<time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('h:ia').'</time>';
             } elseif ($last = $this->entity->lastOcurrence) {
-                return '<time datetime="'.$last->date->format("c").'" itemprop="startDate">'.$last->date->format('F j, Y h:ia').'</time> &ndash; <time datetime="'.$last->date_end->format("c").'" itemprop="endDate">'.$last->date_end->format('h:ia').'</time>';
+                return '<time datetime="'.$last->date->format("c").'" itemprop="startDate">'.$last->date->format('F j, Y h:ia').'</time>&ndash;<time datetime="'.$last->date_end->format("c").'" itemprop="endDate">'.$last->date_end->format('h:ia').'</time>';
             }
         }
     }
@@ -84,7 +84,7 @@ class EventPresenter extends BasePresenter
     public function nextOcurrenceTime()
     {
         if ($next = $this->entity->nextOcurrence) {
-            return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('h:ia').'</time> &ndash; <time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('h:ia').'</time>';
+            return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('h:ia').'</time>&ndash;<time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('h:ia').'</time>';
         }
     }
 
