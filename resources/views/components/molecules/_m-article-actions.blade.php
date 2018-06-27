@@ -5,6 +5,7 @@
             @slot('font', '')
             @slot('icon', 'icon--share--24')
             @slot('behavior','sharePage')
+            @slot('ariaLabel','Share page')
         @endcomponent
     </li>
     @if (!empty($icsLink))
@@ -16,6 +17,7 @@
             @slot('dataAttributes', 'download')
             @slot('tag', 'a')
             @slot('href', $icsLink)
+            @slot('ariaLabel','Add to your calendar (ics file)')
         @endcomponent
     </li>
     @endif
@@ -26,6 +28,7 @@
             @slot('font', '')
             @slot('icon', 'icon--print--24')
             @slot('behavior','printPage')
+            @slot('ariaLabel','Print page')
         @endcomponent
     </li>
     @endif
