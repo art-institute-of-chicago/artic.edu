@@ -171,7 +171,7 @@ class Event extends Model
     {
         $dates_string = '';
         foreach ($this->all_dates as $date) {
-            $dates_string .= $date['date']->format('F j, Y h:ia') . ' - ' . $date['date_end']->format('F j, Y h:ia') . "\n";
+            $dates_string .= $date['date']->format('F j, Y h:i') . ' - ' . $date['date_end']->format('F j, Y h:i') . "\n";
         }
 
         return $dates_string;
