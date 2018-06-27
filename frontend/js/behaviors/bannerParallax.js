@@ -2,7 +2,7 @@ import { purgeProperties } from '@area17/a17-helpers';
 
 const bannerParallax = function(container) {
 
-  let parallaxAmount = 60;
+  let parallaxAmount = 100;
   let active = false;
   let img;
 
@@ -12,7 +12,7 @@ const bannerParallax = function(container) {
       let end = rect.top + rect.height;
       let start = end - rect.height - window.innerHeight;
       if (start < 0 && end > 0) {
-        let moveBy = Math.round(100 - ((end / (window.innerHeight + rect.height)) * 100));
+        let moveBy = Math.round(parallaxAmount - ((end / (window.innerHeight + rect.height)) * parallaxAmount));
         img.style.transform = 'translate3D(0px, ' + moveBy + 'px, 0px)';
       }
     }

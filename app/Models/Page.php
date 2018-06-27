@@ -160,7 +160,7 @@ class Page extends Model
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 25 / 3,
+                    'ratio' => 25 / 4,
                 ],
             ],
         ],
