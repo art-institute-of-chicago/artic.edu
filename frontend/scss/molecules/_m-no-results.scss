@@ -10,6 +10,21 @@
 
 .m-no-results .title.f-list-3 {
   @include tucked-margin-top($f-list-3, ('xsmall': 60));
+
+  a {
+    @include text-underline(.8em, $color__rules--secondary);
+    color: $color__link--accent;
+    text-decoration: none;
+
+    &:hover,
+    &:focus:hover {
+      @include text-underline(.8em, $color__link--accent);
+    }
+
+    &:active:hover {
+      @include text-underline(.8em, $color__rules--secondary);
+    }
+  }
 }
 
 .m-no-results .title + .f-body {
