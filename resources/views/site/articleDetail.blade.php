@@ -204,18 +204,6 @@
         @endforeach
     @endif
 
-    @if ($item->sponsors)
-        @component('components.blocks._text')
-            @slot('font', 'f-module-title-2')
-            @slot('tag', 'h4')
-            Sponsors
-        @endcomponent
-        @component('components.blocks._blocks')
-            @slot('editorial', ($item->articleType === 'editorial'))
-            @slot('blocks', $item->sponsors ?? null)
-        @endcomponent
-    @endif
-
     @if ($item->futherSupport)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top')

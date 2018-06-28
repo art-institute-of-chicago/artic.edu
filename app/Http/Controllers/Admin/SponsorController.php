@@ -9,25 +9,11 @@ class SponsorController extends ModuleController
     protected $moduleName = 'sponsors';
 
     protected $indexColumns = [
-        'image' => [
-            'title' => 'Logo',
-            'thumb' => true,
-            'variant' => [
-                'role' => 'profile',
-                'crop' => 'default',
-            ],
-        ],
         'title' => [
             'title' => 'Title',
             'edit_link' => true,
             'sort' => true,
             'field' => 'title',
-        ],
-        'copy' => [
-            'title' => 'Sponsor copy',
-            'copy' => 'Sponsor copy',
-            'edit_link' => true,
-            'field' => 'copy',
         ],
     ];
 

@@ -70,13 +70,8 @@
             'name' => 'sponsors_description',
             'label' => 'Sponsors section description',
             'toolbarOptions' => ['bold']
-        ])
-
-        @formField('wysiwyg', [
-            'name' => 'sponsors_sub_copy',
-            'label' => 'Sponsors sub copy',
-            'note' => 'E.G. further support provided by',
-            'toolbarOptions' => ['bold']
+            'note' => 'DEPRECATED',
+            'type' => 'textarea'
         ])
 
         @formField('browser', [
@@ -84,8 +79,8 @@
             'moduleName' => 'sponsors',
             'name' => 'sponsors',
             'label' => 'Sponsors',
-            'note' => 'Select sponsors',
-            'max' => 20
+            'note' => 'Display content blocks from this sponsor',
+            'max' => 1
         ])
     </a17-fieldset>
 
