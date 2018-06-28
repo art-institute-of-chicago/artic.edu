@@ -44,12 +44,24 @@ class Sort
 
             return [
                 'href'    => $route,
-                'label'   => 'By ' . ucfirst($option),
+                'label'   => 'By ' . $this->generateLabel($option),
                 'enabled' => $enabled ?? false
             ];
         });
 
         return $list;
+    }
+
+    protected function generateLabel($parameter)
+    {
+        switch ($parameter) {
+            case 'date_start':
+                return 'Date';
+            case 'artist_title':
+                return 'Artist';
+            default:
+                return str_replace('_', ' ', title_case($parameter));
+        }
     }
 
 }
