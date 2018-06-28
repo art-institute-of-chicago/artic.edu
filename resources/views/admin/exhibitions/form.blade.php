@@ -59,7 +59,8 @@
         'blocks' => [
             'event', 'paragraph', 'image', 'video', 'gallery',
             'media_embed', 'quote', 'list', 'accordion', 'newsletter_signup_inline',
-            'shop_items', 'timeline', 'link', 'artwork', 'artworks'
+            'shop_items', 'timeline', 'link', 'artwork', 'artworks',
+            'hr',
         ]
     ])
 @stop

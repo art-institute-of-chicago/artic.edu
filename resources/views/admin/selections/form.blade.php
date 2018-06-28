@@ -40,7 +40,7 @@
 
     @formField('block_editor', [
         'blocks' => [
-            'image', 'video', 'gallery', 'media_embed', 'paragraph', 'artwork', 'artworks'
+            'paragraph', 'image', 'gallery', 'video', 'media_embed',  'artwork', 'artworks', 'hr'
         ]
     ])
 @stop
