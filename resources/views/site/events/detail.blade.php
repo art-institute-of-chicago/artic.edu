@@ -158,25 +158,9 @@
         @endforeach
     @endif
 
-    @if (strlen($item->sponsors_description) > 0)
-        @component('components.blocks._text')
-            @slot('font', 'f-module-title-2')
-            @slot('tag', 'h4')
-            Sponsors
-        @endcomponent
-
-        @component('components.blocks._text')
-            {!! $item->sponsors_description !!}
-        @endcomponent
-    @endif
-
-    @if ($item->sponsors() && $item->sponsors()->count() > 0)
-        @foreach ($item->sponsors as $sponsor)
-            @component('components.molecules._m-row-block')
-                @slot('title', $sponsor->title ?? null)
-            @endcomponent
-        @endforeach
-    @endif
+    @component('site.shared._sponsors')
+        @slot('sponsors', $item->sponsors)
+    @endcomponent
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')

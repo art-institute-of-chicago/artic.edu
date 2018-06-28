@@ -70,6 +70,8 @@
             'name' => 'sponsors_description',
             'label' => 'Sponsors section description',
             'toolbarOptions' => ['bold']
+            'note' => 'DEPRECATED',
+            'type' => 'textarea'
         ])
 
         @formField('browser', [
@@ -77,8 +79,8 @@
             'moduleName' => 'sponsors',
             'name' => 'sponsors',
             'label' => 'Sponsors',
-            'note' => 'Select sponsors',
-            'max' => 20
+            'note' => 'Display content blocks from this sponsor',
+            'max' => 1
         ])
     </a17-fieldset>
 

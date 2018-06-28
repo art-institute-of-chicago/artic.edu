@@ -258,18 +258,6 @@
         @endforeach
     @endif
 
-    @if ($article->sponsors)
-        @component('components.blocks._text')
-            @slot('font', 'f-module-title-2')
-            @slot('tag', 'h4')
-            Sponsors
-        @endcomponent
-        @component('components.blocks._blocks')
-            @slot('editorial', ($article->articleType === 'editorial'))
-            @slot('blocks', $article->sponsors ?? null)
-        @endcomponent
-    @endif
-
     @if ($article->futherSupport)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top o-blocks__block')
