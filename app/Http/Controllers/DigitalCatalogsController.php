@@ -22,7 +22,7 @@ class DigitalCatalogsController extends FrontController
     public function index(Request $request)
     {
         $items = DigitalCatalog::published()->paginate();
-        $title = 'Digital catalogues';
+        $title = 'Digital Catalogues';
         $subNav = [
             ['label' => $title, 'href' => route('collection.publications.digital-catalogs'), 'active' => true]
         ];
