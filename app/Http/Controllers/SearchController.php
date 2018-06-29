@@ -83,7 +83,7 @@ class SearchController extends BaseScopedController
             'articles' => $articles,
             'events'   => $events,
             'exhibitions'  => $exhibitions,
-            'publications' => $publications,
+            // 'publications' => $publications,
             'allResultsView' => false,
             'searchResultsTypeLinks' => $links
         ]);

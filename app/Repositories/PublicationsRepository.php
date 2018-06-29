@@ -9,7 +9,7 @@ class PublicationsRepository
 {
     public function searchApi($string, $perPage = null, $page = null, $columns = [])
     {
-        $search  = Search::query()->search($string)->resources(['publications']);
+        $search = Search::query()->search($string)->resources(["digital-catalogs", "printed-catalogs"]);
 
         // Perform the query
         $results = $search->forPage($page, $perPage)->get($columns);

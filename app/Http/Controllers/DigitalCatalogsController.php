@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\DigitalCatalogRepository;
 use App\Models\DigitalCatalog;
 
-class DigitalCatalogsController extends FrontController
+class DigitalCatalogsController extends CatalogsController
 {
 
     protected $repository;
@@ -22,50 +22,26 @@ class DigitalCatalogsController extends FrontController
     public function index(Request $request)
     {
         $items = DigitalCatalog::published()->paginate();
-        $title = 'Digital catalogues';
-        $subNav = [
-            ['label' => $title, 'href' => route('collection.publications.digital-catalogs'), 'active' => true]
-        ];
 
-        $nav = [
-            ['label' => 'Collection', 'href' => route('collection'), 'links' => $subNav]
-        ];
-
-        $crumbs = [
-            ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => $title, 'href' => '']
-        ];
+        $navElements = $this->getNavElements('Digital catalogues');
 
         $view_data = [
-            'title' => $title,
-            'subNav' => $subNav,
-            'nav' => $nav,
-            "breadcrumb" => $crumbs,
             'wideBody' => true,
             'filters' => null,
             'listingCountText' => 'Showing '.$items->total().' digital catalogues',
             'listingItems' => $items,
-        ];
-
+        ] + $navElements;
 
         return view('site.genericPage.index', $view_data);
     }
 
     public function show($id)
     {
-        $page = $this->repository->find((Integer) $id);
+        $page = $this->repository->forSlug($id);
         if (!$page) {
-            $page = $this->repository->forSlug($id);
-
-            if (!$page) {
-                abort(404);
-            }
+            $page = $this->repository->find((Integer) $id) ?? abort(404);
         }
 
-        $navs = [
-            'nav' => [],
-            'subNav' => []
-        ];
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
             ['label' => 'Digital catalogues', 'href' => route('collection.publications.digital-catalogs')],
@@ -74,17 +50,15 @@ class DigitalCatalogsController extends FrontController
 
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
-            'subNav' => null,
-            'nav' => null,
-            'intro' => $page->short_description,
+            'nav'    => null,
+            'intro'  => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             "breadcrumb" => $crumbs,
-            "blocks" => null,
             'featuredRelated' => [],
-            'nav' => $navs['nav'],
             'page' => $page,
         ]);
+
 
     }
 

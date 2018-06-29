@@ -8,7 +8,7 @@ use App\Repositories\PrintedCatalogRepository;
 use App\Models\PrintedCatalog;
 use App\Models\CatalogCategory;
 
-class PrintedCatalogsController extends BaseScopedController
+class PrintedCatalogsController extends CatalogsController
 {
 
     protected $repository;
@@ -37,7 +37,7 @@ class PrintedCatalogsController extends BaseScopedController
     {
         $items = $this->collection()->paginate();
 
-        $navElements = $this->getNavElements('Printed catalogs');
+        $navElements = $this->getNavElements('Printed catalogues');
 
         $view_data = [
             'wideBody' => true,
@@ -52,19 +52,11 @@ class PrintedCatalogsController extends BaseScopedController
 
     public function show($id)
     {
-        $page = $this->repository->find((Integer) $id);
+        $page = $this->repository->forSlug($id);
         if (!$page) {
-            $page = $this->repository->forSlug($id);
-
-            if (!$page) {
-                abort(404);
-            }
+            $page = $this->repository->find((Integer) $id) ?? abort(404);
         }
 
-        $navs = [
-            'nav' => [],
-            'subNav' => []
-        ];
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
             ['label' => 'Printed catalogues', 'href' => route('collection.publications.printed-catalogs')],
@@ -73,15 +65,12 @@ class PrintedCatalogsController extends BaseScopedController
 
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
-            'subNav' => null,
-            'nav' => null,
-            'intro' => $page->short_description,
+            'nav'    => null,
+            'intro'  => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             "breadcrumb" => $crumbs,
-            "blocks" => null,
             'featuredRelated' => [],
-            'nav' => $navs['nav'],
             'page' => $page,
         ]);
 
@@ -106,30 +95,6 @@ class PrintedCatalogsController extends BaseScopedController
                 'links'  => collect($categoryLinks)
             ]
         ];
-
-    }
-
-    protected function getNavElements($title)
-    {
-
-        $subNav = [
-            [
-                'label'  => $title,
-                'href'   => route('collection.publications.printed-catalogs'),
-                'active' => true
-            ]
-        ];
-
-        $nav = [
-            [ 'label' => 'Collection', 'href' => route('collection'), 'links' => $subNav ]
-        ];
-
-        $crumbs = [
-            ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => $title, 'href' => '']
-        ];
-
-        return compact('title', 'subNav', 'nav', 'crumbs');
 
     }
 
