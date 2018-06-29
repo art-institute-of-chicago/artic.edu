@@ -153,28 +153,9 @@ class EventRepository extends ModuleRepository
     {
         $search  = Search::query()->search($string)->resources(['events']);
 
-        // Perform the query
-        $results = $search->forPage($page, $perPage)->get($columns);
+        $results = $search->getSearch($perPage, $columns, null, $page);
 
-        // Load the actual data
-        $ids = $results->pluck('api_id')->toArray();
-
-        // This if block has been added to be able to test it locally without a DB dump.
-        // Can be safely removed.
-        if (\App::isLocal()) {
-            $ids  = Event::query()->get()->pluck('id');
-            $data = Event::whereIn('id', $ids)->get();
-
-            return $results->transform(function($item) use($data) {
-                return $data->shuffle()->first();
-            });
-        }
-
-        $data = Event::whereIn('id', $ids)->get();
-
-        return $results->transform(function($item) use($data) {
-            return $data->where('id', $item->api_id)->first();
-        });
+        return $results;
     }
 
 }
