@@ -37,7 +37,7 @@ class PrintedCatalogsController extends BaseScopedController
     {
         $items = $this->collection()->paginate();
 
-        $navElements = $this->getNavElements('Printed catalogs');
+        $navElements = $this->getNavElements('Printed Catalogues');
 
         $view_data = [
             'wideBody' => true,
