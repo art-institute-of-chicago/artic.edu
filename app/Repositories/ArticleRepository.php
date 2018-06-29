@@ -54,13 +54,31 @@ class ArticleRepository extends ModuleRepository
         return collect($this->model::$articleLayouts);
     }
 
-    public function searchApi($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [] )
+    public function searchApi($string, $perPage = null, $page = null, $columns = [])
     {
         $search  = Search::query()->search($string)->resources(['articles']);
 
         // Perform the query
-        $results = $search->getSearch($perPage, $columns, $pageName, $page, $options);
+        $results = $search->forPage($page, $perPage)->get($columns);
 
-        return $results;
+        // Load the actual data
+        $ids = $results->pluck('api_id')->toArray();
+
+        // This if block has been added to be able to test it locally without a DB dump.
+        // Can be safely removed.
+        if (\App::isLocal()) {
+            $ids  = Article::query()->get()->pluck('id');
+            $data = Article::whereIn('id', $ids)->get();
+
+            return $results->transform(function($item) use($data) {
+                return $data->shuffle()->first();
+            });
+        }
+
+        $data = Article::whereIn('id', $ids)->get();
+
+        return $results->transform(function($item) use($data) {
+            return $data->where('id', $item->api_id)->first();
+        });
     }
 }

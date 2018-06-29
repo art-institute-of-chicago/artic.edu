@@ -41,7 +41,7 @@ class ExhibitionRepository extends BaseApiRepository
         ];
     }
 
-    public function searchExhibitionEvents($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [] )
+    public function searchApi($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [] )
     {
         $search  = Search::query()->search($string)->resources(['events', 'exhibitions']);
 

@@ -11,6 +11,7 @@ use A17\Twill\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Models\Event;
+use App\Models\Api\Search;
 use Carbon\Carbon;
 
 class EventRepository extends ModuleRepository
@@ -146,6 +147,34 @@ class EventRepository extends ModuleRepository
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
         ];
+    }
+
+    public function searchApi($string, $perPage = null, $page = null, $columns = [])
+    {
+        $search  = Search::query()->search($string)->resources(['events']);
+
+        // Perform the query
+        $results = $search->forPage($page, $perPage)->get($columns);
+
+        // Load the actual data
+        $ids = $results->pluck('api_id')->toArray();
+
+        // This if block has been added to be able to test it locally without a DB dump.
+        // Can be safely removed.
+        if (\App::isLocal()) {
+            $ids  = Event::query()->get()->pluck('id');
+            $data = Event::whereIn('id', $ids)->get();
+
+            return $results->transform(function($item) use($data) {
+                return $data->shuffle()->first();
+            });
+        }
+
+        $data = Event::whereIn('id', $ids)->get();
+
+        return $results->transform(function($item) use($data) {
+            return $data->where('id', $item->api_id)->first();
+        });
     }
 
 }

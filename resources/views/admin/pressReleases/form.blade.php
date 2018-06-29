@@ -11,7 +11,7 @@
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Listing image',
-        'name' => 'listing'
+        'name' => 'listing',
         'note' => 'Minimum image width 3000px'
     ])
 
