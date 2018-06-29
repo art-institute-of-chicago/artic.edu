@@ -11,8 +11,7 @@ class PublicationsRepository
     {
         $search = Search::query()->search($string)->resources(["digital-catalogs", "printed-catalogs"]);
 
-        // Perform the query
-        $results = $search->forPage($page, $perPage)->get($columns);
+        $results = $search->getSearch($perPage, $columns, null, $page);
 
         return $results;
     }
