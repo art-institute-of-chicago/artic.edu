@@ -257,8 +257,8 @@ class StaticsController extends FrontController {
         'subNav' => $navs['subNav'],
         'nav' => $navs['nav'],
         'headerImage' => $this->getImage(),
-        "title" => "Scheduling a tour",
-        "breadcrumb" => $this->generateGenericBreadcrumb(),
+        "title" => "Proin commodo, erat rhoncus porta mollis, tortor odio luctus sapien, eget eleifend erat mi a urna",
+        "breadcrumb" => $this->generateGenericBreadcrumb('long'),
         "blocks" => $this->generateBlocks(3),
         'featuredRelated' => array(
           'type' => 'media',
@@ -274,8 +274,8 @@ class StaticsController extends FrontController {
         'borderlessHeader' => true,
         'subNav' => $navs['subNav'],
         'nav' => $navs['nav'],
-        "title" => "Scheduling a tour",
-        "breadcrumb" => $this->generateGenericBreadcrumb(),
+        "title" => "Proin commodo, erat rhoncus porta mollis, tortor odio luctus sapien, eget eleifend erat mi a urna",
+        "breadcrumb" => $this->generateGenericBreadcrumb('long'),
         "blocks" => $this->generateBlocks(3),
         'featuredRelated' => array(
           'type' => 'media',
@@ -2228,12 +2228,23 @@ class StaticsController extends FrontController {
     return array('nav' => $nav, 'subNav' => $subNav);
   }
 
-  private function generateGenericBreadcrumb() {
-    return array(
-        array('label' => 'Visit', 'href' => '#'),
-        array('label' => 'Group Visits', 'href' => '#',),
-        array('label' => 'Students', 'href' => '#',),
-    );
+  private function generateGenericBreadcrumb($variant = 'short') {
+    if ($variant === 'long') {
+        return array(
+            array('label' => 'About Us', 'href' => '#'),
+            array('label' => 'Departments', 'href' => '#',),
+            array('label' => 'Sed cursus, sem tristique euismod efficitur', 'href' => '#',),
+            array('label' => 'Velit urna blandit velit', 'href' => '#',),
+            array('label' => 'sollicitudin velit nisi nec purus', 'href' => '#',),
+            array('label' => 'Proin commodo, erat rhoncus porta mollis, tortor odio luctus sapien, eget eleifend erat mi a urna', 'href' => '#',),
+        );
+    } else {
+        return array(
+            array('label' => 'Visit', 'href' => '#'),
+            array('label' => 'Group Visits', 'href' => '#',),
+            array('label' => 'Students', 'href' => '#',),
+        );
+    }
   }
 
   private function generateAllBlocksArticle($type = null) {
