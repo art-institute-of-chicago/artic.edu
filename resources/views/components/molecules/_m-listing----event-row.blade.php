@@ -65,7 +65,7 @@
                     @component('components.atoms._tag')
                         @slot('variation','tag--secondary')
                         @slot('tag','span')
-                        Register
+                        Registration Required
                     @endcomponent
                     @break
                 @case('rsvp')

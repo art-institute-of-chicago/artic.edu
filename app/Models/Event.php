@@ -44,6 +44,7 @@ class Event extends Model
         'is_free',
         'is_boosted',
         'is_member_exclusive',
+        'is_registration_required',
         'hidden',
         'rsvp_link',
         'buy_tickets_link',
@@ -120,6 +121,7 @@ class Event extends Model
         'is_member_exclusive',
         'is_sold_out',
         'is_boosted',
+        'is_registration_required'
     ];
 
     public $dates = ['date', 'date_end', 'migrated_at'];
@@ -190,6 +192,11 @@ class Event extends Model
     public function scopeNotHidden($query)
     {
         return $query->whereHidden(false);
+    }
+
+    public function scopeNotPrivate($query)
+    {
+        return $query->whereIsPrivate(false);
     }
 
     public function scopeBetweenDates($query, $startDate, $endDate = null)

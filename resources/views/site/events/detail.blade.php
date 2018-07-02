@@ -58,13 +58,18 @@
             @break
         @case('register')
             @component('components.molecules._m-ticket-actions----event')
-                @slot('buttonText', 'Register');
+                @slot('buttonText', 'Registration Required');
+            @endcomponent
+            @break
+        @case('member-exclusive')
+            @component('components.molecules._m-ticket-actions----event')
+                @slot('buttonText', 'Members Exclusive');
             @endcomponent
             @break
         @case('rsvp')
             @component('components.molecules._m-ticket-actions----event')
                 @slot('buttonText', 'RSVP');
-                @slot('ticketLink', route('events'));
+                @slot('ticketLink', $item->rsvp_link);
             @endcomponent
             @break
         @case('sold-out')

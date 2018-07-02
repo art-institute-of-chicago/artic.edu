@@ -36,8 +36,12 @@ class EventPresenter extends BasePresenter
 
     public function ticketStatus()
     {
-        if (empty($this->nextOcurrence)) {
+        if ($this->nextOcurrence == null) {
             return null;
+        }
+
+        if ($this->entity->is_sold_out) {
+            return 'sold-out';
         }
 
         if ($this->entity->is_private) {
@@ -45,19 +49,23 @@ class EventPresenter extends BasePresenter
         }
 
         if ($this->entity->is_member_exclusive) {
+            return 'member-exclusive';
+        }
+
+        if ($this->entity->is_registration_required) {
             return 'register';
         }
 
         if ($this->entity->is_free) {
-            return 'free';
+            if ($this->entity->is_ticketed) {
+                return 'rsvp';
+            } else {
+                return 'free';
+            }
         }
 
         if ($this->entity->is_ticketed) {
-            if ($this->entity->is_sold_out) {
-                return 'sold-out';
-            } else {
-                return 'buy-ticket';
-            }
+            return 'buy-ticket';
         }
     }
 
