@@ -39,6 +39,13 @@ class Asset extends BaseApiModel
 
     public function getHrefAttribute()
     {
+        switch ($this->api_model)
+        {
+            case 'sites':
+                return $this->web_url;
+                break;
+        }
+
         return $this->content;
     }
 
@@ -60,6 +67,7 @@ class Asset extends BaseApiModel
             case 'texts':
                 return $this->textLinkContent;
                 break;
+            // `sites` don't get embedded
         }
     }
 
@@ -71,6 +79,7 @@ class Asset extends BaseApiModel
             case 'sounds':
                 return 'embed';
                 break;
+            // case 'sites': // TODO: Unused?
             case 'texts':
                 return 'link';
                 break;

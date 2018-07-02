@@ -216,6 +216,7 @@ class ArtworkPresenter extends BasePresenter
                         "items"   => $medias,
                     ];
                     break;
+                case 'sites':
                 case 'texts':
                     $localBlock = [
                         "type"  => 'link-list',
