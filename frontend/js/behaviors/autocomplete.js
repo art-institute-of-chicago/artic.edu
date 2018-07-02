@@ -120,7 +120,11 @@ const autocomplete = function(container) {
     }
   }
 
-  function _clearInput() {
+  function _clearInput(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     _closeAutocomplete();
     textInput.value = '';
   }
@@ -155,6 +159,10 @@ const autocomplete = function(container) {
     document.addEventListener('click', _clicks, false);
     document.addEventListener('touchstart', _touchstart, false);
     window.addEventListener('keyup', _escape, false);
+
+    if(textInput.value !== '') {
+      container.classList.add(autocompleteActiveKlass);
+    }
   }
 
   this.destroy = function() {
