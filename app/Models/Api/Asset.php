@@ -41,6 +41,7 @@ class Asset extends BaseApiModel
     {
         switch ($this->api_model)
         {
+            case 'sections':
             case 'sites':
                 return $this->web_url;
                 break;
@@ -143,14 +144,8 @@ class Asset extends BaseApiModel
                         "bool" => [
                             "should" => [
                                 [
-                                    "bool" => [
-                                        "must" => [
-                                            [
-                                                "term" => [
-                                                    "is_multimedia_resource" => true
-                                                ]
-                                            ]
-                                        ]
+                                    "term" => [
+                                        "is_multimedia_resource" => true
                                     ]
                                 ],
                                 [
