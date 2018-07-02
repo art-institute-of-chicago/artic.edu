@@ -38,6 +38,7 @@ class EventRepository extends ModuleRepository
     {
 
         $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent']);
+        $this->updateBrowserApiRelated($object, $fields, ['ticketedEventType']);
         $this->updateBrowser($object, $fields, 'sponsors');
         $this->updateBrowser($object, $fields, 'events');
 
@@ -53,6 +54,7 @@ class EventRepository extends ModuleRepository
         $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
         $fields['browsers']['ticketedEvent'] = $this->getFormFieldsForBrowserApi($object, 'ticketedEvent', 'App\Models\Api\TicketedEvent', 'exhibitions_events', 'title', 'ticketedEvent');
+        $fields['browsers']['ticketedEventType'] = $this->getFormFieldsForBrowserApi($object, 'ticketedEventType', 'App\Models\Api\TicketedEventType', 'exhibitions_events', 'title', 'ticketedEventType');
 
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');
 

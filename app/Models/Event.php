@@ -50,7 +50,6 @@ class Event extends Model
         'is_member_exclusive',
         'is_registration_required',
         'is_admission_required',
-        'ticketed_event_id',
         'survey_link',
         'email_series',
         'hidden',
@@ -242,6 +241,11 @@ class Event extends Model
     public function ticketedEvent()
     {
         return $this->apiElements()->where('relation', 'ticketedEvent');
+    }
+
+    public function ticketedEventType()
+    {
+        return $this->apiElements()->where('relation', 'ticketedEventType');
     }
 
     public function scopeLanding($query)
@@ -526,6 +530,15 @@ class Event extends Model
                 "value" => function () {
                     $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
                     return $ticketedEvent ? $ticketedEvent->id : null;
+                },
+            ],
+            [
+                "name" => "ticketed_event_type_id",
+                "doc" => "Unique identifer of the event type in our central ticketing system",
+                "type" => "string",
+                "value" => function () {
+                    $ticketedEventType = $this->apiModels('ticketedEventType', 'TicketedEventType')->first();
+                    return $ticketedEventType ? $ticketedEventType->id : null;
                 },
             ],
             [

@@ -137,11 +137,6 @@
         ])
 
         @formField('checkbox', [
-            'name' => 'is_ticketed',
-            'label' => 'Ticketed Event'
-        ])
-
-        @formField('checkbox', [
             'name' => 'is_admission_required',
             'label' => 'Admission Required'
         ])
@@ -170,12 +165,25 @@
     </a17-fieldset>
 
     <a17-fieldset id="ticketing" title="Ticketing information">
+        @formField('checkbox', [
+            'name' => 'is_ticketed',
+            'label' => 'Ticketed Event'
+        ])
+
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
             'max' => 1,
             'moduleName' => 'ticketedEvents',
             'name' => 'ticketedEvent',
             'label' => 'Event from ticketing system'
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'max' => 1,
+            'moduleName' => 'ticketedEventTypes',
+            'name' => 'ticketedEventType',
+            'label' => 'Event type from ticketing system'
         ])
 
         @formField('select', [
