@@ -107,7 +107,7 @@
     @endcomponent
 @endif
 
-@if ($exploreFurther || $exploreFurtherAllTags)
+@if ($exploreFurther)
 <div id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further
@@ -117,7 +117,7 @@
         @slot('tags', $exploreFurtherTags)
     @endcomponent
 
-    @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
+    @if ($exploreFurther && !$exploreFurther->isEmpty())
         @component('components.organisms._o-pinboard')
             @slot('cols_small','2')
             @slot('cols_medium','3')
@@ -142,16 +142,6 @@
                     ))
                 @endcomponent
             @endforeach
-        @endcomponent
-    @endif
-
-    @if ($exploreFurtherAllTags)
-        @component('components.molecules._m-multi-col-list')
-            @slot('cols_small','2')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-            @slot('items', $exploreFurtherAllTags)
         @endcomponent
     @endif
 

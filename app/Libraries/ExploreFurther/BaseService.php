@@ -71,7 +71,6 @@ class BaseService
 
         return [
             'classification' => $tags,
-            'all' => [true => 'All Tags']
         ];
     }
 

@@ -29,7 +29,6 @@ class GalleryController extends FrontController
             'artworks' => $artworks,
             'exploreFurtherTags'    => $exploreFurther->tags(),
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
-            'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
         ]);
     }
