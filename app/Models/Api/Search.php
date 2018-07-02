@@ -9,6 +9,8 @@ use Illuminate\Support\Carbon;
 class Search extends BaseApiModel
 {
 
+    const RECENT_ACQUISITION_CONSIDERED_YEAR = 2017;
+
     protected $endpoints = [
         'search' => '/api/v1/search',
         'autocomplete' => '/api/v1/autocomplete'
@@ -188,6 +190,59 @@ class Search extends BaseApiModel
                     [
                         "term" => [
                             'is_public_domain' => ($value == true) //Value could be 1, "1"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeRecentAcquisition($query, $value = null)
+    {
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "fiscal_year" => [
+                                "gte" => self::RECENT_ACQUISITION_CONSIDERED_YEAR
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeHasMultimedia($query, $value = false)
+    {
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "term" => [
+                            'has_multimedia_resources' => ($value == true) //Value could be 1, "1"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeHasEducationalResources($query, $value = false)
+    {
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "term" => [
+                            'has_educational_resources' => ($value == true) //Value could be 1, "1"
                         ]
                     ]
                 ]

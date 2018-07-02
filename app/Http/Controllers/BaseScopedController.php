@@ -45,6 +45,9 @@ class BaseScopedController extends FrontController
         'classification_ids' => 'byClassifications',
         'department_ids'     => 'byDepartments',
         'is_public_domain'   => 'publicDomain',
+        'is_recent_acquisition'     => 'recentAcquisition',
+        'has_multimedia'            => 'hasMultimedia',
+        'has_educational_resources' => 'hasEducationalResources',
 
         // Hidden from filters but present in Quick facets
         'theme_ids'     => 'byThemes',

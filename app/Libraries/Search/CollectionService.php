@@ -17,7 +17,10 @@ class CollectionService
     // Options for BooleanFilter class. [ parameter => label, ... ]
     protected $booleanOptions = [
         'is_public_domain' => 'Public domain',
-        'is_on_view' => 'On view'
+        'is_recent_acquisition' => 'Recent acquisition',
+        'has_multimedia' => 'Has multimedia',
+        'has_educational_resources' => 'Has educational resources',
+        'is_on_view' => 'On view',
     ];
 
     // Default perPage option
