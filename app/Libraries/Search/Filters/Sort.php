@@ -37,9 +37,10 @@ class Sort
 
             // If input contains the parameter, set the list as active
             if ($input->has($this->parameter) && $enabled = $input->contains($option)) {
-                $route = route('collection', request()->except($this->parameter));
+                $this->activeList = true;
+                $route = route('collection', request()->except(['page', $this->parameter]));
             } else {
-                $route = route('collection', [$this->parameter => $option]);
+                $route = route('collection', request()->except(['page', $this->parameter]) + [$this->parameter => $option]);
             }
 
             return [
