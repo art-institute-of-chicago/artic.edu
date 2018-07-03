@@ -442,3 +442,14 @@ For example the following query will force the 'autocomplete' endpoint, and get 
 
 getRaw just returns an array with the raw responses.
 For now it's just intended to be used on the autocomplete.
+
+
+## Use a custom TTL for a specific call
+
+If you don't want to use the default TTL, just call the `ttl` function and pass the number of seconds you want this to be cached.
+
+```php
+// set TTL to 1 hour (3600 seconds)
+$collection = \App\Models\Api\Search::search(request('q'))->ttl(3600)->getSearch();
+```
+

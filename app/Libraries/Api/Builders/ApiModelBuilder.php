@@ -24,6 +24,13 @@ class ApiModelBuilder
     protected $model;
 
     /**
+     * Temporary variable to save explicit TTL queries
+     *
+     * @var integer
+     */
+    protected $ttl;
+
+    /**
      * The relationships that should be eager loaded.
      *
      * @var array
@@ -206,6 +213,20 @@ class ApiModelBuilder
     }
 
     /**
+     * Setup a TTL for this specific query call
+     *
+     * @param  integer $ttl
+     * @return $this
+     */
+    public function ttl($ttl)
+    {
+        $this->ttl = $ttl;
+        $this->query->ttl($ttl);
+
+        return $this;
+    }
+
+    /**
      * Filter elements by specific ID's
      *
      * @param  array $ids
@@ -378,7 +399,7 @@ class ApiModelBuilder
         if (empty($ids)) {
             $models = collectApi();
         } else {
-            $models = $this->model->newQuery()->ids($ids)->get();
+            $models = $this->model->newQuery()->ttl($this->ttl)->ids($ids)->get();
         }
 
         // Sort them by the original ids listing
