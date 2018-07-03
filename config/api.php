@@ -19,8 +19,9 @@ return [
     | Force API requests to use POST
     |--------------------------------------------------------------------------
     |
-    | It will be used by our API consumer to augment our Eloquent models with
-    | data coming from their sources.
+    | Force API calls to use a specific verb.
+    |
+    | Possible options: 'GET', 'POST'
     |
     */
 
