@@ -91,25 +91,39 @@ class SearchController extends BaseScopedController
 
     public function autocomplete()
     {
-        // TODO: Integrate this search for all types and use a better approach than overwriting the results
-
         $collection = GeneralSearch::search(request('q'))
-            ->resources(['artworks', 'exhibitions', 'artists', 'agents'])
+            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs'])
             ->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
         foreach($collection as &$item) {
-            switch ($item->type) {
-                case 'artwork':
+            switch ((new \ReflectionClass($item))->getShortName()) {
+                case 'Artwork':
                     $item->url = route('artworks.show', $item);
                     $item->section = 'Artworks';
                     break;
-                case 'exhibition':
+                case 'Exhibition':
                     $item->url = route('exhibitions.show', $item);
                     $item->section = 'Exhibitions and Events';
                     break;
-                case 'artist':
+                case 'Artist':
                     $item->url = route('artists.show', $item);
                     $item->section = 'Artists';
+                    break;
+                case 'Event':
+                    $item->url = route('events.show', $item);
+                    $item->section = 'Events';
+                    break;
+                case 'Article':
+                    $item->url = route('articles.show', $item);
+                    $item->section = 'Articles';
+                    break;
+                case 'DigitalCatalog':
+                    $item->url = route('collection.publications.digital-catalogs.show', $item);
+                    $item->section = 'Digital Catalogs';
+                    break;
+                case 'PrintedCatalog':
+                    $item->url = route('collection.publications.printed-catalogs.show', $item);
+                    $item->section = 'Printed Catalogs';
                     break;
             }
 
