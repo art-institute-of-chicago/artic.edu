@@ -124,6 +124,11 @@ Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@in
 Route::name('forms.contact.store')->post('/forms/contact', 'Forms\ContactsController@store');
 Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\ContactsController@thanks');
 
+// Group reservation form
+Route::name('forms.group-reservation')->get('/forms/group-reservation', 'Forms\GroupReservationsController@index');
+Route::name('forms.group-reservation.store')->post('/forms/group-reservation', 'Forms\GroupReservationsController@store');
+Route::name('forms.group-reservation.thanks')->get('/forms/group-reservation/thanks', 'Forms\GroupReservationsController@thanks');
+
 // Feed routes
 Route::feeds();
 
