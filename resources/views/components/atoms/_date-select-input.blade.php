@@ -7,7 +7,7 @@
             {!! $slot !!}
         @endcomponent
     @endif
-    <span class="input__date-select-container" data-behavior="selectDate" data-selectDate-mode="single" data-selectDate-displayFormat="short">
+    <span class="input__date-select-container" data-behavior="selectDate" data-selectDate-mode="single" data-selectDate-displayFormat="shortUS">
         <input class="f-secondary" type="{{ $type ?? 'text'}}" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" {{ $disabled ?? '' }} data-selectDate-display>
         @component('components.atoms._btn')
             @slot('variation', 'btn--secondary btn--icon-sq')
