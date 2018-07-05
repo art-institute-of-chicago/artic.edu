@@ -444,7 +444,7 @@ class GroupReservationsController extends FormController
             'blocks' => $blocks
         ];
 
-        return view('site.forms.contact', $view_data);
+        return view('site.forms.form', $view_data);
     }
 
     /**

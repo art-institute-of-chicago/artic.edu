@@ -344,7 +344,7 @@ class ContactsController extends FormController
             "blocks" => $blocks
         ];
 
-        return view('site.forms.contact', $view_data);
+        return view('site.forms.form', $view_data);
     }
 
     public function store(ContactRequest $request)
