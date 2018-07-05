@@ -129,6 +129,11 @@ Route::name('forms.group-reservation')->get('/forms/group-reservation', 'Forms\G
 Route::name('forms.group-reservation.store')->post('/forms/group-reservation', 'Forms\GroupReservationsController@store');
 Route::name('forms.group-reservation.thanks')->get('/forms/group-reservation/thanks', 'Forms\GroupReservationsController@thanks');
 
+// Event planning contact
+Route::name('forms.event-planning-contact')->get('/forms/event-planning-contact', 'Forms\EventPlanningContactController@index');
+Route::name('forms.event-planning-contact.store')->post('/forms/event-planning-contact', 'Forms\EventPlanningContactController@store');
+Route::name('forms.event-planning-contact.thanks')->get('/forms/event-planning-contact/thanks', 'Forms\EventPlanningContactController@thanks');
+
 // Feed routes
 Route::feeds();
 
