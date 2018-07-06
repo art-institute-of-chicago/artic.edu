@@ -209,10 +209,17 @@ class ArtworkPresenter extends BasePresenter
 
             switch ($type) {
                 case 'videos':
-                case 'sounds':
                     $localBlock = [
                         "type"    => 'listing',
                         "subtype" => 'media',
+                        "items"   => $medias,
+                    ];
+                    break;
+                // This breaks SoundCloud sounds, if any
+                case 'sounds':
+                    $localBlock = [
+                        "type"    => 'listing',
+                        "subtype" => 'sound',
                         "items"   => $medias,
                     ];
                     break;

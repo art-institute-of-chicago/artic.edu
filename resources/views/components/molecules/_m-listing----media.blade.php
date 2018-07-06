@@ -3,6 +3,7 @@
 @endphp
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
 
+    {{-- TODO: Audio should not be using the video route --}}
     @if ($fullscreen)
         <a href="{{ route('videos.show', $item) }}" class="m-listing__link" data-behavior="triggerMediaModal"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     @else

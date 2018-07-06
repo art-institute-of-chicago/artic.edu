@@ -1368,6 +1368,23 @@
   height: auto;
 }
 
+// Quick aside for artwork detail's sound variant
+.m-listing--inline.m-listing--sound {
+  .m-listing__link {
+    flex-flow: column nowrap;
+    height: auto;
+  }
+
+  audio {
+    width: 100%;
+    margin-top: 20px;
+
+    @include breakpoint('large+') {
+      margin-top: 24px;
+    }
+  }
+}
+
 .m-listing--inline .m-listing__img {
   align-self: flex-start;
   width: colspan(18, xsmall);
