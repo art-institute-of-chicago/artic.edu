@@ -73,6 +73,10 @@ class EventRepository extends ModuleRepository
         return collect($this->model::$eventLayouts);
     }
 
+    public function getEventProgramsList() {
+        return collect($this->model::$eventPrograms);
+    }
+
     public function groupByDate($collection)
     {
         if ($collection) {
@@ -82,7 +86,7 @@ class EventRepository extends ModuleRepository
         }
     }
 
-    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $perPage = 5, $page = null)
+    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = null)
     {
         $query = $this->model->newQuery();
 
@@ -115,6 +119,10 @@ class EventRepository extends ModuleRepository
 
         if ($audience) {
             $query->byAudience($audience);
+        }
+
+        if ($program) {
+            $query->byProgram($program);
         }
 
         return $query->paginate($perPage, ['events.*', 'event_metas.date', 'event_metas.date_end'], 'page', $page);
