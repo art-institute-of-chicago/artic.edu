@@ -6,7 +6,6 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Mail;
 
-use A17\Twill\Http\Requests\Admin\Request;
 use App\Http\Requests\Form\EventPlanningContactRequest;
 
 use App\Models\Form\EventPlanningContact;
@@ -236,7 +235,7 @@ class EventPlanningContactController extends FormController
         $eventPlanningContact->dates = $validated['dates'] ?? '';
         $eventPlanningContact->know_more_about = $validated['know_more_about'] ?? '';
 
-        Mail::to('someone@example.com') //bacatering@artic.edu')
+        Mail::to('bacatering@artic.edu')
             ->send(new FormEventPlanningContact($eventPlanningContact));
 
         return redirect(route('forms.event-planning-contact.thanks'));
