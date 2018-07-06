@@ -301,21 +301,21 @@ class Event extends Model
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByType($query, $type)
     {
-        return $query->where('event_type', '=', $type)->orWhere('alt_types', 'LIKE', '%'.$type.'%');
+        return $query->where('event_type', '=', $type)->orWhereRaw("alt_types::text LIKE '%" .$type ."%'");
     }
 
     // NOTE: This works only while there are less than 10 possible audience values
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByAudience($query, $audience)
     {
-        return $query->where('audience', '=', $audience)->orWhere('alt_audiences', 'LIKE', '%'.$audience.'%');
+        return $query->where('audience', '=', $audience)->orWhereRaw("alt_audiences::text LIKE '%" .$audience. "%'");
     }
 
     // NOTE: This works only while there are less than 10 possible program values
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByProgram($query, $program)
     {
-        return $query->where('programs', 'LIKE', '%'.$program.'%');
+        return $query->whereRaw("programs::text LIKE '%" .$program. "%'");
     }
 
     public function scopeDefault($query)
