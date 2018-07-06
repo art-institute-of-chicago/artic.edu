@@ -4,7 +4,7 @@ namespace App\Models\Form;
 
 use Carbon\Carbon;
 
-class GroupReservation extends FormModel
+class EducatorAdmission extends FormModel
 {
     protected $dates = ['visit_date'];
 }

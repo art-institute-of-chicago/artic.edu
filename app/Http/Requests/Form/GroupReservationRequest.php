@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Form;
 
-use A17\Twill\Http\Requests\Admin\Request;
-
-class GroupReservationRequest extends Request
+class GroupReservationRequest extends FormRequest
 {
     public function rules()
     {
@@ -38,8 +36,13 @@ class GroupReservationRequest extends Request
     public function messages()
     {
         return [
-            'contact_name.required' => 'Contact name is required',
-            'email.required' => 'Email is required',
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $this->validateCaptcha($validator);
+        });
     }
 }
