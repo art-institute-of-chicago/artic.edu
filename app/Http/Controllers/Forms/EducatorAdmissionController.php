@@ -393,26 +393,7 @@ class EducatorAdmissionController extends FormController
         $validated = $request->validated();
 
         $educatorAdmission = new EducatorAdmission;
-        /*
-            'name' => 'required',
-            'email' => 'required',
-            'visit_date' => 'required',
-            'phone_number' => 'required',
-            'address_1' => 'required',
-            'address_2' => 'sometimes',
-            'city' => 'required',
-            'state' => 'required',
-            'zipcode' => 'required',
 
-            'school_name' => 'required',
-            'school_city' => 'required',
-            'school_state' => 'required',
-            'school_location' => 'required',
-
-            'type_of_educator' => 'required',
-            'grades_taught' => 'required',
-            'subjects_taught' => 'required',
-        */
         $educatorAdmission->name = $validated['name'] ?? '';
         $educatorAdmission->email = $validated['email'] ?? '';
         $educatorAdmission->visit_date = Carbon::parse($validated['visit_date']) ?? '';
