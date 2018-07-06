@@ -76,6 +76,6 @@ trait HandleApiRelations
                 'id' => $apiElement->id,
                 'name' => $apiElement->titleInBrowser ?? $apiElement->$titleKey,
             ] + $data;
-        })->toArray();
+        })->values()->toArray();
     }
 }
