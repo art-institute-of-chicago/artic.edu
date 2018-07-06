@@ -99,6 +99,13 @@
             'note' => 'Used to enhance filtering',
             'options' => $eventAudiencesList,
         ])
+
+        @formField('multi_select', [
+            'name' => 'programs',
+            'label' => 'Programs',
+            'note' => 'Provides a way to link to a list of events by program',
+            'options' => $eventProgramsList,
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="attributes" title="Event entrance attributes">
