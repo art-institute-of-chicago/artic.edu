@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Form;
 
-use A17\Twill\Http\Requests\Admin\Request;
-
-class EventPlanningContactRequest extends Request
+class EventPlanningContactRequest extends FormRequest
 {
     public function rules()
     {
@@ -20,9 +18,11 @@ class EventPlanningContactRequest extends Request
         ];
     }
 
-    public function messages()
+    public function withValidator($validator)
     {
-        return [
-        ];
+        $validator->after(function ($validator) {
+            $this->validateCaptcha($validator);
+        });
     }
+
 }

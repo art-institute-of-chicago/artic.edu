@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Form;
 
-use A17\Twill\Http\Requests\Admin\Request;
-
-class EducatorAdmissionRequest extends Request
+class EducatorAdmissionRequest extends FormRequest
 {
     public function rules()
     {
@@ -31,9 +29,11 @@ class EducatorAdmissionRequest extends Request
         ];
     }
 
-    public function messages()
+    public function withValidator($validator)
     {
-        return [
-        ];
+        $validator->after(function ($validator) {
+            $this->validateCaptcha($validator);
+        });
     }
+
 }

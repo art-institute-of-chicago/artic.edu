@@ -411,6 +411,19 @@
                 @endcomponent
             @endif
 
+            @if ($block['type'] === 'captcha')
+                @component('components.atoms._captcha')
+                    @slot('variation', $block['variation'] ?? null)
+                    @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('error', $block['error'] ?? null)
+                    @slot('optional', $block['optional'] ?? null)
+                    @slot('hint', $block['hint'] ?? null)
+                    @slot('disabled', $block['disabled'] ?? false)
+                    {!! $block['label'] !!}
+                @endcomponent
+            @endif
+
             @if ($block['type'] === 'textarea')
                 @component('components.atoms._textarea')
                     @slot('variation', $block['variation'] ?? null)

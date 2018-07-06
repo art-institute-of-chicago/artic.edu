@@ -394,6 +394,22 @@ class GroupReservationsController extends FormController
         }
         $visitInformationFields[] = $needsFields;
 
+        $visitInformationFields[] = array(
+            'variation' => null,
+            'blocks' => array(
+                array(
+                  'type' => 'captcha',
+                  'variation' => null,
+                  'id' => 'captcha',
+                  'error' => (!empty($errors) && $errors->first('captcha')) ? $errors->first('captcha') : null,
+                  'optional' => null,
+                  'hint' => null,
+                  'disabled' => false,
+                  'label' => '',
+                ),
+            ),
+        );
+
         array_push($formBlocks, array(
           'type' => 'fieldset',
           'variation' => null,
