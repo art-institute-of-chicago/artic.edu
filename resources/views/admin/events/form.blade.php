@@ -20,34 +20,6 @@
         'default' => '0'
     ])
 
-    @formField('select', [
-        'name' => 'event_type',
-        'label' => 'Event type (preferred)',
-        'options' => $eventTypesList,
-        'default' => '1'
-    ])
-
-    @formField('multi_select', [
-        'name' => 'alt_types',
-        'label' => 'Event type (alternative)',
-        'note' => 'Used to enhance filtering',
-        'options' => $eventTypesList,
-    ])
-
-    @formField('select', [
-        'name' => 'audience',
-        'label' => 'Event audience (preferred)',
-        'options' => $eventAudiencesList,
-        'default' => '1'
-    ])
-
-    @formField('multi_select', [
-        'name' => 'alt_audiences',
-        'label' => 'Event audience (alternative)',
-        'note' => 'Used to enhance filtering',
-        'options' => $eventAudiencesList,
-    ])
-
     @formField('medias', [
         'with_multiple' => false,
         'no_crop' => false,
@@ -98,6 +70,36 @@
 @stop
 
 @section('fieldsets')
+
+    <a17-fieldset id="attributes" title="Filters and types">
+        @formField('select', [
+            'name' => 'event_type',
+            'label' => 'Event type (preferred)',
+            'options' => $eventTypesList,
+            'default' => '1'
+        ])
+
+        @formField('multi_select', [
+            'name' => 'alt_types',
+            'label' => 'Event type (alternative)',
+            'note' => 'Used to enhance filtering',
+            'options' => $eventTypesList,
+        ])
+
+        @formField('select', [
+            'name' => 'audience',
+            'label' => 'Event audience (preferred)',
+            'options' => $eventAudiencesList,
+            'default' => '1'
+        ])
+
+        @formField('multi_select', [
+            'name' => 'alt_audiences',
+            'label' => 'Event audience (alternative)',
+            'note' => 'Used to enhance filtering',
+            'options' => $eventAudiencesList,
+        ])
+    </a17-fieldset>
 
     <a17-fieldset id="attributes" title="Event entrance attributes">
         @formField('checkbox', [
