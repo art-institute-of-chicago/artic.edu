@@ -134,6 +134,11 @@ Route::name('forms.event-planning-contact')->get('/forms/event-planning-contact'
 Route::name('forms.event-planning-contact.store')->post('/forms/event-planning-contact', 'Forms\EventPlanningContactController@store');
 Route::name('forms.event-planning-contact.thanks')->get('/forms/event-planning-contact/thanks', 'Forms\EventPlanningContactController@thanks');
 
+// Educator admission request
+Route::name('forms.educator-admission-request')->get('/forms/educator-admission-request', 'Forms\EducatorAdmissionController@index');
+Route::name('forms.educator-admission-request.store')->post('/forms/educator-admission-request', 'Forms\EducatorAdmissionController@store');
+Route::name('forms.educator-admission-request.thanks')->get('/forms/educator-admission-request/thanks', 'Forms\EducatorAdmissionController@thanks');
+
 // Feed routes
 Route::feeds();
 
