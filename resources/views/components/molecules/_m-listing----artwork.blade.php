@@ -18,8 +18,8 @@
             @endif
         </span>
         <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-            @if ( !empty( $item->sku ) )
-                <em class="type f-tag">{{ $item->sku }}</em>
+            @if ( !empty( $item->subtype ) )
+                <em class="type f-tag">{{ $item->subtype }}</em>
                 <br>
             @endif
             @component('components.atoms._title')

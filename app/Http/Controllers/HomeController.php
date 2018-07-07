@@ -23,126 +23,29 @@ class HomeController extends FrontController
 
     public function index()
     {
-        $page = Page::where('type', 0)->first();
+        $page = Page::forType('Home')->first();
 
         $exhibitions = $page->apiModels('homeExhibitions', 'Exhibition');
-        $events = $page->homeEvents;
+        $products    = $page->apiModels('homeShopItems', 'ShopItem');
+        $events      = $page->homeEvents;
 
-        $products = $page->apiModels('homeShopItems', 'ShopItem');
-
-        $mainFeatures = collect([]);
-        $mainFeatureBucket = $page->homeFeatures;
-        foreach ($mainFeatureBucket as $feature) {
-            $item = null;
-            if ($feature->published) {
-                if ($feature->events->count()) {
-                    $item = $feature->events()->first();
-                    $item->type = 'event';
-                    $item->dateStart = Carbon::now();
-                    $item->dateEnd = Carbon::now();
-                    $item->feature_image = $feature->imageFront('hero');
-
-                    $video_url = $feature->file('video');
-                    if ($video_url != null) {
-                        $poster_url = isset($item->feature_image['src']) ? $item->feature_image['src'] : '';
-                        $video = [
-                            'src' => $video_url,
-                            'poster' => $poster_url,
-                        ];
-                        $item->videoFront = $video;
-                    }
-
-                } else if ($feature->exhibitions->count()) {
-                    $item = $this->exhibitionRepository->getById($feature->exhibitions()->first()->datahub_id);
-                    $item->feature_image = $feature->imageFront('hero');
-
-                    $video_url = $feature->file('video');
-                    if ($video_url != null) {
-                        $poster_url = isset($item->feature_image['src']) ? $item->feature_image['src'] : '';
-                        $video = [
-                            'src' => $video_url,
-                            'poster' => $poster_url,
-                        ];
-                        $item->videoFront = $video;
-                    }
-
-                    $item->type = 'exhibition';
-                } else if ($feature->articles->count()) {
-                    $item = $feature->articles()->first();
-                    $item->type = 'article';
-                    $item->dateStart = Carbon::now();
-                    $item->dateEnd = Carbon::now();
-                    $item->feature_image = $feature->imageFront('hero');
-
-                    $video_url = $feature->file('video');
-                    if ($video_url != null) {
-                        $poster_url = isset($item->feature_image['src']) ? $item->feature_image['src'] : '';
-                        $video = [
-                            'src' => $video_url,
-                            'poster' => $poster_url,
-                        ];
-                        $item->videoFront = $video;
-                    }
-
-                }
-
-                if ($item) {
-                    $mainFeatures[] = $item;
-                }
-            }
-        }
-        // TODO: sort by published or leave in position order?
-        $mainFeatures = $mainFeatures->slice(0, 3);
-
-        $collectionFeatures = collect([]);
-        $collectionFeatureBucket = $page->collectionFeatures;
-        foreach ($collectionFeatureBucket as $feature) {
-            $item = null;
-            if ($feature->published) {
-                if ($feature->articles->count()) {
-                    $item = $feature->articles()->first();
-                    $item->type= 'article';
-                    $item->subtype='Article';
-
-                } else if ($feature->artworks->count()) {
-                    $item = $this->artworkRepository->getById($feature->artworks()->first()->datahub_id);
-                    $item->sku = "Artwork";
-                    $item->type= 'artwork';
-                     $item->subtype='Artwork';
-
-                } else if ($feature->selections->count()) {
-                    $item = $feature->selections()->first();
-
-                    $item->type = 'selection';
-                    $item->images = $item->getArtworkImages();
-                    $item->subtype='Selection';
-                }
-
-                if ($item) {
-                    $collectionFeatures[] = $item;
-                }
-            }
-        }
-
-        $membership_module_url = $page->home_membership_module_url;
-        $membership_module_headline = $page->home_membership_module_headline;
-        $membership_module_button_text = $page->home_membership_module_button_text;
-        $membership_module_short_copy = $page->home_membership_module_short_copy;
+        $mainFeatures       = $page->homeFeatures()->published()->limit(4)->get();
+        $collectionFeatures = $page->collectionFeatures()->published()->get();
 
         $view_data = [
-            'contrastHeader' => sizeof($mainFeatures) > 0 ? true : false
-            , 'filledLogo' => sizeof($mainFeatures) > 0 ? true : false
-            , 'mainFeatures' => $mainFeatures
-            , 'intro' => $page->home_intro
-            , 'exhibitions' => $exhibitions
-            , 'events' => $events
-            , 'theCollection' => $collectionFeatures
-            , 'products' => $products
-            , 'membership_module_image' => $page->imageFront('home_membership_module_image')
-            , 'membership_module_url' => $membership_module_url
-            , 'membership_module_headline' => $membership_module_headline
-            , 'membership_module_button_text' => $membership_module_button_text
-            , 'membership_module_short_copy' => $membership_module_short_copy,
+            'contrastHeader' => sizeof($mainFeatures) > 0,
+            'filledLogo'     => sizeof($mainFeatures) > 0,
+            'mainFeatures' => $mainFeatures,
+            'intro' => $page->home_intro,
+            'exhibitions' => $exhibitions,
+            'events' => $events,
+            'theCollection' => $collectionFeatures,
+            'products' => $products,
+            'membership_module_image' => $page->imageFront('home_membership_module_image'),
+            'membership_module_url' => $page->home_membership_module_url,
+            'membership_module_headline' =>  $page->home_membership_module_headline,
+            'membership_module_button_text' => $page->home_membership_module_button_text,
+            'membership_module_short_copy' => $page->home_membership_module_short_copy,
         ];
 
         return view('site.home', $view_data);

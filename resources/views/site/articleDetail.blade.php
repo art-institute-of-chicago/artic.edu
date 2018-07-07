@@ -10,7 +10,7 @@
     @slot('variation', ($item->headerVariation ?? null))
     @slot('title', $item->title)
     @slot('date', $item->date)
-    @slot('type', $item->type)
+    @slot('type', $item->subtype)
     @slot('intro', $item->heading)
     @slot('img', $item->imageFront('hero'))
     @slot('galleryImages', $item->galleryImages)

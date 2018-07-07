@@ -28,7 +28,7 @@ class Event extends Model
     protected $fillable = [
         'title',
         'published',
-        'type',
+        'event_type',
         'audience',
         'short_description',
         'list_description',
@@ -169,6 +169,11 @@ class Event extends Model
 
     }
 
+    public function getTypeAttribute()
+    {
+        return 'event';
+    }
+
     public function getAllDatesCmsAttribute()
     {
         $dates_string = '';
@@ -217,7 +222,7 @@ class Event extends Model
 
     public function scopeByType($query, $type)
     {
-        return $query->where('type', '=', $type);
+        return $query->where('event_type', '=', $type);
     }
 
     public function scopeByAudience($query, $audience)
@@ -295,10 +300,10 @@ class Event extends Model
                 "value" => function () {return $this->published;},
             ],
             [
-                "name" => "type",
+                "name" => "event_type",
                 "doc" => "Type",
                 "type" => "number",
-                "value" => function () {return $this->type;},
+                "value" => function () {return $this->event_type;},
             ],
             [
                 "name" => "short_description",

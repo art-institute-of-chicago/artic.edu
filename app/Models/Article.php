@@ -32,7 +32,7 @@ class Article extends Model
         'heading',
         'author',
         'copy',
-        'type',
+        'subtype',
         'citation',
         'layout_type',
         'is_boosted',
@@ -90,9 +90,14 @@ class Article extends Model
         return $this->heading;
     }
 
-    public function getArticleTypeattribute()
+    public function getArticleTypeAttribute()
     {
         return 'editorial';
+    }
+
+    public function getTypeAttribute()
+    {
+        return 'article';
     }
 
     // Generates the id-slug type of URL
@@ -237,10 +242,10 @@ class Article extends Model
                 "value" => function () {return url(route('articles.show', $this));},
             ],
             [
-                "name" => "type",
-                "doc" => "type",
+                "name" => "subtype",
+                "doc" => "Subtype",
                 "type" => "string",
-                "value" => function () {return $this->type;},
+                "value" => function () {return $this->subtype;},
             ],
             [
                 "name" => "heading",

@@ -35,7 +35,7 @@
     ])
 
     @formField('input', [
-        'name' => 'type',
+        'name' => 'subtype',
         'label' => 'Article Label'
     ])
 
