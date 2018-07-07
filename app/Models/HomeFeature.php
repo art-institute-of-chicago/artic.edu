@@ -91,10 +91,10 @@ class HomeFeature extends Model
     public function videoFront($image)
     {
         if (($videoUrl = $this->file('video')) != null) {
-            $video = [ 'src' => $videoUrl ];
-            if ($image) {
-                $video['poster'] = $image['src'];
-            }
+            $video = [
+                'src' => $videoUrl,
+                'poster' => ($image ? $image['src'] : '')
+            ];
 
             return $video;
         }
