@@ -29,7 +29,7 @@ class HomeController extends FrontController
         $products    = $page->apiModels('homeShopItems', 'ShopItem');
         $events      = $page->homeEvents;
 
-        $mainFeatures       = $page->homeFeatures()->published()->limit(4)->get();
+        $mainFeatures       = $page->homeFeatures()->published()->limit(3)->get();
         $collectionFeatures = $page->collectionFeatures()->published()->get();
 
         $view_data = [
