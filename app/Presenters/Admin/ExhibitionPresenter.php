@@ -91,12 +91,12 @@ class ExhibitionPresenter extends BasePresenter
 
     public function startAt()
     {
-        return new Carbon($this->entity->start_at);
+        return new Carbon($this->entity->aic_start_at);
     }
 
     public function endAt()
     {
-        return new Carbon($this->entity->end_at);
+        return new Carbon($this->entity->aic_end_at);
     }
 
     public function navigation()
