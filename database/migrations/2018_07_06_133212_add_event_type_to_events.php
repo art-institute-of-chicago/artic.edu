@@ -19,10 +19,15 @@ class AddEventTypeToEvents extends Migration
             $table->integer('event_type')->unsigned()->default(1);
         });
 
+        $dispatcher = Event::getEventDispatcher();
+        Event::unsetEventDispatcher();
+
         foreach (Event::all() as $event) {
             $event->event_type = $event->type;
             $event->save();
         }
+
+        Event::setEventDispatcher($dispatcher);
 
     }
 

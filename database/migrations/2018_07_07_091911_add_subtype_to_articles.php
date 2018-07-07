@@ -19,10 +19,15 @@ class AddSubtypeToArticles extends Migration
             $table->string('subtype')->nullable();
         });
 
+        $dispatcher = Article::getEventDispatcher();
+        Article::unsetEventDispatcher();
+
         foreach (Article::all() as $article) {
             $article->subtype = $article->type;
             $article->save();
         }
+
+        Article::setEventDispatcher($dispatcher);
     }
 
     /**
