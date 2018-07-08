@@ -26,7 +26,6 @@
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
-  cursor: pointer;
   -webkit-appearance: none;
 
   & + & {
@@ -34,8 +33,10 @@
   }
 }
 
+button.tag,
 a.tag {
   @extend %link-transition;
+  cursor: pointer;
 }
 
 a.tag:hover,

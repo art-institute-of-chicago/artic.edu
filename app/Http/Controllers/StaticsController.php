@@ -445,11 +445,9 @@ class StaticsController extends FrontController {
     ));
     $article->push('topics', array(
         array(
-          'href' => '#',
           'label' => $this->faker->sentence(2),
         ),
         array(
-          'href' => '#',
           'label' => $this->faker->sentence(2),
         ),
         array(

@@ -337,7 +337,13 @@
         @endcomponent
         <ul class="m-inline-list">
         @foreach ($article->topics as $topic)
-            <li class="m-inline-list__item"><a class="tag f-tag" href="{{ $topic['href'] }}">{{ $topic['label'] }}</a></li>
+            <li class="m-inline-list__item">
+                @if (!empty($topic['href']))
+                    <a class="tag f-tag" href="{{ $topic['href'] }}">{{ $topic['label'] }}</a>
+                @else
+                    <span class="tag f-tag">{{ $topic['label'] }}</span>
+                @endif
+            </li>
         @endforeach
         </ul>
     @endif
