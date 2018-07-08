@@ -104,18 +104,7 @@ class CollectionController extends BaseScopedController
             ->resources(['artworks', 'agents'])
             ->getRaw();
 
-        $items = collect([]);
-
-        foreach($results as $label) {
-            $items->push([
-                'href'  => route('collection', request()->except('q') + ['q' => $label]),
-                'label' => $label,
-            ]);
-        }
-
-        return view('components/molecules/_m-search-bar__autocomplete', [
-            'items' => $items
-        ]);
+        return response()->json($results, 200);
     }
 
     /**
