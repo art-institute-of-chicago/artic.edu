@@ -109,14 +109,26 @@ class LakeviewImageService implements ImageServiceInterface
 
     public function getInfo($object, $imageField = 'image_id')
     {
+        $info = [];
+
         // Try returning already loaded information
-        if (!empty($object->thumbnail) && $object->thumbnail->width && $object->thumbnail->height) {
-            return [
-                'width' => $object->thumbnail->width,
-                'height' => $object->thumbnail->height,
-                'lqip' => $object->thumbnail->lqip,
-                'alt' => $object->thumbnail->alt_text,
-            ];
+        if (!empty($object->thumbnail)) {
+            if ($object->thumbnail->width && $object->thumbnail->height) {
+                $info['width']  = $object->thumbnail->width;
+                $info['height'] = $object->thumbnail->height;
+            } else {
+                $info = array_merge($info, $this->getDimensions($object->$imageField));
+            }
+
+            if ($object->thumbnail->lqip) {
+                $info['lqip'] = $object->thumbnail->lqip;
+            }
+
+            if ($object->thumbnail->alt_text) {
+                $info['alt']  = $object->thumbnail->alt_text;
+            }
+
+            return $info;
         } else {
             // Hit the server to get the info if not available
             return $this->getDimensions($object->$imageField);
