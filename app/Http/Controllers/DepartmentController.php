@@ -20,8 +20,11 @@ class DepartmentController extends FrontController
     public function show($idSlug)
     {
         $item = $this->repository->getById($idSlug);
-        $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
 
+        $this->seo->setTitle($item->meta_title ?: $item->title);
+        $this->seo->setDescription($item->meta_description ?: 'Department');
+
+        $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
         $exploreFurther = new ExploreDepartments($item, $artworks->getMetadata('aggregations'));
 
         return view('site.tagDetail', [

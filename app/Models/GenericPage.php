@@ -33,6 +33,8 @@ class GenericPage extends Model implements Sortable
         'banner',
         'redirect_url',
         'is_redirect_url_external',
+        'meta_title',
+        'meta_description',
     ];
 
     public $dates = ['publish_start_date', 'publish_end_date'];

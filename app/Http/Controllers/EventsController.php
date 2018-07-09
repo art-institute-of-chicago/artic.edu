@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use A17\Twill\Http\Controllers\Front\ShowWithPreview;
 use App\Models\Event;
 use App\Models\Page;
 use App\Repositories\EventRepository;
@@ -11,11 +10,9 @@ use View;
 
 class EventsController extends FrontController
 {
-    use ShowWithPreview;
 
     protected $repository;
     protected $moduleName = 'events';
-    protected $showViewName = 'site.events.detail';
 
     const PER_PAGE = 10;
 
@@ -30,6 +27,9 @@ class EventsController extends FrontController
 
     public function index()
     {
+        $this->seo->setTitle('Events');
+        $this->seo->setDescription("Looking for things to do this weekend? Find Chicago's best events—family art making, tours, performances, lectures, workshops & more.");
+
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
         $collection = $this->collection();
 
@@ -115,15 +115,17 @@ class EventsController extends FrontController
         return !empty(request()->only('start', 'end', 'time', 'type', 'audience', 'page'));
     }
 
-    // Show view has been moved to be used with the trait ShowWithPreview
-    protected function showData($slug, $item)
+    protected function show($id)
     {
-        return $this->repository->getShowData($item, $slug);
-    }
+        $item = $this->repository->findOrFail((Integer) $id);
 
-    protected function getItem($id)
-    {
-        return $this->repository->find((Integer) $id);
+        $this->seo->setTitle($item->meta_title ?: $item->title);
+        $this->seo->setDescription($item->meta_description ?: $item->short_description);
+
+        return view('site.events.detail', [
+            'contrastHeader' => $item->present()->contrastHeader,
+            'item' => $item,
+        ]);
     }
 
     protected function generateEventTypes()

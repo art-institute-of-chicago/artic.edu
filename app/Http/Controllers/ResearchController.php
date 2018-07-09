@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Models\Page;
 
-class ResearchController extends Controller
+class ResearchController extends FrontController
 {
 
     public function index()
     {
+        $this->seo->setTitle('Research & Resources');
+
         $page = Page::forType('Research and Resources')->first();
         $artIdeasPage = Page::forType('Art and Ideas')->first();
 

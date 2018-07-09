@@ -42,6 +42,8 @@ class Exhibition extends Model
         'sponsors_sub_copy',
         'cms_exhibition_type',
         'hero_caption',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [

@@ -24,6 +24,9 @@ class SelectionsController extends FrontController
             $item = $this->repository->getById((Integer) $slug);
         }
 
+        $this->seo->setTitle($item->meta_title ?: $item->title);
+        $this->seo->setDescription($item->meta_description ?: $item->short_copy);
+
         $artworks = $item->artworks(0);
         $exploreFurther = new ExploreFurther($item, $artworks->getMetadata('aggregations'));
 

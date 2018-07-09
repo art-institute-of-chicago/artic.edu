@@ -26,6 +26,8 @@ class PressRelease extends Model
         'publish_end_date',
         'migrated_node_id',
         'migrated_at',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [

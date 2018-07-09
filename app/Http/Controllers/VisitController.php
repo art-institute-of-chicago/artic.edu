@@ -14,6 +14,9 @@ class VisitController extends FrontController
 
     public function index()
     {
+        $this->seo->setTitle("Visit a Chicago Landmark");
+        $this->seo->setDescription("Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!");
+
         $page = Page::forType('Visit')->first();
 
         $video_url = $page->file('video');

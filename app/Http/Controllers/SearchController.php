@@ -54,6 +54,8 @@ class SearchController extends BaseScopedController
 
     public function index()
     {
+        $this->seo->setTitle('Search');
+
         // General search to get featured elements and general metadata.
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $links = $this->buildSearchLinks($general, 'all');
@@ -113,6 +115,8 @@ class SearchController extends BaseScopedController
 
     public function artworks()
     {
+        $this->seo->setTitle('Search');
+
         $general  = $this->searchRepository->forSearchQuery(request('q'), 2);
 
         $artworks      = $this->collection()->perPage(self::ARTWORKS_PER_PAGE)->results();
@@ -152,6 +156,8 @@ class SearchController extends BaseScopedController
 
     public function exhibitionsEvents()
     {
+        $this->seo->setTitle('Search');
+
         $general     = $this->searchRepository->forSearchQuery(request('q'), 2);
         $exhibitions = $this->exhibitionsRepository->forSearchQuery(request('q'), self::EXHIBITIONS_PER_PAGE);
 
@@ -177,6 +183,8 @@ class SearchController extends BaseScopedController
 
     public function artists()
     {
+        $this->seo->setTitle('Search');
+
         $general = $this->searchRepository->forSearchQuery(request('q'), 2);
         $artists = $this->artistsRepository->forSearchQuery(request('q'), self::ARTISTS_PER_PAGE);
 

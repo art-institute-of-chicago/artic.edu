@@ -20,6 +20,8 @@ class Artist extends Model
         'datahub_id',
         'title',
         'caption',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [

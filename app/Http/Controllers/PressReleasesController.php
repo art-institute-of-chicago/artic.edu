@@ -40,6 +40,8 @@ class PressReleasesController extends BaseScopedController
 
     public function index()
     {
+        $this->seo->setTitle('Press');
+
         $items = $this->collection()->current()->paginate();
 
         $navElements = $this->getNavElements('Press Releases');
@@ -160,6 +162,9 @@ class PressReleasesController extends BaseScopedController
                 abort(404);
             }
         }
+
+        $this->seo->setTitle($page->meta_title ?? $page->title);
+        $this->seo->setDescription($page->meta_description ?? $page->short_description);
 
         $navs = [
             'nav' => [],
