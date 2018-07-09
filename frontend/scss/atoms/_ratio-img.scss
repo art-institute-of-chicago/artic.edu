@@ -11,32 +11,33 @@
   padding-bottom: 100%; // defaults to a square
 }
 
-.ratio-img--1\:1 {
+.ratio-img--1\:1::before {
   padding-bottom: 100%;
 }
 
-.ratio-img--3\:2 {
+.ratio-img--3\:2::before {
   padding-bottom: percentage(2 / 3);
 }
 
-.ratio-img--4\:3 {
+.ratio-img--4\:3::before {
   padding-bottom: percentage(4 / 3);
 }
 
-.ratio-img--16\:10 {
+.ratio-img--16\:10::before {
   padding-bottom: percentage(10 / 16);
 }
 
-.ratio-img--16\:9 {
+.ratio-img--16\:9::before {
   padding-bottom: percentage(9 / 16);
 }
 
-.ratio-img--21\:9 {
+.ratio-img--21\:9::before {
   padding-bottom: percentage(9 / 21);
 }
 
 .ratio-img img,
-.ratio-img video {
+.ratio-img video,
+.ratio-img svg {
   position: absolute;
   left: 0;
   right: 0;
