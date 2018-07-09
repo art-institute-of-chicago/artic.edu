@@ -185,6 +185,12 @@ const imageZoomArea = function(container) {
     });
   }
 
+  function _escape(event) {
+    if (active && event.keyCode === 27) {
+      triggerCustomEvent(document, 'fullScreenImage:close');
+    }
+  }
+
   function _init() {
     $img = container.querySelector('.o-fullscreen-image__img');
     $osd = container.querySelector('.o-fullscreen-image__osd');
@@ -196,6 +202,7 @@ const imageZoomArea = function(container) {
     $btnClose.addEventListener('click', _close, false);
     document.addEventListener('fullScreenImage:open', _open, false);
     document.addEventListener('fullScreenImage:close', _close, false);
+    window.addEventListener('keyup', _escape, false);
   }
 
   this.destroy = function() {
@@ -203,6 +210,7 @@ const imageZoomArea = function(container) {
     $btnClose.removeEventListener('click', _close);
     document.removeEventListener('fullScreenImage:open', _open);
     document.removeEventListener('fullScreenImage:close', _close);
+    window.removeEventListener('keyup', _escape);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
