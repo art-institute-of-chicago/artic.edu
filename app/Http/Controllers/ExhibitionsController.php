@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use A17\Twill\Http\Controllers\Front\ShowWithPreview;
 use App\Models\Page;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\EventRepository;
@@ -10,12 +9,8 @@ use Carbon\Carbon;
 
 class ExhibitionsController extends FrontController
 {
-    use ShowWithPreview;
-
     protected $apiRepository;
     protected $eventRepository;
-    protected $moduleName = 'exhibitions';
-    protected $showViewName = 'site.exhibitionDetail';
 
     const RELATED_EVENTS_PER_PAGE = 3;
 
@@ -62,15 +57,21 @@ class ExhibitionsController extends FrontController
         return $this->index(true);
     }
 
-    // Show view has been moved to be used with the trait ShowWithPreview
-    protected function showData($slug, $item)
+    protected function show($idSlug)
     {
-        return $this->apiRepository->getShowData($item, $slug);
-    }
+        $item = $this->apiRepository->getById((Integer) $idSlug, ['apiElements']);
 
-    protected function getItem($idSlug)
-    {
-        return $this->apiRepository->getById((Integer) $idSlug, ['apiElements']);
+        $this->seo->setTitle($item->meta_title ?: $item->title);
+        $this->seo->setDescription($item->meta_description ?: $item->list_description);
+
+        $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE);
+        $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
+
+        return view('site.exhibitionDetail', [
+            'contrastHeader' => $item->present()->contrastHeader,
+            'item' => $item,
+            'relatedEventsByDay' => $relatedEventsByDay,
+        ]);
     }
 
     public function loadMoreRelatedEvents($idSlug)

@@ -23,6 +23,9 @@ class GenericPagesController extends FrontController
         $crumbs     = $page->present()->breadCrumb($page);
         $navigation = $page->present()->navigation();
 
+        $this->seo->setTitle($page->meta_title ?: $page->title);
+        $this->seo->setDescription($page->meta_description ?: $page->short_description);
+
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'nav' => $navigation,
@@ -34,12 +37,6 @@ class GenericPagesController extends FrontController
             'featuredRelated' => $page->featuredRelated,
             'page' => $page,
         ]);
-    }
-
-    // Show view has been moved to be used with the trait ShowWithPreview
-    protected function showData($slug, $item)
-    {
-        return $this->genericPageRepository->getShowData($item, $slug);
     }
 
     protected function getPage($slug)

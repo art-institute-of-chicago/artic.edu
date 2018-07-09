@@ -16,6 +16,8 @@ class Gallery extends Model
         'datahub_id',
         'intro',
         'caption',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [

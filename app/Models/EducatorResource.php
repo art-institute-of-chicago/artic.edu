@@ -22,6 +22,8 @@ class EducatorResource extends Model
         'public',
         'publish_start_date',
         'publish_end_date',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [

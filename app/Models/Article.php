@@ -40,6 +40,8 @@ class Article extends Model
         'migrated_at',
         'migrated_at',
         'citations',
+        'meta_title',
+        'meta_description',
     ];
 
     public $slugAttributes = [

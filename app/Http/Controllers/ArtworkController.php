@@ -25,9 +25,8 @@ class ArtworkController extends BaseScopedController
             ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
             ->findOrFail((Integer) $idSlug);
 
-        if (empty($item)) {
-            abort(404);
-        }
+        $this->seo->setTitle($item->meta_title ?: $item->title);
+        $this->seo->setDescription($item->meta_description ?: $item->fullTitle);
 
         // Get previous and next artwork using BaseScopedController filters
         // Basically it performs a search again and locates both prev/next works

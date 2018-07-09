@@ -14,7 +14,11 @@ class Artwork extends Model
 
     protected $apiModel = 'App\Models\Api\Artwork';
 
-    protected $fillable = ['datahub_id'];
+    protected $fillable = [
+        'datahub_id',
+        'meta_title',
+        'meta_description',
+    ];
 
     public function getFullTitleAttribute()
     {

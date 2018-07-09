@@ -11,7 +11,7 @@
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Listing image',
-        'name' => 'listing'
+        'name' => 'listing',
         'note' => 'Minimum image width 3000px'
     ])
 
@@ -35,3 +35,18 @@
         ]
     ])
 @stop
+
+@section('fieldsets')
+    <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
+        @formField('input', [
+            'name' => 'meta_title',
+            'label' => 'Metadata Title'
+        ])
+
+        @formField('input', [
+            'name' => 'meta_description',
+            'label' => 'Metadata Description',
+            'type' => 'textarea'
+        ])
+    </a17-fieldset>
+@endsection

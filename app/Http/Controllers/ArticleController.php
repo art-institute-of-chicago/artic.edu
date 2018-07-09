@@ -82,6 +82,9 @@ class ArticleController extends FrontController
             abort(404);
         }
 
+        $this->seo->setTitle($item->meta_title ?: $item->title);
+        $this->seo->setDescription($item->meta_description ?: $item->heading);
+
         if ($item->categories->first()) {
             $item->topics = $item->categories;
         }

@@ -62,6 +62,9 @@ class EducatorResourcesController extends FrontController
             }
         }
 
+        $this->seo->setTitle($page->meta_title ?: $page->title);
+        $this->seo->setDescription($page->meta_description ?: $page->short_description);
+
         $navs = [
             'nav' => [],
             'subNav' => []
