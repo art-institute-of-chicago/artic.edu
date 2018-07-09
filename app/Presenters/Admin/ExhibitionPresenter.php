@@ -18,11 +18,26 @@ class ExhibitionPresenter extends BasePresenter
     {
      
         $date = "";
+        $hasStart = false;
 
-        $start = $this->entity->asDateTime($this->aic_start_at);
-        $end   = $this->entity->asDateTime($this->aic_end_at);
+        if($this->aic_start_at == null) {
+        } else {
+            $start = $this->entity->asDateTime($this->aic_start_at);
+            $date = $start->format('m d Y');
+            $hasStart = true;
 
-        $date = $start->format('m d Y') . ' - ' . $end->format('m d Y');
+  
+        }
+
+        if($this->aic_end_at == null){
+        } else {
+            $end   = $this->entity->asDateTime($this->aic_end_at);
+            if($hasStart) {
+                $date .=  ' - ' . $end->format('m d Y');
+            }
+        }
+
+
 
         if(empty($this->aic_end_at)) {
             if($start->format("Y") > 2010) {
@@ -30,20 +45,16 @@ class ExhibitionPresenter extends BasePresenter
             } else if($start->format("Y") < 2010) {
              $this->entity->status = "Closed";
             }
-            $date = $start->format('m d Y');
 
         }
 
         if(empty($this->aic_start_at)) {
             $this->entity->status = "Closed";
-            $date = $end->format('m d Y');  
         }
 
          if(empty($this->aic_start_at) && empty($this->aic_end_at) ) {
             $this->entity->status = "Closed";
-            $date = "";  
         }
-
         return $date;
     }
 
@@ -91,12 +102,21 @@ class ExhibitionPresenter extends BasePresenter
 
     public function startAt()
     {
-        return new Carbon($this->entity->aic_start_at);
+        if($this->entity->aic_start_at != null) {
+            return new Carbon($this->entity->aic_start_at);
+
+        } else {
+            return "";
+        }
     }
 
     public function endAt()
     {
-        return new Carbon($this->entity->aic_end_at);
+        if($this->entity->aic_end_at != null) {
+            return new Carbon($this->entity->aic_end_at);
+        }  else {
+            return "";
+        }
     }
 
     public function navigation()
@@ -133,12 +153,33 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     protected function closingSoonLink() {
-        if ($this->entity->status == 'Closed') {
-            return [
+        if (empty($this->entity->dateEnd) && $this->entity->dateStart->format('Y') > 2010) {
+           return [
+                'label' => 'Ongoing',
+                'variation' => 'ongoing'
+            ];
+        } else if(empty($this->entity->dateEnd) && $this->entity->dateStart->format('Y') < 2010) {
+             return [
                 'label' => 'Closed',
                 'variation' => 'closing-soon'
             ];
-        } else {
+        } else if(empty($this->entity->dateStart)) {
+             return [
+                'label' => 'Closed',
+                'variation' => 'closing-soon'
+            ];
+        } else if(empty($this->entity->dateStart) && empty($this->entity->dateEnd)) {
+             return [
+                'label' => 'Closed',
+                'variation' => 'closing-soon'
+            ];
+        } else if($this->entity->dateEnd < Carbon::now()) {
+             return [
+                'label' => 'Closed',
+                'variation' => 'closing-soon'
+            ];
+        }
+         else {
             if ($this->entity->closingSoon) {
                 return [
                     'label' => 'Closing Soon',
