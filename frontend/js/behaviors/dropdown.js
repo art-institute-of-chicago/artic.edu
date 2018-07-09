@@ -28,7 +28,7 @@ const dropdown = function(container) {
     }
     triggerCustomEvent(document, 'dropdown:close');
     container.classList.add('s-active');
-    setFocusOnTarget(container.querySelector('ul'));
+    setTimeout(function(){ setFocusOnTarget(container.querySelector('ul')); }, 0)
     active = true;
   }
 
@@ -80,7 +80,7 @@ const dropdown = function(container) {
         _open(event);
       } else if (document.activeElement === container || document.activeElement === container.firstElementChild) {
         _close(event);
-        setFocusOnTarget(container.parentNode);
+        setTimeout(function(){ setFocusOnTarget(container.parentNode); }, 0)
       }
     } else {
       _close(event);

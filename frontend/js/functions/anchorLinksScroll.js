@@ -20,7 +20,7 @@ const anchorLinksScroll = function(container) {
         duration: 500,
         easing: 'easeInOut',
         onComplete: function() {
-          setFocusOnTarget(target);
+          setTimeout(function(){ setFocusOnTarget(target); }, 0)
           if (event.target.classList.contains('return-link')) {
             triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': false });
           }
@@ -56,7 +56,7 @@ const anchorLinksScroll = function(container) {
       duration: 500,
       easing: 'easeInOut',
       onComplete: function() {
-        setFocusOnTarget(target);
+        setTimeout(function(){ setFocusOnTarget(target); }, 0)
       }
     });
   }

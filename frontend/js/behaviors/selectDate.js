@@ -35,7 +35,7 @@ const selectDate = function(container) {
       calendar.classList.remove('js-positioned');
       calendar.removeAttribute('style');
       triggerCustomEvent(document, 'focus:untrap');
-      setFocusOnTarget(container.parentNode);
+      setTimeout(function(){ setFocusOnTarget(container.parentNode); }, 0)
       calendarOpen = false;
     }
   }
@@ -64,7 +64,7 @@ const selectDate = function(container) {
           }
         });
       }
-      setFocusOnTarget(calendar);
+      setTimeout(function(){ setFocusOnTarget(calendar); }, 0)
       triggerCustomEvent(document, 'focus:trap', {
         element: calendar
       });

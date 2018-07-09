@@ -7,7 +7,7 @@ const focusTrap = function() {
   function _focus() {
     if (element) {
       if (document.activeElement !== element && !element.contains(document.activeElement)) {
-        setFocusOnTarget(element);
+        setTimeout(function(){ setFocusOnTarget(element); }, 0)
       }
     } else {
       document.removeEventListener('focus', _trap);
