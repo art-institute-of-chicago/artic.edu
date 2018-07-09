@@ -298,7 +298,7 @@
   <div class="m-directions-block">
     <div class="m-directions-block__map">
       <figure class="m-media">
-          <a href="{{ $directions['links'][0]['href'] ?? '#' }}" class="m-media__img">
+          <a href="{{ $directions['links'][0]['href'] ?? '#' }}" class="m-media__img ratio-img ratio-img--16:9">
               @include('partials._map')
           </a>
       </figure>
