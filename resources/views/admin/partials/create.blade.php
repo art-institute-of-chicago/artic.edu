@@ -1,15 +1,13 @@
 {{-- Adapted from vendor/a17/laravel-cms-toolkit/views/partials/create.blade.php --}}
-{{-- Replaces it so title is wysiwyg w/ italics --}}
+{{-- Replaces it so that we can provide a hint re: italicizing embedded titles --}}
 {{-- See `partialView` directive definition in TwillServiceProvider --}}
-@formField('wysiwyg', [
+@formField('input', [
     'name' => $titleFormKey ?? 'title',
     'label' => ucfirst($titleFormKey ?? 'title'),
     'translated' => $translateTitle ?? false,
     'required' => true,
     'onChange' => 'formatPermalink',
-    'toolbarOptions' => [
-        'italic',
-    ],
+    'note' => 'Use <i></i> to italicize titles within the title'
 ])
 
 @if ($permalink ?? true)
