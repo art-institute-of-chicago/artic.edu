@@ -285,13 +285,18 @@
   content: '';
 }
 
-.btn.btn--icon {
+.btn.btn--icon,
+.btn.btn--icon-sq {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   width: 32px;
   height: 32px;
   padding-right: 0;
   padding-left: 0;
   border-radius: 50%;
-  line-height: 30px;
+  line-height: 32px;
   text-align: center;
 }
 
@@ -304,8 +309,7 @@
 .btn.btn--icon-sq {
   width: 48px;
   height: 48px;
-  padding-right: 0;
-  padding-left: 0;
+  border-radius: 0;
   line-height: 46px;
   text-align: center;
 }
@@ -313,14 +317,10 @@
 .btn.btn--icon svg,
 .btn.btn--icon-sq svg {
   display: inline-block;
-  margin-top: -4px;
+  position: relative;
+  top: -1px;
   margin-right: 0;
-  vertical-align: middle;
-
-  &.icon--calendar,
-  &.icon--calendar--24 {
-    margin-top: -2px;
-  }
+  vertical-align: unset;
 }
 
 .btn.btn--full {
