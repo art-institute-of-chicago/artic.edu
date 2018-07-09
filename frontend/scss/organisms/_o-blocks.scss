@@ -143,6 +143,17 @@
   @include tucked-margin-top($f-body, ('xsmall': 32, 'small+': 68));
 }
 
+.o-blocks > .o-blocks__block.o-row-listing + p:not([class*='f-']),
+.o-blocks > .o-blocks__block.o-row-listing + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-blocks > .o-blocks__block.o-row-listing + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-blocks > .o-blocks__block.o-row-listing + .f-body,
+.o-blocks > .o-blocks__block.o-grid-listing + p:not([class*='f-']),
+.o-blocks > .o-blocks__block.o-grid-listing + ul:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-blocks > .o-blocks__block.o-grid-listing + ol:not([class*='f-']):not([class*='o-']):not([class*='m-']),
+.o-blocks > .o-blocks__block.o-grid-listing + .f-body {
+  @include tucked-margin-top($f-body, ('xsmall': 40, 'small+': 80));
+}
+
 /*****/
 
 .o-article--editorial .o-blocks > p:not([class*='f-']),
