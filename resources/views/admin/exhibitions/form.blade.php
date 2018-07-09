@@ -72,7 +72,7 @@
             'toolbarOptions' => ['bold']
         ])
 
-        @formField('wysisyg', [
+        @formField('wysiwyg', [
             'name' => 'sponsors_sub_copy',
             'label' => 'Sponsors sub copy',
             'note' => 'E.G. further support provided by',
