@@ -9,10 +9,6 @@ class ClosureController extends ModuleController
 {
     protected $moduleName = 'closures';
 
-    protected $indexOptions = [
-        'delete' => false,
-    ];
-
     protected $titleColumnKey = 'presentType';
     protected $titleFormKey = 'cmsFormTitle';
 

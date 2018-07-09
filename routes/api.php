@@ -449,6 +449,19 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('closures', 'API\ClosuresController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/closures/deleted",
+     *      tags={"closures"},
+     *      operationId="getDeletedClosures",
+     *      summary="List all deleted closures",
+     *      @SWG\Response(response="200", description="List all deleted closures")
+     *  )
+     *
+     */
+    Route::get('closures/deleted', 'API\ClosuresController@deleted');
+
     /**
      * @SWG\Get(
      *      path="/api/v1/closures/{id}",
@@ -492,7 +505,7 @@ Route::group(['prefix' => 'v1'], function()
      *      operationId="getExhibition",
      *      summary="Fetch exhibitions details",
      *      @SWG\Parameter(
-     *          name="id",
+     *          name="id",`
      *          in="path",
      *          required=true,
      *          type="integer",
@@ -518,6 +531,20 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('events', 'API\EventsController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/events/deleted",
+     *      tags={"events"},
+     *      operationId="getDeletedEvents",
+     *      summary="List all deleted events",
+     *      @SWG\Response(response="200", description="List all deleted events")
+     *  )
+     *
+     */
+    Route::get('events/deleted', 'API\EventsController@deleted');
+
+
     /**
      * @SWG\Get(
      *      path="/api/v1/events/{id}",
@@ -551,6 +578,19 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('articles', 'API\ArticlesController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/articles/deleted",
+     *      tags={"articles"},
+     *      operationId="getDeletedArticles",
+     *      summary="List all deleted articles",
+     *      @SWG\Response(response="200", description="List all deleted articles")
+     *  )
+     *
+     */
+    Route::get('articles/deleted', 'API\ArticlesController@deleted');
+
     /**
      * @SWG\Get(
      *      path="/api/v1/articles/{id}",
@@ -672,9 +712,6 @@ Route::group(['prefix' => 'v1'], function()
 
 
 
-
-
-
     /**
      *
      * - generic pages ------------------------------------------------------
@@ -689,6 +726,19 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('genericpages', 'API\GenericPagesController@index');
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/api/v1/genericpages/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedGenericPages",
+     *      summary="List all deleted generic pages",
+     *      @SWG\Response(response="200", description="List all deleted generic pages")
+     *  )
+     *
+     */
+    Route::get('genericpages/deleted', 'API\GenericPagesController@deleted');
 
     /**
      * @SWG\Get(
@@ -879,6 +929,5 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('printedcatalogs/{id}', 'API\PrintedCatalogsController@show');
-
 
 });

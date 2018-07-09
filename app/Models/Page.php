@@ -349,12 +349,6 @@ class Page extends Model
                 "type" => "string",
                 "value" => function () {return $this->slug;},
             ],
-            [
-                "name" => "web_url",
-                "doc" => "web_url",
-                "type" => "string",
-                "value" => function () {return url(route('pages.show', $this));},
-            ],
 
             [
                 "name" => "exhibition_history_sub_heading",

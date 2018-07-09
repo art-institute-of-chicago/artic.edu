@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Aic\Hub\Foundation\AbstractController as BaseController;
 
 class GenericPagesController extends BaseController
 {
@@ -15,4 +14,5 @@ class GenericPagesController extends BaseController
     {
         return true;
     }
+
 }
