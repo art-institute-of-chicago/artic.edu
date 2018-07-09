@@ -18,7 +18,7 @@
             @slot('itemprop','name')
             {{ $title }}
         @endcomponent
-      @endif
+      @endif 
       @if (empty($dateEnd))
            @component('components.atoms._date')
             @slot('tag','p')

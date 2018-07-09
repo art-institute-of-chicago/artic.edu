@@ -26,7 +26,7 @@ class ExhibitionPresenter extends BasePresenter
             $date = $start->format('m d Y');
             $hasStart = true;
 
-  
+ 
         }
 
         if($this->aic_end_at == null){

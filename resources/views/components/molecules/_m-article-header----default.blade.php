@@ -37,3 +37,4 @@
         @endcomponent
     @endif
 </{{ $tag or 'header' }}>
+ 
