@@ -775,6 +775,19 @@ Route::group(['prefix' => 'v1'], function()
     Route::get('pressreleases', 'API\PressReleasesController@index');
 
     /**
+     *
+     * @SWG\Get(
+     *      path="/api/v1/pressreleases/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedPressReleases",
+     *      summary="List all deleted press releases",
+     *      @SWG\Response(response="200", description="List all deleted press releases")
+     *  )
+     *
+     */
+    Route::get('pressreleases/deleted', 'API\PressReleasesController@deleted');
+
+    /**
      * @SWG\Get(
      *      path="/api/v1/pressreleases/{id}",
      *      tags={"pages"},
@@ -809,6 +822,19 @@ Route::group(['prefix' => 'v1'], function()
     Route::get('researchguides', 'API\ResearchGuidesController@index');
 
     /**
+     *
+     * @SWG\Get(
+     *      path="/api/v1/researchguides/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedResearchGuides",
+     *      summary="List all deleted research guides",
+     *      @SWG\Response(response="200", description="List all deleted research guides")
+     *  )
+     *
+     */
+    Route::get('researchguides/deleted', 'API\ResearchGuidesController@deleted');
+
+    /**
      * @SWG\Get(
      *      path="/api/v1/researchguides/{id}",
      *      tags={"pages"},
@@ -841,6 +867,21 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('educatorresources', 'API\EducatorResourcesController@index');
+
+    /**
+     *
+     * - educator resources ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/educatorresources/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedEducatorResources",
+     *      summary="List all deleted educator resources",
+     *      @SWG\Response(response="200", description="List all deleted educator resources")
+     *  )
+     *
+     */
+    Route::get('educatorresources/deleted', 'API\EducatorResourcesController@deleted');
 
     /**
      * @SWG\Get(
@@ -878,6 +919,18 @@ Route::group(['prefix' => 'v1'], function()
 
     /**
      * @SWG\Get(
+     *      path="/api/v1/digitalcatalogs/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedDigitalCatalogs",
+     *      summary="List all deleted digital catalogs",
+     *      @SWG\Response(response="200", description="List all deleted digital catalogs")
+     *  )
+     *
+     */
+    Route::get('digitalcatalogs/deleted', 'API\DigitalCatalogsController@deleted');
+
+    /**
+     * @SWG\Get(
      *      path="/api/v1/digitalcatalogs/{id}",
      *      tags={"pages"},
      *      operationId="getDigitalCatalog",
@@ -910,6 +963,19 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('printedcatalogs', 'API\PrintedCatalogsController@index');
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/api/v1/printedcatalogs/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedPrintedCatalogs",
+     *      summary="List all deleted printed catalogs",
+     *      @SWG\Response(response="200", description="List all deleted printed catalogs")
+     *  )
+     *
+     */
+    Route::get('printedcatalogs/deleted', 'API\PrintedCatalogsController@deleted');
 
     /**
      * @SWG\Get(
