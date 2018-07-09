@@ -19,6 +19,9 @@ class ExhibitionPresenter extends BasePresenter
      
         $date = "";
         $hasStart = false;
+        $start = $this->entity->asDateTime($this->aic_start_at);
+        $end = "";
+
 
         if($this->aic_start_at == null) {
         } else {
