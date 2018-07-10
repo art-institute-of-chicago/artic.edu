@@ -45,6 +45,14 @@ class Exhibition extends BaseApiModel
         return join(array_filter([$this->id, $this->getSlug()]), '-');
     }
 
+    public function getAicDateStartAttribute()
+    {
+        if (!empty($this->aic_start_at)) {
+            return new Carbon($this->aic_start_at);
+        }
+
+    }
+
     public function getDateStartAttribute()
     {
         if (!empty($this->start_at)) {

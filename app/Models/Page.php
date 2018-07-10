@@ -200,6 +200,11 @@ class Page extends Model
         return $this->apiElements()->where('relation', 'exhibitionsUpcoming');
     }
 
+    public function exhibitionsUpcomingListing()
+    {
+        return $this->apiElements()->where('relation', 'exhibitionsUpcomingListing');
+    }
+
     public function homeEvents()
     {
         return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');

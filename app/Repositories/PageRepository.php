@@ -43,7 +43,7 @@ class PageRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsCurrent', 'artCategoryTerms']);
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
@@ -92,6 +92,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['collectionFeatures'] = $this->getFormFieldsForBrowser($object, 'collectionFeatures', 'homepage', 'title', 'collectionFeatures');
 
         // Exhibition & Events
+        $fields['browsers']['exhibitionsUpcomingListing'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcomingListing', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
         $fields['browsers']['exhibitionsExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
         $fields['browsers']['exhibitionsCurrent'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsCurrent', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
         $fields['browsers']['exhibitionsUpcoming'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcoming', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
