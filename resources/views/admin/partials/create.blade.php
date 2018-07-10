@@ -16,6 +16,7 @@
         'label' => 'Permalink',
         'translated' => true,
         'ref' => 'permalink',
-        'prefix' => $permalinkPrefix ?? ''
+        'prefix' => $permalinkPrefix ?? '',
+        'note' => 'If using <i></i>, manually cleanup `i` from permalink'
     ])
 @endif
