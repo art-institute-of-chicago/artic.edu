@@ -111,7 +111,13 @@ class BaseService
             }
         }
 
-        return $query->getSearch(self::PER_PAGE_EXPLORE_FURTHER);
+        $results = $query->getSearch(self::PER_PAGE_EXPLORE_FURTHER);
+
+        // Remove our own element from the collection.
+        $item = $this->resource;
+        return $results->filter(function($value, $key) use ($item) {
+            return ($item->id != $value->id);
+        });
     }
 
     public function collectionUrl($parameters = [])
