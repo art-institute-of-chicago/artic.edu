@@ -111,7 +111,7 @@ class BaseService
             }
         }
 
-        return $query->getSearch(self::PER_PAGE_EXPLORE_FURTHER);
+        return $query->getPaginatedModel(self::PER_PAGE_EXPLORE_FURTHER, \App\Models\Api\Artwork::SEARCH_FIELDS);
     }
 
     public function collectionUrl($parameters = [])

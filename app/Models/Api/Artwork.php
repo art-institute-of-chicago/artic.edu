@@ -33,6 +33,8 @@ class Artwork extends BaseApiModel
         'include' => ['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots']
     ];
 
+    const SEARCH_FIELDS = ['id', 'title', 'date_display', 'thumbnail', 'image_id', 'api_model', 'artist_pivots', 'artist_title', 'artist_display'];
+
     public $mediasParams = [
         'hero' => [
             'default' => [
@@ -68,6 +70,8 @@ class Artwork extends BaseApiModel
             } else {
                 return $this->artist_title ?? $this->artist_display;
             }
+        } else {
+            return $this->artist_title ?? $this->artist_display;
         }
     }
 

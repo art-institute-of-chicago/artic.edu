@@ -51,10 +51,10 @@ class CollectionService
         $builder = clone $this->chain;
 
         if ($page) {
-            $this->results = $builder->getSearch($this->perPage, [], null, $page);
+            $this->results = $builder->getPaginatedModel($this->perPage, \App\Models\Api\Artwork::SEARCH_FIELDS, null, $page);
             $this->page    = $page;
         } else {
-            $this->results = $builder->getSearch($this->perPage);
+            $this->results = $builder->getPaginatedModel($this->perPage, \App\Models\Api\Artwork::SEARCH_FIELDS);
         }
 
         return $this->results;
