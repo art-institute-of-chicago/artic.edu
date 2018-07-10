@@ -17,7 +17,7 @@ class ModifyEventEventTable extends Migration
             $table->dropForeign("event_event_related_event_id_foreign");
             $table->dropIndex("event_event_related_event_id_event_id_index");
             $table->dropColumn("related_event_id")->unsigned();
-            $table->integer("datahub_id")->unsigned();
+            $table->integer("datahub_id")->unsigned()->nullable();
         });
     }
 
