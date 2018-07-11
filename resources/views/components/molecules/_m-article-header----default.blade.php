@@ -6,7 +6,7 @@
             @slot('itemprop','name')
             {{ $title }}
         @endcomponent
-    @endif
+    @endif 
     @if (isset($formattedDate))
         @component('components.atoms._date')
             @slot('tag','p')
