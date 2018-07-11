@@ -9,7 +9,7 @@
             ))
         @endcomponent
       @endif
-  </div>
+  </div> 
   <div class="m-article-header__text">
       @if (isset($title))
         @component('components.atoms._title')

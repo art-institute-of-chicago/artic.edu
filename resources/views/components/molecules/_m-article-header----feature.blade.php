@@ -9,7 +9,7 @@
             ))
         @endcomponent
       @endif
-  </div>
+  </div> 
   <div class="m-article-header__text" data-blur-clip-to>
       @if (isset($title))
         @component('components.atoms._title')
