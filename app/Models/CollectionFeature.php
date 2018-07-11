@@ -36,4 +36,17 @@ class CollectionFeature extends Model
         return $this->belongsToMany(\App\Models\Selection::class, 'collection_feature_selection', 'collection_feature_id', 'selection_id')->withPivot('position')->orderBy('position');
     }
 
+    public function enclosedItem()
+    {
+        $item = $this->articles()->first();
+        $item = $item ?? $this->selections()->first();
+        $item = $item ?? $this->apiModels('artworks', 'Artwork')->first();
+
+        if ($item->type == 'artwork') {
+            $item->subtype = 'Artwork';
+        }
+
+        return $item;
+    }
+
 }

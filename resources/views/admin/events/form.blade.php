@@ -21,7 +21,7 @@
     ])
 
     @formField('select', [
-        'name' => 'type',
+        'name' => 'event_type',
         'label' => 'Event type',
         'options' => $eventTypesList,
         'default' => '1'

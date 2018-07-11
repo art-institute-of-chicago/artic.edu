@@ -59,4 +59,45 @@ class HomeFeature extends Model
     {
         return $this->apiElements()->where('relation', 'exhibitions');
     }
+
+    public function item()
+    {
+        $item = $this->events()->first();
+        $item = $item ?? $this->apiModels('exhibitions', 'Exhibition')->first();
+        $item = $item ?? $this->articles()->first();
+
+        return $item;
+    }
+
+    public function enclosedItem()
+    {
+        // Return nothing if there's no selected element.
+        // This usually happens when you select an exhibition and this one gets removed from the API.
+        if ($item = $this->item()) {
+
+            // Assign image and video to the actual item. Fallback to the element image if no image has been selected.
+            $item->featureImage = $this->featureImage ?? $item->imageFront('hero');
+            $item->videoFront   = $this->videoFront($item->featureImage);
+
+            return $item;
+        }
+    }
+
+    public function getFeatureImageAttribute()
+    {
+        return $this->imageFront('hero');
+    }
+
+    public function videoFront($image)
+    {
+        if (($videoUrl = $this->file('video')) != null) {
+            $video = [
+                'src' => $videoUrl,
+                'poster' => ($image ? $image['src'] : '')
+            ];
+
+            return $video;
+        }
+    }
+
 }

@@ -4,20 +4,22 @@
 
 @component('components.organisms._o-features')
     @foreach ($mainFeatures as $item)
-        @component('components.molecules._m-listing----'.$item->type)
-            @slot('item', $item)
-            @if ($item->type === 'selection')
-                @slot('singleImage',true)
-            @endif
-            @slot('image', $item->feature_image)
-            @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
-            @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-module-title-2')
-            @slot('imageSettings', array(
-                'srcset' => array(300,600,1000,1500,3000),
-                'sizes' => '100vw',
-            ))
-            @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item['title'] ?? 'unknown title').'" data-gtm-event-category="nav-hero"' : 'data-gtm-event="'.getUtf8Slug($item['title'] ?? 'unknown title').'" data-gtm-event-category="sub-nav-hero"')
-        @endcomponent
+        @if ($item->enclosedItem())
+            @component('components.molecules._m-listing----'.$item->enclosedItem()->type)
+                @slot('item', $item->enclosedItem())
+                @if ($item->enclosedItem()->type === 'selection')
+                    @slot('singleImage',true)
+                @endif
+                @slot('image', $item->enclosedItem()->featureImage)
+                @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
+                @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-module-title-2')
+                @slot('imageSettings', array(
+                    'srcset' => array(300,600,1000,1500,3000),
+                    'sizes' => '100vw',
+                ))
+                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="sub-nav-hero"')
+            @endcomponent
+        @endif
     @endforeach
 @endcomponent
 
@@ -138,22 +140,24 @@
     @slot('cols_xlarge','3')
     @slot('maintainOrder','true')
     @foreach ($theCollection as $item)
-        @component('components.molecules._m-listing----'.$item->type)
-            @slot('variation', 'o-pinboard__item')
-            @slot('item', $item)
-            @slot('imageSettings', array(
-                'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
-                'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
-                'srcset' => array(200,400,600,1000),
-                'sizes' => aic_gridListingImageSizes(array(
-                      'xsmall' => '1',
-                      'small' => '2',
-                      'medium' => '3',
-                      'large' => '3',
-                      'xlarge' => '3',
-                )),
-            ))
-        @endcomponent
+        @if ($item->enclosedItem())
+            @component('components.molecules._m-listing----'.$item->enclosedItem()->type)
+                @slot('variation', 'o-pinboard__item')
+                @slot('item', $item->enclosedItem())
+                @slot('imageSettings', array(
+                    'fit' => ($item->enclosedItem()->type !== 'selection' and $item->enclosedItem()->type !== 'artwork') ? 'crop' : null,
+                    'ratio' => ($item->enclosedItem()->type !== 'selection' and $item->enclosedItem()->type !== 'artwork') ? '16:9' : null,
+                    'srcset' => array(200,400,600,1000),
+                    'sizes' => aic_gridListingImageSizes(array(
+                          'xsmall' => '1',
+                          'small' => '2',
+                          'medium' => '3',
+                          'large' => '3',
+                          'xlarge' => '3',
+                    )),
+                ))
+            @endcomponent
+        @endif
     @endforeach
 @endcomponent
 

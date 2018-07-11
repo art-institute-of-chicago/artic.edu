@@ -29,10 +29,12 @@
             <span class="intro {{ $captionFont ?? 'f-caption' }}">{{ truncateStr($item->heading) }}</span>
             <br>
             <span class="m-listing__meta-bottom">
-                @component('components.atoms._type')
-                    {{ $item->type }}
-                @endcomponent
+                @if ($item->subtype)
+                    @component('components.atoms._type')
+                        {{ $item->subtype }}
+                    @endcomponent
                 <br>
+                @endif
                 @if ($item->date)
                     @component('components.atoms._date')
                         {{ $item->date->format('F j, Y') }}

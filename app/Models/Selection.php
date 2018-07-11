@@ -67,6 +67,16 @@ class Selection extends Model
         return join([$this->id, $this->getSlug()], '-');
     }
 
+    public function getTypeAttribute()
+    {
+        return 'selection';
+    }
+
+    public function getSubtypeAttribute()
+    {
+        return 'Selection';
+    }
+
     public function getHeaderTypeAttribute()
     {
         return 'hero';
@@ -182,6 +192,11 @@ class Selection extends Model
         }
 
         return $list;
+    }
+
+    public function getImagesAttribute()
+    {
+        return $this->getArtworkImages();
     }
 
     protected function transformMappingInternal()
