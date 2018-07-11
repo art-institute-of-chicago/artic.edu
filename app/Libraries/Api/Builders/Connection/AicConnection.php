@@ -66,6 +66,9 @@ class AicConnection implements ApiConnectionInterface
 
         $options = array_merge($adaptedParameters, $headers);
 
+        // Allow to force the verb used for the calls (GET/POST)
+        $verb = config('api.force_verb') ?: $verb;
+
         // Perform API request and caching
         if (config('api.cache_enabled')) {
             $cacheKey = $this->buildCacheKey($verb, $endpoint, $options, config('api.cache_version'));
