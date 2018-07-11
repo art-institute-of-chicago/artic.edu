@@ -11,6 +11,7 @@ use A17\Twill\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Models\Event;
+use App\Models\Api\Search;
 use Carbon\Carbon;
 
 class EventRepository extends ModuleRepository
@@ -146,6 +147,15 @@ class EventRepository extends ModuleRepository
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
         ];
+    }
+
+    public function searchApi($string, $perPage = null, $page = null, $columns = [])
+    {
+        $search  = Search::query()->search($string)->resources(['events']);
+
+        $results = $search->getSearch($perPage, $columns, null, $page);
+
+        return $results;
     }
 
 }

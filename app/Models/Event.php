@@ -191,6 +191,11 @@ class Event extends Model
         return $query->whereLanding(true);
     }
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     public function scopeNotHidden($query)
     {
         return $query->whereHidden(false);

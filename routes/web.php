@@ -45,7 +45,7 @@ Route::name('search')->get('/search', 'SearchController@index');
 Route::name('search.autocomplete')->get('/search/autocomplete', 'SearchController@autocomplete');
 Route::name('search.artists')->get('/search/artists', 'SearchController@artists');
 Route::name('search.artworks')->get('/search/artworks', 'SearchController@artworks');
-Route::name('search.exhibitionsEvents')->get('/search/exhibitions_and_events', 'SearchController@exhibitionsEvents');
+Route::name('search.exhibitions')->get('/search/exhibitions', 'SearchController@exhibitions');
 
 // Events routes
 Route::name('events')->get('/events', 'EventsController@index');

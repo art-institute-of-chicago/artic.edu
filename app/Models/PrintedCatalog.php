@@ -68,6 +68,11 @@ class PrintedCatalog extends Model
         return $this->belongsToMany('App\Models\CatalogCategory');
     }
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     public function scopeByCategory($query, $category = null)
     {
         if (empty($category)) {

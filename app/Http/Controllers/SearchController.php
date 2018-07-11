@@ -11,6 +11,9 @@ use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\ArtistRepository;
 use App\Repositories\Api\SearchRepository;
 use App\Repositories\Api\ExhibitionRepository;
+use App\Repositories\ArticleRepository;
+use App\Repositories\PublicationsRepository;
+use App\Repositories\EventRepository;
 
 use App\Http\Controllers\StaticsController;
 
@@ -23,30 +26,36 @@ class SearchController extends BaseScopedController
     const ALL_PER_PAGE = 5;
     const ALL_PER_PAGE_ARTWORKS = 8;
     const ALL_PER_PAGE_EXHIBITIONS = 4;
+    const ALL_PER_PAGE_EVENTS = 4;
+    const ALL_PER_PAGE_ARTICLES = 4;
 
     const ARTWORKS_PER_PAGE = 20;
-
     const EXHIBITIONS_PER_PAGE = 20;
-
     const ARTISTS_PER_PAGE = 30;
-
     const AUTOCOMPLETE_PER_PAGE = 10;
 
     protected $artworksRepository;
     protected $artistsRepository;
     protected $searchRepository;
     protected $exhibitionsRepository;
+    protected $articlesRepository;
 
     public function __construct(
         ArtworkRepository $artworks,
         ArtistRepository $artists,
         SearchRepository $search,
-        ExhibitionRepository $exhibitions
+        ExhibitionRepository $exhibitions,
+        ArticleRepository $articles,
+        PublicationsRepository $publications,
+        EventRepository $events
     ) {
         $this->artworksRepository = $artworks;
         $this->artistsRepository = $artists;
         $this->searchRepository = $search;
         $this->exhibitionsRepository = $exhibitions;
+        $this->articlesRepository = $articles;
+        $this->eventsRepository = $events;
+        $this->publicationsRepository = $publications;
 
         parent::__construct();
     }
@@ -62,17 +71,21 @@ class SearchController extends BaseScopedController
 
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
-        $artworks    = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
-        $artists     = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
-        $exhibitions = $this->exhibitionsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
-
+        $publications = $this->publicationsRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
+        $articles     = $this->articlesRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
+        $artworks     = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
+        $artists      = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
+        $exhibitions  = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
+        $events       = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
 
         return view('site.search.index', [
-            'featuredResults'      => $general->where('is_boosted', true),
-            'eventsAndExhibitions' => $exhibitions,
+            'featuredResults' => $general->where('is_boosted', true),
             'artworks' => $artworks,
             'artists'  => $artists,
-
+            'articles' => $articles,
+            'events'   => $events,
+            'exhibitions'  => $exhibitions,
+            'publications' => $publications,
             'allResultsView' => false,
             'searchResultsTypeLinks' => $links
         ]);
@@ -80,25 +93,39 @@ class SearchController extends BaseScopedController
 
     public function autocomplete()
     {
-        // TODO: Integrate this search for all types and use a better approach than overwriting the results
-
         $collection = GeneralSearch::search(request('q'))
-            ->resources(['artworks', 'exhibitions', 'artists', 'agents'])
+            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs'])
             ->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
         foreach($collection as &$item) {
-            switch ($item->type) {
-                case 'artwork':
+            switch ((new \ReflectionClass($item))->getShortName()) {
+                case 'Artwork':
                     $item->url = route('artworks.show', $item);
                     $item->section = 'Artworks';
                     break;
-                case 'exhibition':
+                case 'Exhibition':
                     $item->url = route('exhibitions.show', $item);
                     $item->section = 'Exhibitions and Events';
                     break;
-                case 'artist':
+                case 'Artist':
                     $item->url = route('artists.show', $item);
                     $item->section = 'Artists';
+                    break;
+                case 'Event':
+                    $item->url = route('events.show', $item);
+                    $item->section = 'Events';
+                    break;
+                case 'Article':
+                    $item->url = route('articles.show', $item);
+                    $item->section = 'Articles';
+                    break;
+                case 'DigitalCatalog':
+                    $item->url = route('collection.publications.digital-catalogs.show', $item);
+                    $item->section = 'Digital Catalogs';
+                    break;
+                case 'PrintedCatalog':
+                    $item->url = route('collection.publications.printed-catalogs.show', $item);
+                    $item->section = 'Printed Catalogs';
                     break;
             }
 
@@ -154,30 +181,19 @@ class SearchController extends BaseScopedController
         return $collectionService;
     }
 
-    public function exhibitionsEvents()
+    public function exhibitions()
     {
         $this->seo->setTitle('Search');
 
         $general     = $this->searchRepository->forSearchQuery(request('q'), 2);
-        $exhibitions = $this->exhibitionsRepository->forSearchQuery(request('q'), self::EXHIBITIONS_PER_PAGE);
+        $exhibitions = $this->exhibitionsRepository->searchApi(request('q'), self::EXHIBITIONS_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'exhibitions');
 
         return view('site.search.index', [
-            'eventsAndExhibitions' => $exhibitions,
+            'exhibitions' => $exhibitions,
             'allResultsView' => true,
             'searchResultsTypeLinks' => $links,
-            'filterCategories' => [],
-            'activeFilters' => array(
-              array(
-                'href' => '#',
-                'label' => "Arms",
-              ),
-              array(
-                'href' => '#',
-                'label' => "Legs",
-              )
-            ),
         ]);
     }
 
@@ -194,17 +210,6 @@ class SearchController extends BaseScopedController
             'artists' => $artists,
             'allResultsView' => true,
             'searchResultsTypeLinks' => $links,
-            'filterCategories' => [],
-            'activeFilters' => array(
-              array(
-                'href' => '#',
-                'label' => "Arms",
-              ),
-              array(
-                'href' => '#',
-                'label' => "Legs",
-              )
-            ),
         ]);
     }
 
@@ -221,7 +226,11 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Artwork', extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'));
         }
         if (extractAggregation($aggregations, 'exhibitions')) {
-            array_push($links, $this->buildLabel('Exhibitions & Events', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitionsEvents', ['q' => request('q')]), $active == 'exhibitions'));
+            array_push($links, $this->buildLabel('Exhibitions', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
+        }
+
+        if (extractAggregation($aggregations, 'events')) {
+            array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('events'), $active == 'events'));
         }
 
         return $links;

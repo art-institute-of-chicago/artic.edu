@@ -121,7 +121,7 @@
                 @slot('tag','h2')
                 @slot('font', 'f-list-3')
                 @if ($extraResults && !$extraResults->isEmpty())
-                    There are no results in this year. However, there are <a href={!! route('search.exhibitionsEvents', request()->only('q')) !!}>{{ $extraResults->total() }} results</a> across the rest of the archive.
+                    There are no results in this year. However, there are <a href={!! route('search.exhibitions', request()->only('q')) !!}>{{ $extraResults->total() }} results</a> across the rest of the archive.
                 @else
                     Sorry, we couldn't find any results matching your criteria
                 @endif

@@ -30,7 +30,7 @@
     @endcomponent
 @endif
 
-@if (empty($featuredResults) && empty($artists) && empty($pages) && empty($artworks) && empty($eventsAndExhibitions) && empty($articlesAndPublications) && empty($researchAndResources))
+@if (empty($featuredResults) && empty($artists) && empty($pages) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($researchAndResources))
     @component('components.molecules._m-no-results')
     @endcomponent
 @endif
@@ -40,7 +40,7 @@
 
         @if ($featuredResults->count() == 1)
             @slot('title', 'Featured Result')
-            @component('components.molecules._m-listing----'.strtolower($featuredResults->first()->getClassName()))
+            @component('components.molecules._m-listing----'.strtolower(class_basename($featuredResults->first())))
                 @slot('tag', 'p')
                 @slot('variation', 'm-listing--row m-listing--tertiary')
                 @slot('imgVariation', 'm-listing__img--square')
@@ -62,7 +62,7 @@
             @slot('title', 'Featured Results')
             @component('components.organisms._o-row-listing')
                 @foreach ($featuredResults as $featuredResult)
-                    @component('components.molecules._m-listing----'.strtolower($featuredResult->getClassName()))
+                    @component('components.molecules._m-listing----'.strtolower(class_basename($featuredResult)))
                         @slot('variation', 'm-listing--row m-listing--tertiary')
                         @slot('imgVariation', 'm-listing__img--square')
                         @slot('item', $featuredResult)
@@ -288,12 +288,12 @@
 
 @endif
 
-@if (isset($eventsAndExhibitions) && $eventsAndExhibitions->getMetadata('pagination')->total > 0)
+@if (isset($exhibitions) && $exhibitions->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless (isset($allResultsView) and $allResultsView)
-            @slot('links', array(array('label' => 'See all '. $eventsAndExhibitions->getMetadata('pagination')->total .' events and exhibitions', 'href' => route('search.exhibitionsEvents', request()->input()))))
+            @slot('links', array(array('label' => 'See all '. $exhibitions->getMetadata('pagination')->total .' exhibitions', 'href' => route('search.exhibitions', request()->input()))))
         @endif
-        Events and Exhibitions
+        Exhibitions
     @endcomponent
     @if (isset($allResultsView) and $allResultsView)
         @component('components.molecules._m-links-bar')
@@ -310,7 +310,7 @@
                       ))
                     @endcomponent
                 </li>
-                <li class="m-links-bar__item m-links-bar__item--primary">
+                {{-- <li class="m-links-bar__item m-links-bar__item--primary">
                     @component('components.atoms._dropdown')
                       @slot('prompt', 'Show: All')
                       @slot('ariaTitle', 'Filter by')
@@ -322,7 +322,7 @@
                         array('href' => '#', 'label' => 'Events'),
                       ))
                     @endcomponent
-                </li>
+                </li> --}}
             @endslot
         @endcomponent
         @component('components.atoms._hr')
@@ -345,8 +345,8 @@
             @slot('cols_large','4')
             @slot('cols_xlarge','4')
         @endif
-        @foreach ($eventsAndExhibitions as $item)
-            @if($item->getClassName() == 'Exhibition')
+        @foreach ($exhibitions as $item)
+            @if(class_basename($item) == 'Exhibition')
                 @component('components.molecules._m-listing----exhibition')
             @else
                 @component('components.molecules._m-listing----event')
@@ -385,96 +385,110 @@
 
     @if (isset($allResultsView) && $allResultsView)
         {{-- Pagination --}}
-        {!! $eventsAndExhibitions->appends(request()->input())->links() !!}
+        {!! $exhibitions->appends(request()->input())->links() !!}
     @endif
 @endif
 
-@if (!empty($articlesAndPublications))
+@if (isset($articles) && $articles->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
-        @if (isset($articlesAndPublications['totalResults']) and isset($articlesAndPublications['allResultsHref']))
-            @slot('links', array(array('label' => 'See all '.$articlesAndPublications['totalResults'].' writings', 'href' => $articlesAndPublications['allResultsHref'])))
-        @endif
+        @slot('links', array(array('label' => 'See all writings', 'href' => route('articles_publications'))))
         Writings
     @endcomponent
-    @if (isset($articlesAndPublications['allResultsView']) and $articlesAndPublications['allResultsView'])
-        @component('components.molecules._m-links-bar')
-            @slot('secondaryHtml')
-                <li class="m-links-bar__item m-links-bar__item--primary">
-                    @component('components.atoms._dropdown')
-                      @slot('prompt', 'Show: All')
-                      @slot('ariaTitle', 'Filter by')
-                      @slot('variation','dropdown--filter f-link')
-                      @slot('font', null)
-                      @slot('options', array(
-                        array('href' => '#', 'label' => 'All', 'active' => true),
-                        array('href' => '#', 'label' => 'Articles'),
-                        array('href' => '#', 'label' => 'Publications'),
-                      ))
-                    @endcomponent
-                </li>
-            @endslot
-        @endcomponent
-        @component('components.atoms._hr')
-            @slot('variation','hr--flush-top')
-        @endcomponent
-    @else
-        @component('components.atoms._hr')
-        @endcomponent
-    @endif
+
     @component('components.organisms._o-grid-listing')
-        @if (isset($articlesAndPublications['allResultsView']) and $articlesAndPublications['allResultsView'])
-            @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-            @slot('cols_small','2')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-        @else
-            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-        @endif
-        @foreach ($articlesAndPublications['results'] as $item)
-            @component('components.molecules._m-listing----'.$item->type)
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+
+        @foreach ($articles as $item)
+            @component('components.molecules._m-listing----article')
                 @slot('imgVariation','')
                 @if ($item->type === 'selection')
                     @slot('singleImage',true)
                 @endif
                 @slot('item', $item)
-                @if (isset($articlesAndPublications['allResultsView']) and $articlesAndPublications['allResultsView'])
-                    @slot('imageSettings', array(
-                        'fit' => ($item->type !== 'artwork') ? 'crop' : null,
-                        'ratio' => ($item->type !== 'artwork') ? '16:9' : null,
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_gridListingImageSizes(array(
-                              'xsmall' => '1',
-                              'small' => '2',
-                              'medium' => '3',
-                              'large' => '4',
-                              'xlarge' => '4',
-                        )),
-                    ))
-                @else
-                    @slot('imageSettings', array(
-                        'fit' => ($item->type !== 'artwork') ? 'crop' : null,
-                        'ratio' => ($item->type !== 'artwork') ? '16:9' : null,
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
-                              'xsmall' => '216px',
-                              'small' => '216px',
-                              'medium' => '18',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
-                @endif
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
             @endcomponent
         @endforeach
     @endcomponent
-    @if(isset($articlesAndPublications['pagination']) and $articlesAndPublications['pagination'])
-        @component('components.molecules._m-paginator')
-        @endcomponent
-    @endif
+@endif
+
+@if (isset($publications) && $publications->getMetadata('pagination')->total > 0)
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(array('label' => 'See all publications', 'href' => route('collection.publications.printed-catalogs'))))
+        Publications
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+
+        @foreach ($publications as $item)
+            @component('components.molecules._m-listing----generic')
+                @slot('imgVariation','')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
+
+@if (isset($events) && $events->getMetadata('pagination')->total > 0)
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(array('label' => 'See all events', 'href' => route('events'))))
+        Events
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+
+        @foreach ($events as $item)
+            @component('components.molecules._m-listing----event')
+                @slot('imgVariation','')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
 @endif
 
 @if (!empty($researchAndResources))

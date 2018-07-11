@@ -8,6 +8,7 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Article;
+use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 
@@ -51,5 +52,14 @@ class ArticleRepository extends ModuleRepository
 
     public function getArticleLayoutsList() {
         return collect($this->model::$articleLayouts);
+    }
+
+    public function searchApi($string, $perPage = null, $page = null, $columns = [])
+    {
+        $search  = Search::query()->search($string)->resources(['articles']);
+
+        $results = $search->getSearch($perPage, $columns, null, $page);
+
+        return $results;
     }
 }

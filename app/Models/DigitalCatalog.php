@@ -81,6 +81,11 @@ class DigitalCatalog extends Model
         return route('collection.publications.digital-catalogs.show', $this->slug);
     }
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     protected function transformMappingInternal()
     {
         return [
