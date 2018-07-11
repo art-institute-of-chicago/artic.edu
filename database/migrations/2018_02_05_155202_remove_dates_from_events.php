@@ -14,8 +14,7 @@ class RemoveDatesFromEvents extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('start_date');
-            $table->dropColumn('end_date');
+            $table->dropColumn(['start_date', 'end_date']);
         });
     }
 

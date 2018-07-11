@@ -14,11 +14,10 @@ class AddFieldsToEventsTableCmsMod extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('datahub_id');
-            $table->dropColumn('latitude');
-            $table->dropColumn('longitude');
-            $table->dropColumn('price');
-            $table->integer('type')->index()->default(0);
+            $table->dropColumn(['datahub_id', 'latitude', 'longitude', 'price']);
+        });
+        Schema::table('events', function (Blueprint $table) {
+            $table->integer('type')->default(0);
             $table->string('short_description')->nullable();
             $table->string('hero_caption')->nullable();
             $table->text('description')->nullable();

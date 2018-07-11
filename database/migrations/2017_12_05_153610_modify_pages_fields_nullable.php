@@ -14,9 +14,7 @@ class ModifyPagesFieldsNullable extends Migration
     public function up()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->dropColumn('home_intro');
-            $table->dropColumn('exhibition_intro');
-            $table->dropColumn('art_intro');
+            $table->dropColumn(['home_intro', 'exhibition_intro', 'art_intro']);
         });
 
         Schema::table('pages', function (Blueprint $table) {

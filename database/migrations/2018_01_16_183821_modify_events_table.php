@@ -14,12 +14,7 @@ class ModifyEventsTable extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('start_date');
-            $table->dropColumn('end_date');
-            $table->dropColumn('recurring');
-            $table->dropColumn('recurring_start_time');
-            $table->dropColumn('recurring_end_time');
-            $table->dropColumn('recurring_days');
+            $table->dropColumn(['start_date', 'end_date', 'recurring', 'recurring_start_time', 'recurring_end_time', 'recurring_days']);
         });
     }
 

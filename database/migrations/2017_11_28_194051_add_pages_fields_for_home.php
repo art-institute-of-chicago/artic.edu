@@ -15,13 +15,13 @@ class AddPagesFieldsForHome extends Migration
     {
         Schema::table('pages', function (Blueprint $table) {
             // Homepage
-            $table->text('home_intro');
+            $table->text('home_intro')->nullable();
 
             // Exhibition
-            $table->text('exhibition_intro');
+            $table->text('exhibition_intro')->nullable();
 
             // Art and Ideas
-            $table->text('art_intro');
+            $table->text('art_intro')->nullable();
         });
     }
 
