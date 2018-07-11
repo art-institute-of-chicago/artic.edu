@@ -7,6 +7,8 @@ use App\Libraries\Search\Filters\BooleanFilter;
 
 class CollectionService
 {
+    const API_SEARCH_CACHE_TTL = 3600;
+
     protected $chain;
 
     protected $results;
@@ -51,10 +53,10 @@ class CollectionService
         $builder = clone $this->chain;
 
         if ($page) {
-            $this->results = $builder->getSearch($this->perPage, [], null, $page);
+            $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getSearch($this->perPage, [], null, $page);
             $this->page    = $page;
         } else {
-            $this->results = $builder->getSearch($this->perPage);
+            $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getSearch($this->perPage);
         }
 
         return $this->results;

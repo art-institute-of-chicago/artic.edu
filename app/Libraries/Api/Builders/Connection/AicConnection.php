@@ -10,6 +10,9 @@ class AicConnection implements ApiConnectionInterface
     protected $defaultGrammar = 'App\Libraries\Api\Builders\Grammar\AicGrammar';
     protected $cacheKeyName   = 'Aic-cache-key';
 
+    // Define a custom TTL for the queries using this connection instance.
+    protected $ttl;
+
     /**
      * Create a new API connection instance.
      *
@@ -36,6 +39,19 @@ class AicConnection implements ApiConnectionInterface
     public function setQueryGrammar($queryGrammar)
     {
         return $this->queryGrammar = $queryGrammar;
+    }
+
+    /**
+     * Define a custom TTL for this connection instance
+     *
+     * @param  integer  $ttl
+     * @return object
+     */
+    public function ttl($ttl = null)
+    {
+        $this->ttl = $ttl;
+
+        return $this;
     }
 
     /**
@@ -66,14 +82,25 @@ class AicConnection implements ApiConnectionInterface
 
         $options = array_merge($adaptedParameters, $headers);
 
+
         // Allow to force the verb used for the calls (GET/POST)
         $verb = config('api.force_verb') ?: $verb;
+
+        if (config('api.logger')) {
+            $ttl = $this->ttl ?? config('api.cache_ttl');
+            \Log::info($verb . " ttl = ". $ttl . " " . $endpoint);
+            \Log::info(print_r($options, true));
+        }
+
 
         // Perform API request and caching
         if (config('api.cache_enabled')) {
             $cacheKey = $this->buildCacheKey($verb, $endpoint, $options, config('api.cache_version'));
 
-            $response =  \Cache::remember($cacheKey, config('api.cache_ttl'), function () use ($verb, $endpoint, $options) {
+            // Use default TTL if no explicit has been defined
+            $ttl = $this->ttl ?? config('api.cache_ttl');
+
+            $response =  \Cache::remember($cacheKey, $ttl, function () use ($verb, $endpoint, $options) {
                 return $this->client->request($verb, $endpoint, $options);
             });
 

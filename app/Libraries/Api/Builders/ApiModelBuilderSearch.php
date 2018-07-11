@@ -81,7 +81,11 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $segregatedResults = $resultsByType->map(function ($collection, $type) {
             $ids = $collection->pluck('id')->toArray();
             if (isset($this->getTypeMap()[$type]))
-                return $this->getTypeMap()[$type]::query()->ids($ids)->get();
+                $elements = $this->getTypeMap()[$type]::query()->ids($ids);
+                if (method_exists($elements, 'ttl')) {
+                    $elements->ttl($this->ttl);
+                }
+                return $elements->get();
         });
 
         // Remove empty categories

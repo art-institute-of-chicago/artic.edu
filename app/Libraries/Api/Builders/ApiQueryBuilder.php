@@ -54,6 +54,13 @@ class ApiQueryBuilder {
     public $grammar;
 
     /**
+     * The Cache TTL for this specific query builder
+     *
+     * @var array
+     */
+    public $ttl;
+
+    /**
      * The columns that should be returned.
      *
      * @var array
@@ -535,7 +542,7 @@ class ApiQueryBuilder {
      */
     public function runGet($endpoint)
     {
-        return $this->connection->get($endpoint, $this->resolveParameters());
+        return $this->connection->ttl($this->ttl)->get($endpoint, $this->resolveParameters());
     }
 
     /**
@@ -546,6 +553,18 @@ class ApiQueryBuilder {
     public function resolveParameters()
     {
         return $this->grammar->compileParameters($this);
+    }
+
+    /**
+     * Set a specific Caching TTL for this request
+     *
+     * @return array
+     */
+    public function ttl($ttl = null)
+    {
+        $this->ttl = $ttl;
+
+        return $this;
     }
 
     /**
