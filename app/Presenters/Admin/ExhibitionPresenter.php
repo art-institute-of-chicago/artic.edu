@@ -36,7 +36,7 @@ class ExhibitionPresenter extends BasePresenter
         } else {
             $end   = $this->entity->asDateTime($this->aic_end_at);
             if($hasStart) {
-                $date .=  ' - ' . $end->format('m d Y');
+                $date .=  '-' . $end->format('m d Y');
             }
         }
 
@@ -59,6 +59,7 @@ class ExhibitionPresenter extends BasePresenter
             $this->entity->status = "Closed";
         }
         return $date;
+
     }
 
     public function headerType()
@@ -92,12 +93,26 @@ class ExhibitionPresenter extends BasePresenter
     public function formattedDate()
     {
         $date = '';
+        $date_format = false;
 
         if (!empty($this->entity->dateStart)) {
-            $date .= '<time datetime="'.$this->entity->dateStart->format("Y-m-d").'" itemprop="startDate">'.$this->entity->dateStart->format('M j, Y').'</time>';
+            $year_start = $this->entity->dateStart->format("Y");
+            if (!empty($this->entity->dateEnd)) {
+             $year_end = $this->entity->dateEnd->format("Y"); 
+             if($year_start == $year_end) {
+                $date_format = true;
+             }
+            }
+
+            if($date_format == true) {
+                $date .= '<time datetime="'.$this->entity->dateStart->format("Y-m-d").'" itemprop="startDate">'.$this->entity->dateStart->format('M j').'</time>';
+            } else {
+                $date .= '<time datetime="'.$this->entity->dateStart->format("Y-m-d").'" itemprop="startDate">'.$this->entity->dateStart->format('M j, Y').'</time>';
+            }
+            
         }
         if (!empty($this->entity->dateEnd)) {
-            $date .= '&ndash;  <time datetime="'.$this->entity->dateEnd->format("Y-m-d").'" itemprop="endDate">'.$this->entity->dateEnd->format('M j, Y').'</time>';
+            $date .= '&ndash;<time datetime="'.$this->entity->dateEnd->format("Y-m-d").'" itemprop="endDate">'.$this->entity->dateEnd->format('M j, Y').'</time>';
         }
 
         return $date;
