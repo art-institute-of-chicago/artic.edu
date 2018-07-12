@@ -19,13 +19,13 @@
             {{ $title }}
         @endcomponent
       @endif 
-      @if (empty($dateEnd))
+      @elseif (empty($dateStart) and empty($dateEnd))
+      @if (empty($dateEnd) and !empty($dateStart))
            @component('components.atoms._date')
             @slot('tag','p')
             <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time> 
             @endcomponent
       @elseif (empty($dateStart))
-      @elseif (empty($dateStart) and empty($dateEnd))
       @elseif ($dateStart and $dateEnd)
         @component('components.atoms._date')
             @slot('tag','p')
