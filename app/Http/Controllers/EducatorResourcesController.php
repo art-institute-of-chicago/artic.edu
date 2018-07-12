@@ -65,10 +65,6 @@ class EducatorResourcesController extends FrontController
         $this->seo->setTitle($page->meta_title ?: $page->title);
         $this->seo->setDescription($page->meta_description ?: $page->short_description);
 
-        $navs = [
-            'nav' => [],
-            'subNav' => []
-        ];
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
             ['label' => 'Educator resources', 'href' => route('collection.resources.educator-resources')],
@@ -84,8 +80,6 @@ class EducatorResourcesController extends FrontController
             "title" => $page->title,
             "breadcrumb" => $crumbs,
             "blocks" => null,
-            'featuredRelated' => [],
-            'nav' => $navs['nav'],
             'page' => $page,
         ]);
 

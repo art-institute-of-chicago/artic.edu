@@ -66,11 +66,6 @@ class ExhibitionPressRoomController extends FrontController
             }
         }
 
-        $navs = [
-            'nav' => [],
-            'subNav' => []
-        ];
-
         $crumbs = [
             ['label' => 'About', 'href' => route('genericPages.show', 'about')],
             ['label' => 'Exhibition press rooms', 'href' => route('about.exhibitionPressRooms')],
@@ -80,14 +75,12 @@ class ExhibitionPressRoomController extends FrontController
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
-            'nav' => null,
+            'nav' => [],
             'intro' => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             "breadcrumb" => $crumbs,
             "blocks" => null,
-            'featuredRelated' => [],
-            'nav' => $navs['nav'],
             'page' => $page,
         ]);
 

@@ -67,10 +67,6 @@ class ResearchGuidesController extends FrontController
         $this->seo->setTitle($page->meta_title ?? $page->title);
         $this->seo->setDescription($page->meta_description ?? $page->short_description);
 
-        $navs = [
-            'nav' => [],
-            'subNav' => []
-        ];
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
             ['label' => 'Research guides', 'href' => route('collection.resources.research-guides')],
@@ -80,14 +76,12 @@ class ResearchGuidesController extends FrontController
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
-            'nav' => null,
             'intro' => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             "breadcrumb" => $crumbs,
             "blocks" => null,
-            'featuredRelated' => [],
-            'nav' => $navs['nav'],
+            'nav' => [],
             'page' => $page,
         ]);
 

@@ -3,23 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use App\Repositories\Api\ArtworkRepository;
-use App\Repositories\Api\ExhibitionRepository;
-use Carbon\Carbon;
 
 class HomeController extends FrontController
 {
-
-    protected $shopItemRepository;
-    protected $exhibitionRepository;
-
-    public function __construct(ExhibitionRepository $exhibitionRepository, ArtworkRepository $artworkRepository)
-    {
-        $this->exhibitionRepository = $exhibitionRepository;
-        $this->artworkRepository = $artworkRepository;
-
-        parent::__construct();
-    }
 
     public function index()
     {
@@ -53,4 +39,5 @@ class HomeController extends FrontController
 
         return view('site.home', $view_data);
     }
+
 }

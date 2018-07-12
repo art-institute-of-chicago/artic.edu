@@ -73,7 +73,6 @@ class PrintedCatalogsController extends CatalogsController
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             "breadcrumb" => $crumbs,
-            'featuredRelated' => [],
             'page' => $page,
         ]);
 
@@ -82,7 +81,11 @@ class PrintedCatalogsController extends CatalogsController
     protected function getFilters()
     {
 
-        $categoryLinks[] = ['href' => route('collection.publications.printed-catalogs'), 'label' => 'All', 'active' => empty(request('category', null))];
+        $categoryLinks[] = [
+            'label'  => 'All',
+            'href'   => route('collection.publications.printed-catalogs'),
+            'active' => empty(request('category', null))
+        ];
 
         foreach (CatalogCategory::all() as $category) {
             $categoryLinks[] = [

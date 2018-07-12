@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\GenericPageRepository;
 
 class GenericPagesController extends FrontController
 {
     protected $genericPageRepository;
-    protected $exhibitionRepository;
 
-    public function __construct(GenericPageRepository $genericPageRepository, ExhibitionRepository $exhibitionRepository)
+    public function __construct(GenericPageRepository $genericPageRepository)
     {
         $this->genericPageRepository = $genericPageRepository;
-        $this->exhibitionRepository = $exhibitionRepository;
+
         parent::__construct();
     }
 
@@ -41,14 +39,13 @@ class GenericPagesController extends FrontController
 
     protected function getPage($slug)
     {
-        $parts = collect(explode("/", $slug));
-        $page = $this->genericPageRepository->forSlug($parts->last());
+        $idSlug = collect(explode("/", $slug))->last();
+        $page = $this->genericPageRepository->forSlug($idSlug);
         if (empty($page)) {
-            $page = $this->genericPageRepository->getById((integer) $parts->last());
-        }
-
-        if (!$page) {
-            abort(404);
+            $page = $this->genericPageRepository->getById((integer) $idSlug);
+            if (!$page) {
+                abort(404);
+            }
         }
 
         return $page;

@@ -5,7 +5,13 @@ use Illuminate\Http\Request;
 
 /**
  * Quick and oversimplified implementation of Ruby on Rails has_scope gem.
- * Apply scopes to the chain depending on the parameters received at the request.
+ *
+ * Basic functionality: We setup a base chainable object, usually an Eloquent Query Builder,
+ * on this case it's an API Query Builder (beginOfAssociationChain).
+ * Once we have that we define relationships between URL parameters and scopes at the $scopes variable.
+ * The controller apply the scopes to the base chain checking that the attribute is present at the
+ * url, and sends the attribute value as a parameter to the scope call.
+ * This way we create an easy way of chaining scopes dynamically.
  *
  */
 
