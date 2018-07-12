@@ -155,7 +155,7 @@
 
 @if ($featuredArticles)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all articles', 'href' => '#')))
+        @slot('links', array(array('label' => 'See all articles', 'href' => route('articles'))))
         Featured
     @endcomponent
     @component('components.atoms._hr')
