@@ -9,7 +9,7 @@
             ))
         @endcomponent
       @endif
-  </div>
+  </div> 
   <div class="m-article-header__text">
       @if (isset($title))
         @component('components.atoms._title')
@@ -18,12 +18,20 @@
             @slot('itemprop','name')
             {{ $title }}
         @endcomponent
-      @endif
-      @if ($dateStart and $dateEnd)
+      @endif 
+      @if (empty($dateEnd))
+           @component('components.atoms._date')
+            @slot('tag','p')
+            <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time> 
+            @endcomponent
+      @elseif (empty($dateStart))
+      @elseif (empty($dateStart) and empty($dateEnd))
+      @elseif ($dateStart and $dateEnd)
         @component('components.atoms._date')
             @slot('tag','p')
             <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time> &ndash; <time datetime="{{ $dateEnd->format("Y-m-d") }}" itemprop="endDate">{{ $dateEnd->format('M j, Y') }}</time>
         @endcomponent
+
       @elseif (isset($date))
         @component('components.atoms._date')
             @slot('tag','p')
