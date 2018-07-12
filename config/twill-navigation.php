@@ -160,6 +160,14 @@ return [
                 'title' => 'Selections',
                 'module' => true,
             ],
+            'galleries' => [
+                'title' => 'Galleries',
+                'module' => true,
+            ],
+            'departments' => [
+                'title' => 'Departments',
+                'module' => true,
+            ],
         ]
     ],
 
@@ -191,14 +199,6 @@ return [
             ],
             'exhibitionPressRooms' => [
                 'title' => 'Exhibition Press Rooms',
-                'module' => true,
-            ],
-            'galleries' => [
-                'title' => 'Galleries',
-                'module' => true,
-            ],
-            'departments' => [
-                'title' => 'Departments',
                 'module' => true,
             ],
         ],
