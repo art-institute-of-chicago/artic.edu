@@ -76,7 +76,7 @@ class RecentlyViewedService
             $tags = Search::query()
                 ->forceEndpoint('search')
                 ->resources(['artworks'])
-                ->allAggregations(self::THEMES_PER_CATEGORY)
+                ->allAggregations()
                 ->byArtworkIds($ids)
                 ->forPage(1, 0)
                 ->get();

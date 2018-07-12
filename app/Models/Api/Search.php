@@ -75,10 +75,14 @@ class Search extends BaseApiModel
             'is_public_domain' => 'is_public_domain'
         ];
 
+        // If we get a category filter, then we should just pass that aggregation
+        // to improve performance. This is done because it means we are searching over that category.
         $aggs = [];
         foreach ($aggsParams as $facet => $parameter) {
-            if ($categoryFilter == $facet) {
-                $aggs = array_merge($aggs ,$this->buildListAggregation($facet, $parameter, $queryFilter));
+            if ($categoryFilter) {
+                if ($categoryFilter == $facet) {
+                    $aggs = array_merge($aggs ,$this->buildListAggregation($facet, $parameter, $queryFilter));
+                }
             } else {
                 $aggs = array_merge($aggs, $this->buildListAggregation($facet, $parameter));
             }
