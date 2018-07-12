@@ -34,12 +34,11 @@ trait HasMediasApi
                 $image = LakeviewImageService::getImage($this, $this->getImageField($role, $crop));
                 $image['width'] = $this->getWidth($role, $crop, $image);
                 $image['height'] = $this->getHeight($role, $crop, $image);
-                $image['alt'] = $this->image_alt_text;
-
                 return $image;
             } else {
                 if (!empty($this->{$this->getImageField($role, 'default')})) {
-                    return LakeviewImageService::getImage($this, $this->getImageField($role, 'default'));
+                    $image = LakeviewImageService::getImage($this, $this->getImageField($role, 'default'));
+                    return $image;
                 }
             }
         }
