@@ -354,12 +354,6 @@ class Page extends Model
                 "type" => "string",
                 "value" => function () {return $this->slug;},
             ],
-            [
-                "name" => "web_url",
-                "doc" => "web_url",
-                "type" => "string",
-                "value" => function () {return url(route('pages.show', $this));},
-            ],
 
             [
                 "name" => "exhibition_history_sub_heading",
@@ -380,6 +374,55 @@ class Page extends Model
                 "doc" => "exhibition_history_popup_copy",
                 "type" => "string",
                 "value" => function () {return $this->exhibition_history_popup_copy;},
+            ],
+
+            [
+                "name" => "exhibition_intro",
+                "doc" => "exhibition_intro",
+                "type" => "string",
+                "value" => function () {return $this->exhibition_intro;},
+            ],
+
+            [
+                "name" => "visit_intro",
+                "doc" => "visit_intro",
+                "type" => "string",
+                "value" => function () {return $this->visit_intro;},
+            ],
+
+            [
+                "name" => "visit_hour_header",
+                "doc" => "visit_hour_header",
+                "type" => "string",
+                "value" => function () {return $this->visit_hour_header;},
+            ],
+
+            [
+                "name" => "visit_hour_subheader",
+                "doc" => "visit_hour_subheader",
+                "type" => "string",
+                "value" => function () {return $this->visit_hour_subheader;},
+            ],
+
+            [
+                "name" => "visit_city_pass_title",
+                "doc" => "visit_city_pass_title",
+                "type" => "string",
+                "value" => function () {return $this->visit_city_pass_title;},
+            ],
+
+            [
+                "name" => "visit_city_pass_text",
+                "doc" => "visit_city_pass_text",
+                "type" => "string",
+                "value" => function () {return $this->visit_city_pass_text;},
+            ],
+
+            [
+                "name" => "visit_admission_description",
+                "doc" => "visit_admission_description",
+                "type" => "string",
+                "value" => function () {return $this->visit_admission_description;},
             ],
 
             [

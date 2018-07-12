@@ -80,7 +80,6 @@ Route::get('/', function () {
  *        required={"id"},
  *        @SWG\Property(property="id", type="integer", description="ID of Closure"),
  *        @SWG\Property(property="title", type="string", description="Title"),
- *        @SWG\Property(property="published", type="boolean", description="Published State of Location"),
  *        @SWG\Property(property="date_start", type="datetime", description="Closure Start"),
  *        @SWG\Property(property="date_end", type="datetime", description="Closure End"),
  *        @SWG\Property(property="closure_copy", type="string", description="Copy"),
@@ -194,23 +193,136 @@ Route::get('/', function () {
  *        definition="Page",
  *        type="object",
  *        required={"id"},
- *        @SWG\Property(property="id", type="integer", description="ID of Artist"),
+ *        @SWG\Property(property="id", type="integer", description="ID of the page"),
  *        @SWG\Property(property="title", type="string", description="Title"),
- *        @SWG\Property(property="published", type="boolean", description="Published State of Article"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State of Page"),
  *        @SWG\Property(property="type", type="integer", description="Type"),
  *        @SWG\Property(property="home_intro", type="string", description="home_intro"),
  *        @SWG\Property(property="exhibition_intro", type="string", description="exhibition_intro"),
  *        @SWG\Property(property="art_intro", type="string", description="art_intro"),
- *        @SWG\Property(property="visit_intro", type="string", description="visit_intro")
+ *        @SWG\Property(property="visit_intro", type="string", description="visit_intro"),
  *        @SWG\Property(property="slug", type="string", description="Slug"),
  *        @SWG\Property(property="web_url", type="string", description="Web Url"),
  *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
  *        @SWG\Property(property="exhibition_history_sub_heading", type="string", description="Exhibition History Sub Heading"),
  *        @SWG\Property(property="exhibition_history_intro_copy", type="string", description="Exhibition History Intro Copy"),
  *        @SWG\Property(property="exhibition_history_popup_copy", type="string", description="Exhibition History Popup Copy"),
+ *        @SWG\Property(property="visit_hour_header", type="string", description="Visit Hour Header"),
+ *        @SWG\Property(property="visit_hour_subheader", type="string", description="Visit hour Subheader"),
+ *        @SWG\Property(property="visit_city_pass_title", type="string", description="Visit City Pass Title"),
+ *        @SWG\Property(property="visit_city_pass_text", type="string", description="Visit City Pass Text"),
+ *        @SWG\Property(property="visit_admission_description", type="string", description="Visit Admission Description"),
  *        @SWG\Property(property="content", type="json", description="Content"),
- *     )
- * )
+ *     ),
+ *
+ *     @SWG\Definition(
+ *        definition="GenericPage",
+ *        type="object",
+ *        required={"id"},
+ *        @SWG\Property(property="id", type="integer", description="ID of Generic Page"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State of Generic Page"),
+ *        @SWG\Property(property="publish_start_date", type="datetime", description="Publish Start Date"),
+ *        @SWG\Property(property="publish_end_date", type="datetime", description="Publish End Time"),
+ *        @SWG\Property(property="listing_description", type="string", description="Listing Description"),
+ *        @SWG\Property(property="short_description", type="string", description="Short Description"),
+ *        @SWG\Property(property="slug", type="string", description="Slug"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
+ *        @SWG\Property(property="last_updated_at", type="datetime", description="Updated Timestamp"),
+ *        @SWG\Property(property="content", type="json", description="Content"),*
+ *     ),
+ *
+ *     @SWG\Definition(
+ *        definition="PressRelease",
+ *        type="object",
+ *        required={"id"},
+ *        @SWG\Property(property="id", type="integer", description="ID of Press Release"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State of Press Release"),
+ *        @SWG\Property(property="publish_start_date", type="datetime", description="Publish Start Date"),
+ *        @SWG\Property(property="publish_end_date", type="datetime", description="Publish End Time"),
+ *        @SWG\Property(property="listing_description", type="string", description="Listing Description"),
+ *        @SWG\Property(property="short_description", type="string", description="Short Description"),
+ *        @SWG\Property(property="slug", type="string", description="Slug"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
+ *        @SWG\Property(property="last_updated_at", type="datetime", description="Updated Timestamp"),
+ *        @SWG\Property(property="content", type="json", description="Content"),*
+ *     ),
+ *
+ *     @SWG\Definition(
+ *        definition="ResearchGuide",
+ *        type="object",
+ *        required={"id"},
+ *        @SWG\Property(property="id", type="integer", description="ID"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State"),
+ *        @SWG\Property(property="publish_start_date", type="datetime", description="Publish Start Date"),
+ *        @SWG\Property(property="publish_end_date", type="datetime", description="Publish End Time"),
+ *        @SWG\Property(property="listing_description", type="string", description="Listing Description"),
+ *        @SWG\Property(property="short_description", type="string", description="Short Description"),
+ *        @SWG\Property(property="slug", type="string", description="Slug"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
+ *        @SWG\Property(property="last_updated_at", type="datetime", description="Updated Timestamp"),
+ *        @SWG\Property(property="content", type="json", description="Content"),*
+ *     ),
+ *
+ *     @SWG\Definition(
+ *        definition="EducatorResource",
+ *        type="object",
+ *        required={"id"},
+ *        @SWG\Property(property="id", type="integer", description="ID"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State"),
+ *        @SWG\Property(property="publish_start_date", type="datetime", description="Publish Start Date"),
+ *        @SWG\Property(property="publish_end_date", type="datetime", description="Publish End Time"),
+ *        @SWG\Property(property="listing_description", type="string", description="Listing Description"),
+ *        @SWG\Property(property="short_description", type="string", description="Short Description"),
+ *        @SWG\Property(property="slug", type="string", description="Slug"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
+ *        @SWG\Property(property="last_updated_at", type="datetime", description="Updated Timestamp"),
+ *        @SWG\Property(property="content", type="json", description="Content"),*
+ *     ),
+ *
+ *     @SWG\Definition(
+ *        definition="DigitialCatalog",
+ *        type="object",
+ *        required={"id"},
+ *        @SWG\Property(property="id", type="integer", description="ID"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State"),
+ *        @SWG\Property(property="publish_start_date", type="datetime", description="Publish Start Date"),
+ *        @SWG\Property(property="publish_end_date", type="datetime", description="Publish End Time"),
+ *        @SWG\Property(property="listing_description", type="string", description="Listing Description"),
+ *        @SWG\Property(property="short_description", type="string", description="Short Description"),
+ *        @SWG\Property(property="slug", type="string", description="Slug"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
+ *        @SWG\Property(property="last_updated_at", type="datetime", description="Updated Timestamp"),
+ *        @SWG\Property(property="content", type="json", description="Content"),*
+ *     ),
+ *
+  *     @SWG\Definition(
+ *        definition="PrintedCatalog",
+ *        type="object",
+ *        required={"id"},
+ *        @SWG\Property(property="id", type="integer", description="ID"),
+ *        @SWG\Property(property="title", type="string", description="Title"),
+ *        @SWG\Property(property="published", type="boolean", description="Published State"),
+ *        @SWG\Property(property="publish_start_date", type="datetime", description="Publish Start Date"),
+ *        @SWG\Property(property="publish_end_date", type="datetime", description="Publish End Time"),
+ *        @SWG\Property(property="listing_description", type="string", description="Listing Description"),
+ *        @SWG\Property(property="short_description", type="string", description="Short Description"),
+ *        @SWG\Property(property="slug", type="string", description="Slug"),
+ *        @SWG\Property(property="web_url", type="string", description="Web Url"),
+ *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
+ *        @SWG\Property(property="last_updated_at", type="datetime", description="Updated Timestamp"),
+ *        @SWG\Property(property="content", type="json", description="Content"),*
+ *     ),
+* )
  */
 
 Route::group(['prefix' => 'v1'], function()
@@ -337,6 +449,19 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('closures', 'API\ClosuresController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/closures/deleted",
+     *      tags={"closures"},
+     *      operationId="getDeletedClosures",
+     *      summary="List all deleted closures",
+     *      @SWG\Response(response="200", description="List all deleted closures")
+     *  )
+     *
+     */
+    Route::get('closures/deleted', 'API\ClosuresController@deleted');
+
     /**
      * @SWG\Get(
      *      path="/api/v1/closures/{id}",
@@ -380,7 +505,7 @@ Route::group(['prefix' => 'v1'], function()
      *      operationId="getExhibition",
      *      summary="Fetch exhibitions details",
      *      @SWG\Parameter(
-     *          name="id",
+     *          name="id",`
      *          in="path",
      *          required=true,
      *          type="integer",
@@ -406,6 +531,20 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('events', 'API\EventsController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/events/deleted",
+     *      tags={"events"},
+     *      operationId="getDeletedEvents",
+     *      summary="List all deleted events",
+     *      @SWG\Response(response="200", description="List all deleted events")
+     *  )
+     *
+     */
+    Route::get('events/deleted', 'API\EventsController@deleted');
+
+
     /**
      * @SWG\Get(
      *      path="/api/v1/events/{id}",
@@ -439,6 +578,19 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     Route::get('articles', 'API\ArticlesController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/articles/deleted",
+     *      tags={"articles"},
+     *      operationId="getDeletedArticles",
+     *      summary="List all deleted articles",
+     *      @SWG\Response(response="200", description="List all deleted articles")
+     *  )
+     *
+     */
+    Route::get('articles/deleted', 'API\ArticlesController@deleted');
+
     /**
      * @SWG\Get(
      *      path="/api/v1/articles/{id}",
@@ -558,5 +710,290 @@ Route::group(['prefix' => 'v1'], function()
      */
     Route::get('pages/{id}', 'API\PagesController@show');
 
+
+
+    /**
+     *
+     * - generic pages ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/genericpages",
+     *      tags={"pages"},
+     *      operationId="getGenericPages",
+     *      summary="List all generic pages",
+     *      @SWG\Response(response="200", description="List all generic pages")
+     *  )
+     *
+     */
+    Route::get('genericpages', 'API\GenericPagesController@index');
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/api/v1/genericpages/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedGenericPages",
+     *      summary="List all deleted generic pages",
+     *      @SWG\Response(response="200", description="List all deleted generic pages")
+     *  )
+     *
+     */
+    Route::get('genericpages/deleted', 'API\GenericPagesController@deleted');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/genericpages/{id}",
+     *      tags={"pages"},
+     *      operationId="getGenericPage",
+     *      summary="Fetch generic page details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific generic page")
+     *  )
+     *
+     */
+    Route::get('genericpages/{id}', 'API\GenericPagesController@show');
+
+    /**
+     *
+     * - press releases ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/pressreleases",
+     *      tags={"pages"},
+     *      operationId="getPressReleases",
+     *      summary="List all press releases",
+     *      @SWG\Response(response="200", description="List all generic pages")
+     *  )
+     *
+     */
+    Route::get('pressreleases', 'API\PressReleasesController@index');
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/api/v1/pressreleases/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedPressReleases",
+     *      summary="List all deleted press releases",
+     *      @SWG\Response(response="200", description="List all deleted press releases")
+     *  )
+     *
+     */
+    Route::get('pressreleases/deleted', 'API\PressReleasesController@deleted');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/pressreleases/{id}",
+     *      tags={"pages"},
+     *      operationId="getPressRelease",
+     *      summary="Fetch press releases details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific press release")
+     *  )
+     *
+     */
+    Route::get('pressreleases/{id}', 'API\PressReleasesController@show');
+
+    /**
+     *
+     * - research guides ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/researchguides",
+     *      tags={"pages"},
+     *      operationId="getResearchGuides",
+     *      summary="List all research guides",
+     *      @SWG\Response(response="200", description="List all research guides")
+     *  )
+     *
+     */
+    Route::get('researchguides', 'API\ResearchGuidesController@index');
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/api/v1/researchguides/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedResearchGuides",
+     *      summary="List all deleted research guides",
+     *      @SWG\Response(response="200", description="List all deleted research guides")
+     *  )
+     *
+     */
+    Route::get('researchguides/deleted', 'API\ResearchGuidesController@deleted');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/researchguides/{id}",
+     *      tags={"pages"},
+     *      operationId="getResearchGuides",
+     *      summary="Fetch research guides details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific research guide")
+     *  )
+     *
+     */
+    Route::get('researchguides/{id}', 'API\ResearchGuidesController@show');
+
+    /**
+     *
+     * - educator resources ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/educatorresources",
+     *      tags={"pages"},
+     *      operationId="getEducatorResources",
+     *      summary="List all educator resources",
+     *      @SWG\Response(response="200", description="List all educator resources")
+     *  )
+     *
+     */
+    Route::get('educatorresources', 'API\EducatorResourcesController@index');
+
+    /**
+     *
+     * - educator resources ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/educatorresources/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedEducatorResources",
+     *      summary="List all deleted educator resources",
+     *      @SWG\Response(response="200", description="List all deleted educator resources")
+     *  )
+     *
+     */
+    Route::get('educatorresources/deleted', 'API\EducatorResourcesController@deleted');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/educatorresources/{id}",
+     *      tags={"pages"},
+     *      operationId="getEducatorResource",
+     *      summary="Fetch educator resource details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific educator resource")
+     *  )
+     *
+     */
+    Route::get('educatorresources/{id}', 'API\EducatorResourcesController@show');
+
+    /**
+     *
+     * - digital catalogs ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/digitalcatalogs",
+     *      tags={"pages"},
+     *      operationId="getDigitalCatalogs",
+     *      summary="List all digital catalogs",
+     *      @SWG\Response(response="200", description="List all digital catalogs")
+     *  )
+     *
+     */
+    Route::get('digitalcatalogs', 'API\DigitalCatalogsController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/digitalcatalogs/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedDigitalCatalogs",
+     *      summary="List all deleted digital catalogs",
+     *      @SWG\Response(response="200", description="List all deleted digital catalogs")
+     *  )
+     *
+     */
+    Route::get('digitalcatalogs/deleted', 'API\DigitalCatalogsController@deleted');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/digitalcatalogs/{id}",
+     *      tags={"pages"},
+     *      operationId="getDigitalCatalog",
+     *      summary="Fetch digital catalog details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific digital catalog")
+     *  )
+     *
+     */
+    Route::get('digitalcatalogs/{id}', 'API\DigitalCatalogsController@show');
+
+
+    /**
+     *
+     * - printed catalogs ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/printedcatalogs",
+     *      tags={"pages"},
+     *      operationId="getPrintedCatalogs",
+     *      summary="List all printed catalogs",
+     *      @SWG\Response(response="200", description="List all printed catalogs")
+     *  )
+     *
+     */
+    Route::get('printedcatalogs', 'API\PrintedCatalogsController@index');
+
+    /**
+     *
+     * @SWG\Get(
+     *      path="/api/v1/printedcatalogs/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedPrintedCatalogs",
+     *      summary="List all deleted printed catalogs",
+     *      @SWG\Response(response="200", description="List all deleted printed catalogs")
+     *  )
+     *
+     */
+    Route::get('printedcatalogs/deleted', 'API\PrintedCatalogsController@deleted');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/printedcatalogs/{id}",
+     *      tags={"pages"},
+     *      operationId="getPrintedCatalog",
+     *      summary="Fetch printed catalog details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific printed catalog")
+     *  )
+     *
+     */
+    Route::get('printedcatalogs/{id}', 'API\PrintedCatalogsController@show');
 
 });

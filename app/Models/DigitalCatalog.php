@@ -12,7 +12,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class DigitalCatalog extends Model
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
 
     protected $fillable = [
         'listing_description',

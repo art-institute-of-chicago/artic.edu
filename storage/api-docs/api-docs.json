@@ -1,5 +1,23 @@
 {
     "swagger": "2.0",
+    "info": {
+        "title": "AIC CMS API",
+        "description": "REST API",
+        "termsOfService": "terms",
+        "contact": {
+            "name": "call@me.com"
+        },
+        "license": {
+            "name": "proprietary"
+        },
+        "version": "1.0"
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
     "paths": {
         "/api/v1/tags": {
             "get": {
@@ -370,7 +388,1124 @@
                     }
                 }
             }
+        },
+        "/api/v1/genericpages": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all generic pages",
+                "operationId": "getGenericPages",
+                "responses": {
+                    "200": {
+                        "description": "List all generic pages"
+                    }
+                }
+            }
+        },
+        "/api/v1/genericpages/{id}": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Fetch generic page details",
+                "operationId": "getGenericPage",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific generic page"
+                    }
+                }
+            }
+        },
+        "/api/v1/pressreleases": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all press releases",
+                "operationId": "getPressReleases",
+                "responses": {
+                    "200": {
+                        "description": "List all generic pages"
+                    }
+                }
+            }
+        },
+        "/api/v1/pressreleases/{id}": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Fetch press releases details",
+                "operationId": "getPressRelease",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific press release"
+                    }
+                }
+            }
+        },
+        "/api/v1/researchguides": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all research guides",
+                "operationId": "getResearchGuides",
+                "responses": {
+                    "200": {
+                        "description": "List all research guides"
+                    }
+                }
+            }
+        },
+        "/api/v1/researchguides/{id}": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Fetch research guides details",
+                "operationId": "getResearchGuides",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific research guide"
+                    }
+                }
+            }
+        },
+        "/api/v1/educatorresources": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all educator resources",
+                "operationId": "getEducatorResources",
+                "responses": {
+                    "200": {
+                        "description": "List all educator resources"
+                    }
+                }
+            }
+        },
+        "/api/v1/educatorresources/{id}": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Fetch educator resource details",
+                "operationId": "getEducatorResource",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific educator resource"
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalcatalogs": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all digital catalogs",
+                "operationId": "getDigitalCatalogs",
+                "responses": {
+                    "200": {
+                        "description": "List all digital catalogs"
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalcatalogs/{id}": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Fetch digital catalog details",
+                "operationId": "getDigitalCatalog",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific digital catalog"
+                    }
+                }
+            }
+        },
+        "/api/v1/printedcatalogs": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all printed catalogs",
+                "operationId": "getPrintedCatalogs",
+                "responses": {
+                    "200": {
+                        "description": "List all printed catalogs"
+                    }
+                }
+            }
+        },
+        "/api/v1/printedcatalogs/{id}": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Fetch printed catalog details",
+                "operationId": "getPrintedCatalog",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a specific printed catalog"
+                    }
+                }
+            }
         }
     },
-    "definitions": {}
+    "definitions": {
+        "Tag": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Tag",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "Name of Tag",
+                    "type": "string"
+                },
+                "last_updated": {
+                    "description": "Last Updated At",
+                    "type": "datetime"
+                }
+            },
+            "type": "object"
+        },
+        "Location": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Location",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "Name of Location",
+                    "type": "string"
+                },
+                "street": {
+                    "description": "Street of Location",
+                    "type": "string"
+                },
+                "address": {
+                    "description": "Address of Location",
+                    "type": "string"
+                },
+                "city": {
+                    "description": "City of Location",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "State of Location",
+                    "type": "string"
+                },
+                "zip": {
+                    "description": "Zip of Location",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Location",
+                    "type": "boolean"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Hour": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Hour",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "opening_time": {
+                    "description": "Opening Time",
+                    "type": "datetime"
+                },
+                "closing_time": {
+                    "description": "Closing Time",
+                    "type": "datetime"
+                },
+                "type": {
+                    "description": "Type",
+                    "type": "integer"
+                },
+                "day_of_week": {
+                    "description": "City of Location",
+                    "type": "integer"
+                },
+                "closed": {
+                    "description": "Closed?",
+                    "type": "boolean"
+                },
+                "last_updated": {
+                    "description": "Last Updated At",
+                    "type": "datetime"
+                }
+            },
+            "type": "object"
+        },
+        "Closure": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Closure",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "date_start": {
+                    "description": "Closure Start",
+                    "type": "datetime"
+                },
+                "date_end": {
+                    "description": "Closure End",
+                    "type": "datetime"
+                },
+                "closure_copy": {
+                    "description": "Copy",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Type",
+                    "type": "boolean"
+                },
+                "published": {
+                    "description": "Published State of Location",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "Exhibition": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Exhibition",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Location",
+                    "type": "boolean"
+                },
+                "header_copy": {
+                    "description": "Header Copy",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "string"
+                },
+                "datahub_id": {
+                    "description": "Datahub ID",
+                    "type": "string"
+                },
+                "is_visible": {
+                    "description": "Type",
+                    "type": "boolean"
+                },
+                "exhibition_message": {
+                    "description": "Message",
+                    "type": "string"
+                },
+                "cms_exhibition_type": {
+                    "description": "Type",
+                    "type": "integer"
+                },
+                "sponsors_sub_copy": {
+                    "description": "Sub Copy",
+                    "type": "string"
+                },
+                "sponsors_description": {
+                    "description": "Sponsors Description",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                }
+            },
+            "type": "object"
+        },
+        "Event": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Event",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Event",
+                    "type": "boolean"
+                },
+                "type": {
+                    "description": "Header Copy",
+                    "type": "string"
+                },
+                "short_description": {
+                    "description": "Short Description",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description",
+                    "type": "string"
+                },
+                "list_description": {
+                    "description": "List Description",
+                    "type": "string"
+                },
+                "hero_caption": {
+                    "description": "Hero Caption",
+                    "type": "string"
+                },
+                "is_private": {
+                    "description": "Is Private?",
+                    "type": "boolean"
+                },
+                "is_after_hours": {
+                    "description": "Is After Hours?",
+                    "type": "boolean"
+                },
+                "is_ticketed": {
+                    "description": "Is Tickted?",
+                    "type": "boolean"
+                },
+                "is_free": {
+                    "description": "Is Free?",
+                    "type": "boolean"
+                },
+                "is_member_exclusive": {
+                    "description": "Is Member Exclusive?",
+                    "type": "boolean"
+                },
+                "hidden": {
+                    "description": "Hidden?",
+                    "type": "boolean"
+                },
+                "rsvp_link": {
+                    "description": "RSVP Link",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "Start Date",
+                    "type": "string"
+                },
+                "end_date": {
+                    "description": "End Date",
+                    "type": "string"
+                },
+                "all_dates": {
+                    "description": "A list of all the dates that this event occurs on",
+                    "type": "datetime"
+                },
+                "location": {
+                    "description": "Location",
+                    "type": "string"
+                },
+                "sponsors_description": {
+                    "description": "Sponsors Description",
+                    "type": "string"
+                },
+                "sponsors_sub_copy": {
+                    "description": "Sub Copy",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "string"
+                },
+                "layout_type": {
+                    "description": "Layout Type",
+                    "type": "integer"
+                },
+                "buy_button_text": {
+                    "description": "Buy Button Text",
+                    "type": "string"
+                },
+                "buy_button_caption": {
+                    "description": "Buy Button Caption",
+                    "type": "string"
+                },
+                "is_boosted": {
+                    "description": "Is Boosted",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "is_sold_out": {
+                    "description": "Is sold out?",
+                    "type": "boolean"
+                },
+                "forced_date": {
+                    "description": "Forced date display",
+                    "type": "string"
+                },
+                "buy_tickets_link": {
+                    "description": "Buy tickets URL",
+                    "type": "string"
+                },
+                "audience": {
+                    "description": "Audience",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Article": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Article",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Article",
+                    "type": "boolean"
+                },
+                "date": {
+                    "description": "Date",
+                    "type": "string"
+                },
+                "copy": {
+                    "description": "Copy",
+                    "type": "json"
+                },
+                "is_boosted": {
+                    "description": "Is Boosted",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "type": {
+                    "description": "Type",
+                    "type": "string"
+                },
+                "heading": {
+                    "description": "Heading",
+                    "type": "string"
+                },
+                "author": {
+                    "description": "Author",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Selection": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Selection",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Article",
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "datetime"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "string"
+                },
+                "short_copy": {
+                    "description": "Short Copy",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                }
+            },
+            "type": "object"
+        },
+        "Artist": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Artist",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "also_known_as": {
+                    "description": "Also Known As",
+                    "type": "string"
+                },
+                "intro_copy": {
+                    "description": "Intro Copy",
+                    "type": "string"
+                },
+                "datahub_id": {
+                    "description": "datahub_id",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                }
+            },
+            "type": "object"
+        },
+        "Page": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of the page",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Page",
+                    "type": "boolean"
+                },
+                "type": {
+                    "description": "Type",
+                    "type": "integer"
+                },
+                "home_intro": {
+                    "description": "home_intro",
+                    "type": "string"
+                },
+                "exhibition_intro": {
+                    "description": "exhibition_intro",
+                    "type": "string"
+                },
+                "art_intro": {
+                    "description": "art_intro",
+                    "type": "string"
+                },
+                "visit_intro": {
+                    "description": "visit_intro",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "exhibition_history_sub_heading": {
+                    "description": "Exhibition History Sub Heading",
+                    "type": "string"
+                },
+                "exhibition_history_intro_copy": {
+                    "description": "Exhibition History Intro Copy",
+                    "type": "string"
+                },
+                "exhibition_history_popup_copy": {
+                    "description": "Exhibition History Popup Copy",
+                    "type": "string"
+                },
+                "visit_hour_header": {
+                    "description": "Visit Hour Header",
+                    "type": "string"
+                },
+                "visit_hour_subheader": {
+                    "description": "Visit hour Subheader",
+                    "type": "string"
+                },
+                "visit_city_pass_title": {
+                    "description": "Visit City Pass Title",
+                    "type": "string"
+                },
+                "visit_city_pass_text": {
+                    "description": "Visit City Pass Text",
+                    "type": "string"
+                },
+                "visit_admission_description": {
+                    "description": "Visit Admission Description",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "json"
+                }
+            },
+            "type": "object"
+        },
+        "GenericPage": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Generic Page",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Generic Page",
+                    "type": "boolean"
+                },
+                "publish_start_date": {
+                    "description": "Publish Start Date",
+                    "type": "datetime"
+                },
+                "publish_end_date": {
+                    "description": "Publish End Time",
+                    "type": "datetime"
+                },
+                "listing_description": {
+                    "description": "Listing Description",
+                    "type": "string"
+                },
+                "short_description": {
+                    "description": "Short Description",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "last_updated_at": {
+                    "description": "Updated Timestamp",
+                    "type": "datetime"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "json"
+                }
+            },
+            "type": "object"
+        },
+        "PressRelease": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID of Press Release",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State of Press Release",
+                    "type": "boolean"
+                },
+                "publish_start_date": {
+                    "description": "Publish Start Date",
+                    "type": "datetime"
+                },
+                "publish_end_date": {
+                    "description": "Publish End Time",
+                    "type": "datetime"
+                },
+                "listing_description": {
+                    "description": "Listing Description",
+                    "type": "string"
+                },
+                "short_description": {
+                    "description": "Short Description",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "last_updated_at": {
+                    "description": "Updated Timestamp",
+                    "type": "datetime"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "json"
+                }
+            },
+            "type": "object"
+        },
+        "ResearchGuide": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State",
+                    "type": "boolean"
+                },
+                "publish_start_date": {
+                    "description": "Publish Start Date",
+                    "type": "datetime"
+                },
+                "publish_end_date": {
+                    "description": "Publish End Time",
+                    "type": "datetime"
+                },
+                "listing_description": {
+                    "description": "Listing Description",
+                    "type": "string"
+                },
+                "short_description": {
+                    "description": "Short Description",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "last_updated_at": {
+                    "description": "Updated Timestamp",
+                    "type": "datetime"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "json"
+                }
+            },
+            "type": "object"
+        },
+        "EducatorResource": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State",
+                    "type": "boolean"
+                },
+                "publish_start_date": {
+                    "description": "Publish Start Date",
+                    "type": "datetime"
+                },
+                "publish_end_date": {
+                    "description": "Publish End Time",
+                    "type": "datetime"
+                },
+                "listing_description": {
+                    "description": "Listing Description",
+                    "type": "string"
+                },
+                "short_description": {
+                    "description": "Short Description",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "last_updated_at": {
+                    "description": "Updated Timestamp",
+                    "type": "datetime"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "json"
+                }
+            },
+            "type": "object"
+        },
+        "DigitialCatalog": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State",
+                    "type": "boolean"
+                },
+                "publish_start_date": {
+                    "description": "Publish Start Date",
+                    "type": "datetime"
+                },
+                "publish_end_date": {
+                    "description": "Publish End Time",
+                    "type": "datetime"
+                },
+                "listing_description": {
+                    "description": "Listing Description",
+                    "type": "string"
+                },
+                "short_description": {
+                    "description": "Short Description",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "last_updated_at": {
+                    "description": "Updated Timestamp",
+                    "type": "datetime"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "json"
+                }
+            },
+            "type": "object"
+        },
+        "PrintedCatalog": {
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "Title",
+                    "type": "string"
+                },
+                "published": {
+                    "description": "Published State",
+                    "type": "boolean"
+                },
+                "publish_start_date": {
+                    "description": "Publish Start Date",
+                    "type": "datetime"
+                },
+                "publish_end_date": {
+                    "description": "Publish End Time",
+                    "type": "datetime"
+                },
+                "listing_description": {
+                    "description": "Listing Description",
+                    "type": "string"
+                },
+                "short_description": {
+                    "description": "Short Description",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug",
+                    "type": "string"
+                },
+                "web_url": {
+                    "description": "Web Url",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "last_updated_at": {
+                    "description": "Updated Timestamp",
+                    "type": "datetime"
+                },
+                "content": {
+                    "description": "Content",
+                    "type": "json"
+                }
+            },
+            "type": "object"
+        }
+    }
 }

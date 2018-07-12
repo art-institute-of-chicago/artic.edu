@@ -12,7 +12,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class EducatorResource extends Model
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
 
     protected $fillable = [
         'listing_description',
@@ -79,12 +79,76 @@ class EducatorResource extends Model
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('collection.publications.digital-catalogs'), '/', $this->id, '-']);
+        return join([route('collection.resources.educator-resources.show'), '/', $this->id, '-']);
     }
 
     public function getSlugAttribute()
     {
-        return route('collection.publications.digital-catalogs.show', $this);
+        return route('collection.resources.educator-resources.show', $this);
+    }
+
+    public function getUrlAttribute() {
+        return url(route('collection.resources.educator-resources.show', $this->id_slug));
+    }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'title',
+                "doc" => "Title",
+                "type" => "string",
+                "value" => function() { return $this->title; }
+            ],
+            [
+                "name" => 'web_url',
+                "doc" => "Web URL",
+                "type" => "string",
+                "value" => function() { return url($this->url); }
+            ],
+            [
+                "name" => 'slug',
+                "doc" => "Slug",
+                "type" => "string",
+                "value" => function() { return $this->getSlug(); }
+            ],
+            [
+                "name" => 'listing_description',
+                "doc" => "Listing Description",
+                "type" => "string",
+                "value" => function() { return $this->listing_description; }
+            ],
+            [
+                "name" => 'short_description',
+                "doc" => "Short Description",
+                "type" => "string",
+                "value" => function() { return $this->short_description; }
+            ],
+            [
+                "name" => 'published',
+                "doc" => "Published",
+                "type" => "boolean",
+                "value" => function() { return $this->published; }
+            ],
+            [
+                "name" => 'publish_start_date',
+                "doc" => "Publish Start Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_start_date; }
+            ],
+            [
+                "name" => 'publish_end_date',
+                "doc" => "Publish End Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_end_date; }
+            ],
+            [
+                "name" => 'content',
+                "doc" => "Content",
+                "type" => "text",
+                "value" => function() { return $this->blocks; }
+            ],
+        ];
     }
 
 }
