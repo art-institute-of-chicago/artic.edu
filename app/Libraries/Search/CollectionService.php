@@ -53,10 +53,10 @@ class CollectionService
         $builder = clone $this->chain;
 
         if ($page) {
-            $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getSearch($this->perPage, [], null, $page);
+            $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getPaginatedModel($this->perPage, \App\Models\Api\Artwork::SEARCH_FIELDS, null, $page);
             $this->page    = $page;
         } else {
-            $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getSearch($this->perPage);
+            $this->results = $builder->ttl(self::API_SEARCH_CACHE_TTL)->getPaginatedModel($this->perPage, \App\Models\Api\Artwork::SEARCH_FIELDS);
         }
 
         return $this->results;

@@ -46,6 +46,36 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         ]);
     }
 
+    /**
+     * Paginate the given query and transform the Search results to the correct API models
+     *
+     * @param  int  $perPage
+     * @param  array  $columns
+     * @param  string  $pageName
+     * @param  int|null  $page
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function getPaginatedModel($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    {
+        $results = $this->getPaginated($perPage, $columns, $pageName, $page);
+
+        $paginationData = $results->getMetadata('pagination');
+        $total = $paginationData ? $paginationData->total : $results->count();
+
+        // Transform each Search model to the correct instance using typeMap
+        $hydratedModels = $results->transform(function($item, $key) {
+            return $this->getTypeMap()[$item->api_model]::hydrate([$item->toArray()])[0];
+        });
+
+        // Rebuild the paginator
+        return $this->paginator($hydratedModels, $total, $perPage ?: 1, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => $pageName,
+        ]);
+    }
+
     protected function extractModelsFlat($results) {
         $original = clone $results;
 
