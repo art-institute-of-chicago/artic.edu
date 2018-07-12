@@ -25,13 +25,18 @@ class ExhibitionsController extends FrontController
 
     public function index($upcoming = false)
     {
+        // Note: Naming conventions for the browsers might be unintuitive (backwards compatibility).
+
         $this->seo->setTitle('Exhibitions');
         $this->seo->setDescription("Now on view—explore the Art Institute's current and upcoming exhibits to plan your visit.");
 
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
 
         if ($upcoming) {
-            $collection = $this->apiRepository->upcoming();
+            $collection = $page->apiModels('exhibitionsUpcomingListing', 'Exhibition');
+            $collection = $collection->filter( function( $value, $key) {
+                return Carbon::now() <= $value->aic_date_start;
+            });
         } else {
             $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
         }
