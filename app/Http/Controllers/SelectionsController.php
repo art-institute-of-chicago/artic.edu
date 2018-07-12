@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\SelectionRepository;
 use App\Models\Selection;
-use App\Libraries\ExploreFurther\BaseService as ExploreFurther;
+use App\Libraries\ExploreFurther\SelectionService as ExploreFurther;
 
 class SelectionsController extends FrontController
 {
