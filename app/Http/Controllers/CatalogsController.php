@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/*
+    Class inherited by PrintedCatalogs and DigitalCatalogs
+*/
+
 class CatalogsController extends BaseScopedController
 {
 

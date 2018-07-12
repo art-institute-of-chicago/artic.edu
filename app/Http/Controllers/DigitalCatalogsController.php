@@ -58,7 +58,6 @@ class DigitalCatalogsController extends CatalogsController
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             "breadcrumb" => $crumbs,
-            'featuredRelated' => [],
             'page' => $page,
         ]);
 

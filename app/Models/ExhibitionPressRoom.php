@@ -71,6 +71,11 @@ class ExhibitionPressRoom extends Model
         return join([$this->id, $this->getSlug()], '-');
     }
 
+    public function getUrlAttribute()
+    {
+        return url(route('about.exhibitionPressRooms.show', $this->id_slug));
+    }
+
     public function getUrlWithoutSlugAttribute()
     {
         return join([route('about.exhibitionPressRooms'), '/', $this->id, '-']);

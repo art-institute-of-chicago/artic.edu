@@ -80,8 +80,8 @@ class PressReleasesController extends BaseScopedController
 
         if ($yearRange) {
             $yearLinks[] = [
-                'href' => route($baseRoute, request()->except('year')),
-                'label' => 'All',
+                'label'  => 'All',
+                'href'   => route($baseRoute, request()->except('year')),
                 'active' => empty(request('year', null))
             ];
 
@@ -166,10 +166,6 @@ class PressReleasesController extends BaseScopedController
         $this->seo->setTitle($page->meta_title ?? $page->title);
         $this->seo->setDescription($page->meta_description ?? $page->short_description);
 
-        $navs = [
-            'nav' => [],
-            'subNav' => []
-        ];
         $crumbs = [
             ['label' => 'About', 'href' => route('genericPages.show', 'about')],
             ['label' => 'Press Releases', 'href' => route('about.press')],
@@ -179,14 +175,12 @@ class PressReleasesController extends BaseScopedController
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),
             'subNav' => null,
-            'nav' => null,
             'intro' => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
             "breadcrumb" => $crumbs,
             "blocks" => null,
-            'featuredRelated' => [],
-            'nav' => $navs['nav'],
+            'nav' => [],
             'page' => $page,
         ]);
 
