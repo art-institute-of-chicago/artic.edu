@@ -37,19 +37,32 @@ class Sort
 
             // If input contains the parameter, set the list as active
             if ($input->has($this->parameter) && $enabled = $input->contains($option)) {
-                $route = route('collection', request()->except($this->parameter));
+                $this->activeList = true;
+                $route = route('collection', request()->except(['page', $this->parameter]));
             } else {
-                $route = route('collection', [$this->parameter => $option]);
+                $route = route('collection', request()->except(['page', $this->parameter]) + [$this->parameter => $option]);
             }
 
             return [
                 'href'    => $route,
-                'label'   => 'By ' . ucfirst($option),
+                'label'   => 'By ' . $this->generateLabel($option),
                 'enabled' => $enabled ?? false
             ];
         });
 
         return $list;
+    }
+
+    protected function generateLabel($parameter)
+    {
+        switch ($parameter) {
+            case 'date_start':
+                return 'Date';
+            case 'artist_title':
+                return 'Artist';
+            default:
+                return str_replace('_', ' ', title_case($parameter));
+        }
     }
 
 }

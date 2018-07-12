@@ -14,7 +14,7 @@ class CollectionService
     protected $results;
 
     // Options for Sort Filter. Sort by these fields
-    protected $sortingOptions = ['title'];
+    protected $sortingOptions = ['relevance', 'title', 'artist_title', 'date_start'];
 
     // Options for BooleanFilter class. [ parameter => label, ... ]
     protected $booleanOptions = [
