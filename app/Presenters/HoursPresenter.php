@@ -11,12 +11,12 @@ class HoursPresenter extends BasePresenter
 
     public function presentOpeningTime() {
         if ($this->entity->opening_time)
-            return $this->entity->opening_time->format('H:i');
+            return $this->entity->opening_time->format('g:i');
     }
 
     public function presentClosingTime() {
         if ($this->entity->closing_time)
-            return $this->entity->closing_time->format('H:i');
+            return $this->entity->closing_time->format('g:i');
     }
 
     public function dayOfWeek() {

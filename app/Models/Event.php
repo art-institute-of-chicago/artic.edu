@@ -158,7 +158,7 @@ class Event extends Model
     public function getTimeStartAttribute()
     {
         if ($this->date) {
-            return $this->date->format('h:ia');
+            return $this->date->format('g:ia');
         }
 
     }
@@ -166,7 +166,7 @@ class Event extends Model
     public function getTimeEndAttribute()
     {
         if ($this->date_end) {
-            return $this->date_end->format('h:ia');
+            return $this->date_end->format('g:ia');
         }
 
     }
@@ -181,7 +181,7 @@ class Event extends Model
         $dates_string = '';
         foreach ($this->all_dates as $date) {
 
-            $dates_string .= $date['date']->format('F j, Y h:i') . '-' . $date['date_end']->format('F j, Y h:i') . "\n";
+            $dates_string .= $date['date']->format('F j, Y g:i') . ' - ' . $date['date_end']->format('F j, Y g:i') . "\n";
         }
 
         return $dates_string;

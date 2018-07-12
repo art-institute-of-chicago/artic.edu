@@ -110,7 +110,13 @@ class BaseService
             }
         }
 
-        return $query->getPaginatedModel(self::PER_PAGE_EXPLORE_FURTHER, \App\Models\Api\Artwork::SEARCH_FIELDS);
+        $results = $query->getPaginatedModel(self::PER_PAGE_EXPLORE_FURTHER, \App\Models\Api\Artwork::SEARCH_FIELDS);
+
+        // Remove our own element from the collection.
+        $item = $this->resource;
+        return $results->filter(function($value, $key) use ($item) {
+            return ($item->id != $value->id);
+        });
     }
 
     public function collectionUrl($parameters = [])
