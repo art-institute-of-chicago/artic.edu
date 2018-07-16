@@ -14,14 +14,7 @@ class Asset extends BaseApiModel
     ];
 
     // Elements created to ease integration with blade views when converting to an array
-    protected $appends = ['iconAfter', 'label', 'href', 'subtype', 'embed'];
-
-    public function getSoundContentAttribute()
-    {
-        // Hardcoded soundcloud embed until AIC returns a proper soundcloud embeds
-
-        return '<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/348258574&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>';
-    }
+    protected $appends = ['iconAfter', 'label', 'href', 'embed'];
 
     public function imageFront($role = 'hero', $crop = 'default')
     {
@@ -62,28 +55,9 @@ class Asset extends BaseApiModel
             case 'videos':
                 return $this->videoContent;
                 break;
-            case 'sounds':
-                return $this->soundContent;
-                break;
-            case 'texts':
-                return $this->textLinkContent;
-                break;
-            // `sites` don't get embedded
-        }
-    }
 
-    public function getSubtypeAttribute()
-    {
-        switch ($this->api_model)
-        {
-            case 'videos':
-            case 'sounds':
-                return 'embed';
-                break;
-            // case 'sites': // TODO: Unused?
-            case 'texts':
-                return 'link';
-                break;
+            // All other cases were deprecated.
+            // If needed to add another embed type start here.
         }
     }
 
@@ -94,11 +68,6 @@ class Asset extends BaseApiModel
         if (substr($this->content, -4) != '.pdf') {
             return 'new-window';
         }
-    }
-
-    public function getTextLinkContentAttribute()
-    {
-        return $this->content;
     }
 
     public function scopeMultimediaAssets($query)

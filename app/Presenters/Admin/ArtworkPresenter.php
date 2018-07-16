@@ -215,13 +215,18 @@ class ArtworkPresenter extends BasePresenter
                         "items"   => $medias,
                     ];
                     break;
-                // This breaks SoundCloud sounds, if any
+
                 case 'sounds':
-                    $localBlock = [
-                        "type"    => 'listing',
-                        "subtype" => 'sound',
-                        "items"   => $medias,
-                    ];
+                    // A17 WILL NOT SUPPORT MP3's ON PRODUCTION.
+                    // This will be passed to the AIC team.
+                    if (!\App::environment('production')) {
+                        $localBlock = [
+                            "type"    => 'listing',
+                            "subtype" => 'sound',
+                            "items"   => $medias,
+                        ];
+                    }
+
                     break;
                 case 'sites':
                 case 'sections':

@@ -116,7 +116,7 @@ class Artwork extends BaseApiModel
             ->educationalForArtwork($this->id)
             ->educationalAssets()
             ->forPage(null, self::RELATED_MULTIMEDIA)
-            ->get(["id", "title", "content", "api_model", "is_multimedia_resource", "is_educational_resource"]);
+            ->get(["id", "title", "content", "api_model", "is_multimedia_resource", "is_educational_resource", "web_url"]);
     }
 
     public function getTypeAttribute()
