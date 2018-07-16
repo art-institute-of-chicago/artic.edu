@@ -219,6 +219,7 @@ class SearchController extends BaseScopedController
         $aggregations = $all->getMetadata('aggregations')->types->buckets;
 
         array_push($links, $this->buildLabel('All', $all->getMetadata('pagination')->total, route('search', ['q' => request('q')]), $active == 'all'));
+
         if (extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
@@ -228,9 +229,14 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'exhibitions')) {
             array_push($links, $this->buildLabel('Exhibitions', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
         }
-
         if (extractAggregation($aggregations, 'events')) {
             array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('events'), $active == 'events'));
+        }
+        if (extractAggregation($aggregations, 'digital-catalogs')) {
+            array_push($links, $this->buildLabel('Digital Catalogs', extractAggregation($aggregations, 'digital-catalogs'), route('collection.publications.digital-catalogs'), $active == 'digital-catalogs'));
+        }
+        if (extractAggregation($aggregations, 'printed-catalogs')) {
+            array_push($links, $this->buildLabel('Printed Catalogs', extractAggregation($aggregations, 'printed-catalogs'), route('collection.publications.printed-catalogs'), $active == 'printed-catalogs'));
         }
 
         return $links;
