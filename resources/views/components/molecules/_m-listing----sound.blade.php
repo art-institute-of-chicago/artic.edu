@@ -5,7 +5,7 @@
             <span class="m-listing__meta">
                 <em class="type f-tag">Audio</em>
                 <br>
-                <strong class="title f-list-3">{{ $item->title }}</strong>
+                <strong class="title f-list-3">{!! $item->title !!}</strong>
             </span>
         </div>
         <div>
