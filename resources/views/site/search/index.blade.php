@@ -427,7 +427,7 @@
 
 @if (isset($publications) && $publications->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'See all publications', 'href' => route('collection.publications.printed-catalogs'))))
+        @slot('links', array(array('label' => 'See all publications', 'href' => route('articles_publications'))))
         Publications
     @endcomponent
 

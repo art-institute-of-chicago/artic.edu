@@ -223,6 +223,9 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
+        if (extractAggregation($aggregations, 'articles')) {
+            array_push($links, $this->buildLabel('Writings', extractAggregation($aggregations, 'articles'), route('articles'), $active == 'articles'));
+        }
         if (extractAggregation($aggregations, 'artworks')) {
             array_push($links, $this->buildLabel('Artwork', extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'));
         }
