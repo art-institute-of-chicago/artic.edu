@@ -412,4 +412,53 @@ class Search extends BaseApiModel
 
         return $query->rawQuery($params);
     }
+
+    public function scopeExhibitionUpcoming($query)
+    {
+        $params = [
+            'bool' => [
+                'must' => [
+                    0 => [
+                        'range' => [
+                            'start_at' => [
+                                'gte' => 'now',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeExhibitionHistory($query)
+    {
+        $params = [
+            'bool' => [
+                'must' => [
+                    0 => [
+                        'range' => [
+                            'end_at' => [
+                                'lte' => 'now',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        return $query->exhibitionOrderByDate('asc')->rawSearch($params);
+    }
+
+    public function scopeExhibitionOrderByDate($query, $direction = 'asc')
+    {
+        $params = [
+            "sort" => [
+                'start_at' => $direction
+            ]
+        ];
+
+        return $query->rawQuery($params);
+    }
 }

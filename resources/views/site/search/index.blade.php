@@ -288,7 +288,7 @@
 
 @endif
 
-@if (isset($exhibitions) && $exhibitions->getMetadata('pagination')->total > 0)
+@if (isset($exhibitions))
     @component('components.molecules._m-title-bar')
         @unless (isset($allResultsView) and $allResultsView)
             @slot('links', array(array('label' => 'See all '. $exhibitions->getMetadata('pagination')->total .' exhibitions', 'href' => route('search.exhibitions', request()->input()))))
@@ -300,29 +300,17 @@
             @slot('secondaryHtml')
                 <li class="m-links-bar__item m-links-bar__item--primary">
                     @component('components.atoms._dropdown')
-                      @slot('prompt', 'Date: Upcoming')
+                      @slot('prompt', 'Date: ' . (request('time') ? (request('time') == 'upcoming' ? 'Upcoming' : 'Past') : 'All'))
                       @slot('ariaTitle', 'Filter by')
                       @slot('variation','dropdown--filter f-link')
                       @slot('font', null)
                       @slot('options', array(
-                        array('href' => '#', 'label' => 'Upcoming', 'active' => true),
-                        array('href' => '#', 'label' => 'Past'),
+                        array('href' => route('search.exhibitions', ['q' => request('q')]), 'label' => 'All', 'active' => !request()->has('time')),
+                        array('href' => route('search.exhibitions', ['q' => request('q'), 'time' => 'upcoming']), 'label' => 'Upcoming', 'active' => request('time') == 'upcoming'),
+                        array('href' => route('search.exhibitions', ['q' => request('q'), 'time' => 'past']), 'label' => 'Past', 'active' => request('time') == 'past'),
                       ))
                     @endcomponent
                 </li>
-                {{-- <li class="m-links-bar__item m-links-bar__item--primary">
-                    @component('components.atoms._dropdown')
-                      @slot('prompt', 'Show: All')
-                      @slot('ariaTitle', 'Filter by')
-                      @slot('variation','dropdown--filter f-link')
-                      @slot('font', null)
-                      @slot('options', array(
-                        array('href' => '#', 'label' => 'All', 'active' => true),
-                        array('href' => '#', 'label' => 'Exhibitions'),
-                        array('href' => '#', 'label' => 'Events'),
-                      ))
-                    @endcomponent
-                </li> --}}
             @endslot
         @endcomponent
         @component('components.atoms._hr')
@@ -332,60 +320,66 @@
         @component('components.atoms._hr')
         @endcomponent
     @endif
-    @component('components.organisms._o-grid-listing')
-        @if (isset($allResultsView) and $allResultsView)
-            @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-            @slot('cols_small','2')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-        @else
-            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
-            @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
-        @endif
-        @foreach ($exhibitions as $item)
-            @if(class_basename($item) == 'Exhibition')
-                @component('components.molecules._m-listing----exhibition')
-            @else
-                @component('components.molecules._m-listing----event')
-            @endif
-                @slot('item', $item)
-                @if (isset($allResultsView) and $allResultsView)
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_gridListingImageSizes(array(
-                              'xsmall' => '1',
-                              'small' => '2',
-                              'medium' => '3',
-                              'large' => '4',
-                              'xlarge' => '4',
-                        )),
-                    ))
-                @else
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
-                              'xsmall' => '216px',
-                              'small' => '216px',
-                              'medium' => '18',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
-                @endif
-            @endcomponent
-        @endforeach
-    @endcomponent
 
-    @if (isset($allResultsView) && $allResultsView)
-        {{-- Pagination --}}
-        {!! $exhibitions->appends(request()->input())->links() !!}
+    @if ($exhibitions->getMetadata('pagination')->total > 0)
+        @component('components.organisms._o-grid-listing')
+            @if (isset($allResultsView) and $allResultsView)
+                @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+                @slot('cols_small','2')
+                @slot('cols_medium','3')
+                @slot('cols_large','4')
+                @slot('cols_xlarge','4')
+            @else
+                @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+                @slot('cols_medium','3')
+                @slot('cols_large','4')
+                @slot('cols_xlarge','4')
+            @endif
+            @foreach ($exhibitions as $item)
+                @if(class_basename($item) == 'Exhibition')
+                    @component('components.molecules._m-listing----exhibition')
+                @else
+                    @component('components.molecules._m-listing----event')
+                @endif
+                    @slot('item', $item)
+                    @if (isset($allResultsView) and $allResultsView)
+                        @slot('imageSettings', array(
+                            'fit' => 'crop',
+                            'ratio' => '16:9',
+                            'srcset' => array(200,400,600),
+                            'sizes' => aic_gridListingImageSizes(array(
+                                  'xsmall' => '1',
+                                  'small' => '2',
+                                  'medium' => '3',
+                                  'large' => '4',
+                                  'xlarge' => '4',
+                            )),
+                        ))
+                    @else
+                        @slot('imageSettings', array(
+                            'fit' => 'crop',
+                            'ratio' => '16:9',
+                            'srcset' => array(200,400,600),
+                            'sizes' => aic_imageSizes(array(
+                                  'xsmall' => '216px',
+                                  'small' => '216px',
+                                  'medium' => '18',
+                                  'large' => '13',
+                                  'xlarge' => '13',
+                            )),
+                        ))
+                    @endif
+                @endcomponent
+            @endforeach
+        @endcomponent
+
+        @if (isset($allResultsView) && $allResultsView)
+            {{-- Pagination --}}
+            {!! $exhibitions->appends(request()->input())->links() !!}
+        @endif
+    @else
+        @component('components.molecules._m-no-results')
+        @endcomponent
     @endif
 @endif
 

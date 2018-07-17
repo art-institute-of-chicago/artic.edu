@@ -186,7 +186,7 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general     = $this->searchRepository->forSearchQuery(request('q'), 2);
-        $exhibitions = $this->exhibitionsRepository->searchApi(request('q'), self::EXHIBITIONS_PER_PAGE);
+        $exhibitions = $this->exhibitionsRepository->searchApi(request('q'), self::EXHIBITIONS_PER_PAGE, request('time'));
 
         $links = $this->buildSearchLinks($general, 'exhibitions');
 

@@ -41,12 +41,18 @@ class ExhibitionRepository extends BaseApiRepository
         ];
     }
 
-    public function searchApi($string, $perPage = null, $columns = [], $pageName = 'page', $page = null, $options = [] )
+    public function searchApi($string, $perPage = null, $time = null)
     {
-        $search  = Search::query()->search($string)->resources(['events', 'exhibitions']);
+        $search  = Search::query()->search($string)->resources(['exhibitions']);
+
+        if ($time == 'upcoming') {
+            $search->exhibitionUpcoming();
+        } elseif ($time == 'past') {
+            $search->exhibitionHistory();
+        }
 
         // Perform the query
-        $results = $search->getSearch($perPage, $columns, $pageName, $page, $options);
+        $results = $search->getSearch($perPage);
 
         return $results;
     }
