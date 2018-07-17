@@ -57,6 +57,12 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('digitalCatalogs');
     });
 
+    Route::module('galleries');
+    Route::name('collection.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');
+
+    Route::module('departments');
+    Route::name('collection.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
+
     Route::module('selections');
 
 });
@@ -66,11 +72,7 @@ Route::group(['prefix' => 'generic'], function () {
     Route::module('pressReleases');
     Route::module('exhibitionPressRooms');
 
-    Route::module('galleries');
-    Route::name('generic.galleries.augment')->get('galleries/augment/{datahub_id}', 'GalleryController@augment');
-
-    Route::module('departments');
-    Route::name('generic.departments.augment')->get('departments/augment/{datahub_id}', 'DepartmentController@augment');
+    
 });
 
 Route::group(['prefix' => 'general'], function () {
