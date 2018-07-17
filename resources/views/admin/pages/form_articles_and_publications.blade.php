@@ -13,7 +13,7 @@
         'max' => 3,
         'moduleName' => 'digitalCatalogs',
         'name' => 'digitalCatalogs',
-        'label' => 'Digital catalogues'
+        'label' => 'Digital Catalogues'
     ])
 
     @formField('browser', [

@@ -15,12 +15,12 @@ class CatalogsController extends BaseScopedController
     {
         $subNav = [
             [
-                'label'  => 'Printed catalogues',
+                'label'  => 'Printed Catalogues',
                 'href'   => route('collection.publications.printed-catalogs'),
                 'active' => request()->route()->getName() == 'collection.publications.printed-catalogs'
             ],
             [
-                'label'  => 'Digital catalogues',
+                'label'  => 'Digital Catalogues',
                 'href'   => route('collection.publications.digital-catalogs'),
                 'active' => request()->route()->getName() == 'collection.publications.digital-catalogs'
             ]
