@@ -220,7 +220,7 @@ class Event extends Model
         $query->where('event_metas.date', '>=', $startDate);
 
         if ($endDate) {
-            $query->where('event_metas.date_end', '<=', $endDate);
+            $query->where('event_metas.date_end', '<=', Carbon::parse($endDate)->endOfDay());
         }
 
         $query->orderBy('event_metas.date', 'ASC');
