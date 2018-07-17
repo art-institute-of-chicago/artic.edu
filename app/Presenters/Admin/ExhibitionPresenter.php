@@ -16,7 +16,7 @@ class ExhibitionPresenter extends BasePresenter
 
     public function date()
     {
-     
+
         $date = "";
         $hasStart = false;
         $start = $this->entity->asDateTime($this->aic_start_at);
@@ -29,7 +29,7 @@ class ExhibitionPresenter extends BasePresenter
             $date = $start->format('m d Y');
             $hasStart = true;
 
- 
+
         }
 
         if($this->aic_end_at == null){
@@ -59,7 +59,6 @@ class ExhibitionPresenter extends BasePresenter
             $this->entity->status = "Closed";
         }
         return $date;
-
     }
 
     public function headerType()
@@ -98,7 +97,7 @@ class ExhibitionPresenter extends BasePresenter
         if (!empty($this->entity->dateStart)) {
             $year_start = $this->entity->dateStart->format("Y");
             if (!empty($this->entity->dateEnd)) {
-             $year_end = $this->entity->dateEnd->format("Y"); 
+             $year_end = $this->entity->dateEnd->format("Y");
              if($year_start == $year_end) {
                 $date_format = true;
              }
@@ -109,7 +108,7 @@ class ExhibitionPresenter extends BasePresenter
             } else {
                 $date .= '<time datetime="'.$this->entity->dateStart->format("Y-m-d").'" itemprop="startDate">'.$this->entity->dateStart->format('M j, Y').'</time>';
             }
-            
+
         }
         if (!empty($this->entity->dateEnd)) {
             $date .= '&ndash;<time datetime="'.$this->entity->dateEnd->format("Y-m-d").'" itemprop="endDate">'.$this->entity->dateEnd->format('M j, Y').'</time>';
