@@ -21,7 +21,7 @@
         'max' => 4,
         'moduleName' => 'printedCatalogs',
         'name' => 'printedCatalogs',
-        'label' => 'Printed catalogues'
+        'label' => 'Printed Catalogues'
     ])
 
     @formField('input', [

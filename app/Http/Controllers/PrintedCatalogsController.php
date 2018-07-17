@@ -37,7 +37,7 @@ class PrintedCatalogsController extends CatalogsController
     {
         $items = $this->collection()->paginate();
 
-        $navElements = $this->getNavElements('Printed catalogues');
+        $navElements = $this->getNavElements('Printed Catalogues');
 
         $view_data = [
             'wideBody' => true,
