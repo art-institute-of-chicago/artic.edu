@@ -46,14 +46,49 @@
   transition: all 200ms linear;
 }
 
-.design-grid-toggle.js-active {
-  background-color: #f00;
+.design-grid-toggle--ajax {
+  background-color: red;
+}
+
+.design-grid-toggle.js-active,
+.design-grid-toggle--ajax.js-active {
+  background-color: green;
 }
 
 .design-grid-toggle svg {
   display: block;
   width: 10px;
   height: 10px;
+}
+
+
+.design-grid-toggle--ajax {
+  position: relative;
+
+  svg {
+    transform: scale(2);
+  }
+
+  span {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    font-size: 9px;
+    line-height: 12px;
+    text-align: right;
+    font-weight: bold;
+    color: white;
+    opacity: 0;
+    transition: opacity .25s;
+    pointer-events: none;
+  }
+
+  &.js-active span {
+    opacity: 1;
+  }
 }
 
 .design-grid--baseline {

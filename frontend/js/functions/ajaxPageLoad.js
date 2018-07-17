@@ -108,7 +108,7 @@ const ajaxPageLoad = function() {
         //
         _ajaxPageLoadComplete();
       });
-    },250); // 250 is transition time
+    },1); // 250 is transition time
     // replace title
     docTitle = doc.title;
     document.title = docTitle;
