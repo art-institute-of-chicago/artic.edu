@@ -5,7 +5,14 @@
 
                 {{-- Print the link as active only if it's the first link on the first category --}}
                 {{-- and there's no filter selected. Otherwise check the actual parameters --}}
-                @if (empty(request()->input()) && $loop->parent->first && $loop->first)
+
+                @php
+                    $active = collect(request()->input())->filter(function($value, $key) {
+                        return str_contains($key, 'ef-');
+                    })->isEmpty();
+                @endphp
+
+                @if ($loop->parent->first && $loop->first && $active)
                     <li class="m-links-bar__item s-active">
                 @else
                     <li class="m-links-bar__item {{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
