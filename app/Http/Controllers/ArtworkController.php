@@ -19,11 +19,11 @@ class ArtworkController extends BaseScopedController
         parent::__construct();
     }
 
-    public function show($idSlug)
+    public function show($id, $slug = null)
     {
         $item = Artwork::query()
             ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
-            ->findOrFail((Integer) $idSlug);
+            ->findOrFail((Integer) $id);
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->fullTitle);
