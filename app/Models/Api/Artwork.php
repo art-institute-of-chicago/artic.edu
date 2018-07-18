@@ -203,6 +203,11 @@ class Artwork extends BaseApiModel
         return route('artworks.show', $this->id, getUtf8Slug($this->title));
     }
 
+    public function getTitleSlugAttribute()
+    {
+        return getUtf8Slug($this->title);
+    }
+
     public function getImageCopyright()
     {
         return empty($this->copyright_notice) ? '' : $this->copyright_notice;
