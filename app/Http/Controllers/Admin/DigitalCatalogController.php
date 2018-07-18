@@ -12,7 +12,7 @@ class DigitalCatalogController extends ModuleController
 
     protected function formData($request)
     {
-        $baseUrl = '//' . config('app.url') . "/collection/publications/digital-catalogs/";
+        $baseUrl = '//' . config('app.url') . "/digital-catalogues/";
         return [
             'baseUrl' => $baseUrl,
         ];

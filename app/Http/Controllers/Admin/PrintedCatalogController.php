@@ -13,7 +13,7 @@ class PrintedCatalogController extends ModuleController
 
     protected function formData($request)
     {
-        $baseUrl = '//' . config('app.url') . "/collection/publications/printed-catalogs/";
+        $baseUrl = '//' . config('app.url') . "/printed-catalogues/";
         return [
             'categoriesList' => app(CatalogCategoryRepository::class)->listAll('name'),
             'baseUrl' => $baseUrl,
