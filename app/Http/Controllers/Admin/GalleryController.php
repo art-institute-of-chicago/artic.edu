@@ -19,7 +19,7 @@ class GalleryController extends BaseApiController
         'bulkDelete' => false,
         'bulkEdit' => false,
         'reorder' => false,
-        'permalink' => false,
+        'permalink' => true,
     ];
 
     protected $indexColumns = [
@@ -34,4 +34,13 @@ class GalleryController extends BaseApiController
         ],
     ];
 
+    protected function formData($request)
+    {
+        $item = $this->repository->getById(request('gallery'));
+        $baseUrl = '//'.config('app.url').'/galleries/'.$item->datahub_id.'/';
+
+        return [
+            'baseUrl' => $baseUrl,
+        ];
+    }
 }

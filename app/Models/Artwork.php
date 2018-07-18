@@ -80,11 +80,6 @@ class Artwork extends Model
         }
     }
 
-    public function getUrlWithoutSlugAttribute()
-    {
-        return route('artworks.show', $this->datahub_id);
-    }
-
     public function getSlugAttribute()
     {
         return ['en' => getUtf8Slug($this->title)];

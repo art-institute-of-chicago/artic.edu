@@ -82,13 +82,13 @@ Route::name('artworks.addRecentlyViewed')->get('/artworks/addRecentlyViewed/{id}
 Route::name('artworks.show')->get('/artworks/{id}/{slug?}', 'ArtworkController@show');
 
 // Gallery / tag page
-Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');
+Route::name('galleries.show')->get('/galleries/{id}/{slug?}', 'GalleryController@show');
 
 // Artist / tag page
-Route::name('artists.show')->get('/artists/{id}', 'ArtistController@show');
+Route::name('artists.show')->get('/artists/{id}/{slug?}', 'ArtistController@show');
 
 // Department / tag page
-Route::name('departments.show')->get('/departments/{id}', 'DepartmentController@show');
+Route::name('departments.show')->get('/departments/{id}/{slug?}', 'DepartmentController@show');
 
 // Selections
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
