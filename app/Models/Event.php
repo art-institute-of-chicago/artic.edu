@@ -12,6 +12,10 @@ use App\Models\Behaviors\HasRecurrentDates;
 use Carbon\Carbon;
 use App\Models\Behaviors\HasApiRelations;
 
+// TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+use Illuminate\Support\Facades\DB;
+use PDO;
+
 class Event extends Model
 {
     use HasSlug, HasRevisions, HasApiRelations, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable;
@@ -301,21 +305,32 @@ class Event extends Model
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByType($query, $type)
     {
-        return $query->where('event_type', '=', $type)->orWhereRaw("alt_types::text LIKE '%" .$type ."%'");
+        return $query->where('event_type', '=', $type)->orWhereRaw($this->getWhereJsonContainsRaw('alt_types', $type));
     }
 
     // NOTE: This works only while there are less than 10 possible audience values
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByAudience($query, $audience)
     {
-        return $query->where('audience', '=', $audience)->orWhereRaw("alt_audiences::text LIKE '%" .$audience. "%'");
+        return $query->where('audience', '=', $audience)->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', $audience));
     }
 
     // NOTE: This works only while there are less than 10 possible program values
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByProgram($query, $program)
     {
-        return $query->whereRaw("programs::text LIKE '%" .$program. "%'");
+        return $query->whereRaw($this->getWhereJsonContainsRaw('programs', $program));
+    }
+
+    // Helper function to make `LIKE` on JSON column work correctly with both MySQL and PostgreSQL
+    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+    private function getWhereJsonContainsRaw($field, $value)
+    {
+        if (DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+            return $field ."::text LIKE '%" .$value ."%'";
+        }
+
+        return $field ." LIKE '%" .$value ."%'";
     }
 
     public function scopeDefault($query)
