@@ -17,11 +17,11 @@ Route::name('collection.autocomplete')->get('/collection/autocomplete', 'Collect
 Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
 
 // Collection Publications Printed Catalogs
-Route::name('collection.publications.printed-catalogs')->get('/collection/publications/printed-catalogues', 'PrintedCatalogsController@index');
-Route::name('collection.publications.printed-catalogs.show')->get('/collection/publications/printed-catalogues/{id}', 'PrintedCatalogsController@show');
+Route::name('collection.publications.printed-catalogs')->get('/printed-catalogues', 'PrintedCatalogsController@index');
+Route::name('collection.publications.printed-catalogs.show')->get('/printed-catalogues/{id}', 'PrintedCatalogsController@show');
 // Collection Publications Digital Catalogs
-Route::name('collection.publications.digital-catalogs')->get('/collection/publications/digital-catalogues', 'DigitalCatalogsController@index');
-Route::name('collection.publications.digital-catalogs.show')->get('/collection/publications/digital-catalogues/{id}', 'DigitalCatalogsController@show');
+Route::name('collection.publications.digital-catalogs')->get('/digital-catalogues', 'DigitalCatalogsController@index');
+Route::name('collection.publications.digital-catalogs.show')->get('/digital-catalogues/{id}', 'DigitalCatalogsController@show');
 
 // Collection Research
 Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');
@@ -31,7 +31,7 @@ Route::name('collection.resources.research-guides')->get('/collection/resources/
 Route::name('collection.resources.research-guides.show')->get('/collection/resources/research-guides/{id}', 'ResearchGuidesController@show');
 
 // Collection Resources Educator Resources
-Route::name('collection.resources.educator-resources')->get('/collection/resources/educator-resources', 'EducatorResourcesController@index');
+Route::name('collection.resources.educator-resources')->get('/learn-with-us/educators/tools-for-my-classroom/resource-finder', 'EducatorResourcesController@index');
 Route::name('collection.resources.educator-resources.show')->get('/collection/resources/educator-resources/{id}', 'EducatorResourcesController@show');
 
 // Newsletter subscription
@@ -94,12 +94,13 @@ Route::name('departments.show')->get('/departments/{id}', 'DepartmentController@
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');
 
 // About
-Route::name('about.press')->get('/press', 'PressReleasesController@index');
+Route::name('about.press')->get('/press/press-releases', 'PressReleasesController@index');
 Route::name('about.press.archive')->get('/press/archive', 'PressReleasesController@archive');
-Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@show');
 
-Route::name('about.exhibitionPressRooms')->get('/about/exhibition-press-room', 'ExhibitionPressRoomController@index');
-Route::name('about.exhibitionPressRooms.show')->get('/about/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
+Route::name('about.exhibitionPressRooms')->get('/press/exhibition-press-room', 'ExhibitionPressRoomController@index');
+Route::name('about.exhibitionPressRooms.show')->get('/press/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
+
+Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@show');
 
 // Sample Form
 Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@index');
