@@ -59,7 +59,7 @@ class ArticleController extends ModuleController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('article'));
-        $baseUrl = '//' . config('app.url') . '/articles/' . $item->id . '-';
+        $baseUrl = '//' . config('app.url') . '/articles/' . $item->id . '/';
 
         return [
             'categoriesList' => app(CategoryRepository::class)->listAll('name'),

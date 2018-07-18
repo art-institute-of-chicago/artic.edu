@@ -58,7 +58,7 @@ Route::name('articles_publications')->get('/articles_publications', 'ArticlesPub
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');
-Route::name('articles.show')->get('/articles/{id}', 'ArticleController@show');
+Route::name('articles.show')->get('/articles/{id}/{slug?}', 'ArticleController@show');
 
 // Videos routes
 Route::name('videos')->get('videos', function() { return abort(404); });
