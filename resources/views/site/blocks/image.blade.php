@@ -21,6 +21,7 @@
                 "downloadName" => '',
                 "credit" => '',
                 "creditUrl" => '',
+                "alt" => $image['alt'],
             ],
         ])
     @endcomponent

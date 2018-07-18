@@ -144,7 +144,7 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
-        $general  = $this->searchRepository->forSearchQuery(request('q'), 2);
+        $general  = $this->searchRepository->forSearchQuery(request('q'), 0);
 
         $artworks      = $this->collection()->perPage(self::ARTWORKS_PER_PAGE)->results();
         $filters       = $this->collection()->generateFilters();
