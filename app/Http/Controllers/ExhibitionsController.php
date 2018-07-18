@@ -67,9 +67,9 @@ class ExhibitionsController extends FrontController
         return $this->index(true);
     }
 
-    protected function show($idSlug)
+    protected function show($id, $slug = null)
     {
-        $item = $this->apiRepository->getById((Integer) $idSlug, ['apiElements']);
+        $item = $this->apiRepository->getById((Integer) $id, ['apiElements']);
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->list_description);
