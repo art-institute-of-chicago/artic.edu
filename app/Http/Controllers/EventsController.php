@@ -115,7 +115,7 @@ class EventsController extends FrontController
         return !empty(request()->only('start', 'end', 'time', 'type', 'audience', 'page'));
     }
 
-    protected function show($id)
+    protected function show($id, $slug = null)
     {
         $item = $this->repository->findOrFail((Integer) $id);
 

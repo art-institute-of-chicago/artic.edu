@@ -47,7 +47,7 @@ class EventController extends ModuleController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('event'));
-        $baseUrl = '//' . config('app.url') . '/events/' . $item->id . '-';
+        $baseUrl = '//' . config('app.url') . '/events/' . $item->id . '/';
 
         return [
             'eventTypesList' => $this->repository->getEventTypesList(),
