@@ -119,7 +119,7 @@ class EventPresenter extends BasePresenter
     }
 
     protected function registrationRequired() {
-        if ($this->entity->is_member_exclusive) {
+        if ($this->entity->is_registration_required) {
             return [
                 'label' => 'Registration required',
                 'iconBefore' => 'pencil',
