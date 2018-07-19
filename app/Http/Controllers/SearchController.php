@@ -86,9 +86,9 @@ class SearchController extends BaseScopedController
         $artists      = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
         $exhibitions  = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
         $events       = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $pages        = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE);
-        $guides       = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE);
-        $press        = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE);
+        $pages        = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $guides       = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $press        = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
 
         return view('site.search.index', [
             'featuredResults' => $general->where('is_boosted', true),
