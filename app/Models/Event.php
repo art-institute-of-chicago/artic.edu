@@ -147,12 +147,12 @@ class Event extends Model
 
     public function getIdSlugAttribute()
     {
-        return join([$this->id, $this->getSlug()], '-');
+        return join([$this->id, $this->getSlug()], '/');
     }
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('events'), '/', $this->id, '-']);
+        return join([route('events'), '/', $this->id, '/']);
     }
 
     public function getTimeStartAttribute()

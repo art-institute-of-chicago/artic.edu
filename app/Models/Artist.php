@@ -49,6 +49,11 @@ class Artist extends Model
         return $this->apiElements()->where('relation', 'featuredArtworks');
     }
 
+    public function getSlugAttribute()
+    {
+        return ['en' => getUtf8Slug($this->title)];
+    }
+
     protected function transformMappingInternal()
     {
         return [

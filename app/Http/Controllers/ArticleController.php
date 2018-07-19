@@ -74,7 +74,7 @@ class ArticleController extends FrontController
         ]);
     }
 
-    public function show($id)
+    public function show($id, $slug = null)
     {
         $item = $this->repository->find((Integer) $id);
 

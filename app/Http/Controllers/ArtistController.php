@@ -17,9 +17,9 @@ class ArtistController extends FrontController
         parent::__construct();
     }
 
-    public function show($idSlug)
+    public function show($id, $slug = null)
     {
-        $item = $this->repository->getById((Integer) $idSlug);
+        $item = $this->repository->getById((Integer) $id);
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: 'Artist');

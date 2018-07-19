@@ -50,15 +50,15 @@ Route::name('search.exhibitions')->get('/search/exhibitions', 'SearchController@
 // Events routes
 Route::name('events')->get('/events', 'EventsController@index');
 Route::name('events.more')->get('/events-more', 'EventsController@indexMore');
-Route::name('events.show')->get('/events/{id}', 'EventsController@show');
 Route::name('events.ics')->get('/events/{id}/ics', 'EventsController@ics');
+Route::name('events.show')->get('/events/{id}/{slug?}', 'EventsController@show');
 
 // Articles & Publications routes
 Route::name('articles_publications')->get('/articles_publications', 'ArticlesPublicationsController@index');
 
 // Articles routes
 Route::name('articles')->get('/articles', 'ArticleController@index');
-Route::name('articles.show')->get('/articles/{id}', 'ArticleController@show');
+Route::name('articles.show')->get('/articles/{id}/{slug?}', 'ArticleController@show');
 
 // Videos routes
 Route::name('videos')->get('videos', function() { return abort(404); });
@@ -73,22 +73,22 @@ Route::name('exhibitions.history.show')->get('exhibitions/history/{id}', 'Exhibi
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionsController@index');
 Route::name('exhibitions.upcoming')->get('/exhibitions/upcoming', 'ExhibitionsController@upcoming');
 Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/relatedEvents', 'ExhibitionsController@loadMoreRelatedEvents');
-Route::name('exhibitions.show')->get('/exhibitions/{id}', 'ExhibitionsController@show');
+Route::name('exhibitions.show')->get('/exhibitions/{id}/{slug?}', 'ExhibitionsController@show');
 
 // Artwork routes
 Route::name('artworks.recentlyViewed')->get('/artworks/recentlyViewed', 'ArtworkController@recentlyViewed');
 Route::name('artworks.clearRecentlyViewed')->get('/artworks/clearRecentlyViewed', 'ArtworkController@clearRecentlyViewed');
 Route::name('artworks.addRecentlyViewed')->get('/artworks/addRecentlyViewed/{id}', 'ArtworkController@addRecentlyViewed');
-Route::name('artworks.show')->get('/artworks/{id}', 'ArtworkController@show');
+Route::name('artworks.show')->get('/artworks/{id}/{slug?}', 'ArtworkController@show');
 
 // Gallery / tag page
-Route::name('galleries.show')->get('/galleries/{id}', 'GalleryController@show');
+Route::name('galleries.show')->get('/galleries/{id}/{slug?}', 'GalleryController@show');
 
 // Artist / tag page
-Route::name('artists.show')->get('/artists/{id}', 'ArtistController@show');
+Route::name('artists.show')->get('/artists/{id}/{slug?}', 'ArtistController@show');
 
 // Department / tag page
-Route::name('departments.show')->get('/departments/{id}', 'DepartmentController@show');
+Route::name('departments.show')->get('/departments/{id}/{slug?}', 'DepartmentController@show');
 
 // Selections
 Route::name('selections.show')->get('/selections/{id}', 'SelectionsController@show');

@@ -72,7 +72,7 @@ class ArtworkController extends BaseApiController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('artwork'));
-        $baseUrl = '//'.config('app.url').'//artworks//'.$item->id.'-';
+        $baseUrl = '//' . config('app.url') . '/artworks/' . $item->datahub_id .'/';
 
         return [
             'editableTitle' => false,

@@ -142,7 +142,7 @@ class Exhibition extends Model
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('exhibitions'), '/', $this->datahub_id, '-']);
+        return route('exhibitions.show', $this->datahub_id);
     }
 
     public function getFeaturedRelatedAttribute()

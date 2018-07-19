@@ -325,9 +325,9 @@ class ArtworkPresenter extends BasePresenter
     public function buildSchemaItemProps() {
         $itemprops = [
             'accessMode'            => 'visual',
-            'alternativeHeadline'   =>(isset($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
-            'contributor'           => (isset($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
-            'about'                 => (isset($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
+            'alternativeHeadline'   => (!empty($this->entity->alt_titles)) ? implode(', ', $this->entity->alt_titles) : null,
+            'contributor'           => (!empty($this->entity->alt_artists)) ? implode(', ', $this->entity->alt_artists) : null,
+            'about'                 => (!empty($this->entity->subject_titles)) ? implode(', ', $this->entity->subject_titles) : null,
             'provider'              => $this->entity->department_title,
         ];
 

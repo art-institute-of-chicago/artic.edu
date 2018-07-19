@@ -80,4 +80,9 @@ class Artwork extends Model
         }
     }
 
+    public function getSlugAttribute()
+    {
+        return ['en' => getUtf8Slug($this->title)];
+    }
+
 }

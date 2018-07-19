@@ -110,12 +110,12 @@ class Article extends Model
 
     public function getIdSlugAttribute()
     {
-        return join([$this->id, $this->getSlug()], '-');
+        return join([$this->id, $this->getSlug()], '/');
     }
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('articles'), '/', $this->id, '-']);
+        return join([route('articles'), '/', $this->id, '/']);
     }
 
     public function categories()

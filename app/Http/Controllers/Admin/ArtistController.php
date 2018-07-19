@@ -18,7 +18,7 @@ class ArtistController extends BaseApiController
         'bulkRestore' => false,
         'bulkDelete' => false,
         'reorder' => false,
-        'permalink' => false,
+        'permalink' => true,
     ];
 
     protected $titleColumnKey = 'title';
@@ -44,6 +44,16 @@ class ArtistController extends BaseApiController
     protected function indexData($request)
     {
         return [];
+    }
+
+    protected function formData($request)
+    {
+        $item = $this->repository->getById(request('artist'));
+        $baseUrl = '//'.config('app.url').'/artists/'.$item->datahub_id.'/';
+
+        return [
+            'baseUrl' => $baseUrl,
+        ];
     }
 
 }

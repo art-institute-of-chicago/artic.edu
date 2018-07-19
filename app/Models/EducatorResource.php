@@ -79,7 +79,7 @@ class EducatorResource extends Model
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('collection.resources.educator-resources.show'), '/', $this->id, '-']);
+        return route('collection.resources.educator-resources.show', $this->id);
     }
 
     public function getSlugAttribute()
