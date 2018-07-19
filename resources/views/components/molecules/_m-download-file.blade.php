@@ -7,8 +7,8 @@
         @endcomponent
     @endif
     <span class="m-download-file__meta f-secondary">
-        @if (isset($file['name']))
-            {{ $file['name'] }}@if (isset($file['extension'])).{{ strtolower($file['extension']) }}@endif
+        @if (isset($file['title']))
+            {{ $file['title'] }}@if (isset($file['extension'])).{{ strtolower($file['extension']) }}@endif
         @endif
         <br>
         @if (isset($file['extension']))
@@ -23,7 +23,7 @@
         @slot('font', '')
         @slot('icon', 'icon--download--24')
         @slot('tag', 'a')
-        @slot('href', $file['link'])
+        @slot('href', $file['content'])
         @slot('download', true)
     @endcomponent
 </p>
