@@ -46,6 +46,11 @@
         'label' => 'Is Redirect URL external?',
     ])
 
+    @formField('checkbox', [
+        'name'  => 'http_protected',
+        'label' => 'Authentication required?',
+    ])
+
     @formField('block_editor', [
         'blocks' => [
             'paragraph', 'image', 'video', 'media_embed', 'list',

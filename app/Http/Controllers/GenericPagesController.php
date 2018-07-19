@@ -17,7 +17,13 @@ class GenericPagesController extends FrontController
 
     public function show($slug)
     {
-        $page       = $this->getPage($slug);
+        $page = $this->getPage($slug);
+
+        // Add basic http protection if selected.
+        if ($page->http_protected) {
+            \Httpauth::secure();
+        }
+
         $crumbs     = $page->present()->breadCrumb($page);
         $navigation = $page->present()->navigation();
 
