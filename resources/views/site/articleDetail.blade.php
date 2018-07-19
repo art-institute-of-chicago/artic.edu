@@ -166,6 +166,32 @@
 
   <div class="o-article__body o-blocks">
 
+    @php
+        global $_collectedReferences;
+        $_collectedReferences = [];
+    @endphp
+
+    {!! $item->renderBlocks(false) !!}
+
+    @if (sizeof($_collectedReferences))
+        @component('components.organisms._o-accordion')
+            @slot('variation', 'o-accordion--section o-blocks__block')
+            @slot('items', array(
+                array(
+                    'title' => "References",
+                    'active' => true,
+                    'blocks' => array(
+                        array(
+                            "type" => 'references',
+                            "items" => $_collectedReferences
+                        ),
+                    ),
+                ),
+            ))
+            @slot('loopIndex', 'references')
+        @endcomponent
+    @endif
+
     @if ($item->speakers)
         @component('components.blocks._text')
             @slot('font', 'f-module-title-2')
