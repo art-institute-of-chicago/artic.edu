@@ -5,9 +5,12 @@ namespace App\Models\Api;
 use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
 use Illuminate\Support\Carbon;
+use App\Models\Api\Asset;
+
 
 class Exhibition extends BaseApiModel
 {
+
     use HasPresenter;
 
     protected $endpoints = [
@@ -35,7 +38,7 @@ class Exhibition extends BaseApiModel
         return 'exhibition';
     }
 
-    public function getisClosedAttribute()
+    public function getIsClosedAttribute()
     {
         return $this->status == 'Closed';
     }
@@ -234,5 +237,15 @@ class Exhibition extends BaseApiModel
     public function artists()
     {
         return $this->hasMany(\App\Models\Api\Artist::class, 'artist_ids');
+    }
+
+    public function historyImages()
+    {
+        return $this->hasMany(\App\Models\Api\Asset::class, 'alt_image_ids');
+    }
+
+    public function historyDocuments()
+    {
+        return $this->hasMany(\App\Models\Api\Asset::class, 'document_ids');
     }
 }

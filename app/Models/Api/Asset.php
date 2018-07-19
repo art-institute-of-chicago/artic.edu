@@ -3,9 +3,16 @@
 namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
+use App\Models\Behaviors\HasMediasApi;
 
 class Asset extends BaseApiModel
 {
+    // We are modifying imageFront to use it when we have a youtube video
+    // So let's change the name
+    use HasMediasApi {
+        imageFront as public imageLake;
+    }
+
     protected $endpoints = [
         'collection' => '/api/v1/assets',
         'resource'   => '/api/v1/assets/{id}',
@@ -14,7 +21,30 @@ class Asset extends BaseApiModel
     ];
 
     // Elements created to ease integration with blade views when converting to an array
-    protected $appends = ['iconAfter', 'label', 'href', 'embed'];
+    protected $appends = ['iconAfter', 'label', 'href', 'embed', 'media', 'downloadable', 'extension'];
+
+    public $mediasParams = [
+        'main' => [
+            'default' => [
+                'field' => 'lake_guid',
+            ],
+        ],
+    ];
+
+    public function getMediaAttribute()
+    {
+        return $this->imageLake('main', 'default');
+    }
+
+    public function getExtensionAttribute()
+    {
+        return pathinfo($this->title)['extension'];
+    }
+
+    public function getDownloadableAttribute()
+    {
+        return true;
+    }
 
     public function imageFront($role = 'hero', $crop = 'default')
     {

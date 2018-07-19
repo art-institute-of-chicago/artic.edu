@@ -90,48 +90,43 @@
   <div class="o-article__body o-blocks">
     {!! $item->renderBlocks(false) !!}
 
-    {{-- Print blocks --}}
-    {{-- @component('components.blocks._blocks')
-        @slot('editorial', false)
-        @slot('blocks', $item->blocks ?? null)
-        @slot('dropCapFirstPara', false)
-    @endcomponent --}}
-
-    {{-- History Detail - Exhibition PDF's --}}
-    @if ($item->catalogues)
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-subheading-1')
-            @slot('tag', 'h4')
-            Catalogue{{ sizeof($item->catalogues) > 1 ? 's' : '' }}
-        @endcomponent
-        @foreach ($item->catalogues as $catalogue)
-            @component('components.molecules._m-download-file')
-                @slot('file', $catalogue)
+    @if ($item->isClosed)
+        {{-- History Detail - Exhibition PDF's --}}
+        @if ($item->historyDocuments)
+            @component('components.atoms._hr')
             @endcomponent
-        @endforeach
-    @endif
-
-    {{-- History Detail - Exhibition Photos --}}
-    @if ($item->pictures)
-        @component('components.atoms._hr')
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('font', 'f-subheading-1')
-            @slot('tag', 'h4')
-            Picture{{ sizeof($item->pictures) > 1 ? 's' : '' }}
-        @endcomponent
-        @foreach ($item->pictures as $picture)
-            @component('components.molecules._m-media')
-                @slot('variation', 'o-blocks__block')
-                @slot('item', $picture)
+            @component('components.blocks._text')
+                @slot('font', 'f-subheading-1')
+                @slot('tag', 'h4')
+                {{ str_plural('Catalogue', $item->historyDocuments->count()) }}
             @endcomponent
-        @endforeach
+            @foreach ($item->historyDocuments->toArray() as $catalogue)
+                @component('components.molecules._m-download-file')
+                    @slot('file', $catalogue)
+                @endcomponent
+            @endforeach
+        @endif
+
+        {{-- History Detail - Exhibition Photos --}}
+        @if ($item->historyImages)
+            @component('components.atoms._hr')
+            @endcomponent
+            @component('components.blocks._text')
+                @slot('font', 'f-subheading-1')
+                @slot('tag', 'h4')
+                {{ str_plural('Picture', $item->historyImages->count()) }}
+            @endcomponent
+            @foreach ($item->historyImages->toArray() as $picture)
+                    @component('components.molecules._m-media')
+                    @slot('variation', 'o-blocks__block')
+                    @slot('item', $picture)
+                @endcomponent
+            @endforeach
+        @endif
     @endif
 
     {{-- History Detail - Other exhibition resources --}}
-    @if ($item->otherResources)
+    {{--     @if ($item->otherResources)
         @component('components.atoms._hr')
         @endcomponent
         @component('components.blocks._text')
@@ -143,7 +138,7 @@
             @slot('variation', 'm-link-list--download')
             @slot('links', $item->otherResources);
         @endcomponent
-    @endif
+    @endif --}}
 
     @if (strlen($item->sponsors_description) > 0)
         @component('components.blocks._text')
