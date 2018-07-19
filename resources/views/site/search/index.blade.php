@@ -126,7 +126,7 @@
     @endif
 @endif
 
-@if (!empty($pages))
+{{-- @if (!empty($pages))
     @component('components.molecules._m-title-bar')
         @if (isset($pages['totalResults']) and isset($pages['allResultsHref']))
             @slot('links', array(array('label' => 'See all '.$pages['totalResults'].' pages', 'href' => $pages['allResultsHref'])))
@@ -187,7 +187,7 @@
         @component('components.molecules._m-paginator')
         @endcomponent
     @endif
-@endif
+@endif --}}
 
 @if (isset($artworks) && $artworks->total() > 0)
     @component('components.molecules._m-title-bar')
@@ -472,6 +472,105 @@
 
         @foreach ($events as $item)
             @component('components.molecules._m-listing----event')
+                @slot('imgVariation','')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
+
+@if (isset($pages) && $pages->getMetadata('pagination')->total > 0)
+    @component('components.molecules._m-title-bar')
+        Pages
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+
+        @foreach ($pages as $item)
+            @component('components.molecules._m-listing----generic')
+                @slot('imgVariation','')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
+
+
+@if (isset($researchGuides) && $researchGuides->getMetadata('pagination')->total > 0)
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(array('label' => 'See all research guides', 'href' => route('collection.resources.research-guides'))))
+        Research Guides
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+
+        @foreach ($researchGuides as $item)
+            @component('components.molecules._m-listing----generic')
+                @slot('imgVariation','')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
+                    )),
+                ))
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
+
+@if (isset($pressReleases) && $pressReleases->getMetadata('pagination')->total > 0)
+    @component('components.molecules._m-title-bar')
+        @slot('links', array(array('label' => 'See all press releases', 'href' => route('about.press'))))
+        Press Releases
+    @endcomponent
+
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+        @slot('cols_medium','3')
+        @slot('cols_large','4')
+        @slot('cols_xlarge','4')
+
+        @foreach ($pressReleases as $item)
+            @component('components.molecules._m-listing----generic')
                 @slot('imgVariation','')
                 @slot('item', $item)
                 @slot('imageSettings', array(

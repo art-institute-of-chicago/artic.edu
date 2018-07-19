@@ -112,7 +112,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
             $ids = $collection->pluck('id')->toArray();
             if (isset($this->getTypeMap()[$type]))
                 $elements = $this->getTypeMap()[$type]::query()->ids($ids);
-                if (method_exists($elements, 'ttl')) {
+                if ($elements && method_exists($elements, 'ttl')) {
                     $elements->ttl($this->ttl);
                 }
                 return $elements->get();

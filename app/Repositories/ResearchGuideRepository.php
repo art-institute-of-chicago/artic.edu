@@ -9,6 +9,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\ResearchGuide;
+use App\Models\Api\Search;
 
 class ResearchGuideRepository extends ModuleRepository
 {
@@ -35,6 +36,15 @@ class ResearchGuideRepository extends ModuleRepository
             'nav' => [],
             'page' => $item,
         ];
+    }
+
+    public function searchApi($string, $perPage = null, $page = null, $columns = [])
+    {
+        $search  = Search::query()->search($string)->resources(['research-guides']);
+
+        $results = $search->getSearch($perPage, $columns, null, $page);
+
+        return $results;
     }
 
 }

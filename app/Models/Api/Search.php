@@ -27,6 +27,9 @@ class Search extends BaseApiModel
         'articles'    => 'App\Models\Article',
         'printed-catalogs' => 'App\Models\PrintedCatalog',
         'digital-catalogs' => 'App\Models\DigitalCatalog',
+        'generic-pages'    => 'App\Models\GenericPage',
+        'research-guides'  => 'App\Models\ResearchGuide',
+        'press-releases'   => 'App\Models\PressRelease',
     ];
 
     // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
