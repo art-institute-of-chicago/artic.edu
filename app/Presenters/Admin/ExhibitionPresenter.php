@@ -14,20 +14,30 @@ class ExhibitionPresenter extends BasePresenter
         }
     }
 
+    // Passed to _m-article-header--* in exhibitionDetail.blade.php
+    // Dead code? Template calls ->format on the string returned here
     public function date()
     {
-        $date  = "";
-        $end   = "";
-        $start = $this->entity->asDateTime($this->aic_start_at);
+        $date = "";
 
-        if ( $this->aic_start_at != null ) {
-            $start = $this->entity->asDateTime($this->aic_start_at);
-            $date  = $start->format('m d Y');
+        // Strangely, we cannot use isset() or empty() here
+        $hasStart = $this->aic_start_at !== null;
+        $hasEnd = $this->aic_end_at !== null;
+
+        // These default gracefully to `now` if the attrs are empty
+        $start = $this->entity->asDateTime($this->aic_start_at);
+        $end = $this->entity->asDateTime($this->aic_end_at);
+
+        if ($hasStart) {
+            $date .= $start->format('m d Y');
         }
 
-        if ( $this->aic_end_at != null ) {
-            $end = $this->entity->asDateTime($this->aic_end_at);
-            $date =  join('-', array_filter([$date, $end->format('m d Y')]));
+        if ($hasStart && $hasEnd) {
+            $date .= '–';
+        }
+
+        if ($hasEnd){
+            $date .= $end->format('m d Y');
         }
 
         return $date;
@@ -50,17 +60,10 @@ class ExhibitionPresenter extends BasePresenter
 
     public function exhibitionType()
     {
-        if ($this->entity->cms_exhibition_type == \App\Models\Exhibition::SPECIAL) {
-            return 'Special Exhibition';
-        } else {
-            if ($this->entity->ongoing) {
-                return 'Ongoing';
-            } else {
-                return 'Exhibition';
-            }
-        }
+        return $this->entity->isOngoing ? 'Ongoing' : 'Exhibition';
     }
 
+    // For exhibition listings. Pass to _m-article-header..?
     public function formattedDate()
     {
         $date = '';
@@ -142,34 +145,31 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     protected function closingSoonLink() {
-        if (empty($this->entity->dateEnd) && $this->entity->dateStart && $this->entity->dateStart->format('Y') > 2010) {
+        if ($this->entity->isOngoing) {
            return [
                 'label' => 'Ongoing',
                 'variation' => 'ongoing'
             ];
-        } else if(empty($this->entity->dateStart)) {
+        } else if($this->entity->isClosed) {
              return [
                 'label' => 'Closed',
                 'variation' => 'closing-soon'
             ];
-        } else if(empty($this->entity->dateStart) && empty($this->entity->dateEnd)) {
+        } else if($this->entity->isNowOpen) {
              return [
-                'label' => 'Closed',
+                'label' => 'Now Open',
+                'variation' => 'ongoing'
+            ];
+        } else if($this->entity->isClosingSoon) {
+             return [
+                'label' => 'Closing Soon',
                 'variation' => 'closing-soon'
             ];
-        } else if($this->entity->dateEnd < Carbon::now()) {
-             return [
-                'label' => 'Closed',
-                'variation' => 'closing-soon'
+        } else if($this->entity->exclusive) {
+            return [
+                'label' => 'Member Exclusive',
+                'variation' => 'ongoing'
             ];
-        }
-         else {
-            if ($this->entity->closingSoon) {
-                return [
-                    'label' => 'Closing Soon',
-                    'variation' => 'closing-soon'
-                ];
-            }
         }
     }
 

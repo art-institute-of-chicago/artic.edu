@@ -74,7 +74,7 @@ class Exhibition extends BaseApiModel
 
     }
 
-    public function getClosingSoonAttribute()
+    public function getIsClosingSoonAttribute()
     {
         if (!empty($this->dateEnd)) {
             return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
@@ -82,7 +82,7 @@ class Exhibition extends BaseApiModel
 
     }
 
-    public function getNowOpenAttribute()
+    public function getIsNowOpenAttribute()
     {
         if (!empty($this->dateStart) && !empty($this->dateEnd)) {
             return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateStart->startOfDay()->addWeeks(2));
@@ -90,10 +90,11 @@ class Exhibition extends BaseApiModel
 
     }
 
-    public function getOngoingAttribute()
+    // See exhibitionType() in ExhibitionPresenter
+    public function getIsOngoingAttribute()
     {
-        if (!empty($this->dateStart) && !empty($this->dateEnd)) {
-            return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateEnd->endOfDay());
+        if (!empty($this->dateStart) && $this->entity->dateStart->format('Y') > 2010 && empty($this->dateEnd)) {
+            return Carbon::now()->gt($this->dateStart->startOfDay());
         }
 
     }
