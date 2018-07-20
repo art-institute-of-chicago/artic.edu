@@ -23,7 +23,7 @@ class AddEventTypeToEvents extends Migration
         Event::unsetEventDispatcher();
 
         foreach (Event::all() as $event) {
-            $event->event_type = $event->type;
+            $event->event_type = $event->getOriginal('type');
             $event->save();
         }
 
