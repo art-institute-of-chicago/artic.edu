@@ -9,7 +9,7 @@
 
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
-        'max' => 3,
+        'max' => 10,
         'moduleName' => 'categories',
         'name' => 'articlesCategories',
         'label' => 'Categories'
