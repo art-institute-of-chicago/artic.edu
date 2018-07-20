@@ -23,7 +23,7 @@ class AddSubtypeToArticles extends Migration
         Article::unsetEventDispatcher();
 
         foreach (Article::all() as $article) {
-            $article->subtype = $article->type;
+            $article->subtype = $article->getOriginal('type');
             $article->save();
         }
 
