@@ -13,6 +13,7 @@ use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Jobs\ReorderPages;
 use App\Models\GenericPage;
+use App\Models\Api\Search;
 use DB;
 
 class GenericPageRepository extends ModuleRepository
@@ -81,6 +82,15 @@ class GenericPageRepository extends ModuleRepository
             'page' => $item,
 
         ];
+    }
+
+    public function searchApi($string, $perPage = null, $page = null, $columns = [])
+    {
+        $search  = Search::query()->search($string)->resources(['generic-pages']);
+
+        $results = $search->getSearch($perPage, $columns, null, $page);
+
+        return $results;
     }
 
 }

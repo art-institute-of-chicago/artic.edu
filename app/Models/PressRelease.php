@@ -68,6 +68,11 @@ class PressRelease extends Model
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {

@@ -10,6 +10,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\PressRelease;
+use App\Models\Api\Search;
 
 class PressReleaseRepository extends ModuleRepository
 {
@@ -37,6 +38,15 @@ class PressReleaseRepository extends ModuleRepository
             'nav' => [],
             'page' => $item,
         ];
+    }
+
+    public function searchApi($string, $perPage = null, $page = null, $columns = [])
+    {
+        $search  = Search::query()->search($string)->resources(['press-releases']);
+
+        $results = $search->getSearch($perPage, $columns, null, $page);
+
+        return $results;
     }
 
 }

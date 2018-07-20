@@ -61,6 +61,11 @@ class ResearchGuide extends Model
         ],
     ];
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {

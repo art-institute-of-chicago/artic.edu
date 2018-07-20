@@ -14,6 +14,9 @@ use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\ArticleRepository;
 use App\Repositories\PublicationsRepository;
 use App\Repositories\EventRepository;
+use App\Repositories\GenericPageRepository;
+use App\Repositories\PressReleaseRepository;
+use App\Repositories\ResearchGuideRepository;
 
 use App\Http\Controllers\StaticsController;
 
@@ -47,7 +50,10 @@ class SearchController extends BaseScopedController
         ExhibitionRepository $exhibitions,
         ArticleRepository $articles,
         PublicationsRepository $publications,
-        EventRepository $events
+        EventRepository $events,
+        GenericPageRepository $pages,
+        ResearchGuideRepository $researchGuide,
+        PressReleaseRepository $press
     ) {
         $this->artworksRepository = $artworks;
         $this->artistsRepository = $artists;
@@ -56,6 +62,9 @@ class SearchController extends BaseScopedController
         $this->articlesRepository = $articles;
         $this->eventsRepository = $events;
         $this->publicationsRepository = $publications;
+        $this->pagesRepository = $pages;
+        $this->researchGuideRepository = $researchGuide;
+        $this->pressRepository = $press;
 
         parent::__construct();
     }
@@ -77,6 +86,9 @@ class SearchController extends BaseScopedController
         $artists      = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
         $exhibitions  = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
         $events       = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $pages        = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $guides       = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $press        = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
 
         return view('site.search.index', [
             'featuredResults' => $general->where('is_boosted', true),
@@ -84,8 +96,11 @@ class SearchController extends BaseScopedController
             'artists'  => $artists,
             'articles' => $articles,
             'events'   => $events,
+            'pages'    => $pages,
             'exhibitions'  => $exhibitions,
             'publications' => $publications,
+            'pressReleases'  => $press,
+            'researchGuides' => $guides,
             'allResultsView' => false,
             'searchResultsTypeLinks' => $links
         ]);
@@ -219,8 +234,12 @@ class SearchController extends BaseScopedController
         $aggregations = $all->getMetadata('aggregations')->types->buckets;
 
         array_push($links, $this->buildLabel('All', $all->getMetadata('pagination')->total, route('search', ['q' => request('q')]), $active == 'all'));
+
         if (extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
+        }
+        if (extractAggregation($aggregations, 'articles')) {
+            array_push($links, $this->buildLabel('Writings', extractAggregation($aggregations, 'articles'), route('articles'), $active == 'articles'));
         }
         if (extractAggregation($aggregations, 'artworks')) {
             array_push($links, $this->buildLabel('Artwork', extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'));
@@ -228,9 +247,23 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'exhibitions')) {
             array_push($links, $this->buildLabel('Exhibitions', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
         }
-
         if (extractAggregation($aggregations, 'events')) {
             array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('events'), $active == 'events'));
+        }
+        if (extractAggregation($aggregations, 'digital-catalogs')) {
+            array_push($links, $this->buildLabel('Digital Catalogs', extractAggregation($aggregations, 'digital-catalogs'), route('collection.publications.digital-catalogs'), $active == 'digital-catalogs'));
+        }
+        if (extractAggregation($aggregations, 'printed-catalogs')) {
+            array_push($links, $this->buildLabel('Printed Catalogs', extractAggregation($aggregations, 'printed-catalogs'), route('collection.publications.printed-catalogs'), $active == 'printed-catalogs'));
+        }
+        if (extractAggregation($aggregations, 'generic-pages')) {
+            array_push($links, $this->buildLabel('Pages', extractAggregation($aggregations, 'generic-pages'), null, $active == 'generic-pages'));
+        }
+        if (extractAggregation($aggregations, 'research-guides')) {
+            array_push($links, $this->buildLabel('Research Guides', extractAggregation($aggregations, 'research-guides'), route('collection.resources.research-guides'), $active == 'research-guides'));
+        }
+        if (extractAggregation($aggregations, 'press-releases')) {
+            array_push($links, $this->buildLabel('Press Releases', extractAggregation($aggregations, 'press-releases'), route('about.press'), $active == 'press-releases'));
         }
 
         return $links;

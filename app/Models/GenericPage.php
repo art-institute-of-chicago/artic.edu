@@ -75,6 +75,11 @@ class GenericPage extends Model implements Sortable
         ],
     ];
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     public function getDateAttribute()
     {
         if ($this->publish_start_date)
