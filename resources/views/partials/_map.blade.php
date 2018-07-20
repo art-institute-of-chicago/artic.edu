@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" aria-labelledby="map-title" role="img">
+  <title id="map-title">Map showing the Art Institute of Chicago's location within Chicago</title>
   <style>
     @media screen and (max-width: 599px) {
       #key,
