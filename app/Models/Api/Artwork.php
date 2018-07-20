@@ -107,7 +107,7 @@ class Artwork extends BaseApiModel
 
     public function getDateBlockAttribute()
     {
-        return join(' — ', array_unique(array_filter([convertArtworkDates($this->date_start), convertArtworkDates($this->date_end)])));
+        return join('—', array_unique(array_filter([convertArtworkDates($this->date_start), convertArtworkDates($this->date_end)])));
     }
 
     public function getMultimediaElementsAttribute()
