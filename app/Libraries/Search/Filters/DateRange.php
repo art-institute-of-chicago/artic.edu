@@ -24,7 +24,7 @@ class DateRange
 
     protected function generateLabel()
     {
-        return join(' - ', [request()->get('date-start'), request()->get('date-end')]);
+        return join('-', [request()->get('date-start'), request()->get('date-end')]);
     }
 
 }
