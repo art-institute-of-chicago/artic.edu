@@ -164,6 +164,7 @@ return [
         App\Providers\InvalidationServiceProvider::class,
 
         Aic\Hub\Foundation\ResourceServiceProvider::class,
+        Intervention\Httpauth\HttpauthServiceProvider::class,
 
     ],
 
@@ -213,6 +214,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Httpauth' => Intervention\Httpauth\Facades\Httpauth::class,
 
         'LakeviewImageService' => App\Facades\LakeviewImageServiceFacade::class,
         'EmbedConverter' => App\Facades\EmbedConverterFacade::class,

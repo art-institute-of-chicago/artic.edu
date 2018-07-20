@@ -35,6 +35,7 @@ class GenericPage extends Model implements Sortable
         'is_redirect_url_external',
         'meta_title',
         'meta_description',
+        'http_protected',
     ];
 
     public $dates = ['publish_start_date', 'publish_end_date'];
@@ -43,7 +44,7 @@ class GenericPage extends Model implements Sortable
         'title',
     ];
 
-    public $checkboxes = ['published', 'active', 'is_redirect_url_external'];
+    public $checkboxes = ['published', 'active', 'is_redirect_url_external', 'http_protected'];
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
