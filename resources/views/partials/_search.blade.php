@@ -18,7 +18,7 @@
                     @endif
                 </ul>
             </div>
-            <button class="g-search__close" data-behavior="globalSearchClose">
+            <button class="g-search__close" data-behavior="globalSearchClose" aria-label="Close search">
                 <svg aria-hidden="true" class="icon--close--24"><use xlink:href="#icon--close--24" /></svg>
             </button>
         </div>
