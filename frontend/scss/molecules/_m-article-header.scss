@@ -1022,7 +1022,8 @@ a.m-article-header__img-credit {
     transition: left 0s .15s;
   }
 
-  &:hover {
+  &:hover,
+  &:focus[data-focus-method="key"] {
     background-color: $color__black--85;
 
     &::before {
@@ -1030,12 +1031,14 @@ a.m-article-header__img-credit {
     }
   }
 
-  .m-article-header__img-nav-next-artwork &:hover {
+  .m-article-header__img-nav-next-artwork &:hover,
+  .m-article-header__img-nav-next-artwork &:focus[data-focus-method="key"] {
     right: 0;
     transition-delay: 0s;
   }
 
-  .m-article-header__img-nav-prev-artwork &:hover {
+  .m-article-header__img-nav-prev-artwork &:hover,
+  .m-article-header__img-nav-prev-artwork &:focus[data-focus-method="key"] {
     left: 0;
     transition-delay: 0s;
   }
@@ -1046,7 +1049,8 @@ a.m-article-header__img-credit {
   transition: opacity .15s;
 }
 
-.m-article-header__img-nav-artwork-preview:hover > *:not(.icon--arrow) {
+.m-article-header__img-nav-artwork-preview:hover > *:not(.icon--arrow),
+.m-article-header__img-nav-artwork-preview:focus[data-focus-method="key"] > *:not(.icon--arrow) {
   opacity: 1;
 }
 
@@ -1109,18 +1113,21 @@ a.m-article-header__img-credit {
   .m-article-header__img-nav-prev-artwork:hover .icon--arrow {
     opacity: 1;
   }
-  .m-article-header__img-nav-next-artwork .m-article-header__img-nav-artwork-preview:hover .icon--arrow {
+  .m-article-header__img-nav-next-artwork .m-article-header__img-nav-artwork-preview:hover .icon--arrow,
+  .m-article-header__img-nav-next-artwork .m-article-header__img-nav-artwork-preview:focus[data-focus-method="key"] .icon--arrow {
     right: 16px;
     color: $color__text--title-contrast;
+    opacity: 1;
     transition-delay: 0s;
   }
 
-  .m-article-header__img-nav-prev-artwork .m-article-header__img-nav-artwork-preview:hover .icon--arrow {
+  .m-article-header__img-nav-prev-artwork .m-article-header__img-nav-artwork-preview:hover .icon--arrow,
+  .m-article-header__img-nav-prev-artwork .m-article-header__img-nav-artwork-preview:focus[data-focus-method="key"] .icon--arrow {
     left: 16px;
     color: $color__text--title-contrast;
+    opacity: 1;
     transition-delay: 0s;
   }
-
 
 
 
