@@ -252,6 +252,11 @@ class Event extends Model
         return $this->apiElements()->where('relation', 'ticketedEventType');
     }
 
+    public function programs()
+    {
+        return $this->belongsToMany('App\Models\EventProgram');
+    }
+
     public function scopeLanding($query)
     {
         return $query->whereLanding(true);
@@ -302,8 +307,15 @@ class Event extends Model
         return $query->where('audience', '=', $audience)->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', $audience));
     }
 
-    public function scopeByProgram($query, $program)
+    public function scopeByProgram($query, $program = null)
     {
+        if (empty($program)) {
+            return $query;
+        }
+
+        return $query->whereHas('programs', function ($query) use ($program) {
+            $query->where('event_program_id', $program);
+        });
     }
 
     // Helper function to make `LIKE` on JSON column work correctly with both MySQL and PostgreSQL

@@ -44,6 +44,8 @@ class EventRepository extends ModuleRepository
 
         $this->updateRepeater($object, $fields, 'dateRules', 'DateRule');
 
+        $object->programs()->sync($fields['programs'] ?? []);
+
         parent::afterSave($object, $fields);
     }
 
