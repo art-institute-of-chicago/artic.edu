@@ -108,12 +108,13 @@
 
         <div class="g-nav-mobile__nav-secondary">
           <ul class="g-nav-mobile__legals">
-            <li><a href="{{ $_pages['legal-articles'] }}">Articles</a></li>
-            <li><a href="{{ $_pages['legal-employment'] }}">Employment</a></li>
-            <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue rental</a></li>
+            <li><a href="{{ $_pages['legal-press'] }}">Press</a></li>
+            <li><a href="{{ $_pages['legal-employment'] }}">Careers</a></li>
             <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
+            <li><a href="{{ $_pages['legal-venue-rental'] }}">Venue Rental</a></li>
+            <li><a href="{{ $_pages['legal-image-licensing'] }}">Image Licensing</a></li>
+            <li><a href="{{ $_pages['legal-saic'] }}">SAIC</a></li>
             <li><a href="{{ $_pages['legal-terms'] }}">Terms</a></li>
-            <li><a href="{{ $_pages['legal-image-licensing'] }}">Image licensing</a></li>
           </ul>
 
           <ul class="g-nav-mobile__social">

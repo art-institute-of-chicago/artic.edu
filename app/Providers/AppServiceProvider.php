@@ -134,6 +134,7 @@ class AppServiceProvider extends ServiceProvider
             ,   'legal-press' => route('about.press')
             ,   'legal-terms' => '/terms'
             ,   'legal-image-licensing' => '/image-licensing'
+            ,   'legal-saic' => 'https://www.saic.edu'
             ],
             'mobileNav' => [
                 [
