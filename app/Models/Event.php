@@ -37,7 +37,6 @@ class Event extends Model
         'alt_types',
         'audience',
         'alt_audiences',
-        'programs',
         'short_description',
         'list_description',
         'description',
@@ -75,7 +74,6 @@ class Event extends Model
     protected $casts = [
         'alt_types' => 'array',
         'alt_audiences' => 'array',
-        'programs' => 'array',
     ];
 
     const CLASSES_AND_WORKSHOPS = 1;
@@ -120,12 +118,6 @@ class Event extends Model
     public static $eventLayouts = [
         self::BASIC_LAYOUT => 'Basic',
         self::LARGE_LAYOUT => 'Large Feature',
-    ];
-
-    const CONSERVATION = 1;
-
-    public static $eventPrograms = [
-        self::CONSERVATION => 'Conservation',
     ];
 
     public $slugAttributes = [
@@ -231,11 +223,6 @@ class Event extends Model
         $this->attributes['alt_audiences'] = $this->getJsonColumnFromMultiSelect($value);
     }
 
-    public function setProgramsAttribute($value)
-    {
-        $this->attributes['programs'] = $this->getJsonColumnFromMultiSelect($value);
-    }
-
     // This emulates an Eloquent collection from a JSON column
     // TODO: Move this somewhere more appropriate - presenter?
     private function getMultiSelectFromJsonColumn($value)
@@ -315,11 +302,8 @@ class Event extends Model
         return $query->where('audience', '=', $audience)->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', $audience));
     }
 
-    // NOTE: This works only while there are less than 10 possible program values
-    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByProgram($query, $program)
     {
-        return $query->whereRaw($this->getWhereJsonContainsRaw('programs', $program));
     }
 
     // Helper function to make `LIKE` on JSON column work correctly with both MySQL and PostgreSQL

@@ -73,10 +73,6 @@ class EventRepository extends ModuleRepository
         return collect($this->model::$eventLayouts);
     }
 
-    public function getEventProgramsList() {
-        return collect($this->model::$eventPrograms);
-    }
-
     public function groupByDate($collection)
     {
         if ($collection) {
