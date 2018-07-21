@@ -233,6 +233,10 @@ return [
                 'title' => 'Shop',
                 'module' => true,
             ],
+            'eventPrograms' => [
+                'title' => 'Event Programs',
+                'module' => true,
+            ],
         ],
     ],
 

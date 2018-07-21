@@ -76,7 +76,7 @@ Route::group(['prefix' => 'generic'], function () {
     Route::module('pressReleases');
     Route::module('exhibitionPressRooms');
 
-    
+
 });
 
 Route::group(['prefix' => 'general'], function () {
@@ -86,6 +86,7 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('catalogCategories');
     Route::module('resourceCategories');
     Route::module('shopItems');
+    Route::module('eventPrograms');
 });
 
 // TODO: This will be fixed in our next Twill release to use auth_login_redirect_path automatically
