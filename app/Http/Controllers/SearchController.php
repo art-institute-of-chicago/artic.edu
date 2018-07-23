@@ -33,6 +33,7 @@ class SearchController extends BaseScopedController
     const ALL_PER_PAGE_ARTICLES = 4;
 
     const ARTWORKS_PER_PAGE = 20;
+    const PAGES_PER_PAGE = 20;
     const EXHIBITIONS_PER_PAGE = 20;
     const ARTICLES_PER_PAGE = 20;
     const EVENTS_PER_PAGE = 20;
@@ -263,6 +264,22 @@ class SearchController extends BaseScopedController
         ]);
     }
 
+    public function pages()
+    {
+        $this->seo->setTitle('Search');
+
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $pages   = $this->pagesRepository->searchApi(request('q'), self::PAGES_PER_PAGE);
+
+        $links = $this->buildSearchLinks($general, 'pages');
+
+        return view('site.search.index', [
+            'pages' => $pages,
+            'allResultsView' => true,
+            'searchResultsTypeLinks' => $links,
+        ]);
+    }
+
     public function publications()
     {
         $this->seo->setTitle('Search');
@@ -308,7 +325,7 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Printed Catalogs', extractAggregation($aggregations, 'printed-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
         if (extractAggregation($aggregations, 'generic-pages')) {
-            array_push($links, $this->buildLabel('Pages', extractAggregation($aggregations, 'generic-pages'), null, $active == 'generic-pages'));
+            array_push($links, $this->buildLabel('Pages', extractAggregation($aggregations, 'generic-pages'), route('search.pages', ['q' => request('q')]), $active == 'generic-pages'));
         }
         if (extractAggregation($aggregations, 'research-guides')) {
             array_push($links, $this->buildLabel('Research Guides', extractAggregation($aggregations, 'research-guides'), route('collection.resources.research-guides'), $active == 'research-guides'));

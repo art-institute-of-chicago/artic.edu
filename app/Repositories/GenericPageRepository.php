@@ -84,11 +84,11 @@ class GenericPageRepository extends ModuleRepository
         ];
     }
 
-    public function searchApi($string, $perPage = null, $page = null, $columns = [])
+    public function searchApi($string, $perPage = null)
     {
         $search  = Search::query()->search($string)->resources(['generic-pages']);
 
-        $results = $search->getSearch($perPage, $columns, null, $page);
+        $results = $search->getSearch($perPage);
 
         return $results;
     }
