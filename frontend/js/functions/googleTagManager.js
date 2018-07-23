@@ -9,7 +9,8 @@ const googleTagManager = function() {
         window.dataLayer.push(event.data);
       } else {
         event.data.eventPageTitle = document.title.replace(/ \| The Art Institute of Chicago/ig, '');
-        event.data.eventPageUrl = window.location.pathname;
+        event.data.eventPagePathName = window.location.pathname;
+        event.data.eventPageUrl = window.location.href;
         window.dataLayer.push({
           event: 'dataLayerPush',
           data: event.data
