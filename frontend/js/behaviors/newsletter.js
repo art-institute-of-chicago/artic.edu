@@ -70,7 +70,6 @@ const newsletter = function(container) {
           triggerCustomEvent(document, 'gtm:push', {
             'event': 'sign-up',
             'eventCategory': 'subscribe',
-            'email': formData.email
           });
         } catch (err) {
           console.error('Error submitting newsletter sign up (a)');
