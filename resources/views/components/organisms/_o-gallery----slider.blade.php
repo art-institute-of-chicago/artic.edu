@@ -24,6 +24,7 @@
             @slot('font', '')
             @slot('icon', 'icon--share--24')
             @slot('behavior','sharePage')
+            @slot('ariaLabel','Share page')
         @endcomponent
     </div>
     <div class="o-gallery__media" data-behavior="dragScroll">

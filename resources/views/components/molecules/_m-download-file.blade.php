@@ -25,5 +25,6 @@
         @slot('tag', 'a')
         @slot('href', $file['content'])
         @slot('download', true)
+        @slot('ariaLabel','Download file')
     @endcomponent
 </p>

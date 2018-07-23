@@ -9,6 +9,7 @@
             @slot('icon', 'icon--zoom-in--24')
             @slot('id','osd_zoomInButton')
             @slot('dataAttributes', 'data-fullscreen-zoom-in')
+            @slot('ariaLabel', 'Zoom in')
         @endcomponent
       </li>
       <li>
@@ -18,6 +19,7 @@
             @slot('icon', 'icon--zoom-out--24')
             @slot('id','osd_zoomOutButton')
             @slot('dataAttributes', 'data-fullscreen-zoom-out')
+            @slot('ariaLabel', 'Zoom out')
         @endcomponent
       </li>
       <li>
@@ -27,6 +29,7 @@
             @slot('icon', 'icon--share--24')
             @slot('dataAttributes', 'data-fullscreen-share')
             @slot('behavior', 'sharePage')
+            @slot('ariaLabel', 'Share page')
         @endcomponent
       </li>
     </ul>
@@ -35,5 +38,6 @@
         @slot('font', '')
         @slot('icon', 'icon--close--24')
         @slot('dataAttributes', 'data-fullscreen-close')
+        @slot('ariaLabel', 'Close full screen image viewer')
     @endcomponent
 </div>

@@ -232,7 +232,7 @@
                 @component('components.atoms._btn')
                     @slot('variation', 'btn--full')
                     @slot('tag', 'a')
-                    @slot('href', '#')
+                    @slot('href', 'https://sales.artic.edu/')
                     Buy tickets
                 @endcomponent
             </li>
@@ -240,7 +240,7 @@
                 @component('components.atoms._btn')
                     @slot('variation', 'btn--secondary btn--full')
                     @slot('tag', 'a')
-                    @slot('href', '#')
+                    @slot('href', 'https://sales.artic.edu/memberships')
                     Become a member
                 @endcomponent
             </li>

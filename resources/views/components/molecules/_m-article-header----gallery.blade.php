@@ -82,11 +82,11 @@ if ($maxZoomWindowSize >= 843) {
       </ul>
       @endif
     @if (isset($images->first()['creditUrl']))
-        <a href="{{ $images->first()['creditUrl'] }}" class="m-article-header__img-credit f-caption" data-gallery-credit>
+        <a href="{{ $images->first()['creditUrl'] }}" class="m-article-header__img-credit f-caption" aria-label="credit" data-gallery-credit>
             {{ $images->first()['credit'] ?? $images->first()['creditUrl'] ?? '' }}
         </a>
     @else
-        <span class="m-article-header__img-credit f-caption" data-gallery-credit>
+        <span class="m-article-header__img-credit f-caption" aria-label="credit" data-gallery-credit>
             {{ $images->first()['credit'] ?? '' }}
         </span>
     @endif
@@ -98,6 +98,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('font', '')
               @slot('icon', 'icon--zoom--24')
               @slot('dataAttributes', 'data-gallery-fullscreen')
+              @slot('ariaLabel', 'Open image full screen')
             @endcomponent
         </li>
         @endif
@@ -108,6 +109,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('font', '')
               @slot('icon', 'icon--download--24')
               @slot('dataAttributes', 'data-gallery-download')
+              @slot('ariaLabel', 'Download image')
             @endcomponent
         </li>
         @endif
@@ -118,6 +120,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('icon', 'icon--share--24')
               @slot('dataAttributes', 'data-gallery-share')
               @slot('behavior', 'sharePage')
+              @slot('ariaLabel', 'Share page')
           @endcomponent
         </li>
       </ul>
@@ -174,6 +177,7 @@ if ($maxZoomWindowSize >= 843) {
             @if (isset($image['iiifId']))
                 data-gallery-img-iiifId="{{ $image['iiifId'] }}"
             @endif
+            aria-label="show alternative image"
             disabled
           >Show this image</button>
           @component('components.atoms._img')
