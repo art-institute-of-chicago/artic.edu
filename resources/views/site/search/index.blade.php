@@ -561,6 +561,7 @@
               @component('components.molecules._m-listing----generic-row')
                   @slot('imgVariation','')
                   @slot('item', $item)
+                  @slot('date', null)
                   @slot('image', $item->imageFront('listing', 'default'))
                   @slot('imageSettings', array(
                       'fit' => 'crop',
@@ -590,6 +591,7 @@
                 @component('components.molecules._m-listing----generic')
                     @slot('imgVariation','')
                     @slot('item', $item)
+                    @slot('date', null)
                     @slot('image', $item->imageFront('listing', 'default'))
                     @slot('imageSettings', array(
                         'fit' => 'crop',
