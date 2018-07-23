@@ -42,13 +42,21 @@ const openImageFullScreen = function(container) {
     });
   }
 
+  function _handleKeyUp(event) {
+    if (event.keyCode == 13) {
+      _handleClicks(event);
+    }
+  }
+
   function _init() {
     container.addEventListener('click', _handleClicks, false);
+    container.addEventListener('keyup', _handleKeyUp, false);
   }
 
   this.destroy = function() {
     // remove specific event handlers
     container.removeEventListener('click', _handleClicks);
+    container.removeEventListener('keyup', _handleKeyUp);
 
     // remove properties of this behavior
     purgeProperties(this);
