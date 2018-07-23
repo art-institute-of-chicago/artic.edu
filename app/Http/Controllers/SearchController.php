@@ -338,8 +338,8 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
-        if (extractAggregation($aggregations, 'articles')) {
-            array_push($links, $this->buildLabel('Writings', extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
+        if (extractAggregation($aggregations, 'generic-pages')) {
+            array_push($links, $this->buildLabel('Pages', extractAggregation($aggregations, 'generic-pages'), route('search.pages', ['q' => request('q')]), $active == 'generic-pages'));
         }
         if (extractAggregation($aggregations, 'artworks')) {
             array_push($links, $this->buildLabel('Artwork', extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'));
@@ -350,14 +350,14 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'events')) {
             array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('search.events', ['q' => request('q')]), $active == 'events'));
         }
+        if (extractAggregation($aggregations, 'articles')) {
+            array_push($links, $this->buildLabel('Writings', extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
+        }
         if (extractAggregation($aggregations, 'digital-catalogs')) {
             array_push($links, $this->buildLabel('Digital Catalogs', extractAggregation($aggregations, 'digital-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
         if (extractAggregation($aggregations, 'printed-catalogs')) {
             array_push($links, $this->buildLabel('Printed Catalogs', extractAggregation($aggregations, 'printed-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
-        }
-        if (extractAggregation($aggregations, 'generic-pages')) {
-            array_push($links, $this->buildLabel('Pages', extractAggregation($aggregations, 'generic-pages'), route('search.pages', ['q' => request('q')]), $active == 'generic-pages'));
         }
         if (extractAggregation($aggregations, 'research-guides')) {
             array_push($links, $this->buildLabel('Research Guides', extractAggregation($aggregations, 'research-guides'), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));
