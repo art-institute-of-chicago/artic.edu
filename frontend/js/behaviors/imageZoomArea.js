@@ -127,7 +127,6 @@ const imageZoomArea = function(container) {
         triggerCustomEvent(document, 'gtm:push', {
           'event': 'artwork-terminal-zoom',
           'eventCategory': 'in-page',
-          'artwork': window.location.href
         });
       } else {
         $btnZoomIn.disabled = false;
@@ -135,7 +134,6 @@ const imageZoomArea = function(container) {
         triggerCustomEvent(document, 'gtm:push', {
           'event': 'artwork-zoom',
           'eventCategory': 'in-page',
-          'artwork': window.location.href
         });
       }
     });
