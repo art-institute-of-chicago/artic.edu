@@ -78,6 +78,10 @@
       $mediaBehavior = 'triggerMediaInline';
     }
 
+    if ($item['showUrl'] ?? false) {
+        $imageSettings['infoUrl'] = $item['urlTitle'];
+    }
+
     if (isset($item['isArtwork'])) {
         $variation = ($variation ?? '').' m-media--artwork';
         $isZoomable = $item['isZoomable'] ?? false;

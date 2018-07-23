@@ -35,6 +35,7 @@
         $artworkItem['hideShare'] = true;
         $artworkItem['fullscreen'] = true;
         $artworkItem['urlTitle'] = route('artworks.show', $artwork);
+        $artworkItem['showUrl'] = true;
         $artworkItem['isArtwork'] = true;
         $artworkItem['isZoomable'] = $artwork->is_zoomable;
         $artworkItem['isPublicDomain'] = $artwork->is_public_domain;

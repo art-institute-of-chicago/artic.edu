@@ -1,4 +1,5 @@
 <div class="o-fullscreen-image" id="fullscreenImage" data-behavior="imageZoomArea">
+    <a class="o-fullscreen-image__info">Learn more</a>
     <img class="o-fullscreen-image__img">
     <div class="o-fullscreen-image__osd" id="openseadragon"></div>
     <ul class="o-fullscreen-image__img-actions">

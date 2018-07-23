@@ -27,6 +27,7 @@
         $item['caption'] = $caption;
         $item['url'] = route('artworks.show', $artwork);
         $item['urlTitle'] = route('artworks.show', $artwork);
+        $item['showUrl'] = true;
         $item['isArtwork'] = true;
         $item['isZoomable'] = $artwork->is_zoomable;
         $item['isPublicDomain'] = $artwork->is_public_domain;
