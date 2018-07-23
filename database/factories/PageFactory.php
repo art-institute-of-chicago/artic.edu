@@ -3,8 +3,6 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Models\Page::class, function (Faker $faker) {
-    static $password;
-
     return [
         'created_at' => $faker->dateTimeThisYear,
         'updated_at' => $faker->dateTimeThisYear,

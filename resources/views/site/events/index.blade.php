@@ -62,6 +62,13 @@
         @component('components.molecules._m-no-results')
         @endcomponent
     @else
+        @if ($subtitle)
+            @component('components.molecules._m-results-title')
+                @slot('subtitle', $subtitle)
+                @slot('links', array(array('label' => 'See all events', 'href' => route('events') )))
+            @endcomponent
+        @endif
+
         @component('components.organisms._o-row-listing')
             @slot('id', 'eventsList')
 

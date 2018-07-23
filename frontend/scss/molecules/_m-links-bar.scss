@@ -34,7 +34,8 @@
   margin-top: 40px;
 
   &:first-child,
-  .m-no-results & {
+  .m-no-results &,
+  .m-results-title & {
     margin-top: 0;
   }
 
@@ -106,7 +107,8 @@
   pointer-events: none;
 }
   .m-intro-block + .m-links-bar:not(.m-links-bar--tabs)::before,
-  .m-no-results .m-links-bar::before {
+  .m-no-results .m-links-bar::before,
+  .m-results-title .m-links-bar::before {
     content: none;
     display: none;
   }
