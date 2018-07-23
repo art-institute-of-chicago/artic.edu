@@ -14,7 +14,9 @@ class RemoveTypeFromArticless extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn('type');
+            if (env('APP_ENV') != 'testing') {
+                $table->dropColumn('type');
+            }
         });
     }
 
@@ -26,7 +28,9 @@ class RemoveTypeFromArticless extends Migration
     public function down()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->string('type')->nullable();
+            if (env('APP_ENV') != 'testing') {
+                $table->string('type')->nullable();
+            }
         });
     }
 }
