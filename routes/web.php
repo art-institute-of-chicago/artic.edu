@@ -49,6 +49,8 @@ Route::name('search.events')->get('/search/events', 'SearchController@events');
 Route::name('search.pages')->get('/search/pages', 'SearchController@pages');
 Route::name('search.publications')->get('/search/publications', 'SearchController@publications');
 Route::name('search.artworks')->get('/search/artworks', 'SearchController@artworks');
+Route::name('search.press-releases')->get('/search/press-releases', 'SearchController@pressReleases');
+Route::name('search.research-guides')->get('/search/research-guides', 'SearchController@researchGuides');
 Route::name('search.exhibitions')->get('/search/exhibitions', 'SearchController@exhibitions');
 
 // Events routes

@@ -280,6 +280,38 @@ class SearchController extends BaseScopedController
         ]);
     }
 
+    public function researchGuides()
+    {
+        $this->seo->setTitle('Search');
+
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $guides  = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+
+        $links = $this->buildSearchLinks($general, 'research-guides');
+
+        return view('site.search.index', [
+            'researchGuides' => $guides,
+            'allResultsView' => true,
+            'searchResultsTypeLinks' => $links,
+        ]);
+    }
+
+    public function pressReleases()
+    {
+        $this->seo->setTitle('Search');
+
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $press   = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+
+        $links = $this->buildSearchLinks($general, 'press-releases');
+
+        return view('site.search.index', [
+            'pressReleases' => $press,
+            'allResultsView' => true,
+            'searchResultsTypeLinks' => $links,
+        ]);
+    }
+
     public function publications()
     {
         $this->seo->setTitle('Search');
@@ -328,10 +360,10 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Pages', extractAggregation($aggregations, 'generic-pages'), route('search.pages', ['q' => request('q')]), $active == 'generic-pages'));
         }
         if (extractAggregation($aggregations, 'research-guides')) {
-            array_push($links, $this->buildLabel('Research Guides', extractAggregation($aggregations, 'research-guides'), route('collection.resources.research-guides'), $active == 'research-guides'));
+            array_push($links, $this->buildLabel('Research Guides', extractAggregation($aggregations, 'research-guides'), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));
         }
         if (extractAggregation($aggregations, 'press-releases')) {
-            array_push($links, $this->buildLabel('Press Releases', extractAggregation($aggregations, 'press-releases'), route('about.press'), $active == 'press-releases'));
+            array_push($links, $this->buildLabel('Press Releases', extractAggregation($aggregations, 'press-releases'), route('search.press-releases', ['q' => request('q')]), $active == 'press-releases'));
         }
 
         return $links;
