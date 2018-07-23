@@ -35,6 +35,7 @@ class SearchController extends BaseScopedController
     const ARTWORKS_PER_PAGE = 20;
     const EXHIBITIONS_PER_PAGE = 20;
     const ARTICLES_PER_PAGE = 20;
+    const EVENTS_PER_PAGE = 20;
     const ARTISTS_PER_PAGE = 30;
     const AUTOCOMPLETE_PER_PAGE = 10;
 
@@ -245,6 +246,22 @@ class SearchController extends BaseScopedController
         ]);
     }
 
+    public function events()
+    {
+        $this->seo->setTitle('Search');
+
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $events  = $this->eventsRepository->searchApi(request('q'), self::EVENTS_PER_PAGE);
+
+        $links = $this->buildSearchLinks($general, 'events');
+
+        return view('site.search.index', [
+            'events' => $events,
+            'allResultsView' => true,
+            'searchResultsTypeLinks' => $links,
+        ]);
+    }
+
     protected function buildSearchLinks($all, $active = 'all')
     {
         $links = [];
@@ -265,7 +282,7 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Exhibitions', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
         }
         if (extractAggregation($aggregations, 'events')) {
-            array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('events'), $active == 'events'));
+            array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('search.events', ['q' => request('q')]), $active == 'events'));
         }
         if (extractAggregation($aggregations, 'digital-catalogs')) {
             array_push($links, $this->buildLabel('Digital Catalogs', extractAggregation($aggregations, 'digital-catalogs'), route('collection.publications.digital-catalogs'), $active == 'digital-catalogs'));
