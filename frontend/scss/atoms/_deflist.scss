@@ -17,17 +17,26 @@
   margin-top: 0;
 }
 
-.deflist__row {
-  display: flex;
-  flex-flow: row wrap;
+.deflist dt {
+  display: block;
   position: relative;
-}
-
-.deflist__row:not(:first-child) {
   margin-top: 20px;
+  padding-right: 20px;
+  padding-top: .02px;
+  color: $color__text--title;
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
-.deflist__row::before {
+.deflist dd {
+  display: block;
+  position: relative;
+  padding-top: .02px;
+}
+
+.deflist dt::before {
   content: '';
   position: absolute;
   z-index: 1;
@@ -38,66 +47,70 @@
   background-color: $color__rules--primary;
 }
 
-.deflist dt {
-  flex: 0 0 auto;
-  width: 100%;
-  padding-right: 20px;
-  color: $color__text--title;
-
+@supports (display: grid) {
   @include breakpoint('small+') {
-    width: colspan(18, small);
-  }
+    .deflist {
+      display: grid;
+      grid-template-columns: max-content auto;
+    }
 
-  @include breakpoint('medium+') {
-    width: colspan(8, medium);
-  }
+    .deflist dt {
+      grid-column-start: 1;
+    }
 
-  @include breakpoint('large+') {
-    width: colspan(8, large);
-  }
+    .deflist:not(.deflist--free-spacing) dt {
+      @include breakpoint('small+') {
+        width: colspan(18, small);
+      }
 
-  @include breakpoint('xlarge') {
-    width: colspan(8, xlarge);
+      @include breakpoint('medium+') {
+        width: colspan(8, medium);
+      }
+
+      @include breakpoint('large+') {
+        width: colspan(8, large);
+      }
+
+      @include breakpoint('xlarge') {
+        width: colspan(8, xlarge);
+      }
+    }
+
+    .deflist dd {
+      grid-column-start: 2;
+      margin-top: 20px;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    .deflist dd::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background-color: $color__rules--primary;
+    }
   }
 }
 
-.deflist--free-spacing dt {
-  @include breakpoint('small+') {
-    width: auto;
-  }
 
-  @include breakpoint('medium+') {
-    width: auto;
-  }
-
-  @include breakpoint('large+') {
-    width: auto;
-  }
-
-  @include breakpoint('xlarge') {
-    width: auto;
-  }
-}
-
-.deflist dd {
-  flex: 1;
-  width: 100%;
-
-  @include breakpoint('small+') {
-    width: auto;
-  }
-}
-
-.deflist dt.f-module-title-1 {
+.deflist .f-module-title-1 {
   @include tucked-margin-top($f-module-title-1, ('xsmall': 28));
+  display: block;
 }
 
-.deflist dd.f-secondary {
+.deflist .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 24, 'small+': 28));
+  display: block;
 }
 
 
-.deflist dd.f-secondary a {
+.deflist .f-secondary a {
   @include text-underline(1.02em, $color__rules--secondary);
 
   &:hover,
