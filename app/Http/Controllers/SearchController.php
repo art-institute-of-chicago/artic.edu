@@ -34,6 +34,7 @@ class SearchController extends BaseScopedController
 
     const ARTWORKS_PER_PAGE = 20;
     const EXHIBITIONS_PER_PAGE = 20;
+    const ARTICLES_PER_PAGE = 20;
     const ARTISTS_PER_PAGE = 30;
     const AUTOCOMPLETE_PER_PAGE = 10;
 
@@ -200,7 +201,7 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
-        $general     = $this->searchRepository->forSearchQuery(request('q'), 2);
+        $general     = $this->searchRepository->forSearchQuery(request('q'), 0);
         $exhibitions = $this->exhibitionsRepository->searchApi(request('q'), self::EXHIBITIONS_PER_PAGE, request('time'));
 
         $links = $this->buildSearchLinks($general, 'exhibitions');
@@ -216,13 +217,29 @@ class SearchController extends BaseScopedController
     {
         $this->seo->setTitle('Search');
 
-        $general = $this->searchRepository->forSearchQuery(request('q'), 2);
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
         $artists = $this->artistsRepository->forSearchQuery(request('q'), self::ARTISTS_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'artists');
 
         return view('site.search.index', [
             'artists' => $artists,
+            'allResultsView' => true,
+            'searchResultsTypeLinks' => $links,
+        ]);
+    }
+
+    public function articles()
+    {
+        $this->seo->setTitle('Search');
+
+        $general  = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $articles = $this->articlesRepository->searchApi(request('q'), self::ARTICLES_PER_PAGE);
+
+        $links = $this->buildSearchLinks($general, 'articles');
+
+        return view('site.search.index', [
+            'articles' => $articles,
             'allResultsView' => true,
             'searchResultsTypeLinks' => $links,
         ]);
@@ -239,7 +256,7 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
         if (extractAggregation($aggregations, 'articles')) {
-            array_push($links, $this->buildLabel('Writings', extractAggregation($aggregations, 'articles'), route('articles'), $active == 'articles'));
+            array_push($links, $this->buildLabel('Writings', extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
         }
         if (extractAggregation($aggregations, 'artworks')) {
             array_push($links, $this->buildLabel('Artwork', extractAggregation($aggregations, 'artworks'), route('search.artworks', ['q' => request('q')]), $active == 'artworks'));
