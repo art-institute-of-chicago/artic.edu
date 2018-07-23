@@ -6,4 +6,7 @@
     @slot('image', $image ?? null)
     @slot('item', $item)
     @slot('gtmAttributes', $gtmAttributes ?? null)
+    @if(isset($date))
+        @slot('date', $date)
+    @endif
 @endcomponent
