@@ -66,16 +66,17 @@
 
 @section('fieldsets')
     <a17-fieldset id="sponsors" title="Sponsors">
-        @formField('input', [
+        @formField('wysiwyg', [
             'name' => 'sponsors_description',
             'label' => 'Sponsors section description',
-            'type' => 'textarea'
+            'toolbarOptions' => ['bold']
         ])
 
-        @formField('input', [
+        @formField('wysiwyg', [
             'name' => 'sponsors_sub_copy',
             'label' => 'Sponsors sub copy',
-            'note' => 'E.G. further support provided by'
+            'note' => 'E.G. further support provided by',
+            'toolbarOptions' => ['bold']
         ])
 
         @formField('browser', [
