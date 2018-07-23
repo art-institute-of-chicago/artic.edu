@@ -126,69 +126,6 @@
     @endif
 @endif
 
-{{-- @if (!empty($pages))
-    @component('components.molecules._m-title-bar')
-        @if (isset($pages['totalResults']) and isset($pages['allResultsHref']))
-            @slot('links', array(array('label' => 'See all '.$pages['totalResults'].' pages', 'href' => $pages['allResultsHref'])))
-        @endif
-        Pages
-    @endcomponent
-    @component('components.atoms._hr')
-    @endcomponent
-    @if (isset($pages['allResultsView']) and $pages['allResultsView'] and sizeof($pages['results']) > 6)
-        @component('components.organisms._o-grid-listing')
-          @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-          @slot('cols_small','2')
-          @slot('cols_medium','3')
-          @slot('cols_large','4')
-          @slot('cols_xlarge','4')
-          @foreach ($pages['results'] as $item)
-              @component('components.molecules._m-listing----generic-row')
-                  @slot('imgVariation','')
-                  @slot('item', $item)
-                  @slot('imageSettings', array(
-                      'fit' => 'crop',
-                      'ratio' => '16:9',
-                      'srcset' => array(200,400,600),
-                      'sizes' => aic_gridListingImageSizes(array(
-                            'xsmall' => '1',
-                            'small' => '2',
-                            'medium' => '3',
-                            'large' => '4',
-                            'xlarge' => '4',
-                      )),
-                  ))
-              @endcomponent
-          @endforeach
-        @endcomponent
-    @else
-        @component('components.organisms._o-row-listing')
-            @foreach ($pages['results'] as $item)
-                @component('components.molecules._m-listing----generic-row')
-                    @slot('variation', 'm-listing--row')
-                    @slot('item', $item)
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
-                              'xsmall' => '58',
-                              'small' => '13',
-                              'medium' => '13',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
-                @endcomponent
-            @endforeach
-        @endcomponent
-    @endif
-    @if(isset($pages['pagination']) and $pages['pagination'])
-        @component('components.molecules._m-paginator')
-        @endcomponent
-    @endif
-@endif --}}
-
 @if (isset($artworks) && $artworks->total() > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
@@ -386,7 +323,7 @@
 @if (isset($articles) && $articles->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all writings', 'href' => route('articles_publications'))))
+            @slot('links', array(array('label' => 'See all writings', 'href' => route('search.articles', ['q' => request('q')]))))
         @endunless
         Writings
     @endcomponent
@@ -478,6 +415,7 @@
               @component('components.molecules._m-listing----generic')
                   @slot('imgVariation','')
                   @slot('item', $item)
+                  @slot('image', $item->imageFront('listing', 'default'))
                   @slot('imageSettings', array(
                       'fit' => 'crop',
                       'ratio' => '16:9',
@@ -506,6 +444,7 @@
                 @component('components.molecules._m-listing----generic')
                     @slot('imgVariation','')
                     @slot('item', $item)
+                    @slot('image', $item->imageFront('listing', 'default'))
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
@@ -622,6 +561,7 @@
               @component('components.molecules._m-listing----generic-row')
                   @slot('imgVariation','')
                   @slot('item', $item)
+                  @slot('image', $item->imageFront('listing', 'default'))
                   @slot('imageSettings', array(
                       'fit' => 'crop',
                       'ratio' => '16:9',
@@ -650,6 +590,7 @@
                 @component('components.molecules._m-listing----generic')
                     @slot('imgVariation','')
                     @slot('item', $item)
+                    @slot('image', $item->imageFront('listing', 'default'))
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
@@ -696,6 +637,7 @@
               @component('components.molecules._m-listing----generic')
                   @slot('imgVariation','')
                   @slot('item', $item)
+                  @slot('image', $item->imageFront('listing', 'default'))
                   @slot('imageSettings', array(
                       'fit' => 'crop',
                       'ratio' => '16:9',
@@ -724,6 +666,7 @@
                 @component('components.molecules._m-listing----generic')
                     @slot('imgVariation','')
                     @slot('item', $item)
+                    @slot('image', $item->imageFront('listing', 'default'))
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
@@ -764,6 +707,7 @@
               @component('components.molecules._m-listing----generic')
                   @slot('imgVariation','')
                   @slot('item', $item)
+                  @slot('image', $item->imageFront('listing', 'default'))
                   @slot('imageSettings', array(
                       'fit' => 'crop',
                       'ratio' => '16:9',
@@ -792,6 +736,7 @@
                 @component('components.molecules._m-listing----generic')
                     @slot('imgVariation','')
                     @slot('item', $item)
+                    @slot('image', $item->imageFront('listing', 'default'))
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
@@ -808,92 +753,6 @@
             @endforeach
         @endcomponent
 
-    @endif
-@endif
-
-@if (!empty($researchAndResources))
-    @component('components.molecules._m-title-bar')
-        @if (isset($researchAndResources['totalResults']) and isset($researchAndResources['allResultsHref']))
-            @slot('links', array(array('label' => 'See all '.$researchAndResources['totalResults'].' resources', 'href' => $researchAndResources['allResultsHref'])))
-        @endif
-        Resources
-    @endcomponent
-    @if (isset($researchAndResources['allResultsView']) and $researchAndResources['allResultsView'])
-        @component('components.molecules._m-links-bar')
-            @slot('secondaryHtml')
-                <li class="m-links-bar__item m-links-bar__item--primary">
-                    @component('components.atoms._dropdown')
-                      @slot('prompt', 'Show: All')
-                      @slot('ariaTitle', 'Filter by')
-                      @slot('variation','dropdown--filter f-link')
-                      @slot('font', null)
-                      @slot('options', array(
-                        array('href' => '#', 'label' => 'All', 'active' => true),
-                        array('href' => '#', 'label' => 'Research'),
-                        array('href' => '#', 'label' => 'Resources'),
-                      ))
-                    @endcomponent
-                </li>
-            @endslot
-        @endcomponent
-        @component('components.atoms._hr')
-            @slot('variation','hr--flush-top')
-        @endcomponent
-    @else
-        @component('components.atoms._hr')
-        @endcomponent
-    @endif
-    @if (isset($researchAndResources['allResultsView']) and $researchAndResources['allResultsView'] and sizeof($researchAndResources['results']) > 6)
-        @component('components.organisms._o-grid-listing')
-          @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-          @slot('cols_small','2')
-          @slot('cols_medium','3')
-          @slot('cols_large','4')
-          @slot('cols_xlarge','4')
-          @foreach ($researchAndResources['results'] as $item)
-              @component('components.molecules._m-listing----generic-row')
-                  @slot('imgVariation','')
-                  @slot('item', $item)
-                  @slot('imageSettings', array(
-                      'fit' => 'crop',
-                      'ratio' => '16:9',
-                      'srcset' => array(200,400,600),
-                      'sizes' => aic_gridListingImageSizes(array(
-                            'xsmall' => '1',
-                            'small' => '2',
-                            'medium' => '3',
-                            'large' => '4',
-                            'xlarge' => '4',
-                      )),
-                  ))
-              @endcomponent
-          @endforeach
-        @endcomponent
-    @else
-        @component('components.organisms._o-row-listing')
-            @foreach ($researchAndResources['results'] as $item)
-                @component('components.molecules._m-listing----generic-row')
-                    @slot('variation', 'm-listing--row')
-                    @slot('item', $item)
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
-                              'xsmall' => '58',
-                              'small' => '13',
-                              'medium' => '13',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
-                @endcomponent
-            @endforeach
-        @endcomponent
-    @endif
-    @if(isset($researchAndResources['pagination']) and $researchAndResources['pagination'])
-        @component('components.molecules._m-paginator')
-        @endcomponent
     @endif
 @endif
 
