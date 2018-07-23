@@ -300,6 +300,11 @@
   text-align: center;
 }
 
+  .o-fullscreen-image__img-actions > li .btn.btn--icon,
+  .o-fullscreen-image__img-actions > li .btn.btn--icon-sq {
+    display: inline-flex !important;
+  }
+
 .btn.btn--icon-circle-48 {
   width: 48px;
   height: 48px;
@@ -317,8 +322,6 @@
 .btn.btn--icon svg,
 .btn.btn--icon-sq svg {
   display: inline-block;
-  position: relative;
-  top: -1px;
   margin-right: 0;
   vertical-align: unset;
 }
