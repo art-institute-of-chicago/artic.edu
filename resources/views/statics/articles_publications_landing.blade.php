@@ -176,12 +176,17 @@
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
-                        @slot('imgVariation', 'm-listing__img--padded')
                         @slot('imageSettings', array(
-                            'crop' => 'default',
-                            'fit' => 'default',
-                            'srcset' => array(160,240,320),
-                            'sizes' => '160px',
+                            'fit' => 'crop',
+                            'ratio' => '16:9',
+                            'srcset' => array(200,400,600),
+                            'sizes' => aic_imageSizes(array(
+                                  'xsmall' => '58',
+                                  'small' => '23',
+                                  'medium' => '22',
+                                  'large' => '13',
+                                  'xlarge' => '13',
+                            )),
                         ))
                     @endcomponent
                 @endforeach
