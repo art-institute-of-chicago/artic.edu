@@ -1,4 +1,4 @@
-const ajaxableHref = function(href) {
+const ajaxableHref = function(href, event) {
   // fail if no href or same page
   if (!href || href === '#' || href === window.location.href) {
     return false;
@@ -7,7 +7,7 @@ const ajaxableHref = function(href) {
   var el = document.createElement('a');
   el.href = href;
   if (window.location.protocol !== el.protocol || window.location.hostname !== el.hostname) {
-    // off side link
+    // off site link
     return false;
   }
   if (event.target.host === window.location.host && event.target.pathname === window.location.pathname && event.target.hash) {

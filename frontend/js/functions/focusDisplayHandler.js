@@ -27,13 +27,17 @@ const focusDisplayHandler = function() {
     if (!focusMethod) {
       focusMethod = lastFocusMethod;
     }
-    event.target.setAttribute(attr, focusMethod);
-    lastFocusMethod = focusMethod;
-    focusMethod = false;
+    if (event.target && typeof(event.target.setAttribute) === 'function') {
+      event.target.setAttribute(attr, focusMethod);
+      lastFocusMethod = focusMethod;
+      focusMethod = false;
+    }
   }
 
   function _onBlur(event) {
+    if (event.target && typeof(event.target.removeAttribute) === 'function') {
       event.target.removeAttribute(attr);
+    }
   }
 
   function _onWindowBlur() {

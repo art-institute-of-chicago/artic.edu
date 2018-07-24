@@ -285,7 +285,7 @@ const ajaxPageLoad = function() {
   }
   function getPage(event) {
     if (event.data.url) {
-      if (ajaxableHref(event.data.url)) {
+      if (ajaxableHref(event.data.url, event)) {
         if (!history.state && (!event.data.type || (event.data.type && event.data.type !== 'modal'))) {
           triggerCustomEvent(document, 'history:replacestate', {
             url: location.href,
