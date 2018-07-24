@@ -10,6 +10,7 @@ const stickyFilters = function(container){
   let dE = document.documentElement;
   let breakpoints = container.getAttribute('data-stickyElement-breakpoints') || 'all';
   let halt = true;
+  let rAF;
 
   function _posDefault() {
     dE.classList.remove('s-sticky-filters--fixed');
@@ -40,7 +41,8 @@ const stickyFilters = function(container){
         _posDefault();
       }
     }
-    window.requestAnimationFrame(_decidePos);
+    cancelAnimationFrame(rAF);
+    rAF = window.requestAnimationFrame(_decidePos);
   }
 
   function _calcLockPositions() {
@@ -59,12 +61,14 @@ const stickyFilters = function(container){
   function _pageUpdated() {
     window.requestAnimationFrame(function(){
       _calcLockPositions();
-      _decidePos();
+      cancelAnimationFrame(rAF);
+      rAF = window.requestAnimationFrame(_decidePos);
     });
   }
 
   function _destroy() {
     _posDefault();
+    cancelAnimationFrame(rAF);
     window.removeEventListener('load', _calcLockPositions);
     window.removeEventListener('resized', _calcLockPositions);
     window.removeEventListener('mediaQueryUpdated', _calcLockPositions);
@@ -91,7 +95,8 @@ const stickyFilters = function(container){
     });
     */
     _calcLockPositions();
-    _decidePos();
+    cancelAnimationFrame(rAF);
+    rAF = window.requestAnimationFrame(_decidePos);
   }
 
   function _init() {
