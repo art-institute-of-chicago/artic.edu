@@ -381,12 +381,17 @@ function aic_imageSettings($data) {
             $stringSrcset .= $base.$imgixSettingsString." ".$size."w, ";
         endforeach;
 
-        $imgixSettings['w'] = $LQIPDimension;
+        //$imgixSettings['w'] = $LQIPDimension;
+        $imgixSettings['w'] = 800;
         if ($height && $height !== 'auto') {
-            $imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
+            //$imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
+            $imgixSettings['h'] = round(($height/$width) * 800);
         }
-        $imgixSettings['q'] = '10';
-        //$imgixSettings['blur'] = '75';
+        $imgixSettings['auto'] = 'format';
+        $imgixSettings['q'] = '1';
+        $imgixSettings['blur'] = '300';
+        $imgixSettings['px'] = '40';
+        $imgixSettings['sat'] = '20';
         $imgixSettingsString = http_build_query($imgixSettings);
 
         $stringSrc = $base.$imgixSettingsString;
