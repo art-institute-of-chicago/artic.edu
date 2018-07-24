@@ -82,7 +82,11 @@ class BaseService
             ->resources(['artworks'])
             ->forceEndpoint('search');
 
-        if ($parameters->isNotEmpty()) {
+        $active = $parameters->filter(function($value, $key) {
+            return str_contains($key, 'ef-');
+        })->isNotEmpty();
+
+        if ($active) {
             $query->byClassifications($parameters->get('ef-classification_ids'))
                   ->byArtists($parameters->get('ef-artist_ids'))
                   ->byStyles($parameters->get('ef-style_ids'));
