@@ -106,6 +106,13 @@
             'note' => 'Provides a way to link to a list of events by program',
             'options' => $eventProgramsList,
         ])
+        @formField('input', [
+            'name' => 'program_urls',
+            'label' => 'Program URLs',
+            'type' => 'textarea',
+            'rows' => $item->programs->count(),
+            'disabled' => 'true',
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="attributes" title="Event entrance attributes">

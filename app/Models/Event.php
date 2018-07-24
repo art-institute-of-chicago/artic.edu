@@ -257,6 +257,13 @@ class Event extends Model
         return $this->belongsToMany('App\Models\EventProgram');
     }
 
+    public function getProgramUrlsAttribute()
+    {
+        return $this->programs->reduce(function($carry, $item) {
+            return $carry .'https://' .config('app.url') .route('events', [], false) .'?program=' .$item->id ."\n";
+        });
+    }
+
     public function scopeLanding($query)
     {
         return $query->whereLanding(true);
