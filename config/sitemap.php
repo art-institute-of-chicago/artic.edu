@@ -54,4 +54,6 @@ return [
      */
     'crawl_profile' => Profile::class,
 
+    'base_url' => env('SITEMAP_BASE_URL', null)
+
 ];

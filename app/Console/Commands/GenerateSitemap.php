@@ -41,7 +41,7 @@ class GenerateSitemap extends Command
      */
     public function handle()
     {
-        SitemapGenerator::create(config('app.url'))->configureCrawler(function (Crawler $crawler) {
+        SitemapGenerator::create(config('sitemap.base_url', config('app.url')))->configureCrawler(function (Crawler $crawler) {
         $crawler->setMaximumDepth(3);
     })->writeToFile(public_path('sitemap.xml'));
 
