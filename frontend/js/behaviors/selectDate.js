@@ -109,6 +109,7 @@ const selectDate = function(container) {
         if (display.tagName.toLowerCase() !== 'input') {
           var windowLocationHref = queryStringHandler.updateParameter(window.location.href, 'start', event.data.dates.start.iso);
           windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, 'end', event.data.dates.end.iso);
+          windowLocationHref = windowLocationHref.replace(/time=weekend&/ig,'');
           // trigger ajax call
           triggerCustomEvent(document, 'ajax:getPage', {
             url: windowLocationHref,
