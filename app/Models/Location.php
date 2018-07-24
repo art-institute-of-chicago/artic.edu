@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use A17\Twill\Models\Model;
+use A17\Twill\Models\Behaviors\HasTranslation;
 
 class Location extends Model
 {
-    use Transformable;
+    use Transformable, HasTranslation;
 
     protected $fillable = [
         'published',
-        'name',
         'street',
         'address',
         'city',
@@ -20,10 +20,10 @@ class Location extends Model
         'page_id',
     ];
 
-    // those fields get auto set to null if not submited
-    public $nullable = [];
+    public $translatedAttributes = [
+        'name',
+    ];
 
-    // those fields get auto set to false if not submited
     public $checkboxes = ['published'];
 
     public function page()

@@ -2,13 +2,10 @@
 
 namespace App\Models\Api;
 
-use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
 
 class CategoryTerm extends BaseApiModel
 {
-    use HasPresenter;
-
     protected $endpoints = [
         'collection' => '/api/v1/category-terms',
         'resource' => '/api/v1/category-terms/{id}',

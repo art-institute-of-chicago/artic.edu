@@ -9,9 +9,15 @@ return [
     |
     | Contains an array with the applications available locales.
     |
-    */
+     */
     'locales' => [
-        'en'
+        'en',
+        'fr',
+        'de',
+        'ja',
+        'pt',
+        'es',
+        'zh',
     ],
 
     /*
@@ -23,7 +29,7 @@ return [
     | the available locales. Example: if set to '-', then the locale for
     | colombian spanish will be saved as 'es-CO' into the database.
     |
-    */
+     */
     'locale_separator' => '-',
 
     /*
@@ -35,7 +41,7 @@ return [
     | translator. If for some reason you want to override this,
     | you can specify what default should be used here.
     |
-    */
+     */
     'locale' => null,
 
     /*
@@ -48,7 +54,7 @@ return [
     | instance, this value will be overridden by the property
     | $useTranslationFallback when defined
     |
-    */
+     */
     'use_fallback' => false,
 
     /*
@@ -72,7 +78,7 @@ return [
     | when the requested translation is not existing. To disable it
     | set it to false.
     |
-    */
+     */
     'fallback_locale' => 'en',
 
     /*
@@ -84,7 +90,7 @@ return [
     | you want to use CountryTrans instead of CountryTranslation
     | application, set this to 'Trans'.
     |
-    */
+     */
     'translation_suffix' => 'Translation',
 
     /*
@@ -95,7 +101,7 @@ return [
     | Defines the 'locale' field name, which is used by the
     | translation model.
     |
-    */
+     */
     'locale_key' => 'locale',
 
     /*

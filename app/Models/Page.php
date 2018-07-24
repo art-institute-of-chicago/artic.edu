@@ -4,9 +4,9 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasMedias;
-use A17\Twill\Models\Behaviors\HasPresenter;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Model;
 use App\Models\Admission as Admission;
 use App\Models\Behaviors\HasApiRelations;
@@ -14,7 +14,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Page extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasPresenter;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasTranslation;
 
     protected $presenter = 'App\Presenters\Admin\PagePresenter';
 
@@ -60,31 +60,44 @@ class Page extends Model
         // Art and Ideas
         'art_intro',
 
-        // Visit
-        'visit_intro',
-        'visit_dining_link',
-        'visit_hour_header',
-        'visit_hour_subheader',
-        'visit_city_pass_title',
-        'visit_city_pass_text',
-        'visit_city_pass_button_label',
-        'visit_city_pass_link',
-        'visit_transportation_link',
-        'visit_parking_link',
-        'visit_admission_description',
-        'visit_buy_tickets_label',
-        'visit_buy_tickets_link',
-        'visit_become_member_label',
-        'visit_become_member_link',
-        'visit_faq_accessibility_link',
-        'visit_faq_more_link',
-
         // Printed catalogs
         'printed_catalogs_intro',
 
         // Resources Landing page
         'resources_landing_title',
         'resources_landing_intro',
+
+        'visit_dining_link',
+
+        'visit_city_pass_link',
+
+        'visit_transportation_link',
+
+        'visit_parking_link',
+
+        'visit_buy_tickets_link',
+
+        'visit_become_member_link',
+
+        'visit_faq_accessibility_link',
+
+        'visit_faq_more_link',
+
+    ];
+
+    public $translatedAttributes = [
+        // Visit
+        'visit_intro',
+        'visit_hour_header',
+        'visit_hour_subheader',
+        'visit_city_pass_title',
+        'visit_city_pass_text',
+        'visit_city_pass_button_label',
+        'visit_admission_description',
+        'visit_buy_tickets_label',
+        'visit_become_member_label',
+        'active'
+
     ];
 
     public $slugAttributes = [

@@ -3,12 +3,14 @@
             'name' => 'title',
             'field_name' => 'title',
             'label' => 'Title',
-            'required' => true
+            'required' => true,
+            'translated' => true
+
         ])
         @formField('input', [
             'name' => 'external_link',
             'field_name' => 'external_link',
-            'label' => 'link',
+            'label' => 'Link',
             'required' => true
         ])
         @formField('wysiwyg', [
@@ -16,6 +18,7 @@
             'name' => 'copy',
             'field_name' => 'copy',
             'label' => 'Text',
-            'required' => true
+            'required' => true,
+            'translated' => true
         ])
     </div>

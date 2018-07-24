@@ -4,13 +4,13 @@ namespace App\Models\Translations;
 
 use A17\Twill\Models\Model;
 
-class FamilyTranslation extends Model
+class FeaturedHourTranslation extends Model
 {
     protected $fillable = [
         'title',
-        'text',
-        'link_label',
+        'copy',
         'active',
         'locale',
     ];
+
 }

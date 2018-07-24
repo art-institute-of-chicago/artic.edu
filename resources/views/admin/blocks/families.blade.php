@@ -8,7 +8,8 @@
             'name' => 'title',
             'field_name' => 'title',
             'label' => 'Title',
-            'required' => true
+            'required' => true,
+            'translated' => true
         ])
         @formField('input', [
             'name' => 'associated_generic_page_link',
@@ -20,13 +21,15 @@
             'name' => 'text',
             'field_name' => 'text',
             'label' => 'Text',
-            'required' => true
+            'required' => true,
+            'translated' => true
         ])
         @formField('input', [
             'name' => 'link_label',
             'field_name' => 'link_label',
             'label' => 'Audience link Label',
-            'required' => true
+            'required' => true,
+            'translated' => true
         ])
         @formField('input', [
             'name' => 'external_link',

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasMedias;
-use A17\Twill\Models\Behaviors\HasPresenter;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Model;
@@ -12,7 +11,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Video extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasPresenter;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent;
 
     protected $presenter = 'App\Presenters\Admin\VideoPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\VideoPresenter';

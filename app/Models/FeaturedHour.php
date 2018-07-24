@@ -3,17 +3,22 @@
 namespace App\Models;
 
 use A17\Twill\Models\Model;
+use A17\Twill\Models\Behaviors\HasTranslation;
 
 class FeaturedHour extends Model
 {
+    use HasTranslation;
 
     protected $fillable = [
         'published',
         'position',
-        'title',
         'external_link',
-        'copy',
         'page_id',
+    ];
+
+    public $translatedAttributes = [
+        'title',
+        'copy',
     ];
 
     // those fields get auto set to false if not submited

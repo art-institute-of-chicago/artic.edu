@@ -14,12 +14,13 @@ class PageController extends ModuleController
 
     protected function formData($request)
     {
-        #TODO: remove horrible hack to enable title editing for Visit Page
-        $editableTitle = stripos($request->path(), 'visit') !== false ? true : false;
+        $isVisit = stripos($request->path(), 'visit') !== false ? true : false;
+
         return [
             'permalink' => false,
             'publish' => false,
-            'editableTitle' => $editableTitle,
+            'editableTitle' => $isVisit,
+            'translate' => $isVisit,
         ];
     }
 
@@ -82,10 +83,10 @@ class PageController extends ModuleController
             ['fieldset' => 'hours', 'label' => 'Hours'],
             ['fieldset' => 'admissions', 'label' => 'Admissions'],
             ['fieldset' => 'featured_offer', 'label' => 'Featured offer'],
-            ['fieldset' => 'museum_address', 'label' => 'Museum address'],
-            ['fieldset' => 'dining', 'label' => 'Dining'],
+            ['fieldset' => 'directions', 'label' => 'Museum address'],
+            ['fieldset' => 'dining_hours', 'label' => 'Dining'],
             ['fieldset' => 'faq', 'label' => 'FAQ'],
-            ['fieldset' => 'tours', 'label' => 'Tours'],
+            ['fieldset' => 'tourpages', 'label' => 'Tours'],
             ['fieldset' => 'families', 'label' => 'Families, teens and educators'],
         ];
 

@@ -2,14 +2,11 @@
 
 namespace App\Models\Api;
 
-use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
 use Illuminate\Support\Carbon;
 
 class Exhibition extends BaseApiModel
 {
-    use HasPresenter;
-
     protected $endpoints = [
         'collection' => '/api/v1/exhibitions',
         'resource' => '/api/v1/exhibitions/{id}',

@@ -22,14 +22,34 @@
         @slot('overflow', true)
         @slot('variation', 'm-links-bar--nav-bar')
         @slot('linksPrimary', array(
-          array('label' => 'Hours', 'href' => '#hours'),
-          array('label' => 'Admission', 'href' => '#admission'),
-          array('label' => 'Directions', 'href' => '#directions'),
-          array('label' => 'Dining', 'href' => '#dining'),
-          array('label' => 'FAQs', 'href' => '#faqs'),
-          array('label' => 'Tours', 'href' => '#tours'),
-          array('label' => 'Families, Teens, and Educators', 'href' => '#familes_teens_educators'),
+          array('label' => __('Hours'), 'href' => '#hours'),
+          array('label' => __('Admission'), 'href' => '#admission'),
+          array('label' => __('Directions'), 'href' => '#directions'),
+          array('label' => __('Dining'), 'href' => '#dining'),
+          array('label' => __('FAQs'), 'href' => '#faqs'),
+          array('label' => __('Tours'), 'href' => '#tours'),
+          array('label' => __('Families, Teens, and Educators'), 'href' => '#familes_teens_educators'),
         ))
+         @slot('secondaryHtml')
+          <li class="m-links-bar__item  m-links-bar__item--primary">
+              @component('components.atoms._dropdown')
+                @slot('prompt', 'Select language')
+                @slot('ariaTitle', 'Select language')
+                @slot('variation','dropdown--filter f-link')
+                @slot('font', null)
+                @slot('options', array(
+                  array('active' => request('lang') === 'en', 'href' => currentUrlWithQuery([]), 'label' => 'English'),
+                  array('active' => request('lang') === 'es', 'href' => currentUrlWithQuery(['lang' => 'es']), 'label' => 'Español'),
+                  array('active' => request('lang') === 'fr', 'href' => currentUrlWithQuery(['lang' => 'fr']), 'label' => 'Français'),
+                  array('active' => request('lang') === 'de', 'href' => currentUrlWithQuery(['lang' => 'de']), 'label' => 'Deutsch'),
+                  array('active' => request('lang') === 'zh', 'href' => currentUrlWithQuery(['lang' => 'zh']), 'label' => '中文'),
+                  array('active' => request('lang') === 'ja', 'href' => currentUrlWithQuery(['lang' => 'ja']), 'label' => '日本語'),
+                  array('active' => request('lang') === 'pt', 'href' => currentUrlWithQuery(['lang' => 'pt']), 'label' => 'Português'),
+                ))
+              @endcomponent
+          </li>
+      @endslot
+
     @endcomponent
 
     @component('components.molecules._m-header-block')
@@ -38,7 +58,7 @@
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'hours')
-        Hours
+        @lang('Hours')
     @endcomponent
 
     @component('components.organisms._o-grid-listing')
@@ -107,7 +127,7 @@
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'admission')
-        Admission
+        @lang('Admission')
     @endcomponent
 
     <div class="m-table">
@@ -157,14 +177,14 @@
                       @component('components.blocks._text')
                           @slot('font','f-tag')
                           @slot('tag','span')
-                          Free
+                          @lang('Free')
                       @endcomponent
                     @else
                       @component('components.blocks._text')
                           @slot('font', 'f-secondary')
                           @slot('tag','span')
                           @if($ageData[$categoryId] == 0)
-                          Free
+                          @lang('Free')
                           @else
                           ${{ $ageData[$categoryId] }}
                           @endif
@@ -181,14 +201,14 @@
               @component('components.blocks._text')
                   @slot('font', 'f-module-title-1')
                   @slot('tag','span')
-                  Children
+                  @lang('Children')
               @endcomponent
             </th>
             <td rowspan="2" colspan="4">
               @component('components.blocks._text')
                   @slot('font','f-tag')
                   @slot('tag','span')
-                  Free
+                  @lang('Free')
               @endcomponent
             </td>
           </tr>
@@ -197,7 +217,7 @@
               @component('components.blocks._text')
                   @slot('font', 'f-module-title-1')
                   @slot('tag','span')
-                  Members
+                  @lang('Members')
               @endcomponent
             </th>
           </tr>
@@ -277,7 +297,7 @@
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'directions')
-        Directions
+        @lang('Directions')
     @endcomponent
 
     @component('components.atoms._hr')
@@ -323,14 +343,14 @@
     @component('components.molecules._m-title-bar')
         @slot('links', [
             [
-                'label' => 'Explore all dining',
+                'label' => __('Explore all dining'),
                 'href'  => $page->visit_dining_link,
                 'gtmAttributes' => 'data-gtm-event="visit-dining" data-gtm-event-category="nav-link"'
             ]
         ]
         )
         @slot('id', 'dining')
-        Dining
+        @lang('Dining')
     @endcomponent
 
     @component('components.atoms._hr')
@@ -363,17 +383,17 @@
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
-          array('label' => 'Explore all dining', 'href' => $page->visit_dining_link, 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="visit-dining" data-gtm-event-category="nav-link"'),
+          array('label' => __('Explore all dining'), 'href' => $page->visit_dining_link, 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="visit-dining" data-gtm-event-category="nav-link"'),
         ))
     @endcomponent
 
     @component('components.molecules._m-title-bar')
         @slot('links', array(
-          array('label' => 'Accessibility information', 'href' => $faq['accesibility_link']),
-          array('label' => 'More FAQs and guidelines', 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
+          array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link']),
+          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
         ))
         @slot('id', 'faqs')
-        FAQs
+        @lang('FAQs')
     @endcomponent
 
     @component('components.molecules._m-link-list')
@@ -383,14 +403,14 @@
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
-          array('label' => 'Accessibility information', 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
-          array('label' => 'More FAQs and guidelines', 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
+          array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
+          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="visit-faq" data-gtm-event-category="nav-link"')
         ))
     @endcomponent
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'tours')
-        Tours
+        @lang('Tours')
     @endcomponent
 
     @component('components.atoms._hr')
@@ -423,7 +443,7 @@
 
     @component('components.molecules._m-title-bar')
         @slot('id', 'familes_teens_educators')
-        Families, Teens, and Educators
+        @lang('Families, Teens, and Educators')
     @endcomponent
 
     @component('components.atoms._hr')
