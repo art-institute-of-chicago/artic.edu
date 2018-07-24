@@ -1,24 +1,24 @@
 <header class="g-header">
   <div class="g-header__inner">
       <a href="#content" class="skip-nav f-body">Skip to Content</a>
-      @if (isset($filledLogo) and $filledLogo)
-      <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
-        <svg aria-hidden="true">
-          <use xlink:href="#icon--logo--80" />
-          <use xlink:href="#icon--logo--88" />
-          <use xlink:href="#icon--logo--92" />
-        </svg>
-      </a>
-      @else
-      <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
-        <svg aria-hidden="true">
-          <use xlink:href="#icon--logo--outline--80" />
-          <use xlink:href="#icon--logo--outline--88" />
-          <use xlink:href="#icon--logo--outline--92" />
-        </svg>
-      </a>
-      @endif
       <nav class="g-header__nav-primary" aria-label="primary">
+        @if (isset($filledLogo) and $filledLogo)
+        <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
+          <svg aria-hidden="true">
+            <use xlink:href="#icon--logo--80" />
+            <use xlink:href="#icon--logo--88" />
+            <use xlink:href="#icon--logo--92" />
+          </svg>
+        </a>
+        @else
+        <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
+          <svg aria-hidden="true">
+            <use xlink:href="#icon--logo--outline--80" />
+            <use xlink:href="#icon--logo--outline--88" />
+            <use xlink:href="#icon--logo--outline--92" />
+          </svg>
+        </a>
+        @endif
         <ul class="f-main-nav">
           <li class='u-hide@small+'>
             <a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="tickets-button">Buy Tickets</a>
