@@ -20,13 +20,15 @@ class CreateFeaturedHoursTranslationsTable extends Migration
         });
 
         foreach (\App\Models\FeaturedHour::all() as $hour) {
-            DB::table('featured_hour_translations')->insert([
-                'locale' => 'en',
-                'active' => true,
-                'featured_hour_id' => $hour->id,
-                'title' => $hour->title,
-                'copy' => $hour->copy,
-            ]);
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('featured_hour_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'featured_hour_id' => $hour->id,
+                    'title' => $hour->title,
+                    'copy' => $hour->copy,
+                ]);
+            }
         }
 
         Schema::table('featured_hours', function (Blueprint $table) {

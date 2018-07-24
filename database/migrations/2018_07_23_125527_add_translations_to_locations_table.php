@@ -19,12 +19,14 @@ class AddTranslationsToLocationsTable extends Migration
         });
 
         foreach (\App\Models\Location::all() as $location) {
-            DB::table('location_translations')->insert([
-                'locale' => 'en',
-                'active' => true,
-                'location_id' => $location->id,
-                'name' => $location->name,
-            ]);
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('location_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'location_id' => $location->id,
+                    'name' => $location->name,
+                ]);
+            }
         }
 
         Schema::table('locations', function (Blueprint $table) {

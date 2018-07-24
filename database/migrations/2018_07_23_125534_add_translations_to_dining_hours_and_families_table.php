@@ -20,13 +20,15 @@ class AddTranslationsToDiningHoursAndFamiliesTable extends Migration
         });
 
         foreach (\App\Models\DiningHour::all() as $diningHour) {
-            DB::table('dining_hour_translations')->insert([
-                'locale' => 'en',
-                'active' => true,
-                'dining_hour_id' => $diningHour->id,
-                'name' => $diningHour->name,
-                'hours' => $diningHour->hours,
-            ]);
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('dining_hour_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'dining_hour_id' => $diningHour->id,
+                    'name' => $diningHour->name,
+                    'hours' => $diningHour->hours,
+                ]);
+            }
         }
 
         Schema::table('dining_hours', function (Blueprint $table) {
@@ -42,14 +44,16 @@ class AddTranslationsToDiningHoursAndFamiliesTable extends Migration
         });
 
         foreach (\App\Models\Family::all() as $family) {
-            DB::table('family_translations')->insert([
-                'locale' => 'en',
-                'active' => true,
-                'family_id' => $family->id,
-                'title' => $family->title,
-                'text' => $family->text,
-                'link_label' => $family->link_label,
-            ]);
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('family_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'family_id' => $family->id,
+                    'title' => $family->title,
+                    'text' => $family->text,
+                    'link_label' => $family->link_label,
+                ]);
+            }
         }
 
         Schema::table('families', function (Blueprint $table) {

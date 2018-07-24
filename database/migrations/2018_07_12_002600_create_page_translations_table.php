@@ -26,23 +26,25 @@ class CreatePageTranslationsTable extends Migration
             $table->string('visit_become_member_label')->nullable();
         });
 
-        $visitPage = \App\Models\Page::where('type', 3)->select('id')->first();
+        $visitPage = \App\Models\Page::where('type', 3)->first();
 
         if ($visitPage) {
-            DB::table('page_translations')->insert([
-                'locale' => 'en',
-                'active' => true,
-                'page_id' => $visitPage->id,
-                'visit_intro' => $visitPage->visit_intro,
-                'visit_hour_header' => $visitPage->visit_hour_header,
-                'visit_hour_subheader' => $visitPage->visit_hour_subheader,
-                'visit_city_pass_title' => $visitPage->visit_city_pass_title,
-                'visit_city_pass_text' => $visitPage->visit_city_pass_text,
-                'visit_city_pass_button_label' => $visitPage->visit_city_pass_button_label,
-                'visit_admission_description' => $visitPage->visit_admission_description,
-                'visit_buy_tickets_label' => $visitPage->visit_buy_tickets_label,
-                'visit_become_member_label' => $visitPage->visit_become_member_label,
-            ]);
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('page_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'page_id' => $visitPage->id,
+                    'visit_intro' => $visitPage->visit_intro,
+                    'visit_hour_header' => $visitPage->visit_hour_header,
+                    'visit_hour_subheader' => $visitPage->visit_hour_subheader,
+                    'visit_city_pass_title' => $visitPage->visit_city_pass_title,
+                    'visit_city_pass_text' => $visitPage->visit_city_pass_text,
+                    'visit_city_pass_button_label' => $visitPage->visit_city_pass_button_label,
+                    'visit_admission_description' => $visitPage->visit_admission_description,
+                    'visit_buy_tickets_label' => $visitPage->visit_buy_tickets_label,
+                    'visit_become_member_label' => $visitPage->visit_become_member_label,
+                ]);
+            }
         }
 
         Schema::table('pages', function (Blueprint $table) {

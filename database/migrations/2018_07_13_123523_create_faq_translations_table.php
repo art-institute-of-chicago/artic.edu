@@ -19,12 +19,14 @@ class CreateFaqTranslationsTable extends Migration
         });
 
         foreach (\App\Models\Faq::all() as $faq) {
-            DB::table('faq_translations')->insert([
-                'locale' => 'en',
-                'active' => true,
-                'faq_id' => $faq->id,
-                'title' => $faq->title,
-            ]);
+            foreach (config('translatable.locales') as $locale) {
+                DB::table('faq_translations')->insert([
+                    'locale' => $locale,
+                    'active' => true,
+                    'faq_id' => $faq->id,
+                    'title' => $faq->title,
+                ]);
+            }
         }
 
         Schema::table('faqs', function (Blueprint $table) {
