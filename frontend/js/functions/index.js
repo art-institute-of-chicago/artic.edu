@@ -20,3 +20,4 @@ export { default as googleTagManager } from './googleTagManager';
 export { default as googleTagManagerDataFromLink } from './googleTagManagerDataFromLink';
 export { default as youtubePercentTracking } from './youtubePercentTracking';
 export { default as parseHTML } from './parseHTML';
+export { default as accessibleContent } from './accessibleContent';
