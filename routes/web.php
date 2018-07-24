@@ -20,7 +20,7 @@ Route::name('collection.autocomplete')->get('/collection/autocomplete', function
 });
 */
 Route::group([
-   "domain" => "aggregator-data-test.artic.edu"
+   "domain" => config('api.base_uri')
 ], function () {
     Route::get("api/v1/autocomplete")->name("collection.autocomplete");
 });
