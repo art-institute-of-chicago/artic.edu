@@ -1,5 +1,6 @@
 <header class="g-header">
   <div class="g-header__inner">
+      <a href="#content" class="skip-nav f-body">Skip to Content</a>
       @if (isset($filledLogo) and $filledLogo)
       <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
         <svg aria-hidden="true">
@@ -17,7 +18,6 @@
         </svg>
       </a>
       @endif
-      <a href="#content" class="skip-nav f-body">Skip to Content</a>
       <nav class="g-header__nav-primary">
         <ul class="f-main-nav">
           <li class='u-hide@small+'>
