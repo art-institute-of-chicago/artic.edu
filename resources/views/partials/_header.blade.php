@@ -18,7 +18,7 @@
         </svg>
       </a>
       @endif
-      <nav class="g-header__nav-primary">
+      <nav class="g-header__nav-primary" aria-label="primary">
         <ul class="f-main-nav">
           <li class='u-hide@small+'>
             <a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="tickets-button">Buy Tickets</a>
