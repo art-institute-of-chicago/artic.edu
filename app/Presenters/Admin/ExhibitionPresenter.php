@@ -16,48 +16,20 @@ class ExhibitionPresenter extends BasePresenter
 
     public function date()
     {
-
-        $date = "";
-        $hasStart = false;
+        $date  = "";
+        $end   = "";
         $start = $this->entity->asDateTime($this->aic_start_at);
-        $end = "";
 
-
-        if($this->aic_start_at == null) {
-        } else {
+        if ( $this->aic_start_at != null ) {
             $start = $this->entity->asDateTime($this->aic_start_at);
-            $date = $start->format('m d Y');
-            $hasStart = true;
-
-
+            $date  = $start->format('m d Y');
         }
 
-        if($this->aic_end_at == null){
-        } else {
-            $end   = $this->entity->asDateTime($this->aic_end_at);
-            if($hasStart) {
-                $date .=  '-' . $end->format('m d Y');
-            }
+        if ( $this->aic_end_at != null ) {
+            $end = $this->entity->asDateTime($this->aic_end_at);
+            $date =  join('-', array_filter([$date, $end->format('m d Y')]));
         }
 
-
-
-        if(empty($this->aic_end_at)) {
-            if($start->format("Y") > 2010) {
-             $this->entity->status = "Ongoing";
-            } else if($start->format("Y") < 2010) {
-             $this->entity->status = "Closed";
-            }
-
-        }
-
-        if(empty($this->aic_start_at)) {
-            $this->entity->status = "Closed";
-        }
-
-         if(empty($this->aic_start_at) && empty($this->aic_end_at) ) {
-            $this->entity->status = "Closed";
-        }
         return $date;
     }
 
@@ -170,15 +142,10 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     protected function closingSoonLink() {
-        if (empty($this->entity->dateEnd) && $this->entity->dateStart->format('Y') > 2010) {
+        if (empty($this->entity->dateEnd) && $this->entity->dateStart && $this->entity->dateStart->format('Y') > 2010) {
            return [
                 'label' => 'Ongoing',
                 'variation' => 'ongoing'
-            ];
-        } else if(empty($this->entity->dateEnd) && $this->entity->dateStart->format('Y') < 2010) {
-             return [
-                'label' => 'Closed',
-                'variation' => 'closing-soon'
             ];
         } else if(empty($this->entity->dateStart)) {
              return [
