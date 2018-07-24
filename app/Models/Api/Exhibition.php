@@ -27,6 +27,9 @@ class Exhibition extends BaseApiModel
     protected $presenter = 'App\Presenters\Admin\ExhibitionPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ExhibitionPresenter';
 
+    // Fields used when performing a search so we avoid a double call retrieving the complete entities
+    const SEARCH_FIELDS = ['id', 'title', 'status', 'aic_start_at', 'aic_end_at', 'is_boosted', 'thumbnail', 'short_description', 'start_at', 'end_at', 'department_display', 'gallery_title', 'gallery_id', 'image_id', 'api_model'];
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {

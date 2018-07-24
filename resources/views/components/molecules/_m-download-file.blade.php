@@ -23,7 +23,7 @@
         @slot('font', '')
         @slot('icon', 'icon--download--24')
         @slot('tag', 'a')
-        @slot('href', $file['content'])
+        @slot('href', $file['content'] ?? null)
         @slot('download', true)
     @endcomponent
 </p>

@@ -51,8 +51,7 @@ class ExhibitionRepository extends BaseApiRepository
             $search->exhibitionHistory();
         }
 
-        // Perform the query
-        $results = $search->getSearch($perPage);
+        $results = $search->getPaginatedModel($perPage, \App\Models\Api\Exhibition::SEARCH_FIELDS);
 
         return $results;
     }

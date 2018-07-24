@@ -33,6 +33,7 @@ class Artwork extends BaseApiModel
         'include' => ['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots']
     ];
 
+    // Fields used when performing a search so we avoid a double call retrieving the complete entities
     const SEARCH_FIELDS = ['id', 'title', 'date_display', 'thumbnail', 'image_id', 'api_model', 'artist_pivots', 'artist_title', 'artist_display'];
 
     public $mediasParams = [
