@@ -21,6 +21,7 @@
     @component('components.molecules._m-links-bar')
         @slot('overflow', true)
         @slot('variation', 'm-links-bar--nav-bar')
+        @slot('navType', 'primary')
         @slot('linksPrimary', array(
           array('label' => __('Hours'), 'href' => '#hours'),
           array('label' => __('Admission'), 'href' => '#admission'),

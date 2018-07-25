@@ -15,6 +15,7 @@
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
     @slot('overflow', true)
+    @slot('navType', 'primary')
     @slot('linksPrimary', [
         ['label' => 'Artworks', 'href' => '#', 'active' => true],
         ['label' => 'Writings', 'href' => route('articles_publications')],
