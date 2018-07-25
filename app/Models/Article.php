@@ -9,8 +9,10 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
-class Article extends Model
+class Article extends Model implements Feedable
 {
     use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable;
 
@@ -207,6 +209,25 @@ class Article extends Model
                 return $this->selectedFeaturedRelated;
             }
         }
+    }
+
+
+    public static function getAllFeedItems()
+    {
+       return \App\Models\Article::query()->published()->get();
+    }
+
+    public function toFeedItem()
+    {
+        return FeedItem::create([
+           'id' => $this->id,
+           'title' => $this->title,
+           'date' => $this->present()->date,
+           'summary' => $this->heading ?? 'Article',
+           'author' => $this->author ?? 'AIC',
+           'updated' => $this->updated_at,
+           'link' => route('articles.show', $this)
+       ]);
     }
 
     protected function transformMappingInternal()

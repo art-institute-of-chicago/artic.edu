@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "80c518a5f54aebbf5d144894f659d1fc",
+    "content-hash": "e973dccdf83f4edeaf0d681483c0e09a",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -3775,6 +3775,77 @@
             "time": "2018-05-04T07:47:45+00:00"
         },
         {
+            "name": "spatie/laravel-feed",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-feed.git",
+                "reference": "894fa0ed59ee6ac6bf5f7e25df69f2d80b831203"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-feed/zipball/894fa0ed59ee6ac6bf5f7e25df69f2d80b831203",
+                "reference": "894fa0ed59ee6ac6bf5f7e25df69f2d80b831203",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.5.0|~5.6.0",
+                "nesbot/carbon": "^1.0",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.5.0|~3.6.0",
+                "phpunit/phpunit": "^6.0|^7.0",
+                "spatie/phpunit-snapshot-assertions": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Feed\\FeedServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Feed\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jolita Grazyte",
+                    "email": "jolita@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generates rss feed",
+            "homepage": "https://github.com/spatie/laravel-feed",
+            "keywords": [
+                "laravel",
+                "laravel-feed",
+                "rss",
+                "spatie"
+            ],
+            "time": "2018-06-24T20:59:09+00:00"
+        },
+        {
             "name": "spatie/once",
             "version": "2.0.1",
             "source": {
@@ -6832,10 +6903,10 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "area17/twill": 20,
         "aacotroneo/laravel-saml2": 20,
-        "onelogin/php-saml": 20,
-        "aic/data-hub-foundation": 20
+        "aic/data-hub-foundation": 20,
+        "area17/twill": 20,
+        "onelogin/php-saml": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
