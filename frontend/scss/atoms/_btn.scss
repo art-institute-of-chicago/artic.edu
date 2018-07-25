@@ -287,30 +287,31 @@
 
 .btn.btn--icon,
 .btn.btn--icon-sq {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  display: inline-block;
   width: 32px;
   height: 32px;
-  padding-right: 0;
-  padding-left: 0;
+  padding: 0;
   border-radius: 50%;
   line-height: 32px;
   text-align: center;
 }
 
+  .o-fullscreen-image__img-actions > li .btn.btn--icon,
+  .o-fullscreen-image__img-actions > li .btn.btn--icon-sq {
+    display: inline-block;
+  }
+
 .btn.btn--icon-circle-48 {
   width: 48px;
   height: 48px;
-  line-height: 46px;
+  line-height: 48px;
 }
 
 .btn.btn--icon-sq {
   width: 48px;
   height: 48px;
   border-radius: 0;
-  line-height: 46px;
+  line-height: 48px;
   text-align: center;
 }
 
@@ -318,10 +319,16 @@
 .btn.btn--icon-sq svg {
   display: inline-block;
   position: relative;
-  top: -1px;
-  margin-right: 0;
-  vertical-align: unset;
+  top: 16px;
+  margin: -1px auto 0;
+  vertical-align: top;
+  transform: translateY(-50%);
 }
+
+  .btn.btn--icon-sq svg,
+  .btn.btn--icon-circle-48 svg {
+    top: 24px;
+  }
 
 .btn.btn--full {
   display: block;
