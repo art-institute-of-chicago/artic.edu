@@ -15,6 +15,7 @@ class DropTicketedEventIdFieldFromEvents extends Migration
     {
 
         Schema::table('events', function (Blueprint $table) {
+            $table->dropForeign('events_ticketed_event_id_foreign');
             $table->dropColumn('ticketed_event_id');
         });
 
