@@ -31,4 +31,5 @@ yarn-error.log
 /public/assets/admin
 /public/assets/vendor
 /public/mix-manifest.json
+/public/sitemap.xml
 studio.json

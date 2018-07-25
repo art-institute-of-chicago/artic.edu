@@ -35,7 +35,8 @@
         "rlanvin/php-rrule": "1.*",
         "sentry/sentry-laravel": "^0.8.0",
         "spatie/calendar-links": "^1.0",
-        "spatie/laravel-feed": "^2.1"
+        "spatie/laravel-feed": "^2.1",
+        "spatie/laravel-sitemap": "^5.2"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
