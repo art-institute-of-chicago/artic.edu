@@ -135,6 +135,7 @@
                 @slot('tag', 'a')
                 @slot('href', $media['downloadUrl'])
                 @slot('download', true)
+                @slot('ariaLabel','Download image')
             @endcomponent
         @endif
         @if ($type !== 'embed' and $fullscreen)
@@ -142,6 +143,7 @@
                 @slot('variation', 'm-media__btn-fullscreen btn--septenary btn--icon btn--icon-circle-48')
                 @slot('font', '')
                 @slot('icon', 'icon--zoom--24')
+                @slot('ariaLabel', 'Open image full screen')
             @endcomponent
         @endif
 
@@ -185,6 +187,7 @@
                         @slot('font', '')
                         @slot('icon', 'icon--share--24')
                         @slot('behavior','sharePage')
+                        @slot('ariaLabel','Share page')
                     @endcomponent
                 @endif
             @endif

@@ -14,6 +14,7 @@
             @slot('font', '')
             @slot('icon', 'icon--calendar')
             @slot('dataAttributes', 'data-selectDate-open')
+            @slot('ariaLabel','Select date or date range')
         @endcomponent
     </span>
     @if (isset($error))

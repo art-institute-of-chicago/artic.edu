@@ -60,6 +60,7 @@ const sharePage = function(container) {
       setTimeout(function(){ setFocusOnTarget(container.parentNode); }, 0)
       _updateIcon('default');
       container.classList.remove('s-active');
+      container.setAttribute('aria-label','Share page');
       shareOpen = false;
     }
   }
@@ -88,6 +89,7 @@ const sharePage = function(container) {
           url: container.getAttribute('data-share-url'),
           title: container.getAttribute('data-share-title'),
         });
+        container.setAttribute('aria-label','Close share page menu');
       });
     } else {
       _closeShareMenu();

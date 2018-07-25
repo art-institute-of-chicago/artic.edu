@@ -3,7 +3,7 @@
             @component('components.atoms._btn')
                 @slot('variation', 'btn--full')
                 @slot('tag', 'a')
-                @slot('href', $ticketLink ?? null)
+                @slot('href', $ticketLink ?? 'https://sales.artic.edu/')
                 @slot('gtmAttributes', 'data-gtm-event="event-buy-tickets" data-gtm-event-category="nav-cta-button"')
                 {{ $buttonText ?? 'Buy tickets' }}
             @endcomponent

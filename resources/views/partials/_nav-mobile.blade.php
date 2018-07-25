@@ -23,7 +23,7 @@
         <form action="/search" role="search">
           <input type="search" id="mobile_search" name="q" placeholder="Search" autocomplete="off" aria-label="Search the site" />
           <button type="submit" aria-label="Search">
-            <svg aria-label="Search" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
+            <svg aria-hidden="true" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
           </button>
         </form>
       </div>

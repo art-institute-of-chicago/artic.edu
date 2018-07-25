@@ -4,7 +4,7 @@
             <form action="/search" class="g-search__form" role="search">
                 <input type="search" id="q" name="q" class="g-search__input" placeholder="Search" autocomplete="off" aria-label="Search the site" />
                 <button type="submit" class="g-search__submit" aria-label="Search">
-                    <svg aria-label="Search" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
+                    <svg aria-hidden="true" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
                 </button>
                 <span class="g-search__loader"></span>
             </form>
@@ -18,7 +18,7 @@
                     @endif
                 </ul>
             </div>
-            <button class="g-search__close" data-behavior="globalSearchClose">
+            <button class="g-search__close" data-behavior="globalSearchClose" aria-label="Close search">
                 <svg aria-hidden="true" class="icon--close--24"><use xlink:href="#icon--close--24" /></svg>
             </button>
         </div>

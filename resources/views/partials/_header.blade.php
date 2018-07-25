@@ -32,7 +32,7 @@
           <li class="u-show@small+{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'collection') ? ' s-current' : '' }}">
             <a href="{{ $_pages['collection'] }}" data-gtm-event-category="top-nav" data-gtm-event="collection">The Collection</a>
           </li>
-          <li class="u-show@small+"><button data-behavior="globalSearchOpen"><svg class="icon--search--24" aria-label="Search site"><use xlink:href="#icon--search--24" /></svg></button></li>
+          <li class="u-show@small+"><button data-behavior="globalSearchOpen" aria-label="Search site" aria-hidden="true"><svg class="icon--search--24" ><use xlink:href="#icon--search--24" /></svg></button></li>
         </ul>
       </nav>
       <nav class="g-header__nav-secondary">
@@ -43,6 +43,6 @@
         </ul>
       </nav>
       <p class="g-header__opening-hours f-secondary"><a href="{{ $_pages['visit'] }}">{!! $_hours['general'] !!}</a></p>
-      <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile">Menu<svg class="icon--menu--24"><use xlink:href="#icon--menu--24" /></svg></button>
+      <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile" aria-label="Show menu">Menu<svg class="icon--menu--24" aria-hidden="true"><use xlink:href="#icon--menu--24" /></svg></button>
   </div>
 </header>
