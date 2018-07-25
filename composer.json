@@ -20,10 +20,9 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "area17/twill": "dev-twill-inside",
         "aacotroneo/laravel-saml2": "dev-remove_mcrypt",
-        "onelogin/php-saml": "3.0.0.x-dev@dev",
         "aic/data-hub-foundation": "dev-master",
+        "area17/twill": "dev-twill-inside",
         "darkaonline/l5-swagger": "5.6.*",
         "eluceo/ical": "0.14.*",
         "fideloper/proxy": "~4.0",
@@ -32,9 +31,11 @@
         "kalnoy/nestedset": "^4.3",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
+        "onelogin/php-saml": "3.0.0.x-dev@dev",
         "rlanvin/php-rrule": "1.*",
         "sentry/sentry-laravel": "^0.8.0",
-        "spatie/calendar-links": "^1.0"
+        "spatie/calendar-links": "^1.0",
+        "spatie/laravel-feed": "^2.1"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

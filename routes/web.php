@@ -113,6 +113,8 @@ Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@in
 Route::name('forms.contact.store')->post('/forms/contact', 'Forms\ContactsController@store');
 Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\ContactsController@thanks');
 
+// Feed routes
+Route::feeds();
 
 // Generic Page
 Route::get('{any}', ['as' => 'genericPages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');
