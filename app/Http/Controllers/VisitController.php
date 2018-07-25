@@ -22,7 +22,7 @@ class VisitController extends FrontController
 
         $page = Page::forType('Visit')->first();
 
-        $video_url = $page->file('video');
+        $video_url = $page->file('video', 'en');
         if ($video_url) {
             $headerImage = $page->imageFront('visit_hero');
 
@@ -74,6 +74,7 @@ class VisitController extends FrontController
 
                 if ($fee) {
                     $prices[$age->id]['title'] = $age->title;
+                    $prices[$age->id]['title_en'] = $age->translate('en')->title;
                     $prices[$age->id][$category->id] = $fee->price;
                 }
             }
