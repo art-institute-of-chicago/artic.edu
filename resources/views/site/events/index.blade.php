@@ -3,7 +3,7 @@
 @section('content')
 
 @component('components.molecules._m-header-block')
-    {{ $page->title }}
+    {!! $page->title_display ?? $page->title !!}
 @endcomponent
 
 @component('components.molecules._m-intro-block')
