@@ -39,9 +39,14 @@
 .m-download-file__meta {
   flex: 1;
   margin-bottom: 80px;
+  padding-right: 20px;
   overflow-wrap: break-word;
   hyphens: auto;
   word-break: break-all;
+
+  &:first-child {
+    margin-left: 20px;
+  }
 }
 
 .m-download-file__meta.f-secondary {
