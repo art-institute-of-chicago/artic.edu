@@ -136,11 +136,11 @@ class SearchController extends BaseScopedController
                     break;
                 case 'DigitalCatalog':
                     $item->url = route('collection.publications.digital-catalogs.show', $item);
-                    $item->section = 'Digital Catalogs';
+                    $item->section = 'Digital Catalogues';
                     break;
                 case 'PrintedCatalog':
                     $item->url = route('collection.publications.printed-catalogs.show', $item);
-                    $item->section = 'Printed Catalogs';
+                    $item->section = 'Print Catalogues';
                     break;
             }
 
@@ -251,10 +251,10 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('events'), $active == 'events'));
         }
         if (extractAggregation($aggregations, 'digital-catalogs')) {
-            array_push($links, $this->buildLabel('Digital Catalogs', extractAggregation($aggregations, 'digital-catalogs'), route('collection.publications.digital-catalogs'), $active == 'digital-catalogs'));
+            array_push($links, $this->buildLabel('Digital Catalogues', extractAggregation($aggregations, 'digital-catalogs'), route('collection.publications.digital-catalogs'), $active == 'digital-catalogs'));
         }
         if (extractAggregation($aggregations, 'printed-catalogs')) {
-            array_push($links, $this->buildLabel('Printed Catalogs', extractAggregation($aggregations, 'printed-catalogs'), route('collection.publications.printed-catalogs'), $active == 'printed-catalogs'));
+            array_push($links, $this->buildLabel('Print Catalogues', extractAggregation($aggregations, 'printed-catalogs'), route('collection.publications.printed-catalogs'), $active == 'printed-catalogs'));
         }
         if (extractAggregation($aggregations, 'generic-pages')) {
             array_push($links, $this->buildLabel('Pages', extractAggregation($aggregations, 'generic-pages'), null, $active == 'generic-pages'));

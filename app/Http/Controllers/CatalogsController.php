@@ -15,7 +15,7 @@ class CatalogsController extends BaseScopedController
     {
         $subNav = [
             [
-                'label'  => 'Printed Catalogues',
+                'label'  => 'Print Catalogues',
                 'href'   => route('collection.publications.printed-catalogs'),
                 'active' => request()->route()->getName() == 'collection.publications.printed-catalogs'
             ],

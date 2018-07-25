@@ -21,12 +21,12 @@
         'max' => 4,
         'moduleName' => 'printedCatalogs',
         'name' => 'printedCatalogs',
-        'label' => 'Printed Catalogues'
+        'label' => 'Print Catalogues'
     ])
 
     @formField('input', [
         'type' => 'textarea',
         'name' => 'printed_catalogs_intro',
-        'label' => 'Printed Catalogs intro text',
+        'label' => 'Print Catalogues intro text',
     ])
 @stop
