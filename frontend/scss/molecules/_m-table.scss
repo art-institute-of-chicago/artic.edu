@@ -109,4 +109,5 @@ Intended for very simple m-tables..
 .m-table .f-tag {
   @include tucked-align-top($f-tag);
   display: inline-block;
+  color: $color__text--title;
 }
