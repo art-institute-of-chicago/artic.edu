@@ -19,6 +19,12 @@
     ])
 
     @formField('input', [
+        'name' => 'title_display',
+        'label' => 'Title (HTML)',
+        'note' => 'Use only for italics'
+    ])
+
+    @formField('input', [
         'name' => 'short_copy',
         'label' => 'Short intro copy',
         'type' => 'textarea',

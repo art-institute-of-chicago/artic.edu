@@ -7,6 +7,12 @@
 ])
 
 @section('contentFields')
+    @formField('input', [
+        'name' => 'title_display',
+        'label' => 'Title (HTML)',
+        'note' => 'Use only for italics'
+    ])
+
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Display date',

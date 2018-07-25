@@ -1,6 +1,12 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
+    @formField('input', [
+        'name' => 'title_display',
+        'label' => 'Title (HTML)',
+        'note' => 'Use only for italics'
+    ])
+
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Banner image',
