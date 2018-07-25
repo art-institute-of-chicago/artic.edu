@@ -307,14 +307,27 @@ class ArtworkPresenter extends BasePresenter
                     'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="'.getUtf8Slug($value).'"',
                     'blocks' => []
                 );
-                foreach(explode("\n", $this->entity->$key) as $txt) {
-                    if (!empty($txt)) {
-                        $block['blocks'][] = array(
-                            "type" => 'text',
-                            "content" => '<p>'.$txt.'</p>'
-                        );
+                $explodedKeys = explode("\n", $this->entity->$key);
+                $blockHtml = '';
+                if (count($explodedKeys) < 2) {
+                    foreach($explodedKeys as $txt) {
+                        if (!empty($txt)) {
+                            $blockHtml .= '<p>'.$txt.'</p>';
+                        }
                     }
+                } else {
+                    $blockHtml .= '<ul>';
+                    foreach($explodedKeys as $txt) {
+                        if (!empty($txt)) {
+                            $blockHtml .= '<li>'.$txt.'</li>';
+                        }
+                    }
+                    $blockHtml .= '</ul>';
                 }
+                $block['blocks'][] = array(
+                    "type" => 'text',
+                    "content" => $blockHtml
+                );
                 $blocks[] = $block;
             }
         }
