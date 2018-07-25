@@ -14,7 +14,7 @@ const ajaxableLink = function(link, event) {
   }
 
   // check if the href is ajaxable
-  if (!ajaxableHref(href)) {
+  if (!ajaxableHref(href, event)) {
     return false;
   }
   // don't fire if its got a no ajax attribute or a download attribute
