@@ -17,7 +17,7 @@
 .m-row-block {
   display: flex;
   position: relative;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
 }
 
 .m-row-block__title {

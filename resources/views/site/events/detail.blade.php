@@ -178,7 +178,7 @@
 
         @foreach ($item->sponsors as $sponsor)
             @component('components.molecules._m-row-block')
-                @slot('title', $sponsor->title ?? null)
+                {{-- @slot('title', $sponsor->title ?? null) --}}
                 @slot('img', $sponsor->imageFront('profile', 'default') ?? null)
                 @slot('text', $sponsor->copy ?? null)
                 @slot('variation', 'm-row-block--squared')
