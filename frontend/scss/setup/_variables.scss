@@ -113,9 +113,9 @@ $pinboard-grid-padding-tops: (
 
 @keyframes rotate45deg {
   0% {
-    transform: rotate(-45deg);
+    transform: translateY(-50%) rotate(-45deg);
   }
   100% {
-    transform: rotate(0deg);
+    transform: translateY(-50%) rotate(0deg);
   }
 }
