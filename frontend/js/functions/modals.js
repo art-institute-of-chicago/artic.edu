@@ -64,7 +64,7 @@ const modals = function() {
         });
         window.requestAnimationFrame(function(){
           document.documentElement.classList.add(modalActiveClass);
-          setFocusOnTarget($modal);
+          setTimeout(function(){ setFocusOnTarget($modal); }, 0)
           triggerCustomEvent(document, 'focus:trap', {
             element: $modal
           });
@@ -81,7 +81,7 @@ const modals = function() {
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     document.documentElement.classList.remove(modalActiveClass);
-    setFocusOnTarget(document.getElementById('a17'));
+    setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
     setTimeout(function(){
       $modal.className = 'g-modal';
       $modal.querySelector('[data-modal-content]').innerHTML = '';
@@ -95,7 +95,7 @@ const modals = function() {
       triggerCustomEvent(document, 'body:lock', {
         breakpoints: 'all'
       });
-      setFocusOnTarget($modalPromo);
+      setTimeout(function(){ setFocusOnTarget($modalPromo); }, 0)
       triggerCustomEvent(document, 'focus:trap', {
         element: $modalPromo
       });

@@ -17,7 +17,7 @@ const navMobile = function(container) {
     });
     window.requestAnimationFrame(function(){
       document.documentElement.classList.add(klass);
-      setFocusOnTarget(container);
+      setTimeout(function(){ setFocusOnTarget(container); }, 0)
       triggerCustomEvent(document, 'focus:trap', {
         element: container
       });
@@ -29,7 +29,7 @@ const navMobile = function(container) {
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     document.documentElement.classList.remove(klass);
-    setFocusOnTarget(document.getElementById('a17'));
+    setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
     active = false;
   }
 

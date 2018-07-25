@@ -57,7 +57,7 @@ const sharePage = function(container) {
       triggerCustomEvent(document, 'body:unlock');
       shareMenu.removeAttribute('style');
       triggerCustomEvent(document, 'focus:untrap');
-      setFocusOnTarget(container.parentNode);
+      setTimeout(function(){ setFocusOnTarget(container.parentNode); }, 0)
       _updateIcon('default');
       container.classList.remove('s-active');
       shareOpen = false;
@@ -80,7 +80,7 @@ const sharePage = function(container) {
         _updateIcon('active');
         document.documentElement.classList.add('s-shareMenu-active');
         _position();
-        setFocusOnTarget(shareMenu);
+        setTimeout(function(){ setFocusOnTarget(shareMenu); }, 0)
         triggerCustomEvent(document, 'focus:trap', {
           element: shareMenu
         });

@@ -116,7 +116,7 @@ const globalSearch = function(container) {
     });
     window.requestAnimationFrame(function(){
       document.documentElement.classList.add(stateKlass);
-      setFocusOnTarget(container);
+      setTimeout(function(){ setFocusOnTarget(container); }, 0)
       triggerCustomEvent(document, 'focus:trap', {
         element: container
       });
@@ -135,7 +135,7 @@ const globalSearch = function(container) {
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     document.documentElement.classList.remove(stateKlass);
-    setFocusOnTarget(document.getElementById('a17'));
+    setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
     textInput.value = '';
   }
 

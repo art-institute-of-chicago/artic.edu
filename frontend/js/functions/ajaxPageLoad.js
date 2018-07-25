@@ -103,7 +103,7 @@ const ajaxPageLoad = function() {
         triggerCustomEvent(document, 'page:updated');
         //
         if (focusTarget) {
-          setFocusOnTarget(focusTarget);
+          setTimeout(function(){ setFocusOnTarget(focusTarget); }, 0)
         }
         //
         _ajaxPageLoadComplete();
@@ -141,7 +141,7 @@ const ajaxPageLoad = function() {
       duration: 500,
       easing: 'easeInOut',
       onComplete: function() {
-        setFocusOnTarget(tabTarget);
+        setTimeout(function(){ setFocusOnTarget(tabTarget); }, 0)
       }
     });
     document.documentElement.classList.remove('s-page-nav');

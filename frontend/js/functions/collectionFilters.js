@@ -23,7 +23,7 @@ const collectionFilters = function(container) {
         document.documentElement.classList.add('s-collection-filters-active');
         let container = document.getElementById('collectionFilters');
         if (container) {
-          setFocusOnTarget(container);
+          setTimeout(function(){ setFocusOnTarget(container); }, 0)
           triggerCustomEvent(document, 'focus:trap', {
             element: container
           });
@@ -43,7 +43,7 @@ const collectionFilters = function(container) {
     //if (locked) {
       triggerCustomEvent(document, 'body:unlock');
       triggerCustomEvent(document, 'focus:untrap');
-      setFocusOnTarget(document.getElementById('a17'));
+      setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
       locked = false;
     //}
     document.documentElement.classList.remove('s-collection-filters-active');

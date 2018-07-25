@@ -29,7 +29,7 @@ const displayNotification = function(options) {
 
   let $target = document.getElementById('content');
   $target.insertAdjacentHTML('afterbegin', thisNotificationHTML);
-  setFocusOnTarget($target.firstChild);
+  setTimeout(function(){ setFocusOnTarget($target.firstChild); }, 0)
   triggerCustomEvent(document, 'page:updated');
 };
 

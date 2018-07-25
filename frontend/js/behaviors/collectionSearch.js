@@ -14,7 +14,7 @@ const collectionSearch = function(container) {
     });
     window.requestAnimationFrame(function(){
       document.documentElement.classList.add('s-collection-search-active');
-      setFocusOnTarget(container);
+      setTimeout(function(){ setFocusOnTarget(container); }, 0)
       triggerCustomEvent(document, 'focus:trap', {
         element: container
       });
@@ -30,7 +30,7 @@ const collectionSearch = function(container) {
     document.documentElement.classList.remove('s-collection-search-active');
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
-    setFocusOnTarget(document.getElementById('a17'));
+    setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
     triggerCustomEvent(document, 'collectionSearch:hidden');
     active = false;
   }

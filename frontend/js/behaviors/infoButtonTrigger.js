@@ -35,7 +35,7 @@ const infoButtonTrigger = function(container) {
       document.documentElement.classList.remove('s-infoButtonInfo-active');
       infoButtonInfo.removeAttribute('style');
       triggerCustomEvent(document, 'focus:untrap');
-      setFocusOnTarget(container.parentNode);
+      setTimeout(function(){ setFocusOnTarget(container.parentNode); }, 0)
       infoButtonInfo.querySelector('span').textContent = '';
       infoOpen = false;
     }
@@ -49,7 +49,7 @@ const infoButtonTrigger = function(container) {
       infoButtonInfo.querySelector('span').textContent = container.querySelector('span').textContent;
       document.documentElement.classList.add('s-infoButtonInfo-active');
       _position();
-      setFocusOnTarget(infoButtonInfo);
+      setTimeout(function(){ setFocusOnTarget(infoButtonInfo); }, 0)
       triggerCustomEvent(document, 'focus:trap', {
         element: infoButtonInfo
       });

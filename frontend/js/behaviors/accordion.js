@@ -87,7 +87,7 @@ const accordion = function(container) {
           target.style.overflow = 'hidden';
           trigger.setAttribute('aria-expanded', 'true');
           target.setAttribute('aria-hidden', 'false');
-          setFocusOnTarget(target);
+          setTimeout(function(){ setTimeout(function(){ setFocusOnTarget(target); }, 0) }, 0)
           _getHeightAndSet(target);
           // if the form has some google tag manager props, tell GTM
           let googleTagManagerObject = googleTagManagerDataFromLink(trigger);

@@ -32,7 +32,7 @@ const imageZoomArea = function(container) {
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     document.documentElement.classList.remove('s-fullscreenImage-active');
-    setFocusOnTarget(document.getElementById('a17'));
+    setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
     container.classList.remove('s-zoomable');
     $img.removeAttribute('width');
     $img.removeAttribute('height');
@@ -152,7 +152,7 @@ const imageZoomArea = function(container) {
 
     window.requestAnimationFrame(function(){
       document.documentElement.classList.add('s-fullscreenImage-active');
-      setFocusOnTarget(container);
+      setTimeout(function(){ setFocusOnTarget(container); }, 0)
       triggerCustomEvent(document, 'focus:trap', {
         element: container
       });
