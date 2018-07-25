@@ -42,6 +42,10 @@
   &[data-behavior*=triggerMediaInline] {
     cursor: pointer;
   }
+
+  &:focus[data-focus-method="key"] {
+    outline: 3px solid rgba(131, 192, 253, .5);
+  }
 }
 
 .m-media__img img,

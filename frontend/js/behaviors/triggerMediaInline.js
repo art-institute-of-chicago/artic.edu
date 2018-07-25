@@ -11,10 +11,17 @@ const triggerMediaInline = function(container) {
     event.preventDefault();
     event.stopPropagation();
     container.removeEventListener('click', _handleClicks);
+    container.removeEventListener('keyup', _handleKeyUp);
     src = queryStringHandler.updateParameter(src, 'autoplay', '1');
     src = queryStringHandler.updateParameter(src, 'auto_play', '1');
     iframe.src = src;
     container.classList.add('s-inline-media-activated');
+  }
+
+  function _handleKeyUp(event) {
+    if (event.keyCode == 13) {
+      _handleClicks(event);
+    }
   }
 
   function _init() {
@@ -61,6 +68,7 @@ const triggerMediaInline = function(container) {
 
     if (embedSrcType !== 'data-src') {
       container.addEventListener('click', _handleClicks, false);
+      container.addEventListener('keyup', _handleKeyUp, false);
     } else {
       container.classList.add('s-inline-media-activated');
     }
@@ -69,6 +77,7 @@ const triggerMediaInline = function(container) {
   this.destroy = function() {
     // remove specific event handlers
     container.removeEventListener('click', _handleClicks);
+    container.removeEventListener('keyup', _handleKeyUp);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
