@@ -3,24 +3,28 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class Family extends Model
 {
-    use HasMedias, HasMediasEloquent;
+    use HasMedias, HasMediasEloquent, HasTranslation;
 
     protected $fillable = [
         'published',
         'position',
-        'title',
-        'text',
-        'link_label',
         'external_link',
         'associated_generic_page_link',
         'page_id',
     ];
-    // those fields get auto set to false if not submited
+
+    public $translatedAttributes = [
+        'title',
+        'text',
+        'link_label',
+    ];
+
     public $checkboxes = ['published'];
 
     public function page()

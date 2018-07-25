@@ -2,14 +2,11 @@
 
 namespace App\Models\Api;
 
-use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Api\Search;
 
 class Gallery extends BaseApiModel
 {
-    use HasPresenter;
-
     protected $endpoints = [
         'collection' => '/api/v1/galleries',
         'resource' => '/api/v1/galleries/{id}',

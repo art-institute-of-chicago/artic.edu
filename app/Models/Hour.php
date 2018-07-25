@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasPresenter;
 use A17\Twill\Models\Model;
 use Carbon\Carbon;
 
 class Hour extends Model
 {
-    use HasPresenter, Transformable;
+    use Transformable;
 
     protected $presenter = 'App\Presenters\HoursPresenter';
     protected $presenterAdmin = 'App\Presenters\HoursPresenter';

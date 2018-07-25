@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasPresenter;
 use A17\Twill\Models\Model;
 
 class Closure extends Model
 {
-    use HasPresenter, Transformable;
+    use Transformable;
 
     protected $presenter = 'App\Presenters\ClosurePresenter';
     protected $presenterAdmin = 'App\Presenters\ClosurePresenter';

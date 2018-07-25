@@ -18,7 +18,6 @@
     ])
 @stop
 
-
 @section('fieldsets')
     <a17-fieldset title="Hours" id="hours">
         @formField('medias', [
@@ -31,7 +30,8 @@
             'name' => 'visit_hour_header',
             'field_name' => 'visit_hour_header',
             'label' => 'Header',
-            'required' => true
+            'required' => true,
+            'translated' => true,
         ])
         @formField('input', [
             'type' => 'text',
@@ -39,7 +39,8 @@
             'name' => 'visit_hour_subheader',
             'field_name' => 'visit_hour_subheader',
             'label' => 'Description',
-            'required' => true
+            'required' => true,
+            'translated' => true,
         ])
         @formField('repeater', ['type' => 'featured_hours'])
     </a17-fieldset>
@@ -48,12 +49,14 @@
         @formField('wysiwyg', [
             'name' => 'visit_admission_description',
             'field_name' => 'visit_admission_description',
-            'label' => 'Admission table description'
+            'label' => 'Admission table description',
+            'translated' => true,
         ])
         @formField('input', [
             'name' => 'visit_buy_tickets_label',
             'field_name' => 'visit_buy_tickets_label',
-            'label' => 'Buy tickets label'
+            'label' => 'Buy tickets label',
+            'translated' => true
         ])
         @formField('input', [
             'name' => 'visit_buy_tickets_link',
@@ -63,7 +66,8 @@
         @formField('input', [
             'name' => 'visit_become_member_label',
             'field_name' => 'visit_become_member_label',
-            'label' => 'Become a member label'
+            'label' => 'Become a member label',
+            'translated' => true
         ])
         @formField('input', [
             'name' => 'visit_become_member_link',
@@ -82,20 +86,23 @@
             'name' => 'visit_city_pass_title',
             'field_name' => 'visit_city_pass_title',
             'label' => 'Title',
-            'required' => true
+            'required' => true,
+            'translated' => true
         ])
         @formField('input', [
             'name' => 'visit_city_pass_text',
             'field_name' => 'visit_city_pass_text',
             'label' => 'Text',
             'rows' => 3,
-            'type' => 'textarea'
+            'type' => 'textarea',
+            'translated' => true
         ])
         @formField('input', [
             'name' => 'visit_city_pass_button_label',
             'field_name' => 'visit_city_pass_button_label',
             'label' => 'Button label',
-            'required' => true
+            'required' => true,
+            'translated' => true
         ])
         @formField('input', [
             'name' => 'visit_city_pass_link',

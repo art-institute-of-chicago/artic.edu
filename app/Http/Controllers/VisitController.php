@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Page;
 use App\Models\Fee;
-use App\Models\FeeCategory;
 use App\Models\FeeAge;
-
+use App\Models\FeeCategory;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class VisitController extends FrontController
@@ -14,20 +13,24 @@ class VisitController extends FrontController
 
     public function index()
     {
+        app()->setLocale(request('lang') ?? 'en');
+
+        config(['translatable.use_fallback' => true]);
+
         $this->seo->setTitle("Visit a Chicago Landmark");
         $this->seo->setDescription("Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!");
 
         $page = Page::forType('Visit')->first();
 
         $video_url = $page->file('video');
-        if ($video_url)  {
+        if ($video_url) {
             $headerImage = $page->imageFront('visit_hero');
 
             $poster_url = isset($headerImage['src']) ? $headerImage['src'] : '';
             $video = [
                 'src' => $video_url,
                 'poster' => $poster_url,
-                'fallbackImage' => $headerImage
+                'fallbackImage' => $headerImage,
             ];
 
             $headerMedia = array(
@@ -59,7 +62,7 @@ class VisitController extends FrontController
 
         // Get prices grid for admissions
         // This should be moved away from the controller.
-        $fees   = Fee::all();
+        $fees = Fee::all();
         $prices = [];
         $titles = [];
         foreach (FeeCategory::ordered()->get() as $category) {
@@ -91,44 +94,44 @@ class VisitController extends FrontController
             'prices' => $prices,
             'become_member' => array(
                 'label' => $page->visit_become_member_label,
-                'link' => $page->visit_become_member_link
+                'link' => $page->visit_become_member_link,
             ),
             'buy_tickets' => array(
                 'label' => $page->visit_buy_tickets_label,
-                'link' => $page->visit_buy_tickets_link
-            )
+                'link' => $page->visit_buy_tickets_link,
+            ),
         );
         $dining = array();
         foreach ($page->dining_hours as $hour) {
-          array_push($dining, array(
-            'image' => $hour->imageFront('dining_cover'),
-            'title' => $hour->name,
-            'text' => $hour->hours
-          ));
+            array_push($dining, array(
+                'image' => $hour->imageFront('dining_cover'),
+                'title' => $hour->name,
+                'text' => $hour->hours,
+            ));
         };
 
         $directions = array(
-            'intro' => 'Located in the heart of the Chicago—across from Millennium Park and steps from Lake Michigan—the Art Institute welcomes visitors at two entrances.',
+            'intro' => __('Located in the heart of the Chicago—across from Millennium Park and steps from Lake Michigan—the Art Institute welcomes visitors at two entrances.'),
             'image' => $page->imageFront('visit_map'),
             'locations' => $page->locations,
             'links' => array(
                 array(
-                  'href' => $page->visit_parking_link,
-                  'label' => 'Directions & Parking',
+                    'href' => $page->visit_parking_link,
+                    'label' => __('Directions & Parking'),
                 ),
                 array(
-                  'href' => $page->visit_transportation_link,
-                  'label' => 'Public Transportation',
+                    'href' => $page->visit_transportation_link,
+                    'label' => __('Public Transportation'),
                 ),
             ),
         );
 
         $questions = array();
         foreach ($page->faqs as $faq) {
-          array_push($questions, array(
-            'label' => $faq->title,
-            'href' => $faq->link
-          ));
+            array_push($questions, array(
+                'label' => $faq->title,
+                'href' => $faq->link,
+            ));
         };
 
         $faq = array(
@@ -139,56 +142,56 @@ class VisitController extends FrontController
 
         $families = array();
         foreach ($page->families as $item) {
-          array_push($families, array(
-            'image' => $item->imageFront('family_cover'),
-            'title' => $item->title,
-            'text' => $item->text,
-            'titleLink' => $item->associated_generic_page_link ?? $item->external_link,
-            'links' => array(array(
-                'href' => $item->external_link,
-                'label' => $item->link_label,
-            ))
-          ));
+            array_push($families, array(
+                'image' => $item->imageFront('family_cover'),
+                'title' => $item->title,
+                'text' => $item->text,
+                'titleLink' => $item->associated_generic_page_link ?? $item->external_link,
+                'links' => array(array(
+                    'href' => $item->external_link,
+                    'label' => $item->link_label,
+                )),
+            ));
         };
 
         $tours = [];
-        foreach($page->visitTourPages as $item) {
+        foreach ($page->visitTourPages as $item) {
             $links = [];
-            foreach($item->children()->orderBy('position')->published()->get() as $child) {
+            foreach ($item->children()->orderBy('position')->published()->get() as $child) {
                 array_push($links, array(
                     'href' => $child->url,
                     'label' => $child->title,
-                  ));
+                ));
             }
             array_push($tours, array(
-                  'title' => $item->title,
-                  'titleLink' => $item->url,
-                  'image' => $item->imageFront('listing'),
-                  'links' => $links
-              ));
+                'title' => $item->title,
+                'titleLink' => $item->url,
+                'image' => $item->imageFront('listing'),
+                'links' => $links,
+            ));
         }
 
         $itemprops = [
-            'name'             => 'Art Institute of Chicago',
-            'telephone'        => '+13124433600',
-            'publicAccess'     => 'true',
+            'name' => 'Art Institute of Chicago',
+            'telephone' => '+13124433600',
+            'publicAccess' => 'true',
         ];
 
         return view('site.visit', [
-          'primaryNavCurrent' => 'visit',
-          'page' => $page,
-          'title' => $page->title,
-          'contrastHeader' => true,
-          'filledLogo' => true,
-          'headerMedia' => $headerMedia,
-          'hours' => $hours,
-          'admission' => $admission,
-          'dining' => $dining,
-          'directions' => $directions,
-          'faq' => $faq,
-          'families' => $families,
-          'tours' => $tours,
-          'itemprops' => $itemprops,
+            'primaryNavCurrent' => 'visit',
+            'page' => $page,
+            'title' => $page->title,
+            'contrastHeader' => true,
+            'filledLogo' => true,
+            'headerMedia' => $headerMedia,
+            'hours' => $hours,
+            'admission' => $admission,
+            'dining' => $dining,
+            'directions' => $directions,
+            'faq' => $faq,
+            'families' => $families,
+            'tours' => $tours,
+            'itemprops' => $itemprops,
         ]);
     }
 

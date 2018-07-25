@@ -8,25 +8,24 @@
 
 namespace App\Libraries\Api\Models;
 
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
-use Illuminate\Contracts\Routing\UrlRoutable;
-
-use ArrayAccess;
-use DateTime;
-use JsonSerializable;
-
+use A17\Twill\Models\Behaviors\HasPresenter;
 use App\Libraries\Api\Models\ApiCollection as BaseCollection;
 use App\Libraries\Api\Models\Behaviors\HasApiCalls;
 use App\Libraries\Api\Models\Behaviors\HasAugmentedModel;
 use App\Libraries\Api\Models\Behaviors\HasRelationships;
+use ArrayAccess;
+use DateTime;
+use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
+use JsonSerializable;
 
 abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, UrlRoutable
 {
-    use HasApiCalls, HasAugmentedModel, HasRelationships;
+    use HasApiCalls, HasAugmentedModel, HasRelationships, HasPresenter;
 
     protected $attributes = [];
 
@@ -114,8 +113,8 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     protected $endpoints = [
         'collection' => '',
-        'resource'   => '',
-        'search'     => ''
+        'resource' => '',
+        'search' => '',
     ];
 
     /**
@@ -124,7 +123,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      * @var int
      */
     protected $perPage = 15;
-
 
     /**
      * Create a new Eloquent model instance.
@@ -189,7 +187,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     protected function fillableFromArray(array $attributes)
     {
-        if (count($this->fillable) > 0 && ! static::$unguarded) {
+        if (count($this->fillable) > 0 && !static::$unguarded) {
             return array_intersect_key($attributes, array_flip($this->fillable));
         }
 
@@ -516,7 +514,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         // the mutator for the attribute. We cache off every mutated attributes so
         // we don't have to constantly check on attributes that actually change.
         foreach ($mutatedAttributes as $key) {
-            if (! array_key_exists($key, $attributes)) {
+            if (!array_key_exists($key, $attributes)) {
                 continue;
             }
 
@@ -529,7 +527,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         // the values to their appropriate type. If the attribute has a mutator we
         // will not perform the cast on those attributes to avoid any confusion.
         foreach ($this->casts as $key => $value) {
-            if (! array_key_exists($key, $attributes) ||
+            if (!array_key_exists($key, $attributes) ||
                 in_array($key, $mutatedAttributes)) {
                 continue;
             }
@@ -566,7 +564,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     protected function getArrayableAppends()
     {
-        if (! count($this->appends)) {
+        if (!count($this->appends)) {
             return [];
         }
 
@@ -654,7 +652,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function hasGetMutator($key)
     {
-        return method_exists($this, 'get'.Str::studly($key).'Attribute');
+        return method_exists($this, 'get' . Str::studly($key) . 'Attribute');
     }
 
     /**
@@ -666,7 +664,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     protected function mutateAttribute($key, $value)
     {
-        return $this->{'get'.Str::studly($key).'Attribute'}($value);
+        return $this->{'get' . Str::studly($key) . 'Attribute'}($value);
     }
 
     /**
@@ -703,7 +701,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     protected function isJsonCastable($key)
     {
         return $this->hasCast($key) &&
-               in_array($this->getCastType($key), ['array', 'json', 'object'], true);
+        in_array($this->getCastType($key), ['array', 'json', 'object'], true);
     }
 
     /**
@@ -770,12 +768,12 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         // which simply lets the developers tweak the attribute as it is set on
         // the model, such as "json_encoding" an listing of data for storage.
         if ($this->hasSetMutator($key)) {
-            $method = 'set'.Str::studly($key).'Attribute';
+            $method = 'set' . Str::studly($key) . 'Attribute';
 
             return $this->{$method}($value);
         }
 
-        if ($this->isJsonCastable($key) && ! is_null($value)) {
+        if ($this->isJsonCastable($key) && !is_null($value)) {
             $value = $this->asJson($value);
         }
 
@@ -792,7 +790,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function hasSetMutator($key)
     {
-        return method_exists($this, 'set'.Str::studly($key).'Attribute');
+        return method_exists($this, 'set' . Str::studly($key) . 'Attribute');
     }
 
     /**
@@ -860,7 +858,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
      */
     public function fromJson($value, $asObject = false)
     {
-        return json_decode($value, ! $asObject);
+        return json_decode($value, !$asObject);
     }
 
     /**
@@ -875,7 +873,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
 
         $attributes = Arr::except($this->attributes, $except);
 
-        return with($instance = new static)->fill($attributes);
+        return with($instance = new static )->fill($attributes);
     }
 
     /**
@@ -897,7 +895,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     {
         $class = get_class($this);
 
-        if (! isset(static::$mutatorCache[$class])) {
+        if (!isset(static::$mutatorCache[$class])) {
             static::cacheMutatedAttributes($class);
         }
 
@@ -1028,7 +1026,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         return $this->perPage;
     }
 
-
     /**
      * Set the number of models to return per page.
      *
@@ -1057,7 +1054,6 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         return;
     }
 
-
     /**
      * Implement Basic URLRoutable functions
      *
@@ -1068,11 +1064,13 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         return $this->getAttribute($this->getRouteKeyName());
     }
 
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return $this->getKeyName();
     }
 
-    public function resolveRouteBinding($value) {
+    public function resolveRouteBinding($value)
+    {
         return $this->entity;
     }
 
@@ -1090,7 +1088,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
     public function __isset($key)
     {
         return (isset($this->attributes[$key]) || isset($this->relations[$key])) ||
-                ($this->hasGetMutator($key) && ! is_null($this->getAttributeValue($key)));
+            ($this->hasGetMutator($key) && !is_null($this->getAttributeValue($key)));
     }
 
     /**

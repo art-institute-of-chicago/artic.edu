@@ -12,7 +12,7 @@ class Artwork extends BaseApiModel
 {
     const RELATED_MULTIMEDIA = 100;
 
-    use HasMediasApi, HasPresenter;
+    use HasMediasApi;
 
     protected $endpoints = [
         'collection' => '/api/v1/artworks',
