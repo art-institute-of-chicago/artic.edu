@@ -7,7 +7,7 @@
     'translated' => $translateTitle ?? false,
     'required' => true,
     'onChange' => 'formatPermalink',
-    'note' => 'Use <i></i> to italicize titles within the title'
+    'note' => 'Avoid HTML in this field'
 ])
 
 @if ($permalink ?? true)
@@ -17,6 +17,5 @@
         'translated' => true,
         'ref' => 'permalink',
         'prefix' => $permalinkPrefix ?? '',
-        'note' => 'If using <i></i>, manually cleanup `i` from permalink'
     ])
 @endif
