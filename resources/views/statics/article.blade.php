@@ -273,19 +273,22 @@
     @if ($article->futherSupport)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top o-blocks__block')
-            @slot('title', $article->futherSupport['title'] ?? null)
+            @slot('title', preg_replace('/<p>|<\/p>/i', '', $article->futherSupport['title'] ?? null))
         @endcomponent
         @component('components.molecules._m-row-block')
             @slot('img', $article->futherSupport['logo'] ?? null)
             @slot('text', $article->futherSupport['text'] ?? null)
+            @slot('variation', 'm-row-block--squared')
             @slot('imageSettings', array(
+                'fit' => 'crop',
+                'ratio' => '1:1',
                 'srcset' => array(200,400,600),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '13',
-                      'small' => '13',
-                      'medium' => '8',
-                      'large' => '8',
-                      'xlarge' => '8',
+                      'small' => '10',
+                      'medium' => '5',
+                      'large' => '5',
+                      'xlarge' => '5',
                 )),
             ))
         @endcomponent

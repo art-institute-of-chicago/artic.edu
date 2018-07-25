@@ -155,7 +155,7 @@
     @if ($item->sponsors() && $item->sponsors()->count() > 0)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top o-blocks__block')
-            @slot('title', ($item->sponsors_sub_copy != null && $item->sponsors_sub_copy != '') ? $item->sponsors_sub_copy : "Further support has been provided by:")
+            @slot('title', ($item->sponsors_sub_copy != null && $item->sponsors_sub_copy != '') ? preg_replace('/<p>|<\/p>/i', '', $item->sponsors_sub_copy) : "Further support has been provided by:")
         @endcomponent
 
         @foreach ($item->sponsors as $sponsor)
@@ -163,14 +163,17 @@
                 @slot('title', $sponsor->title ?? null)
                 @slot('img', $sponsor->imageFront('profile', 'default') ?? null)
                 @slot('text', $sponsor->copy ?? null)
+                @slot('variation', 'm-row-block--squared')
                 @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '1:1',
                     'srcset' => array(200,400,600),
                     'sizes' => aic_imageSizes(array(
                           'xsmall' => '13',
-                          'small' => '13',
-                          'medium' => '8',
-                          'large' => '8',
-                          'xlarge' => '8',
+                          'small' => '10',
+                          'medium' => '5',
+                          'large' => '5',
+                          'xlarge' => '5',
                     )),
                 ))
             @endcomponent
