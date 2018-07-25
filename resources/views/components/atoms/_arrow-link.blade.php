@@ -4,9 +4,9 @@
     @elseif (isset($variation) && strrpos($variation, "--down") > 0)
         {!! $slot !!}<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg>
     @elseif (isset($variation) && strrpos($variation, "--back") > 0)
-        &lsaquo;&nbsp;&nbsp;{!! $slot !!}
+        <span aria-hidden="true">&lsaquo;&nbsp;&nbsp;</span>{!! $slot !!}
     @else
-        {!! $slot !!}&nbsp;&nbsp;&rsaquo;
+        {!! $slot !!}<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>
     @endif
 </{{ $tag ?? 'a' }}>
 

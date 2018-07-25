@@ -28,8 +28,8 @@
 @component('components.molecules._m-intro-block')
     @slot('links', array(
         array('label' => 'Plan your visit', 'href' => '#', 'variation' => 'btn', 'font' => 'f-buttons'),
-        array('label' => 'Hours and admission fees&nbsp;&nbsp;&rsaquo;', 'href' => '#', 'variation' => 'arrow-link'),
-        array('label' => 'Directions and parking&nbsp;&nbsp;&rsaquo;', 'href' => '#', 'variation' => 'arrow-link')
+        array('label' => 'Hours and admission fees<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => '#', 'variation' => 'arrow-link'),
+        array('label' => 'Directions and parking<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => '#', 'variation' => 'arrow-link')
     ))
     {{ $intro }}
 @endcomponent

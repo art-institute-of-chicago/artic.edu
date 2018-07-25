@@ -26,8 +26,8 @@
 @component('components.molecules._m-intro-block')
     @slot('links', array(
         array('label' => 'Plan your visit', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="home-visit" data-gtm-event-category="nav-cta-button"'),
-        array('label' => 'Hours and admission fees&nbsp;&nbsp;&rsaquo;', 'href' => $_pages['hours'], 'variation' => 'arrow-link'),
-        array('label' => 'Directions and parking&nbsp;&nbsp;&rsaquo;', 'href' => $_pages['directions'], 'variation' => 'arrow-link')
+        array('label' => 'Hours and admission fees<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['hours'], 'variation' => 'arrow-link'),
+        array('label' => 'Directions and parking<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['directions'], 'variation' => 'arrow-link')
     ))
     {{ $intro }}
 @endcomponent

@@ -6,7 +6,7 @@
     <li>
         @if (isset($link['href']))
         <a href="{{ $link['href'] }}" class="f-link"{!! (isset($link['dataAttributes'])) ? ' '.$link['dataAttributes'] : '' !!}{!! (isset($link['gtmAttributes'])) ? ' '.$link['gtmAttributes'].'' : '' !!}>
-            {!! $link['label'] ?? '' !!}{!! (!isset($link['dataAttributes'])) ? '&nbsp;&nbsp;&rsaquo;' : '' !!}
+            {!! $link['label'] ?? '' !!}{!! (!isset($link['dataAttributes'])) ? '<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>' : '' !!}
         </a>
         @else
             <span class="f-secondary">{!! $link['label'] ?? '' !!}</span>
