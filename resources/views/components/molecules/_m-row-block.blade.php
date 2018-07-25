@@ -4,7 +4,7 @@
             @slot('font', $titleFont ?? 'f-module-title-1')
             @slot('variation', 'm-row-block__title')
             @slot('tag', 'h4')
-            {{ $title }}
+            {!! $title_display ?? $title !!}
         @endcomponent
     @endif
     @if (isset($img))
@@ -22,7 +22,7 @@
                     @slot('font', $titleFont ?? 'f-module-title-1')
                     @slot('variation', 'm-row-block__title')
                     @slot('tag', 'h4')
-                    {{ $title }}
+                    {!! $title_display ?? $title !!}
                 @endcomponent
             @endif
             @if (isset($text))
