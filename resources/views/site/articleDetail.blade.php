@@ -100,7 +100,8 @@
           @slot('tag','h1')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
-          {{ $item->title }}
+          @slot('title', $item->title)
+          @slot('title_display', $item->title_display)
       @endcomponent
     @endif
 
