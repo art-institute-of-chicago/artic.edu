@@ -22,7 +22,7 @@ class VisitController extends FrontController
 
         $page = Page::forType('Visit')->first();
 
-        $video_url = $page->file('video');
+        $video_url = $page->file('video', 'en');
         if ($video_url) {
             $headerImage = $page->imageFront('visit_hero');
 
