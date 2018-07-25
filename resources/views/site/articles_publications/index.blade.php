@@ -54,7 +54,8 @@
                 @endcomponent
                 @endif
 
-                <ul class="o-feature-plus-4__items-1">
+                <h3 class="sr-only" id="h-featured-plus-1">Featured articles</h3>
+                <ul class="o-feature-plus-4__items-1" aria-labelledby="h-featured-plus-1">
                 @foreach ($features as $editorial)
                     @if ($loop->index < 2)
                         @component('components.molecules._m-listing----article-minimal')
@@ -75,7 +76,8 @@
                     @endif
                 @endforeach
                 </ul>
-                <ul class="o-feature-plus-4__items-2">
+                <h3 class="sr-only" id="h-featured-plus-2">More featured articles</h3>
+                <ul class="o-feature-plus-4__items-2" aria-labelledby="h-featured-plus-2">
                 @foreach ($features as $editorial)
                     @if ($loop->index > 1)
                         @component('components.molecules._m-listing----article-minimal')

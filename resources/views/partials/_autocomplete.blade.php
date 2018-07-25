@@ -1,6 +1,7 @@
 @if ( !empty( $items ) )
     <div class="g-search__autocomplete" data-autocomplete-list>
-        <ul>
+        <h2 class="sr-only" id="h-autocomplete">Autocomplete options</h2>
+        <ul aria-labelledby="h-autocomplete">
             @foreach ($items as $item)
                 <li>
                     <a href="{{ $item->url }}">

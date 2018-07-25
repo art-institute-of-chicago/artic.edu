@@ -2,7 +2,8 @@
     <a class="o-fullscreen-image__info">Learn more</a>
     <img class="o-fullscreen-image__img">
     <div class="o-fullscreen-image__osd" id="openseadragon"></div>
-    <ul class="o-fullscreen-image__img-actions">
+    <h2 class="sr-only" id="h-img_action">Image actions</h2>
+    <ul class="o-fullscreen-image__img-actions" aria-labelledby="h-img_action">
       <li>
         @component('components.atoms._btn')
             @slot('variation', 'btn--septenary btn--icon-sq')

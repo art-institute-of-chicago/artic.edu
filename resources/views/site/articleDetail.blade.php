@@ -263,9 +263,10 @@
         @component('components.blocks._text')
             @slot('font', 'f-subheading-1')
             @slot('tag', 'h4')
+            @slot('id', 'h-topics')
             Topics
         @endcomponent
-        <ul class="m-inline-list">
+        <ul class="m-inline-list" aria-labelledby="h-topics">
         @foreach ($item->topics as $topic)
             <li class="m-inline-list__item">
                 @if (!empty($topic['href']))

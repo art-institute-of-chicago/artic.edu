@@ -20,8 +20,8 @@
         </a>
         @endif
         <div class="g-header__nav-primary">
-          <h2 id="nav-primary-header" class="sr-only">Primary Navigation</h2>
-          <ul class="f-main-nav">
+          <h2 class="sr-only" id="h-nav-primary-header">Primary Navigation</h2>
+          <ul class="f-main-nav" aria-labelledby="h-nav-primary-header">
             <li class='u-hide@small+'>
               <a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="tickets-button">Buy Tickets</a>
             </li>
@@ -39,7 +39,8 @@
         </div>
       </nav>
       <nav class="g-header__nav-secondary">
-        <ul class="f-secondary">
+        <h2 class="sr-only" id="h-nav-secondary-header">Secondary Navigation</h2>
+        <ul class="f-secondary" aria-labelledby="h-nav-primary-secondary">
           <li><a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="tickets-button">Buy Tickets</a></li>
           <li><a href="{{ $_pages['become-a-member'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="member-button">Become a Member</a></li>
           <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="top-nav" data-gtm-event="shop-button">Shop</a></li>

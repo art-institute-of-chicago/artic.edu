@@ -36,7 +36,8 @@
 {{-- 'components.molecules._m-quick-search-links----collection' --}}
 @if (empty(request()->input()))
     <div class="m-quick-search-links">
-        <ul class="m-quick-search-links__links" data-behavior="dragScroll">
+        <h3 class="sr-only" id="h-quick-search">Quick search options</h3>
+        <ul class="m-quick-search-links__links" aria-labelledby="h-quick-search" data-behavior="dragScroll">
         @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
             <li>
                 @component('components.atoms._tag')
@@ -129,8 +130,8 @@
         @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
     @endcomponent
     <div class="o-collection-search__scroll-area">
-        <p class="o-collection-search__title f-tag-2">Quick Search</p>
-        <ul class="o-collection-search__quick-search-links">
+        <h3 class="o-collection-search__title f-tag-2" id="h-quick-search-mobile">Quick Search</h3>
+        <ul class="o-collection-search__quick-search-links" aria-labelledby="h-quick-search-mobile">
             @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
                 <li>
                     <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag" data-gtm-event="quick-search-click" data-gtm-event-category="collection-search" data-gtm-term="{{ getUtf8Slug($category->title) }}">
@@ -183,7 +184,8 @@
             @slot('gtmAttributes', 'data-gtm-event="collection-feature" data-gtm-event-category="collection-nav"')
         @endcomponent
         @endif
-        <ul class="o-feature-plus-4__items-1">
+        <h3 class="sr-only" id="h-featured-plus-1">Featured articles</h3>
+        <ul class="o-feature-plus-4__items-1" aria-labelledby="h-featured-plus-1">
         @foreach ($featuredArticles as $item)
             @if ($loop->index < 2)
                 @component('components.molecules._m-listing----article-minimal')
@@ -205,7 +207,8 @@
             @endif
         @endforeach
         </ul>
-        <ul class="o-feature-plus-4__items-2">
+        <h3 class="sr-only" id="h-featured-plus-2">More featured articles</h3>
+        <ul class="o-feature-plus-4__items-2" aria-labelledby="h-featured-plus-2">
         @foreach ($featuredArticles as $item)
             @if ($loop->index > 1)
                 @component('components.molecules._m-listing----article-minimal')

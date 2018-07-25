@@ -9,8 +9,8 @@
                 <span class="g-search__loader"></span>
             </form>
             <div class="g-search__suggested">
-                <span class="g-search__suggested-title">Suggested Terms</span>
-                <ul>
+                <h2 class="g-search__suggested-title" id="h-suggested-terms">Suggested Terms</h2>
+                <ul aria-labelledby="h-suggested-terms">
                     @if (isset($searchTerms))
                         @foreach ($searchTerms as $item)
                             <li><a href="{!! route('search', ['q' => $item]) !!}">{{ $item }}</a></li>

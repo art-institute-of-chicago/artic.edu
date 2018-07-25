@@ -11,7 +11,8 @@
               </svg>
             </a>
             <nav class="g-header__nav-primary">
-              <ul class="f-secondary">
+              <h2 class="sr-only" id="h-nav-secondary">Secondary Navigation</h2>
+              <ul class="f-secondary" aria-labelledby="h-nav-secondary">
                 <li class='u-hide@small+'><a href="{{ $_pages['buy'] }}">Buy Tickets</a></li>
                 <li><a href="{{ $_pages['visit'] }}">Visit</a></li>
               </ul>
@@ -29,7 +30,8 @@
       </div>
 
       <nav class="g-nav-mobile__nav-wrapper">
-        <ul class="g-nav-mobile__nav">
+        <h2 class="sr-only" id="h-nav-mobile">Primary Navigation</h2>
+        <ul class="g-nav-mobile__nav" aria-labelledby="h-nav-mobile">
           {{-- Nav Level 0 --}}
           @foreach ($mobileNav as $level_0)
             <li class="{{ $level_0['class'] ?? '' }}">
@@ -47,10 +49,10 @@
                   <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back" data-nav-back>
                     <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
 
-                    {!! $level_0['name'] !!}
+                    <h3 id="h-nav-mobile-sub-{{ str_slug($level_0['name']) }}">{!! $level_0['name'] !!}</h3>
                   </a>
 
-                  <ul>
+                  <ul aria-labelledby="h-nav-mobile-sub-{{ str_slug($level_0['name']) }}">
                     @foreach ($level_0['children'] as $level_1)
                       <li class="{{ $level_1['class'] ?? '' }}">
                         <a href="{{ $level_1['slug'] ?? '#' }}" {{ array_key_exists('children', $level_1) ? 'data-nav-trigger' : '' }}>
@@ -67,14 +69,14 @@
                             <a href="#" class="g-nav-mobile__back arrow-link arrow-link--back" data-nav-back>
                               <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
 
-                              {!! $level_1['name'] !!}
+                              <h4 id="h-nav-mobile-sub-sub-{{ str_slug($level_1['name']) }}">{!! $level_1['name'] !!}</h4>
                             </a>
 
-                            <ul>
+                            <ul aria-labelledby="h-nav-mobile-sub-sub-{{ str_slug($level_1['name']) }}">
                               @foreach ($level_1['children'] as $level_2)
                                 <li class="{{ $level_2['class'] ?? '' }}">
                                   <a href="{{ $level_2['slug'] ?? '#' }}" {!! array_key_exists('children', $level_2) ? ' class="g-footer-nav__expander-trigger arrow-link arrow-link--down" data-nav-trigger' : '' !!}>
-                                    {!! $level_2['name'] !!}
+                                    <h5 id="h-nav-mobile-sub-sub-sub-{{ str_slug($level_2['name']) }}">{!! $level_2['name'] !!}</h5>
 
                                     @if (array_key_exists('children', $level_2))
                                       <svg aria-hidden="true" class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
@@ -84,7 +86,7 @@
                                   {{-- Nav level 3 --}}
                                   @if (array_key_exists('children', $level_2))
                                     <div class="g-nav-mobile__expander">
-                                      <ul>
+                                      <ul aria-labelledby="h-nav-mobile-sub-sub-sub-{{ str_slug($level_2['name']) }}">
                                         @foreach ($level_2['children'] as $level_3)
                                           <li><a href="{{ $level_3['slug'] ?? '#' }}">{!! $level_3['name'] !!}</a></li>
                                         @endforeach
@@ -107,7 +109,8 @@
         </ul>
 
         <div class="g-nav-mobile__nav-secondary">
-          <ul class="g-nav-mobile__legals">
+          <h4 class="sr-only" id="h-footer-nav-secondary">Secondary Navigation</h4>
+          <ul class="g-nav-mobile__legals" aria-labelledby="h-footer-nav-secondary">
             <li><a href="{{ $_pages['legal-press'] }}">Press</a></li>
             <li><a href="{{ $_pages['legal-employment'] }}">Careers</a></li>
             <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
@@ -117,7 +120,8 @@
             <li><a href="{{ $_pages['legal-terms'] }}">Terms</a></li>
           </ul>
 
-          <ul class="g-nav-mobile__social">
+          <h4 class="sr-only" id="h-footer-nav-social">Social links</h4>
+          <ul class="g-nav-mobile__social" aria-labelledby="h-footer-nav-social">
             <li><a href="{{ $_pages['follow-facebook'] }}">Facebook</a></li>
             <li><a href="{{ $_pages['follow-twitter'] }}">Twitter</a></li>
             <li><a href="{{ $_pages['follow-instagram'] }}">Instagram</a></li>
