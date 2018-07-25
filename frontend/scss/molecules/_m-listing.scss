@@ -249,7 +249,9 @@
 
 .m-listing__link:not(:only-child) .m-listing__meta,
 .m-listing__meta:first-child,
-.m-listing__link + .m-listing__meta {
+.m-listing__link + .m-listing__meta,
+.o-row-listing .m-listing__meta,
+.o-grid-listing.o-blocks__block .m-listing__meta {
   min-height: 0;
 }
 
