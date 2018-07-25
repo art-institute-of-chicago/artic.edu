@@ -236,7 +236,8 @@
           {!! $admission['text'] !!}
         </div>
         <div class="o-blocks">
-          <ul class="m-ticket-actions o-blocks__block">
+          <h3 id="ticket-actions" class="sr-only">Buy ticket options</h3>
+          <ul class="m-ticket-actions o-blocks__block" aria-labelledby="ticket-actions">
               <li class="m-ticket-actions__action">
                   @component('components.atoms._btn')
                       @slot('variation', 'btn--full')
@@ -326,7 +327,8 @@
         @endforeach
       </div>
       <div class="m-directions-block__links o-blocks">
-        <ul class="f-secondary">
+        <h3 id="map-options" class="sr-only">Map options</h3>
+        <ul class="f-secondary" aria-labelledby="map-options">
           @foreach ($directions['links'] as $link)
           <li>
             @component('components.atoms._arrow-link')
