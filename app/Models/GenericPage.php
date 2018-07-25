@@ -24,6 +24,7 @@ class GenericPage extends Model implements Sortable
         'short_description',
         'listing_description',
         'title',
+        'title_display',
         'published',
         'position',
         'publish_start_date',

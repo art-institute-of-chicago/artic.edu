@@ -34,6 +34,7 @@ class Exhibition extends Model
         'content',
         'header_copy',
         'title',
+        'title_display',
         'datahub_id',
         'is_visible',
         'exhibition_message',
