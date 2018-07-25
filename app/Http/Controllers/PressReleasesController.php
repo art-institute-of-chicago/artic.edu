@@ -140,11 +140,11 @@ class PressReleasesController extends BaseScopedController
         ];
 
         $nav = [
-            [ 'label' => 'About', 'href' => route('genericPages.show', 'about'), 'links' => $subNav ]
+            [ 'label' => 'Press', 'href' => route('genericPages.show', 'press'), 'links' => $subNav ]
         ];
 
         $crumbs = [
-            [ 'label' => 'About', 'href' => route('genericPages.show', 'about') ],
+            [ 'label' => 'Press', 'href' => route('genericPages.show', 'press') ],
             [ 'label' => $title,  'href' => '' ]
         ];
 
@@ -167,7 +167,7 @@ class PressReleasesController extends BaseScopedController
         $this->seo->setDescription($page->meta_description ?? $page->short_description);
 
         $crumbs = [
-            ['label' => 'About', 'href' => route('genericPages.show', 'about')],
+            ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
             ['label' => 'Press Releases', 'href' => route('about.press')],
             ['label' => $page->title, 'href' => '']
         ];

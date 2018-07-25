@@ -17,8 +17,8 @@ Route::name('collection.autocomplete')->get('/collection/autocomplete', 'Collect
 Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
 
 // Collection Publications Printed Catalogs
-Route::name('collection.publications.printed-catalogs')->get('/printed-catalogues', 'PrintedCatalogsController@index');
-Route::name('collection.publications.printed-catalogs.show')->get('/printed-catalogues/{id}', 'PrintedCatalogsController@show');
+Route::name('collection.publications.printed-catalogs')->get('/print-catalogues', 'PrintedCatalogsController@index');
+Route::name('collection.publications.printed-catalogs.show')->get('/print-catalogues/{id}', 'PrintedCatalogsController@show');
 // Collection Publications Digital Catalogs
 Route::name('collection.publications.digital-catalogs')->get('/digital-catalogues', 'DigitalCatalogsController@index');
 Route::name('collection.publications.digital-catalogs.show')->get('/digital-catalogues/{id}', 'DigitalCatalogsController@show');
