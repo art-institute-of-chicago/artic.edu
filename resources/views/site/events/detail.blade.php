@@ -42,7 +42,8 @@
     </div>
   @endif
 
-  <div class="o-article__secondary-actions{{ (empty($item->present()->ticketStatus)) ? ' o-article__secondary-actions--empty@small-' : '' }}">
+  <div class="o-article__secondary-actions{{ ($item->present()->ticketStatus == '') ? ' o-article__secondary-actions--empty@small-' : '' }}">
+
     @switch ($item->present()->ticketStatus)
         @case('buy-ticket')
             @component('components.molecules._m-ticket-actions----event')
