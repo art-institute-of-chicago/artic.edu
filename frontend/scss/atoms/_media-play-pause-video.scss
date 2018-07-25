@@ -17,14 +17,14 @@
   display: none;
 
   @include breakpoint('small+') {
-    display: inline-flex;
+    display: inline-block;
   }
 
   &.btn.btn--icon {
     display: none;
 
     @include breakpoint('small+') {
-      display: inline-flex;
+      display: inline-block;
     }
   }
 
