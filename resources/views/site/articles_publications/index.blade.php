@@ -158,8 +158,8 @@
 
         <section>
             @component('components.molecules._m-title-bar')
-                @slot('links', array(array('label' => 'Browse all printed catalogues', 'href' => route('collection.publications.printed-catalogs'))))
-                Printed Catalogues
+                @slot('links', array(array('label' => 'Browse all print catalogues', 'href' => route('collection.publications.printed-catalogs'))))
+                Print Catalogues
             @endcomponent
 
             @component('components.atoms._hr')
@@ -196,7 +196,7 @@
                 @slot('variation', 'm-links-bar--title-bar-companion')
                 @slot('linksPrimary', array(
                     array(
-                        'label' => 'Browse all printed catalogues',
+                        'label' => 'Browse all print catalogues',
                         'href' => route('collection.publications.printed-catalogs'),
                         'variation' => 'btn btn--secondary'
                     ),

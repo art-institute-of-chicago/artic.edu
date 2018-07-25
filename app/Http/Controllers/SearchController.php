@@ -140,11 +140,11 @@ class SearchController extends BaseScopedController
                     break;
                 case 'DigitalCatalog':
                     $item->url = route('collection.publications.digital-catalogs.show', $item);
-                    $item->section = 'Digital Catalogs';
+                    $item->section = 'Digital Catalogues';
                     break;
                 case 'PrintedCatalog':
                     $item->url = route('collection.publications.printed-catalogs.show', $item);
-                    $item->section = 'Printed Catalogs';
+                    $item->section = 'Print Catalogues';
                     break;
             }
 
@@ -354,10 +354,10 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Writings', extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
         }
         if (extractAggregation($aggregations, 'digital-catalogs')) {
-            array_push($links, $this->buildLabel('Digital Catalogs', extractAggregation($aggregations, 'digital-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
+            array_push($links, $this->buildLabel('Digital Catalogues', extractAggregation($aggregations, 'digital-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
         if (extractAggregation($aggregations, 'printed-catalogs')) {
-            array_push($links, $this->buildLabel('Printed Catalogs', extractAggregation($aggregations, 'printed-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
+            array_push($links, $this->buildLabel('Print Catalogues', extractAggregation($aggregations, 'printed-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
         if (extractAggregation($aggregations, 'research-guides')) {
             array_push($links, $this->buildLabel('Research Guides', extractAggregation($aggregations, 'research-guides'), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));

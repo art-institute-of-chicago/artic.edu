@@ -121,7 +121,7 @@ return [
                         'module' => true,
                     ],
                     'printedCatalogs' => [
-                        'title' => 'Printed Catalogues',
+                        'title' => 'Print Catalogues',
                         'module' => true,
                     ],
                     'digitalCatalogs' => [

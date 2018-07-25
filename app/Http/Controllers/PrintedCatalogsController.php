@@ -37,12 +37,12 @@ class PrintedCatalogsController extends CatalogsController
     {
         $items = $this->collection()->paginate();
 
-        $navElements = $this->getNavElements('Printed Catalogues');
+        $navElements = $this->getNavElements('Print Catalogues');
 
         $view_data = [
             'wideBody' => true,
             'filters' => $this->getFilters(),
-            'listingCountText' => 'Showing '.$items->total().' printed catalogues',
+            'listingCountText' => 'Showing '.$items->total().' print catalogues',
             'listingItems' => $items,
         ] + $navElements;
 
@@ -62,7 +62,7 @@ class PrintedCatalogsController extends CatalogsController
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Printed catalogues', 'href' => route('collection.publications.printed-catalogs')],
+            ['label' => 'Print catalogues', 'href' => route('collection.publications.printed-catalogs')],
             ['label' => $page->title, 'href' => '']
         ];
 
