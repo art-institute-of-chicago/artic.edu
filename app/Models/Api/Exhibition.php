@@ -35,7 +35,11 @@ class Exhibition extends BaseApiModel
 
     public function getIsClosedAttribute()
     {
-        return $this->status == 'Closed';
+        if (empty($this->aic_end_at)) {
+            return false;
+        } else {
+            return Carbon::now()->gt($this->dateEnd->endOfDay());
+        }
     }
 
     public function getIdSlugAttribute()
