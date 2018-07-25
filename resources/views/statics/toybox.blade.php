@@ -296,7 +296,7 @@
         @slot('icon', 'icon--print--24')
     @endcomponent
     @component('components.atoms._btn')
-        @slot('variation', 'btn--nonary')
+        @slot('variation', 'btn--nonary btn--icon')
         @slot('font', '')
         @slot('icon', 'icon--print--24')
     @endcomponent
