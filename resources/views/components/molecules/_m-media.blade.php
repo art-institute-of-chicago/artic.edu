@@ -126,14 +126,8 @@
                     @slot('controls', true)
                 @endif
             @endcomponent
-            <button class="btn btn--nonary btn--icon m-media__btn-pause-video" aria-label="Pause video" data-behavior="mediaPlayPauseVideo">
-                <svg aria-hidden="true" class="icon--pause">
-                  <use xlink:href="#icon--pause"></use>
-                </svg>
-                <svg aria-hidden="true" class="icon--play">
-                  <use xlink:href="#icon--play"></use>
-                </svg>
-            </button>
+            @component('components.atoms._media-play-pause-video')
+            @endcomponent
         @endif
         @if (isset($item['downloadable']) and $item['downloadable'])
             @component('components.atoms._btn')

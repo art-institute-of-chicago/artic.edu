@@ -122,7 +122,8 @@ a.m-media__img:hover object {
   opacity: .9;
 }
 
-.m-media__btn-download {
+.m-media__btn-download,
+.m-media .media-play-pause-video {
   position: absolute;
   right: 20px;
   bottom: 20px;
@@ -130,42 +131,9 @@ a.m-media__img:hover object {
 
 .m-media__btn-fullscreen {
   position: absolute;
+  z-index: 1;
   right: 20px;
   top: 20px;
-}
-
-.m-media__btn-pause-video {
-  display: none;
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-
-  @include breakpoint('small+') {
-    display: inline-flex;
-  }
-
-  &.btn.btn--icon {
-    display: none;
-
-    @include breakpoint('small+') {
-      display: inline-flex;
-    }
-  }
-
-  svg.icon--play {
-    display: none;
-  }
-
-  &.s-paused {
-
-    svg.icon--pause {
-      display: none;
-    }
-
-    svg.icon--play {
-      display: inline-block;
-    }
-  }
 }
 
 .m-media__img.s-inline-media-activated *:not(iframe) {
@@ -174,8 +142,7 @@ a.m-media__img:hover object {
 
 @media (hover: hover) {
   .m-media__btn-download,
-  .m-media__btn-fullscreen,
-  .m-media__btn-pause-video {
+  .m-media__btn-fullscreen {
     opacity: 0;
     transition-property: opacity;
     transition-duration: .15s;
@@ -183,8 +150,7 @@ a.m-media__img:hover object {
   }
 
   .m-media__img:hover .m-media__btn-download,
-  .m-media__img:hover .m-media__btn-fullscreen,
-  .m-media__img:hover .m-media__btn-pause-video  {
+  .m-media__img:hover .m-media__btn-fullscreen {
     opacity: 1;
   }
 }

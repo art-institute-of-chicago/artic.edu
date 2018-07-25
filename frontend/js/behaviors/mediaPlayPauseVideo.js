@@ -19,6 +19,7 @@ const mediaPlayPauseVideo = function(container) {
 
   function _handleClicks(event) {
     event.preventDefault();
+    event.stopPropagation();
     if (!paused) {
       video.pause();
     } else {
