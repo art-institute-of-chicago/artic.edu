@@ -39,9 +39,9 @@ class ExhibitionsController extends FrontController
 
         if ($upcoming) {
             $collection = $page->apiModels('exhibitionsUpcomingListing', 'Exhibition');
-            $collection = $collection->filter( function( $value, $key) {
-                return Carbon::now() <= $value->aic_date_start;
-            });
+            // $collection = $collection->filter( function( $value, $key) {
+            //     return Carbon::now() <= $value->aic_date_start;
+            // });
         } else {
             $collection = $page->apiModels('exhibitionsCurrent', 'Exhibition');
         }
