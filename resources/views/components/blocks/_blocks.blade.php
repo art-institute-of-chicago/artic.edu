@@ -337,21 +337,23 @@
             @if ($block['type'] === 'deflist')
                 <dl class="deflist o-blocks__block {{ $block['variation'] ?? ''}}">
                 @foreach ($block['items'] as $item)
-                    <div class="deflist__row">
-                    <dt class="f-module-title-1">{{ $item['key'] }}</dt>
-                        @if (isset($item['links']) && $item['links'])
-                            <dd class="f-secondary"{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
+                    <dt>
+                        <span class="f-module-title-1">{{ $item['key'] }}</span>
+                    </dt>
+                    @if (isset($item['links']) && $item['links'])
+                        <dd{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
+                            <span class="f-secondary">
                                 @foreach ($item['links'] as $link)
                                     <a href="{!! $link['href'] !!}"{!! (isset($link['gtmAttributes'])) ? ' '.$link['gtmAttributes'].'' : '' !!}>{{ $link['label'] }}</a>
                                     @if ($loop->remaining), @endif
                                 @endforeach
-                            </dd>
-                        @else
-                            <dd class="f-secondary"{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
-                                {!! $item['value'] ?? '' !!}
-                            </dd>
-                        @endif
-                    </div>
+                            </span>
+                        </dd>
+                    @else
+                        <dd{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
+                            <span class="f-secondary">{!! $item['value'] ?? '' !!}</span>
+                        </dd>
+                    @endif
                 @endforeach
                 </dl>
             @endif
