@@ -6,11 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Repositories\EducatorResourceRepository;
 use App\Models\EducatorResource;
+use App\Models\ResourceCategory;
 
-class EducatorResourcesController extends FrontController
+class EducatorResourcesController extends BaseScopedController
 {
 
     protected $repository;
+
+    protected $entity = \App\Models\EducatorResource::class;
+
+    protected $scopes = [
+        'category' => 'byCategory',
+    ];
 
     public function __construct(EducatorResourceRepository $repository)
     {
@@ -19,10 +26,18 @@ class EducatorResourcesController extends FrontController
         parent::__construct();
     }
 
+    protected function beginOfAssociationChain()
+    {
+        // Apply default scopes to the beginning of the chain
+        return parent::beginOfAssociationChain()
+            ->published();
+    }
+
     public function index(Request $request)
     {
-        $items = EducatorResource::published()->paginate();
-        $title = 'Educator resources';
+        $items = $this->collection()->paginate();
+
+        $title = 'Educator Resources';
         $subNav = [
             ['label' => $title, 'href' => route('collection.resources.educator-resources'), 'active' => true]
         ];
@@ -42,7 +57,7 @@ class EducatorResourcesController extends FrontController
             'nav' => $nav,
             "breadcrumb" => $crumbs,
             'wideBody' => true,
-            'filters' => null,
+            'filters' => $this->getFilters(),
             'listingCountText' => 'Showing '.$items->total().' educator resources',
             'listingItems' => $items,
         ];
@@ -67,7 +82,7 @@ class EducatorResourcesController extends FrontController
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Educator resources', 'href' => route('collection.resources.educator-resources')],
+            ['label' => 'Educator Resources', 'href' => route('collection.resources.educator-resources')],
             ['label' => $page->title, 'href' => '']
         ];
 
@@ -82,6 +97,32 @@ class EducatorResourcesController extends FrontController
             "blocks" => null,
             'page' => $page,
         ]);
+
+    }
+
+    protected function getFilters()
+    {
+
+        $categoryLinks[] = [
+            'label'  => 'All',
+            'href'   => route('collection.resources.educator-resources'),
+            'active' => empty(request('category', null))
+        ];
+
+        foreach (ResourceCategory::all() as $category) {
+            $categoryLinks[] = [
+                'href'   => route('collection.resources.educator-resources', request()->except('category') + ['category' => $category->id]),
+                'label'  => $category->name,
+                'active' => request('category') == $category->id
+            ];
+        }
+
+        return [
+            [
+                'prompt' => 'Type',
+                'links'  => collect($categoryLinks)
+            ]
+        ];
 
     }
 

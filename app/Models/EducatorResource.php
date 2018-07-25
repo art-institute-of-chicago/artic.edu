@@ -91,6 +91,17 @@ class EducatorResource extends Model
         return url(route('collection.resources.educator-resources.show', $this->id_slug));
     }
 
+    public function scopeByCategory($query, $category = null)
+    {
+        if (empty($category)) {
+            return $query;
+        }
+
+        return $query->whereHas('categories', function ($query) use ($category) {
+            $query->where('resource_category_id', $category);
+        });
+    }
+
     protected function transformMappingInternal()
     {
         return [
