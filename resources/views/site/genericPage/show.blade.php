@@ -12,6 +12,7 @@
     @slot('headerType', 'generic')
     @slot('variation', 'o-article__header')
     @slot('title', $title)
+    @slot('title_display', $title_display ?? null) {{-- TODO: Populate this? --}}
     @slot('img', $headerImage ?? null)
     @slot('breadcrumb', $breadcrumb ?? null)
   @endcomponent
