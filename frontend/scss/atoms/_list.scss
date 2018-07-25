@@ -3,19 +3,19 @@
 Basic styles to both `ul` and `ol`
 
 ```
-<ul class="a-list">
+<ul class="list">
   <li>Check your spelling</li>
   <li>Try searching for fewer terms to broaden your results.</li>
 </ul>
-<ol class="a-list">
+<ol class="list">
   <li>Check your spelling</li>
   <li>Try searching for fewer terms to broaden your results.</li>
 </ol>
-<ul class="a-list">
+<ul class="list">
   <li>Check your spelling</li>
   <li>
     Try searching for fewer terms to broaden your results.
-    <ol class="a-list">
+    <ol class="list">
       <li>Check your spelling</li>
       <li>
         Try searching for fewer terms to broaden your results.
@@ -27,7 +27,10 @@ Basic styles to both `ul` and `ol`
     </ol>
   </li>
 </ul>
-
+<ul class="list list--inline">
+  <li>Check your spelling</li>
+  <li>Try searching for fewer terms to broaden your results.</li>
+</ul>
 ```
 
 ***/
@@ -51,4 +54,20 @@ ol.list > li {
 
 ul.list ul.list > li {
   list-style-type: circle;
+}
+
+
+ul.list--inline,
+ol.list--inline {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.list--inline > li {
+  display: inline;
+  padding-left: 0;
+}
+
+.list--inline > li:not(:first-child)::before {
+  content: ", ";
 }

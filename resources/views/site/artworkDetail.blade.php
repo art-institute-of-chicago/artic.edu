@@ -24,7 +24,7 @@
     @slot('prevNextObject', $prevNextObject ?? null)
   @endcomponent
 
-  <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+">
+  <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+" aria-label="Additional information">
     @if ($item->is_on_view)
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.atoms._title')
@@ -35,13 +35,14 @@
         @endcomponent
     @endif
 
-    @component('components.blocks._text')
-        @slot('variation', 'u-show@large+')
-        @slot('tag','p')
-        @slot('font', 'f-secondary')
-        <a href="{!! route('departments.show', [$item->department_id]) !!}" data-gtm-event="collection-nav" data-gtm-event-category="department">{{ $item->department_title }}</a>@if ($item->department_id && $item->gallery_id), @endif
-        <a href="{!! route('galleries.show', [$item->gallery_id]) !!}" data-gtm-event="collection-nav" data-gtm-event-category="gallery">{{ $item->gallery_title }}</a>
-    @endcomponent
+    <ul class="list list--inline f-secondary">
+      @if ($item->department_id)
+      <li><a href="{!! route('departments.show', [$item->department_id]) !!}" data-gtm-event="collection-nav" data-gtm-event-category="department">{{ $item->department_title }}</a></li>
+      @endif
+      @if ($item->gallery_id)
+      <li><a href="{!! route('galleries.show', [$item->gallery_id]) !!}" data-gtm-event="collection-nav" data-gtm-event-category="gallery">{{ $item->gallery_title }}</a></li>
+      @endif
+    </ul>
   </div>
 
   <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">

@@ -55,12 +55,9 @@
             @slot('font', 'f-module-title-1')
             On View
         @endcomponent
-        @component('components.blocks._text')
-            @slot('variation', 'u-show@large+')
-            @slot('tag','p')
-            @slot('font', 'f-secondary')
-            <a href="{{ $article->onView['href'] }}">{{ $article->onView['label'] }}</a>
-        @endcomponent
+         <ul class="list list--inline f-secondary">
+            <li><a href="{{ $article->onView['href'] }}">{{ $article->onView['label'] }}</a></li>
+        </ul>
     @endif
   </div>
 

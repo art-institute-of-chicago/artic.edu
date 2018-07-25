@@ -43,22 +43,6 @@
             @slot('links', $item->nav);
         @endcomponent
     @endif
-
-    @if ($item->onView)
-        {{-- dupe 😢 - shows xlarge+ --}}
-        @component('components.atoms._title')
-            @slot('variation', 'u-show@large+')
-            @slot('tag','p')
-            @slot('font', 'f-module-title-1')
-            On View
-        @endcomponent
-        @component('components.blocks._text')
-            @slot('variation', 'u-show@large+')
-            @slot('tag','p')
-            @slot('font', 'f-secondary')
-            <a href="{{ $item->onView['href'] }}">{{ $item->onView['label'] }}</a>
-        @endcomponent
-    @endif
   </div>
 
   {{-- dupe 😢 - hides xlarge+ --}}
