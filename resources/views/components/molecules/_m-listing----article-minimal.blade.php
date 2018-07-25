@@ -1,18 +1,21 @@
 <{{ $tag or 'li' }} class="m-listing m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $href ?? route('articles.show', $item) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
-        <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-            @if ($item->videoFront)
-                @component('components.atoms._video')
-                    @slot('video', $item->videoFront)
-                    @slot('autoplay', true)
-                    @slot('loop', true)
-                    @slot('muted', true)
-                @endcomponent
-            @elseif ($item->imageFront('hero'))
+        <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}">
+            @if ($item->imageFront('hero'))
                 @component('components.atoms._img')
                     @slot('image', $item->imageFront('hero'))
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
+                @if ($item->videoFront)
+                    @component('components.atoms._video')
+                        @slot('video', $item->videoFront)
+                        @slot('autoplay', true)
+                        @slot('loop', true)
+                        @slot('muted', true)
+                    @endcomponent
+                    @component('components.atoms._media-play-pause-video')
+                    @endcomponent
+                @endif
             @else
                 <span class="default-img"></span>
             @endif
