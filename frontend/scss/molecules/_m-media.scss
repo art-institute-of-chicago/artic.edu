@@ -134,13 +134,48 @@ a.m-media__img:hover object {
   top: 20px;
 }
 
+.m-media__btn-pause-video {
+  display: none;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+
+  @include breakpoint('small+') {
+    display: inline-flex;
+  }
+
+  &.btn.btn--icon {
+    display: none;
+
+    @include breakpoint('small+') {
+      display: inline-flex;
+    }
+  }
+
+  svg.icon--play {
+    display: none;
+  }
+
+  &.s-paused {
+
+    svg.icon--pause {
+      display: none;
+    }
+
+    svg.icon--play {
+      display: inline-block;
+    }
+  }
+}
+
 .m-media__img.s-inline-media-activated *:not(iframe) {
   display: none;
 }
 
 @media (hover: hover) {
   .m-media__btn-download,
-  .m-media__btn-fullscreen {
+  .m-media__btn-fullscreen,
+  .m-media__btn-pause-video {
     opacity: 0;
     transition-property: opacity;
     transition-duration: .15s;
@@ -148,7 +183,8 @@ a.m-media__img:hover object {
   }
 
   .m-media__img:hover .m-media__btn-download,
-  .m-media__img:hover .m-media__btn-fullscreen {
+  .m-media__img:hover .m-media__btn-fullscreen,
+  .m-media__img:hover .m-media__btn-pause-video  {
     opacity: 1;
   }
 }

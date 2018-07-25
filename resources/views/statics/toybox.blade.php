@@ -203,6 +203,10 @@
         @slot('variation', 'btn--octonary')
         Octonary
     @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--nonary')
+        Nonary
+    @endcomponent
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
@@ -244,6 +248,11 @@
         @slot('icon', 'icon--new-window')
         Octonary
     @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--nonary')
+        @slot('icon', 'icon--new-window')
+        Nonary
+    @endcomponent
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
@@ -283,6 +292,11 @@
     @endcomponent
     @component('components.atoms._btn')
         @slot('variation', 'btn--octonary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--nonary')
         @slot('font', '')
         @slot('icon', 'icon--print--24')
     @endcomponent
@@ -328,6 +342,11 @@
         @slot('font', '')
         @slot('icon', 'icon--print--24')
     @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--nonary btn--icon btn--icon-circle-48')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
 </p>
 <p style="margin-top: 20px;">
     @component('components.atoms._btn')
@@ -367,6 +386,11 @@
     @endcomponent
     @component('components.atoms._btn')
         @slot('variation', 'btn--octonary btn--icon-sq')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--nonary btn--icon-sq')
         @slot('font', '')
         @slot('icon', 'icon--print--24')
     @endcomponent
