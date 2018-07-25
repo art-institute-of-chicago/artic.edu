@@ -125,7 +125,7 @@
         </div>
       </nav>
 
-      <a href="#" class="g-nav-mobile__close" data-behavior="closeNavMobile"><svg aria-hidden="true" class="icon--close--24"><use xlink:href="#icon--close--24" /></svg></a>
+      <button class="g-nav-mobile__close" data-behavior="closeNavMobile" aria-label="Close menu"><svg aria-hidden="true" class="icon--close--24"><use xlink:href="#icon--close--24" /></svg></button>
     </div>
   </div>
 </div>
