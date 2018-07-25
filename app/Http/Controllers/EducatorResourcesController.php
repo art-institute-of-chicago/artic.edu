@@ -37,7 +37,7 @@ class EducatorResourcesController extends BaseScopedController
     {
         $items = $this->collection()->paginate();
 
-        $title = 'Educator resources';
+        $title = 'Educator Resources';
         $subNav = [
             ['label' => $title, 'href' => route('collection.resources.educator-resources'), 'active' => true]
         ];
@@ -82,7 +82,7 @@ class EducatorResourcesController extends BaseScopedController
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Educator resources', 'href' => route('collection.resources.educator-resources')],
+            ['label' => 'Educator Resources', 'href' => route('collection.resources.educator-resources')],
             ['label' => $page->title, 'href' => '']
         ];
 
