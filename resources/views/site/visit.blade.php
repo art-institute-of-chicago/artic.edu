@@ -323,11 +323,13 @@
       </div>
       <div class="m-directions-block__text o-blocks">
         @foreach ($directions['locations'] as $location)
-          <p class="f-secondary" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-            {!! $location['name'] !!}<br />
-            <span itemprop="streetAddress">{!! $location['street'] !!} {!! $location['addres'] !!}</span><br />
-            <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}
-          </p>
+          <div class="f-secondary" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <h3>{!! $location['name'] !!}</h3>
+            <p>
+              <span itemprop="streetAddress">{!! $location['street'] !!} {!! $location['addres'] !!}</span><br />
+              <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}
+            </p>
+          </div>
         @endforeach
       </div>
       <div class="m-directions-block__links o-blocks">
