@@ -137,7 +137,7 @@
           <tr>
             <td>&nbsp;</td>
             @foreach ($admission['titles'] as $categoryId => $categoryData)
-              <th>
+              <th aria-labelledby="{{ $categoryData['id'] }}">
                 @component('components.blocks._text')
                     @slot('font', 'f-module-title-1')
                     @slot('tag','span')
