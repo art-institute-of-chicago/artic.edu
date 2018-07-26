@@ -3,7 +3,7 @@
 Icons
 =====
 
-Icons are combined into one SVG as symbols by the Gulp task. This also generates a SCSS file detailing the dimensions of each icon with a corresponding CSS class name. The compiled symbols SVG is ajax'd into the document in the head.js.
+Icons are combined into one SVG as symbols by the Gulp task. This also generates a SCSS file detailing the dimensions of each icon with a corresponding CSS class name. The compiled symbols SVG is XHR'd into the document by the head.js.
 
 Read more about our suggested accessibility approaches [here](https://code.area17.com/a17/fe-boilerplate/wikis/svg-sprite).
 
@@ -23,6 +23,39 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   {{/shapes}}
 </div>
 ```
+
+***/
+/***
+
+Individual icon SVG files live in `frontend/icons`. These are typically just exports from Illustrator or Figma, but with one important change:
+
+```
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <path d="M8,1A5,5,0,0,0,3,6c0,3.33,5,9,5,9s5-5.67,5-9A5,5,0,0,0,8,1ZM8,8a2,2,0,1,1,2-2A2,2,0,0,1,8,8Z" fill="#000000"/>
+</svg>
+```
+
+***/
+/***
+
+Update the colour of any fill/stroke that you want to control with the CSS to `currentColor`:
+
+```
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <path d="M8,1A5,5,0,0,0,3,6c0,3.33,5,9,5,9s5-5.67,5-9A5,5,0,0,0,8,1ZM8,8a2,2,0,1,1,2-2A2,2,0,0,1,8,8Z" fill="currentColor"/>
+</svg>
+```
+
+***/
+/***
+
+**Icon caching**
+
+The cloud front server caches icons, if you add a new icon, or edit an icon, you may need to:
+
+* open the AWS console
+* head to cloudfront for staging or production
+* create an invalidation for the icons.svg URL (public/dist/icons/icons.svg)
 
 ***/
 

@@ -459,6 +459,11 @@
         @slot('icon', 'icon--print--24')
         @slot('behavior','printPage')
     @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--tertiary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
 </p>
 @component('components.atoms._hr')
 @endcomponent

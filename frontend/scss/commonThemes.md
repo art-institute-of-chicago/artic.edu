@@ -1,3 +1,5 @@
+/***
+
 Common themes
 =============
 
@@ -17,6 +19,9 @@ Many atom/molecule/organism components allow you to alter the tag, font and set 
 
 Google Tag Manager attributes are picked up by JavaScript (ajaxPageLoad and googleTagManagerDataFromLink) and sent through to GTM accordingly (googleTagManager);
 
+***/
+/***
+
 Stylesheets (`SCSS`)
 --------------------
 
@@ -24,6 +29,9 @@ The SCSS is written using [BEM](http://getbem.com/) and everything is split into
 
 **NB**
 The `SCSS` files are compiled, the NPM tasks will need to be run in order for updates to take effect.
+
+***/
+/***
 
 JavaScript
 ----------
@@ -53,10 +61,16 @@ They each have an `init` and a `destroy` function to add and remove behavior spe
 **NB**
 The `JS` files are compiled, the NPM tasks will need to be run in order for updates to take effect.
 
+***/
+/***
+
 Fonts
 -----
 
 Fonts are served from my.fonts.net and cloud.typography.com. The site will load with fallback fonts, a font observer JavaScript waits for fonts to load and adds a class to the body to switch to the correct fonts. We prefer a FOUT (flash of unstyled text) over FOIT (flash of invisible text) so that a site remains readable and usable.
+
+***/
+/***
 
 The vertical grid
 -----------------
@@ -68,6 +82,9 @@ The 58 main container columns are CSS columns.
 From these 58, we make 12 DESIGN columns of 3 CSS columns with 2 CSS columns gutter between them.
 
 We also have 4 column GRID listings, where each item takes up 3 DESIGN columns (13 CSS columns) with 2 CSS column gutters between them.
+
+***/
+/***
 
 Images
 ------
