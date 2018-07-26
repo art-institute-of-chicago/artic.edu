@@ -126,6 +126,8 @@
                     @slot('controls', true)
                 @endif
             @endcomponent
+            @component('components.atoms._media-play-pause-video')
+            @endcomponent
         @endif
         @if (isset($item['downloadable']) and $item['downloadable'])
             @component('components.atoms._btn')

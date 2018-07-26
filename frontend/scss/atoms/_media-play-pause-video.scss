@@ -1,0 +1,59 @@
+/***
+
+```
+<button class="btn btn--nonary btn--icon media-play-pause-video" aria-label="Pause video" data-behavior="mediaPlayPauseVideo">
+    <svg aria-hidden="true" class="icon--pause">
+      <use xlink:href="#icon--pause"></use>
+    </svg>
+    <svg aria-hidden="true" class="icon--play">
+      <use xlink:href="#icon--play"></use>
+    </svg>
+</button>
+```
+
+***/
+
+.media-play-pause-video {
+  display: none;
+
+  @include breakpoint('small+') {
+    display: inline-block;
+  }
+
+  &.btn.btn--icon {
+    display: none;
+
+    @include breakpoint('small+') {
+      display: inline-block;
+    }
+  }
+
+  svg.icon--play {
+    display: none;
+  }
+
+  &.s-paused {
+
+    svg.icon--pause {
+      display: none;
+    }
+
+    svg.icon--play {
+      display: inline-block;
+    }
+  }
+}
+
+@media (hover: hover) {
+  .media-play-pause-video {
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: .15s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .m-media__img:hover .media-play-pause-video,
+  .m-listing__link:hover .media-play-pause-video {
+    opacity: 1;
+  }
+}

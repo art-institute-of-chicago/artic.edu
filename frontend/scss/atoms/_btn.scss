@@ -210,6 +210,32 @@
   }
 }
 
+.btn--nonary {
+  background-color: rgba($color__black, .2);
+  color: $color__white;
+
+  &:hover,
+  &:focus:hover {
+    background-color: rgba($color__black, .5);
+    color: $color__white;
+  }
+
+  &.s-active,
+  &:active:hover {
+    background-color: rgba($color__black, .75);
+    color: $color__white;
+  }
+
+  &.btn:disabled,
+  &.btn:disabled:hover,
+  &.btn:disabled:focus:hover,
+  &.btn:disabled:active:hover {
+    background-color: rgba($color__black, .2);
+    color: rgba($color__white, .2);
+    opacity: 1;
+  }
+}
+
 .btn--contrast {
   border-color: rgba($color__white, .2);
   background-color: transparent;

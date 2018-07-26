@@ -122,7 +122,8 @@ a.m-media__img:hover object {
   opacity: .9;
 }
 
-.m-media__btn-download {
+.m-media__btn-download,
+.m-media .media-play-pause-video {
   position: absolute;
   right: 20px;
   bottom: 20px;
@@ -130,6 +131,7 @@ a.m-media__img:hover object {
 
 .m-media__btn-fullscreen {
   position: absolute;
+  z-index: 1;
   right: 20px;
   top: 20px;
 }
