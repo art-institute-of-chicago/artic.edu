@@ -283,7 +283,7 @@
       <div class="m-mini-promo__text">
         @component('components.atoms._title')
             @slot('font', 'f-module-title-1')
-            @slot('tag','h4')
+            @slot('tag','h3')
             {{ $admission['cityPass']['title'] }}
         @endcomponent
         @component('components.blocks._text')
