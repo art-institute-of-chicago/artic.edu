@@ -784,6 +784,17 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
 @component('components.atoms._hr')
 @endcomponent
 
+<p class="f-quote">day:</p>
+
+@component('components.atoms._day')
+    @slot('date', '13')
+    @slot('month', 'Dec')
+    @slot('day', 'Mon')
+@endcomponent
+
+@component('components.atoms._hr')
+@endcomponent
+
 <p class="f-quote">dropdown:</p>
 <div style="margin-top: 20px;">
   @component('components.atoms._dropdown')

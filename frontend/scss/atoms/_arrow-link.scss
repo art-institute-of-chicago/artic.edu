@@ -1,12 +1,15 @@
 /***
 
+arrow-link
+==========
+
 Left/right arrows are made using HTML entities, up/down are done via a SVG
 
 ```
-<a class="arrow-link" href="#">Forward<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span></a> <br>
-<a class="arrow-link arrow-link--back" href="#"><span aria-hidden="true">&lsaquo;&nbsp;&nbsp;</span>Back</a> <br>
-<a class="arrow-link arrow-link--up" href="#">Up<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
-<a class="arrow-link arrow-link--down" href="#">Down<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a>
+<a class="arrow-link f-link" href="#">Forward<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span></a> <br>
+<a class="arrow-link arrow-link--back f-link" href="#"><span aria-hidden="true">&lsaquo;&nbsp;&nbsp;</span>Back</a> <br>
+<a class="arrow-link arrow-link--up f-link" href="#">Up<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+<a class="arrow-link arrow-link--down f-link" href="#">Down<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a>
 ```
 
 ***/
@@ -15,8 +18,36 @@ Left/right arrows are made using HTML entities, up/down are done via a SVG
 But, you can also do the left/right with a svg if you want
 
 ```
-<a class="arrow-link" href="#">Forward<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
-<a class="arrow-link arrow-link--back" href="#">Back<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+<a class="arrow-link f-link" href="#">Forward<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+<a class="arrow-link arrow-link--back f-link" href="#">Back<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+```
+
+***/
+/***
+
+**PHP include**
+
+views/components/atoms/arrow-link.blade.php
+
+Variable | Purpose | Required?
+--- | --- | ---
+$tag | HTML tag of the element is selectable | No, defaults to `a`
+$font | font class of the text is selectable | No, defaults to `f-link`
+$variation | variation, lets you pick up/down/left/right | No, defaults to right
+$href | link to point to | No, doesn't need to be a link
+$itemprop | for adding schema.org item props | No
+$gtmAttributes | for adding Google Tag Manager attributes | No
+$slot | Text for the link | Yes
+
+Demonstrated in **statics/toybox**
+
+Example usage:
+
+```PHP
+@component('components.atoms._arrow-link')
+    @slot('href',$link['href'])
+    {{ $link['label'] }}
+@endcomponent
 ```
 
 ***/

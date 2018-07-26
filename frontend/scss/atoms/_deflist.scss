@@ -1,15 +1,50 @@
 /***
 
+deflist
+==========
+
 ```
 <dl class="deflist">
-  <dt class="f-h7">Lorem ipsum dolor sit amet</dt>
-    <dd class="f-body--sm">Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</dd>
-  <dt class="f-h7">Lorem ipsum dolor sit amet</dt>
-    <dd class="f-body--sm">Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</dd>
-  <dt class="f-h7">Lorem ipsum dolor sit amet</dt>
-    <dd class="f-body--sm">Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</dd>
+  <dt><span class="f-module-title-1">Lorem ipsum dolor sit amet</span></dt>
+    <dd><span class="f-secondary">Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></dd>
+  <dt><span class="f-module-title-1">Lorem ipsum dolor sit amet</span></dt>
+    <dd><span class="f-secondary">Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></dd>
+  <dt><span class="f-module-title-1">Lorem ipsum dolor sit amet</span></dt>
+    <dd><span class="f-secondary">Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></dd>
 </dl>
 ```
+
+***/
+/***
+
+**PHP include**
+
+views/components/blocks/_blocks.blade.php
+
+`deflist` is one of the blocks to appear within the blocks repeater/for loop
+
+Variable | Purpose | Required?
+--- | --- | ---
+$variation | variation (CSS class) | No
+
+And then for each item in the `deflist`:
+
+Variable | Purpose | Required?
+--- | --- | ---
+$item['key'] | Content for the `dt` | Yes
+$item['itemprop'] | Schema `itemprop` for `dd` | No
+$item['value'] | Content for `dd` | Yes
+
+Or, if the `dd` contains links, for each link:
+
+Variable | Purpose | Required?
+--- | --- | ---
+$item['gtmAttributes'] | for adding Google Tag Manager attributes to link | No
+$item['value'] | Content for `dd` | Yes
+$link['href'] | URL for link | Yes
+$link['label'] | Text for link | Yes
+
+Demonstrated in **statics/article**
 
 ***/
 

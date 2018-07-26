@@ -1,5 +1,8 @@
 /***
 
+btn
+==========
+
 ```
 <button class="btn f-buttons">Action</button>
 <button class="btn btn--secondary f-buttons">Action</button>
@@ -7,12 +10,59 @@
 <button class="btn btn--quaternary f-buttons">Action</button>
 <button class="btn btn--quinary f-buttons">Action</button>
 <button class="btn btn--senary f-buttons">Action</button>
+<button class="btn btn--septenary f-buttons">Action</button>
+<button class="btn btn--octonary f-buttons">Action</button>
+<button class="btn btn--nonary f-buttons">Action</button>
+<br><br>
 <button class="btn btn--secondary btn--w-icon f-buttons"><svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>Action</button>
-<button class="btn btn--disabled f-buttons">Action</button>
-<button class="btn f-buttons" disabled>Action</button>
+<button class="btn f-buttons" disabled>Disabled</button>
 <button class="btn btn--icon"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
-<button class="btn btn--secondary btn--icon"><svg class="icon--print--24"><use xlink:href="#icon--print--24" /></svg></button> <br>
+<button class="btn icon-circle-48"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
+<button class="btn btn--secondary btn--icon-sq"><svg class="icon--print--24"><use xlink:href="#icon--print--24" /></svg></button>
+<br><br>
 <button class="btn btn--full f-buttons">Action</button>
+```
+
+***/
+/***
+
+**PHP include**
+
+views/components/atoms/btn.blade.php
+
+Variable | Purpose | Required?
+--- | --- | ---
+$tag | HTML tag of the element is selectable | No, defaults to `button`
+$font | font class of the text is selectable | No, defaults to `f-buttons`
+$variation | variation, lets you pick color way/con button type | No
+$disabled | is the button disabled? | No
+$loading | is the button showing a loading state? | No
+$id | optional `ID` | No
+$behavior | optional `data-behavior` | No
+$dataAttributes | optional `data-` attributes | No
+$href | link to point to | No
+$type | if `button` optional type for submit, cancel | No
+$download | if the button triggers a download file | No
+$gtmAttributes | for adding Google Tag Manager attributes | No
+$ariaLabel | accessibility label | No
+$icon | optional icon display | No
+$slot | Text for the btn | Yes
+
+Demonstrated in **statics/toybox**
+
+Example usage:
+
+```PHP
+@component('components.atoms._btn')
+    @slot('variation', 'btn--septenary')
+    @slot('icon', 'icon--new-window')
+    Septenary
+@endcomponent
+@component('components.atoms._btn')
+    @slot('variation', 'btn--tertiary btn--icon')
+    @slot('font', '')
+    @slot('icon', 'icon--print--24')
+@endcomponent
 ```
 
 ***/

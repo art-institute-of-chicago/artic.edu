@@ -1,5 +1,10 @@
 /***
 
+date select trigger
+==========
+
+Opens up a data selecting modal.
+
 ```
 <span class="date-select-trigger" data-behavior="selectDate" data-selectDate-mode="range">
   <button class="date-select-trigger__open">
@@ -17,6 +22,36 @@
   </button>
   <button class="date-select-trigger__clear"><svg class="icon--close-circle"><use xlink:href="#icon--close-circle" /></svg></button>
 </span>
+```
+
+***/
+/***
+
+**PHP include**
+
+views/components/atoms/date-select-trigger.blade.php
+
+Variable | Purpose | Required?
+--- | --- | ---
+$variation | variation (CSS class) | No
+$font | font of the label | No, defaults to `f-link`
+$gtmAttributes | for adding Google Tag Manager attributes | No
+$slot | label for date select | Yes
+
+* Demonstrated in **statics/toybox**
+* Demonstrated in **statics/events**
+
+Example usage:
+
+```PHP
+@component('components.atoms._date-select-trigger')
+    @slot('gtmAttributes','data-gtm-event="event-calendar" data-gtm-event-category="in-page-link"')
+    @if (request('start') && request('end'))
+        {{ \Carbon\Carbon::parse(request('start'))->format('d M, Y') }} - {{ \Carbon\Carbon::parse(request('end'))->format('d M, Y') }}
+    @else
+        Pick a date
+    @endif
+@endcomponent
 ```
 
 ***/
