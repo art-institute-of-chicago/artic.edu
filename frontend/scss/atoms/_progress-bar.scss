@@ -16,7 +16,7 @@ Used for ajax loads:
   left: 0;
   right: 0;
   top: 0;
-  height: 4px;
+  height: 2px;
 }
 
 .progress-bar span {
@@ -32,7 +32,6 @@ Used for ajax loads:
 .progress-bar--standalone {
   position: relative;
   max-width: 300px;
-  height: 2px;
   margin: 24px auto 0;
   background-color: $color__rules--primary;
 }
