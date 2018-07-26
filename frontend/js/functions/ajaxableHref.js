@@ -1,6 +1,6 @@
 const ajaxableHref = function(href, event) {
-  // fail if no href or same page
-  if (!href || href === '#' || href === window.location.href) {
+  // fail if no href
+  if (!href || href === '#') {
     return false;
   }
   // fail if external or not same protocol
@@ -14,6 +14,14 @@ const ajaxableHref = function(href, event) {
     // probably a same page anchor link
     return false;
   }
+  /*
+  if (el.origin === window.location.origin) {
+    if (!el.search) {
+      // probably the same page
+      return false;
+    }
+  }
+  */
   el = null;
   // passed?
   return true;
