@@ -68,6 +68,7 @@ class VisitController extends FrontController
         $titles = [];
         foreach (FeeCategory::ordered()->get() as $category) {
             $titles[$category->id]['title'] = $category->title;
+            $titles[$category->id]['id'] = 't-' .str_slug($category->title);
             $titles[$category->id]['tooltip'] = $category->tooltip;
 
             foreach (FeeAge::ordered()->get() as $age) {

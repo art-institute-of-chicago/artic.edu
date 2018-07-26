@@ -141,11 +141,13 @@
                 @component('components.blocks._text')
                     @slot('font', 'f-module-title-1')
                     @slot('tag','span')
+                    @slot('id', $categoryData['id'])
                     {{ $categoryData['title'] }}
                 @endcomponent
                 @if (isset($categoryData['tooltip']))
                   &nbsp;
                   @component('components.atoms._info-button-trigger')
+                      @slot('describedBy', $categoryData['id'])
                       {{ $categoryData['tooltip'] }}
                   @endcomponent
                 @endif
