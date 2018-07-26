@@ -126,16 +126,17 @@
 
     @endforeach
 
-    @component('components.molecules._m-title-bar')
-        @slot('id', 'admission')
-        @lang('Admission')
-    @endcomponent
-
     <div class="m-table">
       <table>
+        <caption>
+            @component('components.molecules._m-title-bar')
+                @slot('id', 'admission')
+                @lang('Admission')
+            @endcomponent
+        </caption>
         <thead>
           <tr>
-            <td>&nbsp;</td>
+            <th>&nbsp;</th>
             @foreach ($admission['titles'] as $categoryId => $categoryData)
               <th aria-labelledby="{{ $categoryData['id'] }}">
                 @component('components.blocks._text')

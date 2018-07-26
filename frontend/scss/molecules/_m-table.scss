@@ -4,6 +4,9 @@ Intended for very simple m-tables..
 
 ```
 <table class="m-table">
+  <caption>
+    @component('components.molecules._m-title-bar')
+  </caption>
   <thead>
     <tr>
       <td>&nbsp;</td>
@@ -56,7 +59,6 @@ Intended for very simple m-tables..
 ***/
 
 .m-table {
-  margin-top: 40px;
   margin-bottom: -16px;
   padding-bottom: 16px;
   overflow-x: auto;
@@ -67,6 +69,10 @@ Intended for very simple m-tables..
   width: 100%;
   min-width: 500px;
   border-collapse: collapse;
+}
+
+.m-table caption {
+    margin-bottom: 40px;
 }
 
 .m-table th,
