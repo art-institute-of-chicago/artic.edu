@@ -165,6 +165,7 @@ return [
 
         Aic\Hub\Foundation\ResourceServiceProvider::class,
         Intervention\Httpauth\HttpauthServiceProvider::class,
+        digitaladditive\ExactTargetLaravel\ExactTargetLaravelServiceProvider::class,
 
     ],
 

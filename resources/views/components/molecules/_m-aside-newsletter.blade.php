@@ -6,6 +6,9 @@
     <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
     <span class="m-aside-newsletter__field">
       <label for="email{{ $rand }}" class="f-secondary">Email address</label>
+      @if (isset($list))
+        <input type="hidden" name="list" id="list{{ $rand }}" value="{!! $list !!}">
+      @endif
       <input type="email" name="email" id="email{{ $rand }}" class="f-secondary" placeholder="{{ $placeholder ?? '' }}">
       <button type="submit" class="{{ $btnFont ?? 'f-buttons' }}">Subscribe</button>
     </span>

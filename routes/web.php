@@ -1,5 +1,7 @@
 <?php
 
+Route::name('target')->get('/target', 'HomeController@target');
+
 Route::name('home')->get('/', 'HomeController@index');
 
 // Statics routes
