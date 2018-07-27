@@ -1,49 +1,66 @@
 /***
 
+dropdown
+==========
+
 ```
-<span aria-title="sort by" class="dropdown" data-behavior="dropdown">
-  <button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-  <ul class="f-secondary">
-    <li><a href="#">Option 1</a></li>
-    <li><a href="#">Option 2</a></li>
-    <li><a href="#">Option 3</a></li>
-    <li><a href="#">Option 4</a></li>
-    <li><a href="#">Option 5</a></li>
-    <li><a href="#">Option 6</a></li>
-    <li><a href="#">Option 7</a></li>
-    <li><a href="#">Option 8</a></li>
-    <li><a href="#">Option 9</a></li>
-    <li><a href="#">Option 10</a></li>
+<span aria-label="Filter by" class="dropdown" data-behavior="dropdown" tabindex="0">
+  <button class="dropdown__trigger f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button>
+  <ul class="dropdown__list f-secondary" data-dropdown-list="" tabindex="-1">
+      <li><a href="#">Option 1</a></li>
+      <li><a href="http://www.google.com/">Option 2</a></li>
+      <li><a href="#">Option 3</a></li>
+      <li><a href="#">Option 4</a></li>
+      <li><a href="#">Option 5</a></li>
+      <li><a href="#">Option 6</a></li>
+      <li><a href="#">Option 7</a></li>
+      <li><a href="#">Option 8</a></li>
+      <li><a href="#">Option 9</a></li>
+      <li><a href="#">Option 10</a></li>
   </ul>
 </span>
+```
+***/
+/***
 
-<span aria-title="sort by" class="dropdown" data-behavior="dropdown" data-dropdown-hoverable>
-  <button class="f-secondary">Dropdown Hoverable<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-  <ul class="f-secondary">
-    <li><a href="#">Option 1</a></li>
-    <li><a href="#">Option 2</a></li>
-    <li><a href="#">Option 3</a></li>
-  </ul>
-</span>
+If the drop down is in a `m-links-bar` then add variation `dropdown--filter`:
 
-<span aria-title="sort by" class="dropdown dropdown--filter" data-behavior="dropdown">
-  <button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg></button>
-  <ul class="f-secondary">
-    <li><a href="#">Option 1</a></li>
-    <li><a href="#">Option 2</a></li>
-    <li><a href="#">Option 3</a></li>
-    <li><a href="#">Option 4</a></li>
-    <li><a href="#">Option 5</a></li>
-    <li><a href="#">Option 6</a></li>
-    <li><a href="#">Option 7</a></li>
-    <li><a href="#">Option 8</a></li>
-    <li><a href="#">Option 9</a></li>
-    <li><a href="#">Option 10</a></li>
+```
+<span aria-label="Filter by" class="dropdown dropdown--filter" data-behavior="dropdown" tabindex="0">
+  <button class="dropdown__trigger f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button>
+  <ul class="dropdown__list f-secondary" data-dropdown-list="" tabindex="-1">
+      <li><a href="#">Option 1</a></li>
+      <li><a href="http://www.google.com/">Option 2</a></li>
+      <li><a href="#">Option 3</a></li>
+      <li><a href="#">Option 4</a></li>
+      <li><a href="#">Option 5</a></li>
+      <li><a href="#">Option 6</a></li>
+      <li><a href="#">Option 7</a></li>
+      <li><a href="#">Option 8</a></li>
+      <li><a href="#">Option 9</a></li>
+      <li><a href="#">Option 10</a></li>
   </ul>
 </span>
 ```
 
 ***/
+/*
+
+##### PHP include
+
+views/components/atoms/dropdown.blade.php
+
+Demonstrated in **statics/toybox**
+
+```
+<pre><code>@component('components.atoms._dropdown')
+  @slot('prompt', 'Dropdown')
+  @slot('ariaTitle', 'Filter by')
+  @slot('options', array(array('href' => '#', 'label' => 'Option 1'), array('href' => 'http://www.google.com/', 'label' => 'Option 2'), array('href' => '#', 'label' => 'Option 3'), array('href' => '#', 'label' => 'Option 4'), array('href' => '#', 'label' => 'Option 5'), array('href' => '#', 'label' => 'Option 6'), array('href' => '#', 'label' => 'Option 7'), array('href' => '#', 'label' => 'Option 8'), array('href' => '#', 'label' => 'Option 9'), array('href' => '#', 'label' => 'Option 10')))
+@endcomponent</code></pre>
+```
+
+**/
 
 .dropdown {
   display: inline-block;

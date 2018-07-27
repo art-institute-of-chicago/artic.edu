@@ -1,11 +1,41 @@
 /***
 
+day
+==========
+
 ```
 <h3 class="day">
   <span class="day__date f-numeral-date">17</span>
   <span class="day__month f-tag">Oct</span>
   <span class="day__day f-tag">Tue</span>
 </h3>
+```
+
+***/
+/*
+
+##### PHP include
+
+views/components/atoms/day.blade.php
+
+Variable | Purpose | Required?
+--- | --- | ---
+$tag | HTML tag of the element is selectable | No, defaults to `h3`
+$variation | variation (CSS class) | No
+$date | Date | Yes
+$month | Month | Yes
+$day | Day | Yes
+
+Demonstrated in **statics/toybox**
+
+Example usage:
+
+```
+<code><pre>@component('components.atoms._day')
+    @slot('date', printDate($date))
+    @slot('month', printMonth($date))
+    @slot('day', printDay($date))
+@endcomponent</code></pre>
 ```
 
 ***/

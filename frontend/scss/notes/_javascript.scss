@@ -1,0 +1,35 @@
+/***
+
+JavaScript
+==========
+
+The JavaScript is vanilla and is split into:
+
+* `behaviors`
+* `functions`
+
+A `head.js` sets up some global objects and [mustard tests](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard) the browser. If the browser doesn't pass the feature test, JavaScript is essentially disabled and a [default stylesheet](https://github.com/area17/html4css) loads. If the browser passes, then `picturefill` and the SVG sprite are loaded. `head.js` is tiny (< 2kb) and is inlined.
+
+`app.js` continues the set up, initialises behaviors, font load observers, some global listeners and a lazy loader.
+
+`functions` are local helper functions that either run all the time (eg: listening for requests to scroll to an anchor) or are repeated functions used in other functions.
+
+`behaviors` are bound to DOM nodes on DOM ready:
+
+```
+<pre><code>&lt;button data-behavior="globalSearchOpen" aria-label="Search site"&gt;
+    ...
+&lt;/button&gt;</code></pre>
+```
+
+***/
+/***
+
+`behaviors/globalSearchOpen` will be run, passing through the DOM node as `container` to the function. Each `behavior` follows a similar structure.
+
+They each have an `init` and a `destroy` function to add and remove behavior specific listeners. As the site has XHR page loads, then the JS will track which DOM nodes are added and removed, triggering `init` and `destroy` as needed. The JS listens for a `page:updated` event to run this check.
+
+**NB**
+The `JS` files are compiled, the NPM tasks will need to be run in order for updates to take effect.
+
+***/

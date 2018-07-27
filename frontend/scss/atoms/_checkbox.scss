@@ -1,5 +1,8 @@
 /***
 
+checkbox
+==========
+
 ```
 <span class="checkbox f-secondary">
   <input type="checkbox" value="option1" id="option1" name="option1">
@@ -19,9 +22,44 @@
     <label for="option3">Option 3 disabled</label>
   </span>
 </span>
-<a href="#" class="checkbox f-secondary">Lorem <em>(1312)</em></a>
+<br>
+<a href="#" class="checkbox f-secondary">Link that looks like a checkbox <em>(13)</em></a>
+<a href="#" class="checkbox f-secondary s-checked">Link that looks like a checkbox <em>(12)</em></a>
 ```
 
+***/
+/*
+
+##### PHP include
+
+views/components/atoms/checkbox.blade.php
+
+Variable | Purpose | Required?
+--- | --- | ---
+$variation | variation (CSS class) | No
+$error | String or null, adds error class and displays error message | No
+$disabled | is the checkbox disabled? | No
+$value | form `value` of checkbox | Yes
+$id | `id` of checkbox | Yes
+$name | `name` of checkbox | Yes
+$checked | is checkbox checked? | No, defaults to not checked
+$font | font of the label | No, defaults to `f-secondary`
+$label | label text | Yes
+$optional | is the field optional? | No
+$hint | does the field have some hint text | No
+
+Demonstrated in **statics/toybox**
+
+Example usage:
+
+```
+<pre><code>@component('components.atoms._checkbox')
+  @slot('id', 'coption1')
+  @slot('value', 'coption1')
+  @slot('name', 'coption1')
+  @slot('label', 'Option 1')
+@endcomponent</code></pre>
+```
 
 ***/
 

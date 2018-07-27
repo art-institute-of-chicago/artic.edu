@@ -1,0 +1,65 @@
+/***
+
+The vertical grid
+=================
+
+The main container of the site is 58 columns. There are 3 columns either side, the outergutter, so in total the screen is split into 64 columns.
+
+The 58 main container columns are CSS columns.
+
+From these 58, we make 12 DESIGN columns of 3 CSS columns with 2 CSS columns gutter between them.
+
+We also have 4 column GRID listings, where each item takes up 3 DESIGN columns (13 CSS columns) with 2 CSS column gutters between them.
+
+Within the CSS we can specify how many columns wide we want something with `colspan`:
+
+```
+<pre><code>.g-nav-mobile__nav-secondary {
+  margin-left: colspan(2, 'xsmall');
+}</code></pre>
+```
+
+***/
+/***
+
+This is asking for 2/58 columns at xsmall.
+
+See `_grid.scss` for notes on `colspan`, `design-cols-to-colspan`, `grid-cols-to-colspan` and `width-multi`.
+
+***/
+/***
+
+The horizontal grid
+===================
+
+This site uses a 4px baseline grid - which means margins and paddings will be multiples of 4.
+
+To help space text out in the SCSS we use `tucked-margin-top`:
+
+```
+<pre><code>.deflist .f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 24, 'small+': 28));
+}</code></pre>
+```
+
+***/
+/***
+
+This sets a baseline to baseline measurement of 24px at xsmall and 28px at small+. If only xsmall is defined, this becomes the baseline spacing for all breakpoints (its the default so to speak).
+
+We also have `tucked-align-top`:
+
+```
+<pre><code>.deflist .f-secondary {
+  @include tucked-align-top($f-secondary);
+}</code></pre>
+```
+
+***/
+/***
+
+This attempts to align a text block to the top its container, essentially like `margin-top: 0;` but whilst maintaining the baseline alignment.
+
+These helpers are used to generate the magic numbers that appear within the compiled CSS, to make visual spacing easier to coordinate with designers' Illustrator files.
+
+***/

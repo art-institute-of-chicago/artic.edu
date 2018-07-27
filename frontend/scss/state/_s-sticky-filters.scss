@@ -1,3 +1,16 @@
+/***
+
+Sticky filters
+============================
+
+The events listing page has sticky date filters - these states control the top, fixed and bottom positioning of the filters.
+
+Additional states for scrolling up and down conditions - so the date filters don't obstruct the global header (which shows on scroll up)
+
+
+***/
+
+
 .s-sticky-filters--fixed .o-sticky-filters > .m-links-bar:first-child,
 .s-sticky-filters--bottom .o-sticky-filters > .m-links-bar:first-child {
   @include breakpoint('small+') {

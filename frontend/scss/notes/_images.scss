@@ -1,0 +1,104 @@
+/***
+
+Images
+======
+
+Images are responsive, they have some combo of `data-srcset`/`srcset` and `sizes`. The A17 lazyload helper updates the `data-srcset` to `srcset` when the image is visible.
+
+Many images have an `imageSettings` slot:
+
+```
+<pre><code>@component('components.molecules._m-media')
+  @slot('item', $hours['media'])
+  @slot('imageSettings', array(
+      'fit' => 'crop',
+      'ratio' => '16:9',
+      'srcset' => array(300,600,800,1200,1600,3000,4500),
+      'sizes' => aic_imageSizes(array(
+            'xsmall' => '58',
+            'small' => '58',
+            'medium' => '38',
+            'large' => '28',
+            'xlarge' => '28',
+      )),
+  ))
+@endcomponent</code></pre>
+```
+
+These settings feed into a `aic_imageSettings` PHP helper function inside of `ImageHelpers` which works out how to fill in the `sizes` attribute and the `srcset`.
+
+In that instance we're asking `imgix` to 16:9 crop an image, to the widths in the `srcset` array and generate a `sizes` attribute with the sizes in CSS columns per breakpoint.
+
+The breakpoint names follow the CSS breakpoint names in `_variables.scss`.
+
+For [imgix](https://docs.imgix.com/apis/url) images you can optionally specify:
+* `fit`, defaults to `crop`
+* `crop`, defaults to `faces, edges, entropy`
+* `auto`, defaults to `compress`
+* `fm`, defaults to `jpg`
+* `q`, defaults to `80`
+* `bg`, defaults to none
+
+When specifying the image sizes, using `aic_imageSizes` you can also pass `px` or `vw` values:
+
+```
+@slot('imageSizes', aic_imageSizes(
+  array(
+      'xsmall' => '216px',
+      'small' => '216px',
+      'medium' => '30vw',
+      'large' => '18',
+      'xlarge' => '18',
+  )
+))
+```
+
+Alternatively you can specify image sizes using `aic_gridListingImageSizes` which outputs its values based on how many columns in your GRID listing. For example, at `small` the items are in a 2 column grid:
+
+```
+_________
+| x | x |
+| x | x |
+| x | x |
+---------
+```
+
+And at `medium` they're in a 3 column grid:
+
+```
+_____________
+| x | x | x |
+| x | x | x |
+-------------
+```
+
+And at `large+` they're in a 4 column grid:
+
+```
+_________________
+| x | x | x | x |
+| x | x | x | x |
+-----------------
+```
+
+Which would be:
+
+```
+@slot('imageSizes', aic_gridListingImageSizes(
+  array(
+      'xsmall' => '1',
+      'small' => '2',
+      'medium' => '3',
+      'large' => '4',
+      'xlarge' => '4',
+  )
+))
+```
+
+`aic_imageSettings` then takes these settings and generates a series of URLS for your image. It handles `imgix`, `lakeview` and `placehold.area17.com`.
+
+It also generates a LQIP image for the initial `src` of the image to be replaced as required by the `srcset` and the lazy loader.
+
+Remember, responsive images aren't super obvious - for example, on a retina cell phone with a poor connection, the image may be 300px wide and so it may choose to display the 300w variant in order to display a representative image quicker. If the cell phone connection speed is good, then the browser may instead choose the 600w image to take advantage of the higher resolution screen.
+
+The `width` and `height` is important so the browser knows how to correctly scale the image to avoid repaints, jumping of the page, when the image loads. Set these to the original width and height of the source image.

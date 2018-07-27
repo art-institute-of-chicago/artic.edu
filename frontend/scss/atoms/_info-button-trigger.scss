@@ -1,3 +1,20 @@
+/***
+
+info-button-trigger
+==================
+
+Triggers the display of `info-button-info`. The content of the `span` is fed into the info box.
+
+```
+<button class="info-button-trigger" aria-label="Image info" data-behavior="infoButtonTrigger">
+  <svg class="icon--info" area-hidden="true"><use xlink:href="#icon--info" /></svg>
+  <span>Credit Mike Byrne, AREA 17</span>
+</button>
+
+```
+
+***/
+
 .info-button-trigger {
   display: inline-block;
   position: relative;

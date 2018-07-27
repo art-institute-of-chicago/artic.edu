@@ -1,7 +1,16 @@
 /***
 
+return-link
+=============
+
+Used in article references, demo'd inside a list:
+
 ```
-<a class="return-link" href="#ref_cite-1"><svg class="icon--return" aria-label="back to reference"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--return"></use></svg></a>
+<ol class="list f-secondary">
+  <li id="ref_note-1">
+    <a class="return-link" href="#ref_cite-1"><svg class="icon--return" aria-label="back to reference"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--return"></use></svg></a>
+  </li>
+</ol>
 ```
 
 ***/

@@ -119,7 +119,7 @@ $f-autocomplete: generate-font-obj((
 }
 
 .g-search__loader {
-  @extend %a-loader;
+  @extend %loader;
   display: none;
   position: absolute;
   top: 50%;

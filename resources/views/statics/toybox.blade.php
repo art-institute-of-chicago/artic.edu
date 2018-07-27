@@ -459,6 +459,11 @@
         @slot('icon', 'icon--print--24')
         @slot('behavior','printPage')
     @endcomponent
+    @component('components.atoms._btn')
+        @slot('variation', 'btn--tertiary btn--icon')
+        @slot('font', '')
+        @slot('icon', 'icon--print--24')
+    @endcomponent
 </p>
 @component('components.atoms._hr')
 @endcomponent
@@ -780,6 +785,17 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
         Select dates
     @endcomponent
 </p>
+
+@component('components.atoms._hr')
+@endcomponent
+
+<p class="f-quote">day:</p>
+
+@component('components.atoms._day')
+    @slot('date', '13')
+    @slot('month', 'Dec')
+    @slot('day', 'Mon')
+@endcomponent
 
 @component('components.atoms._hr')
 @endcomponent

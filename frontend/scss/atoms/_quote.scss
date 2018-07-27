@@ -1,3 +1,37 @@
+/***
+
+quote
+==========
+
+```
+<blockquote class="quote">
+    <p class="f-quote">Similique libero ad recusandae porro quia natus. Tenetur quia praesentium ex vitae praesentium et aut. Laboriosam maiores similique minima necessitatibus. Quisquam ratione qui laudantium et facere. Est placeat dolore libero aliquid quaerat. Ad ipsa libero deleniti iusto non temporibus ullam.</p>
+    <svg class="quote__icon" aria-hidden="true">
+        <use xlink:href="#icon--quote--48"></use>
+        <use xlink:href="#icon--quote--68"></use>
+        <use xlink:href="#icon--quote--76"></use>
+    </svg>
+</blockquote>
+```
+
+***/
+/***
+
+Has a variant for editorial articles:
+
+```
+<blockquote class="quote quote--editorial">
+    <p class="f-quote">Similique libero ad recusandae porro quia natus. Tenetur quia praesentium ex vitae praesentium et aut. Laboriosam maiores similique minima necessitatibus. Quisquam ratione qui laudantium et facere. Est placeat dolore libero aliquid quaerat. Ad ipsa libero deleniti iusto non temporibus ullam.</p>
+    <svg class="quote__icon" aria-hidden="true">
+        <use xlink:href="#icon--quote--48"></use>
+        <use xlink:href="#icon--quote--68"></use>
+        <use xlink:href="#icon--quote--76"></use>
+    </svg>
+</blockquote>
+```
+
+***/
+
 .quote {
   position: relative;
   padding-top: 56px;

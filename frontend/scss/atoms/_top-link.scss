@@ -1,4 +1,19 @@
+/***
 
+top-link
+============
+
+The top link - on the site it hides and shows as you scroll up and down on medium+.
+
+```
+<a class="top-link" href="#a17">
+  <svg class="icon--arrow" aria-label="top of page">
+    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow">
+  </svg>
+</a>
+```
+
+***/
 .top-link {
   display: none;
   position: fixed;
@@ -21,6 +36,12 @@
 
   @include breakpoint('medium+') {
     display: block;
+  }
+
+  #demo > & {
+    display: block;
+    position: static;
+    margin: 20px;
   }
 }
 

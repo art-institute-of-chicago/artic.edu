@@ -1,5 +1,10 @@
 /***
 
+Input
+========
+
+Basic text input:
+
 ```
 <input class="f-secondary" type="text" name="tinput1" id="tinput1" placeholder="Placeholder">
 ```
@@ -68,6 +73,8 @@ input[type=search]{
 
 /***
 
+Basic text input, with counter:
+
 ```
 <span class="input__io-container" data-behavior="textCount">
   <input class="f-secondary" type="text" name="tinput2" id="tinput2" placeholder="Placeholder">
@@ -114,6 +121,8 @@ input[type=search]{
 
 
 /***
+
+Date select input - clicking the calender launches a date select modal. Better demonstrated in **statics/toybox**
 
 ```
 <span class="input__date-select-container" data-behavior="selectDate" data-selectdate-mode="single" data-selectdate-displayformat="short">

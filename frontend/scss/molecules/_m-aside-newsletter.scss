@@ -68,7 +68,7 @@
 }
 
 .m-aside-newsletter.s-loading {
-  @extend %a-loader;
+  @extend %loader;
   pointer-events: none;
 }
 

@@ -1,3 +1,17 @@
+/***
+
+Scroll direction
+============================
+
+Series of states for scroll classes.
+
+If the page is scrolling up, show the header. If we've scrolled far enough, show the top link.
+
+If we're scrolling down, hide the header.
+
+
+***/
+
 .s-scroll-direction-up {
   .g-header {
     opacity: 1;

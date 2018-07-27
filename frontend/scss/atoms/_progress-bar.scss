@@ -1,6 +1,11 @@
 /***
 
-Used for ajax loads:
+progress-bar
+============
+
+Used for ajax loads - the 2px bar that progresses across the top of the page. Can be used in other elements or as standalone.
+
+The ajax page loads progress bar is controlled by the `ajaxPageLoad` function and `loadProgressBar`. The ajax page progress bar is fake - it will keep splitting the distance between its current % and 100% but never quite get to 100%. If the page load errors, it goes back to 0%.
 
 ```
 <div class="progress-bar"><span></span></div>
