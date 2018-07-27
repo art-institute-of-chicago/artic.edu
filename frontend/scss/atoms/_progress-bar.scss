@@ -1,6 +1,9 @@
 /***
 
-Used for ajax loads:
+progress-bar
+============
+
+Used for ajax loads - the 2px bar that progresses across the top of the page. Can be used in other elements or as standalone. The ajax page loads progress bar is controlled by the `ajaxPageLoad` function and `loadProgressBar`.
 
 ```
 <div class="progress-bar"><span></span></div>

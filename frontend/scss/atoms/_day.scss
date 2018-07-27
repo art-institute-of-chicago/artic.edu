@@ -14,7 +14,7 @@ day
 ***/
 /***
 
-**PHP include**
+###### PHP include
 
 views/components/atoms/day.blade.php
 
@@ -30,12 +30,12 @@ Demonstrated in **statics/toybox**
 
 Example usage:
 
-```PHP
-@component('components.atoms._day')
+```
+<code><pre>@component('components.atoms._day')
     @slot('date', printDate($date))
     @slot('month', printMonth($date))
     @slot('day', printDay($date))
-@endcomponent
+@endcomponent</code></pre>
 ```
 
 ***/

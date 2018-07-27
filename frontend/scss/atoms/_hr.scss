@@ -1,3 +1,17 @@
+/***
+
+hr
+==========
+
+Styling `hr` and an element equivalent. `.hr` is often used to divide titles from listing and generally draw horizontal key lines where required.
+
+```
+<span class="hr"></span>
+```
+
+***/
+
+
 hr,
 .hr {
   display: block;

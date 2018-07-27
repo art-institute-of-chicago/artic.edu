@@ -1,7 +1,43 @@
+/***
+
+ratio-img
+==========
+
+Using the padding-bottom trick to make fluid containers to insert images into, that maintains an image ratio.
+
+Defaults to 1:1.
+
+Available ratios are:
+
+* 1:1
+* 3:2
+* 4:3
+* 16:10
+* 16:9
+* 21:9
+
+Can optionally use `object-fit` to cover or contain the area:
+
+```
+<div class="ratio-img"><img src="http://placehold.dev.area17.com/image/600x600"></div>
+<div class="ratio-img ratio-img--cover ratio-img--3:2"><img src="http://placehold.dev.area17.com/image/600x600"></div>
+<div class="ratio-img ratio-img--cover ratio-img--4:3"><img src="http://placehold.dev.area17.com/image/600x600"></div>
+<div class="ratio-img ratio-img--cover ratio-img--16:10"><img src="http://placehold.dev.area17.com/image/600x600"></div>
+<div class="ratio-img ratio-img--cover ratio-img--16:9"><img src="http://placehold.dev.area17.com/image/600x600"></div>
+<div class="ratio-img ratio-img--cover ratio-img--21:9"><img src="http://placehold.dev.area17.com/image/600x600"></div>
+<div class="ratio-img ratio-img--contain ratio-img--16:9"><img src="http://placehold.dev.area17.com/image/600x600"></div>
+```
+
+***/
 
 .ratio-img {
   display: block;
   position: relative;
+
+  #demo > & {
+    display: inline-block;
+    width: 200px;
+  }
 }
 
 .ratio-img::before {

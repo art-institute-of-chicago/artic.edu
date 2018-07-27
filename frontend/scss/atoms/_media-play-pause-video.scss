@@ -1,5 +1,10 @@
 /***
 
+media-play-pause-video
+======================
+
+Used to allow videos in hero's and hero listings pauseable to top them being distracting to users trying to read the page.
+
 ```
 <button class="btn btn--nonary btn--icon media-play-pause-video" aria-label="Pause video" data-behavior="mediaPlayPauseVideo">
     <svg aria-hidden="true" class="icon--pause">
@@ -41,6 +46,12 @@
     svg.icon--play {
       display: inline-block;
     }
+  }
+
+  #demo > & {
+    display: block;
+    margin: 20px;
+    opacity: 1;
   }
 }
 

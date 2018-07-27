@@ -1,10 +1,16 @@
 /***
 
+title
+=================
+
+Sets color and link styles of title text
+
 ```
 <strong class="title f-display-1">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
 <strong class="title f-module-title-1">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
-<strong class="title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong> <br>
-<strong class="m-listing__title f-list-2">Rock Sculpture</strong> <br>
+<strong class="title f-list-3"><a href="#">Cauleen Smith: Human_3.0 Reading Listz</a></strong> <br>
+<strong class="title f-list-2">Rock Sculpture</strong> <br>
+<strong class="title--w-right-arrow f-list-3"><a href="#">Link with arrow <span class='title__arrow' aria-hidden="true">&rsaquo;</span></a></strong> <br>
 ```
 
 ***/

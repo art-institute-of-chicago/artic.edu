@@ -27,7 +27,7 @@ Opens up a data selecting modal.
 ***/
 /***
 
-**PHP include**
+###### PHP include
 
 views/components/atoms/date-select-trigger.blade.php
 
@@ -43,15 +43,15 @@ $slot | label for date select | Yes
 
 Example usage:
 
-```PHP
-@component('components.atoms._date-select-trigger')
+```
+<pre><code>@component('components.atoms._date-select-trigger')
     @slot('gtmAttributes','data-gtm-event="event-calendar" data-gtm-event-category="in-page-link"')
     @if (request('start') && request('end'))
         {{ \Carbon\Carbon::parse(request('start'))->format('d M, Y') }} - {{ \Carbon\Carbon::parse(request('end'))->format('d M, Y') }}
     @else
         Pick a date
     @endif
-@endcomponent
+@endcomponent</code></pre>
 ```
 
 ***/

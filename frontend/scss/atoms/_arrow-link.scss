@@ -19,13 +19,13 @@ But, you can also do the left/right with a svg if you want
 
 ```
 <a class="arrow-link f-link" href="#">Forward<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
-<a class="arrow-link arrow-link--back f-link" href="#">Back<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a> <br>
+<a class="arrow-link arrow-link--back f-link" href="#">Back<svg aria-hidden="true" class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow"></use></svg></a>
 ```
 
 ***/
 /***
 
-**PHP include**
+###### PHP include
 
 views/components/atoms/arrow-link.blade.php
 
@@ -43,11 +43,11 @@ Demonstrated in **statics/toybox**
 
 Example usage:
 
-```PHP
-@component('components.atoms._arrow-link')
+```
+<pre><code>@component('components.atoms._arrow-link')
     @slot('href',$link['href'])
     {{ $link['label'] }}
-@endcomponent
+@endcomponent</code></pre>
 ```
 
 ***/

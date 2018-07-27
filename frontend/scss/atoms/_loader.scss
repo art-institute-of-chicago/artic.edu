@@ -1,5 +1,19 @@
-%a-loader,
-.a-loader {
+/***
+
+loader
+===========
+
+A simple CSS only load spinner
+
+```
+<span class="loader"></span> <br>
+<button class="btn btn--senary f-buttons s-loading">Action</button>
+```
+
+***/
+
+%loader,
+.loader {
   position: relative;
   min-width: 28px;
   min-height: 28px;
@@ -16,6 +30,11 @@
     border-top-color: $color__black--54;
     border-radius: 50%;
     animation: loader 1.25s linear infinite;
+  }
+
+  #demo > & {
+    display: block;
+    margin: 20px;
   }
 }
 

@@ -19,6 +19,7 @@ btn
 <button class="btn btn--icon"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
 <button class="btn icon-circle-48"><svg class="icon--share--24"><use xlink:href="#icon--share--24" /></svg></button>
 <button class="btn btn--secondary btn--icon-sq"><svg class="icon--print--24"><use xlink:href="#icon--print--24" /></svg></button>
+<button class="btn btn--senary f-buttons s-loading">Action</button>
 <br><br>
 <button class="btn btn--full f-buttons">Action</button>
 ```
@@ -26,7 +27,7 @@ btn
 ***/
 /***
 
-**PHP include**
+###### PHP include
 
 views/components/atoms/btn.blade.php
 
@@ -52,8 +53,8 @@ Demonstrated in **statics/toybox**
 
 Example usage:
 
-```PHP
-@component('components.atoms._btn')
+```
+<pre><code>@component('components.atoms._btn')
     @slot('variation', 'btn--septenary')
     @slot('icon', 'icon--new-window')
     Septenary
@@ -62,7 +63,7 @@ Example usage:
     @slot('variation', 'btn--tertiary btn--icon')
     @slot('font', '')
     @slot('icon', 'icon--print--24')
-@endcomponent
+@endcomponent</code></pre>
 ```
 
 ***/
@@ -351,7 +352,7 @@ Example usage:
 .btn.s-loading:hover,
 .btn.s-loading:focus,
 .btn.s-loading:active {
-  @extend %a-loader;
+  @extend %loader;
   border: 1px solid $color__rules--secondary;
   background-color: $color__white;
   color: transparent;

@@ -30,7 +30,7 @@ checkbox
 ***/
 /***
 
-**PHP include**
+###### PHP include
 
 views/components/atoms/checkbox.blade.php
 
@@ -52,13 +52,13 @@ Demonstrated in **statics/toybox**
 
 Example usage:
 
-```PHP
-@component('components.atoms._checkbox')
+```
+<pre><code>@component('components.atoms._checkbox')
   @slot('id', 'coption1')
   @slot('value', 'coption1')
   @slot('name', 'coption1')
   @slot('label', 'Option 1')
-@endcomponent
+@endcomponent</code></pre>
 ```
 
 ***/

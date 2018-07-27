@@ -1,3 +1,19 @@
+/***
+
+info-button-info
+================
+
+Image credit for hero images - content is filled out by `infoButtonInfo.js`
+
+```
+<span class="info-button-info" id="info-button-info" data-behavior="infoButtonInfo">
+    <span class="f-caption">Credit Mike Byrne, AREA 17</span>
+</span>
+```
+
+***/
+
+
 .info-button-info {
   display: none;
   position: absolute;
@@ -11,6 +27,13 @@
 
   @include breakpoint('small+') {
     max-width: 250px;
+  }
+
+  #demo & {
+    position: static;
+    display: block;
+    opacity: 1;
+    margin: 40px;
   }
 }
 

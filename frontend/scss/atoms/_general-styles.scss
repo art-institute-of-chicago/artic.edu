@@ -1,8 +1,18 @@
-:focus {
-  //outline: 3px solid rgba(131, 192, 253, .5);
-  //outline-offset: 1px;
-}
+/***
 
+General Styles
+==============
+
+A place for atoms so small that they didn't feel to warrant their own files.
+
+***/
+/***
+
+###### :focus
+
+Applying styles for focus - `focusDisplayHandler` adds data attributes to target mouse, keyboard and touch focusing. Designers hate the focus ring when a user uses a mouse, but we need to keep the focus ring for keyboard users.
+
+***/
 input:focus,
 textarea:focus,
 select:focus,
@@ -16,13 +26,20 @@ li {
   list-style-type: none;
 }
 
+/***
+
+###### img
+
+Images that have the `data-src` or `data-srcset` are likely to be LQIP and so are blurred so they don't look rough. The idea being the image is indicative of what will be loaded. The lazy loader then swaps the `src` and `srcset` around and the image loads a better version, the blurring is removed.
+
+***/
 img {
   border: 0 none;
   transition: filter .15s linear;
 
   &[data-no-img-settings] {
-    outline: 3px solid rgba(yellow,.75);
-    outline-offset: -3px;
+    //outline: 3px solid rgba(yellow,.75);
+    //outline-offset: -3px;
   }
 
   &[data-src]:not([src*='data:image/gif;base64']),
@@ -33,7 +50,9 @@ img {
 
 /***
 
-.default-img
+###### .default-img
+
+For if no image is specified - placeholder so to speak.
 
 ```
 <span class="default-img"></span>
@@ -64,6 +83,14 @@ a {
     color: $color__link--active;
   }
 }
+
+/***
+
+###### Special link overrides
+
+Some browsers overrride styles if the link is a phone number - I'd rather control this..
+
+***/
 
 a[href^="tel:"],
 a[href^="fax:"],
@@ -127,6 +154,10 @@ code {
   line-height: 20px;
   vertical-align: middle;
   tab-width: 2;
+
+  #demo & {
+    background: transparent;
+  }
 }
 
 pre {
@@ -139,6 +170,12 @@ pre {
 
   @include breakpoint('xlarge') {
     width: 100%;
+  }
+
+  #demo & {
+    width: 100%;
+    margin-top: 0;
+    padding: 20px;
   }
 }
 
@@ -160,10 +197,27 @@ pre code {
 }
 
 #demo {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  margin: 0;
+  padding: 0;
 }
 
+
+/***
+
+###### .icon--play-multi
+
+Some play buttons want to resize the play icon per breakpoint.
+Why not just scale the SVG you might ask? The different sizes are carefully placed on the pixel grid and scaling never gives you that control.
+
+```
+<svg class="icon--play-multi">
+    <use xlink:href="#icon--play--48" />
+    <use xlink:href="#icon--play--64" />
+    <use xlink:href="#icon--play--96" />
+</svg>
+```
+
+***/
 .icon--play-multi {
   width: 48px;
   height: 48px;
@@ -257,6 +311,13 @@ pre code {
   transition: transform .5s $bezier--ease-in-out;
 }
 
+/***
+
+###### .skip-nav
+
+This animates in and out based on focus - the animation is intended to make the skip nav more obvious to a partially sighted user.
+
+***/
 .skip-nav {
   position: absolute;
   z-index: 999;
