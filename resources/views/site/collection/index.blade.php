@@ -28,7 +28,7 @@
     @slot('value', request('q'))
     @slot('behaviors','autocomplete reportSearchToGoogleTagManager')
     @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
-    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
+    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-action="Collection" data-gtm-event-category="collection-search"')
     @slot('action', route('collection'))
 @endcomponent
 
@@ -56,7 +56,7 @@
                     @else
                         @slot('variation', 'tag--senary')
                     @endif
-                    @slot('gtmAttributes', 'data-gtm-event="quick-search-click" data-gtm-event-category="collection-search"')
+                    @slot('gtmAttributes', 'data-gtm-event="quick-search-click" data-gtm-event-action="Collection" data-gtm-event-category="collection-search"')
                     {{ $category->title }}
                 @endcomponent
             </li>
