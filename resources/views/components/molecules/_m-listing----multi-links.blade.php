@@ -7,6 +7,8 @@
     <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
 @endif
 
+<h3 class="sr-only">{{ $item['title'] }}</h3>
+
         @if ( isset($item['image']) and !empty($item['image']) )
             <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
                 @component('components.atoms._img')
@@ -34,7 +36,8 @@
             @else
                 @component('components.atoms._title')
                     @slot('font', $titleFont ?? 'f-list-3')
-                    @slot('tag', 'h3')
+                    @slot('tag', 'span')
+                    @slot('ariaHidden', 'true')
                     {{ $item['title'] }}
                 @endcomponent
             @endif
