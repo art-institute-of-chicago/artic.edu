@@ -95,7 +95,7 @@ Route::name('exhibitions.show')->get('/exhibitions/{id}/{slug?}', 'ExhibitionsCo
 // Artwork routes
 Route::name('artworks.recentlyViewed')->get('/artworks/recentlyViewed', 'ArtworkController@recentlyViewed');
 Route::name('artworks.clearRecentlyViewed')->get('/artworks/clearRecentlyViewed', 'ArtworkController@clearRecentlyViewed');
-Route::name('artworks.addRecentlyViewed')->get('/artworks/addRecentlyViewed/{id}', 'ArtworkController@addRecentlyViewed');
+Route::name('artworks.addRecentlyViewed')->get('/artworks/addRecentlyViewed/{id}/{slug?}', 'ArtworkController@addRecentlyViewed');
 Route::name('artworks.show')->get('/artworks/{id}/{slug?}', 'ArtworkController@show');
 
 // Gallery / tag page
