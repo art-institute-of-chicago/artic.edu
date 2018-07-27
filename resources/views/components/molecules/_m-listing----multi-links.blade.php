@@ -52,10 +52,14 @@
         @endif
         @if (isset($item['links']) and $item['links'])
             <br>
-            <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">Links</h3>
-            <ul class="f-secondary" aria-labelledby="h-{{ str_slug($item['title']) }}">
+            @if (count($item['links']) > 1)
+              <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">Links</h3>
+              <ul class="f-secondary" aria-labelledby="h-{{ str_slug($item['title']) }}">
+            @else
+              <span class="f-secondary last-child">
+            @endif
             @foreach ($item['links'] as $link)
-                <li>
+                {!! count($item['links']) > 1 ? '<li>' : '<span>' !!}
                     @if (isset($link['external']) and $link['external'])
                         <a href="{!! $link['href'] !!}" target="_blank" class="external-link f-link">
                             {!! $link['label'] !!}<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
@@ -67,9 +71,9 @@
                             {!! $link['label'] !!}
                         @endcomponent
                     @endif
-                </li>
+                {!! count($item['links']) > 1 ? '</li>' : '</span>' !!}
             @endforeach
-            </ul>
+            {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
         @endif
     </span>
 

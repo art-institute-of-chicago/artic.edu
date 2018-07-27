@@ -437,6 +437,7 @@
   .m-listing__meta .f-list-4 + br + .m-listing__meta-bottom .f-secondary {
     @include tucked-margin-top($f-secondary, ('xsmall': 60, 'small+': 40));
   }
+  .m-listing__meta span.f-secondary.last-child,
   .m-listing__meta ul.f-secondary:last-child {
     padding-bottom: 20px;
 
@@ -476,7 +477,7 @@
   color: $color__text;
 }
 
-.m-listing__meta .f-secondary + br + .f-secondary:not(ul):not(.date) {
+.m-listing__meta .f-secondary + br + .f-secondary:not(ul):not(span):not(.date) {
   @include tucked-align-top($f-secondary);
   color: $color__text--tertiary;
 }
