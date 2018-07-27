@@ -1517,6 +1517,7 @@ class StaticsController extends FrontController {
         "downloadName" => $this->faker->word(),
         "credit" => $credit,
         "creditUrl" => $creditUrl,
+        "alt" => "My image alt tag"
     );
 
     /*
@@ -1551,19 +1552,16 @@ class StaticsController extends FrontController {
             'src' => 'http://1312img.s3.amazonaws.com/aic/feature-1.mp4',
             'poster' => 'http://1312img.s3.amazonaws.com/aic/feature-1.jpg',
             'fallbackImage' => $this->getImage(),
-            'title' => 'my video title',
         ),
         array(
             'src' => 'http://1312img.s3.amazonaws.com/aic/feature-2.mp4',
             'poster' => 'http://1312img.s3.amazonaws.com/aic/feature-2.jpg',
             'fallbackImage' => $this->getImage(),
-            'title' => 'my video title',
         ),
         array(
             'src' => 'http://1312img.s3.amazonaws.com/aic/feature-3.mp4',
             'poster' => 'http://1312img.s3.amazonaws.com/aic/feature-3.jpg',
             'fallbackImage' => $this->getImage(),
-            'title' => 'my video title',
         ),
     );
     return $this->faker->randomElement($videos);

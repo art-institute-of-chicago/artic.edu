@@ -1,18 +1,22 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $item->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-            @if (isset($video) || $item->videoFront)
-                @component('components.atoms._video')
-                    @slot('video', ($video ?? $item->videoFront))
-                    @slot('autoplay', true)
-                    @slot('loop', true)
-                    @slot('muted', true)
-                @endcomponent
-            @elseif (isset($image) || method_exists($item, 'imageFront'))
+            @if (isset($image) || $item->imageFront('default'))
                 @component('components.atoms._img')
-                    @slot('image', ($image ?? $item->imageFront('default')))
+                    @slot('image', $image ?? $item->imageFront('default'))
                     @slot('settings', $imageSettings ?? '')
                 @endcomponent
+                @if ($item->videoFront)
+                    @component('components.atoms._video')
+                        @slot('video', $item->videoFront)
+                        @slot('autoplay', true)
+                        @slot('loop', true)
+                        @slot('muted', true)
+                        @slot('title', $item->videoFront['fallbackImage']['alt'] ?? $item->imageFront('default')['alt'] ?? $image['alt'] ?? null)
+                    @endcomponent
+                    @component('components.atoms._media-play-pause-video')
+                    @endcomponent
+                @endif
             @else
                 <span class="default-img"></span>
             @endif

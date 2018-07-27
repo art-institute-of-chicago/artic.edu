@@ -125,6 +125,7 @@
                 @else
                     @slot('controls', true)
                 @endif
+                @slot('title', $media['fallbackImage']['alt'] ?? null)
             @endcomponent
             @component('components.atoms._media-play-pause-video')
             @endcomponent
