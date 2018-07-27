@@ -2,12 +2,12 @@
 
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
     <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
+        <h3 class="sr-only">{{ $item['title'] }}</h3>
         <a href="{!! $item['titleLink'] !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
 @else
     <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+        <h3 class="sr-only">{{ $item['title'] }}</h3>
 @endif
-
-<h3 class="sr-only">{{ $item['title'] }}</h3>
 
         @if ( isset($item['image']) and !empty($item['image']) )
             <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
