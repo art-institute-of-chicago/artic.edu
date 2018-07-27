@@ -124,6 +124,8 @@
 
   <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">
 
+    <h2 class="sr-only">About this work</h2>
+
     @component('components.blocks._blocks')
         @slot('blocks', $item->present()->blocks ?? null)
     @endcomponent
