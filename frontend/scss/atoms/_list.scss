@@ -6,19 +6,19 @@ list
 Basic styles to both `ul` and `ol`. `_o-blocks.scss` extends this onto lists with article bodies.
 
 ```
-<ul class="list">
+<ul class="list f-body">
   <li>Check your spelling</li>
   <li>Try searching for fewer terms to broaden your results.</li>
 </ul>
-<ol class="list">
+<ol class="list f-body">
   <li>Check your spelling</li>
   <li>Try searching for fewer terms to broaden your results.</li>
 </ol>
-<ul class="list">
+<ul class="list f-body">
   <li>Check your spelling</li>
   <li>
     Try searching for fewer terms to broaden your results.
-    <ol class="list">
+    <ol class="list f-body">
       <li>Check your spelling</li>
       <li>
         Try searching for fewer terms to broaden your results.
@@ -30,7 +30,7 @@ Basic styles to both `ul` and `ol`. `_o-blocks.scss` extends this onto lists wit
     </ol>
   </li>
 </ul>
-<ul class="list list--inline">
+<ul class="list list--inline f-body">
   <li>Check your spelling</li>
   <li>Try searching for fewer terms to broaden your results.</li>
 </ul>

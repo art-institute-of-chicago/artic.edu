@@ -8,7 +8,7 @@ A place for atoms so small that they didn't feel to warrant their own files.
 ***/
 /***
 
-###### :focus
+##### :focus
 
 Applying styles for focus - `focusDisplayHandler` adds data attributes to target mouse, keyboard and touch focusing. Designers hate the focus ring when a user uses a mouse, but we need to keep the focus ring for keyboard users.
 
@@ -28,7 +28,7 @@ li {
 
 /***
 
-###### img
+##### img
 
 Images that have the `data-src` or `data-srcset` are likely to be LQIP and so are blurred so they don't look rough. The idea being the image is indicative of what will be loaded. The lazy loader then swaps the `src` and `srcset` around and the image loads a better version, the blurring is removed.
 
@@ -50,7 +50,7 @@ img {
 
 /***
 
-###### .default-img
+##### .default-img
 
 For if no image is specified - placeholder so to speak.
 
@@ -86,7 +86,7 @@ a {
 
 /***
 
-###### Special link overrides
+##### Special link overrides
 
 Some browsers overrride styles if the link is a phone number - I'd rather control this..
 
@@ -204,7 +204,7 @@ pre code {
 
 /***
 
-###### .icon--play-multi
+##### .icon--play-multi
 
 Some play buttons want to resize the play icon per breakpoint.
 Why not just scale the SVG you might ask? The different sizes are carefully placed on the pixel grid and scaling never gives you that control.
@@ -313,7 +313,7 @@ Why not just scale the SVG you might ask? The different sizes are carefully plac
 
 /***
 
-###### .skip-nav
+##### .skip-nav
 
 This animates in and out based on focus - the animation is intended to make the skip nav more obvious to a partially sighted user.
 
