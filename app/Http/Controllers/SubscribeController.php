@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Libraries\ExactTargetService;
 
 class SubscribeController extends Controller
 {
@@ -11,7 +12,8 @@ class SubscribeController extends Controller
     {
         $data = $request->validate(['email'=>'required|email']);
 
-        // TODO Subscribe to list via ExactTarget API
+        $exactTarget = new ExactTargetService(request('email'), request('list'));
+        $exactTarget->subscribe();
 
         $response = true;
         if ($response) {

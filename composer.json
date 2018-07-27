@@ -24,6 +24,7 @@
         "aic/data-hub-foundation": "dev-master",
         "area17/twill": "dev-twill-inside",
         "darkaonline/l5-swagger": "5.6.*",
+        "digitaladditive/exacttarget-laravel": "^2.2",
         "eluceo/ical": "0.14.*",
         "fideloper/proxy": "~4.0",
         "guzzlehttp/guzzle": "6.3.0",
