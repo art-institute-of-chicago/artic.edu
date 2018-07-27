@@ -3,7 +3,7 @@
 @endphp
 <form class="m-aside-newsletter{{ (isset($variation)) ? ' '.$variation : ' ' }}{{ (isset($error) and $error) ? ' s-error' : '' }}{{ (isset($success) and $success) ? ' s-success' : '' }}" action="/subscribe" data-behavior="newsletter" novalidate>
   <fieldset>
-    <legend><span class="title f-list-3">Sign up to our newsletter and receive updates.</span></legend>
+    <legend><h2 class="title f-list-3">Sign up to our newsletter and receive updates.</h2></legend>
     <span class="m-aside-newsletter__field">
       <label for="email{{ $rand }}" class="f-secondary">Email address</label>
       {{ csrf_field() }}
