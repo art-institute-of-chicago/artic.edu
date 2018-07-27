@@ -1,13 +1,11 @@
 /***
 
-Common themes
-=============
-
 The fundamental structure of the front end build is using [A17 Boilerplate](https://www.npmjs.com/package/@area17/a17-boilerplate) with its dependency of [A17 Helpers](https://www.npmjs.com/package/@area17/a17-helpers) (a small library of JavaScript helpers).
 
 Many atom/molecule/organism components allow you to alter the tag, font and set a variation CSS class. Some allow the setting of Google Tag Manager attributes and Schema.org itemprops.
 
 ```
+<pre><code>
 @component('components.atoms._btn')
     @slot('variation', 'btn--full')
     @slot('tag', 'a')
@@ -15,6 +13,7 @@ Many atom/molecule/organism components allow you to alter the tag, font and set 
     @slot('gtmAttributes', 'data-gtm-event="event-buy-tickets" data-gtm-event-category="nav-cta-button"')
     {{ $buttonText ?? 'Buy tickets' }}
 @endcomponent
+</code></pre>
 ```
 
 Google Tag Manager attributes are picked up by JavaScript (ajaxPageLoad and googleTagManagerDataFromLink) and sent through to GTM accordingly (googleTagManager);
@@ -22,8 +21,75 @@ Google Tag Manager attributes are picked up by JavaScript (ajaxPageLoad and goog
 ***/
 /***
 
+Statics
+=======
+
+A handy reference of the styles, atoms, molecules and organisms used to create the site:
+* [http://aic.dev.a17.io/statics](http://aic.dev.a17.io/statics)
+
+These pages aren't available on production.
+
+They're made using the same components as the rest of the site, only powered by faker data in `StaticsController`.
+
+***/
+/***
+
+Compiling Assets
+================
+
+You'll need:
+
+* Node 8.10.0
+* NPM 5.8.0
+
+You may want to use [NVM](https://github.com/creationix/nvm) to manage Node/NPM versions.
+
+Firstly:
+
+```
+$ npm install
+```
+
+And then for initial compile:
+
+```
+$ npm run build
+```
+
+For production builds:
+
+```
+$ npm run production
+```
+
+Or, for continuous work, with 'watch' task running, just:
+
+```
+$ npm run dev
+```
+
+This will open a browser to `localhost:3000` and then use live reload. If your setup changes the development url from `aic.dev.a17.io` then update `devUrl` in `manifest.json`.
+
+To generate these styleguide pages:
+
+```
+$ npm run toolkit
+```
+
+The style guide uses [Node Sassdown](https://www.npmjs.com/package/@antoine_a17/a17-node-sassdown).
+
+You can also just generate CSS or JS via:
+
+```
+$ npm run styles
+$ npm run scripts
+```
+
+***/
+/***
+
 Stylesheets (`SCSS`)
---------------------
+====================
 
 The SCSS is written using [BEM](http://getbem.com/) and everything is split into atoms, molecules and organisms, following [Brad Frost's Atomic Web Design](http://bradfrost.com/blog/post/atomic-web-design/) as the basis.
 
@@ -34,9 +100,10 @@ The `SCSS` files are compiled, the NPM tasks will need to be run in order for up
 /***
 
 JavaScript
-----------
+==========
 
 The JavaScript is vanilla and is split into:
+
 * `behaviors`
 * `functions`
 
@@ -65,7 +132,7 @@ The `JS` files are compiled, the NPM tasks will need to be run in order for upda
 /***
 
 Fonts
------
+=====
 
 Fonts are served from my.fonts.net and cloud.typography.com. The site will load with fallback fonts, a font observer JavaScript waits for fonts to load and adds a class to the body to switch to the correct fonts. We prefer a FOUT (flash of unstyled text) over FOIT (flash of invisible text) so that a site remains readable and usable.
 
@@ -73,7 +140,7 @@ Fonts are served from my.fonts.net and cloud.typography.com. The site will load 
 /***
 
 The vertical grid
------------------
+=================
 
 The main container of the site is 58 columns. There are 3 columns either side, the outergutter, so in total the screen is split into 64 columns.
 
@@ -83,13 +150,55 @@ From these 58, we make 12 DESIGN columns of 3 CSS columns with 2 CSS columns gut
 
 We also have 4 column GRID listings, where each item takes up 3 DESIGN columns (13 CSS columns) with 2 CSS column gutters between them.
 
+Within the CSS we can specify how many columns wide we want something with `colspan`:
+
+```
+<pre><code>.g-nav-mobile__nav-secondary {
+  margin-left: colspan(2, 'xsmall');
+}</code></pre>
+```
+
+This is asking for 2/58 columns at xsmall.
+
+See `_grid.scss` for notes on `colspan`, `design-cols-to-colspan`, `grid-cols-to-colspan` and `width-multi`.
+
+***/
+/***
+
+The horizontal grid
+===================
+
+This site uses a 4px baseline grid - which means margins and paddings will be multiples of 4.
+
+To help space text out in the SCSS we use `tucked-margin-top`:
+
+```
+<pre><code>.deflist .f-secondary {
+  @include tucked-margin-top($f-secondary, ('xsmall': 24, 'small+': 28));
+}</code></pre>
+```
+
+This sets a baseline to baseline measurement of 24px at xsmall and 28px at small+. If only xsmall is defined, this becomes the baseline spacing for all breakpoints (its the default so to speak).
+
+We also have `tucked-align-top`:
+
+```
+<pre><code>.deflist .f-secondary {
+  @include tucked-align-top($f-secondary);
+}</code></pre>
+```
+
+This attempts to align a text block to the top its container, essentially like `margin-top: 0;` but whilst maintaining the baseline alignment.
+
+These helpers are used to generate the magic numbers that appear within the compiled CSS, to make visual spacing easier to coordinate with designers' Illustrator files.
+
 ***/
 /***
 
 Images
-------
+======
 
-Images are responsive, they have some combo of `data-srcset`/`srcset` and `sizes`. The A17 lazyload helper updates the `data-srcset` to `srcset` when the image is visible. 
+Images are responsive, they have some combo of `data-srcset`/`srcset` and `sizes`. The A17 lazyload helper updates the `data-srcset` to `srcset` when the image is visible.
 
 Many images have an `imageSettings` slot:
 
@@ -115,7 +224,7 @@ These settings feed into a `aic_imageSettings` PHP helper function inside of `Im
 
 In that instance we're asking `imgix` to 16:9 crop an image, to the widths in the `srcset` array and generate a `sizes` attribute with the sizes in CSS columns per breakpoint.
 
-The breakpoint names follow the CSS breakpoint names in `_variables.scss`. 
+The breakpoint names follow the CSS breakpoint names in `_variables.scss`.
 
 For [imgix](https://docs.imgix.com/apis/url) images you can optionally specify:
 * `fit`, defaults to `crop`
@@ -185,6 +294,6 @@ Which would be:
 
 It also generates a LQIP image for the initial `src` of the image to be replaced as required by the `srcset` and the lazy loader.
 
-Remember, responsive images aren't super obvious - for example, on a retina cell phone with a poor connection, the image may be 300px wide and so it may choose to display the 300w variant in order to display a representative image quicker. If the cell phone connection speed is good, then the browser may instead choose the 600w image to take advantage of the higher resolution screen. 
+Remember, responsive images aren't super obvious - for example, on a retina cell phone with a poor connection, the image may be 300px wide and so it may choose to display the 300w variant in order to display a representative image quicker. If the cell phone connection speed is good, then the browser may instead choose the 600w image to take advantage of the higher resolution screen.
 
-The `width` and `height` is important so the browser knows how to correctly scale the image to avoid repaints, jumping of the page, when the image loads. Set these to the original width and height of the source image. 
+The `width` and `height` is important so the browser knows how to correctly scale the image to avoid repaints, jumping of the page, when the image loads. Set these to the original width and height of the source image.

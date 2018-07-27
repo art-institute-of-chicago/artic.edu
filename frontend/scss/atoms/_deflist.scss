@@ -46,6 +46,8 @@ $link['label'] | Text for link | Yes
 
 Demonstrated in **statics/article**
 
+*NB* the display of deflist is enhanced by CSS grid, so differences between browsers in the display of deflist is expected if a browser does not support CSS grid.
+
 ***/
 
 .deflist {
