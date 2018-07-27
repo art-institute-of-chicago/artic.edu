@@ -17,7 +17,7 @@ class TicketedEventTypeController extends FrontController
     public function index()
     {
 
-        return $this->repository->listAll()
+        return $this->repository->listAll();
 
     }
 
