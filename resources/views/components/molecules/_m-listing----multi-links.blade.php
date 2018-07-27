@@ -52,7 +52,8 @@
         @endif
         @if (isset($item['links']) and $item['links'])
             <br>
-            <ul class="f-secondary">
+            <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">Links</h3>
+            <ul class="f-secondary" aria-labelledby="h-{{ str_slug($item['title']) }}">
             @foreach ($item['links'] as $link)
                 <li>
                     @if (isset($link['external']) and $link['external'])
