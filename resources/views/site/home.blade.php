@@ -17,7 +17,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="nav-hero"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-category="sub-nav-hero"')
+                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'"  data-gtm-event-action="Home" data-gtm-event-category="nav-hero"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-action="Home"  data-gtm-event-category="sub-nav-hero"')
             @endcomponent
         @endif
     @endforeach
@@ -25,7 +25,7 @@
 
 @component('components.molecules._m-intro-block')
     @slot('links', array(
-        array('label' => 'Plan your visit', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="home-visit" data-gtm-event-category="nav-cta-button"'),
+        array('label' => 'Plan your visit', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="visit" data-gtm-event-action="Home" data-gtm-event-category="nav-cta-button"'),
         array('label' => 'Hours and admission fees<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['hours'], 'variation' => 'arrow-link'),
         array('label' => 'Directions and parking<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['directions'], 'variation' => 'arrow-link')
     ))
@@ -37,7 +37,7 @@
         array(
             'label' => 'All current exhibitions and events',
             'href' => $_pages['exhibitions'],
-            'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-category="nav-link"'
+            'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-action="Home"  data-gtm-event-category="nav-link"'
         ),
     ))
     Exhibitions and Events
@@ -107,7 +107,7 @@
             'label' => 'All current exhibitions and events',
             'href' => $_pages['exhibitions'],
             'variation' => 'btn btn--secondary',
-            'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-category="nav-link"'
+            'gtmAttributes' => 'data-gtm-event="home-exhibitions-and-events" data-gtm-event-action="Home"  data-gtm-event-category="nav-link"'
         ),
     ))
 @endcomponent
@@ -122,13 +122,13 @@
     @slot('headline', $membership_module_headline)
     @slot('short_copy', $membership_module_short_copy)
     @slot('button_text', $membership_module_button_text)
-    @slot('gtmAttributes', 'data-gtm-event="home" data-gtm-event-category="internal-ad-click"')
+    @slot('gtmAttributes', 'data-gtm-event="$membership_module_button_text" data-gtm-event-action="Home" data-gtm-event-category="internal-ad-click"')
 @endcomponent
 
 
 @component('components.molecules._m-title-bar')
     @slot('links',
-        array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-category="nav-link"'))
+        array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="Home"  data-gtm-event-category="nav-link"'))
     )
     From the Collection
 @endcomponent
@@ -163,13 +163,13 @@
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-category="nav-link"')))
+    @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="Home"  data-gtm-event-category="nav-link"')))
 @endcomponent
 
 
 
 @component('components.molecules._m-title-bar')
-    @slot('links', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-category="nav-link"')))
+    @slot('links', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="Home"  data-gtm-event-category="nav-link"')))
     From the Shop
 @endcomponent
 
@@ -199,14 +199,14 @@
                       'xlarge' => '13',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="home-shop-'.($loop->index + 1).':'.getUtf8Slug($item['title'] ?? 'unknown title').'" data-gtm-event-category="shop-listing"')
+            @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($item['title'] ?? 'unknown title').'" data-gtm-event-action="Home"  data-gtm-event-category="shop-listing'.($loop->index + 1).'"')
         @endcomponent
     @endforeach
 @endcomponent
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-category="nav-link"')))
+    @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="Home"  data-gtm-event-category="nav-link"')))
 @endcomponent
 
 <script type="application/ld+json">

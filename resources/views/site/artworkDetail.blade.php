@@ -37,10 +37,10 @@
 
     <ul class="list list--inline f-secondary">
       @if ($item->department_id)
-      <li><a href="{!! route('departments.show', [$item->department_id]) !!}" data-gtm-event="collection-nav" data-gtm-event-category="department">{{ $item->department_title }}</a></li>
+      <li><a href="{!! route('departments.show', [$item->department_id]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-category="collection-nav">{{ $item->department_title }}</a></li>
       @endif
       @if ($item->gallery_id)
-      <li><a href="{!! route('galleries.show', [$item->gallery_id]) !!}" data-gtm-event="collection-nav" data-gtm-event-category="gallery">{{ $item->gallery_title }}</a></li>
+      <li><a href="{!! route('galleries.show', [$item->gallery_id]) !!}" data-gtm-event="{{ $item->gallery_title }}" data-gtm-event-category="collection-nav">{{ $item->gallery_title }}</a></li>
       @endif
     </ul>
   </div>
@@ -79,7 +79,7 @@
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
           @if (!empty($item->artist_id))
-            <a href="{{ route('artists.show', $item->artist_id) }}" data-gtm-event="artist" data-gtm-event-category="collection-nav">{{ $item->title }}</a>
+            <a href="{{ route('artists.show', $item->artist_id) }}" data-gtm-event="{{ $item->title }}" data-gtm-event-category="collection-nav">{{ $item->title }}</a>
           @else
             {{ $item->title }}
           @endif
