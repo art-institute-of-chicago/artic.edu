@@ -54,8 +54,8 @@ const rangeSlider = function(container){
   }
 
   function _triggerPageLoad(minIndex, maxIndex) {
-    var windowLocationHref = queryStringHandler.updateParameter(window.location.href, param+'-start', rangeValues[minIndex]);
-    windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, param+'-end', rangeValues[maxIndex]);
+    var windowLocationHref = queryStringHandler.updateParameter(window.location.href, param+'-start', rangeValues[minIndex].replace(/\s(AD|BC)/ig,'$1'));
+    windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, param+'-end', rangeValues[maxIndex].replace(/\s(AD|BC)/ig,'$1'));
     // trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: windowLocationHref,
@@ -163,7 +163,7 @@ const rangeSlider = function(container){
       isBC = true;
     }
 
-    var text = Math.abs(customValue) + (isBC ? bcText : adText);
+    var text = Math.abs(customValue) + (isBC ? ' '+bcText : ' '+adText);
 
     // find nearest number in array of values
     // loop all values

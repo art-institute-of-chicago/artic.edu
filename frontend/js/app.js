@@ -20,7 +20,7 @@ if (!A17.browserSpec || A17.browserSpec === 'html4') {
 A17.currentMediaQuery = getCurrentMediaQuery();
 A17.currentPathname = window.location.pathname;
 A17.dateRangeValues = [
-    '8000BC','7000BC','6000BC','5000BC','4000BC','3000BC','2000BC','1000BC','1AD','500AD','1000AD','1200','1400','1600','1700','1800','1900','1910','1920','1930','1940','1950','1960','1970','1980','1990','2000','2010','Present']; // for collection filters
+    '8000 BC','7000 BC','6000 BC','5000 BC','4000 BC','3000 BC','2000 BC','1000 BC','1 AD','500 AD','1000 AD','1200','1400','1600','1700','1800','1900','1910','1920','1930','1940','1950','1960','1970','1980','1990','2000','2010','Present']; // for collection filters
 A17.onYouTubeIframeAPIReady = false;
 try {
   A17.env = /s-env-([a-z]*)/ig.exec(document.documentElement.className)[1];
