@@ -4,6 +4,10 @@
   padding: 4px 0 24px 20px;
   background: $color__bg--primary;
   color: $color__black;
+
+  #demo & {
+    background-color: transparent;
+  }
 }
 
 .sg-icons svg {
