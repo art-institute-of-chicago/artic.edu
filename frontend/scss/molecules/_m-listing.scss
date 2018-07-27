@@ -7,8 +7,10 @@
       <span class="m-listing__img">
         <img src="http://placehold.dev.area17.com/image/400x225">
       </span>
-      <span class="m-listing__meta">
+      <span class="m-listing__title">
         <em class="type f-tag">Special Exhibition</em>
+      </span>
+      <span class="m-listing__meta">
         <br>
         <strong class="title f-list-3">Cauleen Smith: Human_3.0 Reading Listz</strong><br>
         <span class="m-listing__meta-bottom">
@@ -22,8 +24,10 @@
       <span class="m-listing__img m-listing__img--square">
         <img src="http://placehold.dev.area17.com/image/300x300">
       </span>
-      <span class="m-listing__meta">
+      <span class="m-listing__title">
         <strong class="m-listing__title f-list-2">Glass Sculpture</strong> <br>
+      </span>
+      <span class="m-listing__meta">
         <span class="m-listing__meta-bottom">
           <span class="price f-secondary">$257</span>
         </span>
@@ -247,6 +251,14 @@
   opacity: .9;
 }
 
+.m-listing__title {
+  display: flex;
+  flex: 1 0 auto;
+  flex-flow: column nowrap;
+  padding-top: .02px;
+  padding-bottom: .02px;
+}
+
 .m-listing__meta {
   display: flex;
   flex: 1 0 auto;
@@ -264,14 +276,14 @@
 .o-grid-listing--2-col\@xlarge .m-listing__meta,
 .o-grid-listing--3-col\@xlarge .m-listing__meta,
 .o-grid-listing--4-col\@xlarge .m-listing__meta {
-  min-height: 152px;
+  min-height: 102px;
 
   @include breakpoint('small') {
-    min-height: 168px;
+    min-height: 118px;
   }
 
   @include breakpoint('medium+') {
-    min-height: 184px;
+    min-height: 134px;
   }
 }
 
@@ -346,11 +358,11 @@
   }
 }
 
-.m-listing__meta .f-list-3 {
+.m-listing__title .f-list-3 {
   @include tucked-margin-top($f-list-3, ('xsmall': 32, 'large+': 44));
 }
-  .m-listing__meta .f-list-3:first-child,
-  .m-listing__meta .date + .f-list-3 {
+  .m-listing__title .f-list-3:first-child,
+  .m-listing__title .date + .f-list-3 {
     @include tucked-margin-top($f-list-3, ('xsmall': 36, 'small+': 40));
   }
 
@@ -410,7 +422,7 @@
   @include tucked-margin-top($f-body, ('xsmall': 48));
 }
 
-.m-listing__meta .f-list-3 + .f-body {
+.m-listing__title .f-list-3 + .f-body {
   @include tucked-margin-top($f-body, ('xsmall': 36, 'small+': 44, 'medium+': 48));
 }
 
@@ -422,9 +434,6 @@
   @include tucked-margin-top($f-body, ('xsmall': 28));
 }
 
-.m-listing__meta .f-secondary {
-  @include tucked-margin-top($f-secondary, ('xsmall': 36));
-}
   .m-listing__meta .f-list-1 + br + .f-secondary:not(ul),
   .m-listing__meta .f-list-2 + br + .f-secondary:not(ul),
   .m-listing__meta .f-list-6 + br + .f-secondary:not(ul),
@@ -486,7 +495,7 @@
   color: $color__text--tertiary;
 }
 
-.m-listing__meta .f-list-3 + br + .f-link,
+.m-listing__title .f-list-3 + br + .f-link,
 .m-listing__meta .f-secondary + br + .f-link,
 .m-listing__meta .f-tertiary + br + .f-link {
   @include tucked-margin-top($f-secondary, ('xsmall': 36));
@@ -508,7 +517,7 @@
         @include tucked-align-top($f-list-2, $name);
       }
 
-      .m-listing--row .m-listing__meta .f-list-3:first-child {
+      .m-listing--row .m-listing__title .f-list-3:first-child {
         @include tucked-align-top($f-list-3, $name);
       }
 
@@ -1245,7 +1254,7 @@
       @include tucked-align-top($f-list-2, 'small');
     }
 
-    .m-listing__meta .f-list-3:first-child {
+    .m-listing__title .f-list-3:first-child {
       @include tucked-align-top($f-list-3, 'small');
     }
 
@@ -1307,7 +1316,7 @@
       @include tucked-align-top($f-list-2, 'medium');
     }
 
-    .m-listing__meta .f-list-3:first-child {
+    .m-listing__title .f-list-3:first-child {
       @include tucked-align-top($f-list-3, 'medium');
     }
 
@@ -1480,7 +1489,7 @@
   }
 }
 
-.m-listing--inline .m-listing__meta .f-list-3 {
+.m-listing--inline .m-listing__title .f-list-3 {
   @include tucked-margin-top($f-list-3, ('xsmall': 32, 'small+': 36));
 
   &:first-child {

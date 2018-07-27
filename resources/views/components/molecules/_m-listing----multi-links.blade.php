@@ -1,5 +1,5 @@
 
-
+{{-- Image --}}
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
     <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
         <a href="{!! $item['titleLink'] !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
@@ -20,7 +20,8 @@
         </a>
     @endif
 
-    <span class="m-listing__meta">
+    {{-- Title --}}
+    <span class="m-listing__title">
         @if (isset($item['title']) and $item['title'])
             @if (isset($item['titleLink']) and $item['titleLink'])
                 @component('components.atoms._title')
@@ -40,6 +41,10 @@
             @endif
             <br>
         @endif
+    </span>
+
+    {{-- Text --}}
+    <span class="m-listing__meta">
         @if (isset($item['text']) and $item['text'])
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')
