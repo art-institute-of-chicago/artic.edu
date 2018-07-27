@@ -18,6 +18,14 @@
   display: flex;
   position: relative;
   flex-flow: row wrap;
+
+  & + & {
+    margin-top: 16px;
+
+    @include breakpoint('small+') {
+      margin-top: 32px;
+    }
+  }
 }
 
 .m-row-block__title {
@@ -67,7 +75,7 @@
 }
 
 .m-row-block .f-secondary:first-child {
-  @include tucked-align-top($f-secondary);
+  @include tucked-margin-top($f-secondary, (xsmall: 12));
 }
 
 .m-row-block .f-subheading-1:first-child {
