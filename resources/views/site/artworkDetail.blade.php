@@ -78,6 +78,7 @@
           @slot('tag','h1')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
+          @slot('ariaHidden', 'true')
           {{ $item->title }}
       @endcomponent
     @endif
