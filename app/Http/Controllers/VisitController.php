@@ -109,7 +109,7 @@ class VisitController extends FrontController
             array_push($dining, array(
                 'image' => $hour->imageFront('dining_cover'),
                 'title' => $hour->name,
-                'text' => $hour->hours,
+                'text' => $hour->accessible_hours,
             ));
         };
 

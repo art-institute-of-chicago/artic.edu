@@ -40,4 +40,9 @@ class DiningHour extends Model
             ],
         ],
     ];
+
+    public function getAccessibleHoursAttribute()
+    {
+        return str_replace('–', '<span aria-hidden="true">–</span><span class="sr-only"> to </span>', $this->hours);
+    }
 }
