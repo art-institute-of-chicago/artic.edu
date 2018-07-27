@@ -1,3 +1,13 @@
+/***
+
+Image heights capped
+============================
+
+Dev mode - can cap the heights of the images, rounds them to something that divides by the baseline for easier design QA. Does not appear in production.
+
+
+***/
+
 .s-image-heights-capped {
 
   .m-listing__img,
