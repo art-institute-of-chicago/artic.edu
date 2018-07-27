@@ -106,8 +106,8 @@
     <li><a href="{{ $_pages['legal-terms'] }}">Terms</a></li>
   </ul>
 </footer>
-<a class="top-link" href="#a17">
-  <svg class="icon--arrow" aria-label="top of page">
+<a class="top-link" href="#a17" aria-label="top of page">
+  <svg class="icon--arrow" aria-hidden="true">
     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow">
   </svg>
 </a>
