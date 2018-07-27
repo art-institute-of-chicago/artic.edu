@@ -8,7 +8,7 @@ Images are responsive, they have some combo of `data-srcset`/`srcset` and `sizes
 Many images have an `imageSettings` slot:
 
 ```
-@component('components.molecules._m-media')
+<pre><code>@component('components.molecules._m-media')
   @slot('item', $hours['media'])
   @slot('imageSettings', array(
       'fit' => 'crop',
@@ -22,7 +22,7 @@ Many images have an `imageSettings` slot:
             'xlarge' => '28',
       )),
   ))
-@endcomponent
+@endcomponent</code></pre>
 ```
 
 These settings feed into a `aic_imageSettings` PHP helper function inside of `ImageHelpers` which works out how to fill in the `sizes` attribute and the `srcset`.

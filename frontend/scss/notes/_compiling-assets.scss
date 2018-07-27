@@ -13,42 +13,57 @@ You may want to use [NVM](https://github.com/creationix/nvm) to manage Node/NPM 
 Firstly:
 
 ```
-$ npm install
+<pre><code>$ npm install</code></pre>
 ```
+
+***/
+/***
 
 And then for initial compile:
 
 ```
-$ npm run build
+<pre><code>$ npm run build</code></pre>
 ```
+
+***/
+/***
 
 For production builds:
 
 ```
-$ npm run production
+<pre><code>$ npm run production</code></pre>
 ```
+
+***/
+/***
 
 Or, for continuous work, with 'watch' task running, just:
 
 ```
-$ npm run dev
+<pre><code>$ npm run dev</code></pre>
 ```
+
+***/
+/***
 
 This will open a browser to `localhost:3000` and then use live reload. If your setup changes the development url from `aic.dev.a17.io` then update `devUrl` in `manifest.json`.
 
 To generate these styleguide pages:
 
 ```
-$ npm run toolkit
+<pre><code>$ npm run toolkit</code></pre>
 ```
+
+***/
+/***
 
 The style guide uses [Node Sassdown](https://www.npmjs.com/package/@antoine_a17/a17-node-sassdown).
 
 You can also just generate CSS or JS via:
 
 ```
-$ npm run styles
-$ npm run scripts
+<pre><code>$ npm run styles
+$ npm run scripts</code></pre>
 ```
 
 ***/

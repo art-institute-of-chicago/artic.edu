@@ -17,10 +17,13 @@ A `head.js` sets up some global objects and [mustard tests](http://responsivenew
 `behaviors` are bound to DOM nodes on DOM ready:
 
 ```
-<button data-behavior="globalSearchOpen" aria-label="Search site">
+<pre><code>&lt;button data-behavior="globalSearchOpen" aria-label="Search site"&gt;
     ...
-</button>
+&lt;/button&gt;</code></pre>
 ```
+
+***/
+/***
 
 `behaviors/globalSearchOpen` will be run, passing through the DOM node as `container` to the function. Each `behavior` follows a similar structure.
 

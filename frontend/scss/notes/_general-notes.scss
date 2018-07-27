@@ -8,16 +8,17 @@ The fundamental structure of the front end build is using [A17 Boilerplate](http
 Many atom/molecule/organism components allow you to alter the tag, font and set a variation CSS class. Some allow the setting of Google Tag Manager attributes and Schema.org itemprops.
 
 ```
-<pre><code>
-@component('components.atoms._btn')
+<pre><code>@component('components.atoms._btn')
     @slot('variation', 'btn--full')
     @slot('tag', 'a')
     @slot('href', $ticketLink ?? 'https://sales.artic.edu/')
     @slot('gtmAttributes', 'data-gtm-event="event-buy-tickets" data-gtm-event-category="nav-cta-button"')
     {{ $buttonText ?? 'Buy tickets' }}
-@endcomponent
-</code></pre>
+@endcomponent</code></pre>
 ```
+
+***/
+/***
 
 Google Tag Manager attributes are picked up by JavaScript (ajaxPageLoad and googleTagManagerDataFromLink) and sent through to GTM accordingly (googleTagManager);
 

@@ -19,6 +19,9 @@ Within the CSS we can specify how many columns wide we want something with `cols
 }</code></pre>
 ```
 
+***/
+/***
+
 This is asking for 2/58 columns at xsmall.
 
 See `_grid.scss` for notes on `colspan`, `design-cols-to-colspan`, `grid-cols-to-colspan` and `width-multi`.
@@ -39,6 +42,9 @@ To help space text out in the SCSS we use `tucked-margin-top`:
 }</code></pre>
 ```
 
+***/
+/***
+
 This sets a baseline to baseline measurement of 24px at xsmall and 28px at small+. If only xsmall is defined, this becomes the baseline spacing for all breakpoints (its the default so to speak).
 
 We also have `tucked-align-top`:
@@ -48,6 +54,9 @@ We also have `tucked-align-top`:
   @include tucked-align-top($f-secondary);
 }</code></pre>
 ```
+
+***/
+/***
 
 This attempts to align a text block to the top its container, essentially like `margin-top: 0;` but whilst maintaining the baseline alignment.
 
