@@ -8,6 +8,9 @@
     @slot('itemprops',$item->present()->buildSchemaItemProps() ?? null)
   @endcomponent
 
+  {{-- Gallery-type _m-article-header never renders title --}}
+  <h1 class="sr-only">{{ $item->title }}</h1>
+
   @component('components.molecules._m-article-header')
     {{-- @slot('editorial', false) --}}
     @slot('headerType', $item->headerType)
@@ -75,7 +78,7 @@
   <div class="o-article__inline-header">
     @if ($item->title)
       @component('components.atoms._title')
-          @slot('tag','h1')
+          @slot('tag','span')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
           @slot('ariaHidden', 'true')
