@@ -34,6 +34,7 @@
             @else
                 @component('components.atoms._title')
                     @slot('font', $titleFont ?? 'f-list-3')
+                    @slot('tag', 'h3')
                     {{ $item['title'] }}
                 @endcomponent
             @endif
