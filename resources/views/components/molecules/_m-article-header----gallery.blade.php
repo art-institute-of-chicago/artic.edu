@@ -42,6 +42,7 @@ if ($maxZoomWindowSize >= 843) {
         @if ($prevNextObject->next)
         <li class="m-article-header__img-nav-next-artwork">
           <a href="{!! route('artworks.show', ['id' => $prevNextObject->next->id, 'slug' => $prevNextObject->next->titleSlug ] + $prevNextObject->nextParams) !!}" class="m-article-header__img-nav-artwork-preview">
+            <span class="sr-only">Next: </span>
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
                   @slot('image', $prevNextObject->next->imageFront())
@@ -62,6 +63,7 @@ if ($maxZoomWindowSize >= 843) {
         @if ($prevNextObject->prev)
         <li class="m-article-header__img-nav-prev-artwork">
           <a href="{!! route('artworks.show', ['id' => $prevNextObject->prev->id, 'slug' => $prevNextObject->prev->titleSlug ] + $prevNextObject->prevParams) !!}" class="m-article-header__img-nav-artwork-preview">
+            <span class="sr-only">Previous: </span>
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
                   @slot('image', $prevNextObject->prev->imageFront())
