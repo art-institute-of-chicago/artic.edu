@@ -90,7 +90,8 @@ if ($maxZoomWindowSize >= 843) {
             {{ $images->first()['credit'] ?? '' }}
         </span>
     @endif
-      <ul class="m-article-header__img-actions">
+      <h3 class="sr-only" id="h-image-actions">Image actions</h3>
+      <ul class="m-article-header__img-actions" aria-labelledby="h-image-actions">
         @if(isset($isZoomable) && $isZoomable && $maxZoomWindowSize >= 1280)
         <li>
             @component('components.atoms._btn')
