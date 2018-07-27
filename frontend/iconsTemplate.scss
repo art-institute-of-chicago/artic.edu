@@ -30,9 +30,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
 Individual icon SVG files live in `frontend/icons`. These are typically just exports from Illustrator or Figma, but with one important change:
 
 ```
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-    <path d="M8,1A5,5,0,0,0,3,6c0,3.33,5,9,5,9s5-5.67,5-9A5,5,0,0,0,8,1ZM8,8a2,2,0,1,1,2-2A2,2,0,0,1,8,8Z" fill="#000000"/>
-</svg>
+<pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"&gt;
+    &lt;path d="M8,1A5,5,0,0,0,3,6c0,3.33,5,9,5,9s5-5.67,5-9A5,5,0,0,0,8,1ZM8,8a2,2,0,1,1,2-2A2,2,0,0,1,8,8Z" fill="#000000"/&gt;
+&lt;/svg&gt;</code></pre>
 ```
 
 ***/
@@ -41,9 +41,9 @@ Individual icon SVG files live in `frontend/icons`. These are typically just exp
 Update the colour of any fill/stroke that you want to control with the CSS to `currentColor`:
 
 ```
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-    <path d="M8,1A5,5,0,0,0,3,6c0,3.33,5,9,5,9s5-5.67,5-9A5,5,0,0,0,8,1ZM8,8a2,2,0,1,1,2-2A2,2,0,0,1,8,8Z" fill="currentColor"/>
-</svg>
+<pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"&gt;
+    &lt;path d="M8,1A5,5,0,0,0,3,6c0,3.33,5,9,5,9s5-5.67,5-9A5,5,0,0,0,8,1ZM8,8a2,2,0,1,1,2-2A2,2,0,0,1,8,8Z" fill="currentColor"/&gt;
+&lt;/svg&gt;</code></pre>
 ```
 
 ***/
