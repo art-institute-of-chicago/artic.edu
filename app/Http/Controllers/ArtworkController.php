@@ -93,7 +93,7 @@ class ArtworkController extends BaseScopedController
         return redirect()->back();
     }
 
-    public function addRecentlyViewed($idSlug, RecentlyViewedService $service)
+    public function addRecentlyViewed($idSlug, $slug = null, RecentlyViewedService $service)
     {
         $item = Artwork::query()->findOrFail((Integer) $idSlug);
 
