@@ -405,6 +405,7 @@
     @endcomponent
 
     @component('components.molecules._m-link-list')
+        @slot('screenreaderTitle', 'Sample questions')
         @slot('links', $faq['questions'])
     @endcomponent
 
