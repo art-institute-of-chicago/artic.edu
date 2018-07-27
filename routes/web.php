@@ -13,7 +13,16 @@ if (!app()->environment('production')) {
 // Collection routes
 Route::name('collection')->get('/collection', 'CollectionController@index');
 Route::name('collection.more')->get('/collection/more', 'CollectionController@index');
-Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
+/*Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
+Route::name('collection.autocomplete')->get('/collection/autocomplete', function(){
+    return redirect('//aggregator-data-test.artic.edu/api/v1/autocomplete?q='.request('q'));
+});
+*/
+Route::group([
+   "domain" => config('api.base_uri')
+], function () {
+    Route::get("api/v1/autocomplete")->name("collection.autocomplete");
+});
 Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
 
 // Collection Publications Printed Catalogs

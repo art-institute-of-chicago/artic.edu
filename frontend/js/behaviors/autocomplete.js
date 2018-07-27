@@ -27,15 +27,23 @@ const autocomplete = function(container) {
   }
 
   // show autocomplete
-  function _showAutocomplete(content) {
-    let parser = new DOMParser();
-    let doc = parser.parseFromString(content, 'text/html');
-    dropdownList = doc.querySelector('[data-autocomplete-list]');
-    if (dropdownList) {
+  function _showAutocomplete(data) {
+    data = JSON.parse(data);
+    if (data.length > 0) {
+      dropdownList = document.createElement('ul');
+      dropdownList.className = 'm-search-bar__autocomplete f-secondary';
+      dropdownList.setAttribute('data-autocomplete-list','');
+      let ulItems = '';
+      for (let i = 0; i < data.length; i++) {
+        if (i < 5) {
+          ulItems += '<li><a href="/collection?q='+data[i].replace(/\s/g,'+')+'">'+data[i]+'</a></li>\n';
+        }
+      }
+      dropdownList.innerHTML = ulItems;
       container.appendChild(dropdownList);
+      container.classList.add(autocompleteActiveKlass);
+      active = true;
     }
-    container.classList.add(autocompleteActiveKlass);
-    active = true;
   }
 
   // hide autocomplete
@@ -67,30 +75,29 @@ const autocomplete = function(container) {
     _showLoader();
 
     ajaxTimer = setTimeout(function(){
-      ajaxRequest({
-        url: autoCompleteUrl,
-        data: { q: textInput.value },
-        type: 'GET',
-        requestHeaders: [
-          {
-            header: 'Content-Type',
-            value: 'application/x-www-form-urlencoded; charset=UTF-8'
-          }
-        ],
-        onSuccess: function(data){
+      let qs = queryStringHandler.fromObject({ q: textInput.value });
+      let xhr = new XMLHttpRequest();
+      xhr.open('get', autoCompleteUrl + qs, true);
+      xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 400) {
           _closeAutocomplete();
           try {
-            _showAutocomplete(data);
+            _showAutocomplete(xhr.responseText);
           } catch (err) {
             console.error('Error updating autocomplete: '+ err);
           }
           _hideLoader();
-        },
-        onError: function(data){
-          console.error('Error: '+ data);
+        } else {
+          console.error('Autocomplete error:',xhr.responseText,xhr.status);
           _hideLoader();
         }
-      });
+      };
+      xhr.onerror = function() {
+        console.error('Autocomplete error:',xhr.responseText,xhr.status);
+        _hideLoader();
+      };
+
+      xhr.send();
     }, 250);
   }
 

@@ -742,18 +742,13 @@ class StaticsController extends FrontController {
   }
 
   public function collectionsAutocomplete(){
-    $items = array();
+    $results = array();
 
     for ($i = 0; $i < 5; $i++) {
-      array_push($items, array(
-          'href' => '#',
-          'label' => $this->faker->words(3, true),
-      ));
+      array_push($results, $this->faker->words(3, true));
     }
 
-    return view('components/molecules/_m-search-bar__autocomplete', [
-        'items' => $items
-    ]);
+    return response()->json($results, 200);
   }
 
   public function visit() {
