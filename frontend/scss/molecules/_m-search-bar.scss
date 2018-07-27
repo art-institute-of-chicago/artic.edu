@@ -97,7 +97,7 @@
 }
 
 .m-search-bar__loader {
-  @extend %a-loader;
+  @extend %loader;
   display: none;
   position: absolute;
   top: 14px;

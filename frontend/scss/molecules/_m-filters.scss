@@ -5,7 +5,7 @@
 }
 
 .m-filters__whittle-down.s-loading {
-  @extend %a-loader;
+  @extend %loader;
 
   &::after {
     pointer-events: none;
