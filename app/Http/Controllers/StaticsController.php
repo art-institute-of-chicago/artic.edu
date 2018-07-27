@@ -4131,7 +4131,7 @@ class StaticsController extends FrontController {
     $article->push('sponsors', $this->generateBlocks(2));
     $article->push('futherSupport', array(
       'logo' => $this->getImage(),
-      'title' => "Further support has been provided by",
+      'title' => "<p>Further support has been provided by</p>",
       'text' => $this->faker->paragraph(5),
     ));
     $article->push('ticketLink', '#');

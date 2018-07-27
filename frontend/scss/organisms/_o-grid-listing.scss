@@ -106,7 +106,7 @@ Variant: `o-listing--single-row` - limits to a single row
       @if ($name == 'xlarge') {
         padding-left: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
       } @elseif ($name == 'xsmall') {
-        padding-left: colspan(1, $name);
+        padding-left: 0;
       } @else {
         padding-left: colspan(1, $name);
       }
@@ -121,7 +121,7 @@ Variant: `o-listing--single-row` - limits to a single row
       @if ($name == 'xlarge') {
         width: calc((100vw - #{map-get($main-col-widths, xlarge)}) / 2);
       } @elseif ($name == 'xsmall') {
-        width: colspan(7, $name);
+        width: colspan(3, $name);
       } @else {
         width: colspan(3, $name);
       }
@@ -133,6 +133,10 @@ Variant: `o-listing--single-row` - limits to a single row
       margin-top: 0;
       @if ($name == 'xsmall') {
         margin-left: colspan(6, #{$name});
+
+        &:first-child {
+          margin-left: colspan(3, #{$name});
+        }
       } @else {
         margin-left: colspan(2, #{$name});
       }

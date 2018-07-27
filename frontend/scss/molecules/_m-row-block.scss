@@ -18,6 +18,14 @@
   display: flex;
   position: relative;
   flex-flow: row wrap;
+
+  & + & {
+    margin-top: 16px;
+
+    @include breakpoint('small+') {
+      margin-top: 32px;
+    }
+  }
 }
 
 .m-row-block__title {
@@ -32,22 +40,22 @@
   margin-right: colspan(2, xsmall);
 
   @include breakpoint('small+') {
-    width: colspan(13, small);
+    width: colspan(10, small);
     margin-right: colspan(2, small);
   }
 
   @include breakpoint('medium+') {
-    width: colspan(8, medium);
+    width: colspan(5, medium);
     margin-right: colspan(2, medium);
   }
 
   @include breakpoint('large+') {
-    width: colspan(8, large);
+    width: colspan(5, large);
     margin-right: colspan(2, large);
   }
 
   @include breakpoint('xlarge') {
-    width: colspan(8, xlarge);
+    width: colspan(5, xlarge);
     margin-right: colspan(2, xlarge);
   }
 }
@@ -60,7 +68,6 @@
 
 .m-row-block__text {
   flex: 1;
-  align-self: center;
 }
 
 .m-row-block .f-module-title-1:first-child {
@@ -68,7 +75,7 @@
 }
 
 .m-row-block .f-secondary:first-child {
-  @include tucked-align-top($f-secondary);
+  @include tucked-margin-top($f-secondary, (xsmall: 12));
 }
 
 .m-row-block .f-subheading-1:first-child {
@@ -105,6 +112,11 @@
 
 .m-row-block--inline-title {
   flex-direction: row-reverse;
+  margin-top: 24px;
+
+  & + & {
+    margin-top: 20px;
+  }
 
   &.m-row-block--keyline-top {
     padding-top: 20px;
@@ -112,25 +124,30 @@
 }
 
 .m-row-block--inline-title .m-row-block__img {
+  width: colspan(13, xsmall);
   margin-right: 0;
   margin-left: colspan(2, xsmall);
 
   @include breakpoint('small+') {
+    width: colspan(13, small);
     margin-right: 0;
     margin-left: colspan(2, small);
   }
 
   @include breakpoint('medium+') {
+    width: colspan(8, xlarge);
     margin-right: 0;
     margin-left: colspan(2, medium);
   }
 
   @include breakpoint('large+') {
+    width: colspan(8, large);
     margin-right: 0;
     margin-left: colspan(2, large);
   }
 
   @include breakpoint('xlarge') {
+    width: colspan(8, xlarge);
     margin-right: 0;
     margin-left: colspan(2, xlarge);
   }
@@ -140,6 +157,3 @@
   margin-bottom: 0;
 }
 
-.m-row-block--inline-title .m-row-block__text {
-  align-self: auto;
-}
