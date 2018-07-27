@@ -1,7 +1,7 @@
 @if (isset($screenreaderTitle))
-<h3 class="sr-only" id="{{ 't-' .str_slug($screenreaderTitle) }}">{{ $screenreaderTitle }}</h3>
+<h3 class="sr-only" id="{{ 'h-' .str_slug($screenreaderTitle) }}">{{ $screenreaderTitle }}</h3>
 @endif
-<ul class="m-link-list{{ (isset($variation)) ? ' '.$variation : '' }}"{!! isset($screenreaderTitle) ? ' aria-labelledby="t-' .str_slug($screenreaderTitle) .'"' : '' !!}>
+<ul class="m-link-list{{ (isset($variation)) ? ' '.$variation : '' }}"{!! isset($screenreaderTitle) ? ' aria-labelledby="h-' .str_slug($screenreaderTitle) .'"' : '' !!}>
     @foreach ($links as $link)
     <li class="m-link-list__item{{ (isset($link['active']) and $link['active']) ? ' s-active' : '' }}">
         @if (isset($variation) && strrpos($variation, "--download"))
