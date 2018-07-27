@@ -7,22 +7,25 @@
   </a>
 
   <div class="g-footer__inner">
-    <h2 class="sr-only" id="h-footer-grid"></h2>
+    <h2 class="sr-only" id="h-footer-grid">Footer content</h2>
     <ul class="g-footer__grid" aria-labelledby="h-footer-grid">
       <li>
-        <a class="g-footer__logo" aria-label="Art Institute of Chicago" href="/">
-          <svg aria-hidden="true">
-            <use xlink:href="#icon--logo--outline--92" />
-          </svg>
-        </a>
+        <nav aria-label="primary">
+          <h3 class="sr-only" id="h-footer-nav-primary">Primary Navigation</h3>
 
-        <h3 class="sr-only" id="h-footer-nav-primary">Primary Navigation</h3>
-        <ul class="g-footer__link-list" aria-labelledby="h-footer-nav-primary">
-          <li>{!! $_hours['opening_today'] !!}</li>
-          <li><a href="{{ $_pages['visit'] }}">Visit</a></li>
-          <li><a href="{{ $_pages['exhibitions'] }}">Exhibitions and Events</a></li>
-          <li><a href="{{ $_pages['collection'] }}">The Collection</a></li>
-        </ul>
+          <a class="g-footer__logo" aria-label="Art Institute of Chicago" href="/">
+            <svg aria-hidden="true">
+              <use xlink:href="#icon--logo--outline--92" />
+            </svg>
+          </a>
+
+          <ul class="g-footer__link-list" aria-labelledby="h-footer-nav-primary">
+            <li>{!! $_hours['opening_today'] !!}</li>
+            <li><a href="{{ $_pages['visit'] }}">Visit</a></li>
+            <li><a href="{{ $_pages['exhibitions'] }}">Exhibitions and Events</a></li>
+            <li><a href="{{ $_pages['collection'] }}">The Collection</a></li>
+          </ul>
+        </nav>
       </li>
 
       <li class="u-hide@small-">
