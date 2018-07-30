@@ -29,7 +29,7 @@ class Artist extends BaseApiModel
             ->resources(['artworks'])
             ->forceEndpoint('search')
             ->byArtists($this->title)
-            ->aggregationClassifications(55)
+            ->aggregationClassifications(3)
             ->getSearch($perPage);
     }
 

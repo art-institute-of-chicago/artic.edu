@@ -30,7 +30,7 @@ class Gallery extends BaseApiModel
             ->resources(['artworks'])
             ->forceEndpoint('search')
             ->byGalleryIds($this->id)
-            ->aggregationClassifications(55)
+            ->aggregationClassifications(3)
             ->getSearch($perPage);
     }
 
