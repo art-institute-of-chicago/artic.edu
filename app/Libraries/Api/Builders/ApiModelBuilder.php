@@ -419,6 +419,36 @@ class ApiModelBuilder
     }
 
     /**
+     * Paginate the given query and transform the Search results to the API models
+     *
+     * @param  int  $perPage
+     * @param  array  $columns
+     * @param  string  $pageName
+     * @param  int|null  $page
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function getPaginatedModel($perPage = null, $columns = [], $pageName = 'page', $page = null)
+    {
+        $results = $this->getPaginated($perPage, $columns, $pageName, $page);
+
+        $paginationData = $results->getMetadata('pagination');
+        $total = $paginationData ? $paginationData->total : $results->count();
+
+        // Transform each Search model to the correct instance using typeMap
+        $hydratedModels = $results->transform(function($item, $key) {
+            return $this->model::hydrate([$item->toArray()])[0];
+        });
+
+        // Rebuild the paginator
+        return $this->paginator($hydratedModels, $total, $perPage ?: 1, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => $pageName,
+        ]);
+    }
+
+    /**
      * Eager load the relationships for the models.
      * On this case just a flat include, not nested queries because
      * we get all id's to be loaded on the first request to the parent model

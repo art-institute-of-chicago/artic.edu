@@ -23,9 +23,9 @@ class ExhibitionRepository extends BaseApiRepository
         return $this->model->query()->upcoming()->getSearch();
     }
 
-    public function history($year = null, $q = null)
+    public function history($year = null, $q = null, $perPage = 20)
     {
-        return $this->model->query()->history($year)->search($q)->getSearch();
+        return $this->model->query()->history($year)->search($q)->getPaginatedModel($perPage, \App\Models\Api\Exhibition::SEARCH_FIELDS);;
     }
 
     // Show data, moved here to allow preview
