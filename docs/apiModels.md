@@ -1,28 +1,74 @@
 # Art Institute of Chicago
 
-API models and connections examples.
+Here we will present the API pseudo models used to consume data from the AIC API, and also a quick-start guide to integrate them  to Twill.
 
-## Base models
+## The Base API model
 
-BaseApiModel.php is a fake Eloquent model that implements many of it's functions. Between them:
+BaseApiModel.php is a fake Eloquent model that implements many of it's functionality. Amongst them:
 
 * Generate an array
 * Use mutators for fields
 * Paginate results
-* Create them from an array
+* Create entities from an array (hydrate)
 * Json serialize
-* And more, please take a look at the file for a full list.
+* And much more, please take a look at the code.
 
-We don't allow to save or destroy, so for now it's just a read-only model.
+We haven't implemented any functionality to update/create data, so for now it works as a consumer type only.
 
-It has been done this way to generate a compatible way to work with our CMS, implementing basic filtering functions.
+We decided to take this route to allow us to generate a compatible way to work with Twill, emulating Eloquent as far as we can, to avoid modifying the CMS package.
 
-Please check the Exhibitions model, here you can see we can even use our HasPresenter trait, and some other useful Eloquent functionality.
+## Where to find the code
+
+Under `app\Libraries\Api` you will find the code related to how we process API data.
+
+Please take a moment to review specially the following files:
+
+* `app/Libraries/Api/Models/Behaviors/HasApiCalls.php`
+* `app/Libraries/Api/Models/Behaviors/HasAugmentedModel.php`
+
+These are behaviors used by our API pseudo models. and the following are used by the Eloquent regular database models.
+
+* `app/Models/Behaviors/HasApiRelations.php`
+* `app/Models/Behaviors/HasApiModel.php`
+
+These are not all, but are the ones that describe better the relationship between Eloquent and Api models.
+
+If you have time take a look to `app/Libraries/Api/Models/BaseApiModel.php`, in there you will find all the 'Eloquent like' functionality we want to emulate: Mutators, scopes, relationships, json and array exporters, dateTime parsers, and much more.
 
 
-## Basic usage
+## Grammar
 
-Let's use artworks to exemplify.
+If for any reason the API changes and the parameters names are different, you could easily change the grammar class used to transform a query into a set of parameters.
+
+See: `app/Libraries/Api/Builders/Grammar/AicGrammar.php`
+
+In there you will find a very simple set of functions that transform the API Query Browser class into an array of options.
+
+If you need to use a different one for a specific model you can define that when creating the connection.
+
+You could redefine `getConnection`:
+
+```
+
+public function getConnection()
+    {
+            $grammar    = new FooBarGrammar();
+            $connection = new AicConnection();
+        $connection->setQueryGrammar($grammar);
+
+        return $connection;
+    }
+
+```
+
+Be sure that FooBarGrammar inherits from `AicGrammar`.
+
+
+
+## API Basic usage
+
+Let's now learn how to interact with the API.
+We will use artworks as an example.
 
 Load a single element:
 
@@ -38,15 +84,17 @@ Load a collection and paginate (paginate function is the same as a regular model
 
 `\App\Models\Api\Artwork::query()->paginate($perPage, $columns, etc...)`
 
-Search (This will use the search enpoint, which might disable some filters)
+Search (Careful because sometimes search won't return all fields)
 
 `\App\Models\Api\Artwork::query()->search('SEARCH_STRING')->get()`
 
-This one will load the actual models, with the complete data
+To solve the previous problem, we created this functionality to load the actual models, with complete data.
 
 `\App\Models\Api\Artwork::query()->search('SEARCH_STRING')->getSearch()`
 
-This is because using a search endpoint returns a smaller version of the object with relevant searching data. Not the full object. `getSearch()` loads the real data.
+Using a search endpoint returns a smaller version of the object with relevant searching data. Not the full object. `getSearch()` loads the real data.
+
+As a performance note, this generates two API calls, one for search, and one to grab the data.
 
 
 ## Repository usage
@@ -60,20 +108,22 @@ public function index(ArtworkRepository $artworks)
     }
 ```
 
-Remember that the repository has to inherit from BaseApiRepository, and the model has to be an api model.
+Remember that any API repository has to inherit from BaseApiRepository, and the model has to be an api model.
 
 This function will:
 
 * search for the 'query' term
 * Load all stats (aggregations, suggestions, pagination)
-* Load real models and return a collection of BaseApiModels
+* Load real models and return a collection of API pseudo models.
 
 
 
-## Advanced usage
+## Has Many relationship
 
-Check the `Api\Exhibition` model.
-It contains several hasMany relations. These will take those Id's returned by the API and load the collection of models assigned.
+We implemented a basic HasMany relationship that works like our Eloquent counterpart. The difference is that his one uses an array of ids (returned by the API) to load the correct elements.
+
+See `App\Models\Api\Exhibition`.
+It contains several hasMany relations. These will be taken those Id's returned by the API and loading a collection with the corresponding API model objects.
 
 ```php
 public function artworks()
@@ -82,11 +132,11 @@ public function artworks()
     }
 ```
 
-Here the parameter is artwork_ids (array), so when you have an object from this model you can simply call:
+Here the parameter is artwork_ids (array). From the parent element you can simply call:
 
 `$exhibition->artworks;`
 
-And that will load all related artworks.
+And that will load a collection of related artworks.
 
 
 
@@ -100,7 +150,7 @@ You could eager load those artworks with one call in a collection doing the foll
 ```
 
 
-## Augmented models (working but approach still under dev)
+## Augmented models
 
 Please take a look to the `HasAugmentedModel` trait.
 
@@ -115,16 +165,42 @@ protected $augmentedModelClass = 'App\Models\Exhibition';
 
 You specify that it has an augmented model.
 
-So to use it just call the method or attribute normally from an API model.
-If the API model doesn't have that method or attribute, IT WILL BYPASS the call to the augmented model to load it from the database automatically.
+Let's say you augmented an Exhibition model already. To load it's data just use the API exhibition object and call the method or attribute as you would normally do. If the API model doesn't have that method or attribute, IT WILL BYPASS the call to the augmented model and try to retrieve those automatically.
 
 
-## Related elements coming from the API.
+## How to create an augmented model on Twill CMS.
 
-Exhibitions for example can be augmented on the CMS, and in there you can select related exhibitions to it.
-These related exhibitions are not necessarily augmented so the relationship should be directly linked to the API.
+First, create the Eloquent model, controller, requests, etc. as you would normally do for a regular Twill entity. Ensure it contains the `datahub_id` field.
 
-To achieve this include the trait `HasApiRelations` and then define the relationship like the following:
+Then inherit the controller from `BaseApiController` instead of `ModuleController`.
+
+Add `$hasAugmentedModel = true;`.
+
+Create two repositories, one for API requests, and another for Twill. Let's see Artists for example:
+
+`app/Repositories/Api/ArtistRepository.php` Will use the API model as the base, and will be the one used to generate listings, filtering, etc, given that we load everything from the API and we just augment using our CMS.
+
+`app/Repositories/ArtistRepository.php` Will contain Twill functionality to create/update augmented data as usual.
+
+Both should inherit from `App\Repositories\Api\BaseApiRepository`.
+
+Here you can see some Twill overloaded functions like search, or getById. These ones were modified to work with Twill seamlessly.
+
+Don't forget to add an `augment` route so when clicking in a listing, a new Eloquent entity is created behind scenes with the associated datahub_id.
+
+`Route::name('collection.artists.augment')->get('artists/augment/{datahub_id}', 'ArtistController@augment');`
+
+
+
+## Related API elements.
+
+Exhibitions for example can be augmented on the CMS, and in there you could add related exhibitions to it.
+
+These related exhibitions are not necessarily augmented entities. This means that the relationship should be directly linked to the API element, not with our database.
+
+To achieve this we should modify a little how we define our Twill Resource Browsers.
+
+First, Include the trait `HasApiRelations` to the Eloquent side model and then define the relationship like this:
 
 ```php
 public function exhibitions()
@@ -133,19 +209,23 @@ public function exhibitions()
     }
 ```
 
-The last 'exhibitions' is the pluralized type from the API. This will save a metamodel containing the related database element, with the related datahub_id and type.
+The last 'exhibitions' is just the name for our relation. Could be anything. This will save a metamodel containing the related database element, with the related datahub_id and type.
 
-To load the ACTUAL related elements for the FE you can use the trait function:
+Behind scenes, we have a polymorphic relationship with the `ApiRelation` model. Here we just save the datahub_id until retrieve time.
+
+To load the ACTUAL related elements, you can use the trait function:
 
 ```php
 $related_exhibitions = $item->apiModels('exhibitions', 'Exhibition');
 ```
 
-$item is an exhibition, the first parameters is the relation we passed when defining the relationship, and the second is the API/Model to be loaded.
+$item is an exhibition, the first parameter is the relation we passed when defining the relationship, and the second is the API/Model to be loaded.
 
-That's it, this will load a collection of API models coming from that relationship.
+That's it, this will load a collection of API models coming from that relationship. (Basically it's just a call filtering by all the ids on this relationship).
 
-Please check Exhibitions repository. In there you will find examples of how to load a browser with this data.
+Now we should call at the Twill repository the functions to save these relationships. We created some handy helpers.
+
+(Please check Exhibitions repository. In there you will find examples of how to load a browser with this data.)
 
 ```php
 // On afterSave:
@@ -157,9 +237,21 @@ $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 
 
 As a note, `updateBrowserApiRelated` should be called only once with all the API relationships.
 
+The form behaves the same way as with a normal Browser.
+
+```
+@formField('browser', [
+    'routePrefix' => 'exhibitions_events',
+    'max' => 4,
+    'name' => 'exhibitions',
+    'label' => 'Related exhibitions'
+])
+```
+
+
 ## Generating links
 
-BaseApiModel implements `UrlRoutable`, which means, you can pass an API model and this will generate a correct link. If it contains an augmented model with a slug, this will generate a proper ID-SLUG string to fill it up.
+BaseApiModel implements `UrlRoutable`. If it contains an augmented model with a slug, this will generate a proper `ID/SLUG` string to fill it up.
 
 ```php
 // Generating an exhibition detail link.
@@ -171,11 +263,12 @@ $item = \App\Models\Api\Exhibition::query()->find(ID);
 route('exhibitions.show', $item)
 ```
 
+
 ## General Search
 
 I created a special model to deal with general searching. `App\Models\Api\Search`.
 
-This one just uses a general endpoint to load ANY KIND of element.
+This one just uses a general endpoint to load ANY entity.
 Afterwards it loads all real models trying to keep it efficient using one query per entity (passing by an array of ids).
 
 ```php
@@ -208,9 +301,10 @@ $results->getMetadata();
 public function getSearch($perPage = null, $columns = [], $pageName = 'page', $page = null)
 ```
 
-## Raw Elasticsearch execution
 
-AIC offers a parameter `query` on which you can pass raw ES parameters to perform a search.
+## Raw Elasticsearch query and Scopes
+
+AIC offers a `query` parameter on which you can pass raw ES parameters to perform a search.
 
 For example, let's search for the upcoming exhibitions for the next 2 weeks:
 
@@ -246,7 +340,9 @@ $results = \App\Models\Api\Exhibition::query()->rawSearch($params)->getSearch();
 
 ```
 
+
 Remember that you could simply build scopes as you would normally do with Eloquent models. Lets create one at the `Exhibition` model:
+
 
 ```php
 public function scopeNextTwoWeeks($query) {
@@ -332,11 +428,12 @@ You can move all this to a scope as well. Just add it to the `Search` model as s
 
 *Something to remember:* Scopes are good for every query on this document, not only searching.
 
+
 ## Default scopes
 
 If you need scopes to be applied by default to every query within a model, just add the static variable $defaultScopes with the scope name as key, and the value as the scope value.
 
-Very simple implementation with only 1 possible parameter, this should be generalized.
+See this very simple implementation with only 1 possible parameter:
 
 
 ```php

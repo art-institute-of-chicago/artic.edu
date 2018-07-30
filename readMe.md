@@ -122,6 +122,10 @@ To create the superadmin user for the CMS, ssh into the server and run:
 $ php artisan twill:superadmin
 ```
 
+#### API Models vs Eloquent models
+
+Please refer to /docs/apiModels.md
+
 #### API Documentation setup
 
 API is documented via Swagger. Annotations in the source code are parsed and used to generate the Swagger documentation.

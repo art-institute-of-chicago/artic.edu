@@ -32,7 +32,7 @@ class ExactTargetService
         if ($response->status) {
             return true;
         } else {
-            // If we wet an error and it's a code 2, means the email already exists. Return true
+            // If we get an error and it's a code 2, it means the email already exists. Return true
             $existent = isset($response->results[0]->ErrorCode) && $response->results[0]->ErrorCode == 2;
 
             return $existent;

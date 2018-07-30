@@ -1,7 +1,5 @@
 <?php
 
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\App;
 
 namespace App\Models\Behaviors;
