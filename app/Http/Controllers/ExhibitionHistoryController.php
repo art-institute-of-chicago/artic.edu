@@ -12,6 +12,7 @@ use App\Models\Page;
 
 class ExhibitionHistoryController extends FrontController
 {
+    const PER_PAGE = 20;
     protected $apiRepository;
 
     public function __construct(ExhibitionRepository $repository)
@@ -29,11 +30,11 @@ class ExhibitionHistoryController extends FrontController
         $decades    = $service->decades();
         $years      = $service->years();
 
-        $exhibitions = $this->apiRepository->history($activeYear, request()->get('q'));
+        $exhibitions = $this->apiRepository->history($activeYear, request()->get('q'), self::PER_PAGE);
 
         // If we have no results, try to find them across the entire archive
         if ($exhibitions->isEmpty()) {
-            $extraResults = $this->apiRepository->forSearchQuery(request('q'));
+            $extraResults = $this->apiRepository->searchApi(request('q'), self::PER_PAGE);
         }
 
         $viewData = [
