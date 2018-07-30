@@ -368,6 +368,12 @@ class Event extends Model
                 "value" => function () {return $this->is_member_exclusive;},
             ],
             [
+                "name" => "is_registration_required",
+                "doc" => "Is Registration required",
+                "type" => "boolean",
+                "value" => function () {return $this->is_registration_required;},
+            ],
+            [
                 "name" => "hidden",
                 "doc" => "Hidden",
                 "type" => "boolean",
@@ -378,6 +384,18 @@ class Event extends Model
                 "doc" => "RSVP Link",
                 "type" => "string",
                 "value" => function () {return $this->rsvp_link;},
+            ],
+            [
+                "name" => "start_time",
+                "doc" => "Start Time",
+                "type" => "string",
+                "value" => function () {return $this->start_time;},
+            ],
+            [
+                "name" => "end_time",
+                "doc" => "End Time",
+                "type" => "string",
+                "value" => function () {return $this->end_time;},
             ],
             [
                 "name" => "all_dates",
@@ -395,7 +413,7 @@ class Event extends Model
                 "name" => "audience",
                 "doc" => "Audience",
                 "type" => "string",
-                "value" => function () {return $this->getAudienceDisplay();},
+                "value" => function () {return $this->audience;},
             ],
             [
                 "name" => "sponsors_description",
