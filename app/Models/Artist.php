@@ -58,10 +58,10 @@ class Artist extends Model
     {
         return [
             [
-                "name" => 'intro_copy',
+                "name" => 'intro',
                 "doc" => "Intro Copy",
                 "type" => "string",
-                "value" => function () {return $this->intro_copy;},
+                "value" => function () {return $this->intro;},
             ],
             [
                 "name" => 'datahub_id',

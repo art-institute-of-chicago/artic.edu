@@ -144,6 +144,20 @@
                 }
             }
         },
+        "/api/v1/closures/deleted": {
+            "get": {
+                "tags": [
+                    "closures"
+                ],
+                "summary": "List all deleted closures",
+                "operationId": "getDeletedClosures",
+                "responses": {
+                    "200": {
+                        "description": "List all deleted closures"
+                    }
+                }
+            }
+        },
         "/api/v1/closures/{id}": {
             "get": {
                 "tags": [
@@ -218,6 +232,20 @@
                 }
             }
         },
+        "/api/v1/events/deleted": {
+            "get": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "List all deleted events",
+                "operationId": "getDeletedEvents",
+                "responses": {
+                    "200": {
+                        "description": "List all deleted events"
+                    }
+                }
+            }
+        },
         "/api/v1/events/{id}": {
             "get": {
                 "tags": [
@@ -251,6 +279,20 @@
                 "responses": {
                     "200": {
                         "description": "List all articles"
+                    }
+                }
+            }
+        },
+        "/api/v1/articles/deleted": {
+            "get": {
+                "tags": [
+                    "articles"
+                ],
+                "summary": "List all deleted articles",
+                "operationId": "getDeletedArticles",
+                "responses": {
+                    "200": {
+                        "description": "List all deleted articles"
                     }
                 }
             }
@@ -403,6 +445,20 @@
                 }
             }
         },
+        "/api/v1/genericpages/deleted": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all deleted generic pages",
+                "operationId": "getDeletedGenericPages",
+                "responses": {
+                    "200": {
+                        "description": "List all deleted generic pages"
+                    }
+                }
+            }
+        },
         "/api/v1/genericpages/{id}": {
             "get": {
                 "tags": [
@@ -436,6 +492,20 @@
                 "responses": {
                     "200": {
                         "description": "List all generic pages"
+                    }
+                }
+            }
+        },
+        "/api/v1/pressreleases/deleted": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all deleted press releases",
+                "operationId": "getDeletedPressReleases",
+                "responses": {
+                    "200": {
+                        "description": "List all deleted press releases"
                     }
                 }
             }
@@ -477,6 +547,20 @@
                 }
             }
         },
+        "/api/v1/researchguides/deleted": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all deleted research guides",
+                "operationId": "getDeletedResearchGuides",
+                "responses": {
+                    "200": {
+                        "description": "List all deleted research guides"
+                    }
+                }
+            }
+        },
         "/api/v1/researchguides/{id}": {
             "get": {
                 "tags": [
@@ -510,6 +594,20 @@
                 "responses": {
                     "200": {
                         "description": "List all educator resources"
+                    }
+                }
+            }
+        },
+        "/api/v1/educatorresources/deleted": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all deleted educator resources",
+                "operationId": "getDeletedEducatorResources",
+                "responses": {
+                    "200": {
+                        "description": "List all deleted educator resources"
                     }
                 }
             }
@@ -551,6 +649,20 @@
                 }
             }
         },
+        "/api/v1/digitalcatalogs/deleted": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all deleted digital catalogs",
+                "operationId": "getDeletedDigitalCatalogs",
+                "responses": {
+                    "200": {
+                        "description": "List all deleted digital catalogs"
+                    }
+                }
+            }
+        },
         "/api/v1/digitalcatalogs/{id}": {
             "get": {
                 "tags": [
@@ -584,6 +696,20 @@
                 "responses": {
                     "200": {
                         "description": "List all printed catalogs"
+                    }
+                }
+            }
+        },
+        "/api/v1/printedcatalogs/deleted": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "List all deleted printed catalogs",
+                "operationId": "getDeletedPrintedCatalogs",
+                "responses": {
+                    "200": {
+                        "description": "List all deleted printed catalogs"
                     }
                 }
             }
@@ -728,10 +854,6 @@
                     "description": "ID of Closure",
                     "type": "integer"
                 },
-                "title": {
-                    "description": "Title",
-                    "type": "string"
-                },
                 "date_start": {
                     "description": "Closure Start",
                     "type": "datetime"
@@ -746,10 +868,10 @@
                 },
                 "type": {
                     "description": "Type",
-                    "type": "boolean"
+                    "type": "integer"
                 },
                 "published": {
-                    "description": "Published State of Location",
+                    "description": "Published State of Closure",
                     "type": "boolean"
                 }
             },
@@ -764,12 +886,8 @@
                     "description": "ID of Exhibition",
                     "type": "integer"
                 },
-                "title": {
-                    "description": "Title",
-                    "type": "string"
-                },
                 "published": {
-                    "description": "Published State of Location",
+                    "description": "Published State of Exhibition",
                     "type": "boolean"
                 },
                 "header_copy": {
@@ -778,14 +896,14 @@
                 },
                 "content": {
                     "description": "Content",
-                    "type": "string"
+                    "type": "json"
                 },
                 "datahub_id": {
                     "description": "Datahub ID",
                     "type": "string"
                 },
                 "is_visible": {
-                    "description": "Type",
+                    "description": "Is Visible?",
                     "type": "boolean"
                 },
                 "exhibition_message": {
@@ -793,7 +911,7 @@
                     "type": "string"
                 },
                 "cms_exhibition_type": {
-                    "description": "Type",
+                    "description": "Type (basic = 0, large = 1, special = 2)",
                     "type": "integer"
                 },
                 "sponsors_sub_copy": {
@@ -829,8 +947,8 @@
                     "type": "boolean"
                 },
                 "type": {
-                    "description": "Header Copy",
-                    "type": "string"
+                    "description": "Event type (classes_and_workshops = 1, live_arts = 2, screenings = 3, special_event = 4, talks = 5, tour = 6, communities = 7)",
+                    "type": "integer"
                 },
                 "short_description": {
                     "description": "Short Description",
@@ -868,6 +986,10 @@
                     "description": "Is Member Exclusive?",
                     "type": "boolean"
                 },
+                "is_registration_required": {
+                    "description": "Is Registration Required?",
+                    "type": "boolean"
+                },
                 "hidden": {
                     "description": "Hidden?",
                     "type": "boolean"
@@ -876,21 +998,29 @@
                     "description": "RSVP Link",
                     "type": "string"
                 },
-                "start_date": {
-                    "description": "Start Date",
+                "start_time": {
+                    "description": "Start time",
                     "type": "string"
                 },
-                "end_date": {
-                    "description": "End Date",
+                "end_time": {
+                    "description": "End time",
                     "type": "string"
                 },
                 "all_dates": {
                     "description": "A list of all the dates that this event occurs on",
-                    "type": "datetime"
+                    "type": "json"
+                },
+                "forced_date": {
+                    "description": "Forced date display",
+                    "type": "string"
                 },
                 "location": {
                     "description": "Location",
                     "type": "string"
+                },
+                "audience": {
+                    "description": "Audience (families = 1, members = 2, adults = 3, teens = 4, researchers_scholars = 5, teachers = 6, evening_associates = 7)",
+                    "type": "integer"
                 },
                 "sponsors_description": {
                     "description": "Sponsors Description",
@@ -902,10 +1032,10 @@
                 },
                 "content": {
                     "description": "Content",
-                    "type": "string"
+                    "type": "json"
                 },
                 "layout_type": {
-                    "description": "Layout Type",
+                    "description": "Layout Type (basic_layout = 0, large_layout = 1)",
                     "type": "integer"
                 },
                 "buy_button_text": {
@@ -918,7 +1048,7 @@
                 },
                 "is_boosted": {
                     "description": "Is Boosted",
-                    "type": "string"
+                    "type": "boolean"
                 },
                 "slug": {
                     "description": "Slug",
@@ -936,16 +1066,8 @@
                     "description": "Is sold out?",
                     "type": "boolean"
                 },
-                "forced_date": {
-                    "description": "Forced date display",
-                    "type": "string"
-                },
                 "buy_tickets_link": {
                     "description": "Buy tickets URL",
-                    "type": "string"
-                },
-                "audience": {
-                    "description": "Audience",
                     "type": "string"
                 }
             },
@@ -970,7 +1092,7 @@
                 },
                 "date": {
                     "description": "Date",
-                    "type": "string"
+                    "type": "datetime"
                 },
                 "copy": {
                     "description": "Copy",
@@ -978,7 +1100,7 @@
                 },
                 "is_boosted": {
                     "description": "Is Boosted",
-                    "type": "string"
+                    "type": "boolean"
                 },
                 "slug": {
                     "description": "Slug",
@@ -988,20 +1110,20 @@
                     "description": "Web Url",
                     "type": "string"
                 },
-                "created_at": {
-                    "description": "Created Timestamp",
-                    "type": "datetime"
-                },
-                "type": {
-                    "description": "Type",
-                    "type": "string"
-                },
                 "heading": {
                     "description": "Heading",
                     "type": "string"
                 },
                 "author": {
                     "description": "Author",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Created Timestamp",
+                    "type": "datetime"
+                },
+                "subtype": {
+                    "description": "Subtype / Label",
                     "type": "string"
                 }
             },
@@ -1030,7 +1152,7 @@
                 },
                 "content": {
                     "description": "Content",
-                    "type": "string"
+                    "type": "json"
                 },
                 "short_copy": {
                     "description": "Short Copy",
@@ -1060,15 +1182,7 @@
                     "description": "ID of Artist",
                     "type": "integer"
                 },
-                "title": {
-                    "description": "Title",
-                    "type": "string"
-                },
-                "also_known_as": {
-                    "description": "Also Known As",
-                    "type": "string"
-                },
-                "intro_copy": {
+                "intro": {
                     "description": "Intro Copy",
                     "type": "string"
                 },
@@ -1395,7 +1509,7 @@
             },
             "type": "object"
         },
-        "DigitialCatalog": {
+        "DigitalCatalog": {
             "required": [
                 "id"
             ],
