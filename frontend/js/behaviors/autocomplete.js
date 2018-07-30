@@ -34,10 +34,17 @@ const autocomplete = function(container) {
       dropdownList.className = 'm-search-bar__autocomplete f-secondary';
       dropdownList.setAttribute('data-autocomplete-list','');
       let ulItems = '';
-      for (let i = 0; i < data.length; i++) {
-        if (i < 5) {
-          ulItems += '<li><a href="/collection?q='+data[i].replace(/\s/g,'+')+'">'+data[i]+'</a></li>\n';
+      for (let i = 0; i < Math.min(5, data.length); i++) {
+        let title = data[i].title;
+        switch (data[i].api_model) {
+          case 'agents':
+            let datum = {
+              query: 'artist_ids='+title.replace(/\s/g,'+'),
+              title: 'Artworks by "<b>'+title+'</b>"',
+            };
+          break;
         }
+        ulItems += '<li><a href="/collection?'+datum.query+'">'+datum.title+'</a></li>\n';
       }
       dropdownList.innerHTML = ulItems;
       container.appendChild(dropdownList);
@@ -75,7 +82,12 @@ const autocomplete = function(container) {
     _showLoader();
 
     ajaxTimer = setTimeout(function(){
-      let qs = queryStringHandler.fromObject({ q: textInput.value });
+      let qs = queryStringHandler.fromObject({
+        resources: [
+          'artists',
+        ],
+        q: textInput.value,
+      });
       let xhr = new XMLHttpRequest();
       xhr.open('get', autoCompleteUrl + qs, true);
       xhr.onload = function() {

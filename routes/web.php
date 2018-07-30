@@ -23,7 +23,7 @@ Route::name('collection.autocomplete')->get('/collection/autocomplete', function
 Route::group([
    "domain" => config('api.base_uri')
 ], function () {
-    Route::get("api/v1/autocomplete")->name("collection.autocomplete");
+    Route::get("api/v2/autocomplete")->name("collection.autocomplete");
 });
 Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
 
