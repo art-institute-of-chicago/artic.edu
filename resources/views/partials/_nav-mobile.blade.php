@@ -1,4 +1,4 @@
-<div class="g-nav-mobile" data-behavior="navMobile">
+<div class="g-nav-mobile" data-behavior="navMobile" tabindex="0">
   <div class="g-nav-mobile__inner">
     <div class="g-nav-mobile__container">
       <div class="g-header">
