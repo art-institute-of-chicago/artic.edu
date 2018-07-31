@@ -36,16 +36,67 @@ const autocomplete = function(container) {
       let ulItems = '';
       for (let i = 0; i < Math.min(5, data.length); i++) {
         let title = data[i].title;
+        let titleUrl = title.replace(/\s/g,'+');
+        let datum = null;
         switch (data[i].api_model) {
           case 'agents':
-            let datum = {
-              query: 'artist_ids='+title.replace(/\s/g,'+'),
+            datum = {
+              query: 'artist_ids='+titleUrl,
               title: 'Artworks by "<b>'+title+'</b>"',
             };
           break;
+          case 'category-terms':
+            switch (data[i].subtype) {
+              case 'classification':
+                datum = {
+                  query: 'classification_ids='+titleUrl,
+                  title: 'Artworks classified as "<b>'+title+'</b>"',
+                };
+              break;
+              case 'material':
+                datum = {
+                  query: 'material_ids='+titleUrl,
+                  title: 'Artworks made of "<b>'+title+'</b>"',
+                };
+              break;
+              case 'technique':
+                datum = {
+                  query: 'technique_ids='+data[i].id,
+                  title: 'Artworks made via "<b>'+title+'</b>"',
+                };
+              break;
+              case 'style':
+                datum = {
+                  query: 'style_ids='+titleUrl,
+                  title: 'Artworks in the style "<b>'+title+'</b>"',
+                };
+              break;
+              case 'subject':
+                datum = {
+                  query: 'subject_ids='+titleUrl,
+                  title: 'Artworks about "<b>'+title+'</b>"',
+                };
+              break;
+              case 'department':
+                datum = {
+                  query: 'department_ids='+titleUrl,
+                  title: 'Artworks in the department "<b>'+title+'</b>"',
+                };
+              break;
+              case 'theme':
+                datum = {
+                  query: 'theme_ids='+data[i].id,
+                  title: 'Artworks with the theme "<b>'+title+'</b>"',
+                };
+              break;
+            }
+          break;
         }
-        ulItems += '<li><a href="/collection?'+datum.query+'">'+datum.title+'</a></li>\n';
+        if (datum) {
+          ulItems += '<li><a href="/collection?'+datum.query+'">'+datum.title+'</a></li>\n';
+        }
       }
+      ulItems += '<li><a href="/collection?q='+textInput.value+'">Search for "'+textInput.value+'"</a></li>\n';
       dropdownList.innerHTML = ulItems;
       container.appendChild(dropdownList);
       container.classList.add(autocompleteActiveKlass);
@@ -85,6 +136,7 @@ const autocomplete = function(container) {
       let qs = queryStringHandler.fromObject({
         resources: [
           'artists',
+          'category-terms',
         ],
         q: textInput.value,
       });
