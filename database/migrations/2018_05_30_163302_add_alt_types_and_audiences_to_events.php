@@ -15,7 +15,8 @@ class AddAltTypesAndAudiencesToEvents extends Migration
     {
 
         Schema::table('events', function (Blueprint $table) {
-            $table->json('alt_types')->nullable()->after('type');
+            $anchor = Schema::hasColumn('events', 'type') ? 'type' : 'event_type';
+            $table->json('alt_types')->nullable()->after($anchor);
             $table->json('alt_audiences')->nullable()->after('audience');
         });
 
