@@ -7,7 +7,7 @@ This is the development repository for the AIC build, which uses as its foundati
 - Rename `Homestead.example.yaml` to `Homestead.yaml`
 - Update `folders.map` with your local path to the AIC repository
 - Change the IP at the top if you have another vagrant machine running at the same IP
-- Install composer dependencies `composer install`. This step should be done inside the VM, but in order to get the VM running you need to install the dependencies. 
+- Install composer dependencies `composer install`. This step should be done inside the VM, but in order to get the VM running you need to install the dependencies.
 - Provision your vagrant machine with `vagrant up`
 
 In case the system didn't update your /etc/hosts file automatically:
@@ -126,7 +126,7 @@ $ php artisan twill:superadmin
 
 Please refer to /docs/apiModels.md
 
-#### Inages
+#### Images
 
 Please refer to /docs/images.md
 
