@@ -34,7 +34,7 @@ return array(
     | Username to access the secured realm in combination with a password.
     |
     */
-    'username' => 'foobar',
+    'username' => env('HTTPAUTH_USER'),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,6 +44,6 @@ return array(
     | Password to access the secured realm in combination with the username.
     |
     */
-    'password' => 'foobaz'
+    'password' => env('HTTPAUTH_PASS'),
 
 );
