@@ -1,10 +1,11 @@
 # Art Institute of Chicago
 
-Image at the FE
+Images at the FE
 
 ## API models
 
 Please include the behavior `HasMediasApi` at the models you want to load images.
+We created a method with the same prototype as Twill so we can show images from the CMS or API models indistinctly.
 
 
 ```php
@@ -16,9 +17,7 @@ class Artwork extends BaseApiModel
 }
 ```
 
-We are trying to use the same functionality to show images from the CMS or the API.
-
-After that you should define your roles and crops, with a little difference:
+After that you should define your roles and crops, with a little difference from Twill:
 
 
 ```php
@@ -44,12 +43,12 @@ public $mediasParams = [
 
 Possible parameters (all optional):
 
-`field`: API field containing the image ID (I have only seen image_id here, but added just in case)
+`field`: API field containing the image ID (We have only seen `image_id` here coming from the API, but added the option nontheless)
 `width`: Width for this image
 `height`: Height for this image
 
 
-## Eloquent Models
+## Eloquent/Twill Models
 
 Please add the `HasMediasEloquent` trait.
 
@@ -66,10 +65,10 @@ class Event extends Model
 This will just add an extra function to access the image and apply the `aic_convertFromImage` image.
 
 
-## Use
+## How to use it
 
 
 The function is `imageFront($role, $crop)`
 
 This way you can call the same function on any model (API, Eloquent).
-This will ensure the statics will keep working and we don't have to treat images differently.
+This will ensure the statics will keep working, and also, that having the same method prototype, we could augment API models and perform a call disregarding if it's an API or Twill model.
