@@ -26,7 +26,7 @@ Please take a moment to review specially the following files:
 * `app/Libraries/Api/Models/Behaviors/HasApiCalls.php`
 * `app/Libraries/Api/Models/Behaviors/HasAugmentedModel.php`
 
-These are behaviors used by our API pseudo models. and the following are used by the Eloquent regular database models.
+These are behaviors used by our API pseudo models and the following are used by the Eloquent regular database models.
 
 * `app/Models/Behaviors/HasApiRelations.php`
 * `app/Models/Behaviors/HasApiModel.php`
@@ -74,7 +74,7 @@ Load a single element:
 
 `\App\Models\Api\Artwork::query()->find(ID)`
 
-Load a collection by IDS:
+Load a collection by IDs:
 
 `\App\Models\Api\Artwork::query()->find([ID1,ID2])`
 or
@@ -120,10 +120,10 @@ This function will:
 
 ## Has Many relationship
 
-We implemented a basic HasMany relationship that works like our Eloquent counterpart. The difference is that his one uses an array of ids (returned by the API) to load the correct elements.
+We implemented a basic HasMany relationship that works like our Eloquent counterpart. The difference is that this one uses an array of ids (returned by the API) to load the correct elements.
 
 See `App\Models\Api\Exhibition`.
-It contains several hasMany relations. These will be taken those Id's returned by the API and loading a collection with the corresponding API model objects.
+It contains several hasMany relations. These will be taken those Ids returned by the API and loading a collection with the corresponding API model objects.
 
 ```php
 public function artworks()
@@ -198,9 +198,9 @@ Exhibitions for example can be augmented on the CMS, and in there you could add 
 
 These related exhibitions are not necessarily augmented entities. This means that the relationship should be directly linked to the API element, not with our database.
 
-To achieve this we should modify a little how we define our Twill Resource Browsers.
+To achieve this we should modify how we define our Twill Resource Browsers.
 
-First, Include the trait `HasApiRelations` to the Eloquent side model and then define the relationship like this:
+First, include the trait `HasApiRelations` to the Eloquent side model and then define the relationship like this:
 
 ```php
 public function exhibitions()
@@ -211,7 +211,7 @@ public function exhibitions()
 
 The last 'exhibitions' is just the name for our relation. Could be anything. This will save a metamodel containing the related database element, with the related datahub_id and type.
 
-Behind scenes, we have a polymorphic relationship with the `ApiRelation` model. Here we just save the datahub_id until retrieve time.
+Behind the scenes, we have a polymorphic relationship with the `ApiRelation` model. Here we just save the datahub_id until retrieve time.
 
 To load the ACTUAL related elements, you can use the trait function:
 
@@ -223,7 +223,7 @@ $item is an exhibition, the first parameter is the relation we passed when defin
 
 That's it, this will load a collection of API models coming from that relationship. (Basically it's just a call filtering by all the ids on this relationship).
 
-Now we should call at the Twill repository the functions to save these relationships. We created some handy helpers.
+Now we should call the Twill repository with the functions to save these relationships, to do this we created some handy helpers.
 
 (Please check Exhibitions repository. In there you will find examples of how to load a browser with this data.)
 
@@ -266,7 +266,7 @@ route('exhibitions.show', $item)
 
 ## General Search
 
-I created a special model to deal with general searching. `App\Models\Api\Search`.
+A17 created a special model to deal with general searching. `App\Models\Api\Search`.
 
 This one just uses a general endpoint to load ANY entity.
 Afterwards it loads all real models trying to keep it efficient using one query per entity (passing by an array of ids).
@@ -520,7 +520,7 @@ class Artwork extends BaseApiModel
 }
 ```
 
-Here we added a new `boosted` endpoint to retrieve the most important artworks. To use it just call the scope `forceEndpoint($name)`.
+Here we added a new `boosted` endpoint to retrieve the most important artworks. To use it, just call the scope `forceEndpoint($name)`.
 
 
 ```php
