@@ -13,7 +13,7 @@
                 <ul aria-labelledby="h-suggested-terms">
                     @if (isset($searchTerms))
                         @foreach ($searchTerms as $item)
-                            <li><a href="{!! route('search', ['q' => $item]) !!}">{{ $item }}</a></li>
+                            <li><a href="{!! $item->direct_url ?? route('search', ['q' => $item->name]) !!}">{{ $item->name }}</a></li>
                         @endforeach
                     @endif
                 </ul>

@@ -19,7 +19,7 @@ class FrontController extends BaseController
 
     protected function loadSearchTerms()
     {
-        $terms = \App\Models\SearchTerm::ordered()->limit(10)->get()->pluck('name');
+        $terms = \App\Models\SearchTerm::ordered()->limit(10)->get();
         View::share('searchTerms', $terms);
     }
 

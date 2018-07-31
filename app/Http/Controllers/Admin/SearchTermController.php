@@ -23,6 +23,10 @@ class SearchTermController extends ModuleController
             'edit_link' => true,
             'field' => 'name',
         ],
+        'direct_url' => [
+            'title' => 'Direct URL',
+            'field' => 'direct_url',
+        ],
     ];
 
     protected $defaultOrders = ['position' => 'asc'];
