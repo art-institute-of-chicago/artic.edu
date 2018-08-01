@@ -21,7 +21,7 @@
     @component('components.molecules._m-links-bar', ['primaryVariation' => 'm-links-bar--centered@xsmall'])
         @slot('linksPrimary', array(
             array('label' => 'Today', 'href' => route('events'), 'active' => !request('start') && !request('time'), 'gtmAttributes' => 'data-gtm-event="event-today" data-gtm-event-action="Events" data-gtm-event-category="in-page-link"'),
-            array('label' => 'Tomorrow', 'href' => route('events', ['time' => 'tomorrow']), 'active' => (!request('start') && request('time') == 'tomorrow'), 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium", 'gtmAttributes' => 'data-gtm-event="event-tomorrow" data-gtm-event-action="Events' => route('events', ['time' => 'weekend']), 'active' => (!request('start') && request('time') == 'weekend'), 'liVariation' => "u-hide@xsmall u-hide@small", 'gtmAttributes' => 'data-gtm-event="event-weekend" data-gtm-event-action="Events" data-gtm-event-category="in-page-link"')
+            array('label' => 'Tomorrow', 'href' => route('events', ['time' => 'tomorrow']), 'active' => (!request('start') && request('time') == 'tomorrow'), 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium", 'gtmAttributes' => 'data-gtm-event="event-tomorrow" data-gtm-event-action="Events" => route('events', ['time' => 'weekend']), 'active' => (!request('start') && request('time') == 'weekend'), 'liVariation' => "u-hide@xsmall u-hide@small", 'gtmAttributes' => 'data-gtm-event="event-weekend" data-gtm-event-action="Events" data-gtm-event-category="in-page-link"')
         ))
         @slot('primaryHtml')
             <li class="m-links-bar__item">
