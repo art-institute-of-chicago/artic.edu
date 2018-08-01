@@ -1,0 +1,155 @@
+.m-vjs-audio {
+
+  $color-audio-dark: $color__black--72;
+
+  margin-top: 20px;
+
+  color: $color-audio-dark;
+
+  &.vjs-fluid {
+    font-size: 15px;
+    padding-top: 0;
+    height: 48px;
+  }
+
+  .vjs-control-bar {
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+
+    background-color: $color__black--10;
+  }
+
+  .vjs-control {
+    height: auto;
+  }
+
+  .vjs-button > .vjs-icon-placeholder:before {
+    position: relative;
+  }
+
+  .vjs-progress-control .vjs-mouse-display .vjs-time-tooltip,
+  .vjs-progress-control .vjs-mouse-display,
+  .vjs-play-progress .vjs-time-tooltip {
+    // Uncomment for debugging tooltips:
+    // display: block;
+    // visibility: visible;
+  }
+
+  .vjs-time-tooltip {
+    border-radius: 0;
+    top: -42px;
+  }
+
+  .vjs-progress-control .vjs-mouse-display {
+    z-index: 2;
+  }
+
+  .vjs-progress-control .vjs-mouse-display .vjs-time-tooltip {
+    background-color: $color-audio-dark;
+    color: $color__black--2;
+
+  }
+
+  .vjs-play-progress .vjs-time-tooltip {
+    background-color: $color__black--5;
+    color: $color-audio-dark;
+  }
+
+  .vjs-current-time,
+  .vjs-time-divider,
+  .vjs-duration {
+    display: block;
+    user-select: none;
+  }
+
+  .vjs-button {
+    width: 48px;
+  }
+
+  .vjs-time-control {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .vjs-time-divider {
+    min-width: auto;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .vjs-time-divider,
+  .vjs-duration {
+    color: $color__black--35;
+  }
+
+  .vjs-progress-control {
+    padding-left: 0.75em;
+    padding-right: 0.5em;
+  }
+
+  // Overwritten from 1.666666666666666666em
+  .vjs-progress-control:hover .vjs-progress-holder {
+    font-size: 1em;
+  }
+
+  // Overwritten from 0.6em
+  .vjs-progress-control:hover .vjs-time-tooltip,
+  .vjs-progress-control:hover .vjs-progress-holder:focus .vjs-time-tooltip {
+    font-size: 1em;
+  }
+
+  .vjs-play-progress:before,
+  .vjs-volume-level:before,
+  .vjs-icon-circle:before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    background-color: $color__black--2;
+    border: 2px solid $color__black--40;
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .vjs-progress-holder {
+    background: $color__black--20;
+  }
+
+  .vjs-load-progress {
+    // User-friendly "what's loaded"
+    background: $color__black--40;
+  }
+
+  .vjs-load-progress div {
+    // What's actually loaded by block
+    background: $color__black--40;
+  }
+
+  .vjs-volume-bar {
+    background: $color__black--40;
+  }
+
+  &,
+  .vjs-progress-holder,
+  .vjs-load-progress,
+  .vjs-play-progress,
+  .vjs-volume-bar,
+  .vjs-volume-level {
+    border-radius: 2px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .vjs-time-divider,
+    .vjs-duration {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .vjs-volume-control {
+      display: none;
+    }
+  }
+
+}
