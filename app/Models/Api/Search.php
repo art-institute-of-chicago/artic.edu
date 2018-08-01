@@ -9,8 +9,6 @@ use Illuminate\Support\Carbon;
 class Search extends BaseApiModel
 {
 
-    const RECENT_ACQUISITION_CONSIDERED_YEAR = 2017;
-
     protected $endpoints = [
         'search' => '/api/v1/search',
         'autocomplete' => '/api/v2/autocomplete' // TODO: Dead code?
@@ -62,6 +60,19 @@ class Search extends BaseApiModel
         }
 
         return $agg;
+    }
+
+    /**
+     * Year used to determine recent accquisitions. Our business logic is as follows:
+     *
+     * From Jan 1st to June 30th, look at the current year, and the previous year. From July 1st to Dec 31st,
+     * look at the current year, and the next year. Our aim is to show approx. 1.5 years of recent accquisitions.
+     */
+    public function recentAcquisitionConsideredYear()
+    {
+        $curMonth = date("m");
+        $curHalf = ceil($curMonth/6);
+        return date("Y") - ($curHalf % 2);
     }
 
     public function scopeAllAggregations($query, $categoryFilter = null, $queryFilter = null)
@@ -218,7 +229,7 @@ class Search extends BaseApiModel
                     [
                         "range" => [
                             "fiscal_year" => [
-                                "gte" => self::RECENT_ACQUISITION_CONSIDERED_YEAR
+                                "gte" => $this->recentAcquisitionConsideredYear()
                             ]
                         ]
                     ]
