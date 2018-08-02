@@ -13,7 +13,7 @@ use App\Models\Api\Search;
 class BaseService
 {
     const MAX_TAGS = 3;
-    const PER_PAGE_EXPLORE_FURTHER = 8;
+    const PER_PAGE_EXPLORE_FURTHER = 13;
 
     // Array with valid filters for the Explore Further section.
     const VALID_FILTERS = [

@@ -9,7 +9,7 @@ use App\Libraries\Search\CollectionService;
 
 class CollectionController extends BaseScopedController
 {
-    const PER_PAGE = 20;
+    const PER_PAGE = 50;
 
     protected $apiRepository;
     protected $searchRepository;
