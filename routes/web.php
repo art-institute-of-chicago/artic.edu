@@ -139,6 +139,11 @@ Route::name('forms.educator-admission-request')->get('/educators/visit-on-my-own
 Route::name('forms.educator-admission-request.store')->post('/educators/visit-on-my-own/educator-admission-request', 'Forms\EducatorAdmissionController@store');
 Route::name('forms.educator-admission-request.thanks')->get('/educators/visit-on-my-own/educator-admission-request/thanks', 'Forms\EducatorAdmissionController@thanks');
 
+// Filming and photo shoot proposal
+Route::name('forms.filming-proposal')->get('/press/filming-policy/filming-photo-shoot-proposal-form', 'Forms\FilmingAndPhotoShootProposalController@index');
+Route::name('forms.filming-proposal.store')->post('/press/filming-policy/filming-photo-shoot-proposal-form', 'Forms\FilmingAndPhotoShootProposalController@store');
+Route::name('forms.filming-proposal.thanks')->get('/press/filming-policy/filming-photo-shoot-proposal-form/thanks', 'Forms\FilmingAndPhotoShootProposalController@thanks');
+
 // Feed routes
 Route::feeds();
 
