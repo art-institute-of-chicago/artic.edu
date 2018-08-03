@@ -252,7 +252,7 @@ class EventPlanningContactController extends FormController
         $eventPlanningContact->know_more_about = $validated['know_more_about'] ?? '';
 
         Mail::to(config('forms.email_event_planning_to'))
-            ->queue(new FormEventPlanningContact($eventPlanningContact));
+            ->send(new FormEventPlanningContact($eventPlanningContact));
 
         return redirect(route('forms.event-planning-contact.thanks'));
 
