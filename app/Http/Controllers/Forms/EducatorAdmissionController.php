@@ -213,7 +213,7 @@ class EducatorAdmissionController extends FormController
         array_push($blocks, array(
             'type' => 'form',
             'variation' => null,
-            'action' => '/forms/educator-admission-request',
+            'action' => '/educators/visit-on-my-own/educator-admission-request',
             'method' => 'POST',
             'blocks' => $formBlocks,
             'actions' => array(

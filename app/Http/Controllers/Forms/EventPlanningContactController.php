@@ -210,7 +210,7 @@ class EventPlanningContactController extends FormController
         array_push($blocks, array(
             'type' => 'form',
             'variation' => null,
-            'action' => '/forms/event-planning-contact',
+            'action' => '/venue-rental/contact-us',
             'method' => 'POST',
             'blocks' => $formBlocks,
             'actions' => array(

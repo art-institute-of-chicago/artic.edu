@@ -457,7 +457,7 @@ class GroupReservationsController extends FormController
         array_push($blocks, array(
             'type' => 'form',
             'variation' => null,
-            'action' => '/forms/group-reservation',
+            'action' => '/visit/visiting-with-a-group/reservation-form',
             'method' => 'POST',
             'blocks' => $formBlocks,
             'actions' => array(
