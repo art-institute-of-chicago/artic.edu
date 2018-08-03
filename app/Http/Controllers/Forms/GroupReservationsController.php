@@ -494,7 +494,7 @@ class GroupReservationsController extends FormController
         $groupReservation->needs = isset($validated['needs']) ? implode(", ", $validated['needs']) : '';
 
         Mail::to(config('forms.email_group_reservations_to'))
-            ->send(new FormGroupReservation($groupReservation));
+            ->queue(new FormGroupReservation($groupReservation));
 
         return redirect(route('forms.group-reservation.thanks'));
 
