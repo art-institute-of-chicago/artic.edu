@@ -248,7 +248,7 @@ class GroupReservationsController extends FormController
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('visit_date'),
                   'error' => (!empty($errors) && $errors->first('visit_date')) ? $errors->first('visit_date') : null,
-                  'optional' => null,
+                  'optional' => false,
                   'hint' => null,
                   'disabled' => false,
                   'label' => 'Visit date',
@@ -259,7 +259,7 @@ class GroupReservationsController extends FormController
                   'id' => 'visit_time',
                   'error' => (!empty($errors) && $errors->first('visit_time')) ? $errors->first('visit_time') : null,
                   'value' => old('visit_time'),
-                  'optional' => null,
+                  'optional' => false,
                   'hint' => null,
                   'disabled' => false,
                   'label' => 'Time',
@@ -393,6 +393,24 @@ class GroupReservationsController extends FormController
             array_push($needsFields['blocks'], $d);
         }
         $visitInformationFields[] = $needsFields;
+
+        $visitInformationFields[] = [
+            'variation' => null,
+            'blocks' => array(
+                array(
+                  "type" => 'textarea',
+                  'variation' => null,
+                  'id' => 'additional_info',
+                  'placeholder' => '',
+                  'value' => old('additional_info'),
+                  'error' => (!empty($errors) && $errors->first('additional_info')) ? $errors->first('additional_info') : null,
+                  'optional' => null,
+                  'hint' => '',
+                  'disabled' => false,
+                  'label' => 'Additional details (specify language, any needs not listed, etc.)',
+                ),
+            ),
+        ];
 
         $visitInformationFields[] = array(
             'variation' => null,
@@ -534,19 +552,16 @@ class GroupReservationsController extends FormController
     private function getTopicsArray()
     {
         $topics = array('Highlights of the Art Institute',
-                        'Highlights of the Modern Wing: Modern and Contemporary Art',
                         'American Art',
-                        'Ancient Etruscan, Greek, and Roman Art',
-                        'Chicago Giants of the Gilded Age',
-                        'Compelling Old Master Paintings',
-                        'Depictions of Religion in Art',
-                        'Discerning Eye (Additional fees apply)',
-                        'Impressionism from the Permanent Collection',
-                        'Indian, Southeast Asian, Himalayan, and Islamic Art',
-                        'The Photography Collection',
-                        'Treasured European Decorative Arts',
-                        'The New Contemporary',
-                        'Gauguin: Artist as Alchemist (Slide Lecture)',
+                        'Chicago Stories',
+                        'Drawing Tours',
+                        'The Foodie’s Tour',
+                        'Impressionism: Monet, Degas, Renoir, and More',
+                        'Innovators and Renegades',
+                        'Mindfulness Tours',
+                        'Modern Wing Highlights: Modern and Contemporary Art',
+                        'Underdogs and Hidden Histories',
+                        'Special Exhibition',
         );
 
         $list = [];

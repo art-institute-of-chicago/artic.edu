@@ -125,19 +125,19 @@ Route::name('forms.contact.store')->post('/forms/contact', 'Forms\ContactsContro
 Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\ContactsController@thanks');
 
 // Group reservation form
-Route::name('forms.group-reservation')->get('/forms/group-reservation', 'Forms\GroupReservationsController@index');
-Route::name('forms.group-reservation.store')->post('/forms/group-reservation', 'Forms\GroupReservationsController@store');
-Route::name('forms.group-reservation.thanks')->get('/forms/group-reservation/thanks', 'Forms\GroupReservationsController@thanks');
+Route::name('forms.group-reservation')->get('/visit/visiting-with-a-group/reservation-form', 'Forms\GroupReservationsController@index');
+Route::name('forms.group-reservation.store')->post('/visit/visiting-with-a-group/reservation-form', 'Forms\GroupReservationsController@store');
+Route::name('forms.group-reservation.thanks')->get('/visit/visiting-with-a-group/reservation-form/thanks', 'Forms\GroupReservationsController@thanks');
 
 // Event planning contact
-Route::name('forms.event-planning-contact')->get('/forms/event-planning-contact', 'Forms\EventPlanningContactController@index');
-Route::name('forms.event-planning-contact.store')->post('/forms/event-planning-contact', 'Forms\EventPlanningContactController@store');
-Route::name('forms.event-planning-contact.thanks')->get('/forms/event-planning-contact/thanks', 'Forms\EventPlanningContactController@thanks');
+Route::name('forms.event-planning-contact')->get('/venue-rental/contact-us', 'Forms\EventPlanningContactController@index');
+Route::name('forms.event-planning-contact.store')->post('/venue-rental/contact-us', 'Forms\EventPlanningContactController@store');
+Route::name('forms.event-planning-contact.thanks')->get('/venue-rental/contact-us/thanks', 'Forms\EventPlanningContactController@thanks');
 
 // Educator admission request
-Route::name('forms.educator-admission-request')->get('/forms/educator-admission-request', 'Forms\EducatorAdmissionController@index');
-Route::name('forms.educator-admission-request.store')->post('/forms/educator-admission-request', 'Forms\EducatorAdmissionController@store');
-Route::name('forms.educator-admission-request.thanks')->get('/forms/educator-admission-request/thanks', 'Forms\EducatorAdmissionController@thanks');
+Route::name('forms.educator-admission-request')->get('/educators/visit-on-my-own/educator-admission-request', 'Forms\EducatorAdmissionController@index');
+Route::name('forms.educator-admission-request.store')->post('/educators/visit-on-my-own/educator-admission-request', 'Forms\EducatorAdmissionController@store');
+Route::name('forms.educator-admission-request.thanks')->get('/educators/visit-on-my-own/educator-admission-request/thanks', 'Forms\EducatorAdmissionController@thanks');
 
 // Feed routes
 Route::feeds();

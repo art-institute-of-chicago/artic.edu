@@ -60,7 +60,7 @@ class EventPlanningContactController extends FormController
                   'textCount' => false,
                   'value' => old('company'),
                   'error' => (!empty($errors) && $errors->first('company')) ? $errors->first('company') : null,
-                  'optional' => false,
+                  'optional' => null,
                   'hint' => null,
                   'disabled' => false,
                   'label' => 'Company',
