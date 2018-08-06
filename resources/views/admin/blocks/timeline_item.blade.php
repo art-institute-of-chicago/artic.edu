@@ -8,10 +8,12 @@
     'label' => 'Title'
 ])
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'description',
     'label' => 'Description',
-    'type' => 'textarea'
+    'toolbarOptions' => [
+        'italic', 'link'
+    ],
 ])
 
 @formField('medias', [

@@ -58,6 +58,37 @@
   }
 }
 
+.o-fullscreen-image__info {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  bottom: 20px;
+  font-family: $sans-serif-font--loaded;
+  font-size: 1.8em;
+  line-height: 48px;
+  padding: 0 16px;
+  border-radius: $border-radius;
+  background-color: rgba($color__black, .5);
+  color: $color__white;
+
+  @include breakpoint('small+') {
+    left: 32px;
+    bottom: 32px;
+  }
+
+  &:hover,
+  &:focus:hover {
+    background-color: $color__link--accent-hover;
+    color: $color__white;
+  }
+
+  &.s-active,
+  &:active:hover {
+    background-color: $color__link--accent-active;
+    color: $color__white;
+  }
+}
+
 .o-fullscreen-image__img-actions {
   display: flex;
   position: absolute;

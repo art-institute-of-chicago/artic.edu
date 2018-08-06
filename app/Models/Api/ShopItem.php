@@ -24,6 +24,9 @@ class ShopItem extends BaseApiModel
         ],
     ];
 
+    protected static $defaultScopes = [
+        'active' => []
+    ];
 
     public function imageFront($role = 'hero', $crop = 'default')
     {
@@ -46,5 +49,22 @@ class ShopItem extends BaseApiModel
     {
         // Added for future updates.
         return '$';
+    }
+
+    public function scopeActive($query)
+    {
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "term" => [
+                            "is_active" => true
+                        ],
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
     }
 }

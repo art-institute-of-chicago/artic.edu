@@ -15,7 +15,7 @@
 
      @formField('browser', [
     'routePrefix' => 'homepage',
-        'max' => 10,
+        'max' => 20,
         'moduleName' => 'collectionFeatures',
         'name' => 'collectionFeatures',
         'label' => 'Collection features'

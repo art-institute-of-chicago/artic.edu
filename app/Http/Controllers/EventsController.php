@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Page;
+use App\Models\EventProgram;
 use App\Repositories\EventRepository;
 use Carbon\Carbon;
 use View;
@@ -32,11 +33,15 @@ class EventsController extends FrontController
 
         $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
         $collection = $this->collection();
+        $subtitle = null;
 
         // If it's filtered just show everything instead of dividing the listing on ongoing
         if ($this->isFiltered()) {
             $ongoing = null;
             $eventsByDay = $this->repository->groupByDate($collection);
+            if (request('program')) {
+                $subtitle = "These are events related to " .EventProgram::find(request('program'))->name .".";
+            }
         } else {
             // Divide the collection by normal events and ongoing ones
             $ongoing = $collection->filter(function ($item) {
@@ -57,6 +62,7 @@ class EventsController extends FrontController
 
         return view('site.events.index', [
             'page' => $page,
+            'subtitle' => $subtitle,
             'eventsByDay' => $eventsByDay,
             'collection' => $collection,
             'ongoing' => $ongoing,
@@ -107,12 +113,12 @@ class EventsController extends FrontController
 
     protected function collection()
     {
-        return $this->repository->getEventsFiltered(request('start'), request('end'), request('time'), request('type'), request('audience'), self::PER_PAGE);
+        return $this->repository->getEventsFiltered(request('start'), request('end'), request('time'), request('type'), request('audience'), request('program'), self::PER_PAGE);
     }
 
     protected function isFiltered()
     {
-        return !empty(request()->only('start', 'end', 'time', 'type', 'audience', 'page'));
+        return !empty(request()->only('start', 'end', 'time', 'type', 'audience', 'page', 'program'));
     }
 
     protected function show($id, $slug = null)

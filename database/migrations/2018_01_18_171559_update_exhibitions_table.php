@@ -14,10 +14,7 @@ class UpdateExhibitionsTable extends Migration
     public function up()
     {
         Schema::table('exhibitions', function (Blueprint $table) {
-            $table->dropColumn('landing');
-            $table->dropColumn('start_date');
-            $table->dropColumn('end_date');
-            $table->dropColumn('short_copy');
+            $table->dropColumn(['landing', 'start_date', 'end_date', 'short_copy']);
         });
     }
 

@@ -10,10 +10,15 @@ use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRecurrentDates;
 use Carbon\Carbon;
+use App\Models\Behaviors\HasApiRelations;
+
+// TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+use Illuminate\Support\Facades\DB;
+use PDO;
 
 class Event extends Model
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable;
+    use HasSlug, HasRevisions, HasApiRelations, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable;
 
     protected $presenterAdmin = 'App\Presenters\Admin\EventPresenter';
     protected $presenter = 'App\Presenters\Admin\EventPresenter';
@@ -29,7 +34,9 @@ class Event extends Model
         'title',
         'published',
         'event_type',
+        'alt_types',
         'audience',
+        'alt_audiences',
         'short_description',
         'list_description',
         'description',
@@ -37,6 +44,7 @@ class Event extends Model
         'forced_date',
         'start_time',
         'end_time',
+        'door_time',
         'is_private',
         'is_after_hours',
         'is_ticketed',
@@ -45,12 +53,14 @@ class Event extends Model
         'is_boosted',
         'is_member_exclusive',
         'is_registration_required',
+        'is_admission_required',
+        'survey_link',
+        'email_series',
         'hidden',
         'rsvp_link',
         'buy_tickets_link',
         'location',
         'sponsors_description',
-        'sponsors_sub_copy',
         'content',
         'layout_type',
         'buy_button_text',
@@ -59,6 +69,11 @@ class Event extends Model
         'migrated_at',
         'meta_title',
         'meta_description',
+    ];
+
+    protected $casts = [
+        'alt_types' => 'array',
+        'alt_audiences' => 'array',
     ];
 
     const CLASSES_AND_WORKSHOPS = 1;
@@ -121,6 +136,7 @@ class Event extends Model
         'is_ticketed',
         'is_free',
         'is_member_exclusive',
+        'is_admission_required',
         'is_sold_out',
         'is_boosted',
         'is_registration_required'
@@ -187,9 +203,65 @@ class Event extends Model
         return $dates_string;
     }
 
+    public function getAltTypesAttribute($value)
+    {
+        return $this->getMultiSelectFromJsonColumn($value);
+    }
+
+    public function getAltAudiencesAttribute($value)
+    {
+        return $this->getMultiSelectFromJsonColumn($value);
+    }
+
+    public function setAltTypesAttribute($value)
+    {
+        $this->attributes['alt_types'] = $this->getJsonColumnFromMultiSelect($value);
+    }
+
+    public function setAltAudiencesAttribute($value)
+    {
+        $this->attributes['alt_audiences'] = $this->getJsonColumnFromMultiSelect($value);
+    }
+
+    // This emulates an Eloquent collection from a JSON column
+    // TODO: Move this somewhere more appropriate - presenter?
+    private function getMultiSelectFromJsonColumn($value)
+    {
+        return collect(json_decode($value))->map(function($item) { return ['id' => $item]; })->all();
+    }
+
+    // Without this, we get `null` values in array
+    // TODO: Move this somewhere more appropriate - presenter?
+    private function getJsonColumnFromMultiSelect($value)
+    {
+        return collect($value)->filter()->values();
+    }
+
     public function sponsors()
     {
         return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
+    }
+
+    public function ticketedEvent()
+    {
+        return $this->apiElements()->where('relation', 'ticketedEvent');
+    }
+
+    public function ticketedEventType()
+    {
+        return $this->apiElements()->where('relation', 'ticketedEventType');
+    }
+
+    public function programs()
+    {
+        return $this->belongsToMany('App\Models\EventProgram');
+    }
+
+    public function getProgramUrlsAttribute()
+    {
+        return $this->programs->reduce(function($carry, $item) {
+            return $carry .'https://' .config('app.url') .route('events', [], false) .'?program=' .$item->id ."\n";
+        });
     }
 
     public function scopeLanding($query)
@@ -228,14 +300,40 @@ class Event extends Model
         return $query;
     }
 
+    // NOTE: This works only while there are less than 10 possible type values
+    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByType($query, $type)
     {
-        return $query->where('event_type', '=', $type);
+        return $query->where('event_type', '=', $type)->orWhereRaw($this->getWhereJsonContainsRaw('alt_types', $type));
     }
 
+    // NOTE: This works only while there are less than 10 possible audience values
+    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByAudience($query, $audience)
     {
-        return $query->where('audience', '=', $audience);
+        return $query->where('audience', '=', $audience)->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', $audience));
+    }
+
+    public function scopeByProgram($query, $program = null)
+    {
+        if (empty($program)) {
+            return $query;
+        }
+
+        return $query->whereHas('programs', function ($query) use ($program) {
+            $query->where('event_program_id', $program);
+        });
+    }
+
+    // Helper function to make `LIKE` on JSON column work correctly with both MySQL and PostgreSQL
+    // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
+    private function getWhereJsonContainsRaw($field, $value)
+    {
+        if (DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {
+            return $field ."::text LIKE '%" .$value ."%'";
+        }
+
+        return $field ." LIKE '%" .$value ."%'";
     }
 
     public function scopeDefault($query)
@@ -374,6 +472,12 @@ class Event extends Model
                 "value" => function () {return $this->is_registration_required;},
             ],
             [
+                "name" => "is_admission_required",
+                "doc" => "Is admission required",
+                "type" => "boolean",
+                "value" => function () {return $this->is_admission_required;},
+            ],
+            [
                 "name" => "hidden",
                 "doc" => "Hidden",
                 "type" => "boolean",
@@ -422,12 +526,6 @@ class Event extends Model
                 "value" => function () {return $this->sponsors_description;},
             ],
             [
-                "name" => "sponsors_sub_copy",
-                "doc" => "sponsors_sub_copy",
-                "type" => "string",
-                "value" => function () {return $this->sponsors_sub_copy;},
-            ],
-            [
                 "name" => "content",
                 "doc" => "Content",
                 "type" => "string",
@@ -464,6 +562,36 @@ class Event extends Model
                 "value" => function () {return $this->buy_tickets_link;},
             ],
             [
+                "name" => "ticketed_event_id",
+                "doc" => "Unique identifer of the event in our central ticketing system",
+                "type" => "string",
+                "value" => function () {
+                    $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
+                    return $ticketedEvent ? $ticketedEvent->id : null;
+                },
+            ],
+            [
+                "name" => "ticketed_event_type_id",
+                "doc" => "Unique identifer of the event type in our central ticketing system",
+                "type" => "string",
+                "value" => function () {
+                    $ticketedEventType = $this->apiModels('ticketedEventType', 'TicketedEventType')->first();
+                    return $ticketedEventType ? $ticketedEventType->id : null;
+                },
+            ],
+            [
+                "name" => "survey_url",
+                "doc" => "URL to the survey associated with this event",
+                "type" => "string",
+                "value" => function () {return $this->survey_link;},
+            ],
+            [
+                "name" => "email_series",
+                "doc" => "Email series",
+                "type" => "string",
+                "value" => function () {return $this->email_series;},
+            ],
+            [
                 "name" => "is_sold_out",
                 "doc" => "is_sold_out",
                 "type" => "boolean",
@@ -482,6 +610,12 @@ class Event extends Model
                 "value" => function () {return $this->slug;},
             ],
             [
+                "name" => "door_time",
+                "doc" => "door_time",
+                "type" => "string",
+                "value" => function () {return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%i') : null;},
+            ],
+            [
                 "name" => "web_url",
                 "doc" => "web_url",
                 "type" => "string",
@@ -489,4 +623,20 @@ class Event extends Model
             ],
         ];
     }
+
+    /**
+     * Validate an id. Useful for validating routes or query string params.
+     *
+     * By default, only numeric ids greater than zero are accepted. Override this
+     * method in child classes to implement different validation rules (e.g. UUID).
+     *
+     * @param mixed $id
+     * @return boolean
+     */
+    public static function validateId( $id )
+    {
+        // By default, only allow numeric ids greater than 0
+        return is_numeric($id) && intval($id) > 0;
+    }
+
 }

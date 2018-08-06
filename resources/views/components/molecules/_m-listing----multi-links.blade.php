@@ -2,9 +2,11 @@
 
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
     <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
+        <h3 class="sr-only">{{ $item['title'] }}</h3>
         <a href="{!! $item['titleLink'] !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
 @else
     <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+        <h3 class="sr-only">{{ $item['title'] }}</h3>
 @endif
 
         @if ( isset($item['image']) and !empty($item['image']) )
@@ -34,6 +36,8 @@
             @else
                 @component('components.atoms._title')
                     @slot('font', $titleFont ?? 'f-list-3')
+                    @slot('tag', 'span')
+                    @slot('ariaHidden', 'true')
                     {{ $item['title'] }}
                 @endcomponent
             @endif
@@ -48,9 +52,14 @@
         @endif
         @if (isset($item['links']) and $item['links'])
             <br>
-            <ul class="f-secondary">
+            @if (count($item['links']) > 1)
+              <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">Links</h3>
+              <ul class="f-secondary" aria-labelledby="h-{{ str_slug($item['title']) }}">
+            @else
+              <span class="f-secondary last-child">
+            @endif
             @foreach ($item['links'] as $link)
-                <li>
+                {!! count($item['links']) > 1 ? '<li>' : '<span>' !!}
                     @if (isset($link['external']) and $link['external'])
                         <a href="{!! $link['href'] !!}" target="_blank" class="external-link f-link">
                             {!! $link['label'] !!}<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
@@ -62,9 +71,9 @@
                             {!! $link['label'] !!}
                         @endcomponent
                     @endif
-                </li>
+                {!! count($item['links']) > 1 ? '</li>' : '</span>' !!}
             @endforeach
-            </ul>
+            {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
         @endif
     </span>
 

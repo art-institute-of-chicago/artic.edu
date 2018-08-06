@@ -15,6 +15,7 @@ Route::group(['prefix' => 'visit'], function () {
     Route::module('questions');
     Route::module('feeAges');
     Route::module('feeCategories');
+    Route::module('shopItems');
     Route::name('visit.fees')->get('fees', 'FeeController@index');
     Route::name('visit.fees.update')->post('fees', 'FeeController@update');
 });
@@ -27,6 +28,9 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 
     Route::module('events');
     Route::module('sponsors');
+
+    Route::module('ticketedEvents');
+    Route::module('ticketedEventTypes');
 
     Route::name('exhibitions_events.history')->get('history', 'PageController@exhibitionHistory');
 });
@@ -72,7 +76,7 @@ Route::group(['prefix' => 'generic'], function () {
     Route::module('pressReleases');
     Route::module('exhibitionPressRooms');
 
-    
+
 });
 
 Route::group(['prefix' => 'general'], function () {
@@ -82,6 +86,7 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('catalogCategories');
     Route::module('resourceCategories');
     Route::module('shopItems');
+    Route::module('eventPrograms');
 });
 
 // TODO: This will be fixed in our next Twill release to use auth_login_redirect_path automatically

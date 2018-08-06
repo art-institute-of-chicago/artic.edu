@@ -101,6 +101,10 @@ Example usage:
     background-color: $color__link--accent-active;
     color: $color__white;
   }
+
+  &.s-hidden {
+    display: none;
+  }
 }
 
 .btn[class*=f-] {

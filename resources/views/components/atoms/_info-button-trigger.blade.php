@@ -1,4 +1,4 @@
-<button class="info-button-trigger" aria-label="Image info" data-behavior="infoButtonTrigger">
-  <svg class="icon--info" area-hidden="true"><use xlink:href="#icon--info" /></svg>
-  <span>{{ $slot ?? ''}}</span>
+<button class="info-button-trigger" data-behavior="infoButtonTrigger" aria-label="Info" aria-expanded="false" {!! (isset($describedBy)) ? ' aria-describedby="'.$describedBy.'"' : '' !!}>
+  <svg class="icon--info"><use xlink:href="#icon--info" /></svg>
+  <span class="s-hidden">{{ $slot ?? ''}}</span>
 </button>

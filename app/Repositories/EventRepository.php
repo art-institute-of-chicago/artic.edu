@@ -10,13 +10,14 @@ use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\HandleApiRelations;
 use App\Models\Event;
 use App\Models\Api\Search;
 use Carbon\Carbon;
 
 class EventRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleBlocks, HandleRepeaters, HandleRecurrence {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiBlocks, HandleApiRelations, HandleBlocks, HandleRepeaters, HandleRecurrence {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -35,10 +36,15 @@ class EventRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
+
+        $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent']);
+        $this->updateBrowserApiRelated($object, $fields, ['ticketedEventType']);
         $this->updateBrowser($object, $fields, 'sponsors');
         $this->updateBrowser($object, $fields, 'events');
 
         $this->updateRepeater($object, $fields, 'dateRules', 'DateRule');
+
+        $object->programs()->sync($fields['programs'] ?? []);
 
         parent::afterSave($object, $fields);
     }
@@ -49,6 +55,8 @@ class EventRepository extends ModuleRepository
 
         $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'exhibitions_events');
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
+        $fields['browsers']['ticketedEvent'] = $this->getFormFieldsForBrowserApi($object, 'ticketedEvent', 'App\Models\Api\TicketedEvent', 'exhibitions_events', 'title', 'ticketedEvent');
+        $fields['browsers']['ticketedEventType'] = $this->getFormFieldsForBrowserApi($object, 'ticketedEventType', 'App\Models\Api\TicketedEventType', 'exhibitions_events', 'title', 'ticketedEventType');
 
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');
 
@@ -76,7 +84,7 @@ class EventRepository extends ModuleRepository
         }
     }
 
-    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $perPage = 5, $page = null)
+    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = null)
     {
         $query = $this->model->newQuery();
 
@@ -109,6 +117,10 @@ class EventRepository extends ModuleRepository
 
         if ($audience) {
             $query->byAudience($audience);
+        }
+
+        if ($program) {
+            $query->byProgram($program);
         }
 
         return $query->paginate($perPage, ['events.*', 'event_metas.date', 'event_metas.date_end'], 'page', $page);

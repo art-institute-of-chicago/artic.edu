@@ -14,11 +14,12 @@ class ModifyArtistsTable extends Migration
     public function up()
     {
         Schema::table('artists', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->dropColumn('biography');
+            $table->dropColumn(['name', 'biography']);
+        });
+        Schema::table('artists', function (Blueprint $table) {
             $table->string('also_known_as')->nullable();
             $table->string('intro_copy')->nullable();
-            $table->string('title');
+            $table->string('title')->nullable();
         });
     }
 

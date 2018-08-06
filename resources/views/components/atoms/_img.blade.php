@@ -4,6 +4,9 @@
     $highlight = ' ';
 
     if (isset($settings)) {
+
+        $infoUrl = $settings['infoUrl'] ?? null;
+
         $settings = aic_imageSettings(array(
             'settings' => $settings,
             'image' => $image,
@@ -54,6 +57,9 @@
     @endif
     @if (isset($iiifId))
     data-iiifId="{{ $iiifId }}"
+    @endif
+    @if (isset($infoUrl))
+    data-infoUrl="{{ $infoUrl }}"
     @endif
     @if (isset($dataAttributes))
     {!! " ".$dataAttributes !!}

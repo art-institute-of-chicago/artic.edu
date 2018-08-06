@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemoveIsOngoingFromEvents extends Migration
+class AddDoorTimeToEvents extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class RemoveIsOngoingFromEvents extends Migration
      */
     public function up()
     {
-         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('is_ongoing');
+
+        Schema::table('events', function (Blueprint $table) {
+            $table->string('door_time')->nullable();
         });
+
     }
 
     /**
@@ -25,8 +27,10 @@ class RemoveIsOngoingFromEvents extends Migration
      */
     public function down()
     {
-         Schema::table('events', function (Blueprint $table) {
-            $table->boolean('is_ongoing')->default(false);
+
+        Schema::table('events', function (Blueprint $table) {
+            $table->dropColumn('door_time');
         });
+
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsOngoingToEvents extends Migration
+class AddProgramsToEvents extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddIsOngoingToEvents extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->boolean('is_ongoing')->default(true)->index();
+            if (env('APP_ENV') != 'testing') {
+                $table->json('programs')->nullable()->after('alt_audiences');
+            }
         });
     }
 
@@ -26,7 +28,9 @@ class AddIsOngoingToEvents extends Migration
     public function down()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('is_ongoing');
+            if (env('APP_ENV') != 'testing') {
+                $table->dropColumn('programs');
+            }
         });
     }
 }

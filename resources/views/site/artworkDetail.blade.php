@@ -8,6 +8,9 @@
     @slot('itemprops',$item->present()->buildSchemaItemProps() ?? null)
   @endcomponent
 
+  {{-- Gallery-type _m-article-header never renders title --}}
+  <h1 class="sr-only">{{ $item->title }}</h1>
+
   @component('components.molecules._m-article-header')
     {{-- @slot('editorial', false) --}}
     @slot('headerType', $item->headerType)
@@ -75,14 +78,11 @@
   <div class="o-article__inline-header">
     @if ($item->title)
       @component('components.atoms._title')
-          @slot('tag','h1')
+          @slot('tag','span')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
-          @if (!empty($item->artist_id))
-            <a href="{{ route('artists.show', $item->artist_id) }}" data-gtm-event="{{ $item->title }}" data-gtm-event-category="collection-nav">{{ $item->title }}</a>
-          @else
-            {{ $item->title }}
-          @endif
+          @slot('ariaHidden', 'true')
+          {{ $item->title }}
       @endcomponent
     @endif
 
@@ -123,6 +123,8 @@
   @endif
 
   <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">
+
+    <h2 class="sr-only">About this work</h2>
 
     @component('components.blocks._blocks')
         @slot('blocks', $item->present()->blocks ?? null)

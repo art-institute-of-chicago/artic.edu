@@ -78,6 +78,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 
   <main id="content">
     @yield('content')
+    @include('partials._newsletter')
   </main>
 
   @include('partials._footer')

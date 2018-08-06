@@ -17,24 +17,24 @@ function printMonth($date)
     return \Carbon\Carbon::parse($date)->format('M');
 }
 
-function hoursSelectOptions()
+function hoursSelectOptions($shortlist = false, $startAt = 0, $endAt = 24)
 {
     $hours = [];
 
-    for($i = 0; $i < 24; $i++) {
+    for($i = $startAt; $i < $endAt; $i++) {
         $hour = ($i % 12 ?? 12);
         $ampm = ($i >= 12 ? 'pm' : 'am');
-        foreach(['00', '15', '30', '45'] as $time) {
+        $mins = $shortlist ? ['00', '30'] : ['00', '15', '30', '45'];
+        foreach($mins as $time) {
             // Save hours on DatetimeInterval format to be added later
-            if($hour == 0) $hour = 12;
-            $hours["PT{$i}H{$time}M"] =  "{$hour}:{$time}{$ampm}";
+            $hours["PT{$i}H{$time}M"] = ($hour == 0 ? "12" : "{$hour}") .":{$time}{$ampm}";
         }
     }
 
     return collect($hours);
 }
 
-function convertArtworkDates($date) 
+function convertArtworkDates($date)
 {
     $formatdate = "";
 

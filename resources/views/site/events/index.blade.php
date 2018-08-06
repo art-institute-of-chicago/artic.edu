@@ -13,6 +13,7 @@
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--tabs')
     @slot('overflow', true)
+    @slot('navType', 'primary')
     @slot('linksPrimary', array(array('label' => 'Exhibitions', 'href' => route('exhibitions'), 'active' => false), array('label' => 'Events', 'href' => route('events'), 'active' => true)))
 @endcomponent
 
@@ -62,6 +63,13 @@
         @component('components.molecules._m-no-results')
         @endcomponent
     @else
+        @if ($subtitle)
+            @component('components.molecules._m-results-title')
+                @slot('subtitle', $subtitle)
+                @slot('links', array(array('label' => 'See all events', 'href' => route('events') )))
+            @endcomponent
+        @endif
+
         @component('components.organisms._o-row-listing')
             @slot('id', 'eventsList')
 

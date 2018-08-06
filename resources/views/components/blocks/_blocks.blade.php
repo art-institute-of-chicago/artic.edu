@@ -393,14 +393,29 @@
                 @endcomponent
             @endif
 
-            @if ($block['type'] === 'input')
+            @if ($block['type'] === 'input' || $block['type'] === 'email' || $block['type'] === 'number' || $block['type'] === 'tel')
                 @component('components.atoms._input')
+                    @slot('type', $block['type'] === 'input' ? 'text' : $block['type'])
                     @slot('variation', $block['variation'] ?? null)
+                    @slot('pattern', $block['pattern'] ?? null)
                     @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('placeholder', $block['placeholder'] ?? null)
                     @slot('textCount', $block['textCount'] ?? false)
                     @slot('value', $block['value'] ?? null)
+                    @slot('error', $block['error'] ?? null)
+                    @slot('optional', $block['optional'] ?? null)
+                    @slot('hint', $block['hint'] ?? null)
+                    @slot('disabled', $block['disabled'] ?? false)
+                    {!! $block['label'] !!}
+                @endcomponent
+            @endif
+
+            @if ($block['type'] === 'captcha')
+                @component('components.atoms._captcha')
+                    @slot('variation', $block['variation'] ?? null)
+                    @slot('id', $block['id'] ?? 'i_'.$loop->iteration)
+                    @slot('name', $block['id'] ?? 'i_'.$loop->iteration)
                     @slot('error', $block['error'] ?? null)
                     @slot('optional', $block['optional'] ?? null)
                     @slot('hint', $block['hint'] ?? null)

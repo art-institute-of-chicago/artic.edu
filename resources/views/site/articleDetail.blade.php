@@ -204,18 +204,6 @@
         @endforeach
     @endif
 
-    @if ($item->sponsors)
-        @component('components.blocks._text')
-            @slot('font', 'f-module-title-2')
-            @slot('tag', 'h4')
-            Sponsors
-        @endcomponent
-        @component('components.blocks._blocks')
-            @slot('editorial', ($item->articleType === 'editorial'))
-            @slot('blocks', $item->sponsors ?? null)
-        @endcomponent
-    @endif
-
     @if ($item->futherSupport)
         @component('components.molecules._m-row-block')
             @slot('variation', 'm-row-block--keyline-top')
@@ -275,9 +263,10 @@
         @component('components.blocks._text')
             @slot('font', 'f-subheading-1')
             @slot('tag', 'h4')
+            @slot('id', 'h-topics')
             Topics
         @endcomponent
-        <ul class="m-inline-list">
+        <ul class="m-inline-list" aria-labelledby="h-topics">
         @foreach ($item->topics as $topic)
             <li class="m-inline-list__item">
                 @if (!empty($topic['href']))

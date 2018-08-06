@@ -10,7 +10,7 @@ const imageZoomArea = function(container) {
   let eventData = null;
   let active = false;
 
-  let $btnZoomIn, $btnZoomOut, $btnClose, $btnShare, $img, $osd;
+  let $btnZoomIn, $btnZoomOut, $btnClose, $btnShare, $img, $osd, $linkInfo;
 
   let imgWidth = 0;
   let imgHeight = 0;
@@ -97,21 +97,16 @@ const imageZoomArea = function(container) {
       showSequenceControl: false,
       tileSources: [
         {
-          "@context":"http://iiif.io/api/image/2/context.json",
+          "@context": "http://iiif.io/api/image/2/context.json",
           "@id": id,
-          "protocol":"http://iiif.io/api/image",
           "width": imgWidth,
           "height": imgHeight,
-          "tile_height": 256,
-          "tile_width": 256,
-          "scale_factors": [1, 2, 4, 8],
-          "profile":[
-            "http://iiif.io/api/image/2/level2.json",
-            {
-              "formats": ["jpg","tif","gif","png"],
-              "qualities": ["bitonal","default","gray","color"],
-            }
-          ]
+          "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+          "protocol": "http://iiif.io/api/image",
+          "tiles": [{
+            "scaleFactors": [ 1, 2, 4, 8, 16 ],
+            "width": 256
+          }]
         }
       ]
     });
@@ -179,6 +174,14 @@ const imageZoomArea = function(container) {
       $btnShare.setAttribute('data-share-url', eventData.shareUrl);
       $btnShare.setAttribute('data-share-title', eventData.shareTitle);
 
+      if (eventData.infoUrl) {
+        $linkInfo.setAttribute('href', eventData.infoUrl)
+        $linkInfo.setAttribute('style', '')
+      } else {
+        $linkInfo.setAttribute('href', 'javascript:;');
+        $linkInfo.setAttribute('style', 'display: none');
+      }
+
       active = true;
     });
   }
@@ -196,6 +199,7 @@ const imageZoomArea = function(container) {
     $btnZoomOut = container.querySelector('[data-fullscreen-zoom-out]');
     $btnClose = container.querySelector('[data-fullscreen-close]');
     $btnShare = container.querySelector('[data-fullscreen-share]');
+    $linkInfo = container.querySelector('.o-fullscreen-image__info');
 
     $btnClose.addEventListener('click', _close, false);
     document.addEventListener('fullScreenImage:open', _open, false);

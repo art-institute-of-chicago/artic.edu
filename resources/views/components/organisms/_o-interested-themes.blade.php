@@ -3,15 +3,18 @@
         @slot('variation','hr--flush-top')
     @endcomponent
     @php
-        $themeString = 'It seems it you could also be interested in ';
+        $themeString = 'It seems you could also be interested in ';
         $themesLength = sizeof($themes);
         $themesIndex = 1;
         foreach ($themes as $theme) {
             if ($themesIndex > 1 && $themesIndex < $themesLength) {
                 $themeString .= ', ';
             }
-            if ($themesIndex === $themesLength) {
+            if ($themesIndex === $themesLength && $themesLength == 2) {
                 $themeString .= ' and ';
+            }
+            if ($themesIndex === $themesLength && $themesLength > 2) {
+                $themeString .= ', and ';
             }
             $themeString .= '<a href="'.$theme['href'].'" data-gtm-event-category="collection-nav" data-gtm-event="you-might-like">'.$theme['label'].'</a>';
             if ($themesIndex === $themesLength) {

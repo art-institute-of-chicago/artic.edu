@@ -32,6 +32,7 @@ const infoButtonTrigger = function(container) {
 
   function _closeInfoButtonInfo() {
     if (infoOpen) {
+      container.setAttribute('aria-expanded','false');
       document.documentElement.classList.remove('s-infoButtonInfo-active');
       infoButtonInfo.removeAttribute('style');
       triggerCustomEvent(document, 'focus:untrap');
@@ -46,6 +47,7 @@ const infoButtonTrigger = function(container) {
     event.stopPropagation();
     container.blur();
     if (!infoOpen) {
+      container.setAttribute('aria-expanded','true');
       infoButtonInfo.querySelector('span').textContent = container.querySelector('span').textContent;
       document.documentElement.classList.add('s-infoButtonInfo-active');
       _position();

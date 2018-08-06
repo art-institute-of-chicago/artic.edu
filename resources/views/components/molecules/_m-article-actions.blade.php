@@ -1,4 +1,5 @@
-<ul class="m-article-actions{{ (isset($variation)) ? ' '.$variation : '' }}">
+<h3 class="sr-only" id="h-article-actions">Article actions</h3>
+<ul class="m-article-actions{{ (isset($variation)) ? ' '.$variation : '' }}" aria-labelledby="h-article-actions">
     <li class="m-article-actions__action">
         @component('components.atoms._btn')
             @slot('variation', 'btn--icon'.((isset($articleType) and $articleType === 'editorial') ? ' btn--senary' : ''))

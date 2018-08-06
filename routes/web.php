@@ -23,7 +23,7 @@ Route::name('collection.autocomplete')->get('/collection/autocomplete', function
 Route::group([
    "domain" => config('api.base_uri')
 ], function () {
-    Route::get("api/v1/autocomplete")->name("collection.autocomplete");
+    Route::get("api/v2/autocomplete")->name("collection.autocomplete");
 });
 Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
 
@@ -123,6 +123,31 @@ Route::name('about.press.show')->get('/press/{id}', 'PressReleasesController@sho
 Route::name('forms.contact')->get('/forms/contact', 'Forms\ContactsController@index');
 Route::name('forms.contact.store')->post('/forms/contact', 'Forms\ContactsController@store');
 Route::name('forms.contact.thanks')->get('/forms/contact/thanks', 'Forms\ContactsController@thanks');
+
+// Group reservation form
+Route::name('forms.group-reservation')->get('/visit/visiting-with-a-group/reservation-form', 'Forms\GroupReservationsController@index');
+Route::name('forms.group-reservation.store')->post('/visit/visiting-with-a-group/reservation-form', 'Forms\GroupReservationsController@store');
+Route::name('forms.group-reservation.thanks')->get('/visit/visiting-with-a-group/reservation-form/thanks', 'Forms\GroupReservationsController@thanks');
+
+// Event planning contact
+Route::name('forms.event-planning-contact')->get('/venue-rental/contact-us', 'Forms\EventPlanningContactController@index');
+Route::name('forms.event-planning-contact.store')->post('/venue-rental/contact-us', 'Forms\EventPlanningContactController@store');
+Route::name('forms.event-planning-contact.thanks')->get('/venue-rental/contact-us/thanks', 'Forms\EventPlanningContactController@thanks');
+
+// Educator admission request
+Route::name('forms.educator-admission-request')->get('/educators/visit-on-my-own/educator-admission-request', 'Forms\EducatorAdmissionController@index');
+Route::name('forms.educator-admission-request.store')->post('/educators/visit-on-my-own/educator-admission-request', 'Forms\EducatorAdmissionController@store');
+Route::name('forms.educator-admission-request.thanks')->get('/educators/visit-on-my-own/educator-admission-request/thanks', 'Forms\EducatorAdmissionController@thanks');
+
+// Filming and photo shoot proposal
+Route::name('forms.filming-proposal')->get('/press/filming-policy/filming-photo-shoot-proposal-form', 'Forms\FilmingAndPhotoShootProposalController@index');
+Route::name('forms.filming-proposal.store')->post('/press/filming-policy/filming-photo-shoot-proposal-form', 'Forms\FilmingAndPhotoShootProposalController@store');
+Route::name('forms.filming-proposal.thanks')->get('/press/filming-policy/filming-photo-shoot-proposal-form/thanks', 'Forms\FilmingAndPhotoShootProposalController@thanks');
+
+// Ryerson class visit request
+Route::name('forms.ryerson-class-visit')->get('/library/request-a-class-visit/schedule', 'Forms\RyersonClassVisitController@index');
+Route::name('forms.ryerson-class-visit.store')->post('/library/request-a-class-visit/schedule', 'Forms\RyersonClassVisitController@store');
+Route::name('forms.ryerson-class-visit.thanks')->get('/library/request-a-class-visit/schedule/thanks', 'Forms\RyersonClassVisitController@thanks');
 
 // Feed routes
 Route::feeds();

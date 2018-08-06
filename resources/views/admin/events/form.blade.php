@@ -20,20 +20,6 @@
         'default' => '0'
     ])
 
-    @formField('select', [
-        'name' => 'event_type',
-        'label' => 'Event type',
-        'options' => $eventTypesList,
-        'default' => '1'
-    ])
-
-    @formField('select', [
-        'name' => 'audience',
-        'label' => 'Event audience',
-        'options' => $eventAudiencesList,
-        'default' => '1'
-    ])
-
     @formField('medias', [
         'with_multiple' => false,
         'no_crop' => false,
@@ -85,6 +71,50 @@
 
 @section('fieldsets')
 
+    <a17-fieldset id="attributes" title="Filters and types">
+        @formField('select', [
+            'name' => 'event_type',
+            'label' => 'Event type (preferred)',
+            'options' => $eventTypesList,
+            'default' => '1'
+        ])
+
+        @formField('multi_select', [
+            'name' => 'alt_types',
+            'label' => 'Event type (alternative)',
+            'note' => 'Used to enhance filtering',
+            'options' => $eventTypesList,
+        ])
+
+        @formField('select', [
+            'name' => 'audience',
+            'label' => 'Event audience (preferred)',
+            'options' => $eventAudiencesList,
+            'default' => '1'
+        ])
+
+        @formField('multi_select', [
+            'name' => 'alt_audiences',
+            'label' => 'Event audience (alternative)',
+            'note' => 'Used to enhance filtering',
+            'options' => $eventAudiencesList,
+        ])
+
+        @formField('multi_select', [
+            'name' => 'programs',
+            'label' => 'Programs',
+            'note' => 'Provides a way to link to a list of events by program',
+            'options' => $eventProgramsList,
+        ])
+        @formField('input', [
+            'name' => 'program_urls',
+            'label' => 'Program URLs',
+            'type' => 'textarea',
+            'rows' => $item->programs->count(),
+            'disabled' => 'true',
+        ])
+    </a17-fieldset>
+
     <a17-fieldset id="attributes" title="Event entrance attributes">
         @formField('checkbox', [
             'name' => 'is_registration_required',
@@ -123,8 +153,8 @@
         ])
 
         @formField('checkbox', [
-            'name' => 'is_ticketed',
-            'label' => 'Ticketed Event'
+            'name' => 'is_admission_required',
+            'label' => 'Admission Required'
         ])
 
         @formField('input', [
@@ -150,6 +180,50 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset id="ticketing" title="Ticketing information">
+        @formField('checkbox', [
+            'name' => 'is_ticketed',
+            'label' => 'Ticketed Event'
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'max' => 1,
+            'moduleName' => 'ticketedEvents',
+            'name' => 'ticketedEvent',
+            'label' => 'Event from ticketing system'
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'max' => 1,
+            'moduleName' => 'ticketedEventTypes',
+            'name' => 'ticketedEventType',
+            'label' => 'Event type from ticketing system'
+        ])
+
+        @formField('select', [
+            'name' => 'email_series',
+            'label' => 'Add to event email series?',
+            'options' => [
+                [
+                    'value' => 'Yes',
+                    'label' => 'Yes'
+                ],
+                [
+                    'value' => 'No',
+                    'label' => 'No'
+                ],
+            ],
+            'default' => 'No',
+        ])
+
+        @formField('input', [
+            'name' => 'survey_link',
+            'label' => 'Survey URL',
+        ])
+    </a17-fieldset>
+
     <a17-fieldset id="dates" title="Date rules">
         @formField('input', [
             'name' => 'all_dates_cms',
@@ -165,6 +239,12 @@
                 @formField('select', [
                     'name' => 'start_time',
                     'label' => 'Start Time',
+                    'options' => hoursSelectOptions()
+                ])
+
+                @formField('select', [
+                    'name' => 'door_time',
+                    'label' => 'Door Time',
                     'options' => hoursSelectOptions()
                 ])
             @endslot
@@ -194,14 +274,9 @@
         @formField('wysiwyg', [
             'name' => 'sponsors_description',
             'label' => 'Sponsors section description',
-            'toolbarOptions' => ['bold']
-        ])
-
-        @formField('wysiwyg', [
-            'name' => 'sponsors_sub_copy',
-            'label' => 'Sponsors sub copy',
-            'note' => 'Default: Further support has been provided by',
-            'toolbarOptions' => ['bold']
+            'toolbarOptions' => ['bold'],
+            'note' => 'DEPRECATED',
+            'type' => 'textarea'
         ])
 
         @formField('browser', [
@@ -209,8 +284,8 @@
             'moduleName' => 'sponsors',
             'name' => 'sponsors',
             'label' => 'Sponsors',
-            'note' => 'Select Sponsors',
-            'max' => 20
+            'note' => 'Display content blocks from this sponsor',
+            'max' => 1
         ])
     </a17-fieldset>
 

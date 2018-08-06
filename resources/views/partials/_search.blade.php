@@ -1,4 +1,4 @@
-<div class="g-search" data-behavior="globalSearch" data-autocomplete-url="{!! route('search.autocomplete') !!}">
+<div class="g-search" data-behavior="globalSearch" data-autocomplete-url="{!! route('search.autocomplete') !!}" aria-modal="true">
     <div class="g-search__scroll">
         <div class="g-search__inner" data-search-inner>
             <form action="/search" class="g-search__form" role="search">
@@ -9,11 +9,11 @@
                 <span class="g-search__loader"></span>
             </form>
             <div class="g-search__suggested">
-                <span class="g-search__suggested-title">Suggested Terms</span>
-                <ul>
+                <h2 class="g-search__suggested-title" id="h-suggested-terms">Suggested Terms</h2>
+                <ul aria-labelledby="h-suggested-terms">
                     @if (isset($searchTerms))
                         @foreach ($searchTerms as $item)
-                            <li><a href="{!! route('search', ['q' => $item]) !!}">{{ $item }}</a></li>
+                            <li><a href="{!! $item->direct_url ?? route('search', ['q' => $item->name]) !!}">{{ $item->name }}</a></li>
                         @endforeach
                     @endif
                 </ul>

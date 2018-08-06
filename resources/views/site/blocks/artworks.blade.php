@@ -8,14 +8,14 @@
         $image = $artwork->imageFront('hero', 'thumbnail');
 
         $caption = "";
-        if (!empty($artwork->artist_display)) {
-            $caption = $artwork->artist_display;
+        if (!empty($artwork->artist_title)) {
+            $caption = $artwork->artist_title;
         } else if (!empty($artwork->place_of_origin)) {
             $caption = $artwork->place_of_origin;
         }
 
-        if (!empty($artwork->date_display)) {
-            $caption .= ', ' . $artwork->date_display;
+        if (!empty($artwork->date_block)) {
+            $caption .= ', ' . $artwork->date_block;
         }
 
         $item = [];
@@ -27,6 +27,7 @@
         $item['caption'] = $caption;
         $item['url'] = route('artworks.show', $artwork);
         $item['urlTitle'] = route('artworks.show', $artwork);
+        $item['showUrl'] = true;
         $item['isArtwork'] = true;
         $item['isZoomable'] = $artwork->is_zoomable;
         $item['isPublicDomain'] = $artwork->is_public_domain;

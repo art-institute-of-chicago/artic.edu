@@ -4,20 +4,18 @@ This is the development repository for the AIC build, which uses as its foundati
 
 #### Homestead config
 
-- Rename `Homestead.example.yaml` to `Homestead.yaml`
+- Rename `Homestead.sample.yaml` to `Homestead.yaml`
 - Update `folders.map` with your local path to the AIC repository
 - Change the IP at the top if you have another vagrant machine running at the same IP
 - Install composer dependencies `composer install`. This step should be done inside the VM, but in order to get the VM running you need to install the dependencies.
 - Provision your vagrant machine with `vagrant up`
-
-In case the system didn't update your /etc/hosts file automatically:
-
-- Add the ip and domain defined at `Homestead.yaml` to your `/etc/hosts` file.
+- In case the system didn't update your `/etc/hosts` file automatically:
+  - Add the IP and domain defined at `Homestead.yaml` to your `/etc/hosts` file.
 
 
 #### Application setup
 
-- Hop into the vm with `vagrant ssh` and cd into the aic folder in `/home/vagrant/aic`
+- Hop into the VM with `vagrant ssh` and cd into the aic folder in `/home/vagrant/aic`
 - Ensure dependencies are installed with `composer install`
 - Copy `.env.example` as `.env` and update with your local settings (if necessary).
 - Generate your application key: `php artisan key:generate`

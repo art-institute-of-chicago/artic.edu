@@ -1,4 +1,4 @@
-<{{ $tag ?? 'li' }} class="m-listing m-listing--w-meta-bottom m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->closingSoon ? " m-listing--limited" : "" }}{{ $item->nowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}" itemscope itemtype="http://schema.org/ExhibitionEvent">
+<{{ $tag ?? 'li' }} class="m-listing m-listing--w-meta-bottom m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}{{ $item->isClosingSoon ? " m-listing--limited" : "" }}{{ $item->isNowOpen ? " m-listing--new" : "" }}{{ $item->exclusive ? " m-listing--membership" : "" }}" itemscope itemtype="http://schema.org/ExhibitionEvent">
   <a href="{{ $item->slug }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}">
         @if ($item->imageFront('hero'))
@@ -35,13 +35,13 @@
                     Closed
                 @endcomponent
             @else
-                @if ($item->closingSoon)
+                @if ($item->isClosingSoon)
                     @component('components.atoms._type')
                         @slot('variation', 'type--limited')
                         @slot('font', '')
                         Closing Soon
                     @endcomponent
-                @elseif ($item->nowOpen)
+                @elseif ($item->isNowOpen)
                     @component('components.atoms._type')
                         @slot('variation', 'type--new')
                         @slot('font', '')

@@ -13,5 +13,6 @@ class SearchTerm extends Model implements Sortable
     protected $fillable = [
         'name',
         'position',
+        'direct_url',
     ];
 }

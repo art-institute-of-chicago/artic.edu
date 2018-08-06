@@ -10,7 +10,6 @@ class SponsorRequest extends Request
     {
         $rules = [
             'title' => 'required',
-            'copy' => 'required',
         ];
 
         return $rules;

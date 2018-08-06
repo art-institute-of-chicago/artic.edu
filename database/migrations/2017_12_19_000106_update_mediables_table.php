@@ -8,10 +8,10 @@ class UpdateMediablesTable extends Migration
     public function up()
     {
         Schema::table('mediables', function (Blueprint $table) {
-            $table->dropColumn('crop_x2');
-            $table->dropColumn('crop_y2');
-            $table->dropColumn('background_position');
-            $table->json('metadatas');
+            $table->dropColumn(['crop_x2', 'crop_y2', 'background_position']);
+        });
+        Schema::table('mediables', function (Blueprint $table) {
+            $table->json('metadatas')->nullable();
         });
     }
 

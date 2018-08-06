@@ -30,7 +30,8 @@
   }
 
   & + .o-row-listing,
-  & + .m-no-results {
+  & + .m-no-results,
+  & + .m-results-title {
     margin-top: 28px;
 
     @include breakpoint('small+') {

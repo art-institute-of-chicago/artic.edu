@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 
+use App\Repositories\EventProgramRepository;
+
 class EventController extends ModuleController
 {
     protected $moduleName = 'events';
@@ -53,6 +55,7 @@ class EventController extends ModuleController
             'eventTypesList' => $this->repository->getEventTypesList(),
             'eventAudiencesList' => $this->repository->getEventAudiencesList(),
             'eventLayoutsList' => $this->repository->getEventLayoutsList(),
+            'eventProgramsList' => app(EventProgramRepository::class)->listAll('name'),
             'baseUrl' => $baseUrl,
         ];
     }

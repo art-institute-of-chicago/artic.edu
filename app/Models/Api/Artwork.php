@@ -87,6 +87,16 @@ class Artwork extends BaseApiModel
         return join(', ', $titles->toArray());
     }
 
+    public function getArtistDisplayAttribute($value)
+    {
+        if (str_contains($value, "\n")) {
+            $array = explode("\n", $value);
+            $tail = implode(' ', array_slice($array, 1));
+            $value = $array[0] . ' (' . $tail . ')';
+        }
+        return $value;
+    }
+
     public function getCataloguesAttribute()
     {
         if (!empty($this->catalogue_pivots)) {
@@ -97,7 +107,7 @@ class Artwork extends BaseApiModel
 
     public function getDateBlockAttribute()
     {
-        return join(' — ', array_unique(array_filter([convertArtworkDates($this->date_start), convertArtworkDates($this->date_end)])));
+        return join('—', array_unique(array_filter([convertArtworkDates($this->date_start), convertArtworkDates($this->date_end)])));
     }
 
     public function getMultimediaElementsAttribute()

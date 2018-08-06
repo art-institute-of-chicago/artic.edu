@@ -145,23 +145,41 @@ class ArtworkPresenter extends BasePresenter
             }
         }
 
-        if ($this->entity->dates != null && count($this->entity->dates) > 0) {
-            $dates = collect($this->entity->dates)->map(function($item) {
-                $joined = join(' – ', array_unique([convertArtworkDates(Carbon::parse($item->date_earliest)->year), convertArtworkDates(Carbon::parse($item->date_latest)->year)]));
-                return join(' ', [$item->qualifier_title, $joined]);
-            });
+        // TODO: Abstract this into a proper method, somewhere appropriate
+        $generateDateRangeHref = function( $date_start, $date_end ) {
+            return route('collection', [
+                'date-start' => abs($date_start) . ( $date_start < 0 ? 'BC' : 'AD' ),
+                'date-end' => abs($date_end) . ( $date_end < 0 ? 'BC' : 'AD' ),
+            ]);
+        };
 
+        if ($this->entity->dates != null && count($this->entity->dates) > 0) {
+            $dates = collect($this->entity->dates)->map(function($item) use ($generateDateRangeHref) {
+
+                $date_start = Carbon::parse($item->date_earliest)->year;
+                $date_end = Carbon::parse($item->date_latest)->year;
+
+                $joined = join('-', array_unique([convertArtworkDates($date_start), convertArtworkDates($date_end)]));
+
+                return [
+                    'label' => join(' ', [ $item->qualifier_title, $joined ] ),
+                    'href' => $generateDateRangeHref( $date_start, $date_end ),
+                ];
+            });
             $details[] = [
                 'key'   => str_plural('Date', count($this->entity->dates)),
-                'value' => join(', ', $dates->toArray()),
                 'itemprop' => 'dateCreated',
+                'links' => $dates,
             ];
         } else {
             if (!empty($this->entity->date_block)) {
                 $details[] = [
                     'key' => 'Date',
-                    'value' => $this->entity->date_block,
                     'itemprop' => 'dateCreated',
+                    'links' => [[
+                        'label' => $this->entity->date_block, // See getDateBlockAttribute
+                        'href' => $generateDateRangeHref( $this->entity->date_start, $this->entity->date_end ),
+                    ]],
                 ];
             }
         }

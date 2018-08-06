@@ -21,6 +21,7 @@
     @component('components.molecules._m-links-bar')
         @slot('overflow', true)
         @slot('variation', 'm-links-bar--nav-bar')
+        @slot('navType', 'primary')
         @slot('linksPrimary', array(
           array('label' => __('Hours'), 'href' => '#hours'),
           array('label' => __('Admission'), 'href' => '#admission'),
@@ -125,26 +126,29 @@
 
     @endforeach
 
-    @component('components.molecules._m-title-bar')
-        @slot('id', 'admission')
-        @lang('Admission')
-    @endcomponent
-
     <div class="m-table">
       <table>
+        <caption>
+            @component('components.molecules._m-title-bar')
+                @slot('id', 'admission')
+                @lang('Admission')
+            @endcomponent
+        </caption>
         <thead>
           <tr>
-            <td>&nbsp;</td>
+            <th>&nbsp;</th>
             @foreach ($admission['titles'] as $categoryId => $categoryData)
-              <th>
+              <th aria-labelledby="{{ $categoryData['id'] }}">
                 @component('components.blocks._text')
                     @slot('font', 'f-module-title-1')
                     @slot('tag','span')
+                    @slot('id', $categoryData['id'])
                     {{ $categoryData['title'] }}
                 @endcomponent
                 @if (isset($categoryData['tooltip']))
                   &nbsp;
                   @component('components.atoms._info-button-trigger')
+                      @slot('describedBy', $categoryData['id'])
                       {{ $categoryData['tooltip'] }}
                   @endcomponent
                 @endif
@@ -236,7 +240,8 @@
           {!! $admission['text'] !!}
         </div>
         <div class="o-blocks">
-          <ul class="m-ticket-actions o-blocks__block">
+          <h3 class="sr-only" id="h-ticket-actions">Buy ticket options</h3>
+          <ul class="m-ticket-actions o-blocks__block" aria-labelledby="h-ticket-actions">
               <li class="m-ticket-actions__action">
                   @component('components.atoms._btn')
                       @slot('variation', 'btn--full')
@@ -278,7 +283,7 @@
       <div class="m-mini-promo__text">
         @component('components.atoms._title')
             @slot('font', 'f-module-title-1')
-            @slot('tag','h4')
+            @slot('tag','h3')
             {{ $admission['cityPass']['title'] }}
         @endcomponent
         @component('components.blocks._text')
@@ -318,15 +323,18 @@
       </div>
       <div class="m-directions-block__text o-blocks">
         @foreach ($directions['locations'] as $location)
-          <p class="f-secondary" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-            {!! $location['name'] !!}<br />
-            <span itemprop="streetAddress">{!! $location['street'] !!} {!! $location['addres'] !!}</span><br />
-            <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}
-          </p>
+          <div class="f-secondary" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <h3>{!! $location['name'] !!}</h3>
+            <p>
+              <span itemprop="streetAddress">{!! $location['street'] !!} {!! $location['addres'] !!}</span><br />
+              <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}
+            </p>
+          </div>
         @endforeach
       </div>
       <div class="m-directions-block__links o-blocks">
-        <ul class="f-secondary">
+        <h3 class="sr-only" id="h-map-options">Map options</h3>
+        <ul class="f-secondary" aria-labelledby="h-map-options">
           @foreach ($directions['links'] as $link)
           <li>
             @component('components.atoms._arrow-link')
@@ -397,6 +405,7 @@
     @endcomponent
 
     @component('components.molecules._m-link-list')
+        @slot('screenreaderTitle', 'Sample questions')
         @slot('links', $faq['questions'])
     @endcomponent
 

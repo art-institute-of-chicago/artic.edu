@@ -14,8 +14,7 @@ class UseDatetimeForDateRules extends Migration
     public function up()
     {
         Schema::table('date_rules', function (Blueprint $table) {
-            $table->dropColumn('start_date');
-            $table->dropColumn('end_date');
+            $table->dropColumn(['start_date', 'end_date']);
         });
 
         Schema::table('date_rules', function (Blueprint $table) {

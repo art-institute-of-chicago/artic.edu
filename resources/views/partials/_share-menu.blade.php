@@ -1,6 +1,6 @@
 <div class="m-share-menu" id="shareMenu" data-behavior="shareMenu">
-  <h4 class="m-share-menu__title f-module-title-2">Share</h4>
-  <ul>
+  <h4 class="m-share-menu__title f-module-title-2" id="h-share-menu">Share</h4>
+  <ul aria-labelledby="h-share-menu">
     <li><a href="#" class="f-secondary" data-shareMenu="facebook" aria-label="Share via Facebook">Facebook</a></li>
     <li><a href="#" class="f-secondary" data-shareMenu="twitter" aria-label="Share via Twitter">Twitter</a></li>
     <li><a href="#" class="f-secondary" data-shareMenu="pinterest" aria-label="Share via Pinterest">Pinterest</a></li>

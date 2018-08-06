@@ -19,7 +19,7 @@
 
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
-            'max' => 12,
+            'max' => 18,
             'moduleName' => 'exhibitions',
             'name' => 'exhibitionsCurrent',
             'label' => 'Secondary features - current'
@@ -37,7 +37,7 @@
 
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
-            'max' => 12,
+            'max' => 18,
             'moduleName' => 'exhibitions',
             'name' => 'exhibitionsUpcomingListing',
             'label' => 'Secondary features - upcoming'
