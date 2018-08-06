@@ -2,7 +2,7 @@
 
 # Event planning contact request
 
-A contact request for event planning was been submitted on our website. Following are the details.
+A contact request for event planning has been submitted on our website. Following are the details.
 
 {{ $eventPlanningContact->toMarkdown() }}
 

@@ -2,7 +2,7 @@
 
 # Educator admission request
 
-A request for a educator admission was been submitted on our website. Following are the details.
+A request for a educator admission has been submitted on our website. Following are the details.
 
 {{ $educatorAdmission->toMarkdown() }}
 

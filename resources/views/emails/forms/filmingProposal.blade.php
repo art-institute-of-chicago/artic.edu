@@ -2,7 +2,7 @@
 
 # Filming and Photo Shoot Proposal
 
-A request for a filming and photo shoot proposal was been submitted on our website. Following are the details.
+A proposal for a filming and photo shoot has been submitted on our website. Following are the details.
 
 {{ $filmingProposal->toMarkdown() }}
 
