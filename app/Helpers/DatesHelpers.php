@@ -17,11 +17,11 @@ function printMonth($date)
     return \Carbon\Carbon::parse($date)->format('M');
 }
 
-function hoursSelectOptions($shortlist = false)
+function hoursSelectOptions($shortlist = false, $startAt = 0, $endAt = 24)
 {
     $hours = [];
 
-    for($i = 0; $i < 24; $i++) {
+    for($i = $startAt; $i < $endAt; $i++) {
         $hour = ($i % 12 ?? 12);
         $ampm = ($i >= 12 ? 'pm' : 'am');
         $mins = $shortlist ? ['00', '30'] : ['00', '15', '30', '45'];

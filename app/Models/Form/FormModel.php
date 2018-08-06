@@ -17,10 +17,17 @@ class FormModel extends Model
         {
             if (in_array($key, $this->dates))
             {
-                $ret .= $key ." | " .Carbon::parse($value)->toFormattedDateString() ."\n";
+                $ret .= $key ." | " .($value ? Carbon::parse($value)->toFormattedDateString() : '') ."\n";
             }
             else {
-                $ret .= $key ." | " .$value ."\n";
+                if (is_array($value))
+                {
+                    $ret .= $key ." | " .implode(',',$value) ."\n";
+                }
+                else
+                {
+                    $ret .= $key ." | " .$value ."\n";
+                }
             }
         }
 

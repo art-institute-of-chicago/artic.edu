@@ -65,9 +65,9 @@ abstract class FormController extends FrontController
         return $list;
     }
 
-    protected function getTimeArray()
+    protected function getTimeArray($startAt = 0, $endAt = 24)
     {
-        $hours = hoursSelectOptions($shortlist = true);
+        $hours = hoursSelectOptions($shortlist = true, $startAt, $endAt);
 
         $list = [];
         $list[] = ['value' => '', 'label' => 'Select'];
@@ -81,4 +81,71 @@ abstract class FormController extends FrontController
         return $list;
     }
 
+    protected function getDaysOfWeekArray($selected, $fieldName = 'days_of_week')
+    {
+        $daysOfWeek = array('Monday' => 'Monday',
+                            'Tuesday' => 'Tuesday',
+                            'Wednesday' => 'Wednesday',
+                            'Thursday' => 'Thursday',
+                            'Friday' => 'Friday',
+        );
+
+        $list = [];
+        foreach($daysOfWeek as $value => $label) {
+            $item = [
+              'type' => 'checkbox',
+              'variation' => '',
+              'id' => $fieldName .'-' .$value,
+              'name' => $fieldName .'[]',
+              'value' => $value,
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => $label
+            ];
+
+            if ($selected) {
+                if (in_array($value, $selected)) {
+                    $item['checked'] = 'checked';
+                }
+            }
+
+            $list[] = $item;
+        }
+
+        return $list;
+    }
+
+    protected function getYesNoArray($selected, $fieldName = 'yes_no')
+    {
+        $options = array('Yes' => 'Yes',
+                         'No' => 'No',);
+
+        $list = [];
+        foreach($options as $value => $label) {
+            $item = [
+              'type' => 'radio',
+              'variation' => '',
+              'id' => $fieldName .'_'.$value,
+              'name' => $fieldName,
+              'value' => $value,
+              'error' => null,
+              'optional' => null,
+              'hint' => null,
+              'disabled' => false,
+              'checked' => false,
+              'label' => $label
+            ];
+
+            if ($selected == $value) {
+                $item['checked'] = 'checked';
+            }
+
+            $list[] = $item;
+        }
+
+        return $list;
+    }
 }

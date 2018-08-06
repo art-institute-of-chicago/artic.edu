@@ -144,6 +144,11 @@ Route::name('forms.filming-proposal')->get('/press/filming-policy/filming-photo-
 Route::name('forms.filming-proposal.store')->post('/press/filming-policy/filming-photo-shoot-proposal-form', 'Forms\FilmingAndPhotoShootProposalController@store');
 Route::name('forms.filming-proposal.thanks')->get('/press/filming-policy/filming-photo-shoot-proposal-form/thanks', 'Forms\FilmingAndPhotoShootProposalController@thanks');
 
+// Ryerson class visit request
+Route::name('forms.ryerson-class-visit')->get('/library/request-a-class-visit/schedule', 'Forms\RyersonClassVisitController@index');
+Route::name('forms.ryerson-class-visit.store')->post('/library/request-a-class-visit/schedule', 'Forms\RyersonClassVisitController@store');
+Route::name('forms.ryerson-class-visit.thanks')->get('/library/request-a-class-visit/schedule/thanks', 'Forms\RyersonClassVisitController@thanks');
+
 // Feed routes
 Route::feeds();
 
