@@ -126,7 +126,7 @@ Basic text input, with counter:
 Date select input - clicking the calender launches a date select modal. Better demonstrated in **statics/toybox**
 
 ```
-<span class="input__date-select-container" data-behavior="selectDate" data-selectdate-mode="single" data-selectdate-displayformat="short">
+<span class="input__date-select-container" data-behavior="selectDate" data-selectdate-mode="single" data-selectdate-displayformat="shortUS">
   <input class="f-secondary" type="text" value="" id="tinput99" name="tinput99" placeholder="dd/mm/yy" data-selectdate-display>
   <button class="btn  btn--secondary btn--icon-sq" data-selectdate-open>
     <svg class="icon--calendar" aria-label="Select date"><use xlink:href="#icon--calendar"></use></svg>

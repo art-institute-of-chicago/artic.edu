@@ -5,7 +5,7 @@ const selectDate = function(container) {
 
   const calendar = document.getElementById('calendar');
   const mode = (container.getAttribute('data-selectDate-mode') === 'range') ? 'range' : 'single';
-  const displayFormat = container.getAttribute('data-selectDate-displayFormat') || 'short';
+  const displayFormat = container.getAttribute('data-selectDate-displayFormat') || 'shortUS';
   const opener = container.querySelector('[data-selectDate-open]');
   const display = container.querySelector('[data-selectDate-display]');
   const dateSelectedClass = 's-date-selected';

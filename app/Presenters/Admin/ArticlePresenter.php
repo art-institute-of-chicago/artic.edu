@@ -18,7 +18,7 @@ class ArticlePresenter extends BasePresenter
     public function date()
     {
         if ($this->entity->date) {
-            return $this->entity->date->format('d M, Y');
+            return $this->entity->date->format('M j, Y');
         }
     }
 

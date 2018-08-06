@@ -122,7 +122,7 @@ const calendar = function(container) {
         }
         // if today or after, add a link
         if (istoday || !beforeMinDate) {
-          var titleAttr = currentDate + ' ' + months[month] + ', ' + year;
+          var titleAttr =  months[month] + ' ' + currentDate + ', ' + year;
           var urlMonth = (month + 1);
           urlMonth = (urlMonth < 10) ? '0' + urlMonth : urlMonth.toString();
           var urlDay = (currentDate < 10) ? '0' + currentDate : currentDate.toString();

@@ -10,7 +10,7 @@ class VideoPresenter extends BasePresenter
     public function startDate()
     {
         if ($this->entity->start_date) {
-            return $this->entity->start_date->format('d M, Y');
+            return $this->entity->start_date->format('M j, Y');
         }
     }
 
