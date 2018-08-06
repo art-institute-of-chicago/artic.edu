@@ -19,7 +19,7 @@ class VideoPresenter extends BasePresenter
         $start = $this->entity->asDateTime($this->start_at);
         $end   = $this->entity->asDateTime($this->end_at);
 
-        return $start->format('m d Y') . ' - ' . $end->format('m d Y');
+        return $start->format('m d Y') . ' – ' . $end->format('m d Y');
     }
 
     public function videoBlock()

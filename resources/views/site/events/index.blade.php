@@ -30,7 +30,7 @@
                 @component('components.atoms._date-select-trigger')
                     @slot('gtmAttributes','data-gtm-event="event-calendar" data-gtm-event-category="in-page-link"')
                     @if (request('start') && request('end'))
-                        {{ \Carbon\Carbon::parse(request('start'))->format('M j, Y') }} - {{ \Carbon\Carbon::parse(request('end'))->format('M j, Y') }}
+                        {{ \Carbon\Carbon::parse(request('start'))->format('M j, Y') }} – {{ \Carbon\Carbon::parse(request('end'))->format('M j, Y') }}
                     @else
                         Pick a date
                     @endif

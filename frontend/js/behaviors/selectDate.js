@@ -85,7 +85,7 @@ const selectDate = function(container) {
         displayStr = event.data.start[displayFormat];
       }
       if (event.data.end) {
-        displayStr += ' - ' + event.data.end[displayFormat];
+        displayStr += ' – ' + event.data.end[displayFormat];
       }
       if (event.data.start || event.data.end) {
         _updateDisplay();
@@ -99,7 +99,7 @@ const selectDate = function(container) {
       if (event && event.data && event.data.dates) {
         displayStr = event.data.dates.start[displayFormat];
         if (event.data.dates.start.string !== event.data.dates.end.string) {
-          displayStr = event.data.dates.start[displayFormat] + ' - ' + event.data.dates.end[displayFormat];
+          displayStr = event.data.dates.start[displayFormat] + ' – ' + event.data.dates.end[displayFormat];
         } else {
           displayStr = event.data.dates.start[displayFormat];
         }
