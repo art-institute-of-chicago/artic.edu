@@ -93,8 +93,8 @@ class Exhibition extends BaseApiModel
     // See exhibitionType() in ExhibitionPresenter
     public function getIsOngoingAttribute()
     {
-        if (!empty($this->dateStart) && !empty($this->dateEnd)) {
-            return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateEnd->endOfDay());
+        if (!empty($this->dateStart) && empty($this->dateEnd)) {
+            return Carbon::now()->gt($this->dateStart->startOfDay());
         }
 
     }

@@ -22,7 +22,6 @@
         @slot('variation', 'm-links-bar__secondary-split')
         @slot('linksPrimary', array(
             array('label' => 'Today', 'href' => '#', 'active' => true),
-            array('label' => 'Tomorrow', 'href' => '#', 'liVariation' => "u-hide@xsmall"),
             array('label' => 'This weekend', 'href' => '#')
         ))
         @slot('primaryHtml')

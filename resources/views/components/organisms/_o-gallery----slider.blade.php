@@ -27,15 +27,17 @@
             @slot('ariaLabel','Share page')
         @endcomponent
     </div>
-    <div class="o-gallery__media" data-behavior="dragScroll">
-        @if (isset($items))
-            @foreach ($items as $item)
-                @component('components.molecules._m-media')
-                    @slot('item', $item)
-                    @slot('imageSettings', $imageSettings ?? '')
-                @endcomponent
-            @endforeach
-        @endif
+    <div class="o-gallery__media-wrapper">
+        <div class="o-gallery__media" data-behavior="dragScroll">
+            @if (isset($items))
+                @foreach ($items as $item)
+                    @component('components.molecules._m-media')
+                        @slot('item', $item)
+                        @slot('imageSettings', $imageSettings ?? '')
+                    @endcomponent
+                @endforeach
+            @endif
+        </div>
     </div>
     @if (!empty($allLink))
     <p class="o-gallery__all-link-btn">
