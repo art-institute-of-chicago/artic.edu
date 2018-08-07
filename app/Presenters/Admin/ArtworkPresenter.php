@@ -75,6 +75,11 @@ class ArtworkPresenter extends BasePresenter
         }
 
         array_push($blocks, $this->getArtworkDetailsBlock());
+
+        array_push($blocks, [
+            "type" => 'text',
+            "content" => '<h2 class="sr-only">Extended information about this artwork</h2>',
+        ]);
         array_push($blocks, $this->getArtworkAccordionBlocks());
 
         array_push($blocks, [
