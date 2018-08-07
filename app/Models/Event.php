@@ -347,11 +347,6 @@ class Event extends Model
         return $query->betweenDates(Carbon::today(), Carbon::tomorrow());
     }
 
-    public function scopeTomorrow($query)
-    {
-        return $query->betweenDates(Carbon::tomorrow(), Carbon::tomorrow()->addDay());
-    }
-
     public function scopeWeekend($query)
     {
         return $query->betweenDates(Carbon::today()->nextWeekendDay(), Carbon::today()->nextWeekendDay()->addDays(2));

@@ -95,9 +95,6 @@ class EventRepository extends ModuleRepository
             $query->betweenDates($start, $end);
         } else {
             switch ($time) {
-                case 'tomorrow':
-                    $query->tomorrow();
-                    break;
                 case 'weekend':
                     $query->weekend();
                     break;

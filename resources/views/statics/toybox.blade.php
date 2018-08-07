@@ -833,7 +833,6 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
 @component('components.molecules._m-links-bar')
     @slot('linksPrimary', array(
         array('label' => 'Today', 'href' => '#', 'active' => true),
-        array('label' => 'Tomorrow', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium"),
         array('label' => 'This weekend', 'href' => '#', 'liVariation' => "u-hide@xsmall u-hide@small")
     ))
     @slot('primaryHtml')
