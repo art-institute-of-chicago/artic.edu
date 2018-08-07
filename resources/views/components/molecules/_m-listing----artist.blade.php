@@ -38,7 +38,7 @@
                     {{ $item->birth_date }}
                 @endif
                 @if ($item->birth_date and $item->death_date)
-                    {{ ' - ' }}
+                    {{ ' – ' }}
                 @endif
                 @if ($item->death_date)
                     {{ $item->death_date }}

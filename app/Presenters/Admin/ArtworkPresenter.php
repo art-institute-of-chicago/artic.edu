@@ -75,6 +75,11 @@ class ArtworkPresenter extends BasePresenter
         }
 
         array_push($blocks, $this->getArtworkDetailsBlock());
+
+        array_push($blocks, [
+            "type" => 'text',
+            "content" => '<h2 class="sr-only">Extended information about this artwork</h2>',
+        ]);
         array_push($blocks, $this->getArtworkAccordionBlocks());
 
         array_push($blocks, [
@@ -275,7 +280,7 @@ class ArtworkPresenter extends BasePresenter
         if ($this->entity->catalogues)
         {
             $rows = $this->entity->catalogues->map(function($item) {
-                $content = "Title: {$item->catalogue_title} - Catalogue number: {$item->number} - ID: {$item->catalogue_id}";
+                $content = "Title: {$item->catalogue_title} – Catalogue number: {$item->number} – ID: {$item->catalogue_id}";
                 return [
                     "type" => 'text',
                     "content" => '<p>'. $content .'</p>'
