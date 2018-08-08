@@ -22,6 +22,7 @@ class Sort
             return [
                 'list'        => $list,
                 'title'       => 'Sort',
+                'prompt'      => 'By ' . $this->generateLabel(request('sort_by') ?? 'relevance'),
                 'active'      => $this->activeList,
                 'type'        => 'dropdown',
                 'collapsible' => true,
