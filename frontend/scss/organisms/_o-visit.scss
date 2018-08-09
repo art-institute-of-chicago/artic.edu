@@ -26,6 +26,8 @@
   display: flex;
   flex-flow: column-reverse;
 
+  margin-top: 0;
+
   @include breakpoint('small+') {
     flex-flow: row-reverse nowrap;
   }
