@@ -40,7 +40,7 @@ class ExhibitionHistoryService
                 'ajaxScrollTarget' => 'listing'
             ];
 
-            if ($this->activeYear() >= $decade && $this->activeYear() < $decadeEnd) {
+            if ($this->activeYear() >= $decade && $this->activeYear() <= $decadeEnd) {
                 $d['active'] = true;
                 $this->decadePrompt = $d['label'];
             }
@@ -56,7 +56,7 @@ class ExhibitionHistoryService
         $active = collect($this->decades())->where('active',true)->first();
 
         foreach (range($active['start'], $active['end']) as $year) {
-            if ($year < date('Y')) {
+            if ($year <= date('Y')) {
                 $years[] = [
                     'href'   => route('exhibitions.history', ['year' => $year]),
                     'label'  => $year,
