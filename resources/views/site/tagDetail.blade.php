@@ -150,9 +150,9 @@
             @slot('variation', 'm-links-bar--buttons')
             @slot('linksPrimary', [
                 [
-                    'label' => 'View More',
+                    'label' => 'See more results',
                     'href' => $exploreFurtherCollectionUrl,
-                    'variation' => 'btn--secondary'
+                    'variation' => 'btn--tertiary'
                 ]
             ])
         @endcomponent
