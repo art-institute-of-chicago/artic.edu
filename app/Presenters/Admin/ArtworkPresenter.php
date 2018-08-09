@@ -103,7 +103,7 @@ class ArtworkPresenter extends BasePresenter
             $artistLinks = collect($this->entity->artist_pivots)->map(function($item) {
                 // Don't show role if the role is "Artist" or [TODO] "Creator"
                 $title = $item->artist_title . ( ( $item->role_title && $item->role_id !== 219 ) ? " ({$item->role_title})" : '' );
-                return ['label' => $title, 'href' => route('artists.show', $item->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-category="collection-nav"'];
+                return ['label' => $title, 'href' => route('artists.show', $item->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"'];
             });
             $details[] = [
                 'key'   => str_plural('Artist', count($this->entity->artist_pivots)),
@@ -115,7 +115,7 @@ class ArtworkPresenter extends BasePresenter
                 $label = $this->entity->artist_title ?? $this->entity->artist_display;
                 $details[] = [
                     'key'   => 'Artist',
-                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-category="collection-nav"']],
+                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"']],
                     'itemprop' => 'creator',
                 ];
             } else {

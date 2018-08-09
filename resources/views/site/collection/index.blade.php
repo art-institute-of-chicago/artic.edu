@@ -29,7 +29,7 @@
     @slot('value', request('q'))
     @slot('behaviors','autocomplete reportSearchToGoogleTagManager')
     @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
-    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-action="Collection" data-gtm-event-category="collection-search"')
+    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="collection-search"')
     @slot('action', route('collection'))
 @endcomponent
 
@@ -58,7 +58,7 @@
                     @else
                         @slot('variation', 'tag--senary')
                     @endif
-                    @slot('gtmAttributes', 'data-gtm-event="quick-search-click" data-gtm-event-action="Collection" data-gtm-event-category="collection-search"')
+                    @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $category->title ) . '" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="collection-quick-search"')
                     {{ $category->title }}
                 @endcomponent
             </li>
@@ -106,7 +106,6 @@
                 @slot('optionLayout','o-pinboard--2-col@xsmall o-pinboard--2-col@small o-pinboard--2-col@medium o-pinboard--3-col@large o-pinboard--3-col@xlarge')
                 @component('site.collection._items')
                     @slot('artworks', $artworks)
-                    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-filter"')
                 @endcomponent
             @endcomponent
         @else
@@ -182,7 +181,7 @@
                       'xlarge' => '28',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="collection-feature" data-gtm-event-category="collection-nav"')
+            @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="feature" data-gtm-event-category="collection-nav"')
         @endcomponent
         @endif
         <h3 class="sr-only" id="h-featured-plus-1">Featured articles</h3>
@@ -203,7 +202,7 @@
                               'xlarge' => '13',
                         )),
                     ))
-                    @slot('gtmAttributes', 'data-gtm-event="collection-personalization" data-gtm-event-category="collection-nav"')
+                    @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="collection-nav"')
                 @endcomponent
             @endif
         @endforeach
@@ -226,7 +225,7 @@
                               'xlarge' => '13',
                         )),
                     ))
-                    @slot('gtmAttributes', 'data-gtm-event="collection-personalization" data-gtm-event-category="collection-nav"')
+                    @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="collection-nav"')
                 @endcomponent
             @endif
         @endforeach

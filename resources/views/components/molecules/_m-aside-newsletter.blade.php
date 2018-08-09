@@ -11,7 +11,7 @@
         <input type="hidden" name="list" id="list{{ $rand }}" value="{!! $list !!}">
       @endif
       <input type="email" name="email" id="email{{ $rand }}" class="f-secondary" placeholder="{{ $placeholder ?? '' }}">
-      <button type="submit" class="{{ $btnFont ?? 'f-buttons' }}">Subscribe</button>
+      <button type="submit" class="{{ $btnFont ?? 'f-buttons' }}" data-gtm-event-category="subscribe" data-gtm-event-action="{{$seo->title}}" data-gtm-event="email">Subscribe</button>
     </span>
     @if (isset($error) and $error)
     <em class="m-aside-newsletter__msg m-aside-newsletter__msg--error f-buttons">{{ $error }}</em>

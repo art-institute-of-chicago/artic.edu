@@ -180,6 +180,7 @@ if ($maxZoomWindowSize >= 843) {
             @if (isset($image['iiifId']))
                 data-gallery-img-iiifId="{{ $image['iiifId'] }}"
             @endif
+            data-gtm-event="{{$image['shareTitle']}}" data-gtm-event-action="{{$title}}" data-gtm-event-category="in-page"
             aria-label="show alternative image"
             disabled
           >Show this image</button>
