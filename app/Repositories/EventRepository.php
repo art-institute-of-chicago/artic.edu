@@ -97,10 +97,6 @@ class EventRepository extends ModuleRepository
                 case 'weekend':
                     $query->weekend();
                     break;
-                // TODO: "Today" on the website uses `default`, so remove this..?
-                case 'today':
-                    $query->today();
-                    break;
                 default:
                     $query->default();
                     break;
