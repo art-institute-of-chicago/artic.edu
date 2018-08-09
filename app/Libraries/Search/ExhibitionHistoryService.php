@@ -23,8 +23,14 @@ class ExhibitionHistoryService
         if (!empty($this->decades))
             return $this->decades;
 
-        foreach (range(1900, date('Y'), 10) as $decade) {
-            $decadeEnd = ($decade + 9) > date('Y') ? date('Y') : $decade + 9;
+        foreach (range(1880, date('Y'), 10) as $decade) {
+
+            if ($decade < 1890) {
+                $decade = 1883;
+                $decadeEnd = 1889;
+            } else {
+                $decadeEnd = ($decade + 9) > date('Y') ? date('Y') : $decade + 9;
+            }
 
             $d = [
                 'href'  => route('exhibitions.history', ['year' => $decade]),
