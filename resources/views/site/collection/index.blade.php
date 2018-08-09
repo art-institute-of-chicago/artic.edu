@@ -149,7 +149,7 @@
 @if ($artworks->hasMorePages())
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--buttons')
-        @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection.more', request()->input()), 'loadMoreTarget' => '#artworksList')))
+        @slot('linksPrimary', array(array('label' => 'Load more artwork', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection.more', request()->input()), 'loadMoreTarget' => '#artworksList')))
     @endcomponent
 @endif
 
