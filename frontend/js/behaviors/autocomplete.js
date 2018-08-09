@@ -93,10 +93,14 @@ const autocomplete = function(container) {
           break;
         }
         if (datum) {
-          ulItems += '<li><a href="/collection?'+datum.query+'">'+datum.title+'</a></li>\n';
+          ulItems += '<li><a href="/collection?'+datum.query+'"><span>'+datum.title+'</span></a></li>\n';
         }
       }
-      ulItems += '<li><a href="/collection?q='+textInput.value+'">Search for "'+textInput.value+'"</a></li>\n';
+      ulItems += (
+        '<li><a href="/collection?q='+textInput.value+'" class="suggestion--fulltext">' +
+        '<svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>' +
+        '<span>Search for "'+textInput.value+'"</span></a></li>\n'
+      );
       dropdownList.innerHTML = ulItems;
       container.appendChild(dropdownList);
       container.classList.add(autocompleteActiveKlass);
