@@ -1,4 +1,5 @@
-<ul class="m-ticket-actions">
+<h3 class="sr-only" id="h-ticket-actions">Admission actions</h3>
+<ul class="m-ticket-actions" aria-labelledby="h-ticket-actions">
         <li class="m-ticket-actions__action m-ticket-actions__action--single-action">
             @component('components.atoms._btn')
                 @slot('variation', 'btn--full')
