@@ -37,8 +37,7 @@ class EventRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
 
-        $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent']);
-        $this->updateBrowserApiRelated($object, $fields, ['ticketedEventType']);
+        $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent', 'ticketedEventType']);
         $this->updateBrowser($object, $fields, 'sponsors');
         $this->updateBrowser($object, $fields, 'events');
 
