@@ -206,7 +206,7 @@
   }
 }
 
-  .o-article__secondary-actions > *:not(:first-child):not([class*=f-]) {
+  .o-article__secondary-actions > *:not(:nth-child(2)):not([class*=f-]) {
     margin-top: 8px;
 
     @include breakpoint('medium+') {
@@ -214,7 +214,7 @@
     }
   }
 
-  .o-article__secondary-actions > .m-article-actions:first-child {
+  .o-article__secondary-actions > .m-article-actions:nth-child(2) {
     @include breakpoint('medium+') {
       margin-top: 8px;
     }
