@@ -29,7 +29,7 @@
     @slot('value', request('q'))
     @slot('behaviors','autocomplete reportSearchToGoogleTagManager')
     @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
-    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="collection-search"')
+    @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-action="' . $seo->title .'" data-gtm-event-category="collection-search"')
     @slot('action', route('collection'))
 @endcomponent
 
@@ -58,7 +58,7 @@
                     @else
                         @slot('variation', 'tag--senary')
                     @endif
-                    @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $category->title ) . '" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="collection-quick-search"')
+                    @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $category->title ) . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="collection-quick-search"')
                     {{ $category->title }}
                 @endcomponent
             </li>
@@ -149,7 +149,7 @@
 @if ($artworks->hasMorePages())
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--buttons')
-        @slot('linksPrimary', array(array('label' => 'Load more artwork', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection.more', request()->input()), 'loadMoreTarget' => '#artworksList')))
+        @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection.more', request()->input()), 'loadMoreTarget' => '#artworksList')))
     @endcomponent
 @endif
 
@@ -202,7 +202,7 @@
                               'xlarge' => '13',
                         )),
                     ))
-                    @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="collection-nav"')
+                    @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="collection-nav"')
                 @endcomponent
             @endif
         @endforeach
@@ -225,7 +225,7 @@
                               'xlarge' => '13',
                         )),
                     ))
-                    @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="collection-nav"')
+                    @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="collection-nav"')
                 @endcomponent
             @endif
         @endforeach

@@ -114,7 +114,7 @@
                 @component('components.atoms._arrow-link')
                     @slot('font','f-null')
                     @slot('href', $section['external_link'])
-                    @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($section['title'] ?? 'unknown title').'" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="nav-link"')
+                    @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($section['title'] ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
                     {{ $section['title'] }}
                 @endcomponent
             @endcomponent
@@ -247,7 +247,7 @@
                       @slot('variation', 'btn--full')
                       @slot('tag', 'a')
                       @slot('href', $admission['buy_tickets']['link'])
-                      @slot('gtmAttributes', 'data-gtm-event="'. getUtf8Slug($admission['buy_tickets']['label']) .'" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="nav-cta-button"')
+                      @slot('gtmAttributes', 'data-gtm-event="'. getUtf8Slug($admission['buy_tickets']['label']) .'" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"')
                       {{ $admission['buy_tickets']['label'] }}
                   @endcomponent
               </li>
@@ -256,7 +256,7 @@
                       @slot('variation', 'btn--secondary btn--full')
                       @slot('tag', 'a')
                       @slot('href', $admission['become_member']['link'])
-                      @slot('gtmAttributes', 'data-gtm-event="become-member" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="nav-cta-button"')
+                      @slot('gtmAttributes', 'data-gtm-event="become-member" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"')
                       {{ $admission['become_member']['label'] }}
                   @endcomponent
               </li>
@@ -295,7 +295,7 @@
           @slot('variation', 'btn--tertiary')
           @slot('tag', 'a')
           @slot('href', $admission['cityPass']['link']['href'])
-          @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $admission['cityPass']['link']['label']) . ' " data-gtm-event-action="{{$seo->title}}"  data-gtm-event-category="nav-cta-button"')
+          @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $admission['cityPass']['link']['label']) . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
           {{ $admission['cityPass']['link']['label'] }}
       @endcomponent
     </div>
@@ -353,7 +353,7 @@
             [
                 'label' => __('Explore all dining'),
                 'href'  => $page->visit_dining_link,
-                'gtmAttributes' => 'data-gtm-event="dining" data-gtm-event-action="{{$seo->title}}"  data-gtm-event-category="nav-link"'
+                'gtmAttributes' => 'data-gtm-event="dining" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
             ]
         ]
         )
@@ -391,14 +391,14 @@
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
-          array('label' => __('Explore all dining'), 'href' => $page->visit_dining_link, 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="dining" data-gtm-event-action="{{$seo->title}}"  data-gtm-event-category="nav-link"'),
+          array('label' => __('Explore all dining'), 'href' => $page->visit_dining_link, 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="dining" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'),
         ))
     @endcomponent
 
     @component('components.molecules._m-title-bar')
         @slot('links', array(
           array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link']),
-          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="nav-link"')
+          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
         ))
         @slot('id', 'faqs')
         @lang('FAQs')
@@ -413,7 +413,7 @@
         @slot('variation', 'm-links-bar--title-bar-companion')
         @slot('linksPrimary', array(
           array('label' => __('Accessibility information'), 'href' => $faq['accesibility_link'], 'variation' => 'btn--secondary'),
-          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="nav-link"')
+          array('label' => __('More FAQs and guidelines'), 'href' => $faq['more_link'], 'variation' => 'btn--secondary', 'gtmAttributes' => 'data-gtm-event="faq" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
         ))
     @endcomponent
 
@@ -445,7 +445,7 @@
                           'xlarge' => '18',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="tours" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="nav-link"')
+                @slot('gtmAttributes', 'data-gtm-event="tours" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
@@ -478,7 +478,7 @@
                           'xlarge' => '18',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="special-audiences" data-gtm-event-action="{{$seo->title}}"  data-gtm-event-category="nav-link"')
+                @slot('gtmAttributes', 'data-gtm-event="special-audiences" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent

@@ -330,7 +330,7 @@
                           'xlarge' => '13',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="exhibition-recirculation" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="nav-link"')
+                @slot('gtmAttributes', 'data-gtm-event="exhibition-recirculation" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent
