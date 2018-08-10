@@ -89,6 +89,10 @@
     padding-right: 0.5em;
   }
 
+  .vjs-progress-control .vjs-time-tooltip:empty {
+    display: none;
+  }
+
   // Overwritten from 1.666666666666666666em
   .vjs-progress-control:hover .vjs-progress-holder {
     font-size: 1em;
@@ -100,16 +104,34 @@
     font-size: 1em;
   }
 
+  .vjs-volume-bar.vjs-slider-horizontal {
+    height: 0.2em;
+    margin: 1.4em 0.45em;
+  }
+
+  .vjs-slider-horizontal .vjs-volume-level {
+    height: 0.2em;
+  }
+
   .vjs-play-progress:before,
   .vjs-volume-level:before,
   .vjs-icon-circle:before {
     content: '';
-    width: 1em;
-    height: 1em;
     background-color: $color__black--2;
     border: 2px solid $color__black--40;
     border-radius: 50%;
     z-index: 2;
+
+    width: 12px;
+    height: 12px;
+    top: -3.5px;
+    right: -6px;
+  }
+
+  .vjs-volume-level:before {
+    border: none;
+    background-color: $color__black--40;
+
   }
 
   .vjs-progress-holder {
@@ -135,7 +157,8 @@
   .vjs-load-progress,
   .vjs-play-progress,
   .vjs-volume-bar,
-  .vjs-volume-level {
+  .vjs-volume-level,
+  .vjs-time-tooltip {
     border-radius: 2px;
   }
 
