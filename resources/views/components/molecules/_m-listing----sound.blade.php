@@ -9,7 +9,7 @@
             </span>
         </div>
         <div>
-            <audio controls>
+            <audio class="video-js vjs-fluid m-vjs-audio" controls>
               <source src="{{ $item->href }}" type="audio/mpeg">
               Your browser does not support the audio tag.
             </audio>
