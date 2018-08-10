@@ -3,7 +3,9 @@
 @section('content')
 
 @component('components.organisms._o-features')
+     @php ($countMain = 0)
     @foreach ($mainFeatures as $key => $item)
+        @php ($countMain = $countMain + 1)
         @if ($item->enclosedItem())
             @component('components.molecules._m-listing----'.$item->enclosedItem()->type)
                 @slot('item', $item->enclosedItem())
@@ -17,7 +19,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $key+1 . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $key+1 . '"')
+                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
         @endif
     @endforeach
@@ -123,7 +125,7 @@
     @slot('headline', $membership_module_headline)
     @slot('short_copy', $membership_module_short_copy)
     @slot('button_text', $membership_module_button_text)
-    @slot('gtmAttributes', 'data-gtm-event="{{$membership_module_button_text}}" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
+    @slot('gtmAttributes', 'data-gtm-event="'. $membership_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
 @endcomponent
 
 
@@ -133,7 +135,7 @@
     )
     From the Collection
 @endcomponent
-
+@php($countCollection = 0)
 @component('components.organisms._o-pinboard')
     @slot('cols_small','2')
     @slot('cols_medium','3')
@@ -141,6 +143,7 @@
     @slot('cols_xlarge','3')
     @slot('maintainOrder','true')
     @foreach ($theCollection as $k => $item)
+    @php($countCollection = $countCollection+1)
         @if ($item->enclosedItem())
             @component('components.molecules._m-listing----'.$item->enclosedItem()->type)
                 @slot('variation', 'o-pinboard__item')
@@ -157,7 +160,7 @@
                           'xlarge' => '3',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="{{$item->enclosedItem()->type}}-{{$item->enclosedItem()->id}}-{{$item->enclosedItem()->titleSlug}}" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-{{$k+1}}"')
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->enclosedItem()->type . '-' . $item->enclosedItem()->id . '-' . $item->enclosedItem()->titleSlug . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-{{$countCollection}}"')
             @endcomponent
         @endif
     @endforeach
