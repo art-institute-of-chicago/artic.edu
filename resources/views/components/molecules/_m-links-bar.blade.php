@@ -19,7 +19,8 @@
 @endphp
 <nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{!! (isset($behavior)) ? ' data-behavior="'.$behavior.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}{!! (isset($id) and $id) ? ' id="'.$id.'"' : '' !!} aria-label="page{!! (isset($navType)) ? ' '.$navType : ' secondary' !!}">
   @if ((isset($linksPrimary) and $linksPrimary) or (isset($primaryHtml) and $primaryHtml))
-    <ul class="m-links-bar__items-primary{{ (isset($primaryVariation) and $primaryVariation) ? ' '.$primaryVariation : '' }}" data-links-bar-primary>
+    <h2 class="sr-only" id="h-visit-nav">Page {!! (isset($navType)) ? $navType : 'secondary' !!} navigation</h2>
+    <ul class="m-links-bar__items-primary{{ (isset($primaryVariation) and $primaryVariation) ? ' '.$primaryVariation : '' }}" data-links-bar-primary aria-labelledby="h-visit-nav">
       @if (isset($linksPrimary) and $linksPrimary)
           @foreach ($linksPrimary as $link)
           <li class="m-links-bar__item{{ (isset($link['liVariation']) and $link['liVariation']) ? ' '.$link['liVariation'] : '' }}{{ (isset($link['active']) and $link['active']) ? ' s-active' : '' }}">

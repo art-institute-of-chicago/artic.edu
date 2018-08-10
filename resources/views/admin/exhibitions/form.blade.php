@@ -70,7 +70,7 @@
         @formField('wysiwyg', [
             'name' => 'sponsors_description',
             'label' => 'Sponsors section description',
-            'toolbarOptions' => ['bold']
+            'toolbarOptions' => ['bold'],
             'note' => 'DEPRECATED',
             'type' => 'textarea'
         ])

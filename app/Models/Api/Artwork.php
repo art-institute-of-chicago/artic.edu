@@ -92,7 +92,8 @@ class Artwork extends BaseApiModel
         if (str_contains($value, "\n")) {
             $array = explode("\n", $value);
             $tail = implode(' ', array_slice($array, 1));
-            $value = $array[0] . ' (' . $tail . ')';
+            $showParen = !starts_with($tail, '(') && !ends_with($tail, ')');
+            $value = $array[0] . ' ' .($showParen ? '(' : '') . $tail . ($showParen ? ')' : '');
         }
         return $value;
     }
@@ -107,7 +108,7 @@ class Artwork extends BaseApiModel
 
     public function getDateBlockAttribute()
     {
-        return join('—', array_unique(array_filter([convertArtworkDates($this->date_start), convertArtworkDates($this->date_end)])));
+        return join('–', array_unique(array_filter([convertArtworkDates($this->date_start), convertArtworkDates($this->date_end)])));
     }
 
     public function getMultimediaElementsAttribute()

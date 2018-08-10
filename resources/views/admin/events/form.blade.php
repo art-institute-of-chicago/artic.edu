@@ -103,7 +103,7 @@
         @formField('multi_select', [
             'name' => 'programs',
             'label' => 'Programs',
-            'note' => 'Provides a way to link to a list of events by program',
+            'note' => 'To view program URLS, select programs below, update event, and refresh the page',
             'options' => $eventProgramsList,
         ])
         @formField('input', [

@@ -22,7 +22,6 @@
     @component('components.molecules._m-links-bar', ['primaryVariation' => 'm-links-bar--centered@xsmall'])
         @slot('linksPrimary', array(
             array('label' => 'Today', 'href' => route('events'), 'active' => !request('start') && !request('time'), 'gtmAttributes' => 'data-gtm-event="event-today" data-gtm-event-action="Events" data-gtm-event-category="in-page-link"'),
-            array('label' => 'Tomorrow', 'href' => route('events', ['time' => 'tomorrow']), 'active' => (!request('start') && request('time') == 'tomorrow'), 'liVariation' => "u-hide@xsmall u-hide@small u-hide@medium", 'gtmAttributes' => 'data-gtm-event="event-tomorrow" data-gtm-event-action="Events" data-gtm-event-category="in-page-link"'),
             array('label' => 'This weekend', 'href' => route('events', ['time' => 'weekend']), 'active' => (!request('start') && request('time') == 'weekend'), 'liVariation' => "u-hide@xsmall u-hide@small", 'gtmAttributes' => 'data-gtm-event="event-weekend" data-gtm-event-action="Events"  data-gtm-event-category="in-page-link"')
         ))
         @slot('primaryHtml')
@@ -30,7 +29,7 @@
                 @component('components.atoms._date-select-trigger')
                     @slot('gtmAttributes','data-gtm-event="event-calendar" data-gtm-event-category="in-page-link"')
                     @if (request('start') && request('end'))
-                        {{ \Carbon\Carbon::parse(request('start'))->format('d M, Y') }} - {{ \Carbon\Carbon::parse(request('end'))->format('d M, Y') }}
+                        {{ \Carbon\Carbon::parse(request('start'))->format('M j, Y') }} – {{ \Carbon\Carbon::parse(request('end'))->format('M j, Y') }}
                     @else
                         Pick a date
                     @endif

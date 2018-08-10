@@ -1,10 +1,11 @@
-<ul class="m-ticket-actions">
+<h3 class="sr-only" id="h-ticket-actions">Admission actions</h3>
+<ul class="m-ticket-actions" aria-labelledby="h-ticket-actions">
     <li class="m-ticket-actions__action">
         @component('components.atoms._btn')
             @slot('variation', 'btn--full')
             @slot('tag', 'a')
             @slot('href', 'https://sales.artic.edu/')
-            @slot('gtmAttributes', 'data-gtm-event="exhibition-buy-tickets" data-gtm-event-action="Exhibition" data-gtm-event-category="nav-cta-button"')
+            @slot('gtmAttributes', 'data-gtm-event="buy-tickets" data-gtm-event-action="' . $exhibitionName . '" data-gtm-event-category="nav-cta-button"')
             Buy tickets
         @endcomponent
     </li>
@@ -13,7 +14,7 @@
             @slot('variation', 'btn--secondary btn--full')
             @slot('tag', 'a')
             @slot('href', 'https://sales.artic.edu/memberships')
-            @slot('gtmAttributes', 'data-gtm-event="exhibition-become-member" data-gtm-event-action="Exhibition" data-gtm-event-category="nav-cta-button"')
+            @slot('gtmAttributes', 'data-gtm-event="become-a-member" data-gtm-event-action="' . $exhibitionName . '" data-gtm-event-category="nav-cta-button"')
             Become a member
         @endcomponent
     </li>

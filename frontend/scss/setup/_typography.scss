@@ -452,7 +452,6 @@ $f-body-emphasis: generate-font-obj(
 .f-body strong,
 %f-body b,
 .f-body b {
-  @include font-smoothing(off);
   font-weight: 500;
   color: $color__black;
 }
@@ -540,7 +539,6 @@ $f-body-editorial-emphasis: generate-font-obj(
 .f-body-editorial strong,
 %f-body-editorial b,
 .f-body-editorial b {
-  @include font-smoothing(off);
   font-weight: 600;
   color: $color__text--title;
 }

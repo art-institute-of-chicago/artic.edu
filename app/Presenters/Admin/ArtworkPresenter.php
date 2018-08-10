@@ -65,16 +65,23 @@ class ArtworkPresenter extends BasePresenter
         }
 
         if ($this->entity->is_on_view) {
+            $dept_link = $this->entity->department_id ? ('<a href="' . route('departments.show', [$this->entity->department_id]) .'" data-gtm-event="' .$this->entity->department_title .'" data-gtm-event-category="collection-nav">' .$this->entity->department_title .'</a></li>') : '';
+            $gallery_link = $this->entity->gallery_id ? ('<a href="' .route('galleries.show', [$this->entity->gallery_id]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>') : '';
             array_push($blocks, [
                 "type"      => 'deflist',
-                "variation" => 'deflist--free-spacing u-hide@large+',
+                "variation" => 'u-hide@large+',
                 "items"     => [
-                    [ 'key' => 'On View', 'value' => $this->entity->isOnViewTitle ],
+                    [ 'key' => 'On View', 'value' => implode(', ', array($dept_link, $gallery_link)) ],
                 ]
             ]);
         }
 
         array_push($blocks, $this->getArtworkDetailsBlock());
+
+        array_push($blocks, [
+            "type" => 'text',
+            "content" => '<h2 class="sr-only">Extended information about this artwork</h2>',
+        ]);
         array_push($blocks, $this->getArtworkAccordionBlocks());
 
         array_push($blocks, [
@@ -96,7 +103,7 @@ class ArtworkPresenter extends BasePresenter
             $artistLinks = collect($this->entity->artist_pivots)->map(function($item) {
                 // Don't show role if the role is "Artist" or [TODO] "Creator"
                 $title = $item->artist_title . ( ( $item->role_title && $item->role_id !== 219 ) ? " ({$item->role_title})" : '' );
-                return ['label' => $title, 'href' => route('artists.show', $item->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-category="collection-nav"'];
+                return ['label' => $title, 'href' => route('artists.show', $item->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"'];
             });
             $details[] = [
                 'key'   => str_plural('Artist', count($this->entity->artist_pivots)),
@@ -108,7 +115,7 @@ class ArtworkPresenter extends BasePresenter
                 $label = $this->entity->artist_title ?? $this->entity->artist_display;
                 $details[] = [
                     'key'   => 'Artist',
-                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-category="collection-nav"']],
+                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"']],
                     'itemprop' => 'creator',
                 ];
             } else {
@@ -275,7 +282,7 @@ class ArtworkPresenter extends BasePresenter
         if ($this->entity->catalogues)
         {
             $rows = $this->entity->catalogues->map(function($item) {
-                $content = "Title: {$item->catalogue_title} - Catalogue number: {$item->number} - ID: {$item->catalogue_id}";
+                $content = "Title: {$item->catalogue_title} – Catalogue number: {$item->number} – ID: {$item->catalogue_id}";
                 return [
                     "type" => 'text',
                     "content" => '<p>'. $content .'</p>'

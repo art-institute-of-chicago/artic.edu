@@ -48,7 +48,6 @@
 
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
-    width: colspan(43, xlarge);
     margin-left: colspan(2, xlarge);
   }
 }
@@ -269,16 +268,14 @@
 .o-gallery--slider {
   padding-bottom: .02px;
 
-  .o-gallery__media {
-    display: flex;
-    flex-flow: row nowrap;
+  .o-gallery__media-wrapper {
     margin-right: colspan(3, xsmall, 0, true);
     margin-bottom: 24px;
     margin-left: colspan(3, xsmall, 0, true);
     padding-bottom: 32px;
     padding-left: colspan(2, xsmall);
-    overflow-x: auto;
-    overflow-y: hidden;
+
+    overflow: hidden;
 
     @include breakpoint('small+') {
       margin-right: colspan(3, small, 0, true);
@@ -306,6 +303,20 @@
       margin-left: colspan(2, xlarge);
       padding-left: 0;
     }
+  }
+
+  .o-gallery__media {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    // Matches the wrapper's padding-bottom to hide scrollbar
+    margin-bottom: -(32px + 20px);
+    padding-bottom: 32px + 20px;
+
+    // Allow more space for the social media icons
+    margin-top: 55px;
 
     &::after {
       content: '';

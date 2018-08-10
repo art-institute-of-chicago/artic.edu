@@ -92,3 +92,26 @@
     border-top: 0 none;
   }
 }
+
+// "Load more artwork" button
+.o-collection-listing .m-links-bar--buttons {
+
+  margin-top: 36px;
+  padding-top: 0;
+
+  &:before {
+    content: initial;
+  }
+
+  .m-links-bar__items-primary {
+    align-items: center;
+    justify-content: center;
+
+    background-color: $color__black--3;
+
+    .m-links-bar__item {
+      padding: 29px 0;
+      margin: 0;
+    }
+  }
+}

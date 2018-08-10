@@ -183,35 +183,53 @@
   border-top: 1px solid $color__rules--tertiary;
 }
 
-.m-search-bar__autocomplete a:not([class]) {
+.m-search-bar__autocomplete a {
   display: block;
   padding: 10px 16px;
-  background-color: $color__white;
-  color: $color__text--secondary;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-decoration: none;
   overflow: hidden;
+
+  // For aligning w/ SVG icon(s)
+  span {
+    vertical-align: middle;
+  }
 }
 
-.m-search-bar__autocomplete.f-secondary a:not([class]) {
-  padding-top: 11px;
+// TODO: Confirm if this is always in effect?
+.m-search-bar__autocomplete.f-secondary a {
+  padding-top: 9px;
   padding-bottom: 12px;
 
   @include breakpoint('large+') {
-    padding-top: 8px;
+    padding-top: 6px;
     padding-bottom: 11px;
   }
 }
 
-.m-search-bar__autocomplete a:not([class]):hover {
-  background-color: $color__bg--secondary;
-  color: $color__text--title;
+.m-search-bar__autocomplete a:not([class]) {
+  background-color: $color__white;
+  color: $color__text--secondary;
+
+  &:hover {
+    background-color: $color__bg--secondary;
+    color: $color__text--title;
+  }
+
+  &:hover {
+    background-color: $color__bg--primary;
+    color: $color__text--title;
+  }
 }
 
-.m-search-bar__autocomplete a:not([class]):active {
-  background-color: $color__bg--primary;
-  color: $color__text--title;
+.m-search-bar__autocomplete a.suggestion--fulltext {
+  @extend .btn--tertiary;
+  color: $color__white;
+
+  svg {
+    margin-right: 16px;
+  }
 }
 
 

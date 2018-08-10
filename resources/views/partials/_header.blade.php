@@ -23,7 +23,7 @@
           <h2 class="sr-only" id="h-nav-primary-header">Primary Navigation</h2>
           <ul class="f-main-nav" aria-labelledby="h-nav-primary-header">
             <li class='u-hide@small+'>
-              <a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="tickets-button">Buy Tickets</a>
+              <a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="buy-tickets">Buy Tickets</a>
             </li>
             <li{!! (isset($primaryNavCurrent) && $primaryNavCurrent == 'visit') ? ' class="s-current"' : '' !!}>
               <a href="{{ $_pages['visit'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="visit">Visit</a>
@@ -41,9 +41,9 @@
       <nav class="g-header__nav-secondary">
         <h2 class="sr-only" id="h-nav-secondary-header">Secondary Navigation</h2>
         <ul class="f-secondary" aria-labelledby="h-nav-primary-secondary">
-          <li><a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="tickets-button">Buy Tickets</a></li>
-          <li><a href="{{ $_pages['become-a-member'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="member-button">Become a Member</a></li>
-          <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="top-nav" data-gtm-event="shop-button">Shop</a></li>
+          <li><a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="buy-tickets">Buy Tickets</a></li>
+          <li><a href="{{ $_pages['become-a-member'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="become-a-member">Become a Member</a></li>
+          <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="top-nav" data-gtm-event="shop">Shop</a></li>
         </ul>
       </nav>
       <p class="g-header__opening-hours f-secondary"><a href="{{ $_pages['visit'] }}">{!! $_hours['general'] !!}</a></p>

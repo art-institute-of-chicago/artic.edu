@@ -33,7 +33,7 @@
 
                             @if ($filterCategory['type'] === 'dropdown')
                                 @component('components.atoms._dropdown')
-                                  @slot('prompt', $filterCategory['title'])
+                                  @slot('prompt', $filterCategory['prompt'] ?? $filterCategory['title'])
                                   @slot('ariaTitle', 'Filter by')
                                   @slot('options', $filterCategory['list'])
                                 @endcomponent
@@ -62,7 +62,7 @@
 
                             @if ($filterCategory['type'] === 'dropdown')
                                 @component('components.atoms._dropdown')
-                                  @slot('prompt', $filterCategory['title'])
+                                  @slot('prompt', $filterCategory['prompt'] ?? $filterCategory['title'])
                                   @slot('ariaTitle', 'Filter by')
                                   @slot('options', $filterCategory['list'])
                                 @endcomponent

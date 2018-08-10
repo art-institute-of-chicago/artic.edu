@@ -24,10 +24,6 @@ class ShopItem extends BaseApiModel
         ],
     ];
 
-    protected static $defaultScopes = [
-        'active' => []
-    ];
-
     public function imageFront($role = 'hero', $crop = 'default')
     {
         if (!empty($this->image_url)) {
@@ -56,10 +52,8 @@ class ShopItem extends BaseApiModel
         $params = [
             "bool" => [
                 "must" => [
-                    [
-                        "term" => [
-                            "is_active" => true
-                        ],
+                    "term" => [
+                        "is_active" => true
                     ]
                 ]
             ]

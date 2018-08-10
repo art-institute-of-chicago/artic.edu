@@ -40,10 +40,10 @@
 
     <ul class="list list--inline f-secondary">
       @if ($item->department_id)
-      <li><a href="{!! route('departments.show', [$item->department_id]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-category="collection-nav">{{ $item->department_title }}</a></li>
+      <li><a href="{!! route('departments.show', [$item->department_id]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{{ $item->department_title }}</a></li>
       @endif
       @if ($item->gallery_id)
-      <li><a href="{!! route('galleries.show', [$item->gallery_id]) !!}" data-gtm-event="{{ $item->gallery_title }}" data-gtm-event-category="collection-nav">{{ $item->gallery_title }}</a></li>
+      <li><a href="{!! route('galleries.show', [$item->gallery_id]) !!}" data-gtm-event="{{ $item->gallery_title }}"  data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{{ $item->gallery_title }}</a></li>
       @endif
     </ul>
   </div>
@@ -124,7 +124,7 @@
 
   <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">
 
-    <h2 class="sr-only">About this work</h2>
+    <h2 class="sr-only">About this artwork</h2>
 
     @component('components.blocks._blocks')
         @slot('blocks', $item->present()->blocks ?? null)
@@ -191,9 +191,9 @@
             @slot('variation', 'm-links-bar--buttons')
             @slot('linksPrimary', [
                 [
-                    'label' => 'View More',
+                    'label' => 'See more results',
                     'href' => $exploreFurtherCollectionUrl,
-                    'variation' => 'btn--secondary'
+                    'variation' => 'btn--tertiary'
                 ]
             ])
         @endcomponent

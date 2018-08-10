@@ -49,6 +49,7 @@
     @unless ($item->isClosed)
         @component('components.molecules._m-ticket-actions----exhibition')
             @slot('pricingAttendanceMessage', $item->exhibition_message)
+            @slot('exhibitionName', $item->title)
         @endcomponent
     @endunless
 
@@ -292,7 +293,7 @@
                           'xlarge' => '7',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="exhibition-events" data-gtm-event-category="nav-link"')
+                @slot('exhibitionTitle', $item->title)
             @endcomponent
         @endforeach
     @endcomponent
@@ -329,7 +330,7 @@
                           'xlarge' => '13',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="exhibition-recirculation" data-gtm-event-category="nav-link"')
+                @slot('gtmAttributes', 'data-gtm-event="exhibition-recirculation" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
             @endcomponent
         @endforeach
     @endcomponent

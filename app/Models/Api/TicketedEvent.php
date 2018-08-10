@@ -4,6 +4,8 @@ namespace App\Models\Api;
 
 use App\Libraries\Api\Models\BaseApiModel;
 
+use Carbon\Carbon;
+
 class TicketedEvent extends BaseApiModel
 {
     protected $endpoints = [
@@ -12,9 +14,9 @@ class TicketedEvent extends BaseApiModel
         'search'     => '/api/v1/ticketed-events/search'
     ];
 
-    public function getTitleInBrowserAttribute()
+    public function getCmsTitleAttribute()
     {
-        return "{$this->title} (#{$this->id})";
+        return "{$this->title} (" . ($this->start_at ? Carbon::parse($this->start_at)->toFormattedDateString() .', ' : '') ."#{$this->id})";
     }
 
 }

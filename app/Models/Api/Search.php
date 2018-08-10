@@ -11,7 +11,7 @@ class Search extends BaseApiModel
 
     protected $endpoints = [
         'search' => '/api/v1/search',
-        'autocomplete' => '/api/v2/autocomplete' // TODO: Dead code?
+        'autocomplete' => '/api/v2/autosuggest' // TODO: Dead code?
     ];
 
     // This defines how to map a returned type to one of our API models

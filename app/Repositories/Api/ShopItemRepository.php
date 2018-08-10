@@ -13,4 +13,8 @@ class ShopItemRepository extends BaseApiRepository
         $this->model = $model;
     }
 
+    public function filter($query, array $scopes = [])
+    {
+        return parent::filter($query->active(), $scopes);
+    }
 }

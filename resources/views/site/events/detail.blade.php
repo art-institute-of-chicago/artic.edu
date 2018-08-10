@@ -50,32 +50,42 @@
                 @slot('ticketLink', $item->buy_tickets_link);
                 @slot('buttonText', $item->buy_button_text);
                 @slot('buttonCaption', $item->buy_button_caption);
+                @slot('eventName',$item->title)
             @endcomponent
             @break
         @case('free')
             @component('components.molecules._m-ticket-actions----event')
                 @slot('buttonText', 'FREE');
+                @slot('eventName',$item->title)
+
             @endcomponent
             @break
         @case('register')
             @component('components.molecules._m-ticket-actions----event')
                 @slot('buttonText', 'Registration Required');
+                @slot('eventName',$item->title)
+
             @endcomponent
             @break
         @case('member-exclusive')
             @component('components.molecules._m-ticket-actions----event')
                 @slot('buttonText', 'Members Exclusive');
+                @slot('eventName',$item->title)
+
             @endcomponent
             @break
         @case('rsvp')
             @component('components.molecules._m-ticket-actions----event')
                 @slot('buttonText', 'RSVP');
                 @slot('ticketLink', $item->rsvp_link);
+                @slot('eventName',$item->title)
+
             @endcomponent
             @break
         @case('sold-out')
             @component('components.molecules._m-ticket-actions----event')
                 @slot('buttonText', 'Sold out');
+                @slot('eventName',$item->title)
             @endcomponent
             @break
     @endswitch

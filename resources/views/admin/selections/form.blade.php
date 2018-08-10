@@ -46,7 +46,7 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="side_related" title="Sidebar Related - Only one will show up randomly">
+    <a17-fieldset id="side_related" title="Sidebar Related—only one will show up randomly">
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'videos',

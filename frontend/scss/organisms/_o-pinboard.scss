@@ -151,10 +151,6 @@
     .o-pinboard[class*="col@#{$name}"] > *:nth-child(6) { transition-delay: .6s; }
     .o-pinboard[class*="col@#{$name}"] > *:nth-child(7) { transition-delay: .7s; }
     .o-pinboard[class*="col@#{$name}"] > *:nth-child(7) ~ * { transition-delay: .8s; }
-
-    .o-pinboard[class*="col@#{$name}"] > .s-positioned.o-pinboard__item.m-listing--variable-height:hover {
-      z-index: 2;
-    }
   }
 }
 

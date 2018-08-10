@@ -31,7 +31,7 @@
                           'xlarge' => sizeof($artworks) > 6 ? 3 : 8,
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="recently-viewed" data-gtm-event-category="collection-nav"')
+                @slot('gtmAttributes', 'data-gtm-event="recently-viewed" data-gtm-action="::document.title::" data-gtm-event-category="collection-nav"')
             @endcomponent
         @endforeach
     @endcomponent

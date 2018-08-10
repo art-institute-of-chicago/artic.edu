@@ -37,8 +37,7 @@ class EventRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
 
-        $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent']);
-        $this->updateBrowserApiRelated($object, $fields, ['ticketedEventType']);
+        $this->updateBrowserApiRelated($object, $fields, ['ticketedEvent', 'ticketedEventType']);
         $this->updateBrowser($object, $fields, 'sponsors');
         $this->updateBrowser($object, $fields, 'events');
 
@@ -93,17 +92,14 @@ class EventRepository extends ModuleRepository
 
         if ($start) {
             $query->betweenDates($start, $end);
-        } else {
+        }
+        elseif ($program) {
+            $query->year();
+        }
+        else {
             switch ($time) {
-                case 'tomorrow':
-                    $query->tomorrow();
-                    break;
                 case 'weekend':
                     $query->weekend();
-                    break;
-                // TODO: "Today" on the website uses `default`, so remove this..?
-                case 'today':
-                    $query->today();
                     break;
                 default:
                     $query->default();
