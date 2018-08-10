@@ -16,7 +16,7 @@
                   'xlarge' => '4',
             )),
         ))
-        @slot('gtmAttributes', 'data-gtm-event="' . $item->name . '" data-gtm-event-action="Collection Landing" data-gtm-event-category="collection-nav"')
+        @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="Collection Landing" data-gtm-event-category="collection-nav"')
 
     @endcomponent
 @endforeach
