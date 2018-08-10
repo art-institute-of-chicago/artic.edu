@@ -135,6 +135,11 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-child_pages',
             ],
+            'half_block' => [
+                'title' => 'Half block',
+                'icon' => 'text',
+                'component' => 'a17-block-half_block',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
