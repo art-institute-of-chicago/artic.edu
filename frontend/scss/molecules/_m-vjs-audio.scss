@@ -152,4 +152,63 @@
     }
   }
 
+  .vjs-mute-control .vjs-icon-placeholder {
+    width: 48px;
+    height: 48px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 75%;
+  }
+
+  .vjs-mute-control .vjs-icon-placeholder:before {
+    content: initial !important;
+  }
+
+  .vjs-mute-control.vjs-vol-3 .vjs-icon-placeholder {
+    background-image: url('data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12,18.34a.45.45,0,0,1-.27-.1L6.92,14.13H4.4a.4.4,0,0,1-.4-.4V10.18a.4.4,0,0,1,.4-.41H6.89L11.7,5.82a.41.41,0,0,1,.66.31v11.8a.4.4,0,0,1-.23.37A.38.38,0,0,1,12,18.34Zm-7.15-5H7.07a.4.4,0,0,1,.26.1l4.22,3.63V7l-4.26,3.5a.39.39,0,0,1-.26.09H4.81Z" fill="#777677"/>
+        <path d="M14.69,16.29a.39.39,0,0,1-.33-.18.4.4,0,0,1,.11-.56A4.27,4.27,0,0,0,16.26,12a4.33,4.33,0,0,0-1.84-3.6.4.4,0,0,1-.12-.56.4.4,0,0,1,.56-.11A5.12,5.12,0,0,1,17.07,12a5.1,5.1,0,0,1-2.15,4.24A.39.39,0,0,1,14.69,16.29Z" fill="#777677"/>
+        <path d="M16.41,18.86a.39.39,0,0,1-.32-.16.41.41,0,0,1,.08-.57,7.7,7.7,0,0,0,0-12.26.4.4,0,0,1,.48-.65,8.51,8.51,0,0,1,.05,13.56A.44.44,0,0,1,16.41,18.86Z" fill="#777677"/>
+      </svg>
+    ');
+  }
+
+  .vjs-mute-control.vjs-vol-2 .vjs-icon-placeholder {
+    background-image: url('data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12,18.34a.45.45,0,0,1-.27-.1L6.92,14.13H4.4a.4.4,0,0,1-.4-.4V10.18a.4.4,0,0,1,.4-.41H6.89L11.7,5.82a.41.41,0,0,1,.66.31v11.8a.4.4,0,0,1-.23.37A.38.38,0,0,1,12,18.34Zm-7.15-5H7.07a.4.4,0,0,1,.26.1l4.22,3.63V7l-4.26,3.5a.39.39,0,0,1-.26.09H4.81Z" fill="#777677"/>
+        <path d="M14.69,16.29a.39.39,0,0,1-.33-.18.4.4,0,0,1,.11-.56A4.27,4.27,0,0,0,16.26,12a4.33,4.33,0,0,0-1.84-3.6.4.4,0,0,1-.12-.56.4.4,0,0,1,.56-.11A5.12,5.12,0,0,1,17.07,12a5.1,5.1,0,0,1-2.15,4.24A.39.39,0,0,1,14.69,16.29Z" fill="#777677"/>
+      </svg>
+    ');
+
+  }
+
+  .vjs-mute-control.vjs-vol-1 .vjs-icon-placeholder {
+    background-image: url('data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12,18.34a.45.45,0,0,1-.27-.1L6.92,14.13H4.4a.4.4,0,0,1-.4-.4V10.18a.4.4,0,0,1,.4-.41H6.89L11.7,5.82a.41.41,0,0,1,.66.31v11.8a.4.4,0,0,1-.23.37A.38.38,0,0,1,12,18.34Zm-7.15-5H7.07a.4.4,0,0,1,.26.1l4.22,3.63V7l-4.26,3.5a.39.39,0,0,1-.26.09H4.81Z" fill="#777677"/>
+      </svg>
+    ');
+  }
+
+  .vjs-mute-control.vjs-vol-0 .vjs-icon-placeholder {
+    background-image: url('data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M17.09,18.44a.39.39,0,0,1-.26-.1L3.43,6.09a.38.38,0,1,1,.51-.55l13.4,12.25a.38.38,0,0,1,0,.53A.36.36,0,0,1,17.09,18.44Z" fill="#777677"/>
+        <path d="M11.55,7v4.42l.81.74v-6a.41.41,0,0,0-.66-.31L8.41,8.52l.6.56Z" fill="#777677"/>
+        <path d="M11.55,17.05,7.33,13.42a.4.4,0,0,0-.26-.1H4.81V10.58H7a.45.45,0,0,0,.11,0L6.3,9.77H4.4a.4.4,0,0,0-.4.41v3.55a.4.4,0,0,0,.4.4H6.92l4.77,4.11a.45.45,0,0,0,.27.1.38.38,0,0,0,.17,0,.4.4,0,0,0,.23-.37V15.35l-.81-.74Z" fill="#777677"/>
+      </svg>
+    ');
+  }
+
+  .vjs-play-control .vjs-icon-placeholder {
+    // TODO
+  }
+
+  .vjs-play-control.vjs-playing .vjs-icon-placeholder {
+    // TODO
+  }
+
 }
