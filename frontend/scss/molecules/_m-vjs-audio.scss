@@ -175,13 +175,27 @@
     }
   }
 
+  .vjs-download-button {
+    background-color: $color__black--40;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+
+    &:hover, &:active {
+      background-color: $color__black--35;
+    }
+  }
+
+  .vjs-download-button .vjs-icon-placeholder,
   .vjs-mute-control .vjs-icon-placeholder {
     width: 48px;
     height: 48px;
     display: block;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 75%;
+    background-size: 65%;
   }
 
   .vjs-mute-control .vjs-icon-placeholder:before {
@@ -232,6 +246,15 @@
 
   .vjs-play-control.vjs-playing .vjs-icon-placeholder {
     // TODO
+  }
+
+  .vjs-download-button .vjs-icon-placeholder {
+    background-image: url('data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M14,5v6h2.5858L12,15.5858,7.4142,11H10V5h4m1-1H9v6H6v1l6,6,6-6V10H15V4Z" fill="white"/>
+        <rect x="6" y="19" width="12" height="1" fill="white"/>
+      </svg>
+    ');
   }
 
 }

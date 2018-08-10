@@ -21,3 +21,4 @@ export { default as googleTagManagerDataFromLink } from './googleTagManagerDataF
 export { default as youtubePercentTracking } from './youtubePercentTracking';
 export { default as parseHTML } from './parseHTML';
 export { default as accessibleContent } from './accessibleContent';
+export { default as videojsActivate } from './videojsActivate';

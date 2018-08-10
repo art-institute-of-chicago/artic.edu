@@ -9,32 +9,7 @@
             </span>
         </div>
         <div>
-            <audio class="video-js vjs-fluid m-vjs-audio"
-             data-setup='{
-                "children": [
-                    "MediaLoader",
-                    {{-- "PosterImage", --}}
-                    {{-- "TextTrackDisplay", --}}
-                    {{-- "LoadingSpinner", --}}
-                    {{-- "BigPlayButton", --}}
-                    {
-                        "name": "controlBar",
-                        "children": [
-                            "PlayToggle",
-                            "CurrentTimeDisplay",
-                            "TimeDivider",
-                            "DurationDisplay",
-                            "ProgressControl",
-                            "MuteToggle",
-                            "VolumeControl",
-                            "LiveDisplay"
-                        ]
-                    },
-                    "ErrorDisplay",
-                    {{-- "TextTrackSettings", --}}
-                    "ResizeManager"
-                ]
-            }' controls>
+            <audio class="video-js vjs-fluid m-vjs-audio" controls>
               <source src="{{ $item->href }}" type="audio/mpeg">
               Your browser does not support the audio tag.
             </audio>
