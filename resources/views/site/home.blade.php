@@ -3,7 +3,9 @@
 @section('content')
 
 @component('components.organisms._o-features')
+     @php ($countMain = 0)
     @foreach ($mainFeatures as $key => $item)
+        @php ($countMain = $countMain + 1)
         @if ($item->enclosedItem())
             @component('components.molecules._m-listing----'.$item->enclosedItem()->type)
                 @slot('item', $item->enclosedItem())
@@ -17,7 +19,7 @@
                     'srcset' => array(300,600,1000,1500,3000),
                     'sizes' => '100vw',
                 ))
-                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $key+1 . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $key+1 . '"')
+                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
         @endif
     @endforeach
