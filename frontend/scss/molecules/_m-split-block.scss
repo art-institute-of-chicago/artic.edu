@@ -7,7 +7,7 @@
 
 .m-split-block div {
 
-  margin: 0 20px;
+  margin: 0 16px;
 
   &:first-child {
     margin-left: 0;
@@ -30,4 +30,17 @@
 
 .m-split-block--half div {
   flex-basis: 50%;
+}
+
+
+.m-split-block--quarter div {
+
+  &:first-child {
+    flex-basis: 25%;
+  }
+
+  &:last-child {
+    flex-basis: 50%;
+  }
+
 }

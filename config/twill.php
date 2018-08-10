@@ -135,10 +135,10 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-child_pages',
             ],
-            'half_block' => [
-                'title' => 'Half block',
+            'split_block' => [
+                'title' => 'Split block',
                 'icon' => 'text',
-                'component' => 'a17-block-half_block',
+                'component' => 'a17-block-split_block',
             ],
         ],
         'repeaters' => [

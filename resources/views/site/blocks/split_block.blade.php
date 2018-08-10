@@ -1,4 +1,4 @@
-<div class="m-split-block m-split-block--half">
+<div class="m-split-block m-split-block--{{ $block->input('variation') }}">
     <div class="o-blocks">
         @include('site.blocks.image')
     </div>
