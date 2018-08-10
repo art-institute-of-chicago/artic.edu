@@ -56,10 +56,8 @@ class ShopItem extends BaseApiModel
         $params = [
             "bool" => [
                 "must" => [
-                    [
-                        "term" => [
-                            "is_active" => true
-                        ],
+                    "term" => [
+                        "is_active" => true
                     ]
                 ]
             ]
