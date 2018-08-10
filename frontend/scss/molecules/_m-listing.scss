@@ -424,6 +424,7 @@
 
 .m-listing__meta .f-secondary {
   @include tucked-margin-top($f-secondary, ('xsmall': 36));
+  margin-bottom: 14px;
 }
   .m-listing__meta .f-list-1 + br + .f-secondary:not(ul),
   .m-listing__meta .f-list-2 + br + .f-secondary:not(ul),
