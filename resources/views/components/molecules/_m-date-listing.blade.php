@@ -11,7 +11,7 @@
               @slot('item', $item)
               @slot('variation', 'm-listing--row')
               @slot('imageSettings', $imageSettings ?? null)
-              @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-action="{{$exhibitionTitle}}" data-gtm-event-category="nav-link"')
+              @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-action="' . $exhibitionTitle . '" data-gtm-event-category="nav-link"')
           @endcomponent
       @endforeach
       </ul>
@@ -26,7 +26,7 @@
                     @slot('hideShortDesc', true)
                     @slot('variation', 'm-listing--row m-listing--secondary')
                     @slot('imageSettings', $imageSettingsOnGoing ?? null)
-                    @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-action="{{$exhibitionTitle}}" data-gtm-event-category="nav-link"')
+                    @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-action="' . $exhibitionTitle . '" data-gtm-event-category="nav-link"')
                 @endcomponent
             @endforeach
             </ul>

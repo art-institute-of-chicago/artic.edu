@@ -125,7 +125,7 @@
     @slot('headline', $membership_module_headline)
     @slot('short_copy', $membership_module_short_copy)
     @slot('button_text', $membership_module_button_text)
-    @slot('gtmAttributes', 'data-gtm-event="{{$membership_module_button_text}}" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
+    @slot('gtmAttributes', 'data-gtm-event="'. $membership_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
 @endcomponent
 
 
@@ -135,7 +135,7 @@
     )
     From the Collection
 @endcomponent
-
+@php($countCollection = 0)
 @component('components.organisms._o-pinboard')
     @slot('cols_small','2')
     @slot('cols_medium','3')
@@ -143,6 +143,7 @@
     @slot('cols_xlarge','3')
     @slot('maintainOrder','true')
     @foreach ($theCollection as $k => $item)
+    @php($countCollection = $countCollection+1)
         @if ($item->enclosedItem())
             @component('components.molecules._m-listing----'.$item->enclosedItem()->type)
                 @slot('variation', 'o-pinboard__item')
@@ -159,7 +160,7 @@
                           'xlarge' => '3',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="{{$item->enclosedItem()->type}}-{{$item->enclosedItem()->id}}-{{$item->enclosedItem()->titleSlug}}" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-{{$k+1}}"')
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->enclosedItem()->type . '-' . $item->enclosedItem()->id . '-' . $item->enclosedItem()->titleSlug . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-{{$countCollection}}"')
             @endcomponent
         @endif
     @endforeach
