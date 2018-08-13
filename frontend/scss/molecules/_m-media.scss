@@ -216,7 +216,7 @@ a.m-media__img:hover object {
   right: 0;
   top: 0;
   height: 220px;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 80%, rgba(0,0,0,0) 100%);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,.85) 0%, rgba(0,0,0,.05) 90%, rgba(0,0,0,0) 100%);
 
   @include breakpoint('small+') {
     height: 300px;
