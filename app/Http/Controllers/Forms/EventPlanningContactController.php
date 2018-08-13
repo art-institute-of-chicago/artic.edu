@@ -19,6 +19,9 @@ class EventPlanningContactController extends FormController
     public function index()
     {
 
+        $this->title = 'Event Planning Contact';
+        $this->seo->setTitle($this->title);
+
         $blocks = array();
         $formBlocks = array();
         $inquiryFields = array();
@@ -225,7 +228,7 @@ class EventPlanningContactController extends FormController
         $view_data = [
             'subNav' => [],
             'nav' => [],
-            'title' => 'Event Planning Contact',
+            'title' => $this->title,
             'breadcrumb' => [],
             'blocks' => $blocks
         ];
