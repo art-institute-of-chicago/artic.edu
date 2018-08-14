@@ -19,6 +19,9 @@ class EducatorAdmissionController extends FormController
     public function index()
     {
 
+        $this->title = 'Educator Admission Request';
+        $this->seo->setTitle($this->title);
+
         $blocks = array();
         $formBlocks = array();
         $registrationInformationFields = array();
@@ -228,7 +231,7 @@ class EducatorAdmissionController extends FormController
         $view_data = [
             'subNav' => [],
             'nav' => [],
-            'title' => 'Educator Admission Request',
+            'title' => $this->title,
             'breadcrumb' => [],
             'blocks' => $blocks
         ];

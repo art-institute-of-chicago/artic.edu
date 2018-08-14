@@ -19,6 +19,9 @@ class RyersonClassVisitController extends FormController
     public function index()
     {
 
+        $this->title = 'Schedule a Class Visit';
+        $this->seo->setTitle($this->title);
+
         $blocks = array();
         $formBlocks = array();
         $contactInformationFields = array();
@@ -564,7 +567,7 @@ class RyersonClassVisitController extends FormController
         $view_data = [
             'subNav' => [],
             'nav' => [],
-            'title' => 'Schedule a Class Visit',
+            'title' => $this->title,
             'breadcrumb' => [],
             'blocks' => $blocks
         ];

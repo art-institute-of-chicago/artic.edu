@@ -9,6 +9,8 @@ use A17\Twill\Http\Requests\Admin\Request;
 abstract class FormController extends FrontController
 {
 
+    protected $title;
+
     public function thanks()
     {
         $blocks = [];

@@ -16,7 +16,7 @@
 
 .o-blocks > h2:not([class*='f-']),
 .o-blocks > .f-module-title-2 {
-  @include tucked-margin-top($f-module-title-2, ('xsmall': 48, 'small+': 68));
+  @include tucked-margin-top($f-module-title-2, ('xsmall': 48, 'small+': 68, 'medium+': 80));
 
   &:first-child {
     @include tucked-align-top($f-module-title-2);

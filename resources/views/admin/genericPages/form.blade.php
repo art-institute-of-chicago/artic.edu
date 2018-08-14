@@ -57,7 +57,7 @@
             'child_pages', 'accordion', 'membership_banner',
             'timeline', 'link', 'newsletter_signup_inline',
             'artwork', 'artworks',
-            'hr',
+            'hr', 'split_block'
         ]
     ])
 @stop

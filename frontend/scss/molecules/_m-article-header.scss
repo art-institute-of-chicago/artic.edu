@@ -709,6 +709,7 @@
 
 .m-article-header--generic .title {
   @include tucked-margin-top($f-headline, ('xsmall': 40));
+  padding-top: 8px;
 }
 
 .m-article-header__breadcrumb {

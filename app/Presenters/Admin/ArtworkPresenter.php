@@ -155,8 +155,8 @@ class ArtworkPresenter extends BasePresenter
         // TODO: Abstract this into a proper method, somewhere appropriate
         $generateDateRangeHref = function( $date_start, $date_end ) {
             return route('collection', [
-                'date-start' => abs($date_start) . ( $date_start < 0 ? 'BC' : 'AD' ),
-                'date-end' => abs($date_end) . ( $date_end < 0 ? 'BC' : 'AD' ),
+                'date-start' => abs($date_start) . ( $date_start < 0 ? 'BC' : '' ),
+                'date-end' => abs($date_end) . ( $date_end < 0 ? 'BC' : '' ),
             ]);
         };
 
