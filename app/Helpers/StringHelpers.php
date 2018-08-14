@@ -141,16 +141,16 @@ if (!function_exists('properTitleCase')) {
         // Exceptions in lowercase will be converted to lowercase
         // Exceptions in uppercase will be converted to uppercase
         // Exceptions in mixedcase will be have to match exact and be left untouched
-        $exceptions = array("and", "to", "of", "from", "this", "the", "at", "for", "in", "with",
-                            "U.S.", "GPS",
-                            "iOS", "McQueen", "d’Orsay");
+        $exceptions = array("and", "as", "at", "for", "from", "in", "of", "the", "this", "to", "with",
+                            "GPS", "U.S.",
+                            "d’Orsay", "iOS", "McQueen");
         $delimiters = "“\"-–-";
         $words = explode(' ', $string);
 
         $newwords = array();
         foreach ($words as $index => $word) {
             if ($index == 0) {
-                $word = ucwords($word, $delimiters);
+                $word = ucwords(strtolower($word), $delimiters);
             }
             elseif (in_array(strtoupper($word), $exceptions)) {
                 $word = strtoupper($word);
@@ -162,7 +162,7 @@ if (!function_exists('properTitleCase')) {
                 $word = $word;
             }
             else {
-                $word = ucwords($word, $delimiters);
+                $word = ucwords(strtolower($word), $delimiters);
             }
             array_push($newwords, $word);
         }
