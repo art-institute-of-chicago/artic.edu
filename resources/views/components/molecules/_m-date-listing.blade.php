@@ -11,11 +11,11 @@
               @slot('item', $item)
               @slot('variation', 'm-listing--row')
               @slot('imageSettings', $imageSettings ?? null)
-              @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-action="' . $exhibitionTitle . '" data-gtm-event-category="nav-link"')
+              @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-action="' . ($exhibitionTitle ?? $seo->title) . '" data-gtm-event-category="nav-link"')
           @endcomponent
       @endforeach
       </ul>
- 
+
         @if (isset($ongoing) && !$ongoing->isEmpty())
             <h4 class="m-date-listing__listings-title f-module-title-1">Ongoing events</h4>
             <ul class="m-date-listing__items">
@@ -26,7 +26,7 @@
                     @slot('hideShortDesc', true)
                     @slot('variation', 'm-listing--row m-listing--secondary')
                     @slot('imageSettings', $imageSettingsOnGoing ?? null)
-                    @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-action="' . $exhibitionTitle . '" data-gtm-event-category="nav-link"')
+                    @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-action="' . ($exhibitionTitle ?? $seo->title) . '" data-gtm-event-category="nav-link"')
                 @endcomponent
             @endforeach
             </ul>
