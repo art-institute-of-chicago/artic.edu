@@ -131,7 +131,7 @@ class AppServiceProvider extends ServiceProvider
             ,   'legal-employment' => '/employment'
             ,   'legal-venue-rental' => '/venue-rental'
             ,   'legal-contact' => '/contact'
-            ,   'legal-press' => route('about.press')
+            ,   'legal-press' => '/press'
             ,   'legal-terms' => '/terms'
             ,   'legal-image-licensing' => '/image-licensing'
             ,   'legal-saic' => 'https://www.saic.edu'
