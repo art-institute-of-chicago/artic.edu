@@ -2,12 +2,13 @@
 
   display: flex;
   flex-flow: row nowrap;
+  margin-top: 28px;
 
 }
 
 .m-split-block div {
 
-  margin: 28px 16px 0;
+  margin: 16px 0;
 
   &:first-child {
     margin-left: 0;
