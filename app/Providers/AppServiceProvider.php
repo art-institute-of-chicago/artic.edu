@@ -125,7 +125,7 @@ class AppServiceProvider extends ServiceProvider
             ,   'follow-facebook' => 'https://www.facebook.com/artic'
             ,   'follow-twitter' => 'https://twitter.com/artinstitutechi'
             ,   'follow-instagram' => 'https://www.instagram.com/artinstitutechi/'
-            ,   'follow-pinterest' => 'https://www.pinterest.com/artinstitutechi/'
+            ,   'follow-youtube' => 'https://www.youtube.com/user/ArtInstituteChicago'
 
             ,   'legal-articles' => route('articles')
             ,   'legal-employment' => '/employment'

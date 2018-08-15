@@ -92,7 +92,7 @@
             <li><a href="{{ $_pages['follow-facebook'] }}" data-gtm-event="facebook" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="follow" target="_blank">Facebook</a></li>
             <li><a href="{{ $_pages['follow-twitter'] }}" data-gtm-event="twitter" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="follow" target="_blank">Twitter</a></li>
             <li><a href="{{ $_pages['follow-instagram'] }}" data-gtm-event="instagram" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="follow" target="_blank">Instagram</a></li>
-            <li><a href="{{ $_pages['follow-pinterest'] }}" data-gtm-event="pinterest" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="follow" target="_blank">Pinterest</a></li>
+            <li><a href="{{ $_pages['follow-youtube'] }}" data-gtm-event="youtube" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="follow" target="_blank">YouTube</a></li>
           </ul>
         </div>
       </li>
