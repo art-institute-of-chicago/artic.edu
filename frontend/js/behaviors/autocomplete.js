@@ -68,13 +68,13 @@ const autocomplete = function(container) {
               case 'style':
                 datum = {
                   query: 'style_ids='+titleUrl,
-                  title: 'in the style "<b>'+title+'</b>"',
+                  title: 'in the style of "<b>'+title+'</b>"',
                 };
               break;
               case 'subject':
                 datum = {
                   query: 'subject_ids='+titleUrl,
-                  title: 'related to "<b>'+title+'</b>"',
+                  title: 'about "<b>'+title+'</b>"',
                 };
               break;
               case 'department':
@@ -86,7 +86,7 @@ const autocomplete = function(container) {
               case 'theme':
                 datum = {
                   query: 'theme_ids='+data[i].id,
-                  title: 'with the theme "<b>'+title+'</b>"',
+                  title: 'related to "<b>'+title+'</b>"',
                 };
               break;
             }
