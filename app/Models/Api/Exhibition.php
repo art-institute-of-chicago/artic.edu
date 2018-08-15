@@ -209,11 +209,6 @@ class Exhibition extends BaseApiModel
                                 ],
                             ],
                         ],
-                        2 => [
-                            'term' => [
-                                'status' => 'Closed',
-                            ],
-                        ],
                     ],
                 ],
             ];

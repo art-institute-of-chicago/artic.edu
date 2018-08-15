@@ -14,7 +14,7 @@ class ExhibitionHistoryService
 
     public function activeYear()
     {
-        $default = date('Y') - 1; // Last year and before
+        $default = date('Y'); // Last year and before
         return intval(request()->get('year') ?? $default);
     }
 
