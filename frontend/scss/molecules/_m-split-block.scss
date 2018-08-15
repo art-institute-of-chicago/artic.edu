@@ -12,10 +12,16 @@
 
   &:first-child {
     margin-left: 0;
+    margin-right: 8px;
+  }
+
+  &:first-child.o-blocks {
+    margin-top: 16px;
   }
 
   &:last-child {
     margin-right: 0;
+    margin-left: 8px;
   }
 
 }
