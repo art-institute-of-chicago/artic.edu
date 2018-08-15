@@ -42,7 +42,7 @@ const autocomplete = function(container) {
           case 'agents':
             datum = {
               query: 'artist_ids='+titleUrl,
-              title: 'Artworks by "<b>'+title+'</b>"',
+              title: 'by "<b>'+title+'</b>"',
             };
           break;
           case 'category-terms':
@@ -50,43 +50,43 @@ const autocomplete = function(container) {
               case 'classification':
                 datum = {
                   query: 'classification_ids='+titleUrl,
-                  title: 'Artworks classified as "<b>'+title+'</b>"',
+                  title: 'classified as "<b>'+title+'</b>"',
                 };
               break;
               case 'material':
                 datum = {
                   query: 'material_ids='+titleUrl,
-                  title: 'Artworks made of "<b>'+title+'</b>"',
+                  title: 'made of "<b>'+title+'</b>"',
                 };
               break;
               case 'technique':
                 datum = {
                   query: 'technique_ids='+data[i].id,
-                  title: 'Artworks made via "<b>'+title+'</b>"',
+                  title: 'made via "<b>'+title+'</b>"',
                 };
               break;
               case 'style':
                 datum = {
                   query: 'style_ids='+titleUrl,
-                  title: 'Artworks in the style "<b>'+title+'</b>"',
+                  title: 'in the style "<b>'+title+'</b>"',
                 };
               break;
               case 'subject':
                 datum = {
                   query: 'subject_ids='+titleUrl,
-                  title: 'Artworks about "<b>'+title+'</b>"',
+                  title: 'related to "<b>'+title+'</b>"',
                 };
               break;
               case 'department':
                 datum = {
                   query: 'department_ids='+titleUrl,
-                  title: 'Artworks in the department "<b>'+title+'</b>"',
+                  title: 'in the department "<b>'+title+'</b>"',
                 };
               break;
               case 'theme':
                 datum = {
                   query: 'theme_ids='+data[i].id,
-                  title: 'Artworks with the theme "<b>'+title+'</b>"',
+                  title: 'with the theme "<b>'+title+'</b>"',
                 };
               break;
             }
