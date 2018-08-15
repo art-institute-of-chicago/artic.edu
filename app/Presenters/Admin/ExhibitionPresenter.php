@@ -124,7 +124,7 @@ class ExhibitionPresenter extends BasePresenter
     }
 
     protected function galleryLink() {
-        if ($this->entity->gallery_id) {
+        if ($this->entity->gallery_title) {
             return [
                 'label' => $this->entity->gallery_title,
                 'iconBefore' => 'location'

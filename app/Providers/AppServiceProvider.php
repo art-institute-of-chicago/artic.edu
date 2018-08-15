@@ -116,22 +116,22 @@ class AppServiceProvider extends ServiceProvider
             ,   'support-us-art-interest-groups' => '/support-us/art-interest-groups'
 
             ,   'learn' => '/learn-with-us'
-            ,   'learn-families' => '/learn/families'
-            ,   'learn-teens' => '/learn/teens'
-            ,   'learn-adults' => '/learn/adults'
-            ,   'learn-educators' => '/learn/educators'
+            ,   'learn-families' => '/learn-with-us/families'
+            ,   'learn-teens' => '/learn-with-us/teens'
+            ,   'learn-adults' => '/learn-with-us/adults'
+            ,   'learn-educators' => '/learn-with-us/educators'
 
 
             ,   'follow-facebook' => 'https://www.facebook.com/artic'
             ,   'follow-twitter' => 'https://twitter.com/artinstitutechi'
             ,   'follow-instagram' => 'https://www.instagram.com/artinstitutechi/'
-            ,   'follow-pinterest' => 'https://www.pinterest.com/artinstitutechi/'
+            ,   'follow-youtube' => 'https://www.youtube.com/user/ArtInstituteChicago'
 
             ,   'legal-articles' => route('articles')
             ,   'legal-employment' => '/employment'
             ,   'legal-venue-rental' => '/venue-rental'
             ,   'legal-contact' => '/contact'
-            ,   'legal-press' => route('about.press')
+            ,   'legal-press' => '/press'
             ,   'legal-terms' => '/terms'
             ,   'legal-image-licensing' => '/image-licensing'
             ,   'legal-saic' => 'https://www.saic.edu'

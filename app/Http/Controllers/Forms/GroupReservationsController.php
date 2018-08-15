@@ -19,6 +19,9 @@ class GroupReservationsController extends FormController
     public function index()
     {
 
+        $this->title = 'Group Reservation Form';
+        $this->seo->setTitle($this->title);
+
         $blocks = array();
         $formBlocks = array();
         $contactInformationFields = array();
@@ -472,7 +475,7 @@ class GroupReservationsController extends FormController
         $view_data = [
             'subNav' => [],
             'nav' => [],
-            'title' => 'Group Reservation Form',
+            'title' => $this->title,
             'breadcrumb' => [],
             'blocks' => $blocks
         ];

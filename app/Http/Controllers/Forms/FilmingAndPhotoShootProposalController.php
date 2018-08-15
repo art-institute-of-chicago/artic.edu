@@ -19,6 +19,9 @@ class FilmingAndPhotoShootProposalController extends FormController
     public function index()
     {
 
+        $this->title = 'Filming and Photo Shoot Proposal Form';
+        $this->seo->setTitle($this->title);
+
         $blocks = array();
         $formBlocks = array();
         $contactInformationFields = array();
@@ -289,7 +292,7 @@ class FilmingAndPhotoShootProposalController extends FormController
         $view_data = [
             'subNav' => [],
             'nav' => [],
-            'title' => 'Filming and Photo Shoot Proposal Form',
+            'title' => $this->title,
             'breadcrumb' => [],
             'blocks' => $blocks
         ];

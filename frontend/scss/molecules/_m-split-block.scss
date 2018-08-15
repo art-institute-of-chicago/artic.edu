@@ -1,0 +1,53 @@
+.m-split-block {
+
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 28px;
+
+}
+
+.m-split-block div {
+
+  margin: 16px 0;
+
+  &:first-child {
+    margin-left: 0;
+    margin-right: 8px;
+  }
+
+  &:first-child.o-blocks {
+    margin-top: 16px;
+  }
+
+  &:last-child {
+    margin-right: 0;
+    margin-left: 8px;
+  }
+
+}
+
+// Removes baseline adjustments
+.m-split-block p {
+
+  &:before, &:after {
+    content: initial !important;
+  }
+
+}
+
+.m-split-block--half div {
+  flex-basis: 50%;
+}
+
+
+.m-split-block--quarter div {
+
+  &:first-child {
+    flex-basis: 25%;
+  }
+
+  &:last-child {
+    flex-basis: 50%;
+  }
+
+}

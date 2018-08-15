@@ -125,7 +125,7 @@
             <li><a href="{{ $_pages['follow-facebook'] }}">Facebook</a></li>
             <li><a href="{{ $_pages['follow-twitter'] }}">Twitter</a></li>
             <li><a href="{{ $_pages['follow-instagram'] }}">Instagram</a></li>
-            <li><a href="{{ $_pages['follow-pinterest'] }}">Pinterest</a></li>
+            <li><a href="{{ $_pages['follow-youtube'] }}">YouTube</a></li>
           </ul>
         </div>
       </nav>

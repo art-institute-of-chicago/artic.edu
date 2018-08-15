@@ -135,6 +135,11 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-child_pages',
             ],
+            'split_block' => [
+                'title' => 'Split block',
+                'icon' => 'text',
+                'component' => 'a17-block-split_block',
+            ],
         ],
         'repeaters' => [
             'admissions' => [

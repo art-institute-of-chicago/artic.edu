@@ -135,3 +135,39 @@ if (!function_exists('convertReferenceLinks')) {
         return [$text, $_collectedReferences];
     }
 }
+
+if (!function_exists('properTitleCase')) {
+    function properTitleCase($string) {
+        // Exceptions in lowercase will be converted to lowercase
+        // Exceptions in uppercase will be converted to uppercase
+        // Exceptions in mixedcase will be have to match exact and be left untouched
+        $exceptions = array("and", "as", "at", "for", "from", "in", "of", "the", "this", "to", "with",
+                            "GPS", "U.S.",
+                            "d’Orsay", "iOS", "McQueen");
+        $delimiters = "“\"-–-";
+        $words = explode(' ', $string);
+
+        $newwords = array();
+        foreach ($words as $index => $word) {
+            if ($index == 0) {
+                $word = ucwords(strtolower($word), $delimiters);
+            }
+            elseif (in_array(strtoupper($word), $exceptions)) {
+                $word = strtoupper($word);
+            }
+            elseif (in_array(strtolower($word), $exceptions)) {
+                $word = strtolower($word);
+            }
+            elseif (in_array($word, $exceptions)) {
+                $word = $word;
+            }
+            else {
+                $word = ucwords(strtolower($word), $delimiters);
+            }
+            array_push($newwords, $word);
+        }
+
+        $string = implode(' ', $newwords);
+        return $string;
+    }
+}

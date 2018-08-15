@@ -15,8 +15,7 @@
     @slot('placeholder','Search by keyword, artist, or reference')
     @slot('value', request('q'))
     @slot('name', 'search')
-    @slot('behaviors','autocomplete reportSearchToGoogleTagManager')
-    @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') . '"')
+    @slot('behaviors','reportSearchToGoogleTagManager')
     @slot('action', route('search'))
 @endcomponent
 
