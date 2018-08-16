@@ -26,6 +26,17 @@ const autocomplete = function(container) {
     container.classList.remove(loaderKlass);
   }
 
+  function _fixedEncodeURIComponent(str) {
+    return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+      return '%' + c.charCodeAt(0).toString(16);
+    });
+  }
+
+  function _utf8String(str) {
+    // very light weight, designed to handle what this autocomplete needs rather than a general utf8 string converter
+    return _fixedEncodeURIComponent(str.replace(/<(?:.|\n)*?>/gm, '').replace(/"|'/gm, '')).replace(/%20/gm, '-').toLowerCase();
+  }
+
   // show autocomplete
   function _showAutocomplete(data) {
     data = JSON.parse(data);
@@ -93,11 +104,11 @@ const autocomplete = function(container) {
           break;
         }
         if (datum) {
-          ulItems += '<li><a href="/collection?'+datum.query+'"><span>'+datum.title+'</span></a></li>\n';
+          ulItems += '<li><a href="/collection?'+datum.query+'" data-ajax-scroll-target="collection" data-gtm-event="'+_utf8String(datum.title)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter">'+datum.title+'</a></li>\n';
         }
       }
       ulItems += (
-        '<li><a href="/collection?q='+textInput.value+'" class="suggestion--fulltext">' +
+        '<li><a href="/collection?q='+_utf8String(textInput.value)+'" data-ajax-scroll-target="collection" data-gtm-event="'+_fixedEncodeURIComponent(textInput.value)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter" class="suggestion--fulltext">' +
         '<svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>' +
         '<span>Search for "'+textInput.value+'"</span></a></li>\n'
       );
@@ -122,12 +133,6 @@ const autocomplete = function(container) {
       dropdownList = null;
     }
     active = false;
-  }
-
-  function _fixedEncodeURIComponent(str) {
-    return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
-      return '%' + c.charCodeAt(0).toString(16);
-    });
   }
 
   // handle ajax search
@@ -172,15 +177,16 @@ const autocomplete = function(container) {
   // handle submit
   function _handleSubmit(event) {
     event.preventDefault();
+    // if the form has some google tag manager props, tell GTM
+    let googleTagManagerObject = googleTagManagerDataFromLink(container);
+    if (googleTagManagerObject) {
+      googleTagManagerObject['event'] = _fixedEncodeURIComponent(textInput.value);
+      triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
+    }
     // trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: queryStringHandler.updateParameter(container.action, 'q', _fixedEncodeURIComponent(textInput.value)),
     });
-    // if the form has some google tag manager props, tell GTM
-    let googleTagManagerObject = googleTagManagerDataFromLink(container);
-    if (googleTagManagerObject) {
-      triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
-    }
   }
 
   // handle search input

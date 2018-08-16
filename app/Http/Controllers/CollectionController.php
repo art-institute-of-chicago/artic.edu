@@ -58,7 +58,7 @@ class CollectionController extends BaseScopedController
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
-        $featuredArticles = $page->artArticles;
+        $featuredArticles = $page->artArticles ?? null;
         if ($featuredArticles->count()) {
             $featuredArticlesHero = $featuredArticles->shift();
         }
@@ -71,7 +71,7 @@ class CollectionController extends BaseScopedController
           'activeFilters'     => $activeFilters,
           'hasAnyFilter'      => $this->hasAnyScope(),
           'featuredArticlesHero' => $featuredArticlesHero ?? null,
-          'featuredArticles'     => $featuredArticles,
+          'featuredArticles'     => $featuredArticles ?? null,
         ]);
     }
 
