@@ -181,7 +181,7 @@
                       'xlarge' => '28',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="feature" data-gtm-event-category="collection-nav"')
+            @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="feature" data-gtm-event-category="collection-nav"')
         @endcomponent
         @endif
         <h3 class="sr-only" id="h-featured-plus-1">Featured articles</h3>
