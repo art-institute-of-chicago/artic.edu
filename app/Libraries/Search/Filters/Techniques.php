@@ -12,7 +12,7 @@ class Techniques
     public function generate()
     {
         $list  = [];
-        $input = collect(explode(',', request()->input($this->parameter)))->filter();
+        $input = collect(explode(';', request()->input($this->parameter)))->filter();
 
         foreach ($input as $element) {
             $newInput = $input->forget($input->search($element))->filter();

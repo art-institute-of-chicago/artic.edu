@@ -25,7 +25,7 @@ class BaseFilteredList
         // Build options list and sort by selected (move selected at the beginning)
         $list = $this->buckets->map(function ($item) {
             // Get all ID's for the category
-            $input = collect(explode(',', request()->input($this->parameter)));
+            $input = collect(explode(';', request()->input($this->parameter)));
 
             // If input contains the ID, remove it from the URL (uncheck link)
             if ($enabled = $input->contains($item->key)) {
@@ -36,7 +36,7 @@ class BaseFilteredList
                 $newInput = $input->push($item->key)->filter();
             }
 
-            $extraParams = $newInput->isEmpty() ? [] : [$this->parameter => join(',', $newInput->toArray())];
+            $extraParams = $newInput->isEmpty() ? [] : [$this->parameter => join(';', $newInput->toArray())];
             // Build the checkbox route using previously calculated inputs
             $route = route('collection', request()->except(['page', $this->parameter]) + $extraParams);
 
