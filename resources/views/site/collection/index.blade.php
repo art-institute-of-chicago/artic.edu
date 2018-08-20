@@ -27,7 +27,7 @@
     @slot('placeholder','Search by keyword, artist, or reference')
     @slot('name', 'collection-search')
     @slot('value', request('q'))
-    @slot('behaviors','autocomplete reportSearchToGoogleTagManager')
+    @slot('behaviors','autocomplete')
     @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
     @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-action="' . $seo->title .'" data-gtm-event-category="collection-search"')
     @slot('action', route('collection'))
@@ -127,14 +127,14 @@
         @slot('action', route('collection'))
         @slot('behaviors','autocomplete')
         @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
-        @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
+        @slot('gtmAttributes', 'data-gtm-old-label="click" data-gtm-event-action="discover-art-artists" data-gtm-event-category="collection-search"')
     @endcomponent
     <div class="o-collection-search__scroll-area">
         <h3 class="o-collection-search__title f-tag-2" id="h-quick-search-mobile">Quick Search</h3>
         <ul class="o-collection-search__quick-search-links" aria-labelledby="h-quick-search-mobile">
             @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
                 <li>
-                    <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag" data-gtm-event="quick-search-click" data-gtm-event-category="collection-search" data-gtm-term="{{ getUtf8Slug($category->title) }}">
+                    <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag" data-gtm-old-label="quick-search-click" data-gtm-event="{{ getUtf8Slug($category->title) }}"  data-gtm-action="discover-art-artists" data-gtm-event-category="collection-search">
                         {{ $category->title }}
                     </a>
                 </li>
@@ -181,7 +181,7 @@
                       'xlarge' => '28',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="feature" data-gtm-event-category="collection-nav"')
+            @slot('gtmAttributes', 'data-gtm-event="' . $featuredArticlesHero->title . '" data-gtm-event-action="feature" data-gtm-event-category="collection-nav"')
         @endcomponent
         @endif
         <h3 class="sr-only" id="h-featured-plus-1">Featured articles</h3>
@@ -202,7 +202,7 @@
                               'xlarge' => '13',
                         )),
                     ))
-                    @slot('gtmAttributes', 'data-gtm-event="{{$item->title}}" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="collection-nav"')
+                    @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="collection-nav"')
                 @endcomponent
             @endif
         @endforeach

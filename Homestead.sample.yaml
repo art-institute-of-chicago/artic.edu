@@ -10,9 +10,9 @@ folders:
         map: /Users/fernando/trabajo/proyectos/aic
         to: /home/vagrant/aic
 sites:
-    - map: aic.dev.a17.io
+    - map: www.test
       to: "/home/vagrant/aic/public"
-    - map: admin.aic.dev.a17.io
+    - map: admin.www.test
       to: "/home/vagrant/aic/public"
 databases:
     - homestead

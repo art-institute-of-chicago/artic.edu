@@ -50,20 +50,20 @@ const setScrollDirection = function() {
       _scrollPercentVars();
     }
 
-    if (sT !== lastScrollTop) {
+    if (sT !== lastScrollTop && !machineScroll) {
 
-      for (let scrollCheck in scrollChecks) {
-        if (sT >= scrollChecks[scrollCheck].pos && !scrollChecks[scrollCheck].hit) {
-          scrollChecks[scrollCheck].hit = true;
-          triggerCustomEvent(document, 'gtm:push', {
-            'event': (dE.classList.contains('p-artworks-show') ? 'artwork-' : '' ) + scrollCheck + '%',
-            'eventCategory': 'scroll-tracking',
-          });
+      if (maxScroll > 150) {
+        for (let scrollCheck in scrollChecks) {
+          if (sT >= scrollChecks[scrollCheck].pos && !scrollChecks[scrollCheck].hit) {
+            scrollChecks[scrollCheck].hit = true;
+            triggerCustomEvent(document, 'gtm:push', {
+              'event': (dE.classList.contains('p-artworks-show') ? 'artwork-' : '' ) + scrollCheck + '%',
+              'eventCategory': 'scroll-tracking',
+            });
+          }
         }
       }
-    }
 
-    if (sT !== lastScrollTop && !machineScroll) {
       //triggerCustomEvent(document, 'scroll:active', { 'y': sT });
       if (sT > 100 && !hideHeader){
         dE.classList.add('s-header-hide');

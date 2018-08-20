@@ -18,7 +18,7 @@
         <ul class="o-collection-search__quick-search-links">
         @foreach ($links as $link)
             <li>
-                <a href="{{ $link['href'] }}" class="tag tag--quinary f-tag" data-gtm-event="quick-search-click" data-gtm-event-category="collection-search" data-gtm-term="{{ getUtf8Slug($link['label']) }}">
+                <a href="{{ $link['href'] }}" class="tag tag--quinary f-tag" data-gtm-old-label="quick-search-click" data-gtm-event="{{ getUtf8Slug($link['label']) }}" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-search">
                     {{ $link['label'] }}
                 </a>
             </li>

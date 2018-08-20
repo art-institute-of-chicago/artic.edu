@@ -99,6 +99,20 @@ class Exhibition extends BaseApiModel
 
     }
 
+    public function getListDescriptionAttribute($value)
+    {
+        if (empty($value) && !empty($this->short_description)) {
+            return $this->short_description;
+        }
+        return $value;
+    }
+
+    public function getDescriptionAttribute($value)
+    {
+        $desc = nl2br($value);
+        return '<p>' . preg_replace('#(<br>[\r\n\s]+){2}#', "</p>\n\n<p>", $desc) . '</p>';
+    }
+
     public function scopeOrderBy($query, $field, $direction = 'asc')
     {
         $params = [

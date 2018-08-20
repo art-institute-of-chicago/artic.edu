@@ -160,7 +160,7 @@
                           'xlarge' => '3',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="' . $item->enclosedItem()->type . '-' . $item->enclosedItem()->id . '-' . $item->enclosedItem()->titleSlug . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-{{$countCollection}}"')
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->enclosedItem()->type . '-' . $item->enclosedItem()->id . '-' . $item->enclosedItem()->titleSlug . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . $countCollection . '"')
             @endcomponent
         @endif
     @endforeach

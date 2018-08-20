@@ -306,6 +306,18 @@ const ajaxPageLoad = function() {
       }
     }
   }
+  function nonAjaxLinks(link,googleTagManagerObject,event) {
+    // if the link has some google tag manager props, tell GTM
+    if (googleTagManagerObject) {
+      triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
+    }
+    // if link opens in this tab, halt execution while we tell GTM
+    if (event && link.getAttribute('target') !== '_blank') {
+      event.preventDefault();
+      var win = window.open(link.href, '_blank');
+      win.focus();
+    }
+  }
   function handleClicks(event) {
     var link = findAncestorByTagName(event.target, 'A');
     var googleTagManagerObject = googleTagManagerDataFromLink(link);
@@ -357,7 +369,11 @@ const ajaxPageLoad = function() {
             ajaxScrollTarget: ajaxScrollTarget ? ajaxScrollTarget : null,
           });
         }
+      } else {
+        nonAjaxLinks(link,googleTagManagerObject,event);
       }
+    } else {
+      nonAjaxLinks(link,googleTagManagerObject,event);
     }
   }
   document.addEventListener('ajax:getPage', getPage);

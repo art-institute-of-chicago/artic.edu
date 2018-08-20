@@ -26,6 +26,17 @@ const autocomplete = function(container) {
     container.classList.remove(loaderKlass);
   }
 
+  function _fixedEncodeURIComponent(str) {
+    return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+      return '%' + c.charCodeAt(0).toString(16);
+    });
+  }
+
+  function _utf8String(str) {
+    // very light weight, designed to handle what this autocomplete needs rather than a general utf8 string converter
+    return _fixedEncodeURIComponent(str.replace(/<(?:.|\n)*?>/gm, '').replace(/"|'/gm, '')).replace(/%20/gm, '-').toLowerCase();
+  }
+
   // show autocomplete
   function _showAutocomplete(data) {
     data = JSON.parse(data);
@@ -42,7 +53,7 @@ const autocomplete = function(container) {
           case 'agents':
             datum = {
               query: 'artist_ids='+titleUrl,
-              title: 'Artworks by "<b>'+title+'</b>"',
+              title: 'by "<b>'+title+'</b>"',
             };
           break;
           case 'category-terms':
@@ -50,54 +61,54 @@ const autocomplete = function(container) {
               case 'classification':
                 datum = {
                   query: 'classification_ids='+titleUrl,
-                  title: 'Artworks classified as "<b>'+title+'</b>"',
+                  title: 'classified as "<b>'+title+'</b>"',
                 };
               break;
               case 'material':
                 datum = {
                   query: 'material_ids='+titleUrl,
-                  title: 'Artworks made of "<b>'+title+'</b>"',
+                  title: 'made of "<b>'+title+'</b>"',
                 };
               break;
               case 'technique':
                 datum = {
                   query: 'technique_ids='+data[i].id,
-                  title: 'Artworks made via "<b>'+title+'</b>"',
+                  title: 'made via "<b>'+title+'</b>"',
                 };
               break;
               case 'style':
                 datum = {
                   query: 'style_ids='+titleUrl,
-                  title: 'Artworks in the style "<b>'+title+'</b>"',
+                  title: 'in the style of "<b>'+title+'</b>"',
                 };
               break;
               case 'subject':
                 datum = {
                   query: 'subject_ids='+titleUrl,
-                  title: 'Artworks about "<b>'+title+'</b>"',
+                  title: 'about "<b>'+title+'</b>"',
                 };
               break;
               case 'department':
                 datum = {
                   query: 'department_ids='+titleUrl,
-                  title: 'Artworks in the department "<b>'+title+'</b>"',
+                  title: 'in the department "<b>'+title+'</b>"',
                 };
               break;
               case 'theme':
                 datum = {
                   query: 'theme_ids='+data[i].id,
-                  title: 'Artworks with the theme "<b>'+title+'</b>"',
+                  title: 'related to "<b>'+title+'</b>"',
                 };
               break;
             }
           break;
         }
         if (datum) {
-          ulItems += '<li><a href="/collection?'+datum.query+'"><span>'+datum.title+'</span></a></li>\n';
+          ulItems += '<li><a href="/collection?'+datum.query+'" data-ajax-scroll-target="collection" data-gtm-event="'+_utf8String(datum.title)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter">'+datum.title+'</a></li>\n';
         }
       }
       ulItems += (
-        '<li><a href="/collection?q='+textInput.value+'" class="suggestion--fulltext">' +
+        '<li><a href="/collection?q='+_utf8String(textInput.value)+'" data-ajax-scroll-target="collection" data-gtm-event="'+_fixedEncodeURIComponent(textInput.value)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter" class="suggestion--fulltext">' +
         '<svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>' +
         '<span>Search for "'+textInput.value+'"</span></a></li>\n'
       );
@@ -122,12 +133,6 @@ const autocomplete = function(container) {
       dropdownList = null;
     }
     active = false;
-  }
-
-  function _fixedEncodeURIComponent(str) {
-    return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
-      return '%' + c.charCodeAt(0).toString(16);
-    });
   }
 
   // handle ajax search
@@ -172,15 +177,16 @@ const autocomplete = function(container) {
   // handle submit
   function _handleSubmit(event) {
     event.preventDefault();
+    // if the form has some google tag manager props, tell GTM
+    let googleTagManagerObject = googleTagManagerDataFromLink(container);
+    if (googleTagManagerObject) {
+      googleTagManagerObject['event'] = _fixedEncodeURIComponent(textInput.value);
+      triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
+    }
     // trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: queryStringHandler.updateParameter(container.action, 'q', _fixedEncodeURIComponent(textInput.value)),
     });
-    // if the form has some google tag manager props, tell GTM
-    let googleTagManagerObject = googleTagManagerDataFromLink(container);
-    if (googleTagManagerObject) {
-      triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
-    }
   }
 
   // handle search input

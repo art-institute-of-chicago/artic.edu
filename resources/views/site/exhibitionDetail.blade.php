@@ -89,7 +89,7 @@
   @endif
 
   <div class="o-article__body o-blocks">
-    {!! $item->renderBlocks(false) !!}
+    {!! $item->renderBlocks(false) ?: $item->description !!}
 
     @if ($item->isClosed)
         {{-- History Detail - Exhibition PDF's --}}
