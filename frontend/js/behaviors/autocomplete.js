@@ -47,7 +47,7 @@ const autocomplete = function(container) {
       let ulItems = '';
       for (let i = 0; i < Math.min(5, data.length); i++) {
         let title = data[i].title;
-        let titleUrl = title.replace(/\s/g,'+');
+        let titleUrl = encodeURIComponent(title).replace(/%20/g,'+');
         let datum = null;
         switch (data[i].api_model) {
           case 'agents':
