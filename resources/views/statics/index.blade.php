@@ -65,6 +65,7 @@
           <li><a href="/statics/event_superhero">event, super hero header</a></li>
           <li><a href="/statics/event_past">event past, standard header</a></li>
           <li><a href="/statics/event_past_minimal">event past, standard header, minimal</a></li>
+          <li><a href="/statics/event_past_no_contant">event past, standard header, no content</a></li>
           <li><a href="/statics/editorial">editorial, feature header</a></li>
           <li><a href="/statics/editorial_minimal">editorial, standard header, minimal</a></li>
         </ul>

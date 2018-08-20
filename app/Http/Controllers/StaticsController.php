@@ -383,6 +383,31 @@ class StaticsController extends FrontController {
     ]);
   }
 
+  public function event_past_no_contant() {
+    $article = $this->getEventPageContents();
+
+    $blocks = array();
+    $article->push('blocks', $blocks);
+    $article->push('ticketLink', null);
+    $article->push('ticketPrices', null);
+    $article->push('nav', null);
+    //article->push('intro', null);
+    $article->push('date', null);
+    $article->push('dateStart', null);
+    $article->push('dateEnd', null);
+    $article->push('type', null);
+    $article->push('speakers', null);
+    $article->push('sponsors', null);
+    $article->push('futherSupport', null);
+    $article->push('intro', null);
+    $article->push('title', "Lorem");
+    // now push to a view
+    return view('statics/article', [
+      'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
+      'article' => $article,
+    ]);
+  }
+
   public function event_feature() {
     $article = $this->getEventPageContents('feature');
     // now push to a view
