@@ -24,7 +24,7 @@ class SelectionService extends BaseService
 
         return [
             'classification' => $tags,
-            'all' => [true => 'All Tags']
+            'all' => collect([true => 'All Tags'])
         ];
     }
 
