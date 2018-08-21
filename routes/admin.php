@@ -30,7 +30,6 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
     Route::module('sponsors');
 
     Route::module('ticketedEvents');
-    Route::module('ticketedEventTypes');
 
     Route::name('exhibitions_events.history')->get('history', 'PageController@exhibitionHistory');
 });

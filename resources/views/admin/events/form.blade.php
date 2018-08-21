@@ -194,14 +194,6 @@
             'label' => 'Event from ticketing system'
         ])
 
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'max' => 1,
-            'moduleName' => 'ticketedEventTypes',
-            'name' => 'ticketedEventType',
-            'label' => 'Event type from ticketing system'
-        ])
-
         @formField('select', [
             'name' => 'email_series',
             'label' => 'Add to event email series?',
