@@ -312,7 +312,7 @@ const ajaxPageLoad = function() {
       triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
     }
     // if link opens in this tab, halt execution while we tell GTM
-    if (event && link.getAttribute('target') !== '_blank') {
+    if (event && link && link.getAttribute('target') !== '_blank') {
       event.preventDefault();
       var win = window.open(link.href, '_blank');
       win.focus();
