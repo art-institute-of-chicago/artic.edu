@@ -40,6 +40,11 @@ class Artwork extends Model
         return $this->belongsToMany('App\Models\Article', 'article_artwork')->withPivot('position')->orderBy('position');
     }
 
+     public function getTrackingSlugAttribute() 
+    {
+        return $this->title;
+    }
+
     public function videos()
     {
         return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');

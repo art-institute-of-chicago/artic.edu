@@ -104,6 +104,11 @@ class Article extends Model implements Feedable
         return 'article';
     }
 
+    public function getTrackingSlugAttribute() 
+    {
+        return $this->title;
+    }
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {

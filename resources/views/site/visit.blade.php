@@ -256,7 +256,7 @@
                       @slot('variation', 'btn--secondary btn--full')
                       @slot('tag', 'a')
                       @slot('href', $admission['become_member']['link'])
-                      @slot('gtmAttributes', 'data-gtm-event="become-member" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"')
+                      @slot('gtmAttributes', 'data-gtm-event="become-a-member" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"')
                       {{ $admission['become_member']['label'] }}
                   @endcomponent
               </li>

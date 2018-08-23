@@ -46,6 +46,9 @@ class CollectionFeature extends Model
             $item->subtype = 'Artwork';
         }
 
+        $item->trackingTitle = getUtf8Slug($item->title);
+
+
         return $item;
     }
 
