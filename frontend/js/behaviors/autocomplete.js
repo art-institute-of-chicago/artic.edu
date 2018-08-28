@@ -45,7 +45,11 @@ const autocomplete = function(container) {
       dropdownList.className = 'm-search-bar__autocomplete f-secondary';
       dropdownList.setAttribute('data-autocomplete-list','');
       let ulItems = '';
-      for (let i = 0; i < Math.min(5, data.length); i++) {
+      let minValue = 5;
+      if (_isAccessionNumber(textInput.value)) {
+        minValue = 1;
+      }
+      for (let i = 0; i < Math.min(minValue, data.length); i++) {
         let title = data[i].title;
         let titleUrl = encodeURIComponent(title).replace(/%20/g,'+');
         let datum = null;
@@ -110,7 +114,7 @@ const autocomplete = function(container) {
           break;
         }
         if (datum) {
-          var href = '/collection?'+datum.query;
+          let href = '/collection?'+datum.query;
           if (datum.path) {
             href = datum.path;
           }
@@ -152,6 +156,10 @@ const autocomplete = function(container) {
     _showLoader();
 
     ajaxTimer = setTimeout(function(){
+      let fuzzy = true;
+      if (_isAccessionNumber(textInput.value)) {
+        fuzzy = false;
+      }
       let qs = queryStringHandler.fromObject({
         resources: [
           'artists',
@@ -163,6 +171,7 @@ const autocomplete = function(container) {
           'title',
           'accession',
         ],
+        fuzzy: fuzzy,
       });
       let xhr = new XMLHttpRequest();
       xhr.open('get', autoCompleteUrl + qs, true);
@@ -215,6 +224,10 @@ const autocomplete = function(container) {
       _hideAutocomplete();
     }
   }
+
+    function _isAccessionNumber(val) {
+      return /^[0-9]+\.[0-9a-b\-]/.test(val);
+    }
 
   function _clearInput(event) {
     if (event) {
