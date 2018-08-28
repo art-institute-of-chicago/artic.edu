@@ -9,7 +9,7 @@
             ))
         @endcomponent
       @endif
-  </div> 
+  </div>
   <div class="m-article-header__text" data-blur-clip-to>
       @if (isset($title))
         @component('components.atoms._title')
@@ -23,11 +23,11 @@
         @component('components.atoms._date')
             {!! $formattedDate !!}
         @endcomponent
-      @elseif (empty($dateStart) and empty($dateEnd)) 
+      @elseif (empty($dateStart) and empty($dateEnd))
       @elseif (empty($dateEnd) and !empty($dateStart))
            @component('components.atoms._date')
             @slot('tag','p')
-            <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time> 
+            <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time>
             @endcomponent
       @elseif (empty($dateStart))
       @elseif ($dateStart and $dateEnd)
@@ -61,7 +61,7 @@
               <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
             </button>
             <div class="m-article-header__info" id="image-credit" aria-labelledby="image-info-trigger" aria-hidden="true" role="Tooltip">
-              <p class="f-caption">{{ $credit ?? $img['credit'] }}</p>
+              <div class="f-caption">{!! $credit ?? $img['credit'] !!}</div>
             </div>
         @endif
       @endif

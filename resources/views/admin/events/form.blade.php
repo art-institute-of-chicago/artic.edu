@@ -28,11 +28,15 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
+        'type' => 'textarea',
         'name' => 'hero_caption',
         'label' => 'Hero image Caption',
         'note' => 'Usually used for copyright',
-        'maxlength' => 150
+        'maxlength' => 150,
+        'toolbarOptions' => [
+            'italic',
+        ],
     ])
 
     @formField('input', [
