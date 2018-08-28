@@ -56,6 +56,12 @@ const autocomplete = function(container) {
               title: 'by "<b>'+title+'</b>"',
             };
           break;
+          case 'artworks':
+            datum = {
+              path: '/artworks/'+data[i].id,
+              title: 'see "<b>'+title+'</b>" ('+data[i].main_reference_number+')',
+            };
+          break;
           case 'category-terms':
             switch (data[i].subtype) {
               case 'classification':
@@ -104,7 +110,11 @@ const autocomplete = function(container) {
           break;
         }
         if (datum) {
-          ulItems += '<li><a href="/collection?'+datum.query+'" data-ajax-scroll-target="collection" data-gtm-event="'+_utf8String(datum.title)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter">'+datum.title+'</a></li>\n';
+          var href = '/collection?'+datum.query;
+          if (datum.path) {
+            href = datum.path;
+          }
+          ulItems += '<li><a href="'+href+'" data-ajax-scroll-target="collection" data-gtm-event="'+_utf8String(datum.title)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter">'+datum.title+'</a></li>\n';
         }
       }
       ulItems += (
@@ -146,8 +156,13 @@ const autocomplete = function(container) {
         resources: [
           'artists',
           'category-terms',
+          'artworks',
         ],
         q: textInput.value,
+        contexts: [
+          'title',
+          'accession',
+        ],
       });
       let xhr = new XMLHttpRequest();
       xhr.open('get', autoCompleteUrl + qs, true);
