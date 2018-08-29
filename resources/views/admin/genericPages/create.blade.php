@@ -3,7 +3,8 @@
     'label' => ucfirst($titleFormKey ?? 'title'),
     'translated' => $translateTitle ?? false,
     'required' => true,
-    'onChange' => 'formatPermalink'
+    'onChange' => 'formatPermalink',
+    'note' => 'Avoid HTML in this field. Use the "Title (HTML)" field for italics.',
 ])
 
 @if ($permalink ?? true)
