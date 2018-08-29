@@ -203,6 +203,16 @@ class Event extends Model
         return $dates_string;
     }
 
+    public function getDateStartAttribute()
+    {
+        return $this->all_dates->first()['date'];
+    }
+
+    public function getDateEndAttribute()
+    {
+        return $this->all_dates->last()['date_end'];
+    }
+
     public function getAltTypesAttribute($value)
     {
         return $this->getMultiSelectFromJsonColumn($value);
@@ -491,10 +501,16 @@ class Event extends Model
                 "value" => function () {return $this->end_time;},
             ],
             [
-                "name" => "all_dates",
-                "doc" => "Dates",
-                "type" => "array",
-                "value" => function () {return $this->all_dates;},
+                "name" => "start_date",
+                "doc" => "Date the event begins",
+                "type" => "string",
+                "value" => function () {return $this->date_start ? $this->date_start->toIso8601String() : null;},
+            ],
+            [
+                "name" => "end_date",
+                "doc" => "Date the event ends",
+                "type" => "string",
+                "value" => function () {return $this->date_end ? $this->date_end->toIso8601String() : null;},
             ],
             [
                 "name" => "location",
