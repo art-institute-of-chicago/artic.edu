@@ -379,7 +379,7 @@ class Search extends BaseApiModel
         return $year;
     }
 
-    public function scopeDateMin($query, $dateField = 'date_start', $date = null)
+    public function scopeDateMin($query, $date = null)
     {
         if (empty($date)) {
             $date = Carbon::today();
@@ -392,7 +392,7 @@ class Search extends BaseApiModel
                 "must" => [
                     [
                         "range" => [
-                            "date_end" => [
+                            "end_date" => [
                                 "gte" => $date->toIso8601String()
                             ]
                         ]
