@@ -379,6 +379,31 @@ class Search extends BaseApiModel
         return $year;
     }
 
+    public function scopeDateMin($query, $dateField = 'date_start', $date = null)
+    {
+        if (empty($date)) {
+            $date = Carbon::today();
+        }
+        else {
+            $date = Carbon::parse($date);
+        }
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "date_end" => [
+                                "gte" => $date->toIso8601String()
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeByIds($query, $ids)
     {
         $ids = is_array($ids) ? $ids : explode(';', $ids); //Transform the ID into an array
