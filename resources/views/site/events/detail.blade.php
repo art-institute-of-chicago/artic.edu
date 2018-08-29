@@ -11,6 +11,7 @@
     @slot('editorial', false)
     @slot('headerType', $item->present()->headerType)
     @slot('title', $item->title)
+    @slot('title_display', $item->title_display)
     @slot('formattedDate', $item->present()->formattedNextOcurrence)
     @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : $item->present()->type)
     @slot('img', $item->imageAsArray('hero'))

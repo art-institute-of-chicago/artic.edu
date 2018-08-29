@@ -23,7 +23,8 @@
             @slot('tag','h1')
             @slot('font', 'f-display-3')
             @slot('itemprop','name')
-            {{ $title }}
+            @slot('title', $title)
+            @slot('title_display', $title_display ?? null)
         @endcomponent
       @endif
       @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))

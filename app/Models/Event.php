@@ -32,6 +32,7 @@ class Event extends Model
 
     protected $fillable = [
         'title',
+        'title_display',
         'published',
         'event_type',
         'alt_types',

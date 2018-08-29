@@ -20,6 +20,7 @@ class PressRelease extends Model
         'short_description',
         'listing_description',
         'title',
+        'title_display',
         'published',
         'public',
         'publish_start_date',

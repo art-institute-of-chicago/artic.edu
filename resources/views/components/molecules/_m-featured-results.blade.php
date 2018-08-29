@@ -4,7 +4,7 @@
             @slot('font', ($titleFont ?? 'f-tag'))
             @slot('tag', ($titleTag ?? 'h2'))
             @slot('variation', 'm-featured-results__title')
-            {{ $title }}
+            {!! $title_display ?? $title !!}
         @endcomponent
     @endif
     {{ $slot }}

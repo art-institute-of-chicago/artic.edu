@@ -4,7 +4,8 @@
             @slot('tag','h1')
             @slot('font', (isset($editorial) && $editorial) ? 'f-headline-editorial' : 'f-headline')
             @slot('itemprop','name')
-            {{ $title }}
+            @slot('title', $title)
+            @slot('title_display', $title_display ?? null)
         @endcomponent
     @endif 
     @if (isset($formattedDate))

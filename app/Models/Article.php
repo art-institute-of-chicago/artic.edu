@@ -31,6 +31,7 @@ class Article extends Model implements Feedable
         'date',
         'content',
         'title',
+        'title_display',
         'heading',
         'author',
         'copy',

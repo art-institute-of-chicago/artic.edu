@@ -9,6 +9,7 @@
     @slot('headerType', $item->present()->headerType)
     @slot('variation', ($item->headerVariation ?? null))
     @slot('title', $item->title)
+    @slot('title_display', $item->title_display)
     @slot('type', $item->present()->type)
     @slot('img', $item->imageFront('hero'))
     @slot('credit', $item->hero_caption)

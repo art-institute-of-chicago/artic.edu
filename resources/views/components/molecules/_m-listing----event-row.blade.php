@@ -41,7 +41,8 @@
         @endif
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-4')
-            {{ $item->title }}
+            @slot('title', $item->title)
+            @slot('title_display', $item->title_display)
         @endcomponent
 
         @if (!empty($item->list_description))

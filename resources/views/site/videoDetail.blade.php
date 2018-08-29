@@ -6,6 +6,7 @@
 
         @component('components.molecules._m-article-header')
             @slot('title', $item->title)
+            @slot('title_display', $item->title_display)
             @slot('type', $item->type)
             @slot('date', $item->date)
             @slot('intro', $item->heading)
