@@ -1,9 +1,9 @@
-<div class="g-search" data-behavior="globalSearch" data-autocomplete-url="{!! route('search.autocomplete') !!}" aria-modal="true">
+<div class="g-search" data-behavior="globalSearch" data-autocomplete-url="{!! route('search.autocomplete') !!}" aria-modal="true" data-gtm-event-category="site search" data-gtm-event-action="{{$seo->title}}" aria-label="Search">
     <div class="g-search__scroll">
         <div class="g-search__inner" data-search-inner>
             <form action="/search" class="g-search__form" role="search">
                 <input type="search" id="q" name="q" class="g-search__input" placeholder="Search" autocomplete="off" aria-label="Search the site" />
-                <button type="submit" class="g-search__submit" data-gtm-event-category="site search" data-gtm-event-action="{{$seo->title}}" data-gtm-event="" aria-label="Search">
+                <button type="submit" class="g-search__submit">
                     <svg aria-hidden="true" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>
                 </button>
                 <span class="g-search__loader"></span>

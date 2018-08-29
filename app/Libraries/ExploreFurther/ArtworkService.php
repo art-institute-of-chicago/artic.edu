@@ -43,7 +43,10 @@ class ArtworkService extends BaseService
             $tags['artist'] = collect([$artist->title => $artist->title]);
         }
 
-        $tags['all'] = [true => 'All Tags'];
+        // Preview 'All Tags" to ensure there's something to show
+        if ($this->getAllTags()) {
+            $tags['all'] = collect([true => 'All Tags']);
+        }
 
         return $tags;
     }
@@ -55,34 +58,49 @@ class ArtworkService extends BaseService
         // style_titles, subject_titles and material_titles
 
         $parameters = collect($parameters);
+
+        // In rare cases, 'All Tags' will be the only tab present
+        // If so, render it regardless of the `ef-` param status
+        $isAllTagsAnOrphan = (key($this->tags()) === 'all');
+
+        if ($parameters->has('ef-all_ids') || $isAllTagsAnOrphan ) {
+            return $this->getAllTags();
+        }
+
+        return [];
+    }
+
+    public function getAllTags()
+    {
         $tags = [];
 
-        if ($parameters->has('ef-all_ids')) {
-
+        if ($this->resource->artist_title) {
             $tags[route('collection', ['artist_ids' => $this->resource->artist_title])] = ucfirst($this->resource->artist_title);
+        }
+
+        if ($this->resource->department_title) {
             $tags[route('collection', ['department_ids' => $this->resource->department_title])] = ucfirst($this->resource->department_title);
+        }
 
-            foreach ($this->resource->classification_titles as $item) {
-                $tags[route('collection', ['classification_ids' => $item])] = ucfirst($item);
-            }
+        foreach ($this->resource->classification_titles as $item) {
+            $tags[route('collection', ['classification_ids' => $item])] = ucfirst($item);
+        }
 
-            foreach ($this->resource->style_titles as $item) {
-                $tags[route('collection', ['style_ids' => $item])] = ucfirst($item);
-            }
+        foreach ($this->resource->style_titles as $item) {
+            $tags[route('collection', ['style_ids' => $item])] = ucfirst($item);
+        }
 
-            foreach ($this->resource->subject_titles as $item) {
-                $tags[route('collection', ['subject_ids' => $item])] = ucfirst($item);
-            }
+        foreach ($this->resource->subject_titles as $item) {
+            $tags[route('collection', ['subject_ids' => $item])] = ucfirst($item);
+        }
 
-            foreach ($this->resource->material_titles as $item) {
-                $tags[route('collection', ['material_ids' => $item])] = ucfirst($item);
-            }
+        foreach ($this->resource->material_titles as $item) {
+            $tags[route('collection', ['material_ids' => $item])] = ucfirst($item);
         }
 
         return array_where($tags, function($key, $value) {
             return !empty($value);
         });
     }
-
 
 }

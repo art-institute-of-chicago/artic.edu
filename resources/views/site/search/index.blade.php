@@ -14,7 +14,7 @@
 @component('components.molecules._m-search-bar')
     @slot('placeholder','Search by keyword, artist, or reference')
     @slot('value', request('q'))
-    @slot('name', 'search')
+    @slot('name', 'q')
     @slot('behaviors','reportSearchToGoogleTagManager')
     @slot('action', route('search'))
 @endcomponent

@@ -1,4 +1,5 @@
 import { purgeProperties, escapeString, copyTextToClipboard, forEach, triggerCustomEvent } from '@area17/a17-helpers';
+import { googleTagManagerDataFromLink } from '../functions';
 
 const shareMenu = function(container) {
 
@@ -43,24 +44,24 @@ const shareMenu = function(container) {
   function _handleClicks(event) {
     event.preventDefault();
     event.stopPropagation();
-    event.target.blur();
+    let el = event.target;
     let networkClicked = event.target.getAttribute('data-shareMenu');
+    // blur link
+    event.target.blur();
+    // do as asked
     if (networkClicked === 'copy') {
       _copyLink();
-      triggerCustomEvent(document, 'gtm:push', {
-        'event': 'Link copied:'+shareUrl,
-        'eventCategory': 'share',
-      });
     } else {
       forEach(networks, function(index, network) {
         if (network.name === networkClicked) {
           _openWindow(event.target.href, network.windowOptions);
-          triggerCustomEvent(document, 'gtm:push', {
-            'event': network.name+':'+shareUrl,
-            'eventCategory': 'share',
-          });
         }
       });
+    }
+    // if the link has some google tag manager props, tell GTM
+    let googleTagManagerObject = googleTagManagerDataFromLink(el);
+    if (googleTagManagerObject) {
+      triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
     }
     triggerCustomEvent(document, 'shareMenu:close');
   }

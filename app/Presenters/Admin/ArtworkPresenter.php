@@ -103,7 +103,7 @@ class ArtworkPresenter extends BasePresenter
             $artistLinks = collect($this->entity->artist_pivots)->map(function($item) {
                 // Don't show role if the role is "Artist" or [TODO] "Creator"
                 $title = $item->artist_title . ( ( $item->role_title && $item->role_id !== 219 ) ? " ({$item->role_title})" : '' );
-                return ['label' => $title, 'href' => route('artists.show', $item->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"'];
+                return ['label' => $title, 'href' => route('artists.show', ['id' => $item->artist_id]), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"'];
             });
             $details[] = [
                 'key'   => str_plural('Artist', count($this->entity->artist_pivots)),
@@ -195,7 +195,7 @@ class ArtworkPresenter extends BasePresenter
             'Medium'           => array($this->entity->medium_display,'material'),
             'Inscriptions'     => array($this->entity->inscriptions),
             'Dimensions'       => array($this->entity->dimensions),
-            'Credit line'      => array($this->entity->credit_line),
+            'Credit Line'      => array($this->entity->credit_line),
             'Reference Number' => array($this->entity->main_reference_number),
             'Copyright'        => array($this->entity->copyright_notice),
         ]));

@@ -138,7 +138,7 @@
 
 </article>
 
-@if ($exploreFurther || $exploreFurtherAllTags)
+@if (($exploreFurther && !$exploreFurther->isEmpty()) || ($exploreFurtherAllTags))
 <div id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further

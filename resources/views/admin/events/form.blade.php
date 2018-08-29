@@ -28,11 +28,15 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
+        'type' => 'textarea',
         'name' => 'hero_caption',
         'label' => 'Hero image Caption',
         'note' => 'Usually used for copyright',
-        'maxlength' => 150
+        'maxlength' => 150,
+        'toolbarOptions' => [
+            'italic',
+        ],
     ])
 
     @formField('input', [
@@ -192,14 +196,6 @@
             'moduleName' => 'ticketedEvents',
             'name' => 'ticketedEvent',
             'label' => 'Event from ticketing system'
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'max' => 1,
-            'moduleName' => 'ticketedEventTypes',
-            'name' => 'ticketedEventType',
-            'label' => 'Event type from ticketing system'
         ])
 
         @formField('select', [

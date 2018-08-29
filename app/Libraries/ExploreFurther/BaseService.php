@@ -43,13 +43,18 @@ class BaseService
         $parameters = collect($parameters);
 
         if ($parameters->has('ef-all_ids')) {
-            // Use same query as search to hit the cache instead of creating a new one.
-            $buckets = $this->aggregations()->classifications->buckets;
-
-            return collect($buckets)->mapWithKeys(function ($item) {
-                return [route('collection', ['classification_ids' => $item->key]) => ucfirst($item->key)];
-            });
+            return $this->getAllTags();
         }
+    }
+
+    public function getAllTags()
+    {
+        // Use same query as search to hit the cache instead of creating a new one.
+        $buckets = $this->aggregations()->classifications->buckets;
+
+        return collect($buckets)->mapWithKeys(function ($item) {
+            return [route('collection', ['classification_ids' => $item->key]) => ucfirst($item->key)];
+        });
     }
 
     public function tags()
@@ -94,23 +99,25 @@ class BaseService
             // When no filter selected, use the first filter available.
             $category = key($this->tags());
 
-            // If we have any category to perform filtering, then call the scope
-            if ($category) {
-                // Parse the ID coming from the tags
-                $id = $this->tags()[$category]->keys()->first();
+            // ...but abort if the first filter is `null` or "all"
+            if (!$category || $category === 'all') {
+                return collect([]);
+            }
 
-                // Call the appropiate scope
-                switch ($category) {
-                    case 'classification':
-                        $query->byClassifications($id);
-                        break;
-                    case 'artist':
-                        $query->byArtists($id);
-                        break;
-                    case 'style':
-                        $query->byStyles($id);
-                        break;
-                }
+            // Parse the ID coming from the tags
+            $id = $this->tags()[$category]->keys()->first();
+
+            // Call the appropiate scope
+            switch ($category) {
+                case 'classification':
+                    $query->byClassifications($id);
+                    break;
+                case 'artist':
+                    $query->byArtists($id);
+                    break;
+                case 'style':
+                    $query->byStyles($id);
+                    break;
             }
         }
 

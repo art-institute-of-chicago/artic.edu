@@ -25,7 +25,12 @@ class ExactTargetService
 
         $deRow->authStub = $client;
         $deRow->props = array("email" => $this->email);
-        $deRow->Name = $this->list;
+        if ($this->list)
+        {
+            $deRow->props[$this->list] = 'Y';
+        }
+        $deRow->Name = "Museum Business Unit";
+        $deRow->CustomerKey = "All Subscribers Master";
 
         $response = $deRow->post();
 

@@ -247,11 +247,6 @@ class Event extends Model
         return $this->apiElements()->where('relation', 'ticketedEvent');
     }
 
-    public function ticketedEventType()
-    {
-        return $this->apiElements()->where('relation', 'ticketedEventType');
-    }
-
     public function programs()
     {
         return $this->belongsToMany('App\Models\EventProgram');
@@ -562,15 +557,6 @@ class Event extends Model
                 "value" => function () {
                     $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
                     return $ticketedEvent ? $ticketedEvent->id : null;
-                },
-            ],
-            [
-                "name" => "ticketed_event_type_id",
-                "doc" => "Unique identifer of the event type in our central ticketing system",
-                "type" => "string",
-                "value" => function () {
-                    $ticketedEventType = $this->apiModels('ticketedEventType', 'TicketedEventType')->first();
-                    return $ticketedEventType ? $ticketedEventType->id : null;
                 },
             ],
             [

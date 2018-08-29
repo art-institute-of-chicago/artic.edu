@@ -123,7 +123,7 @@ class CollectionController extends BaseScopedController
                 // If there's only one selected filter, check if it has more than one active element
                 $input = request()->input();
 
-                if (count(explode(',', array_shift($input))) > 1) {
+                if (count(explode(';', array_shift($input))) > 1) {
                     return true;
                 }
             }

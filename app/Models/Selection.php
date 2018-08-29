@@ -87,6 +87,11 @@ class Selection extends Model
         return $this->short_copy;
     }
 
+     public function getTrackingSlugAttribute() 
+    {
+        return $this->title;
+    }
+
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');

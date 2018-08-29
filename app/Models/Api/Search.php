@@ -298,7 +298,7 @@ class Search extends BaseApiModel
         }
 
         //Transform the ID into an array. It could be multiple items comma separated
-        $ids = is_array($ids) ? $ids : explode(",", $ids);
+        $ids = is_array($ids) ? $ids : explode(';', $ids);
 
         foreach($ids as $id) {
             $elements[] = [
@@ -381,7 +381,7 @@ class Search extends BaseApiModel
 
     public function scopeByIds($query, $ids)
     {
-        $ids = is_array($ids) ? $ids : explode(",", $ids); //Transform the ID into an array
+        $ids = is_array($ids) ? $ids : explode(';', $ids); //Transform the ID into an array
 
         $params = [
             "terms" => [

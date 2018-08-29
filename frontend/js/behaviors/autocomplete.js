@@ -45,15 +45,25 @@ const autocomplete = function(container) {
       dropdownList.className = 'm-search-bar__autocomplete f-secondary';
       dropdownList.setAttribute('data-autocomplete-list','');
       let ulItems = '';
-      for (let i = 0; i < Math.min(5, data.length); i++) {
+      let minValue = 5;
+      if (_isAccessionNumber(textInput.value)) {
+        minValue = 1;
+      }
+      for (let i = 0; i < Math.min(minValue, data.length); i++) {
         let title = data[i].title;
-        let titleUrl = title.replace(/\s/g,'+');
+        let titleUrl = encodeURIComponent(title).replace(/%20/g,'+');
         let datum = null;
         switch (data[i].api_model) {
           case 'agents':
             datum = {
               query: 'artist_ids='+titleUrl,
               title: 'by "<b>'+title+'</b>"',
+            };
+          break;
+          case 'artworks':
+            datum = {
+              path: '/artworks/'+data[i].id,
+              title: 'see "<b>'+title+'</b>" ('+data[i].main_reference_number+')',
             };
           break;
           case 'category-terms':
@@ -104,7 +114,11 @@ const autocomplete = function(container) {
           break;
         }
         if (datum) {
-          ulItems += '<li><a href="/collection?'+datum.query+'" data-ajax-scroll-target="collection" data-gtm-event="'+_utf8String(datum.title)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter">'+datum.title+'</a></li>\n';
+          let href = '/collection?'+datum.query;
+          if (datum.path) {
+            href = datum.path;
+          }
+          ulItems += '<li><a href="'+href+'" data-ajax-scroll-target="collection" data-gtm-event="'+_utf8String(datum.title)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter">'+datum.title+'</a></li>\n';
         }
       }
       ulItems += (
@@ -142,12 +156,22 @@ const autocomplete = function(container) {
     _showLoader();
 
     ajaxTimer = setTimeout(function(){
+      let fuzzy = true;
+      if (_isAccessionNumber(textInput.value)) {
+        fuzzy = false;
+      }
       let qs = queryStringHandler.fromObject({
         resources: [
           'artists',
           'category-terms',
+          'artworks',
         ],
         q: textInput.value,
+        contexts: [
+          'title',
+          'accession',
+        ],
+        fuzzy: fuzzy,
       });
       let xhr = new XMLHttpRequest();
       xhr.open('get', autoCompleteUrl + qs, true);
@@ -200,6 +224,10 @@ const autocomplete = function(container) {
       _hideAutocomplete();
     }
   }
+
+    function _isAccessionNumber(val) {
+      return /^[0-9]+\.?[0-9a-b\-]*/.test(val);
+    }
 
   function _clearInput(event) {
     if (event) {

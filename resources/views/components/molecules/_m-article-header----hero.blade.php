@@ -36,7 +36,7 @@
               <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
             </button>
             <div class="m-article-header__info" id="image-credit" aria-labelledby="image-info-trigger" aria-hidden="true" role="Tooltip">
-              <p class="f-caption">{{ $credit ?? $img['credit'] }}</p>
+              <div class="f-caption">{!! $credit ?? $img['credit'] !!}</div>
             </div>
         @endif
       @endif
