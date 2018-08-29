@@ -317,9 +317,9 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeDateMin($query, $date)
+    public function scopeYearMin($query, $year)
     {
-        if (empty($date)) {
+        if (empty($year)) {
             return $query;
         }
 
@@ -329,7 +329,7 @@ class Search extends BaseApiModel
                     [
                         "range" => [
                             "date_start" => [
-                                "gte" => $this->transformDate($date)
+                                "gte" => $this->transformYear($year)
                             ]
                         ]
                     ]
@@ -340,9 +340,9 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeDateMax($query, $date)
+    public function scopeYearMax($query, $year)
     {
-        if (empty($date)) {
+        if (empty($year)) {
             return $query;
         }
 
@@ -352,7 +352,7 @@ class Search extends BaseApiModel
                     [
                         "range" => [
                             "date_end" => [
-                                "lte" => $this->transformDate($date)
+                                "lte" => $this->transformYear($year)
                             ]
                         ]
                     ]
@@ -363,20 +363,20 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    protected function transformDate($date) {
-        // Date could come with BC, AD, or 'Present'
+    protected function transformYear($year) {
+        // Year could come with BC, AD, or 'Present'
 
-        if (str_contains($date, 'BC')) {
-            $date = - (integer) $date;
+        if (str_contains($year, 'BC')) {
+            $year = - (integer) $year;
         } else {
-            if (str_contains($date, 'Present')) {
-                $date = Carbon::now()->year;
+            if (str_contains($year, 'Present')) {
+                $year = Carbon::now()->year;
             } else {
-                $date = (integer) $date;
+                $year = (integer) $year;
             }
         }
 
-        return $date;
+        return $year;
     }
 
     public function scopeByIds($query, $ids)
