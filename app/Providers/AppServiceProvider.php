@@ -9,6 +9,9 @@ use App\Libraries\EmbedConverterService;
 
 use Illuminate\Support\ServiceProvider;
 
+use A17\Twill\Http\Controllers\Front\Helpers\Seo;
+use View;
+
 use App\Models\Hour;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->hotfixSeoForAdminPreview();
+
         $this->registerMorphMap();
         $this->registerApiClient();
         $this->registerLakeviewImageService();
@@ -28,6 +33,19 @@ class AppServiceProvider extends ServiceProvider
 
         \Illuminate\Pagination\AbstractPaginator::defaultView("site.pagination.aic");
         \Illuminate\Pagination\AbstractPaginator::defaultSimpleView("site.pagination.simple-aic");
+    }
+
+    // Taken from Front/Controller. Figure out how to make this affect Twill's ModuleController
+    private function hotfixSeoForAdminPreview()
+    {
+        $seo = new Seo;
+
+        $seo->title = config('twill.seo.site_title');
+        $seo->description = config('twill.seo.site_desc');
+        $seo->width = 900;
+        $seo->height = 470;
+
+        \View::share('seo', $seo);
     }
 
     public function registerMorphMap()
