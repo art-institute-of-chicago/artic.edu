@@ -70,15 +70,18 @@ function convertArtworkDates($date)
     return $formatdate;
 }
 
-function incrementBefore($date)
+function yearIncrements()
 {
-    $increments = [
+    return [
         -8000, -7000, -6000, -5000, -4000, -3000, -2000, -1000,
         1, 500, 1000, 1200, 1400, 1600, 1700, 1800,
         1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990,
         2000, 2010];
+}
 
-    foreach ($increments as $year)
+function incrementBefore($date)
+{
+    foreach (yearIncrements() as $year)
     {
         if ($year > $date)
         {
@@ -90,13 +93,7 @@ function incrementBefore($date)
 
 function incrementAfter($date)
 {
-    $increments = [
-        -8000, -7000, -6000, -5000, -4000, -3000, -2000, -1000,
-        1, 500, 1000, 1200, 1400, 1600, 1700, 1800,
-        1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990,
-        2000, 2010];
-
-    foreach ($increments as $year)
+    foreach (yearIncrements() as $year)
     {
         if ($year > $date)
         {
