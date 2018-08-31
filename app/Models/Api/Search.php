@@ -363,6 +363,39 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeYearRange($query, $min, $max)
+    {
+        if (empty($min)) {
+            return $query;
+        }
+        if (empty($max)) {
+            return Carbon::now()->year;
+        }
+
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "date_start" => [
+                                "gte" => $min
+                            ]
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "date_end" => [
+                                "lte" => $max
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     protected function transformYear($year) {
         // Year could come with BC, AD, or 'Present'
 

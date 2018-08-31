@@ -17,6 +17,27 @@ function printMonth($date)
     return \Carbon\Carbon::parse($date)->format('M');
 }
 
+/**
+ * Format a year date.
+ * Formatting cues taken from the dateRangeValues in frontend/js/app.js
+ */
+function printYear($date)
+{
+    if (!is_int($date)) {
+        return null;
+    }
+    if ($date < 0) {
+        return abs($date) ." BC";
+    }
+    if ($date <= 1000) {
+        return $date ." AD";
+    }
+    if ($date == Carbon::now()->year) {
+        return "Present";
+    }
+    return $date;
+}
+
 function hoursSelectOptions($shortlist = false, $startAt = 0, $endAt = 24)
 {
     $hours = [];
@@ -47,4 +68,39 @@ function convertArtworkDates($date)
     }
 
     return $formatdate;
+}
+
+function incrementBefore($date)
+{
+    $increments = [
+        -8000, -7000, -6000, -5000, -4000, -3000, -2000, -1000,
+        1, 500, 1000, 1200, 1400, 1600, 1700, 1800,
+        1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990,
+        2000, 2010];
+
+    foreach ($increments as $year)
+    {
+        if ($year > $date)
+        {
+            return $prev;
+        }
+        $prev = $year;
+    }
+}
+
+function incrementAfter($date)
+{
+    $increments = [
+        -8000, -7000, -6000, -5000, -4000, -3000, -2000, -1000,
+        1, 500, 1000, 1200, 1400, 1600, 1700, 1800,
+        1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990,
+        2000, 2010];
+
+    foreach ($increments as $year)
+    {
+        if ($year > $date)
+        {
+            return $year;
+        }
+    }
 }
