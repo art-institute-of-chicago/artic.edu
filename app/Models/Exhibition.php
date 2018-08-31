@@ -36,7 +36,6 @@ class Exhibition extends Model
         'title',
         'title_display',
         'datahub_id',
-        'is_visible',
         'exhibition_message',
         'list_description',
         'sponsors_description',
@@ -50,7 +49,7 @@ class Exhibition extends Model
         'title',
     ];
 
-    public $checkboxes = ['published', 'is_visible'];
+    public $checkboxes = ['published'];
 
     public $mediasParams = [
         'hero' => [
@@ -209,12 +208,6 @@ class Exhibition extends Model
                 "doc" => "Type",
                 "type" => "string",
                 "value" => function () {return $this->datahub_id;},
-            ],
-            [
-                "name" => 'is_visible',
-                "doc" => "Visible",
-                "type" => "boolean",
-                "value" => function () {return $this->is_visible;},
             ],
             [
                 "name" => 'exhibition_message',

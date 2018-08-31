@@ -16,11 +16,6 @@
         'note' => 'Use only for italics'
     ])
 
-    @formField('checkbox', [
-        'name' => 'is_visible',
-        'label' => 'Visible?',
-    ])
-
     @formField('select', [
         'name' => 'cms_exhibition_type',
         'label' => 'Exhibition layout',

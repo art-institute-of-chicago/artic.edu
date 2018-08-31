@@ -95,7 +95,6 @@ Route::get('/', function () {
  *        @SWG\Property(property="header_copy", type="string", description="Header Copy"),
  *        @SWG\Property(property="content", type="json", description="Content"),
  *        @SWG\Property(property="datahub_id", type="string", description="Datahub ID"),
- *        @SWG\Property(property="is_visible", type="boolean", description="Is Visible?"),
  *        @SWG\Property(property="exhibition_message", type="string", description="Message"),
  *        @SWG\Property(property="cms_exhibition_type", type="integer", description="Type (basic = 0, large = 1, special = 2)"),
  *        @SWG\Property(property="sponsors_description", type="string", description="Sponsors Description"),
