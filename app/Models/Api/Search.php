@@ -485,6 +485,7 @@ class Search extends BaseApiModel
         return $query->rawQuery($params);
     }
 
+    // TODO: Dead code? Remove..?
     public function scopeExhibitionUpcoming($query)
     {
         $params = [
@@ -504,6 +505,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    // TODO: Dead code? Remove..?
     public function scopeExhibitionHistory($query)
     {
         $params = [
@@ -521,6 +523,41 @@ class Search extends BaseApiModel
         ];
 
         return $query->exhibitionOrderByDate('asc')->rawSearch($params);
+    }
+
+    public function scopeExhibitionGlobal($query)
+    {
+        $params = [
+            'bool' => [
+                // Without a must clause, one of these must be true:
+                'should' => [
+                    // ...be a past exhibition
+                    [
+                        'range' => [
+                            'end_at' => [
+                                'lte' => 'now',
+                            ],
+                        ],
+                    ],
+                    // ...be a current exhibition
+                    [
+                        'range' => [
+                            'start_at' => [
+                                'lte' => 'now',
+                            ],
+                        ],
+                    ],
+                    // ...be a featured exhibition
+                    [
+                        'term' => [
+                            'is_featured' => true,
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        return $query->rawSearch($params);
     }
 
     public function scopeExhibitionOrderByDate($query, $direction = 'asc')
