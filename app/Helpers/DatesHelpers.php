@@ -81,6 +81,7 @@ function yearIncrements()
 
 function incrementBefore($date)
 {
+    $prev = 0;
     foreach (yearIncrements() as $year)
     {
         if ($year > $date)
