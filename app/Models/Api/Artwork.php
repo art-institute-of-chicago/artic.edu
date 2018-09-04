@@ -156,6 +156,28 @@ class Artwork extends BaseApiModel
         return $this->allImages()->count() ? $this->allImages() : null;
     }
 
+    public function getStyleIdAttribute($value)
+    {
+        if ($value) {
+            return $value;
+        }
+        if (!empty($this->alt_style_ids)) {
+            return $this->alt_style_ids[0];
+        }
+        return null;
+    }
+
+    public function getClassificationIdAttribute($value)
+    {
+        if ($value) {
+            return $value;
+        }
+        if (!empty($this->alt_classification_ids)) {
+            return $this->alt_classification_ids[0];
+        }
+        return null;
+    }
+
     public function videos()
     {
         return $this->hasMany(\App\Models\Api\Video::class, 'video_ids');
