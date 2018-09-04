@@ -50,6 +50,11 @@ class ArtworkService extends BaseService
             $tags['date'] = collect([$this->resource->date_start => printYear($before) ."–" .printYear($after)]);
         }
 
+        // Build Color Tags
+        if ($this->resource->color) {
+            $tags['color'] = collect([$this->resource->color->h .'-' .$this->resource->color->s .'-' .$this->resource->color->l => 'Color']);
+        }
+
         // Preview 'All Tags" to ensure there's something to show
         if ($this->getAllTags()) {
             $tags['all'] = collect([true => 'All Tags']);

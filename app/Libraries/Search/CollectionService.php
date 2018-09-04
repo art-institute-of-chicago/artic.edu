@@ -4,6 +4,7 @@ namespace App\Libraries\Search;
 use App\Libraries\Search\Filters\Sort as SortFilters;
 use App\Libraries\Search\Filters\DateRange;
 use App\Libraries\Search\Filters\BooleanFilter;
+use App\Libraries\Search\Filters\ColorFilter;
 
 class CollectionService
 {
@@ -118,6 +119,14 @@ class CollectionService
                         ]);
                     }
                     break;
+                case 'color':
+                    if ($category['enabled']) {
+                        $activeFilters->push([
+                            'href'  => $category['href'],
+                            'label' => 'Color'
+                        ]);
+                    }
+                    break;
             }
         }
 
@@ -134,8 +143,9 @@ class CollectionService
         $themes     = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
         $galleries  = (new Filters\Galleries())->generate();
+        $color      = (new Filters\ColorFilter())->generate();
 
-        return array_merge($themes, $techniques, $galleries);
+        return array_merge($themes, $techniques, $galleries, $color);
     }
 
     /**

@@ -317,6 +317,50 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeByColor($query, $hsl)
+    {
+        if (empty($hsl)) {
+            return $query;
+        }
+
+        $hsl = explode('-', $hsl);
+
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        [
+                            "range" => [
+                                "color.h" => [
+                                    "gte" => ($hsl[0] - 5),
+                                    "lte" => ($hsl[0] + 5),
+                                ]
+                            ]
+                        ],
+                        [
+                            "range" => [
+                                "color.s" => [
+                                    "gte" => ($hsl[1] - 5),
+                                    "lte" => ($hsl[1] + 5),
+                                ]
+                            ]
+                        ],
+                        [
+                            "range" => [
+                                "color.l" => [
+                                    "gte" => ($hsl[2] - 5),
+                                    "lte" => ($hsl[2] + 5),
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeYearMin($query, $year)
     {
         if (empty($year)) {
