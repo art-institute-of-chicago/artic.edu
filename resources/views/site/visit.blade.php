@@ -333,18 +333,13 @@
         @endforeach
       </div>
       <div class="m-directions-block__links o-blocks">
-        <h3 class="sr-only" id="h-map-options">Map options</h3>
-        <ul class="f-secondary" aria-labelledby="h-map-options">
-          @foreach ($directions['links'] as $link)
-          <li>
-            @component('components.atoms._arrow-link')
-                @slot('href', $link['href'])
-                @slot('itemprop','hasMap')
-                {{ $link['label'] }}
-            @endcomponent
-          </li>
-          @endforeach
-        </ul>
+        <span class="f-secondary">
+          @component('components.atoms._arrow-link')
+              @slot('href', $directions['link']['href'])
+              @slot('itemprop','hasMap')
+              {{ $directions['link']['label'] }}
+          @endcomponent
+        </span>
       </div>
     </div>
 

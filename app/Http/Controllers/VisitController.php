@@ -117,15 +117,9 @@ class VisitController extends FrontController
             'intro' => __('Located in the heart of the Chicago—across from Millennium Park and steps from Lake Michigan—the Art Institute welcomes visitors at two entrances.'),
             'image' => $page->imageFront('visit_map'),
             'locations' => $page->locations,
-            'links' => array(
-                array(
-                    'href' => $page->visit_parking_link,
-                    'label' => __('Directions & Parking'),
-                ),
-                array(
-                    'href' => $page->visit_transportation_link,
-                    'label' => __('Public Transportation'),
-                ),
+            'link' => array(
+                'href' => $page->visit_parking_link,
+                'label' => __('Directions, Parking, and Public Transportation'),
             ),
         );
 

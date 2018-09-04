@@ -83,7 +83,7 @@
   @include untuck;
 }
 
-.m-directions-block__links.o-blocks > ul[class*=f-] a {
+.m-directions-block__links.o-blocks > span[class*=f-] a {
   background: none;
   color: $color__link--accent;
 
