@@ -27,7 +27,17 @@ const youtubePercentTracking = function(iframe) {
   function _onYouTubePlayerStateChange(event) {
     if (youtubePlayer.getPlayerState() === 1) {
       youtubePlayerTimer = setInterval(_onYouTubePlayerPlaying,250);
+      triggerCustomEvent(document, 'gtm:push', {
+        'event': 'playing',
+        'eventCategory': 'video-engagement',
+      });
     } else {
+      if (youtubePlayer.getPlayerState() === 2) {
+        triggerCustomEvent(document, 'gtm:push', {
+          'event': 'paused',
+          'eventCategory': 'video-engagement',
+        });
+      }
       try {
         clearInterval(youtubePlayerTimer);
       } catch(err){}
