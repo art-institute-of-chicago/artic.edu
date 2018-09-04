@@ -571,14 +571,50 @@ class Search extends BaseApiModel
 
     public function scopeExhibitionGlobal($query)
     {
-        $params = [
+        $sortParams = [
+            'sort' => [
+                [
+                    // ensure current + upcoming exhibits are first
+                    'is_featured' => 'desc'
+                ],
+                [
+                    // reverse dates for current + upcoming into BC
+                    '_script' => [
+                        'type' => 'string',
+                        'order' => 'desc',
+                        'script' => [
+                            'lang' => 'painless',
+                            'inline' => implode(' ', [
+                                // ...for parsing negative datetimes
+                                'def sf = DateTimeFormatter.ISO_OFFSET_DATE_TIME;',
+                                // ...for current exhibits
+                                'if (doc.aic_end_at.date.getMillis() > params.now',
+                                ' && doc.aic_start_at.date.getMillis() < params.now',
+                                ' && doc.status.value != "Closed" )',
+                                '{ return sf.parse("-" + doc.aic_end_at.date.toString()) }',
+                                // ...for upcoming exhibits
+                                'else if (doc.aic_start_at.date.getMillis() > params.now )',
+                                '{ return sf.parse("-" + doc.aic_start_at.date.toString()) }',
+                                // ...for past exhibits
+                                'else { return doc.aic_end_at.date }',
+                            ]),
+                            'params' => [
+                                'now' => time(),
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        $queryParams = [
             'bool' => [
                 // Without a must clause, one of these must be true:
                 'should' => [
                     // ...be a past exhibition
                     [
                         'range' => [
-                            'end_at' => [
+                            'aic_end_at' => [
                                 'lte' => 'now',
                             ],
                         ],
@@ -586,7 +622,7 @@ class Search extends BaseApiModel
                     // ...be a current exhibition
                     [
                         'range' => [
-                            'start_at' => [
+                            'aic_start_at' => [
                                 'lte' => 'now',
                             ],
                         ],
@@ -601,7 +637,7 @@ class Search extends BaseApiModel
             ],
         ];
 
-        return $query->rawSearch($params);
+        return $query->exhibitionOrderByDate('asc')->rawSearch($queryParams)->rawQuery($sortParams);
     }
 
     public function scopeExhibitionOrderByDate($query, $direction = 'asc')
