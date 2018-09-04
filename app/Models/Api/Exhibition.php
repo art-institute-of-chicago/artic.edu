@@ -218,17 +218,24 @@ class Exhibition extends BaseApiModel
             $params = [
                 'bool' => [
                     'must' => [
-                        0 => [
+                        [
                             'range' => [
                                 'aic_start_at' => [
                                     'lte' => $end,
                                 ],
                             ],
                         ],
-                        1 => [
+                        [
                             'range' => [
                                 'aic_start_at' => [
                                     'gte' => $start,
+                                ],
+                            ],
+                        ],
+                        [
+                            'range' => [
+                                'aic_end_at' => [
+                                    'lte' => 'now',
                                 ],
                             ],
                         ],
