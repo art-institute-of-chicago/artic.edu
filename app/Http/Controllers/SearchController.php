@@ -371,7 +371,7 @@ class SearchController extends BaseScopedController
 
     protected function buildLabel($name, $total, $href, $active) {
         return [
-            'label' => ($name == 'All' ? 'All' : str_plural($name, $total)) .' ('. $total.')',
+            'label' => ($name == 'All' ? 'All' : str_plural($name, $total)),
             'href' => $href,
             'active' => $active
         ];
