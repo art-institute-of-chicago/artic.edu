@@ -86,12 +86,21 @@
       @endcomponent
     @endif
 
-    @if ($item->subtitle)
+    @if ($item->date_display)
       @component('components.atoms._title')
           @slot('tag','p')
           @slot('font', 'f-secondary')
-          @slot('variation', 'o-article__inline-header-subtitle')
-          {{ $item->subtitle }}
+          @slot('variation', 'o-article__inline-header-display')
+          {{ $item->date_display }}
+      @endcomponent
+    @endif
+
+    @if ($item->artist_display)
+      @component('components.atoms._title')
+          @slot('tag','p')
+          @slot('font', 'f-secondary')
+          @slot('variation', 'o-article__inline-header-display')
+          {{ $item->artist_display }}
       @endcomponent
     @endif
   </div>

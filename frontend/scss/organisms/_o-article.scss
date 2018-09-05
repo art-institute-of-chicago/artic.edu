@@ -302,6 +302,14 @@
   }
 }
 
+.o-article__inline-header .title.f-headline-editorial+.f-secondary {
+  margin-top: 25px;
+}
+
+.o-article__inline-header .o-article__inline-header-display {
+  margin-top: 25px;
+}
+
 .o-article__inline-header::before,
 .o-article__inline-header::after {
   position: absolute;
