@@ -40,7 +40,7 @@ class ResearchGuideRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null, $page = null, $columns = [])
     {
-        $search  = Search::query()->search($string)->resources(['research-guides']);
+        $search  = Search::query()->search($string)->resources(['research-guides', 'educator-resources']);
 
         $results = $search->getSearch($perPage, $columns, null, $page);
 

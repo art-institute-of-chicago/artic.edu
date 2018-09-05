@@ -23,11 +23,12 @@ class Search extends BaseApiModel
         'sections'    => 'App\Models\Api\Section',
         'events'      => 'App\Models\Event',
         'articles'    => 'App\Models\Article',
-        'printed-catalogs' => 'App\Models\PrintedCatalog',
-        'digital-catalogs' => 'App\Models\DigitalCatalog',
-        'generic-pages'    => 'App\Models\GenericPage',
-        'research-guides'  => 'App\Models\ResearchGuide',
-        'press-releases'   => 'App\Models\PressRelease',
+        'printed-catalogs'    => 'App\Models\PrintedCatalog',
+        'digital-catalogs'    => 'App\Models\DigitalCatalog',
+        'generic-pages'       => 'App\Models\GenericPage',
+        'research-guides'     => 'App\Models\ResearchGuide',
+        'educator-resources'  => 'App\Models\EducatorResource',
+        'press-releases'      => 'App\Models\PressRelease',
     ];
 
     // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).

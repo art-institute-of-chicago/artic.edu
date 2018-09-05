@@ -92,6 +92,11 @@ class EducatorResource extends Model
         return url(route('collection.resources.educator-resources.show', $this->id_slug));
     }
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     public function scopeByCategory($query, $category = null)
     {
         if (empty($category)) {

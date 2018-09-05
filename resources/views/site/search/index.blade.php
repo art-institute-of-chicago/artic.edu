@@ -625,10 +625,10 @@
 @if (isset($researchGuides) && $researchGuides->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $researchGuides->getMetadata('pagination')->total. ' '. str_plural('research guide', $researchGuides->getMetadata('pagination')->total), 'href' => route('search.research-guides', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $researchGuides->getMetadata('pagination')->total. ' '. str_plural('resource', $researchGuides->getMetadata('pagination')->total), 'href' => route('search.research-guides', ['q' => request('q')]))))
         @endunless
 
-        Research Guides
+        Resources
     @endcomponent
 
     @if (isset($allResultsView) && $allResultsView)
