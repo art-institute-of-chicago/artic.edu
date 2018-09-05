@@ -63,12 +63,9 @@ class Artwork extends BaseApiModel
         if ($this->artist_pivots != null && count($this->artist_pivots) > 0) {
             if ($artist = collect($this->artist_pivots)->first()) {
                 return $artist->artist_title;
-            } else {
-                return $this->artist_title ?? $this->artist_display;
             }
-        } else {
-            return $this->artist_title ?? $this->artist_display;
         }
+        return $this->artist_title ?? null;
     }
 
     public function getListingTitleAttribute()
