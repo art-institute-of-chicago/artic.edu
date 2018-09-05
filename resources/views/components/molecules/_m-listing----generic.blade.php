@@ -37,7 +37,7 @@
             @endif
             @if ($item->shortDesc)
             <br>
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->shortDesc }}</span>
+            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->shortDesc !!}</span>
             @endif
             @if ($item->listing_description)
             <br>
