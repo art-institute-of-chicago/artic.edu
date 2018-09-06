@@ -589,13 +589,17 @@ class Search extends BaseApiModel
                         'range' => [
                             'start_at' => [
                                 'lte' => 'now',
+                                'boost' => 2,
                             ],
                         ],
                     ],
                     // ...be a featured exhibition
                     [
                         'term' => [
-                            'is_featured' => true,
+                            'is_featured' => [
+                                'value' => true,
+                                'boost' => 2,
+                            ],
                         ],
                     ],
                 ],
