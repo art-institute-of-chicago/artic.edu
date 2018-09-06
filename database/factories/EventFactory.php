@@ -26,7 +26,6 @@ $factory->define(App\Models\Event::class, function (Faker $faker) {
         'buy_button_caption' => $faker->paragraph(3),
         'is_member_exclusive' => $faker->boolean,
         'is_sold_out' => $faker->boolean,
-        'is_boosted' => $faker->boolean,
         'start_time' => 'PT' .str_pad($faker->numberBetween(0,23), 2, '0', STR_PAD_LEFT)
           .'H' .str_pad($faker->numberBetween(0,59), 2, '0', STR_PAD_LEFT)
           .'M',

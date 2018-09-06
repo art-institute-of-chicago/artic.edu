@@ -1038,10 +1038,6 @@
                     "description": "Buy Button Caption",
                     "type": "string"
                 },
-                "is_boosted": {
-                    "description": "Is Boosted",
-                    "type": "boolean"
-                },
                 "slug": {
                     "description": "Slug",
                     "type": "string"

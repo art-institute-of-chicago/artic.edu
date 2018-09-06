@@ -50,7 +50,6 @@ class Event extends Model
         'is_ticketed',
         'is_sold_out',
         'is_free',
-        'is_boosted',
         'is_member_exclusive',
         'is_registration_required',
         'survey_link',
@@ -135,7 +134,6 @@ class Event extends Model
         'is_free',
         'is_member_exclusive',
         'is_sold_out',
-        'is_boosted',
         'is_registration_required'
     ];
 
@@ -587,12 +585,6 @@ class Event extends Model
                 "doc" => "is_sold_out",
                 "type" => "boolean",
                 "value" => function () {return $this->is_sold_out;},
-            ],
-            [
-                "name" => "is_boosted",
-                "doc" => "is_boosted",
-                "type" => "boolean",
-                "value" => function () {return $this->is_boosted;},
             ],
             [
                 "name" => "slug",

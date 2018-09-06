@@ -131,7 +131,6 @@ Route::get('/', function () {
  *        @SWG\Property(property="layout_type", type="integer", description="Layout Type (basic_layout = 0, large_layout = 1)"),
  *        @SWG\Property(property="buy_button_text", type="string", description="Buy Button Text"),
  *        @SWG\Property(property="buy_button_caption", type="string", description="Buy Button Caption"),
- *        @SWG\Property(property="is_boosted", type="boolean", description="Is Boosted"),
  *        @SWG\Property(property="slug", type="string", description="Slug"),
  *        @SWG\Property(property="web_url", type="string", description="Web Url"),
  *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
