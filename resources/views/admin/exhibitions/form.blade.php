@@ -73,14 +73,6 @@
 
 @section('fieldsets')
     <a17-fieldset id="sponsors" title="Sponsors">
-        @formField('wysiwyg', [
-            'name' => 'sponsors_description',
-            'label' => 'Sponsors section description',
-            'toolbarOptions' => ['bold'],
-            'note' => 'DEPRECATED',
-            'type' => 'textarea'
-        ])
-
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'sponsors',
