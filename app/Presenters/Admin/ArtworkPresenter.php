@@ -111,19 +111,21 @@ class ArtworkPresenter extends BasePresenter
                 'itemprop' => 'creator',
             ];
         } else {
-            if ($this->entity->artist_id) {
-                $label = $this->entity->artist_title ?? $this->entity->artist_display;
-                $details[] = [
-                    'key'   => 'Artist',
-                    'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"']],
-                    'itemprop' => 'creator',
-                ];
-            } else {
-                $details[] = [
-                    'key'   => 'Artist',
-                    'value' => $this->entity->artist_title ?? $this->entity->artist_display,
-                    'itemprop' => 'creator',
-                ];
+            if ($this->entity->artist_title) {
+                $label = $this->entity->artist_title;
+                if ($this->entity->artist_id) {
+                    $details[] = [
+                        'key'   => 'Artist',
+                        'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"']],
+                        'itemprop' => 'creator',
+                    ];
+                } else {
+                    $details[] = [
+                        'key'   => 'Artist',
+                        'value' => $label,
+                        'itemprop' => 'creator',
+                    ];
+                }
             }
         }
 

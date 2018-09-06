@@ -3,7 +3,7 @@
 @section('content')
 
 @component('components.molecules._m-header-block')
-    {{ $page->title }}
+    {!! $page->title_display ?? $page->title !!}
 @endcomponent
 
 @component('components.molecules._m-intro-block')
@@ -134,7 +134,7 @@
 @if (!empty($eventsByDay))
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'Browse events', 'href' => route('events'))))
-        Today&rsquo;s Events
+        Upcoming Events
     @endcomponent
 
     @component('components.organisms._o-row-listing')

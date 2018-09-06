@@ -43,6 +43,21 @@ class ArtworkService extends BaseService
             $tags['artist'] = collect([$artist->title => $artist->title]);
         }
 
+        // Build Date Tags
+        if ($this->resource->date_start && $this->resource->date_end) {
+            $before = incrementBefore($this->resource->date_start);
+            $after = incrementAfter($this->resource->date_start);
+            $tags['date'] = collect([$this->resource->date_start => printYear($before) ."–" .printYear($after)]);
+        }
+
+        // Build Color Tags
+        // Still a work in progress, so don't show in production
+        if (!app()->environment('production')) {
+            if ($this->resource->color) {
+                $tags['color'] = collect([$this->resource->color->h .'-' .$this->resource->color->s .'-' .$this->resource->color->l => 'Color']);
+            }
+        }
+
         // Preview 'All Tags" to ensure there's something to show
         if ($this->getAllTags()) {
             $tags['all'] = collect([true => 'All Tags']);

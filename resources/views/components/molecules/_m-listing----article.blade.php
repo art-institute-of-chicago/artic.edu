@@ -29,7 +29,8 @@
             <br>
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
-                {{ $item->title }}
+                @slot('title', $item->title)
+                @slot('title_display', $item->title_display)
             @endcomponent
             <br>
             <span class="intro {{ $captionFont ?? 'f-caption' }}">{{ $item->intro }}</span>

@@ -9,6 +9,7 @@
     @slot('headerType', $item->present()->headerType)
     @slot('variation', ($item->headerVariation ?? null))
     @slot('title', $item->title)
+    @slot('title_display', $item->title_display)
     @slot('date', $item->date)
     @slot('type', $item->subtype)
     @slot('intro', $item->heading)
@@ -100,7 +101,8 @@
           @slot('tag','h1')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
-          {{ $item->title }}
+          @slot('title', $item->title)
+          @slot('title_display', $item->title_display)
       @endcomponent
     @endif
 

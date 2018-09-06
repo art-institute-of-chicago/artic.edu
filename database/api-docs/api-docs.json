@@ -902,10 +902,6 @@
                     "description": "Datahub ID",
                     "type": "string"
                 },
-                "is_visible": {
-                    "description": "Is Visible?",
-                    "type": "boolean"
-                },
                 "exhibition_message": {
                     "description": "Message",
                     "type": "string"

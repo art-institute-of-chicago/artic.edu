@@ -23,6 +23,7 @@ class Selection extends Model
         'published',
         'content',
         'title',
+        'title_display',
         'short_copy',
         'hero_caption',
         'meta_title',

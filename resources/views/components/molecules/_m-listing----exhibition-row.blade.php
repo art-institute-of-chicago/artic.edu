@@ -58,7 +58,8 @@
         </span>
         <br>
         @component('components.atoms._title')
-            {{ $item->title }}
+            @slot('title', $item->title)
+            @slot('title_display', $item->title_display)
         @endcomponent
         <br>
         @if ($item->list_description)

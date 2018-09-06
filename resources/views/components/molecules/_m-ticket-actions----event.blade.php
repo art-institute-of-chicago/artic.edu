@@ -5,7 +5,7 @@
                 @slot('variation', 'btn--full')
                 @slot('tag', 'a')
                 @slot('href', $ticketLink ?? 'https://sales.artic.edu/')
-                @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $buttonText ?? 'Buy tickets') .'" data-gtm-action="' . $eventName . '" data-gtm-event-category="nav-cta-button"')
+                @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $buttonText ?? 'Buy tickets') .'" data-gtm-action="' . ($eventName ?? '') . '" data-gtm-event-category="nav-cta-button"')
                 {{ $buttonText ?? 'Buy tickets' }}
             @endcomponent
         </li>

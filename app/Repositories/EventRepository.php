@@ -82,6 +82,7 @@ class EventRepository extends ModuleRepository
         }
     }
 
+    // TODO: Consider defaulting $page to 1?
     public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = null)
     {
         $query = $this->model->newQuery();
@@ -158,7 +159,7 @@ class EventRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search  = Search::query()->search($string)->resources(['events']);
+        $search  = Search::query()->dateMin()->search($string)->resources(['events'])->orderBy('start_date');
 
         $results = $search->getSearch($perPage);
 

@@ -88,7 +88,7 @@
 @if (isset($artists) && $artists->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $artists->getMetadata('pagination')->total.' artists', 'href' => route('search.artists', request()->input()))))
+            @slot('links', array(array('label' => 'See all '. $artists->getMetadata('pagination')->total.' '. str_plural('artist', $artists->getMetadata('pagination')->total), 'href' => route('search.artists', request()->input()))))
         @endunless
         Artists
     @endcomponent
@@ -130,7 +130,7 @@
 @if (isset($pages) && $pages->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all pages', 'href' => route('search.pages', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $pages->getMetadata('pagination')->total. ' '. str_plural('page', $pages->getMetadata('pagination')->total), 'href' => route('search.pages', ['q' => request('q')]))))
         @endif
         Pages
     @endcomponent
@@ -207,7 +207,7 @@
 @if (isset($artworks) && $artworks->total() > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $artworks->total() .' artworks', 'href' => route('search.artworks', request()->input()))))
+        @slot('links', array(array('label' => 'See all '. $artworks->total() .' ' .str_plural('artwork', $artworks->total()), 'href' => route('search.artworks', request()->input()))))
         @endunless
         Artworks
     @endcomponent
@@ -306,7 +306,7 @@
 @if (isset($exhibitions))
     @component('components.molecules._m-title-bar')
         @unless (isset($allResultsView) and $allResultsView)
-            @slot('links', array(array('label' => 'See all '. $exhibitions->getMetadata('pagination')->total .' exhibitions', 'href' => route('search.exhibitions', request()->input()))))
+        @slot('links', array(array('label' => 'See all '. $exhibitions->getMetadata('pagination')->total .' ' .str_plural('exhibition', $exhibitions->getMetadata('pagination')->total), 'href' => route('search.exhibitions', request()->input()))))
         @endif
         Exhibitions
     @endcomponent
@@ -402,7 +402,7 @@
 @if (isset($events) && $events->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all events', 'href' => route('search.events', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $events->getMetadata('pagination')->total. ' '. str_plural('event', $events->getMetadata('pagination')->total), 'href' => route('search.events', ['q' => request('q')]))))
         @endif
         Events
     @endcomponent
@@ -475,7 +475,7 @@
 @if (isset($articles) && $articles->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all writings', 'href' => route('search.articles', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $articles->getMetadata('pagination')->total. ' '. str_plural('writing', $articles->getMetadata('pagination')->total), 'href' => route('search.articles', ['q' => request('q')]))))
         @endunless
         Writings
     @endcomponent
@@ -550,7 +550,7 @@
 @if (isset($publications) && $publications->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
-            @slot('links', array(array('label' => 'See all publications', 'href' => route('search.publications', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $publications->getMetadata('pagination')->total. ' '. str_plural('publication', $publications->getMetadata('pagination')->total), 'href' => route('search.publications', ['q' => request('q')]))))
         @endunless
         Publications
     @endcomponent
@@ -625,10 +625,10 @@
 @if (isset($researchGuides) && $researchGuides->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all research guides', 'href' => route('search.research-guides', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $researchGuides->getMetadata('pagination')->total. ' '. str_plural('resource', $researchGuides->getMetadata('pagination')->total), 'href' => route('search.research-guides', ['q' => request('q')]))))
         @endunless
 
-        Research Guides
+        Resources
     @endcomponent
 
     @if (isset($allResultsView) && $allResultsView)
@@ -696,7 +696,7 @@
 
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all press releases', 'href' => route('search.press-releases', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $pressReleases->getMetadata('pagination')->total. ' '. str_plural('press release', $pressReleases->getMetadata('pagination')->total), 'href' => route('search.press-releases', ['q' => request('q')]))))
         @endunless
         Press Releases
     @endcomponent

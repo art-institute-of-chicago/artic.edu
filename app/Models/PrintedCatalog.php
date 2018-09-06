@@ -18,6 +18,7 @@ class PrintedCatalog extends Model
         'listing_description',
         'short_description',
         'title',
+        'title_display',
         'published',
         'public',
         'publish_start_date',

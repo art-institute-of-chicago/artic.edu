@@ -23,11 +23,12 @@ class Search extends BaseApiModel
         'sections'    => 'App\Models\Api\Section',
         'events'      => 'App\Models\Event',
         'articles'    => 'App\Models\Article',
-        'printed-catalogs' => 'App\Models\PrintedCatalog',
-        'digital-catalogs' => 'App\Models\DigitalCatalog',
-        'generic-pages'    => 'App\Models\GenericPage',
-        'research-guides'  => 'App\Models\ResearchGuide',
-        'press-releases'   => 'App\Models\PressRelease',
+        'printed-catalogs'    => 'App\Models\PrintedCatalog',
+        'digital-catalogs'    => 'App\Models\DigitalCatalog',
+        'generic-pages'       => 'App\Models\GenericPage',
+        'research-guides'     => 'App\Models\ResearchGuide',
+        'educator-resources'  => 'App\Models\EducatorResource',
+        'press-releases'      => 'App\Models\PressRelease',
     ];
 
     // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
@@ -317,9 +318,53 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeDateMin($query, $date)
+    public function scopeByColor($query, $hsl)
     {
-        if (empty($date)) {
+        if (empty($hsl)) {
+            return $query;
+        }
+
+        $hsl = explode('-', $hsl);
+
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        [
+                            "range" => [
+                                "color.h" => [
+                                    "gte" => ($hsl[0] - 5),
+                                    "lte" => ($hsl[0] + 5),
+                                ]
+                            ]
+                        ],
+                        [
+                            "range" => [
+                                "color.s" => [
+                                    "gte" => ($hsl[1] - 5),
+                                    "lte" => ($hsl[1] + 5),
+                                ]
+                            ]
+                        ],
+                        [
+                            "range" => [
+                                "color.l" => [
+                                    "gte" => ($hsl[2] - 5),
+                                    "lte" => ($hsl[2] + 5),
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeYearMin($query, $year)
+    {
+        if (empty($year)) {
             return $query;
         }
 
@@ -329,7 +374,7 @@ class Search extends BaseApiModel
                     [
                         "range" => [
                             "date_start" => [
-                                "gte" => $this->transformDate($date)
+                                "gte" => $this->transformYear($year)
                             ]
                         ]
                     ]
@@ -340,9 +385,9 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeDateMax($query, $date)
+    public function scopeYearMax($query, $year)
     {
-        if (empty($date)) {
+        if (empty($year)) {
             return $query;
         }
 
@@ -352,7 +397,7 @@ class Search extends BaseApiModel
                     [
                         "range" => [
                             "date_end" => [
-                                "lte" => $this->transformDate($date)
+                                "lte" => $this->transformYear($year)
                             ]
                         ]
                     ]
@@ -363,20 +408,78 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    protected function transformDate($date) {
-        // Date could come with BC, AD, or 'Present'
+    public function scopeYearRange($query, $min, $max)
+    {
+        if (empty($min)) {
+            return $query;
+        }
+        if (empty($max)) {
+            return Carbon::now()->year;
+        }
 
-        if (str_contains($date, 'BC')) {
-            $date = - (integer) $date;
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "date_start" => [
+                                "gte" => $min
+                            ]
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "date_end" => [
+                                "lte" => $max
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
+    protected function transformYear($year) {
+        // Year could come with BC, AD, or 'Present'
+
+        if (str_contains($year, 'BC')) {
+            $year = - (integer) $year;
         } else {
-            if (str_contains($date, 'Present')) {
-                $date = Carbon::now()->year;
+            if (str_contains($year, 'Present')) {
+                $year = Carbon::now()->year;
             } else {
-                $date = (integer) $date;
+                $year = (integer) $year;
             }
         }
 
-        return $date;
+        return $year;
+    }
+
+    public function scopeDateMin($query, $date = null)
+    {
+        if (empty($date)) {
+            $date = Carbon::today();
+        }
+        else {
+            $date = Carbon::parse($date);
+        }
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "end_date" => [
+                                "gte" => $date->toIso8601String()
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
     }
 
     public function scopeByIds($query, $ids)
@@ -427,6 +530,7 @@ class Search extends BaseApiModel
         return $query->rawQuery($params);
     }
 
+    // TODO: Dead code? Remove..?
     public function scopeExhibitionUpcoming($query)
     {
         $params = [
@@ -446,6 +550,7 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    // TODO: Dead code? Remove..?
     public function scopeExhibitionHistory($query)
     {
         $params = [
@@ -463,6 +568,41 @@ class Search extends BaseApiModel
         ];
 
         return $query->exhibitionOrderByDate('asc')->rawSearch($params);
+    }
+
+    public function scopeExhibitionGlobal($query)
+    {
+        $params = [
+            'bool' => [
+                // Without a must clause, one of these must be true:
+                'should' => [
+                    // ...be a past exhibition
+                    [
+                        'range' => [
+                            'end_at' => [
+                                'lte' => 'now',
+                            ],
+                        ],
+                    ],
+                    // ...be a current exhibition
+                    [
+                        'range' => [
+                            'start_at' => [
+                                'lte' => 'now',
+                            ],
+                        ],
+                    ],
+                    // ...be a featured exhibition
+                    [
+                        'term' => [
+                            'is_featured' => true,
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        return $query->rawSearch($params);
     }
 
     public function scopeExhibitionOrderByDate($query, $direction = 'asc')

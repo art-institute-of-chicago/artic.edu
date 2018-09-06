@@ -12,6 +12,7 @@
     @slot('headerType', $item->present()->headerType)
     {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
     @slot('title', $item->title)
+    @slot('title_display', $item->title_display)
     @slot('date', $item->present()->date)
     @slot('dateStart', $item->present()->startAt)
     @slot('dateEnd', $item->present()->endAt)

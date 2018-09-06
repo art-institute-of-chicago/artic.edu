@@ -10,6 +10,7 @@ use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Page;
 use Carbon\Carbon;
 
 class Exhibition extends Model
@@ -34,8 +35,8 @@ class Exhibition extends Model
         'content',
         'header_copy',
         'title',
+        'title_display',
         'datahub_id',
-        'is_visible',
         'exhibition_message',
         'list_description',
         'sponsors_description',
@@ -49,7 +50,7 @@ class Exhibition extends Model
         'title',
     ];
 
-    public $checkboxes = ['published', 'is_visible'];
+    public $checkboxes = ['published'];
 
     public $mediasParams = [
         'hero' => [
@@ -180,6 +181,12 @@ class Exhibition extends Model
     {
         return [
             [
+                "name" => 'is_featured',
+                'doc' => 'Is this exhibition in the primary or secondary feature listings on the landing page?',
+                'type' => 'boolean',
+                'value' => function () {return $this->is_featured;},
+            ],
+            [
                 "name" => 'published',
                 "doc" => "Published",
                 "type" => "boolean",
@@ -210,12 +217,6 @@ class Exhibition extends Model
                 "value" => function () {return $this->datahub_id;},
             ],
             [
-                "name" => 'is_visible',
-                "doc" => "Visible",
-                "type" => "boolean",
-                "value" => function () {return $this->is_visible;},
-            ],
-            [
                 "name" => 'exhibition_message',
                 "doc" => "Message",
                 "type" => "string",
@@ -240,6 +241,22 @@ class Exhibition extends Model
                 "value" => function () {return $this->sponsors_description;},
             ],
         ];
+    }
+
+    public function getIsFeaturedAttribute() {
+
+        // See ExhibitionsController::index and relations on Page model
+        $page = Page::forType('Exhibitions and Events')->with('apiElements')->first();
+
+        $featuredIds = $page->apiElements()->whereIn('relation', [
+            'exhibitionsExhibitions',
+            'exhibitionsCurrent',
+            'exhibitionsUpcoming',
+            'exhibitionsUpcomingListing',
+        ])->get(['datahub_id'])->pluck('datahub_id')->all();
+
+        return in_array($this->datahub_id, $featuredIds);
+
     }
 
 }

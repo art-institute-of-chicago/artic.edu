@@ -10,9 +10,10 @@
 ])
 
 @section('contentFields')
-    @formField('checkbox', [
-        'name' => 'is_visible',
-        'label' => 'Visible?',
+    @formField('input', [
+        'name' => 'title_display',
+        'label' => 'Title (HTML)',
+        'note' => 'Use only for italics'
     ])
 
     @formField('select', [

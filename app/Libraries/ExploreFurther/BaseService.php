@@ -19,7 +19,9 @@ class BaseService
     const VALID_FILTERS = [
         'ef-classification_ids',
         'ef-artist_ids',
-        'ef-style_ids'
+        'ef-style_ids',
+        'ef-date_ids',
+        'ef-color_ids',
     ];
 
     protected $resource;
@@ -94,7 +96,9 @@ class BaseService
         if ($active) {
             $query->byClassifications($parameters->get('ef-classification_ids'))
                   ->byArtists($parameters->get('ef-artist_ids'))
-                  ->byStyles($parameters->get('ef-style_ids'));
+                  ->byStyles($parameters->get('ef-style_ids'))
+                  ->yearRange(incrementBefore($parameters->get('ef-date_ids')), incrementAfter($parameters->get('ef-date_ids')))
+                  ->byColor($parameters->get('ef-color_ids'));
         } else {
             // When no filter selected, use the first filter available.
             $category = key($this->tags());
@@ -118,6 +122,12 @@ class BaseService
                 case 'style':
                     $query->byStyles($id);
                     break;
+                case 'date':
+                    $query->dateRange(incrementBefore($id), incrementAfter($id));
+                    break;
+                case 'color':
+                    $query->byColor($id);
+                    break;
             }
         }
 
@@ -137,7 +147,17 @@ class BaseService
         if ($parameters->isNotEmpty()) {
             foreach ($parameters as $key => $value) {
                 if (in_array($key, self::VALID_FILTERS)) {
-                    return route('collection', [str_replace('ef-', '', $key) => $value]);
+                    switch ($key) {
+                        case 'ef-date_ids':
+                            return route('collection', ['date-start' => str_replace(' ','', printYear(incrementBefore($value))),
+                                                        'date-end' => str_replace(' ', '', printYear(incrementAfter($value)))]);
+                            break;
+                        case 'ef-color_ids':
+                            return route('collection', ['color' => $value]);
+                            break;
+                        default:
+                            return route('collection', [str_replace('ef-', '', $key) => $value]);
+                    }
                 }
             }
         } else {
@@ -159,6 +179,12 @@ class BaseService
                         break;
                     case 'style':
                         return route('collection', ['style_ids' => $id]);
+                        break;
+                    case 'date':
+                        return route('collection', ['date-start' => incrementBefore($id), 'date-end' => incrementAfter($id)]);
+                        break;
+                    case 'color':
+                        return route('collection', ['color' => $id]);
                         break;
                 }
             }

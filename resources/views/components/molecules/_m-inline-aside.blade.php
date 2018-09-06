@@ -5,7 +5,7 @@
         @component('components.blocks._text')
             @slot('font', ($titleFont ?? 'f-module-title-1'))
             @slot('tag', ($titleTag ?? 'h4'))
-            {{ $title }}
+            {!! $title_display ?? $title !!}
         @endcomponent
     @endif
     {{ $slot }}

@@ -1,13 +1,22 @@
 <?php
 
 if (!function_exists('extractAggregation')) {
-    function extractAggregation($aggregations, $name)
+    function extractAggregation($aggregations, $names)
     {
-        $element = array_first($aggregations, function($value) use ($name) {
-            return $value->key == $name;
-        });
+        if (!is_array($names)) {
+            $names = [$names];
+        }
 
-        return $element ? $element->doc_count : null;
+        $count = 0;
+        foreach ($names as $name) {
+            $element = array_first($aggregations, function($value) use ($name) {
+                return $value->key == $name;
+            });
+
+            $element ? $count += $element->doc_count : null;
+        }
+
+        return $count > 0 ? $count : null;
     }
 }
 

@@ -38,7 +38,8 @@
                     @slot('font', $titleFont ?? 'f-list-3')
                     @slot('tag', 'span')
                     @slot('ariaHidden', 'true')
-                    {{ $item['title'] }}
+                    @slot('title', $item['title'])
+                    @slot('title_display', $item['title_display'] ?? null)
                 @endcomponent
             @endif
             <br>

@@ -19,6 +19,7 @@ class ExhibitionPressRoom extends Model
         'listing_description',
         'short_description',
         'title',
+        'title_display',
         'published',
         'publish_start_date',
         'publish_end_date',

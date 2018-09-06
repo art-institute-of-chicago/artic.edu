@@ -58,22 +58,14 @@ class Artwork extends BaseApiModel
         return $this->title . ' (' . ($artist->title ?? '') . ' #' . $this->main_reference_number . ')';
     }
 
-    public function getSubtitleAttribute()
-    {
-        return join(', ', array_filter([$this->artist_display, $this->date_display]));
-    }
-
     public function getListingSubtitleAttribute()
     {
         if ($this->artist_pivots != null && count($this->artist_pivots) > 0) {
             if ($artist = collect($this->artist_pivots)->first()) {
                 return $artist->artist_title;
-            } else {
-                return $this->artist_title ?? $this->artist_display;
             }
-        } else {
-            return $this->artist_title ?? $this->artist_display;
         }
+        return $this->artist_title ?? null;
     }
 
     public function getListingTitleAttribute()
@@ -89,13 +81,12 @@ class Artwork extends BaseApiModel
 
     public function getArtistDisplayAttribute($value)
     {
-        if (str_contains($value, "\n")) {
-            $array = explode("\n", $value);
-            $tail = implode(' ', array_slice($array, 1));
-            $showParen = !starts_with($tail, '(') && !ends_with($tail, ')');
-            $value = $array[0] . ' ' .($showParen ? '(' : '') . $tail . ($showParen ? ')' : '');
-        }
-        return $value;
+        return str_replace("\n", "<br/>", $value);
+    }
+
+    public function getDateDisplayAttribute($value)
+    {
+        return str_replace("\n", "<br/>", $value);
     }
 
     public function getCataloguesAttribute()
@@ -154,6 +145,28 @@ class Artwork extends BaseApiModel
     public function getGalleryImagesAttribute()
     {
         return $this->allImages()->count() ? $this->allImages() : null;
+    }
+
+    public function getStyleIdAttribute($value)
+    {
+        if ($value) {
+            return $value;
+        }
+        if (!empty($this->alt_style_ids)) {
+            return $this->alt_style_ids[0];
+        }
+        return null;
+    }
+
+    public function getClassificationIdAttribute($value)
+    {
+        if ($value) {
+            return $value;
+        }
+        if (!empty($this->alt_classification_ids)) {
+            return $this->alt_classification_ids[0];
+        }
+        return null;
     }
 
     public function videos()

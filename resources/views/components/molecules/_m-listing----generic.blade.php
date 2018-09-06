@@ -28,7 +28,8 @@
             @endif
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
-                {{ $item->title }}
+                @slot('title', $item->title)
+                @slot('title_display', $item->title_display)
             @endcomponent
             @if ($item->intro)
             <br>
@@ -36,7 +37,7 @@
             @endif
             @if ($item->shortDesc)
             <br>
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->shortDesc }}</span>
+            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->shortDesc !!}</span>
             @endif
             @if ($item->listing_description)
             <br>

@@ -45,10 +45,13 @@ class ExhibitionRepository extends BaseApiRepository
     {
         $search  = Search::query()->search($string)->resources(['exhibitions']);
 
+        // TODO: `upcoming` and `past` might be dead code. Remove..?
         if ($time == 'upcoming') {
             $search->exhibitionUpcoming();
         } elseif ($time == 'past') {
             $search->exhibitionHistory();
+        } else {
+            $search->exhibitionGlobal();
         }
 
         $results = $search->getPaginatedModel($perPage, \App\Models\Api\Exhibition::SEARCH_FIELDS);

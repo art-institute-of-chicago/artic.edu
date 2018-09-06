@@ -359,8 +359,8 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'printed-catalogs')) {
             array_push($links, $this->buildLabel('Print Catalogues', extractAggregation($aggregations, 'printed-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
-        if (extractAggregation($aggregations, 'research-guides')) {
-            array_push($links, $this->buildLabel('Research Guides', extractAggregation($aggregations, 'research-guides'), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));
+        if (extractAggregation($aggregations, ['research-guides','educator-resources'])) {
+            array_push($links, $this->buildLabel('Resources', extractAggregation($aggregations, ['research-guides', 'educator-resources']), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));
         }
         if (extractAggregation($aggregations, 'press-releases')) {
             array_push($links, $this->buildLabel('Press Releases', extractAggregation($aggregations, 'press-releases'), route('search.press-releases', ['q' => request('q')]), $active == 'press-releases'));
@@ -371,7 +371,7 @@ class SearchController extends BaseScopedController
 
     protected function buildLabel($name, $total, $href, $active) {
         return [
-            'label' => ($name == 'All' ? 'All' : str_plural($name, $total)) .' ('. $total.')',
+            'label' => ($name == 'All' ? 'All' : str_plural($name, $total)),
             'href' => $href,
             'active' => $active
         ];
