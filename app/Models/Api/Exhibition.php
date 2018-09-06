@@ -233,9 +233,22 @@ class Exhibition extends BaseApiModel
                             ],
                         ],
                         [
-                            'range' => [
-                                'aic_end_at' => [
-                                    'lte' => 'now',
+                            'bool' => [
+                                'should' => [
+                                    [
+                                        'range' => [
+                                            'aic_end_at' => [
+                                                'lte' => 'now',
+                                            ],
+                                        ],
+                                    ],
+                                    [
+                                        'range' => [
+                                            'aic_start_at' => [
+                                                'lt' => '2011-01-01',
+                                            ],
+                                        ],
+                                    ],
                                 ],
                             ],
                         ],
