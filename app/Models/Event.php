@@ -53,7 +53,6 @@ class Event extends Model
         'is_boosted',
         'is_member_exclusive',
         'is_registration_required',
-        'is_admission_required',
         'survey_link',
         'email_series',
         'hidden',
@@ -135,7 +134,6 @@ class Event extends Model
         'is_ticketed',
         'is_free',
         'is_member_exclusive',
-        'is_admission_required',
         'is_sold_out',
         'is_boosted',
         'is_registration_required'
@@ -472,12 +470,6 @@ class Event extends Model
                 "doc" => "Is Registration required",
                 "type" => "boolean",
                 "value" => function () {return $this->is_registration_required;},
-            ],
-            [
-                "name" => "is_admission_required",
-                "doc" => "Is admission required",
-                "type" => "boolean",
-                "value" => function () {return $this->is_admission_required;},
             ],
             [
                 "name" => "hidden",

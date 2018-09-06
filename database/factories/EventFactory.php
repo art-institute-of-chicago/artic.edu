@@ -40,7 +40,6 @@ $factory->define(App\Models\Event::class, function (Faker $faker) {
         'migrated_node_id' => $faker->randomNumber(4),
         'migrated_at' => $faker->dateTimeThisYear,
         'migrated_slug' => $faker->slug,
-        'is_admission_required' => $faker->boolean,
         'alt_types' => '[]',
         'alt_audiences' => '[]',
         'survey_link' => $faker->url,
