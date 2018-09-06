@@ -234,6 +234,16 @@ class Event extends Model
         $this->attributes['alt_audiences'] = $this->getJsonColumnFromMultiSelect($value);
     }
 
+    public function getBuyTicketsLinkAttribute($value)
+    {
+        $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
+        if ($ticketedEvent) {
+            $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date;
+            return "https://sales.artic.edu/Events/Event/" .$ticketedEvent->id ."?date=" .$date->format('n/j/Y');
+        }
+        return $value;
+    }
+
     // This emulates an Eloquent collection from a JSON column
     // TODO: Move this somewhere more appropriate - presenter?
     private function getMultiSelectFromJsonColumn($value)

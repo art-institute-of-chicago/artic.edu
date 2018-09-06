@@ -142,24 +142,26 @@
 
         @formField('input', [
             'name' => 'buy_tickets_link',
-            'label' => 'Buy tickets link'
+            'label' => 'Button link',
+            'disabled' => 'true',
         ])
 
         @formField('input', [
             'name' => 'rsvp_link',
-            'label' => 'External RSVP Link',
-            'note' => 'RSVP link used when an event is private, or when is Free and Ticketed'
+            'label' => 'Custom tickets link',
+            'note' => 'Use this to set a custom ticket link and/or override the sales.artic.edu "Buy tickets link"'
         ])
 
         @formField('input', [
             'name' => 'buy_button_text',
             'label' => 'Button text',
-            'note' => 'E.G. Buy Tickets'
+            'note' => 'Optional, will override default button text, based on labels'
         ])
 
         @formField('wysiwyg', [
             'name' => 'buy_button_caption',
             'label' => 'Pricing or attendance information',
+            'note' => 'e.g., add cost of event, or other relevant information',
             'toolbarOptions' => ['bold']
         ])
 
