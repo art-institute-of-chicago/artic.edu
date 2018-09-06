@@ -1,6 +1,7 @@
 @extends('twill::layouts.form', [
     'additionalFieldsets' => [
-        ['fieldset' => 'attributes', 'label' => 'Attributes'],
+        ['fieldset' => 'filters_and_types', 'label' => 'Filters and Types'],
+        ['fieldset' => 'ticketing', 'label' => 'Ticketing Information'],
         ['fieldset' => 'dates', 'label' => 'Date Rules'],
         ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
         ['fieldset' => 'related_elements', 'label' => 'Right rail related slot'],
@@ -81,7 +82,7 @@
 
 @section('fieldsets')
 
-    <a17-fieldset id="attributes" title="Filters and types">
+    <a17-fieldset id="filters_and_types" title="Filters and types">
         @formField('select', [
             'name' => 'event_type',
             'label' => 'Event type (preferred)',
@@ -125,51 +126,29 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="attributes" title="Event entrance attributes">
+    <a17-fieldset id="ticketing" title="Ticketing Information">
         @formField('checkbox', [
-            'name' => 'is_registration_required',
-            'label' => 'Requires registration'
+            'name' => 'is_ticketed',
+            'label' => 'Ticketed Event'
         ])
 
-        @formField('checkbox', [
-            'name' => 'is_member_exclusive',
-            'label' => 'Members exclusive event'
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'max' => 1,
+            'moduleName' => 'ticketedEvents',
+            'name' => 'ticketedEvent',
+            'label' => 'Event from ticketing system'
         ])
 
-        @formField('checkbox', [
-            'name' => 'is_after_hours',
-            'label' => 'After Hours'
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_sold_out',
-            'label' => 'Sold Out',
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_private',
-            'label' => 'Is Private',
+        @formField('input', [
+            'name' => 'buy_tickets_link',
+            'label' => 'Buy tickets link'
         ])
 
         @formField('input', [
             'name' => 'rsvp_link',
             'label' => 'External RSVP Link',
             'note' => 'RSVP link used when an event is private, or when is Free and Ticketed'
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_free',
-            'label' => 'Free Event'
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_admission_required',
-            'label' => 'Admission Required'
-        ])
-
-        @formField('input', [
-            'name' => 'buy_tickets_link',
-            'label' => 'Buy tickets link'
         ])
 
         @formField('input', [
@@ -185,23 +164,30 @@
         ])
 
         @formField('checkbox', [
-            'name' => 'is_boosted',
-            'label' => 'Boost this event on search results'
+            'name' => 'is_private',
+            'label' => 'Is Private',
+            'hint' => 'Hide event from listings'
         ])
-    </a17-fieldset>
 
-    <a17-fieldset id="ticketing" title="Ticketing information">
         @formField('checkbox', [
-            'name' => 'is_ticketed',
-            'label' => 'Ticketed Event'
+            'name' => 'is_free',
+            'label' => 'Free Event',
+            'hint' => 'RSVP',
         ])
 
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'max' => 1,
-            'moduleName' => 'ticketedEvents',
-            'name' => 'ticketedEvent',
-            'label' => 'Event from ticketing system'
+        @formField('checkbox', [
+            'name' => 'is_registration_required',
+            'label' => 'Registration Required'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_member_exclusive',
+            'label' => 'Members exclusive event'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_sold_out',
+            'label' => 'Sold Out',
         ])
 
         @formField('select', [
