@@ -165,31 +165,36 @@
             'toolbarOptions' => ['bold']
         ])
 
-        @formField('checkbox', [
-            'name' => 'is_private',
-            'label' => 'Is Private',
-            'hint' => 'Hide event from listings'
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_free',
-            'label' => 'Free Event',
-            'hint' => 'RSVP',
-        ])
+        <p>Event Labels</p>
 
         @formField('checkbox', [
             'name' => 'is_registration_required',
-            'label' => 'Registration Required'
+            'label' => 'Registration Required',
+            'note' => 'Will display as default button text and event label in listings.',
         ])
 
         @formField('checkbox', [
             'name' => 'is_member_exclusive',
-            'label' => 'Members exclusive event'
+            'label' => 'Member Exclusive',
+            'note' => 'Will display as default button text and event label in listings.',
         ])
 
         @formField('checkbox', [
             'name' => 'is_sold_out',
             'label' => 'Sold Out',
+            'note' => 'Will display as default button text and event label in listings.',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_free',
+            'label' => 'RSVP',
+            'note' => 'Will display as default button text and event label in listings.'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_private',
+            'label' => 'Is Private',
+            'note' => 'Will remove event page from public calendar listing.',
         ])
 
         @formField('select', [
