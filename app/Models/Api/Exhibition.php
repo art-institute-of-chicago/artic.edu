@@ -39,11 +39,7 @@ class Exhibition extends BaseApiModel
     public function getIsClosedAttribute()
     {
         if (empty($this->aic_end_at)) {
-            if (empty($this->aic_start_at)) {
-                return true;
-            } else {
-                return $this->dateStart->year < 2010;
-            }
+            return false;
         } else {
             return Carbon::now()->gt($this->dateEnd->endOfDay());
         }
@@ -97,15 +93,10 @@ class Exhibition extends BaseApiModel
     // See exhibitionType() in ExhibitionPresenter
     public function getIsOngoingAttribute()
     {
-        if (empty($this->aic_end_at)) {
-            if (isset($this->aic_start_at)) {
-                if ($this->dateStart->year > 2010) {
-                    return Carbon::now()->gt($this->dateStart->startOfDay());
-                }
-            }
+        if (!empty($this->dateStart) && empty($this->dateEnd)) {
+            return Carbon::now()->gt($this->dateStart->startOfDay());
         }
 
-        return false;
     }
 
     public function getListDescriptionAttribute($value)
