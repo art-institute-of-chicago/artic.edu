@@ -47,7 +47,6 @@ class Event extends Model
         'end_time',
         'door_time',
         'is_private',
-        'is_after_hours',
         'is_ticketed',
         'is_sold_out',
         'is_free',
@@ -133,7 +132,6 @@ class Event extends Model
         'published',
         'hidden',
         'is_private',
-        'is_after_hours',
         'is_ticketed',
         'is_free',
         'is_member_exclusive',
@@ -450,12 +448,6 @@ class Event extends Model
                 "doc" => "Is Private",
                 "type" => "boolean",
                 "value" => function () {return $this->is_private;},
-            ],
-            [
-                "name" => "is_after_hours",
-                "doc" => "Is after hhours",
-                "type" => "boolean",
-                "value" => function () {return $this->is_after_hours;},
             ],
             [
                 "name" => "is_ticketed",

@@ -966,10 +966,6 @@
                     "description": "Is Private?",
                     "type": "boolean"
                 },
-                "is_after_hours": {
-                    "description": "Is After Hours?",
-                    "type": "boolean"
-                },
                 "is_ticketed": {
                     "description": "Is Tickted?",
                     "type": "boolean"

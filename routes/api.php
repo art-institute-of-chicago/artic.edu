@@ -114,7 +114,6 @@ Route::get('/', function () {
  *        @SWG\Property(property="list_description", type="string", description="List Description"),
  *        @SWG\Property(property="hero_caption", type="string", description="Hero Caption"),
  *        @SWG\Property(property="is_private", type="boolean", description="Is Private?"),
- *        @SWG\Property(property="is_after_hours", type="boolean", description="Is After Hours?"),
  *        @SWG\Property(property="is_ticketed", type="boolean", description="Is Tickted?"),
  *        @SWG\Property(property="is_free", type="boolean", description="Is Free?"),
  *        @SWG\Property(property="is_member_exclusive", type="boolean", description="Is Member Exclusive?"),
