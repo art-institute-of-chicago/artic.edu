@@ -22,7 +22,7 @@ class UpdateSponsors extends Command
         $blockRepository = app(BlockRepository::class);
 
         // Remove all existing sponsors, including soft-deleted ones
-        Sponsor::withTrashed()->get()->each( function($sponsor) use ($blockRepository) {
+        Sponsor::withTrashed()->where('id', '!=', 26)->get()->each( function($sponsor) use ($blockRepository) {
 
             // Delete all the blocks - deleting the sponsor doesn't cascade changes
             $blockRepository->bulkDelete($sponsor->blocks()->pluck('id')->toArray());
@@ -33,7 +33,7 @@ class UpdateSponsors extends Command
         });
 
         // Find all exhibitions with sponsor field
-        $exhibitions = Exhibition::whereNotNull('sponsors_description')->get();
+        $exhibitions = Exhibition::whereNotNull('sponsors_description')->where('id', '!=', 1)->get();
 
         foreach( $exhibitions as $exhibition )
         {
