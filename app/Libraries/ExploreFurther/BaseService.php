@@ -131,6 +131,9 @@ class BaseService
                 case 'color':
                     $query->byColor($id);
                     break;
+                case 'most-similar':
+                    $query->byMostSimilar();
+                    break;
             }
         }
 
