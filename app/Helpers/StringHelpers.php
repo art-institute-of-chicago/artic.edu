@@ -110,6 +110,7 @@ if (!function_exists('getUtf8Slug')) {
     }
 }
 
+// TODO: Figure out a way to do this to HTML instead of plaintext..?
 if (!function_exists('truncateStr')) {
     function truncateStr($string, $length = 150) {
         $limit = abs((int)$length);

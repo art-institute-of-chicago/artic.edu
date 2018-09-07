@@ -21,11 +21,14 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('input', [
+    @formField('wywiwyg', [
         'name' => 'listing_description',
         'label' => 'Listing description',
-        'type' => 'textarea',
-        'maxlength'  => 255
+        'maxlength'  => 255,
+        'note' => 'Max 255 characters',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('wysiwyg', [

@@ -63,11 +63,14 @@
         'maxlength' => 255
     ])
 
-    @formField('input', [
+    @formField('wywiwyg', [
         'name' => 'list_description',
-        'label' => 'List description',
-        'type' => 'textarea',
-        'maxlength' => 255
+        'label' => 'Listing description',
+        'maxlength'  => 255,
+        'note' => 'Max 255 characters',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('input', [

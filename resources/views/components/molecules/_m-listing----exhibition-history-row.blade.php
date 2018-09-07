@@ -19,7 +19,7 @@
         @endcomponent
 
         <br>
-        <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->list_description }}</span>
+        <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->list_description !!}</span>
         <br>
 
         <span class="m-listing__meta-bottom">
