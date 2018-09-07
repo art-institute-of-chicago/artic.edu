@@ -255,7 +255,7 @@
         @endcomponent
         @component('components.blocks._text')
             @slot('font', 'f-secondary')
-            {{ $item->citations }}
+            {!! $item->citations !!}
         @endcomponent
     @endif
 

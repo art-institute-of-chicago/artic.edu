@@ -72,12 +72,14 @@
         'label' => 'Boost this article on search results'
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'citations',
         'label' => 'Citation',
-        'rows' => 3,
-        'type' => 'textarea',
-        'maxlength' => 255
+        'maxlength' => 255,
+        'note' => 'Max 255 characters',
+        'toolbarOptions' => [
+            'italic',
+        ],
     ])
 
     @formField('block_editor', [
