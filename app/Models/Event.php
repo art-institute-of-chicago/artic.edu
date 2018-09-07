@@ -231,6 +231,9 @@ class Event extends Model
 
     public function getBuyTicketsLinkAttribute($value)
     {
+        if ($this->rsvp_link) {
+            return $this->rsvp_link;
+        }
         $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
         if ($ticketedEvent) {
             $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date;
@@ -477,6 +480,7 @@ class Event extends Model
                 "type" => "boolean",
                 "value" => function () {return $this->is_admission_required;},
             ],
+            [
                 "name" => "rsvp_link",
                 "doc" => "RSVP Link",
                 "type" => "string",
