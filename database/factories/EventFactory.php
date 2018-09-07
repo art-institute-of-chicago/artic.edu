@@ -20,7 +20,6 @@ $factory->define(App\Models\Event::class, function (Faker $faker) {
         'is_ticketed' => $faker->boolean,
         'is_free' => $faker->boolean,
         'sponsors_description' => $faker->paragraph(3),
-        'hidden' => $faker->boolean,
         'layout_type' => $faker->randomDigit,
         'buy_button_text' => $faker->sentence(3),
         'buy_button_caption' => $faker->paragraph(3),

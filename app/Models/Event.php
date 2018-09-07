@@ -54,7 +54,6 @@ class Event extends Model
         'is_registration_required',
         'survey_link',
         'email_series',
-        'hidden',
         'rsvp_link',
         'buy_tickets_link',
         'location',
@@ -127,7 +126,6 @@ class Event extends Model
     // those fields get auto set to false if not submited
     public $checkboxes = [
         'published',
-        'hidden',
         'is_private',
         'is_ticketed',
         'is_free',
@@ -281,11 +279,6 @@ class Event extends Model
     public function scopeIds($query, $ids = [])
     {
         return $query->whereIn('id', $ids);
-    }
-
-    public function scopeNotHidden($query)
-    {
-        return $query->whereHidden(false);
     }
 
     public function scopeNotPrivate($query)
@@ -467,12 +460,6 @@ class Event extends Model
                 "doc" => "Is Registration required",
                 "type" => "boolean",
                 "value" => function () {return $this->is_registration_required;},
-            ],
-            [
-                "name" => "hidden",
-                "doc" => "Hidden",
-                "type" => "boolean",
-                "value" => function () {return $this->hidden;},
             ],
             [
                 "name" => "rsvp_link",

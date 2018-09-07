@@ -15,11 +15,6 @@
         'note' => 'Use only for italics'
     ])
 
-    @formField('checkbox', [
-        'name' => 'hidden',
-        'label' => 'Hidden from listings?',
-    ])
-
     @formField('select', [
         'name' => 'layout_type',
         'label' => 'Hero type',

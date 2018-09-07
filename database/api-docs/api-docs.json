@@ -982,10 +982,6 @@
                     "description": "Is Registration Required?",
                     "type": "boolean"
                 },
-                "hidden": {
-                    "description": "Hidden?",
-                    "type": "boolean"
-                },
                 "rsvp_link": {
                     "description": "RSVP Link",
                     "type": "string"
