@@ -63,7 +63,7 @@
         'maxlength' => 255
     ])
 
-    @formField('wywiwyg', [
+    @formField('wysiwyg', [
         'name' => 'list_description',
         'label' => 'Listing description',
         'maxlength'  => 255,

@@ -21,7 +21,7 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('wywiwyg', [
+    @formField('wysiwyg', [
         'name' => 'listing_description',
         'label' => 'Listing description',
         'maxlength'  => 255,
