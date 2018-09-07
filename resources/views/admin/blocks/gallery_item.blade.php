@@ -4,14 +4,22 @@
     'max' => 1
 ])
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'captionTitle',
     'label' => 'Caption title',
-    'maxlength' => 80
+    'maxlength' => 80,
+    'note' => 'Max 80 characters',
+    'toolbarOptions' => [
+        'italic',
+    ],
 ])
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'caption',
     'label' => 'Caption',
-    'maxlength' => 200
+    'maxlength' => 200,
+    'note' => 'Max 200 characters',
+    'toolbarOptions' => [
+        'italic',
+    ],
 ])
