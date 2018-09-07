@@ -53,6 +53,7 @@ class Event extends Model
         'is_free',
         'is_member_exclusive',
         'is_registration_required',
+        'is_admission_required',
         'survey_link',
         'email_series',
         'rsvp_link',
@@ -132,6 +133,7 @@ class Event extends Model
         'is_ticketed',
         'is_free',
         'is_member_exclusive',
+        'is_admission_required',
         'is_sold_out',
         'is_registration_required'
     ];
@@ -470,6 +472,11 @@ class Event extends Model
                 "value" => function () {return $this->is_registration_required;},
             ],
             [
+                "name" => "is_admission_required",
+                "doc" => "Is admission required",
+                "type" => "boolean",
+                "value" => function () {return $this->is_admission_required;},
+            ],
                 "name" => "rsvp_link",
                 "doc" => "RSVP Link",
                 "type" => "string",
