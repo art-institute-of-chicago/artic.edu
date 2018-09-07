@@ -199,6 +199,18 @@
             'note' => 'Will remove event page from public calendar listing.',
         ])
 
+        <p>Sales site fields</p>
+
+        @formField('checkbox', [
+            'name' => 'is_admission_required',
+            'label' => 'Is Admission Required',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_after_hours',
+            'label' => 'Is After Hours',
+        ])
+
         @formField('select', [
             'name' => 'email_series',
             'label' => 'Add to event email series?',
