@@ -47,14 +47,15 @@ class Event extends Model
         'end_time',
         'door_time',
         'is_private',
+        'is_after_hours',
         'is_ticketed',
         'is_sold_out',
         'is_free',
         'is_member_exclusive',
         'is_registration_required',
+        'is_admission_required',
         'survey_link',
         'email_series',
-        'hidden',
         'rsvp_link',
         'buy_tickets_link',
         'location',
@@ -127,11 +128,12 @@ class Event extends Model
     // those fields get auto set to false if not submited
     public $checkboxes = [
         'published',
-        'hidden',
         'is_private',
+        'is_after_hours',
         'is_ticketed',
         'is_free',
         'is_member_exclusive',
+        'is_admission_required',
         'is_sold_out',
         'is_registration_required'
     ];
@@ -229,6 +231,9 @@ class Event extends Model
 
     public function getBuyTicketsLinkAttribute($value)
     {
+        if ($this->rsvp_link) {
+            return $this->rsvp_link;
+        }
         $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
         if ($ticketedEvent) {
             $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date;
@@ -281,11 +286,6 @@ class Event extends Model
     public function scopeIds($query, $ids = [])
     {
         return $query->whereIn('id', $ids);
-    }
-
-    public function scopeNotHidden($query)
-    {
-        return $query->whereHidden(false);
     }
 
     public function scopeNotPrivate($query)
@@ -445,6 +445,12 @@ class Event extends Model
                 "value" => function () {return $this->is_private;},
             ],
             [
+                "name" => "is_after_hours",
+                "doc" => "Is after hhours",
+                "type" => "boolean",
+                "value" => function () {return $this->is_after_hours;},
+            ],
+            [
                 "name" => "is_ticketed",
                 "doc" => "Is ticketed",
                 "type" => "boolean",
@@ -469,10 +475,10 @@ class Event extends Model
                 "value" => function () {return $this->is_registration_required;},
             ],
             [
-                "name" => "hidden",
-                "doc" => "Hidden",
+                "name" => "is_admission_required",
+                "doc" => "Is admission required",
                 "type" => "boolean",
-                "value" => function () {return $this->hidden;},
+                "value" => function () {return $this->is_admission_required;},
             ],
             [
                 "name" => "rsvp_link",

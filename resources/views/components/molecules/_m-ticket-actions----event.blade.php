@@ -4,7 +4,10 @@
             @component('components.atoms._btn')
                 @slot('variation', 'btn--full')
                 @slot('tag', 'a')
-                @slot('href', $ticketLink ?? 'https://sales.artic.edu/')
+                @slot('href', $ticketLink)
+                @if (isset($disabled))
+                    @slot('disabled', true)
+                @endif
                 @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $buttonText ?? 'Buy tickets') .'" data-gtm-action="' . ($eventName ?? '') . '" data-gtm-event-category="nav-cta-button"')
                 {{ $buttonText ?? 'Buy tickets' }}
             @endcomponent

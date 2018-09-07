@@ -15,11 +15,6 @@
         'note' => 'Use only for italics'
     ])
 
-    @formField('checkbox', [
-        'name' => 'hidden',
-        'label' => 'Hidden from listings?',
-    ])
-
     @formField('select', [
         'name' => 'layout_type',
         'label' => 'Hero type',
@@ -202,6 +197,18 @@
             'name' => 'is_private',
             'label' => 'Is Private',
             'note' => 'Will remove event page from public calendar listing.',
+        ])
+
+        <p>Sales site fields</p>
+
+        @formField('checkbox', [
+            'name' => 'is_admission_required',
+            'label' => 'Is Admission Required',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_after_hours',
+            'label' => 'Is After Hours',
         ])
 
         @formField('select', [

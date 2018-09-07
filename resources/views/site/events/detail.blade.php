@@ -45,51 +45,17 @@
 
   <div class="o-article__secondary-actions{{ ($item->present()->ticketStatus == '') ? ' o-article__secondary-actions--empty@small-' : '' }}">
 
-    @switch ($item->present()->ticketStatus)
-        @case('buy-ticket')
-            @component('components.molecules._m-ticket-actions----event')
-                @slot('ticketLink', $item->buy_tickets_link);
-                @slot('buttonText', $item->buy_button_text);
-                @slot('buttonCaption', $item->buy_button_caption);
-                @slot('eventName',$item->title)
-            @endcomponent
-            @break
-        @case('free')
-            @component('components.molecules._m-ticket-actions----event')
-                @slot('buttonText', 'FREE');
-                @slot('eventName',$item->title)
-
-            @endcomponent
-            @break
-        @case('register')
-            @component('components.molecules._m-ticket-actions----event')
-                @slot('buttonText', 'Registration Required');
-                @slot('eventName',$item->title)
-
-            @endcomponent
-            @break
-        @case('member-exclusive')
-            @component('components.molecules._m-ticket-actions----event')
-                @slot('buttonText', 'Members Exclusive');
-                @slot('eventName',$item->title)
-
-            @endcomponent
-            @break
-        @case('rsvp')
-            @component('components.molecules._m-ticket-actions----event')
-                @slot('buttonText', 'RSVP');
-                @slot('ticketLink', $item->rsvp_link);
-                @slot('eventName',$item->title)
-
-            @endcomponent
-            @break
-        @case('sold-out')
-            @component('components.molecules._m-ticket-actions----event')
-                @slot('buttonText', 'Sold out');
-                @slot('eventName',$item->title)
-            @endcomponent
-            @break
-    @endswitch
+    @if($item->is_ticketed)
+        @component('components.molecules._m-ticket-actions----event')
+            @slot('ticketLink', $item->buy_tickets_link);
+            @slot('buttonText', $item->present()->buyButtonText);
+            @slot('buttonCaption', $item->buy_button_caption);
+            @if ($item->is_sold_out)
+                @slot('disabled',true)
+            @endif
+            @slot('eventName',$item->title)
+        @endcomponent
+    @endif
 
     @if ($item->featuredRelated)
       {{-- dupe 😢 - shows medium+ --}}

@@ -128,4 +128,28 @@ class EventPresenter extends BasePresenter
         }
     }
 
+    public function buyButtonText()
+    {
+        if ($this->entity->buy_button_text) {
+            return $this->entity->buy_button_text;
+        }
+
+        if ($this->entity->is_sold_out) {
+            return 'Sold out';
+        }
+
+        if ($this->entity->is_free) {
+            return 'RSVP';
+        }
+
+        if ($this->entity->is_member_exclusive) {
+            return 'Member Exclusive';
+        }
+
+        if ($this->entity->is_registration_required) {
+            return 'Registration Required';
+        }
+
+        return 'Buy tickets';
+    }
 }

@@ -966,6 +966,10 @@
                     "description": "Is Private?",
                     "type": "boolean"
                 },
+                "is_after_hours": {
+                    "description": "Is After Hours?",
+                    "type": "boolean"
+                },
                 "is_ticketed": {
                     "description": "Is Tickted?",
                     "type": "boolean"
@@ -980,10 +984,6 @@
                 },
                 "is_registration_required": {
                     "description": "Is Registration Required?",
-                    "type": "boolean"
-                },
-                "hidden": {
-                    "description": "Hidden?",
                     "type": "boolean"
                 },
                 "rsvp_link": {
