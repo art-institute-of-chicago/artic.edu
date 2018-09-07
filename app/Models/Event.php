@@ -58,7 +58,6 @@ class Event extends Model
         'rsvp_link',
         'buy_tickets_link',
         'location',
-        'sponsors_description',
         'content',
         'layout_type',
         'buy_button_text',
@@ -516,12 +515,6 @@ class Event extends Model
                 "doc" => "Audience",
                 "type" => "string",
                 "value" => function () {return $this->audience;},
-            ],
-            [
-                "name" => "sponsors_description",
-                "doc" => "sponsors_description",
-                "type" => "string",
-                "value" => function () {return $this->sponsors_description;},
             ],
             [
                 "name" => "content",

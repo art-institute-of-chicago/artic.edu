@@ -39,7 +39,6 @@ class Exhibition extends Model
         'datahub_id',
         'exhibition_message',
         'list_description',
-        'sponsors_description',
         'cms_exhibition_type',
         'hero_caption',
         'meta_title',
@@ -223,22 +222,10 @@ class Exhibition extends Model
                 "value" => function () {return $this->exhibition_message;},
             ],
             [
-                "name" => 'sponsors_description',
-                "doc" => "Description",
-                "type" => "string",
-                "value" => function () {return $this->sponsors_description;},
-            ],
-            [
                 "name" => 'cms_exhibition_type',
                 "doc" => "CMS Type",
                 "type" => "number",
                 "value" => function () {return $this->cms_exhibition_type;},
-            ],
-            [
-                "name" => 'sponsors_description',
-                "doc" => "sponsors_description",
-                "type" => "string",
-                "value" => function () {return $this->sponsors_description;},
             ],
         ];
     }
