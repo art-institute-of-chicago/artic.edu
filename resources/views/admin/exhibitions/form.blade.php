@@ -42,10 +42,14 @@
         ],
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'header_copy',
         'label' => 'Header',
-        'maxlength' => 255
+        'maxlength' => 255,
+        'note' => 'Max 255 characters',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('input', [

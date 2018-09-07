@@ -76,7 +76,7 @@
         <div class="o-article__intro">
           @component('components.blocks._text')
               @slot('font', 'f-deck')
-              {{ $item->short_copy }}
+              {!! $item->short_copy !!}
           @endcomponent
         </div>
     @endif

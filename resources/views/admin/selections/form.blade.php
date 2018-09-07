@@ -24,11 +24,14 @@
         'note' => 'Use only for italics'
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'short_copy',
         'label' => 'Short intro copy',
-        'type' => 'textarea',
-        'maxlength' => 255
+        'maxlength' => 255,
+        'note' => 'Max 255 characters',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('medias', [

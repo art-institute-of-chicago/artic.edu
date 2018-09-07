@@ -46,10 +46,14 @@
         ],
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'description',
         'label' => 'Header',
-        'type' => 'textarea'
+        'maxlength' => 255,
+        'note' => 'Max 255 characters',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('input', [

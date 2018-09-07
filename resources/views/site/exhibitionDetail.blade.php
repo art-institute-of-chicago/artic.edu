@@ -71,7 +71,7 @@
   <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
-        {{ $item->header_copy }}
+        {!! $item->header_copy !!}
     @endcomponent
   </div>
   @endif

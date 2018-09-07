@@ -107,7 +107,7 @@
   <div class="o-article__intro" itemprop="description">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
-        {{ $item->description }}
+        {!! $item->description !!}
     @endcomponent
   </div>
   @endif

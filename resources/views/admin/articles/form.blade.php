@@ -45,12 +45,14 @@
         'label' => 'Article Label'
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'heading',
         'label' => 'Header',
-        'rows' => 3,
-        'type' => 'textarea',
-        'maxlength' => 255
+        'maxlength' => 255,
+        'note' => 'Max 255 characters',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('input', [
