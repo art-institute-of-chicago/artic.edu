@@ -18,6 +18,7 @@ $factory->define(App\Models\Event::class, function (Faker $faker) {
         'description' => $faker->paragraph(5),
         'is_private' => $faker->boolean,
         'is_ticketed' => $faker->boolean,
+        'is_after_hours' => $faker->boolean,
         'is_free' => $faker->boolean,
         'sponsors_description' => $faker->paragraph(3),
         'layout_type' => $faker->randomDigit,
