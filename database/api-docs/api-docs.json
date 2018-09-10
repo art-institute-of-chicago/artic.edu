@@ -986,10 +986,6 @@
                     "description": "Is Registration Required?",
                     "type": "boolean"
                 },
-                "hidden": {
-                    "description": "Hidden?",
-                    "type": "boolean"
-                },
                 "rsvp_link": {
                     "description": "RSVP Link",
                     "type": "string"
@@ -1041,10 +1037,6 @@
                 "buy_button_caption": {
                     "description": "Buy Button Caption",
                     "type": "string"
-                },
-                "is_boosted": {
-                    "description": "Is Boosted",
-                    "type": "boolean"
                 },
                 "slug": {
                     "description": "Slug",

@@ -85,7 +85,7 @@
     @if (!empty($intro))
         @component('components.blocks._text')
             @slot('font','f-deck')
-            {{ $intro }}
+            {!! $intro !!}
         @endcomponent
     @endif
     {!! $page->renderBlocks(false) !!}

@@ -51,17 +51,14 @@ class Event extends Model
         'is_ticketed',
         'is_sold_out',
         'is_free',
-        'is_boosted',
         'is_member_exclusive',
         'is_registration_required',
         'is_admission_required',
         'survey_link',
         'email_series',
-        'hidden',
         'rsvp_link',
         'buy_tickets_link',
         'location',
-        'sponsors_description',
         'content',
         'layout_type',
         'buy_button_text',
@@ -75,6 +72,13 @@ class Event extends Model
     protected $casts = [
         'alt_types' => 'array',
         'alt_audiences' => 'array',
+        // TODO: Confirm that this is safe to do?
+        // 'is_private' => 'boolean',
+        // 'is_ticketed' => 'boolean',
+        // 'is_free' => 'boolean',
+        // 'is_member_exclusive' => 'boolean',
+        // 'is_registration_required' => 'boolean',
+        // 'is_sold_out' => 'boolean',
     ];
 
     const CLASSES_AND_WORKSHOPS = 1;
@@ -131,7 +135,6 @@ class Event extends Model
     // those fields get auto set to false if not submited
     public $checkboxes = [
         'published',
-        'hidden',
         'is_private',
         'is_after_hours',
         'is_ticketed',
@@ -139,7 +142,6 @@ class Event extends Model
         'is_member_exclusive',
         'is_admission_required',
         'is_sold_out',
-        'is_boosted',
         'is_registration_required'
     ];
 
@@ -234,6 +236,19 @@ class Event extends Model
         $this->attributes['alt_audiences'] = $this->getJsonColumnFromMultiSelect($value);
     }
 
+    public function getBuyTicketsLinkAttribute($value)
+    {
+        if ($this->rsvp_link) {
+            return $this->rsvp_link;
+        }
+        $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
+        if ($ticketedEvent) {
+            $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date;
+            return "https://sales.artic.edu/Events/Event/" .$ticketedEvent->id ."?date=" .$date->format('n/j/Y');
+        }
+        return $value;
+    }
+
     // This emulates an Eloquent collection from a JSON column
     // TODO: Move this somewhere more appropriate - presenter?
     private function getMultiSelectFromJsonColumn($value)
@@ -278,11 +293,6 @@ class Event extends Model
     public function scopeIds($query, $ids = [])
     {
         return $query->whereIn('id', $ids);
-    }
-
-    public function scopeNotHidden($query)
-    {
-        return $query->whereHidden(false);
     }
 
     public function scopeNotPrivate($query)
@@ -478,12 +488,6 @@ class Event extends Model
                 "value" => function () {return $this->is_admission_required;},
             ],
             [
-                "name" => "hidden",
-                "doc" => "Hidden",
-                "type" => "boolean",
-                "value" => function () {return $this->hidden;},
-            ],
-            [
                 "name" => "rsvp_link",
                 "doc" => "RSVP Link",
                 "type" => "string",
@@ -524,12 +528,6 @@ class Event extends Model
                 "doc" => "Audience",
                 "type" => "string",
                 "value" => function () {return $this->audience;},
-            ],
-            [
-                "name" => "sponsors_description",
-                "doc" => "sponsors_description",
-                "type" => "string",
-                "value" => function () {return $this->sponsors_description;},
             ],
             [
                 "name" => "content",
@@ -593,12 +591,6 @@ class Event extends Model
                 "doc" => "is_sold_out",
                 "type" => "boolean",
                 "value" => function () {return $this->is_sold_out;},
-            ],
-            [
-                "name" => "is_boosted",
-                "doc" => "is_boosted",
-                "type" => "boolean",
-                "value" => function () {return $this->is_boosted;},
             ],
             [
                 "name" => "slug",

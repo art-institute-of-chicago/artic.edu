@@ -57,6 +57,9 @@ function hoursSelectOptions($shortlist = false, $startAt = 0, $endAt = 24)
 
 function convertArtworkDates($date)
 {
+    if (!$date) {
+        return null;
+    }
     $formatdate = "";
 
     if($date < 0) {

@@ -121,7 +121,7 @@
   <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
-        {{ $item->heading }}
+        {!! $item->heading !!}
     @endcomponent
   </div>
   @endif
@@ -255,7 +255,7 @@
         @endcomponent
         @component('components.blocks._text')
             @slot('font', 'f-secondary')
-            {{ $item->citations }}
+            {!! $item->citations !!}
         @endcomponent
     @endif
 

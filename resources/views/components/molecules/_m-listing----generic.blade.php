@@ -41,7 +41,7 @@
             @endif
             @if ($item->listing_description)
             <br>
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->listing_description }}</span>
+            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->listing_description !!}</span>
             @endif
             @if (isset($date))
                 @if(!empty($date))

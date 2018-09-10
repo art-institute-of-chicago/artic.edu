@@ -135,7 +135,7 @@
   <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
-        {{ $article->intro }}
+        {!! $article->intro !!}
     @endcomponent
   </div>
   @endif

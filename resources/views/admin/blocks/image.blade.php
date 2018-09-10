@@ -24,15 +24,20 @@
     'label' => 'Image'
 ])
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'caption_title',
-    'label' => 'Caption title'
+    'label' => 'Caption title',
+    'toolbarOptions' => [
+        'italic',
+    ],
 ])
 
-@formField('input', [
-    'type' => 'textarea',
+@formField('wysiwyg', [
     'name' => 'caption',
     'label' => 'Caption',
-    'maxlength' => 200
+    'maxlength' => 200,
+    'note' => 'Max 200 characters',
+    'toolbarOptions' => [
+        'italic',
+    ],
 ])
-

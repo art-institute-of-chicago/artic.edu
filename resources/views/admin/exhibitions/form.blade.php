@@ -42,17 +42,24 @@
         ],
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'header_copy',
         'label' => 'Header',
-        'maxlength' => 255
+        'maxlength' => 255,
+        'note' => 'Max 255 characters',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'list_description',
-        'label' => 'List description',
-        'type' => 'textarea',
-        'maxlength' => 255
+        'label' => 'Listing description',
+        'maxlength'  => 255,
+        'note' => 'Max 255 characters',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('wysiwyg', [
@@ -73,14 +80,6 @@
 
 @section('fieldsets')
     <a17-fieldset id="sponsors" title="Sponsors">
-        @formField('wysiwyg', [
-            'name' => 'sponsors_description',
-            'label' => 'Sponsors section description',
-            'toolbarOptions' => ['bold'],
-            'note' => 'DEPRECATED',
-            'type' => 'textarea'
-        ])
-
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'sponsors',

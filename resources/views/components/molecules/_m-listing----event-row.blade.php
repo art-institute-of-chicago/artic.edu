@@ -48,7 +48,7 @@
         @if (!empty($item->list_description))
             <br>
             @component('components.atoms._short-description')
-                {{ $item->list_description }}
+                {!! $item->list_description !!}
             @endcomponent
         @endif
 

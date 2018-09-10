@@ -97,7 +97,6 @@ Route::get('/', function () {
  *        @SWG\Property(property="datahub_id", type="string", description="Datahub ID"),
  *        @SWG\Property(property="exhibition_message", type="string", description="Message"),
  *        @SWG\Property(property="cms_exhibition_type", type="integer", description="Type (basic = 0, large = 1, special = 2)"),
- *        @SWG\Property(property="sponsors_description", type="string", description="Sponsors Description"),
  *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
  *     ),
  *
@@ -127,12 +126,10 @@ Route::get('/', function () {
  *        @SWG\Property(property="forced_date", type="string", description="Forced date display"),
  *        @SWG\Property(property="location", type="string", description="Location"),
  *        @SWG\Property(property="audience", type="integer", description="Audience (families = 1, members = 2, adults = 3, teens = 4, researchers_scholars = 5, teachers = 6, evening_associates = 7)"),
- *        @SWG\Property(property="sponsors_description", type="string", description="Sponsors Description"),
  *        @SWG\Property(property="content", type="json", description="Content"),
  *        @SWG\Property(property="layout_type", type="integer", description="Layout Type (basic_layout = 0, large_layout = 1)"),
  *        @SWG\Property(property="buy_button_text", type="string", description="Buy Button Text"),
  *        @SWG\Property(property="buy_button_caption", type="string", description="Buy Button Caption"),
- *        @SWG\Property(property="is_boosted", type="boolean", description="Is Boosted"),
  *        @SWG\Property(property="slug", type="string", description="Slug"),
  *        @SWG\Property(property="web_url", type="string", description="Web Url"),
  *        @SWG\Property(property="created_at", type="datetime", description="Created Timestamp"),
@@ -538,6 +535,10 @@ Route::group(['prefix' => 'v1'], function()
      */
     Route::get('events/deleted', 'API\EventsController@deleted');
 
+    /**
+     * TODO: Add Swagger definitions? This feels redundant.
+     */
+    Route::get('events/occurrences', 'API\EventOccurrencesController@occurrences');
 
     /**
      * @SWG\Get(
