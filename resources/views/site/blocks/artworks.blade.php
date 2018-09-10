@@ -7,6 +7,11 @@
     foreach($artworks as $artwork) {
         $image = $artwork->imageFront('hero', 'thumbnail');
 
+        $title = $artwork->title;
+        if (!empty($artwork->date_block)) {
+            $title .= ', ' . $artwork->date_block;
+        }
+
         $caption = "";
         if (!empty($artwork->artist_title)) {
             $caption = $artwork->artist_title;
@@ -14,16 +19,12 @@
             $caption = $artwork->place_of_origin;
         }
 
-        if (!empty($artwork->date_block)) {
-            $caption .= ', ' . $artwork->date_block;
-        }
-
         $item = [];
         $item['type'] = 'image';
         $item['fullscreen'] = true;
         $item['size'] = 'gallery';
         $item['media'] = $image;
-        $item['captionTitle'] = $artwork->title;
+        $item['captionTitle'] = $title;
         $item['caption'] = $caption;
         $item['url'] = route('artworks.show', $artwork);
         $item['urlTitle'] = route('artworks.show', $artwork);

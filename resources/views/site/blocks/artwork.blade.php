@@ -15,6 +15,11 @@
             }
         }
 
+        $title = $artwork->title;
+        if (!empty($artwork->date_block)) {
+            $title .= ', ' . $artwork->date_block;
+        }
+
         $caption = "";
         if (!empty($artwork->artist_title)) {
             $caption = $artwork->artist_title;
@@ -22,15 +27,11 @@
             $caption = $artwork->place_of_origin;
         }
 
-        if (!empty($artwork->date_block)) {
-            $caption .= ', ' . $artwork->date_block;
-        }
-
         $artworkItem = array();
         $artworkItem['type'] = 'image';
         $artworkItem['size'] = 's';
         $artworkItem['media'] = $image;
-        $artworkItem['captionTitle'] = $artwork->title;
+        $artworkItem['captionTitle'] = $title;
         $artworkItem['caption'] = $caption.'<br>'.$galleryLocation;
         $artworkItem['hideShare'] = true;
         $artworkItem['fullscreen'] = true;
