@@ -72,6 +72,13 @@ class Event extends Model
     protected $casts = [
         'alt_types' => 'array',
         'alt_audiences' => 'array',
+        // TODO: Confirm that this is safe to do?
+        // 'is_private' => 'boolean',
+        // 'is_ticketed' => 'boolean',
+        // 'is_free' => 'boolean',
+        // 'is_member_exclusive' => 'boolean',
+        // 'is_registration_required' => 'boolean',
+        // 'is_sold_out' => 'boolean',
     ];
 
     const CLASSES_AND_WORKSHOPS = 1;
