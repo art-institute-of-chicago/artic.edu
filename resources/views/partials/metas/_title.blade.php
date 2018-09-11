@@ -3,6 +3,7 @@
 @endphp
 
 <title>{{ $title }}</title>
-<meta property="og:title"  content="{{ $title }}" />
-<meta name="twitter:title" content="{{ $title }}" />
-<meta itemprop="name"      content="{{ $title }}" />
+<meta property="og:site_name"  content="{{ $globalSuffix }}" />
+<meta property="og:title"      content="{{ $title }}" />
+<meta name="twitter:title"     content="{{ $title }}" />
+<meta itemprop="name"          content="{{ $title }}" />
