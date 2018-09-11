@@ -45,6 +45,7 @@ class ArtworkController extends BaseScopedController
           'exploreFurther'        => $exploreFurther->collection(request()->all()),
           'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
           'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
+          'canonicalUrl' => route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
         ]);
     }
 
