@@ -21,8 +21,8 @@
 
     @component('components.molecules._m-links-bar', ['primaryVariation' => 'm-links-bar--centered@xsmall'])
         @slot('linksPrimary', array(
-            array('label' => 'Today', 'href' => route('events'), 'active' => !request('start') && !request('time'), 'gtmAttributes' => 'data-gtm-event="event-today" data-gtm-event-action="Events" data-gtm-event-category="in-page-link"'),
-            array('label' => 'This weekend', 'href' => route('events', ['time' => 'weekend']), 'active' => (!request('start') && request('time') == 'weekend'), 'liVariation' => "u-hide@xsmall u-hide@small", 'gtmAttributes' => 'data-gtm-event="event-weekend" data-gtm-event-action="Events"  data-gtm-event-category="in-page-link"')
+            array('label' => 'Today', 'href' => route('events', request()->only(['audience', 'program', 'type'])), 'active' => !request('start') && !request('time'), 'gtmAttributes' => 'data-gtm-event="event-today" data-gtm-event-action="Events" data-gtm-event-category="in-page-link"'),
+            array('label' => 'This weekend', 'href' => route('events', request()->only(['audience', 'program', 'type']) + ['time' => 'weekend']), 'active' => (!request('start') && request('time') == 'weekend'), 'liVariation' => "u-hide@xsmall u-hide@small", 'gtmAttributes' => 'data-gtm-event="event-weekend" data-gtm-event-action="Events"  data-gtm-event-category="in-page-link"')
         ))
         @slot('primaryHtml')
             <li class="m-links-bar__item">
