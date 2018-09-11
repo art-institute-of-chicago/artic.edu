@@ -20,7 +20,7 @@ class Artists extends BaseFilteredList
                 'listSearch'  => true,
                 'type'        => 'list',
                 'aggregation' => $this->aggregationName,
-                'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryName']) + ['categoryName' => 'artists'])
+                'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryName', 'categoryQuery']) + ['categoryName' => 'artists'])
             ];
         }
     }
