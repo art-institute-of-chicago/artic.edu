@@ -29,6 +29,7 @@ class GenericPagesController extends FrontController
 
         $this->seo->setTitle($page->meta_title ?: $page->title);
         $this->seo->setDescription($page->meta_description ?: $page->short_description);
+        $this->seo->setImage($page->imageFront('listing'));
 
         return view('site.genericPage.show', [
             'borderlessHeader' => !(empty($page->imageFront('banner'))),

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Helpers\Seo;
 use A17\Twill\Http\Controllers\Front\Controller as BaseController;
 use View;
 
@@ -12,6 +13,15 @@ class FrontController extends BaseController
     public function __construct()
     {
         parent::__construct();
+
+        $this->seo = new Seo;
+
+        $this->seo->title = config('twill.seo.site_title');
+        $this->seo->description = config('twill.seo.site_desc');
+        $this->seo->width = 900;
+        $this->seo->height = 470;
+
+        View::share('seo', $this->seo);
 
         $this->loadSearchTerms();
         $this->loadBaseSeo();

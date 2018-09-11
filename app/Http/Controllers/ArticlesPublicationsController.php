@@ -10,13 +10,14 @@ class ArticlesPublicationsController extends FrontController
 {
     public function index()
     {
-        $this->seo->setTitle('Publications');
-
         $page = Page::forType('Articles and Publications')->first();
         $artIdeasPage = Page::forType('Art and Ideas')->first();
 
         $articles = $page->articles;
         $featureHero = $articles->shift();
+
+        $this->seo->setTitle('Publications');
+        $this->seo->setImage($featureHero->imageFront('hero'));
 
         return view('site.articles_publications.index', [
             'primaryNavCurrent' => 'collection',

@@ -17,10 +17,11 @@ class VisitController extends FrontController
 
         config(['translatable.use_fallback' => true]);
 
+        $page = Page::forType('Visit')->first();
+
         $this->seo->setTitle("Visit a Chicago Landmark");
         $this->seo->setDescription("Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!");
-
-        $page = Page::forType('Visit')->first();
+        $this->seo->setImage($page->imageFront('visit_hero') ?? $page->imageFront('visit_mobile'));
 
         $video_url = $page->file('video', 'en');
 

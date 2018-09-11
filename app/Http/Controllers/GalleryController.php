@@ -23,6 +23,7 @@ class GalleryController extends FrontController
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: 'Gallery');
+        $this->seo->setImage($item->imageFront('hero'));
 
         $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
         $exploreFurther = new ExploreGalleries($item, $artworks->getMetadata('aggregations'));

@@ -23,6 +23,7 @@ class DepartmentController extends FrontController
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: 'Department');
+        $this->seo->setImage($item->imageFront('hero'));
 
         $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
         $exploreFurther = new ExploreDepartments($item, $artworks->getMetadata('aggregations'));

@@ -73,6 +73,7 @@ class ExhibitionsController extends FrontController
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->list_description);
+        $this->seo->setImage($item->imageFront('hero'));
 
         $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE);
         $relatedEventsByDay = $this->eventRepository->groupByDate($collection);

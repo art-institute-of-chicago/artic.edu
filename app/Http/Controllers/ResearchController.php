@@ -11,10 +11,12 @@ class ResearchController extends FrontController
 
     public function index()
     {
-        $this->seo->setTitle('Research & Resources');
-
         $page = Page::forType('Research and Resources')->first();
         $artIdeasPage = Page::forType('Art and Ideas')->first();
+
+        $this->seo->setTitle('Research & Resources');
+        $this->seo->setDescription($page->resources_landing_intro);
+        $this->seo->setImage($page->imageFront('research_landing_image'));
 
         $featuredPages = $page->researchResourcesFeaturePages;
 

@@ -127,6 +127,7 @@ class EventsController extends FrontController
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->short_description);
+        $this->seo->setImage($item->imageFront('hero'));
 
         return view('site.events.detail', [
             'contrastHeader' => $item->present()->contrastHeader,

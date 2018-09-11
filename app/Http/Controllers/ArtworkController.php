@@ -27,19 +27,7 @@ class ArtworkController extends BaseScopedController
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->fullTitle);
-
-        // Social image
-        $settings = aic_imageSettings([
-            'image' => $item->imageFront('hero'),
-            'settings' => [
-                'srcset' => array(1200),
-                'sizes' => '1200px',
-            ],
-        ]);
-
-        $this->seo->image = str_before($settings['srcset'], ' ');
-        $this->seo->width = 1200;
-        $this->seo->height = abs((1200 / $settings['width']) * $settings['height']);
+        $this->seo->setImage($item->imageFront('hero'));
 
         // Get previous and next artwork using BaseScopedController filters
         // Basically it performs a search again and locates both prev/next works
