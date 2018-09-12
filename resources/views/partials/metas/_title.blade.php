@@ -1,5 +1,5 @@
 @php
-    $title = join(' | ', array_filter([$globalPrefix ?? null, $seo->title, $globalSuffix ?? null]));
+    $title = strip_tags(join(' | ', array_filter([$globalPrefix ?? null, $seo->title, $globalSuffix ?? null])));
 @endphp
 
 <title>{{ $title }}</title>
