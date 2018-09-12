@@ -73,7 +73,7 @@
     @endcomponent
 @endif
 
-@if ($item->articles)
+@if ($item->articles && $item->articles->count() > 0)
     @component('components.molecules._m-title-bar')
         Related
     @endcomponent
