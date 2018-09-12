@@ -77,7 +77,8 @@
         'blocks' => [
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'newsletter_signup_inline', 'timeline', 'link', 'shop_items',
-            'artworks', 'artwork'
+            'artworks', 'artwork',
+            'hr', 'split_block',
         ]
     ])
 @stop
