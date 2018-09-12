@@ -36,7 +36,12 @@
 }
 
 .m-split-block--half div {
-  flex-basis: 50%;
+  flex-basis: 100%;
+
+  @include breakpoint('small+') {
+    flex-basis: 50%;
+  }
+
 }
 
 
