@@ -7,7 +7,7 @@ use App\Libraries\ExploreFurther\BaseService as ExploreDepartments;
 
 class DepartmentController extends FrontController
 {
-    const ARTWORKS_PER_PAGE = 8;
+    const ARTWORKS_PER_PAGE = 50;
 
     protected $repository;
 
@@ -26,14 +26,14 @@ class DepartmentController extends FrontController
         $this->seo->setImage($item->imageFront('hero'));
 
         $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
-        $exploreFurther = new ExploreDepartments($item, $artworks->getMetadata('aggregations'));
+        // $exploreFurther = new ExploreDepartments($item, $artworks->getMetadata('aggregations'));
 
         return view('site.tagDetail', [
             'item'     => $item,
             'artworks' => $artworks,
-            'exploreFurtherTags'    => $exploreFurther->tags(),
-            'exploreFurther'        => $exploreFurther->collection(request()->all()),
-            'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
+            // 'exploreFurtherTags'    => $exploreFurther->tags(),
+            // 'exploreFurther'        => $exploreFurther->collection(request()->all()),
+            // 'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
         ]);
     }
 

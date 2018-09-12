@@ -107,7 +107,7 @@
     @endcomponent
 @endif
 
-@if ($exploreFurther)
+@if (isset($exploreFurther))
 <div id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further
