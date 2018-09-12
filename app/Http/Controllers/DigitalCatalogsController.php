@@ -43,7 +43,7 @@ class DigitalCatalogsController extends CatalogsController
         }
 
         $this->seo->setTitle($page->meta_title ?: $page->title);
-        $this->seo->setDescription($page->meta_description ?: $page->short_description);
+        $this->seo->setDescription($page->meta_description ?? $page->short_description ?? $page->listing_description);
         $this->seo->setImage($page->imageFront('listing'));
 
         $crumbs = [

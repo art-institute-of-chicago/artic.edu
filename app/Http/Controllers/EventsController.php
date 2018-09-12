@@ -126,7 +126,7 @@ class EventsController extends FrontController
         $item = $this->repository->findOrFail((Integer) $id);
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
-        $this->seo->setDescription($item->meta_description ?: $item->short_description);
+        $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->list_description);
         $this->seo->setImage($item->imageFront('hero'));
 
         return view('site.events.detail', [

@@ -28,7 +28,7 @@ class GenericPagesController extends FrontController
         $navigation = $page->present()->navigation();
 
         $this->seo->setTitle($page->meta_title ?: $page->title);
-        $this->seo->setDescription($page->meta_description ?: $page->short_description);
+        $this->seo->setDescription($page->meta_description ?? $page->short_description ?? $page->listing_description);
         $this->seo->setImage($page->imageFront('listing'));
 
         return view('site.genericPage.show', [
