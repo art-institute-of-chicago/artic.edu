@@ -7,7 +7,7 @@
     'translated' => $translateTitle ?? false,
     'required' => true,
     'onChange' => 'formatPermalink',
-    'note' => 'Avoid HTML in this field. Use the "Title (HTML)" field for italics.',
+    'note' => 'Avoid HTML in this field. Use the "Title formatting (optional)" field for italics.',
 ])
 
 @if ($permalink ?? true)
