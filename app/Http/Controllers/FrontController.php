@@ -18,8 +18,9 @@ class FrontController extends BaseController
 
         $this->seo->title = config('twill.seo.site_title');
         $this->seo->description = config('twill.seo.site_desc');
-        $this->seo->width = 900;
-        $this->seo->height = 470;
+        $this->seo->image = config('twill.seo.image');
+        $this->seo->width = config('twill.seo.width');
+        $this->seo->height = config('twill.seo.height');
 
         View::share('seo', $this->seo);
 

@@ -357,4 +357,10 @@ return [
             ],
         ],
     ],
+
+    'seo' => [
+        'image' => 'https://artic-web.imgix.net/c310928a-ca92-4fd0-9015-f6b29c89cf65/D48699_002.jpg',
+        'width' => 1008,
+        'height' => 1296,
+    ],
 ];
