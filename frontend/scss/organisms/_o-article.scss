@@ -33,6 +33,7 @@
   position: relative;
   margin-top: 28px;
   padding-top: 8px;
+  z-index: 2;
 
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
