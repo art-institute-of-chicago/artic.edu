@@ -114,9 +114,40 @@ if (!function_exists('getUtf8Slug')) {
 if (!function_exists('truncateStr')) {
     function truncateStr($string, $length = 150) {
         $limit = abs((int)$length);
-           if(strlen($string) > $limit) {
-              $string = preg_replace("/^(.{1,$limit})(\s.*|$)/s", '\1...', $string);
-           }
+
+        if ($limit > strlen($string)) {
+            return $string;
+        }
+
+        $string = preg_replace("/^(.{1,$limit})(\s.*|$)/s", '\1...', $string);
+
+        if (strpos($string, '<') < 0) {
+            return $truncatedString;
+        }
+
+        // https://stackoverflow.com/questions/16583676/shorten-text-without-splitting-words-or-breaking-html-tags
+        preg_match_all('#<(?!meta|img|br|hr|input\b)\b([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $string, $result);
+        $openedTags = $result[1];
+
+        preg_match_all('#</([a-z]+)>#iU', $string, $result);
+        $closedTags = $result[1];
+
+        $openedLength = count($openedTags);
+
+        if (count($closedTags) == $openedLength) {
+            return $string;
+        }
+
+        $openedTags = array_reverse($openedTags);
+
+        for ($i=0; $i < $openedLength; $i++) {
+            if (!in_array($openedTags[$i], $closedTags)) {
+                $string .= '</'.$openedTags[$i].'>';
+            } else {
+                unset($closedTags[array_search($openedTags[$i], $closedTags)]);
+            }
+        }
+
         return $string;
    }
 }
