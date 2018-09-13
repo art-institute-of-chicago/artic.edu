@@ -41,12 +41,12 @@
                 @slot('font', null)
                 @slot('options', array(
                   array('active' => request('lang') === 'en', 'href' => currentUrlWithQuery([]), 'label' => 'English'),
-                  array('active' => request('lang') === 'es', 'href' => currentUrlWithQuery(['lang' => 'es']), 'label' => 'Español'),
-                  array('active' => request('lang') === 'fr', 'href' => currentUrlWithQuery(['lang' => 'fr']), 'label' => 'Français'),
-                  array('active' => request('lang') === 'de', 'href' => currentUrlWithQuery(['lang' => 'de']), 'label' => 'Deutsch'),
-                  array('active' => request('lang') === 'zh', 'href' => currentUrlWithQuery(['lang' => 'zh']), 'label' => '中文'),
-                  array('active' => request('lang') === 'ja', 'href' => currentUrlWithQuery(['lang' => 'ja']), 'label' => '日本語'),
-                  array('active' => request('lang') === 'pt', 'href' => currentUrlWithQuery(['lang' => 'pt']), 'label' => 'Português'),
+                  array('active' => request('lang') === 'es', 'href' => currentUrlWithQuery(['lang' => 'es']), 'lang' => 'es', 'label' => 'Español'),
+                  array('active' => request('lang') === 'fr', 'href' => currentUrlWithQuery(['lang' => 'fr']), 'lang' => 'fr', 'label' => 'Français'),
+                  array('active' => request('lang') === 'de', 'href' => currentUrlWithQuery(['lang' => 'de']), 'lang' => 'de', 'label' => 'Deutsch'),
+                  array('active' => request('lang') === 'zh', 'href' => currentUrlWithQuery(['lang' => 'zh']), 'lang' => 'zh', 'label' => '中文'),
+                  array('active' => request('lang') === 'ja', 'href' => currentUrlWithQuery(['lang' => 'ja']), 'lang' => 'ja', 'label' => '日本語'),
+                  array('active' => request('lang') === 'pt', 'href' => currentUrlWithQuery(['lang' => 'pt']), 'lang' => 'pt', 'label' => 'Português'),
                 ))
               @endcomponent
           </li>
