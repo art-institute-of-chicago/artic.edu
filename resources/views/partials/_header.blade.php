@@ -38,7 +38,7 @@
           </ul>
         </div>
       </nav>
-      <nav class="g-header__nav-secondary">
+      <nav class="g-header__nav-secondary" aria-label="secondary">
         <h2 class="sr-only" id="h-nav-secondary-header">Secondary Navigation</h2>
         <ul class="f-secondary" aria-labelledby="h-nav-secondary-header">
           <li><a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="buy-tickets">Buy Tickets</a></li>
