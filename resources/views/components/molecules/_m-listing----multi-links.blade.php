@@ -22,7 +22,7 @@
         </a>
     @endif
 
-    <span class="m-listing__meta">
+    <div class="m-listing__meta">
         @if (isset($item['title']) and $item['title'])
             @if (isset($item['titleLink']) and $item['titleLink'])
                 @component('components.atoms._title')
@@ -76,6 +76,6 @@
             @endforeach
             {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
         @endif
-    </span>
+    </div>
 
 </{{ $tag or 'li' }}>

@@ -196,9 +196,8 @@
                     @endif
                   </td>
                   @endforeach
-
+                </tr>
             @endif
-          </tr>
           @endforeach
           <tr>
             <th>
@@ -327,7 +326,7 @@
             <h3>{!! $location['name'] !!}</h3>
             <p>
               <span itemprop="streetAddress">{!! $location['street'] !!} {!! $location['addres'] !!}</span><br />
-              <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}
+              <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}</span>
             </p>
           </div>
         @endforeach
