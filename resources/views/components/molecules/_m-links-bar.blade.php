@@ -21,9 +21,9 @@
         $behavior .= ' linksBar';
     }
 @endphp
-<nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{!! (isset($behavior)) ? ' data-behavior="'.$behavior.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}{!! (isset($id) and $id) ? ' id="'.$id.'"' : '' !!} aria-label="page{!! (isset($navType)) ? ' '.$navType : ' secondary' !!}">
+<nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{!! (isset($behavior)) ? ' data-behavior="'.$behavior.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}{!! (isset($id) and $id) ? ' id="'.$id.'"' : '' !!} aria-label="page{!! (isset($isPrimaryPageNav)) ? '' : ' secondary' !!}">
   @if ((isset($linksPrimary) and $linksPrimary) or (isset($primaryHtml) and $primaryHtml))
-    <h2 class="sr-only" id="{{ $headingId }}">Page {!! (isset($navType)) ? $navType : 'secondary' !!} navigation</h2>
+    <h2 class="sr-only" id="{{ $headingId }}">Page {!! (isset($isPrimaryPageNav)) ? '' : 'secondary ' !!}navigation</h2>
     <ul class="m-links-bar__items-primary{{ (isset($primaryVariation) and $primaryVariation) ? ' '.$primaryVariation : '' }}" data-links-bar-primary aria-labelledby="{{ $headingId }}">
       @if (isset($linksPrimary) and $linksPrimary)
           @foreach ($linksPrimary as $link)
