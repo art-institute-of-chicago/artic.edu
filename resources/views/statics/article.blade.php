@@ -135,6 +135,7 @@
   <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
+        @slot('tag', 'span')
         {!! $article->intro !!}
     @endcomponent
   </div>
