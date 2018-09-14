@@ -47,7 +47,7 @@
         @if (isset($item['text']) and $item['text'])
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')
-                @slot('tag', 'span')
+                @slot('tag', 'div')
                 {!! $item['text'] !!}
             @endcomponent
         @endif

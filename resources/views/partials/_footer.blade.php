@@ -99,8 +99,8 @@
     </ul>
   </div>
 
-  <h2 class="sr-only" id="h-footer-nav-secondary">Secondary Navigation</h2>
-  <ul class="g-footer__legals f-secondary" aria-labelledby="h-footer-nav-secondary">
+  <h2 class="sr-only" id="h-mobile-footer-nav-secondary">Secondary Navigation</h2>
+  <ul class="g-footer__legals f-secondary" aria-labelledby="h-mobile-footer-nav-secondary">
     <li><a href="{{ $_pages['legal-press'] }}">Press</a></li>
     <li><a href="{{ $_pages['legal-employment'] }}">Careers</a></li>
     <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
@@ -112,6 +112,6 @@
 </footer>
 <a class="top-link" href="#a17" aria-label="top of page">
   <svg class="icon--arrow" aria-hidden="true">
-    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow">
+    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow" />
   </svg>
 </a>
