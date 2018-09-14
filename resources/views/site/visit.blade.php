@@ -208,7 +208,7 @@
                   @lang('Children')
               @endcomponent
             </th>
-            <td rowspan="2" colspan="4">
+            <td rowspan="2" colspan="4" aria-label="Children and members are free">
               @component('components.blocks._text')
                   @slot('font','f-tag')
                   @slot('tag','span')
