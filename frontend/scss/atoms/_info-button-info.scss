@@ -15,7 +15,6 @@ Image credit for hero images - content is filled out by `infoButtonInfo.js`
 
 
 .info-button-info {
-  display: none;
   position: absolute;
   z-index: map-get($zindexs, 'infoBubbleInfo');
   min-width: 80px;
@@ -24,6 +23,7 @@ Image credit for hero images - content is filled out by `infoButtonInfo.js`
   background-color: $color__white;
   box-shadow: $shadow;
   transition: opacity .15s;
+  white-space: initial;
 
   @include breakpoint('small+') {
     max-width: 250px;
@@ -36,6 +36,10 @@ Image credit for hero images - content is filled out by `infoButtonInfo.js`
     margin: 40px;
   }
 }
+
+.info-button-info.s-hidden {
+    display: none;
+  }
 
 .info-button-info .f-caption {
   @include tucked-align-top($f-caption);

@@ -93,7 +93,6 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @include('partials._calendar')
 @include('partials._fullscreenImage')
 @include('partials._share-menu')
-@include('partials._info-button-info')
 @include('partials._nav-mobile')
 @include('partials._search')
 @include('partials._modal')
