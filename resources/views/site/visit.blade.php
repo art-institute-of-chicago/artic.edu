@@ -139,17 +139,17 @@
           <tr>
             <th>&nbsp;</th>
             @foreach ($admission['titles'] as $categoryId => $categoryData)
-              <th aria-labelledby="{{ $categoryData['id'] }}">
+              <th aria-labelledby="h-{{ $categoryData['id'] }}">
                 @component('components.blocks._text')
                     @slot('font', 'f-module-title-1')
                     @slot('tag','span')
-                    @slot('id', $categoryData['id'])
+                    @slot('id', 'h-' .$categoryData['id'])
                     {{ $categoryData['title'] }}
                 @endcomponent
                 @if (isset($categoryData['tooltip']))
                   &nbsp;
                   @component('components.atoms._info-button-trigger')
-                      @slot('labelledBy', $categoryData['id'])
+                      @slot('id', $categoryData['id'])
                       {{ $categoryData['tooltip'] }}
                   @endcomponent
                 @endif
