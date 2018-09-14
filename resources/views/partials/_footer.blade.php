@@ -29,7 +29,7 @@
       </li>
 
       <li class="u-hide@small-">
-        <a href="https://www.google.com/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank" aria-label="click to get directions to the Art Institute of Chicago">
+        <a href="https://www.google.com/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank" aria-label="Directions to the Art Institute of Chicago">
           <svg aria-hidden="true" class="icon--footer_map_120x92"><use xlink:href="#icon--footer_map_120x92" /></svg>
         </a>
 
