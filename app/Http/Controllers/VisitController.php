@@ -83,12 +83,15 @@ class VisitController extends FrontController
             }
         }
 
+        $citypassImg = $page->imageFront('visit_city_pass');
+        $citypassImg['alt'] = "";
+
         $admission = array(
             'text' => preg_replace('/<p>/i', '<p class="f-secondary">', $page->visit_admission_description),
             'cityPass' => array(
                 'title' => $page->visit_city_pass_title,
                 'text' => $page->visit_city_pass_text,
-                'image' => $page->imageFront('visit_city_pass'),
+                'image' => $citypassImg,
                 'link' => array(
                     'label' => $page->visit_city_pass_button_label,
                     'href' => $page->visit_city_pass_link,
