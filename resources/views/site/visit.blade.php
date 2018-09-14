@@ -149,7 +149,7 @@
                 @if (isset($categoryData['tooltip']))
                   &nbsp;
                   @component('components.atoms._info-button-trigger')
-                      @slot('describedBy', $categoryData['id'])
+                      @slot('labelledBy', $categoryData['id'])
                       {{ $categoryData['tooltip'] }}
                   @endcomponent
                 @endif
