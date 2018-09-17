@@ -32,7 +32,7 @@
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.atoms._title')
             @slot('variation', 'u-show@large+')
-            @slot('tag','p')
+            @slot('tag','h2')
             @slot('font', 'f-module-title-1')
             On View
         @endcomponent
