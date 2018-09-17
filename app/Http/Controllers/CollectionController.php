@@ -41,7 +41,7 @@ class CollectionController extends BaseScopedController
         $this->seo->nofollow = $this->setNofollowMeta();
 
         // Use American Gothic as social image
-        $this->seo->image = rtrim(config('app.url'), '/') . '/iiif/2/d02e0079-8e82-733e-683c-cb83a387ee5e/full/1200,/0/default.jpg';
+        $this->seo->image = 'https://' .rtrim(config('app.url'), '/') . '/iiif/2/d02e0079-8e82-733e-683c-cb83a387ee5e/full/1200,/0/default.jpg';
         $this->seo->width = 1200;
         $this->seo->height = 1459;
 
