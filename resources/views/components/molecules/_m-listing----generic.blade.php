@@ -1,26 +1,28 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $item->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
-        <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-            @if (isset($image) || $item->imageFront('default'))
-                @component('components.atoms._img')
-                    @slot('image', $image ?? $item->imageFront('default'))
-                    @slot('settings', $imageSettings ?? '')
-                @endcomponent
-                @if ($item->videoFront)
-                    @component('components.atoms._video')
-                        @slot('video', $item->videoFront)
-                        @slot('autoplay', true)
-                        @slot('loop', true)
-                        @slot('muted', true)
-                        @slot('title', $item->videoFront['fallbackImage']['alt'] ?? $item->imageFront('default')['alt'] ?? $image['alt'] ?? null)
+        @if (!isset($hideImage) or (isset($hideImage) && !($hideImage)))
+            <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
+                @if (isset($image) || $item->imageFront('default'))
+                    @component('components.atoms._img')
+                        @slot('image', $image ?? $item->imageFront('default'))
+                        @slot('settings', $imageSettings ?? '')
                     @endcomponent
-                    @component('components.atoms._media-play-pause-video')
-                    @endcomponent
+                    @if ($item->videoFront)
+                        @component('components.atoms._video')
+                            @slot('video', $item->videoFront)
+                            @slot('autoplay', true)
+                            @slot('loop', true)
+                            @slot('muted', true)
+                            @slot('title', $item->videoFront['fallbackImage']['alt'] ?? $item->imageFront('default')['alt'] ?? $image['alt'] ?? null)
+                        @endcomponent
+                        @component('components.atoms._media-play-pause-video')
+                        @endcomponent
+                    @endif
+                @else
+                    <span class="default-img"></span>
                 @endif
-            @else
-                <span class="default-img"></span>
-            @endif
-        </span>
+            </span>
+        @endif
         <span class="m-listing__meta">
             @if ($item->subtype)
             <em class="type f-tag">{{ $item->subtype }}</em>
@@ -28,6 +30,7 @@
             @endif
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
+                @slot('variation', $titleVariation ?? '')
                 @slot('title', $item->title)
                 @slot('title_display', $item->title_display)
             @endcomponent
@@ -43,6 +46,7 @@
             <br>
             <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->listing_description !!}</span>
             @endif
+            {{-- TODO: Consider putting dates into .m-listing__meta-bottom? --}}
             @if (isset($date))
                 @if(!empty($date))
                     <br>

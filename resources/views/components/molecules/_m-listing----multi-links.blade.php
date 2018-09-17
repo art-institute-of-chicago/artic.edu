@@ -31,7 +31,7 @@
                     @slot('tag', 'a')
                     @slot('href', $item['titleLink'])
                     @slot('gtmAttributes', $gtmAttributes ?? null)
-                    {{ $item['title'] }} <span class='title__arrow' aria-hidden="true">&rsaquo;</span>
+                    {{ $item['title_display'] ?? $item['title'] }} <span class='title__arrow' aria-hidden="true">&rsaquo;</span>
                 @endcomponent
             @else
                 @component('components.atoms._title')

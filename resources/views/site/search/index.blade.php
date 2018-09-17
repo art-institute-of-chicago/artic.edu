@@ -138,31 +138,32 @@
     @if (isset($allResultsView) && $allResultsView)
 
         @component('components.organisms._o-grid-listing')
-          @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
-          @slot('cols_small','2')
-          @slot('cols_medium','3')
-          @slot('cols_large','4')
-          @slot('cols_xlarge','4')
-          @foreach ($pages as $item)
-              @component('components.molecules._m-listing----generic-row')
-                  @slot('imgVariation','')
-                  @slot('item', $item)
-                  @slot('date', false)
-                  @slot('image', $item->imageFront('listing', 'default'))
-                  @slot('imageSettings', array(
-                      'fit' => 'crop',
-                      'ratio' => '16:9',
-                      'srcset' => array(200,400,600),
-                      'sizes' => aic_gridListingImageSizes(array(
+        @slot('variation', 'o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+            {{-- @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top') --}}
+            @slot('cols_xsmall','1')
+            @slot('cols_small','2')
+            @slot('cols_medium','2')
+            @slot('cols_large','3')
+            @slot('cols_xlarge','3')
+            @foreach ($pages as $item)
+                @component('components.molecules._m-listing----page-search')
+                    @slot('imgVariation','')
+                    @slot('item', $item)
+                    @slot('image', $item->imageFront('listing', 'default'))
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600),
+                        'sizes' => aic_gridListingImageSizes(array(
                             'xsmall' => '1',
                             'small' => '2',
                             'medium' => '3',
                             'large' => '4',
                             'xlarge' => '4',
-                      )),
-                  ))
-              @endcomponent
-          @endforeach
+                         )),
+                    ))
+                @endcomponent
+            @endforeach
         @endcomponent
 
     @else
@@ -170,14 +171,12 @@
         @component('components.organisms._o-grid-listing')
             @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
             @slot('cols_medium','3')
-            @slot('cols_large','4')
-            @slot('cols_xlarge','4')
+            @slot('cols_large','3')
+            @slot('cols_xlarge','3')
 
             @foreach ($pages as $item)
-                @component('components.molecules._m-listing----generic')
-                    @slot('imgVariation','')
+                @component('components.molecules._m-listing----page-search')
                     @slot('item', $item)
-                    @slot('date', false)
                     @slot('image', $item->imageFront('listing', 'default'))
                     @slot('imageSettings', array(
                         'fit' => 'crop',
@@ -356,6 +355,7 @@
                 @else
                     @component('components.molecules._m-listing----event')
                 @endif
+                    @slot('imgVariation','m-listing__img--no-bg')
                     @slot('item', $item)
                     @if (isset($allResultsView) and $allResultsView)
                         @slot('imageSettings', array(
@@ -417,20 +417,8 @@
           @slot('cols_xlarge','4')
           @foreach ($events as $item)
               @component('components.molecules._m-listing----event')
-                  @slot('imgVariation','')
                   @slot('item', $item)
-                  @slot('imageSettings', array(
-                      'fit' => 'crop',
-                      'ratio' => '16:9',
-                      'srcset' => array(200,400,600),
-                      'sizes' => aic_gridListingImageSizes(array(
-                            'xsmall' => '1',
-                            'small' => '2',
-                            'medium' => '3',
-                            'large' => '4',
-                            'xlarge' => '4',
-                      )),
-                  ))
+                  @slot('hideImage', true)
               @endcomponent
           @endforeach
         @endcomponent
@@ -445,20 +433,8 @@
 
             @foreach ($events as $item)
                 @component('components.molecules._m-listing----event')
-                    @slot('imgVariation','')
-                    @slot('item', $item)
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
-                              'xsmall' => '216px',
-                              'small' => '216px',
-                              'medium' => '18',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
+                      @slot('item', $item)
+                      @slot('hideImage', true)
                 @endcomponent
             @endforeach
         @endcomponent
@@ -622,6 +598,7 @@
 @endif
 
 
+{{-- This includes both Research Guides and Educator Resources. See WEB-448. --}}
 @if (isset($researchGuides) && $researchGuides->getMetadata('pagination')->total > 0)
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
@@ -641,21 +618,8 @@
           @slot('cols_xlarge','4')
           @foreach ($researchGuides as $item)
               @component('components.molecules._m-listing----generic')
-                  @slot('imgVariation','')
                   @slot('item', $item)
-                  @slot('image', $item->imageFront('listing', 'default'))
-                  @slot('imageSettings', array(
-                      'fit' => 'crop',
-                      'ratio' => '16:9',
-                      'srcset' => array(200,400,600),
-                      'sizes' => aic_gridListingImageSizes(array(
-                            'xsmall' => '1',
-                            'small' => '2',
-                            'medium' => '3',
-                            'large' => '4',
-                            'xlarge' => '4',
-                      )),
-                  ))
+                  @slot('hideImage', true)
               @endcomponent
           @endforeach
         @endcomponent
@@ -670,21 +634,8 @@
 
             @foreach ($researchGuides as $item)
                 @component('components.molecules._m-listing----generic')
-                    @slot('imgVariation','')
                     @slot('item', $item)
-                    @slot('image', $item->imageFront('listing', 'default'))
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
-                              'xsmall' => '216px',
-                              'small' => '216px',
-                              'medium' => '18',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
+                    @slot('hideImage', true)
                 @endcomponent
             @endforeach
         @endcomponent
@@ -711,21 +662,8 @@
           @slot('cols_xlarge','4')
           @foreach ($pressReleases as $item)
               @component('components.molecules._m-listing----generic')
-                  @slot('imgVariation','')
                   @slot('item', $item)
-                  @slot('image', $item->imageFront('listing', 'default'))
-                  @slot('imageSettings', array(
-                      'fit' => 'crop',
-                      'ratio' => '16:9',
-                      'srcset' => array(200,400,600),
-                      'sizes' => aic_gridListingImageSizes(array(
-                            'xsmall' => '1',
-                            'small' => '2',
-                            'medium' => '3',
-                            'large' => '4',
-                            'xlarge' => '4',
-                      )),
-                  ))
+                  @slot('hideImage', true)
               @endcomponent
           @endforeach
         @endcomponent
@@ -740,21 +678,8 @@
 
             @foreach ($pressReleases as $item)
                 @component('components.molecules._m-listing----generic')
-                    @slot('imgVariation','')
                     @slot('item', $item)
-                    @slot('image', $item->imageFront('listing', 'default'))
-                    @slot('imageSettings', array(
-                        'fit' => 'crop',
-                        'ratio' => '16:9',
-                        'srcset' => array(200,400,600),
-                        'sizes' => aic_imageSizes(array(
-                              'xsmall' => '216px',
-                              'small' => '216px',
-                              'medium' => '18',
-                              'large' => '13',
-                              'xlarge' => '13',
-                        )),
-                    ))
+                    @slot('hideImage', true)
                 @endcomponent
             @endforeach
         @endcomponent

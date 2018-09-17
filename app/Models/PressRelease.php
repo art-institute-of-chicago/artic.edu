@@ -186,4 +186,11 @@ class PressRelease extends Model
         ];
     }
 
+    // For global search! Puts date above title.
+    public function getSubtypeAttribute()
+    {
+        if ($this->publish_start_date)
+            return $this->publish_start_date->format('M j, Y');
+    }
+
 }

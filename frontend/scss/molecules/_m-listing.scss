@@ -109,6 +109,10 @@
 
 .m-listing__img--no-bg {
   background: none;
+
+  .default-img {
+    background: none;
+  }
 }
 
 .m-listing__img::before {
@@ -1740,4 +1744,58 @@
 
 .o-feature-plus-4__feature .m-listing__meta .f-body-editorial {
   @include tucked-margin-top($f-body-editorial, ('xsmall': 44, 'small+': 52, 'medium+': 56));
+}
+
+// variant `m-listing` that expects the image to be on the left, not the right, and optionally absent
+.m-listing--rtl .m-listing__link {
+  flex-flow: row-reverse wrap;
+}
+
+.m-listing--rtl .m-listing__title {
+  flex-basis: 100%;
+  margin-bottom: 16px;
+}
+
+.m-listing--rtl .m-listing__meta {
+  width: 100%;
+  margin-right: 0;
+}
+
+// remove tucked-margin-top
+.m-listing--inline.m-listing--rtl .m-listing__meta .f-secondary {
+  margin-top: 0;
+
+  &:before, &:after {
+    content: none;
+  }
+}
+
+.m-listing--rtl .m-listing__img {
+  margin-right: colspan(0.5);
+
+  margin-top: 0;
+
+  @include breakpoint('medium+') {
+    @include tucked-margin-top($f-secondary, ('xsmall': 36));
+  }
+}
+
+@include breakpoint('small') {
+
+  .m-listing--rtl .m-listing__img {
+    order: 1;
+    flex-basis: 100%;
+    margin-top: 0;
+    margin-right: 0;
+  }
+
+  .m-listing--rtl .m-listing__title {
+    order: 2;
+    margin-top: 10px;
+  }
+
+  .m-listing--rtl .m-listing__meta {
+    order: 3;
+    flex-basis: 100%;
+  }
 }
