@@ -1,4 +1,4 @@
-<h2 class="sr-only" id="h-article-actions">Article actions</h2>
+<h2 class="sr-only" id="h-article-actions">Share</h2>
 <ul class="m-article-actions{{ (isset($variation)) ? ' '.$variation : '' }}" aria-labelledby="h-article-actions">
     <li class="m-article-actions__action">
         @component('components.atoms._btn')
