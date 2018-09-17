@@ -123,7 +123,7 @@ class EventsController extends FrontController
 
     protected function show($id, $slug = null)
     {
-        $item = $this->repository->findOrFail((Integer) $id);
+        $item = $this->repository->published()->findOrFail((Integer) $id);
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->list_description);

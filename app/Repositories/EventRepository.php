@@ -90,6 +90,9 @@ class EventRepository extends ModuleRepository
         // Do not show private events
         $query->notPrivate();
 
+        // Do not show draft events
+        $query->published();
+
         if ($start) {
             $query->betweenDates($start, $end);
         }
