@@ -1,16 +1,16 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--w-meta-bottom m-listing--hover-bar{{ (!$item->slug) ? ' s-no-link' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}" itemscope itemtype="http://schema.org/ExhibitionEvent">
 
   <a href="{{ route('exhibitions.show', $item) }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
-    <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-        @if ($item->imageFront('hero'))
+
+    @if ($item->imageFront('hero'))
+        <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
             @component('components.atoms._img')
                 @slot('image', $item->imageFront('hero'))
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
-        @else
-            <span class="default-img"></span>
-        @endif
-    </span>
+        </span>
+    @endif
+
     <span class="m-listing__meta">
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-4')
