@@ -99,8 +99,8 @@
     </ul>
   </div>
 
-  <h2 class="sr-only" id="h-mobile-footer-nav-secondary">Secondary Navigation</h2>
-  <ul class="g-footer__legals f-secondary" aria-labelledby="h-mobile-footer-nav-secondary">
+  <h2 class="sr-only" id="h-mobile-footer-links">Footer Links</h2>
+  <ul class="g-footer__legals f-secondary" aria-labelledby="h-mobile-footer-links">
     <li><a href="{{ $_pages['legal-press'] }}">Press</a></li>
     <li><a href="{{ $_pages['legal-employment'] }}">Careers</a></li>
     <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
