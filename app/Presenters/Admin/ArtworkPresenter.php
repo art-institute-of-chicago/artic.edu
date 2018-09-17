@@ -70,6 +70,7 @@ class ArtworkPresenter extends BasePresenter
             array_push($blocks, [
                 "type"      => 'deflist',
                 "variation" => 'u-hide@large+',
+                "ariaOwns"  => "dl-artwork-details",
                 "items"     => [
                     [ 'key' => 'On View', 'value' => implode(', ', array($dept_link, $gallery_link)) ],
                 ]
@@ -204,7 +205,8 @@ class ArtworkPresenter extends BasePresenter
 
         return [
             "type"  => 'deflist',
-            "items" => $details
+            "items" => $details,
+            "id"    => "dl-artwork-details"
         ];
     }
 
