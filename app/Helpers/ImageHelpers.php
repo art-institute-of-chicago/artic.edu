@@ -448,7 +448,10 @@ function aic_imageSettings($data) {
 
         // generate variants
         foreach ($srcset as $size):
-            $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w, ";
+            if (!empty($stringSrcset)) {
+                $stringSrcset .= ", ";
+            }
+            $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w";
         endforeach;
         $stringSrc = $base."/".$resizeVal."/".$LQIPDimension.",/0/default.jpg";
     }
