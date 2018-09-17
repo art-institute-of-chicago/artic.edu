@@ -94,7 +94,7 @@ if ($maxZoomWindowSize >= 843) {
             {{ $images->first()['credit'] ?? '' }}
         </span>
     @endif
-      <h3 class="sr-only" id="h-image-actions">Image actions</h3>
+      <h2 class="sr-only" id="h-image-actions">Image actions</h2>
       <ul class="m-article-header__img-actions" aria-labelledby="h-image-actions">
         @if(isset($isZoomable) && $isZoomable && $maxZoomWindowSize >= 1280)
         <li>
