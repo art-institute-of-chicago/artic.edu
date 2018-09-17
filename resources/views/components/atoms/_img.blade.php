@@ -52,9 +52,6 @@
     sizes="{{ $sizes ?? '' }}"
     width="{{ $width ?? '' }}"
     height="{{ $height ?? '' }}"
-    @if (isset($style))
-    style="{!! $style !!}"
-    @endif
     @if (isset($iiifId))
     data-iiifId="{{ $iiifId }}"
     @endif
@@ -63,6 +60,9 @@
     @endif
     @if (isset($dataAttributes))
     {!! " ".$dataAttributes !!}
+    @endif
+    @if (isset($id))
+    id="{{ $id }}"
     @endif
     {{ $highlight }}
 >

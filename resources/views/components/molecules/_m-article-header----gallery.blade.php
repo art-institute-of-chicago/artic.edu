@@ -41,18 +41,19 @@ if ($maxZoomWindowSize >= 843) {
       <ul class="m-article-header__img-nav">
         @if ($prevNextObject->next)
         <li class="m-article-header__img-nav-next-artwork">
-          <a href="{!! route('artworks.show', ['id' => $prevNextObject->next->id, 'slug' => $prevNextObject->next->titleSlug ] + $prevNextObject->nextParams) !!}" class="m-article-header__img-nav-artwork-preview">
+          <a href="{!! route('artworks.show', ['id' => $prevNextObject->next->id, 'slug' => $prevNextObject->next->titleSlug ] + $prevNextObject->nextParams) !!}" class="m-article-header__img-nav-artwork-preview" aria-labelledby="h-next-artwork-title h-next-artwork-image">
             <span class="sr-only">Next: </span>
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
                   @slot('image', $prevNextObject->next->imageFront())
+                  @slot('id', 'h-next-artwork-image')
                   @slot('settings', array(
                     'srcset' => array(120,240),
                     'sizes' => '120px',
                   ))
               @endcomponent
             </span>
-            <span class="f-caption">
+            <span class="f-caption" id="h-next-artwork-title">
               <strong>{{ str_limit($prevNextObject->next->title, 18) }}</strong> <br>
               {{ str_limit($prevNextObject->next->listingSubtitle, 25) }}
             </span>
@@ -62,18 +63,19 @@ if ($maxZoomWindowSize >= 843) {
         @endif
         @if ($prevNextObject->prev)
         <li class="m-article-header__img-nav-prev-artwork">
-          <a href="{!! route('artworks.show', ['id' => $prevNextObject->prev->id, 'slug' => $prevNextObject->prev->titleSlug ] + $prevNextObject->prevParams) !!}" class="m-article-header__img-nav-artwork-preview">
+          <a href="{!! route('artworks.show', ['id' => $prevNextObject->prev->id, 'slug' => $prevNextObject->prev->titleSlug ] + $prevNextObject->prevParams) !!}" class="m-article-header__img-nav-artwork-preview" aria-labelledby="h-prev-artwork-title h-prev-artwork-image">
             <span class="sr-only">Previous: </span>
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
                   @slot('image', $prevNextObject->prev->imageFront())
+                  @slot('id', 'h-prev-artwork-image')
                   @slot('settings', array(
                     'srcset' => array(120,240),
                     'sizes' => '120px',
                   ))
               @endcomponent
             </span>
-            <span class="f-caption">
+            <span class="f-caption" id="h-prev-artwork-title">
               <strong>{{ str_limit($prevNextObject->prev->title, 18) }}</strong> <br>
               {{ str_limit($prevNextObject->prev->listingSubtitle, 25) }}
             </span>
