@@ -110,10 +110,19 @@ class Exhibition extends BaseApiModel
 
     public function getListDescriptionAttribute($value)
     {
-        if (empty($value) && !empty($this->short_description)) {
+        if (!empty($value)) {
+            return $value;
+        }
+
+        if (!empty($this->short_description)) {
             return $this->short_description;
         }
-        return $value;
+
+        if (!empty($this->description)) {
+            return truncateStr($this->description);
+        }
+
+        return null;
     }
 
     public function getDescriptionAttribute($value)
