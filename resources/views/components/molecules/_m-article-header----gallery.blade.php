@@ -41,8 +41,8 @@ if ($maxZoomWindowSize >= 843) {
       <ul class="m-article-header__img-nav">
         @if ($prevNextObject->next)
         <li class="m-article-header__img-nav-next-artwork">
-          <a href="{!! route('artworks.show', ['id' => $prevNextObject->next->id, 'slug' => $prevNextObject->next->titleSlug ] + $prevNextObject->nextParams) !!}" class="m-article-header__img-nav-artwork-preview" aria-labelledby="h-next-artwork-title h-next-artwork-image">
-            <span class="sr-only">Next: </span>
+          <a href="{!! route('artworks.show', ['id' => $prevNextObject->next->id, 'slug' => $prevNextObject->next->titleSlug ] + $prevNextObject->nextParams) !!}" class="m-article-header__img-nav-artwork-preview" aria-labelledby="h-next h-next-artwork-title h-next-artwork-image">
+            <span class="sr-only" id="h-next">Next: </span>
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
                   @slot('image', $prevNextObject->next->imageFront())
@@ -63,8 +63,8 @@ if ($maxZoomWindowSize >= 843) {
         @endif
         @if ($prevNextObject->prev)
         <li class="m-article-header__img-nav-prev-artwork">
-          <a href="{!! route('artworks.show', ['id' => $prevNextObject->prev->id, 'slug' => $prevNextObject->prev->titleSlug ] + $prevNextObject->prevParams) !!}" class="m-article-header__img-nav-artwork-preview" aria-labelledby="h-prev-artwork-title h-prev-artwork-image">
-            <span class="sr-only">Previous: </span>
+          <a href="{!! route('artworks.show', ['id' => $prevNextObject->prev->id, 'slug' => $prevNextObject->prev->titleSlug ] + $prevNextObject->prevParams) !!}" class="m-article-header__img-nav-artwork-preview" aria-labelledby="h-prev h-prev-artwork-title h-prev-artwork-image">
+            <span class="sr-only" id="h-prev">Previous: </span>
             <span class="m-article-header__img-nav-artwork-preview-img">
               @component('components.atoms._img')
                   @slot('image', $prevNextObject->prev->imageFront())
