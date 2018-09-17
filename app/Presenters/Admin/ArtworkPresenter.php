@@ -69,7 +69,7 @@ class ArtworkPresenter extends BasePresenter
             $gallery_link = $this->entity->gallery_id ? ('<a href="' .route('galleries.show', [$this->entity->gallery_id]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>') : '';
             array_push($blocks, [
                 "type"      => 'deflist',
-                "variation" => 'u-hide@large+',
+                "variation" => 'u-hide@large+ sr-show@large+',
                 "ariaOwns"  => "dl-artwork-details",
                 "items"     => [
                     [ 'key' => 'On View', 'value' => implode(', ', array($dept_link, $gallery_link)) ],

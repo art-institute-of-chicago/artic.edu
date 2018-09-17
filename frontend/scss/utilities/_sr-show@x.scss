@@ -1,0 +1,104 @@
+/***
+
+```
+<span class="sr-show@xsmall">sr-show@xsmall</span>
+<span class="sr-show@small">sr-show@small</span>
+<span class="sr-show@medium">sr-show@medium</span>
+<span class="sr-show@large">sr-show@large</span>
+<span class="sr-show@xlarge">sr-show@xlarge</span>
+<span class="sr-show@small-">sr-show@small-</span>
+<span class="sr-show@medium-">sr-show@medium-</span>
+<span class="sr-show@small+">sr-show@small+</span>
+<span class="sr-show@medium+">sr-show@medium+</span>
+<span class="sr-show@large+">sr-show@large+</span>
+```
+
+***/
+
+.sr-show\@xsmall,
+.sr-show\@small,
+.sr-show\@medium,
+.sr-show\@large,
+.sr-show\@xlarge,
+.sr-show\@small\-,
+.sr-show\@medium\-,
+.sr-show\@large\-,
+.sr-show\@xlarge\-,
+.sr-show\@small\+,
+.sr-show\@medium\+,
+.sr-show\@large\+,
+.sr-show\@xlarge {
+}
+
+@include breakpoint('xsmall') {
+  .sr-show\@xsmall {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('small') {
+  .sr-show\@small {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('medium') {
+  .sr-show\@medium {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('large') {
+  .sr-show\@large {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .sr-show\@xlarge {
+    @include sr-only-attributes;
+  }
+}
+
+
+@include breakpoint('small-') {
+  .sr-show\@small\- {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('medium-') {
+  .sr-show\@medium\- {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('large-') {
+  .sr-show\@large\- {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('small+') {
+  .sr-show\@small\+ {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('medium+') {
+  .sr-show\@medium\+ {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('large+') {
+  .sr-show\@large\+ {
+    @include sr-only-attributes;
+  }
+}
+
+@include breakpoint('xlarge') {
+  .sr-show\@xlarge {
+    @include sr-only-attributes;
+  }
+}
