@@ -87,6 +87,7 @@
     @endif
 
     @if ($item->date_display)
+      <h2 class="sr-only">Date:</h2>
       @component('components.atoms._title')
           @slot('tag','p')
           @slot('font', 'f-secondary')
@@ -96,6 +97,7 @@
     @endif
 
     @if ($item->artist_display)
+      <h2 class="sr-only">Artist:</h2>
       @component('components.atoms._title')
           @slot('tag','p')
           @slot('font', 'f-secondary')
