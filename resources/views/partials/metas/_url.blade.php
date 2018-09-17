@@ -1,6 +1,6 @@
 @php
     $app_url  = rtrim(config('app.url'), '/') . '/';
-    $url      = $canonicalUrl ?? ($app_url . trim(Request::fullUrl(), '/'));
+    $url      = $canonicalUrl ?? ($app_url . trim(Request::path(), '/'));
     $nofollow = $seo->nofollow ?? false;
 @endphp
 

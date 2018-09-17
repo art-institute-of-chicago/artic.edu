@@ -73,6 +73,7 @@
   <div class="o-article__intro" itemprop="description">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
+        @slot('tag', 'span')
         {!! $item->description !!}
     @endcomponent
   </div>

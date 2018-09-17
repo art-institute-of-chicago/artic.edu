@@ -26,6 +26,7 @@ class SelectionsController extends FrontController
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->short_copy);
+        $this->seo->setImage($item->imageFront('hero'));
 
         $artworks = $item->artworks(0);
         $exploreFurther = new ExploreFurther($item, $artworks->getMetadata('aggregations'));

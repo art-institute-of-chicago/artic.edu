@@ -17,10 +17,11 @@ class VisitController extends FrontController
 
         config(['translatable.use_fallback' => true]);
 
+        $page = Page::forType('Visit')->first();
+
         $this->seo->setTitle("Visit a Chicago Landmark");
         $this->seo->setDescription("Looking for things to do in Downtown Chicago? Plan your visit, find admission pricing, hours, directions, parking & more!");
-
-        $page = Page::forType('Visit')->first();
+        $this->seo->setImage($page->imageFront('visit_hero') ?? $page->imageFront('visit_mobile'));
 
         $video_url = $page->file('video', 'en');
 
@@ -114,7 +115,7 @@ class VisitController extends FrontController
         };
 
         $directions = array(
-            'intro' => __('Located in the heart of the Chicago—across from Millennium Park and steps from Lake Michigan—the Art Institute welcomes visitors at two entrances.'),
+            'intro' => __('Located in the heart of Chicago—across from Millennium Park and steps from Lake Michigan—the Art Institute welcomes visitors at two entrances.'),
             'image' => $page->imageFront('visit_map'),
             'locations' => $page->locations,
             'link' => array(
@@ -177,7 +178,7 @@ class VisitController extends FrontController
         return view('site.visit', [
             'primaryNavCurrent' => 'visit',
             'page' => $page,
-            'title' => $page->title,
+            'title' => __('Visit'),
             'contrastHeader' => true,
             'filledLogo' => true,
             'headerMedia' => $headerMedia,

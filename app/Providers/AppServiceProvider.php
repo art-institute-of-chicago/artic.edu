@@ -42,8 +42,9 @@ class AppServiceProvider extends ServiceProvider
 
         $seo->title = config('twill.seo.site_title');
         $seo->description = config('twill.seo.site_desc');
-        $seo->width = 900;
-        $seo->height = 470;
+        $seo->image = config('twill.seo.image');
+        $seo->width = config('twill.seo.width');
+        $seo->height = config('twill.seo.height');
 
         \View::share('seo', $seo);
     }

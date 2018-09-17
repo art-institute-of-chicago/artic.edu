@@ -126,6 +126,7 @@ const calendar = function(container) {
           var urlMonth = (month + 1);
           urlMonth = (urlMonth < 10) ? '0' + urlMonth : urlMonth.toString();
           var urlDay = (currentDate < 10) ? '0' + currentDate : currentDate.toString();
+          // TODO: Remove 'time' parameter here?
           var windowLocationHref = queryStringHandler.updateParameter(window.location.href, 'date', (year.toString() + urlMonth + urlDay));
           thisDay = '<a href="'+ windowLocationHref + '" data-date="' + year.toString() + urlMonth + urlDay + '" title="' + titleAttr + '">' + currentDate + '</a>';
         } else {

@@ -179,6 +179,7 @@
 
     @include breakpoint('xlarge') {
       column-gap: colspan(1, xlarge);
+      width: colspan(43, xlarge);
     }
   }
 

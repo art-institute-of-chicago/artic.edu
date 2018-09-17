@@ -97,20 +97,28 @@ class ArtworkService extends BaseService
             $tags[route('collection', ['department_ids' => $this->resource->department_title])] = ucfirst($this->resource->department_title);
         }
 
-        foreach ($this->resource->classification_titles as $item) {
-            $tags[route('collection', ['classification_ids' => $item])] = ucfirst($item);
+        if ($this->resource->classification_titles) {
+            foreach ($this->resource->classification_titles as $item) {
+                $tags[route('collection', ['classification_ids' => $item])] = ucfirst($item);
+            }
         }
 
-        foreach ($this->resource->style_titles as $item) {
-            $tags[route('collection', ['style_ids' => $item])] = ucfirst($item);
+        if ($this->resource->style_titles) {
+            foreach ($this->resource->style_titles as $item) {
+                $tags[route('collection', ['style_ids' => $item])] = ucfirst($item);
+            }
         }
 
-        foreach ($this->resource->subject_titles as $item) {
-            $tags[route('collection', ['subject_ids' => $item])] = ucfirst($item);
+        if ($this->resource->subject_titles) {
+            foreach ($this->resource->subject_titles as $item) {
+                $tags[route('collection', ['subject_ids' => $item])] = ucfirst($item);
+            }
         }
 
-        foreach ($this->resource->material_titles as $item) {
-            $tags[route('collection', ['material_ids' => $item])] = ucfirst($item);
+        if ($this->resource->material_titles) {
+            foreach ($this->resource->material_titles as $item) {
+                $tags[route('collection', ['material_ids' => $item])] = ucfirst($item);
+            }
         }
 
         return array_where($tags, function($key, $value) {

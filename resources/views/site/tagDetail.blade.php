@@ -73,7 +73,7 @@
     @endcomponent
 @endif
 
-@if ($item->articles)
+@if ($item->articles && $item->articles->count() > 0)
     @component('components.molecules._m-title-bar')
         Related
     @endcomponent
@@ -107,7 +107,7 @@
     @endcomponent
 @endif
 
-@if ($exploreFurther)
+@if (isset($exploreFurther))
 <div id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further

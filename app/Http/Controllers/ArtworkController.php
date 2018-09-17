@@ -27,6 +27,7 @@ class ArtworkController extends BaseScopedController
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->fullTitle);
+        $this->seo->setImage($item->imageFront('hero'));
 
         // Get previous and next artwork using BaseScopedController filters
         // Basically it performs a search again and locates both prev/next works
@@ -45,6 +46,7 @@ class ArtworkController extends BaseScopedController
           'exploreFurther'        => $exploreFurther->collection(request()->all()),
           'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
           'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
+          'canonicalUrl' => route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
         ]);
     }
 

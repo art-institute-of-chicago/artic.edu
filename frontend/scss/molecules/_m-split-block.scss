@@ -1,8 +1,12 @@
 .m-split-block {
 
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   margin-top: 28px;
+
+  @include breakpoint('small+') {
+    flex-flow: row nowrap;
+  }
 
 }
 
@@ -10,18 +14,22 @@
 
   margin: 16px 0;
 
-  &:first-child {
-    margin-left: 0;
-    margin-right: 8px;
-  }
+  @include breakpoint('small+') {
 
-  &:first-child.o-blocks {
-    margin-top: 16px;
-  }
+    &:last-child {
+      margin-right: 0;
+      margin-left: 8px;
+    }
 
-  &:last-child {
-    margin-right: 0;
-    margin-left: 8px;
+    &:first-child {
+      margin-left: 0;
+      margin-right: 8px;
+    }
+
+    &:first-child.o-blocks {
+      margin-top: 16px;
+    }
+
   }
 
 }
@@ -36,7 +44,12 @@
 }
 
 .m-split-block--half div {
-  flex-basis: 50%;
+  flex-basis: 100%;
+
+  @include breakpoint('small+') {
+    flex-basis: 50%;
+  }
+
 }
 
 
@@ -47,7 +60,7 @@
   }
 
   &:last-child {
-    flex-basis: 50%;
+    flex-basis: 75%;
   }
 
 }

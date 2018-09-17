@@ -11,8 +11,8 @@
 @section('contentFields')
     @formField('input', [
         'name' => 'title_display',
-        'label' => 'Title (HTML)',
-        'note' => 'Use only for italics'
+        'label' => 'Title formatting (optional)',
+        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
     ])
 
     @formField('select', [
@@ -77,7 +77,8 @@
         'blocks' => [
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'newsletter_signup_inline', 'timeline', 'link', 'shop_items',
-            'artworks', 'artwork'
+            'artworks', 'artwork',
+            'hr', 'split_block',
         ]
     ])
 @stop

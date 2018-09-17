@@ -84,6 +84,7 @@ class ArticleController extends FrontController
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->heading);
+        $this->seo->setImage($item->imageFront('hero'));
 
         if ($item->categories->first()) {
             $item->topics = $item->categories;

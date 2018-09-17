@@ -20,8 +20,8 @@
 
     @formField('input', [
         'name' => 'title_display',
-        'label' => 'Title (HTML)',
-        'note' => 'Use only for italics'
+        'label' => 'Title formatting (optional)',
+        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
     ])
 
     @formField('wysiwyg', [

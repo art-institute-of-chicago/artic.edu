@@ -20,7 +20,7 @@ class Places extends BaseFilteredList
                 'listSearch'  => true,
                 'type'        => 'list',
                 'aggregation' => $this->aggregationName,
-                'listSearchUrl' => route('collection.categorySearch', request()->input() + ['categoryName' => 'places'])
+                'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryQuery']) + ['categoryName' => 'places'])
             ];
         }
     }

@@ -10,8 +10,10 @@ class CreateExhibitionsTables extends Migration
         Schema::create('exhibitions', function (Blueprint $table) {
             createDefaultTableFields($table);
 
-            // Add default detail fields
-            createDefaultDetailTableFields($table);
+            // "default" detail fields
+            $table->string('title');
+            $table->string('short_copy')->nullable();
+            $table->string('header_copy')->nullable();
 
             // use a json field to store block editor fields
             $table->json('content')->nullable();

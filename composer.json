@@ -56,7 +56,6 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/MigrationHelpers.php",
             "app/Helpers/ImageHelpers.php",
             "app/Helpers/DatesHelpers.php",
             "app/Helpers/QueryHelpers.php",
