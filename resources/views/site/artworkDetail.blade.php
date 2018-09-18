@@ -158,6 +158,7 @@
 
     @component('site.shared._explore-further-menu')
         @slot('tags', $exploreFurtherTags)
+        @slot('ariaLabel', 'h-explore-further')
     @endcomponent
 
     @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
