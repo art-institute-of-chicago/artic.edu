@@ -17,7 +17,7 @@
                 @else
                     <li class="m-links-bar__item {{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                 @endif
-                    <button class="m-links-bar__item-trigger f-link" data-href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
+                    <button class="m-links-bar__item-trigger f-link" data-href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther"{!! isset($ariaControls) ? ' aria-controls="'.$ariaControls.'"' : ''!!}>
                         {{ ucfirst($name) }}
                     </button>
                 </li>

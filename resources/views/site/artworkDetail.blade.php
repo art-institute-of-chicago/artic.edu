@@ -159,6 +159,7 @@
     @component('site.shared._explore-further-menu')
         @slot('tags', $exploreFurtherTags)
         @slot('ariaLabel', 'h-explore-further')
+        @slot('ariaControls', 'explore-further-pinboard')
     @endcomponent
 
     @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
@@ -168,6 +169,7 @@
             @slot('cols_large','4')
             @slot('cols_xlarge','4')
             @slot('maintainOrder','false')
+            @slot('id','explore-further-pinboard')
             @foreach ($exploreFurther as $item)
                 @component('components.molecules._m-listing----'.$item->type)
                     @slot('variation', 'o-pinboard__item')
