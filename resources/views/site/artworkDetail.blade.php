@@ -170,7 +170,7 @@
             @slot('cols_xlarge','4')
             @slot('maintainOrder','false')
             @slot('id','explore-further-pinboard')
-            @slot('title', 'Artworks to explore')
+            @slot('title', 'Artworks related to tag')
             @foreach ($exploreFurther as $item)
                 @component('components.molecules._m-listing----'.$item->type)
                     @slot('variation', 'o-pinboard__item')
@@ -198,6 +198,7 @@
             @slot('cols_medium','3')
             @slot('cols_large','4')
             @slot('cols_xlarge','4')
+            @slot('title', 'All tags on this artwork')
             @slot('items', $exploreFurtherAllTags)
         @endcomponent
     @endif
