@@ -18,9 +18,9 @@
                 @else
                     <li class="m-links-bar__item {{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                 @endif
-                    <a class="m-links-bar__item-trigger f-link" href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
+                    <button class="m-links-bar__item-trigger f-link" data-href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
                         {{ ucfirst($name) }}
-                    </a>
+                    </button>
                 </li>
             @endforeach
         @endforeach
@@ -37,9 +37,9 @@
                         @else
                             <li class="{{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                         @endif
-                            <a href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
+                            <button data-href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
                                 {{ ucfirst($name) }}
-                            </a>
+                            </button>
                         </li>
                     @endforeach
                 @endforeach
