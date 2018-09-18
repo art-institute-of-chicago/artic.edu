@@ -1,5 +1,5 @@
 <nav class="m-links-bar" data-behavior="linksBar">
-    <ul class="m-links-bar__items-primary"{!! isset($ariaLabel) ? ' aria-labelledby="'.$ariaLabel.'"' !!} data-links-bar-primary>
+    <ul class="m-links-bar__items-primary"{!! isset($ariaLabel) ? ' aria-labelledby="'.$ariaLabel.'"': '' !!} data-links-bar-primary>
         @foreach ($tags as $category => $items)
             @foreach ($items as $id => $name)
 

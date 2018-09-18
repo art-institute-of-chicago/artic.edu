@@ -170,6 +170,7 @@
             @slot('cols_xlarge','4')
             @slot('maintainOrder','false')
             @slot('id','explore-further-pinboard')
+            @slot('title', 'Artworks to explore')
             @foreach ($exploreFurther as $item)
                 @component('components.molecules._m-listing----'.$item->type)
                     @slot('variation', 'o-pinboard__item')
