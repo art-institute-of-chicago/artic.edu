@@ -338,7 +338,7 @@
                 <dl class="deflist o-blocks__block {{ $block['variation'] ?? ''}}"{!! isset($block['ariaOwns']) ? ' aria-owns="'.$block['ariaOwns'].'"' : '' !!}{!! isset($block['id']) ? ' id="'.$block['id'].'"' : '' !!}>
                 @foreach ($block['items'] as $item)
                     <dt>
-                        <h2 class="f-module-title-1">{{ $item['key'] }}</span>
+                        <h2 class="f-module-title-1">{{ $item['key'] }}</h2>
                     </dt>
                     @if (isset($item['links']) && $item['links'])
                         <dd{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>

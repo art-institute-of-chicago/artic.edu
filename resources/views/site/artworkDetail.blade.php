@@ -34,7 +34,7 @@
             @slot('variation', 'u-show@large+')
             @slot('tag','h2')
             @slot('font', 'f-module-title-1')
-            @slot('ariaHidden', true)
+            @slot('ariaHidden', "true")
             On View
         @endcomponent
     @endif

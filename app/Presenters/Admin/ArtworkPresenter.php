@@ -65,7 +65,7 @@ class ArtworkPresenter extends BasePresenter
         }
 
         if ($this->entity->is_on_view) {
-            $dept_link = $this->entity->department_id ? ('<a href="' . route('departments.show', [$this->entity->department_id]) .'" data-gtm-event="' .$this->entity->department_title .'" data-gtm-event-category="collection-nav">' .$this->entity->department_title .'</a></li>') : '';
+            $dept_link = $this->entity->department_id ? ('<a href="' . route('departments.show', [$this->entity->department_id]) .'" data-gtm-event="' .$this->entity->department_title .'" data-gtm-event-category="collection-nav">' .$this->entity->department_title .'</a>') : '';
             $gallery_link = $this->entity->gallery_id ? ('<a href="' .route('galleries.show', [$this->entity->gallery_id]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>') : '';
             array_push($blocks, [
                 "type"      => 'deflist',
