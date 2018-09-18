@@ -327,6 +327,8 @@
 .m-links-bar__item-trigger {
   display: block;
   text-decoration: none;
+  border: 0;
+  cursor: pointer;
 }
 
 .m-links-bar__item-trigger.f-buttons:not([class*=btn]) {

@@ -2,7 +2,11 @@
 
 .o-accordion {
 
-  .o-article + & {
+h3 {
+  padding: 25px 0;
+}
+
+.o-article + & {
     margin-top: 40px;
   }
 }
@@ -12,6 +16,9 @@
   padding-right: 60px;
   color: $color__text--title;
   cursor: pointer;
+  border: 0;
+  width: 100%;
+  text-align: left;
 }
 
 .o-accordion__trigger.s-inactive {

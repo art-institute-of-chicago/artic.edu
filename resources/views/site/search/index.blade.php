@@ -22,7 +22,7 @@
 @if (!empty($searchResultsTypeLinks))
     @component('components.molecules._m-links-bar')
         @slot('overflow', true)
-        @slot('navType', 'primary')
+        @slot('isPrimaryPageNav', true)
         @slot('linksPrimary', $searchResultsTypeLinks)
     @endcomponent
     @component('components.atoms._hr')

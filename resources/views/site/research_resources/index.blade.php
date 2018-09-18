@@ -18,7 +18,7 @@
         @component('components.molecules._m-links-bar')
             @slot('variation', 'm-links-bar--tabs')
             @slot('overflow', true)
-            @slot('navType', 'primary')
+            @slot('isPrimaryPageNav', true)
             @slot('linksPrimary', $linksBar)
         @endcomponent
 

@@ -38,9 +38,9 @@
           </ul>
         </div>
       </nav>
-      <nav class="g-header__nav-secondary">
+      <nav class="g-header__nav-secondary" aria-label="secondary">
         <h2 class="sr-only" id="h-nav-secondary-header">Secondary Navigation</h2>
-        <ul class="f-secondary" aria-labelledby="h-nav-primary-secondary">
+        <ul class="f-secondary" aria-labelledby="h-nav-secondary-header">
           <li><a href="{{ $_pages['buy'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="buy-tickets">Buy Tickets</a></li>
           <li><a href="{{ $_pages['become-a-member'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="become-a-member">Become a Member</a></li>
           <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="top-nav" data-gtm-event="shop">Shop</a></li>

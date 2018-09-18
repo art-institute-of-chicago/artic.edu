@@ -2,11 +2,11 @@
 
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
     <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
-        <h3 class="sr-only">{{ $item['title'] }}</h3>
+        <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">{{ $item['title'] }}</h3>
         <a href="{!! $item['titleLink'] !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
 @else
     <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-        <h3 class="sr-only">{{ $item['title'] }}</h3>
+        <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">{{ $item['title'] }}</h3>
 @endif
 
         @if ( isset($item['image']) and !empty($item['image']) )
@@ -22,7 +22,7 @@
         </a>
     @endif
 
-    <span class="m-listing__meta">
+    <div class="m-listing__meta">
         @if (isset($item['title']) and $item['title'])
             @if (isset($item['titleLink']) and $item['titleLink'])
                 @component('components.atoms._title')
@@ -47,14 +47,13 @@
         @if (isset($item['text']) and $item['text'])
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')
-                @slot('tag', 'span')
+                @slot('tag', 'div')
                 {!! $item['text'] !!}
             @endcomponent
         @endif
         @if (isset($item['links']) and $item['links'])
             <br>
             @if (count($item['links']) > 1)
-              <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">Links</h3>
               <ul class="f-secondary" aria-labelledby="h-{{ str_slug($item['title']) }}">
             @else
               <span class="f-secondary last-child">
@@ -76,6 +75,6 @@
             @endforeach
             {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
         @endif
-    </span>
+    </div>
 
 </{{ $tag or 'li' }}>

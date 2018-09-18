@@ -5,10 +5,14 @@
     $linksPrimaryFontClass = ($isTabs) ? ' f-module-title-2' : $linksPrimaryFontClass;
     $linksSecondaryFontClass = ($isTabs) ? ' f-link' : $linksPrimaryFontClass;
     $activePrimaryLink = false;
+    $headingId = "h-visit-nav";
     if (isset($linksPrimary)) {
         for ($i = 0; $i < count($linksPrimary); $i++) {
             if (isset($linksPrimary[$i]['active']) && $linksPrimary[$i]['active']) {
                 $activePrimaryLink = $i;
+            }
+            if ($i == 0) {
+                $headingId .= '-' .kebab_case($linksPrimary[$i]['label']);
             }
         }
     }
@@ -17,10 +21,10 @@
         $behavior .= ' linksBar';
     }
 @endphp
-<nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{!! (isset($behavior)) ? ' data-behavior="'.$behavior.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}{!! (isset($id) and $id) ? ' id="'.$id.'"' : '' !!} aria-label="page{!! (isset($navType)) ? ' '.$navType : ' secondary' !!}">
+<nav class="m-links-bar{{ (isset($variation) and $variation) ? " ".$variation : "" }}"{!! (isset($behavior)) ? ' data-behavior="'.$behavior.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}{!! (isset($id) and $id) ? ' id="'.$id.'"' : '' !!} aria-label="page{!! (isset($isPrimaryPageNav)) ? '' : ' secondary' !!}">
   @if ((isset($linksPrimary) and $linksPrimary) or (isset($primaryHtml) and $primaryHtml))
-    <h2 class="sr-only" id="h-visit-nav">Page {!! (isset($navType)) ? $navType : 'secondary' !!} navigation</h2>
-    <ul class="m-links-bar__items-primary{{ (isset($primaryVariation) and $primaryVariation) ? ' '.$primaryVariation : '' }}" data-links-bar-primary aria-labelledby="h-visit-nav">
+    <h2 class="sr-only" id="{{ $headingId }}">Page {!! (isset($isPrimaryPageNav)) ? '' : 'secondary ' !!}navigation</h2>
+    <ul class="m-links-bar__items-primary{{ (isset($primaryVariation) and $primaryVariation) ? ' '.$primaryVariation : '' }}" data-links-bar-primary aria-labelledby="{{ $headingId }}">
       @if (isset($linksPrimary) and $linksPrimary)
           @foreach ($linksPrimary as $link)
           <li class="m-links-bar__item{{ (isset($link['liVariation']) and $link['liVariation']) ? ' '.$link['liVariation'] : '' }}{{ (isset($link['active']) and $link['active']) ? ' s-active' : '' }}">

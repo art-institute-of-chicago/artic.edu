@@ -154,3 +154,8 @@
     display: none;
   }
 }
+
+/* Taken from: http://a11y-guidelines.orange.com/web_EN/exemples/masquage/index.html */
+.sr-only {
+  @include sr-only-attributes;
+}
