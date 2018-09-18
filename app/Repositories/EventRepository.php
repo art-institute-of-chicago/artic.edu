@@ -99,17 +99,18 @@ class EventRepository extends ModuleRepository
         elseif ($program) {
             $query->year();
         }
-        elseif ($audience || $type) {
-            $query->sixMonths();
-        }
         else {
             switch ($time) {
                 case 'weekend':
                     $query->weekend();
-                    break;
+                break;
                 default:
-                    $query->default();
-                    break;
+                    if ($audience || $type) {
+                        $query->sixMonths();
+                    } else {
+                        $query->default();
+                    }
+                break;
             }
         }
 
