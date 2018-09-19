@@ -47,9 +47,9 @@
 
     @formField('block_editor', [
         'blocks' => [
-            'paragraph', 'image', 'video', 'media_embed', 'list',
+            'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
+            'list', 'artwork', 'artworks', 'hr', 'citiation', 'split_block',
             'accordion', 'membership_banner', 'timeline', 'link', 'newsletter_signup_inline',
-            'hr',
         ]
     ])
 @stop
