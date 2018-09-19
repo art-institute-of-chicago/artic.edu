@@ -411,8 +411,14 @@ class Event extends Model
             [
                 "name" => "title",
                 "doc" => "Title",
-                "type" => "boolean",
+                "type" => "string",
                 "value" => function () {return $this->title;},
+            ],
+            [
+                "name" => "title_display",
+                "doc" => "Display Title",
+                "type" => "string",
+                "value" => function () {return $this->title_display;},
             ],
             [
                 "name" => "published",
