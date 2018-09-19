@@ -30,7 +30,8 @@ class MigrateExhibitions extends Command
             ],
         ])->limit(500)->get(['id'])->pluck('id');
 
-        foreach ($ids as $id) {
+        foreach ($ids as $id)
+        {
             $this->handleItem($id);
             usleep(2000000);
         }
@@ -41,6 +42,12 @@ class MigrateExhibitions extends Command
     {
         // Load data from the API
         $apiItem = $this->getApiRepository('Exhibition')->getById($id);
+
+        if (!method_exists($apiItem, 'toArray'))
+        {
+            $this->error('Errored: ' . $id);
+            return;
+        }
 
         // Force the datahub_id field
         $data = $apiItem->toArray() + ['datahub_id' => $id];
