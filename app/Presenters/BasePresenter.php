@@ -49,4 +49,8 @@ abstract class BasePresenter
         }
     }
 
+    public function copy()
+    {
+        return $this->entity->blocks()->where('type', '=', 'paragraph')->pluck('content')->implode('paragraph', '');
+    }
 }

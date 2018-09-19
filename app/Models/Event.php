@@ -439,8 +439,8 @@ class Event extends Model
                 "value" => function () {return $this->short_description;},
             ],
             [
-                "name" => "description",
-                "doc" => "Description",
+                "name" => "header_description",
+                "doc" => "Header Description",
                 "type" => "string",
                 "value" => function () {return $this->description;},
             ],
@@ -449,6 +449,12 @@ class Event extends Model
                 "doc" => "list_description",
                 "type" => "string",
                 "value" => function () {return $this->list_description;},
+            ],
+            [
+                "name" => "description",
+                "doc" => "All copy text",
+                "type" => "string",
+                "value" => function () {return $this->present()->copy();},
             ],
             [
                 "name" => "image_url",
