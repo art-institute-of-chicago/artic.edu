@@ -478,16 +478,30 @@ class Event extends Model
                 "type" => "number",
                 "value" => function () {return $this->event_type;},
             ],
-            // alt_event_types
+            [
+                "name" => "alt_event_types",
+                "doc" => "Alternate Type",
+                "type" => "number",
+                "value" => function () {return array_pluck($this->alt_types, 'id');},
+            ],
             [
                 "name" => "audience",
                 "doc" => "Audience",
                 "type" => "string",
                 "value" => function () {return $this->audience;},
             ],
-            // alt_audiences
-            // program
-            // alt_programs
+            [
+                "name" => "alt_audiences",
+                "doc" => "Alternate Audiences",
+                "type" => "number",
+                "value" => function () {return array_pluck($this->alt_audiences, 'id');},
+            ],
+            [
+                "name" => "programs",
+                "doc" => "Programs",
+                "type" => "number",
+                "value" => function () {return array_pluck($this->programs, 'pivot.event_program_id');},
+            ],
             [
                 "name" => "is_ticketed",
                 "doc" => "Is ticketed",
