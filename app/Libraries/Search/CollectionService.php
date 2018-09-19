@@ -157,12 +157,14 @@ class CollectionService
     {
         $filters = collect([]);
 
-        foreach($aggregations as $name => $data)
-        {
-            $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst($name);
-            if (class_exists($filterClass)) {
-                $filter = new $filterClass($data->buckets, $name);
-                $filters->push($filter->generate());
+        if ($aggregations) {
+            foreach($aggregations as $name => $data)
+            {
+                $filterClass = __NAMESPACE__ . '\\Filters\\' . ucfirst($name);
+                if (class_exists($filterClass)) {
+                    $filter = new $filterClass($data->buckets, $name);
+                    $filters->push($filter->generate());
+                }
             }
         }
 
