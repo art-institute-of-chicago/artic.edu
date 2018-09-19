@@ -451,6 +451,22 @@ class Event extends Model
                 "value" => function () {return $this->list_description;},
             ],
             [
+                "name" => "image_url",
+                "doc" => "Image URL",
+                "type" => "string",
+                "value" => function () {
+                    $settings = aic_imageSettings([
+                        'image' => $this->imageFront('hero'),
+                        'settings' => [
+                            'srcset' => array(1200),
+                            'sizes' => '1200px',
+                        ],
+                    ]);
+
+                    return str_before($settings['srcset'], ' ');
+                },
+            ],
+            [
                 "name" => "hero_caption",
                 "doc" => "Hero caption",
                 "type" => "string",
