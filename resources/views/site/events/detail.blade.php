@@ -45,17 +45,16 @@
 
   <div class="o-article__secondary-actions{{ ($item->present()->ticketStatus == '') ? ' o-article__secondary-actions--empty@small-' : '' }}">
 
-    @if($item->is_ticketed)
-        @component('components.molecules._m-ticket-actions----event')
-            @slot('ticketLink', $item->buy_tickets_link);
-            @slot('buttonText', $item->present()->buyButtonText);
-            @slot('buttonCaption', $item->buy_button_caption);
-            @if ($item->is_sold_out)
-                @slot('disabled',true)
-            @endif
-            @slot('eventName',$item->title)
-        @endcomponent
-    @endif
+    @component('components.molecules._m-ticket-actions----event')
+        @slot('ticketLink', $item->buy_tickets_link);
+        @slot('buttonText', $item->present()->buyButtonText);
+        @slot('buttonCaption', $item->buy_button_caption);
+        @slot('isTicketed', $item->is_ticketed);
+        @if ($item->is_sold_out)
+            @slot('disabled',true)
+        @endif
+        @slot('eventName',$item->title)
+    @endcomponent
 
     @if ($item->featuredRelated)
       {{-- dupe 😢 - shows medium+ --}}
