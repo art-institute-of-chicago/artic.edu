@@ -561,6 +561,21 @@ Route::group(['prefix' => 'v1'], function()
 
     /**
      *
+     * - event-programs ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/event-programs",
+     *      tags={"events"},
+     *      operationId="getEvents",
+     *      summary="List all events programs",
+     *      @SWG\Response(response="200", description="List all events")
+     *  )
+     *
+     */
+    Route::get('event-programs', 'API\EventProgramsController@index');
+
+    /**
+     *
      * - articles ------------------------------------------------------
      *
      * @SWG\Get(
