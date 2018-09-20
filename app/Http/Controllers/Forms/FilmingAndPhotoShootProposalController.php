@@ -289,11 +289,22 @@ class FilmingAndPhotoShootProposalController extends FormController
             )
         ));
 
+        $breadcrumbs = [
+            [
+                'label' => 'Press',
+                'href' => '/press',
+            ],
+            [
+                'label' => 'Filming Policy',
+                'href' => '/press/filming-policy',
+            ],
+        ];
+
         $view_data = [
             'subNav' => [],
             'nav' => [],
             'title' => $this->title,
-            'breadcrumb' => [],
+            'breadcrumb' => $breadcrumbs,
             'blocks' => $blocks
         ];
 
