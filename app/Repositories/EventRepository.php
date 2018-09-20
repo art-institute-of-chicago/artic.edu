@@ -166,7 +166,7 @@ class EventRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search  = Search::query()->dateMin()->search($string)->resources(['events'])->orderBy('start_date');
+        $search  = Search::query()->dateMin()->published()->search($string)->resources(['events'])->orderBy('start_date');
 
         $results = $search->getSearch($perPage);
 

@@ -609,6 +609,25 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopePublished($query)
+    {
+        $params = [
+            'bool' => [
+                'must' => [
+                    [
+                        'term' => [
+                            'published' => [
+                                'value' => true,
+                            ],
+                        ],
+                    ],
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeExhibitionOrderByDate($query, $direction = 'asc')
     {
         $params = [
