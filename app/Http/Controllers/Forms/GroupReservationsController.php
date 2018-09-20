@@ -472,11 +472,22 @@ class GroupReservationsController extends FormController
             )
         ));
 
+        $breadcrumbs = [
+            [
+                'label' => 'Visit',
+                'href' => '/visit',
+            ],
+            [
+                'label' => 'Visit with a Group',
+                'href' => '/visit-with-a-group',
+            ],
+        ];
+
         $view_data = [
             'subNav' => [],
             'nav' => [],
             'title' => $this->title,
-            'breadcrumb' => [],
+            'breadcrumb' => $breadcrumbs,
             'blocks' => $blocks
         ];
 
