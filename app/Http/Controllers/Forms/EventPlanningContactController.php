@@ -225,11 +225,18 @@ class EventPlanningContactController extends FormController
             )
         ));
 
+        $breadcrumbs = [
+            [
+                'label' => 'Venue Rental',
+                'href' => '/venue-rental',
+            ],
+        ];
+
         $view_data = [
             'subNav' => [],
             'nav' => [],
             'title' => $this->title,
-            'breadcrumb' => [],
+            'breadcrumb' => $breadcrumbs,
             'blocks' => $blocks
         ];
 
