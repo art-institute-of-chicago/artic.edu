@@ -564,11 +564,22 @@ class RyersonClassVisitController extends FormController
             )
         ));
 
+        $breadcrumbs = [
+            [
+                'label' => 'Library',
+                'href' => '/library',
+            ],
+            [
+                'label' => 'Request a Class Visit',
+                'href' => '/library/request-a-class-visit',
+            ],
+        ];
+
         $view_data = [
             'subNav' => [],
             'nav' => [],
             'title' => $this->title,
-            'breadcrumb' => [],
+            'breadcrumb' => $breadcrumbs,
             'blocks' => $blocks
         ];
 
