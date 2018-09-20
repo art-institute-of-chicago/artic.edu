@@ -45,11 +45,15 @@ class Exhibition extends Model
         'meta_description',
         'public_start_date',
         'public_end_date',
+        'member_preview_start_date',
+        'member_preview_end_date',
     ];
 
     protected $casts = [
         'public_start_date' => 'date',
         'public_end_date' => 'date',
+        'member_preview_start_date' => 'date',
+        'member_preview_end_date' => 'date',
     ];
 
     public $slugAttributes = [

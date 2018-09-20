@@ -61,6 +61,25 @@
         @endslot
     @endcomponent
 
+    @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('date_picker', [
+                'name' => 'member_preview_start_date',
+                'label' => 'Member Preview Start Date',
+                'withTime' => false,
+                'placeholder' => '',
+            ])
+        @endslot
+        @slot('right')
+            @formField('date_picker', [
+                'name' => 'member_preview_end_date',
+                'label' => 'Member Preview End Date',
+                'withTime' => false,
+                'placeholder' => '',
+            ])
+        @endslot
+    @endcomponent
+
     @formField('wysiwyg', [
         'name' => 'header_copy',
         'label' => 'Header',
