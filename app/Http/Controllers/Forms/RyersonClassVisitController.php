@@ -374,7 +374,7 @@ class RyersonClassVisitController extends FormController
                   'variation' => 'm-fieldset__group-label',
                   'error' => (!empty($errors) && $errors->first('type_of_visit')) ? $errors->first('type_of_visit') : null,
                   'optional' => false,
-                  'hint' => 'View <a href="/library/request-a-visit">descriptions</a>',
+                  'hint' => 'View <a href="/library/request-a-class-visit">descriptions</a>',
                   'label' => 'Type of Visit *',
                 )
             ),

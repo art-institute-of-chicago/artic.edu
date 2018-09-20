@@ -386,8 +386,8 @@
 
             @if ($block['type'] === 'label')
                 @component('components.atoms._label')
-                  @slot('optional', $block['$optional'] ?? null)
-                  @slot('hint', $block['$hint'] ?? null)
+                  @slot('optional', $block['optional'] ?? null)
+                  @slot('hint', $block['hint'] ?? null)
                   @slot('error', $block['error'] ?? null)
                   {!! $block['label'] !!}
                 @endcomponent
