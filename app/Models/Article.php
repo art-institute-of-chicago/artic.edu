@@ -105,7 +105,7 @@ class Article extends Model implements Feedable
         return 'article';
     }
 
-    public function getTrackingSlugAttribute() 
+    public function getTrackingSlugAttribute()
     {
         return $this->title;
     }
@@ -220,7 +220,7 @@ class Article extends Model implements Feedable
 
     public static function getAllFeedItems()
     {
-       return \App\Models\Article::query()->published()->get();
+        return \App\Models\Article::query()->published()->orderBy('date', 'desc')->get();
     }
 
     public function toFeedItem()
