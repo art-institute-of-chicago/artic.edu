@@ -614,13 +614,24 @@ class Search extends BaseApiModel
         $params = [
             'bool' => [
                 'must' => [
-                    [
-                        'term' => [
-                            'published' => [
-                                'value' => true,
+                    'bool' => [
+                        'should' => [
+                            [
+                                'term' => [
+                                    'published' => [
+                                        'value' => true,
+                                    ],
+                                ],
                             ],
-                        ],
-                    ],
+                            [
+                                'term' => [
+                                    'is_published' => [
+                                        'value' => true,
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
                 ]
             ]
         ];
