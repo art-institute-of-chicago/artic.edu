@@ -19,7 +19,7 @@ Additional state for if the auto complete has been used.
   }
 
   .g-search {
-    visibility: visible;
+    display: block;
     transform: translateY(0%);
     transition: transform .4s .25s $bezier--marius-ease;
   }

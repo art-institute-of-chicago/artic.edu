@@ -12,7 +12,7 @@ Show the burger nav.
 
   .g-nav-mobile {
     opacity: 1;
-    visibility: visible;
+    display: block;
     transition: opacity .2s $bezier--ease-in-out;
   }
 }
