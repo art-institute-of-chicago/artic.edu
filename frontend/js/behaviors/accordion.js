@@ -64,7 +64,7 @@ const accordion = function(container) {
       event.stopPropagation();
       //
       let trigger = event.target.classList.contains('o-accordion__trigger') ? event.target : event.target.parentNode;
-      let target = trigger.parentElement.nextElementSibling;
+      let target = trigger.parentElement.nextElementSibling || trigger.nextElementSibling;
       let validTarget = (target.classList.contains('o-accordion__panel'));
       //
       if (trigger.classList.contains('s-inactive')) {
