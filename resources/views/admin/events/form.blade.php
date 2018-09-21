@@ -15,6 +15,8 @@
         'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
     ])
 
+    <hr>
+
     @formField('select', [
         'name' => 'layout_type',
         'label' => 'Hero type',
@@ -40,6 +42,10 @@
             'italic',
         ],
     ])
+
+    <p><strong>Note:</strong> Hero images are used by event listings, ticketing pages, and the mobile app.</p>
+
+    <hr>
 
     @formField('wysiwyg', [
         'name' => 'description',
