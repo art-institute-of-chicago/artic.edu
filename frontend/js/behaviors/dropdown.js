@@ -26,6 +26,11 @@ const dropdown = function(container) {
     if (event) {
       event.stopPropagation();
     }
+
+    let trigger = event.target.classList.contains('dropdown__trigger') ? event.target : event.target.parentNode;
+    let button = trigger.firstElementChild;
+    button.setAttribute('aria-expanded', 'true');
+
     triggerCustomEvent(document, 'dropdown:close');
     container.classList.add('s-active');
     setTimeout(function(){ setFocusOnTarget(container.querySelector('ul')); }, 0)
@@ -63,6 +68,11 @@ const dropdown = function(container) {
         });
       }
     }
+
+    let trigger = event.target.classList.contains('dropdown__trigger') ? event.target : event.target.parentNode;
+    let button = trigger.firstElementChild;
+    button.setAttribute('aria-expanded', 'false');
+
     container.classList.remove('s-active');
     active = false;
   }

@@ -1,6 +1,5 @@
 <nav class="m-links-bar" data-behavior="linksBar">
-    <h3 class="sr-only" id="h-links-bar">Explore further options</h3>
-    <ul class="m-links-bar__items-primary" aria-labelledby="h-links-bar" data-links-bar-primary>
+    <ul class="m-links-bar__items-primary"{!! isset($ariaLabel) ? ' aria-labelledby="'.$ariaLabel.'"': '' !!} data-links-bar-primary>
         @foreach ($tags as $category => $items)
             @foreach ($items as $id => $name)
 
@@ -18,15 +17,15 @@
                 @else
                     <li class="m-links-bar__item {{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                 @endif
-                    <a class="m-links-bar__item-trigger f-link" href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
+                    <button class="m-links-bar__item-trigger f-link" data-href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther"{!! isset($ariaControls) ? ' aria-controls="'.$ariaControls.'"' : ''!!} aria-pressed="{{ (request()->input("ef-{$category}_ids") == $id) ? 'true' : 'false' }}">
                         {{ ucfirst($name) }}
-                    </a>
+                    </button>
                 </li>
             @endforeach
         @endforeach
 
         <li class="m-links-bar__item m-links-bar__item--push m-links-bar__item--overflow" data-links-bar-primary-overflow="">
-          <span aria-label="More links" class="dropdown dropdown--filter dropdown--tabs f-link" data-behavior="dropdown" tabindex="0">
+          <div aria-label="More links" class="dropdown dropdown--filter dropdown--tabs f-link" data-behavior="dropdown" tabindex="0">
             <button class="dropdown__trigger  f-link">More<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button>
               <h4 class="sr-only" id="h-links-bar-more">More options</h4>
               <ul class="dropdown__list f-secondary" aria-labelledby="h-links-bar-more" data-dropdown-list>
@@ -37,14 +36,14 @@
                         @else
                             <li class="{{ (request()->input("ef-{$category}_ids") == $id) ? 's-active' : '' }} ">
                         @endif
-                            <a href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
+                            <button data-href="{!! currentUrlWithQuery(["ef-{$category}_ids" => $id]) !!}" data-ajax-tab-target="exploreFurther">
                                 {{ ucfirst($name) }}
-                            </a>
+                            </button>
                         </li>
                     @endforeach
                 @endforeach
             </ul>
-          </span>
+          </div>
         </li>
     </ul>
 </nav>

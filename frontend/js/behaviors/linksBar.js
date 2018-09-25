@@ -1,6 +1,30 @@
-import { purgeProperties, forEach } from '@area17/a17-helpers';
+import { purgeProperties, triggerCustomEvent, forEach } from '@area17/a17-helpers';
 
 const linksBar = function(container) {
+
+  function _handleClicks(event) {
+    _update(event);
+  }
+
+  function _handleKeyPress(event) {
+    if (event.keyCode === 13 || event.keyCode === 8) {
+      _update(event);
+    }
+  }
+
+  function _update(event) {
+    if (event.target.classList.contains('m-links-bar__item-trigger') || event.target.parentNode.classList.contains('m-links-bar__item-trigger')) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      let trigger = event.target.classList.contains('m-links-bar__item-trigger') ? event.target : event.target.parentNode;
+
+      triggerCustomEvent(document, 'ajax:getPage', {
+        url: trigger.getAttribute('data-href') || trigger.getAttribute('href') || '#',
+        ajaxScrollTarget: trigger.getAttribute('data-ajax-tab-target') || ''
+      });
+    }
+  }
 
   function _measureAndHideShow() {
     let isTabs = (container.className.indexOf('tabs') > 0);
@@ -73,6 +97,9 @@ const linksBar = function(container) {
   }
 
   function _init() {
+    container.addEventListener('click', _handleClicks, false);
+    container.addEventListener('keyup', _handleKeyPress, false);
+
     document.addEventListener('resized', _measureAndHideShow, false);
     _measureAndHideShow();
   }

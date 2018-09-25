@@ -12,6 +12,7 @@
 
     @component('components.molecules._m-media')
         @slot('item', $headerMedia)
+        @slot('tag', 'span')
         @slot('imageSettings', array(
             'srcset' => array(300,600,1000,1500,3000),
             'sizes' => '100vw',
@@ -21,7 +22,7 @@
     @component('components.molecules._m-links-bar')
         @slot('overflow', true)
         @slot('variation', 'm-links-bar--nav-bar')
-        @slot('navType', 'primary')
+        @slot('isPrimaryPageNav', true)
         @slot('linksPrimary', array(
           array('label' => __('Hours'), 'href' => '#hours'),
           array('label' => __('Admission'), 'href' => '#admission'),
@@ -40,12 +41,12 @@
                 @slot('font', null)
                 @slot('options', array(
                   array('active' => request('lang') === 'en', 'href' => currentUrlWithQuery([]), 'label' => 'English'),
-                  array('active' => request('lang') === 'es', 'href' => currentUrlWithQuery(['lang' => 'es']), 'label' => 'Español'),
-                  array('active' => request('lang') === 'fr', 'href' => currentUrlWithQuery(['lang' => 'fr']), 'label' => 'Français'),
-                  array('active' => request('lang') === 'de', 'href' => currentUrlWithQuery(['lang' => 'de']), 'label' => 'Deutsch'),
-                  array('active' => request('lang') === 'zh', 'href' => currentUrlWithQuery(['lang' => 'zh']), 'label' => '中文'),
-                  array('active' => request('lang') === 'ja', 'href' => currentUrlWithQuery(['lang' => 'ja']), 'label' => '日本語'),
-                  array('active' => request('lang') === 'pt', 'href' => currentUrlWithQuery(['lang' => 'pt']), 'label' => 'Português'),
+                  array('active' => request('lang') === 'es', 'href' => currentUrlWithQuery(['lang' => 'es']), 'lang' => 'es', 'label' => 'Español'),
+                  array('active' => request('lang') === 'fr', 'href' => currentUrlWithQuery(['lang' => 'fr']), 'lang' => 'fr', 'label' => 'Français'),
+                  array('active' => request('lang') === 'de', 'href' => currentUrlWithQuery(['lang' => 'de']), 'lang' => 'de', 'label' => 'Deutsch'),
+                  array('active' => request('lang') === 'zh', 'href' => currentUrlWithQuery(['lang' => 'zh']), 'lang' => 'zh', 'label' => '中文'),
+                  array('active' => request('lang') === 'ja', 'href' => currentUrlWithQuery(['lang' => 'ja']), 'lang' => 'ja', 'label' => '日本語'),
+                  array('active' => request('lang') === 'pt', 'href' => currentUrlWithQuery(['lang' => 'pt']), 'lang' => 'pt', 'label' => 'Português'),
                 ))
               @endcomponent
           </li>
@@ -138,17 +139,17 @@
           <tr>
             <th>&nbsp;</th>
             @foreach ($admission['titles'] as $categoryId => $categoryData)
-              <th aria-labelledby="{{ $categoryData['id'] }}">
+              <th aria-labelledby="h-{{ $categoryData['id'] }}">
                 @component('components.blocks._text')
                     @slot('font', 'f-module-title-1')
                     @slot('tag','span')
-                    @slot('id', $categoryData['id'])
+                    @slot('id', 'h-' .$categoryData['id'])
                     {{ $categoryData['title'] }}
                 @endcomponent
                 @if (isset($categoryData['tooltip']))
                   &nbsp;
-                  @component('components.atoms._info-button-trigger')
-                      @slot('describedBy', $categoryData['id'])
+                  @component('components.atoms._info-button')
+                      @slot('id', $categoryData['id'])
                       {{ $categoryData['tooltip'] }}
                   @endcomponent
                 @endif
@@ -196,9 +197,8 @@
                     @endif
                   </td>
                   @endforeach
-
+                </tr>
             @endif
-          </tr>
           @endforeach
           <tr>
             <th>
@@ -208,7 +208,7 @@
                   @lang('Children')
               @endcomponent
             </th>
-            <td rowspan="2" colspan="4">
+            <td rowspan="2" colspan="4" aria-label="Children and members are free">
               @component('components.blocks._text')
                   @slot('font','f-tag')
                   @slot('tag','span')
@@ -316,7 +316,7 @@
     <div class="m-directions-block">
       <div class="m-directions-block__map">
         <figure class="m-media">
-            <a itemprop="hasMap" href="{{ $directions['links'][0]['href'] ?? '#' }}" class="m-media__img ratio-img ratio-img--16:9" aria-label="click to get directions to the Art Institute of Chicago">
+            <a itemprop="hasMap" href="{{ $directions['links'][0]['href'] ?? '#' }}" class="m-media__img ratio-img ratio-img--16:9" aria-label="Directions to the Art Institute of Chicago">
                 @include('partials._map')
             </a>
         </figure>
@@ -327,7 +327,7 @@
             <h3>{!! $location['name'] !!}</h3>
             <p>
               <span itemprop="streetAddress">{!! $location['street'] !!} {!! $location['addres'] !!}</span><br />
-              <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}
+              <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}</span>
             </p>
           </div>
         @endforeach
@@ -363,6 +363,7 @@
         @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
+        @slot('ariaLabel', 'h-dining')
         @foreach ($dining as $item)
             @component('components.molecules._m-listing----multi-links')
                 @slot('variation', 'm-listing--row@small m-listing--row@medium')
@@ -424,6 +425,7 @@
         @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
+        @slot('ariaLabel', 'h-tours')
         @foreach ($tours as $item)
             @component('components.molecules._m-listing----multi-links')
                 @slot('variation', 'm-listing--row@small m-listing--row@medium')
@@ -457,6 +459,7 @@
         @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
+        @slot('ariaLabel', 'h-familes_teens_educators')
         @foreach ($families as $item)
             @component('components.molecules._m-listing----multi-links')
                 @slot('variation', 'm-listing--row@small m-listing--row@medium')

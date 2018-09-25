@@ -47,9 +47,6 @@ const videojsActivate = function() {
             ]
         });
     }
-
-    console.log('hey');
-
 }
 
 export default videojsActivate;

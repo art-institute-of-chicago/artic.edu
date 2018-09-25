@@ -29,7 +29,7 @@
       </li>
 
       <li class="u-hide@small-">
-        <a href="https://www.google.com/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank" aria-label="click to get directions to the Art Institute of Chicago">
+        <a href="https://www.google.com/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank" aria-label="Directions to the Art Institute of Chicago">
           <svg aria-hidden="true" class="icon--footer_map_120x92"><use xlink:href="#icon--footer_map_120x92" /></svg>
         </a>
 
@@ -37,12 +37,12 @@
         <ul class="g-footer__link-list g-footer__link-list--spaced" aria-labelledby="h-footer-nav-locations">
           <li>
 
-            <h2>Michigan Avenue Entrance</h2>
+            <h4>Michigan Avenue Entrance</h4>
             <a href="https://www.google.com/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">111 South Michigan Avenue <br>Chicago, IL 60603</a>
           </li>
 
           <li>
-            <h2>Modern Wing Entrance</h2>
+            <h4>Modern Wing Entrance</h4>
             <a href="https://www.google.com/maps/place/The+Art+Institute+of+Chicago/@41.8795845,-87.625902,17z/data=!3m1!5s0x880e2ca148f260e3:0xd473c3802aaff420!4m5!3m4!1s0x880e2ca3e2d94695:0x4829f3cc9ca2d0de!8m2!3d41.8795847!4d-87.623713" target="_blank">159 East Monroe Street <br>Chicago, IL 60603</a>
           </li>
         </ul>
@@ -99,8 +99,8 @@
     </ul>
   </div>
 
-  <h2 class="sr-only" id="h-footer-nav-secondary">Secondary Navigation</h2>
-  <ul class="g-footer__legals f-secondary" aria-labelledby="h-footer-nav-secondary">
+  <h2 class="sr-only" id="h-mobile-footer-links">Footer Links</h2>
+  <ul class="g-footer__legals f-secondary" aria-labelledby="h-mobile-footer-links">
     <li><a href="{{ $_pages['legal-press'] }}">Press</a></li>
     <li><a href="{{ $_pages['legal-employment'] }}">Careers</a></li>
     <li><a href="{{ $_pages['legal-contact'] }}">Contact</a></li>
@@ -112,6 +112,6 @@
 </footer>
 <a class="top-link" href="#a17" aria-label="top of page">
   <svg class="icon--arrow" aria-hidden="true">
-    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow">
+    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow" />
   </svg>
 </a>

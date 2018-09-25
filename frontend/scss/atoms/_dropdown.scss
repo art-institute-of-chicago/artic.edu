@@ -5,7 +5,7 @@ dropdown
 
 ```
 <span aria-label="Filter by" class="dropdown" data-behavior="dropdown" tabindex="0">
-  <button class="dropdown__trigger f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button>
+  <h2 class="dropdown__trigger"><button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button></h2>
   <ul class="dropdown__list f-secondary" data-dropdown-list="" tabindex="-1">
       <li><a href="#">Option 1</a></li>
       <li><a href="http://www.google.com/">Option 2</a></li>
@@ -27,7 +27,7 @@ If the drop down is in a `m-links-bar` then add variation `dropdown--filter`:
 
 ```
 <span aria-label="Filter by" class="dropdown dropdown--filter" data-behavior="dropdown" tabindex="0">
-  <button class="dropdown__trigger f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button>
+  <h2 class="dropdown__trigger"><button class="f-secondary">Dropdown<svg class="icon--arrow"><use xlink:href="#icon--arrow"></use></svg></button></h2>
   <ul class="dropdown__list f-secondary" data-dropdown-list="" tabindex="-1">
       <li><a href="#">Option 1</a></li>
       <li><a href="http://www.google.com/">Option 2</a></li>
@@ -87,6 +87,12 @@ Demonstrated in **statics/toybox**
 
 .dropdown__trigger[class*=f-] {
   @include untuck;
+}
+
+.dropdown__trigger .button {
+  border: 0;
+  background-color: initial;
+  cursor: pointer;
 }
 
 .dropdown.s-active .dropdown__trigger::before {
@@ -277,6 +283,10 @@ Demonstrated in **statics/toybox**
   border: 0 none;
   border-radius: 0;
   color: $color__link;
+}
+
+.dropdown--filter .dropdown__trigger .button {
+  line-height: 14px;
 }
 
 .o-article__primary-actions .dropdown--filter .dropdown__trigger.f-secondary,

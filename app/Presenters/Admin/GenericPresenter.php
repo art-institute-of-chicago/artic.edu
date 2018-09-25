@@ -30,6 +30,9 @@ class GenericPresenter extends BasePresenter
         $ancestors = $this->entity->ancestors()->defaultOrder()->published()->get();
 
         foreach($ancestors as $ancestor) {
+            if ($this->getExtraBreadCrumbFor($ancestor->id)) {
+                $crumbs[] = $this->getExtraBreadCrumbFor($ancestor->id);
+            }
             $crumb = [];
             $crumb['label'] = $ancestor->title;
             $crumb['href'] = $ancestor->url;
@@ -37,7 +40,23 @@ class GenericPresenter extends BasePresenter
             $crumbs[] = $crumb;
         }
 
+        if ($this->getExtraBreadCrumbFor($this->entity->id)) {
+            $crumbs[] = $this->getExtraBreadCrumbFor($this->entity->id);
+        }
+
         return $crumbs;
+    }
+
+    private function getExtraBreadCrumbFor($id) {
+        // If the page is Library, Archival Collections or Institutional Archives,
+        // add "Resources" to the breadcrumbs
+        if (in_array($id, [14, 16, 17])) {
+            $crumb = [];
+            $crumb['label'] = "Resources";
+            $crumb['href'] = "/collection/research_resources";
+
+            return $crumb;
+        }
     }
 
     public function navigation()

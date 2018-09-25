@@ -55,16 +55,8 @@ Used to allow videos in hero's and hero listings pauseable to top them being dis
   }
 }
 
-@media (hover: hover) {
-  .media-play-pause-video {
-    opacity: 0;
-    transition-property: opacity;
-    transition-duration: .15s;
-    transition-timing-function: ease-in-out;
-  }
-
-  .m-media__img:hover .media-play-pause-video,
-  .m-listing__link:hover .media-play-pause-video {
-    opacity: 1;
-  }
+.media-play-pause-video {
+  transition-property: opacity;
+  transition-duration: .15s;
+  transition-timing-function: ease-in-out;
 }

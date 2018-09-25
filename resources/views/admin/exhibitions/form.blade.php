@@ -42,6 +42,44 @@
         ],
     ])
 
+    @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('date_picker', [
+                'name' => 'public_start_date',
+                'label' => 'Public Start Date',
+                'withTime' => false,
+                'placeholder' => isset($item) && $item->aic_start_at ? (new \Carbon\Carbon($item->aic_start_at))->toFormattedDateString() : null,
+            ])
+        @endslot
+        @slot('right')
+            @formField('date_picker', [
+                'name' => 'public_end_date',
+                'label' => 'Public End Date',
+                'withTime' => false,
+                'placeholder' => isset($item) && $item->aic_end_at ? (new \Carbon\Carbon($item->aic_end_at))->toFormattedDateString() : null,
+            ])
+        @endslot
+    @endcomponent
+
+    @component('twill::partials.form.utils._columns')
+        @slot('left')
+            @formField('date_picker', [
+                'name' => 'member_preview_start_date',
+                'label' => 'Member Preview Start Date',
+                'withTime' => false,
+                'placeholder' => '',
+            ])
+        @endslot
+        @slot('right')
+            @formField('date_picker', [
+                'name' => 'member_preview_end_date',
+                'label' => 'Member Preview End Date',
+                'withTime' => false,
+                'placeholder' => '',
+            ])
+        @endslot
+    @endcomponent
+
     @formField('wysiwyg', [
         'name' => 'header_copy',
         'label' => 'Header',

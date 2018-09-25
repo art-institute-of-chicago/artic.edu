@@ -94,19 +94,26 @@ class ExhibitionPresenter extends BasePresenter
 
     public function startAt()
     {
-        if($this->entity->aic_start_at != null) {
+        if ($this->entity->public_start_date != null) {
+            return $this->entity->public_start_date;
+        }
+        elseif ($this->entity->aic_start_at != null) {
             return new Carbon($this->entity->aic_start_at);
-
-        } else {
+        }
+        else {
             return "";
         }
     }
 
     public function endAt()
     {
-        if($this->entity->aic_end_at != null) {
+        if ($this->entity->public_end_date != null) {
+            return $this->entity->public_end_date;
+        }
+        elseif ($this->entity->aic_end_at != null) {
             return new Carbon($this->entity->aic_end_at);
-        }  else {
+        }
+        else {
             return "";
         }
     }

@@ -45,6 +45,10 @@
   padding-bottom: .02px;
 }
 
+.m-fieldset__field--group .label {
+  width: 100%;
+}
+
 .m-fieldset__field--group,
 .m-fieldset__field--group + .m-fieldset__field {
   margin-top: 36px;

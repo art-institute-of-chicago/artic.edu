@@ -3,7 +3,7 @@ import { positionElementToTarget, focusTrap } from '../functions';
 
 const infoButtonTrigger = function(container) {
 
-  const infoButtonInfo = document.getElementById('info-button-info');
+  const infoButtonInfo = container.nextElementSibling || container.nextSibling;
   let infoOpen = false;
 
   function _position() {
@@ -12,7 +12,8 @@ const infoButtonTrigger = function(container) {
       target: container,
       position: 'top left',
       padding: {
-        top: 20
+        top: 104,
+        left: -76,
       },
       breakpoints: {
         xsmall: true,
@@ -37,7 +38,7 @@ const infoButtonTrigger = function(container) {
       infoButtonInfo.removeAttribute('style');
       triggerCustomEvent(document, 'focus:untrap');
       setTimeout(function(){ setFocusOnTarget(container.parentNode); }, 0)
-      infoButtonInfo.querySelector('span').textContent = '';
+      infoButtonInfo.classList.add('s-hidden');
       infoOpen = false;
     }
   }
@@ -48,13 +49,13 @@ const infoButtonTrigger = function(container) {
     container.blur();
     if (!infoOpen) {
       container.setAttribute('aria-expanded','true');
-      infoButtonInfo.querySelector('span').textContent = container.querySelector('span').textContent;
       document.documentElement.classList.add('s-infoButtonInfo-active');
       _position();
       setTimeout(function(){ setFocusOnTarget(infoButtonInfo); }, 0)
       triggerCustomEvent(document, 'focus:trap', {
         element: infoButtonInfo
       });
+      infoButtonInfo.classList.remove('s-hidden');
       infoOpen = true;
     } else {
       _closeInfoButtonInfo();

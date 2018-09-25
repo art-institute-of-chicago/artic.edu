@@ -32,8 +32,9 @@
         {{-- dupe 😢 - shows xlarge+ --}}
         @component('components.atoms._title')
             @slot('variation', 'u-show@large+')
-            @slot('tag','p')
+            @slot('tag','h2')
             @slot('font', 'f-module-title-1')
+            @slot('ariaHidden', "true")
             On View
         @endcomponent
     @endif
@@ -87,6 +88,7 @@
     @endif
 
     @if ($item->date_display)
+      <h2 class="sr-only">Date:</h2>
       @component('components.atoms._title')
           @slot('tag','p')
           @slot('font', 'f-secondary')
@@ -96,6 +98,7 @@
     @endif
 
     @if ($item->artist_display)
+      <h2 class="sr-only">Artist:</h2>
       @component('components.atoms._title')
           @slot('tag','p')
           @slot('font', 'f-secondary')
@@ -155,6 +158,8 @@
 
     @component('site.shared._explore-further-menu')
         @slot('tags', $exploreFurtherTags)
+        @slot('ariaLabel', 'h-explore-further')
+        @slot('ariaControls', 'explore-further-pinboard')
     @endcomponent
 
     @if ($exploreFurther && !$exploreFurther->isEmpty() && !$exploreFurtherAllTags)
@@ -164,6 +169,8 @@
             @slot('cols_large','4')
             @slot('cols_xlarge','4')
             @slot('maintainOrder','false')
+            @slot('id','explore-further-pinboard')
+            @slot('title', 'Artworks related to tag')
             @foreach ($exploreFurther as $item)
                 @component('components.molecules._m-listing----'.$item->type)
                     @slot('variation', 'o-pinboard__item')
@@ -191,6 +198,7 @@
             @slot('cols_medium','3')
             @slot('cols_large','4')
             @slot('cols_xlarge','4')
+            @slot('title', 'All tags on this artwork')
             @slot('items', $exploreFurtherAllTags)
         @endcomponent
     @endif

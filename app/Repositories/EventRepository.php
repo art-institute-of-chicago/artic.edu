@@ -90,23 +90,27 @@ class EventRepository extends ModuleRepository
         // Do not show private events
         $query->notPrivate();
 
+        // Do not show draft events
+        $query->published();
+
         if ($start) {
             $query->betweenDates($start, $end);
         }
         elseif ($program) {
             $query->year();
         }
-        elseif ($audience || $type) {
-            $query->sixMonths();
-        }
         else {
             switch ($time) {
                 case 'weekend':
                     $query->weekend();
-                    break;
+                break;
                 default:
-                    $query->default();
-                    break;
+                    if ($audience || $type) {
+                        $query->sixMonths();
+                    } else {
+                        $query->default();
+                    }
+                break;
             }
         }
 
@@ -162,7 +166,7 @@ class EventRepository extends ModuleRepository
 
     public function searchApi($string, $perPage = null)
     {
-        $search  = Search::query()->dateMin()->search($string)->resources(['events'])->orderBy('start_date');
+        $search  = Search::query()->dateMin()->published()->search($string)->resources(['events'])->orderBy('start_date');
 
         $results = $search->getSearch($perPage);
 

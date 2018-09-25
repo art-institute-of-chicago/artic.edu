@@ -411,38 +411,30 @@ class Event extends Model
             [
                 "name" => "title",
                 "doc" => "Title",
-                "type" => "boolean",
+                "type" => "string",
                 "value" => function () {return $this->title;},
             ],
             [
-                "name" => "published",
-                "doc" => "Published",
-                "type" => "boolean",
-                "value" => function () {return $this->published;},
-            ],
-            [
-                "name" => "event_type",
-                "doc" => "Type",
-                "type" => "number",
-                "value" => function () {return $this->event_type;},
-            ],
-            [
-                "name" => "short_description",
-                "doc" => "Short Description",
+                "name" => "title_display",
+                "doc" => "Display Title",
                 "type" => "string",
-                "value" => function () {return $this->short_description;},
+                "value" => function () {return $this->title_display;},
             ],
             [
-                "name" => "description",
-                "doc" => "Description",
+                "name" => "image_url",
+                "doc" => "Image URL",
                 "type" => "string",
-                "value" => function () {return $this->description;},
-            ],
-            [
-                "name" => "list_description",
-                "doc" => "list_description",
-                "type" => "string",
-                "value" => function () {return $this->list_description;},
+                "value" => function () {
+                    $settings = aic_imageSettings([
+                        'image' => $this->imageFront('hero'),
+                        'settings' => [
+                            'srcset' => array(1200),
+                            'sizes' => '1200px',
+                        ],
+                    ]);
+
+                    return str_before($settings['srcset'], ' ');
+                },
             ],
             [
                 "name" => "hero_caption",
@@ -451,16 +443,64 @@ class Event extends Model
                 "value" => function () {return $this->hero_caption;},
             ],
             [
-                "name" => "is_private",
-                "doc" => "Is Private",
-                "type" => "boolean",
-                "value" => function () {return $this->is_private;},
+                "name" => "header_description",
+                "doc" => "Header Description",
+                "type" => "string",
+                "value" => function () {return $this->description;},
             ],
             [
-                "name" => "is_after_hours",
-                "doc" => "Is after hhours",
-                "type" => "boolean",
-                "value" => function () {return $this->is_after_hours;},
+                "name" => "short_description",
+                "doc" => "Short Description",
+                "type" => "string",
+                "value" => function () {return $this->short_description;},
+            ],
+            [
+                "name" => "list_description",
+                "doc" => "list_description",
+                "type" => "string",
+                "value" => function () {return $this->list_description;},
+            ],
+            [
+                "name" => "description",
+                "doc" => "All copy text",
+                "type" => "string",
+                "value" => function () {return $this->present()->copy();},
+            ],
+            [
+                "name" => "location",
+                "doc" => "Location",
+                "type" => "string",
+                "value" => function () {return $this->location;},
+            ],
+            [
+                "name" => "event_type",
+                "doc" => "Type",
+                "type" => "number",
+                "value" => function () {return $this->event_type;},
+            ],
+            [
+                "name" => "alt_event_types",
+                "doc" => "Alternate Type",
+                "type" => "number",
+                "value" => function () {return array_pluck($this->alt_types, 'id');},
+            ],
+            [
+                "name" => "audience",
+                "doc" => "Audience",
+                "type" => "string",
+                "value" => function () {return $this->audience;},
+            ],
+            [
+                "name" => "alt_audiences",
+                "doc" => "Alternate Audiences",
+                "type" => "number",
+                "value" => function () {return array_pluck($this->alt_audiences, 'id');},
+            ],
+            [
+                "name" => "programs",
+                "doc" => "Programs",
+                "type" => "number",
+                "value" => function () {return array_pluck($this->programs, 'pivot.event_program_id');},
             ],
             [
                 "name" => "is_ticketed",
@@ -469,16 +509,37 @@ class Event extends Model
                 "value" => function () {return $this->is_ticketed;},
             ],
             [
-                "name" => "is_free",
-                "doc" => "Is Free",
-                "type" => "boolean",
-                "value" => function () {return $this->is_free;},
+                "name" => "ticketed_event_id",
+                "doc" => "Unique identifer of the event in our central ticketing system",
+                "type" => "string",
+                "value" => function () {
+                    $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
+                    return $ticketedEvent ? $ticketedEvent->id : null;
+                },
             ],
             [
-                "name" => "is_member_exclusive",
-                "doc" => "Is member exclusive",
-                "type" => "boolean",
-                "value" => function () {return $this->is_member_exclusive;},
+                "name" => "buy_tickets_link",
+                "doc" => "buy_tickets_link",
+                "type" => "string",
+                "value" => function () {return $this->buy_tickets_link;},
+            ],
+            [
+                "name" => "rsvp_link",
+                "doc" => "RSVP Link",
+                "type" => "string",
+                "value" => function () {return $this->rsvp_link;},
+            ],
+            [
+                "name" => "buy_button_text",
+                "doc" => "buy_button_text",
+                "type" => "string",
+                "value" => function () {return $this->buy_button_text;},
+            ],
+            [
+                "name" => "buy_button_caption",
+                "doc" => "buy_button_caption",
+                "type" => "string",
+                "value" => function () {return $this->buy_button_caption;},
             ],
             [
                 "name" => "is_registration_required",
@@ -487,16 +548,52 @@ class Event extends Model
                 "value" => function () {return $this->is_registration_required;},
             ],
             [
+                "name" => "is_member_exclusive",
+                "doc" => "Is member exclusive",
+                "type" => "boolean",
+                "value" => function () {return $this->is_member_exclusive;},
+            ],
+            [
+                "name" => "is_sold_out",
+                "doc" => "is_sold_out",
+                "type" => "boolean",
+                "value" => function () {return $this->is_sold_out;},
+            ],
+            [
+                "name" => "is_free",
+                "doc" => "Is Free",
+                "type" => "boolean",
+                "value" => function () {return $this->is_free;},
+            ],
+            [
+                "name" => "is_private",
+                "doc" => "Is Private",
+                "type" => "boolean",
+                "value" => function () {return $this->is_private;},
+            ],
+            [
                 "name" => "is_admission_required",
                 "doc" => "Is admission required",
                 "type" => "boolean",
                 "value" => function () {return $this->is_admission_required;},
             ],
             [
-                "name" => "rsvp_link",
-                "doc" => "RSVP Link",
+                "name" => "is_after_hours",
+                "doc" => "Is after hhours",
+                "type" => "boolean",
+                "value" => function () {return $this->is_after_hours;},
+            ],
+            [
+                "name" => "email_series",
+                "doc" => "Email series",
                 "type" => "string",
-                "value" => function () {return $this->rsvp_link;},
+                "value" => function () {return $this->email_series;},
+            ],
+            [
+                "name" => "survey_url",
+                "doc" => "URL to the survey associated with this event",
+                "type" => "string",
+                "value" => function () {return $this->survey_link;},
             ],
             [
                 "name" => "start_time",
@@ -523,17 +620,18 @@ class Event extends Model
                 "value" => function () {return $this->date_end ? $this->date_end->toIso8601String() : null;},
             ],
             [
-                "name" => "location",
-                "doc" => "Location",
+                "name" => "forced_date",
+                "doc" => "forced_date",
                 "type" => "string",
-                "value" => function () {return $this->location;},
+                "value" => function () {return $this->forced_date;},
             ],
             [
-                "name" => "audience",
-                "doc" => "Audience",
+                "name" => "door_time",
+                "doc" => "door_time",
                 "type" => "string",
-                "value" => function () {return $this->audience;},
+                "value" => function () {return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%i') : null;},
             ],
+            // sponsor
             [
                 "name" => "content",
                 "doc" => "Content",
@@ -547,67 +645,16 @@ class Event extends Model
                 "value" => function () {return $this->layout_type;},
             ],
             [
-                "name" => "buy_button_text",
-                "doc" => "buy_button_text",
-                "type" => "string",
-                "value" => function () {return $this->buy_button_text;},
-            ],
-            [
-                "name" => "buy_button_caption",
-                "doc" => "buy_button_caption",
-                "type" => "string",
-                "value" => function () {return $this->buy_button_caption;},
-            ],
-            [
-                "name" => "forced_date",
-                "doc" => "forced_date",
-                "type" => "string",
-                "value" => function () {return $this->forced_date;},
-            ],
-            [
-                "name" => "buy_tickets_link",
-                "doc" => "buy_tickets_link",
-                "type" => "string",
-                "value" => function () {return $this->buy_tickets_link;},
-            ],
-            [
-                "name" => "ticketed_event_id",
-                "doc" => "Unique identifer of the event in our central ticketing system",
-                "type" => "string",
-                "value" => function () {
-                    $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
-                    return $ticketedEvent ? $ticketedEvent->id : null;
-                },
-            ],
-            [
-                "name" => "survey_url",
-                "doc" => "URL to the survey associated with this event",
-                "type" => "string",
-                "value" => function () {return $this->survey_link;},
-            ],
-            [
-                "name" => "email_series",
-                "doc" => "Email series",
-                "type" => "string",
-                "value" => function () {return $this->email_series;},
-            ],
-            [
-                "name" => "is_sold_out",
-                "doc" => "is_sold_out",
+                "name" => "published",
+                "doc" => "Published",
                 "type" => "boolean",
-                "value" => function () {return $this->is_sold_out;},
+                "value" => function () {return $this->published;},
             ],
             [
                 "name" => "slug",
                 "doc" => "slug",
                 "type" => "string",
                 "value" => function () {return $this->slug;},
-            ],
-            [
-                "name" => "door_time",
-                "doc" => "door_time",
-                "type" => "string",
-                "value" => function () {return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%i') : null;},
             ],
             [
                 "name" => "web_url",

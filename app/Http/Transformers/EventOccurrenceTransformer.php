@@ -15,7 +15,7 @@ class EventOccurrenceTransformer extends ApiTransformer
             'id' => $item->id,
             'title' => $item->title,
             'short_description' => $this->getString($item->short_description),
-            'description' => $this->getDescription($item),
+            'description' => $item->present()->copy(),
             'image_url' => $item->image('hero'),
             'image_caption' => $item->hero_caption,
             'is_private' => (bool) $item->is_private,
@@ -62,12 +62,6 @@ class EventOccurrenceTransformer extends ApiTransformer
         }
 
         return $value;
-    }
-
-    // TODO: This is essentially filtering blocks to be plaintext. Abstract elsewhere?
-    private function getDescription($item)
-    {
-        return $item->blocks()->where('type', '=', 'paragraph')->pluck('content')->implode('paragraph', '');
     }
 
 }
