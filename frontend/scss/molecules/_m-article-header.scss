@@ -36,26 +36,47 @@
 .m-article-header .title {
   @include tucked-margin-top($f-headline, ('xsmall': 44, 'medium+': 48));
 }
-  .m-article-header--default .title:only-child {
-    @include breakpoint('xsmall') {
-      @include tucked-align-top($f-headline, 'xsmall');
-    }
 
-    @include breakpoint('small') {
-      @include tucked-align-top($f-headline, 'small');
-    }
-
-    @include breakpoint('medium') {
-      @include tucked-align-top($f-headline, 'medium');
-    }
+.m-article-header--default .title:only-child {
+  @include breakpoint('xsmall') {
+    @include tucked-align-top($f-headline, 'xsmall');
   }
+
+  @include breakpoint('small') {
+    @include tucked-align-top($f-headline, 'small');
+  }
+
+  @include breakpoint('medium') {
+    @include tucked-align-top($f-headline, 'medium');
+  }
+}
+
+.m-article-header .date.f-previewdate {
+  margin-top: 65px;
+  margin-bottom: -74px;
+  border-bottom: 2px solid #6f2562;
+  padding-bottom: 10px;
+
+  @include breakpoint('small') {
+    margin-top: 34px;
+    margin-bottom: -51px;
+    border-bottom: 1px solid #6f2562;
+  }
+
+  @include breakpoint('xsmall') {
+    margin-top: 34px;
+    margin-bottom: -50px;
+    border-bottom: 1px solid #6f2562;
+  }
+}
 
 .m-article-header .date {
   @include tucked-margin-top($f-secondary, ('xsmall': 72, 'medium+': 96));
 }
-  .m-article-header--editorial .date {
-    display: none;
-  }
+
+.m-article-header--editorial .date {
+  display: none;
+}
 
 .m-article-header .type {
   @include tucked-align-top($f-tag, 'xsmall');
@@ -177,6 +198,25 @@
     padding-top: 0;
     padding-right: 0;
     padding-left: 0;
+  }
+}
+
+.m-article-header--feature .date.f-previewdate {
+  margin-top: 44px;
+  margin-bottom: -74px;
+  border-bottom: 2px solid #6f2562;
+  padding-bottom: 10px;
+
+  @include breakpoint('small') {
+    margin-top: 34px;
+    margin-bottom: -64px;
+    border-bottom: 1px solid #6f2562;
+  }
+
+  @include breakpoint('xsmall') {
+    margin-top: 34px;
+    margin-bottom: -50px;
+    border-bottom: 1px solid #6f2562;
   }
 }
 
@@ -561,6 +601,25 @@
   @include breakpoint('xlarge') {
     padding-right: colspan(15, xlarge);
     padding-left: colspan(15, xlarge);
+  }
+}
+
+.m-article-header--super-hero .date.f-previewdate {
+  margin-top: 51px;
+  margin-bottom: -58px;
+  border-bottom: 2px solid #6f2562;
+  padding-bottom: 12px;
+
+  @include breakpoint('small') {
+    margin-top: 34px;
+    margin-bottom: -37px;
+    border-bottom: 1px solid #6f2562;
+  }
+
+  @include breakpoint('xsmall') {
+    margin-top: 16px;
+    margin-bottom: -18px;
+    border-bottom: 1px solid #6f2562;
   }
 }
 
