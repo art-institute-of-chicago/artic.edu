@@ -33,13 +33,19 @@ class MigrateExhibitions extends Command
         foreach ($ids as $id)
         {
             $this->handleItem($id);
-            usleep(2000000);
         }
     }
 
     // Adapted from BaseApiController::augment
     private function handleItem($id)
     {
+        $item = $this->getRepository()->where('datahub_id', '=', $id)->first();
+
+        if (!isset($item) || isset($item->list_description))
+        {
+            return;
+        }
+
         // Load data from the API
         $apiItem = $this->getApiRepository('Exhibition')->getById($id);
 
@@ -64,6 +70,8 @@ class MigrateExhibitions extends Command
         } else {
             $this->warn($item->list_description);
         }
+
+        usleep(4000000);
     }
 
     // Adapted from BaseApiController::augment
