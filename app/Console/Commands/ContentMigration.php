@@ -43,6 +43,6 @@ class ContentMigration extends Command
         $type = $this->argument('type');
         $result = $service->migrate($type);
         $output_path = app_path().'/MigrationData/'.$type.'.json';
-        file_put_contents($output_path, json_encode($result['results']));
+        file_put_contents($output_path, json_encode($result['results'], JSON_PRETTY_PRINT));
     }
 }
