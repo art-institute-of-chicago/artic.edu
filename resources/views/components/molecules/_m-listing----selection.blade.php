@@ -14,6 +14,7 @@
             @else
                 <span class="default-img"></span>
             @endif
+            <span><svg class="icon--slideshow--24"><use xlink:href="#icon--slideshow--24"></use></svg></span>
         </span>
         <span class="m-listing__meta">
             <em class="type f-tag">{{ $item->subtype }}</em>
