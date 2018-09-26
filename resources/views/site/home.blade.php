@@ -150,6 +150,9 @@
             @component('components.molecules._m-listing----'.$item->enclosedItem()->type)
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item->enclosedItem())
+                @if ($item->enclosedItem()->type === 'selection')
+                    @slot('singleImage',true)
+                @endif
                 @slot('imageSettings', array(
                     'fit' => ($item->enclosedItem()->type !== 'selection' and $item->enclosedItem()->type !== 'artwork') ? 'crop' : null,
                     'ratio' => ($item->enclosedItem()->type !== 'selection' and $item->enclosedItem()->type !== 'artwork') ? '16:9' : null,
