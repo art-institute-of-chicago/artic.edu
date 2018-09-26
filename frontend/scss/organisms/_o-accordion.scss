@@ -19,6 +19,7 @@ h3 {
   border: 0;
   width: 100%;
   text-align: left;
+  background-color: #fff;
 }
 
 .o-accordion__trigger.s-inactive {
@@ -28,7 +29,6 @@ h3 {
 .o-accordion__trigger.f-module-title-2 {
   padding-top: 44px - 24px - 1px;
   border-top: 1px solid $color__rules--primary;
-  background-color: #fff;
 
   @include breakpoint('small+') {
     padding-top: 48px - 28px - 1px;
