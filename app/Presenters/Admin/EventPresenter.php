@@ -152,4 +152,16 @@ class EventPresenter extends BasePresenter
 
         return 'Buy tickets';
     }
+
+    public function imageUrl() {
+        $settings = aic_imageSettings([
+            'image' => $this->entity->imageFront('hero'),
+            'settings' => [
+                'srcset' => array(1200),
+                'sizes' => '1200px',
+            ],
+        ]);
+
+        return str_before($settings['srcset'], ' ');
+    }
 }

@@ -16,7 +16,7 @@ class EventOccurrenceTransformer extends ApiTransformer
             'title' => $item->title,
             'short_description' => $this->getString($item->short_description),
             'description' => $item->present()->copy(),
-            'image_url' => $item->image('hero'),
+            'image_url' => $item->present()->imageUrl() ?? null,
             'image_caption' => $item->hero_caption,
             'is_private' => (bool) $item->is_private,
             'location' => $item->location,
