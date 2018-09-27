@@ -56,6 +56,7 @@
   margin-bottom: -74px;
   border-bottom: 2px solid #6f2562;
   padding-bottom: 10px;
+  width: fit-content;
 
   @include breakpoint('small') {
     margin-top: 34px;
@@ -206,6 +207,7 @@
   margin-bottom: -74px;
   border-bottom: 2px solid #6f2562;
   padding-bottom: 10px;
+  width: fit-content;
 
   @include breakpoint('small') {
     margin-top: 34px;
@@ -609,6 +611,7 @@
   margin-bottom: -58px;
   border-bottom: 2px solid #6f2562;
   padding-bottom: 12px;
+  width: fit-content;
 
   @include breakpoint('small') {
     margin-top: 34px;
