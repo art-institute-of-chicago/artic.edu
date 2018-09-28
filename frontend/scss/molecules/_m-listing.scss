@@ -1800,3 +1800,23 @@
     flex-basis: 100%;
   }
 }
+
+
+// variant `m-listing` for selections
+.m-listing--selection .m-listing__img .m-listing__img__overlay {
+    position: absolute;
+    top: 0;
+
+    z-index: 2;
+    padding: 32px;
+    width: 100%;
+    height: 33%;
+
+    text-align: right;
+
+    background: linear-gradient(
+      to bottom,
+      $color__black--85,
+      transparent
+    );
+}
