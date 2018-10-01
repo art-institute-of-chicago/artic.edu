@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
-use App\Repositories\VideoRepository;
 
 class VideoController extends ModuleController
 {
@@ -41,7 +40,7 @@ class VideoController extends ModuleController
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('video'));
+        $item = $this->repository->getById(request('video') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/videos/' . $item->id . '-';
 
         return [

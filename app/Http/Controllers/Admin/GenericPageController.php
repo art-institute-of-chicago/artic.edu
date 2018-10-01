@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
-use App\Repositories\GenericPageRepository;
 use App\Repositories\PageCategoryRepository;
 
 class GenericPageController extends ModuleController
@@ -67,7 +66,7 @@ class GenericPageController extends ModuleController
 
     protected function formData($request)
     {
-        $page = $this->repository->getById(request('genericPage'));
+        $page = $this->repository->getById(request('genericPage') ?? request('id'));
         $ancestors = $page->ancestors()->defaultOrder()->get();
 
         $baseUrl = '//' . config('app.url') . "/";

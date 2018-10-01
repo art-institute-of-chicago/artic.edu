@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
-
 use App\Repositories\EventProgramRepository;
 
 class EventController extends ModuleController
@@ -48,7 +47,7 @@ class EventController extends ModuleController
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('event'));
+        $item = $this->repository->getById(request('event') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/events/' . $item->id . '/';
 
         return [

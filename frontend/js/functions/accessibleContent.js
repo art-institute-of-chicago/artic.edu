@@ -19,9 +19,9 @@ const accessibleContent = function() {
       }
 
       h1.setAttribute('id', 'content-h1');
-      a.setAttribute('href', '#content-h1');
+      if (a) a.setAttribute('href', '#content-h1');
     } else {
-      a.setAttribute('href', '#content');
+      if (a) a.setAttribute('href', '#content');
     }
   }
 
