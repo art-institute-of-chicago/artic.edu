@@ -36,26 +36,48 @@
 .m-article-header .title {
   @include tucked-margin-top($f-headline, ('xsmall': 44, 'medium+': 48));
 }
-  .m-article-header--default .title:only-child {
-    @include breakpoint('xsmall') {
-      @include tucked-align-top($f-headline, 'xsmall');
-    }
 
-    @include breakpoint('small') {
-      @include tucked-align-top($f-headline, 'small');
-    }
-
-    @include breakpoint('medium') {
-      @include tucked-align-top($f-headline, 'medium');
-    }
+.m-article-header--default .title:only-child {
+  @include breakpoint('xsmall') {
+    @include tucked-align-top($f-headline, 'xsmall');
   }
+
+  @include breakpoint('small') {
+    @include tucked-align-top($f-headline, 'small');
+  }
+
+  @include breakpoint('medium') {
+    @include tucked-align-top($f-headline, 'medium');
+  }
+}
+
+.m-article-header .date.f-previewdate {
+  margin-top: 65px;
+  margin-bottom: -74px;
+  border-bottom: 2px solid #6f2562;
+  padding-bottom: 10px;
+  width: fit-content;
+
+  @include breakpoint('small') {
+    margin-top: 34px;
+    margin-bottom: -51px;
+    border-bottom: 1px solid #6f2562;
+  }
+
+  @include breakpoint('xsmall') {
+    margin-top: 34px;
+    margin-bottom: -50px;
+    border-bottom: 1px solid #6f2562;
+  }
+}
 
 .m-article-header .date {
   @include tucked-margin-top($f-secondary, ('xsmall': 72, 'medium+': 96));
 }
-  .m-article-header--editorial .date {
-    display: none;
-  }
+
+.m-article-header--editorial .date {
+  display: none;
+}
 
 .m-article-header .type {
   @include tucked-align-top($f-tag, 'xsmall');
@@ -180,6 +202,26 @@
   }
 }
 
+.m-article-header--feature .date.f-previewdate {
+  margin-top: 44px;
+  margin-bottom: -74px;
+  border-bottom: 2px solid #6f2562;
+  padding-bottom: 10px;
+  width: fit-content;
+
+  @include breakpoint('small') {
+    margin-top: 34px;
+    margin-bottom: -64px;
+    border-bottom: 1px solid #6f2562;
+  }
+
+  @include breakpoint('xsmall') {
+    margin-top: 34px;
+    margin-bottom: -50px;
+    border-bottom: 1px solid #6f2562;
+  }
+}
+
 .m-article-header--feature .m-article-header__img {
   position: relative;
   left: 50%;
@@ -231,7 +273,7 @@
   right: 0;
   top: 0;
   height: 220px;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 80%, rgba(0,0,0,0) 100%);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.05) 90%, rgba(0,0,0,0) 100%);
 
   @include breakpoint('small+') {
     height: 300px;
@@ -415,11 +457,11 @@
   //height: 220px;
   //background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 80%, rgba(0,0,0,0) 100%);
   bottom: 0;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 176px, rgba(0,0,0,.2) 220px, rgba(0,0,0,.2) 100%);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.35) 176px, rgba(0,0,0,.2) 220px, rgba(0,0,0,.2) 100%);
 
   @include breakpoint('small+') {
     //height: 300px;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 240px, rgba(0,0,0,.2) 300px, rgba(0,0,0,.2) 100%);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.35) 240px, rgba(0,0,0,.2) 300px, rgba(0,0,0,.2) 100%);
   }
 }
 
@@ -512,11 +554,11 @@
   //height: 220px;
   //background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 80%, rgba(0,0,0,0) 100%);
   bottom: 0;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 176px, rgba(0,0,0,.2) 220px, rgba(0,0,0,.2) 100%);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.35) 176px, rgba(0,0,0,.2) 220px, rgba(0,0,0,.2) 100%);
 
   @include breakpoint('small+') {
     //height: 300px;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 240px, rgba(0,0,0,.2) 300px, rgba(0,0,0,.2) 100%);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,.35) 240px, rgba(0,0,0,.2) 300px, rgba(0,0,0,.2) 100%);
   }
 }
 
@@ -561,6 +603,26 @@
   @include breakpoint('xlarge') {
     padding-right: colspan(15, xlarge);
     padding-left: colspan(15, xlarge);
+  }
+}
+
+.m-article-header--super-hero .date.f-previewdate {
+  margin-top: 51px;
+  margin-bottom: -58px;
+  border-bottom: 2px solid #6f2562;
+  padding-bottom: 12px;
+  width: fit-content;
+
+  @include breakpoint('small') {
+    margin-top: 34px;
+    margin-bottom: -37px;
+    border-bottom: 1px solid #6f2562;
+  }
+
+  @include breakpoint('xsmall') {
+    margin-top: 16px;
+    margin-bottom: -18px;
+    border-bottom: 1px solid #6f2562;
   }
 }
 

@@ -141,6 +141,9 @@
   <svg class="icon--share--24">
     <use xlink:href="#icon--share--24"></use>
   </svg>
+  <svg class="icon--slideshow--24">
+    <use xlink:href="#icon--slideshow--24"></use>
+  </svg>
   <svg class="icon--zoom--24">
     <use xlink:href="#icon--zoom--24"></use>
   </svg>

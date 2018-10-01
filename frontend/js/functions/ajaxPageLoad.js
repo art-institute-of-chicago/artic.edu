@@ -312,7 +312,8 @@ const ajaxPageLoad = function() {
       triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
     }
     // if link opens in this tab, halt execution while we tell GTM
-    if (event && link && link.getAttribute('target') !== '_blank' && link.href.indexOf('#') < 0) {
+    // TODO: This tends to break things and overrides core browser behavior. Remove..?
+    if (event && link && link.getAttribute('target') !== '_blank' && link.href && link.href.indexOf('#') < 0) {
       event.preventDefault();
       var win = window.open(link.href, '_blank');
       win.focus();

@@ -424,17 +424,7 @@ class Event extends Model
                 "name" => "image_url",
                 "doc" => "Image URL",
                 "type" => "string",
-                "value" => function () {
-                    $settings = aic_imageSettings([
-                        'image' => $this->imageFront('hero'),
-                        'settings' => [
-                            'srcset' => array(1200),
-                            'sizes' => '1200px',
-                        ],
-                    ]);
-
-                    return str_before($settings['srcset'], ' ');
-                },
+                "value" => function () {return $this->present()->imageUrl();},
             ],
             [
                 "name" => "hero_caption",

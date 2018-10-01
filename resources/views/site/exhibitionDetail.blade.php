@@ -14,6 +14,8 @@
     @slot('title', $item->title)
     @slot('title_display', $item->title_display)
     @slot('date', $item->present()->date)
+    @slot('previewDateStart', $item->member_preview_start_date)
+    @slot('previewDateEnd', $item->member_preview_end_date)
     @slot('dateStart', $item->present()->startAt)
     @slot('dateEnd', $item->present()->endAt)
     @slot('type', $item->present()->exhibitionType)
