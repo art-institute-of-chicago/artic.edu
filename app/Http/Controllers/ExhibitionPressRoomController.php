@@ -13,7 +13,6 @@ class ExhibitionPressRoomController extends FrontController
 
     protected $repository;
 
-
     public function __construct(ExhibitionPressRoomRepository $repository)
     {
         $this->repository = $repository;
@@ -24,7 +23,7 @@ class ExhibitionPressRoomController extends FrontController
 
     public function index(Request $request)
     {
-        $items = ExhibitionPressRoom::published()->paginate();
+        $items = ExhibitionPressRoom::published()->ordered()->paginate();
         $title = 'Exhibition Press Room';
 
         $subNav = [

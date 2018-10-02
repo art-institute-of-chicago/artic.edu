@@ -87,4 +87,8 @@ class ExhibitionPressRoom extends Model
         return route('about.exhibitionPressRooms.show', $this);
     }
 
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('publish_start_date', 'desc');
+    }
 }
