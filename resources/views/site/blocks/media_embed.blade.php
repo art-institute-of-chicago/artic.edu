@@ -21,7 +21,8 @@
                 "credit" => '',
                 "creditUrl" => '',
             ],
-            'caption' => ''
+            'caption' => '',
+            'hideShare' => true,
         ])
     @endcomponent
 @endif

@@ -29,7 +29,12 @@
   }
 
   .m-media--soundcloud & {
-    height: 166px;
+    min-height: 20px;
+    background: none;
+  }
+
+  .m-media--soundcloud & iframe {
+    position: relative;
   }
 
   .m-media--soundcloud &::before {
@@ -78,7 +83,7 @@
 .m-media--l .m-media__img img,
 .m-media__img video,
 .m-media__img embed,
-.m-media__img iframe,
+.m-media:not(.m-media--soundcloud) .m-media__img iframe,
 .m-media__img object,
 .m-media__img.m-media__img--video img {
   position: absolute;
