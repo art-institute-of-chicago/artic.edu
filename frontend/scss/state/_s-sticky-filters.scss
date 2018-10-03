@@ -56,9 +56,9 @@ Additional states for scrolling up and down conditions - so the date filters don
 }
 
 .s-sticky-filters--fixed.s-scroll-direction-up .o-sticky-filters > .m-links-bar:first-child,
-.s-sticky-filters--bottom .o-sticky-filters > .m-links-bar {
+.s-sticky-filters--bottom .o-sticky-filters > .m-links-bar:bot(.m-links-bar--visible) {
   @include breakpoint('small+') {
-    opacity: 0;
+    opacity: 0; // TODO: Figure out why this is here..?
   }
 }
 
