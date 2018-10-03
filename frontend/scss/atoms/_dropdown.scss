@@ -142,6 +142,14 @@ Demonstrated in **statics/toybox**
   transform: rotate(90deg) scaleX(-1);
 }
 
+.dropdown__trigger .f-module-title-2::before {
+  padding-top: 16px;
+}
+
+.dropdown__trigger .f-module-title-2::after {
+  margin-bottom: 16px;
+}
+
 .dropdown__list {
   @include untuck;
   @extend %styled-scrollbars;
@@ -285,8 +293,12 @@ Demonstrated in **statics/toybox**
   color: $color__link;
 }
 
-.dropdown--filter .dropdown__trigger .button {
-  line-height: 14px;
+.dropdown--filter .dropdown__trigger .button::before {
+  padding-top: 0;
+}
+
+.dropdown--filter .dropdown__trigger .button::after {
+  margin-bottom: 0;
 }
 
 .o-article__primary-actions .dropdown--filter .dropdown__trigger.f-secondary,

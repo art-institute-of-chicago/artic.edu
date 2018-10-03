@@ -59,9 +59,9 @@
         }
         $imageSettings['ratio'] = '16:9';
 
-        // fix soundcloud embed height
-        if (strrpos($media['embed'],'api.soundcloud.com')) {
-            $media['embed'] = preg_replace_callback('/(height=")([^"]*)/i', function($m) { return $m[1].'166'; },$media['embed']);
+        // Allow soundcloud embed to expand in height - see _m-media.scss
+        if (strrpos($media['embed'],'api.soundcloud.com'))
+        {
             $variation = ($variation ?? '').' m-media--soundcloud';
             $imageSettings['ratio'] = '9:2';
         }
