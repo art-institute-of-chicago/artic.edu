@@ -246,17 +246,13 @@ class ArtworkPresenter extends BasePresenter
                     break;
 
                 case 'sounds':
-                    // A17 WILL NOT SUPPORT MP3's ON PRODUCTION.
-                    // This will be passed to the AIC team.
-                    if (!\App::environment('production')) {
-                        $localBlock = [
-                            "type"    => 'listing',
-                            "subtype" => 'sound',
-                            "items"   => $medias,
-                        ];
-                    }
-
+                    $localBlock = [
+                        "type"    => 'listing',
+                        "subtype" => 'sound',
+                        "items"   => $medias,
+                    ];
                     break;
+
                 case 'sites':
                 case 'sections':
                 case 'texts':
