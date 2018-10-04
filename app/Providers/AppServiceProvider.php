@@ -205,7 +205,7 @@ class AppServiceProvider extends ServiceProvider
                 ],
                 [
                     'name' => 'About Us',
-                    'slug' => route('genericPages.show', 'about'),
+                    'slug' => route('genericPages.show', 'about-us'),
                 ],
                 [
                     'name' => 'Learn With Us',
