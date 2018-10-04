@@ -119,6 +119,7 @@
                             @slot('variation', 'm-listing--generic m-listing--row')
                             @slot('item', $item)
                             @slot('image', $item->imageFront('listing'))
+                            @slot('hideImage', $hideImage ?? null)
                             @slot('imageSettings', array(
                                 'fit' => 'crop',
                                 'ratio' => '16:9',
