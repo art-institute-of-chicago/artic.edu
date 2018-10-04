@@ -14,8 +14,8 @@ class MakeMoreColumnsTextInExhibitions extends Migration
     public function up()
     {
         Schema::table('exhibitions', function (Blueprint $table) {
-            $table->text('exhibiition_message')->change();
-            $table->text('meta_ttle')->change();
+            $table->text('exhibition_message')->change();
+            $table->text('meta_title')->change();
             $table->text('hero_caption')->change();
         });
     }
