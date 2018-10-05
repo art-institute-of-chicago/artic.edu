@@ -110,7 +110,7 @@
             @endforeach
         @endcomponent
         @component('components.molecules._m-links-bar')
-            @slot('variation', 'm-links-bar--buttons')
+            @slot('variation', 'm-links-bar--buttons m-links-bar--visible')
             @slot('linksPrimary', array(array('label' => 'See more events', 'href' => '#', 'variation' => 'btn--secondary')))
         @endcomponent
     @endif

@@ -45,6 +45,8 @@ const loadMore = function(container) {
 
             if ($target.classList.contains('o-pinboard')) {
               triggerCustomEvent($target, 'pinboard:contentAdded');
+            } else {
+              triggerCustomEvent(document, 'page:updated');
             }
           } catch (err) {
             console.error('Error updating autocomplete: '+ err);

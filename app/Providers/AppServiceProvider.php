@@ -113,9 +113,9 @@ class AppServiceProvider extends ServiceProvider
             ,   'hours' => route('visit').'#hours'
             ,   'directions' => route('visit').'#directions'
 
-            ,   'buy' => '/buy'
-            ,   'become-a-member' => '/become-a-member'
-            ,   'shop' => 'http://www.artinstituteshop.org'
+            ,   'buy' => 'https://sales.artic.edu/'
+            ,   'become-a-member' => 'https://sales.artic.edu/memberships'
+            ,   'shop' => 'https://shop.artic.edu/'
 
             ,   'collection' => route('collection')
             ,   'exhibitions' => route('exhibitions')
@@ -193,19 +193,19 @@ class AppServiceProvider extends ServiceProvider
                 ],
                 [
                     'name' => 'Buy Tickets',
-                    'slug' => '#',
+                    'slug' => 'https://sales.artic.edu/',
                 ],
                 [
                     'name' => 'Become A Member',
-                    'slug' => '#',
+                    'slug' => 'https://sales.artic.edu/memberships',
                 ],
                 [
                     'name' => 'Shop',
-                    'slug' => '#',
+                    'slug' => 'https://shop.artic.edu/',
                 ],
                 [
                     'name' => 'About Us',
-                    'slug' => route('genericPages.show', 'about'),
+                    'slug' => route('genericPages.show', 'about-us'),
                 ],
                 [
                     'name' => 'Learn With Us',

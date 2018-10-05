@@ -1,8 +1,8 @@
 <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $item->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) or (isset($hideImage) && !($hideImage)))
-            <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
-                @if (isset($image) || $item->imageFront('default'))
+            @if (isset($image) || $item->imageFront('default'))
+                <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
                     @component('components.atoms._img')
                         @slot('image', $image ?? $item->imageFront('default'))
                         @slot('settings', $imageSettings ?? '')
@@ -18,10 +18,8 @@
                         @component('components.atoms._media-play-pause-video')
                         @endcomponent
                     @endif
-                @else
-                    <span class="default-img"></span>
-                @endif
-            </span>
+                </span>
+            @endif
         @endif
         <span class="m-listing__meta">
             @if ($item->subtype)
