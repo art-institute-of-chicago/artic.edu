@@ -18,11 +18,14 @@ trait HandleRecurrence
             // Force rewind the date to the beginning of the day
             $begginingOfDay = \Carbon\Carbon::instance($date)->startOfDay();
 
+            $startInterval = new \DateInterval($object->start_time);
+            $endInterval = new \DateInterval($object->end_time);
+
             // Generate an Event Meta, add hours to the start and end dates
             \App\Models\EventMeta::create(
                 [
-                    'date'     => (clone $begginingOfDay)->add(new \DateInterval($object->start_time)),
-                    'date_end' => (clone $begginingOfDay)->add(new \DateInterval($object->end_time)),
+                    'date'     => (clone $begginingOfDay)->setTime($startInterval->h, $startInterval->i),
+                    'date_end' => (clone $begginingOfDay)->setTime($endInterval->h, $endInterval->i),
                     'event_id' => $object->id
                 ]
             );
