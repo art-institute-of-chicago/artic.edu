@@ -113,7 +113,7 @@ class AppServiceProvider extends ServiceProvider
             ,   'hours' => route('visit').'#hours'
             ,   'directions' => route('visit').'#directions'
 
-            ,   'buy' => 'https://sales.artic.edu/'
+            ,   'buy' => 'https://sales.artic.edu/admissiondate'
             ,   'become-a-member' => 'https://sales.artic.edu/memberships'
             ,   'shop' => 'https://shop.artic.edu/'
 
@@ -193,7 +193,7 @@ class AppServiceProvider extends ServiceProvider
                 ],
                 [
                     'name' => 'Buy Tickets',
-                    'slug' => 'https://sales.artic.edu/',
+                    'slug' => 'https://sales.artic.edu/admissiondate',
                 ],
                 [
                     'name' => 'Become A Member',
