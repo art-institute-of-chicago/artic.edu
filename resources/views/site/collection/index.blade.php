@@ -164,7 +164,7 @@
     <div class="o-feature-plus-4">
         @if ($featuredArticlesHero)
         @component('components.molecules._m-listing----article')
-            @slot('tag', 'p')
+            @slot('tag', 'div')
             @slot('titleFont', 'f-headline-editorial')
             @slot('captionFont', 'f-body-editorial')
             @slot('variation', 'o-feature-plus-4__feature')

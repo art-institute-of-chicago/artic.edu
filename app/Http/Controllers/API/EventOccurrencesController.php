@@ -7,7 +7,6 @@ use App\Repositories\EventRepository;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class EventOccurrencesController extends BaseController
 {

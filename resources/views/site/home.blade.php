@@ -154,8 +154,10 @@
                     @slot('singleImage',true)
                 @endif
                 @slot('imageSettings', array(
-                    'fit' => ($item->enclosedItem()->type !== 'selection' and $item->enclosedItem()->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->enclosedItem()->type !== 'selection' and $item->enclosedItem()->type !== 'artwork') ? '16:9' : null,
+                    'fit' => ($item->enclosedItem()->type !== 'artwork') ? 'crop' : null,
+                    'ratio' => ($item->enclosedItem()->type === 'selection') ? '1:1' : (
+                        ($item->enclosedItem()->type === 'artwork') ? null : '16:9'
+                    ),
                     'srcset' => array(200,400,600,1000),
                     'sizes' => aic_gridListingImageSizes(array(
                           'xsmall' => '1',
