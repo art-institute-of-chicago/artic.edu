@@ -203,6 +203,7 @@
 @endif
 
 
+{{-- TODO: Dedupe this w/ `site.collection.index`..? --}}
 @if (isset($artworks) && $artworks->total() > 0)
     @component('components.molecules._m-title-bar')
         @unless ($allResultsView)
