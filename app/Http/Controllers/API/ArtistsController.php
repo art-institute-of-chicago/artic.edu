@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use Aic\Hub\Foundation\AbstractController as BaseController;
-
 class ArtistsController extends BaseController
 {
     protected $model = \App\Models\Artist::class;

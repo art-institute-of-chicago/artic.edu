@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use Aic\Hub\Foundation\AbstractController as BaseController;
-
 class TagsController extends BaseController
 {
     protected $model = \App\Models\SiteTag::class;
