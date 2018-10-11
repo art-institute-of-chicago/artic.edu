@@ -1,8 +1,13 @@
 @php
-    $url = $seo->image;
-    $twitterUrl = $seo->twitterImage ?? $seo->image;
-    $w = $seo->width ?? 1200;
-    $h = $seo->height ?? 630;
+    // Recommended lower limit to balance quality with speed
+    $w = 1200; // $seo->width ?? 1200;
+    $h = 800; //$seo->height ?? 800;
+
+    // Assumes this is an Imgix URL
+    $url = $seo->image . '?w=' . $w . '&h=' . $h . '&fit=crop';
+
+    // TODO: Set the twitterImage separately?
+    $twitterUrl = $seo->twitterImage ?? $url;
 @endphp
 
 @if ($url)
