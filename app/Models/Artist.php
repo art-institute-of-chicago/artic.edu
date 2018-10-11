@@ -11,7 +11,7 @@ use App\Models\Behaviors\HasMediasEloquent;
 
 class Artist extends Model
 {
-    use HasSlug, HasApiModel, HasMedias, HasApiRelations, HasMediasEloquent, Transformable;
+    use HasSlug, HasApiModel, HasApiRelations, HasMedias, HasMediasEloquent, Transformable;
 
     protected $apiModel = 'App\Models\Api\Artist';
 
@@ -33,7 +33,7 @@ class Artist extends Model
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 16 / 9,
+                    'ratio' => 'default',
                 ],
             ],
         ],
