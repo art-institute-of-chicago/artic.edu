@@ -150,7 +150,7 @@
 
 </article>
 
-@if (($exploreFurther && !$exploreFurther->isEmpty()) || ($exploreFurtherAllTags))
+@if ($exploreFurtherTags && count($exploreFurtherTags) > 0)
 <div id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further
