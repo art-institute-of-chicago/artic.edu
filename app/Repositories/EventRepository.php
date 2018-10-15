@@ -41,6 +41,8 @@ class EventRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'sponsors');
         $this->updateBrowser($object, $fields, 'events');
 
+        $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
+
         $this->updateRepeater($object, $fields, 'dateRules', 'DateRule');
 
         $object->programs()->sync($fields['programs'] ?? []);

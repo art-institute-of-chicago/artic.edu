@@ -69,6 +69,11 @@ class PressRelease extends Model
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
 
+    public function sponsors()
+    {
+        return $this->belongsToMany(\App\Models\Sponsor::class)->withPivot('position')->orderBy('position');
+    }
+
     public function scopeIds($query, $ids = [])
     {
         return $query->whereIn('id', $ids);
