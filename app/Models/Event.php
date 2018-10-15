@@ -320,14 +320,24 @@ class Event extends Model
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByType($query, $type)
     {
-        return $query->where('event_type', '=', $type)->orWhereRaw($this->getWhereJsonContainsRaw('alt_types', $type));
+        if (!in_array($type, self::$eventTypes)) {
+            return $query;
+        }
+
+        return $query->where('event_type', '=', $type)
+            ->orWhereRaw($this->getWhereJsonContainsRaw('alt_types', (int) $type));
     }
 
     // NOTE: This works only while there are less than 10 possible audience values
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByAudience($query, $audience)
     {
-        return $query->where('audience', '=', $audience)->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', $audience));
+        if (!in_array($audience, self::$eventAudiences)) {
+            return $query;
+        }
+
+        return $query->where('audience', '=', $audience)
+            ->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', (int) $audience));
     }
 
     public function scopeByProgram($query, $program = null)
@@ -346,10 +356,10 @@ class Event extends Model
     private function getWhereJsonContainsRaw($field, $value)
     {
         if (DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql') {
-            return $field ."::text LIKE '%" .$value ."%'";
+            return $field . "::text LIKE '%" . escape_like($value) . "%'";
         }
 
-        return $field ." LIKE '%" .$value ."%'";
+        return $field . " LIKE '%" . escape_like($value) . "%'";
     }
 
     public function scopeDefault($query)
