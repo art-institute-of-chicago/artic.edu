@@ -54,6 +54,9 @@ return [
      */
     'crawl_profile' => Profile::class,
 
+    /*
+     * Set this envar if you want to generate the sitemap in a differet env.
+     */
     'base_url' => env('SITEMAP_BASE_URL', null)
 
 ];
