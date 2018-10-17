@@ -1,8 +1,12 @@
 .o-pinboard {
   position: relative;
-  margin-top: 19px;
   padding-top: 0.02px;
   border-top: 1px solid $color__rules--primary;
+
+}
+
+.m-title-bar + .o-pinboard {
+  margin-top: 19px;
 
   &:first-child {
     margin-top: 0;

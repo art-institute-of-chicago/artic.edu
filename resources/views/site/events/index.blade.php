@@ -39,7 +39,7 @@
         @slot('secondaryHtml')
             <li class="m-links-bar__item m-links-bar__item--primary">
                 @component('components.atoms._dropdown')
-                  @slot('prompt', request('type') ? \App\Models\Event::$eventTypes[request('type')] : 'All event types')
+                  @slot('prompt', \App\Models\Event::$eventTypes[request('type')] ?? 'All event types')
                   @slot('ariaTitle', 'Filter by')
                   @slot('variation','dropdown--filter f-link')
                   @slot('font', null)
@@ -48,7 +48,7 @@
             </li>
             <li class="m-links-bar__item m-links-bar__item--primary">
                 @component('components.atoms._dropdown')
-                  @slot('prompt', request('audience') ? \App\Models\Event::$eventAudiences[request('audience')] : 'All audiences')
+                  @slot('prompt', \App\Models\Event::$eventAudiences[request('audience')] ?? 'All audiences')
                   @slot('ariaTitle', 'Filter by')
                   @slot('variation','dropdown--filter f-link')
                   @slot('font', null)

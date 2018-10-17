@@ -19,6 +19,11 @@ class GenericPagesController extends FrontController
     {
         $page = $this->getPage($slug);
 
+        // Redirect the user if "Redirect URL" is defined
+        if ($page->redirect_url) {
+            return redirect($page->redirect_url);
+        }
+
         // Add basic http protection if selected.
         if ($page->http_protected) {
             \Httpauth::secure();

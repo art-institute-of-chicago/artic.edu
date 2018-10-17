@@ -22,6 +22,29 @@ class PressReleaseRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function hydrate($object, $fields)
+    {
+        $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
+
+        return parent::hydrate($object, $fields);
+    }
+
+    public function afterSave($object, $fields)
+    {
+        $this->updateOrderedBelongsTomany($object, $fields, 'sponsors');
+
+        parent::afterSave($object, $fields);
+    }
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+
+        $fields['browsers']['sponsors'] = $this->getFormFieldsForBrowser($object, 'sponsors', 'press_release_sponsor');
+
+        return $fields;
+    }
+
     // Show data, moved here to allow preview
     public function getShowData($item, $slug = null, $previewPage = null)
     {

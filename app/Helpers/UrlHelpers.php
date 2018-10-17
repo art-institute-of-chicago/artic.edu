@@ -6,5 +6,3 @@ if (!function_exists('currentUrlWithQuery')) {
         return request()->url() . '?' . http_build_query($options);
     }
 }
-
-?>

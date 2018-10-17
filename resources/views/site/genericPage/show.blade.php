@@ -148,6 +148,11 @@
         @endcomponent
     @endif --}}
 
+    {{-- TODO: This is currently only for Press Releases. Refactor into new template? --}}
+    @component('site.shared._sponsors')
+        @slot('sponsors', $page->sponsors)
+    @endcomponent
+
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
     @endcomponent

@@ -95,6 +95,10 @@ Demonstrated in **statics/toybox**
   cursor: pointer;
 }
 
+.dropdown--tabs .dropdown__trigger .button {
+  padding: 20px 0;
+}
+
 .dropdown.s-active .dropdown__trigger::before {
   content: '' !important;
   display: block !important;

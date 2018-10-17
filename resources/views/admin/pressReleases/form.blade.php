@@ -47,6 +47,17 @@
 @stop
 
 @section('fieldsets')
+    <a17-fieldset id="sponsors" title="Sponsors">
+        @formField('browser', [
+            'routePrefix' => 'exhibitions_events',
+            'moduleName' => 'sponsors',
+            'name' => 'sponsors',
+            'label' => 'Sponsors',
+            'note' => 'Display content blocks from this sponsor',
+            'max' => 1
+        ])
+    </a17-fieldset>
+
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
         @formField('input', [
             'name' => 'meta_title',

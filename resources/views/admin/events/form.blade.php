@@ -95,8 +95,10 @@
         @formField('select', [
             'name' => 'event_type',
             'label' => 'Event type (preferred)',
-            'options' => $eventTypesList,
-            'default' => '1'
+            'options' => collect([
+                null => '[None]', // cast to ''
+            ])->concat($eventTypesList),
+            'default' => '', // no effect?
         ])
 
         @formField('multi_select', [
@@ -109,8 +111,10 @@
         @formField('select', [
             'name' => 'audience',
             'label' => 'Event audience (preferred)',
-            'options' => $eventAudiencesList,
-            'default' => '1'
+            'options' => collect([
+                null => '[None]', // cast to ''
+            ])->concat($eventAudiencesList),
+            'default' => '', // no effect?
         ])
 
         @formField('multi_select', [

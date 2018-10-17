@@ -133,11 +133,15 @@ class BaseService
 
         $results = $query->getPaginatedModel(self::PER_PAGE_EXPLORE_FURTHER, \App\Models\Api\Artwork::SEARCH_FIELDS);
 
-        // Remove our own element from the collection.
-        $item = $this->resource;
-        return $results->filter(function($value, $key) use ($item) {
-            return ($item->id != $value->id);
-        });
+        // Remove our own element from the collection, but only if there's more than one result
+        if ($results->count() > 1) {
+            $item = $this->resource;
+            $results = $results->filter(function($value, $key) use ($item) {
+                return ($item->id != $value->id);
+            });
+        }
+
+        return $results;
     }
 
     public function collectionUrl($parameters = [])
