@@ -95,10 +95,8 @@
         @formField('select', [
             'name' => 'event_type',
             'label' => 'Event type (preferred)',
-            'options' => collect([
-                null => '[None]', // cast to ''
-            ])->concat($eventTypesList),
-            'default' => '', // no effect?
+            'options' => $eventTypesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
 
         @formField('multi_select', [
@@ -111,10 +109,8 @@
         @formField('select', [
             'name' => 'audience',
             'label' => 'Event audience (preferred)',
-            'options' => collect([
-                null => '[None]', // cast to ''
-            ])->concat($eventAudiencesList),
-            'default' => '', // no effect?
+            'options' => $eventAudiencesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
 
         @formField('multi_select', [
