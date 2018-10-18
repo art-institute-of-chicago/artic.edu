@@ -61,7 +61,11 @@ class SelectionController extends ModuleController
 
     protected function formData($request)
     {
+        $item = $this->repository->getById(request('selection'));
+        $baseUrl = '//' . config('app.url') . '/highlights/'; // TODO: dashes to slashes
+
         return [
+            'baseUrl' => $baseUrl,
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
         ];
     }

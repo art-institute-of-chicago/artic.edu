@@ -26,7 +26,7 @@
             ],
             [
                 'value' => 'selections',
-                'label' => 'Selection'
+                'label' => 'Highlight'
             ],
         ]
     ])
@@ -66,7 +66,7 @@
             'routePrefix' => 'collection',
             'moduleName' => 'selections',
             'name' => 'selections',
-            'label' => 'Selection'
+            'label' => 'Highlight'
         ])
     @endcomponent
 @stop

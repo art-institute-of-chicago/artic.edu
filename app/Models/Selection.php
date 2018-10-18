@@ -75,7 +75,7 @@ class Selection extends Model
 
     public function getSubtypeAttribute()
     {
-        return 'Selection';
+        return 'Highlight'; // for pinboard and listings
     }
 
     public function getHeaderTypeAttribute()
@@ -88,7 +88,7 @@ class Selection extends Model
         return $this->short_copy;
     }
 
-     public function getTrackingSlugAttribute() 
+     public function getTrackingSlugAttribute()
     {
         return $this->title;
     }

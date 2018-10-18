@@ -157,7 +157,7 @@ return [
                 'module' => true,
             ],
             'selections' => [
-                'title' => 'Selections',
+                'title' => 'Highlights',
                 'module' => true,
             ],
             'galleries' => [
