@@ -30,6 +30,7 @@ class SearchController extends BaseScopedController
     const ALL_PER_PAGE_ARTWORKS = 8;
     const ALL_PER_PAGE_EXHIBITIONS = 4;
     const ALL_PER_PAGE_EVENTS = 4;
+    const ALL_PER_PAGE_PAGES = 3;
     const ALL_PER_PAGE_ARTICLES = 4;
 
     const ARTWORKS_PER_PAGE = 20;
@@ -90,7 +91,7 @@ class SearchController extends BaseScopedController
         $artists      = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
         $exhibitions  = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
         $events       = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $pages        = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $pages        = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
         $guides       = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
         $press        = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
 

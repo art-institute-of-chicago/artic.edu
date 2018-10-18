@@ -40,7 +40,10 @@ class GenericPageController extends ModuleController
      */
     protected $filters = [];
 
-    protected function indexData($request)
+    /**
+     * Exposed as public for sitemap:generate command.
+     */
+    public function indexData($request)
     {
         $pagesList = $this->repository->withDepth()->defaultOrder()->get()->filter(function ($page) {
             return $page->depth < 3;

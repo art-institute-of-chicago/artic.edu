@@ -81,6 +81,8 @@ class Event extends Model
         // 'is_sold_out' => 'boolean',
     ];
 
+    const NULL_OPTION = 42; // Dropdown does not accept null keys; use big number
+
     const CLASSES_AND_WORKSHOPS = 1;
     const LIVE_ARTS = 2;
     const SCREENINGS = 3;
@@ -320,24 +322,28 @@ class Event extends Model
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByType($query, $type)
     {
-        if (!in_array($type, self::$eventTypes)) {
+        $type = (int) $type; // for safety and comparison
+
+        if (!array_key_exists($type, self::$eventTypes)) {
             return $query;
         }
 
         return $query->where('event_type', '=', $type)
-            ->orWhereRaw($this->getWhereJsonContainsRaw('alt_types', (int) $type));
+            ->orWhereRaw($this->getWhereJsonContainsRaw('alt_types', $type));
     }
 
     // NOTE: This works only while there are less than 10 possible audience values
     // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
     public function scopeByAudience($query, $audience)
     {
-        if (!in_array($audience, self::$eventAudiences)) {
+        $audience = (int) $audience; // for safety and comparison
+
+        if (!array_key_exists($audience, self::$eventAudiences)) {
             return $query;
         }
 
         return $query->where('audience', '=', $audience)
-            ->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', (int) $audience));
+            ->orWhereRaw($this->getWhereJsonContainsRaw('alt_audiences', $audience));
     }
 
     public function scopeByProgram($query, $program = null)
@@ -360,6 +366,16 @@ class Event extends Model
         }
 
         return $field . " LIKE '%" . escape_like($value) . "%'";
+    }
+
+    public function setEventTypeAttribute($value)
+    {
+        $this->attributes['event_type'] = $value > count(self::$eventTypes) ? null : $value; // 1-based
+    }
+
+    public function setAudienceAttribute($value)
+    {
+        $this->attributes['audience'] = $value > count(self::$eventAudiences) ? null : $value; // 1-based
     }
 
     public function scopeDefault($query)
