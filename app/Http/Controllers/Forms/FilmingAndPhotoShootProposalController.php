@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Forms;
 
-use Carbon\Carbon;
-
 use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\Form\FilmingProposalRequest;
@@ -324,9 +322,9 @@ class FilmingAndPhotoShootProposalController extends FormController
         $filmingProposal->email = $validated['email'] ?? '';
         $filmingProposal->phone_number = $validated['phone_number'] ?? '';
         $filmingProposal->description = $validated['description'] ?? '';
-        $filmingProposal->preferred_date_1 = Carbon::parse($validated['preferred_date_1']) ?? '';
-        $filmingProposal->preferred_date_2 = Carbon::parse($validated['preferred_date_2']) ?? '';
-        $filmingProposal->preferred_date_3 = Carbon::parse($validated['preferred_date_3']) ?? '';
+        $filmingProposal->preferred_date_1 = $this->getDateField($validated, 'preferred_date_1');
+        $filmingProposal->preferred_date_2 = $this->getDateField($validated, 'preferred_date_2');
+        $filmingProposal->preferred_date_3 = $this->getDateField($validated, 'preferred_date_3');
         $filmingProposal->locations = $validated['locations'] ?? '';
         $filmingProposal->required_time = $validated['required_time'] ?? '';
         $filmingProposal->crew_members = $validated['crew_members'] ?? '';

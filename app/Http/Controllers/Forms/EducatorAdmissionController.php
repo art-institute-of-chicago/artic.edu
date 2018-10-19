@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Forms;
 
-use Carbon\Carbon;
-
 use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\Form\EducatorAdmissionRequest;
@@ -266,7 +264,7 @@ class EducatorAdmissionController extends FormController
 
         $educatorAdmission->name = $validated['name'] ?? '';
         $educatorAdmission->email = $validated['email'] ?? '';
-        $educatorAdmission->visit_date = Carbon::parse($validated['visit_date']) ?? '';
+        $educatorAdmission->visit_date = $this->getDateField($validated, 'visit_date');
         $educatorAdmission->phone_number = $validated['phone_number'] ?? '';
         $educatorAdmission->address_1 = $validated['address_1'] ?? '';
         $educatorAdmission->address_2 = $validated['address_2'] ?? '';

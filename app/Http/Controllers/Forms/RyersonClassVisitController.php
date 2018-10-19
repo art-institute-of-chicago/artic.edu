@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Forms;
 
-use Carbon\Carbon;
-
 use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\Form\RyersonClassVisitRequest;
@@ -606,9 +604,9 @@ class RyersonClassVisitController extends FormController
         $ryersonClassVisit->days_class_meets = $validated['days_class_meets'] ?? '';
         $ryersonClassVisit->no_of_session = $validated['no_of_session'] ?? '';
         $ryersonClassVisit->multiple_sessions_description = $validated['multiple_sessions_description'] ?? '';
-        $ryersonClassVisit->preferred_date_1 = Carbon::parse($validated['preferred_date_1']) ?? '';
-        $ryersonClassVisit->preferred_date_2 = $validated['preferred_date_2'] ? (Carbon::parse($validated['preferred_date_2']) ?? null) : null;
-        $ryersonClassVisit->preferred_date_3 = $validated['preferred_date_3'] ? (Carbon::parse($validated['preferred_date_3']) ?? null) : null;
+        $ryersonClassVisit->preferred_date_1 = $this->getDateField($validated, 'preferred_date_1');
+        $ryersonClassVisit->preferred_date_2 = $this->getDateField($validated, 'preferred_date_2');
+        $ryersonClassVisit->preferred_date_3 = $this->getDateField($validated, 'preferred_date_3');
         $ryersonClassVisit->preferred_time = $validated['preferred_time'] ?? '';
         $ryersonClassVisit->alt_times = $validated['alt_times'] ?? '';
         $ryersonClassVisit->no_of_students = $validated['no_of_students'] ?? '';
@@ -616,11 +614,11 @@ class RyersonClassVisitController extends FormController
         $ryersonClassVisit->session_objective = $validated['session_objective'] ?? '';
         $ryersonClassVisit->collections_related_assignment_description = $validated['collections_related_assignment_description'] ?? '';
         $ryersonClassVisit->collection_materials_requested_for_visit = $validated['collection_materials_requested_for_visit'] ?? '';
-        $ryersonClassVisit->instructor_materials_review_date_1 = Carbon::parse($validated['instructor_materials_review_date_1']) ?? '';
+        $ryersonClassVisit->instructor_materials_review_date_1 = $this->getDateField($validated, 'instructor_materials_review_date_1');
         $ryersonClassVisit->instructor_materials_review_time_1 = $validated['instructor_materials_review_time_1'] ?? '';
-        $ryersonClassVisit->instructor_materials_review_date_2 = $validated['instructor_materials_review_date_2'] ? (Carbon::parse($validated['instructor_materials_review_date_2']) ?? null) : null;
+        $ryersonClassVisit->instructor_materials_review_date_2 = $this->getDateField($validated, 'instructor_materials_review_date_2');
         $ryersonClassVisit->instructor_materials_review_time_2 = $validated['instructor_materials_review_time_2'] ?? '';
-        $ryersonClassVisit->instructor_materials_review_date_3 = $validated['instructor_materials_review_date_3'] ? (Carbon::parse($validated['instructor_materials_review_date_3']) ?? null) : null;
+        $ryersonClassVisit->instructor_materials_review_date_3 = $this->getDateField($validated, 'instructor_materials_review_date_3');
         $ryersonClassVisit->instructor_materials_review_time_3 = $validated['instructor_materials_review_time_3'] ?? '';
         $ryersonClassVisit->session_objective = $validated['session_objective'] ?? '';
         $ryersonClassVisit->research_shelf_required = $validated['research_shelf_required'] ?? '';

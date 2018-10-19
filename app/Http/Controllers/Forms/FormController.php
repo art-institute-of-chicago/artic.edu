@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Forms;
 
+use Carbon\Carbon;
+
 use App\Http\Controllers\FrontController;
 
 use A17\Twill\Http\Requests\Admin\Request;
@@ -149,5 +151,19 @@ abstract class FormController extends FrontController
         }
 
         return $list;
+    }
+
+    protected function getDateField($validated, $fieldName)
+    {
+        if (!isset($validated[$fieldName])) {
+            return '';
+        }
+
+        // Remove any prepended characters (or return on fail)
+        if (!preg_match('/[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9]/', $validated[$fieldName], $matches)) {
+            return '';
+        }
+
+        return Carbon::parse($matches[0]);
     }
 }

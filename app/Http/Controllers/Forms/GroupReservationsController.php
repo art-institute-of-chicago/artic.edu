@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Forms;
 
-use Carbon\Carbon;
-
 use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\Form\GroupReservationRequest;
@@ -515,7 +513,7 @@ class GroupReservationsController extends FormController
         $groupReservation->zipcode = $validated['zipcode'] ?? '';
         $groupReservation->country = $validated['country'] ?? '';
 
-        $groupReservation->visit_date = Carbon::parse($validated['visit_date']) ?? '';
+        $groupReservation->visit_date = $this->getDateField($validated, 'visit_date');
         $groupReservation->visit_time = $validated['visit_time'] ?? '';
         $groupReservation->no_of_adults = $validated['no_of_adults'] ?? '';
         $groupReservation->no_of_students = $validated['no_of_students'] ?? '';
