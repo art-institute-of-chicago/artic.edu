@@ -9,6 +9,12 @@
   background-color: rgba($color__white,.97);
   transition: opacity .2s, transform 0s 0s;
 
+  // Mirror html style for alignment
+  margin-right: -50vw;
+  margin-left: -50vw;
+  left: 50%;
+  right: 50%;
+
   @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
