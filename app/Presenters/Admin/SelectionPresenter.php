@@ -21,7 +21,7 @@ class SelectionPresenter extends BasePresenter
         if ($this->entity->siteTags->first()) {
             return $this->entity->type = $this->entity->siteTags->first()->name;
         } else {
-            return 'Highlight'; // for detail header
+            return 'Highlights'; // for detail header
         }
     }
 

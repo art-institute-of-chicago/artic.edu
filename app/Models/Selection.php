@@ -75,7 +75,7 @@ class Selection extends Model
 
     public function getSubtypeAttribute()
     {
-        return 'Highlight'; // for pinboard and listings
+        return 'Highlights'; // for pinboard and listings
     }
 
     public function getHeaderTypeAttribute()
