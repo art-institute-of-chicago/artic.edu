@@ -297,7 +297,7 @@ return [
                         ],
                         [
                             'module' => 'selections',
-                            'name' => 'Selections',
+                            'name' => 'Highlights',
                             'scopes' => ['published' => true],
                         ],
                     ],

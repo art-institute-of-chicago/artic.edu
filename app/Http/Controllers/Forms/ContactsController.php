@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Forms;
 
-use Carbon\Carbon;
-
 use App\Http\Requests\Form\ContactRequest;
 use App\Models\Form\Contact;
 
@@ -364,7 +362,7 @@ class ContactsController extends FormController
         $contact->zipcode = $validated['zipcode'];
         $contact->country = $validated['country'];
 
-        $contact->visit_date = Carbon::parse($validated['visit_date']);
+        $contact->visit_date = $this->getDateField($validated, 'visit_date');
         $contact->days_class_meets = implode(", ", $validated['days_class_meets']);
         $contact->comments = $validated['comments'];
         $contact->type_of_visit = $validated['type_of_visit'];

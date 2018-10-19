@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Forms;
 
-use Carbon\Carbon;
-
 use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\Form\EventPlanningContactRequest;
