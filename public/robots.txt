@@ -1,2 +1,3 @@
 User-agent: *
-Disallow:
+Disallow: /press/exhibition-press-room
+Disallow: /press/art-institute-images
