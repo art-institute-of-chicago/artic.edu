@@ -50,3 +50,4 @@ export { default as maskEmail } from './maskEmail';
 export { default as ajaxFormSubmit } from './ajaxFormSubmit';
 export { default as reportSearchToGoogleTagManager } from './reportSearchToGoogleTagManager';
 export { default as mediaPlayPauseVideo } from './mediaPlayPauseVideo';
+export { default as recaptcha } from './recaptcha';
