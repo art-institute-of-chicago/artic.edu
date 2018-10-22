@@ -290,7 +290,7 @@ class ArtworkPresenter extends BasePresenter
             });
 
             $block = [
-                'title'  => 'Catalogue Raisonnés',
+                'title'  => 'Catalogues Raisonnés',
                 'blocks' => $rows,
                 'gtmAttributes' => 'data-gtm-event="artwork-open-drawer" data-gtm-event-category="in-page" data-gtm-drawer="catalogue-raisonnes"'
             ];
