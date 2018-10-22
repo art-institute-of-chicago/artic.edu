@@ -445,7 +445,7 @@ class GroupReservationsController extends FormController
 
         array_push($blocks, array(
           'type' => 'text',
-          'content' => '<p>Thank you for your request. Please note if you are booking a visit for a student group, pre-K–12th grade, use the student tours application form [LINK].</p>'
+          'content' => '<p>Thank you for your request. Please note if you are booking a visit for a student group, pre-K–12th grade, use the <a href="https://scheduler.artic.edu/">student tours application form</a>.</p>'
           .'<p>Group visits require a minimum of 15 people. Reservations are requested 21 days in advance and will be confirmed in writing within 10 business days of receipt. Thank you for thinking of the Art Institute of Chicago.</p>'
           .'<p>You may also print this form and return it to:</p>'
           .'<p>Group Sales<br/>'
