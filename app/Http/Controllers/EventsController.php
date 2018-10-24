@@ -88,7 +88,7 @@ class EventsController extends FrontController
 
     public function ics($id)
     {
-        $event = $this->getItem($id);
+        $event = Event::findOrFail($id);
 
         $vCalendar = new \Eluceo\iCal\Component\Calendar($event->title);
 
