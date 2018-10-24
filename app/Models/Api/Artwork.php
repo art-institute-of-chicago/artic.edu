@@ -192,19 +192,22 @@ class Artwork extends BaseApiModel
     public function allImages()
     {
         $main = $this->imageFront('hero');
+
         if (!empty($main)) {
             $main['credit'] = $this->getImageCopyright();
+            $main['creditUrl'] = $this->getImageCopyrightUrl();
         }
 
         return collect($this->extraImages)->map(function ($image) {
             $img = $image->imageFront();
             $img['credit'] = ($image->copyright_notice ?? $this->getImageCopyright());
+            $img['creditUrl'] = ($image->copyright_notice ? null : $this->getImageCopyrightUrl());
             return $img;
         })
-            ->prepend($main)
-            ->reject(function ($name) {
-                return empty($name);
-            });
+        ->prepend($main)
+        ->reject(function ($name) {
+            return empty($name);
+        });
     }
 
     public function categories()
@@ -235,8 +238,16 @@ class Artwork extends BaseApiModel
 
     public function getImageCopyright()
     {
-        return empty($this->copyright_notice) ? '' : $this->copyright_notice;
+        return !empty($this->copyright_notice) ? $this->copyright_notice : (
+            $this->is_public_domain ? 'CC0 Public Domain Designation' : ''
+        );
     }
+
+    public function getImageCopyrightUrl()
+    {
+        return $this->is_public_domain ? '/image-licensing' : null;
+    }
+
 
     public function scopeAggregationClassification($query)
     {

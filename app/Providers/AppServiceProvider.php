@@ -96,6 +96,7 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    // TODO: Consider moving some of this to a config?
     private function composeTemplatesViews()
     {
       view()->composer('*', function ($view) {
