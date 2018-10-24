@@ -89,7 +89,7 @@ Route::name('exhibitions.history.show')->get('exhibitions/history/{id}', 'Exhibi
 // Exhibition routes
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionsController@index');
 Route::name('exhibitions.upcoming')->get('/exhibitions/upcoming', 'ExhibitionsController@upcoming');
-Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/relatedEvents', 'ExhibitionsController@loadMoreRelatedEvents');
+Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/relatedEvents', 'ExhibitionsController@loadMoreRelatedEvents')->where('id', '(.*)');;
 Route::name('exhibitions.show')->get('/exhibitions/{id}/{slug?}', 'ExhibitionsController@show');
 
 // Artwork routes
