@@ -2,17 +2,10 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 use App\Models\Form\EducatorAdmission;
 
-class FormEducatorAdmission extends Mailable
+class FormEducatorAdmission extends FormMailable
 {
-    use Queueable, SerializesModels;
-
     /**
      * The order instance.
      *
@@ -28,6 +21,7 @@ class FormEducatorAdmission extends Mailable
     public function __construct(EducatorAdmission $educatorAdmission)
     {
         $this->educatorAdmission = $educatorAdmission;
+        $this->subject = 'Educator Admission ' . $this->getSubjectTimestamp();
     }
 
     /**

@@ -7,6 +7,9 @@ use App\Models\Form\Contact;
 
 use App\Presenters\StaticObjectPresenter;
 
+/**
+ * This is a sample form. Ignore for fixes.
+ */
 class ContactsController extends FormController
 {
     public function index()

@@ -2,17 +2,10 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 use App\Models\Form\FilmingProposal;
 
-class FormFilmingProposal extends Mailable
+class FormFilmingProposal extends FormMailable
 {
-    use Queueable, SerializesModels;
-
     /**
      * The order instance.
      *
@@ -28,6 +21,7 @@ class FormFilmingProposal extends Mailable
     public function __construct(FilmingProposal $filmingProposal)
     {
         $this->filmingProposal = $filmingProposal;
+        $this->subject = 'Filming Proposal ' . $this->getSubjectTimestamp();
     }
 
     /**
