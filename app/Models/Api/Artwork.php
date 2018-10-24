@@ -201,7 +201,7 @@ class Artwork extends BaseApiModel
         return collect($this->extraImages)->map(function ($image) {
             $img = $image->imageFront();
             $img['credit'] = ($image->copyright_notice ?? $this->getImageCopyright());
-            $main['creditUrl'] = ($image->copyright_notice ? null : $this->getImageCopyrightUrl());
+            $img['creditUrl'] = ($image->copyright_notice ? null : $this->getImageCopyrightUrl());
             return $img;
         })
         ->prepend($main)

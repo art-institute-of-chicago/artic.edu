@@ -108,7 +108,7 @@ const headerGallery = function(container) {
       } else {
         creditNode.innerHTML = '';
       }
-      creditNode.className = 'm-article-header__img-credit f-secondary';
+      creditNode.className = 'm-article-header__img-credit f-caption';
       creditNode.setAttribute('data-gallery-credit','');
       nodes.credit.parentNode.replaceChild(creditNode, nodes.credit);
       nodes.credit = creditNode;
