@@ -22,7 +22,7 @@
 
     @component('components.molecules._m-article-actions')
         @slot('articleType', 'event')
-        @slot('icsLink', route('events.ics', $item) ?? null)
+        @slot('icsLink', route('events.ics', $item->id) ?? null)
     @endcomponent
 
     @if ($item->present()->navigation)

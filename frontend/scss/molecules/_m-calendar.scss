@@ -379,3 +379,9 @@
     background-color: $color__link--accent-active;
   }
 }
+
+.m-calendar[data-calendar-mode="single"] {
+  .m-calendar__header > .btn {
+    display: none;
+  }
+}

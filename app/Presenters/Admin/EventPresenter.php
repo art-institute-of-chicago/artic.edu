@@ -48,10 +48,6 @@ class EventPresenter extends BasePresenter
             return 'rsvp';
         }
 
-        if ($this->entity->is_member_exclusive) {
-            return 'member-exclusive';
-        }
-
         if ($this->entity->is_registration_required) {
             return 'register';
         }

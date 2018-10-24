@@ -174,38 +174,44 @@
             'toolbarOptions' => ['bold']
         ])
 
-        <p>Event Labels</p>
-
-        @formField('checkbox', [
-            'name' => 'is_registration_required',
-            'label' => 'Registration Required',
-            'note' => 'Will display as default button text and event label in listings.',
-        ])
+        <hr/>
+        <p>Event Tags<br/>
+        <span class="f--note f--small">Will display a tag above the event title, and as default button text</span></p>
 
         @formField('checkbox', [
             'name' => 'is_member_exclusive',
             'label' => 'Member Exclusive',
-            'note' => 'Will display as default button text and event label in listings.',
+        ])
+
+        <hr/>
+        <p>Event Labels<br/>
+        <span class="f--note f--small">Will display a label beneath the event time, and as default button text</span></p>
+
+        @formField('checkbox', [
+            'name' => 'is_registration_required',
+            'label' => 'Registration Required',
         ])
 
         @formField('checkbox', [
             'name' => 'is_sold_out',
             'label' => 'Sold Out',
-            'note' => 'Will display as default button text and event label in listings.',
         ])
 
         @formField('checkbox', [
             'name' => 'is_free',
             'label' => 'RSVP',
-            'note' => 'Will display as default button text and event label in listings.'
         ])
+
+        <hr/>
+        <p>Private<br/>
+        <span class="f--note f--small">Does not generate any labels or tags, only excludes the event from the listing</span></p>
 
         @formField('checkbox', [
             'name' => 'is_private',
             'label' => 'Is Private',
-            'note' => 'Will remove event page from public calendar listing.',
         ])
 
+        <hr/>
         <p>Sales site fields</p>
 
         @formField('checkbox', [

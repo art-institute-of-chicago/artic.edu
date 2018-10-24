@@ -2,17 +2,10 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 use App\Models\Form\GroupReservation;
 
-class FormGroupReservation extends Mailable
+class FormGroupReservation extends FormMailable
 {
-    use Queueable, SerializesModels;
-
     /**
      * The order instance.
      *
@@ -28,6 +21,7 @@ class FormGroupReservation extends Mailable
     public function __construct(GroupReservation $groupReservation)
     {
         $this->groupReservation = $groupReservation;
+        $this->subject = 'Group Reservation ' . $this->getSubjectTimestamp();
     }
 
     /**

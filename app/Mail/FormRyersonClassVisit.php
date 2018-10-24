@@ -2,17 +2,10 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 use App\Models\Form\RyersonClassVisit;
 
-class FormRyersonClassVisit extends Mailable
+class FormRyersonClassVisit extends FormMailable
 {
-    use Queueable, SerializesModels;
-
     /**
      * The order instance.
      *
@@ -28,6 +21,7 @@ class FormRyersonClassVisit extends Mailable
     public function __construct(RyersonClassVisit $ryersonClassVisit)
     {
         $this->ryersonClassVisit = $ryersonClassVisit;
+        $this->subject = 'Ryerson Class Visit ' . $this->getSubjectTimestamp();
     }
 
     /**

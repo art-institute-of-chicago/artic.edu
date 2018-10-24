@@ -247,7 +247,7 @@ const calendar = function(container) {
       triggerCustomEvent(opener, 'calendar:dateSelected', {
         start: datesSelected.start,
       });
-      if (mode === 'single' && A17.currentMediaQuery.indexOf('small') < 0) {
+      if (mode === 'single') {
         _datesSelected();
       }
     } else if (selecting === 'end') {
@@ -383,6 +383,7 @@ const calendar = function(container) {
     } else {
       mode = 'single';
     }
+    container.setAttribute('data-calendar-mode', mode);
     _generateCalendars(minDate.getFullYear(), minDate.getMonth());
   }
 
