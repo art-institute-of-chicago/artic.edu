@@ -62,7 +62,7 @@ class AicConnection implements ApiConnectionInterface
      */
     public function get($endpoint, $params)
     {
-        $response = $this->execute('GET', $endpoint, $params);
+        $response = $this->execute($endpoint, $params);
 
         return $response;
     }
@@ -73,15 +73,30 @@ class AicConnection implements ApiConnectionInterface
      * @param  array  $params
      * @return object
      */
-    public function execute($verb = 'GET', $endpoint = null, $params = []) {
+    public function execute($endpoint = null, $params = []) {
+        $queryKeys = ['ids', 'include'];
+        $queryParams = array_only($params, $queryKeys);
+        $bodyParams = array_except($params, $queryKeys);
+
         // Some Libraries need to adapt the format for the parameters
         // Guzzle needs to receive ['query' => [ 'par1' => val1, 'par2' => val2 .....]]
         // Let's leave the specific to the clients.
-        $adaptedParameters = $this->client->adaptParameters($params);
+        $adaptedParameters = $this->client->adaptParameters($bodyParams);
+
         $headers = $this->client->headers($params);
+        $options = $headers;
+        $verb = 'GET';
 
-        $options = array_merge($adaptedParameters, $headers);
-
+        if (!empty($bodyParams)) {
+            $adaptedParameters = $this->client->adaptParameters($params);
+            $options = array_merge($adaptedParameters, $headers);
+            $verb = 'POST';
+        }
+        else {
+            if (!empty($queryParams)) {
+                $endpoint = $endpoint .'?' .http_build_query($queryParams);
+            }
+        }
 
         // Allow to force the verb used for the calls (GET/POST)
         $verb = config('api.force_verb') ?: $verb;
