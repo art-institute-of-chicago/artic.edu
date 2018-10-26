@@ -14,6 +14,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   <meta name="format-detection" content="telephone=no">
 
     @if (isset($seo))
+      <meta property="og:type" content="article" />
       @section('meta_title') @include('partials.metas._title') @show
       @section('meta_description') @include('partials.metas._description') @show
       @section('meta_url') @include('partials.metas._url') @show
