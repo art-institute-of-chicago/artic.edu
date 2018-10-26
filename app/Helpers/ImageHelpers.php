@@ -372,7 +372,7 @@ function aic_imageSettings($data) {
         $imgixSettings['h'] = $height;
 
         // generate variants
-        foreach ($srcset as $size):
+        foreach ($srcset as $i => $size):
             $imgixSettings['w'] = $size;
             if ($height && $height !== 'auto') {
                 $imgixSettings['h'] = round(($height/$width) * $size);
@@ -381,6 +381,15 @@ function aic_imageSettings($data) {
             $stringSrcset .= $base.$imgixSettingsString." ".$size."w, ";
         endforeach;
 
+        // get data-pin-media for pinterest
+        $imgixSettings['w'] = 600;
+        if ($height && $height !== 'auto') {
+            $imgixSettings['h'] = round(($height/$width) * 600);
+        }
+        $imgixSettingsString = http_build_query($imgixSettings);
+        $pinterestMedia = $base.$imgixSettingsString;
+
+        // build lqip
         $imgixSettings['w'] = $LQIPDimension;
         if ($height && $height !== 'auto') {
             $imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
@@ -447,12 +456,16 @@ function aic_imageSettings($data) {
         }
 
         // generate variants
-        foreach ($srcset as $size):
+        foreach ($srcset as $i => $size):
             if (!empty($stringSrcset)) {
                 $stringSrcset .= ", ";
             }
             $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w";
         endforeach;
+
+        // get data-pin-media for pinterest
+        $pinterestMedia = $base."/".$resizeVal."/600,/0/default.jpg";
+
         $stringSrc = $base."/".$resizeVal."/".$LQIPDimension.",/0/default.jpg";
     }
 
@@ -466,6 +479,7 @@ function aic_imageSettings($data) {
         'width' => $stringWidth,
         'height' => $stringHeight,
         'lazyload' => $lazyload,
+        'pinterestMedia' => $pinterestMedia ?? null,
         'lqip' => $lqip,
         'iiifId' => $iiifId,
     );
