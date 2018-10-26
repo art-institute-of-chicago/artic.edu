@@ -117,7 +117,8 @@ const shareMenu = function(container) {
     networks.push({
       name: 'pinterest',
       href: function() {
-        return 'http://pinterest.com/pin/create/button/?url=' + _pageUrl() + '&media=' + escapeString(document.getElementsByTagName('img')[0].getAttribute('src') || '') + '&description=' + _pageTitle();
+        var firstImg = document.getElementsByTagName('img')[0];
+        return 'http://pinterest.com/pin/create/button/?url=' + _pageUrl() + '&media=' + escapeString(firstImg.getAttribute('data-pin-media') || firstImg.getAttribute('src') || '') + '&description=' + _pageTitle();
       },
       windowOptions: {
         width: 750,
