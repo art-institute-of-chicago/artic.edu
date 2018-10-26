@@ -372,15 +372,22 @@ function aic_imageSettings($data) {
         $imgixSettings['h'] = $height;
 
         // generate variants
-        foreach ($srcset as $size):
+        foreach ($srcset as $i => $size):
             $imgixSettings['w'] = $size;
             if ($height && $height !== 'auto') {
                 $imgixSettings['h'] = round(($height/$width) * $size);
             }
             $imgixSettingsString = http_build_query($imgixSettings);
             $stringSrcset .= $base.$imgixSettingsString." ".$size."w, ";
+
+            // get second-largest variant for pintrest
+            if ($i === count($srcset) - 1)
+            {
+                $pinterestMedia = $base.$imgixSettingsString;
+            }
         endforeach;
 
+        // build lqip
         $imgixSettings['w'] = $LQIPDimension;
         if ($height && $height !== 'auto') {
             $imgixSettings['h'] = round(($height/$width) * $LQIPDimension);
@@ -447,11 +454,18 @@ function aic_imageSettings($data) {
         }
 
         // generate variants
-        foreach ($srcset as $size):
+        foreach ($srcset as $i => $size):
             if (!empty($stringSrcset)) {
                 $stringSrcset .= ", ";
             }
             $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w";
+
+
+            // get second-largest variant for pintrest
+            if ($i === count($srcset) - 1)
+            {
+                $pinterestMedia = $base."/".$resizeVal."/".$size.",/0/default.jpg";
+            }
         endforeach;
         $stringSrc = $base."/".$resizeVal."/".$LQIPDimension.",/0/default.jpg";
     }
@@ -466,6 +480,7 @@ function aic_imageSettings($data) {
         'width' => $stringWidth,
         'height' => $stringHeight,
         'lazyload' => $lazyload,
+        'pinterestMedia' => $pinterestMedia ?? null,
         'lqip' => $lqip,
         'iiifId' => $iiifId,
     );

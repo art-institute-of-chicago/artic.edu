@@ -58,6 +58,9 @@
     @if (isset($infoUrl))
     data-infoUrl="{{ $infoUrl }}"
     @endif
+    @if (isset($settings['pinterestMedia']))
+    data-pin-media="{{ $settings['pinterestMedia'] }}"
+    @endif
     @if (isset($dataAttributes))
     {!! " ".$dataAttributes !!}
     @endif
