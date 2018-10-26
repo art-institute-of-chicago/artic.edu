@@ -379,13 +379,15 @@ function aic_imageSettings($data) {
             }
             $imgixSettingsString = http_build_query($imgixSettings);
             $stringSrcset .= $base.$imgixSettingsString." ".$size."w, ";
-
-            // get second-largest variant for pintrest
-            if ($i === count($srcset) - 1)
-            {
-                $pinterestMedia = $base.$imgixSettingsString;
-            }
         endforeach;
+
+        // get data-pin-media for pinterest
+        $imgixSettings['w'] = 600;
+        if ($height && $height !== 'auto') {
+            $imgixSettings['h'] = round(($height/$width) * 600);
+        }
+        $imgixSettingsString = http_build_query($imgixSettings);
+        $pinterestMedia = $base.$imgixSettingsString;
 
         // build lqip
         $imgixSettings['w'] = $LQIPDimension;
@@ -459,14 +461,11 @@ function aic_imageSettings($data) {
                 $stringSrcset .= ", ";
             }
             $stringSrcset .= $base."/".$resizeVal."/".$size.",/0/default.jpg ".$size."w";
-
-
-            // get second-largest variant for pintrest
-            if ($i === count($srcset) - 1)
-            {
-                $pinterestMedia = $base."/".$resizeVal."/".$size.",/0/default.jpg";
-            }
         endforeach;
+
+        // get data-pin-media for pinterest
+        $pinterestMedia = $base."/".$resizeVal."/600,/0/default.jpg";
+
         $stringSrc = $base."/".$resizeVal."/".$LQIPDimension.",/0/default.jpg";
     }
 
