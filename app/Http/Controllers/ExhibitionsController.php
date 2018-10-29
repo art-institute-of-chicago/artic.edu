@@ -71,6 +71,12 @@ class ExhibitionsController extends FrontController
     {
         $item = $this->apiRepository->getById((Integer) $id, ['apiElements']);
 
+        // Redirect to the canonical page if it wasn't requested
+        $canonicalPath = route('exhibitions.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false);
+        if ('/' .request()->path() != $canonicalPath) {
+            return redirect($canonicalPath, 301);
+        }
+
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->list_description);
         $this->seo->setImage($item->imageFront('hero'));
@@ -82,6 +88,7 @@ class ExhibitionsController extends FrontController
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
             'relatedEventsByDay' => $relatedEventsByDay,
+            'canonicalUrl' => route('exhibitions.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
         ]);
     }
 

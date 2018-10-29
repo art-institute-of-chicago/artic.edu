@@ -25,6 +25,12 @@ class ArtworkController extends BaseScopedController
             ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
             ->findOrFail((Integer) $id);
 
+        // Redirect to the canonical page if it wasn't requested
+        $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false);
+        if ('/' .request()->path() != $canonicalPath) {
+            return redirect($canonicalPath, 301);
+        }
+
         $this->seo->setTitle($item->meta_title ?? $item->title);
         $this->seo->setDescription($item->meta_description ?? $item->fullTitle);
         $this->seo->setImage($item->imageFront('hero'));

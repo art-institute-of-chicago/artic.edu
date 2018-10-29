@@ -163,6 +163,12 @@ class PressReleasesController extends BaseScopedController
             }
         }
 
+        // Redirect to the canonical page if it wasn't requested
+        $canonicalPath = route('about.press.show', ['id' => $page->idSlug ], false);
+        if ('/' .request()->path() != $canonicalPath) {
+            return redirect($canonicalPath, 301);
+        }
+
         $this->seo->setTitle($page->meta_title ?? $page->title);
         $this->seo->setDescription($page->meta_description ?? $page->short_description ?? $page->listing_description);
         $this->seo->setImage($page->imageFront('listing'));
@@ -183,6 +189,7 @@ class PressReleasesController extends BaseScopedController
             "blocks" => null,
             'nav' => [],
             'page' => $page,
+            'canonicalUrl' => route('about.press.show', ['id' => $page->idSlug ]),
         ]);
 
     }

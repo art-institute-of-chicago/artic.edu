@@ -24,6 +24,11 @@ class Gallery extends BaseApiModel
         return 'gallery';
     }
 
+    public function getTitleSlugAttribute()
+    {
+        return getUtf8Slug($this->title);
+    }
+
     public function artworks($perPage = 20)
     {
         return Search::query()

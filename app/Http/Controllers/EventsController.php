@@ -125,6 +125,12 @@ class EventsController extends FrontController
     {
         $item = $this->repository->published()->findOrFail((Integer) $id);
 
+        // Redirect to the canonical page if it wasn't requested
+        $canonicalPath = route('events.show', $item, false);
+        if ('/' .request()->path() != $canonicalPath) {
+            return redirect($canonicalPath, 301);
+        }
+
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?? $item->short_description ?? $item->list_description);
         $this->seo->setImage($item->imageFront('hero'));
@@ -132,6 +138,7 @@ class EventsController extends FrontController
         return view('site.events.detail', [
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
+            'canonicalUrl' => route('events.show', $item),
         ]);
     }
 
