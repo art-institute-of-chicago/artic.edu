@@ -26,8 +26,9 @@ class ArtworkController extends BaseScopedController
             ->findOrFail((Integer) $id);
 
         // Redirect to the canonical page if it wasn't requested
-        if ('/' .request()->path() != route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false)) {
-            return redirect(route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false), 301);
+        $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false);
+        if ('/' .request()->path() != $canonicalPath) {
+            return redirect($canonicalPath, 301);
         }
 
         $this->seo->setTitle($item->meta_title ?? $item->title);
