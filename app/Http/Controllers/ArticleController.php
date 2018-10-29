@@ -82,6 +82,12 @@ class ArticleController extends FrontController
             abort(404);
         }
 
+        // Redirect to the canonical page if it wasn't requested
+        $canonicalPath = route('articles.show', ['id' => $item->id, 'slug' => $item->getSlug()], false);
+        if ('/' .request()->path() != $canonicalPath) {
+            return redirect($canonicalPath, 301);
+        }
+
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->heading);
         $this->seo->setImage($item->imageFront('hero'));
@@ -92,7 +98,8 @@ class ArticleController extends FrontController
 
         return view('site.articleDetail', [
             'contrastHeader' => $item->present()->contrastHeader,
-            'item' => $item
+            'item' => $item,
+            'canonicalUrl' => route('articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
     }
 
