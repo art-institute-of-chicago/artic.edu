@@ -79,17 +79,24 @@
             @slot('title_display', $item->title_display)
         @endcomponent
         <br>
-        @if ($item->list_description)
+        @if (!empty($variation) && $variation !== 'm-listing--hero' && $item->list_description)
             @component('components.atoms._short-description')
                 {!! truncateStr($item->list_description) !!}
             @endcomponent
             <br>
         @endif
-        <span class="m-listing__meta-bottom">
+        @if (!empty($variation) && $variation === 'm-listing--hero')
+            @component('components.organisms._o-preview-dates')
+                @slot('previewDateStart', $item->member_preview_start_date)
+                @slot('previewDateEnd', $item->member_preview_end_date)
+            @endcomponent
+            <br>
+        @endif
+        {{-- <span class="m-listing__meta-bottom"> --}}
             @component('components.atoms._date')
                 {!! $item->present()->formattedDate !!}
             @endcomponent
-        </span>
+        {{-- </span> --}}
     </span>
   </a>
 </{{ $tag or 'li' }}>
