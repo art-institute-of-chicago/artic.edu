@@ -43,7 +43,7 @@
       @if ($item->department_id)
       <li><a href="{!! route('departments.show', [$item->department_id]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{{ $item->department_title }}</a></li>
       @endif
-      @if ($item->gallery_id)
+      @if ($item->is_on_view && $item->gallery_id)
       <li><a href="{!! route('galleries.show', [$item->gallery_id]) !!}" data-gtm-event="{{ $item->gallery_title }}"  data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{{ $item->gallery_title }}</a></li>
       @endif
     </ul>
