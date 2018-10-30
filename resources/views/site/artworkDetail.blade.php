@@ -28,16 +28,14 @@
   @endcomponent
 
   <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+" aria-label="Additional information">
-    @if ($item->is_on_view)
-        {{-- dupe 😢 - shows xlarge+ --}}
-        @component('components.atoms._title')
-            @slot('variation', 'u-show@large+')
-            @slot('tag','h2')
-            @slot('font', 'f-module-title-1')
-            @slot('ariaHidden', "true")
-            On View
-        @endcomponent
-    @endif
+    {{-- dupe 😢 - shows xlarge+ --}}
+    @component('components.atoms._title')
+        @slot('variation', 'u-show@large+')
+        @slot('tag','h2')
+        @slot('font', 'f-module-title-1')
+        @slot('ariaHidden', "true")
+        {{ $item->is_on_view ? 'On View' : 'Currently Off View' }}
+    @endcomponent
 
     <ul class="list list--inline f-secondary">
       @if ($item->department_id)
