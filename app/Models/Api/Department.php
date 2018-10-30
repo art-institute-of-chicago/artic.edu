@@ -19,6 +19,11 @@ class Department extends BaseApiModel
     protected $presenter = 'App\Presenters\Admin\DepartmentPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\DepartmentPresenter';
 
+    public function getTitleSlugAttribute()
+    {
+        return getUtf8Slug($this->title);
+    }
+
     public function artworks($perPage = 20)
     {
         return Search::query()

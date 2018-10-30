@@ -24,6 +24,12 @@ class SelectionsController extends FrontController
             $item = $this->repository->getById((Integer) $slug);
         }
 
+        // Redirect to the canonical page if it wasn't requested
+        $canonicalPath = route('selections.show', ['slug' => $item->idSlug ], false);
+        if ('/' .request()->path() != $canonicalPath) {
+            return redirect($canonicalPath, 301);
+        }
+
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->short_copy);
         $this->seo->setImage($item->imageFront('hero'));
@@ -38,6 +44,7 @@ class SelectionsController extends FrontController
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
             'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
+            'canonicalUrl' => route('selections.show', ['slug' => $item->idSlug ]),
         ]);
     }
 

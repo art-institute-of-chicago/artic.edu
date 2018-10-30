@@ -33,6 +33,11 @@ class Artist extends BaseApiModel
             ->getSearch($perPage);
     }
 
+    public function getTitleSlugAttribute()
+    {
+        return getUtf8Slug($this->title);
+    }
+
     public function getAlsoKnownAsAttribute()
     {
         if (!empty($this->alt_titles)) {

@@ -28,22 +28,20 @@
   @endcomponent
 
   <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+" aria-label="Additional information">
-    @if ($item->is_on_view)
-        {{-- dupe 😢 - shows xlarge+ --}}
-        @component('components.atoms._title')
-            @slot('variation', 'u-show@large+')
-            @slot('tag','h2')
-            @slot('font', 'f-module-title-1')
-            @slot('ariaHidden', "true")
-            On View
-        @endcomponent
-    @endif
+    {{-- dupe 😢 - shows xlarge+ --}}
+    @component('components.atoms._title')
+        @slot('variation', 'u-show@large+')
+        @slot('tag','h2')
+        @slot('font', 'f-module-title-1')
+        @slot('ariaHidden', "true")
+        {{ $item->is_on_view ? 'On View' : 'Currently Off View' }}
+    @endcomponent
 
     <ul class="list list--inline f-secondary">
       @if ($item->department_id)
       <li><a href="{!! route('departments.show', [$item->department_id]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{{ $item->department_title }}</a></li>
       @endif
-      @if ($item->gallery_id)
+      @if ($item->is_on_view && $item->gallery_id)
       <li><a href="{!! route('galleries.show', [$item->gallery_id]) !!}" data-gtm-event="{{ $item->gallery_title }}"  data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{{ $item->gallery_title }}</a></li>
       @endif
     </ul>
