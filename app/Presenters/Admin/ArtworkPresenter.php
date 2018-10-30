@@ -65,8 +65,14 @@ class ArtworkPresenter extends BasePresenter
         }
 
         // TODO: Dedupe this logic w/ artworkDetail.blade.php
-        $dept_link = $this->entity->department_id ? ('<a href="' . route('departments.show', [$this->entity->department_id]) .'" data-gtm-event="' .$this->entity->department_title .'" data-gtm-event-category="collection-nav">' .$this->entity->department_title .'</a>') : '';
-        $gallery_link = ($this->entity->is_on_view && $this->entity->gallery_id) ? ('<a href="' .route('galleries.show', [$this->entity->gallery_id]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>') : '';
+        $view_link = $dept_link = $this->entity->department_id ? ('<a href="' . route('departments.show', [$this->entity->department_id]) .'" data-gtm-event="' .$this->entity->department_title .'" data-gtm-event-category="collection-nav">' .$this->entity->department_title .'</a>') : '';
+
+        if ($this->entity->is_on_view && $this->entity->gallery_id)
+        {
+            $gallery_link = ('<a href="' .route('galleries.show', [$this->entity->gallery_id]) .'" data-gtm-event="' .$this->entity->gallery_title .'" data-gtm-event-category="collection-nav">' .$this->entity->gallery_title .'</a>');
+
+            $view_link .= ', ' . $gallery_link;
+        }
 
         array_push($blocks, [
             "type"      => 'deflist',
@@ -75,7 +81,7 @@ class ArtworkPresenter extends BasePresenter
             "items"     => [
                 [
                     'key' => $this->entity->is_on_view ? 'On View' : 'Currently Off View',
-                    'value' => implode(', ', array($dept_link, $gallery_link))
+                    'value' => $view_link,
                 ],
             ]
         ]);
