@@ -402,6 +402,11 @@
   @include tucked-margin-top($f-display-1, ('xsmall': 36, 'small+': 40, 'medium+': 44));
 }
 
+.p-home-index .m-listing__meta .f-display-1 {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
 .m-listing__meta .f-module-title-2 {
   @include tucked-margin-top($f-module-title-2, ('xsmall': 24, 'small+': 32));
 }
