@@ -203,6 +203,12 @@ class Exhibition extends Model
                 "value" => function () {return $this->published;},
             ],
             [
+                "name" => 'title',
+                'doc' => 'The title of  this exhibition',
+                'type' => 'string',
+                'value' => function () {return $this->title;},
+            ],
+            [
                 "name" => 'header_copy',
                 "doc" => "Header Copy",
                 "type" => "string",
@@ -221,10 +227,22 @@ class Exhibition extends Model
                 "value" => function () {return $this->content;},
             ],
             [
-                "name" => 'datahub_id',
-                "doc" => "Type",
+                "name" => 'image_url',
+                "doc" => "Image URL",
                 "type" => "string",
-                "value" => function () {return $this->datahub_id;},
+                "value" => function () {return starts_with($this->image('hero'), 'http') ? $this->image('hero') : null;},
+            ],
+            [
+                "name" => 'web_url',
+                "doc" => "Web URL",
+                "type" => "string",
+                "value" => function () {return route('exhibitions.show', ['id' => $this->datahub_id, 'slug' => $this->getSlug() ]); },
+            ],
+            [
+                "name" => 'datahub_id',
+                "doc" => "Souce ID",
+                "type" => "string",
+                "value" => function () {return (int) $this->datahub_id;},
             ],
             [
                 "name" => 'exhibition_message',
