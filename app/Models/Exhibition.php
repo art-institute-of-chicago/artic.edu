@@ -230,7 +230,7 @@ class Exhibition extends Model
                 "name" => 'image_url',
                 "doc" => "Image URL",
                 "type" => "string",
-                "value" => function () {return $this->image('hero');},
+                "value" => function () {return starts_with($this->image('hero'), 'http') ? $this->image('hero') : null;},
             ],
             [
                 "name" => 'web_url',
