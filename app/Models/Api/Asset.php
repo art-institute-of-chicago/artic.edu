@@ -63,6 +63,14 @@ class Asset extends BaseApiModel
         return \EmbedConverter::convertUrl($this->content);
     }
 
+    public function getContentAttribute($content)
+    {
+        if (starts_with($content, 'https://lakeimagesweb.artic.edu/assets')) {
+            return str_replace('https://lakeimagesweb.artic.edu/assets', '/assets', $content);
+        }
+        return $content;
+    }
+
     public function getHrefAttribute()
     {
         switch ($this->api_model)
