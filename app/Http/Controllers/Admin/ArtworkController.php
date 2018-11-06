@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\SiteTagRepository;
-
 class ArtworkController extends BaseApiController
 {
     protected $moduleName = 'artworks';
@@ -33,30 +31,30 @@ class ArtworkController extends BaseApiController
         ],
         'fullTitle' => [
             'title' => 'Title',
-            'field' => 'fullTitle'
+            'field' => 'fullTitle',
         ],
         'main_reference_number' => [
             'title' => 'Reference number',
-            'field' => 'main_reference_number'
+            'field' => 'main_reference_number',
         ],
         'augmented' => [
             'title' => 'Augmented?',
             'field' => 'augmented',
-            'present' => true
+            'present' => true,
         ],
         'artist_display' => [
             'title' => 'Artist',
-            'field' => 'artist_display'
-        ]
+            'field' => 'artist_display',
+        ],
     ];
 
     protected $titleColumnKey = 'fullTitle';
 
     protected $browserColumns = [
-        'fullTitle' =>  [
+        'fullTitle' => [
             'title' => 'Title',
             'field' => 'fullTitle',
-        ]
+        ],
     ];
 
     /*
@@ -71,12 +69,12 @@ class ArtworkController extends BaseApiController
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('artwork'));
-        $baseUrl = '//' . config('app.url') . '/artworks/' . $item->datahub_id .'/';
+        $item = $this->repository->getById(request('artwork') ?? request('id'));
+        $baseUrl = '//' . config('app.url') . '/artworks/' . $item->datahub_id . '/';
 
         return [
             'editableTitle' => false,
-            'baseUrl' => $baseUrl
+            'baseUrl' => $baseUrl,
         ];
     }
 

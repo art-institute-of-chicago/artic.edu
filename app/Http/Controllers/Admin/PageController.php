@@ -147,9 +147,8 @@ class PageController extends ModuleController
         return null;
     }
 
-    protected function moduleHasRevisions()
+    protected function moduleHas($behavior)
     {
-        return false;
+        return $behavior === 'revisions' ? false : parent::moduleHas($behavior);
     }
-
 }

@@ -58,7 +58,7 @@ class ArticleController extends ModuleController
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('article'));
+        $item = $this->repository->getById(request('article') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/articles/' . $item->id . '/';
 
         return [

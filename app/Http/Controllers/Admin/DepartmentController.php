@@ -36,8 +36,8 @@ class DepartmentController extends BaseApiController
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('department'));
-        $baseUrl = '//'.config('app.url').'/departments/'.$item->datahub_id.'/';
+        $item = $this->repository->getById(request('department') ?? request('id'));
+        $baseUrl = '//' . config('app.url') . '/departments/' . $item->datahub_id . '/';
 
         return [
             'baseUrl' => $baseUrl,

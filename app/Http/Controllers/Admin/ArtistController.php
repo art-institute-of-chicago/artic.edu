@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\SiteTagRepository;
-
 class ArtistController extends BaseApiController
 {
     protected $moduleName = 'artists';
@@ -31,7 +29,7 @@ class ArtistController extends BaseApiController
         'augmented' => [
             'title' => 'Augmented?',
             'field' => 'augmented',
-            'present' => true
+            'present' => true,
         ],
         'datahub_id' => [
             'title' => 'Datahub ID',
@@ -48,8 +46,8 @@ class ArtistController extends BaseApiController
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('artist'));
-        $baseUrl = '//'.config('app.url').'/artists/'.$item->datahub_id.'/';
+        $item = $this->repository->getById(request('artist') ?? request('id'));
+        $baseUrl = '//' . config('app.url') . '/artists/' . $item->datahub_id . '/';
 
         return [
             'baseUrl' => $baseUrl,
