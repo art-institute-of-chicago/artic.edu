@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'users_table' => 'users',
+    'password_resets_table' => 'password_resets',
+    'bind_exception_handler' => false,
+
     'auth_login_redirect_path' => '/homepage/landing',
 
     'templates_on_frontend_domain' => true,
@@ -14,6 +18,7 @@ return [
         'media-library' => true,
         'file-library' => true,
         'dashboard' => false,
+        'search' => true,
     ],
 
     'block_editor' => [
@@ -228,7 +233,7 @@ return [
                         'name' => 'desktop',
                         'ratio' => 0,
                     ],
-                ]
+                ],
             ],
             'family_cover' => [
                 'default' => [
@@ -236,7 +241,7 @@ return [
                         'name' => 'default',
                         'ratio' => 16 / 9,
                     ],
-                ]
+                ],
             ],
             'banner' => [
                 'default' => [
@@ -244,7 +249,7 @@ return [
                         'name' => 'default',
                         'ratio' => 200 / 24,
                     ],
-                ]
+                ],
             ],
             'listing_image' => [
                 'default' => [
@@ -252,7 +257,7 @@ return [
                         'name' => 'default',
                         'ratio' => 16 / 9,
                     ],
-                ]
+                ],
             ],
             'dining_cover' => [
                 'default' => [
@@ -260,12 +265,12 @@ return [
                         'name' => 'default',
                         'ratio' => 16 / 9,
                     ],
-                ]
+                ],
             ],
         ],
         'files' => [
             'attachment',
-            'video'
+            'video',
         ],
         'browser_route_prefixes' => [
             'events' => 'exhibitions_events',
@@ -282,7 +287,7 @@ return [
                     'bucketables' => [
                         [
                             'module' => 'homeFeatures',
-                            'name' => 'Home Features'
+                            'name' => 'Home Features',
                         ],
                     ],
                     'max_items' => 5,
@@ -343,6 +348,26 @@ return [
                 'search' => true,
                 'activity' => true,
                 'drafts' => true,
+            ],
+            'exhibitions' => [
+                'name' => 'exhibitions',
+                'routePrefix' => 'exhibitions_events',
+                'count' => false,
+                'create' => false,
+                'search' => true,
+                'search_fields' => ['title', 'datahub_id'],
+                'activity' => true,
+                'drafts' => false,
+            ],
+            'artists' => [
+                'name' => 'artists',
+                'routePrefix' => 'collection',
+                'count' => false,
+                'create' => false,
+                'search' => true,
+                'search_fields' => ['title', 'datahub_id'],
+                'activity' => true,
+                'drafts' => false,
             ],
             'genericPages' => [
                 'label' => 'Generic pages',

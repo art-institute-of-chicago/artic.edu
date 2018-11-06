@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
-
-use App\Repositories\SiteTagRepository;
 use App\Repositories\Api\ExhibitionRepository;
-use App\Models\Api\Exhibition;
+use App\Repositories\SiteTagRepository;
 
 class ExhibitionController extends BaseApiController
 {
@@ -33,7 +31,7 @@ class ExhibitionController extends BaseApiController
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-            'sort' => true
+            'sort' => true,
         ],
         'augmented' => [
             'title' => 'Augmented?',
@@ -71,8 +69,8 @@ class ExhibitionController extends BaseApiController
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('exhibition'));
-        $baseUrl = '//'.config('app.url').'/exhibitions/'.$item->datahub_id.'/';
+        $item = $this->repository->getById(request('exhibition') ?? request('id'));
+        $baseUrl = '//' . config('app.url') . '/exhibitions/' . $item->datahub_id . '/';
 
         return [
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),

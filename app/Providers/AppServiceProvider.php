@@ -93,7 +93,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        config(['aic.version' => trim(file_get_contents(__DIR__ . '/../../VERSION'))]);
     }
 
     // TODO: Consider moving some of this to a config?
