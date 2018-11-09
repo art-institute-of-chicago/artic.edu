@@ -32,7 +32,7 @@ class GenerateSitemap extends Command
 
     public function handle()
     {
-        $this->prefix = 'https://' .(config('sitemap.base_url') ?? config('app.url'));
+        $this->prefix = config('sitemap.base_url') ?? ('https://' .config('app.url'));
         $this->path = public_path('sitemap.xml');
 
         $this->warn('Generating new sitemap! Domain is ' . $this->prefix);
