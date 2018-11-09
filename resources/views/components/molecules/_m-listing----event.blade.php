@@ -48,6 +48,7 @@
             @slot('font', $titleFont ?? 'f-list-3')
             @slot('title', $item->title)
             @slot('title_display', $item->title_display)
+            @slot('itemprop', 'name')
         @endcomponent
       <br>
       <span class="m-listing__meta-bottom">
