@@ -32,7 +32,7 @@ class GenerateSitemap extends Command
 
     public function handle()
     {
-        $this->prefix = config('sitemap.base_url', config('app.url'));
+        $this->prefix = config('sitemap.base_url') ?? ('https://' .config('app.url'));
         $this->path = public_path('sitemap.xml');
 
         $this->warn('Generating new sitemap! Domain is ' . $this->prefix);
@@ -190,7 +190,7 @@ class GenerateSitemap extends Command
     // Set everything in one call
     private function addUrl(&$sitemap, string $url, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY, $lastModified = null)
     {
-        $url = URL::create($url);
+        $url = URL::create(trim($url, '/'));
         $url->setPriority($priority);
         $url->setChangeFrequency($changeFrequency);
 

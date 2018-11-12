@@ -154,5 +154,10 @@ Route::name('forms.ryerson-class-visit.thanks')->get('/library/request-a-class-v
 // Feed routes
 Route::feeds();
 
+// Generic Page w/ httpauth
+Route::name('about.press.art-institute-images')->middleware(['httpauth'])->get('/press/art-institute-images', function() {
+    return App::make(App\Http\Controllers\GenericPagesController::class)->show('/press/art-institute-images');
+});
+
 // Generic Page
 Route::get('{any}', ['as' => 'genericPages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');

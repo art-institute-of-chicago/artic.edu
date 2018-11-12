@@ -109,7 +109,8 @@ class EventPresenter extends BasePresenter
         if ($this->entity->location) {
             return [
                 'label' => $this->entity->location,
-                'iconBefore' => 'location'
+                'iconBefore' => 'location',
+                'itemprop' => 'location'
             ];
         }
     }

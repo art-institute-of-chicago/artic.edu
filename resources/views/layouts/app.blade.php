@@ -1,6 +1,6 @@
 @php
 $print = isset($_GET['print']);
-$pClass = request()->route()->getAction()['controller'];
+$pClass = request()->route()->getAction()['controller'] ?? 'App\Http\Controllers\GenericPagesController';
 $pClass = preg_replace('/App\\\\Http\\\\Controllers\\\\/i','p-',$pClass);
 $pClass = preg_replace('/Controller/i','',$pClass);
 $pClass = strtolower(preg_replace('/@/i','-',$pClass));
