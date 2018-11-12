@@ -154,8 +154,19 @@ class Asset extends BaseApiModel
                         "bool" => [
                             "should" => [
                                 [
-                                    "term" => [
-                                        "is_multimedia_resource" => true
+                                    "bool" => [
+                                        "must" => [
+                                            [
+                                                "term" => [
+                                                    "is_multimedia_resource" => true
+                                                ]
+                                            ],
+                                            [
+                                                "exists" => [
+                                                    "field" => "content"
+                                                ]
+                                            ]
+                                        ]
                                     ]
                                 ],
                                 [
@@ -210,6 +221,11 @@ class Asset extends BaseApiModel
                     [
                         "term" => [
                             "is_educational_resource" => true
+                        ]
+                    ],
+                    [
+                        "exists" => [
+                            "field" => "content"
                         ]
                     ],
                     [
