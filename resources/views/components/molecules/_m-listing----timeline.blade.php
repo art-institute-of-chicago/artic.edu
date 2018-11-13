@@ -9,7 +9,13 @@
         @slot('font','f-list-3')
         {{ $item->title }}
     @endcomponent
-    <p class="f-body">{{ $item->blurb }}</p>
+    @if (isset($item->blurb))
+        @if (starts_with($item->blurb, '<p'))
+            {!! str_replace('<p>', '<p class="f-body">', $item->blurb) !!}
+        @else
+            <p class="f-body">{{ $item->blurb }}</p>
+        @endif
+    @endif
 </div>
 @if ($item->image)
 <div class="m-listing__img">
