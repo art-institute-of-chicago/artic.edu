@@ -144,7 +144,7 @@ class EventPresenter extends BasePresenter
         }
 
         if ($this->entity->is_registration_required) {
-            return 'Registration Required';
+            return 'Register';
         }
 
         return 'Buy tickets';
