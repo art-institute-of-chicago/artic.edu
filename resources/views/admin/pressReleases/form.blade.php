@@ -41,7 +41,7 @@
         'blocks' => [
             'paragraph', 'image', 'video', 'media_embed', 'list',
             'accordion', 'membership_banner', 'timeline', 'link', 'newsletter_signup_inline',
-            'hr',
+            'split_block', 'hr',
         ]
     ])
 @stop
