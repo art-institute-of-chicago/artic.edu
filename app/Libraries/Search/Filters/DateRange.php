@@ -25,7 +25,7 @@ class DateRange
 
     protected function generateLabel()
     {
-        return join('-', [preg_replace('/(AD|BC)/i', ' $1', request()->get('date-start')), preg_replace('/(AD|BC)/i', ' $1', request()->get('date-end'))]);
+        return join('–', [preg_replace('/(AD|BC)/i', ' $1', request()->get('date-start')), preg_replace('/(AD|BC)/i', ' $1', request()->get('date-end'))]);
     }
 
 }
