@@ -75,7 +75,7 @@ class LakeviewImageService implements ImageServiceInterface
         $height = isset($params['height']) ? $params['height'] : '';
         $size = isset($params['size']) ? $params['size'] : 'full';
 
-        $dimensions = 'full';
+        $dimensions = '!3000,3000';
         if ($width != '' || $height != '') {
             $dimensions = $width . ',' . $height;
         }
