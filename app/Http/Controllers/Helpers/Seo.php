@@ -18,9 +18,11 @@ class Seo extends BaseSeo
                 ],
             ]);
 
-            $this->image = str_before($settings['srcset'], ' ');
-            $this->width = 1200;
-            $this->height = floor((1200 / $settings['width']) * $settings['height']);
+            if ($settings['srcset']) {
+                $this->image = str_before($settings['srcset'], ' ');
+                $this->width = 1200;
+                $this->height = floor((1200 / $settings['width']) * $settings['height']);
+            }
         }
     }
 }
