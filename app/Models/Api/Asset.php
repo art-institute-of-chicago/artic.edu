@@ -186,7 +186,7 @@ class Asset extends BaseApiModel
                             "should" => [
                                 [
                                     "prefix" => [
-                                        "content.keyword" => 'http://www.youtube.com'
+                                        "content.keyword" => 'https://www.youtube.com'
                                     ]
                                 ],
                                 [
@@ -233,7 +233,7 @@ class Asset extends BaseApiModel
                             "should" => [
                                 [
                                     "prefix" => [
-                                        "content.keyword" => 'http://www.youtube.com'
+                                        "content.keyword" => 'https://www.youtube.com'
                                     ]
                                 ],
                                 [
