@@ -5,50 +5,47 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Model;
 
-class Lightbox extends Model 
+class Lightbox extends Model
 {
     use HasMedias;
 
     protected $fillable = [
-        // 'published',
-        // 'position',
-        // 'public',
-        // 'featured',
-        // 'publish_start_date',
-        // 'publish_end_date',
+        'published',
+        'title',
+        'header',
+        'body',
+        'lightbox_start_date',
+        'lightbox_end_date',
+        'action_url',
+        'form_id',
+        'form_token',
+        'form_tlc_source',
     ];
 
-    // public $translatedAttributes = [
-    //     'title',
-    //     'description',
-    //     'active',
-    // ];
+    public $slugAttributes = [
+        'title',
+    ];
 
-    // public $slugAttributes = [
-    //     'title',
-    // ];
+    public $checkboxes = ['published'];
 
-    // public $checkboxes = ['published', 'active'];
-
-    // fill this in if you use the HasMedias traits
-    // public $mediasParams = [
-    //     'cover' => [
-    //         'default' => [
-    //             [
-    //                 'name' => 'landscape',
-    //                 'ratio' => 16 / 9,
-    //             ],
-    //             [
-    //                 'name' => 'portrait',
-    //                 'ratio' => 3 / 4,
-    //             ],
-    //         ],
-    //         'mobile' => [
-    //             [
-    //                 'name' => 'mobile',
-    //                 'ratio' => 1,
-    //             ],
-    //         ],
-    //     ],
-    // ];
+    public $mediasParams = [
+        'cover' => [
+            'default' => [
+                [
+                    'name' => 'landscape',
+                    'ratio' => 16 / 9,
+                ],
+                [
+                    'name' => 'portrait',
+                    'ratio' => 3 / 4,
+                ],
+            ],
+            'mobile' => [
+                [
+                    'name' => 'mobile',
+                    'ratio' => 1,
+                ],
+            ],
+        ],
+    ];
 }

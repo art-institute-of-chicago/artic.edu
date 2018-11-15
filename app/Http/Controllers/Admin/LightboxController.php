@@ -6,5 +6,5 @@ use A17\Twill\Http\Controllers\Admin\ModuleController;
 
 class LightboxController extends ModuleController
 {
-    protected $moduleName = 'lightbox';
+    protected $moduleName = 'lightboxes';
 }
