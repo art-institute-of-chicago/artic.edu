@@ -65,9 +65,18 @@ class Asset extends BaseApiModel
 
     public function getContentAttribute($content)
     {
-        if (starts_with($content, 'https://lakeimagesweb.artic.edu/assets')) {
-            return str_replace('https://lakeimagesweb.artic.edu/assets', '/assets', $content);
+        if (!config('lakeview.cdn_enabled')) {
+            return $content;
         }
+
+        // TODO: Consider removing `/iiif` suffix from `config/lakeview.php` values?
+        $assets_url = str_replace('/iiif', '/assets', config('lakeview.base_url'));
+        $assets_cdn_url = str_replace('/iiif', '/assets', config('lakeview.base_url_cdn'));
+
+        if (starts_with($content, $assets_url)) {
+            return str_replace($assets_url, $assets_cdn_url, $content);
+        }
+
         return $content;
     }
 
