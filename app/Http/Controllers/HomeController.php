@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Lightbox;
+
+use Carbon\Carbon;
 
 class HomeController extends FrontController
 {
@@ -35,9 +38,33 @@ class HomeController extends FrontController
             'membership_module_headline' =>  $page->home_membership_module_headline,
             'membership_module_button_text' => $page->home_membership_module_button_text,
             'membership_module_short_copy' => $page->home_membership_module_short_copy,
+            'roadblock' => $this->getLightbox(),
         ];
 
         return view('site.home', $view_data);
+    }
+
+    private function getLightbox()
+    {
+        $lightbox = Lightbox::orderBy('lightbox_start_date', 'DESC')
+            ->where('lightbox_start_date', '<=', Carbon::today())
+            ->where('lightbox_end_date', '>=', Carbon::today())
+            ->published()
+            ->first();
+
+        if (!$lightbox) {
+            return null;
+        }
+
+        return [
+            'title' => $lightbox->header,
+            'intro' => $lightbox->body,
+            'action_url' => $lightbox->action_url,
+            'form_id' => $lightbox->form_id,
+            'form_token' => $lightbox->form_token,
+            'form_tlc_source' => $lightbox->form_tlc_source,
+            'image' => $lightbox->imageFront('cover'),//image('cover', 'default', [], true),
+        ];
     }
 
 }

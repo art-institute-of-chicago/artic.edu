@@ -101,7 +101,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @include('partials._ajax-loader')
 
 @if (!empty($roadblock))
-    @component('partials._modal-promo', [ 'modal' => $roadblock])
+    @component('partials._modal-promo', ['modal' => $roadblock])
     @endcomponent
 @endif
 

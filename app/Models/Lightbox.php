@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasMedias;
+use App\Models\Behaviors\HasMediasEloquent;
 use A17\Twill\Models\Model;
 
 class Lightbox extends Model
 {
-    use HasMedias;
+    use HasMedias, HasMediasEloquent;
 
     protected $fillable = [
         'published',
@@ -32,18 +33,8 @@ class Lightbox extends Model
         'cover' => [
             'default' => [
                 [
-                    'name' => 'landscape',
-                    'ratio' => 16 / 9,
-                ],
-                [
-                    'name' => 'portrait',
-                    'ratio' => 3 / 4,
-                ],
-            ],
-            'mobile' => [
-                [
-                    'name' => 'mobile',
-                    'ratio' => 1,
+                    'name' => 'default',
+                    'ratio' => 4 / 3,
                 ],
             ],
         ],

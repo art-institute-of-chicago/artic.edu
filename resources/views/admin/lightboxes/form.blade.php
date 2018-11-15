@@ -7,9 +7,16 @@
 
 @section('contentFields')
 
+    @formField('medias', [
+        'with_multiple' => false,
+        'label' => 'Cover Image',
+        'name' => 'cover',
+    ])
+
     @formField('input', [
         'name' => 'header',
         'label' => 'Header',
+        'note' => 'Use "Title Case"',
     ])
 
     @formField('wysiwyg', [
