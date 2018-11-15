@@ -17,6 +17,7 @@ class Lightbox extends Model
         'body',
         'lightbox_start_date',
         'lightbox_end_date',
+        'lightbox_button_text',
         'action_url',
         'form_id',
         'form_token',

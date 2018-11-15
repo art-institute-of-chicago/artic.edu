@@ -58,7 +58,7 @@
 
                 <div class="g-modal__form-row g-modal__form-row--submit">
                     @component('components.atoms._btn')
-                        Join Now
+                        {{ $modal['lightbox_button_text'] ?? 'Join Now' }}
                     @endcomponent
                 </div>
 

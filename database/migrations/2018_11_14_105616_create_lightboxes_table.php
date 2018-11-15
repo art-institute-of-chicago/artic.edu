@@ -14,6 +14,7 @@ class CreateLightboxesTable extends Migration
             $table->text('body')->nullable();
             $table->timestamp('lightbox_start_date')->nullable();
             $table->timestamp('lightbox_end_date')->nullable();
+            $table->text('lightbox_button_text')->nullable();
             $table->text('action_url')->nullable();
             $table->text('form_id')->nullable();
             $table->text('form_token')->nullable();

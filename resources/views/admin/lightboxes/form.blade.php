@@ -27,6 +27,12 @@
         ],
     ])
 
+    @formField('input', [
+        'name' => 'lightbox_button_text',
+        'label' => 'Button Text',
+        'note' => 'Defaults to "Join Now"',
+    ])
+
 @stop
 
 
