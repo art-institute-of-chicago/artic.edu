@@ -143,6 +143,8 @@ const modals = function() {
   window.addEventListener('resized', _resized, false);
   window.addEventListener('keyup', _escape, false);
 
+  document.addEventListener('ajaxPageLoad:complete', _roadblockOpen, false);
+
   _roadblockOpen();
 };
 
