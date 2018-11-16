@@ -65,9 +65,18 @@ class Asset extends BaseApiModel
 
     public function getContentAttribute($content)
     {
-        if (starts_with($content, 'https://lakeimagesweb.artic.edu/assets')) {
-            return str_replace('https://lakeimagesweb.artic.edu/assets', '/assets', $content);
+        if (!config('lakeview.cdn_enabled')) {
+            return $content;
         }
+
+        // TODO: Consider removing `/iiif` suffix from `config/lakeview.php` values?
+        $assets_url = str_replace('/iiif', '/assets', config('lakeview.base_url'));
+        $assets_cdn_url = str_replace('/iiif', '/assets', config('lakeview.base_url_cdn'));
+
+        if (starts_with($content, $assets_url)) {
+            return str_replace($assets_url, $assets_cdn_url, $content);
+        }
+
         return $content;
     }
 
@@ -154,8 +163,19 @@ class Asset extends BaseApiModel
                         "bool" => [
                             "should" => [
                                 [
-                                    "term" => [
-                                        "is_multimedia_resource" => true
+                                    "bool" => [
+                                        "must" => [
+                                            [
+                                                "term" => [
+                                                    "is_multimedia_resource" => true
+                                                ]
+                                            ],
+                                            [
+                                                "exists" => [
+                                                    "field" => "content"
+                                                ]
+                                            ]
+                                        ]
                                     ]
                                 ],
                                 [
@@ -175,7 +195,7 @@ class Asset extends BaseApiModel
                             "should" => [
                                 [
                                     "prefix" => [
-                                        "content.keyword" => 'http://www.youtube.com'
+                                        "content.keyword" => 'https://www.youtube.com'
                                     ]
                                 ],
                                 [
@@ -213,11 +233,16 @@ class Asset extends BaseApiModel
                         ]
                     ],
                     [
+                        "exists" => [
+                            "field" => "content"
+                        ]
+                    ],
+                    [
                         "bool" => [
                             "should" => [
                                 [
                                     "prefix" => [
-                                        "content.keyword" => 'http://www.youtube.com'
+                                        "content.keyword" => 'https://www.youtube.com'
                                     ]
                                 ],
                                 [

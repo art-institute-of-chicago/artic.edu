@@ -3,6 +3,11 @@
     $ids = $block->browserIds('artworks');
     $artworks = \App\Models\Api\Artwork::query()->ids($ids)->get();
 
+    // Sort $artworks to match order of $ids
+    $artworks = $artworks->sortBy(function($model) use ($ids) {
+        return array_search($model->id, $ids);
+    });
+
     $items = [];
     foreach($artworks as $artwork) {
         $image = $artwork->imageFront('hero', 'thumbnail');

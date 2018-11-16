@@ -245,8 +245,8 @@ class Event extends Model
         }
         $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
         if ($ticketedEvent) {
-            $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date;
-            return "https://sales.artic.edu/Events/Event/" .$ticketedEvent->id ."?date=" .$date->format('n/j/Y');
+            $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date ?? null;
+            return "https://sales.artic.edu/Events/Event/" . $ticketedEvent->id . ($date ? "?date=" . $date->format('n/j/Y') : '');
         }
         return $value;
     }

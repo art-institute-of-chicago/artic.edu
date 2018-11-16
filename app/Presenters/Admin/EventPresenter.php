@@ -72,9 +72,9 @@ class EventPresenter extends BasePresenter
         } else {
             if ($next = $this->entity->nextOcurrence) {
 
-                return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('F j, Y g:i').'</time>&ndash;<time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('g:i').'</time>';
+                return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('F j, Y | g:i').'</time>&ndash;<time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('g:i').'</time>';
             } elseif ($last = $this->entity->lastOcurrence) {
-                return '<time datetime="'.$last->date->format("c").'" itemprop="startDate">'.$last->date->format('F j, Y g:i').'</time>&ndash;<time datetime="'.$last->date_end->format("c").'" itemprop="endDate">'.$last->date_end->format('g:i').'</time>';
+                return '<time datetime="'.$last->date->format("c").'" itemprop="startDate">'.$last->date->format('F j, Y | g:i').'</time>&ndash;<time datetime="'.$last->date_end->format("c").'" itemprop="endDate">'.$last->date_end->format('g:i').'</time>';
             }
         }
     }
@@ -144,7 +144,7 @@ class EventPresenter extends BasePresenter
         }
 
         if ($this->entity->is_registration_required) {
-            return 'Registration Required';
+            return 'Register';
         }
 
         return 'Buy tickets';

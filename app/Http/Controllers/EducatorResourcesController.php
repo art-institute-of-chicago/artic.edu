@@ -94,6 +94,7 @@ class EducatorResourcesController extends BaseScopedController
             'intro' => $page->short_description,
             'headerImage' => $page->imageFront('banner'),
             "title" => $page->title,
+            "title_display" => $page->title_display,
             "breadcrumb" => $crumbs,
             "blocks" => null,
             'page' => $page,

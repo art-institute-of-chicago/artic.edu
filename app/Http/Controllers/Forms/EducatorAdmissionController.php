@@ -280,7 +280,7 @@ class EducatorAdmissionController extends FormController
         $educatorAdmission->grades_taught = $validated['grades_taught'] ?? '';
         $educatorAdmission->subjects_taught = $validated['subjects_taught'] ?? '';
 
-        Mail::to(config('forms.email_educator_admission_to'))
+        Mail::to($educatorAdmission->email)
             ->send(new FormEducatorAdmission($educatorAdmission));
 
         return redirect(route('forms.educator-admission-request.thanks'));

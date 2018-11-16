@@ -43,15 +43,15 @@ const ajaxPageLoad = function() {
       document.documentElement.classList.remove('s-gallery-header');
     }
     // check to see if we need the roadblock class
-    if (doc.documentElement.classList.contains('s-roadblock-active')) {
+    if (doc.documentElement.classList.contains('s-roadblock-defined')) {
       let promo = doc.querySelector('#modal-promo');
       if (promo) {
         let promoClone = promo.cloneNode(true);
         document.body.append(promoClone);
-        document.documentElement.classList.add('s-roadblock-active');
+        document.documentElement.classList.add('s-roadblock-defined');
       }
     } else {
-      document.documentElement.classList.remove('s-roadblock-active');
+      document.documentElement.classList.remove('s-roadblock-defined');
     }
     // update page class (p-xxxx)
     let pClassReg = /p-\S*/g;

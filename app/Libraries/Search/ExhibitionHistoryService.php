@@ -36,7 +36,7 @@ class ExhibitionHistoryService
 
             $d = [
                 'href'  => route('exhibitions.history', ['year' => $decade]),
-                'label' => join('-', [$decade, $decadeEnd]),
+                'label' => join('–', [$decade, $decadeEnd]),
                 'start' => $decade,
                 'end'   => $decadeEnd,
                 'ajaxScrollTarget' => 'listing'

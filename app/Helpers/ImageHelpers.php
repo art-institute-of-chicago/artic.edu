@@ -165,7 +165,8 @@ function aic_makePosterSrc($src = false) {
         }
 
         if ($sourceType === 'lakeview') {
-            $base = explode('/full/full/0/default.jpg', $originalSrc)[0];
+            $fullVal = strpos($originalSrc, '!3000,3000') ? '!3000,3000' : 'full';
+            $base = explode('/full/' . $fullVal . '/0/default.jpg', $originalSrc)[0];
             $resizeVal = 'full';
             $strposterSrcingSrc = $base."/".$resizeVal."/150,/0/default.jpg";
         }
@@ -409,7 +410,8 @@ function aic_imageSettings($data) {
         // http://iiif.io/api/image/2.1/#region
         // /{region}/{size}/{rotation}/{quality}.{format}
 
-        $base = explode('/full/full/0/default.jpg', $originalSrc)[0];
+        $fullVal = strpos($originalSrc, '!3000,3000') ? '!3000,3000' : 'full';
+        $base = explode('/full/' . $fullVal . '/0/default.jpg', $originalSrc)[0];
         $resizeVal = 'full';
 
         if (!$iiifId) {

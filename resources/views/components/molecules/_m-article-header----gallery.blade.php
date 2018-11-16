@@ -1,4 +1,10 @@
-@if (isset($images) and $images)
+{{--
+     Here we check if the first, hero image has a width. Because in
+     LakeviewImageService->getDimesions(), if the image is 404 not
+     found in LAKE it returns dimension of 0x0. In which case This
+     whole block should be skipped.
+--}}
+@if (isset($images) and $images and $images->first()['width'])
 
 @php
 $maxZoomWindowSize = (isset($maxZoomWindowSize) && $maxZoomWindowSize) ? $maxZoomWindowSize : 1280;
