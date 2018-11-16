@@ -19,6 +19,11 @@ return [
                 'title' => 'Collection Features',
                 'module' => true,
             ],
+
+            'lightboxes' => [
+                'title' => 'Lightboxes',
+                'module' => true,
+            ],
         ]
     ],
 

@@ -6,7 +6,7 @@ $pClass = preg_replace('/Controller/i','',$pClass);
 $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @endphp
 <!DOCTYPE html>
-<html dir="ltr" lang="{{ app()->getLocale() }}" class="no-js{{ (isset($contrastHeader) and $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($borderlessHeader) and $borderlessHeader) ? ' s-borderless-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-print' : '' }}  {{ !empty($roadblock) ? 's-roadblock-active' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_serif"]) ? ' s-serif-loaded' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_sans-serif"]) ? ' s-sans-serif-loaded' : '' }} s-env-{{ app()->environment() }} {{ $pClass }}">
+<html dir="ltr" lang="{{ app()->getLocale() }}" class="no-js{{ (isset($contrastHeader) and $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($borderlessHeader) and $borderlessHeader) ? ' s-borderless-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-print' : '' }}  {{ !empty($roadblock) ? 's-roadblock-defined' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_serif"]) ? ' s-serif-loaded' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_sans-serif"]) ? ' s-sans-serif-loaded' : '' }} s-env-{{ app()->environment() }} {{ $pClass }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -101,7 +101,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @include('partials._ajax-loader')
 
 @if (!empty($roadblock))
-    @component('partials._modal-promo', [ 'modal' => $roadblock])
+    @component('partials._modal-promo', ['modal' => $roadblock])
     @endcomponent
 @endif
 

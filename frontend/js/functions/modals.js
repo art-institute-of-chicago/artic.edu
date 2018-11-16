@@ -1,13 +1,17 @@
-import { triggerCustomEvent, setFocusOnTarget, queryStringHandler } from '@area17/a17-helpers';
+import { triggerCustomEvent, setFocusOnTarget, queryStringHandler, cookieHandler } from '@area17/a17-helpers';
 import { parseHTML, youtubePercentTracking } from '../functions';
 
 const modals = function() {
 
   const modalActiveClass = 's-modal-active';
   const roadblockActiveClass = 's-roadblock-active';
+  const roadblockDefinedClass = 's-roadblock-defined';
   const $modal = document.getElementById('modal');
   const $modalPromo = document.getElementById('modal-promo');
   let active = false;
+
+  var cookieName = 'has_seen_lightbox';
+  var cookie = cookieHandler.read(cookieName) || '';
 
   function _media(e) {
     let embedCode = e.data.embedCode;
@@ -90,20 +94,27 @@ const modals = function() {
   }
 
   function _roadblockOpen() {
-    if (document.documentElement.classList.contains(roadblockActiveClass)) {
-      active = true;
-      triggerCustomEvent(document, 'body:lock', {
-        breakpoints: 'all'
-      });
-      setTimeout(function(){ setFocusOnTarget($modalPromo); }, 0)
-      triggerCustomEvent(document, 'focus:trap', {
-        element: $modalPromo
-      });
+    if (!document.documentElement.classList.contains(roadblockDefinedClass)) {
+      return;
     }
+    if (cookie) {
+      return;
+    }
+    document.documentElement.classList.add(roadblockActiveClass);
+    active = true;
+    triggerCustomEvent(document, 'body:lock', {
+      breakpoints: 'all'
+    });
+    setTimeout(function(){ setFocusOnTarget($modalPromo); }, 0)
+    triggerCustomEvent(document, 'focus:trap', {
+      element: $modalPromo
+    });
+    cookieHandler.create(cookieName, true, 1);
   }
 
   function _closeRoadblock() {
     document.documentElement.classList.remove(roadblockActiveClass);
+    _closeModal();
   }
 
   function _resized() {
@@ -131,6 +142,8 @@ const modals = function() {
   document.addEventListener('roadblock:close', _closeRoadblock, false);
   window.addEventListener('resized', _resized, false);
   window.addEventListener('keyup', _escape, false);
+
+  document.addEventListener('ajaxPageLoad:complete', _roadblockOpen, false);
 
   _roadblockOpen();
 };
