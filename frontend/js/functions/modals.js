@@ -114,6 +114,7 @@ const modals = function() {
 
   function _closeRoadblock() {
     document.documentElement.classList.remove(roadblockActiveClass);
+    _closeModal();
   }
 
   function _resized() {
