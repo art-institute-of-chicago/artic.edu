@@ -244,4 +244,18 @@
     margin-top: 32px;
     color: $color__text--secondary;
   }
+
+  // TODO: Make link styles more consistent! Here, we mirror .btn color conventions.
+  a {
+      color: $color__link--accent;
+
+      &:hover,
+      &:focus:hover {
+        color: $color__link--accent-hover;
+      }
+
+      &:active:hover {
+        color: $color__link--accent-active;
+      }
+  }
 }

@@ -33,6 +33,18 @@
         'note' => 'Defaults to "Join Now"',
     ])
 
+    @formField('wysiwyg', [
+        'name' => 'terms_text',
+        'label' => '"Terms and Conditions" Line',
+        'note' => 'e.g "By joining you agree to the Terms and Conditions"',
+        'toolbarOptions' => [
+            'italic',
+            'link',
+        ],
+    ])
+
+    <p>Please use "/terms" as the "Terms and Conditions" link.</p>
+
 @stop
 
 

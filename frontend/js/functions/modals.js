@@ -93,6 +93,10 @@ const modals = function() {
     active = false;
   }
 
+  function _roadblockOpenDelayed() {
+    setTimeout(_roadblockOpen, 3000);
+  }
+
   function _roadblockOpen() {
     if (!document.documentElement.classList.contains(roadblockDefinedClass)) {
       return;
@@ -143,9 +147,9 @@ const modals = function() {
   window.addEventListener('resized', _resized, false);
   window.addEventListener('keyup', _escape, false);
 
-  document.addEventListener('ajaxPageLoad:complete', _roadblockOpen, false);
+  document.addEventListener('ajaxPageLoad:complete', _roadblockOpenDelayed, false);
 
-  _roadblockOpen();
+  _roadblockOpenDelayed();
 };
 
 export default modals;
