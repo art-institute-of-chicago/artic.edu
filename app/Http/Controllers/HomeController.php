@@ -64,6 +64,7 @@ class HomeController extends FrontController
             'form_token' => $lightbox->form_token,
             'form_tlc_source' => $lightbox->form_tlc_source,
             'lightbox_button_text' => $lightbox->lightbox_button_text,
+            'terms_text' => $lightbox->terms_text,
             'image' => $lightbox->imageFront('cover'),
         ];
     }

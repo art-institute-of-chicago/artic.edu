@@ -62,7 +62,11 @@
                     @endcomponent
                 </div>
 
-                {{-- <p class="g-modal__form-note f-caption">By joining you agree to the <a href="#">Terms and Conditions</a></p> --}}
+                @if ($modal['terms_text'])
+                    <div class="g-modal__form-note f-caption">
+                        {!! $modal['terms_text'] !!}
+                    </div>
+                @endif
             </form>
 
             <button class="g-modal__close" data-behavior="closeRoadblock">
