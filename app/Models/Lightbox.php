@@ -36,7 +36,7 @@ class Lightbox extends Model
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 4 / 3,
+                    'ratio' => 3 / 4,
                 ],
             ],
         ],

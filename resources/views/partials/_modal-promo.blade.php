@@ -6,6 +6,8 @@
                     @slot('image', $modal['image'])
                     @slot('settings', array(
                         'lazyload' => false,
+                        'fit' => 'crop',
+                        'ratio' => '3:4',
                         'srcset' => array(300,600,1000,1500),
                         'sizes' => aic_imageSizes(array(
                               'xsmall' => '0',
