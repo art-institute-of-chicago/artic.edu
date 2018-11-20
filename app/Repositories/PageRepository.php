@@ -45,7 +45,7 @@ class PageRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms', 'digitalLabels']);
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
@@ -102,6 +102,8 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['exhibitionsExhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsExhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
         $fields['browsers']['exhibitionsCurrent'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsCurrent', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
         $fields['browsers']['exhibitionsUpcoming'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcoming', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
+
+        $fields['browsers']['digitalLabels'] = $this->getFormFieldsForBrowserApi($object, 'digitalLabels', 'App\Models\Api\DigitalLabel', 'collection.articles_publications');
 
         // Visits
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');

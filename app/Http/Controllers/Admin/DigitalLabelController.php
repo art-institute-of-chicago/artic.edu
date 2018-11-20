@@ -20,10 +20,6 @@ class DigitalLabelController extends BaseApiController
     ];
 
     protected $indexColumns = [
-        'title' => [
-            'title' => 'Name',
-            'field' => 'title',
-        ],
         'augmented' => [
             'title' => 'Augmented?',
             'field' => 'augmented',
@@ -33,21 +29,17 @@ class DigitalLabelController extends BaseApiController
             'title' => 'Datahub ID',
             'field' => 'id',
         ],
+        'title' => [
+            'title' => 'Title',
+            'field' => 'title',
+        ],
     ];
 
-    protected $formWith = ['revisions', 'siteTags'];
+    protected $formWith = ['revisions'];
 
     protected $defaultOrders = ['title' => 'desc'];
 
     protected $filters = [];
-
-    protected function orderScope()
-    {
-        // Use the default order scope from Twill.
-        // Added this as an exception on exhibitions because it's the only API listing that
-        // sorting has been implemented. See the scope on Models\Api\Exhibition
-        return ModuleController::orderScope();
-    }
 
     protected function indexData($request)
     {

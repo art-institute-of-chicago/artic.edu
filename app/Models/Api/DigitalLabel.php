@@ -31,24 +31,6 @@ class DigitalLabel extends BaseApiModel
         return 'id_slug';
     }
 
-    // public function getTypeAttribute()
-    // {
-    //     return 'digitalLabel';
-    // }
-
-    // public function getIsClosedAttribute()
-    // {
-    //     if (empty($this->aic_end_at)) {
-    //         if (empty($this->aic_start_at)) {
-    //             return true;
-    //         } else {
-    //             return $this->dateStart->year < 2010;
-    //         }
-    //     } else {
-    //         return Carbon::now()->gt($this->dateEnd->endOfDay());
-    //     }
-    // }
-
     public function getIdSlugAttribute()
     {
         return join(array_filter([$this->id, $this->getSlug()]), '/');
@@ -58,60 +40,6 @@ class DigitalLabel extends BaseApiModel
     {
         return getUtf8Slug($this->title);
     }
-
-    // public function getAicDateStartAttribute()
-    // {
-    //     if (!empty($this->aic_start_at)) {
-    //         return new Carbon($this->aic_start_at);
-    //     }
-
-    // }
-
-    // public function getDateStartAttribute()
-    // {
-    //     if (!empty($this->aic_start_at)) {
-    //         return new Carbon($this->aic_start_at);
-    //     }
-
-    // }
-
-    // public function getDateEndAttribute()
-    // {
-    //     if (!empty($this->aic_end_at)) {
-    //         return new Carbon($this->aic_end_at);
-    //     }
-
-    // }
-
-    // public function getIsClosingSoonAttribute()
-    // {
-    //     if (!empty($this->dateEnd)) {
-    //         return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
-    //     }
-
-    // }
-
-    // public function getIsNowOpenAttribute()
-    // {
-    //     if (!empty($this->dateStart) && !empty($this->dateEnd)) {
-    //         return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateStart->startOfDay()->addWeeks(2));
-    //     }
-
-    // }
-
-    // // See exhibitionType() in ExhibitionPresenter
-    // public function getIsOngoingAttribute()
-    // {
-    //     if (empty($this->aic_end_at)) {
-    //         if (isset($this->aic_start_at)) {
-    //             if ($this->dateStart->year > 2010) {
-    //                 return Carbon::now()->gt($this->dateStart->startOfDay());
-    //             }
-    //         }
-    //     }
-
-    //     return false;
-    // }
 
     public function getListDescriptionAttribute($value)
     {
@@ -125,52 +53,4 @@ class DigitalLabel extends BaseApiModel
 
         return null;
     }
-
-    // public function getDescriptionAttribute($value)
-    // {
-    //     $desc = nl2br($value);
-    //     return '<p>' . preg_replace('#(<br>[\r\n\s]+){2}#', "</p>\n\n<p>", $desc) . '</p>';
-    // }
-
-    // public function scopeOrderBy($query, $field, $direction = 'asc')
-    // {
-    //     $params = [
-    //         "sort" => [
-    //             "{$field}.keyword" => $direction
-    //         ]
-    //     ];
-
-    //     return $query->rawQuery($params);
-    // }
-
-    // public function scopeOrderByDate($query, $direction = 'asc')
-    // {
-    //     $params = [
-    //         "sort" => [
-    //             'aic_start_at' => $direction
-    //         ]
-    //     ];
-
-    //     return $query->rawQuery($params);
-    // }
-
-    // public function artworks()
-    // {
-    //     return $this->hasMany(\App\Models\Api\Artwork::class, 'artwork_ids');
-    // }
-
-    // public function artists()
-    // {
-    //     return $this->hasMany(\App\Models\Api\Artist::class, 'artist_ids');
-    // }
-
-    // public function historyImages()
-    // {
-    //     return $this->hasMany(\App\Models\Api\Asset::class, 'alt_image_ids');
-    // }
-
-    // public function historyDocuments()
-    // {
-    //     return $this->hasMany(\App\Models\Api\Asset::class, 'document_ids');
-    // }
 }

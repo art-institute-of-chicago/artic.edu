@@ -10,13 +10,11 @@ use Carbon\Carbon;
 class DigitalLabelsController extends FrontController
 {
     protected $apiRepository;
-    protected $eventRepository;
 
-    public function __construct(DigitalLabelRepository $repository, EventRepository $eventRepository)
+    public function __construct(DigitalLabelRepository $repository)
     {
         $this->repository = $repository;
         $this->apiRepository = $repository;
-        $this->eventRepository = $eventRepository;
 
         parent::__construct();
     }
@@ -65,30 +63,9 @@ class DigitalLabelsController extends FrontController
         $this->seo->setDescription($item->meta_description ?: $item->list_description);
         $this->seo->setImage($item->imageFront('hero'));
 
-        $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE);
-        $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
-
         return view('site.digitalLabelDetail', [
             'item' => $item,
             'canonicalUrl' => route('digitalLabels.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
         ]);
     }
-
-    // public function loadMoreRelatedEvents($idSlug)
-    // {
-    //     $item = $this->apiRepository->getById((Integer) $idSlug);
-    //     $collection = $this->eventRepository->getRelatedEvents($item, self::RELATED_EVENTS_PER_PAGE, request('page'));
-    //     $relatedEventsByDay = $this->eventRepository->groupByDate($collection);
-
-    //     $view['html'] = view('statics.digitalLabels_load_more', [
-    //         'items' => $relatedEventsByDay,
-    //     ])->render();
-
-    //     if ($collection->hasMorePages()) {
-    //         $view['page'] = request('page');
-    //     }
-
-    //     return $view;
-    // }
-
 }

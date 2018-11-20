@@ -62,6 +62,7 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('printedCatalogs');
         Route::module('digitalCatalogs');
         Route::module('digitalLabels');
+        Route::name('collection.articles_publications.digitalLabels.augment')->get('digitalLabels/augment/{datahub_id}', 'DigitalLabelController@augment');
     });
 
     Route::module('galleries');

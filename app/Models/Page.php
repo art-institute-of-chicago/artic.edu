@@ -313,6 +313,11 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\PrintedPublication')->withPivot('position')->orderBy('position');
     }
 
+    public function digitalLabels()
+    {
+        return $this->apiElements()->where('relation', 'digitalLabels');
+    }
+
     public function visitTourPages()
     {
         return $this->belongsToMany('App\Models\GenericPage', 'visit_tour_page')->withPivot('position')->orderBy('visit_tour_page.position', 'asc');
