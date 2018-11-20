@@ -59,6 +59,9 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('videos');
         Route::module('printedPublications');
         Route::module('digitalPublications');
+        Route::module('printedCatalogs');
+        Route::module('digitalCatalogs');
+        Route::module('digitalLabels');
     });
 
     Route::module('galleries');

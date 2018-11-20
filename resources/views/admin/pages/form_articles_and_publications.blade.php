@@ -10,6 +10,14 @@
 
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
+        'max' => 4,
+        'moduleName' => 'digitalLabels',
+        'name' => 'digitalLabels',
+        'label' => 'Digital Labels'
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'collection.articles_publications',
         'max' => 3,
         'moduleName' => 'digitalPublications',
         'name' => 'digitalPublications',

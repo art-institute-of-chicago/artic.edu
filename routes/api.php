@@ -976,4 +976,38 @@ Route::group(['prefix' => 'v1'], function()
      */
     Route::get('printedpublications/{id}', 'API\PrintedPublicationsController@show');
 
+      /**
+     *
+     * - digital labels ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/digital-labels",
+     *      tags={"digitalLabels"},
+     *      operationId="getDigitalLabel",
+     *      summary="List all digital labels",
+     *      @SWG\Response(response="200", description="List all digital labels")
+     *  )
+     *
+     */
+    
+    Route::get('digital-labels', 'API\DigitalLabelsController@index');
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/digital-labels/{id}",
+     *      tags={"digitalLabels"},
+     *      operationId="getDigitalLabel",
+     *      summary="Fetch digital label details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific digital label")
+     *  )
+     *
+     */
+    Route::get('digital-labels/{id}', 'API\DigitalLabelsController@show');
+
 });
