@@ -113,6 +113,15 @@
 
 .g-modal--promo {
 
+  // Promo modals should always have borders
+  // Setting all to 3.2vw results in a 10px border @ 320px screens
+  @include breakpoint('xsmall') {
+    left: 3.2vw;
+    right: 3.2vw;
+    top: 3.2vw;
+    bottom: 3.2vw;
+  }
+
   .g-modal__content {
     display: flex;
     flex-flow: row nowrap;
@@ -243,5 +252,19 @@
   .g-modal__form-note {
     margin-top: 32px;
     color: $color__text--secondary;
+  }
+
+  // TODO: Make link styles more consistent! Here, we mirror .btn color conventions.
+  a {
+      color: $color__link--accent;
+
+      &:hover,
+      &:focus:hover {
+        color: $color__link--accent-hover;
+      }
+
+      &:active:hover {
+        color: $color__link--accent-active;
+      }
   }
 }

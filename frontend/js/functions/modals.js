@@ -93,6 +93,10 @@ const modals = function() {
     active = false;
   }
 
+  function _roadblockOpenDelayed() {
+    setTimeout(_roadblockOpen, 3000);
+  }
+
   function _roadblockOpen() {
     if (!document.documentElement.classList.contains(roadblockDefinedClass)) {
       return;
@@ -109,12 +113,28 @@ const modals = function() {
     triggerCustomEvent(document, 'focus:trap', {
       element: $modalPromo
     });
+    $modalPromo.addEventListener('submit', _roadblockSubmit, true);
     cookieHandler.create(cookieName, true, 1);
   }
 
   function _closeRoadblock() {
     document.documentElement.classList.remove(roadblockActiveClass);
     _closeModal();
+  }
+
+  function _roadblockSubmit(event) {
+    // We pass values from lightbox to form via a cookie
+    var cookieValue = JSON.stringify({
+      firstname: document.getElementById('edit-submitted-first-name').value,
+      lastname: document.getElementById('edit-submitted-last-name').value,
+      email: document.getElementById('edit-submitted-mail').value,
+      tlcsource: document.querySelectorAll('[name="submitted[tlcsource]"]').value,
+    });
+
+    // Ensure this cookie works across subdomains
+    cookieValue += ';domain=.artic.edu';
+
+    cookieHandler.create('tlc_lb_signup', cookieValue, 30);
   }
 
   function _resized() {
@@ -143,9 +163,9 @@ const modals = function() {
   window.addEventListener('resized', _resized, false);
   window.addEventListener('keyup', _escape, false);
 
-  document.addEventListener('ajaxPageLoad:complete', _roadblockOpen, false);
+  document.addEventListener('ajaxPageLoad:complete', _roadblockOpenDelayed, false);
 
-  _roadblockOpen();
+  _roadblockOpenDelayed();
 };
 
 export default modals;

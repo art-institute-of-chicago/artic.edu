@@ -6,6 +6,8 @@
                     @slot('image', $modal['image'])
                     @slot('settings', array(
                         'lazyload' => false,
+                        'fit' => 'crop',
+                        'ratio' => '3:4',
                         'srcset' => array(300,600,1000,1500),
                         'sizes' => aic_imageSizes(array(
                               'xsmall' => '0',
@@ -62,7 +64,11 @@
                     @endcomponent
                 </div>
 
-                {{-- <p class="g-modal__form-note f-caption">By joining you agree to the <a href="#">Terms and Conditions</a></p> --}}
+                @if ($modal['terms_text'])
+                    <div class="g-modal__form-note f-caption">
+                        {!! $modal['terms_text'] !!}
+                    </div>
+                @endif
             </form>
 
             <button class="g-modal__close" data-behavior="closeRoadblock">

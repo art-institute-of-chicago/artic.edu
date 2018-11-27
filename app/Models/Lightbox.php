@@ -18,6 +18,7 @@ class Lightbox extends Model
         'lightbox_start_date',
         'lightbox_end_date',
         'lightbox_button_text',
+        'terms_text',
         'action_url',
         'form_id',
         'form_token',
@@ -35,7 +36,7 @@ class Lightbox extends Model
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 4 / 3,
+                    'ratio' => 3 / 4,
                 ],
             ],
         ],
