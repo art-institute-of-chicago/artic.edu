@@ -38,6 +38,11 @@ class CollectionFeature extends AbstractModel
         return $this->belongsToMany(\App\Models\Selection::class, 'collection_feature_selection', 'collection_feature_id', 'selection_id')->withPivot('position')->orderBy('position');
     }
 
+    public function digitalLabels()
+    {
+        return $this->apiElements()->where('relation', 'digitalLabels');
+    }
+
     public function enclosedItem()
     {
         $item = $this->articles->first();
