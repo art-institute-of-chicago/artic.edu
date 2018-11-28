@@ -33,6 +33,9 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
     Route::module('ticketedEvents');
 
     Route::name('exhibitions_events.history')->get('history', 'PageController@exhibitionHistory');
+
+    Route::module('digitalLabels');
+    Route::name('exhibitions_events.digitalLabels.augment')->get('digital-labels/augment/{datahub_id}', 'DigitalLabelController@augment');
 });
 
 Route::group(['prefix' => 'collection'], function () {
