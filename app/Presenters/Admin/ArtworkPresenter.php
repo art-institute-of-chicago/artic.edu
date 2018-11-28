@@ -291,7 +291,7 @@ class ArtworkPresenter extends BasePresenter
         if ($this->entity->catalogues)
         {
             $rows = $this->entity->catalogues->map(function($item) {
-                $content = "{$item->catalogue_title}, {$item->number}";
+                $content = "{$item->catalogue_title} {$item->number}";
                 return [
                     "type" => 'text',
                     "content" => '<p>'. $content .'</p>'
