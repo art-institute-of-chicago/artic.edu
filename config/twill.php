@@ -166,7 +166,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-footnote',
             ],
-
+            'digital_label' => [
+                'title' => 'Digital label',
+                'icon' => 'image',
+                'component' => 'a17-block-digital_label',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
@@ -306,6 +310,7 @@ return [
             'events' => 'exhibitions_events',
             'selections' => 'collection',
             'artworks' => 'collection',
+            'digitalLabels' => 'collection',
         ],
     ],
 

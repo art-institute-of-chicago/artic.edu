@@ -98,7 +98,7 @@
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'artwork', 'artworks', 'hr', 'citation', 'split_block',
-            'membership_banner', 'tour_stop', 'button', 'mobile_app'
+            'membership_banner', 'digital_label', 'tour_stop', 'button', 'mobile_app'
         ])
     ])
 
