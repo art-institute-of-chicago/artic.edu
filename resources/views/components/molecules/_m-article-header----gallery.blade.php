@@ -136,8 +136,7 @@ if ($maxZoomWindowSize >= 843) {
         </li>
       </ul>
   </div>
-  @if (sizeof($images) > 1)
-    <ul class="m-article-header__img-thumbs{{ (sizeof($images) === 1) ? ' s-single-img' : ''}}" data-behavior="dragScroll" data-gallery-thumbs>
+  <ul class="m-article-header__img-thumbs{{ (sizeof($images) === 1) ? ' s-single-img' : ''}}" data-behavior="dragScroll" data-gallery-thumbs>
       @foreach ($images as $image)
         <li>
           @php
@@ -203,8 +202,7 @@ if ($maxZoomWindowSize >= 843) {
           @endcomponent
         </li>
       @endforeach
-    </ul>
-  @endif
+  </ul>
 
 </{{ $tag or 'header' }}>
 
