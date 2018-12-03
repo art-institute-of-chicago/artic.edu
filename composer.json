@@ -15,15 +15,15 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/nikhiltri/laravel-feed.git"
+            "url": "https://code.area17.com/a17/laravel-cms-toolkit.git"
         }
     ],
     "require": {
         "php": ">=7.0.0",
         "aacotroneo/laravel-saml2": "dev-remove_mcrypt",
         "aic/data-hub-foundation": "dev-master",
-        "area17/twill": "1.2.*",
-        "darkaonline/l5-swagger": "5.8.*",
+        "area17/twill": "dev-browser",
+        "darkaonline/l5-swagger": "5.6.*",
         "digitaladditive/exacttarget-laravel": "^2.2",
         "eluceo/ical": "0.14.*",
         "fideloper/proxy": "~4.0",
