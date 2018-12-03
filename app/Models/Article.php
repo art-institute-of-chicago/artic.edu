@@ -11,10 +11,11 @@ use App\Models\Behaviors\HasMediasEloquent;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use A17\Twill\Models\Behaviors\HasRelated;
 
 class Article extends AbstractModel implements Feedable
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable, HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';

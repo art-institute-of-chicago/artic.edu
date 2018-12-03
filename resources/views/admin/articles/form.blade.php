@@ -109,10 +109,20 @@
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
-            'name' => 'articles',
+            'name' => 'further_reading_items',
             'moduleName' => 'articles',
+            'endpoints' => [
+                [
+                    'label' => 'Article',
+                    'value' => '/collection/articles_publications/articles/browser'
+                ],
+                [
+                    'label' => 'Digital label',
+                    'value' => '/collection/digitalLabels/browser'
+                ]
+            ],
             'max' => 4,
-            'label' => 'Related articles',
+            'label' => 'Related items',
         ])
 
     </a17-fieldset>

@@ -31,6 +31,7 @@ class ArticleRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'sidebarEvent');
         $this->updateBrowser($object, $fields, 'sidebarArticle');
         $this->updateBrowser($object, $fields, 'videos');
+        $this->updateRelatedBrowser($object, $fields, 'further_reading_items');
 
         parent::afterSave($object, $fields);
     }
@@ -45,6 +46,7 @@ class ArticleRepository extends ModuleRepository
         $fields['browsers']['videos'] = $this->getFormFieldsForBrowser($object, 'videos', 'collection.articles_publications');
         $fields['browsers']['sidebarEvent'] = $this->getFormFieldsForBrowser($object, 'sidebarEvent', 'exhibitions_events', 'title', 'events');
         $fields['browsers']['sidebarArticle'] = $this->getFormFieldsForBrowser($object, 'sidebarArticle', 'collection.articles_publications', 'title', 'articles');
+        $fields['browsers']['further_reading_items'] = $this->getFormFieldsForRelatedBrowser($object, 'further_reading_items');
 
         return $fields;
     }
