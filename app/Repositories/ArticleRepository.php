@@ -31,7 +31,11 @@ class ArticleRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'sidebarEvent');
         $this->updateBrowser($object, $fields, 'sidebarArticle');
         $this->updateBrowser($object, $fields, 'videos');
-        $this->updateRelatedBrowser($object, $fields, 'further_reading_items');
+        // $this->updateRelatedBrowser($object, $fields, 'further_reading_items');
+        $this->updateMultiBrowserApiRelated($object, $fields, 'further_reading_items', [
+            'articles' => false,
+            'digitalLabels' => true
+        ]);
 
         parent::afterSave($object, $fields);
     }

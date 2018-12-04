@@ -3,6 +3,7 @@
 namespace App\Repositories\Behaviors;
 
 use App\Models\ApiRelation;
+use A17\Twill\Models\RelatedItem;
 
 trait HandleApiRelations
 {
@@ -43,6 +44,46 @@ trait HandleApiRelations
             $result = $object->$relationship()->attach($relatedElementsWithPosition);
         }
 
+    }
+
+    public function updateMultiBrowserApiRelated($object, $fields, $relationship, $typeUsesApi)
+    {
+        // Remove all associations
+        $object->apiElements()->detach();
+
+        $relatedElementsWithPosition = [];
+
+        $fieldsHasElements = isset($fields['browsers'][$relationship]) && !empty($fields['browsers'][$relationship]);
+        $relatedElements = $fieldsHasElements ? $fields['browsers'][$relationship] : [];
+        // If we don't have an element to save the datahub_id, let's create one
+        $relatedElements = array_map(function($element) use ($typeUsesApi) {
+            if ($typeUsesApi[$element['endpointType']]) {
+                $apiItem = ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
+                $apiItem->endpointType = $element['endpointType'];
+                return $apiItem;
+            }
+            return $element;
+        }, $relatedElements);
+
+        RelatedItem::where([
+            'browser_name' => $relationship,
+            'subject_id' => $object->getKey(),
+            'subject_type' => $object->getMorphClass(),
+        ])->delete();
+
+        $position = 1;
+
+        collect($relatedElements)->each(function ($values) use ($relationship, &$position, $object) {
+            RelatedItem::create([
+                'subject_id' => $object->getKey(),
+                'subject_type' => $object->getMorphClass(),
+                'related_id' => $values['id'],
+                'related_type' => $values['endpointType'],
+                'browser_name' => $relationship,
+                'position' => $position,
+            ]);
+            $position++;
+        });
     }
 
     /**
