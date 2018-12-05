@@ -165,11 +165,6 @@ class Article extends AbstractModel implements Feedable
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
     }
 
-    public function apiElements()
-    {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
-    }
-
     public function sidebarExhibitions()
     {
         return $this->apiElements()->where('relation', 'sidebarExhibitions');

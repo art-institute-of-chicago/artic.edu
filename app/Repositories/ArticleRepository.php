@@ -13,7 +13,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 
 class ArticleRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiRelations, HandleApiBlocks, HandleBlocks {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -31,7 +31,6 @@ class ArticleRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'sidebarEvent');
         $this->updateBrowser($object, $fields, 'sidebarArticle');
         $this->updateBrowser($object, $fields, 'videos');
-        // $this->updateRelatedBrowser($object, $fields, 'further_reading_items');
         $this->updateMultiBrowserApiRelated($object, $fields, 'further_reading_items', [
             'articles' => false,
             'digitalLabels' => true
@@ -50,7 +49,16 @@ class ArticleRepository extends ModuleRepository
         $fields['browsers']['videos'] = $this->getFormFieldsForBrowser($object, 'videos', 'collection.articles_publications');
         $fields['browsers']['sidebarEvent'] = $this->getFormFieldsForBrowser($object, 'sidebarEvent', 'exhibitions_events', 'title', 'events');
         $fields['browsers']['sidebarArticle'] = $this->getFormFieldsForBrowser($object, 'sidebarArticle', 'collection.articles_publications', 'title', 'articles');
-        $fields['browsers']['further_reading_items'] = $this->getFormFieldsForRelatedBrowser($object, 'further_reading_items');
+        $fields['browsers']['further_reading_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'further_reading_items', [
+            'digitalLabels' => [
+                'apiModel' => 'App\Models\Api\DigitalLabel',
+                'routePrefix' => 'collection',
+                'moduleName' => 'digitalLabels',
+            ],   
+        ], [ 
+            'articles' => false,
+            'digitalLabels' => true
+        ]);
 
         return $fields;
     }

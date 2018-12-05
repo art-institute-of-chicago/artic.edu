@@ -25,7 +25,7 @@ trait HandleApiRelations
 
             $fieldsHasElements = isset($fields['browsers'][$relationship]) && !empty($fields['browsers'][$relationship]);
             $relatedElements = $fieldsHasElements ? $fields['browsers'][$relationship] : [];
-
+        
             // If we don't have an element to save the datahub_id, let's create one
             $relatedElements = array_map(function($element) {
                 return ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
@@ -49,7 +49,9 @@ trait HandleApiRelations
     public function updateMultiBrowserApiRelated($object, $fields, $relationship, $typeUsesApi)
     {
         // Remove all associations
-        $object->apiElements()->detach();
+        // TODO: check if we dont leave some stale data in database by not deleting apiElements
+
+        // $object->apiElements()->detach();
 
         $relatedElementsWithPosition = [];
 
@@ -72,7 +74,6 @@ trait HandleApiRelations
         ])->delete();
 
         $position = 1;
-
         collect($relatedElements)->each(function ($values) use ($relationship, &$position, $object) {
             RelatedItem::create([
                 'subject_id' => $object->getKey(),
@@ -118,5 +119,77 @@ trait HandleApiRelations
                 'name' => $apiElement->titleInBrowser ?? $apiElement->$titleKey,
             ] + $data;
         })->values()->toArray();
+    }
+
+    public function getFormFieldsForMultiBrowserApi($object, $browser_name, $apiModelsDefinitions, $typeUsesApi)
+    {   
+        $results = collect();
+
+        $typedFormFields = $object->relatedItems
+            ->where('browser_name', $browser_name)
+            ->groupBy('related_type')
+            ->map(function ($items, $type) use($apiModelsDefinitions, $browser_name, $typeUsesApi) {
+
+                if ($typeUsesApi[$type]) {
+                    // Get all related id's
+                    $relatedIds = $items->pluck('related_id')->toArray();
+                     // Get all datahub id's
+                    $datahubIds = \App\Models\ApiRelation::whereIn('id', $relatedIds)->pluck('datahub_id')->toArray();
+
+                    
+                    // Use those to load API records
+                    $apiModelDefinition = $apiModelsDefinitions[$type];
+                    $apiModel = $apiModelDefinition['apiModel'];
+                    $apiElements = $apiModel::query()->ids($datahubIds)->get();
+    
+                    // Find locally selected objects
+                    $localApiMapping = $items->filter(function($relatedElement) use ($apiElements) {
+                        $apiRelationElement = \App\Models\ApiRelation::where('id', $relatedElement->related_id)->first();
+                        $result = $apiElements->where('id', $apiRelationElement->datahub_id)->first();
+                        $result->position = $relatedElement->position;
+                        return $result;
+                    });
+
+                    return $localApiMapping->map(function ($relatedElement) use ($apiModelDefinition, $apiElements) {
+                        $data = [];
+                        // Get the API elements and use them to build the browser elements
+                        $apiRelationElement = \App\Models\ApiRelation::where('id', $relatedElement->related_id)->first();
+                        $apiElement = $apiElements->where('id', $apiRelationElement->datahub_id)->first();
+
+                        // If it contains an augmented model create an edit link
+                        if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
+                            $data['edit'] = moduleRoute($apiModelDefinition['moduleName'], $apiModelDefinition['routePrefix'] ?? '', 'edit', $apiElement->getAugmentedModel()->id);
+                        }
+
+                        return [
+                            'id' => $apiElement->id,
+                            'name' => $apiElement->titleInBrowser ?? $apiElement->title,
+                            'endpointType' => $apiModelDefinition['moduleName'],
+                            'position' => $relatedElement->position
+                        ] + $data;
+                    })->values()->toArray();
+                } else {
+                    return $items->map(function ($relatedElement) {
+                        $element = $relatedElement->related;
+                        $elementPosition = $relatedElement->position;
+
+                        return [
+                            'id' => $element->id,
+                            'name' => $element->titleInBrowser ?? $element->title,
+                            'endpointType' => $element->getMorphClass(),
+                            'position' => $elementPosition,
+                        ] + (($element->adminEditUrl ?? null) ? [] : [
+                            'edit' => $element->adminEditUrl,
+                        ]) + ((classHasTrait($element, HasMedias::class)) ? [
+                            'thumbnail' => $element->defaultCmsImage(['w' => 100, 'h' => 100]),
+                        ] : []);
+                    });
+                }
+            });
+        
+        return $typedFormFields->flatten(1)->sortBy(function ($browserItem, $key) {
+            return $browserItem['position'];
+        })->values()->toArray();
+         
     }
 }
