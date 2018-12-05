@@ -117,7 +117,7 @@ Route::name('about.press.archive')->get('/press/archive', 'PressReleasesControll
 Route::name('about.exhibitionPressRooms')->middleware(['httpauth'])->get('/press/exhibition-press-room', 'ExhibitionPressRoomController@index');
 Route::name('about.exhibitionPressRooms.show')->middleware(['httpauth'])->get('/press/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
 
-Route::name('about.press.show')->get('/press/press-releases/{id}', 'PressReleasesController@show');
+Route::name('about.press.show')->get('/press/press-releases/{id}/{slug?}', 'PressReleasesController@show');
 
 // Sample Form
 if (!app()->environment('production')) {
