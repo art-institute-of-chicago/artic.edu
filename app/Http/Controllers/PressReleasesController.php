@@ -154,18 +154,12 @@ class PressReleasesController extends BaseScopedController
 
     public function show($id)
     {
-        $page = $this->repository->forSlug($id);
-        if (!$page) {
-            $page = $this->repository->find((Integer) $id);
-
-            if (!$page) {
-                abort(404);
-            }
-        }
+        $page = $this->repository->getById((Integer) $id);
 
         // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('about.press.show', ['id' => $page->idSlug ], false);
-        if ('/' .request()->path() != $canonicalPath) {
+        $canonicalPath = route('about.press.show', ['id' => $page->id, 'slug' => $page->getSlug()]);
+
+        if (!ends_with($canonicalPath, request()->path())) {
             return redirect($canonicalPath, 301);
         }
 
@@ -190,7 +184,7 @@ class PressReleasesController extends BaseScopedController
             'blocks' => null,
             'nav' => [],
             'page' => $page,
-            'canonicalUrl' => route('about.press.show', ['id' => $page->idSlug ]),
+            'canonicalUrl' => $canonicalPath,
         ]);
 
     }

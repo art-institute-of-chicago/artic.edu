@@ -17,16 +17,14 @@ class SelectionsController extends FrontController
         parent::__construct();
     }
 
-    public function show($slug)
+    public function show($id, $slug = null)
     {
-        $item = $this->repository->forSlug($slug);
-        if (empty($item)) {
-            $item = $this->repository->getById((Integer) $slug);
-        }
+        $item = $this->repository->getById((Integer) $id);
 
         // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('selections.show', ['slug' => $item->idSlug ], false);
-        if ('/' .request()->path() != $canonicalPath) {
+        $canonicalPath = route('selections.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
+
+        if (!ends_with($canonicalPath, request()->path())) {
             return redirect($canonicalPath, 301);
         }
 
@@ -44,7 +42,7 @@ class SelectionsController extends FrontController
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
             'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
-            'canonicalUrl' => route('selections.show', ['slug' => $item->idSlug ]),
+            'canonicalUrl' => $canonicalPath,
         ]);
     }
 

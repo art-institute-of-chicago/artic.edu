@@ -61,8 +61,7 @@ class SelectionController extends ModuleController
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('selection'));
-        $baseUrl = '//' . config('app.url') . '/highlights/'; // TODO: dashes to slashes
+        $baseUrl = '//' . config('app.url') . '/highlights/' . request('selection') . '/';
 
         return [
             'baseUrl' => $baseUrl,
