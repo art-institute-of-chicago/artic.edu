@@ -32,7 +32,8 @@ class GenerateSitemap extends Command
 
     public function handle()
     {
-        $this->prefix = config('sitemap.base_url') ?? ('https://' .config('app.url'));
+        $this->prefix = config('sitemap.base_url') ?? ('https://' . config('app.url'));
+        $this->prefix = rtrim($this->prefix, '/');
         $this->path = public_path('sitemap.xml');
 
         $this->warn('Generating new sitemap! Domain is ' . $this->prefix);
@@ -205,10 +206,18 @@ class GenerateSitemap extends Command
     // Ensures everything is prefixed w/ SITEMAP_BASE_URL
     private function add(&$sitemap, $url)
     {
-        if (is_string($url) && !starts_with($url, $this->prefix)) {
-            $url = $this->prefix . $url;
-        } else if ($url instanceof Url && !starts_with($url->url, $this->prefix)) {
-            $url->setUrl($this->prefix . $url->url);
+        $slashUrl = $url->url ?? $url;
+        $slashUrl = starts_with($slashUrl, '/') ? $slashUrl : '/' . $slashUrl;
+
+        $fullUrl = $this->prefix . $slashUrl;
+
+        if(!starts_with($slashUrl, $this->prefix))
+        {
+            if (is_string($url)) {
+                $url = $fullUrl;
+            } elseif ($url instanceof Url) {
+                $url->setUrl($fullUrl);
+            }
         }
 
         $sitemap->add($url);
