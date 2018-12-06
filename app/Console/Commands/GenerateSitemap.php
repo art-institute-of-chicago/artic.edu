@@ -115,8 +115,8 @@ class GenerateSitemap extends Command
     {
         $this->addNativeModel($sitemap, Event::class, 'events.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Article::class, 'articles.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
-        $this->addNativeModel($sitemap, PrintedCatalog::class, 'collection.publications.printed-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
-        $this->addNativeModel($sitemap, DigitalCatalog::class, 'collection.publications.digital-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
+        $this->addNativeModel($sitemap, PrintedCatalog::class, 'collection.publications.printed-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->slug];});
+        $this->addNativeModel($sitemap, DigitalCatalog::class, 'collection.publications.digital-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->slug];});
     }
 
     // get <a/>'s to filters, artworks, and category-terms from /collection
@@ -156,7 +156,12 @@ class GenerateSitemap extends Command
      */
     private function addExhibitions(&$sitemap)
     {
-        $this->addNativeModel($sitemap, Exhibition::class, 'exhibitions.show', 0.9, Url::CHANGE_FREQUENCY_WEEKLY, 'datahub_id');
+        $this->addNativeModel($sitemap, Exhibition::class, 'exhibitions.show', 0.9, Url::CHANGE_FREQUENCY_WEEKLY, function($entity) {
+                return [
+                    'id' => $entity->datahub_id,
+                    'slug' => $entity->slug,
+                ];
+            }, ['datahub_id']);
     }
 
     private function addRemoteModels(&$sitemap)
@@ -168,17 +173,19 @@ class GenerateSitemap extends Command
     }
 
     // Anything paginated and CMS-native of format `/resources/{id}/{slug}`
-    private function addNativeModel(&$sitemap, $class, string $route, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY, $idField = 'id')
+    private function addNativeModel(&$sitemap, $class, string $route, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY, $paramCallback = null, $additionalFields = [])
     {
         // `id` is always needed for retrieving slugs
-        $fields = array_values(array_unique([$idField, 'id', 'updated_at']));
+        $fields = array_values(array_unique(array_merge($additionalFields, ['id', 'updated_at'])));
 
         foreach ($class::select($fields)->cursor() as $entity)
         {
-            $this->addUrl($sitemap, route($route, [
-                'id' => $entity->$idField,
+            $params = $paramCallback ? $paramCallback($entity) : [
+                'id' => $entity->id,
                 'slug' => $entity->slug
-            ], false), $priority, $changeFrequency, $entity->updated_at);
+            ];
+
+            $this->addUrl($sitemap, route($route, $params, false), $priority, $changeFrequency, $entity->updated_at);
         }
     }
 
