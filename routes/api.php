@@ -686,39 +686,7 @@ Route::group(['prefix' => 'v1'], function()
      */
     Route::get('artists/{id}', 'API\ArtistsController@show');
 
-    /**
-     *
-     * - pages ------------------------------------------------------
-     *
-     * @SWG\Get(
-     *      path="/api/v1/pages",
-     *      tags={"pages"},
-     *      operationId="getPages",
-     *      summary="List all pages",
-     *      @SWG\Response(response="200", description="List all pages")
-     *  )
-     *
-     */
-    Route::get('pages', 'API\PagesController@index');
 
-    /**
-     * @SWG\Get(
-     *      path="/api/v1/pages/{id}",
-     *      tags={"pages"},
-     *      operationId="getPage",
-     *      summary="Fetch page details",
-     *      @SWG\Parameter(
-     *          name="id",
-     *          in="path",
-     *          required=true,
-     *          type="integer",
-     *          description="id",
-     *      ),
-     *      @SWG\Response(response="200", description="Get a specific page")
-     *  )
-     *
-     */
-    Route::get('pages/{id}', 'API\PagesController@show');
 
 
 
