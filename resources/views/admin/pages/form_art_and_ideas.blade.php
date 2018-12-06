@@ -12,14 +12,6 @@
         'label' => 'Quick filters'
     ])
 
-    {{-- @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
-        'max' => 5,
-        'moduleName' => 'articles',
-        'name' => 'artArticles',
-        'label' => 'Featured articles'
-    ]) --}}
-
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
         'max' => 5,
