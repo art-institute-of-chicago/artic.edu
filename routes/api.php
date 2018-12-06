@@ -686,7 +686,9 @@ Route::group(['prefix' => 'v1'], function()
      */
     Route::get('artists/{id}', 'API\ArtistsController@show');
 
+    Route::get('staticpages', 'API\StaticPagesController@index');
 
+    Route::get('staticpages/{id}', 'API\StaticPagesController@show');
 
 
 
