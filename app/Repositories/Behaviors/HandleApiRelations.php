@@ -67,6 +67,7 @@ trait HandleApiRelations
             return $element;
         }, $relatedElements);
 
+
         RelatedItem::where([
             'browser_name' => $relationship,
             'subject_id' => $object->getKey(),
@@ -124,6 +125,8 @@ trait HandleApiRelations
     public function getFormFieldsForMultiBrowserApi($object, $browser_name, $apiModelsDefinitions, $typeUsesApi)
     {   
         $results = collect();
+
+        // dd($object);
 
         $typedFormFields = $object->relatedItems
             ->where('browser_name', $browser_name)

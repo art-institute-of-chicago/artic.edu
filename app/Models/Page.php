@@ -5,15 +5,16 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
-use A17\Twill\Models\Behaviors\HasSlug;
+use A17\Twill\Models\Behaviors\HasSlug; 
 use A17\Twill\Models\Behaviors\HasTranslation;
 use App\Models\Admission as Admission;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
+use A17\Twill\Models\Behaviors\HasRelated;
 
 class Page extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasTranslation;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasTranslation, HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\PagePresenter';
 
