@@ -50,57 +50,57 @@ class StaticPagesController extends BaseController
             [
                 'id' => 1,
                 'title' => 'Visit',
-                'url' => route('visit'),
+                'url' => route('visit', [], false),
             ],
             [
                 'id' => 2,
                 'title' => 'Events',
-                'url' => route('events'),
+                'url' => route('events', [], false),
             ],
             [
                 'id' => 3,
                 'title' => 'Exhibitions',
-                'url' => route('exhibitions'),
+                'url' => route('exhibitions', [], false),
             ],
             [
                 'id' => 4,
                 'title' => 'Upcoming Exhibitions',
-                'url' => route('exhibitions.upcoming'),
+                'url' => route('exhibitions.upcoming', [], false),
             ],
             [
                 'id' => 5,
                 'title' => 'Exhibition History',
-                'url' => route('exhibitions.history'),
+                'url' => route('exhibitions.history', [], false),
             ],
             [
                 'id' => 6,
                 'title' => 'Educator Resource Finder',
-                'url' => route('collection.resources.educator-resources'),
+                'url' => route('collection.resources.educator-resources', [], false),
             ],
             [
                 'id' => 7,
                 'title' => 'Print Catalogues',
-                'url' => route('collection.publications.printed-catalogs'),
+                'url' => route('collection.publications.printed-catalogs', [], false),
             ],
             [
                 'id' => 8,
                 'title' => 'Digital Catalogues',
-                'url' => route('collection.publications.digital-catalogs'),
+                'url' => route('collection.publications.digital-catalogs', [], false),
             ],
             [
                 'id' => 9,
                 'title' => 'Press Releases',
-                'url' => route('about.press'),
+                'url' => route('about.press', [], false),
             ],
             [
                 'id' => 10,
                 'title' => 'Press Release Archive',
-                'url' => route('about.press.archive'),
+                'url' => route('about.press.archive', [], false),
             ],
             [
                 'id' => 11,
                 'title' => 'Articles',
-                'url' => route('articles'),
+                'url' => route('articles', [], false),
             ],
         ];
     }
