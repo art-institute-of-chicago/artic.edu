@@ -38,17 +38,22 @@ const autocomplete = function(container) {
   }
 
   // show autocomplete
-  function _showAutocomplete(data) {
-    data = JSON.parse(data);
-    if (data.length > 0) {
-      dropdownList = document.createElement('ul');
-      dropdownList.className = 'm-search-bar__autocomplete f-secondary';
-      dropdownList.setAttribute('data-autocomplete-list','');
+  function _showAutocomplete(responseData) {
+    let multiData = JSON.parse(responseData);
+    let artworkData = multiData[0];
+    let otherData = multiData[1];
+    let ulItems = '';
+
+    if (artworkData.length < 1 || otherData.length < 1) {
+      return;
+    }
+
+    dropdownList = document.createElement('ul');
+    dropdownList.className = 'm-search-bar__autocomplete f-secondary';
+    dropdownList.setAttribute('data-autocomplete-list','');
+
+    var _getAutocompleteItems = function (data, minValue) {
       let ulItems = '';
-      let minValue = 5;
-      if (_isAccessionNumber(textInput.value)) {
-        minValue = 1;
-      }
       for (let i = 0; i < Math.min(minValue, data.length); i++) {
         let title = data[i].title;
         let titleUrl = encodeURIComponent(title).replace(/%20/g,'+');
@@ -121,16 +126,25 @@ const autocomplete = function(container) {
           ulItems += '<li><a href="'+href+'" data-ajax-scroll-target="collection" data-gtm-event="'+_utf8String(datum.title)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter">'+datum.title+'</a></li>\n';
         }
       }
-      ulItems += (
-        '<li><a href="/collection?q='+_utf8String(textInput.value)+'" data-ajax-scroll-target="collection" data-gtm-event="'+_fixedEncodeURIComponent(textInput.value)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter" class="suggestion--fulltext">' +
-        '<svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>' +
-        '<span>Search for "'+textInput.value+'"</span></a></li>\n'
-      );
-      dropdownList.innerHTML = ulItems;
-      container.appendChild(dropdownList);
-      container.classList.add(autocompleteActiveKlass);
-      active = true;
+      return ulItems;
     }
+
+    ulItems += _getAutocompleteItems(artworkData, 1);
+
+    if (!_isAccessionNumber(textInput.value)) {
+      ulItems += _getAutocompleteItems(otherData, 5);
+    }
+
+    ulItems += (
+      '<li><a href="/collection?q='+_utf8String(textInput.value)+'" data-ajax-scroll-target="collection" data-gtm-event="'+_fixedEncodeURIComponent(textInput.value)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter" class="suggestion--fulltext">' +
+      '<svg class="icon--search--24"><use xlink:href="#icon--search--24" /></svg>' +
+      '<span>Search for "'+textInput.value+'"</span></a></li>\n'
+    );
+
+    dropdownList.innerHTML = ulItems;
+    container.appendChild(dropdownList);
+    container.classList.add(autocompleteActiveKlass);
+    active = true;
   }
 
   // hide autocomplete
@@ -160,19 +174,30 @@ const autocomplete = function(container) {
       if (_isAccessionNumber(textInput.value)) {
         fuzzy = false;
       }
-      let qs = queryStringHandler.fromObject({
-        resources: [
-          'artists',
-          'category-terms',
-          'artworks',
-        ],
-        q: textInput.value,
-        contexts: [
-          'title',
-          'accession',
-        ],
-        fuzzy: fuzzy,
-      });
+      let qs = '?' + _arrayQueryStringHandler([
+        {
+          q: textInput.value,
+          resources: [
+            'artworks',
+          ],
+          contexts: [
+            'title',
+            'accession',
+          ],
+          fuzzy: fuzzy,
+        },
+        {
+          q: textInput.value,
+          resources: [
+            'artists',
+            'category-terms',
+          ],
+          contexts: [
+            'title',
+          ],
+          fuzzy: fuzzy,
+        },
+      ]);
       let xhr = new XMLHttpRequest();
       xhr.open('get', autoCompleteUrl + qs, true);
       xhr.onload = function() {
@@ -225,9 +250,64 @@ const autocomplete = function(container) {
     }
   }
 
-    function _isAccessionNumber(val) {
-      return /^[0-9]+\.?[0-9a-b\-]*/.test(val);
+  function _isAccessionNumber(val) {
+    return /^[0-9]+\.?[0-9a-b\-]*/.test(val);
+  }
+
+  // queryStringhandler cannot handle top-level arrays
+  // adapted from http://locutus.io/php/url/http_build_query/
+  function _arrayQueryStringHandler(formdata) {
+    var value
+    var key
+    var tmp = []
+    var argSeparator = '&'
+
+    var _httpBuildQueryHelper = function (key, val, argSeparator) {
+      var k
+      var tmp = []
+      if (val === true) {
+        val = '1'
+      } else if (val === false) {
+        val = '0'
+      }
+      if (val !== null) {
+        if (typeof val === 'object') {
+          for (k in val) {
+            if (val[k] !== null) {
+              tmp.push(_httpBuildQueryHelper(key + '[' + k + ']', val[k], argSeparator))
+            }
+          }
+          return tmp.join(argSeparator)
+        } else if (typeof val !== 'function') {
+          return _encodeURIComponent(key) + '=' + _encodeURIComponent(val)
+        } else {
+          throw new Error('There was an error processing for http_build_query().')
+        }
+      } else {
+        return ''
+      }
     }
+
+    for (key in formdata) {
+      value = formdata[key]
+      var query = _httpBuildQueryHelper(key, value, argSeparator)
+      if (query !== '') {
+        tmp.push(query)
+      }
+    }
+
+    return tmp.join(argSeparator)
+  }
+
+  // extracted from queryStringhandler
+  function _encodeURIComponent(value) {
+    return encodeURIComponent(value)
+      .replace(/[!'()]/g, '')
+      .replace(/\*/g, '%2A')
+      .replace(/%2B/ig, '+')
+      .replace(/%5B/ig, '[')
+      .replace(/%5D/ig, ']');
+  }
 
   function _clearInput(event) {
     if (event) {
