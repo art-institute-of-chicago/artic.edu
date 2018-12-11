@@ -29,7 +29,7 @@ if ($maxZoomWindowSize >= 843) {
             @slot('style', $style)
             @slot('settings', array(
                 'lazyload' => false,
-                'srcset' => array(200,423,846,1692,3000,6000),
+                'srcset' => array(200,423,846,1692),
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '58',
                       'small' => '58',
@@ -142,7 +142,7 @@ if ($maxZoomWindowSize >= 843) {
           @php
             $galleryImageThumbSettings = aic_imageSettings(array(
                 'settings' => array(
-                    'srcset' => array(200,423,846,1692,3000,6000),
+                    'srcset' => array(200,423,846,1692),
                     'sizes' => aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '58',

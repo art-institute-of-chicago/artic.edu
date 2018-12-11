@@ -25,6 +25,7 @@ class Search extends BaseApiModel
         'articles'    => 'App\Models\Article',
         'printed-catalogs'    => 'App\Models\PrintedCatalog',
         'digital-catalogs'    => 'App\Models\DigitalCatalog',
+        'static-pages'        => false,
         'generic-pages'       => 'App\Models\GenericPage',
         'research-guides'     => 'App\Models\ResearchGuide',
         'educator-resources'  => 'App\Models\EducatorResource',

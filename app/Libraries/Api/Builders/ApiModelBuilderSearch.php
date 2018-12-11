@@ -110,12 +110,16 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         // Segregate results to load a single query per entity to load them all
         $segregatedResults = $resultsByType->map(function ($collection, $type) {
             $ids = $collection->pluck('id')->toArray();
-            if (isset($this->getTypeMap()[$type]))
+            $class = $this->getTypeMap()[$type];
+            if (isset($class) && $class) {
                 $elements = $this->getTypeMap()[$type]::query()->ids($ids);
                 if ($elements && method_exists($elements, 'ttl')) {
                     $elements->ttl($this->ttl);
                 }
                 return $elements->get();
+            } elseif (!$class) {
+                return $collection; // e.g. static-pages
+            }
         });
 
         // Remove empty categories

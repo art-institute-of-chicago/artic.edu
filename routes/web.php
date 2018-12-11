@@ -108,16 +108,16 @@ Route::name('artists.show')->get('/artists/{id}/{slug?}', 'ArtistController@show
 Route::name('departments.show')->get('/departments/{id}/{slug?}', 'DepartmentController@show');
 
 // Selections
-Route::name('selections.show')->get('/highlights/{id}', 'SelectionsController@show');
+Route::name('selections.show')->get('/highlights/{id}/{slug?}', 'SelectionsController@show');
 
 // About
 Route::name('about.press')->get('/press/press-releases', 'PressReleasesController@index');
 Route::name('about.press.archive')->get('/press/archive', 'PressReleasesController@archive');
 
 Route::name('about.exhibitionPressRooms')->middleware(['httpauth'])->get('/press/exhibition-press-room', 'ExhibitionPressRoomController@index');
-Route::name('about.exhibitionPressRooms.show')->middleware(['httpauth'])->get('/press/exhibition-press-room/{id}', 'ExhibitionPressRoomController@show');
+Route::name('about.exhibitionPressRooms.show')->middleware(['httpauth'])->get('/press/exhibition-press-room/{id}/{slug?}', 'ExhibitionPressRoomController@show');
 
-Route::name('about.press.show')->get('/press/press-releases/{id}', 'PressReleasesController@show');
+Route::name('about.press.show')->get('/press/press-releases/{id}/{slug?}', 'PressReleasesController@show');
 
 // Sample Form
 if (!app()->environment('production')) {

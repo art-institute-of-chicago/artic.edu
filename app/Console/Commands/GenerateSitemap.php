@@ -32,7 +32,8 @@ class GenerateSitemap extends Command
 
     public function handle()
     {
-        $this->prefix = config('sitemap.base_url') ?? ('https://' .config('app.url'));
+        $this->prefix = config('sitemap.base_url') ?? ('https://' . config('app.url'));
+        $this->prefix = rtrim($this->prefix, '/');
         $this->path = public_path('sitemap.xml');
 
         $this->warn('Generating new sitemap! Domain is ' . $this->prefix);
@@ -114,8 +115,8 @@ class GenerateSitemap extends Command
     {
         $this->addNativeModel($sitemap, Event::class, 'events.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Article::class, 'articles.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
-        $this->addNativeModel($sitemap, PrintedCatalog::class, 'collection.publications.printed-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
-        $this->addNativeModel($sitemap, DigitalCatalog::class, 'collection.publications.digital-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
+        $this->addNativeModel($sitemap, PrintedCatalog::class, 'collection.publications.printed-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->slug];});
+        $this->addNativeModel($sitemap, DigitalCatalog::class, 'collection.publications.digital-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->slug];});
     }
 
     // get <a/>'s to filters, artworks, and category-terms from /collection
@@ -155,7 +156,12 @@ class GenerateSitemap extends Command
      */
     private function addExhibitions(&$sitemap)
     {
-        $this->addNativeModel($sitemap, Exhibition::class, 'exhibitions.show', 0.9, Url::CHANGE_FREQUENCY_WEEKLY, 'datahub_id');
+        $this->addNativeModel($sitemap, Exhibition::class, 'exhibitions.show', 0.9, Url::CHANGE_FREQUENCY_WEEKLY, function($entity) {
+                return [
+                    'id' => $entity->datahub_id,
+                    'slug' => $entity->slug,
+                ];
+            }, ['datahub_id']);
     }
 
     private function addRemoteModels(&$sitemap)
@@ -167,17 +173,19 @@ class GenerateSitemap extends Command
     }
 
     // Anything paginated and CMS-native of format `/resources/{id}/{slug}`
-    private function addNativeModel(&$sitemap, $class, string $route, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY, $idField = 'id')
+    private function addNativeModel(&$sitemap, $class, string $route, float $priority = 0.8, $changeFrequency = Url::CHANGE_FREQUENCY_DAILY, $paramCallback = null, $additionalFields = [])
     {
         // `id` is always needed for retrieving slugs
-        $fields = array_values(array_unique([$idField, 'id', 'updated_at']));
+        $fields = array_values(array_unique(array_merge($additionalFields, ['id', 'updated_at'])));
 
         foreach ($class::select($fields)->cursor() as $entity)
         {
-            $this->addUrl($sitemap, route($route, [
-                'id' => $entity->$idField,
+            $params = $paramCallback ? $paramCallback($entity) : [
+                'id' => $entity->id,
                 'slug' => $entity->slug
-            ], false), $priority, $changeFrequency, $entity->updated_at);
+            ];
+
+            $this->addUrl($sitemap, route($route, $params, false), $priority, $changeFrequency, $entity->updated_at);
         }
     }
 
@@ -205,10 +213,18 @@ class GenerateSitemap extends Command
     // Ensures everything is prefixed w/ SITEMAP_BASE_URL
     private function add(&$sitemap, $url)
     {
-        if (is_string($url) && !starts_with($url, $this->prefix)) {
-            $url = $this->prefix . $url;
-        } else if ($url instanceof Url && !starts_with($url->url, $this->prefix)) {
-            $url->setUrl($this->prefix . $url->url);
+        $slashUrl = $url->url ?? $url;
+        $slashUrl = starts_with($slashUrl, '/') ? $slashUrl : '/' . $slashUrl;
+
+        $fullUrl = $this->prefix . $slashUrl;
+
+        if(!starts_with($slashUrl, $this->prefix))
+        {
+            if (is_string($url)) {
+                $url = $fullUrl;
+            } elseif ($url instanceof Url) {
+                $url->setUrl($fullUrl);
+            }
         }
 
         $sitemap->add($url);

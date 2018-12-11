@@ -46,7 +46,7 @@
 
                 <div class="g-modal__form-row">
                     <p>
-                        @component('components.atoms._input')
+                        @component('components.atoms._email')
                             @slot('id', 'edit-submitted-mail')
                             @slot('name', 'submitted[mail]')
                             Email address

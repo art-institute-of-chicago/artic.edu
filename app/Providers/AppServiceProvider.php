@@ -210,11 +210,11 @@ class AppServiceProvider extends ServiceProvider
                 ],
                 [
                     'name' => 'Learn With Us',
-                    'slug' => 'learn-with-us',
+                    'slug' => '/learn-with-us',
                 ],
                 [
                     'name' => 'Support Us',
-                    'slug' => 'support-us',
+                    'slug' => '/support-us',
                 ]
             ]
 
