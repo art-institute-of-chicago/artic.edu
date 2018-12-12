@@ -47,6 +47,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @font-face {font-family: 'Sabon';src: url({{revAsset('fonts/3545D5_2_0.eot')}});src: url({{revAsset('fonts/3545D5_2_0.eot?#iefix')}}) format('embedded-opentype'),url({{revAsset('fonts/3545D5_2_0.woff2')}}) format('woff2'),url({{revAsset('fonts/3545D5_2_0.woff')}}) format('woff'),url({{revAsset('fonts/3545D5_2_0.ttf')}}) format('truetype');font-weight:normal;font-weight:500;font-style:normal;}
   </style>
   <link rel="stylesheet" href="https://vjs.zencdn.net/7.1.0/video-js.css" />
+  <meta name="msvalidate.01" content="1E22F0BBEF5CF0D71FF4C150D094A1CA" />
   @if ($print)
     <link href="{{revAsset('styles/print.css')}}" rel="stylesheet" />
   @else
