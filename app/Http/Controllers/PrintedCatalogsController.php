@@ -63,7 +63,7 @@ class PrintedCatalogsController extends CatalogsController
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Print catalogues', 'href' => route('collection.publications.printed-catalogs')],
+            ['label' => 'Print Catalogues', 'href' => route('collection.publications.printed-catalogs')],
             ['label' => $page->title, 'href' => '']
         ];
 
