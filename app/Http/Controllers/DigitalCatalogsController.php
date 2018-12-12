@@ -23,7 +23,11 @@ class DigitalCatalogsController extends CatalogsController
     {
         $items = DigitalCatalog::published()->paginate();
 
-        $navElements = $this->getNavElements('Digital Catalogues');
+        $title = 'Digital Catalogues';
+
+        $this->seo->setTitle($title);
+
+        $navElements = $this->getNavElements($title);
 
         $view_data = [
             'wideBody' => true,

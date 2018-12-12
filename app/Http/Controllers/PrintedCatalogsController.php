@@ -37,7 +37,11 @@ class PrintedCatalogsController extends CatalogsController
     {
         $items = $this->collection()->paginate();
 
-        $navElements = $this->getNavElements('Print Catalogues');
+        $title = 'Print Catalogues';
+
+        $this->seo->setTitle($title);
+
+        $navElements = $this->getNavElements($title);
 
         $view_data = [
             'wideBody' => true,
