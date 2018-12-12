@@ -354,11 +354,8 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'articles')) {
             array_push($links, $this->buildLabel('Writings', extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
         }
-        if (extractAggregation($aggregations, 'digital-catalogs')) {
-            array_push($links, $this->buildLabel('Digital Catalogues', extractAggregation($aggregations, 'digital-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
-        }
-        if (extractAggregation($aggregations, 'printed-catalogs')) {
-            array_push($links, $this->buildLabel('Print Catalogues', extractAggregation($aggregations, 'printed-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
+        if (extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs'])) {
+            array_push($links, $this->buildLabel('Publications', extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
         if (extractAggregation($aggregations, ['research-guides','educator-resources'])) {
             array_push($links, $this->buildLabel('Resources', extractAggregation($aggregations, ['research-guides', 'educator-resources']), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));
