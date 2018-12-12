@@ -32,18 +32,45 @@
                 @slot('title', $item->title)
                 @slot('title_display', $item->title_display)
             @endcomponent
-            @if ($item->intro)
-            <br>
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->intro }}</span>
+
+            @if (isset($item['links']) and $item['links'])
+                <br>
+                @if (count($item['links']) > 1)
+                   <ul class="f-secondary" aria-labelledby="h-{{ str_slug($item['title']) }}">
+                @else
+                  <span class="f-secondary last-child">
+                @endif
+                @foreach ($item['links'] as $link)
+                    {!! count($item['links']) > 1 ? '<li>' : '<span>' !!}
+                        @if (isset($link['external']) and $link['external'])
+                            <a href="{!! $link['href'] !!}" target="_blank" class="external-link f-link">
+                                {!! $link['label'] !!}<svg aria-hidden="true" class="icon--new-window"><use xlink:href="#icon--new-window" /></svg>
+                            </a>
+                        @else
+                            @component('components.atoms._link')
+                                @slot('href', $link['href'])
+                                @slot('gtmAttributes', $gtmAttributes ?? null)
+                                {!! $link['label'] !!}
+                            @endcomponent
+                        @endif
+                    {!! count($item['links']) > 1 ? '</li>' : '</span>' !!}
+                @endforeach
+                {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
+            @else
+                @if ($item->intro)
+                <br>
+                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->intro }}</span>
+                @endif
+                @if ($item->shortDesc)
+                <br>
+                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->shortDesc !!}</span>
+                @endif
+                @if ($item->listing_description)
+                <br>
+                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->listing_description !!}</span>
+                @endif
             @endif
-            @if ($item->shortDesc)
-            <br>
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->shortDesc !!}</span>
-            @endif
-            @if ($item->listing_description)
-            <br>
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->listing_description !!}</span>
-            @endif
+
             {{-- TODO: Consider putting dates into .m-listing__meta-bottom? --}}
             @if (isset($date))
                 @if(!empty($date))

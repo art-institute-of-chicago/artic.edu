@@ -37,6 +37,8 @@ class DigitalCatalog extends Model
     public $checkboxes = ['published', 'active', 'public'];
     public $dates = ['publish_start_date', 'publish_end_date'];
 
+    public $sections = [];
+
     public $mediasParams = [
         'listing' => [
             'default' => [
@@ -85,6 +87,16 @@ class DigitalCatalog extends Model
     public function scopeIds($query, $ids = [])
     {
         return $query->whereIn('id', $ids);
+    }
+
+    public function sections()
+    {
+        return $this->sections;
+    }
+
+    public function addSection($section)
+    {
+        return $this->sections[] = $section;
     }
 
     protected function transformMappingInternal()
