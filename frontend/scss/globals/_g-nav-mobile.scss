@@ -265,9 +265,6 @@
 
 .g-nav-mobile .g-header {
   position: relative;
-  width: auto;
-  margin-right: - map-get($outer-gutters, 'xsmall');
-  margin-left: - map-get($outer-gutters, 'xsmall');
   padding-right: map-get($outer-gutters, 'xsmall');
   padding-left: map-get($outer-gutters, 'xsmall');
   border-bottom: 1px solid $color__rules--primary;
