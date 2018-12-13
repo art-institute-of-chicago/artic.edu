@@ -40,11 +40,12 @@ const autocomplete = function(container) {
   // show autocomplete
   function _showAutocomplete(responseData) {
     let multiData = JSON.parse(responseData);
-    let artworkData = multiData[0];
-    let otherData = multiData[1];
+    let accessionData = multiData[0];
+    let artworkData = multiData[1];
+    let otherData = multiData[2];
     let ulItems = '';
 
-    if (artworkData.length < 1 || otherData.length < 1) {
+    if (accessionData.length < 1 && artworkData.length < 1 && otherData.length < 1) {
       return;
     }
 
@@ -129,11 +130,9 @@ const autocomplete = function(container) {
       return ulItems;
     }
 
+    ulItems += _getAutocompleteItems(accessionData, 1);
     ulItems += _getAutocompleteItems(artworkData, 1);
-
-    if (!_isAccessionNumber(textInput.value)) {
-      ulItems += _getAutocompleteItems(otherData, 5);
-    }
+    ulItems += _getAutocompleteItems(otherData, 5);
 
     ulItems += (
       '<li><a href="/collection?q='+_utf8String(textInput.value)+'" data-ajax-scroll-target="collection" data-gtm-event="'+_fixedEncodeURIComponent(textInput.value)+'" data-gtm-action="discover-art-artists" data-gtm-event-category="collection-filter" class="suggestion--fulltext">' +
@@ -170,11 +169,18 @@ const autocomplete = function(container) {
     _showLoader();
 
     ajaxTimer = setTimeout(function(){
-      let fuzzy = true;
-      if (_isAccessionNumber(textInput.value)) {
-        fuzzy = false;
-      }
-      let qs = '?' + _arrayQueryStringHandler([
+
+      var qs = '?' + _arrayQueryStringHandler([
+        {
+          fuzzy: false,
+          q: textInput.value,
+          resources: [
+            'artworks',
+          ],
+          contexts: [
+            'accession',
+          ],
+        },
         {
           q: textInput.value,
           resources: [
@@ -182,9 +188,7 @@ const autocomplete = function(container) {
           ],
           contexts: [
             'title',
-            'accession',
           ],
-          fuzzy: fuzzy,
         },
         {
           q: textInput.value,
@@ -195,9 +199,9 @@ const autocomplete = function(container) {
           contexts: [
             'title',
           ],
-          fuzzy: fuzzy,
         },
       ]);
+
       let xhr = new XMLHttpRequest();
       xhr.open('get', autoCompleteUrl + qs, true);
       xhr.onload = function() {
@@ -251,7 +255,8 @@ const autocomplete = function(container) {
   }
 
   function _isAccessionNumber(val) {
-    return /^[0-9]+\.?[0-9a-b\-]*/.test(val);
+    // return /^[0-9]+\.?[0-9a-b\-]*/.test(val);
+    return /^\d/.test(val);
   }
 
   // queryStringhandler cannot handle top-level arrays
