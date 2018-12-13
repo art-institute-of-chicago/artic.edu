@@ -22,6 +22,9 @@
         'withTime' => false,
         'required' => true
     ])
+
+    <p>For a 1 day closure, use the same start and end date.</p>
+
     @formField('input', [
         'name' => 'closure_copy',
         'label' => 'Closure Copy',

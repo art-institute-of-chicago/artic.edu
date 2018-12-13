@@ -67,7 +67,7 @@ class ExhibitionPressRoomController extends FrontController
 
         $crumbs = [
             ['label' => 'Press', 'href' => route('genericPages.show', 'press')],
-            ['label' => 'Exhibition press rooms', 'href' => route('about.exhibitionPressRooms')],
+            ['label' => 'Exhibition Press Rooms', 'href' => route('about.exhibitionPressRooms')],
             ['label' => $page->title, 'href' => '']
         ];
 

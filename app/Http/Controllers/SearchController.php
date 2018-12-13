@@ -32,6 +32,7 @@ class SearchController extends BaseScopedController
     const ALL_PER_PAGE_EVENTS = 4;
     const ALL_PER_PAGE_PAGES = 3;
     const ALL_PER_PAGE_ARTICLES = 4;
+    const ALL_PER_PAGE_PUBLICATIONS = 16;
 
     const ARTWORKS_PER_PAGE = 20;
     const PAGES_PER_PAGE = 20;
@@ -85,7 +86,7 @@ class SearchController extends BaseScopedController
 
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
-        $publications = $this->publicationsRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
+        $publications = $this->publicationsRepository->searchApi(request('q'), self::ALL_PER_PAGE_PUBLICATIONS);
         $articles     = $this->articlesRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
         $artworks     = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
         $artists      = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
@@ -354,11 +355,8 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'articles')) {
             array_push($links, $this->buildLabel('Writings', extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
         }
-        if (extractAggregation($aggregations, 'digital-catalogs')) {
-            array_push($links, $this->buildLabel('Digital Catalogues', extractAggregation($aggregations, 'digital-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
-        }
-        if (extractAggregation($aggregations, 'printed-catalogs')) {
-            array_push($links, $this->buildLabel('Print Catalogues', extractAggregation($aggregations, 'printed-catalogs'), route('search.publications', ['q' => request('q')]), $active == 'publications'));
+        if (extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs'])) {
+            array_push($links, $this->buildLabel('Publications', extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
         if (extractAggregation($aggregations, ['research-guides','educator-resources'])) {
             array_push($links, $this->buildLabel('Resources', extractAggregation($aggregations, ['research-guides', 'educator-resources']), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));

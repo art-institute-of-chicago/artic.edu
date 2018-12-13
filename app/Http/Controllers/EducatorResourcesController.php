@@ -38,6 +38,9 @@ class EducatorResourcesController extends BaseScopedController
         $items = $this->collection()->paginate();
 
         $title = 'Educator Resources';
+
+        $this->seo->setTitle($title);
+
         $subNav = [
             ['label' => $title, 'href' => route('collection.resources.educator-resources'), 'active' => true]
         ];

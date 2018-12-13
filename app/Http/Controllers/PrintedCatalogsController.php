@@ -37,7 +37,11 @@ class PrintedCatalogsController extends CatalogsController
     {
         $items = $this->collection()->paginate();
 
-        $navElements = $this->getNavElements('Print Catalogues');
+        $title = 'Print Catalogues';
+
+        $this->seo->setTitle($title);
+
+        $navElements = $this->getNavElements($title);
 
         $view_data = [
             'wideBody' => true,
@@ -63,7 +67,7 @@ class PrintedCatalogsController extends CatalogsController
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Print catalogues', 'href' => route('collection.publications.printed-catalogs')],
+            ['label' => 'Print Catalogues', 'href' => route('collection.publications.printed-catalogs')],
             ['label' => $page->title, 'href' => '']
         ];
 

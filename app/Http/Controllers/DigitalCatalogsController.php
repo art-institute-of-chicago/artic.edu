@@ -23,7 +23,11 @@ class DigitalCatalogsController extends CatalogsController
     {
         $items = DigitalCatalog::published()->paginate();
 
-        $navElements = $this->getNavElements('Digital Catalogues');
+        $title = 'Digital Catalogues';
+
+        $this->seo->setTitle($title);
+
+        $navElements = $this->getNavElements($title);
 
         $view_data = [
             'wideBody' => true,
@@ -48,7 +52,7 @@ class DigitalCatalogsController extends CatalogsController
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Digital catalogues', 'href' => route('collection.publications.digital-catalogs')],
+            ['label' => 'Digital Catalogues', 'href' => route('collection.publications.digital-catalogs')],
             ['label' => $page->title, 'href' => '']
         ];
 

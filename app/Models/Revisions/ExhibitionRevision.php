@@ -8,4 +8,11 @@ class ExhibitionRevision extends Revision
 {
     protected $table = "exhibition_revisions";
 
+    protected $touches = ['exhibition'];
+
+    public function exhibition()
+    {
+        return $this->belongsTo('App\Models\Exhibition');
+    }
+
 }

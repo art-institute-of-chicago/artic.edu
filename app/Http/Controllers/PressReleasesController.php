@@ -40,11 +40,13 @@ class PressReleasesController extends BaseScopedController
 
     public function index()
     {
-        $this->seo->setTitle('Press');
-
         $items = $this->collection()->current()->paginate();
 
-        $navElements = $this->getNavElements('Press Releases');
+        $title = 'Press Releases';
+
+        $this->seo->setTitle($title);
+
+        $navElements = $this->getNavElements($title);
 
         $viewData = [
             'wideBody' => true,
@@ -61,7 +63,11 @@ class PressReleasesController extends BaseScopedController
     {
         $items = $this->collection()->archive()->paginate();
 
-        $navElements = $this->getNavElements('Press Releases Archive');
+        $title = 'Press Releases Archive';
+
+        $this->seo->setTitle($title);
+
+        $navElements = $this->getNavElements($title);
 
         $viewData = [
             'wideBody' => true,
