@@ -1,0 +1,8 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+    <ShortName>Art Institute of Chicago</ShortName>
+    <LongName>Art Institute of Chicago</LongName>
+    <Description>Located downtown by Millennium Park, this top art museum is TripAdvisor's #1 Chicago attraction—a must when visiting the city.</Description>
+    <InputEncoding>UTF-8</InputEncoding>
+    <Image width="16" height="16" type="image/png">https://www.artic.edu/dist/images/favicon-16.png</Image>
+    <Url type="text/html" method="get" template="https://www.artic.edu/search?q={searchTerms}"/>
+</OpenSearchDescription>
