@@ -14,14 +14,14 @@ const limitSearch = function(container) {
     }
   }
 
-  function _handleClicks() {
+  function _handleClicks(event) {
     initAsLimited = !initAsLimited;
     cookieHandler.create(cookieName, initAsLimited, 1);
 
     _swapActions();
   }
 
-  function _swapActions(event) {
+  function _swapActions() {
     let newAction = container.getAttribute('value');
     let oldAction = form.getAttribute('action');
 
