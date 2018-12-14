@@ -455,7 +455,7 @@
         @unless ($allResultsView)
             @slot('links', array(array('label' => 'See all '. $articles->getMetadata('pagination')->total. ' '. str_plural('writing', $articles->getMetadata('pagination')->total), 'href' => route('search.articles', ['q' => request('q')]))))
         @endunless
-        Writings
+        Articles
     @endcomponent
 
     @if (isset($allResultsView) && $allResultsView)
