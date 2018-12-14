@@ -35,7 +35,6 @@ const limitSearch = function(container) {
   }
 
   function _init() {
-    document.addEventListener('ajaxPageLoad:complete', _initSwapActions, false);
     container.addEventListener('click', _handleClicks, false);
 
     _initSwapActions();
@@ -43,7 +42,6 @@ const limitSearch = function(container) {
 
   this.destroy = function() {
     // remove specific event handlers
-    document.removeEventListener('ajaxPageLoad:complete', _initSwapActions);
     container.removeEventListener('click', _handleClicks);
 
     // remove properties of this behavior
