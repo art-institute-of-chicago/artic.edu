@@ -104,6 +104,21 @@
   right: 70px;
 }
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ block
+
+.m-search-bar--block {
+
+  padding-top: 8px;
+
+  @include tucked-margin-top($f-body-editorial, ('xsmall': 40, 'small+': 56));
+
+  &:first-child {
+    @include tucked-align-top($f-body-editorial);
+  }
+
+}
+
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ subtle
 
 .m-search-bar--subtle input[type=text],
