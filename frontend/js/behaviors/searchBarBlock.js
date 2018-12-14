@@ -4,8 +4,12 @@ const searchBarBlock = function(container) {
 
   function _executeSearch(event) {
     event.preventDefault();
-    document.location.href = container.getAttribute('data-url')
-    .replace('{query}', container.getElementsByTagName('input')[0].value);
+
+    let url = container
+      .getAttribute('data-url')
+      .replace('{query}', container.getElementsByTagName('input')[0].value);
+
+    window.open(url);
   }
 
   function _init() {
