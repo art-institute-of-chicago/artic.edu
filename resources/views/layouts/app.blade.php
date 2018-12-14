@@ -22,6 +22,8 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
       @section('meta_image') @include('partials.metas._image') @show
     @endif
 
+  <link rel="search" type="application/opensearchdescription+xml" title="Art Institute of Chicago" href="/opensearch.xml">
+
   <!-- Main Favicon -->
   <link rel="shortcut icon" type="image/png" href="{{revAsset('images/favicon-16.png')}}">
   <!-- Apple Touch Icons (ipad/iphone standard+retina) -->

@@ -14,6 +14,7 @@ h3 {
 .o-accordion__trigger {
   position: relative;
   padding-right: 60px;
+  padding-left: 0px;
   color: $color__text--title;
   cursor: pointer;
   border: 0;
@@ -337,18 +338,18 @@ h3 {
   @include tucked-margin-top($f-secondary, ('xsmall': 40, 'small+': 56));
 
   &:first-child {
-    @include tucked-margin-top($f-secondary, ('xsmall': 56, 'small+': 64));
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 48px;
   }
 }
 
-.o-accordion__panel-content.o-blocks > .o-blocks__block:first-child {
-  margin-top: 28px;
+.o-accordion__panel-content.o-blocks > * {
+  margin-top: 0;
+}
 
-  @include breakpoint('small+') {
-    margin-top: 44px;
-  }
-
-  @include breakpoint('medium+') {
-    margin-top: 60px;
-  }
+.o-accordion__panel-content.o-blocks > *:last-child {
+  margin-bottom: 48px;
 }
