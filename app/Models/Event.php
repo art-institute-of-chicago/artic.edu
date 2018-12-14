@@ -67,6 +67,7 @@ class Event extends Model
         'migrated_at',
         'meta_title',
         'meta_description',
+        'search_tags',
     ];
 
     protected $casts = [
@@ -677,6 +678,12 @@ class Event extends Model
                 "doc" => "web_url",
                 "type" => "string",
                 "value" => function () {return url(route('events.show', $this));},
+            ],
+            [
+                "name" => "search_tags",
+                "doc" => "search_tags",
+                "type" => "string",
+                "value" => function () {return $this->search_tags;},
             ],
         ];
     }
