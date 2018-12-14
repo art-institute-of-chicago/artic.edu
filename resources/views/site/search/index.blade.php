@@ -17,6 +17,7 @@
     @slot('name', 'q')
     @slot('behaviors','reportSearchToGoogleTagManager')
     @slot('action', route('search'))
+    @slot('limit', isset($allResultsView) && $allResultsView ? true : false)
 @endcomponent
 
 @if (!empty($searchResultsTypeLinks))

@@ -51,3 +51,4 @@ export { default as ajaxFormSubmit } from './ajaxFormSubmit';
 export { default as reportSearchToGoogleTagManager } from './reportSearchToGoogleTagManager';
 export { default as mediaPlayPauseVideo } from './mediaPlayPauseVideo';
 export { default as recaptcha } from './recaptcha';
+export { default as limitSearch } from './limitSearch';

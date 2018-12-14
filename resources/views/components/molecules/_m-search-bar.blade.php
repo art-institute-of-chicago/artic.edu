@@ -1,7 +1,7 @@
 <form class="m-search-bar{{ (isset($variation)) ? ' '.$variation : '' }}" action="{{ $action ?? '' }}"{!! (isset($behaviors)) ? ' data-behavior="'.$behaviors.'"' : '' !!}{!! (isset($dataAttributes)) ? ' '.$dataAttributes.'' : '' !!}{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     <div class="m-search-bar__inner">
 
-        <label for="{{ $name ?? '' }}">Search</label>
+        <label class="m-search-bar__label--hiden" for="{{ $name ?? '' }}">Search</label>
 
         <input class="f-secondary{{ (isset($value) and $value and isset($clearLink) and $clearLink) ? ' s-populated' : '' }}" id="{{ $name ?? '' }}" name="{{ $name ?? '' }}" placeholder="{{ $placeholder ?? '' }}" type="text" value="{{ $value ?? '' }}" autocomplete="off">
 
@@ -26,4 +26,15 @@
         @endif
 
     </div>
+
+
+    @if (isset($limit) && $limit)
+    <span class="checkbox f-secondary">
+        <input type="checkbox" value="{{ request()->url() }}" id="limit-search" name="limit-search"  data-behavior="limitSearch">
+        <span class="f-secondary">
+            <label for="limit-search">Limit my search to {{ title_case(str_replace('-', ' ', request()->segment(count(request()->segments())))) }}</label>
+        </span>
+    </span>
+    @endif
+
 </form>
