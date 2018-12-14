@@ -1,10 +1,27 @@
-import { purgeProperties } from '@area17/a17-helpers';
+import { cookieHandler, purgeProperties } from '@area17/a17-helpers';
 
 const limitSearch = function(container) {
 
   let form = _findAncestor(container, 'm-search-bar');
 
-  function _handleClicks(event) {
+  let cookieName = 'isSearchLimited';
+  let initAsLimited = cookieHandler.read(cookieName) === 'true';
+
+  function _initSwapActions() {
+    if (initAsLimited) {
+      container.checked = true;
+      _swapActions();
+    }
+  }
+
+  function _handleClicks() {
+    initAsLimited = !initAsLimited;
+    cookieHandler.create(cookieName, initAsLimited, 1);
+
+    _swapActions();
+  }
+
+  function _swapActions(event) {
     let newAction = container.getAttribute('value');
     let oldAction = form.getAttribute('action');
 
@@ -18,11 +35,15 @@ const limitSearch = function(container) {
   }
 
   function _init() {
+    document.addEventListener('ajaxPageLoad:complete', _initSwapActions, false);
     container.addEventListener('click', _handleClicks, false);
+
+    _initSwapActions();
   }
 
   this.destroy = function() {
     // remove specific event handlers
+    document.removeEventListener('ajaxPageLoad:complete', _initSwapActions);
     container.removeEventListener('click', _handleClicks);
 
     // remove properties of this behavior
