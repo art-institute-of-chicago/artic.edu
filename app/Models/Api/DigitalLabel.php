@@ -23,7 +23,7 @@ class DigitalLabel extends BaseApiModel
     protected $presenterAdmin = 'App\Presenters\Admin\DigitalLabelPresenter';
 
     // Fields used when performing a search so we avoid a double call retrieving the complete entities
-    const SEARCH_FIELDS = ['id', 'title', 'is_boosted', 'thumbnail', 'exhibition_id', 'type', 'copy_text', 'image_url', 'is_published', 'source_created_at', 'source_modified_at', 'last_updated_source', 'last_updated'];
+    const SEARCH_FIELDS = ['id', 'title', 'is_boosted', 'thumbnail', 'exhibition_id', 'type', 'copy_text', 'image_url', 'is_published', 'source_created_at', 'source_modified_at', 'last_updated_source', 'last_updated', 'api_model'];
 
     // Generates the id-slug type of URL
     public function getRouteKeyName()
