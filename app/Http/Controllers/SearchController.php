@@ -238,7 +238,7 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general     = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $digitalLabels = dd($this->digitalLabelsRepository->searchApi(request('q'), self::DIGITAL_LABELS_PER_PAGE));
+        $digitalLabels = $this->digitalLabelsRepository->searchApi(request('q'), self::DIGITAL_LABELS_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'digital-labels');
 

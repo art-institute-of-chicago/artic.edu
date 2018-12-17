@@ -31,7 +31,7 @@
     @endcomponent
 @endif
 
-@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles))
+@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($digitalLabels))
     @component('components.molecules._m-no-results')
     @endcomponent
 @endif
@@ -696,6 +696,50 @@
             @slot('cols_xlarge','4')
 
             @foreach ($pressReleases as $item)
+                @component('components.molecules._m-listing----generic')
+                    @slot('item', $item)
+                    @slot('hideImage', true)
+                @endcomponent
+            @endforeach
+        @endcomponent
+
+    @endif
+@endif
+
+@if (isset($digitalLabels) && $digitalLabels->getMetadata('pagination')->total > 0)
+
+    @component('components.molecules._m-title-bar')
+        @unless($allResultsView)
+            @slot('links', array(array('label' => 'See all '. $digitalLabels->getMetadata('pagination')->total. ' '. str_plural('digital label', $digitalLabels->getMetadata('pagination')->total), 'href' => route('search.digital-labels', ['q' => request('q')]))))
+        @endunless
+        Digital Labels
+    @endcomponent
+
+    @if (isset($allResultsView) && $allResultsView)
+
+        @component('components.organisms._o-grid-listing')
+          @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+          @slot('cols_small','2')
+          @slot('cols_medium','3')
+          @slot('cols_large','4')
+          @slot('cols_xlarge','4')
+          @foreach ($digitalLabels as $item)
+              @component('components.molecules._m-listing----generic')
+                  @slot('item', $item)
+                  @slot('hideImage', true)
+              @endcomponent
+          @endforeach
+        @endcomponent
+
+    @else
+
+        @component('components.organisms._o-grid-listing')
+            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+            @slot('cols_medium','3')
+            @slot('cols_large','4')
+            @slot('cols_xlarge','4')
+
+            @foreach ($digitalLabels as $item)
                 @component('components.molecules._m-listing----generic')
                     @slot('item', $item)
                     @slot('hideImage', true)
