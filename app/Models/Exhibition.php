@@ -38,6 +38,7 @@ class Exhibition extends Model
         'title_display',
         'datahub_id',
         'exhibition_message',
+        'exhibition_location',
         'list_description',
         'cms_exhibition_type',
         'hero_caption',
@@ -249,6 +250,12 @@ class Exhibition extends Model
                 "doc" => "Message",
                 "type" => "string",
                 "value" => function () {return $this->exhibition_message;},
+            ],
+            [
+                "name" => 'exhibition_location',
+                "doc" => "Location",
+                "type" => "string",
+                "value" => function () {return $this->exhibition_location;},
             ],
             [
                 "name" => 'cms_exhibition_type',
