@@ -29,18 +29,18 @@ class ExactTargetService
         {
             $deRow->props[$this->list] = 'Y';
         }
+
         $deRow->Name = "Museum Business Unit";
         $deRow->CustomerKey = "All Subscribers Master";
 
         $response = $deRow->post();
 
+        // If the request is successful, go ahead and return
         if ($response->status) {
             return true;
-        } else {
-            // If we get an error and it's a code 2, it means the email already exists. Return true
-            $existent = isset($response->results[0]->ErrorCode) && $response->results[0]->ErrorCode == 2;
-
-            return $existent;
         }
+
+        // Otherwise, return the response
+        return $response;
     }
 }

@@ -13,15 +13,14 @@ class SubscribeController extends Controller
         $data = $request->validate(['email'=>'required|email']);
 
         $exactTarget = new ExactTargetService(request('email'), request('list'));
-        $exactTarget->subscribe();
+        $response = $exactTarget->subscribe();
 
-        $response = true;
-        if ($response) {
+        if ($response === true) {
             return ['message' => 'Successfully signed up to the newsletter.'];
         }
 
         return response()->json([
-            'message' => 'The email must be a valid email address.',
+            'message' => 'Error signing up to the newsletter. Please check your email address and try again.',
         ], 500);
 
     }
