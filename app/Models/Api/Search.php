@@ -31,6 +31,7 @@ class Search extends BaseApiModel
         'research-guides'     => 'App\Models\ResearchGuide',
         'educator-resources'  => 'App\Models\EducatorResource',
         'press-releases'      => 'App\Models\PressRelease',
+        'digital-labels'      => 'App\Models\DigitalLabel',
     ];
 
     // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
