@@ -64,6 +64,24 @@
             'withTime' => false
         ])
 
+        {{-- Expiry period is in seconds --}}
+        @formField('radios', [
+            'name' => 'expiry_period',
+            'label' => 'Display Frequency',
+            'default' => 86400,
+            'inline' => true,
+            'options' => [
+                [
+                    'value' => 86400,
+                    'label' => 'Every 24 hours'
+                ],
+                [
+                    'value' => 0,
+                    'label' => 'Always'
+                ],
+            ]
+        ])
+
     </a17-fieldset>
 
     <a17-fieldset id="metadata" title="Metadata">

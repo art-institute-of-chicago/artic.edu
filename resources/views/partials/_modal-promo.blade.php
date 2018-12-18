@@ -1,4 +1,4 @@
-<div id="modal-promo" class="g-modal g-modal--promo{{ $modal['image'] ? ' g-modal--image' : '' }}">
+<div id="modal-promo" class="g-modal g-modal--promo{{ $modal['image'] ? ' g-modal--image' : '' }}" data-expires="{{ $modal['expiry_period'] ?? 86400 }}">
     <div class="g-modal__content">
         @if ( $modal['image'] )
             <figure class="g-modal__image">

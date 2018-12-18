@@ -101,7 +101,8 @@ const modals = function() {
     if (!document.documentElement.classList.contains(roadblockDefinedClass)) {
       return;
     }
-    if (cookie) {
+    var expiryPeriodInDays = parseInt($modalPromo.getAttribute('data-expires')) / 60 / 60 / 24;
+    if (cookie && expiryPeriodInDays > 0) {
       return;
     }
     document.documentElement.classList.add(roadblockActiveClass);
@@ -114,7 +115,11 @@ const modals = function() {
       element: $modalPromo
     });
     $modalPromo.addEventListener('submit', _roadblockSubmit, true);
-    cookieHandler.create(cookieName, true, 1);
+    if (expiryPeriodInDays > 0) {
+      cookieHandler.create(cookieName, true, expiryPeriodInDays);
+    } else {
+      cookieHandler.delete(cookieName);
+    }
   }
 
   function _closeRoadblock() {
