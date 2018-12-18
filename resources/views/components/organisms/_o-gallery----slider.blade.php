@@ -33,7 +33,7 @@
                 @foreach ($items as $item)
                     @php
                         $currentImageSettings = $imageSettings;
-                        if ($item['isArtwork'] ?? false && !($item['isPublicDomain'] ?? false))
+                        if (($item['isArtwork'] ?? false) && !($item['isPublicDomain'] ?? false))
                         {
                             $currentImageSettings['srcset'] = array_values(
                                 array_filter($currentImageSettings['srcset'], function($size) {
