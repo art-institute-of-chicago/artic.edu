@@ -7,6 +7,7 @@
 @if (isset($images) and $images and $images->first()['width'])
 
 @php
+$srcset = array_merge([200,400,843], (isset($isPublicDomain) && $isPublicDomain ? [1686] : []));
 $maxZoomWindowSize = (isset($maxZoomWindowSize) && $maxZoomWindowSize) ? $maxZoomWindowSize : 1280;
 $style = "";
 $maxZoomWindowSize = ($maxZoomWindowSize === -1) ? 1280 : $maxZoomWindowSize;
@@ -29,7 +30,7 @@ if ($maxZoomWindowSize >= 843) {
             @slot('style', $style)
             @slot('settings', array(
                 'lazyload' => false,
-                'srcset' => array(200,423,846,1692),
+                'srcset' => $srcset,
                 'sizes' => aic_imageSizes(array(
                       'xsmall' => '58',
                       'small' => '58',
@@ -142,13 +143,13 @@ if ($maxZoomWindowSize >= 843) {
           @php
             $galleryImageThumbSettings = aic_imageSettings(array(
                 'settings' => array(
-                    'srcset' => array(200,423,846,1692),
+                    'srcset' => $srcset,
                     'sizes' => aic_imageSizes(array(
                           'xsmall' => '58',
                           'small' => '58',
-                          'medium' => '846px',
-                          'large' => '846px',
-                          'xlarge' => '846px',
+                          'medium' => '843px',
+                          'large' => '843px',
+                          'xlarge' => '843px',
                     ))
                 ),
                 'image' => $image,
