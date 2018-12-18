@@ -13,7 +13,7 @@ class FormModel extends Model
         $ret = "Field | Value\n";
         $ret .= "--- | ---\n";
 
-        foreach ($this->toArray() as $key => $value)
+        foreach ($this->getAttributes() as $key => $value)
         {
             if (in_array($key, $this->dates))
             {
