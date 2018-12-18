@@ -10,9 +10,15 @@
         $size = 's';
     }
 
+    $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
+
+    if ($item['isArtwork'] ?? false) {
+        $defaultSrcset = ($item['isPublicDomain'] ?? false) ? array(200,400,600,800,1200,1600) : array(200,400,600,800);
+    }
+
     if (empty($imageSettings) && $size === 's') {
         $imageSettings = array(
-            'srcset' => array(300,600,800,1200,1600,3000,4500),
+            'srcset' => $defaultSrcset,
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
@@ -24,7 +30,7 @@
 
     if (empty($imageSettings) && $size === 'm') {
         $imageSettings = array(
-            'srcset' => array(300,600,800,1200,1600,2000,3000,4500),
+            'srcset' => $defaultSrcset,
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
@@ -36,7 +42,7 @@
 
     if (empty($imageSettings) && $size === 'l') {
         $imageSettings = array(
-            'srcset' => array(300,600,800,1200,1600,2000,3000,4500),
+            'srcset' => $defaultSrcset,
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '58',
