@@ -7,7 +7,7 @@
         @slot('imageSettings', array(
             'fit' => ($item->type !== 'selection' and $item->type !== 'artwork') ? 'crop' : null,
             'ratio' => ($item->type !== 'selection' and $item->type !== 'artwork') ? '16:9' : null,
-            'srcset' => array(200,400,600,1000),
+            'srcset' => array(200,400,600,800),
             'sizes' => aic_gridListingImageSizes(array(
                   'xsmall' => '2',
                   'small' => '2',

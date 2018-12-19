@@ -22,11 +22,11 @@
             @component('components.molecules._m-listing----artwork-minimal')
                 @slot('item', $item)
                 @slot('imageSettings', array(
-                    'srcset' => array(108,216,400,600),
+                    'srcset' => array(200,400,600,800),
                     'sizes' => aic_imageSizes(array(
-                          'xsmall' => '216px',
-                          'small' => '216px',
-                          'medium' => '216px',
+                          'xsmall' => '100px',
+                          'small' => '100px',
+                          'medium' => '200px',
                           'large' => sizeof($artworks) > 6 ? 3 : 8,
                           'xlarge' => sizeof($artworks) > 6 ? 3 : 8,
                     )),

@@ -145,6 +145,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-split_block',
             ],
+            'search_bar' => [
+                'title' => 'External search bar',
+                'icon' => 'text',
+                'component' => 'a17-block-search_bar',
+            ],
         ],
         'repeaters' => [
             'admissions' => [

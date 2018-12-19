@@ -17,6 +17,7 @@ class Lightbox extends Model
         'body',
         'lightbox_start_date',
         'lightbox_end_date',
+        'expiry_period',
         'lightbox_button_text',
         'terms_text',
         'action_url',

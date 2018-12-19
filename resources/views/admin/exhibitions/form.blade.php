@@ -106,6 +106,12 @@
         'toolbarOptions' => ['bold']
     ])
 
+    @formField('input', [
+        'name' => 'exhibition_location',
+        'label' => 'Exhibition location',
+        'note' => 'Override CITI gallery location'
+    ])
+
     @formField('block_editor', [
         'blocks' => [
             'event', 'paragraph', 'image', 'video', 'gallery',

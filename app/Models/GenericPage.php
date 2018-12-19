@@ -36,6 +36,7 @@ class GenericPage extends Model implements Sortable
         'is_redirect_url_external',
         'meta_title',
         'meta_description',
+        'search_tags',
         'http_protected',
     ];
 
@@ -253,6 +254,12 @@ class GenericPage extends Model implements Sortable
                 "doc" => "Publish End Date",
                 "type" => "datetime",
                 "value" => function() { return $this->publish_end_date; }
+            ],
+            [
+                "name" => "search_tags",
+                "doc" => "search_tags",
+                "type" => "string",
+                "value" => function () {return $this->search_tags;},
             ],
             [
                 "name" => 'content',

@@ -17,6 +17,7 @@
     @slot('name', 'q')
     @slot('behaviors','reportSearchToGoogleTagManager')
     @slot('action', route('search'))
+    @slot('limit', isset($allResultsView) && $allResultsView ? true : false)
 @endcomponent
 
 @if (!empty($searchResultsTypeLinks))
@@ -454,7 +455,7 @@
         @unless ($allResultsView)
             @slot('links', array(array('label' => 'See all '. $articles->getMetadata('pagination')->total. ' '. str_plural('writing', $articles->getMetadata('pagination')->total), 'href' => route('search.articles', ['q' => request('q')]))))
         @endunless
-        Writings
+        Articles
     @endcomponent
 
     @if (isset($allResultsView) && $allResultsView)

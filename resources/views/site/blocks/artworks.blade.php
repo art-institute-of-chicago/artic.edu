@@ -45,7 +45,7 @@
 @component('components.organisms._o-gallery----'.$subtype)
     @if ($subtype === 'mosaic')
         @slot('imageSettings', array(
-            'srcset' => array(200,400,600,1000,1500,3000),
+            'srcset' => array(200,400,600,800,1200),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '58',
                   'small' => '28',
@@ -57,7 +57,7 @@
     @endif
     @if ($subtype === 'slider')
         @slot('imageSettings', array(
-            'srcset' => array(200,400,600,1000,1500,3000),
+            'srcset' => array(200,400,600,800,1200),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '50',
                   'small' => '35',

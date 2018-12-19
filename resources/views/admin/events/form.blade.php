@@ -325,6 +325,16 @@
             'label' => 'Metadata Description',
             'type' => 'textarea'
         ])
+
+
+        @formField('input', [
+            'name' => 'search_tags',
+            'label' => 'Internal Search Tags',
+            'type' => 'textarea'
+        ])
+
+        <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
+
     </a17-fieldset>
 
 @endsection

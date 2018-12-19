@@ -244,7 +244,7 @@ class GroupReservationsController extends FormController
             'blocks' => array(
                 array(
                   'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => null,
                   'id' => 'visit_date',
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('visit_date'),
@@ -254,17 +254,24 @@ class GroupReservationsController extends FormController
                   'disabled' => false,
                   'label' => 'Visit date',
                 ),
+            ),
+        );
+
+        $visitInformationFields[] = array(
+            'variation' => null,
+            'blocks' => array(
                 array(
-                  'type' => 'select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'type' => 'input',
+                  'variation' => null,
                   'id' => 'visit_time',
-                  'error' => (!empty($errors) && $errors->first('visit_time')) ? $errors->first('visit_time') : null,
+                  'placeholder' => '',
+                  'textCount' => false,
                   'value' => old('visit_time'),
+                  'error' => (!empty($errors) && $errors->first('visit_time')) ? $errors->first('visit_time') : null,
                   'optional' => false,
-                  'hint' => null,
+                  'hint' => 'Our <a href="/visit#hours">daily hours</a> are 10:30–5:00',
                   'disabled' => false,
                   'label' => 'Time',
-                  'options' => $this->getTimeArray()
                 ),
             ),
         );
