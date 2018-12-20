@@ -24,14 +24,14 @@ class ExactTargetService
         $deRow  = new ET_DataExtension_Row();
 
         $deRow->authStub = $client;
-        $deRow->props = array("email" => $this->email);
+        $deRow->props = array("Email Address" => $this->email);
         if ($this->list)
         {
-            $deRow->props[$this->list] = 'Y';
+            $deRow->props[$this->list] = 'true';
         }
 
         $deRow->Name = "Museum Business Unit";
-        $deRow->CustomerKey = "All Subscribers Master";
+        $deRow->CustomerKey = "All Subscribers";
 
         $response = $deRow->post();
 
