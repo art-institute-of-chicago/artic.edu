@@ -34,7 +34,10 @@ class ArticleController extends FrontController
                 ->whereNotIn('id', $page->articlesArticles->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->paginate(self::ARTICLES_PER_PAGE);
-            
+            // TODO add digital labels
+            $digitalLabels = DigitalLabel::query()->getPaginatedModel(self::ARTICLES_PER_PAGE, \App\Models\Api\DigitalLabel::SEARCH_FIELDS);
+
+            $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
         } else {
             // Retrieve digital label entires
             $articles = DigitalLabel::query()->getPaginatedModel(self::ARTICLES_PER_PAGE, \App\Models\Api\DigitalLabel::SEARCH_FIELDS);
