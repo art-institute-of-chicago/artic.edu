@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ArticleRepository;
 use App\Models\Page;
 use App\Models\Article;
+use App\Models\Api\DigitalLabel;
 
 class ArticleController extends FrontController
 {
@@ -24,12 +25,25 @@ class ArticleController extends FrontController
 
         $page = Page::forType('Articles')->with('articlesArticles')->first();
         $heroArticle = $page->articlesArticles->first();
+        
+        $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
 
-        $articles = Article::published()
-            ->byCategory(request('category'))
-            ->whereNotIn('id', $page->articlesArticles->pluck('id'))
-            ->orderBy('date', 'desc')
-            ->paginate(self::ARTICLES_PER_PAGE);
+        if (request('category') !== 'digital-labels') {
+            $articles = Article::published()
+                ->byCategory(request('category'))
+                ->whereNotIn('id', $page->articlesArticles->pluck('id'))
+                ->orderBy('date', 'desc')
+                ->paginate(self::ARTICLES_PER_PAGE);
+            
+        } else {
+            // Retrieve digital label entires
+            $articles = DigitalLabel::query()->getPaginatedModel(self::ARTICLES_PER_PAGE, \App\Models\Api\DigitalLabel::SEARCH_FIELDS);
+        }
+        
+        // $digitaLabels = DigitalLabel::published()
+            // ->whereNotIn('id', $page->digitalLabels->pluck('id'));
+            // ->orderBy('date', 'desc')
+            // ->paginate(self::ARTICLES_PER_PAGE);
 
         // Featured articles are the selected ones if no filters are applied
         // otherwise those are just the first two from the collection
@@ -63,6 +77,16 @@ class ArticleController extends FrontController
                 ]
             );
         }
+
+        array_push($categories,
+            [
+                'label' => 'Digital Labels',
+                'href' => route('articles', ['category' => 'digital-labels']),
+                'active' => empty(request()->all()),
+                'ajaxScrollTarget' => 'listing',
+            ]
+        );
+
 
         return view('site.articles', [
             'primaryNavCurrent' => 'collection',
