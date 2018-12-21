@@ -49,7 +49,7 @@
         @slot('ticketLink', $item->buy_tickets_link);
         @slot('buttonText', $item->present()->buyButtonText);
         @slot('buttonCaption', $item->present()->buyButtonCaption);
-        @slot('isTicketed', $item->is_ticketed);
+        @slot('isTicketed', $item->present()->isTicketed);
         @if ($item->is_sold_out)
             @slot('disabled',true)
         @endif
