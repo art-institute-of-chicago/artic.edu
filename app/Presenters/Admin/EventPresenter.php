@@ -2,6 +2,8 @@
 
 namespace App\Presenters\Admin;
 
+use Carbon\Carbon;
+
 use App\Presenters\BasePresenter;
 
 class EventPresenter extends BasePresenter
@@ -150,6 +152,24 @@ class EventPresenter extends BasePresenter
         }
 
         return 'Buy tickets';
+    }
+
+    public function buyButtonCaption()
+    {
+        $caption = $this->entity->buy_button_caption ?? '';
+
+        $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
+
+        if ($ticketedEvent->on_sale_at ?? false && $ticketedEvent->off_sale_at ?? false)
+        {
+            $caption = sprintf(
+                '<p>Registration Period: %s—%s</p>',
+                (new Carbon($ticketedEvent->on_sale_at))->format('F j'),
+                (new Carbon($ticketedEvent->off_sale_at))->format('F j')
+            ) . ($caption ? '<p><br></p>' . $caption : '');
+        }
+
+        return $caption;
     }
 
     public function imageUrl() {
