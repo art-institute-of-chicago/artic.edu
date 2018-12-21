@@ -9,40 +9,21 @@
         @endcomponent
     @endif
 
-      {{-- Preview dates --}}
-      @component('components.organisms._o-preview-dates')
+    {{-- Preview dates --}}
+    @component('components.organisms._o-preview-dates')
         @slot('previewDateStart', $previewDateStart ?? null)
         @slot('previewDateEnd', $previewDateEnd ?? null)
-      @endcomponent
+    @endcomponent
 
-      {{-- Regular dates --}}
-      @if (isset($formattedDate))
-        @component('components.atoms._date')
-            @slot('tag','p')
-            {!! $formattedDate !!}
-        @endcomponent
-      @elseif (empty($dateStart) and empty($dateEnd))
-     @elseif (empty($dateEnd) and !empty($dateStart))
-           @component('components.atoms._date')
-            @slot('tag','p')
-            <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time>
-            @endcomponent
-      @elseif (empty($dateStart))
-    @elseif ($dateStart and $dateEnd)
-        @component('components.atoms._date')
-            @slot('tag','p')
-            @if($dateStart->format("Y") == $dateEnd->format("Y"))
-            <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j') }}</time>&ndash;<time datetime="{{ $dateEnd->format("Y-m-d") }}" itemprop="endDate">{{ $dateEnd->format('M j, Y') }}</time>
-            @else
-             <time datetime="{{ $dateStart->format("Y-m-d") }}" itemprop="startDate">{{ $dateStart->format('M j, Y') }}</time>&ndash;<time datetime="{{ $dateEnd->format("Y-m-d") }}" itemprop="endDate">{{ $dateEnd->format('M j, Y') }}</time>
-            @endif
-        @endcomponent
-    @elseif (!empty($date))
-        @component('components.atoms._date')
-            @slot('tag','p')
-            <time datetime="{{ $date->format("Y-m-d") }}" itemprop="startDate">{{ $date->format('F j, Y') }}</time>
-        @endcomponent
-    @endif
+    {{-- Regular dates --}}
+    @component('components.organisms._o-public-dates')
+        @slot('tag', 'p')
+        @slot('formattedDate', $formattedDate ?? null)
+        @slot('dateStart', $dateStart ?? null)
+        @slot('dateEnd', $dateEnd ?? null)
+        @slot('date', $date ?? null)
+    @endcomponent
+
     @if (!empty($type))
         @component('components.atoms._type')
             @slot('tag','p')

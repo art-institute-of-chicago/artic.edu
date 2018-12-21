@@ -92,11 +92,13 @@
             @endcomponent
             <br>
         @endif
-        {{-- <span class="m-listing__meta-bottom"> --}}
-            @component('components.atoms._date')
-                {!! $item->present()->formattedDate !!}
-            @endcomponent
-        {{-- </span> --}}
+
+        @component('components.organisms._o-public-dates')
+            @slot('date', $item->present()->date)
+            @slot('dateStart', $item->present()->startAt)
+            @slot('dateEnd', $item->present()->endAt)
+        @endcomponent
+
     </span>
   </a>
 </{{ $tag or 'li' }}>
