@@ -131,7 +131,9 @@ class EventPresenter extends BasePresenter
             return $this->entity->buy_button_text;
         }
 
-        if ($this->entity->is_sold_out) {
+        $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
+
+        if ($this->entity->is_sold_out || ($ticketedEvent->available ?? 1) < 1) {
             return 'Sold out';
         }
 

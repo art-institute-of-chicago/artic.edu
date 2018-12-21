@@ -202,6 +202,8 @@
             'label' => 'RSVP',
         ])
 
+        <p>If you attach an event from the ticketing system, we will handle "Sold Out" for you automatically.</p>
+
         <hr/>
         <p>Private<br/>
         <span class="f--note f--small">Does not generate any labels or tags, only excludes the event from the listing</span></p>
