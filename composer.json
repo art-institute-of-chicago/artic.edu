@@ -15,7 +15,7 @@
         },
         {
             "type": "vcs",
-            "url": "https://code.area17.com/a17/laravel-cms-toolkit.git"
+            "url": "git@code.area17.com:a17/laravel-cms-toolkit.git"
         }
     ],
     "require": {
