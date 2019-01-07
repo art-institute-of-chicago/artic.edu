@@ -48,6 +48,7 @@ class CollectionFeature extends AbstractModel
         $item = $this->articles->first();
         $item = $item ?? $this->selections->first();
         $item = $item ?? $this->apiModels('artworks', 'Artwork')->first();
+        $item = $item ?? $this->apiModels('digitalLabels', 'DigitalLabel')->first();
 
         if (!$item) {
             return null;
@@ -60,9 +61,14 @@ class CollectionFeature extends AbstractModel
         if ($item->type == 'article') {
             $item->subtype = 'Article';
         }
+        
+        if ($item->type == 'LABEL') {
+            $item->subtype = 'Digital Label';
+        }
 
         $item->trackingTitle = getUtf8Slug($item->title);
 
+        // dd($item);
         return $item;
     }
 

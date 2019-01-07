@@ -111,7 +111,7 @@
                       'xlarge' => '4',
                 )),
             ))
-             ))
+            ))
             @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
         @endcomponent
     @endforeach

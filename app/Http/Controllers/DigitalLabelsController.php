@@ -10,6 +10,19 @@ use Carbon\Carbon;
 class DigitalLabelsController extends FrontController
 {
     protected $apiRepository;
+    protected $moduleName = 'digitalLabels';
+    protected $hasAugmentedModel = true;
+
+    protected $indexColumns = [
+        'image' => [
+            'title' => 'Hero',
+            'thumb' => true,
+            'variant' => [
+                'role' => 'hero',
+                'crop' => 'default',
+            ],
+        ],
+    ];
 
     public function __construct(DigitalLabelRepository $repository)
     {
