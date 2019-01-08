@@ -162,7 +162,7 @@ Route::get('enews', function () {
     return redirect()->route('forms.email-subscriptions', request()->all());
 });
 // Digital labels
-Route::name('digitalLabels.show')->get('/digitalLabels/{id}/{slug?}', 'DigitalLabelsController@show');
+Route::name('digitalLabels.show')->get('/digital-labels/{id}/{slug?}', 'DigitalLabelsController@show');
 
 
 // Feed routes
