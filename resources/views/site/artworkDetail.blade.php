@@ -53,7 +53,7 @@
       {{-- dupe 😢 - shows medium+ --}}
       @component('components.blocks._inline-aside')
           @slot('variation', 'u-show@medium+')
-          @slot('type', $item->featuredRelated['type'])
+          @slot('type', title_case(str_replace("-", " ", $item->featuredRelated['type'])))
           @slot('items', $item->featuredRelated['items'])
           @slot('titleFont', "f-list-1")
           @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])

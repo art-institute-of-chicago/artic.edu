@@ -63,7 +63,7 @@ class Artwork extends AbstractModel
             return $this->selectedFeaturedRelated;
         }
 
-        $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
+        $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent', 'sidebarDigitalLabels'])->shuffle();
         foreach ($types as $type) {
             if ($item = $this->$type()->first()) {
                 switch ($type) {
@@ -79,6 +79,10 @@ class Artwork extends AbstractModel
                     case 'sidebarExhibitions':
                         $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
                         $type = 'exhibition';
+                        break;
+                     case 'sidebarDigitalLabels':
+                        $item = $this->apiModels('sidebarDigitalLabels', 'DigitalLabel')->first();
+                        $type = 'digital-label';
                         break;
                 }
 

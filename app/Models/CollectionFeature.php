@@ -63,6 +63,7 @@ class CollectionFeature extends AbstractModel
         }
         
         if ($item->type == 'LABEL') {
+            $item->type == 'digital-label';
             $item->subtype = 'Digital Label';
         }
 
