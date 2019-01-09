@@ -25,11 +25,17 @@ class HasMany
      */
     protected $parent;
 
-    public function __construct($query, $parent, $localKey)
+    /**
+     * Limit the number of related models by this amount. -1 means no limit.
+     */
+    protected $limit;
+
+    public function __construct($query, $parent, $localKey, $limit = -1)
     {
         $this->query    = $query;
         $this->parent   = $parent;
         $this->localKey = $localKey;
+        $this->limit    = $limit;
 
         $this->addConstraints();
     }
@@ -42,6 +48,10 @@ class HasMany
 
         // Sometimes it's just an id and not an array
         $ids = is_array($ids) ? $ids : [$ids];
+
+        if ($this->limit > -1) {
+            $ids = array_slice($ids, 0, $this->limit);
+        }
 
         $this->query->ids($ids);
     }

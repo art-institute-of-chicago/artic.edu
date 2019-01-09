@@ -11,6 +11,7 @@ use App\Models\Behaviors\HasMediasApi;
 class Artwork extends BaseApiModel
 {
     const RELATED_MULTIMEDIA = 100;
+    const EXTRA_IMAGES_LIMIT = 9;
 
     use HasMediasApi;
 
@@ -186,7 +187,7 @@ class Artwork extends BaseApiModel
 
     public function extraImages()
     {
-        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids');
+        return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids', self::EXTRA_IMAGES_LIMIT);
     }
 
     public function allImages()
@@ -199,10 +200,14 @@ class Artwork extends BaseApiModel
         }
 
         return collect($this->extraImages)->map(function ($image) {
-            $img = $image->imageFront();
-            $img['credit'] = ($image->copyright_notice ?? $this->getImageCopyright());
-            $img['creditUrl'] = ($image->copyright_notice ? null : $this->getImageCopyrightUrl());
-            return $img;
+            if ($image && is_object($image)) {
+                $img = $image->imageFront();
+
+                $img['credit'] = ($image->copyright_notice ?? $this->getImageCopyright());
+                $img['creditUrl'] = ($image->copyright_notice ? null : $this->getImageCopyrightUrl());
+                return $img;
+            }
+            return false;
         })
         ->prepend($main)
         ->reject(function ($name) {
