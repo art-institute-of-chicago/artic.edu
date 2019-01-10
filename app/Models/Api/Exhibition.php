@@ -70,7 +70,11 @@ class Exhibition extends BaseApiModel
     public function getDateStartAttribute()
     {
         if (!empty($this->aic_start_at)) {
-            return new Carbon($this->aic_start_at);
+            if ($this->public_start_date !== null) // strange, isset didn't work?
+            {
+                return $this->public_start_date;
+            }
+            return (new Carbon($this->aic_start_at))->startOfDay();
         }
 
     }
@@ -94,7 +98,7 @@ class Exhibition extends BaseApiModel
     public function getIsNowOpenAttribute()
     {
         if (!empty($this->dateStart) && !empty($this->dateEnd)) {
-            return Carbon::now()->between($this->dateStart->startOfDay(), $this->dateStart->startOfDay()->addWeeks(2));
+            return Carbon::now()->between($this->dateStart, $this->dateStart->addWeeks(2));
         }
 
     }
@@ -105,7 +109,7 @@ class Exhibition extends BaseApiModel
         if (empty($this->aic_end_at)) {
             if (isset($this->aic_start_at)) {
                 if ($this->dateStart->year > 2010) {
-                    return Carbon::now()->gt($this->dateStart->startOfDay());
+                    return Carbon::now()->gt($this->dateStart);
                 }
             }
         }
