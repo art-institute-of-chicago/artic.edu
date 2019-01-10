@@ -539,7 +539,7 @@ class Search extends BaseApiModel
                 'must' => [
                     0 => [
                         'range' => [
-                            'start_at' => [
+                            'aic_start_at' => [
                                 'gte' => 'now',
                             ],
                         ],
@@ -559,7 +559,7 @@ class Search extends BaseApiModel
                 'must' => [
                     0 => [
                         'range' => [
-                            'end_at' => [
+                            'aic_end_at' => [
                                 'lte' => 'now',
                             ],
                         ],
@@ -580,7 +580,7 @@ class Search extends BaseApiModel
                     // ...be a past exhibition
                     [
                         'range' => [
-                            'end_at' => [
+                            'aic_end_at' => [
                                 'lte' => 'now',
                             ],
                         ],
@@ -588,7 +588,7 @@ class Search extends BaseApiModel
                     // ...be a current exhibition
                     [
                         'range' => [
-                            'start_at' => [
+                            'aic_start_at' => [
                                 'lte' => 'now',
                                 'boost' => 2,
                             ],
@@ -646,7 +646,7 @@ class Search extends BaseApiModel
     {
         $params = [
             "sort" => [
-                'start_at' => $direction
+                'aic_start_at' => $direction
             ]
         ];
 
