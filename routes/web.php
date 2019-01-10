@@ -163,6 +163,7 @@ Route::get('enews', function () {
 });
 // Digital labels
 Route::name('digitalLabels.show')->get('/digital-labels/{id}/{slug?}', 'DigitalLabelsController@show');
+Route::name('digitalLabels.show')->get('/digital-labels', 'DigitalLabelsController@index');
 
 
 // Feed routes

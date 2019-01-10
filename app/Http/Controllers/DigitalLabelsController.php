@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Models\Page;
 use App\Repositories\Api\DigitalLabelRepository;
 use App\Repositories\EventRepository;
+use App\Models\DigitalLabel;
 use Carbon\Carbon;
 
 class DigitalLabelsController extends FrontController
@@ -32,35 +35,36 @@ class DigitalLabelsController extends FrontController
         parent::__construct();
     }
 
-    // public function index()
-    // {
-    //     // NOTE: Naming conventions for the CMS browsers might be counterintuitive (for backwards compatibility).
-    //     //
-    //     // exhibitionsExhibitions: Featured exhibitions
-    //     // exhibitionsCurrent: Current exhibitions listing
-    //     // exhibitionsUpcoming: Featured upcoming exhibitions
-    //     // exhibitionsUpcomingListing: Upcoming exhibitions listing.
+public function index(Request $request)
+    {
+        $items = DigitalLabel::published()->paginate();
+        $title = 'Digital labels';
+        $subNav = [
+            ['label' => $title, 'href' => route('digitalLabels.show'), 'active' => true]
+        ];
 
-    //     $this->seo->setTitle('Digital Labels');
-    //     $this->seo->setDescription("Now on view—explore the Art Institute's current and upcoming exhibits to plan your visit.");
+        $nav = [
+            ['label' => 'Collection', 'href' => route('collection'), 'links' => $subNav]
+        ];
 
-    //     // $page = Page::forType('Digital Labels')->with('apiElements')->first();
+        $crumbs = [
+            ['label' => 'The Collection', 'href' => route('collection')],
+            ['label' => $title, 'href' => '']
+        ];
 
-    //     $collection = $page->apiModels('digitalLabels', 'Digital Labels');
-  
-    //     // $featured = $upcoming ? $page->apiModels('digitalLabels', 'Digital Labels') : $page->apiModels('digitalLabels', 'Digital Labels');
+        $view_data = [
+            'title' => $title,
+            'subNav' => $subNav,
+            'nav' => $nav,
+            "breadcrumb" => $crumbs,
+            'wideBody' => true,
+            'filters' => null,
+            'listingCountText' => 'Showing '.$items->total().' digital labels',
+            'listingItems' => $items,
+        ];
 
-    //     return view('site.digitalLabels', [
-    //         // 'page' => $page,
-    //         'collection' => $collection,
-    //         // 'featured' => $featured,
-    //     ]);
-    // }
-
-    // public function upcoming()
-    // {
-    //     return $this->index(true);
-    // }
+        return view('site.genericPage.index', $view_data);
+    }
 
     protected function show($id, $slug = null)
     {

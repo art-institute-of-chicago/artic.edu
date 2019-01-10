@@ -118,7 +118,7 @@
                         @component('components.molecules._m-listing----generic-row')
                             @slot('variation', 'm-listing--generic m-listing--row')
                             @slot('item', $item)
-                            @slot('image', $item->imageFront('listing'))
+                            @slot('image', $item->imageFront('listing') ?? $item->imageFront('hero'))
                             @slot('hideImage', $hideImage ?? null)
                             @slot('imageSettings', array(
                                 'fit' => 'crop',
