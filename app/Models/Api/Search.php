@@ -539,7 +539,7 @@ class Search extends BaseApiModel
                 'must' => [
                     0 => [
                         'range' => [
-                            'start_at' => [
+                            'aic_start_at' => [
                                 'gte' => 'now',
                             ],
                         ],
@@ -559,7 +559,7 @@ class Search extends BaseApiModel
                 'must' => [
                     0 => [
                         'range' => [
-                            'end_at' => [
+                            'aic_end_at' => [
                                 'lte' => 'now',
                             ],
                         ],
@@ -577,30 +577,26 @@ class Search extends BaseApiModel
             'bool' => [
                 // Without a must clause, one of these must be true:
                 'should' => [
-                    // ...be a past exhibition
+                    // ...has already ended
                     [
                         'range' => [
-                            'end_at' => [
-                                'lte' => 'now',
+                            'aic_end_at' => [
+                                'lte' => 'now/d',
                             ],
                         ],
                     ],
-                    // ...be a current exhibition
+                    // ...started before 2010
                     [
                         'range' => [
-                            'start_at' => [
-                                'lte' => 'now',
-                                'boost' => 2,
+                            'aic_start_at' => [
+                                'lte' => '2010',
                             ],
                         ],
                     ],
-                    // ...be a featured exhibition
+                    // ...be published
                     [
                         'term' => [
-                            'is_featured' => [
-                                'value' => true,
-                                'boost' => 2,
-                            ],
+                            'is_published' => true,
                         ],
                     ],
                 ],
@@ -646,7 +642,7 @@ class Search extends BaseApiModel
     {
         $params = [
             "sort" => [
-                'start_at' => $direction
+                'aic_start_at' => $direction
             ]
         ];
 

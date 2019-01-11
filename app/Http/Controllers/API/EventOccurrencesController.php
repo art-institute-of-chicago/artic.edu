@@ -30,7 +30,9 @@ class EventOccurrencesController extends BaseController
             return $this->eventRepository->getEventsFiltered(
                 Carbon::now(), Carbon::tomorrow()->addMonths(6),
                 null, null, null, null,
-                $limit
+                $limit,
+                null,
+                true
             );
 
         });
