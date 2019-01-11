@@ -577,30 +577,26 @@ class Search extends BaseApiModel
             'bool' => [
                 // Without a must clause, one of these must be true:
                 'should' => [
-                    // ...be a past exhibition
+                    // ...has already ended
                     [
                         'range' => [
                             'aic_end_at' => [
-                                'lte' => 'now',
+                                'lte' => 'now/d',
                             ],
                         ],
                     ],
-                    // ...be a current exhibition
+                    // ...started before 2010
                     [
                         'range' => [
                             'aic_start_at' => [
-                                'lte' => 'now',
-                                'boost' => 2,
+                                'lte' => '2010',
                             ],
                         ],
                     ],
-                    // ...be a featured exhibition
+                    // ...be published
                     [
                         'term' => [
-                            'is_featured' => [
-                                'value' => true,
-                                'boost' => 2,
-                            ],
+                            'is_published' => true,
                         ],
                     ],
                 ],
