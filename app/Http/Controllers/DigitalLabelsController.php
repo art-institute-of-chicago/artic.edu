@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Repositories\Api\DigitalLabelRepository;
 use App\Repositories\EventRepository;
 use Carbon\Carbon;
+use App\Models\Article;
 
 class DigitalLabelsController extends FrontController
 {
@@ -63,8 +64,14 @@ class DigitalLabelsController extends FrontController
         $this->seo->setDescription($item->meta_description ?: $item->list_description);
         $this->seo->setImage($item->imageFront('hero'));
 
+        $articles = Article::published()
+                ->orderBy('date', 'desc')
+                ->paginate(4);
+
         return view('site.digitalLabelDetail', [
+            'contrastHeader' => true,
             'item' => $item,
+            'furtherReading' => $articles,
             'canonicalUrl' => route('digitalLabels.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
         ]);
     }
