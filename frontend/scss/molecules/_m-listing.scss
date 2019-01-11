@@ -1763,8 +1763,13 @@
 }
 
 // variant `m-listing` that expects the image to be on the left, not the right, and optionally absent
+.m-listing--rtl {
+  align-self: flex-start;
+}
+
 .m-listing--rtl .m-listing__link {
   flex-flow: row-reverse wrap;
+  max-width: 100%;
 }
 
 .m-listing--rtl .m-listing__title {
@@ -1787,12 +1792,15 @@
 }
 
 .m-listing--rtl .m-listing__img {
-  margin-right: colspan(0.5);
-
   margin-top: 0;
 
-  @include breakpoint('medium+') {
+  @include breakpoint('medium-') {
+    width: 100%;
+  }
+
+  @include breakpoint('large+') {
     @include tucked-margin-top($f-secondary, ('xsmall': 36));
+    margin-right: colspan(0.5);
   }
 }
 
