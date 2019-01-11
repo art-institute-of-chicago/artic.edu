@@ -89,9 +89,6 @@ class EventRepository extends ModuleRepository
     {
         $query = $this->model->newQuery();
 
-        // Do not show private events
-        $query->notPrivate();
-
         // Do not show draft events
         $query->published();
 
