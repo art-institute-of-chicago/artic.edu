@@ -599,6 +599,15 @@ class Search extends BaseApiModel
                             'is_published' => true,
                         ],
                     ],
+                    // ...be featured
+                    [
+                        'term' => [
+                            'is_featured' => [
+                                'value' => true,
+                                'boost' => 2,
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ];
