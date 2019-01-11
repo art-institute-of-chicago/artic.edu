@@ -85,9 +85,14 @@ class EventRepository extends ModuleRepository
     }
 
     // TODO: Consider defaulting $page to 1?
-    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = null)
+    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = null, $private = false)
     {
         $query = $this->model->newQuery();
+
+        if (!$private) {
+            // Do not show private events
+            $query->notPrivate();
+        }
 
         // Do not show draft events
         $query->published();
