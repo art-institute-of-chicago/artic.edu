@@ -55,3 +55,4 @@ export { default as mediaPlayPauseVideo } from './mediaPlayPauseVideo';
 export { default as recaptcha } from './recaptcha';
 export { default as limitSearch } from './limitSearch';
 export { default as searchBarBlock } from './searchBarBlock';
+export { default as closerLook } from './closerLook';

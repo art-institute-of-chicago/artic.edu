@@ -52,6 +52,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--close-dark">
     <use xlink:href="#icon--close-dark"></use>
   </svg>
+  <svg class="icon--closer_look">
+    <use xlink:href="#icon--closer_look"></use>
+  </svg>
   <svg class="icon--download--24">
     <use xlink:href="#icon--download--24"></use>
   </svg>
@@ -271,6 +274,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--close-dark {
   width: 16px;
   height: 16px;
+}
+
+.icon--closer_look {
+  width: 44px;
+  height: 44px;
 }
 
 .icon--download--24 {
