@@ -71,8 +71,8 @@ class ExhibitionsController extends FrontController
     {
         $item = $this->apiRepository->getById((Integer) $id, ['apiElements']);
 
-        // If the exhibition has not ended, check if its augmented model is published before showing
-        if (Carbon::now()->lt($item->dateEnd) && !$item->published)
+        // If the exhibition has not started or not ended, check if its augmented model is published before showing
+        if ((Carbon::now()->lt($item->dateStart) || Carbon::now()->lt($item->dateEnd)) && !$item->published)
         {
             abort(404);
         }
