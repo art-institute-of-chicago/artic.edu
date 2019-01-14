@@ -593,18 +593,26 @@ class Search extends BaseApiModel
                             ],
                         ],
                     ],
-                    // ...be published
                     [
-                        'term' => [
-                            'is_published' => true,
-                        ],
-                    ],
-                    // ...be featured
-                    [
-                        'term' => [
-                            'is_featured' => [
-                                'value' => true,
-                                'boost' => 2,
+                        'bool' => [
+                            'must' => [
+                                // ...be published
+                                [
+                                    'term' => [
+                                        'is_published' => true,
+                                    ],
+                                ],
+                            ],
+                            'should' => [
+                                // ...and ideally, be featured
+                                [
+                                    'term' => [
+                                        'is_featured' => [
+                                            'value' => true,
+                                            'boost' => 2,
+                                        ],
+                                    ],
+                                ],
                             ],
                         ],
                     ],
