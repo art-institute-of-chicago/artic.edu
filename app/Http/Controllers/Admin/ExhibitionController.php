@@ -46,6 +46,8 @@ class ExhibitionController extends BaseApiController
             'field' => 'date',
             'present' => true,
             'optional' => false,
+            'sort' => true,
+            'sortKey' => 'aic_start_at',
         ],
     ];
 
