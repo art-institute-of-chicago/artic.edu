@@ -54,6 +54,12 @@ class ArticlesPublicationsController extends FrontController
             'digitalPublications' => [
                 'items' => $page->digitalPublications
             ],
+            'digitalLabels' => [
+                'items' =>  $page->apiModels('digitalLabels', 'DigitalLabel'),
+            ],
+            'digitalCatalogs' => [
+                'items' => $page->digitalCatalogs
+            ],
             'printedPublications' => [
                 'intro' => $page->present()->printed_publications_intro,
                 'items' => $page->printedPublications
