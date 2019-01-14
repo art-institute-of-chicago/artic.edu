@@ -82,7 +82,7 @@ class Artwork extends AbstractModel
                         break;
                      case 'sidebarDigitalLabels':
                         $item = $this->apiModels('sidebarDigitalLabels', 'DigitalLabel')->first();
-                        $type = 'digital-label';
+                        $type = 'LABEL';
                         break;
                 }
 
