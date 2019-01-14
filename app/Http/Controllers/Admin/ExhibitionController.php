@@ -13,7 +13,7 @@ class ExhibitionController extends BaseApiController
     protected $previewView = 'site.exhibitionDetail';
 
     protected $indexOptions = [
-        'publish' => false,
+        'publish' => true,
         'bulkEdit' => false,
         'create' => false,
         'permalink' => true,
