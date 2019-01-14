@@ -724,10 +724,22 @@
           @slot('cols_large','4')
           @slot('cols_xlarge','4')
           @foreach ($digitalLabels as $item)
-              @component('components.molecules._m-listing----generic')
-                  @slot('item', $item)
-                  @slot('hideImage', true)
-              @endcomponent
+            @component('components.molecules._m-listing----label')
+                @slot('item', $item)
+                @slot('image', $item->imageFront('hero'))
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                            'xsmall' => '216px',
+                            'small' => '216px',
+                            'medium' => '18',
+                            'large' => '13',
+                            'xlarge' => '13',
+                    )),
+                ))              
+            @endcomponent
           @endforeach
         @endcomponent
 
@@ -740,9 +752,21 @@
             @slot('cols_xlarge','4')
 
             @foreach ($digitalLabels as $item)
-                @component('components.molecules._m-listing----generic')
+                @component('components.molecules._m-listing----label')
                     @slot('item', $item)
-                    @slot('hideImage', true)
+                    @slot('image', $item->imageFront('hero'))
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600),
+                        'sizes' => aic_imageSizes(array(
+                                'xsmall' => '216px',
+                                'small' => '216px',
+                                'medium' => '18',
+                                'large' => '13',
+                                'xlarge' => '13',
+                        )),
+                    ))              
                 @endcomponent
             @endforeach
         @endcomponent
