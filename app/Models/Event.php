@@ -68,6 +68,8 @@ class Event extends Model
         'meta_title',
         'meta_description',
         'search_tags',
+        'publish_start_date',
+        'publish_end_date',
     ];
 
     protected $casts = [
@@ -148,7 +150,7 @@ class Event extends Model
         'is_registration_required'
     ];
 
-    public $dates = ['date', 'date_end', 'migrated_at'];
+    public $dates = ['date', 'date_end', 'migrated_at', 'publish_start_date', 'publish_end_date'];
 
     public $mediasParams = [
         'hero' => [

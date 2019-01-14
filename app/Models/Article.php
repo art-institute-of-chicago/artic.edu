@@ -41,10 +41,11 @@ class Article extends Model implements Feedable
         'is_boosted',
         'migrated_node_id',
         'migrated_at',
-        'migrated_at',
         'citations',
         'meta_title',
         'meta_description',
+        'publish_start_date',
+        'publish_end_date',
     ];
 
     public $slugAttributes = [
@@ -63,7 +64,7 @@ class Article extends Model implements Feedable
 
     public $checkboxes = ['published', 'is_boosted'];
 
-    public $dates = ['date', 'migrated_at'];
+    public $dates = ['date', 'migrated_at', 'publish_start_date', 'publish_end_date'];
 
     public $mediasParams = [
         'hero' => [

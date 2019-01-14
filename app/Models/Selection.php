@@ -28,6 +28,8 @@ class Selection extends Model
         'hero_caption',
         'meta_title',
         'meta_description',
+        'publish_start_date',
+        'publish_end_date',
     ];
 
     public $slugAttributes = [
@@ -39,6 +41,8 @@ class Selection extends Model
 
     // those fields get auto set to false if not submited
     public $checkboxes = ['published'];
+
+    public $dates = ['publish_start_date', 'publish_end_date'];
 
     public $mediasParams = [
         'hero' => [
