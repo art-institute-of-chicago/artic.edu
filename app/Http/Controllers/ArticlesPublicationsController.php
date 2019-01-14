@@ -13,7 +13,18 @@ class ArticlesPublicationsController extends FrontController
         $page = Page::forType('Articles and Publications')->first();
         $artIdeasPage = Page::forType('Art and Ideas')->first();
 
-        $articles = $page->articles;
+        // $articles = $page->articles;
+
+        $articles = $page->getRelatedWithApiModels("featured_items", [
+            'digitalLabels' => [
+                'apiModel' => 'App\Models\Api\DigitalLabel',
+                'moduleName' => 'digitalLabels',
+            ],   
+        ], [ 
+            'articles' => false,
+            'digitalLabels' => true
+        ]) ?? null;
+
         $featureHero = $articles->shift();
 
         $this->seo->setTitle('Publications');

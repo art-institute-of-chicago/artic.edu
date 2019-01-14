@@ -33,7 +33,7 @@
 
             <div class="o-feature-plus-4">
                 @if ($featureHero)
-                @component('components.molecules._m-listing----article')
+                @component('components.molecules._m-listing----' . $featureHero->type)
                     @slot('tag', 'div')
                     @slot('titleFont', 'f-headline-editorial')
                     @slot('captionFont', 'f-body-editorial')
@@ -58,7 +58,7 @@
                 <ul class="o-feature-plus-4__items-1" aria-labelledby="h-featured-plus-1">
                 @foreach ($features as $editorial)
                     @if ($loop->index < 2)
-                        @component('components.molecules._m-listing----article-minimal')
+                        @component('components.molecules._m-listing----' . $editorial->type . '-minimal')
                             @slot('item', $editorial)
                             @slot('imageSettings', array(
                                 'fit' => 'crop',
@@ -80,7 +80,7 @@
                 <ul class="o-feature-plus-4__items-2" aria-labelledby="h-featured-plus-2">
                 @foreach ($features as $editorial)
                     @if ($loop->index > 1)
-                        @component('components.molecules._m-listing----article-minimal')
+                        @component('components.molecules._m-listing----' . $editorial->type . '-minimal')
                             @slot('item', $editorial)
                             @slot('imageSettings', array(
                                 'fit' => 'crop',
