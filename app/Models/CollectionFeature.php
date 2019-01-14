@@ -69,7 +69,6 @@ class CollectionFeature extends AbstractModel
 
         $item->trackingTitle = getUtf8Slug($item->title);
 
-        // dd($item);
         return $item;
     }
 

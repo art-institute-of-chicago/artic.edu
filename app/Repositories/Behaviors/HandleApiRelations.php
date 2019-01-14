@@ -126,33 +126,16 @@ trait HandleApiRelations
     {   
         $results = collect();
 
-        // dd($object);
-
         $typedFormFields = $object->relatedItems
             ->where('browser_name', $browser_name)
             ->groupBy('related_type')
             ->map(function ($items, $type) use($apiModelsDefinitions, $browser_name, $typeUsesApi) {
 
                 if ($typeUsesApi[$type]) {
-                    // Get all related id's
-                    $relatedIds = $items->pluck('related_id')->toArray();
-                     // Get all datahub id's
-                    $datahubIds = \App\Models\ApiRelation::whereIn('id', $relatedIds)->pluck('datahub_id')->toArray();
-
-                    
-                    // Use those to load API records
+                    $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions);
+                    $localApiMapping = $this->getLocalApiMapping($items, $apiElements);
                     $apiModelDefinition = $apiModelsDefinitions[$type];
-                    $apiModel = $apiModelDefinition['apiModel'];
-                    $apiElements = $apiModel::query()->ids($datahubIds)->get();
-    
-                    // Find locally selected objects
-                    $localApiMapping = $items->filter(function($relatedElement) use ($apiElements) {
-                        $apiRelationElement = \App\Models\ApiRelation::where('id', $relatedElement->related_id)->first();
-                        $result = $apiElements->where('id', $apiRelationElement->datahub_id)->first();
-                        $result->position = $relatedElement->position;
-                        return $result;
-                    });
-
+                    
                     return $localApiMapping->map(function ($relatedElement) use ($apiModelDefinition, $apiElements) {
                         $data = [];
                         // Get the API elements and use them to build the browser elements

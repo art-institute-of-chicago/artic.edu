@@ -162,8 +162,8 @@ Route::get('enews', function () {
     return redirect()->route('forms.email-subscriptions', request()->all());
 });
 // Digital labels
+Route::name('digitalLabels')->get('/digital-labels', 'DigitalLabelsController@index');
 Route::name('digitalLabels.show')->get('/digital-labels/{id}/{slug?}', 'DigitalLabelsController@show');
-Route::name('digitalLabels.show')->get('/digital-labels', 'DigitalLabelsController@index');
 
 
 // Feed routes
@@ -173,6 +173,8 @@ Route::feeds();
 Route::name('about.press.art-institute-images')->middleware(['httpauth'])->get('/press/art-institute-images', function() {
     return App::make(App\Http\Controllers\GenericPagesController::class)->show('/press/art-institute-images');
 });
+
+Route::get('blablabla')->name('blablabla');
 
 // Generic Page
 Route::get('{any}', ['as' => 'genericPages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');

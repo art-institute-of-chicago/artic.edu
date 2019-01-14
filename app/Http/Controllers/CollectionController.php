@@ -95,7 +95,15 @@ class CollectionController extends BaseScopedController
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
 
-        $featuredArticles = $page->getRelated("featured_items") ?? null;
+        $featuredArticles = $page->getRelatedWithApiModels("featured_items", [
+            'digitalLabels' => [
+                'apiModel' => 'App\Models\Api\DigitalLabel',
+                'moduleName' => 'digitalLabels',
+            ],   
+        ], [ 
+            'articles' => false,
+            'digitalLabels' => true
+        ]) ?? null;
         
         if ($featuredArticles->count()) {
             $featuredArticlesHero = $featuredArticles->shift();

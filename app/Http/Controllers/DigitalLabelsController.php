@@ -36,12 +36,12 @@ class DigitalLabelsController extends FrontController
         parent::__construct();
     }
 
-public function index(Request $request)
+    public function index(Request $request)
     {
         $items = DigitalLabel::published()->paginate();
         $title = 'Digital labels';
         $subNav = [
-            ['label' => $title, 'href' => route('digitalLabels.show'), 'active' => true]
+            ['label' => $title, 'href' => route('digitalLabels'), 'active' => true]
         ];
 
         $nav = [
@@ -70,13 +70,7 @@ public function index(Request $request)
     protected function show($id, $slug = null)
     {
         $item = $this->apiRepository->getById((Integer) $id, ['apiElements']);
-
-        // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('digitalLabels.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false);
-        if ('/' .request()->path() != $canonicalPath) {
-            return redirect($canonicalPath, 301);
-        }
-
+        
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->list_description);
         $this->seo->setImage($item->imageFront('hero'));
