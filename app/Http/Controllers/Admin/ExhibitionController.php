@@ -6,6 +6,9 @@ use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\Api\ExhibitionRepository;
 use App\Repositories\SiteTagRepository;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\Request;
+
 class ExhibitionController extends BaseApiController
 {
     protected $moduleName = 'exhibitions';
@@ -50,15 +53,27 @@ class ExhibitionController extends BaseApiController
 
     protected $formWith = ['revisions', 'siteTags'];
 
-    protected $defaultOrders = ['title' => 'desc'];
+    protected $defaultOrders;
 
     protected $filters = [];
+
+    public function __construct(Application $app, Request $request)
+    {
+        parent::__construct(...func_get_args());
+
+        if ($this->getRequestFilters()['search'] ?? false) {
+            $this->defaultOrders = ['_score' => 'desc'];
+        } else {
+            $this->defaultOrders = ['aic_start_at' => 'desc'];
+        }
+
+    }
 
     protected function orderScope()
     {
         // Use the default order scope from Twill.
         // Added this as an exception on exhibitions because it's the only API listing that
-        // sorting has been implemented. See the scope on Models\Api\Exhibition
+        // sorting has been implemented. See `scopeOrderBy` on Models\Api\Exhibition
         return ModuleController::orderScope();
     }
 

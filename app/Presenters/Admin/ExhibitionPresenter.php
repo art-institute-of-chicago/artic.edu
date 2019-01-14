@@ -16,6 +16,7 @@ class ExhibitionPresenter extends BasePresenter
 
     // Passed to _m-article-header--* in exhibitionDetail.blade.php
     // Dead code? Template calls ->format on the string returned here
+    // Used in App\Http\Controllers\Admin\ExhibitionController
     public function date()
     {
         $date = "";
