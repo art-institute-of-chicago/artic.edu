@@ -413,7 +413,7 @@
     @endcomponent
 @endif
 
-@if ($item->articles()->count())
+@if ($featuredArticles)
     @component('components.molecules._m-title-bar')
         Further Reading
     @endcomponent
@@ -423,8 +423,8 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($item->articles as $item)
-            @component('components.molecules._m-listing----article')
+        @foreach ($featuredArticles as $item)
+            @component('components.molecules._m-listing----' . $item->type)
                 @slot('item', $item)
                 @slot('imageSettings', array(
                     'fit' => 'crop',

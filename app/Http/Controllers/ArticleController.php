@@ -123,9 +123,20 @@ class ArticleController extends FrontController
             $item->topics = $item->categories;
         }
 
+        $featuredArticles = $item->getRelatedWithApiModels("further_reading_items", [
+            'digitalLabels' => [
+                'apiModel' => 'App\Models\Api\DigitalLabel',
+                'moduleName' => 'digitalLabels',
+            ],   
+        ], [ 
+            'articles' => false,
+            'digitalLabels' => true
+        ]) ?? null;
+        
         return view('site.articleDetail', [
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
+            'featuredArticles'     => $featuredArticles ?? null,
             'canonicalUrl' => route('articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
     }
