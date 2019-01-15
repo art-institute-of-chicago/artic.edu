@@ -10,7 +10,6 @@ const closerLook = function(container) {
   const $a17 = document.getElementById("a17");
   let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   let ticking = false;
-  let previousIsStuck = false;
 
   function update() {
     ticking = false;
@@ -20,8 +19,6 @@ const closerLook = function(container) {
     );
     const fromBottom = window.innerHeight * -1 + diff;
     const isStuck = fromBottom <= 0;
-
-    if (previousIsStuck === isStuck) return;
 
     document.documentElement.classList.toggle('s-closer-look-footer-stuck', isStuck);
 
@@ -33,8 +30,6 @@ const closerLook = function(container) {
     });
 
     $a17.style.minHeight = `${container.offsetHeight + elementsOffsetHeight}px`;
-
-    previousIsStuck = isStuck;
   }
 
   function requestTick() {
