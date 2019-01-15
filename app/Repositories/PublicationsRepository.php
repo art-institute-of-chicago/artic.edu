@@ -32,8 +32,10 @@ class PublicationsRepository
 
             // If the section represents a pub we haven't found, retrieve it
             $dc = DigitalCatalog::find($section->generic_page_id);
-            $dc->addSection($section);
-            $results->merge([$dc]);
+            if ($dc) {
+                $dc->addSection($section);
+                $results->merge([$dc]);
+            }
         }
 
         // Map sections to links for display in Global search results
