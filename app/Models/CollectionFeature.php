@@ -41,12 +41,15 @@ class CollectionFeature extends AbstractModel
         $item = $item ?? $this->selections()->first();
         $item = $item ?? $this->apiModels('artworks', 'Artwork')->first();
 
+        if (!$item) {
+            return null;
+        }
+
         if ($item->type == 'artwork') {
             $item->subtype = 'Artwork';
         }
 
         $item->trackingTitle = getUtf8Slug($item->title);
-
 
         return $item;
     }
