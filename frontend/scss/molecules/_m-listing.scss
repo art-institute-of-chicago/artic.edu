@@ -1935,5 +1935,17 @@ $f-audio-subtitle: generate-font-obj(
   left: 0;
   height: 1px;
   width: 100%;
-  background: $color__black--25;
+  background: $color__rules--primary;
+}
+
+.m-listing--label.o-blocks__block .m-listing__meta {
+  min-height: 139px;
+}
+
+.m-listing--label.o-blocks__block .f-tag {
+  margin-top: 20px;
+}
+
+.m-listing--label.o-blocks__block .f-list-4 {
+  margin-top: 15px;
 }

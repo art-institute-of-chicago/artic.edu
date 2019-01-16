@@ -1,5 +1,5 @@
 @php
-    
+
 $ids = $block->browserIds('digitalLabels');
 $digitalLabel = \App\Models\Api\DigitalLabel::query()->ids($ids)->get()->first();
 
