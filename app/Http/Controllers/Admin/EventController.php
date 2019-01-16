@@ -15,6 +15,10 @@ class EventController extends ModuleController
         'bulkPublish' => true,
     ];
 
+    protected $defaultOrders = [
+        'publish_start_date' => 'desc',
+    ];
+
     protected $indexColumns = [
         'image' => [
             'thumb' => true,
@@ -28,6 +32,14 @@ class EventController extends ModuleController
             'title' => 'Title',
             'field' => 'title',
         ],
+        # The key must equal the field, else sortKey cannot be reached
+        'presentPublishStartDate' => [
+            'title' => 'Publish Date',
+            'field' => 'presentPublishStartDate',
+            'present' => true,
+            'sort' => true,
+            'sortKey' => 'publish_start_date',
+        ],
     ];
 
     protected $featureField = 'landing';
@@ -37,8 +49,6 @@ class EventController extends ModuleController
     protected $formWith = ['revisions', 'dateRules'];
 
     protected $filters = [];
-
-    protected $defaultOrders = [];
 
     protected function indexData($request)
     {
