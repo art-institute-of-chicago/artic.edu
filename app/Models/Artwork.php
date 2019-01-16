@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 
-class Artwork extends Model
+class Artwork extends AbstractModel
 {
     use HasApiModel, HasApiRelations;
 
@@ -40,7 +39,7 @@ class Artwork extends Model
         return $this->belongsToMany('App\Models\Article', 'article_artwork')->withPivot('position')->orderBy('position');
     }
 
-     public function getTrackingSlugAttribute() 
+     public function getTrackingSlugAttribute()
     {
         return $this->title;
     }

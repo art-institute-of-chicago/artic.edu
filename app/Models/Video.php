@@ -6,10 +6,9 @@ use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class Video extends Model
+class Video extends AbstractModel
 {
     use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent;
 

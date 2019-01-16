@@ -6,7 +6,6 @@ use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRecurrentDates;
 use Carbon\Carbon;
@@ -16,7 +15,7 @@ use App\Models\Behaviors\HasApiRelations;
 use Illuminate\Support\Facades\DB;
 use PDO;
 
-class Event extends Model
+class Event extends AbstractModel
 {
     use HasSlug, HasRevisions, HasApiRelations, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable;
 

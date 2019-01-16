@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
 use Carbon\Carbon;
 
-class Hour extends Model
+class Hour extends AbstractModel
 {
     use Transformable;
 

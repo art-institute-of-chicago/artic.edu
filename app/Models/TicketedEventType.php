@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
 
 use App\Models\Behaviors\HasApiModel;
 
-class TicketedEventType extends Model
+class TicketedEventType extends AbstractModel
 {
 
     use HasApiModel;

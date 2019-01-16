@@ -4,10 +4,9 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasTranslation;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class Family extends Model
+class Family extends AbstractModel
 {
     use HasMedias, HasMediasEloquent, HasTranslation;
 

@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
-
-class ApiRelation extends Model
+class ApiRelation extends AbstractModel
 {
     protected $fillable = [
         'datahub_id',

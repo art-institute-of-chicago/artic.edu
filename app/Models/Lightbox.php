@@ -4,9 +4,8 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
-use A17\Twill\Models\Model;
 
-class Lightbox extends Model
+class Lightbox extends AbstractModel
 {
     use HasMedias, HasMediasEloquent;
 

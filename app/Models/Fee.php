@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
 
-class Fee extends Model
+class Fee extends AbstractModel
 {
     protected $fillable = [
         'fee_age_id',

@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasMedias;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class CategoryTerm extends Model
+class CategoryTerm extends AbstractModel
 {
     use HasApiModel, Transformable, HasMedias, HasMediasEloquent, HasApiRelations;
 

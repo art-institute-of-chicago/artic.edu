@@ -6,13 +6,12 @@ use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 use App\Models\Api\Artwork;
 use App\Models\Api\Search;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class Selection extends Model
+class Selection extends AbstractModel
 {
     use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable;
 

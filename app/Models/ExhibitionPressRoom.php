@@ -7,10 +7,9 @@ use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class ExhibitionPressRoom extends Model
+class ExhibitionPressRoom extends AbstractModel
 {
 
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent;

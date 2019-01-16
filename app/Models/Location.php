@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
 use A17\Twill\Models\Behaviors\HasTranslation;
 
-class Location extends Model
+class Location extends AbstractModel
 {
     use Transformable, HasTranslation;
 

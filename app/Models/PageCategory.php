@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 
-class PageCategory extends Model
+class PageCategory extends AbstractModel
 {
     use HasSlug;
 

@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
 
-class DateRule extends Model
+class DateRule extends AbstractModel
 {
     protected $fillable = [
         'start_date',

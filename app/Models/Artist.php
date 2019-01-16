@@ -4,12 +4,11 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class Artist extends Model
+class Artist extends AbstractModel
 {
     use HasSlug, HasApiModel, HasApiRelations, HasMedias, HasMediasEloquent, Transformable;
 
