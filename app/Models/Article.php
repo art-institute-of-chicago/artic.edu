@@ -33,6 +33,7 @@ class Article extends Model implements Feedable
         'title',
         'title_display',
         'heading',
+        'list_description',
         'author',
         'copy',
         'subtype',
@@ -230,7 +231,7 @@ class Article extends Model implements Feedable
            'id' => $this->id,
            'title' => $this->title,
            'date' => $this->present()->date,
-           'summary' => $this->heading ?? 'Article',
+           'summary' => $this->heading ?? $this->list_description ?? 'Article',
            'author' => $this->author ?? 'AIC',
            'updated' => $this->updated_at,
            'link' => route('articles.show', $this)
@@ -287,6 +288,12 @@ class Article extends Model implements Feedable
                 "doc" => "heading",
                 "type" => "string",
                 "value" => function () {return $this->heading;},
+            ],
+            [
+                "name" => "list_description",
+                "doc" => "list_description",
+                "type" => "string",
+                "value" => function () {return $this->list_description;},
             ],
             [
                 "name" => "author",

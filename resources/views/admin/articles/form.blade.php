@@ -49,7 +49,17 @@
         'name' => 'heading',
         'label' => 'Header',
         'maxlength' => 255,
-        'note' => 'Max 255 characters',
+        'note' => 'Max 255 characters. Will be used on the article detail page.',
+        'toolbarOptions' => [
+            'italic'
+        ],
+    ])
+
+    @formField('wysiwyg', [
+        'name' => 'list_description',
+        'label' => 'List Description',
+        'maxlength' => 255,
+        'note' => 'Max 255 characters. Will be used on the article landing and listing pages, and social media.',
         'toolbarOptions' => [
             'italic'
         ],

@@ -31,7 +31,7 @@
                 @slot('title_display', $item->title_display)
             @endcomponent
             <br>
-            <span class="intro {{ $captionFont ?? 'f-caption' }}">{!! truncateStr($item->heading) !!}</span>
+            <span class="intro {{ $captionFont ?? 'f-caption' }}">{!! truncateStr($item->list_description) !!}</span>
             <br>
             <span class="m-listing__meta-bottom">
                 @if ($item->subtype)
