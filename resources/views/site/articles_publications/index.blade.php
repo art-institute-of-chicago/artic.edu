@@ -112,7 +112,8 @@
             @endcomponent
         </section>
 
-        @if($digitalLabels)
+
+        @if(sizeof($digitalLabels['items']) > 1)
             <section>
                 @component('components.molecules._m-title-bar')
                     @slot('links', array(array('label' => 'Browse all digital labels', 'href' => route('digitalLabels'))))
