@@ -1,4 +1,4 @@
-<{{ $tag or 'li' }} class="m-listing m-listing--closer-look m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag or 'li' }} class="m-listing m-listing--label m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $href ?? route('digitalLabels.show', $item) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}">
             @if ($item->imageFront('hero'))

@@ -39,13 +39,10 @@ class DigitalLabelsController extends FrontController
     public function index(Request $request)
     {
         $items = DigitalLabel::published()->paginate();
-        $title = 'Digital labels';
-        $subNav = [
-            ['label' => $title, 'href' => route('digitalLabels'), 'active' => true]
-        ];
+        $title = 'Closer Looks';
 
         $nav = [
-            ['label' => 'Collection', 'href' => route('collection'), 'links' => $subNav]
+            ['label' => 'Writings', 'href' => route('articles_publications')]
         ];
 
         $crumbs = [
@@ -55,13 +52,13 @@ class DigitalLabelsController extends FrontController
 
         $view_data = [
             'title' => $title,
-            'subNav' => $subNav,
             'nav' => $nav,
             "breadcrumb" => $crumbs,
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' digital labels',
+            'listingCountText' => 'Showing '.$items->total().' items',
             'listingItems' => $items,
+            'type' => 'label'
         ];
 
         return view('site.genericPage.index', $view_data);
@@ -70,7 +67,7 @@ class DigitalLabelsController extends FrontController
     protected function show($id, $slug = null)
     {
         $item = $this->apiRepository->getById((Integer) $id, ['apiElements']);
-        
+
         $this->seo->setTitle($item->meta_title ?: $item->title);
         $this->seo->setDescription($item->meta_description ?: $item->list_description);
         $this->seo->setImage($item->imageFront('hero'));
