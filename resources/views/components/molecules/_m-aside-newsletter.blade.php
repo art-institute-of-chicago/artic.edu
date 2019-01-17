@@ -7,7 +7,7 @@
     <span class="m-aside-newsletter__field">
       <label for="email{{ $rand }}" class="f-secondary">Email address</label>
       {{ csrf_field() }}
-      <input type="hidden" name="list" id="list{{ $rand }}" value="{{ $list ?? 'OptEnews' }}">
+      <input type="hidden" name="list" id="list{{ $rand }}" value="{{ $list ?? '' }}">
       <input type="email" name="email" id="email{{ $rand }}" class="f-secondary" placeholder="{{ $placeholder ?? '' }}">
       <button type="submit" class="{{ $btnFont ?? 'f-buttons' }}" data-gtm-event-category="subscribe" data-gtm-event-action="{{$seo->title}}" data-gtm-event="email">Subscribe</button>
     </span>
