@@ -36,7 +36,7 @@
         'name' => 'hero_caption',
         'label' => 'Hero image Caption',
         'note' => 'Usually used for copyright',
-        'maxlength' => 150,
+        'maxlength' => 255,
         'toolbarOptions' => [
             'italic',
         ],
