@@ -10,8 +10,9 @@ use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use A17\Twill\Repositories\ModuleRepository;
 
 use App\Repositories\Behaviors\HandleApiBlocks;
-use App\Models\DigitalLabel;
 use App\Repositories\Api\BaseApiRepository;
+use App\Models\DigitalLabel;
+use Artisan;
 
 class DigitalLabelRepository extends BaseApiRepository
 {
@@ -22,6 +23,13 @@ class DigitalLabelRepository extends BaseApiRepository
     public function __construct(DigitalLabel $model)
     {
         $this->model = $model;
+    }
+
+    public function afterSave($object, $fields)
+    {
+        Artisan::call('update:content-bundles', [
+            'datahub_id' => $object->datahub_id
+        ]);
     }
 
 }

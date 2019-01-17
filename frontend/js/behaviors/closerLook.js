@@ -57,10 +57,10 @@ const closerLook = function(container) {
 
     const props = {
       contentBundle: JSON.parse(
-        container.querySelector("[data-closerLook-contentBundle]").innerHTML
+        document.querySelector("[data-closerLook-contentBundle]").innerHTML
       ),
       assetLibrary: JSON.parse(
-        container.querySelector("[data-closerLook-assetLibrary]").innerHTML
+        document.querySelector("[data-closerLook-assetLibrary]").innerHTML
       )
     };
 
