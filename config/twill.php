@@ -66,7 +66,7 @@ return [
                 'component' => 'a17-block-media_embed',
             ],
             'membership_banner' => [
-                'title' => 'Membership banner',
+                'title' => 'Banner',
                 'icon' => 'text',
                 'component' => 'a17-block-membership_banner',
             ],
