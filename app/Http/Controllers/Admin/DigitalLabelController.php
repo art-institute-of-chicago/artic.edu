@@ -33,6 +33,10 @@ class DigitalLabelController extends BaseApiController
             'title' => 'Title',
             'field' => 'title',
         ],
+        'sub_title' => [
+            'title' => 'Subtitle',
+            'field' => 'sub_title',
+        ],
     ];
 
     protected $formWith = ['revisions'];

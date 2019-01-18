@@ -7,6 +7,10 @@
         'name' => 'hero',
         'note' => 'Minimum image width 3000px'
     ])
+    @formField('input', [
+        'label' => 'Subtitle',
+        'name' => 'sub_title',
+    ])
 @stop
 
 @section('fieldsets')

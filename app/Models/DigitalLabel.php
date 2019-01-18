@@ -28,7 +28,8 @@ class DigitalLabel extends Model
         'content',
         'published',
         'title',
-        'datahub_id'
+        'datahub_id',
+        'sub_title'
     ];
 
     public $slugAttributes = [
