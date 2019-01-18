@@ -30,6 +30,8 @@ class DigitalLabelRepository extends BaseApiRepository
         Artisan::call('update:content-bundles', [
             'datahub_id' => $object->datahub_id
         ]);
+
+        parent::afterSave($object, $fields);
     }
 
 }
