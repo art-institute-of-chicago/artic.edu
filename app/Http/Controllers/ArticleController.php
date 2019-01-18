@@ -26,7 +26,7 @@ class ArticleController extends FrontController
         $page = Page::forType('Articles')->with('articlesArticles')->first();
         $heroArticle = $page->articlesArticles->first();
         
-        $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
+        // $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
 
         if (request('category') !== 'digital-labels') {
             $articles = Article::published()
@@ -34,19 +34,13 @@ class ArticleController extends FrontController
                 ->whereNotIn('id', $page->articlesArticles->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->paginate(self::ARTICLES_PER_PAGE);
-            // TODO add digital labels
-            $digitalLabels = DigitalLabel::query()->getPaginatedModel(self::ARTICLES_PER_PAGE, \App\Models\Api\DigitalLabel::SEARCH_FIELDS);
-
-            $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
         } else {
             // Retrieve digital label entires
-            $articles = DigitalLabel::query()->getPaginatedModel(self::ARTICLES_PER_PAGE, \App\Models\Api\DigitalLabel::SEARCH_FIELDS);
+            $digitalLabelsCount = DigitalLabel::query('published', true)->paginate()->count();
+            $articles = DigitalLabel::query('published', true)->paginate(self::ARTICLES_PER_PAGE);
+            // $articles = new \Illuminate\Pagination\LengthAwarePaginator($digitalLabels, count($digitalLabels), self::ARTICLES_PER_PAGE);
         }
         
-        // $digitaLabels = DigitalLabel::published()
-            // ->whereNotIn('id', $page->digitalLabels->pluck('id'));
-            // ->orderBy('date', 'desc')
-            // ->paginate(self::ARTICLES_PER_PAGE);
 
         // Featured articles are the selected ones if no filters are applied
         // otherwise those are just the first two from the collection
@@ -85,7 +79,7 @@ class ArticleController extends FrontController
             [
                 'label' => 'Digital Labels',
                 'href' => route('articles', ['category' => 'digital-labels']),
-                'active' => empty(request()->all()),
+                'active' => request()->get('category') == 'digital-labels',
                 'ajaxScrollTarget' => 'listing',
             ]
         );
