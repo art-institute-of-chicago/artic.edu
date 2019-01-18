@@ -77,7 +77,7 @@
           @slot('type', $item->featuredRelated['type'])
           @slot('items', $item->featuredRelated['items'])
           @slot('titleFont', "f-list-1")
-          @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
+          @slot('itemsMolecule', '_m-listing----'.strtolower($item->featuredRelated['type']))
           @slot('imageSettings', array(
               'fit' => 'crop',
               'ratio' => '16:9',
