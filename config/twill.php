@@ -192,6 +192,7 @@ return [
                 'title' => 'Accordion Item',
                 'trigger' => 'Add accordion item',
                 'component' => 'a17-block-accordion_item',
+                'max' => 20,
             ],
             'list_item' => [
                 'title' => 'List Item',
