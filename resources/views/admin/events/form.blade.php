@@ -80,12 +80,12 @@
     ])
 
     @formField('block_editor', [
-        'blocks' => [
+        'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'newsletter_signup_inline', 'timeline', 'link', 'shop_items',
             'artworks', 'artwork',
             'hr', 'split_block',
-        ]
+        ])
     ])
 @stop
 

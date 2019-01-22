@@ -25,6 +25,71 @@ return [
         'block_single_layout' => 'layouts.block',
         'block_preview_render_childs' => false,
         'blocks' => [
+            'paragraph' => [
+                'title' => 'Paragraph',
+                'icon' => 'text',
+                'component' => 'a17-block-paragraph',
+            ],
+            'image' => [
+                'title' => 'Image',
+                'icon' => 'image',
+                'component' => 'a17-block-image',
+            ],
+            'artwork' => [
+                'title' => 'Artwork',
+                'icon' => 'image',
+                'component' => 'a17-block-artwork',
+            ],
+            'split_block' => [
+                'title' => 'Split block',
+                'icon' => 'text',
+                'component' => 'a17-block-split_block',
+            ],
+            'gallery' => [
+                'title' => 'Gallery',
+                'icon' => 'image',
+                'component' => 'a17-block-gallery',
+            ],
+            'artworks' => [
+                'title' => 'Artworks gallery',
+                'icon' => 'image',
+                'component' => 'a17-block-artworks',
+            ],
+            'child_pages' => [
+                'title' => 'Child pages link block',
+                'icon' => 'image',
+                'component' => 'a17-block-child_pages',
+            ],
+            'link' => [
+                'title' => 'Link',
+                'icon' => 'text',
+                'component' => 'a17-block-link',
+            ],
+            'accordion' => [
+                'title' => 'Accordion',
+                'icon' => 'text',
+                'component' => 'a17-block-accordion',
+            ],
+            'list' => [
+                'title' => 'List',
+                'icon' => 'text',
+                'component' => 'a17-block-list',
+            ],
+            'timeline' => [
+                'title' => 'Timeline',
+                'icon' => 'text',
+                'component' => 'a17-block-timeline',
+            ],
+            'video' => [
+                'title' => 'Video',
+                'icon' => 'image',
+                'component' => 'a17-block-video',
+            ],
+            'media_embed' => [
+                'title' => 'Media embed',
+                'icon' => 'text',
+                'component' => 'a17-block-media_embed',
+            ],
             'quote' => [
                 'title' => 'Quote',
                 'icon' => 'text',
@@ -35,121 +100,57 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-hr',
             ],
-            'image' => [
-                'title' => 'Image',
-                'icon' => 'image',
-                'component' => 'a17-block-image',
-            ],
-            'video' => [
-                'title' => 'Video',
-                'icon' => 'image',
-                'component' => 'a17-block-video',
-            ],
-            'accordion' => [
-                'title' => 'Accordion',
-                'icon' => 'text',
-                'component' => 'a17-block-accordion',
-            ],
-            'gallery' => [
-                'title' => 'Gallery',
-                'icon' => 'image',
-                'component' => 'a17-block-gallery',
-            ],
-            'list' => [
-                'title' => 'List',
-                'icon' => 'text',
-                'component' => 'a17-block-list',
-            ],
-            'media_embed' => [
-                'title' => 'Media embed',
-                'icon' => 'text',
-                'component' => 'a17-block-media_embed',
-            ],
             'membership_banner' => [
                 'title' => 'Banner',
                 'icon' => 'text',
                 'component' => 'a17-block-membership_banner',
-            ],
-            'paragraph' => [
-                'title' => 'Paragraph',
-                'icon' => 'text',
-                'component' => 'a17-block-paragraph',
-            ],
-            'citation' => [
-                'title' => 'Citation',
-                'icon' => 'text',
-                'component' => 'a17-block-citation',
-            ],
-            'references' => [
-                'title' => 'References',
-                'icon' => 'text',
-                'component' => 'a17-block-references',
-            ],
-            'timeline' => [
-                'title' => 'Timeline',
-                'icon' => 'text',
-                'component' => 'a17-block-timeline',
-            ],
-            'link' => [
-                'title' => 'Link',
-                'icon' => 'text',
-                'component' => 'a17-block-link',
-            ],
-            'plan_your_visit' => [
-                'title' => 'Plan Your Visit',
-                'icon' => 'text',
-                'component' => 'a17-block-plan_your_visit',
-            ],
-            'newsletter_signup_footer' => [
-                'title' => 'Newsletter signup footer',
-                'icon' => 'text',
-                'component' => 'a17-block-newsletter_signup_footer',
-            ],
-            'newsletter_signup_inline' => [
-                'title' => 'Newsletter signup inline',
-                'icon' => 'text',
-                'component' => 'a17-block-newsletter_signup_inline',
-            ],
-            'footnote' => [
-                'title' => 'Footnote',
-                'icon' => 'text',
-                'component' => 'a17-block-footnote',
-            ],
-            'event' => [
-                'title' => 'Event',
-                'icon' => 'text',
-                'component' => 'a17-block-event',
-            ],
-            'artwork' => [
-                'title' => 'Artwork',
-                'icon' => 'image',
-                'component' => 'a17-block-artwork',
-            ],
-            'artworks' => [
-                'title' => 'Artworks gallery',
-                'icon' => 'image',
-                'component' => 'a17-block-artworks',
             ],
             'shop_items' => [
                 'title' => 'Featured products',
                 'icon' => 'image',
                 'component' => 'a17-block-shop_items',
             ],
-            'child_pages' => [
-                'title' => 'Child pages link block',
-                'icon' => 'image',
-                'component' => 'a17-block-child_pages',
-            ],
-            'split_block' => [
-                'title' => 'Split block',
+            'event' => [
+                'title' => 'Event',
                 'icon' => 'text',
-                'component' => 'a17-block-split_block',
+                'component' => 'a17-block-event',
+            ],
+            'newsletter_signup_inline' => [
+                'title' => 'Newsletter signup inline',
+                'icon' => 'text',
+                'component' => 'a17-block-newsletter_signup_inline',
+            ],
+            'newsletter_signup_footer' => [
+                'title' => 'Newsletter signup footer',
+                'icon' => 'text',
+                'component' => 'a17-block-newsletter_signup_footer',
+            ],
+            'citation' => [
+                'title' => 'Citation',
+                'icon' => 'text',
+                'component' => 'a17-block-citation',
             ],
             'search_bar' => [
                 'title' => 'External search bar',
                 'icon' => 'text',
                 'component' => 'a17-block-search_bar',
             ],
+            'references' => [
+                'title' => 'References',
+                'icon' => 'text',
+                'component' => 'a17-block-references',
+            ],
+            'plan_your_visit' => [
+                'title' => 'Plan Your Visit',
+                'icon' => 'text',
+                'component' => 'a17-block-plan_your_visit',
+            ],
+            'footnote' => [
+                'title' => 'Footnote',
+                'icon' => 'text',
+                'component' => 'a17-block-footnote',
+            ],
+
         ],
         'repeaters' => [
             'admissions' => [
