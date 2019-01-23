@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\EventProgramRepository;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\Request;
+
 class EventController extends ModuleController
 {
     protected $moduleName = 'events';
@@ -13,10 +16,6 @@ class EventController extends ModuleController
     protected $indexOptions = [
         'publish' => true,
         'bulkPublish' => true,
-    ];
-
-    protected $defaultOrders = [
-        'publish_start_date' => 'desc',
     ];
 
     protected $indexColumns = [
@@ -32,14 +31,6 @@ class EventController extends ModuleController
             'title' => 'Title',
             'field' => 'title',
         ],
-        # The key must equal the field, else sortKey cannot be reached
-        'presentPublishStartDate' => [
-            'title' => 'Publish Date',
-            'field' => 'presentPublishStartDate',
-            'present' => true,
-            'sort' => true,
-            'sortKey' => 'publish_start_date',
-        ],
     ];
 
     protected $featureField = 'landing';
@@ -49,6 +40,53 @@ class EventController extends ModuleController
     protected $formWith = ['revisions', 'dateRules'];
 
     protected $filters = [];
+
+    protected $defaultOrders = [
+        'formattedNextOcurrence' => 'desc',
+    ];
+
+    public function __construct(Application $app, Request $request)
+    {
+        parent::__construct(...func_get_args());
+
+        $this->indexColumns['formattedNextOcurrence'] = [
+            'title' => 'Publish Date',
+            'field' => 'formattedNextOcurrence',
+            'present' => true,
+            'sort' => true,
+            'sortKey' => null, // see getIndexItems()
+        ];
+    }
+
+    protected function getIndexItems($scopes = [], $forcePagination = false)
+    {
+        $sortKey = request('sortKey');
+
+        if (isset($sortKey) && $sortKey !== 'formattedNextOcurrence')
+        {
+            return parent::getIndexItems($scopes, $forcePagination);
+        }
+
+        // Extracted from \A17\Twill\Repositories\ModuleRepository::get()
+        $query = $this->repository->with($this->indexWith);
+        $query = $this->repository->filter($query, $scopes);
+
+        // We override the order call to use metas
+        $query->orderBy(
+            \DB::raw('(
+               SELECT `date`
+               FROM `event_metas`
+               WHERE `event_metas`.`event_id` = `events`.`id`
+               ORDER BY `date`
+               LIMIT 1
+            )'),
+            request('sortDir') ?? 'desc'
+        );
+
+        // Forget about $forcePagination here
+        return $query->paginate(request('offset') ?? $this->perPage ?? 50);
+    }
+
 
     protected function indexData($request)
     {
