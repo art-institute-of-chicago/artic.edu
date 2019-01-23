@@ -41,21 +41,25 @@ class EventController extends ModuleController
 
     protected $filters = [];
 
-    protected $defaultOrders = [
-        'formattedNextOcurrence' => 'desc',
-    ];
+    protected $defaultOrders;
 
     public function __construct(Application $app, Request $request)
     {
         parent::__construct(...func_get_args());
 
         $this->indexColumns['formattedNextOcurrence'] = [
-            'title' => 'Publish Date',
+            'title' => 'Event Date',
             'field' => 'formattedNextOcurrence',
             'present' => true,
             'sort' => true,
             'sortKey' => null, // see getIndexItems()
         ];
+
+        if ($this->getRequestFilters()['search'] ?? false) {
+            $this->defaultOrders = ['_score' => 'desc'];
+        } else {
+            $this->defaultOrders = ['formattedNextOcurrence' => 'desc'];
+        }
     }
 
     protected function getIndexItems($scopes = [], $forcePagination = false)
@@ -74,10 +78,10 @@ class EventController extends ModuleController
         // We override the order call to use metas
         $query->orderBy(
             \DB::raw('(
-               SELECT `date`
-               FROM `event_metas`
-               WHERE `event_metas`.`event_id` = `events`.`id`
-               ORDER BY `date`
+               SELECT date
+               FROM event_metas
+               WHERE event_metas.event_id = events.id
+               ORDER BY date
                LIMIT 1
             )'),
             request('sortDir') ?? 'desc'
