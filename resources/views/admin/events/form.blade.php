@@ -136,6 +136,8 @@
     </a17-fieldset>
 
     <a17-fieldset id="ticketing" title="Ticketing Information">
+        <p>Checking "Ticketed Event" will cause the link button to appear, except in cases where an event from the ticketing system has also been attached, and that ticketed event is not yet on sale.</p>
+
         @formField('checkbox', [
             'name' => 'is_ticketed',
             'label' => 'Ticketed Event'
@@ -150,15 +152,16 @@
         ])
 
         @formField('input', [
-            'name' => 'buy_tickets_link',
-            'label' => 'Button link',
-            'disabled' => 'true',
-        ])
-
-        @formField('input', [
             'name' => 'rsvp_link',
             'label' => 'Custom tickets link',
             'note' => 'Use this to set a custom ticket link and/or override the sales.artic.edu "Buy tickets link"'
+        ])
+
+        @formField('input', [
+            'name' => 'buy_tickets_link',
+            'label' => 'Button link preview',
+            'disabled' => 'true',
+            'note' => 'Save and refresh the page to see the link preview',
         ])
 
         @formField('input', [
@@ -167,12 +170,16 @@
             'note' => 'Optional, will override default button text, based on labels'
         ])
 
+        <hr/>
+
         @formField('wysiwyg', [
             'name' => 'buy_button_caption',
             'label' => 'Pricing or attendance information',
-            'note' => 'e.g., add cost of event, or other relevant information',
+            'note' => 'e.g. add cost of event or other relevant information',
             'toolbarOptions' => ['bold']
         ])
+
+        <p>If you attach an event from the ticketing system, we will automatically display the date and time of when its registration opens above this field's text in the sidebar.</p>
 
         <hr/>
         <p>Event Tags<br/>

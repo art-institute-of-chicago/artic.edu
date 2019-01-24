@@ -136,12 +136,12 @@ class EventPresenter extends BasePresenter
         $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
 
         return (
-            !isset($ticketedEvent)
-        ) || (
+            isset($ticketedEvent)
+        ) && (
             ($ticketedEvent->on_sale_at ?? false) && (
                 (new Carbon($ticketedEvent->on_sale_at))->lessThan(Carbon::now())
             )
-        ) || (
+        ) && (
             ($ticketedEvent->off_sale_at ?? false) && (
                 (new Carbon($ticketedEvent->off_sale_at))->greaterThan(Carbon::now())
             )
@@ -183,10 +183,12 @@ class EventPresenter extends BasePresenter
 
         if ($ticketedEvent->on_sale_at ?? false && $ticketedEvent->off_sale_at ?? false)
         {
+            // TODO: Support variations?
+            $onSaleAt = new Carbon($ticketedEvent->on_sale_at);
             $caption = sprintf(
-                '<p>Registration Period: %s—%s</p>',
-                (new Carbon($ticketedEvent->on_sale_at))->format('F j'),
-                (new Carbon($ticketedEvent->off_sale_at))->format('F j')
+                '<p>Registration opens on %s %s CST.</p>',
+                $onSaleAt->format('l, F j \a\t g:i'),
+                ($onSaleAt->hour < 12 ? 'a.m.' : 'p.m.')
             ) . ($caption ? '<p><br></p>' . $caption : '');
         }
 
