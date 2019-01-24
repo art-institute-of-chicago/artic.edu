@@ -6,15 +6,6 @@ if (!function_exists('getBlocksForEditor')) {
      */
     function getBlocksForEditor($toUse = [])
     {
-        $all = array_keys(config('twill.block_editor.blocks'));
-        $forEditor = [];
-
-        foreach ($all as $block) {
-            if (in_array($block, $toUse)) {
-                $forEditor[] = $block;
-            }
-        }
-
-        return $forEditor;
+        return array_intersect(array_keys(config('twill.block_editor.blocks')), $toUse);
     }
 }
