@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Admin;
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\EventProgramRepository;
 
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Http\Request;
-
 class EventController extends ModuleController
 {
     protected $moduleName = 'events';
@@ -31,6 +28,12 @@ class EventController extends ModuleController
             'title' => 'Title',
             'field' => 'title',
         ],
+        'formattedNextOcurrence' => [
+            'title' => 'Event Date',
+            'field' => 'formattedNextOcurrence',
+            'present' => true,
+            'sort' => true,
+        ]
     ];
 
     protected $featureField = 'landing';
@@ -43,30 +46,35 @@ class EventController extends ModuleController
 
     protected $defaultOrders;
 
-    public function __construct(Application $app, Request $request)
-    {
-        parent::__construct(...func_get_args());
-
-        $this->indexColumns['formattedNextOcurrence'] = [
-            'title' => 'Event Date',
-            'field' => 'formattedNextOcurrence',
-            'present' => true,
-            'sort' => true,
-            'sortKey' => null, // see getIndexItems()
-        ];
-
-        if ($this->getRequestFilters()['search'] ?? false) {
-            $this->defaultOrders = ['_score' => 'desc'];
-        } else {
-            $this->defaultOrders = ['formattedNextOcurrence' => 'desc'];
-        }
-    }
-
+    /**
+     * Twill has trouble ordering items by a column on related items.
+     * We need to order `events` by their next occurrence (`event_metas`).
+     * We will override the index function so it works the same in all
+     * respects except item order.
+     */
     protected function getIndexItems($scopes = [], $forcePagination = false)
     {
         $sortKey = request('sortKey');
 
-        if (isset($sortKey) && $sortKey !== 'formattedNextOcurrence')
+        // Mitigate Twill bug w/r/t `_page_offset` local storage
+        if (!isset($sortKey))
+        {
+            request()->merge([
+                'sortKey' => 'formattedNextOcurrence',
+                'sortDir' => 'desc',
+            ]);
+        }
+
+        // This is a db search, not Elasticsearch search
+        if ($this->getRequestFilters()['search'] ?? false)
+        {
+            request()->merge([
+                'sortKey' => null, // '_score',
+                'sortDir' => null, // 'desc',
+            ]);
+        }
+
+        if (request('sortKey') !== 'formattedNextOcurrence')
         {
             return parent::getIndexItems($scopes, $forcePagination);
         }
