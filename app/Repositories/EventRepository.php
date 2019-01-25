@@ -13,6 +13,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Models\Event;
 use App\Models\Api\Search;
+use App\Models\Api\TicketedEvent;
 use Carbon\Carbon;
 
 class EventRepository extends ModuleRepository
@@ -32,6 +33,40 @@ class EventRepository extends ModuleRepository
         $this->hydrateBrowser($object, $fields, 'sponsors', 'position', 'Sponsor');
 
         return parent::hydrate($object, $fields);
+    }
+
+    /**
+     * Some editors paste links to our sales site instead of browsing for the ticketed event.
+     * Find and auto-attach the ticketed event if it's a match.
+     */
+    public function prepareFieldsBeforeSave($object, $fields)
+    {
+        if (isset($fields['rsvp_link']))
+        {
+            $isTicketedEvent = preg_match('/https*:\/\/sales\.artic\.edu\/Events\/Event\/([0-9]+)\?date=([0-9]+\/[0-9]+\/[0-9]+)/', $fields['rsvp_link'], $matches);
+
+            if ($isTicketedEvent)
+            {
+                $ticketedEventId = $matches[1];
+                $ticketedEvent = TicketedEvent::query()->find($ticketedEventId);
+
+                // Roughshod way of checking if the ticketed event exists
+                if (!isset($ticketedEvent->error))
+                {
+                    $fields['browsers']['ticketedEvent'] = [
+                        [
+                            'id' => $ticketedEvent->id,
+                            'name' => $ticketedEvent->title,
+                        ]
+                    ];
+
+                    // Do not update `rsvp_link` attribute
+                    $fields['rsvp_link'] = null;
+                }
+            }
+        }
+
+        return parent::prepareFieldsBeforeSave($object, $fields);
     }
 
     public function afterSave($object, $fields)

@@ -56,7 +56,6 @@ class Event extends AbstractModel
         'survey_link',
         'email_series',
         'rsvp_link',
-        'buy_tickets_link',
         'location',
         'content',
         'layout_type',
