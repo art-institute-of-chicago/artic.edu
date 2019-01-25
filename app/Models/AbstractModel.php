@@ -19,7 +19,11 @@ class AbstractModel extends Model
      */
     public function scopePublished($query)
     {
-        return $query->visible()->wherePublished(true);
+        // Temporarily doing nothing
+        return parent::scopePublished($query);
+
+        // Restore this after testing
+        // return $query->visible()->wherePublished(true);
     }
 
 }
