@@ -140,11 +140,14 @@ class Exhibition extends BaseApiModel
         return '<p>' . preg_replace('#(<br>[\r\n\s]+){2}#', "</p>\n\n<p>", $desc) . '</p>';
     }
 
+    /**
+     * Used for sorting in the admin interface.
+     */
     public function scopeOrderBy($query, $field, $direction = 'asc')
     {
         $params = [
             "sort" => [
-                "{$field}.keyword" => $direction
+                "{$field}" => $direction
             ]
         ];
 

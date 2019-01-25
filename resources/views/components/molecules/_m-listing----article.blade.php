@@ -33,7 +33,7 @@
                 @slot('title_display', $item->title_display)
             @endcomponent
             <br>
-            <span class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->intro !!}</span>
+            <span class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->list_description !!}</span>
         </span>
     </a>
 </{{ $tag or 'li' }}>

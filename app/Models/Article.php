@@ -6,13 +6,12 @@ use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
-class Article extends Model implements Feedable
+class Article extends AbstractModel implements Feedable
 {
     use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable;
 
@@ -33,6 +32,7 @@ class Article extends Model implements Feedable
         'title',
         'title_display',
         'heading',
+        'list_description',
         'author',
         'copy',
         'subtype',
@@ -41,10 +41,11 @@ class Article extends Model implements Feedable
         'is_boosted',
         'migrated_node_id',
         'migrated_at',
-        'migrated_at',
         'citations',
         'meta_title',
         'meta_description',
+        'publish_start_date',
+        'publish_end_date',
     ];
 
     public $slugAttributes = [
@@ -63,7 +64,7 @@ class Article extends Model implements Feedable
 
     public $checkboxes = ['published', 'is_boosted'];
 
-    public $dates = ['date', 'migrated_at'];
+    public $dates = ['date', 'migrated_at', 'publish_start_date', 'publish_end_date'];
 
     public $mediasParams = [
         'hero' => [
@@ -229,7 +230,7 @@ class Article extends Model implements Feedable
            'id' => $this->id,
            'title' => $this->title,
            'date' => $this->present()->date,
-           'summary' => $this->heading ?? 'Article',
+           'summary' => $this->heading ?? $this->list_description ?? 'Article',
            'author' => $this->author ?? 'AIC',
            'updated' => $this->updated_at,
            'link' => route('articles.show', $this)
@@ -286,6 +287,12 @@ class Article extends Model implements Feedable
                 "doc" => "heading",
                 "type" => "string",
                 "value" => function () {return $this->heading;},
+            ],
+            [
+                "name" => "list_description",
+                "doc" => "list_description",
+                "type" => "string",
+                "value" => function () {return $this->list_description;},
             ],
             [
                 "name" => "author",

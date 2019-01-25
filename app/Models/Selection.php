@@ -6,13 +6,12 @@ use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 use App\Models\Api\Artwork;
 use App\Models\Api\Search;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class Selection extends Model
+class Selection extends AbstractModel
 {
     use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable;
 
@@ -28,6 +27,8 @@ class Selection extends Model
         'hero_caption',
         'meta_title',
         'meta_description',
+        'publish_start_date',
+        'publish_end_date',
     ];
 
     public $slugAttributes = [
@@ -39,6 +40,8 @@ class Selection extends Model
 
     // those fields get auto set to false if not submited
     public $checkboxes = ['published'];
+
+    public $dates = ['publish_start_date', 'publish_end_date'];
 
     public $mediasParams = [
         'hero' => [

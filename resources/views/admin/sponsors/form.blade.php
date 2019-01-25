@@ -2,9 +2,9 @@
 
 @section('contentFields')
     @formField('block_editor', [
-        'blocks' => [
+        'blocks' => getBlocksForEditor([
             'paragraph', 'image',
             'split_block'
-        ]
+        ])
     ])
 @stop

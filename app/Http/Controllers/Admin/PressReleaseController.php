@@ -17,11 +17,13 @@ class PressReleaseController extends ModuleController
             'field' => 'title',
             'title' => 'Title',
         ],
-        'publish_start_date' => [
+        # The key must equal the field, else sortKey cannot be reached
+        'presentPublishStartDate' => [
             'title' => 'Publish Date',
             'present' => true,
             'field' => 'presentPublishStartDate',
             'sort' => true,
+            'sortKey' => 'publish_start_date',
         ],
     ];
 

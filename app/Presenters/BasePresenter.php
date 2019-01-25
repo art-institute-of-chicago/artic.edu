@@ -53,4 +53,15 @@ abstract class BasePresenter
     {
         return $this->entity->blocks()->where('type', '=', 'paragraph')->pluck('content')->implode('paragraph', '');
     }
+
+    public function presentPublishStartDate() {
+        if ($this->entity->publish_start_date) {
+            if (!empty($this->entity->publish_start_date)) {
+                return $this->entity->publish_start_date->format('m d Y');
+            }
+        }
+
+        return "No";
+    }
+
 }

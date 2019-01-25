@@ -108,7 +108,8 @@
             'name' => 'visit_city_pass_link',
             'field_name' => 'visit_city_pass_link',
             'label' => 'Button link',
-            'required' => true
+            'required' => true,
+            'translated' => true
         ])
     </a17-fieldset>
 

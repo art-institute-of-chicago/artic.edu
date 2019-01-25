@@ -6,6 +6,7 @@ use digitaladditive\ExactTargetLaravel\ExactTargetLaravelApi;
 use FuelSdk\ET_Client;
 use FuelSdk\ET_DataExtension_Row;
 use FuelSdk\ET_DataExtension;
+use FuelSdk\ET_Subscriber;
 
 class ExactTargetService
 {
@@ -21,26 +22,54 @@ class ExactTargetService
     function subscribe()
     {
         $client = new ET_Client(false, true, config('exact-target'));
+
+        // Add the user to a data extension
         $deRow  = new ET_DataExtension_Row();
 
         $deRow->authStub = $client;
-        $deRow->props = array("Email Address" => $this->email);
+        $deRow->props = [
+            "Email" => $this->email,
+        ];
+
         if ($this->list)
         {
-            $deRow->props[$this->list] = 'true';
+            $deRow->props[$this->list] = 'True';
         }
 
+        $deRow->CustomerKey = "All Subscribers Master";
         $deRow->Name = "Museum Business Unit";
-        $deRow->CustomerKey = "All Subscribers";
 
         $response = $deRow->post();
 
-        // If the request is successful, go ahead and return
-        if ($response->status) {
-            return true;
+        // If it fails, try patch
+        if (!$response->status) {
+            $response = $deRow->patch();
+
+            if (!$response->status) {
+                return $response;
+            }
         }
 
-        // Otherwise, return the response
-        return $response;
+        // Add the subscriber
+        $subscriber  = new ET_Subscriber();
+        $subscriber->authStub = $client;
+        $subscriber->props = array("EmailAddress" => $this->email,
+                                   "SubscriberKey" => $this->email);
+        $response = $subscriber->post();
+
+        if (!$response->status) {
+            return $response;
+        }
+
+        // Then patch it with some additional properties
+        $subscriber->props['Status'] = 'Active';
+        $subscriber->Name = "Museum Business Unit";
+        $response = $subscriber->patch();
+
+        if (!$response->status) {
+            return $response;
+        }
+
+        return true;
     }
 }

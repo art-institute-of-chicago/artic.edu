@@ -6,7 +6,6 @@ use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRecurrentDates;
 use Carbon\Carbon;
@@ -16,7 +15,7 @@ use App\Models\Behaviors\HasApiRelations;
 use Illuminate\Support\Facades\DB;
 use PDO;
 
-class Event extends Model
+class Event extends AbstractModel
 {
     use HasSlug, HasRevisions, HasApiRelations, HasMedias, HasMediasEloquent, HasBlocks, HasRecurrentDates, Transformable;
 
@@ -57,7 +56,6 @@ class Event extends Model
         'survey_link',
         'email_series',
         'rsvp_link',
-        'buy_tickets_link',
         'location',
         'content',
         'layout_type',
@@ -68,6 +66,8 @@ class Event extends Model
         'meta_title',
         'meta_description',
         'search_tags',
+        'publish_start_date',
+        'publish_end_date',
     ];
 
     protected $casts = [
@@ -148,7 +148,7 @@ class Event extends Model
         'is_registration_required'
     ];
 
-    public $dates = ['date', 'date_end', 'migrated_at'];
+    public $dates = ['date', 'date_end', 'migrated_at', 'publish_start_date', 'publish_end_date'];
 
     public $mediasParams = [
         'hero' => [
@@ -574,7 +574,7 @@ class Event extends Model
                 "name" => "is_sold_out",
                 "doc" => "is_sold_out",
                 "type" => "boolean",
-                "value" => function () {return $this->is_sold_out;},
+                "value" => function () {return $this->present()->isSoldOut;},
             ],
             [
                 "name" => "is_free",

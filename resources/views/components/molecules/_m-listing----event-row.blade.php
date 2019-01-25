@@ -59,6 +59,14 @@
             @endcomponent
 
             @switch ($item->present()->ticketStatus)
+                @case('sold-out')
+                    <br>
+                    @component('components.atoms._tag')
+                        @slot('variation','tag--tertiary')
+                        @slot('tag','span')
+                        Sold Out
+                    @endcomponent
+                    @break
                 @case('free')
                     <br>
                     @component('components.atoms._tag')
@@ -93,14 +101,6 @@
                         @slot('behavior', 'getUrl')
                         @slot('dataAttributes', 'data-href="'. $item->buy_tickets_link .'"')
                         {{ !empty($item->buy_button_text) ? $item->buy_button_text : 'Buy ticket'}}
-                    @endcomponent
-                    @break
-                @case('sold-out')
-                    <br>
-                    @component('components.atoms._tag')
-                        @slot('variation','tag--tertiary')
-                        @slot('tag','span')
-                        Sold Out
                     @endcomponent
                     @break
             @endswitch

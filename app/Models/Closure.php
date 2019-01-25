@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
 
-class Closure extends Model
+class Closure extends AbstractModel
 {
     use Transformable;
 

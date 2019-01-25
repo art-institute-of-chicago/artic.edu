@@ -37,7 +37,7 @@
         'name' => 'hero_caption',
         'label' => 'Hero image Caption',
         'note' => 'Usually used for copyright',
-        'maxlength' => 150,
+        'maxlength' => 255,
         'toolbarOptions' => [
             'italic',
         ],
@@ -80,12 +80,12 @@
     ])
 
     @formField('block_editor', [
-        'blocks' => [
+        'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'newsletter_signup_inline', 'timeline', 'link', 'shop_items',
             'artworks', 'artwork',
             'hr', 'split_block',
-        ]
+        ])
     ])
 @stop
 
@@ -136,6 +136,8 @@
     </a17-fieldset>
 
     <a17-fieldset id="ticketing" title="Ticketing Information">
+        <p>Select the "Ticketed Event" box when you want a "Buy Tickets" button to appear on the event page. If the event is associated with the ticketing system, the button will not appear until the ticketed event is on sale.</p>
+
         @formField('checkbox', [
             'name' => 'is_ticketed',
             'label' => 'Ticketed Event'
@@ -150,15 +152,16 @@
         ])
 
         @formField('input', [
-            'name' => 'buy_tickets_link',
-            'label' => 'Button link',
-            'disabled' => 'true',
-        ])
-
-        @formField('input', [
             'name' => 'rsvp_link',
             'label' => 'Custom tickets link',
             'note' => 'Use this to set a custom ticket link and/or override the sales.artic.edu "Buy tickets link"'
+        ])
+
+        @formField('input', [
+            'name' => 'buy_tickets_link',
+            'label' => 'Button link preview',
+            'disabled' => 'true',
+            'note' => 'Save and refresh the page to see the link preview',
         ])
 
         @formField('input', [
@@ -167,12 +170,16 @@
             'note' => 'Optional, will override default button text, based on labels'
         ])
 
+        <hr/>
+
         @formField('wysiwyg', [
             'name' => 'buy_button_caption',
             'label' => 'Pricing or attendance information',
-            'note' => 'e.g., add cost of event, or other relevant information',
+            'note' => 'e.g. add cost of event or other relevant information',
             'toolbarOptions' => ['bold']
         ])
+
+        <p>If you attach an event from the ticketing system, we will automatically display the date and time of when its registration opens above this field's text in the sidebar.</p>
 
         <hr/>
         <p>Event Tags<br/>
@@ -201,6 +208,8 @@
             'name' => 'is_free',
             'label' => 'RSVP',
         ])
+
+        <p>If you attach an event from the ticketing system, we will handle "Sold Out" for you automatically.</p>
 
         <hr/>
         <p>Private<br/>

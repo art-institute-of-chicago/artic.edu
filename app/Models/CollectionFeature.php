@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasBlocks;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class CollectionFeature extends Model
+class CollectionFeature extends AbstractModel
 {
 
     use HasBlocks, HasApiRelations, HasMediasEloquent;
@@ -42,12 +41,15 @@ class CollectionFeature extends Model
         $item = $item ?? $this->selections()->first();
         $item = $item ?? $this->apiModels('artworks', 'Artwork')->first();
 
+        if (!$item) {
+            return null;
+        }
+
         if ($item->type == 'artwork') {
             $item->subtype = 'Artwork';
         }
 
         $item->trackingTitle = getUtf8Slug($item->title);
-
 
         return $item;
     }

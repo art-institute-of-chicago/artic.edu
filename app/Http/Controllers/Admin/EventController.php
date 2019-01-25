@@ -28,6 +28,12 @@ class EventController extends ModuleController
             'title' => 'Title',
             'field' => 'title',
         ],
+        'formattedNextOcurrence' => [
+            'title' => 'Event Date',
+            'field' => 'formattedNextOcurrence',
+            'present' => true,
+            'sort' => true,
+        ]
     ];
 
     protected $featureField = 'landing';
@@ -38,7 +44,61 @@ class EventController extends ModuleController
 
     protected $filters = [];
 
-    protected $defaultOrders = [];
+    protected $defaultOrders;
+
+    /**
+     * Twill has trouble ordering items by a column on related items.
+     * We need to order `events` by their next occurrence (`event_metas`).
+     * We will override the index function so it works the same in all
+     * respects except item order.
+     */
+    protected function getIndexItems($scopes = [], $forcePagination = false)
+    {
+        $sortKey = request('sortKey');
+
+        // Mitigate Twill bug w/r/t `_page_offset` local storage
+        if (!isset($sortKey))
+        {
+            request()->merge([
+                'sortKey' => 'formattedNextOcurrence',
+                'sortDir' => 'desc',
+            ]);
+        }
+
+        // This is a db search, not Elasticsearch search
+        if ($this->getRequestFilters()['search'] ?? false)
+        {
+            request()->merge([
+                'sortKey' => null, // '_score',
+                'sortDir' => null, // 'desc',
+            ]);
+        }
+
+        if (request('sortKey') !== 'formattedNextOcurrence')
+        {
+            return parent::getIndexItems($scopes, $forcePagination);
+        }
+
+        // Extracted from \A17\Twill\Repositories\ModuleRepository::get()
+        $query = $this->repository->with($this->indexWith);
+        $query = $this->repository->filter($query, $scopes);
+
+        // We override the order call to use metas
+        $query->orderBy(
+            \DB::raw('(
+               SELECT date
+               FROM event_metas
+               WHERE event_metas.event_id = events.id
+               ORDER BY date
+               LIMIT 1
+            )'),
+            request('sortDir') ?? 'desc'
+        );
+
+        // Forget about $forcePagination here
+        return $query->paginate(request('offset') ?? $this->perPage ?? 50);
+    }
+
 
     protected function indexData($request)
     {

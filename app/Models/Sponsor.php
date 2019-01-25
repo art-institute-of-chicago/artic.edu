@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasBlocks;
-use A17\Twill\Models\Model;
 
-class Sponsor extends Model
+class Sponsor extends AbstractModel
 {
     use HasBlocks;
 

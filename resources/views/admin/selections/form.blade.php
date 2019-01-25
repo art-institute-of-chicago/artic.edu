@@ -45,16 +45,16 @@
         'name' => 'hero_caption',
         'label' => 'Hero image Caption',
         'note' => 'Usually used for copyright',
-        'maxlength' => 150,
+        'maxlength' => 255,
         'toolbarOptions' => [
             'italic',
         ],
     ])
 
     @formField('block_editor', [
-        'blocks' => [
+        'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'gallery', 'video', 'media_embed',  'artwork', 'artworks', 'hr'
-        ]
+        ])
     ])
 @stop
 

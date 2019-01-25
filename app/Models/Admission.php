@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
-
-class Admission extends Model
+class Admission extends AbstractModel
 {
 
     protected $fillable = [

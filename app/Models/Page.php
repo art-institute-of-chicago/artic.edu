@@ -7,12 +7,11 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasTranslation;
-use A17\Twill\Models\Model;
 use App\Models\Admission as Admission;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class Page extends Model
+class Page extends AbstractModel
 {
     use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasApiRelations, Transformable, HasTranslation;
 
@@ -69,8 +68,6 @@ class Page extends Model
 
         'visit_dining_link',
 
-        'visit_city_pass_link',
-
         'visit_transportation_link',
 
         'visit_parking_link',
@@ -93,11 +90,11 @@ class Page extends Model
         'visit_city_pass_title',
         'visit_city_pass_text',
         'visit_city_pass_button_label',
+        'visit_city_pass_link',
         'visit_admission_description',
         'visit_buy_tickets_label',
         'visit_become_member_label',
         'active'
-
     ];
 
     public $slugAttributes = [

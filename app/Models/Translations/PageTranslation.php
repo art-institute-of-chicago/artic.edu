@@ -13,6 +13,7 @@ class PageTranslation extends Model
         'visit_city_pass_title',
         'visit_city_pass_text',
         'visit_city_pass_button_label',
+        'visit_city_pass_link',
         'visit_admission_description',
         'visit_buy_tickets_label',
         'visit_become_member_label',

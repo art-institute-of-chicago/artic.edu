@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 
-class SiteTag extends Model
+class SiteTag extends AbstractModel
 {
     use HasSlug, Transformable;
 
