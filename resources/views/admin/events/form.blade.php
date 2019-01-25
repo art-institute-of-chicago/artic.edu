@@ -136,7 +136,7 @@
     </a17-fieldset>
 
     <a17-fieldset id="ticketing" title="Ticketing Information">
-        <p>Checking "Ticketed Event" will cause the link button to appear, except in cases where an event from the ticketing system has also been attached, and that ticketed event is not yet on sale.</p>
+        <p>Select the "Ticketed Event" box when you want a "Buy Tickets" button to appear on the event page. If the event is associated with the ticketing system, the button will not appear until the ticketed event is on sale.</p>
 
         @formField('checkbox', [
             'name' => 'is_ticketed',
