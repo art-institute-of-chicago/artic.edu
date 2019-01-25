@@ -183,7 +183,7 @@ class EventPresenter extends BasePresenter
 
         $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
 
-        if ($ticketedEvent->on_sale_at)
+        if ($ticketedEvent && $ticketedEvent->on_sale_at)
         {
             $onSaleAt = new Carbon($ticketedEvent->on_sale_at);
 
