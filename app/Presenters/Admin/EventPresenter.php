@@ -183,15 +183,20 @@ class EventPresenter extends BasePresenter
 
         $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
 
-        if ($ticketedEvent->on_sale_at ?? false && $ticketedEvent->off_sale_at ?? false)
+        if ($ticketedEvent->on_sale_at)
         {
-            // TODO: Support variations?
             $onSaleAt = new Carbon($ticketedEvent->on_sale_at);
-            $caption = sprintf(
-                '<p>Registration opens on %s %s CST.</p>',
-                $onSaleAt->format('l, F j \a\t g:i'),
-                ($onSaleAt->hour < 12 ? 'a.m.' : 'p.m.')
-            ) . ($caption ? '<p><br></p>' . $caption : '');
+
+            // Don't show if the event has already begun
+            if ($onSaleAt->gt(Carbon::now()))
+            {
+                // TODO: Support variations?
+                $caption = sprintf(
+                    '<p>Registration opens on %s %s CST.</p>',
+                    $onSaleAt->format('l, F j \a\t g:i'),
+                    ($onSaleAt->hour < 12 ? 'a.m.' : 'p.m.')
+                ) . ($caption ? '<p><br></p>' . $caption : '');
+            }
         }
 
         return $caption;
