@@ -42,7 +42,7 @@ class EventPresenter extends BasePresenter
             return null;
         }
 
-        if ($this->entity->is_sold_out) {
+        if ($this->isSoldOut) {
             return 'sold-out';
         }
 
@@ -150,15 +150,20 @@ class EventPresenter extends BasePresenter
         );
     }
 
+    public function isSoldOut()
+    {
+        $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
+
+        return $this->entity->is_sold_out || ($ticketedEvent->available ?? 1) < 1;
+    }
+
     public function buyButtonText()
     {
         if ($this->entity->buy_button_text) {
             return $this->entity->buy_button_text;
         }
 
-        $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
-
-        if ($this->entity->is_sold_out || ($ticketedEvent->available ?? 1) < 1) {
+        if ($this->isSoldOut) {
             return 'Sold out';
         }
 
