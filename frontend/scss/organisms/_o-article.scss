@@ -414,21 +414,6 @@
     }
   }
 
-  .o-article__body:not(.o-article__intro ~ .o-article__body)::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 1px;
-    background-color: $color__rules--primary;
-
-    @include breakpoint('small+') {
-      content: none;
-      display: none;
-    }
-  }
-
 .o-article__body--no-description.o-blocks > .deflist:first-child {
   margin-top: 0;
 
