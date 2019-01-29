@@ -71,6 +71,11 @@ Demonstrated in **statics/article**
   display: block;
   position: relative;
   padding-top: .02px;
+  overflow-x: scroll;
+
+  // Hide scrollbar on non-scrollabled list items
+  margin-bottom: -(32px + 20px);
+  padding-bottom: 32px + 20px;
 }
 
 .deflist dt::before {
