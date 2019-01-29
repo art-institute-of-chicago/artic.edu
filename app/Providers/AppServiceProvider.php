@@ -101,7 +101,7 @@ class AppServiceProvider extends ServiceProvider
     private function composeTemplatesViews()
     {
       view()->composer('*', function ($view) {
-        $hours_general = Hour::getOpening();
+        $hours_general = Hour::getOpeningUnlessClosure();
 
         $view->with([
             '_hours' => [

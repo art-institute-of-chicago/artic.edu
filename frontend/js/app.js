@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, videojsActivate } from './functions';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, videojsActivate, headerHeight } from './functions';
 /*
 
   A17
@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function(){
   resized();
   // handle sticky header and articleBodyInViewport
   setScrollDirection();
+  // adjust header for closure notifications if needed
+  headerHeight();
   // watch for fonts loading
   fontObservers({
     name: 'serif',

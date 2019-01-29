@@ -57,6 +57,7 @@
 
 .m-notification--header {
   padding-right: 0px;
+  background-color: transparentize($color__error, 0.03);
 }
 
 .m-notification--header__inner {
@@ -64,9 +65,10 @@
   position: relative;
 }
 
-.m-notification--header .m-notification__text {
-  margin-right: 27px;
-}
+// Re-enable this if the close button is enabled
+// .m-notification--header .m-notification__text {
+//   margin-right: 27px;
+// }
 
 .m-notification--header .m-notification__close {
   width: auto;
