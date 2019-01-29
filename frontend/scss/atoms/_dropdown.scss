@@ -93,9 +93,11 @@ Demonstrated in **statics/toybox**
   border: 0;
   background-color: initial;
   cursor: pointer;
+  padding: 0;
 }
 
-.dropdown--tabs .dropdown__trigger .button {
+// For Exhibition and Events on mobile breakpoints
+.dropdown--tabs .dropdown__trigger .button.f-module-title-2 {
   padding: 20px 0;
 }
 
@@ -289,12 +291,18 @@ Demonstrated in **statics/toybox**
   min-width: 0;
   height: auto;
   padding-top: 0;
-  padding-right: 24px;
+  padding-right: 0;
   padding-bottom: 0;
   padding-left: 0;
   border: 0 none;
   border-radius: 0;
   color: $color__link;
+
+  margin-right: 24px;
+}
+
+.m-links-bar__item:last-child .dropdown--filter .dropdown__trigger {
+  margin-right: 0px;
 }
 
 .dropdown--filter .dropdown__trigger .button::before {
