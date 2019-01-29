@@ -72,7 +72,7 @@ class EventPresenter extends BasePresenter
         if (!empty($this->entity->forced_date)) {
             return $this->entity->forced_date;
         } else {
-            if ($next = $this->entity->nextOcurrence) {
+            if ($next = $this->entity->nextOcurrenceExclusive) {
 
                 return '<time datetime="'.$next->date->format("c").'" itemprop="startDate">'.$next->date->format('F j, Y | g:i').'</time>&ndash;<time datetime="'.$next->date_end->format("c").'" itemprop="endDate">'.$next->date_end->format('g:i').'</time>';
             } elseif ($last = $this->entity->lastOcurrence) {

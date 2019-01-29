@@ -411,9 +411,14 @@ class Event extends AbstractModel
         return $this->belongsToMany(\App\Models\Event::class, 'event_event', 'event_id', 'related_event_id')->withPivot('position')->orderBy('position');
     }
 
-    public function getNextOcurrenceAttribute()
+    public function getNextOcurrenceExclusiveAttribute()
     {
         return $this->eventMetas()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->first();
+    }
+
+    public function getNextOcurrenceAttribute()
+    {
+        return $this->eventMetas()->where('date_end', '>=', Carbon::now())->orderBy('date', 'ASC')->first();
     }
 
     public function getLastOcurrenceAttribute()
