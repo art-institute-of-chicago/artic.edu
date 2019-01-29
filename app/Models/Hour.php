@@ -79,17 +79,34 @@ class Hour extends AbstractModel
         ];
     }
 
-    public static function getOpeningWithClosure($type = 0)
+    public static function getOpening()
     {
-        $today = Carbon::today();
-        $closure = Closure::published()->where('type', $type)->where('date_start', '<=', $today)->where('date_end', '>=', $today)->first();
+        return 'Open daily 10:30&ndash;5:00, Thursdays until 8:00';
+    }
+
+    public static function getOpeningUnlessClosure()
+    {
+        $closure = Closure::today()->first();
+
+        return $closure ? null : self::getOpening();
+    }
+
+    /**
+     * TODO: Dead code. Delete?
+     */
+    public static function getOpeningWithClosure()
+    {
+        $closure = Closure::today()->first();
         if ($closure) {
             return $closure->closure_copy;
         }
 
-        return 'Open daily 10:30&ndash;5:00, Thursdays until 8:00';
+        return self::getOpening();
     }
 
+    /**
+     * TODO: Dead code. Delete?
+     */
     public static function getOpeningToday($type = 0)
     {
         $day = date('N');

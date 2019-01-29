@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 
 class Closure extends AbstractModel
 {
@@ -29,6 +30,16 @@ class Closure extends AbstractModel
     public $checkboxes = ['published'];
 
     public $dates = ['date_start', 'date_end'];
+
+    public function scopeToday($query, $type = 0)
+    {
+        $today = Carbon::today();
+
+        return $query->published()
+            ->where('type', $type)
+            ->where('date_start', '<=', $today)
+            ->where('date_end', '>=', $today);
+    }
 
     protected function transformMappingInternal()
     {

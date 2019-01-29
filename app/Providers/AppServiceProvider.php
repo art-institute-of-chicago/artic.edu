@@ -13,6 +13,7 @@ use A17\Twill\Http\Controllers\Front\Helpers\Seo;
 use View;
 
 use App\Models\Hour;
+use App\Models\Closure;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -100,13 +101,13 @@ class AppServiceProvider extends ServiceProvider
     private function composeTemplatesViews()
     {
       view()->composer('*', function ($view) {
-        // $hours_today = Hour::getOpeningToday();
-        $hours_general = Hour::getOpeningWithClosure();
+        $hours_general = Hour::getOpening();
 
         $view->with([
             '_hours' => [
-                'general' => $hours_general
-            ,   'opening_today' => ''
+                'general' => $hours_general,
+                'opening_today' => '',
+                'closure' => Closure::today()->first(),
             ]
             ,
             '_pages' => [

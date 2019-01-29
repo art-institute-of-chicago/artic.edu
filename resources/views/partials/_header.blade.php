@@ -49,4 +49,14 @@
       <p class="g-header__opening-hours f-secondary"><a href="{{ $_pages['visit'] }}">{!! $_hours['general'] !!}</a></p>
       <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile" aria-label="Show menu">Menu<svg class="icon--menu--24" aria-hidden="true"><use xlink:href="#icon--menu--24" /></svg></button>
   </div>
+  @if (isset($_hours['closure']))
+  <div class="m-notification m-notification--header" data-behavior="notification">
+    <div class="m-notification--header__inner">
+      <p class="m-notification__text f-secondary">
+        <svg class="icon--info" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--info"></use></svg>{{ $_hours['closure']->closure_copy ?? '' }}
+      </p>
+      <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
+    </div>
+  </div>
+  @endif
 </header>
