@@ -24,7 +24,17 @@ class ArticleController extends FrontController
         $this->seo->setTitle('Articles');
 
         $page = Page::forType('Articles')->with('articlesArticles')->first();
-        $heroArticle = $page->articlesArticles->first();
+        $featuredItems = $page->getRelatedWithApiModels(
+            "featured_items", [
+                'digitalLabels' => [
+                    'apiModel' => 'App\Models\Api\DigitalLabel',
+                    'moduleName' => 'digitalLabels',
+                ],   
+            ], [ 
+                'articles' => false,
+                'digitalLabels' => true
+            ]);
+        $heroArticle = $featuredItems->first();
         
         // $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
 
@@ -45,7 +55,8 @@ class ArticleController extends FrontController
         // Featured articles are the selected ones if no filters are applied
         // otherwise those are just the first two from the collection
         if (empty(request()->get('category', null))) {
-            $featuredArticles = $page->articlesArticles->slice(1, 2);
+            $featuredArticles = $featuredItems->slice(1, 2) ?? null;
+            // $featuredArticles = $page->articlesArticles->slice(1, 2);
         } else {
             $featuredArticles = $articles->getCollection()->slice(0, 2);
             $newCollection = $articles->slice(2);
