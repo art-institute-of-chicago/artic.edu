@@ -141,7 +141,7 @@ class SearchController extends BaseScopedController
                     break;
                 case 'DigitalLabel':
                     $item->url = route('digitalLabels.show', $item);
-                    $item->section = 'Digital Labels';
+                    $item->section = 'Interactive Features';
                     break;
                 case 'Artist':
                     $item->url = route('artists.show', $item);
@@ -381,7 +381,7 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Exhibitions', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
         }
         if (extractAggregation($aggregations, 'digital-labels')) {
-            array_push($links, $this->buildLabel('Digital Labels', extractAggregation($aggregations, 'digital-labels'), route('search.digital-labels', ['q' => request('q')]), $active == 'digital-labels'));
+            array_push($links, $this->buildLabel('Interactive Features', extractAggregation($aggregations, 'digital-labels'), route('search.digital-labels', ['q' => request('q')]), $active == 'digital-labels'));
         }
         if (extractAggregation($aggregations, 'events')) {
             array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('search.events', ['q' => request('q')]), $active == 'events'));

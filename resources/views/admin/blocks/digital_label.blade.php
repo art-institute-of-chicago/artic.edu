@@ -2,6 +2,6 @@
     'routePrefix' => 'collection',
     'name' => 'digitalLabels',
     'moduleName' => 'digitalLabels',
-    'label' => 'Digital Label',
+    'label' => 'Interactive Feature',
     'max' => 1
 ])

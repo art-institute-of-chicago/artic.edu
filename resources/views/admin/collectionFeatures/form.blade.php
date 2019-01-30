@@ -30,7 +30,7 @@
             ],
             [
                 'value' => 'digitalLabels',
-                'label' => 'Digital Label'
+                'label' => 'Interactive Feature'
             ],
         ]
     ])
@@ -83,7 +83,7 @@
             'routePrefix' => 'collection',
             'moduleName' => 'digitalLabels',
             'name' => 'digitalLabels',
-            'label' => 'Digital Label'
+            'label' => 'Interactive Feature'
         ])
     @endcomponent
 @stop

@@ -77,7 +77,7 @@ class ArticleController extends FrontController
 
         array_push($categories,
             [
-                'label' => 'Digital Labels',
+                'label' => 'Interactive Features',
                 'href' => route('articles', ['category' => 'digital-labels']),
                 'active' => request()->get('category') == 'digital-labels',
                 'ajaxScrollTarget' => 'listing',

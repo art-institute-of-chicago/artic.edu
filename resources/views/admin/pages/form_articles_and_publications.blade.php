@@ -22,7 +22,7 @@
         'max' => 4,
         'moduleName' => 'digitalLabels',
         'name' => 'digitalLabels',
-        'label' => 'Digital Labels'
+        'label' => 'Interactive Features'
     ])
 
     @formField('browser', [

@@ -29,7 +29,7 @@
             </span>
         </span>
         <span class="m-listing__meta">
-            <em class="type f-tag">Digital Label</em>
+            <em class="type f-tag">Interactive Feature</em>
             <br>
             <strong class="title {{ $titleFont ?? 'f-list-3' }}">{!! $item->title_display ?? $item->title !!}</strong>
             <br>

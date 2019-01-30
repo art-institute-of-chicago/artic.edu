@@ -37,7 +37,7 @@
         'routePrefix' => 'exhibitions_events',
         'max' => 1,
         'name' => 'sidebarDigitalLabels',
-        'label' => 'Related Digital Labels',
+        'label' => 'Related Interactive Features',
         'moduleName' => 'digitalLabels',
     ])
 @stop

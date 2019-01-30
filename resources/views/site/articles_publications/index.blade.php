@@ -117,7 +117,7 @@
             <section>
                 @component('components.molecules._m-title-bar')
                     @slot('links', array(array('label' => 'Browse all digital labels', 'href' => route('digitalLabels'))))
-                    Digital Labels
+                    Interactive Features
                 @endcomponent
 
                 @component('components.atoms._hr')

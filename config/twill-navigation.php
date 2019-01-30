@@ -174,7 +174,7 @@ return [
                 'module' => true,
             ],
             'digitalLabels' => [
-                'title' => 'Digital Labels',
+                'title' => 'Interactive Features',
                 'module' => true,
             ],
         ]

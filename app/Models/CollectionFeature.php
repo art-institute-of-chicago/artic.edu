@@ -64,7 +64,7 @@ class CollectionFeature extends AbstractModel
         
         if ($item->type == 'LABEL') {
             $item->type == 'digital-label';
-            $item->subtype = 'Digital Label';
+            $item->subtype = 'Interactive Feature';
         }
 
         $item->trackingTitle = getUtf8Slug($item->title);

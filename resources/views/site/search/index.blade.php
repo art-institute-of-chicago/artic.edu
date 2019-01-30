@@ -712,7 +712,7 @@
         @unless($allResultsView)
             @slot('links', array(array('label' => 'See all '. $digitalLabels->getMetadata('pagination')->total. ' '. str_plural('digital label', $digitalLabels->getMetadata('pagination')->total), 'href' => route('search.digital-labels', ['q' => request('q')]))))
         @endunless
-        Digital Labels
+        Interactive Features
     @endcomponent
 
     @if (isset($allResultsView) && $allResultsView)
