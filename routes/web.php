@@ -63,7 +63,7 @@ Route::name('search.artworks')->get('/search/artworks', 'SearchController@artwor
 Route::name('search.press-releases')->get('/search/press-releases', 'SearchController@pressReleases');
 Route::name('search.research-guides')->get('/search/research-guides', 'SearchController@researchGuides');
 Route::name('search.exhibitions')->get('/search/exhibitions', 'SearchController@exhibitions');
-Route::name('search.digital-labels')->get('/search/digital-labels', 'SearchController@digitalLabels');
+Route::name('search.interactive-features')->get('/search/interactive-features', 'SearchController@digitalLabels');
 
 
 // Events routes
@@ -162,8 +162,8 @@ Route::get('enews', function () {
     return redirect()->route('forms.email-subscriptions', request()->all());
 });
 // Digital labels
-Route::name('digitalLabels')->get('/digital-labels', 'DigitalLabelsController@index');
-Route::name('digitalLabels.show')->get('/digital-labels/{id}/{slug?}', 'DigitalLabelsController@show');
+Route::name('digitalLabels')->get('/interactive-features', 'DigitalLabelsController@index');
+Route::name('digitalLabels.show')->get('/interactive-features/{id}/{slug?}', 'DigitalLabelsController@show');
 
 
 // Feed routes

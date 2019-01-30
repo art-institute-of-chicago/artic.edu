@@ -39,7 +39,7 @@ class DigitalLabelsController extends FrontController
     public function index(Request $request)
     {
         $items = DigitalLabel::published()->paginate();
-        $title = 'Closer Looks';
+        $title = 'Interactive Features';
 
         $nav = [
             ['label' => 'Writings', 'href' => route('articles_publications')]

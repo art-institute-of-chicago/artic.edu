@@ -28,7 +28,7 @@ class ArticleController extends FrontController
         
         // $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
 
-        if (request('category') !== 'digital-labels') {
+        if (request('category') !== 'interactive-features') {
             $articles = Article::published()
                 ->byCategory(request('category'))
                 ->whereNotIn('id', $page->articlesArticles->pluck('id'))
@@ -78,8 +78,8 @@ class ArticleController extends FrontController
         array_push($categories,
             [
                 'label' => 'Interactive Features',
-                'href' => route('articles', ['category' => 'digital-labels']),
-                'active' => request()->get('category') == 'digital-labels',
+                'href' => route('articles', ['category' => 'interactive-features']),
+                'active' => request()->get('category') == 'interactive-features',
                 'ajaxScrollTarget' => 'listing',
             ]
         );

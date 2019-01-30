@@ -990,7 +990,7 @@ Route::group(['prefix' => 'v1'], function()
      *
      */
     
-    Route::get('digital-labels', 'API\DigitalLabelsController@index');
+    Route::get('interactive-features', 'API\DigitalLabelsController@index');
     /**
      * @SWG\Get(
      *      path="/api/v1/digital-labels/{id}",
@@ -1008,6 +1008,6 @@ Route::group(['prefix' => 'v1'], function()
      *  )
      *
      */
-    Route::get('digital-labels/{id}', 'API\DigitalLabelsController@show');
+    Route::get('interactive-features/{id}', 'API\DigitalLabelsController@show');
 
 });

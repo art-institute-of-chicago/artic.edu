@@ -126,7 +126,7 @@ class SearchController extends BaseScopedController
     public function autocomplete()
     {
         $collection = GeneralSearch::search(request('q'))
-            ->resources(['artworks', 'exhibitions', 'digital-labels', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs'])
+            ->resources(['artworks', 'exhibitions', 'interactive-features', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs'])
             ->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
         foreach($collection as &$item) {
@@ -240,7 +240,7 @@ class SearchController extends BaseScopedController
         $general     = $this->searchRepository->forSearchQuery(request('q'), 0);
         $digitalLabels = $this->digitalLabelsRepository->searchApi(request('q'), self::DIGITAL_LABELS_PER_PAGE);
 
-        $links = $this->buildSearchLinks($general, 'digital-labels');
+        $links = $this->buildSearchLinks($general, 'interactive-features');
 
         return view('site.search.index', [
             'digitalLabels' => $digitalLabels,
@@ -380,8 +380,8 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'exhibitions')) {
             array_push($links, $this->buildLabel('Exhibitions', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
         }
-        if (extractAggregation($aggregations, 'digital-labels')) {
-            array_push($links, $this->buildLabel('Interactive Features', extractAggregation($aggregations, 'digital-labels'), route('search.digital-labels', ['q' => request('q')]), $active == 'digital-labels'));
+        if (extractAggregation($aggregations, 'interactive-features')) {
+            array_push($links, $this->buildLabel('Interactive Features', extractAggregation($aggregations, 'interactive-features'), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
         }
         if (extractAggregation($aggregations, 'events')) {
             array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('search.events', ['q' => request('q')]), $active == 'events'));

@@ -53,7 +53,7 @@ class DigitalLabelController extends BaseApiController
     protected function formData($request)
     {
         $item = $this->repository->getById(request('digitalLabel') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/digital-labels/' . $item->datahub_id . '/';
+        $baseUrl = '//' . config('app.url') . '/interactive-features/' . $item->datahub_id . '/';
 
         return [
             'editableTitle' => false,
