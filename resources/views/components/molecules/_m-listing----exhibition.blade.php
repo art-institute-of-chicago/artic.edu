@@ -92,13 +92,13 @@
             @endcomponent
             <br>
         @endif
-
-        @component('components.organisms._o-public-dates')
-            @slot('date', $item->present()->date)
-            @slot('dateStart', $item->present()->startAt)
-            @slot('dateEnd', $item->present()->endAt)
-        @endcomponent
-
+        @if (!$item->isOngoing)
+            @component('components.organisms._o-public-dates')
+                @slot('date', $item->present()->date)
+                @slot('dateStart', $item->present()->startAt)
+                @slot('dateEnd', $item->present()->endAt)
+            @endcomponent
+        @endif
     </span>
   </a>
 </{{ $tag or 'li' }}>
