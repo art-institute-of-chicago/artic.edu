@@ -481,28 +481,28 @@
 .o-article--editorial .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
 .o-article--editorial .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a,
 .o-blocks > .f-body-editorial a {
-  @include text-underline(0.82em, $color__rules--secondary);
+  @include text-underline(89%, $color__rules--secondary);
   color: $color__link--editorial;
   text-decoration: none;
 
   &:hover,
   &:focus:hover {
-    @include text-underline(0.82em, $color__link--editorial);
+    @include text-underline(89%, $color__link--editorial);
   }
 
   &:active:hover {
-    @include text-underline(0.82em, $color__rules--secondary);
+    @include text-underline(89%, $color__rules--secondary);
   }
 }
 
 .o-blocks > .f-deck a {
-  @include text-underline(0.82em, $color__text--tertiary);
+  @include text-underline(89%, $color__text--tertiary);
   color: inherit;
   text-decoration: none;
 
   &:hover,
   &:focus:hover {
-    @include text-underline(0.82em, $color__text--secondary);
+    @include text-underline(89%, $color__text--secondary);
     color: $color__text;
   }
 
