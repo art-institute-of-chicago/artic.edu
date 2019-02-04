@@ -169,6 +169,9 @@
 
     @else
 
+        @component('components.atoms._hr')
+        @endcomponent
+
         @component('components.organisms._o-grid-listing')
             @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
             @slot('cols_medium','3')
@@ -427,6 +430,9 @@
 
     @else
 
+        @component('components.atoms._hr')
+        @endcomponent
+
         @component('components.organisms._o-grid-listing')
             @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
             @slot('cols_medium','3')
@@ -487,6 +493,9 @@
         @endcomponent
 
     @else
+
+        @component('components.atoms._hr')
+        @endcomponent
 
         @component('components.organisms._o-grid-listing')
             @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
@@ -564,6 +573,9 @@
 
     @else
 
+        @component('components.atoms._hr')
+        @endcomponent
+
         @component('components.organisms._o-grid-listing')
             @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
             @slot('cols_medium','3')
@@ -628,6 +640,9 @@
 
     @else
 
+        @component('components.atoms._hr')
+        @endcomponent
+
         @component('components.organisms._o-grid-listing')
             @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
             @slot('cols_medium','3')
@@ -671,6 +686,9 @@
         @endcomponent
 
     @else
+
+        @component('components.atoms._hr')
+        @endcomponent
 
         @component('components.organisms._o-grid-listing')
             @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
