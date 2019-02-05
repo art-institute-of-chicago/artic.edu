@@ -307,10 +307,11 @@
   top: 0;
 }
 
-.o-article__inline-header::after {
-  content: '';
-  bottom: 0;
-}
+// Disable the extra line above o-article__body
+// .o-article__inline-header::after {
+//   content: '';
+//   bottom: 0;
+// }
 
 .o-article__inline-header .f-headline-editorial:first-child {
   @include tucked-margin-top($f-headline-editorial, ('xsmall': 36, 'small+': 40, 'medium+': 48));
