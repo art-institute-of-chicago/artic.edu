@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use A17\Twill\Repositories\ModuleRepository;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use App\Models\Location;
 

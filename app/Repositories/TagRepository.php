@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Tag;
 
 class TagRepository extends ModuleRepository

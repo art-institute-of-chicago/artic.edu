@@ -203,3 +203,21 @@ if (!function_exists('properTitleCase')) {
         return $string;
     }
 }
+
+if (!function_exists('rightTrim')) {
+    /**
+     * Remove a specific sequence of characters from the end of a string.
+     * This is used in lieu of rtrim, which trims any combination of characters
+     * from the end of a string.
+     *
+     * @see https://stackoverflow.com/a/32739088/1313842
+     */
+    function rightTrim($string, $needle) {
+        if (is_string($string) && strlen($string) >= strlen($needle)) {
+            while (strpos($string, $needle, strlen($string) - strlen($needle)) !== false) {
+                $string = substr($string, 0, -strlen($needle));
+            }
+        }
+        return $string;
+    }
+}
