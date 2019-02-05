@@ -2,13 +2,14 @@
   display: flex;
   flex-flow: row wrap;
   margin-bottom: 40px;
+  margin-top: 8px;
 
   .o-form.o-blocks__block + & {
     display: none;
   }
 }
 
-.m-article-actions:first-child {
+.o-article__primary-actions .m-article-actions {
   margin-top: 0;
 }
 
