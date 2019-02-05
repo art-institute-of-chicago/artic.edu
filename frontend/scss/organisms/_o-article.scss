@@ -206,6 +206,13 @@
 
 
 .o-article__related {
+  .hr:first-child {
+    display: none;
+  }
+
+  position: relative;
+  z-index: 2;
+
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
     width: 100%;
@@ -217,12 +224,12 @@
     float: right;
     clear: right;
     width: colspan(23, small);
-    margin-top: 48px;
+    margin-top: 36px;
     margin-bottom: colspan(3, small);
     margin-left: colspan(3, small);
 
     .o-article__inline-header ~ & {
-      margin-top: -1px;
+      margin-top: 8px;
     }
   }
 
