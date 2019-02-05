@@ -37,8 +37,8 @@ class CollectionFeature extends AbstractModel
 
     public function enclosedItem()
     {
-        $item = $this->articles()->first();
-        $item = $item ?? $this->selections()->first();
+        $item = $this->articles->first();
+        $item = $item ?? $this->selections->first();
         $item = $item ?? $this->apiModels('artworks', 'Artwork')->first();
 
         if (!$item) {
@@ -47,6 +47,10 @@ class CollectionFeature extends AbstractModel
 
         if ($item->type == 'artwork') {
             $item->subtype = 'Artwork';
+        }
+
+        if ($item->type == 'article') {
+            $item->subtype = 'Article';
         }
 
         $item->trackingTitle = getUtf8Slug($item->title);
