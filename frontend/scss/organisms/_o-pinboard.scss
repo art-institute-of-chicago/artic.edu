@@ -127,9 +127,9 @@
       }
     }
 
-    // Override margin-top to match small for all
+    // Override margin-top to match padding-top for all
     .o-pinboard.o-pinboard--home[class*="col@#{$name}"] > * {
-      margin-top: colspan(1.5, small);
+      margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
     }
 
     .o-pinboard[class*="col@#{$name}"] >.m-listing--variable-height {
