@@ -8,7 +8,7 @@ use App\Models\Faq;
 
 class FaqRepository extends ModuleRepository
 {
-	use HandleTranslations;
+    use HandleTranslations;
 
     public function __construct(Faq $model)
     {

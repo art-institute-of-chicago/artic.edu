@@ -8,7 +8,7 @@ use App\Models\FeaturedHour;
 
 class FeaturedHourRepository extends ModuleRepository
 {
-	use HandleTranslations;
+    use HandleTranslations;
 
     public function __construct(FeaturedHour $model)
     {
