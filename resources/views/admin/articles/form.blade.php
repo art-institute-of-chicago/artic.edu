@@ -117,7 +117,7 @@
                     'value' => '/collection/articles_publications/articles/browser'
                 ],
                 [
-                    'label' => 'Digital label',
+                    'label' => 'Interactive feature',
                     'value' => '/collection/digitalLabels/browser'
                 ]
             ],

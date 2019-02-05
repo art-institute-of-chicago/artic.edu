@@ -31,6 +31,8 @@ class ApiModelBuilderSearch extends ApiModelBuilder
 
         $results = $this->forPage($page, $perPage)->get($columns);
 
+        // dd($results);
+
         $paginationData = $results->getMetadata('pagination');
         $total = $paginationData ? $paginationData->total : $results->count();
 

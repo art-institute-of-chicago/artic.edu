@@ -20,7 +20,7 @@ class Search extends BaseApiModel
     public $typeMap = [
         'artworks'    => 'App\Models\Api\Artwork',
         'exhibitions' => 'App\Models\Api\Exhibition',
-        'interactive-features' => 'App\Models\Api\DigitalLabel',
+        'digital-labels' => 'App\Models\Api\DigitalLabel',
         'agents'      => 'App\Models\Api\Artist',
         'sections'    => 'App\Models\Api\Section',
         'events'      => 'App\Models\Event',

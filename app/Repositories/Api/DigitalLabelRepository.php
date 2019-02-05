@@ -18,9 +18,8 @@ class DigitalLabelRepository extends BaseApiRepository
 
     public function searchApi($string, $perPage = null, $page = null, $columns = [])
     {
-        $search = Search::query()->search($string)->resources(['interactive-features']);
+        $search = Search::query()->search($string)->resources(['digital-labels']);
 
-        // $results = $search->getSearch($perPage, $columns, null, $page);
         $results = $search->getPaginatedModel($perPage, \App\Models\Api\DigitalLabel::SEARCH_FIELDS);
         return $results;
     }

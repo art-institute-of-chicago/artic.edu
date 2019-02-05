@@ -167,7 +167,7 @@ return [
                 'component' => 'a17-block-footnote',
             ],
             'digital_label' => [
-                'title' => 'Digital label',
+                'title' => 'Interactive feature',
                 'icon' => 'image',
                 'component' => 'a17-block-digital_label',
             ],

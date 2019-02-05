@@ -116,7 +116,7 @@
         @if(sizeof($digitalLabels['items']) > 0)
             <section>
                 @component('components.molecules._m-title-bar')
-                    @slot('links', array(array('label' => 'Browse all digital labels', 'href' => route('digitalLabels'))))
+                    @slot('links', array(array('label' => 'Browse all interactive features', 'href' => route('digitalLabels'))))
                     Interactive Features
                 @endcomponent
 
@@ -152,7 +152,7 @@
                     @slot('variation', 'm-links-bar--title-bar-companion')
                     @slot('linksPrimary', array(
                         array(
-                            'label' => 'Browse all digital labels',
+                            'label' => 'Browse all interactive features',
                             'href' => route('digitalLabels'),
                             'variation' => 'btn btn--secondary'
                         ),
