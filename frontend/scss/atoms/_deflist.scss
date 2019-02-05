@@ -71,11 +71,7 @@ Demonstrated in **statics/article**
   display: block;
   position: relative;
   padding-top: .02px;
-  overflow-x: scroll;
-
-  // Hide scrollbar on non-scrollabled list items
-  margin-bottom: -(32px + 20px);
-  padding-bottom: 32px + 20px;
+  word-wrap: break-word;
 }
 
 .deflist dt::before {
@@ -100,21 +96,43 @@ Demonstrated in **statics/article**
       grid-column-start: 1;
     }
 
-    .deflist:not(.deflist--free-spacing) dt {
-      @include breakpoint('small+') {
-        width: colspan(18, small);
+    .deflist:not(.deflist--free-spacing) {
+      dt {
+        @include breakpoint('small+') {
+          width: colspan(18, small);
+        }
+
+        @include breakpoint('medium+') {
+          width: colspan(8, medium);
+        }
+
+        @include breakpoint('large+') {
+          width: colspan(8, large);
+        }
+
+        @include breakpoint('xlarge') {
+          width: colspan(8, xlarge);
+        }
       }
 
-      @include breakpoint('medium+') {
-        width: colspan(8, medium);
-      }
+      // See .o-article__secondary-actions ~ .o-article__body
+      // Subtract dt width from that width...
+      dd {
+        @include breakpoint('small+') {
+          width: colspan(40, small);
+        }
 
-      @include breakpoint('large+') {
-        width: colspan(8, large);
-      }
+        @include breakpoint('medium+') {
+          width: colspan(30, medium);
+        }
 
-      @include breakpoint('xlarge') {
-        width: colspan(8, xlarge);
+        @include breakpoint('large+') {
+          width: colspan(20, large);
+        }
+
+        @include breakpoint('xlarge') {
+          width: colspan(20, xlarge);
+        }
       }
     }
 
