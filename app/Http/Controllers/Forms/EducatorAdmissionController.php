@@ -74,7 +74,7 @@ class EducatorAdmissionController extends FormController
             'blocks' => array(
                 array(
                   'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x4',
                   'id' => 'visit_date',
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('visit_date'),

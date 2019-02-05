@@ -127,7 +127,7 @@ class FilmingAndPhotoShootProposalController extends FormController
             'blocks' => array(
                 array(
                   'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'preferred_date_1',
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('preferred_date_1'),
@@ -139,7 +139,7 @@ class FilmingAndPhotoShootProposalController extends FormController
                 ),
                 array(
                   'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'preferred_date_2',
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('preferred_date_2'),
@@ -151,7 +151,7 @@ class FilmingAndPhotoShootProposalController extends FormController
                 ),
                 array(
                   'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'preferred_date_3',
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('preferred_date_3'),

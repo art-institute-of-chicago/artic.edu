@@ -68,12 +68,39 @@
   width: 100%;
 }
 
-.m-fieldset__field .input.m-fieldset__input-narrow,
-.m-fieldset__field .textarea.m-fieldset__input-narrow,
-.m-fieldset__field .select.m-fieldset__input-narrow {
+.m-fieldset__field .input.m-fieldset__input-narrow-x4,
+.m-fieldset__field .textarea.m-fieldset__input-narrow-x4,
+.m-fieldset__field .select.m-fieldset__input-narrow-x4,
+.m-fieldset__field .input.m-fieldset__input-narrow-x3,
+.m-fieldset__field .textarea.m-fieldset__input-narrow-x3,
+.m-fieldset__field .select.m-fieldset__input-narrow-x3
+{
   flex: 0 0 auto;
-  width: 25%;
   margin-right: 20px;
+}
+
+.m-fieldset__field .input.m-fieldset__input-narrow-x4:last-child,
+.m-fieldset__field .textarea.m-fieldset__input-narrow-x4:last-child,
+.m-fieldset__field .select.m-fieldset__input-narrow-x4:last-child,
+.m-fieldset__field .input.m-fieldset__input-narrow-x3:last-child,
+.m-fieldset__field .textarea.m-fieldset__input-narrow-x3:last-child,
+.m-fieldset__field .select.m-fieldset__input-narrow-x3:last-child
+{
+  margin-right: 0px;
+}
+
+.m-fieldset__field .input.m-fieldset__input-narrow-x4,
+.m-fieldset__field .textarea.m-fieldset__input-narrow-x4,
+.m-fieldset__field .select.m-fieldset__input-narrow-x4
+{
+  width: calc(25% - 15px);
+}
+
+.m-fieldset__field .input.m-fieldset__input-narrow-x3,
+.m-fieldset__field .textarea.m-fieldset__input-narrow-x3,
+.m-fieldset__field .select.m-fieldset__input-narrow-x3
+{
+  width: calc(33% - 12px);
 }
 
 .m-fieldset__field .checkbox + .checkbox,
