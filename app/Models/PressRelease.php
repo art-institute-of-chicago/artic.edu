@@ -194,7 +194,7 @@ class PressRelease extends AbstractModel
     public function getSubtypeAttribute()
     {
         if ($this->publish_start_date)
-            return $this->publish_start_date->format('M j, Y');
+            return $this->publish_start_date->format('F j, Y');
     }
 
 }
