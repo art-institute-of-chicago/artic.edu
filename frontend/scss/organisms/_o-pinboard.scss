@@ -80,6 +80,7 @@
   }
 }
 
+// Margin-top on first item adds extra space to all items, see pinboard.js#L66
 @each $name, $point in $breakpoints {
   @include breakpoint('#{$name}') {
     .o-pinboard > * {
@@ -124,6 +125,11 @@
         content: none;
         display: none;
       }
+    }
+
+    // Override margin-top to match small for all
+    .o-pinboard.o-pinboard--home[class*="col@#{$name}"] > * {
+      margin-top: colspan(1.5, small);
     }
 
     .o-pinboard[class*="col@#{$name}"] >.m-listing--variable-height {
@@ -333,3 +339,30 @@
   }
 }
 
+.o-pinboard--home {
+
+  .m-listing__meta {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 64px;
+    padding-top: 36px;
+
+    .f-tag {
+      margin-top: 0px;
+    }
+  }
+
+  .m-listing--selection .m-listing__meta {
+    background-color: #f3f3f3;
+    .f-tag {
+      color: #008085;
+    }
+  }
+  .m-listing--article .m-listing__meta {
+    background-color: #cccccc;
+    .f-tag {
+      color: #083f6e;
+    }
+  }
+
+}
