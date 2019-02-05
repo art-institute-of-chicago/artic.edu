@@ -3,6 +3,7 @@
 
         <span class="m-listing__title">
             @component('components.atoms._title')
+                @slot('font', $titleFont ?? 'f-list-3')
                 @slot('variation', 'title--w-right-arrow')
                 @slot('gtmAttributes', $gtmAttributes ?? null)
                 {{ $item['title_display'] ?? $item['title'] }} <span class='title__arrow' aria-hidden="true">&rsaquo;</span>
