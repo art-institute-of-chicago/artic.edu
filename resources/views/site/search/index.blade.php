@@ -139,8 +139,7 @@
     @if (isset($allResultsView) && $allResultsView)
 
         @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
-            {{-- @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top') --}}
+        @slot('variation', 'o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols  o-grid-listing--gridlines-top')
             @slot('cols_xsmall','1')
             @slot('cols_small','2')
             @slot('cols_medium','2')

@@ -11,8 +11,9 @@
         </span>
 
         <span class="m-listing__meta">
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}"
-            >{!! $item->listing_description ?? '&nbsp;' !!}</span>
+            <span class="intro {{ $captionFont ?? 'f-secondary' }}">
+                {!! $item->listing_description ?? '&nbsp;' !!}
+            </span>
         </span>
 
         {{-- Don't leave space for image if it's missing --}}
