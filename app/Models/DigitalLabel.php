@@ -53,11 +53,12 @@ class DigitalLabel extends Model
         ],
     ];
 
+    public $type = 'label';
     public $checkboxes = ['published'];
 
-    public function getUrlWithoutSlugAttribute()
+    public function getUrl()
     {
-        return route('digitalLabels.show', $this->datahub_id);
+        return route('digitalLabels.show', ['id' => $this->datahub_id, 'slug' => str_slug($this->title, '-')]);
     }
 
     protected function transformMappingInternal()

@@ -38,7 +38,7 @@ class DigitalLabelsController extends FrontController
 
     public function index(Request $request)
     {
-        $items = DigitalLabel::published()->paginate();
+        $items = DigitalLabel::paginate();
         $title = 'Interactive Features';
 
         $nav = [

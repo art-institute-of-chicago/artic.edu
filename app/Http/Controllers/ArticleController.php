@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ArticleRepository;
 use App\Models\Page;
 use App\Models\Article;
-use App\Models\Api\DigitalLabel;
+use App\Models\DigitalLabel;
 
 class ArticleController extends FrontController
 {
