@@ -39,7 +39,7 @@
         'note' => 'Usually used for copyright',
         'maxlength' => 255,
         'toolbarOptions' => [
-            'italic',
+            'italic', 'link',
         ],
     ])
 
