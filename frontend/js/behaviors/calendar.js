@@ -222,8 +222,8 @@ const calendar = function(container) {
     let dateObj = _parseDateString(chosenDate);
     let friendlyString = clicked.getAttribute('title');
     let isoDate = dateObj.toISOString().substr(0, 10);
-    let shortDate = (('0'+dateObj.getDate()).slice(-2))+'/'+(('0'+(dateObj.getMonth()+1)).slice(-2))+'/'+dateObj.getFullYear().toString().slice(-2);
-    let shortDateUS = (('0'+(dateObj.getMonth()+1))+'/'+(('0'+dateObj.getDate()).slice(-2)).slice(-2))+'/'+dateObj.getFullYear().toString().slice(-2)
+    let shortDate = ((dateObj.getDate()))+'/'+(((dateObj.getMonth()+1)))+'/'+dateObj.getFullYear().toString().slice(-2);
+    let shortDateUS = (((dateObj.getMonth()+1))+'/'+((dateObj.getDate())))+'/'+dateObj.getFullYear().toString().slice(-2)
 
     datesSelected[selecting] = {
       string: chosenDate,

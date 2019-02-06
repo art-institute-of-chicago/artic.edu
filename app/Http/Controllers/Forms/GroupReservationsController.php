@@ -189,7 +189,7 @@ class GroupReservationsController extends FormController
             'blocks' => array(
                 array(
                   'type' => 'select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'state',
                   'error' => (!empty($errors) && $errors->first('state')) ? $errors->first('state') : null,
                   'optional' => null,
@@ -201,7 +201,7 @@ class GroupReservationsController extends FormController
                 ),
                 array(
                   'type' => 'input',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'zipcode',
                   'placeholder' => '',
                   'textCount' => false,
@@ -292,7 +292,7 @@ class GroupReservationsController extends FormController
                 array(
                   'type' => 'number',
                   'pattern' => '\d*',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'no_of_adults',
                   'value' => old('no_of_adults'),
                   'error' => (!empty($errors) && $errors->first('no_of_adults')) ? $errors->first('no_of_adults') : null,
@@ -304,7 +304,7 @@ class GroupReservationsController extends FormController
                 array(
                   'type' => 'number',
                   'pattern' => '\d*',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'no_of_students',
                   'value' => old('no_of_students'),
                   'error' => (!empty($errors) && $errors->first('no_of_students')) ? $errors->first('no_of_students') : null,
@@ -316,7 +316,7 @@ class GroupReservationsController extends FormController
                 array(
                   'type' => 'number',
                   'pattern' => '\d*',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'no_of_seniors',
                   'value' => old('no_of_seniors'),
                   'error' => (!empty($errors) && $errors->first('no_of_seniors')) ? $errors->first('no_of_seniors') : null,

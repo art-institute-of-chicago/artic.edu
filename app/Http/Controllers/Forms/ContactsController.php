@@ -27,7 +27,7 @@ class ContactsController extends FormController
             'blocks' => array(
                 array(
                   "type" => 'select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x4',
                   'id' => 'prefix',
                   'error' => (!empty($errors) && $errors->first('prefix')) ? $errors->first('prefix') : null,
                   'optional' => null,
@@ -72,7 +72,7 @@ class ContactsController extends FormController
             'blocks' => array(
                 array(
                   "type" => 'input',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x4',
                   'id' => 'middle_initial',
                   'placeholder' => 'Middle initital',
                   'textCount' => false,
@@ -187,7 +187,7 @@ class ContactsController extends FormController
             'blocks' => array(
                 array(
                   "type" => 'select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x4',
                   'id' => 'state',
                   'error' => (!empty($errors) && $errors->first('state')) ? $errors->first('state') : null,
                   'optional' => null,
@@ -199,7 +199,7 @@ class ContactsController extends FormController
                 ),
                 array(
                   "type" => 'input',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x4',
                   'id' => 'zipcode',
                   'placeholder' => '',
                   'textCount' => false,
@@ -236,7 +236,7 @@ class ContactsController extends FormController
             'blocks' => array(
                 array(
                   "type" => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x4',
                   'id' => 'visit_date',
                   'placeholder' => 'dd/mm/yy',
                   'value' => old('visit_date'),
