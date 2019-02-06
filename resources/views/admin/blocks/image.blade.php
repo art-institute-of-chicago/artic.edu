@@ -38,6 +38,6 @@
     'maxlength' => 200,
     'note' => 'Max 200 characters',
     'toolbarOptions' => [
-        'italic',
+        'italic', 'link',
     ],
 ])
