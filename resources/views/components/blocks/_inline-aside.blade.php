@@ -1,7 +1,7 @@
 @component('components.molecules._m-inline-aside')
     @slot('variation', $variation ?? null)
     @if (sizeof($items) === 1)
-        @slot('title', 'Related '.ucfirst($type))
+        @slot('title', 'Related '. $type = 'label' ? 'Interactive Feature' : ucfirst($type))
         @component('components.molecules.'.$itemsMolecule)
             @slot('tag', 'p')
             @slot('variation', $itemsVariation ?? null)
