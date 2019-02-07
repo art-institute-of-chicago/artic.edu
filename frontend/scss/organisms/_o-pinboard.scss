@@ -127,12 +127,19 @@
       }
     }
 
+    // Fix xsmall for home pinboard
+    .o-pinboard > * {
+      @if ($name == 'xsmall') {
+        margin-top: 24px;
+      }
+    }
+
     // Override margin-top to match padding-top for all
     .o-pinboard.o-pinboard--home[class*="col@#{$name}"] > * {
       margin-top: colspan(map-get($grid-padding-tops, $name), #{$name});
     }
 
-    .o-pinboard[class*="col@#{$name}"] >.m-listing--variable-height {
+    .o-pinboard[class*="col@#{$name}"] > .m-listing--variable-height {
       @if ($name == 'xsmall') {
         margin-top: 32px;
       }
