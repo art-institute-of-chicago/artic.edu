@@ -415,6 +415,7 @@
 
 .m-links-bar--tabs {
 
+  header + &,
   .m-intro-block + & {
     margin-top: 60px;
   }
