@@ -17,10 +17,12 @@ class ModuleRepository extends BaseModuleRepository
             $fields[$key] = rightTrim($field, '<p><br></p>');
         }
 
-        // Block content
-        foreach ($fields['blocks'] as $blockKey => $block) {
-            foreach ($block['content'] as $contentKey => $content) {
-                $fields['blocks'][$blockKey]['content'][$contentKey] = rightTrim($content, '<p><br></p>');
+        // Block content (for `HasBlocks` only)
+        if (isset($fields['blocks'])) {
+            foreach ($fields['blocks'] as $blockKey => $block) {
+                foreach ($block['content'] as $contentKey => $content) {
+                    $fields['blocks'][$blockKey]['content'][$contentKey] = rightTrim($content, '<p><br></p>');
+                }
             }
         }
 
