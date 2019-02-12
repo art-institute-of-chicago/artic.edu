@@ -17,7 +17,7 @@
 @import 'setup/mixins';
 
 $serif-font--loaded: 'Georgia', #{$serif-font};
-$sans-serif-font--loaded: 'Lucida Grande', #{$sans-serif-font};
+$sans-serif-font--loaded: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', #{$sans-serif-font};
 @import 'setup/typography';
 
 @import 'atoms/arrow-link';
