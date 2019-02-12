@@ -61,7 +61,12 @@ class CollectionController extends BaseScopedController
             $this->seo->height = 1459;
         }
 
-        $this->seo->setDescription("Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.");
+        $description = "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.";
+
+        if (request('q')) {
+            $description = 'Your searched for: ' .request('q') .'. ' .$description;
+        }
+        $this->seo->setDescription($description);
         $this->seo->nofollow = $this->setNofollowMeta();
 
         // If it's a call to Load More, just show the items and do not generate a full page
