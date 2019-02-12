@@ -15,6 +15,9 @@
 @import 'setup/variables';
 @import 'setup/colors';
 @import 'setup/mixins';
+
+$serif-font--loaded: 'Georgia', #{$serif-font};
+$sans-serif-font--loaded: 'Lucida Grande', #{$sans-serif-font};
 @import 'setup/typography';
 
 @import 'atoms/arrow-link';
