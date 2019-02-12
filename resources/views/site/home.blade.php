@@ -144,7 +144,6 @@
     @slot('cols_large','3')
     @slot('cols_xlarge','3')
     @slot('maintainOrder','true')
-    @slot('variation', 'o-pinboard--home')
     @foreach ($theCollection as $k => $item)
     @php($countCollection = $countCollection+1)
         @if ($item->enclosedItem())
