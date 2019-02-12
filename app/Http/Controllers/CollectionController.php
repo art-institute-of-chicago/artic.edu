@@ -36,16 +36,38 @@ class CollectionController extends BaseScopedController
 
     public function index()
     {
-        $this->seo->setTitle('Discover Art & Artists');
-        $this->seo->setDescription("Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.");
-        $this->seo->nofollow = $this->setNofollowMeta();
-
-        // Use American Gothic as social image
-        $this->seo->image = 'https://' .rtrim(config('app.url'), '/') . '/iiif/2/d02e0079-8e82-733e-683c-cb83a387ee5e/full/1200,/0/default.jpg';
-        $this->seo->width = 1200;
-        $this->seo->height = 1459;
-
         $collection = $this->collection()->perPage(static::PER_PAGE)->results();
+
+        $page = Page::forType('Art and Ideas')->with('apiElements')->first();
+        $filters       = $this->collection()->generateFilters();
+        $activeFilters = $this->collection()->activeFilters();
+
+        if ($activeFilters->count()) {
+            $this->seo->setTitle(implode(', ', $activeFilters->pluck('label')->all()));
+        }
+        else {
+            $this->seo->setTitle('Discover Art & Artists');
+        }
+
+        if ($collection->count()) {
+            // Use first image of results as the social image
+            $artwork = $collection->first();
+            $this->seo->setImage($artwork->imageFront('hero'));
+        }
+        else {
+            // Otherwise, fall back to American Gothic as social image
+            $this->seo->image = 'https://' .rtrim(config('app.url'), '/') . '/iiif/2/d02e0079-8e82-733e-683c-cb83a387ee5e/full/1200,/0/default.jpg';
+            $this->seo->width = 1200;
+            $this->seo->height = 1459;
+        }
+
+        $description = "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.";
+
+        if (request('q')) {
+            $description = 'Your searched for: ' .request('q') .'. ' .$description;
+        }
+        $this->seo->setDescription($description);
+        $this->seo->nofollow = $this->setNofollowMeta();
 
         // If it's a call to Load More, just show the items and do not generate a full page
         if (\Route::current()->getName() == 'collection.more') {
@@ -58,10 +80,6 @@ class CollectionController extends BaseScopedController
 
             return $view;
         }
-
-        $page = Page::forType('Art and Ideas')->with('apiElements')->first();
-        $filters       = $this->collection()->generateFilters();
-        $activeFilters = $this->collection()->activeFilters();
 
         $featuredArticles = $page->artArticles ?? null;
         if ($featuredArticles->count()) {

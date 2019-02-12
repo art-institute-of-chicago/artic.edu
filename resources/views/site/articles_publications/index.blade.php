@@ -164,12 +164,14 @@
                 Print Catalogues
             @endcomponent
 
-            @component('components.atoms._hr')
-            @endcomponent
+            @if (!empty($printedCatalogs['intro']))
+                @component('components.atoms._hr')
+                @endcomponent
 
-            @component('components.molecules._m-intro-block')
-                {!! $printedCatalogs['intro'] !!}
-            @endcomponent
+                @component('components.molecules._m-intro-block')
+                    {!! $printedCatalogs['intro'] !!}
+                @endcomponent
+            @endif
 
             @component('components.atoms._hr')
             @endcomponent

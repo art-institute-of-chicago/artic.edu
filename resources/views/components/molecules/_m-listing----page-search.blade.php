@@ -3,6 +3,7 @@
 
         <span class="m-listing__title">
             @component('components.atoms._title')
+                @slot('font', $titleFont ?? 'f-list-3')
                 @slot('variation', 'title--w-right-arrow')
                 @slot('gtmAttributes', $gtmAttributes ?? null)
                 {{ $item['title_display'] ?? $item['title'] }} <span class='title__arrow' aria-hidden="true">&rsaquo;</span>
@@ -10,9 +11,9 @@
         </span>
 
         <span class="m-listing__meta">
-            @if ($item->listing_description)
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->listing_description !!}</span>
-            @endif
+            <span class="intro {{ $captionFont ?? 'f-secondary' }}">
+                {!! $item->listing_description ?? '&nbsp;' !!}
+            </span>
         </span>
 
         {{-- Don't leave space for image if it's missing --}}

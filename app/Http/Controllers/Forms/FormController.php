@@ -160,7 +160,7 @@ abstract class FormController extends FrontController
         }
 
         // Remove any prepended characters (or return on fail)
-        if (!preg_match('/[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9]/', $validated[$fieldName], $matches)) {
+        if (!preg_match('/[0-9]?[0-9]\/[0-9]?[0-9]\/[0-9][0-9]/', $validated[$fieldName], $matches)) {
             return '';
         }
 

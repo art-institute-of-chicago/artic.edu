@@ -1,6 +1,6 @@
 @php
     $page = $block->blockable;
-    $image = $block->imageAsArray('image', 'desktop');
+    $image = $block->imageAsArray('membership_banner_image', 'desktop');
 @endphp
 @component('components.molecules._m-cta-banner----become-a-member')
     @slot('image', $image)

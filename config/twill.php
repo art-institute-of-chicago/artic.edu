@@ -257,6 +257,14 @@ return [
                     ],
                 ],
             ],
+            'membership_banner_image' => [
+                'desktop' => [
+                    [
+                        'name' => 'desktop',
+                        'ratio' => 0,
+                    ],
+                ],
+            ],
             'listing_image' => [
                 'default' => [
                     [

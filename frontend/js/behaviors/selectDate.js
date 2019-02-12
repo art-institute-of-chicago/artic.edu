@@ -136,7 +136,7 @@ const selectDate = function(container) {
   }
 
   function _resized() {
-    _closeCalendar();
+    _closeCalendar(true);
   }
 
   function _init() {

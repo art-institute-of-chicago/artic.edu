@@ -66,7 +66,7 @@ const pinboard = function(container){
     let marginTop = _getMarginTop(firstChild);
     firstChild.classList.remove('s-repositioning');
     marginTop = (typeof marginTop === 'number') ? marginTop : 60;
-    //
+    colCurrent = 0;
     forEach(blocks, function(index, block) {
       if (block.classList.contains('s-positioned') === false || resetPreviousPositions) {
         // reset the blocks height

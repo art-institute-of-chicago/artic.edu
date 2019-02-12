@@ -1764,10 +1764,15 @@
 
 // variant `m-listing` that expects the image to be on the left, not the right, and optionally absent
 .m-listing--rtl {
-  align-self: flex-start;
+  flex-flow: column nowrap;
 }
 
 .m-listing--rtl .m-listing__link {
+  flex: 0 1 auto;
+
+  align-items: flex-start;
+  align-content: flex-start;
+
   flex-flow: row-reverse wrap;
   max-width: 100%;
 }

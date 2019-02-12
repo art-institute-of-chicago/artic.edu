@@ -126,7 +126,7 @@
       }
     }
 
-    .o-pinboard[class*="col@#{$name}"] >.m-listing--variable-height {
+    .o-pinboard[class*="col@#{$name}"] > .m-listing--variable-height {
       @if ($name == 'xsmall') {
         margin-top: 32px;
       }

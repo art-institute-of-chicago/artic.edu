@@ -270,7 +270,7 @@ class RyersonClassVisitController extends FormController
             'blocks' => array(
                 array(
                   'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'preferred_date_1',
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('preferred_date_1'),
@@ -282,7 +282,7 @@ class RyersonClassVisitController extends FormController
                 ),
                 array(
                   'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'preferred_date_2',
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('preferred_date_2'),
@@ -294,7 +294,7 @@ class RyersonClassVisitController extends FormController
                 ),
                 array(
                   'type' => 'date-select',
-                  'variation' => 'm-fieldset__input-narrow',
+                  'variation' => 'm-fieldset__input-narrow-x3',
                   'id' => 'preferred_date_3',
                   'placeholder' => 'mm/dd/yy',
                   'value' => old('preferred_date_3'),
@@ -454,7 +454,7 @@ class RyersonClassVisitController extends FormController
                 'blocks' => array(
                     array(
                         'type' => 'date-select',
-                        'variation' => 'm-fieldset__input-narrow',
+                        'variation' => 'm-fieldset__input-narrow-x3',
                         'id' => 'instructor_materials_review_date_' .$i,
                         'placeholder' => 'mm/dd/yy',
                         'value' => old('instructor_materials_review_date_' .$i),
@@ -466,7 +466,7 @@ class RyersonClassVisitController extends FormController
                     ),
                     array(
                         'type' => 'select',
-                        'variation' => 'm-fieldset__input-narrow',
+                        'variation' => 'm-fieldset__input-narrow-x3',
                         'id' => 'instructor_materials_review_time_' .$i,
                         'error' => (!empty($errors) && $errors->first('instructor_materials_review_time_' .$i)) ? $errors->first('instructor_materials_review_time_' .$i) : null,
                         'value' => old('instructor_materials_review_time_' .$i),

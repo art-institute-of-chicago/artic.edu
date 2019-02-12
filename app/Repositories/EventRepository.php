@@ -7,7 +7,6 @@ use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleRepeaters;
-use A17\Twill\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleApiRelations;

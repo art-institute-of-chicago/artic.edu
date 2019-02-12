@@ -107,6 +107,11 @@
 
 
 @include breakpoint('medium') {
+  .o-feature-plus-4__items-1 > *,
+  .o-feature-plus-4__items-2 > * {
+    margin-top: #{map-get($grid-margin-tops, medium)}px;
+  }
+
   .o-feature-plus-4__items-1 {
     width: colspan(18, medium);
     margin-left: colspan(2, medium)
@@ -174,6 +179,11 @@
     margin-left: colspan(2, large)
   }
 
+  .o-feature-plus-4__items-1 > *,
+  .o-feature-plus-4__items-2 > * {
+    margin-top: #{map-get($grid-margin-tops, large)}px;
+  }
+
   .o-feature-plus-4__items-1 > *:first-child,
   .o-feature-plus-4__items-2 > *:first-child {
     margin-top: 0;
@@ -204,6 +214,10 @@
   .o-feature-plus-4__items-2 {
     width: colspan(13, xlarge);
     margin-left: colspan(2, xlarge)
+  }
+  .o-feature-plus-4__items-1 > *,
+  .o-feature-plus-4__items-2 > * {
+    margin-top: #{map-get($grid-margin-tops, xlarge)}px;
   }
 
   .o-feature-plus-4__items-1 > *:first-child,

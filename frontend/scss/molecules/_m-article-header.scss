@@ -37,6 +37,10 @@
   @include tucked-margin-top($f-headline, ('xsmall': 44, 'medium+': 48));
 }
 
+.m-article-header--default .title {
+  margin-top: 4px;
+}
+
 .m-article-header--default .title:only-child {
   @include breakpoint('xsmall') {
     @include tucked-align-top($f-headline, 'xsmall');
@@ -358,12 +362,12 @@
 }
 
 .m-article-header--feature .title {
-  @include tucked-margin-top($f-headline, ('xsmall': 38, 'medium+': 48));
+  @include tucked-margin-top($f-headline, ('xsmall': 78, 'medium': 88, 'large+': 48));
   color: $color__text--title-contrast;
 }
 
 .m-article-header--feature.m-article-header--editorial .title {
-  @include tucked-margin-top($f-headline-editorial, ('xsmall': 44, 'medium+': 48));
+  @include tucked-margin-top($f-headline-editorial, ('xsmall': 74, 'medium': 88, 'large+': 48));
   color: $color__text--title;
 }
 
@@ -375,9 +379,20 @@
   }
 
 .m-article-header--feature .type {
+  $line-height: 0;
+  $settings: false;
+  @if $settings {
+    @each $name, $point in $breakpoints-with-directions {
+      // first see if font settings has a line height for this breakpoint
+      @if map-has-key($settings, $name) {
+        $settings-at-breakpoint: map-get($settings, $name);
+        $line-height: map-get($settings-at-breakpoint, line-height);
+      }
+    }
+  }
   position: absolute;
   left: 0;
-  top: auto;
+  top: #{$line-height + 20}px;
   bottom: calc(100% + 20px);
   margin-top: 0;
   color: $color__text--title-contrast;

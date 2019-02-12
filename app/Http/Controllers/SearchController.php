@@ -32,7 +32,7 @@ class SearchController extends BaseScopedController
     const ALL_PER_PAGE_EVENTS = 4;
     const ALL_PER_PAGE_PAGES = 3;
     const ALL_PER_PAGE_ARTICLES = 4;
-    const ALL_PER_PAGE_PUBLICATIONS = 16;
+    const ALL_PER_PAGE_PUBLICATIONS = 4;
 
     const ARTWORKS_PER_PAGE = 20;
     const PAGES_PER_PAGE = 20;

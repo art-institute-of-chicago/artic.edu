@@ -1,5 +1,5 @@
 @formField('medias', [
-    'name' => 'image',
+    'name' => 'membership_banner_image',
     'label' => 'Image',
     'max' => '1'
 ])

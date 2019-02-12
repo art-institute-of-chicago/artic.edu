@@ -3,7 +3,7 @@
 namespace App\Repositories\Api;
 
 use A17\Twill\Models\Model;
-use A17\Twill\Repositories\ModuleRepository;
+use App\Repositories\ModuleRepository;
 use App\Repositories\Behaviors\HandleApiRelations;
 
 abstract class BaseApiRepository extends ModuleRepository
