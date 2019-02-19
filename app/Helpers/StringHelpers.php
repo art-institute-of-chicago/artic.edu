@@ -213,8 +213,12 @@ if (!function_exists('rightTrim')) {
      * @see https://stackoverflow.com/a/32739088/1313842
      */
     function rightTrim($string, $needle) {
-        if (is_string($string) && strlen($string) >= strlen($needle)) {
-            while (strpos($string, $needle, strlen($string) - strlen($needle)) !== false) {
+        if (is_string($string)) {
+            while ((
+                strlen($string) >= strlen($needle)
+            ) && (
+                strpos($string, $needle, strlen($string) - strlen($needle)) !== false
+            )) {
                 $string = substr($string, 0, -strlen($needle));
             }
         }
