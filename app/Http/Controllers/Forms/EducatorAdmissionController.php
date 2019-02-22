@@ -265,16 +265,6 @@ class EducatorAdmissionController extends FormController
         $educatorAdmission->name = $validated['name'] ?? '';
         $educatorAdmission->email = $validated['email'] ?? '';
         $educatorAdmission->visit_date = $this->getDateField($validated, 'visit_date');
-        $educatorAdmission->phone_number = $validated['phone_number'] ?? '';
-        $educatorAdmission->address_1 = $validated['address_1'] ?? '';
-        $educatorAdmission->address_2 = $validated['address_2'] ?? '';
-        $educatorAdmission->city = $validated['city'] ?? '';
-        $educatorAdmission->state = $validated['state'] ?? '';
-        $educatorAdmission->zipcode = $validated['zipcode'] ?? '';
-
-        $educatorAdmission->school_name = $validated['school_name'] ?? '';
-        $educatorAdmission->school_city = $validated['school_city'] ?? '';
-        $educatorAdmission->school_state = $validated['school_state'] ?? '';
         $educatorAdmission->school_location = $validated['school_location'] ?? '';
         $educatorAdmission->type_of_educator = $validated['type_of_educator'] ?? '';
         $educatorAdmission->grades_taught = $validated['grades_taught'] ?? '';
