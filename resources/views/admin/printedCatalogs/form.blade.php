@@ -38,6 +38,11 @@
         'maxlength' => 255
     ])
 
+    @formField('input', [
+        'name' => 'publication_year',
+        'label' => 'Publication year',
+    ])
+
     @formField('multi_select', [
         'name' => 'categories',
         'label' => 'Categories',

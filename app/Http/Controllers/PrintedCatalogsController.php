@@ -35,7 +35,7 @@ class PrintedCatalogsController extends CatalogsController
 
     public function index(Request $request)
     {
-        $items = $this->collection()->paginate();
+        $items = $this->collection()->ordered()->paginate();
 
         $title = 'Print Catalogues';
 

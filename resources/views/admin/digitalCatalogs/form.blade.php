@@ -37,6 +37,12 @@
         'type' => 'textarea',
         'maxlength' => 255
     ])
+
+    @formField('input', [
+        'name' => 'publication_year',
+        'label' => 'Publication year',
+    ])
+
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'list',

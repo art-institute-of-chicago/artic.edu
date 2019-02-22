@@ -21,7 +21,7 @@ class DigitalCatalogsController extends CatalogsController
 
     public function index(Request $request)
     {
-        $items = DigitalCatalog::published()->paginate();
+        $items = DigitalCatalog::published()->ordered()->paginate();
 
         $title = 'Digital Catalogues';
 

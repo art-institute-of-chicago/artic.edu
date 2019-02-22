@@ -88,6 +88,10 @@ class DigitalCatalog extends AbstractModel
         return $query->whereIn('id', $ids);
     }
 
+    public function scopeOrdered($query) {
+        return $query->orderBy('publication_year', 'desc');
+    }
+
     public function sections()
     {
         return $this->sections;
