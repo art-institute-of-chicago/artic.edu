@@ -62,7 +62,7 @@ class Artwork extends BaseApiModel
     public function getFullArtistAttribute()
     {
         $artist = $this->mainArtist ? $this->mainArtist->first() : null;
-        return ($artist->title ?? '') . ($artist->title && $this->date_display ? ', ' : '') . ($this->date_display ?? '');
+        return ($artist->title ?? '') . ($artist && $artist->title && $this->date_display ? ', ' : '') . ($this->date_display ?? '');
     }
 
     public function getListingSubtitleAttribute()
