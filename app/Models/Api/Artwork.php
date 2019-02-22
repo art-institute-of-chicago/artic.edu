@@ -59,6 +59,12 @@ class Artwork extends BaseApiModel
         return $this->title . ' (' . ($artist->title ?? '') . ' #' . $this->main_reference_number . ')';
     }
 
+    public function getFullArtistAttribute()
+    {
+        $artist = $this->mainArtist ? $this->mainArtist->first() : null;
+        return ($artist->title ?? '') . ($artist->title && $this->date_display ? ', ' : '') . ($this->date_display ?? '');
+    }
+
     public function getListingSubtitleAttribute()
     {
         if ($this->artist_pivots != null && count($this->artist_pivots) > 0) {

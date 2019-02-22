@@ -119,7 +119,7 @@ class EventRepository extends ModuleRepository
     }
 
     // TODO: Consider defaulting $page to 1?
-    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = null, $private = false)
+    public function getEventsFiltered($start = null, $end = null, $time = null, $type = null, $audience = null, $program = null, $perPage = 5, $page = null, $private = false, $callback = null)
     {
         $query = $this->model->newQuery();
 
@@ -162,6 +162,10 @@ class EventRepository extends ModuleRepository
 
         if ($program) {
             $query->byProgram($program);
+        }
+
+        if ($callback) {
+            $callback($query);
         }
 
         return $query->paginate($perPage, ['events.*', 'event_metas.date', 'event_metas.date_end'], 'page', $page);

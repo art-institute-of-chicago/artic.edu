@@ -32,7 +32,7 @@ class ArtworkController extends BaseScopedController
         }
 
         $this->seo->setTitle($item->meta_title ?? $item->title);
-        $this->seo->setDescription($item->meta_description ?? $item->fullTitle);
+        $this->seo->setDescription($item->meta_description ?? $item->fullArtist);
         $this->seo->setImage($item->imageFront('hero'));
 
         // Get previous and next artwork using BaseScopedController filters

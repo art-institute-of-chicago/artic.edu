@@ -32,7 +32,11 @@ class EventOccurrencesController extends BaseController
                 null, null, null, null,
                 $limit,
                 null,
-                true
+                true,
+                function (&$query) {
+                    $query->getQuery()->orders = null;
+                    $query->orderBy('updated_at', 'desc');
+                }
             );
 
         });

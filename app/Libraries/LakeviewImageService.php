@@ -36,7 +36,7 @@ class LakeviewImageService implements ImageServiceInterface
         $credit = null;
         $creditUrl = null;
         $shareTitle = null;
-        $downloadName = $object->title;
+        $downloadName = $object->main_reference_number .' - ' .truncateStr($object->title, 50) .'.jpg';
 
         $preLoadedInfo = $this->getInfo($object, $imageField);
 

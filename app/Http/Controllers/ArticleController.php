@@ -89,7 +89,7 @@ class ArticleController extends FrontController
         }
 
         $this->seo->setTitle($item->meta_title ?: $item->title);
-        $this->seo->setDescription($item->meta_description ?: $item->heading);
+        $this->seo->setDescription($item->meta_description ?? $item->heading ?? truncateStr(strip_tags($item->present()->copy()), 297));
         $this->seo->setImage($item->imageFront('hero'));
 
         if ($item->categories->first()) {
@@ -102,5 +102,4 @@ class ArticleController extends FrontController
             'canonicalUrl' => route('articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
     }
-
 }
