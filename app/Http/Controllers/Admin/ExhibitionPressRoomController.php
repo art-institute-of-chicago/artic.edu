@@ -7,6 +7,7 @@ use A17\Twill\Http\Controllers\Admin\ModuleController;
 class ExhibitionPressRoomController extends ModuleController
 {
     protected $moduleName = 'exhibitionPressRooms';
+    protected $previewView = 'site.genericPage.show';
 
     protected function formData($request)
     {
@@ -15,5 +16,10 @@ class ExhibitionPressRoomController extends ModuleController
         return [
             'baseUrl' => $baseUrl,
         ];
+    }
+
+    protected function previewData($item)
+    {
+        return $this->repository->getShowData($item);
     }
 }
