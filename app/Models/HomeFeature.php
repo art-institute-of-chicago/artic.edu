@@ -59,27 +59,41 @@ class HomeFeature extends AbstractModel
         return $this->apiElements()->where('relation', 'exhibitions');
     }
 
+    public function selections()
+    {
+        return $this->belongsToMany(\App\Models\Selection::class, 'home_feature_selection', 'home_feature_id', 'selection_id')->withPivot('position')->orderBy('position');
+    }
+
     public function item()
     {
         $item = $this->events()->first();
         $item = $item ?? $this->apiModels('exhibitions', 'Exhibition')->first();
         $item = $item ?? $this->articles()->first();
+        $item = $item ?? $this->selections()->first();
 
         return $item;
     }
 
     public function enclosedItem()
     {
+        $item = $this->item();
+
         // Return nothing if there's no selected element.
         // This usually happens when you select an exhibition and this one gets removed from the API.
-        if ($item = $this->item()) {
-
-            // Assign image and video to the actual item. Fallback to the element image if no image has been selected.
-            $item->featureImage = $this->featureImage ?? $item->imageFront('hero');
-            $item->videoFront   = $this->videoFront($item->featureImage);
-
-            return $item;
+        if (!$item) {
+            return null;
         }
+
+        // Assign image and video to the actual item. Fallback to the element image if no image has been selected.
+        $item->featureImage = $this->featureImage ?? $item->imageFront('hero');
+        $item->videoFront   = $this->videoFront($item->featureImage);
+
+        // Generalize the article tag
+        if ($item->type == 'article') {
+            $item->subtype = 'Article';
+        }
+
+        return $item;
     }
 
     public function getFeatureImageAttribute()

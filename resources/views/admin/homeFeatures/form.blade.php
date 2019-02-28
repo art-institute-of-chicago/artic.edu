@@ -15,7 +15,7 @@
 
     @php
         $selectedFeature = 'articles';
-        foreach (['articles', 'events', 'exhibitions'] as $featureType) {
+        foreach (['articles', 'events', 'exhibitions', 'selections'] as $featureType) {
             if (isset($form_fields['browsers'][$featureType]) && !empty($form_fields['browsers'][$featureType])) {
                 $selectedFeature = $featureType;
             }
@@ -39,6 +39,10 @@
             [
                 'value' => 'exhibitions',
                 'label' => 'Exhibitions'
+            ],
+            [
+                'value' => 'selections',
+                'label' => 'Collection Highlights'
             ],
         ]
     ])
@@ -82,13 +86,17 @@
             'label' => 'Exhibition'
         ])
     @endcomponent
-{{--
-    #2 Removed for now?
-     @formField('browser', [
-        'routePrefix' => 'collection',
-        'moduleName' => 'artworks',
-        'name' => 'artworks',
-        'label' => 'Artworks'
+
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => '_featureType',
+        'renderForBlocks' => false,
+        'fieldValues' => 'selections'
     ])
- --}}
+        @formField('browser', [
+            'routePrefix' => 'collection',
+            'moduleName' => 'selections',
+            'name' => 'selections',
+            'label' => 'Collection Highlights'
+        ])
+    @endcomponent
 @stop

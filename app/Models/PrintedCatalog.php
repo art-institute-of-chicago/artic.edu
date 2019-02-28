@@ -76,12 +76,16 @@ class PrintedCatalog extends AbstractModel
     public function scopeByCategory($query, $category = null)
     {
         if (empty($category)) {
-            return $query;
+            return $query->orderBy('publication_year', 'desc');
         }
 
         return $query->whereHas('categories', function ($query) use ($category) {
             $query->where('catalog_category_id', $category);
-        });
+        })->orderBy('publication_year', 'desc');
+    }
+
+    public function scopeOrdered($query) {
+        return $query->orderBy('publication_year', 'desc');
     }
 
     // Generates the id-slug type of URL

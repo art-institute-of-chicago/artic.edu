@@ -1841,7 +1841,9 @@
     height: 33%;
 
     text-align: right;
+}
 
+.m-listing--selection:not(.m-listing--feature) .m-listing__img .m-listing__img__overlay {
     background: linear-gradient(
       to bottom,
       $color__black--85,

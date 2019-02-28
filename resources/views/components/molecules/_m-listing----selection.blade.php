@@ -15,15 +15,17 @@
                 <span class="default-img"></span>
             @endif
             <span class="m-listing__img__overlay">
-                <svg class="icon--slideshow--24">
-                    <use xlink:href="#icon--slideshow--24"></use>
-                </svg>
+                @if (isset($variation) && $variation != 'm-listing--feature')
+                    <svg class="icon--slideshow--24">
+                        <use xlink:href="#icon--slideshow--24"></use>
+                    </svg>
+                @endif
             </span>
         </span>
         <span class="m-listing__meta">
-            <em class="type f-tag">{{ $item->subtype }}</em>
+            <em class="type f-tag">{{isset($variation) && $variation == 'm-listing--feature' ? 'Collection ' : '' }}{{ $item->subtype }}</em>
             <br>
-            <strong class="title f-list-3">{!! $item->title_display ?? $item->title !!}</strong>
+            <strong class="title {{isset($variation) && $variation == 'm-listing--feature' ? 'f-module-title-2' : 'f-list-3' }}">{!! $item->title_display ?? $item->title !!}</strong>
         </span>
     </a>
 </{{ $tag or 'li' }}>

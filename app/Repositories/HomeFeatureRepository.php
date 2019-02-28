@@ -27,7 +27,8 @@ class HomeFeatureRepository extends ModuleRepository
     {
         $this->updateBrowser($object, $fields, 'articles');
         $this->updateBrowser($object, $fields, 'events');
-        $this->updateBrowserApiRelated($object, $fields, ['artworks', 'exhibitions']);
+        $this->updateBrowser($object, $fields, 'selections');
+        $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
 
         parent::afterSave($object, $fields);
     }
@@ -38,8 +39,8 @@ class HomeFeatureRepository extends ModuleRepository
 
         $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
+        $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'collection');
         $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events');
-        $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'collection');
 
         return $fields;
     }
