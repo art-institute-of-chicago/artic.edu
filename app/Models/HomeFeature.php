@@ -70,16 +70,24 @@ class HomeFeature extends AbstractModel
 
     public function enclosedItem()
     {
+        $item = $this->item();
+
         // Return nothing if there's no selected element.
         // This usually happens when you select an exhibition and this one gets removed from the API.
-        if ($item = $this->item()) {
-
-            // Assign image and video to the actual item. Fallback to the element image if no image has been selected.
-            $item->featureImage = $this->featureImage ?? $item->imageFront('hero');
-            $item->videoFront   = $this->videoFront($item->featureImage);
-
-            return $item;
+        if (!$item) {
+            return null;
         }
+
+        // Assign image and video to the actual item. Fallback to the element image if no image has been selected.
+        $item->featureImage = $this->featureImage ?? $item->imageFront('hero');
+        $item->videoFront   = $this->videoFront($item->featureImage);
+
+        // Generalize the article tag
+        if ($item->type == 'article') {
+            $item->subtype = 'Article';
+        }
+
+        return $item;
     }
 
     public function getFeatureImageAttribute()
