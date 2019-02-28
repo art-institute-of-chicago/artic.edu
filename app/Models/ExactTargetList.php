@@ -16,6 +16,7 @@ class ExactTargetList
             'OptStudentTeacherPrograms' => 'Student and Teacher Programs',
             'OptTeenPrograms' => 'Teen Programs',
             'OptAcademicEngagement' => 'Academic Engagement',
+            'OptHumanResources' => 'Career Opportunities',
             'OptEnews' => 'E-news',
             'DP Test' => 'DP test list',
         ]);
