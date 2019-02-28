@@ -59,11 +59,17 @@ class HomeFeature extends AbstractModel
         return $this->apiElements()->where('relation', 'exhibitions');
     }
 
+    public function selections()
+    {
+        return $this->belongsToMany(\App\Models\Selection::class, 'home_feature_selection', 'home_feature_id', 'selection_id')->withPivot('position')->orderBy('position');
+    }
+
     public function item()
     {
         $item = $this->events()->first();
         $item = $item ?? $this->apiModels('exhibitions', 'Exhibition')->first();
         $item = $item ?? $this->articles()->first();
+        $item = $item ?? $this->selections()->first();
 
         return $item;
     }

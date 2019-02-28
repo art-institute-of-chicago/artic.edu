@@ -288,6 +288,7 @@ return [
         ],
         'browser_route_prefixes' => [
             'events' => 'exhibitions_events',
+            'selections' => 'collection',
             'artworks' => 'collection',
         ],
     ],
