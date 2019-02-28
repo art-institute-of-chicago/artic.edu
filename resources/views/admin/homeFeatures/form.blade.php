@@ -82,13 +82,5 @@
             'label' => 'Exhibition'
         ])
     @endcomponent
-{{--
-    #2 Removed for now?
-     @formField('browser', [
-        'routePrefix' => 'collection',
-        'moduleName' => 'artworks',
-        'name' => 'artworks',
-        'label' => 'Artworks'
     ])
- --}}
 @stop
