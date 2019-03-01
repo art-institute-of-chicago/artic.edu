@@ -135,19 +135,19 @@ class EventPresenter extends BasePresenter
 
         $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
 
-        return (
-            !isset($ticketedEvent)
-        ) || (
-            (
-                ($ticketedEvent->on_sale_at ?? false) && (
-                    (new Carbon($ticketedEvent->on_sale_at))->lessThan(Carbon::now())
-                )
-            ) && (
-                ($ticketedEvent->off_sale_at ?? false) && (
-                    (new Carbon($ticketedEvent->off_sale_at))->greaterThan(Carbon::now())
-                )
-            )
-        );
+        return ( !isset($ticketedEvent) )
+            || ( !$ticketedEvent->on_sale_at )
+            || (
+                 (
+                   ($ticketedEvent->on_sale_at ?? false) && (
+                       (new Carbon($ticketedEvent->on_sale_at))->lessThan(Carbon::now())
+                   )
+                 ) && (
+                   ($ticketedEvent->off_sale_at ?? false) && (
+                       (new Carbon($ticketedEvent->off_sale_at))->greaterThan(Carbon::now())
+                   )
+                 )
+            );
     }
 
     public function isSoldOut()

@@ -9,6 +9,9 @@ use App\Models\Behaviors\HasMediasEloquent;
 class CollectionFeature extends AbstractModel
 {
 
+    /**
+     * TODO: Why does this have HasMediasEloquent?
+     */
     use HasBlocks, HasApiRelations, HasMediasEloquent;
 
     protected $fillable = [
