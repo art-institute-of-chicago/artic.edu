@@ -151,6 +151,11 @@ Route::name('forms.ryerson-class-visit')->get('/library/request-a-class-visit/sc
 Route::name('forms.ryerson-class-visit.store')->post('/library/request-a-class-visit/schedule', 'Forms\RyersonClassVisitController@store');
 Route::name('forms.ryerson-class-visit.thanks')->get('/library/request-a-class-visit/schedule/thanks', 'Forms\RyersonClassVisitController@thanks');
 
+// Manage subscriptions request
+Route::name('forms.manage-subscriptions')->get('/manage-subscriptions', 'Forms\ManageSubscriptionsController@index');
+Route::name('forms.manage-subscriptions.store')->post('/manage-subscriptions', 'Forms\ManageSubscriptionsController@store');
+Route::name('forms.manage-subscriptions.thanks')->get('/manage-subscriptions/thanks', 'Forms\ManageSubscriptionsController@thanks');
+
 // Feed routes
 Route::feeds();
 
