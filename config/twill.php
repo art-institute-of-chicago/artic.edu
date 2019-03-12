@@ -150,6 +150,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-footnote',
             ],
+            'tour_stop' => [
+                'title' => 'Audio Tour Stop',
+                'icon' => 'image',
+                'component' => 'a17-block-tour_stop',
+            ],
 
         ],
         'repeaters' => [
