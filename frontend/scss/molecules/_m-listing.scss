@@ -1402,8 +1402,29 @@
   height: auto;
 }
 
+$f-audio-subtitle: generate-font-obj(
+  (
+    font-family: $sans-serif-font,
+    font-family-loaded: $sans-serif-font--loaded,
+    font-loaded-class: $sans-serif-font-loaded-class,
+    settings: (
+      'xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
+      'medium+': (font-size: 14, line-height: 28, push: 0)
+    )
+  )
+);
+
 // Quick aside for artwork detail's sound variant
 .m-listing--inline.m-listing--sound {
+  .m-listing__meta {
+    @include font-styles($f-module-title-1);
+  }
+
+  .m-listing__subtitle {
+    @include font-styles($f-audio-subtitle);
+    text-align: right;
+  }
+
   .m-listing__link {
     flex-flow: column nowrap;
     height: auto;

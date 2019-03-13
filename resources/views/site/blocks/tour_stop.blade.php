@@ -9,6 +9,7 @@
             'title' => $tourStop->title,
             'href' => $tourStop->web_url,
             'transcript' => 'data:text/plain;charset=utf-8,' . rawurlencode($tourStop->transcript ?? 'No transcript available.'),
+            'subtitle' => 'Hear the full tour on our app, available for <a href="https://itunes.apple.com/us/app/art-institute-of-chicago-app/id1130366814?mt=8">Apple</a> and <a href="https://play.google.com/store/apps/details?id=edu.artic">Android</a>',
         ])
     @endcomponent
 @endif
