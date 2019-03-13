@@ -13,7 +13,24 @@ const videojsActivate = function() {
         window.open(this.player_.cache_.src);
       },
       buildCSSClass: function () {
-        return 'vjs-control vjs-download-button';
+        return 'vjs-control vjs-custom-button vjs-download-button';
+      },
+    }));
+  }
+
+  function _registerTranscriptButton() {
+    var vjsButtonComponent = window.videojs.getComponent('Button');
+
+    window.videojs.registerComponent('TranscriptButton', videojs.extend(vjsButtonComponent, {
+      constructor: function () {
+        vjsButtonComponent.apply(this, arguments);
+        this.controlText('Download transcript');
+      },
+      handleClick: function () {
+        window.open(this.player_.el_.getAttribute('data-transcript-uri'), '_blank');
+      },
+      buildCSSClass: function () {
+        return 'vjs-control vjs-custom-button vjs-transcript-button';
       },
     }));
   }
@@ -22,6 +39,27 @@ const videojsActivate = function() {
     var audios = document.getElementsByClassName('video-js')
 
     for (var i=0, max=audios.length; i < max; i++) {
+
+      var children = [
+        "PlayToggle",
+        "CurrentTimeDisplay",
+        "TimeDivider",
+        "DurationDisplay",
+        "ProgressControl",
+        "MuteToggle",
+        "VolumeControl",
+      ];
+
+      if (audios[i].hasAttribute('data-transcript-uri')) {
+        children.push("TranscriptButton")
+      }
+
+      if (audios[i].hasAttribute('data-is-downloadable')) {
+        children.push("DownloadButton")
+      }
+
+      children.push("LiveDisplay")
+
       window.videojs( audios[i], {
         "children": [
           "MediaLoader",
@@ -31,17 +69,7 @@ const videojsActivate = function() {
           // "BigPlayButton",
           {
             "name": "controlBar",
-            "children": [
-              "PlayToggle",
-              "CurrentTimeDisplay",
-              "TimeDivider",
-              "DurationDisplay",
-              "ProgressControl",
-              "MuteToggle",
-              "VolumeControl",
-              "DownloadButton", // our addition
-              "LiveDisplay"
-            ]
+            "children": children,
           },
           "ErrorDisplay",
           // "TextTrackSettings",
@@ -54,6 +82,7 @@ const videojsActivate = function() {
   document.addEventListener('ajaxPageLoad:complete', _activateAudioPlayers, false);
 
   _registerDownloadButton();
+  _registerTranscriptButton();
   _activateAudioPlayers();
 }
 
