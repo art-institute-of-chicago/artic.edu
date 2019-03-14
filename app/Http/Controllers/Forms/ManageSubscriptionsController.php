@@ -87,6 +87,37 @@ class ManageSubscriptionsController extends FormController
         }
         $subscriptionsFields[] = $subFields;
 
+        /*
+         *
+         *  Unsubscribe
+         *
+         */
+        $unsubscribeFields[] = [
+            'variation' => 'm-fieldset__field--group',
+            'blocks' => array(
+                array(
+                  "type" => 'label',
+                  'variation' => 'm-fieldset__group-label',
+                  'error' => (!empty($errors) && $errors->first('unsubscribe')) ? $errors->first('unsubscribe') : null,
+                  'optional' => null,
+                  'hint' => null,
+                  'label' => '',
+                ),
+                array(
+                    'type' => 'checkbox',
+                    'variation' => '',
+                    'id' => 'unsubscribe',
+                    'name' => 'unsubscribe[]',
+                    'value' => 'unsubscribe',
+                    'error' => null,
+                    'optional' => null,
+                    'hint' => null,
+                    'disabled' => false,
+                    'checked' => $this->old('unsubscribe') ?? false,
+                    'label' => 'I no longer wish to receive any Art Institute emails.'
+                ),
+            ),
+        ];
 
         /*
          *
@@ -187,34 +218,7 @@ class ManageSubscriptionsController extends FormController
         }
         $personalInformationFields[] = $prefFields;
 
-        $unsubscribeFields[] = [
-            'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                  "type" => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('unsubscribe')) ? $errors->first('unsubscribe') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'label' => '',
-                ),
-                array(
-                    'type' => 'checkbox',
-                    'variation' => '',
-                    'id' => 'unsubscribe',
-                    'name' => 'unsubscribe[]',
-                    'value' => 'unsubscribe',
-                    'error' => null,
-                    'optional' => null,
-                    'hint' => null,
-                    'disabled' => false,
-                    'checked' => $this->old('unsubscribe') ?? false,
-                    'label' => 'I no longer wish to receive any Art Institute emails.'
-                ),
-            ),
-        ];
-
-        $unsubscribeFields[] = array(
+        $personalInformationFields[] = array(
             'variation' => null,
             'blocks' => array(
                 array(
@@ -234,14 +238,7 @@ class ManageSubscriptionsController extends FormController
           'type' => 'fieldset',
           'variation' => null,
           'fields' => $subscriptionsFields,
-          'legend' => 'Subscriptions',
-        ));
-
-        array_push($formBlocks, array(
-          'type' => 'fieldset',
-          'variation' => null,
-          'fields' => $personalInformationFields,
-          'legend' => 'Personal Information',
+          'legend' => 'Newsletter Options',
         ));
 
         array_push($formBlocks, array(
@@ -249,6 +246,13 @@ class ManageSubscriptionsController extends FormController
           'variation' => null,
           'fields' => $unsubscribeFields,
           'legend' => 'Unsubscribe',
+        ));
+
+        array_push($formBlocks, array(
+          'type' => 'fieldset',
+          'variation' => null,
+          'fields' => $personalInformationFields,
+          'legend' => 'Personal Information',
         ));
 
         array_push($blocks, array(
@@ -261,7 +265,7 @@ class ManageSubscriptionsController extends FormController
                 array(
                     'variation' => null,
                     'type' => 'submit',
-                    'label' => "Submit",
+                    'label' => "Update",
                 )
             )
         ));
