@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Forms;
 
 use Illuminate\Support\Facades\Mail;
 
-use App\Http\Requests\Form\ManageSubscriptionsRequest;
+use App\Http\Requests\Form\EmailSubscriptionsRequest;
 
 use App\Libraries\ExactTargetService;
 
 use App\Models\ExactTargetList;
-use App\Models\Form\ManageSubscriptions;
+use App\Models\Form\EmailSubscriptions;
 
-use App\Mail\FormManageSubscriptions;
+use App\Mail\FormEmailSubscriptions;
 
 use App\Presenters\StaticObjectPresenter;
 
-class ManageSubscriptionsController extends FormController
+class EmailSubscriptionsController extends FormController
 {
 
     protected $old = null;
@@ -30,7 +30,7 @@ class ManageSubscriptionsController extends FormController
             $response = $exactTarget->get();
 
             if ($response->status && $response->code == 200) {
-                $old = new ManageSubscriptions;
+                $old = new EmailSubscriptions;
                 $subscriptions = [];
                 foreach ($response->results[0]->Properties->Property as $index => $keyval) {
                     if ($keyval->Name == 'Email') {
@@ -258,7 +258,7 @@ class ManageSubscriptionsController extends FormController
         array_push($blocks, array(
             'type' => 'form',
             'variation' => null,
-            'action' => '/manage-subscriptions',
+            'action' => '/email-subscriptions',
             'method' => 'POST',
             'blocks' => $formBlocks,
             'actions' => array(

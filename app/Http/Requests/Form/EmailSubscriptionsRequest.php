@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Form;
 
-class ManageSubscriptionsRequest extends FormRequest
+class EmailSubscriptionsRequest extends FormRequest
 {
     public function rules()
     {
