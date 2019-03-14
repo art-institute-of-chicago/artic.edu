@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Http\Requests\Form\ManageSubscriptionsRequest;
 
+use App\Libraries\ExactTargetService;
+
 use App\Models\ExactTargetList;
 use App\Models\Form\ManageSubscriptions;
 
@@ -15,10 +17,43 @@ use App\Presenters\StaticObjectPresenter;
 
 class ManageSubscriptionsController extends FormController
 {
-    public function index()
+
+    protected $old = null;
+
+    public function index(\Illuminate\Http\Request $request)
     {
 
-        $this->title = 'Email subscription';
+        if (request('e')) {
+            $email = base64_decode(request('e'));
+
+            $exactTarget = new ExactTargetService($email, null);
+            $response = $exactTarget->get();
+
+            if ($response->status && $response->code == 200) {
+                $old = new ManageSubscriptions;
+                $subscriptions = [];
+                foreach ($response->results[0]->Properties->Property as $index => $keyval) {
+                    if ($keyval->Name == 'Email') {
+                        $old->email = $keyval->Value;
+                    }
+                    elseif ($keyval->Name == 'FirstName') {
+                        $old->first_name = $keyval->Value;
+                    }
+                    elseif ($keyval->Name == 'LastName') {
+                        $old->last_name = $keyval->Value;
+                    }
+                    elseif ($keyval->Value == 'True') {
+                        $subscriptions[] = $keyval->Name;
+                    }
+                }
+                $old->subscriptions = $subscriptions;
+                $this->old = $old;
+            }
+            else {
+                // Set error message "Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute."
+            }
+        }
+        $this->title = 'Email Subscriptions';
         $this->seo->setTitle($this->title);
 
         $blocks = array();
@@ -47,7 +82,7 @@ class ManageSubscriptionsController extends FormController
                 )
             ),
         ];
-        foreach($this->getSubscriptionsArray(old('subscriptions')) as $d) {
+        foreach($this->getSubscriptionsArray($this->old('subscriptions')) as $d) {
             array_push($subFields['blocks'], $d);
         }
         $subscriptionsFields[] = $subFields;
@@ -67,7 +102,7 @@ class ManageSubscriptionsController extends FormController
                   'id' => 'email',
                   'placeholder' => '',
                   'textCount' => false,
-                  'value' => old('email'),
+                  'value' => $this->old('email'),
                   'error' => (!empty($errors) && $errors->first('email')) ? $errors->first('email') : null,
                   'optional' => false,
                   'hint' => null,
@@ -86,7 +121,7 @@ class ManageSubscriptionsController extends FormController
                   'id' => 'first_name',
                   'placeholder' => '',
                   'textCount' => false,
-                  'value' => old('first_name'),
+                  'value' => $this->old('first_name'),
                   'error' => (!empty($errors) && $errors->first('first_name')) ? $errors->first('first_name') : null,
                   'optional' => null,
                   'hint' => null,
@@ -105,7 +140,7 @@ class ManageSubscriptionsController extends FormController
                   'id' => 'last_name',
                   'placeholder' => '',
                   'textCount' => false,
-                  'value' => old('last_name'),
+                  'value' => $this->old('last_name'),
                   'error' => (!empty($errors) && $errors->first('last_name')) ? $errors->first('last_name') : null,
                   'optional' => null,
                   'hint' => null,
@@ -124,7 +159,7 @@ class ManageSubscriptionsController extends FormController
                   'id' => 'company',
                   'placeholder' => '',
                   'textCount' => false,
-                  'value' => old('company'),
+                  'value' => $this->old('company'),
                   'error' => (!empty($errors) && $errors->first('company')) ? $errors->first('company') : null,
                   'optional' => null,
                   'hint' => null,
@@ -147,7 +182,7 @@ class ManageSubscriptionsController extends FormController
                 )
             ),
         ];
-        foreach($this->getPreferencesArray(old('preferences')) as $t) {
+        foreach($this->getPreferencesArray($this->old('preferences')) as $t) {
             array_push($prefFields['blocks'], $t);
         }
         $personalInformationFields[] = $prefFields;
@@ -173,8 +208,8 @@ class ManageSubscriptionsController extends FormController
                     'optional' => null,
                     'hint' => null,
                     'disabled' => false,
-                    'checked' => old('unsubscribe') ?? false,
-                    'label' => 'I no longer wish to receive any further emails'
+                    'checked' => $this->old('unsubscribe') ?? false,
+                    'label' => 'I no longer wish to receive any Art Institute emails.'
                 ),
             ),
         ];
@@ -337,4 +372,8 @@ class ManageSubscriptionsController extends FormController
         return $list;
     }
 
+
+    private function old($field) {
+        return $this->old->$field ?? old($field);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Libraries;
 
+use App\Models\ExactTargetList;
 use digitaladditive\ExactTargetLaravel\ExactTargetLaravelApi;
 use FuelSdk\ET_Client;
 use FuelSdk\ET_DataExtension_Row;
@@ -13,10 +14,10 @@ class ExactTargetService
     protected $email;
     protected $list;
 
-    function __construct($email, $list)
+    function __construct($email, $list = null)
     {
         $this->email = $email;
-        $this->list  = $list;
+        $this->list  = $list ?? ExactTargetList::getList()->keys()->all();;
     }
 
     function subscribe()
@@ -71,5 +72,29 @@ class ExactTargetService
         }
 
         return true;
+    }
+
+    function get()
+    {
+        $client = new ET_Client(false, true, config('exact-target'));
+
+        $deRow  = new ET_DataExtension_Row();
+        $deRow->authStub = $client;
+
+        // Select
+        $fields = array_merge(['Email', 'FirstName', 'LastName'], ExactTargetList::getList()->except('OptEnews')->keys()->all());
+        $deRow->props = array_fill_keys($fields, 'True');
+
+        // From
+        $deRow->Name = "All Subscribers Master";
+
+        // Where
+        $deRow->filter = [
+            'Property' => 'Email',
+            'SimpleOperator' => 'equals',
+            'Value' => $this->email,
+        ];
+
+        return $deRow->get();
     }
 }
