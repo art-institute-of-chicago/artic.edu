@@ -1402,8 +1402,24 @@
   height: auto;
 }
 
+$f-audio-subtitle: generate-font-obj(
+  (
+    font-family: $sans-serif-font,
+    font-family-loaded: $sans-serif-font--loaded,
+    font-loaded-class: $sans-serif-font-loaded-class,
+    settings: (
+      'xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
+      'medium+': (font-size: 14, line-height: 28, push: 0)
+    )
+  )
+);
+
 // Quick aside for artwork detail's sound variant
 .m-listing--inline.m-listing--sound {
+  .m-listing__meta {
+    @include font-styles($f-module-title-1);
+  }
+
   .m-listing__link {
     flex-flow: column nowrap;
     height: auto;
@@ -1417,6 +1433,39 @@
       margin-top: 24px;
     }
   }
+
+  .m-listing--sound__subtitle {
+    @include font-styles($f-audio-subtitle);
+    text-align: right;
+  }
+
+  .m-listing--sound__transcript {
+    background-color: $color__bg--editorial;
+
+    padding: 0 16px;
+
+    height: 0;
+    overflow: hidden;
+    transition: height .2s $bezier--ease-in-out, padding .2s $bezier--ease-in-out;
+
+    &[aria-hidden="false"] {
+      padding: 16px;
+      height: auto;
+      overflow: initial;
+    }
+
+    p {
+      font-family: $serif-font--loaded;
+      font-size: 16px;
+      line-height: 20px;
+      margin-top: 16px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
 }
 
 .m-listing--inline .m-listing__img {
