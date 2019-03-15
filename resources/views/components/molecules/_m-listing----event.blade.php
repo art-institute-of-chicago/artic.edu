@@ -37,6 +37,11 @@
                 @slot('variation', 'type--membership')
                 Member Exclusive
             @endcomponent
+        @elseif ($item->audience === \App\Models\Event::SUSTAINING_FELLOWS)
+            @component('components.atoms._type')
+                @slot('variation', 'type--membership')
+                Sustaining Fellows
+            @endcomponent
         @else
             @component('components.atoms._type')
                 {{ $item->present()->type }}
