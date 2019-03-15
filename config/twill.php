@@ -85,6 +85,11 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-video',
             ],
+            'tour_stop' => [
+                'title' => 'Audio Tour Stop',
+                'icon' => 'image',
+                'component' => 'a17-block-tour_stop',
+            ],
             'media_embed' => [
                 'title' => 'Media embed',
                 'icon' => 'text',
@@ -149,11 +154,6 @@ return [
                 'title' => 'Footnote',
                 'icon' => 'text',
                 'component' => 'a17-block-footnote',
-            ],
-            'tour_stop' => [
-                'title' => 'Audio Tour Stop',
-                'icon' => 'image',
-                'component' => 'a17-block-tour_stop',
             ],
 
         ],
