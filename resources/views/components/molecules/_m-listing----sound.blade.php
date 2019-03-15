@@ -7,17 +7,22 @@
         <div>
             <audio
                 class="video-js vjs-fluid m-vjs-audio"
-                {!! isset($item->transcript) ? 'data-transcript-uri="' . $item->transcript . '"' : null !!}
+                {!! isset($item->transcript) ? 'data-has-transcript' : null !!}
                 controls
             >
                 <source src="{{ $item->href }}" type="audio/mpeg">
                 Your browser does not support the audio tag.
             </audio>
         </div>
-        <div class="m-listing__subtitle">
-            @if ($item->subtitle)
-                {!! $item->subtitle !!}
-            @endif
+        @if (isset($item->transcript))
+        <div class="m-listing--sound__transcript" aria-hidden="true">
+            <div>{!! $item->transcript !!}</div>
         </div>
+        @endif
+        @if ($item->subtitle)
+        <div class="m-listing--sound__subtitle">
+            {!! $item->subtitle !!}
+        </div>
+        @endif
     </div>
 </li>

@@ -1420,11 +1420,6 @@ $f-audio-subtitle: generate-font-obj(
     @include font-styles($f-module-title-1);
   }
 
-  .m-listing__subtitle {
-    @include font-styles($f-audio-subtitle);
-    text-align: right;
-  }
-
   .m-listing__link {
     flex-flow: column nowrap;
     height: auto;
@@ -1438,6 +1433,39 @@ $f-audio-subtitle: generate-font-obj(
       margin-top: 24px;
     }
   }
+
+  .m-listing--sound__subtitle {
+    @include font-styles($f-audio-subtitle);
+    text-align: right;
+  }
+
+  .m-listing--sound__transcript {
+    background-color: $color__bg--editorial;
+
+    padding: 0 16px;
+
+    height: 0;
+    overflow: hidden;
+    transition: height .2s $bezier--ease-in-out, padding .2s $bezier--ease-in-out;
+
+    &[aria-hidden="false"] {
+      padding: 16px;
+      height: auto;
+      overflow: initial;
+    }
+
+    p {
+      font-family: $serif-font--loaded;
+      font-size: 16px;
+      line-height: 20px;
+      margin-top: 16px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
 }
 
 .m-listing--inline .m-listing__img {
