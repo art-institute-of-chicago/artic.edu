@@ -46,6 +46,7 @@ trait HandleApiBlocks
     protected function getModelRepository($relation, $model = null)
     {
         if (!$model) {
+            // TODO: Consider adding `camel_case` here?
             $model = ucfirst(str_singular($relation));
         }
 

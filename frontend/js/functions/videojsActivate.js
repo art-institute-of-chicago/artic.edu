@@ -46,6 +46,7 @@ const videojsActivate = function() {
       },
       handleClick: function () {
         let listingElement = _findAncestor(this.player_.el_,'m-listing--sound');
+        let buttonElement = listingElement.querySelector('.vjs-transcript-button');
         let target = listingElement.querySelector('.m-listing--sound__transcript');
 
         if (target.getAttribute('aria-hidden') === 'true') {
@@ -55,6 +56,7 @@ const videojsActivate = function() {
           target.setAttribute('aria-hidden', 'false');
           setTimeout(function(){ setTimeout(function(){ setFocusOnTarget(target); }, 0) }, 0)
           _getHeightAndSet(target);
+          buttonElement.classList.add('vjs-transcript-button--opened');
         } else {
           // close
           _getHeightAndSet(target);
@@ -62,6 +64,7 @@ const videojsActivate = function() {
           let thrash = target.offsetHeight;
           target.style.height = 0;
           target.style.overflow = 'hidden';
+          buttonElement.classList.remove('vjs-transcript-button--opened');
         }
 
         target.addEventListener('transitionend', _unsetAfterAnimation, false);

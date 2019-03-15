@@ -1348,12 +1348,10 @@
 }
 
 // variant `m-listing--inline` and 'm-listing--inline-feature'
-
 .m-listing--inline {
   flex-flow: row-reverse nowrap;
   max-width: 100%;
   padding-top: 19px;
-  border-top: 1px solid $color__rules--primary;
 
   @include breakpoint('large+') {
     padding-top: 23px;
@@ -1369,6 +1367,10 @@
     @include breakpoint('medium+') {
       margin-top: 40px;
     }
+  }
+
+  .o-row-listing > & {
+    border-top: 1px solid $color__rules--primary;
   }
 
   .m-inline-aside .m-listing {
@@ -1437,10 +1439,18 @@ $f-audio-subtitle: generate-font-obj(
   .m-listing--sound__subtitle {
     @include font-styles($f-audio-subtitle);
     text-align: right;
+
+    a {
+      color: $color__link--accent;
+
+      &:hover {
+        color: $color__link--accent-hover;
+      }
+    }
   }
 
   .m-listing--sound__transcript {
-    background-color: $color__bg--editorial;
+    background-color: $color__bg--secondary;
 
     padding: 0 16px;
 
@@ -1455,7 +1465,8 @@ $f-audio-subtitle: generate-font-obj(
     }
 
     p {
-      font-family: $serif-font--loaded;
+      font-family: $sans-serif-font--loaded;
+      font-weight: 300;
       font-size: 16px;
       line-height: 20px;
       margin-top: 16px;

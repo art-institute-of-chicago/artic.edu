@@ -268,4 +268,14 @@
       </svg>
     ');
   }
+
+  .vjs-transcript-button--opened .vjs-icon-placeholder {
+    background-size: 50%;
+    background-image: url('data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+        <path fill="none" stroke="white" stroke-miterlimit="10" stroke-width="1.5" d="M3 3l10 10M13 3L3 13"></path>
+      </svg>
+    ');
+  }
+
 }
