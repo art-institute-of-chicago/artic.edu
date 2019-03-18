@@ -26,8 +26,8 @@ trait HasApiRelations
             $results = $modelClass::query()->ids($ids)->get();
 
             // Sort them by the original ids listing (coming from our CMS position attribute)
-            $sorted = $results->sortBy(function($model, $key) use ($ids) {
-                return collect($ids)->search(function($id, $key) use ($model) {
+            $sorted = $results->sortBy(function ($model, $key) use ($ids) {
+                return collect($ids)->search(function ($id, $key) use ($model) {
                     return $id == $model->id;
                 });
             });
@@ -47,15 +47,15 @@ trait HasApiRelations
     }
 
     public function loadRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi)
-    {   
+    {
         $this->load('relatedItems');
 
         return $this->relatedCache[$browser_name] = $this->relatedItems
             ->where('browser_name', $browser_name)
             ->groupBy('related_type')
-            ->map(function ($items, $type) use($apiModelsDefinitions, $browser_name, $typeUsesApi) {
+            ->map(function ($items, $type) use ($apiModelsDefinitions, $browser_name, $typeUsesApi) {
                 if ($typeUsesApi[$type]) {
-                    
+
                     $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions);
                     $localApiMapping = $this->getLocalApiMapping($items, $apiElements);
 
@@ -78,12 +78,11 @@ trait HasApiRelations
             })->flatten(1)->sortBy('position');
     }
 
-
     public function getApiElements($items, $type, $apiModelsDefinitions)
     {
         // Get all related id's
         $relatedIds = $items->pluck('related_id')->toArray();
-            // Get all datahub id's
+        // Get all datahub id's
         $datahubIds = \App\Models\ApiRelation::whereIn('id', $relatedIds)->pluck('datahub_id')->toArray();
 
         // Use those to load API records
@@ -95,10 +94,12 @@ trait HasApiRelations
     public function getLocalApiMapping($items, $apiElements)
     {
         // Find locally selected objects
-        return $items->filter(function($relatedElement) use ($apiElements) {
+        return $items->filter(function ($relatedElement) use ($apiElements) {
             $apiRelationElement = \App\Models\ApiRelation::where('id', $relatedElement->related_id)->first();
             $result = $apiElements->where('id', $apiRelationElement->datahub_id)->first();
-            $result->position = $relatedElement->position;
+            if ($result) {
+                $result->position = $relatedElement->position;
+            }
             return $result;
         });
     }
