@@ -6,7 +6,7 @@ use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\Api\DigitalLabelRepository;
 use App\Repositories\SiteTagRepository;
 
-class DigitalLabelController extends ModuleController
+class DigitalLabelController extends BaseApiController
 {
     protected $moduleName = 'digitalLabels';
     protected $hasAugmentedModel = true;
@@ -20,15 +20,22 @@ class DigitalLabelController extends ModuleController
     ];
 
     protected $indexColumns = [
+        'augmented' => [
+            'title' => 'Augmented?',
+            'field' => 'augmented',
+            'present' => true,
+        ],
+        'datahub_id' => [
+            'title' => 'Datahub ID',
+            'field' => 'id',
+        ],
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-            'sort' => true,
         ],
-        'updated_at' => [
-            'title' => 'Updated at',
-            'field' => 'updated_at',
-            'sort' => true,
+        'sub_title' => [
+            'title' => 'Subtitle',
+            'field' => 'sub_title',
         ],
     ];
 
