@@ -7,4 +7,9 @@
         'translated' => true,
         'maxlength' => 100
     ])
+
+    @formField('checkbox', [
+        'name' => 'archived',
+        'label' => 'Archived'
+    ])
 @stop

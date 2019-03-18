@@ -22,6 +22,7 @@ class Experience extends Model implements Sortable
         'description',
         'position',
         'digital_label_id',
+        'archived',
         // 'public',
         // 'featured',
         // 'publish_start_date',
