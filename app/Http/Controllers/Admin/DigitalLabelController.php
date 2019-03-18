@@ -12,13 +12,6 @@ class DigitalLabelController extends ModuleController
     protected $hasAugmentedModel = true;
     protected $previewView = 'site.digitalLabelDetail';
 
-    protected $indexOptions = [
-        'publish' => false,
-        'bulkEdit' => false,
-        'create' => false,
-        'permalink' => true,
-    ];
-
     protected $indexColumns = [
         'title' => [
             'title' => 'Title',

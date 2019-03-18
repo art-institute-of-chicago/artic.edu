@@ -1,6 +1,8 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
+    <br/>
+    <h1><strong>iPad URL:</strong> {{ 'https' . $baseUrl . $item->slug . '/ipad'}}</h1>
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Image',
@@ -11,14 +13,4 @@
         'label' => 'Subtitle',
         'name' => 'sub_title',
     ])
-@stop
-
-@section('fieldsets')
-    <a17-fieldset id="attributes" title="Attributes">
-        @formField('input', [
-            'name' => 'datahub_id',
-            'label' => 'Datahub ID',
-            'disabled' => true
-        ])
-    </a17-fieldset>
 @stop
