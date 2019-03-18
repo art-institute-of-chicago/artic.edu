@@ -1,4 +1,4 @@
-import { purgeProperties, ajaxRequest, objectifyForm, triggerCustomEvent } from '@area17/a17-helpers';
+import { purgeProperties, ajaxRequest, objectifyForm, triggerCustomEvent, setFocusOnTarget } from '@area17/a17-helpers';
 
 const newsletter = function(container) {
 
@@ -92,8 +92,50 @@ const newsletter = function(container) {
     });
   }
 
+  function _getHeightAndSet(target) {
+    let targetHeight = target.firstElementChild.offsetHeight;
+    target.style.height = targetHeight + 'px';
+  }
+
+  function _unsetAfterAnimation() {
+    this.removeAttribute('style');
+    this.removeEventListener('transitionend', _unsetAfterAnimation);
+    triggerCustomEvent(document, 'page:updated');
+  }
+
+  function _handleExpand(event) {
+    let buttonElement = container.querySelector('.m-aside-newsletter__btn--list');
+    let target = container.querySelector('.m-aside-newsletter__list-wrapper');
+
+    if (target.getAttribute('aria-hidden') === 'true') {
+      // open
+      target.style.height = 0;
+      target.style.overflow = 'hidden';
+      target.setAttribute('aria-hidden', 'false');
+      setTimeout(function(){ setTimeout(function(){ setFocusOnTarget(target); }, 0) }, 0)
+      _getHeightAndSet(target);
+      buttonElement.classList.add('m-aside-newsletter__btn--list--opened');
+    } else {
+      // close
+      _getHeightAndSet(target);
+      target.setAttribute('aria-hidden', 'true');
+      let thrash = target.offsetHeight;
+      target.style.height = 0;
+      target.style.overflow = 'hidden';
+      buttonElement.classList.remove('m-aside-newsletter__btn--list--opened');
+    }
+
+    target.addEventListener('transitionend', _unsetAfterAnimation, false);
+  }
+
   function _init() {
     container.addEventListener('submit', _handleSubmit, false);
+
+    let listButton = container.querySelector('.m-aside-newsletter__btn--list');
+
+    if (listButton) {
+      listButton.addEventListener('click', _handleExpand, false);
+    }
   }
 
   this.destroy = function() {

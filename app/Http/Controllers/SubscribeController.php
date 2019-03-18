@@ -13,6 +13,7 @@ class SubscribeController extends Controller
     {
         $data = $request->validate(['email'=>'required|email']);
 
+        // TODO: Use request('subscriptions') here? Array vs. single value?
         $exactTarget = new ExactTargetService(request('email'), request('list'));
         $response = $exactTarget->subscribe();
 
