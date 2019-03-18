@@ -23,14 +23,12 @@ class DigitalLabelController extends ModuleController
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-        ],
-        'sub_title' => [
-            'title' => 'Subtitle',
-            'field' => 'sub_title',
+            'sort' => true,
         ],
         'updated_at' => [
             'title' => 'Updated At',
             'field' => 'updated_at',
+            'sort' => true,
         ],
     ];
 

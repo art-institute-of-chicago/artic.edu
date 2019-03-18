@@ -23,13 +23,17 @@ class DigitalLabel extends Model
         'saved' => \App\Events\UpdateDigitalLabel::class,
         'deleted' => \App\Events\UpdateDigitalLabel::class,
     ];
-    
+
     protected $fillable = [
         'content',
         'published',
         'title',
         'datahub_id',
-        'sub_title'
+        'sub_title',
+    ];
+
+    protected $casts = [
+        'updated_at' => 'string',
     ];
 
     public $slugAttributes = [
