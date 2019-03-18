@@ -117,6 +117,36 @@ class Exhibition extends BaseApiModel
         return false;
     }
 
+    public function getSeoDescriptionAttribute()
+    {
+
+        if (!empty($this->meta_description)) {
+            return $this->meta_description;
+        }
+
+        if (method_exists($this, 'getAugmentedModel') && $augmentedModel = $this->getAugmentedModel()) {
+            if ($augmentedModel->getOriginal('list_description')) {
+                return $augmentedModel->getOriginal('list_description');
+            }
+        }
+
+        if (!empty($this->header_copy)) {
+            return $this->header_copy;
+        }
+
+        if ((
+            $augmentedModel && $paragraph = $augmentedModel->blocks()->where('type', '=', 'paragraph')->first()
+        ) && (
+            !empty($paragraph) && $paragraph = $paragraph->content['paragraph']
+        ) && (
+            !empty($paragraph) && $paragraph = strip_tags($paragraph)
+        )) {
+            return $paragraph;
+        }
+
+        return null;
+    }
+
     public function getListDescriptionAttribute($value)
     {
         if (!empty($value)) {
