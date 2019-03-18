@@ -42,7 +42,7 @@ class DigitalLabelController extends ModuleController
         $baseUrl = '//' . config('app.url') . '/interactive-features/' . $item->datahub_id . '/';
 
         return [
-            'editableTitle' => false,
+            'editableTitle' => true,
             'baseUrl' => $baseUrl,
         ];
     }
