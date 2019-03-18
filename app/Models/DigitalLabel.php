@@ -83,4 +83,9 @@ class DigitalLabel extends Model
         ];
     }
 
+    public function experiences()
+    {
+        return $this->hasMany('App\Models\Experience', 'digital_label_id');
+    }
+
 }

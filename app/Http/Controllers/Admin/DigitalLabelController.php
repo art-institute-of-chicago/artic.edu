@@ -23,6 +23,10 @@ class DigitalLabelController extends ModuleController
             'field' => 'updated_at',
             'sort' => true,
         ],
+        'experiences' => [
+            'title' => 'Experiences',
+            'nested' => 'experiences',
+        ],
     ];
 
     protected $formWith = ['revisions'];
