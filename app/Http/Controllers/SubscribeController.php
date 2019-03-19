@@ -21,15 +21,6 @@ class SubscribeController extends Controller
             return ['message' => 'Successfully signed up to the newsletter.'];
         }
 
-        $error = $response->results[0]->ErrorMessage ?? '';
-
-        if (Str::startsWith($error, 'Violation of PRIMARY KEY constraint'))
-        {
-            return response()->json([
-                'message' => 'It looks like this email address is already receiving the newsletter.',
-            ], 400);
-        }
-
         return response()->json([
             'message' => 'Error signing up to the newsletter. Please check your email address and try again.',
         ], 500);

@@ -59,7 +59,16 @@ class ExactTargetService
         $response = $subscriber->post();
 
         if (!$response->status) {
-            return $response;
+            $error = $response->results[0]->ErrorMessage ?? '';
+            $status = $response->results[0]->StatusMessage ?? '';
+
+            if (starts_with($error, 'Violation of PRIMARY KEY constraint')
+                || starts_with($status, 'The subscriber is already on the list')) {
+                // Email has been previously subscribed, so proceed
+            }
+            else {
+                return $response;
+            }
         }
 
         // Then patch it with some additional properties
