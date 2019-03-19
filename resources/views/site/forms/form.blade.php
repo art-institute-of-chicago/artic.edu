@@ -30,6 +30,7 @@
   @if (!$isWideBody)
       <div class="o-article__secondary-actions">
         @component('components.molecules._m-article-actions')
+            @slot('hideShare', 'true')
         @endcomponent
 
         @if (isset($featuredRelated) and $featuredRelated)
@@ -143,6 +144,7 @@
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
+        @slot('hideShare', 'true')
     @endcomponent
   </div>
 

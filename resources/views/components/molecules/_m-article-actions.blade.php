@@ -1,6 +1,7 @@
 <div>{{-- See :nth-child(x) in _o-article.scss --}}
 <h2 class="sr-only" id="h-article-actions">Share</h2>
 <ul class="m-article-actions{{ (isset($variation)) ? ' '.$variation : '' }}" aria-labelledby="h-article-actions">
+    @if (empty($hideShare))
     <li class="m-article-actions__action">
         @component('components.atoms._btn')
             @slot('variation', 'btn--icon'.((isset($articleType) and $articleType === 'editorial') ? ' btn--senary' : ''))
@@ -10,6 +11,7 @@
             @slot('ariaLabel','Share page')
         @endcomponent
     </li>
+    @endif
     @if (!empty($icsLink))
     <li class="m-article-actions__action">
         @component('components.atoms._btn')
