@@ -15,7 +15,7 @@
             </span>
 
             {{-- Do not show for newsletter block module --}}
-            @if (isset($variation) && $variation === 'm-aside-newsletter--wide')
+            @if (isset($variation) && strpos($variation, 'm-aside-newsletter--wide') !== false)
 
             <div class="m-aside-newsletter__btn--list__wrapper">
                 <button type="button" class="f-buttons m-aside-newsletter__btn--list">
@@ -39,7 +39,7 @@
                         @foreach($left as $value => $label)
                             @component('components.atoms._checkbox')
                                 @slot('checked', $value === 'OptEnews' ? 'checked' : null)
-                                @slot('id', kebab_case($value))
+                                @slot('id', kebab_case($value) . '-' . $rand)
                                 @slot('value', $value)
                                 @slot('name', 'subscriptions[]')
                                 @slot('label', $label)
@@ -51,7 +51,7 @@
                         <li class="m-fieldset__field o-blocks m-fieldset__field--group">
                         @foreach($right as $value => $label)
                             @component('components.atoms._checkbox')
-                                @slot('id', kebab_case($value))
+                                @slot('id', kebab_case($value) . '-' . $rand)
                                 @slot('value', $value)
                                 @slot('name', 'subscriptions[]')
                                 @slot('label', $label)
@@ -61,6 +61,20 @@
                     </div>
 
                 </div>
+            </div>
+
+            {{-- Only show for newsletter block module --}}
+            @elseif (isset($variation) && strpos($variation, 'm-aside-newsletter--inline') !== false)
+
+            <div class="m-aside-newsletter__also" aria-hidden="true">
+
+                @component('components.atoms._checkbox')
+                    @slot('id', 'opt-enews-' . $rand)
+                    @slot('value', 'OptEnews')
+                    @slot('name', 'subscriptions[]')
+                    @slot('label', 'I\'d also like to receive general news and announcements.')
+                @endcomponent
+
             </div>
 
             @endif

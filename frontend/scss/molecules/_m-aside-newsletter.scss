@@ -198,7 +198,7 @@
   padding-top: 32px;
 }
 
-.m-aside-newsletter--inline label {
+.m-aside-newsletter--inline .m-aside-newsletter__field label {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -210,7 +210,7 @@
   overflow: hidden;
 }
 
-.m-aside-newsletter--inline label + input {
+.m-aside-newsletter--inline .m-aside-newsletter__field label + input {
   margin-top: 0;
 }
 
@@ -219,6 +219,17 @@
     margin-top: 0;
   }
 }
+
+.m-aside-newsletter--inline .m-aside-newsletter__also {
+  background-color: #f5f6f7;
+  padding: 8px 16px;
+}
+
+.m-aside-newsletter--inline .m-aside-newsletter__also span::before,
+.m-aside-newsletter--inline .m-aside-newsletter__also span::after, {
+  content: none;
+}
+
 
 // variation `.m-aside-newsletter--inline` inside `.m-inline-aside`
 
