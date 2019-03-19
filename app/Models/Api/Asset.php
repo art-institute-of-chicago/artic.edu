@@ -113,10 +113,17 @@ class Asset extends BaseApiModel
 
     public function getIconAfterAttribute()
     {
-        // If it's not a PDF, print the new window icon
+        switch ($this->api_model) {
+            case 'sounds':
+                return 'audio';
+            break;
+            case 'videos':
+                return 'video';
+            break;
+            default:
+                return 'new-window';
+            break;
 
-        if (substr($this->content, -4) != '.pdf') {
-            return 'new-window';
         }
     }
 

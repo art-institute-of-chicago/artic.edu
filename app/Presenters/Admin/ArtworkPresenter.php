@@ -241,42 +241,19 @@ class ArtworkPresenter extends BasePresenter
             'blocks' => []
         ];
 
+        $localBlock = [
+            'type'  => 'link-list',
+            'links' => [],
+        ];
 
         foreach($resultsByType as $type => $medias) {
-            $localBlock = [];
-
-            switch ($type) {
-                case 'videos':
-                    $localBlock = [
-                        "type"    => 'listing',
-                        "subtype" => 'media',
-                        "items"   => $medias,
-                    ];
-                    break;
-
-                case 'sounds':
-                    // TODO: Implement `data-is-downloadable` here?
-                    $localBlock = [
-                        "type"    => 'listing',
-                        "subtype" => 'sound',
-                        "items"   => $medias,
-                    ];
-                    break;
-
-                case 'sites':
-                case 'sections':
-                case 'texts':
-                    $localBlock = [
-                        "type"  => 'link-list',
-                        "links" => $medias->toArray(),
-                    ];
-                    break;
-            }
-
-            if (!empty($localBlock)) {
-                $block['blocks'][] = $localBlock;
-            }
+            $localBlock['links'] = array_merge($localBlock['links'], $medias->toArray());
         }
+
+        if (!empty($localBlock['links'])) {
+            $block['blocks'][] = $localBlock;
+        }
+
 
         return $block;
     }
