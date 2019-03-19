@@ -13,10 +13,6 @@
           @slot('variation', 'm-notification--error')
           {{ $errors->notices->first() }}
       @endcomponent
-  @elseif (isset($errors->messages) && $errors->messages->any()))
-      @component('components.molecules._m-notification')
-          {{ $errors->messages->first() }}
-      @endcomponent
   @endif
 
   @component('components.molecules._m-article-header')
