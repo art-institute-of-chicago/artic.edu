@@ -8,6 +8,17 @@
 
 <article class="o-article o-article--generic-page">
 
+  @if (isset($errors->notices) && $errors->notices->any()))
+      @component('components.molecules._m-notification')
+          @slot('variation', 'm-notification--error')
+          {{ $errors->notices->first() }}
+      @endcomponent
+  @elseif (isset($errors->messages) && $errors->messages->any()))
+      @component('components.molecules._m-notification')
+          {{ $errors->messages->first() }}
+      @endcomponent
+  @endif
+
   @component('components.molecules._m-article-header')
     @slot('headerType', 'generic')
     @slot('variation', 'o-article__header')

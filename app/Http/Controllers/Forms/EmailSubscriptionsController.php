@@ -23,13 +23,15 @@ class EmailSubscriptionsController extends FormController
     public function index(\Illuminate\Http\Request $request)
     {
 
+        $withErrors = [];
+
         if (request('e')) {
             $email = base64_decode(request('e'));
 
             $exactTarget = new ExactTargetService($email);
             $response = $exactTarget->get();
 
-            if ($response->status && $response->code == 200) {
+            if ($response->status && $response->code == 200 && count($response->results)) {
                 $old = new EmailSubscriptions;
                 $subscriptions = [];
                 foreach ($response->results[0]->Properties->Property as $index => $keyval) {
@@ -50,7 +52,7 @@ class EmailSubscriptionsController extends FormController
                 $this->old = $old;
             }
             else {
-                // Set error message "Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute."
+                $withErrors['message'] = "Your e-mail address is not currently subscribed. Please fill out and submit the form below to begin receiving messages from the Art Institute of Chicago.";
             }
         }
         $this->title = 'Email Subscriptions';
@@ -240,7 +242,7 @@ class EmailSubscriptionsController extends FormController
             'blocks' => $blocks
         ];
 
-        return view('site.forms.form', $view_data);
+        return view('site.forms.form', $view_data)->withErrors($withErrors, 'notices');
     }
 
     /**
@@ -257,7 +259,7 @@ class EmailSubscriptionsController extends FormController
             return redirect(route('forms.email-subscriptions.thanks'));
         }
         else {
-            abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
+            return redirect()->back()->withErrors(['message' => 'Error signing up to newsletters. Please check your email address and try again.'], 'messages');
         }
     }
 
