@@ -20,7 +20,17 @@ class ExactTargetService
         $this->list  = $list;
     }
 
-    function subscribe()
+    /**
+     * Subscribe a user to our email lists
+     *
+     * The also remove flag is used in contexts where an array of newsletters are passed
+     * to $this->list. On the Email Subscriptions page where a user can see all the
+     * lists they're already signed up to, it makes sense to remove them from unselected
+     * lists. But on the inline form where they're entering in their email address and
+     * they can't see what they're already signed up to, it doesn't make sense to remove
+     * them from unchecked lists.
+     */
+    function subscribe($alsoRemove = true)
     {
         $client = new ET_Client(false, true, config('exact-target'));
 
@@ -35,8 +45,14 @@ class ExactTargetService
         if ($this->list)
         {
             if (is_array($this->list)) {
-                foreach ($this->list as $list) {
-                    $deRow->props[$list] = 'True';
+                $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
+                foreach ($allLists as $list) {
+                    if (in_array($list, $allLists)) {
+                        $deRow->props[$list] = 'True';
+                    }
+                    elseif ($alsoRemove) {
+                        $deRow->props[$list] = 'False';
+                    }
                 }
             }
             else {
