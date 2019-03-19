@@ -38,10 +38,11 @@
                         <li class="m-fieldset__field o-blocks m-fieldset__field--group">
                         @foreach($left as $value => $label)
                             @component('components.atoms._checkbox')
-                              @slot('id', kebab_case($value))
-                              @slot('value', $value)
-                              @slot('name', 'subscriptions[]')
-                              @slot('label', $label)
+                                @slot('checked', $value === 'OptEnews' ? 'checked' : null)
+                                @slot('id', kebab_case($value))
+                                @slot('value', $value)
+                                @slot('name', 'subscriptions[]')
+                                @slot('label', $label)
                             @endcomponent
                         @endforeach
                         </li>
@@ -50,10 +51,10 @@
                         <li class="m-fieldset__field o-blocks m-fieldset__field--group">
                         @foreach($right as $value => $label)
                             @component('components.atoms._checkbox')
-                              @slot('id', kebab_case($value))
-                              @slot('value', $value)
-                              @slot('name', 'subscriptions[]')
-                              @slot('label', $label)
+                                @slot('id', kebab_case($value))
+                                @slot('value', $value)
+                                @slot('name', 'subscriptions[]')
+                                @slot('label', $label)
                             @endcomponent
                         @endforeach
                         </li>
