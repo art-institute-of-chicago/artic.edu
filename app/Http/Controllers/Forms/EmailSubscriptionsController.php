@@ -233,18 +233,10 @@ class EmailSubscriptionsController extends FormController
             )
         ));
 
-        $breadcrumbs = [
-            [
-                'label' => 'Visit',
-                'href' => '/visit',
-            ],
-        ];
-
         $view_data = [
             'subNav' => [],
             'nav' => [],
             'title' => $this->title,
-            'breadcrumb' => $breadcrumbs,
             'blocks' => $blocks
         ];
 
