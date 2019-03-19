@@ -156,6 +156,10 @@ Route::name('forms.email-subscriptions')->get('/email-subscriptions', 'Forms\Ema
 Route::name('forms.email-subscriptions.store')->post('/email-subscriptions', 'Forms\EmailSubscriptionsController@store');
 Route::name('forms.email-subscriptions.thanks')->get('/email-subscriptions/thanks', 'Forms\EmailSubscriptionsController@thanks');
 
+Route::get('enews', function () {
+    return redirect()->route('forms.email-subscriptions', request()->all());
+});
+
 // Feed routes
 Route::feeds();
 
