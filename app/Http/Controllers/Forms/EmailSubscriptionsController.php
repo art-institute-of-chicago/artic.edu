@@ -181,43 +181,6 @@ class EmailSubscriptionsController extends FormController
             ),
         );
 
-        $personalInformationFields[]= array(
-            'variation' => null,
-            'blocks' => array(
-                array(
-                  'type' => 'input',
-                  'variation' => null,
-                  'id' => 'company',
-                  'placeholder' => '',
-                  'textCount' => false,
-                  'value' => $this->old('company'),
-                  'error' => (!empty($errors) && $errors->first('company')) ? $errors->first('company') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'disabled' => false,
-                  'label' => 'Company or Organization',
-                ),
-            ),
-        );
-
-        $prefFields = [
-            'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                  "type" => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('preferences')) ? $errors->first('preferences') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'label' => 'Email Preferences',
-                )
-            ),
-        ];
-        foreach($this->getPreferencesArray($this->old('preferences')) as $t) {
-            array_push($prefFields['blocks'], $t);
-        }
-        $personalInformationFields[] = $prefFields;
-
         $personalInformationFields[] = array(
             'variation' => null,
             'blocks' => array(
@@ -338,37 +301,6 @@ class EmailSubscriptionsController extends FormController
 
         return $list;
     }
-
-    private function getPreferencesArray($selected)
-    {
-        $prefs = array('html' => 'HTML emails', 'plain_text' => 'Plain text emails (AOL 6.0 and older)');
-
-        $list = [];
-        foreach($prefs as $value => $label) {
-            $item = [
-              'type' => 'radio',
-              'variation' => '',
-              'id' => 'preferences_'.$value,
-              'name' => 'preferences',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $label
-            ];
-
-            if ($selected == $value) {
-                $item['checked'] = 'checked';
-            }
-
-            $list[] = $item;
-        }
-
-        return $list;
-    }
-
 
     private function old($field) {
         return $this->old->$field ?? old($field);
