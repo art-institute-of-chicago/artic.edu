@@ -17,7 +17,7 @@ class ExactTargetService
     function __construct($email, $list = null)
     {
         $this->email = $email;
-        $this->list  = $list ?? ExactTargetList::getList()->keys()->all();;
+        $this->list  = $list;
     }
 
     function subscribe()

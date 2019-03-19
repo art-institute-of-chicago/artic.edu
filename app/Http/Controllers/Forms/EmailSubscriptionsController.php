@@ -26,7 +26,7 @@ class EmailSubscriptionsController extends FormController
         if (request('e')) {
             $email = base64_decode(request('e'));
 
-            $exactTarget = new ExactTargetService($email, null);
+            $exactTarget = new ExactTargetService($email);
             $response = $exactTarget->get();
 
             if ($response->status && $response->code == 200) {
