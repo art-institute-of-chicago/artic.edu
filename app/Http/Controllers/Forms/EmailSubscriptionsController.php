@@ -289,28 +289,21 @@ class EmailSubscriptionsController extends FormController
     }
 
     /**
-     * @param EducatorAdmissionRequest $request
+     * @param EmailSubscriptionsRequest $request
      */
-    public function store(EducatorAdmissionRequest $request)
+    public function store(EmailSubscriptionsRequest $request)
     {
-
         $validated = $request->validated();
 
-        $educatorAdmission = new EducatorAdmission;
+        $exactTarget = new ExactTargetService($validated['email'], $validated['subscriptions']);
+        $response = $exactTarget->subscribe();
 
-        $educatorAdmission->name = $validated['name'] ?? '';
-        $educatorAdmission->email = $validated['email'] ?? '';
-        $educatorAdmission->visit_date = $this->getDateField($validated, 'visit_date');
-        $educatorAdmission->school_location = $validated['school_location'] ?? '';
-        $educatorAdmission->type_of_educator = $validated['type_of_educator'] ?? '';
-        $educatorAdmission->grades_taught = $validated['grades_taught'] ?? '';
-        $educatorAdmission->subjects_taught = $validated['subjects_taught'] ?? '';
-
-        Mail::to($educatorAdmission->email)
-            ->send(new FormEducatorAdmission($educatorAdmission));
-
-        return redirect(route('forms.educator-admission-request.thanks'));
-
+        if ($response === true) {
+            return redirect(route('forms.email-subscriptions.thanks'));
+        }
+        else {
+            abort(500, 'Error signing up to newsletters. Please check your email address and try again.');
+        }
     }
 
 

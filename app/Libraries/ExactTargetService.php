@@ -34,7 +34,14 @@ class ExactTargetService
 
         if ($this->list)
         {
-            $deRow->props[$this->list] = 'True';
+            if (is_array($this->list)) {
+                foreach ($this->list as $list) {
+                    $deRow->props[$list] = 'True';
+                }
+            }
+            else {
+                $deRow->props[$this->list] = 'True';
+            }
         }
 
         $deRow->CustomerKey = "All Subscribers Master";

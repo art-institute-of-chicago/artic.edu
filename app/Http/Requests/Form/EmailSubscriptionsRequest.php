@@ -8,6 +8,7 @@ class EmailSubscriptionsRequest extends FormRequest
     {
         return [
             'email' => 'required',
+            'subscriptions' => 'sometimes',
         ];
     }
 
