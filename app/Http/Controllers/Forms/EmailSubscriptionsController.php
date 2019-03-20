@@ -109,7 +109,7 @@ class EmailSubscriptionsController extends FormController
                     'type' => 'checkbox',
                     'variation' => '',
                     'id' => 'unsubscribe',
-                    'name' => 'unsubscribe[]',
+                    'name' => 'unsubscribe',
                     'value' => 'unsubscribe',
                     'error' => null,
                     'optional' => null,
@@ -252,8 +252,14 @@ class EmailSubscriptionsController extends FormController
     {
         $validated = $request->validated();
 
-        $exactTarget = new ExactTargetService($validated['email'], $validated['subscriptions']);
-        $response = $exactTarget->subscribe();
+        $exactTarget = new ExactTargetService($validated['email'], $validated['subscriptions'] ?? null);
+
+        if (array_key_exists('unsubscribe', $validated) && $validated['unsubscribe']) {
+            $response = $exactTarget->unsubscribe();
+        }
+        else {
+            $response = $exactTarget->subscribe();
+        }
 
         if ($response === true) {
             return redirect(route('forms.email-subscriptions.thanks'));

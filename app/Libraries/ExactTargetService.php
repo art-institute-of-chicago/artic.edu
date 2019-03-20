@@ -106,6 +106,43 @@ class ExactTargetService
         return true;
     }
 
+    function unsubscribe()
+    {
+        $client = new ET_Client(false, true, config('exact-target'));
+
+        // Delete the user from the data extension
+        $deRow  = new ET_DataExtension_Row();
+
+        $deRow->authStub = $client;
+        $deRow->props = [
+            "Email" => $this->email,
+        ];
+
+        $deRow->CustomerKey = "All Subscribers Master";
+        $deRow->Name = "Museum Business Unit";
+
+        $response = $deRow->delete();
+
+        if (!$response->status) {
+            return $response;
+        }
+
+        // Set the subscriber to Unsubscribed
+        $subscriber  = new ET_Subscriber();
+        $subscriber->authStub = $client;
+        $subscriber->props = array("EmailAddress" => $this->email,
+                                   "SubscriberKey" => $this->email,
+                                   "Status" => "Unsubscribed");
+        $subscriber->Name = "Museum Business Unit";
+        $response = $subscriber->patch();
+
+        if (!$response->status) {
+            return $response;
+        }
+
+        return true;
+    }
+
     function get()
     {
         $client = new ET_Client(false, true, config('exact-target'));

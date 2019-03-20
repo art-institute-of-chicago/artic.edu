@@ -9,6 +9,9 @@ class EmailSubscriptionsRequest extends FormRequest
         return [
             'email' => 'required',
             'subscriptions' => 'sometimes',
+            'unsubscribe' => 'sometimes',
+            'first_name' => 'sometimes',
+            'last_name' => 'sometimes',
         ];
     }
 
