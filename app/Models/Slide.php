@@ -12,7 +12,7 @@ use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 
-class Experience extends Model implements Sortable
+class Slide extends Model implements Sortable
 {
     use HasBlocks, HasTranslation, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition;
 
@@ -20,9 +20,8 @@ class Experience extends Model implements Sortable
         'published',
         'title',
         'description',
-        'position',
-        'digital_label_id',
-        'archived',
+        'experience_id',
+        // 'position',
         // 'public',
         // 'featured',
         // 'publish_start_date',
@@ -67,14 +66,4 @@ class Experience extends Model implements Sortable
     //         ],
     //     ],
     // ];
-
-    public function slides()
-    {
-        return $this->hasMany('App\Models\Slide', 'experience_id');
-    }
-
-    public function digitalLabel()
-    {
-        return $this->belongsTo('App\Models\DigitalLabel');
-    }
 }
