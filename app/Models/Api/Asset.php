@@ -84,6 +84,9 @@ class Asset extends BaseApiModel
     {
         switch ($this->api_model)
         {
+            case 'videos':
+                // TODO: look into `triggerMediaModal` behavior
+                return '//' . config('app.url') . '/videos/' . $this->id;
             case 'sections':
             case 'sites':
                 return $this->web_url;
@@ -104,6 +107,14 @@ class Asset extends BaseApiModel
         {
             case 'videos':
                 return $this->videoContent;
+                break;
+            case 'sounds':
+                return view('components.molecules._m-listing----sound', [
+                    'item' => (object) [
+                        'title' => $this->title,
+                        'href' => $this->href,
+                    ]
+                ])->render();
                 break;
 
             // All other cases were deprecated.

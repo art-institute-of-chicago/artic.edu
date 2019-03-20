@@ -119,7 +119,7 @@ const videojsActivate = function() {
     }
   }
 
-  document.addEventListener('ajaxPageLoad:complete', _activateAudioPlayers, false);
+  document.addEventListener('page:updated', _activateAudioPlayers, false);
 
   _registerDownloadButton();
   _registerTranscriptButton();

@@ -17,8 +17,8 @@ const modals = function() {
     let embedCode = e.data.embedCode;
     if (embedCode) {
       $modal.classList.add('g-modal--media');
-      if (embedCode.indexOf('api.soundcloud.com') > -1) {
-        $modal.classList.add('g-modal--media-soundcloud');
+      if (e.data.subtype) {
+        $modal.classList.add('g-modal--media-' + e.data.subtype);
       }
       try {
         let doc = parseHTML(embedCode,'native');

@@ -12,6 +12,7 @@ const triggerMediaModal = function(container) {
         triggerCustomEvent(document, 'modal:open', {
           type: 'media',
           embedCode: embedCode,
+          subtype: container.getAttribute('data-subtype') || null,
         });
       }
     }

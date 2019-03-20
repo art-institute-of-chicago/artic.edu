@@ -19,7 +19,7 @@
             <div>{!! $item->transcript !!}</div>
         </div>
         @endif
-        @if ($item->subtitle)
+        @if (isset($item->subtitle))
         <div class="m-listing--sound__subtitle">
             {!! $item->subtitle !!}
         </div>
