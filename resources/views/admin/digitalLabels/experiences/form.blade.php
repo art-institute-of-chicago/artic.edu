@@ -28,6 +28,8 @@
         'label' => 'Media Title'
     ])
 
+    @formField('repeater', ['type' => 'end_bg_experience_image'])
+
     <br />
 
     <a17-fieldset title="Credit" id="end" :open="true">

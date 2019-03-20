@@ -263,6 +263,12 @@ return [
                 'component' => 'a17-block-experience_image',
                 'max' => 3,
             ],
+            'end_bg_experience_image' => [
+                'title' => 'Background image',
+                'trigger' => 'Add Background Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 1,
+            ],
         ],
         'crops' => [
             'image' => [
