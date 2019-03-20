@@ -8,8 +8,6 @@
             <span class="m-aside-newsletter__field">
                 <label for="email{{ $rand }}" class="f-secondary">Email address</label>
                 {{ csrf_field() }}
-                {{-- TODO: Remove this in lieu of subscriptions[]? --}}
-                <input type="hidden" name="list" id="list{{ $rand }}" value="{{ $list ?? '' }}">
                 <input type="email" name="email" id="email{{ $rand }}" class="f-secondary" placeholder="{{ $placeholder ?? '' }}">
                 <button type="submit" class="{{ $btnFont ?? 'f-buttons' }} m-aside-newsletter__btn--submit" data-gtm-event-category="subscribe" data-gtm-event-action="{{$seo->title}}" data-gtm-event="email">Subscribe</button>
             </span>
@@ -32,32 +30,39 @@
                         $list = App\Models\ExactTargetList::getList();
                         $left = $list->slice(0, floor($list->count() / 2));
                         $right = $list->slice(floor($list->count() / 2));
+                        $i = 0;
                     @endphp
 
                     <div class="m-aside-newsletter__list__left">
-                        <li class="m-fieldset__field o-blocks m-fieldset__field--group">
-                        @foreach($left as $value => $label)
-                            @component('components.atoms._checkbox')
-                                @slot('checked', $value === 'OptEnews' ? 'checked' : null)
-                                @slot('id', kebab_case($value) . '-' . $rand)
-                                @slot('value', $value)
-                                @slot('name', 'subscriptions[]')
-                                @slot('label', $label)
-                            @endcomponent
-                        @endforeach
-                        </li>
+                        <ol class="m-fieldset__fields">
+                          <li class="m-fieldset__field o-blocks m-fieldset__field--group">
+                          @foreach($left as $value => $label)
+                              @component('components.atoms._checkbox')
+                                  @slot('checked', $value === 'OptEnews' ? 'checked' : null)
+                                  @slot('id', 'subscriptions-' . $value)
+                                  @slot('value', $value)
+                                  @slot('name', 'subscriptions[' .$i .']')
+                                  @slot('label', $label)
+                              @endcomponent
+                              @php $i++; @endphp
+                          @endforeach
+                          </li>
+                        </ol>
                     </div>
                     <div class="m-aside-newsletter__list__right">
-                        <li class="m-fieldset__field o-blocks m-fieldset__field--group">
-                        @foreach($right as $value => $label)
-                            @component('components.atoms._checkbox')
-                                @slot('id', kebab_case($value) . '-' . $rand)
-                                @slot('value', $value)
-                                @slot('name', 'subscriptions[]')
-                                @slot('label', $label)
-                            @endcomponent
-                        @endforeach
-                        </li>
+                        <ol class="m-fieldset__fields">
+                          <li class="m-fieldset__field o-blocks m-fieldset__field--group">
+                          @foreach($right as $value => $label)
+                              @component('components.atoms._checkbox')
+                                  @slot('id', 'subscriptions-' . $value)
+                                  @slot('value', $value)
+                                  @slot('name', 'subscriptions[' .$i .']')
+                                  @slot('label', $label)
+                              @endcomponent
+                              @php $i++; @endphp
+                          @endforeach
+                          </li>
+                        </ol>
                     </div>
 
                 </div>

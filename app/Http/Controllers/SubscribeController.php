@@ -11,11 +11,10 @@ class SubscribeController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate(['email'=>'required|email']);
+        $data = $request->validate(['email'=>'required|email', 'subscriptions' => 'sometimes']);
 
-        // TODO: Use request('subscriptions') here? Array vs. single value?
-        $exactTarget = new ExactTargetService(request('email'), request('list'));
-        $response = $exactTarget->subscribe();
+        $exactTarget = new ExactTargetService($data['email'], $data['subscriptions']);
+        $response = $exactTarget->subscribe(false);
 
         if ($response === true) {
             return ['message' => 'Successfully signed up to the newsletter.'];

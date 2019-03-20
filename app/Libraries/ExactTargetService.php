@@ -47,7 +47,7 @@ class ExactTargetService
             if (is_array($this->list)) {
                 $allLists = ExactTargetList::getList()->except('OptEnews')->keys()->all();
                 foreach ($allLists as $list) {
-                    if (in_array($list, $allLists)) {
+                    if (in_array($list, $this->list)) {
                         $deRow->props[$list] = 'True';
                     }
                     elseif ($alsoRemove) {
