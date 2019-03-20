@@ -251,6 +251,18 @@ return [
                 'component' => 'a17-block-timeline_item',
                 'max' => 10,
             ],
+            'attract_experience_image' => [
+                'title' => 'Experience image',
+                'trigger' => 'Add Experience Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 3,
+            ],
+            'end_experience_image' => [
+                'title' => 'Experience image',
+                'trigger' => 'Add Experience Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 3,
+            ],
         ],
         'crops' => [
             'image' => [

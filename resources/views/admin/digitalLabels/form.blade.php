@@ -32,25 +32,9 @@
     ])
 
     @formField('select', [
-        'name' => 'primary_color',
-        'label' => 'Primary Color',
-        'placeholder' => 'Select a primary color',
-        'options' => [
-            [
-                'value' => '#B50938',
-                'label' => 'Red #B50938'
-            ],
-            [
-                'value' => '#000000',
-                'label' => 'Black #000000'
-            ],
-        ]
-    ])
-
-    @formField('select', [
-        'name' => 'secondard_color',
-        'label' => 'Secondard Color',
-        'placeholder' => 'Select a secondary color',
+        'name' => 'color',
+        'label' => 'Color',
+        'placeholder' => 'Select a color',
         'options' => [
             [
                 'value' => '#B50938',
@@ -68,14 +52,6 @@
                 'value' => '#C95100',
                 'label' => 'Orange #C95100'
             ],
-        ]
-    ])
-
-    @formField('select', [
-        'name' => 'teriary_color',
-        'label' => 'Teriary Color',
-        'placeholder' => 'Select a teriary color',
-        'options' => [
             [
                 'value' => '#5B051C',
                 'label' => 'Black Rose #5B051C'
@@ -137,5 +113,10 @@
                 'label' => 'Warm Gray #7E746D'
             ],
         ]
+    ])
+
+    @formField('color', [
+        'name' => 'main-color',
+        'label' => 'Alternative color picker?'
     ])
 @stop

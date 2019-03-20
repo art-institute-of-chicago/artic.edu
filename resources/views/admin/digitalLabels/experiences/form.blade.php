@@ -1,22 +1,6 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('select', [
-        'name' => 'experience_type',
-        'label' => 'Experience Type',
-        'placeholder' => 'Select an experience type',
-        'options' => [
-            [
-                'value' => 'label',
-                'label' => 'Label'
-            ],
-            [
-                'value' => 'explorer',
-                'label' => 'Explorer'
-            ],
-        ]
-    ])
-
     @formField('checkbox', [
         'name' => 'archived',
         'label' => 'Archived'
@@ -30,10 +14,7 @@
         'label' => 'Title'
     ])
 
-    @formField('input', [
-        'name' => 'youtube_url',
-        'label' => 'Youtube URL'
-    ])
+    @formField('repeater', ['type' => 'attract_experience_image'])
 
     @formField('input', [
         'name' => 'attract_subhead',
@@ -59,6 +40,9 @@
             'name' => 'end_credit_copy',
             'label' => 'Copy'
         ])
+
+        @formField('repeater', ['type' => 'end_experience_image'])
     </a17-fieldset>
+
 </a17-fieldset>
 @stop
