@@ -46,7 +46,7 @@ Route::group(['prefix' => 'collection'], function () {
     Route::name('collection.artists.augment')->get('artists/augment/{datahub_id}', 'ArtistController@augment');
     Route::module('digitalLabels');
     Route::module('digitalLabels.experiences');
-    Route::module('digitalLabels.experiences.slides');
+    Route::module('experiences.slides');
     Route::name('collection.digitalLabels.augment')->get('digitalLabels/augment/{datahub_id}', 'DigitalLabelController@augment');
 
     Route::module('categoryTerms');

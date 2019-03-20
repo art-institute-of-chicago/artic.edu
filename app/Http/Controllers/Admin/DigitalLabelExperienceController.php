@@ -26,6 +26,25 @@ class DigitalLabelExperienceController extends ModuleController
         ],
     ];
 
+    protected function indexData($request)
+    {
+
+        return [
+            'breadcrumb' => [
+                [
+                    'label' => 'Grouping',
+                    'url' => moduleRoute('digitalLabels', 'collection', 'index', $request->route('digitalLabels')),
+                ],
+                [
+                    'label' => 'Experiences',
+                ],
+
+            ],
+        ];
+    }
+
+    // Intend to override the line:
+    // $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
     protected function getItemColumnData($item, $column)
     {
         if (isset($column['thumb']) && $column['thumb']) {
@@ -51,7 +70,7 @@ class DigitalLabelExperienceController extends ModuleController
             $field = $column['nested'];
             $nestedCount = $item->{$column['nested']}->count();
             $value = '<a href="';
-            $value .= moduleRoute("$this->moduleName.$field", $this->routePrefix, 'index', [$item->digitalLabel->id, $item->id]);
+            $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
             $value .= '">' . $nestedCount . " " . (strtolower($nestedCount > 1
                 ? str_plural($column['title'])
                 : str_singular($column['title']))) . '</a>';
