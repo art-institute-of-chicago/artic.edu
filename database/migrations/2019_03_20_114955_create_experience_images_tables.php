@@ -3,11 +3,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSlidesTables extends Migration
+class CreateExperienceImagesTables extends Migration
 {
     public function up()
     {
-        Schema::create('slides', function (Blueprint $table) {
+        Schema::create('experience_images', function (Blueprint $table) {
 
             // this will create an id, a "published" column, and soft delete and timestamps columns
             createDefaultTableFields($table);
@@ -23,35 +23,33 @@ class CreateSlidesTables extends Migration
             // $table->timestamp('publish_end_date')->nullable();
 
             // use this column with the HasPosition trait
-            $table->integer('position')->unsigned()->nullable();
-            $table->integer('experience_id')->unsigned();
-            $table->foreign("experience_id")->references('id')->on('experiences')->onDelete('CASCADE');
+            // $table->integer('position')->unsigned()->nullable();
         });
 
         // remove this if you're not going to use any translated field, ie. using the HasTranslation trait. If you do use it, create fields you want translatable in this table instead of the main table above. You do not need to create fields in both tables.
-        // Schema::create('slide_translations', function (Blueprint $table) {
-        //     createDefaultTranslationsTableFields($table, 'slide');
+        // Schema::create('experience_image_translations', function (Blueprint $table) {
+        //     createDefaultTranslationsTableFields($table, 'experience_image');
         //     // add some translated fields
-        //     $table->string('title', 200)->nullable();
-        //     $table->text('description')->nullable();
+        //     // $table->string('title', 200)->nullable();
+        //     // $table->text('description')->nullable();
         // });
 
         // remove this if you're not going to use slugs, ie. using the HasSlug trait
-        Schema::create('slide_slugs', function (Blueprint $table) {
-            createDefaultSlugsTableFields($table, 'slide');
+        Schema::create('experience_image_slugs', function (Blueprint $table) {
+            createDefaultSlugsTableFields($table, 'experience_image');
         });
 
         // remove this if you're not going to use revisions, ie. using the HasRevisions trait
-        Schema::create('slide_revisions', function (Blueprint $table) {
-            createDefaultRevisionsTableFields($table, 'slide');
+        Schema::create('experience_image_revisions', function (Blueprint $table) {
+            createDefaultRevisionsTableFields($table, 'experience_image');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('slide_revisions');
-        Schema::dropIfExists('slide_translations');
-        Schema::dropIfExists('slide_slugs');
-        Schema::dropIfExists('slides');
+        Schema::dropIfExists('experience_image_revisions');
+        Schema::dropIfExists('experience_image_translations');
+        Schema::dropIfExists('experience_image_slugs');
+        Schema::dropIfExists('experience_images');
     }
 }

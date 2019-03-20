@@ -30,12 +30,12 @@ class CreateExperiencesTables extends Migration
         });
 
         // remove this if you're not going to use any translated field, ie. using the HasTranslation trait. If you do use it, create fields you want translatable in this table instead of the main table above. You do not need to create fields in both tables.
-        Schema::create('experience_translations', function (Blueprint $table) {
-            createDefaultTranslationsTableFields($table, 'experience');
-            // add some translated fields
-            $table->string('title', 200)->nullable();
-            $table->text('description')->nullable();
-        });
+        // Schema::create('experience_translations', function (Blueprint $table) {
+        //     createDefaultTranslationsTableFields($table, 'experience');
+        //     // add some translated fields
+        //     $table->string('title', 200)->nullable();
+        //     $table->text('description')->nullable();
+        // });
 
         // remove this if you're not going to use slugs, ie. using the HasSlug trait
         Schema::create('experience_slugs', function (Blueprint $table) {

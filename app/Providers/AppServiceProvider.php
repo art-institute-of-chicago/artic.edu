@@ -1,19 +1,16 @@
 <?php
 
 namespace App\Providers;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use App\Libraries\Api\Consumers\GuzzleApiConsumer;
-
-use App\Libraries\LakeviewImageService;
-use App\Libraries\EmbedConverterService;
-
-use Illuminate\Support\ServiceProvider;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
-use View;
-
+use App\Libraries\Api\Consumers\GuzzleApiConsumer;
+use App\Libraries\EmbedConverterService;
+use App\Libraries\LakeviewImageService;
 use App\Models\Hour;
-use App\Models\Closure;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -68,27 +65,24 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerApiClient()
     {
-        $this->app->singleton('ApiClient', function($app)
-        {
+        $this->app->singleton('ApiClient', function ($app) {
             return new GuzzleApiConsumer([
-                'base_uri'   => config('api.base_uri'),
-                'exceptions' => false
+                'base_uri' => config('api.base_uri'),
+                'exceptions' => false,
             ]);
         });
     }
 
     public function registerEmbedConverterService()
     {
-        $this->app->singleton('embedconverterservice', function($app)
-        {
+        $this->app->singleton('embedconverterservice', function ($app) {
             return new EmbedConverterService();
         });
     }
 
     public function registerLakeviewImageService()
     {
-        $this->app->singleton('lakeviewimageservice', function($app)
-        {
+        $this->app->singleton('lakeviewimageservice', function ($app) {
             return new LakeviewImageService();
         });
     }
@@ -105,126 +99,125 @@ class AppServiceProvider extends ServiceProvider
     // TODO: Consider moving some of this to a config?
     private function composeTemplatesViews()
     {
-      view()->composer('*', function ($view) {
-        $hours_general = Hour::getOpeningUnlessClosure();
+        view()->composer('*', function ($view) {
+            // $hours_today = Hour::getOpeningToday();
+            $hours_general = Hour::getOpeningWithClosure();
 
-        $view->with([
-            '_hours' => [
-                'general' => $hours_general,
-                'opening_today' => '',
-                'closure' => Closure::today()->first(),
-            ]
-            ,
-            '_pages' => [
-                'visit' => route('visit')
-            ,   'hours' => route('visit').'#hours'
-            ,   'directions' => route('visit').'#directions'
-
-            ,   'buy' => 'https://sales.artic.edu/admissiondate'
-            ,   'become-a-member' => 'https://sales.artic.edu/memberships'
-            ,   'shop' => 'https://shop.artic.edu/'
-
-            ,   'collection' => route('collection')
-            ,   'exhibitions' => route('exhibitions')
-
-            ,   'about-us' => '/about-us'
-            ,   'about-us-inside-the-museum' => '/about-us/inside-the-museum'
-            ,   'about-us-mission-history' => '/about-us/mission-and-history'
-            ,   'about-us-leadership' => '/about-us/leadership'
-            ,   'about-us-financials' => '/about-us/financial-reporting'
-            ,   'about-us-departments' => '/about-us/departments'
-
-            ,   'support-us' => '/support-us'
-            ,   'support-us-membership' => '/support-us/membership'
-            ,   'support-us-ways-to-give' => '/support-us/ways-to-give'
-            ,   'support-us-affiliate-groups' => '/support-us/affiliate-groups'
-            ,   'support-us-ways-to-give-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship'
-            ,   'support-us-art-interest-groups' => '/support-us/art-interest-groups'
-
-            ,   'learn' => '/learn-with-us'
-            ,   'learn-families' => '/learn-with-us/families'
-            ,   'learn-teens' => '/learn-with-us/teens'
-            ,   'learn-adults' => '/learn-with-us/adults'
-            ,   'learn-educators' => '/learn-with-us/educators'
-
-
-            ,   'follow-facebook' => 'https://www.facebook.com/artic'
-            ,   'follow-twitter' => 'https://twitter.com/artinstitutechi'
-            ,   'follow-instagram' => 'https://www.instagram.com/artinstitutechi/'
-            ,   'follow-youtube' => 'https://www.youtube.com/user/ArtInstituteChicago'
-
-            ,   'legal-articles' => route('articles')
-            ,   'legal-employment' => '/employment'
-            ,   'legal-venue-rental' => '/venue-rental'
-            ,   'legal-contact' => '/contact'
-            ,   'legal-press' => '/press'
-            ,   'legal-terms' => '/terms'
-            ,   'legal-image-licensing' => '/image-licensing'
-            ,   'legal-saic' => 'https://www.saic.edu'
-            ],
-            'mobileNav' => [
-                [
-                    'name' => 'Visit',
-                    'slug' => route('visit')
-                ],
-                [
-                    'name' => 'Exhibition &amp; Events',
-                    'children' => [
-                        [
-                            'name' => 'Exhibitions',
-                            'slug' => route('exhibitions')
-                        ],
-                        [
-                            'name' => 'Events',
-                            'slug' => route('events')
-                        ]
-                    ],
-                ],
-                [
-                    'name' => 'The Collection',
-                    'slug' => route('collection'),
-                    'children' => [
-                        [
-                            'name' => 'Artworks',
-                            'slug' => route('collection')
-                        ],
-                        [
-                            'name' => 'Writings',
-                            'slug' => route('articles_publications')
-                        ],
-                        [
-                            'name' => 'Resources',
-                            'slug' => route('collection.research_resources')
-                        ]
-                    ],
-                ],
-                [
-                    'name' => 'Buy Tickets',
-                    'slug' => 'https://sales.artic.edu/admissiondate',
-                ],
-                [
-                    'name' => 'Become A Member',
-                    'slug' => 'https://sales.artic.edu/memberships',
-                ],
-                [
-                    'name' => 'Shop',
-                    'slug' => 'https://shop.artic.edu/',
-                ],
-                [
-                    'name' => 'About Us',
-                    'slug' => route('genericPages.show', 'about-us'),
-                ],
-                [
-                    'name' => 'Learn With Us',
-                    'slug' => '/learn-with-us',
-                ],
-                [
-                    'name' => 'Support Us',
-                    'slug' => '/support-us',
+            $view->with([
+                '_hours' => [
+                    'general' => $hours_general
+                    , 'opening_today' => '',
                 ]
-            ]
+                ,
+                '_pages' => [
+                    'visit' => route('visit')
+                    , 'hours' => route('visit') . '#hours'
+                    , 'directions' => route('visit') . '#directions'
 
-        ]);
-      });
+                    , 'buy' => 'https://sales.artic.edu/admissiondate'
+                    , 'become-a-member' => 'https://sales.artic.edu/memberships'
+                    , 'shop' => 'https://shop.artic.edu/'
+
+                    , 'collection' => route('collection')
+                    , 'exhibitions' => route('exhibitions')
+
+                    , 'about-us' => '/about-us'
+                    , 'about-us-inside-the-museum' => '/about-us/inside-the-museum'
+                    , 'about-us-mission-history' => '/about-us/mission-and-history'
+                    , 'about-us-leadership' => '/about-us/leadership'
+                    , 'about-us-financials' => '/about-us/financial-reporting'
+                    , 'about-us-departments' => '/about-us/departments'
+
+                    , 'support-us' => '/support-us'
+                    , 'support-us-membership' => '/support-us/membership'
+                    , 'support-us-ways-to-give' => '/support-us/ways-to-give'
+                    , 'support-us-affiliate-groups' => '/support-us/affiliate-groups'
+                    , 'support-us-ways-to-give-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship'
+                    , 'support-us-art-interest-groups' => '/support-us/art-interest-groups'
+
+                    , 'learn' => '/learn-with-us'
+                    , 'learn-families' => '/learn-with-us/families'
+                    , 'learn-teens' => '/learn-with-us/teens'
+                    , 'learn-adults' => '/learn-with-us/adults'
+                    , 'learn-educators' => '/learn-with-us/educators'
+
+                    , 'follow-facebook' => 'https://www.facebook.com/artic'
+                    , 'follow-twitter' => 'https://twitter.com/artinstitutechi'
+                    , 'follow-instagram' => 'https://www.instagram.com/artinstitutechi/'
+                    , 'follow-youtube' => 'https://www.youtube.com/user/ArtInstituteChicago'
+
+                    , 'legal-articles' => route('articles')
+                    , 'legal-employment' => '/employment'
+                    , 'legal-venue-rental' => '/venue-rental'
+                    , 'legal-contact' => '/contact'
+                    , 'legal-press' => '/press'
+                    , 'legal-terms' => '/terms'
+                    , 'legal-image-licensing' => '/image-licensing'
+                    , 'legal-saic' => 'https://www.saic.edu',
+                ],
+                'mobileNav' => [
+                    [
+                        'name' => 'Visit',
+                        'slug' => route('visit'),
+                    ],
+                    [
+                        'name' => 'Exhibition &amp; Events',
+                        'children' => [
+                            [
+                                'name' => 'Exhibitions',
+                                'slug' => route('exhibitions'),
+                            ],
+                            [
+                                'name' => 'Events',
+                                'slug' => route('events'),
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'The Collection',
+                        'slug' => route('collection'),
+                        'children' => [
+                            [
+                                'name' => 'Artworks',
+                                'slug' => route('collection'),
+                            ],
+                            [
+                                'name' => 'Writings',
+                                'slug' => route('articles_publications'),
+                            ],
+                            [
+                                'name' => 'Resources',
+                                'slug' => route('collection.research_resources'),
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Buy Tickets',
+                        'slug' => 'https://sales.artic.edu/admissiondate',
+                    ],
+                    [
+                        'name' => 'Become A Member',
+                        'slug' => 'https://sales.artic.edu/memberships',
+                    ],
+                    [
+                        'name' => 'Shop',
+                        'slug' => 'https://shop.artic.edu/',
+                    ],
+                    [
+                        'name' => 'About Us',
+                        'slug' => route('genericPages.show', 'about-us'),
+                    ],
+                    [
+                        'name' => 'Learn With Us',
+                        'slug' => 'learn-with-us',
+                    ],
+                    [
+                        'name' => 'Support Us',
+                        'slug' => 'support-us',
+                    ],
+                ],
+
+            ]);
+        });
     }
 }

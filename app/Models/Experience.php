@@ -14,7 +14,7 @@ use A17\Twill\Models\Model;
 
 class Experience extends Model implements Sortable
 {
-    use HasBlocks, HasTranslation, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition;
 
     protected $fillable = [
         'published',
@@ -30,11 +30,11 @@ class Experience extends Model implements Sortable
     ];
 
     // uncomment and modify this as needed if you use the HasTranslation trait
-    public $translatedAttributes = [
-        'title',
-        'description',
-        'active',
-    ];
+    // public $translatedAttributes = [
+    //     'title',
+    //     'description',
+    //     'active',
+    // ];
 
     // uncomment and modify this as needed if you use the HasSlug trait
     public $slugAttributes = [
