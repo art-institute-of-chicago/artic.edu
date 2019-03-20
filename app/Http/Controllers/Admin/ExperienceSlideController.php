@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
+use App\Repositories\ExperienceRepository;
+use App\Repositories\SlideRepository;
 
 class ExperienceSlideController extends ModuleController
 {
@@ -16,15 +18,37 @@ class ExperienceSlideController extends ModuleController
 
     protected function indexData($request)
     {
-
+        $experience = app(ExperienceRepository::class)->getById(request('experience'));
         return [
             'breadcrumb' => [
                 [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'index', $request->route('experience')),
+                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'index', $experience->digitalLabel->id),
                 ],
                 [
                     'label' => 'Slides',
+                ],
+
+            ],
+        ];
+    }
+
+    protected function formData($request)
+    {
+        $slide = app(SlideRepository::class)->getById(request('slide'));
+        $experience = app(ExperienceRepository::class)->getById(request('experience'));
+        return [
+            'breadcrumb' => [
+                [
+                    'label' => 'Experiences',
+                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'index', $experience->digitalLabel->id),
+                ],
+                [
+                    'label' => 'Slides',
+                    'url' => moduleRoute('experiences.slides', 'collection', 'index', $request->route('experience')),
+                ],
+                [
+                    'label' => $slide->title,
                 ],
 
             ],

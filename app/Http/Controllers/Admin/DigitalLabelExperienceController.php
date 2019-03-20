@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
+use App\Repositories\ExperienceRepository;
 
 class DigitalLabelExperienceController extends ModuleController
 {
@@ -32,11 +33,32 @@ class DigitalLabelExperienceController extends ModuleController
         return [
             'breadcrumb' => [
                 [
-                    'label' => 'Grouping',
-                    'url' => moduleRoute('digitalLabels', 'collection', 'index', $request->route('digitalLabels')),
+                    'label' => 'Groupings',
+                    'url' => moduleRoute('digitalLabels', 'collection', 'index'),
                 ],
                 [
                     'label' => 'Experiences',
+                ],
+
+            ],
+        ];
+    }
+
+    protected function formData($request)
+    {
+        $experience = app(ExperienceRepository::class)->getById(request('experience'));
+        return [
+            'breadcrumb' => [
+                [
+                    'label' => 'Groupings',
+                    'url' => moduleRoute('digitalLabels', 'collection', 'index'),
+                ],
+                [
+                    'label' => 'Experiences',
+                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'index', $request->route('digitalLabel')),
+                ],
+                [
+                    'label' => $experience->title,
                 ],
 
             ],
