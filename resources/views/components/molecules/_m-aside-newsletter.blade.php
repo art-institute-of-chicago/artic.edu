@@ -74,13 +74,14 @@
             <div class="m-aside-newsletter__also" aria-hidden="true">
 
                 @component('components.atoms._checkbox')
-                    @slot('id', 'opt-enews-' . $rand)
+                    @slot('id', 'subscriptions-OptEnews')
                     @slot('value', 'OptEnews')
                     @slot('name', 'subscriptions[]')
                     @slot('label', 'I\'d also like to receive general news and announcements.')
                 @endcomponent
 
             </div>
+            <input type="hidden" name="subscriptions[]" id="subscriptions-{{ $list }}" value="{{ $list }}">
 
             @endif
         </div>
