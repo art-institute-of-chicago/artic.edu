@@ -77,11 +77,11 @@
             'label' => 'Artist'
         ])
         @formField('input', [
-            'name' => 'title',
+            'name' => 'credit_title',
             'label' => 'Title'
         ])
         @formField('input', [
-            'name' => 'date',
+            'name' => 'credit_date',
             'label' => 'Date'
         ])
         @formField('input', [

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddArchivedColumnToExperiencesTable extends Migration
+class AddFieldsOnExperienceForm extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,11 @@ class AddArchivedColumnToExperiencesTable extends Migration
     {
         Schema::table('experiences', function (Blueprint $table) {
             $table->boolean('archived')->default(false);
+            $table->string('attract_title')->nullable();
+            $table->string('attract_subhead')->nullable();
+            $table->string('media_title')->nullable();
+            $table->string('end_credit_subhead')->nullable();
+            $table->string('end_credit_copy')->nullable();
         });
     }
 
@@ -26,7 +31,7 @@ class AddArchivedColumnToExperiencesTable extends Migration
     public function down()
     {
         Schema::table('experiences', function (Blueprint $table) {
-            $table->dropColumn('archived');
+            $table->dropColumn(['archived', 'attract_title', 'attract_subhead', 'media_title', 'end_credit_subhead', 'end_credit_copy']);
         });
     }
 }
