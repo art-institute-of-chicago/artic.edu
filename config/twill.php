@@ -105,6 +105,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-hr',
             ],
+            'button' => [
+                'title' => 'Button',
+                'icon' => 'text',
+                'component' => 'a17-block-button',
+            ],
             'membership_banner' => [
                 'title' => 'Banner',
                 'icon' => 'text',

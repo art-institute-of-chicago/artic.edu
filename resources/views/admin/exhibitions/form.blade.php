@@ -117,7 +117,7 @@
             'event', 'paragraph', 'image', 'video', 'gallery',
             'media_embed', 'quote', 'list', 'accordion', 'newsletter_signup_inline',
             'shop_items', 'timeline', 'link', 'artwork', 'artworks',
-            'hr', 'split_block', 'tour_stop'
+            'hr', 'split_block', 'tour_stop', 'button'
         ])
     ])
 @stop

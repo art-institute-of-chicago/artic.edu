@@ -66,10 +66,9 @@
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'list',
-            'child_pages', 'accordion', 'membership_banner',
-            'timeline', 'link', 'newsletter_signup_inline',
-            'artwork', 'artworks',
-            'hr', 'split_block', 'search_bar', 'tour_stop'
+            'child_pages', 'accordion', 'membership_banner', 'timeline',
+            'link', 'newsletter_signup_inline', 'artwork', 'artworks',
+            'hr', 'split_block', 'search_bar', 'tour_stop', 'button'
         ])
     ])
 @stop

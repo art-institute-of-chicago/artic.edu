@@ -49,7 +49,8 @@
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'artwork', 'artworks', 'hr', 'citiation', 'split_block',
-            'accordion', 'membership_banner', 'timeline', 'link', 'newsletter_signup_inline',
+            'accordion', 'membership_banner', 'timeline', 'link',
+            'newsletter_signup_inline', 'button'
         ])
     ])
 @stop
