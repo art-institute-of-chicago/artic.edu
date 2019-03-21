@@ -85,11 +85,11 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-video',
             ],
-            'tour_stop' => [
-                'title' => 'Audio Tour Stop',
-                'icon' => 'image',
-                'component' => 'a17-block-tour_stop',
-            ],
+            // 'tour_stop' => [
+            //     'title' => 'Audio Tour Stop',
+            //     'icon' => 'image',
+            //     'component' => 'a17-block-tour_stop',
+            // ],
             'media_embed' => [
                 'title' => 'Media embed',
                 'icon' => 'text',
