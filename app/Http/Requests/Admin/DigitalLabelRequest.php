@@ -9,7 +9,6 @@ class DigitalLabelRequest extends Request
     public function rulesForCreate()
     {
         $rules = [
-            'datahub_id' => 'required',
         ];
 
         return $rules;
@@ -18,7 +17,6 @@ class DigitalLabelRequest extends Request
     public function rulesForUpdate()
     {
         $rules = [
-            'datahub_id' => 'required',
         ];
 
         // if (!empty($this->input('end_date'))) {

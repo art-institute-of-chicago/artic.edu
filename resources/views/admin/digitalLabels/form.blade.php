@@ -31,11 +31,8 @@
         ]
     ])
 
-    @formField('select', [
-        'name' => 'color',
-        'label' => 'Color',
-        'placeholder' => 'Select a color',
-        'options' => [
+    @php
+        $colors = [
             [
                 'value' => '#B50938',
                 'label' => 'Grape #B50938'
@@ -112,11 +109,21 @@
                 'value' => '#7E746D',
                 'label' => 'Warm Gray #7E746D'
             ],
-        ]
+        ];
+    @endphp
+    @formField('select', [
+        'name' => 'color',
+        'label' => 'Color',
+        'placeholder' => 'Select a color',
+        'options' => $colors
     ])
 
-    @formField('color', [
-        'name' => 'main-color',
-        'label' => 'Alternative color picker?'
-    ])
+    @foreach($colors as $color)
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'color',
+            'fieldValues' => $color['value'],
+        ])
+            <div style="background-color: {{ $color['value'] }}; width: 30px; height: 30px; margin-top: 10px"></div>
+        @endcomponent
+    @endforeach
 @stop
