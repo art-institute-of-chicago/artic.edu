@@ -23,6 +23,7 @@
             @if ($item->isVideo)
                 <svg class="icon--play--48"><use xlink:href="#icon--play--48" /></svg>
             @endif
+            <span class="m-listing__img__overlay"></span>
         </span>
         <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
             <em class="type f-tag">{{ $item->subtype }}</em>

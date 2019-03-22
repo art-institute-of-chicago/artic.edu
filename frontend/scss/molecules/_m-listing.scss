@@ -255,6 +255,8 @@
   padding-top: .02px;
   padding-bottom: .02px;
 
+  z-index: 3;
+
   @include breakpoint('medium+') {
     min-height: 144px;
   }
@@ -549,6 +551,9 @@
 
 
 // variant `m-listing--feature`
+.m-listing--feature .m-listing__img::before {
+  padding-bottom: percentage(9 / 16); // 16:9
+}
 
 @include breakpoint('medium+') {
   .m-listing--feature .m-listing__link {
@@ -566,10 +571,6 @@
 
   .m-listing--feature .m-listing__img.m-listing__img--w-overflow {
     overflow: visible;
-  }
-
-  .m-listing--feature .m-listing__img::before {
-    padding-bottom: percentage(9 / 16); // 16:9
   }
 
   .m-listing--feature .m-listing__img::after {
@@ -1886,8 +1887,9 @@ $f-audio-subtitle: generate-font-obj(
 }
 
 
-// variant `m-listing` for selections
-.m-listing--selection .m-listing__img .m-listing__img__overlay {
+// adding gradients to homepage features and selections
+.m-listing--selection .m-listing__img .m-listing__img__overlay,
+.m-listing--feature .m-listing__img .m-listing__img__overlay {
     position: absolute;
     top: 0;
 
@@ -1897,9 +1899,7 @@ $f-audio-subtitle: generate-font-obj(
     height: 33%;
 
     text-align: right;
-}
 
-.m-listing--selection:not(.m-listing--feature) .m-listing__img .m-listing__img__overlay {
     background: linear-gradient(
       to bottom,
       $color__black--85,

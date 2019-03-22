@@ -28,6 +28,7 @@
         @else
             <span class="default-img"></span>
         @endif
+        <span class="m-listing__img__overlay"></span>
     </span>
     <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
       <span class="m-listing__types f-tag">
@@ -79,7 +80,7 @@
             @slot('title_display', $item->title_display)
         @endcomponent
         <br>
-        @if (!empty($variation) && $variation !== 'm-listing--hero' && $item->list_description)
+        @if (!empty($variation) && strpos($variation, 'm-listing--hero') === false && strpos($variation, 'm-listing--feature') === false && $item->list_description)
             @component('components.atoms._short-description')
                 {!! truncateStr($item->list_description) !!}
             @endcomponent
