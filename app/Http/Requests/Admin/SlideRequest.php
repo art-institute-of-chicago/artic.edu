@@ -9,12 +9,14 @@ class SlideRequest extends Request
     public function rulesForCreate()
     {
         return [
-            'module_type' => 'required',
+
         ];
     }
 
     public function rulesForUpdate()
     {
-        return [];
+        return [
+            'module_type' => 'required',
+        ];
     }
 }

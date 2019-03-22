@@ -3,7 +3,7 @@
     ])
 
 @section('contentFields')
-    @include('admin.experiences.slides._asset_type')
+    {{-- @include('admin.experiences.slides._asset_type') --}}
 
     @formField('select', [
         'name' => 'module_type',
@@ -33,60 +33,84 @@
             ],
         ]
     ])
-@stop
 
-@section('fieldsets')
-    <a17-fieldset title="Content" id="content">
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'module_type',
-            'fieldValues' => 'split',
-        ])
-            @formField('multi_select', [
-                'name' => 'attributes',
-                'label' => 'Attributes',
-                'options' => [
-                    [
-                        'value' => 'inset',
-                        'label' => 'Inset'
-                    ],
-                    [
-                        'value' => 'primary_modal',
-                        'label' => 'Primary Modal'
-                    ],
-                    [
-                        'value' => 'headline',
-                        'label' => 'Headline'
-                    ],
-                    [
-                        'value' => 'secondary_image',
-                        'label' => 'Secondary Image'
-                    ],
-                    [
-                        'value' => 'secondary_modal',
-                        'label' => 'Secondary Modal'
-                    ],
-                    [
-                        'value' => 'caption',
-                        'label' => 'Caption'
-                    ],
-                ]
-            ])
-
-            @component('twill::partials.form.utils._connected_fields', [
-                'fieldName' => 'attributes',
-                'fieldValues' => 'headline',
-            ])
-                @formField('input', [
-                    'name' => 'headline',
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'module_type',
+        'fieldValues' => 'split',
+    ])
+        @formField('multi_select', [
+            'name' => 'attributes',
+            'label' => 'Attributes',
+            'options' => [
+                [
+                    'value' => 'inset',
+                    'label' => 'Inset'
+                ],
+                [
+                    'value' => 'primary_modal',
+                    'label' => 'Primary Modal'
+                ],
+                [
+                    'value' => 'headline',
                     'label' => 'Headline'
-                ])
-            @endcomponent
-        @endcomponent
-    </a17-fieldset>
+                ],
+                [
+                    'value' => 'secondary_image',
+                    'label' => 'Secondary Image'
+                ],
+                [
+                    'value' => 'secondary_modal',
+                    'label' => 'Secondary Modal'
+                ],
+                [
+                    'value' => 'caption',
+                    'label' => 'Caption'
+                ],
+            ]
+        ])
+    @endcomponent
+
+    @formField('repeater', ['type' => 'slide_primary_experience_image'])
+    
+    @formField('repeater', ['type' => 'slide_primary_experience_image'])
+
+    @formField('input', [
+        'name' => 'headline',
+        'label' => 'Headline'
+    ])
+
+    @formField('input', [
+        'name' => 'caption',
+        'label' => 'Caption'
+    ])
+
+    @formField('radios', [
+        'name' => 'position',
+        'label' => 'Postion',
+        'default' => 'left',
+        'inline' => true,
+        'options' => [
+            [
+                'value' => 'left',
+                'label' => 'Left'
+            ],
+            [
+                'value' => 'right',
+                'label' => 'Right'
+            ],
+        ]
+    ])
 @stop
 
+
+{{-- WIP, listen the store formField update event and dynamically change form --}}
 @push('extra_js')
     <script>
-        console.log('test')
+        window.vm.$store.subscribe((mutation, state) => {
+            if (mutation.type === 'updateFormField' && mutation.payload.name === 'attributes') {
+                const form = mutation.payload.value;
+                
+            }
+        });
     </script>
 @endpush

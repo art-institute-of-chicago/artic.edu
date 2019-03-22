@@ -16,32 +16,3 @@
         'prefix' => $permalinkPrefix ?? ''
     ])
 @endif
-
-@formField('select', [
-    'name' => 'module_type',
-    'required' => true,
-    'label' => 'Module Type',
-    'placeholder' => 'Select a type',
-    'options' => [
-        [
-            'value' => 'split',
-            'label' => 'Split'
-        ],
-        [
-            'value' => 'interstitial',
-            'label' => 'Interstitial'
-        ],
-        [
-            'value' => 'tooltip',
-            'label' => 'Tooltip'
-        ],
-        [
-            'value' => 'full-width-media',
-            'label' => 'Full-Width Media'
-        ],
-        [
-            'value' => 'compare',
-            'label' => 'Compare'
-        ],
-    ]
-])

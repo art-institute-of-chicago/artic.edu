@@ -269,6 +269,18 @@ return [
                 'component' => 'a17-block-experience_image',
                 'max' => 1,
             ],
+            'slide_primary_experience_image' => [
+                'title' => 'Experience image',
+                'trigger' => 'Add Experience Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 1,
+            ],
+            'slide_secondary_experience_image' => [
+                'title' => 'Experience image',
+                'trigger' => 'Add Experience Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 1,
+            ],
         ],
         'crops' => [
             'image' => [

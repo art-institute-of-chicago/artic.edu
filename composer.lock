@@ -737,16 +737,16 @@
         },
         {
             "name": "digitaladditive/php-fuel-sdk-fork",
-            "version": "1.3",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/patrickisgreat/da-php-fuel-sdk.git",
-                "reference": "292c8ee61f52820e1e7c1f49bc522e33dc7287f0"
+                "reference": "6935f51b4d3dbd0923aed746620955fd63789549"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/patrickisgreat/da-php-fuel-sdk/zipball/292c8ee61f52820e1e7c1f49bc522e33dc7287f0",
-                "reference": "292c8ee61f52820e1e7c1f49bc522e33dc7287f0",
+                "url": "https://api.github.com/repos/patrickisgreat/da-php-fuel-sdk/zipball/6935f51b4d3dbd0923aed746620955fd63789549",
+                "reference": "6935f51b4d3dbd0923aed746620955fd63789549",
                 "shasum": ""
             },
             "require": {
@@ -754,7 +754,7 @@
                 "ext-curl": "*",
                 "ext-openssl": "*",
                 "ext-soap": "*",
-                "firebase/php-jwt": "~3.0|~4.0",
+                "firebase/php-jwt": ">=5.0.0",
                 "php": ">=5.6.24"
             },
             "require-dev": {
@@ -783,7 +783,7 @@
                 "salesforce",
                 "sdk"
             ],
-            "time": "2018-08-17T16:23:38+00:00"
+            "time": "2018-05-02T18:15:16+00:00"
         },
         {
             "name": "digitaladditive/wse-php-fork",
@@ -1606,20 +1606,23 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v4.0.0",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35"
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
-                "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": " 4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -1645,7 +1648,7 @@
             ],
             "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
             "homepage": "https://github.com/firebase/php-jwt",
-            "time": "2016-07-18T04:51:16+00:00"
+            "time": "2017-06-27T22:17:23+00:00"
         },
         {
             "name": "google/apiclient",
