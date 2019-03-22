@@ -291,7 +291,7 @@ class EmailSubscriptionsController extends FormController
             ];
 
             if ($selected) {
-                if (in_array($value, $selected)) {
+                if (in_array($value, $selected) || $value === 'OptEnews') {
                     $item['checked'] = 'checked';
                 }
             }
