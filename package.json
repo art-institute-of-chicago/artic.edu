@@ -25,13 +25,9 @@
     "build": "a17-script build",
     "toolkit": "a17-script toolkit",
     "production": "a17-script prod",
-    "cms-dev": "mkdir -p vendor/area17/twill/public && npm run cms-copy-blocks && concurrently \"cd vendor/area17/twill && npm ci && npm run hot\" \"npm run cms-watch\" && npm run cms-clean-blocks",
-    "cms-watch": "concurrently \"watch 'npm run cms-hot' vendor/area17/twill/public --wait=2 --interval=0.1\" \"npm run cms-watch-blocks\"",
-    "cms-hot": "cd vendor/area17/twill && cp -a public/. ${INIT_CWD}/public/",
-    "cms-prod": "npm run cms-copy-blocks && cd vendor/area17/twill && npm ci && npm run prod && cp -a public/. ${INIT_CWD}/public/",
-    "cms-copy-blocks": "npm run cms-clean-blocks && mkdir -p resources/assets/js/blocks/ && mkdir -p vendor/area17/twill/frontend/js/components/blocks/customs/ && cp -a resources/assets/js/blocks/. vendor/area17/twill/frontend/js/components/blocks/customs/",
-    "cms-clean-blocks": "rm -rf vendor/area17/twill/frontend/js/components/blocks/customs/*",
-    "cms-watch-blocks": "watch 'npm run cms-copy-blocks' resources/assets/js/blocks --wait=2 --interval=0.1"
+    "twill-build": "rm -f public/hot && npm run twill-copy-blocks && cd vendor/area17/twill && npm ci && npm run prod && cp -R public/* ${INIT_CWD}/public",
+    "twill-copy-blocks": "npm run twill-clean-blocks && mkdir -p resources/assets/js/blocks/ && cp -R resources/assets/js/blocks/ vendor/area17/twill/frontend/js/components/blocks/customs/",
+    "twill-clean-blocks": "rm -rf vendor/area17/twill/frontend/js/components/blocks/customs"
   },
   "engines": {
     "node": ">= 8.10.0",

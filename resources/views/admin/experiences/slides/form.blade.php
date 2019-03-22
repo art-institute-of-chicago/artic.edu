@@ -1,77 +1,13 @@
-@extends('twill::layouts.form')
+@extends('twill::layouts.form', [
+    'contentFieldsetLabel' => 'Setting'
+    ])
 
 @section('contentFields')
-    @formField('radios', [
-        'name' => 'asset_type',
-        'label' => 'Asset Type',
-        'default' => 'standard',
-        'inline' => true,
-        'options' => [
-            [
-                'value' => 'standard',
-                'label' => 'Standard'
-            ],
-            [
-                'value' => 'seamless',
-                'label' => 'Seamless'
-            ],
-        ]
-    ])
-
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'asset_type',
-        'fieldValues' => 'seamless',
-        'renderForBlocks' => false
-    ])
-        @formField('radios', [
-            'name' => 'media_type',
-            'label' => 'Media Type',
-            'default' => 'image',
-            'inline' => true,
-            'options' => [
-                [
-                    'value' => 'type_image',
-                    'label' => 'Image'
-                ],
-                [
-                    'value' => 'type_sequence',
-                    'label' => 'Sequence'
-                ],
-            ]
-        ])
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'media_type',
-            'fieldValues' => 'type_image',
-            'renderForBlocks' => false
-        ])
-            @formField('medias', [
-                'name' => 'image',
-                'label' => 'Image',
-                'max' => 1,
-            ])
-        @endcomponent
-
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'media_type',
-            'fieldValues' => 'type_sequence',
-            'renderForBlocks' => false
-        ])
-            @formField('files', [
-                'name' => 'sequence_file',
-                'label' => 'Sequence zip file',
-                'noTranslate' => true,
-                'max' => 1,
-            ])
-        @endcomponent
-
-        @formField('input', [
-            'name' => 'media_title',
-            'label' => 'Media Title'
-        ])
-    @endcomponent
+    @include('admin.experiences.slides._asset_type')
 
     @formField('select', [
         'name' => 'module_type',
+        'required' => true,
         'label' => 'Module Type',
         'placeholder' => 'Select a type',
         'options' => [
@@ -98,3 +34,59 @@
         ]
     ])
 @stop
+
+@section('fieldsets')
+    <a17-fieldset title="Content" id="content">
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'module_type',
+            'fieldValues' => 'split',
+        ])
+            @formField('multi_select', [
+                'name' => 'attributes',
+                'label' => 'Attributes',
+                'options' => [
+                    [
+                        'value' => 'inset',
+                        'label' => 'Inset'
+                    ],
+                    [
+                        'value' => 'primary_modal',
+                        'label' => 'Primary Modal'
+                    ],
+                    [
+                        'value' => 'headline',
+                        'label' => 'Headline'
+                    ],
+                    [
+                        'value' => 'secondary_image',
+                        'label' => 'Secondary Image'
+                    ],
+                    [
+                        'value' => 'secondary_modal',
+                        'label' => 'Secondary Modal'
+                    ],
+                    [
+                        'value' => 'caption',
+                        'label' => 'Caption'
+                    ],
+                ]
+            ])
+
+            @component('twill::partials.form.utils._connected_fields', [
+                'fieldName' => 'attributes',
+                'fieldValues' => 'headline',
+            ])
+                @formField('input', [
+                    'name' => 'headline',
+                    'label' => 'Headline'
+                ])
+            @endcomponent
+        @endcomponent
+    </a17-fieldset>
+@stop
+
+@push('extra_js')
+    <script>
+        console.log('test')
+    </script>
+@endpush
