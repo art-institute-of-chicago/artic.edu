@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c51457c8dadbfb2076c12aeff785ef77",
+    "content-hash": "f4b88107134f40ef29b46e2772267da5",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -170,12 +170,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/area17/twill.git",
-                "reference": "df870b5446be5cb868b41c8df6b955cff0c6ed7a"
+                "reference": "d2f4008cd1fb56d8e684a08074f78e4af29efd92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/area17/twill/zipball/df870b5446be5cb868b41c8df6b955cff0c6ed7a",
-                "reference": "df870b5446be5cb868b41c8df6b955cff0c6ed7a",
+                "url": "https://api.github.com/repos/area17/twill/zipball/d2f4008cd1fb56d8e684a08074f78e4af29efd92",
+                "reference": "d2f4008cd1fb56d8e684a08074f78e4af29efd92",
                 "shasum": ""
             },
             "require": {
@@ -261,20 +261,20 @@
                 "laravel",
                 "twill"
             ],
-            "time": "2019-03-22T13:00:19+00:00"
+            "time": "2019-03-22T16:44:53+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.90.7",
+            "version": "3.90.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "5b188c9f5f21e87b4994bc1b477951eff4608547"
+                "reference": "b9d93ad14a504a0833bdafa2e80c9bd90d6cf47a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5b188c9f5f21e87b4994bc1b477951eff4608547",
-                "reference": "5b188c9f5f21e87b4994bc1b477951eff4608547",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/b9d93ad14a504a0833bdafa2e80c9bd90d6cf47a",
+                "reference": "b9d93ad14a504a0833bdafa2e80c9bd90d6cf47a",
                 "shasum": ""
             },
             "require": {
@@ -343,7 +343,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-03-21T18:10:13+00:00"
+            "time": "2019-03-25T18:17:43+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -737,16 +737,16 @@
         },
         {
             "name": "digitaladditive/php-fuel-sdk-fork",
-            "version": "1.2.0",
+            "version": "1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/patrickisgreat/da-php-fuel-sdk.git",
-                "reference": "6935f51b4d3dbd0923aed746620955fd63789549"
+                "reference": "292c8ee61f52820e1e7c1f49bc522e33dc7287f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/patrickisgreat/da-php-fuel-sdk/zipball/6935f51b4d3dbd0923aed746620955fd63789549",
-                "reference": "6935f51b4d3dbd0923aed746620955fd63789549",
+                "url": "https://api.github.com/repos/patrickisgreat/da-php-fuel-sdk/zipball/292c8ee61f52820e1e7c1f49bc522e33dc7287f0",
+                "reference": "292c8ee61f52820e1e7c1f49bc522e33dc7287f0",
                 "shasum": ""
             },
             "require": {
@@ -754,7 +754,7 @@
                 "ext-curl": "*",
                 "ext-openssl": "*",
                 "ext-soap": "*",
-                "firebase/php-jwt": ">=5.0.0",
+                "firebase/php-jwt": "~3.0|~4.0",
                 "php": ">=5.6.24"
             },
             "require-dev": {
@@ -783,7 +783,7 @@
                 "salesforce",
                 "sdk"
             ],
-            "time": "2018-05-02T18:15:16+00:00"
+            "time": "2018-08-17T16:23:38+00:00"
         },
         {
             "name": "digitaladditive/wse-php-fork",
@@ -1606,23 +1606,20 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v5.0.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
+                "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
-                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
+                "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": " 4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -1648,7 +1645,7 @@
             ],
             "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
             "homepage": "https://github.com/firebase/php-jwt",
-            "time": "2017-06-27T22:17:23+00:00"
+            "time": "2016-07-18T04:51:16+00:00"
         },
         {
             "name": "google/apiclient",
@@ -1711,16 +1708,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.90",
+            "version": "v0.91",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "7ec8bd600d813d1307aafb4ab46d97495b4a88cf"
+                "reference": "16635a92f500f35276c1e106c29cba4b59a940a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/7ec8bd600d813d1307aafb4ab46d97495b4a88cf",
-                "reference": "7ec8bd600d813d1307aafb4ab46d97495b4a88cf",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/16635a92f500f35276c1e106c29cba4b59a940a5",
+                "reference": "16635a92f500f35276c1e106c29cba4b59a940a5",
                 "shasum": ""
             },
             "require": {
@@ -1744,7 +1741,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2019-03-16T00:23:00+00:00"
+            "time": "2019-03-23T00:22:53+00:00"
         },
         {
             "name": "google/auth",
@@ -3315,12 +3312,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/onelogin/php-saml.git",
-                "reference": "874516eb62dd3e11ca3193ae9b72f09694cf2e43"
+                "reference": "f9e44f9a3220c4f28fab70086cdb5d35df18c887"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/onelogin/php-saml/zipball/874516eb62dd3e11ca3193ae9b72f09694cf2e43",
-                "reference": "874516eb62dd3e11ca3193ae9b72f09694cf2e43",
+                "url": "https://api.github.com/repos/onelogin/php-saml/zipball/f9e44f9a3220c4f28fab70086cdb5d35df18c887",
+                "reference": "f9e44f9a3220c4f28fab70086cdb5d35df18c887",
                 "shasum": ""
             },
             "require": {
@@ -3357,7 +3354,7 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2019-01-22T13:06:40+00:00"
+            "time": "2019-03-11T09:32:44+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -4920,26 +4917,26 @@
         },
         {
             "name": "spatie/image-optimizer",
-            "version": "1.1.5",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image-optimizer.git",
-                "reference": "e62f8b459bee0a880c8976c316e82638a74510b5"
+                "reference": "11f0b270669a55f90093d63ddb5214e0f7c279da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/e62f8b459bee0a880c8976c316e82638a74510b5",
-                "reference": "e62f8b459bee0a880c8976c316e82638a74510b5",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/11f0b270669a55f90093d63ddb5214e0f7c279da",
+                "reference": "11f0b270669a55f90093d63ddb5214e0f7c279da",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
-                "php": "^7.2",
+                "php": "^7.0",
                 "psr/log": "^1.0",
                 "symfony/process": "^4.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.0",
+                "phpunit/phpunit": "^7.5",
                 "symfony/var-dumper": "^4.2"
             },
             "type": "library",
@@ -4966,7 +4963,7 @@
                 "image-optimizer",
                 "spatie"
             ],
-            "time": "2019-02-15T12:11:38+00:00"
+            "time": "2019-01-14T09:15:47+00:00"
         },
         {
             "name": "spatie/laravel-activitylog",
@@ -5189,28 +5186,28 @@
         },
         {
             "name": "spatie/laravel-sitemap",
-            "version": "5.2.11",
+            "version": "5.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sitemap.git",
-                "reference": "ad5c8cb89f80f6a801ef19ecd7470d296f234595"
+                "reference": "9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/ad5c8cb89f80f6a801ef19ecd7470d296f234595",
-                "reference": "ad5c8cb89f80f6a801ef19ecd7470d296f234595",
+                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d",
+                "reference": "9a8a58c4cfbcb7a7f46ce78e01d7be4bd7e8f93d",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "nesbot/carbon": "^1.21|^2.0",
+                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0",
+                "nesbot/carbon": "^1.21",
                 "php": "^7.1",
                 "spatie/crawler": "^4.1.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
-                "phpunit/phpunit": "^6.4.1|^7.0|^8.0",
-                "spatie/phpunit-snapshot-assertions": "^2.0.0",
+                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
+                "phpunit/phpunit": "^6.4.1|^7.0",
+                "spatie/phpunit-snapshot-assertions": "^1.0.0",
                 "spatie/temporary-directory": "^1.1"
             },
             "type": "library",
@@ -5244,7 +5241,7 @@
                 "laravel-sitemap",
                 "spatie"
             ],
-            "time": "2019-02-27T20:28:43+00:00"
+            "time": "2018-11-05T13:42:06+00:00"
         },
         {
             "name": "spatie/once",
