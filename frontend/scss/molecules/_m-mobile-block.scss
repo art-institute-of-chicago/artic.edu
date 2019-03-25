@@ -1,0 +1,48 @@
+.m-mobile-block {
+
+  .m-mobile-block__wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    @include breakpoint('large+') {
+      width: 70%;
+      margin-left: 10%;
+    }
+
+    & > div {
+      &:first-child {
+        margin: 24px;
+        margin-right: 12px;
+      }
+
+      &:last-child {
+        margin: 24px;
+        margin-left: 12px;
+      }
+    }
+
+    // Removes baseline adjustments
+    p {
+      &:before, &:after {
+        content: initial !important;
+      }
+    }
+  }
+
+  // From _o-blocks c. L275
+  .o-blocks & .hr.m-mobile-block__hr--top {
+    min-width: 100%;
+    margin-top: 32px;
+
+    @include breakpoint('small+') {
+      margin-top: 44px;
+    }
+
+  }
+
+  .o-blocks & .hr.m-mobile-block__hr--bottom {
+    margin-top: 0;
+  }
+
+}

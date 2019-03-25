@@ -115,6 +115,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-membership_banner',
             ],
+            'mobile_app' => [
+                'title' => 'Mobile app promo',
+                'icon' => 'text',
+                'component' => 'a17-block-mobile_app',
+            ],
             'shop_items' => [
                 'title' => 'Featured products',
                 'icon' => 'image',
