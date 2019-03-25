@@ -64,7 +64,7 @@ class CollectionController extends BaseScopedController
         $description = "Discover art by Van Gogh, Picasso, Warhol & more in the Art Institute's collection spanning 5,000 years of creativity.";
 
         if (request('q')) {
-            $description = 'Your searched for: ' .request('q') .'. ' .$description;
+            $description = 'You searched for: ' .request('q') .'. ' .$description;
         }
         $this->seo->setDescription($description);
         $this->seo->nofollow = $this->setNofollowMeta();
