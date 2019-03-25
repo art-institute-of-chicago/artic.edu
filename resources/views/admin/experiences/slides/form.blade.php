@@ -69,37 +69,111 @@
             ]
         ])
     @endcomponent
+@stop
 
-    @formField('repeater', ['type' => 'slide_primary_experience_image'])
+@section('fieldsets')
+    <a17-fieldset title="Content" id="content">
+
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'module_type',
+            'fieldValues' => 'split',
+        ])
+            @formField('repeater', ['type' => 'slide_primary_experience_image'])
     
-    @formField('repeater', ['type' => 'slide_primary_experience_image'])
+            @formField('input', [
+                'name' => 'headline',
+                'label' => 'Headline'
+            ])
+        
+            @formField('input', [
+                'name' => 'caption',
+                'label' => 'Caption'
+            ])
+        
+            @formField('radios', [
+                'name' => 'position',
+                'label' => 'Postion',
+                'default' => 'left',
+                'inline' => true,
+                'options' => [
+                    [
+                        'value' => 'left',
+                        'label' => 'Left'
+                    ],
+                    [
+                        'value' => 'right',
+                        'label' => 'Right'
+                    ],
+                    ]
+            ])
+        
+            @formField('repeater', ['type' => 'experience_modal'])
+            @formField('repeater', ['type' => 'secondary_experience_modal'])
+        @endcomponent
 
-    @formField('input', [
-        'name' => 'headline',
-        'label' => 'Headline'
-    ])
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'module_type',
+            'fieldValues' => 'Interstitial',
+        ])
+            @formField('input', [
+                'name' => 'headline',
+                'label' => 'Headline'
+            ])
 
-    @formField('input', [
-        'name' => 'caption',
-        'label' => 'Caption'
-    ])
+            @formField('input', [
+                'name' => 'body_copy',
+                'label' => 'Body Copy'
+            ])
 
-    @formField('radios', [
-        'name' => 'position',
-        'label' => 'Postion',
-        'default' => 'left',
-        'inline' => true,
-        'options' => [
-            [
-                'value' => 'left',
-                'label' => 'Left'
-            ],
-            [
-                'value' => 'right',
-                'label' => 'Right'
-            ],
-        ]
-    ])
+            @formField('input', [
+                'name' => 'section_title',
+                'label' => 'Section Title'
+            ])
+
+            @formField('repeater', ['type' => 'experience_image'])
+        @endcomponent
+
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'module_type',
+            'fieldValues' => 'full-width-media',
+        ])
+            @formField('repeater', ['type' => 'experience_image'])
+            @formField('repeater', ['type' => 'experience_modal'])
+            @formField('input', [
+                'name' => 'caption',
+                'label' => 'Caption'
+            ])
+        @endcomponent
+
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'module_type',
+            'fieldValues' => 'full-width-media',
+        ])
+            @formField('repeater', ['type' => 'experience_image'])
+            @formField('input', [
+                'name' => 'object_title',
+                'label' => 'Object Title',
+            ])
+            @formField('input', [
+                'name' => 'caption',
+                'label' => 'Caption'
+            ])
+        @endcomponent
+
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'module_type',
+            'fieldValues' => 'compare',
+        ])
+            @formField('input', [
+                'name' => 'compare_title',
+                'label' => 'Title'
+            ])
+
+            @formField('repeater', ['type' => 'compare_experience_image'])
+            @formField('repeater', ['type' => 'experience_modal'])
+        @endcomponent
+
+    </a17-fieldset>
 @stop
 
 

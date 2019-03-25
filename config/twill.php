@@ -251,6 +251,12 @@ return [
                 'component' => 'a17-block-timeline_item',
                 'max' => 10,
             ],
+            'experience_image' => [
+                'title' => 'Experience image',
+                'trigger' => 'Add Experience Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 1,
+            ],
             'attract_experience_image' => [
                 'title' => 'Experience image',
                 'trigger' => 'Add Experience Image',
@@ -270,8 +276,8 @@ return [
                 'max' => 1,
             ],
             'slide_primary_experience_image' => [
-                'title' => 'Experience image',
-                'trigger' => 'Add Experience Image',
+                'title' => 'Primary experience image',
+                'trigger' => 'Add Primary Experience Image',
                 'component' => 'a17-block-experience_image',
                 'max' => 1,
             ],
@@ -279,6 +285,24 @@ return [
                 'title' => 'Experience image',
                 'trigger' => 'Add Experience Image',
                 'component' => 'a17-block-experience_image',
+                'max' => 1,
+            ],
+            'compare_experience_image' => [
+                'title' => 'Compare experience image',
+                'trigger' => 'Add Compare Experience Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 2,
+            ],
+            'experience_modal' => [
+                'title' => 'Experience Modal',
+                'trigger' => 'Add Experience Modal',
+                'component' => 'a17-block-experience_modal',
+                'max' => 1,
+            ],
+            'secondary_experience_modal' => [
+                'title' => 'Secondary Experience Modal',
+                'trigger' => 'Add Secondary Experience Modal',
+                'component' => 'a17-block-experience_modal',
                 'max' => 1,
             ],
         ],
