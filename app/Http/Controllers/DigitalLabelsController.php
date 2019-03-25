@@ -83,4 +83,16 @@ class DigitalLabelsController extends FrontController
             'canonicalUrl' => route('digitalLabels.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
         ]);
     }
+
+    protected function test()
+    {
+        $articles = Article::published()
+                ->orderBy('date', 'desc')
+                ->paginate(4);
+
+        return view('site.digitalLabelDetail', [
+            'contrastHeader' => true,
+            'furtherReading' => $articles,
+        ]);
+    }
 }
