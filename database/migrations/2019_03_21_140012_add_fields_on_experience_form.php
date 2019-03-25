@@ -14,12 +14,29 @@ class AddFieldsOnExperienceForm extends Migration
     public function up()
     {
         Schema::table('experiences', function (Blueprint $table) {
-            $table->boolean('archived')->default(false);
-            $table->string('attract_title')->nullable();
-            $table->string('attract_subhead')->nullable();
-            $table->string('media_title')->nullable();
-            $table->string('end_credit_subhead')->nullable();
-            $table->string('end_credit_copy')->nullable();
+            if (!Schema::hasColumn('experiences', 'archived')) {
+                $table->boolean('archived')->default(false);
+            }
+
+            if (!Schema::hasColumn('experiences', 'attract_title')) {
+                $table->string('attract_title')->nullable();
+            }
+
+            if (!Schema::hasColumn('experiences', 'attract_subhead')) {
+                $table->string('attract_subhead')->nullable();
+            }
+
+            if (!Schema::hasColumn('experiences', 'media_title')) {
+                $table->string('media_title')->nullable();
+            }
+
+            if (!Schema::hasColumn('experiences', 'end_credit_subhead')) {
+                $table->string('end_credit_subhead')->nullable();
+            }
+
+            if (!Schema::hasColumn('experiences', 'end_credit_copy')) {
+                $table->string('end_credit_copy')->nullable();
+            }
         });
     }
 
