@@ -16,6 +16,13 @@ class DigitalLabelExperienceController extends ModuleController
     }
 
     protected $indexColumns = [
+        'image' => [
+            'thumb' => true,
+            'variant' => [
+                'role' => 'cover',
+                'crop' => 'default',
+            ],
+        ],
         'title' => [
             'title' => 'Title',
             'field' => 'title',

@@ -1,6 +1,7 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
+    <br/ ><h1><strong>Bundle ID: </strong>{{ $item->id }}</h1>
     @formField('checkbox', [
         'name' => 'archived',
         'label' => 'Archived'
