@@ -113,7 +113,7 @@
 
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'module_type',
-            'fieldValues' => 'Interstitial',
+            'fieldValues' => 'interstitial',
         ])
             @formField('input', [
                 'name' => 'headline',
@@ -147,7 +147,7 @@
 
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'module_type',
-            'fieldValues' => 'full-width-media',
+            'fieldValues' => 'tooltip',
         ])
             @formField('repeater', ['type' => 'experience_image'])
             @formField('input', [
