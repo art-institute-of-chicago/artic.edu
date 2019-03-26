@@ -1888,21 +1888,30 @@ $f-audio-subtitle: generate-font-obj(
 
 
 // adding gradients to homepage features and selections
-.m-listing--selection .m-listing__img .m-listing__img__overlay,
+@mixin m-listing__img__overlay {
+  position: absolute;
+  top: 0;
+
+  z-index: 2;
+  padding: 32px;
+  width: 100%;
+  height: 33%;
+
+  text-align: right;
+
+  background: linear-gradient(
+    to bottom,
+    $color__black--85,
+    transparent
+  );
+}
+
+.m-listing--selection .m-listing__img .m-listing__img__overlay {
+  @include m-listing__img__overlay;
+}
+
 .m-listing--feature .m-listing__img .m-listing__img__overlay {
-    position: absolute;
-    top: 0;
-
-    z-index: 2;
-    padding: 32px;
-    width: 100%;
-    height: 33%;
-
-    text-align: right;
-
-    background: linear-gradient(
-      to bottom,
-      $color__black--85,
-      transparent
-    );
+  @include breakpoint('medium+') {
+    @include m-listing__img__overlay;
+  }
 }
