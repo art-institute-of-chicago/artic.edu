@@ -80,19 +80,23 @@
         ])
             @formField('repeater', ['type' => 'slide_primary_experience_image'])
                 
-            <div style="display: none" id="slide_secondary_experience_image">
+            <div style="display: none" id="secondary_image">
                 @formField('repeater', ['type' => 'slide_secondary_experience_image'])
             </div>
     
-            @formField('input', [
-                'name' => 'headline',
-                'label' => 'Headline'
-            ])
+            <div style="display: none" id="headline">
+                @formField('input', [
+                    'name' => 'headline',
+                    'label' => 'Headline'
+                ])
+            </div>
         
-            @formField('input', [
-                'name' => 'caption',
-                'label' => 'Caption'
-            ])
+            <div style="display: none" id="caption">
+                @formField('input', [
+                    'name' => 'caption',
+                    'label' => 'Caption'
+                ])
+            </div>
         
             @formField('radios', [
                 'name' => 'position',
@@ -111,8 +115,12 @@
                     ]
             ])
         
-            @formField('repeater', ['type' => 'experience_modal'])
-            @formField('repeater', ['type' => 'secondary_experience_modal'])
+            <div style="display: none" id="primary_modal">
+                @formField('repeater', ['type' => 'experience_modal'])
+            </div>
+            <div style="display: none" id="secondary_modal">
+                @formField('repeater', ['type' => 'secondary_experience_modal'])
+            </div>
         @endcomponent
 
         @component('twill::partials.form.utils._connected_fields', [
@@ -181,19 +189,26 @@
 @stop
 @push('extra_js')
     <script>
-        // check current attributes states and render form
-        console.log({!! json_encode($form_fields) !!});
-        // Listen store event and update form
-        window.vm.$store.subscribe((mutation, state) => {
-            if (mutation.type === 'updateFormField' && mutation.payload.name === 'attributes') {
-                const form = mutation.payload.value;
-                const e = document.getElementById('slide_secondary_experience_image');
-                if (form.includes('secondary_image')) {
-                    e.style.display = 'block';
-                } else {
-                    e.style.display = 'none';
+        window.vm.$store.watch(
+            function (state) {
+                return state.form.fields;
+            },
+            function (newVal, oldVal) {
+                const attributes = newVal.find(field => field.name == 'attributes');
+                if (attributes) {
+                    const options = ['inset', 'primary_modal', 'headline', 'secondary_image', 'secondary_modal', 'caption'];
+                    options.forEach(function (option) {
+                        const e = document.getElementById(option);
+                        if (e) {
+                            if (attributes.value.includes(option)) {
+                                e.style.display = 'block';
+                            } else {
+                                e.style.display = 'none';
+                            }
+                        }
+                    });
                 }
             }
-        });
+        )
     </script>
 @endpush
