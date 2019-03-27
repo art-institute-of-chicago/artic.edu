@@ -79,6 +79,10 @@
             'fieldValues' => 'split',
         ])
             @formField('repeater', ['type' => 'slide_primary_experience_image'])
+                
+            <div style="display: none" id="slide_secondary_experience_image">
+                @formField('repeater', ['type' => 'slide_secondary_experience_image'])
+            </div>
     
             @formField('input', [
                 'name' => 'headline',
@@ -175,15 +179,20 @@
 
     </a17-fieldset>
 @stop
-
-
-{{-- WIP, listen the store formField update event and dynamically change form --}}
 @push('extra_js')
     <script>
+        // check current attributes states and render form
+        console.log({!! json_encode($form_fields) !!});
+        // Listen store event and update form
         window.vm.$store.subscribe((mutation, state) => {
             if (mutation.type === 'updateFormField' && mutation.payload.name === 'attributes') {
                 const form = mutation.payload.value;
-                
+                const e = document.getElementById('slide_secondary_experience_image');
+                if (form.includes('secondary_image')) {
+                    e.style.display = 'block';
+                } else {
+                    e.style.display = 'none';
+                }
             }
         });
     </script>

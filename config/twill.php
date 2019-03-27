@@ -283,7 +283,7 @@ return [
             ],
             'slide_secondary_experience_image' => [
                 'title' => 'Experience image',
-                'trigger' => 'Add Experience Image',
+                'trigger' => 'Add Secondary Experience Image',
                 'component' => 'a17-block-experience_image',
                 'max' => 1,
             ],
