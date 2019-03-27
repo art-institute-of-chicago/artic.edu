@@ -164,6 +164,7 @@ Route::get('enews', function () {
 // Digital labels
 Route::name('digitalLabels')->get('/interactive-features', 'DigitalLabelsController@index');
 Route::name('digitalLabels.test')->get('/interactive-features/test', 'DigitalLabelsController@test');
+Route::name('digitalLabels.kiosk')->get('/interactive-features/kiosk', 'DigitalLabelsController@kiosk');
 Route::name('digitalLabels.show')->get('/interactive-features/{id}/{slug?}', 'DigitalLabelsController@show');
 
 

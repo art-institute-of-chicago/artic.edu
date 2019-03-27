@@ -95,4 +95,16 @@ class DigitalLabelsController extends FrontController
             'furtherReading' => $articles,
         ]);
     }
+
+    protected function kiosk()
+    {
+        $articles = Article::published()
+                ->orderBy('date', 'desc')
+                ->paginate(4);
+
+        return view('site.digitalLabelKiosk', [
+            'contrastHeader' => true,
+            'furtherReading' => $articles,
+        ]);
+    }
 }
