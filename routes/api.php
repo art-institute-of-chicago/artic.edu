@@ -538,7 +538,7 @@ Route::group(['prefix' => 'v1'], function()
     /**
      * TODO: Add Swagger definitions? This feels redundant.
      */
-    Route::get('events/occurrences', 'API\EventOccurrencesController@occurrences');
+    Route::get('event-occurrences', 'API\EventOccurrencesController@occurrences');
 
     /**
      * @SWG\Get(

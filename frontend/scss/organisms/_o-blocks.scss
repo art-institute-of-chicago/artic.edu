@@ -322,6 +322,7 @@
   .m-media--m,
   .m-media--l,
   .m-cta-banner,
+  .m-mobile-block,
   .m-aside-newsletter--wide {
     @include breakpoint('medium+') {
       width: colspan(58, medium);

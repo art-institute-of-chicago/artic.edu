@@ -25,6 +25,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--arrow--24">
     <use xlink:href="#icon--arrow--24"></use>
   </svg>
+  <svg class="icon--audio">
+    <use xlink:href="#icon--audio"></use>
+  </svg>
   <svg class="icon--calendar">
     <use xlink:href="#icon--calendar"></use>
   </svg>
@@ -103,6 +106,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--minus--24">
     <use xlink:href="#icon--minus--24"></use>
   </svg>
+  <svg class="icon--mobile-app">
+    <use xlink:href="#icon--mobile-app"></use>
+  </svg>
   <svg class="icon--new-window">
     <use xlink:href="#icon--new-window"></use>
   </svg>
@@ -156,6 +162,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   </svg>
   <svg class="icon--slideshow--24">
     <use xlink:href="#icon--slideshow--24"></use>
+  </svg>
+  <svg class="icon--video">
+    <use xlink:href="#icon--video"></use>
   </svg>
   <svg class="icon--zoom--24">
     <use xlink:href="#icon--zoom--24"></use>
@@ -217,6 +226,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--arrow--24 {
   width: 24px;
   height: 24px;
+}
+
+.icon--audio {
+  width: 16px;
+  height: 16px;
 }
 
 .icon--calendar {
@@ -349,6 +363,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
   height: 24px;
 }
 
+.icon--mobile-app {
+  width: 51.1px;
+  height: 56.9px;
+}
+
 .icon--new-window {
   width: 16px;
   height: 16px;
@@ -437,6 +456,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--slideshow--24 {
   width: 24px;
   height: 24px;
+}
+
+.icon--video {
+  width: 16px;
+  height: 16px;
 }
 
 .icon--zoom--24 {

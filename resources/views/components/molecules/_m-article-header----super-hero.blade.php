@@ -61,7 +61,8 @@
         @component('components.blocks._text')
             @slot('font','f-deck')
             @slot('variation', 'm-article-header__intro')
-            {{ $intro }}
+            @slot('tag', 'span')
+            {!! $intro !!}
         @endcomponent
       @endif
       @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))

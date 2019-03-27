@@ -1096,6 +1096,41 @@ $f-list-1: generate-font-obj(
   @include f-list-1;
 }
 
+
+/***
+
+f-list-1--dense
+
+```
+<p class="f-list-1--dense">The quick brown fox, <br>jumps over the lazy dog</p>
+```
+
+***/
+
+$f-list-1--dense: generate-font-obj(
+  (
+    font-family: $serif-font,
+    font-family-loaded: $serif-font--loaded,
+    font-loaded-class: $serif-font-loaded-class,
+    settings: (
+      'xsmall': (font-size: 16, line-height: 20, push: -2),
+      'small': (font-size: 19, line-height: 24, push: -2),
+      'medium+': (font-size: 20, line-height: 28, push: -2)
+    )
+  )
+);
+
+@mixin f-list-1--dense() {
+  @include font-styles($f-list-1--dense);
+  color: $color__text--title;
+}
+
+%f-list-1--dense,
+.f-list-1--dense {
+  @include f-list-1--dense;
+}
+
+
 /***
 
 f-quote

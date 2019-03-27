@@ -35,7 +35,8 @@ class EventOccurrencesController extends BaseController
                 true,
                 function (&$query) {
                     $query->getQuery()->orders = null;
-                    $query->orderBy('updated_at', 'desc');
+                    $query->orderBy('updated_at', 'DESC');
+                    $query->orderBy('event_metas.date', 'ASC');
                 }
             );
 

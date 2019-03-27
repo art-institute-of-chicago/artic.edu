@@ -23,10 +23,11 @@
             </a>
         @else
             @if (isset($link['href']))
-            <a class="m-link-list__trigger {{ $font ?? 'f-secondary' }}{{ (isset($link['variation'])) ? ' '.$link['variation'] : '' }}" href="{{ $link['href'] }}">
+            <a class="m-link-list__trigger {{ $font ?? 'f-secondary' }}{{ (isset($link['variation'])) ? ' '.$link['variation'] : '' }}" href="{{ $link['href'] }}"{!! isset($link['embed']) ? ' data-behavior="triggerMediaModal"' : '' !!}{!! isset($link['api_model']) ? ' data-subtype="' . $link['api_model'] . '"' : '' !!}>
                 @if (isset($link['iconBefore']) and $link['iconBefore'])<svg aria-hidden="true" class="m-link-list__icon-before icon--{{ $link['iconBefore'] }}"><use xlink:href="#icon--{{ $link['iconBefore'] }}" /></svg>@endif
                 <span class="m-link-list__label"{!! (isset($link['itemprop'])) ? ' itemprop="'.$link['itemprop'].'"' : '' !!}>{!! $link['label'] !!}</span>
                 @if (isset($link['iconAfter']) and $link['iconAfter'])<svg aria-hidden="true" class="m-link-list__icon-after icon--{{ $link['iconAfter'] }}"><use xlink:href="#icon--{{ $link['iconAfter'] }}" /></svg>@endif
+                @if (isset($link['embed']))<textarea style="display: none;">{!! is_array($link['embed']) ? array_first($link['embed']) : $link['embed'] !!}</textarea>@endif
             </a>
             @else
             <span class="m-link-list__trigger {{ $font ?? 'f-secondary' }}{{ (isset($link['variation'])) ? ' '.$link['variation'] : '' }}">

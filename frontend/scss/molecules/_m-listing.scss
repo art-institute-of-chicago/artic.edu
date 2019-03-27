@@ -109,10 +109,6 @@
 
 .m-listing__img--no-bg {
   background: none;
-
-  .default-img {
-    background: none;
-  }
 }
 
 .m-listing__img::before {
@@ -258,6 +254,8 @@
   min-height: 128px;
   padding-top: .02px;
   padding-bottom: .02px;
+
+  z-index: 3;
 
   @include breakpoint('medium+') {
     min-height: 144px;
@@ -553,6 +551,9 @@
 
 
 // variant `m-listing--feature`
+.m-listing--feature .m-listing__img::before {
+  padding-bottom: percentage(9 / 16); // 16:9
+}
 
 @include breakpoint('medium+') {
   .m-listing--feature .m-listing__link {
@@ -570,10 +571,6 @@
 
   .m-listing--feature .m-listing__img.m-listing__img--w-overflow {
     overflow: visible;
-  }
-
-  .m-listing--feature .m-listing__img::before {
-    padding-bottom: percentage(9 / 16); // 16:9
   }
 
   .m-listing--feature .m-listing__img::after {
@@ -1348,12 +1345,10 @@
 }
 
 // variant `m-listing--inline` and 'm-listing--inline-feature'
-
 .m-listing--inline {
   flex-flow: row-reverse nowrap;
   max-width: 100%;
   padding-top: 19px;
-  border-top: 1px solid $color__rules--primary;
 
   @include breakpoint('large+') {
     padding-top: 23px;
@@ -1369,6 +1364,10 @@
     @include breakpoint('medium+') {
       margin-top: 40px;
     }
+  }
+
+  .o-row-listing > & {
+    border-top: 1px solid $color__rules--primary;
   }
 
   .m-inline-aside .m-listing {
@@ -1402,8 +1401,24 @@
   height: auto;
 }
 
+$f-audio-subtitle: generate-font-obj(
+  (
+    font-family: $sans-serif-font,
+    font-family-loaded: $sans-serif-font--loaded,
+    font-loaded-class: $sans-serif-font-loaded-class,
+    settings: (
+      'xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
+      'medium+': (font-size: 14, line-height: 28, push: 0)
+    )
+  )
+);
+
 // Quick aside for artwork detail's sound variant
 .m-listing--inline.m-listing--sound {
+  .m-listing__meta {
+    @include font-styles($f-module-title-1);
+  }
+
   .m-listing__link {
     flex-flow: column nowrap;
     height: auto;
@@ -1417,6 +1432,48 @@
       margin-top: 24px;
     }
   }
+
+  .m-listing--sound__subtitle {
+    @include font-styles($f-audio-subtitle);
+    text-align: right;
+
+    a {
+      color: $color__link--accent;
+
+      &:hover {
+        color: $color__link--accent-hover;
+      }
+    }
+  }
+
+  .m-listing--sound__transcript {
+    background-color: $color__bg--secondary;
+
+    padding: 0 16px;
+
+    height: 0;
+    overflow: hidden;
+    transition: height .2s $bezier--ease-in-out, padding .2s $bezier--ease-in-out;
+
+    &[aria-hidden="false"] {
+      padding: 16px;
+      height: auto;
+      overflow: initial;
+    }
+
+    p {
+      font-family: $sans-serif-font--loaded;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 20px;
+      margin-top: 16px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
 }
 
 .m-listing--inline .m-listing__img {
@@ -1830,23 +1887,31 @@
 }
 
 
-// variant `m-listing` for selections
-.m-listing--selection .m-listing__img .m-listing__img__overlay {
-    position: absolute;
-    top: 0;
+// adding gradients to homepage features and selections
+@mixin m-listing__img__overlay {
+  position: absolute;
+  top: 0;
 
-    z-index: 2;
-    padding: 32px;
-    width: 100%;
-    height: 33%;
+  z-index: 2;
+  padding: 32px;
+  width: 100%;
+  height: 33%;
 
-    text-align: right;
+  text-align: right;
+
+  background: linear-gradient(
+    to bottom,
+    $color__black--85,
+    transparent
+  );
 }
 
-.m-listing--selection:not(.m-listing--feature) .m-listing__img .m-listing__img__overlay {
-    background: linear-gradient(
-      to bottom,
-      $color__black--85,
-      transparent
-    );
+.m-listing--selection .m-listing__img .m-listing__img__overlay {
+  @include m-listing__img__overlay;
+}
+
+.m-listing--feature .m-listing__img .m-listing__img__overlay {
+  @include breakpoint('medium+') {
+    @include m-listing__img__overlay;
+  }
 }

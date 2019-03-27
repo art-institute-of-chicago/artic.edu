@@ -83,9 +83,12 @@
   }
 }
 
-.g-modal--media.g-modal--media-soundcloud {
+.g-modal--media.g-modal--media-sounds {
 
   @include breakpoint('small+') {
+
+    padding: 36px;
+
     background-color: $color__black--5;
 
     .g-modal__close {
@@ -98,7 +101,7 @@
   }
 
   .g-modal__content {
-    padding-bottom: 166px;
+    padding-bottom: 112px;
 
     @include breakpoint('large+') {
       width: colspan(28,'large');
@@ -106,6 +109,10 @@
 
     @include breakpoint('xlarge') {
       width: colspan(28,'xlarge');
+    }
+
+    .m-listing--inline {
+      padding-top: 0;
     }
   }
 }

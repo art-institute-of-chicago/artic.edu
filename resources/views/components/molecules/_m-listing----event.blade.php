@@ -28,6 +28,7 @@
             @else
                 <span class="default-img"></span>
             @endif
+            <span class="m-listing__img__overlay"></span>
         </span>
     @endif
     <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
@@ -36,6 +37,11 @@
             @component('components.atoms._type')
                 @slot('variation', 'type--membership')
                 Member Exclusive
+            @endcomponent
+        @elseif ($item->audience === \App\Models\Event::SUSTAINING_FELLOWS)
+            @component('components.atoms._type')
+                @slot('variation', 'type--membership')
+                Sustaining Fellows
             @endcomponent
         @else
             @component('components.atoms._type')

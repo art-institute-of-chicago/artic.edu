@@ -109,6 +109,7 @@ class Event extends AbstractModel
     const RESEARCHERS_SCHOLARS = 5;
     const TEACHERS = 6;
     const EVENING_ASSOCIATES = 7;
+    const SUSTAINING_FELLOWS = 8;
 
     public static $eventAudiences = [
         self::FAMILIES => 'Families',
@@ -118,6 +119,7 @@ class Event extends AbstractModel
         self::RESEARCHERS_SCHOLARS => 'Researchers/Scholars',
         self::TEACHERS => 'Teachers',
         self::EVENING_ASSOCIATES => 'Evening Associates',
+        self::SUSTAINING_FELLOWS => 'Sustaining Fellows',
     ];
 
     const BASIC_LAYOUT = 0;

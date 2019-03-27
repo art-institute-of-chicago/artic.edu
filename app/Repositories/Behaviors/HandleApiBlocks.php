@@ -46,7 +46,7 @@ trait HandleApiBlocks
     protected function getModelRepository($relation, $model = null)
     {
         if (!$model) {
-            $model = ucfirst(str_singular($relation));
+            $model = ucfirst(camel_case(str_singular($relation)));
         }
 
         // Always load the API repository first and fallback to the augmented or regular one.

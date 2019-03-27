@@ -85,6 +85,11 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-video',
             ],
+            // 'tour_stop' => [
+            //     'title' => 'Audio Tour Stop',
+            //     'icon' => 'image',
+            //     'component' => 'a17-block-tour_stop',
+            // ],
             'media_embed' => [
                 'title' => 'Media embed',
                 'icon' => 'text',
@@ -100,10 +105,20 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-hr',
             ],
+            'button' => [
+                'title' => 'Button',
+                'icon' => 'text',
+                'component' => 'a17-block-button',
+            ],
             'membership_banner' => [
                 'title' => 'Banner',
                 'icon' => 'text',
                 'component' => 'a17-block-membership_banner',
+            ],
+            'mobile_app' => [
+                'title' => 'Mobile app promo',
+                'icon' => 'text',
+                'component' => 'a17-block-mobile_app',
             ],
             'shop_items' => [
                 'title' => 'Featured products',
