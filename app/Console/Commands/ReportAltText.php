@@ -52,9 +52,14 @@ class ReportAltText extends Command
         })->map(function($query) use (&$medias) {
             return $query->chunk(100, function($items) use (&$medias) {
                 foreach ($items as $item) {
-                    $medias[] = $item->medias->map(function($media) {
+                    $medias[] = $item->medias->map(function($media) use ($item) {
                         return [
-                            (string) $media->id => $media->alt_text
+                            (string) $media->id => [
+                                'alt_text' => $media->alt_text,
+                                'uuid' => $media->uuid,
+                                'filename' => $media->filename,
+                                'url' => $this->url($item)
+                            ]
                         ];
                     })->all();
                 }
@@ -71,11 +76,12 @@ class ReportAltText extends Command
         $out = [];
 
         // Prep for str_putcsv()
-        foreach ($medias as $id => $alt_text) {
+        foreach ($medias as $id => $props) {
             $out[] = [
+                'image_url' => 'https://' .env('IMGIX_SOURCE_HOST') .'/' .$props['uuid'],
+                'alt_text' => $props['alt_text'],
+                'on_page' => $props['url'],
                 'id' => $id,
-                'alt_text' => $alt_text,
-                // TODO: Add Imgix link!
             ];
         }
 
@@ -107,5 +113,106 @@ class ReportAltText extends Command
         fclose($fh);
 
         return $csv;
+    }
+
+    /**
+     * Determine URL for a givel model.
+     *
+     * @TODO: Should `url` be a model property? Most URLs in the system are
+     * determined by Laravel's routing system, in contexts where the type of
+     * model is known, and therefore so is the route's name alias to use. So
+     * perhaps this context unusual, where we don't actually know the type
+     * of object we're determining a URL for. More to think on.
+     */
+    function url($item) {
+        $prefix = $this->pathPrefix($item);
+        $slug = $item->idSlug;
+
+        // Alter prefixes
+        if (\App\Models\DigitalCatalog::class == get_class($item)) {
+            $prefix = 'digital-catalogues';
+        }
+        if (\App\Models\PrintedCatalog::class == get_class($item)) {
+            $prefix = 'print-catalogues';
+        }
+        if (\App\Models\EducatorResource::class == get_class($item)) {
+            $prefix = 'collection/resources/educator-resources';
+        }
+        if (\App\Models\ExhibitionPressRoom::class == get_class($item)) {
+            $prefix = 'press/exhibition-press-room';
+        }
+        if (\App\Models\PressRelease::class == get_class($item)) {
+            $prefix = 'press/press-releases';
+        }
+        if (\App\Models\Selection::class == get_class($item)) {
+            $prefix = 'highlights';
+        }
+
+        // Alter slugs
+        if (\App\Models\Artist::class == get_class($item)
+            || \App\Models\Department::class == get_class($item)
+            || \App\Models\Exhibition::class == get_class($item)) {
+            $slug = $item->datahub_id .'/' .$item->getApiModelFilled()->titleSlug;
+        }
+        if (\App\Models\GenericPage::class == get_class($item)) {
+            return 'https://www.artic.edu' .$item->url;
+        }
+        if (\App\Models\CategoryTerm::class == get_class($item)) {
+            if ($item->local_subtype == 'style') {
+                return 'https://www.artic.edu/collection?style_ids=' .urlencode($item->local_title);
+            }
+            if ($item->local_subtype == 'subject') {
+                return 'https://www.artic.edu/collection?subject_ids=' .urlencode($item->local_title);
+            }
+            if ($item->local_subtype == 'classification') {
+                return 'https://www.artic.edu/collection?classification_ids=' .urlencode($item->local_title);
+            }
+            if ($item->local_subtype == 'theme') {
+                return 'https://www.artic.edu/collection?theme_ids=' .urlencode($item->datahub_id);
+            }
+        }
+        if (\App\Models\HomeFeature::class == get_class($item)) {
+            return 'https://www.artic.edu';
+        }
+        if (\App\Models\Page::class == get_class($item)) {
+            if ($item->id == 1) {
+                return 'https://www.artic.edu/collection/research_resources';
+            }
+            if ($item->id == 2) {
+                return 'https://www.artic.edu/articles_publications';
+            }
+            if ($item->id == 3) {
+                return 'https://www.artic.edu';
+            }
+            if ($item->id == 4) {
+                return 'https://www.artic.edu/exhibitions';
+            }
+            if ($item->id == 5) {
+                return 'https://www.artic.edu/collection';
+            }
+            if ($item->id == 6) {
+                return 'https://www.artic.edu/visit';
+            }
+            if ($item->id == 7) {
+                return 'https://www.artic.edu/articles';
+            }
+            if ($item->id == 8) {
+                return 'https://www.artic.edu/exhibitions/history';
+            }
+            if ($item->id == 9) {
+                return 'https://www.artic.edu/collection';
+            }
+        }
+
+        if (\A17\Twill\Models\Block::class == get_class($item)
+            || \App\Models\Lightbox::class == get_class($item)) {
+            return '';
+        }
+
+        return 'https://www.artic.edu/' .$prefix .'/'. $slug;
+    }
+
+    function pathPrefix($item) {
+        return str_plural(strtolower(class_basename(get_class($item))));
     }
 }
