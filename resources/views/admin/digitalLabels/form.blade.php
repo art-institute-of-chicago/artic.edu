@@ -126,4 +126,9 @@
             <div style="background-color: {{ $color['value'] }}; width: 30px; height: 30px; margin-top: 10px"></div>
         @endcomponent
     @endforeach
+
+    @formField('checkbox', [
+        'name' => 'archived',
+        'label' => 'Archived'
+    ])
 @stop

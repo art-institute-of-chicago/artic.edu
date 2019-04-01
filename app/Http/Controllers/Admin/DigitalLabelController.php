@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
+use App\Models\DigitalLabel;
 use App\Repositories\Api\DigitalLabelRepository;
 use App\Repositories\SiteTagRepository;
 
@@ -61,6 +62,26 @@ class DigitalLabelController extends ModuleController
         $apiItem->setAugmentedModel($item);
 
         return $apiRepo->getShowData($apiItem);
+    }
+
+    protected function getIndexTableMainFilters($items, $scopes = [])
+    {
+        $statusFilters = parent::getIndexTableMainFilters($items, $scopes);
+        array_push($statusFilters, [
+            'name' => 'Archived',
+            'slug' => 'archived',
+            'number' => DigitalLabel::archived()->count(),
+        ]);
+        return $statusFilters;
+    }
+
+    protected function getIndexItems($scopes = [], $forcePagination = false)
+    {
+        $requestFilters = $this->getRequestFilters();
+        if (array_key_exists('status', $requestFilters) && $requestFilters['status'] == 'archived') {
+            $scopes = $scopes + ['archived' => true];
+        }
+        return parent::getIndexItems($scopes, $forcePagination);
     }
 
 }

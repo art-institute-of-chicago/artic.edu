@@ -30,6 +30,9 @@ class DigitalLabel extends Model
         'title',
         'datahub_id',
         'sub_title',
+        'archived',
+        'grouping_background_color',
+        'color',
     ];
 
     protected $casts = [
@@ -86,6 +89,11 @@ class DigitalLabel extends Model
     public function experiences()
     {
         return $this->hasMany('App\Models\Experience', 'digital_label_id');
+    }
+
+    public function scopeArchived($query)
+    {
+        return $query->where('archived', true);
     }
 
 }
