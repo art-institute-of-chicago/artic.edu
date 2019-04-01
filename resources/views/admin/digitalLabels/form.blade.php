@@ -1,38 +1,6 @@
-@extends('twill::layouts.form')
-
-@section('contentFields')
-    <br/><h1><strong>iPad URL:</strong> {{ 'https' . $baseUrl . $item->slug . '/ipad'}}</h1>
-
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 3000px'
-    ])
-    @formField('input', [
-        'label' => 'Subtitle',
-        'name' => 'sub_title',
-    ])
-
-    @formField('radios', [
-        'name' => 'grouping_background_color',
-        'label' => 'Grouping Background Color',
-        'default' => 'grey',
-        'inline' => true,
-        'options' => [
-            [
-                'value' => 'grey',
-                'label' => 'Grey'
-            ],
-            [
-                'value' => 'white',
-                'label' => 'White'
-            ],
-        ]
-    ])
-
-    @php
-        $colors = [
+@php
+    $ipad_url = 'https' . $baseUrl . $item->slug . '/ipad';
+    $colors = [
             [
                 'value' => '#B50938',
                 'label' => 'Grape #B50938'
@@ -110,7 +78,41 @@
                 'label' => 'Warm Gray #7E746D'
             ],
         ];
-    @endphp
+@endphp
+
+@extends('twill::layouts.form')
+
+@section('contentFields')
+    <br/><h1><strong>iPad URL:</strong> <a href={{ $ipad_url }}>{{ $ipad_url }}</a></h1>
+
+    @formField('medias', [
+        'with_multiple' => false,
+        'label' => 'Image',
+        'name' => 'hero',
+        'note' => 'Minimum image width 3000px'
+    ])
+    @formField('input', [
+        'label' => 'Subtitle',
+        'name' => 'sub_title',
+    ])
+
+    @formField('radios', [
+        'name' => 'grouping_background_color',
+        'label' => 'Grouping Background Color',
+        'default' => 'grey',
+        'inline' => true,
+        'options' => [
+            [
+                'value' => 'grey',
+                'label' => 'Grey'
+            ],
+            [
+                'value' => 'white',
+                'label' => 'White'
+            ],
+        ]
+    ])
+    
     @formField('select', [
         'name' => 'color',
         'label' => 'Color',
