@@ -355,6 +355,14 @@ return [
                     ],
                 ],
             ],
+            'experience_image' => [
+                'default' => [
+                    [
+                        'name' => 'Uncropped',
+                        'ratio' => null,
+                    ],
+                ],
+            ],
         ],
         'files' => [
             'attachment',

@@ -4,7 +4,7 @@
 ])
 
 @formField('medias', [
-    'name' => 'image',
+    'name' => 'experience_image',
     'label' => 'Image',
 ])
 

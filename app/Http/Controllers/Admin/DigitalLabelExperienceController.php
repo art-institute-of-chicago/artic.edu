@@ -20,7 +20,7 @@ class DigitalLabelExperienceController extends ModuleController
         'image' => [
             'thumb' => true,
             'variant' => [
-                'role' => 'cover',
+                'role' => 'image',
                 'crop' => 'default',
             ],
         ],
@@ -73,7 +73,8 @@ class DigitalLabelExperienceController extends ModuleController
         ];
     }
 
-    // Intend to override the line:
+    // Intend to override the lines:
+    // thumbnail
     // $value .= moduleRoute("experiences.slides", $this->routePrefix, 'index', [$item->id]);
     protected function getItemColumnData($item, $column)
     {
@@ -90,8 +91,9 @@ class DigitalLabelExperienceController extends ModuleController
                 ? $column['variant']['params']
                 : ['w' => 80, 'h' => 80, 'fit' => 'crop'];
 
+                $thumbnail_image = $item->attractExperienceImages->first()->cmsImage('experience_image', 'default', $params);
                 return [
-                    'thumbnail' => $item->cmsImage($role, $crop, $params),
+                    'thumbnail' => $thumbnail_image,
                 ];
             }
         }
