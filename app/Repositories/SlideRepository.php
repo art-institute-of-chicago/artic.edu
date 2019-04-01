@@ -18,4 +18,10 @@ class SlideRepository extends ModuleRepository
     {
         $this->model = $model;
     }
+
+    public function prepareFieldsBeforeSave($object, $fields)
+    {
+        $fields['attributes'] = json_encode($fields['attributes']);
+        return parent::prepareFieldsBeforeSave($object, $fields);
+    }
 }

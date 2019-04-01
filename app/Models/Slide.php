@@ -26,6 +26,9 @@ class Slide extends Model implements Sortable
         'media_type',
         'media_title',
         'position',
+        'attributes',
+        'headline',
+        'image_side',
         // 'public',
         // 'featured',
         // 'publish_start_date',
@@ -48,6 +51,17 @@ class Slide extends Model implements Sortable
     public $checkboxes = [
         'published',
     ];
+
+    public $filesParams = ['sequence_file'];
+
+    public function getAttributesAttribute()
+    {
+        if ($this->attributes['attributes']) {
+            return array_map(function ($option) {
+                return ['id' => $option];
+            }, json_decode($this->attributes['attributes']));
+        }
+    }
 
     // uncomment and modify this as needed if you use the HasMedias trait
     // public $mediasParams = [
