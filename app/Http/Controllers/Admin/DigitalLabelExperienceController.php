@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
+use App\Models\Experience;
 use App\Repositories\ExperienceRepository;
 
 class DigitalLabelExperienceController extends ModuleController
@@ -118,5 +119,27 @@ class DigitalLabelExperienceController extends ModuleController
         return [
             "$field" => $value,
         ];
+    }
+
+    protected function getIndexTableMainFilters($items, $scopes = [])
+    {
+        $statusFilters = parent::getIndexTableMainFilters($items, $scopes);
+        array_push($statusFilters, [
+            'name' => 'Archived',
+            'slug' => 'archived',
+            'number' => Experience::archived()->count(),
+        ]);
+        return $statusFilters;
+    }
+
+    protected function getIndexItems($scopes = [], $forcePagination = false)
+    {
+        $requestFilters = $this->getRequestFilters();
+        if (array_key_exists('status', $requestFilters) && $requestFilters['status'] == 'archived') {
+            $scopes = $scopes + ['archived' => true];
+        } else {
+            $scopes = $scopes + ['unarchived' => true];
+        }
+        return parent::getIndexItems($scopes, $forcePagination);
     }
 }

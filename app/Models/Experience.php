@@ -97,4 +97,14 @@ class Experience extends Model implements Sortable
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'end_bg_experience_image');
     }
+
+    public function scopeArchived($query)
+    {
+        return $query->where('archived', true);
+    }
+
+    public function scopeUnarchived($query)
+    {
+        return $query->where('archived', false);
+    }
 }

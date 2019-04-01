@@ -100,5 +100,4 @@ class DigitalLabel extends Model
     {
         return $query->where('archived', false);
     }
-
 }
