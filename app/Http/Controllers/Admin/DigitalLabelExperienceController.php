@@ -91,7 +91,8 @@ class DigitalLabelExperienceController extends ModuleController
                 ? $column['variant']['params']
                 : ['w' => 80, 'h' => 80, 'fit' => 'crop'];
 
-                $thumbnail_image = $item->attractExperienceImages->first()->cmsImage('experience_image', 'default', $params);
+                $attract_image = $item->attractExperienceImages->first();
+                $thumbnail_image = $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
                 return [
                     'thumbnail' => $thumbnail_image,
                 ];

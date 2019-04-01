@@ -62,7 +62,7 @@
         'renderForBlocks' => true
     ])
         @formField('input', [
-            'name' => 'object_Id',
+            'name' => 'object_id',
             'label' => 'Object ID'
         ])
     @endcomponent

@@ -3,7 +3,7 @@
     ])
 
 @section('contentFields')
-    {{-- @include('admin.experiences.slides._asset_type') --}}
+    @include('admin.experiences.slides._asset_type')
 
     @formField('select', [
         'name' => 'module_type',

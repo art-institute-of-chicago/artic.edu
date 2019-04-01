@@ -21,7 +21,7 @@ class ExperienceImage extends Model implements Sortable
         'position',
         'youtube_url',
         'alt_text',
-        'inline_credit',
+        'inline_credits',
         'credits_input',
         'object_id',
         'artist',
