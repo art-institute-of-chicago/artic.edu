@@ -10,7 +10,6 @@ use App\Repositories\SiteTagRepository;
 class DigitalLabelController extends ModuleController
 {
     protected $moduleName = 'digitalLabels';
-    protected $hasAugmentedModel = true;
     protected $previewView = 'site.digitalLabelDetail';
 
     protected $indexColumns = [
@@ -80,6 +79,8 @@ class DigitalLabelController extends ModuleController
         $requestFilters = $this->getRequestFilters();
         if (array_key_exists('status', $requestFilters) && $requestFilters['status'] == 'archived') {
             $scopes = $scopes + ['archived' => true];
+        } else {
+            $scopes = $scopes + ['unarchived' => true];
         }
         return parent::getIndexItems($scopes, $forcePagination);
     }

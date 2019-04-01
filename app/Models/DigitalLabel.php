@@ -96,4 +96,9 @@ class DigitalLabel extends Model
         return $query->where('archived', true);
     }
 
+    public function scopeUnarchived($query)
+    {
+        return $query->where('archived', false);
+    }
+
 }

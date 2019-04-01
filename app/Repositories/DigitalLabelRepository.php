@@ -25,11 +25,13 @@ class DigitalLabelRepository extends ModuleRepository
 
     function afterSave($object, $fields)
     {
-        Artisan::call('update:content-bundles', [
-            'datahub_id' => $object->datahub_id,
-        ]);
-
         parent::afterSave($object, $fields);
+    }
+
+    function getCountByStatusSlug($slug, $scope = [])
+    {
+        $scope = $scope + ['archived' => false];
+        return parent::getCountByStatusSlug($slug, $scope);
     }
 
 }
