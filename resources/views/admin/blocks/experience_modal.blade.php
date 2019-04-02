@@ -29,7 +29,7 @@
         'label' => 'Zoomable'
     ])
 
-    @formField('repeater', ['type' => 'slide_primary_experience_image'])
+    @formField('repeater', ['type' => 'experience_image'])
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

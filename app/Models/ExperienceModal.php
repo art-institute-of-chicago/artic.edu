@@ -65,4 +65,9 @@ class ExperienceModal extends Model implements Sortable
     //         ],
     //     ],
     // ];
+
+    public function experienceImage()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'experience_image');
+    }
 }
