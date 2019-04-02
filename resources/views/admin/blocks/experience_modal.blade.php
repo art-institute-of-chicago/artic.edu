@@ -64,7 +64,7 @@
     ])
 
     @formField('multi_select', [
-        'name' => 'playback',
+        'name' => 'video_playback',
         'label' => 'playback',
         'options' => [
             [
@@ -95,7 +95,7 @@
     ])
 
     @formField('multi_select', [
-        'name' => 'playback',
+        'name' => 'image_sequence_playback',
         'label' => 'playback',
         'options' => [
             [
@@ -110,7 +110,7 @@
     ])
 
     @formField('input', [
-        'name' => 'caption',
+        'name' => 'image_sequence_caption',
         'label' => 'Caption'
     ])
 @endcomponent

@@ -9,11 +9,11 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Slide;
-use App\Repositories\Behaviors\HandleExperienceImage;
+use App\Repositories\Behaviors\HandleExperienceModule;
 
 class SlideRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleExperienceImage;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleExperienceModule;
 
     public function __construct(Slide $model)
     {
@@ -22,16 +22,20 @@ class SlideRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateExperienceImage($object, $fields, 'primaryExperienceImage', 'ExperienceImage', 'slide_primary_experience_image');
-        $this->updateExperienceImage($object, $fields, 'secondaryExperienceImage', 'ExperienceImage', 'slide_secondary_experience_image');
+        $this->updateExperienceModule($object, $fields, 'primaryExperienceImage', 'ExperienceImage', 'slide_primary_experience_image');
+        $this->updateExperienceModule($object, $fields, 'secondaryExperienceImage', 'ExperienceImage', 'slide_secondary_experience_image');
+        $this->updateExperienceModule($object, $fields, 'primaryExperienceModal', 'ExperienceModal', 'primary_experience_modal');
+        $this->updateExperienceModule($object, $fields, 'secondaryExperienceModal', 'ExperienceModal', 'secondary_experience_modal');
         parent::afterSave($object, $fields);
     }
 
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getExperienceImage($object, $fields, 'primaryExperienceImage', 'ExperienceImage', 'slide_primary_experience_image');
-        $fields = $this->getExperienceImage($object, $fields, 'secondaryExperienceImage', 'ExperienceImage', 'slide_secondary_experience_image');
+        $fields = $this->getExperienceModule($object, $fields, 'primaryExperienceImage', 'ExperienceImage', 'slide_primary_experience_image');
+        $fields = $this->getExperienceModule($object, $fields, 'secondaryExperienceImage', 'ExperienceImage', 'slide_secondary_experience_image');
+        $fields = $this->getExperienceModule($object, $fields, 'primaryExperienceModal', 'ExperienceModal', 'primary_experience_modal');
+        $fields = $this->getExperienceModule($object, $fields, 'secondaryExperienceModal', 'ExperienceModal', 'secondary_experience_modal');
         return $fields;
     }
 

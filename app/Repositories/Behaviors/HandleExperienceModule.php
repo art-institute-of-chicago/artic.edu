@@ -4,10 +4,16 @@ namespace App\Repositories\Behaviors;
 
 use Carbon\Carbon;
 
-trait HandleExperienceImage
+trait HandleExperienceModule
 {
-    public function updateExperienceImage($object, $fields, $relation, $model = null, $fieldName = null)
+    public function updateExperienceModule($object, $fields, $relation, $model = null, $fieldName = null)
     {
+        if ($model === 'ExperienceImage') {
+            $morphKey = 'imagable';
+        } else {
+            $morphKey = 'modalble';
+        }
+
         $fieldName = $fieldName ?? $relation;
         $relationFields = $fields['repeaters'][$fieldName] ?? [];
 
@@ -18,9 +24,9 @@ trait HandleExperienceImage
             $relationRepository->updateBasic(null, [
                 'deleted_at' => Carbon::now(),
             ], [
-                'imagable_type' => get_class($object),
-                'imagable_id' => $object->id,
-                'imagable_repeater_name' => $fieldName,
+                $morphKey . '_type' => get_class($object),
+                $morphKey . '_id' => $object->id,
+                $morphKey . '_repeater_name' => $fieldName,
             ]);
         }
 
@@ -36,9 +42,9 @@ trait HandleExperienceImage
                 $currentIdList[] = $id;
             } else {
                 // new row, let's attach to our object and create
-                $relationField['imagable_type'] = get_class($object);
-                $relationField['imagable_id'] = $object->id;
-                $relationField['imagable_repeater_name'] = $fieldName;
+                $relationField[$morphKey . '_type'] = get_class($object);
+                $relationField[$morphKey . '_id'] = $object->id;
+                $relationField[$morphKey . '_repeater_name'] = $fieldName;
                 unset($relationField['id']);
                 $newRelation = $relationRepository->create($relationField);
                 $currentIdList[] = $newRelation['id'];
@@ -56,7 +62,7 @@ trait HandleExperienceImage
         }
     }
 
-    public function getExperienceImage($object, $fields, $relation, $model = null, $fieldName = null)
+    public function getExperienceModule($object, $fields, $relation, $model = null, $fieldName = null)
     {
         $repeaters = [];
         $repeatersFields = [];

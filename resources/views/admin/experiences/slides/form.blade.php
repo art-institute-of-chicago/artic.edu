@@ -116,7 +116,7 @@
             ])
         
             <div style="display: none" id="primary_modal">
-                @formField('repeater', ['type' => 'experience_modal'])
+                @formField('repeater', ['type' => 'primary_experience_modal'])
             </div>
             <div style="display: none" id="secondary_modal">
                 @formField('repeater', ['type' => 'secondary_experience_modal'])

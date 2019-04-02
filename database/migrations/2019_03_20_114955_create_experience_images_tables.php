@@ -30,7 +30,7 @@ class CreateExperienceImagesTables extends Migration
             $table->string('credit_line')->nullable();
             $table->string('main_reference_number')->nullable();
             $table->string('copyright_notice')->nullable();
-            $table->string('imagable_type')->unsigned();
+            $table->string('imagable_type')->nullable();
             $table->integer('imagable_id')->unsigned();
             $table->string('imagable_repeater_name')->nullable();
 

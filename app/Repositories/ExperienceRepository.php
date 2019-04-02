@@ -11,11 +11,11 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleTranslations;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Experience;
-use App\Repositories\Behaviors\HandleExperienceImage;
+use App\Repositories\Behaviors\HandleExperienceModule;
 
 class ExperienceRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleRepeaters, HandleExperienceImage;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleRepeaters, HandleExperienceModule;
 
     public function __construct(Experience $model)
     {
@@ -24,18 +24,18 @@ class ExperienceRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateExperienceImage($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
-        $this->updateExperienceImage($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
-        $this->updateExperienceImage($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
+        $this->updateExperienceModule($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
+        $this->updateExperienceModule($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
+        $this->updateExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
         parent::afterSave($object, $fields);
     }
 
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getExperienceImage($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
-        $fields = $this->getExperienceImage($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
-        $fields = $this->getExperienceImage($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
+        $fields = $this->getExperienceModule($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
+        $fields = $this->getExperienceModule($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
+        $fields = $this->getExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
         return $fields;
     }
 

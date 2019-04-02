@@ -74,6 +74,16 @@ class Slide extends Model implements Sortable
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'slide_secondary_experience_image');
     }
 
+    public function primaryExperienceModal()
+    {
+        return $this->morphMany('App\Models\ExperienceModal', 'modalble')->where('modalble_repeater_name', 'primary_experience_modal');
+    }
+
+    public function secondaryExperienceModal()
+    {
+        return $this->morphMany('App\Models\ExperienceModal', 'modalble')->where('modalble_repeater_name', 'secondary_experience_modal');
+    }
+
     // uncomment and modify this as needed if you use the HasMedias trait
     // public $mediasParams = [
     //     'cover' => [

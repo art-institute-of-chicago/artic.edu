@@ -293,9 +293,9 @@ return [
                 'component' => 'a17-block-experience_image',
                 'max' => 2,
             ],
-            'experience_modal' => [
-                'title' => 'Experience Modal',
-                'trigger' => 'Add Experience Modal',
+            'primary_experience_modal' => [
+                'title' => 'Primay Experience Modal',
+                'trigger' => 'Add Primary Experience Modal',
                 'component' => 'a17-block-experience_modal',
                 'max' => 1,
             ],
