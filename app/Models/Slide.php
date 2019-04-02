@@ -29,6 +29,7 @@ class Slide extends Model implements Sortable
         'attributes',
         'headline',
         'image_side',
+        'caption',
         // 'public',
         // 'featured',
         // 'publish_start_date',
@@ -61,6 +62,16 @@ class Slide extends Model implements Sortable
                 return ['id' => $option];
             }, json_decode($this->attributes['attributes']));
         }
+    }
+
+    public function primaryExperienceImage()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'slide_primary_experience_image');
+    }
+
+    public function secondaryExperienceImage()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'slide_secondary_experience_image');
     }
 
     // uncomment and modify this as needed if you use the HasMedias trait

@@ -17,6 +17,7 @@ class AddFieldsToSlidesTable extends Migration
             $table->string('attributes')->nullable();
             $table->string('headline')->nullable();
             $table->string('image_side')->nullable();
+            $table->string('caption')->nullable();
         });
     }
 
@@ -28,7 +29,7 @@ class AddFieldsToSlidesTable extends Migration
     public function down()
     {
         Schema::table('slides', function (Blueprint $table) {
-            $table->dropColumn(['attributes', 'headline', 'image_side']);
+            $table->dropColumn(['attributes', 'headline', 'image_side', 'caption']);
         });
     }
 }
