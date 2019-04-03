@@ -189,13 +189,15 @@
 @stop
 @push('extra_js')
     <script>
-        const attributesField = window.STORE.form.fields.find(field => field.name == 'attributes').value;
-        attributesField.forEach(function (option) {
-            const e = document.getElementById(option);
-            if (e) {
-                e.style.display = 'block';
-            }
-        });
+        const attributesField = window.STORE.form.fields.find(field => field.name == 'attributes');
+        if (attributesField) {
+            attributesField.value.forEach(function (option) {
+                const e = document.getElementById(option);
+                if (e) {
+                    e.style.display = 'block';
+                }
+            });
+        }
         window.vm.$store.watch(
             function (state) {
                 return state.form.fields;
