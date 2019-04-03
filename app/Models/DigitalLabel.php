@@ -19,10 +19,10 @@ class DigitalLabel extends Model
 
     protected $apiModel = 'App\Models\Api\DigitalLabel';
 
-    protected $dispatchesEvents = [
-        'saved' => \App\Events\UpdateDigitalLabel::class,
-        'deleted' => \App\Events\UpdateDigitalLabel::class,
-    ];
+    // protected $dispatchesEvents = [
+    //     'saved' => \App\Events\UpdateDigitalLabel::class,
+    //     'deleted' => \App\Events\UpdateDigitalLabel::class,
+    // ];
 
     protected $fillable = [
         'content',
