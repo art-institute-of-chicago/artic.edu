@@ -21,24 +21,36 @@ class ExperienceModalRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'experience_image');
+        // $this->updateExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'experience_image');
         parent::afterSave($object, $fields);
     }
 
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'experience_image');
-        $fields['blocks'] = $fields['repeaters'];
+        $fields['video_play_settings'] = json_decode($fields['video_play_settings']);
+        $fields['video_playback'] = json_decode($fields['video_playback']);
+        // $fields = $this->getExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'experience_image');
+        // $fields['blocks'] = $fields['repeaters'];
         return $fields;
     }
 
-    public function prepareFieldsBeforeSave($object, $fields)
+    public function prepareFieldsBeforeCreate($fields)
     {
         if (isset($fields['blocks']) && !is_null($fields['blocks'])) {
             $fields['repeaters'] = $fields['blocks'];
             unset($fields['blocks']);
         };
-        return parent::prepareFieldsBeforeSave($object, $fields);
+
+        if (isset($fields['video_play_settings'])) {
+            $fields['video_play_settings'] = json_encode($fields['video_play_settings']);
+        }
+
+        if (isset($fields['video_playback'])) {
+            $fields['video_playback'] = json_encode($fields['video_playback']);
+        }
+
+        return parent::prepareFieldsBeforeCreate($fields);
     }
+
 }

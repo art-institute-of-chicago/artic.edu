@@ -29,7 +29,29 @@
         'label' => 'Zoomable'
     ])
 
-    @formField('repeater', ['type' => 'experience_image'])
+    @formField('radios', [
+        'name' => 'experience_image',
+        'label' => 'Experience Image',
+        'default' => false,
+        'inline' => true,
+        'options' => [
+            [
+                'value' => true,
+                'label' => 'on'
+            ],
+            [
+                'value' => false,
+                'label' => 'off'
+            ]
+        ]
+    ])
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'experience_image',
+        'fieldValues' => true,
+        'renderForBlocks' => true
+    ])
+        @include('admin.blocks.experience_image')
+    @endcomponent
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
@@ -37,9 +59,9 @@
         'fieldValues' => 'video',
         'renderForBlocks' => true
 ])
-    @formField('files', [
-        'name' => 'video_file',
-        'label' => 'Video',
+    @formField('input', [
+        'name' => 'youtube_url',
+        'label' => 'Youtube URL'
     ])
 
     @formField('multi_select', [

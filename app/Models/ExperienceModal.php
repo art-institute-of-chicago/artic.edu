@@ -26,10 +26,22 @@ class ExperienceModal extends Model implements Sortable
         'modalble_type',
         'modalble_id',
         'modalble_repeater_name',
-        // 'public',
-        // 'featured',
-        // 'publish_start_date',
-        // 'publish_end_date',
+        // For experience image use
+        'experience_image',
+        'title',
+        'youtube_url',
+        'alt_text',
+        'inline_credits',
+        'credits_input',
+        'object_id',
+        'artist',
+        'credit_title',
+        'credit_date',
+        'medium',
+        'dimensions',
+        'credit_line',
+        'main_reference_number',
+        'copyright_notice',
     ];
 
     // uncomment and modify this as needed if you use the HasTranslation trait
@@ -70,4 +82,30 @@ class ExperienceModal extends Model implements Sortable
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'experience_image');
     }
+
+    public function toRepeaterArray()
+    {
+        $fields = $this->attributesToArray();
+        $fields['video_play_settings'] = json_decode($fields['video_play_settings']);
+        $fields['video_playback'] = json_decode($fields['video_playback']);
+        return $fields;
+    }
+
+    // public function getVideoPlaybackAttribute()
+    // {
+    //     if ($this->attributes['video_playback']) {
+    //         return array_map(function ($option) {
+    //             return ['id' => $option];
+    //         }, json_decode($this->attributes['video_playback']));
+    //     }
+    // }
+
+    // public function getVideoPlaySettingsAttribute()
+    // {
+    //     if ($this->attributes['video_play_settings']) {
+    //         return array_map(function ($option) {
+    //             return ['id' => $option];
+    //         }, json_decode($this->attributes['video_play_settings']));
+    //     }
+    // }
 }
