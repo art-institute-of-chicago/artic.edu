@@ -15,7 +15,7 @@ class EmbedConverterService
         if (!empty($url)) {
             $parts = parse_url($url);
             if (isset($parts['host'])) {
-                if (stripos($parts['host'], 'youtube') !== false) {
+                if (stripos($parts['host'], 'youtu') !== false) {
                     return $this->getYouTubeEmbedCode($url);
                 } elseif (stripos($parts['host'], 'vimeo') !== false) {
                     return $this->getVimeoEmbedCode($url);
