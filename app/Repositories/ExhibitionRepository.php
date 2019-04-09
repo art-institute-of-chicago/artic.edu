@@ -73,4 +73,8 @@ class ExhibitionRepository extends BaseApiRepository
     public function getExhibitionTypesList() {
         return collect($this->model::$exhibitionTypes);
     }
+
+    public function getExhibitionStatusesList() {
+        return collect($this->model::$exhibitionStatuses);
+    }
 }

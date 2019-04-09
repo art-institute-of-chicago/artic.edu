@@ -29,6 +29,10 @@ class Exhibition extends AbstractModel
     const LARGE = 1;
     const SPECIAL = 2;
 
+    const OPEN = 'Open';
+    const CLOSED = 'Closed';
+    const ONGOING = 'Ongoing';
+
     protected $fillable = [
         'published',
         'content',
@@ -38,6 +42,7 @@ class Exhibition extends AbstractModel
         'datahub_id',
         'exhibition_message',
         'exhibition_location',
+        'status_override',
         'list_description',
         'cms_exhibition_type',
         'hero_caption',
@@ -83,6 +88,12 @@ class Exhibition extends AbstractModel
         self::BASIC => 'Basic',
         self::LARGE => 'Large feature',
         self::SPECIAL => 'Special exhibition',
+    ];
+
+    public static $exhibitionStatuses = [
+        self::OPEN => self::OPEN,
+        self::CLOSED => self::CLOSED,
+        self::ONGOING => self::ONGOING,
     ];
 
     public function exhibitions()

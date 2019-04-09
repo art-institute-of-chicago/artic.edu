@@ -112,6 +112,13 @@
         'note' => 'Override CITI gallery location'
     ])
 
+     @formField('select', [
+        'name' => 'status_override',
+        'label' => 'Exhibition status',
+        'note' => 'Override exhibition status flag',
+        'options' => $exhibitionStatusesList,
+    ])
+
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
             'event', 'paragraph', 'image', 'video', 'gallery',
