@@ -18,7 +18,8 @@
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'asset_type',
     'fieldValues' => 'seamless',
-    'renderForBlocks' => false
+    'renderForBlocks' => false,
+    'keepAlive' => true
 ])
     @formField('radios', [
         'name' => 'media_type',

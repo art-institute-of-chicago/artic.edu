@@ -21,6 +21,7 @@ class ExperienceModal extends Model implements Sortable
         'zoomable',
         'video_play_settings',
         'video_playback',
+        'video_url',
         'image_sequence_playback',
         'image_sequence_caption',
         'modalble_type',
@@ -86,26 +87,9 @@ class ExperienceModal extends Model implements Sortable
     public function toRepeaterArray()
     {
         $fields = $this->attributesToArray();
-        $fields['video_play_settings'] = json_decode($fields['video_play_settings']);
-        $fields['video_playback'] = json_decode($fields['video_playback']);
+        $fields['video_play_settings'] = json_decode($fields['video_play_settings']) ?? [];
+        $fields['video_playback'] = json_decode($fields['video_playback']) ?? [];
+        $fields['image_sequence_playback'] = json_decode($fields['image_sequence_playback']) ?? [];
         return $fields;
     }
-
-    // public function getVideoPlaybackAttribute()
-    // {
-    //     if ($this->attributes['video_playback']) {
-    //         return array_map(function ($option) {
-    //             return ['id' => $option];
-    //         }, json_decode($this->attributes['video_playback']));
-    //     }
-    // }
-
-    // public function getVideoPlaySettingsAttribute()
-    // {
-    //     if ($this->attributes['video_play_settings']) {
-    //         return array_map(function ($option) {
-    //             return ['id' => $option];
-    //         }, json_decode($this->attributes['video_play_settings']));
-    //     }
-    // }
 }

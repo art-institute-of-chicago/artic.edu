@@ -22,7 +22,8 @@
 @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'modal_type',
         'fieldValues' => 'image',
-        'renderForBlocks' => true
+        'renderForBlocks' => true,
+        'keepAlive' => true
 ])
     @formField('checkbox', [
         'name' => 'zoomable',
@@ -60,7 +61,7 @@
         'renderForBlocks' => true
 ])
     @formField('input', [
-        'name' => 'youtube_url',
+        'name' => 'video_url',
         'label' => 'Youtube URL'
     ])
 
@@ -85,6 +86,22 @@
         ]
     ])
 
+    {{-- </br><h3>Video Player Setting</h3>
+    @formField('checkbox', [
+        'name' => 'autoplay',
+        'label' => 'Autoplay'
+    ])
+
+    @formField('checkbox', [
+        'name' => 'controls_dark',
+        'label' => 'Controls Dark'
+    ])
+
+    @formField('checkbox', [
+        'name' => 'controls_light',
+        'label' => 'Controls Light'
+    ]) --}}
+
     @formField('multi_select', [
         'name' => 'video_playback',
         'label' => 'playback',
@@ -103,6 +120,22 @@
             ]
         ]
     ])
+
+    {{-- </br><h3>Playback</h3>
+    @formField('checkbox', [
+        'name' => 'inset',
+        'label' => 'Inset'
+    ])
+
+    @formField('checkbox', [
+        'name' => 'caption',
+        'label' => 'Caption'
+    ])
+
+    @formField('checkbox', [
+        'name' => 'loop',
+        'label' => 'Loop'
+    ])   --}}
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

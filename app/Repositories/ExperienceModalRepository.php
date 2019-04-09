@@ -50,6 +50,10 @@ class ExperienceModalRepository extends ModuleRepository
             $fields['video_playback'] = json_encode($fields['video_playback']);
         }
 
+        if (isset($fields['image_sequence_playback'])) {
+            $fields['image_sequence_playback'] = json_encode($fields['image_sequence_playback']);
+        }
+
         return parent::prepareFieldsBeforeCreate($fields);
     }
 
