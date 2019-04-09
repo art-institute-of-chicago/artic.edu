@@ -38,9 +38,10 @@
         'maxlength' => 255
     ])
 
-    @formField('input', [
-        'name' => 'publication_year',
-        'label' => 'Publication year',
+    @formField('date_picker', [
+        'name' => 'publication_date',
+        'label' => 'Publication date',
+        'withTime' => false,
     ])
 
     @formField('multi_select', [
