@@ -287,11 +287,23 @@ return [
                 'component' => 'a17-block-experience_image',
                 'max' => 1,
             ],
-            'compare_experience_image' => [
-                'title' => 'Compare experience image',
-                'trigger' => 'Add Compare Experience Image',
+            'compare_experience_image_1' => [
+                'title' => 'Compare experience image 1',
+                'trigger' => 'Add Compare Experience Image 1',
                 'component' => 'a17-block-experience_image',
-                'max' => 2,
+                'max' => 1,
+            ],
+            'compare_experience_image_2' => [
+                'title' => 'Compare experience image 2',
+                'trigger' => 'Add Compare Experience Image 2',
+                'component' => 'a17-block-experience_image',
+                'max' => 1,
+            ],
+            'experience_modal' => [
+                'title' => 'Experience Modal',
+                'trigger' => 'Add Experience Modal',
+                'component' => 'a17-block-experience_modal',
+                'max' => 1,
             ],
             'primary_experience_modal' => [
                 'title' => 'Primay Experience Modal',

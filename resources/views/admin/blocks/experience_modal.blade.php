@@ -38,18 +38,18 @@
         'options' => [
             [
                 'value' => true,
-                'label' => 'on'
+                'label' => 'On'
             ],
             [
                 'value' => false,
-                'label' => 'off'
+                'label' => 'Off'
             ]
         ]
     ])
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'experience_image',
         'fieldValues' => true,
-        'renderForBlocks' => true
+        'renderForBlocks' => false
     ])
         @include('admin.blocks.experience_image')
     @endcomponent

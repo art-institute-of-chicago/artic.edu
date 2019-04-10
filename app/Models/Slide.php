@@ -30,6 +30,11 @@ class Slide extends Model implements Sortable
         'headline',
         'image_side',
         'caption',
+        'interstitial_headline',
+        'body_copy',
+        'section_title',
+        'object_title',
+        'compare_title',
         // 'public',
         // 'featured',
         // 'publish_start_date',
@@ -64,6 +69,11 @@ class Slide extends Model implements Sortable
         }
     }
 
+    public function experienceImage()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'experience_image');
+    }
+
     public function primaryExperienceImage()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'slide_primary_experience_image');
@@ -74,6 +84,11 @@ class Slide extends Model implements Sortable
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'slide_secondary_experience_image');
     }
 
+    public function ExperienceModal()
+    {
+        return $this->morphMany('App\Models\ExperienceModal', 'modalble')->where('modalble_repeater_name', 'experience_modal');
+    }
+
     public function primaryExperienceModal()
     {
         return $this->morphMany('App\Models\ExperienceModal', 'modalble')->where('modalble_repeater_name', 'primary_experience_modal');
@@ -82,6 +97,16 @@ class Slide extends Model implements Sortable
     public function secondaryExperienceModal()
     {
         return $this->morphMany('App\Models\ExperienceModal', 'modalble')->where('modalble_repeater_name', 'secondary_experience_modal');
+    }
+
+    public function compareExperienceImage1()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'compare_experience_image_1');
+    }
+
+    public function compareExperienceImage2()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'compare_experience_image_2');
     }
 
     // uncomment and modify this as needed if you use the HasMedias trait

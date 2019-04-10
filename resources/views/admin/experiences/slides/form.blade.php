@@ -128,7 +128,7 @@
             'fieldValues' => 'interstitial',
         ])
             @formField('input', [
-                'name' => 'headline',
+                'name' => 'interstitial_headline',
                 'label' => 'Headline'
             ])
 
@@ -181,7 +181,8 @@
                 'label' => 'Title'
             ])
 
-            @formField('repeater', ['type' => 'compare_experience_image'])
+            @formField('repeater', ['type' => 'compare_experience_image_1'])
+            @formField('repeater', ['type' => 'compare_experience_image_2'])
             @formField('repeater', ['type' => 'experience_modal'])
         @endcomponent
 
