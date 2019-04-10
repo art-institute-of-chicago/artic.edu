@@ -62,7 +62,7 @@ class EventPresenter extends BasePresenter
             }
         }
 
-        if ($this->entity->is_ticketed) {
+        if ($this->isTicketed) {
             return 'buy-ticket';
         }
     }
