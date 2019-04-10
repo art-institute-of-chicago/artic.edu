@@ -40,9 +40,7 @@ class Exhibition extends BaseApiModel
     {
         if (method_exists($this, 'getAugmentedModel') && $augmentedModel = $this->getAugmentedModel()) {
             if ($augmentedModel->getOriginal('status_override')) {
-                if ($augmentedModel->getOriginal('status_override') == 'Closed') {
-                    return true;
-                }
+                return $augmentedModel->getOriginal('status_override') == 'Closed';
             }
         }
 
@@ -116,9 +114,7 @@ class Exhibition extends BaseApiModel
     {
         if (method_exists($this, 'getAugmentedModel') && $augmentedModel = $this->getAugmentedModel()) {
             if ($augmentedModel->getOriginal('status_override')) {
-                if ($augmentedModel->getOriginal('status_override') == 'Ongoing') {
-                    return true;
-                }
+                return $augmentedModel->getOriginal('status_override') == 'Ongoing';
             }
         }
 
