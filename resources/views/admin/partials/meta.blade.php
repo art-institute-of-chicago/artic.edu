@@ -3,6 +3,7 @@
     @formField('input', [
         'name' => 'meta_title',
         'label' => 'Metadata Title',
+        'note' => 'Omit " | The Art Institute of Chicago"',
     ])
 
     @formField('input', [
