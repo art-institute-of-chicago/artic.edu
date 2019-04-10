@@ -428,3 +428,8 @@ Example usage:
   transform-origin: 8px 8px;
   animation: rotate45deg .1s normal forwards;
 }
+
+.o-blocks .o-blocks__block.btn-module {
+  min-width: initial;
+  width: initial;
+}
