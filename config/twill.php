@@ -257,6 +257,12 @@ return [
                 'component' => 'a17-block-experience_image',
                 'max' => 1,
             ],
+            'tooltip_experience_image' => [
+                'title' => 'Experience image',
+                'trigger' => 'Add Experience Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 1,
+            ],
             'attract_experience_image' => [
                 'title' => 'Experience image',
                 'trigger' => 'Add Experience Image',

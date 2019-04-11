@@ -161,7 +161,7 @@
             'fieldName' => 'module_type',
             'fieldValues' => 'tooltip',
         ])
-            @formField('repeater', ['type' => 'experience_image'])
+            @formField('repeater', ['type' => 'tooltip_experience_image'])
             @formField('input', [
                 'name' => 'object_title',
                 'label' => 'Object Title',
