@@ -145,4 +145,9 @@ class DigitalLabelExperienceController extends ModuleController
         }
         return parent::getIndexItems($scopes, $forcePagination);
     }
+
+    protected function getPermalinkBaseUrl()
+    {
+        return request()->getScheme() . '://' . config('app.url') . '/interactive-features/';
+    }
 }

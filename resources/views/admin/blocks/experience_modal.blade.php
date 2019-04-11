@@ -31,7 +31,7 @@
     ])
 
     @formField('radios', [
-        'name' => 'experience_image',
+        'name' => 'has_experience_image',
         'label' => 'Experience Image',
         'default' => false,
         'inline' => true,
@@ -47,9 +47,9 @@
         ]
     ])
     @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'experience_image',
+        'fieldName' => 'has_experience_image',
         'fieldValues' => true,
-        'renderForBlocks' => false
+        'renderForBlocks' => true
     ])
         @include('admin.blocks.experience_image')
     @endcomponent

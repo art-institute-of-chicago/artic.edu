@@ -161,10 +161,10 @@ Route::get('enews', function () {
     return redirect()->route('forms.email-subscriptions', request()->all());
 });
 // Digital labels
-Route::name('digitalLabels')->get('/interactive-features', 'DigitalLabelsController@index');
-Route::name('digitalLabels.test')->get('/interactive-features/test', 'DigitalLabelsController@test');
-Route::name('digitalLabels.kiosk')->get('/interactive-features/kiosk', 'DigitalLabelsController@kiosk');
-Route::name('digitalLabels.show')->get('/interactive-features/{id}/{slug?}', 'DigitalLabelsController@show');
+Route::name('digitalLabels')->get('/interactive-features', 'DigitalLabelExperiencesController@index');
+Route::name('digitalLabels.test')->get('/interactive-features/test', 'DigitalLabelExperiencesController@test');
+Route::name('digitalLabels.kiosk')->get('/interactive-features/kiosk', 'DigitalLabelExperiencesController@kiosk');
+Route::name('digitalLabels.show')->get('/interactive-features/{slug}', 'DigitalLabelExperiencesController@show');
 
 // Feed routes
 Route::feeds();

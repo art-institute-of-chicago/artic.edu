@@ -33,6 +33,9 @@ class DigitalLabelController extends ModuleController
 
     protected $defaultOrders = ['title' => 'desc'];
 
+    protected $indexOptions = [
+        'permalink' => false,
+    ];
     protected $filters = [];
 
     protected function indexData($request)

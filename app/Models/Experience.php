@@ -11,6 +11,7 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
+use App\Http\Resources\Slide as SlideResource;
 
 class Experience extends Model implements Sortable
 {
@@ -72,6 +73,54 @@ class Experience extends Model implements Sortable
     //         ],
     //     ],
     // ];
+
+    public function getContentBundleAttribute()
+    {
+        $attract_slide = [
+            'id' => null,
+            'type' => 'attract',
+            'headline' => $this->attract_title,
+            'subhead' => $this->attract_subhead,
+            'media' => [],
+            '__option_subhead' => !empty($this->attract_subhead),
+            'seamlessAsset' => [],
+            'assetType' => 'standard',
+            '__mediaType' => null,
+            'moduleTitle' => 'title',
+            'exhibitionID' => null,
+            'isActive' => true,
+            'experienceId' => $this->id,
+            'experienceType' => 'LABEL',
+            'colorCode' => $this->digitalLabel->color,
+            'bgColorCode' => $this->digitalLabel->grouping_background_color,
+            'vScalePercent' => 0,
+        ];
+        $end_slide = [
+            'id' => null,
+            'headline' => $this->end_credit_subhead,
+            'copy' => $this->end_credit_copy,
+            'button' => 'Start Over',
+            '__option_credits' => true,
+            'modals' => [],
+            'seamlessAsset' => [],
+            'type' => 'end',
+            'media' => [],
+            '__option_background_image' => true,
+            '__mediaType' => null,
+            'assetType' => 'standard',
+            'moduleTitle' => 'title',
+            'exhibitionId' => null,
+            'isActive' => true,
+            'experienceId' => $this->id,
+            'experienceType' => 'LABEL',
+            'colorCode' => $this->digitalLabel->color,
+            'bgColorCode' => $this->digitalLabel->grouping_background_color,
+            'vScalePercent' => 0,
+        ];
+        $slides = array_prepend(SlideResource::collection($this->slides)->toArray(request()), $attract_slide);
+        array_push($slides, $end_slide);
+        return $slides;
+    }
 
     public function slides()
     {

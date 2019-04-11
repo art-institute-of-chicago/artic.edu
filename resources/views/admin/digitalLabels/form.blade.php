@@ -1,5 +1,4 @@
 @php
-    $ipad_url = 'https' . $baseUrl . $item->slug . '/ipad';
     $colors = [
             [
                 'value' => '#B50938',
@@ -83,7 +82,6 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    <br/><h1><strong>iPad URL:</strong> <a href={{ $ipad_url }}>{{ $ipad_url }}</a></h1>
 
     @formField('medias', [
         'with_multiple' => false,

@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\DigitalLabel;
+use App\Repositories\ExperienceRepository;
 use Illuminate\Http\Request;
 
-use App\Models\Page;
-use App\Repositories\Api\DigitalLabelRepository;
-use App\Repositories\EventRepository;
-use App\Models\DigitalLabel;
-use Carbon\Carbon;
-use App\Models\Article;
-
-class DigitalLabelsController extends FrontController
+class DigitalLabelExperiencesController extends FrontController
 {
     protected $apiRepository;
     protected $moduleName = 'digitalLabels';
@@ -28,12 +24,9 @@ class DigitalLabelsController extends FrontController
         ],
     ];
 
-    public function __construct(DigitalLabelRepository $repository)
+    public function __construct(ExperienceRepository $repository)
     {
         $this->repository = $repository;
-        $this->apiRepository = $repository;
-
-        parent::__construct();
     }
 
     public function index(Request $request)
@@ -42,12 +35,12 @@ class DigitalLabelsController extends FrontController
         $title = 'Interactive Features';
 
         $nav = [
-            ['label' => 'Writings', 'href' => route('articles_publications')]
+            ['label' => 'Writings', 'href' => route('articles_publications')],
         ];
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => $title, 'href' => '']
+            ['label' => $title, 'href' => ''],
         ];
 
         $view_data = [
@@ -56,39 +49,34 @@ class DigitalLabelsController extends FrontController
             "breadcrumb" => $crumbs,
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' items',
+            'listingCountText' => 'Showing ' . $items->total() . ' items',
             'listingItems' => $items,
-            'type' => 'label'
+            'type' => 'label',
         ];
 
         return view('site.genericPage.index', $view_data);
     }
 
-    protected function show($id, $slug = null)
+    protected function show($slug)
     {
-        $item = $this->apiRepository->getById((Integer) $id, ['apiElements']);
-
-        $this->seo->setTitle($item->meta_title ?: $item->title);
-        $this->seo->setDescription($item->meta_description ?: $item->list_description);
-        $this->seo->setImage($item->imageFront('hero'));
-
+        $item = $this->repository->forSlug($slug);
         $articles = Article::published()
-                ->orderBy('date', 'desc')
-                ->paginate(4);
+            ->orderBy('date', 'desc')
+            ->paginate(4);
 
         return view('site.digitalLabelDetail', [
             'contrastHeader' => true,
             'item' => $item,
             'furtherReading' => $articles,
-            'canonicalUrl' => route('digitalLabels.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
+            'canonicalUrl' => route('digitalLabels.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
         ]);
     }
 
     protected function test()
     {
         $articles = Article::published()
-                ->orderBy('date', 'desc')
-                ->paginate(4);
+            ->orderBy('date', 'desc')
+            ->paginate(4);
 
         return view('site.digitalLabelDetail', [
             'contrastHeader' => true,
@@ -99,8 +87,8 @@ class DigitalLabelsController extends FrontController
     protected function kiosk()
     {
         $articles = Article::published()
-                ->orderBy('date', 'desc')
-                ->paginate(4);
+            ->orderBy('date', 'desc')
+            ->paginate(4);
 
         return view('site.digitalLabelKiosk', [
             'contrastHeader' => true,
