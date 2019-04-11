@@ -109,6 +109,11 @@ class Slide extends Model implements Sortable
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'compare_experience_image_2');
     }
 
+    public function compareExperienceModal()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'compare_experience_modal');
+    }
+
     // uncomment and modify this as needed if you use the HasMedias trait
     // public $mediasParams = [
     //     'cover' => [

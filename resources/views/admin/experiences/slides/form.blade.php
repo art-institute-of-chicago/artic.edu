@@ -183,7 +183,7 @@
 
             @formField('repeater', ['type' => 'compare_experience_image_1'])
             @formField('repeater', ['type' => 'compare_experience_image_2'])
-            @formField('repeater', ['type' => 'experience_modal'])
+            @formField('repeater', ['type' => 'compare_experience_modal'])
         @endcomponent
 
     </a17-fieldset>

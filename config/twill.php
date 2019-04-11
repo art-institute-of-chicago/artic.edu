@@ -299,6 +299,12 @@ return [
                 'component' => 'a17-block-experience_image',
                 'max' => 1,
             ],
+            'compare_experience_modal' => [
+                'title' => 'Compare experience modal',
+                'trigger' => 'Add Compare Experience Modal',
+                'component' => 'a17-block-experience_image',
+                'max' => 2,
+            ],
             'experience_modal' => [
                 'title' => 'Experience Modal',
                 'trigger' => 'Add Experience Modal',
