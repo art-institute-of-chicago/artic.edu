@@ -38,6 +38,12 @@ class Exhibition extends BaseApiModel
 
     public function getIsClosedAttribute()
     {
+        if (method_exists($this, 'getAugmentedModel') && $augmentedModel = $this->getAugmentedModel()) {
+            if ($augmentedModel->getOriginal('status_override')) {
+                return $augmentedModel->getOriginal('status_override') == 'Closed';
+            }
+        }
+
         if (empty($this->aic_end_at)) {
             if (empty($this->aic_start_at)) {
                 return true;
@@ -106,6 +112,12 @@ class Exhibition extends BaseApiModel
     // See exhibitionType() in ExhibitionPresenter
     public function getIsOngoingAttribute()
     {
+        if (method_exists($this, 'getAugmentedModel') && $augmentedModel = $this->getAugmentedModel()) {
+            if ($augmentedModel->getOriginal('status_override')) {
+                return $augmentedModel->getOriginal('status_override') == 'Ongoing';
+            }
+        }
+
         if (empty($this->aic_end_at)) {
             if (isset($this->aic_start_at)) {
                 if ($this->dateStart->year > 2010) {

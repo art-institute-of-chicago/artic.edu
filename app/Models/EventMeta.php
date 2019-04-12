@@ -12,5 +12,8 @@ class EventMeta extends Model
         'event_id'
     ];
 
-    protected $dates = ['date', 'date_end'];
+    protected $dates = [
+        'date',
+        'date_end',
+    ];
 }

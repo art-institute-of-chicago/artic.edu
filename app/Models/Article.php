@@ -64,7 +64,12 @@ class Article extends AbstractModel implements Feedable
 
     public $checkboxes = ['published', 'is_boosted'];
 
-    public $dates = ['date', 'migrated_at', 'publish_start_date', 'publish_end_date'];
+    public $dates = [
+        'date',
+        'migrated_at',
+        'publish_start_date',
+        'publish_end_date'
+    ];
 
     public $mediasParams = [
         'hero' => [
@@ -245,6 +250,18 @@ class Article extends AbstractModel implements Feedable
                 "doc" => "Published",
                 "type" => "boolean",
                 "value" => function () {return $this->published;},
+            ],
+            [
+                "name" => 'publish_start_date',
+                "doc" => "Publish Start Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_start_date; }
+            ],
+            [
+                "name" => 'publish_end_date',
+                "doc" => "Publish End Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_end_date; }
             ],
             [
                 "name" => 'date',

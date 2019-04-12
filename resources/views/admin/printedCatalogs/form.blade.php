@@ -38,9 +38,10 @@
         'maxlength' => 255
     ])
 
-    @formField('input', [
-        'name' => 'publication_year',
-        'label' => 'Publication year',
+    @formField('date_picker', [
+        'name' => 'publication_date',
+        'label' => 'Publication date',
+        'withTime' => false,
     ])
 
     @formField('multi_select', [
@@ -60,16 +61,5 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
-        @formField('input', [
-            'name' => 'meta_title',
-            'label' => 'Metadata Title'
-        ])
-
-        @formField('input', [
-            'name' => 'meta_description',
-            'label' => 'Metadata Description',
-            'type' => 'textarea'
-        ])
-    </a17-fieldset>
+    @include('admin.partials.meta')
 @endsection

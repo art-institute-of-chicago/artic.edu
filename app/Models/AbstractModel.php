@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Behaviors\LintsAttributes;
 use A17\Twill\Models\Model;
 
 /**
@@ -11,6 +12,7 @@ use A17\Twill\Models\Model;
 
 class AbstractModel extends Model
 {
+    use LintsAttributes;
 
     /**
      * Don't just check the `published` column! Also check
@@ -19,11 +21,7 @@ class AbstractModel extends Model
      */
     public function scopePublished($query)
     {
-        // Temporarily doing nothing
-        return parent::scopePublished($query);
-
-        // Restore this after testing
-        // return $query->visible()->wherePublished(true);
+        return $query->visible()->wherePublished(true);
     }
 
 }

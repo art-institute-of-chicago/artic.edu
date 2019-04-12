@@ -39,7 +39,10 @@ class GenericPage extends AbstractModel implements Sortable
         'http_protected',
     ];
 
-    public $dates = ['publish_start_date', 'publish_end_date'];
+    public $dates = [
+        'publish_start_date',
+        'publish_end_date',
+    ];
 
     public $slugAttributes = [
         'title',

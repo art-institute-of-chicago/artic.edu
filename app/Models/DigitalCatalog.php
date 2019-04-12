@@ -33,8 +33,16 @@ class DigitalCatalog extends AbstractModel
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
 
-    public $checkboxes = ['published', 'active', 'public'];
-    public $dates = ['publish_start_date', 'publish_end_date'];
+    public $checkboxes = [
+        'published',
+        'active',
+        'public',
+    ];
+
+    public $dates = [
+        'publish_start_date',
+        'publish_end_date',
+    ];
 
     public $sections = [];
 

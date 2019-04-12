@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasMedias;
@@ -22,6 +23,7 @@ class PrintedCatalog extends AbstractModel
         'public',
         'publish_start_date',
         'publish_end_date',
+        'publication_date',
         'migrated_node_id',
         'migrated_at',
         'meta_title',
@@ -75,17 +77,18 @@ class PrintedCatalog extends AbstractModel
 
     public function scopeByCategory($query, $category = null)
     {
-        if (empty($category)) {
-            return $query->orderBy('publication_year', 'desc');
+        if (!empty($category)) {
+            $query->whereHas('categories', function ($query) use ($category) {
+                $query->where('catalog_category_id', $category);
+            });
         }
 
-        return $query->whereHas('categories', function ($query) use ($category) {
-            $query->where('catalog_category_id', $category);
-        })->orderBy('publication_year', 'desc');
+        return $this->scopeOrdered($query);
     }
 
-    public function scopeOrdered($query) {
-        return $query->orderBy('publication_year', 'desc');
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy(\DB::raw("COALESCE(publication_date, '1970-01-01')"), 'desc');
     }
 
     // Generates the id-slug type of URL
@@ -104,7 +107,8 @@ class PrintedCatalog extends AbstractModel
         return join([route('collection.publications.printed-catalogs'), '/', $this->id, '-']);
     }
 
-    public function getUrlAttribute() {
+    public function getUrlAttribute()
+    {
         return route('collection.publications.printed-catalogs.show', $this->slug);
     }
 
