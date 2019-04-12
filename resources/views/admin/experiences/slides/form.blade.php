@@ -170,6 +170,8 @@
                 'name' => 'caption',
                 'label' => 'Caption'
             ])
+
+            <component v-bind:is="`a17-block-tooltip`" :name="`tooltip`"></component>
         @endcomponent
 
         @component('twill::partials.form.utils._connected_fields', [
