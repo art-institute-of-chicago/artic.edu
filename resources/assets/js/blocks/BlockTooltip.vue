@@ -28,18 +28,14 @@
 
 <script>
   import BlockMixin from '@/mixins/block'
+  import FormStoreMixin from '@/mixins/formStore'
+  import { FORM } from '@/store/mutations'
 
   export default {
     mixins: [BlockMixin],
     data: function() {
         return {
-            hotspots: [
-                {
-                    'x': 50,
-                    'y': 50,
-                    'description': 'Suspendisse platea pulvinar diam senectus aenean at'
-                }
-            ],
+            hotspots: [],
             currentHotspotPos: [undefined, undefined],
             imageUrl: "https://artic-web.imgix.net/23063a3f-d292-4052-bf80-b2a841fdc894/MirrorPiecesInstallation.jpg?auto=compress%2Cformat&fit=min&fm=jpg&h=430&q=80"
         } 
@@ -49,6 +45,11 @@
             return this.hotspots.find(function(el) {
                 return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
             }, this);
+        }
+    },
+    watch: {
+        hotspots: function() {
+            this.saveHotspots();
         }
     },
     methods: {
@@ -77,6 +78,12 @@
                 }
                 return hotspot;
             })
+        },
+        saveHotspots: function () {
+            let field = {}
+            field.name = 'tooltip_hotspots'
+            field.value = this.hotspots
+            this.$store.commit(FORM.UPDATE_FORM_FIELD, field)
         }
     }
   }
