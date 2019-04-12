@@ -34,6 +34,7 @@ class ExperienceModal extends Model implements Sortable
         'alt_text',
         'inline_credits',
         'credits_input',
+        'has_experience_image',
         'object_id',
         'artist',
         'credit_title',
