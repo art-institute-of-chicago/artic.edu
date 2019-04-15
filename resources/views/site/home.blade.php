@@ -21,6 +21,18 @@
                 ))
                 @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $countMain . '"')
             @endcomponent
+        @elseif ($item->url)
+            @component('components.molecules._m-listing----custom')
+                @slot('item', $item)
+                @slot('image', $item->featureImage)
+                @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
+                @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-list-4')
+                @slot('imageSettings', array(
+                    'srcset' => array(300,600,1000,1500,3000),
+                    'sizes' => '100vw',
+                ))
+                @slot('gtmAttributes', ($loop->first) ? 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'"  data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-hero-' . $countMain . '"' : 'data-gtm-event="'.getUtf8Slug($item->enclosedItem()->title ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-hero-' . $countMain . '"')
+            @endcomponent
         @endif
     @endforeach
 @endcomponent
