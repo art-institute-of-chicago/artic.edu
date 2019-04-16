@@ -14,6 +14,7 @@ class Lightbox extends AbstractModel
         'title',
         'header',
         'subheader',
+        'cover_caption',
         'body',
         'lightbox_start_date',
         'lightbox_end_date',

@@ -1,7 +1,7 @@
 <div id="modal-promo" class="g-modal g-modal--promo{{ $modal['image'] ? ' g-modal--image' : '' }}" data-expires="{{ $modal['expiry_period'] ?? 86400 }}">
     <div class="g-modal__content">
         @if ( $modal['image'] )
-            <figure class="g-modal__image">
+            <div class="g-modal__image">
                 @component('components.atoms._img')
                     @slot('image', $modal['image'])
                     @slot('settings', array(
@@ -18,7 +18,16 @@
                         )),
                     ))
                 @endcomponent
-            </figure>
+                {{-- TODO: Dedupe with _m-article-header? --}}
+                @if (isset($modal['cover_caption']))
+                    <button class="m-article-header__info-trigger" id="image-credit-trigger" aria-selected="false" aria-controls="image-credit" aria-expanded="false" data-behavior="imageInfo">
+                        <svg class="icon--info-i" aria-label="Image credit"><use xlink:href="#icon--info-i" /></svg>
+                    </button>
+                    <div class="m-article-header__info" id="image-credit" aria-labelledby="image-info-trigger" aria-hidden="true" role="Tooltip">
+                        <div class="f-caption">{!! $modal['cover_caption'] !!}</div>
+                    </div>
+                @endif
+            </div>
         @endif
 
         <div class="g-modal__main">

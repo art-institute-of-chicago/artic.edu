@@ -68,6 +68,7 @@ class HomeController extends FrontController
             'expiry_period' => $lightbox->expiry_period,
             'terms_text' => $lightbox->terms_text,
             'image' => $lightbox->imageFront('cover'),
+            'cover_caption' => $lightbox->cover_caption,
         ];
     }
 

@@ -13,6 +13,17 @@
         'name' => 'cover',
     ])
 
+    @formField('wysiwyg', [
+        'type' => 'textarea',
+        'name' => 'cover_caption',
+        'label' => 'Cover Image Caption',
+        'note' => 'Usually used for copyright',
+        'maxlength' => 255,
+        'toolbarOptions' => [
+            'italic', 'link',
+        ],
+    ])
+
     @formField('input', [
         'name' => 'header',
         'label' => 'Header',
