@@ -12,11 +12,11 @@ class ExactTargetList
             'OptEnews' => 'News and Exhibitions',
             'OptHumanResources' => 'Career Opportunities',
             'OptEveningAssociates' => 'Evening Associates',
-            'OptAcademicEngagement' => 'Academic Engagement and Research',
             'OptFamilyPrograms' => 'Family Programs',
             'OptEvents' => 'Public Programs',
             'OptStudentTeacherPrograms' => 'Student and Teacher Programs',
             'OptTeenPrograms' => 'Teen Programs',
+            'OptAcademicEngagement' => 'Academic Engagement and Research',
         ]);
     }
 }
