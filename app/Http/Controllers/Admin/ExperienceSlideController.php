@@ -19,11 +19,24 @@ class ExperienceSlideController extends ModuleController
     protected function indexData($request)
     {
         $experience = app(ExperienceRepository::class)->getById(request('experience'));
+        $digitalLabel = $experience->digitalLabel;
         return [
             'breadcrumb' => [
                 [
+                    'label' => 'Groupings',
+                    'url' => moduleRoute('digitalLabels', 'collection', 'index'),
+                ],
+                [
+                    'label' => $digitalLabel->title,
+                    'url' => moduleRoute('digitalLabels', 'collection', 'edit', $digitalLabel->id),
+                ],
+                [
                     'label' => 'Experiences',
                     'url' => moduleRoute('digitalLabels.experiences', 'collection', 'index', $experience->digitalLabel->id),
+                ],
+                [
+                    'label' => $experience->title,
+                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'edit', [$digitalLabel->id, $experience->id]),
                 ],
                 [
                     'label' => 'Slides',
@@ -35,17 +48,30 @@ class ExperienceSlideController extends ModuleController
 
     protected function formData($request)
     {
-        $slide = app(SlideRepository::class)->getById(request('slide'));
         $experience = app(ExperienceRepository::class)->getById(request('experience'));
+        $digitalLabel = $experience->digitalLabel;
+        $slide = app(SlideRepository::class)->getById(request('slide'));
         return [
             'breadcrumb' => [
+                [
+                    'label' => 'Groupings',
+                    'url' => moduleRoute('digitalLabels', 'collection', 'index'),
+                ],
+                [
+                    'label' => $digitalLabel->title,
+                    'url' => moduleRoute('digitalLabels', 'collection', 'edit', $digitalLabel->id),
+                ],
                 [
                     'label' => 'Experiences',
                     'url' => moduleRoute('digitalLabels.experiences', 'collection', 'index', $experience->digitalLabel->id),
                 ],
                 [
+                    'label' => $experience->title,
+                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'edit', [$digitalLabel->id, $experience->id]),
+                ],
+                [
                     'label' => 'Slides',
-                    'url' => moduleRoute('experiences.slides', 'collection', 'index', $request->route('experience')),
+                    'url' => moduleRoute('experiences.slides', 'collection', 'index', $experience->id),
                 ],
                 [
                     'label' => $slide->title,

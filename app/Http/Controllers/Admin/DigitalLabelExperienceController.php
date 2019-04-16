@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\Experience;
+use App\Repositories\DigitalLabelRepository;
 use App\Repositories\ExperienceRepository;
 
 class DigitalLabelExperienceController extends ModuleController
@@ -37,12 +38,16 @@ class DigitalLabelExperienceController extends ModuleController
 
     protected function indexData($request)
     {
-
+        $digitalLabel = app(DigitalLabelRepository::class)->getById(request('digitalLabel'));
         return [
             'breadcrumb' => [
                 [
                     'label' => 'Groupings',
                     'url' => moduleRoute('digitalLabels', 'collection', 'index'),
+                ],
+                [
+                    'label' => $digitalLabel->title,
+                    'url' => moduleRoute('digitalLabels', 'collection', 'edit', $digitalLabel->id),
                 ],
                 [
                     'label' => 'Experiences',
@@ -60,6 +65,10 @@ class DigitalLabelExperienceController extends ModuleController
                 [
                     'label' => 'Groupings',
                     'url' => moduleRoute('digitalLabels', 'collection', 'index'),
+                ],
+                [
+                    'label' => $experience->digitalLabel->title,
+                    'url' => moduleRoute('digitalLabels', 'collection', 'edit', $experience->digitalLabel->id),
                 ],
                 [
                     'label' => 'Experiences',
