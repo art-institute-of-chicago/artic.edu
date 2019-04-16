@@ -369,6 +369,14 @@ function aic_imageSettings($data) {
             $imgixSettings['crop'] = $settings['crop'];
         }
 
+        // Special settings for GIFs [WEB-955]
+        if (ends_with(explode('?', $originalSrc)[0], 'gif')) {
+            $imgixSettings['auto'] = 'format,compress';
+            $imgixSettings['fm'] = 'gif';
+            $imgixSettings['gif-q'] = 45;
+            unset($imgixSettings['q']);
+        }
+
         $imgixSettings['w'] = $width;
         $imgixSettings['h'] = $height;
 
