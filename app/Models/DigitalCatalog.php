@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use PDO;
+use Illuminate\Support\Facades\DB;
+
 use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasMedias;
@@ -96,8 +99,24 @@ class DigitalCatalog extends AbstractModel
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeOrdered($query) {
-        return $query->orderBy('publication_year', 'desc');
+    /**
+     * Alphabetical sort by title [WEB-964]
+     * @link https://stackoverflow.com/questions/3252577
+     * @link https://stackoverflow.com/questions/47903727
+     */
+    public function scopeOrdered($query)
+    {
+        $driver = DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        return $query->orderByRaw($driver === 'pgsql' ? (
+            "regexp_replace(lower(title), '^(an?|the) (.*)$', '\\2, \\1')"
+        ) : (
+            "CASE
+                WHEN title REGEXP '^(\"a|an|the|el|la\")[[:space:]]' = 1 THEN
+                    TRIM(SUBSTR(title, INSTR(title, ' ')))
+                ELSE title
+            END ASC"
+        ));
     }
 
     public function sections()
