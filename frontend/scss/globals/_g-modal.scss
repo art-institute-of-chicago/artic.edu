@@ -205,6 +205,11 @@
   .g-modal__title {
   }
 
+  .g-modal__subheader {
+    margin-top: 24px;
+    color: $color__text--accent;
+  }
+
   .g-modal__intro {
     margin-top: 24px;
     color: $color__text--secondary;

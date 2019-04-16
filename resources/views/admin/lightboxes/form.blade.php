@@ -19,6 +19,12 @@
         'note' => 'Use "Title Case"',
     ])
 
+    @formField('input', [
+        'name' => 'subheader',
+        'label' => 'Subheader',
+        'note' => 'Use "Title Case"',
+    ])
+
     @formField('wysiwyg', [
         'name' => 'body',
         'label' => 'Body',

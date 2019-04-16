@@ -58,6 +58,7 @@ class HomeController extends FrontController
 
         return [
             'title' => $lightbox->header,
+            'subheader' => $lightbox->subheader,
             'intro' => $lightbox->body,
             'action_url' => $lightbox->action_url,
             'form_id' => $lightbox->form_id,

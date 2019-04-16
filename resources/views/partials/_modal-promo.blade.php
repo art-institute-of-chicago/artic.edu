@@ -23,6 +23,9 @@
 
         <div class="g-modal__main">
             <h3 class="g-modal__title f-display-1">{{ $modal['title'] }}</h3>
+            @if (isset($modal['subheader']))
+                <h4 class="g-modal__subheader f-headline">{{ $modal['subheader'] }}</h3>
+            @endif
             <div class="g-modal__intro f-secondary">{!! $modal['intro'] !!}</div>
 
             <form class="g-modal__form" action="{{ $modal['action_url'] }}" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
