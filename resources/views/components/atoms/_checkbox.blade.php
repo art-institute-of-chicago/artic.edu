@@ -1,4 +1,4 @@
-<span class="checkbox{{ (isset($variation)) ? ' '.$variation : '' }}{{ (isset($error)) ? ' s-error' : '' }}{{ (isset($disabled)) ? ' s-disabled' : '' }}">
+<span class="checkbox{{ (isset($variation)) ? ' '.$variation : '' }}{{ (isset($error)) ? ' s-error' : '' }}{{ (isset($disabled)) ? ' s-disabled' : '' }}"{!! (isset($behavior)) ? ' data-behavior="'.$behavior.'"' : '' !!}>
   <input type="checkbox" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name ?? '' }}" {{ $checked ?? '' }} {{ $disabled ?? '' }}>
   <span class="{{ $font ?? 'f-secondary' }}">
       @component('components.atoms._label')

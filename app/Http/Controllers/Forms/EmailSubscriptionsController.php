@@ -116,7 +116,8 @@ class EmailSubscriptionsController extends FormController
                     'hint' => null,
                     'disabled' => false,
                     'checked' => $this->old('unsubscribe') ?? false,
-                    'label' => 'I no longer wish to receive any Art Institute emails.'
+                    'label' => 'I no longer wish to receive any Art Institute emails.',
+                    'behavior' => 'formUnsubscribe'
                 ),
             ),
         ];
