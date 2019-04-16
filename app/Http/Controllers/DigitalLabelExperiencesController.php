@@ -78,7 +78,7 @@ class DigitalLabelExperiencesController extends FrontController
             ->orderBy('date', 'desc')
             ->paginate(4);
 
-        return view('site.digitalLabelDetail', [
+        return view('site.digitalLabelDetailTest', [
             'contrastHeader' => true,
             'furtherReading' => $articles,
         ]);

@@ -33,6 +33,12 @@
 
   export default {
     mixins: [BlockMixin],
+    props: ['hotspotsdata'],
+    mounted: function () {
+        if (this.hotspotsdata) {
+            this.hotspots = this.hotspotsdata;
+        };
+    },
     data: function() {
         return {
             hotspots: [],

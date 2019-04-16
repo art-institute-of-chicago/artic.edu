@@ -14,11 +14,21 @@ class Slide extends JsonResource
      */
     public function toArray($request)
     {
+        if (get_class($this->resource) === 'App\Models\Experience') {
+            $return = [];
+        } else {
+
+        }
         return [
             'id' => $this->id,
             'type' => $this->asset_type,
             'title' => $this->title,
             'headline' => $this->headline,
         ];
+    }
+
+    public function commonStructure()
+    {
+
     }
 }
