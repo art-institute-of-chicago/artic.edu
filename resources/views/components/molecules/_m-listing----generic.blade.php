@@ -1,4 +1,4 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $item->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) or (isset($hideImage) && !($hideImage)))
             @if (isset($image) || $item->imageFront('default'))
@@ -89,4 +89,4 @@
             @endif
         </span>
     </a>
-</{{ $tag or 'li' }}>
+</{{ $tag ?? 'li' }}>

@@ -5,7 +5,7 @@
         $hoverBar = ' m-listing--hover-bar';
     }
 @endphp
-  <{{ $tag or 'li' }} class="m-listing m-listing--w-meta-bottom{{ $hoverBar }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront()) ? ' data-behavior="blurMyBackground"' : '' !!}>
+  <{{ $tag ?? 'li' }} class="m-listing m-listing--w-meta-bottom{{ $hoverBar }}{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront()) ? ' data-behavior="blurMyBackground"' : '' !!}>
     <a href="{!! $item->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
 
     <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront()) ? ' m-listing__img--video' : '' }}"{{ (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront()) ? ' data-blur-img' : '' }}>
@@ -52,4 +52,4 @@
         <br>
     </span>
   </a>
-</{{ $tag or 'li' }}>
+</{{ $tag ?? 'li' }}>

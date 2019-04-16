@@ -1,4 +1,4 @@
-<{{ $tag or 'header' }} class="m-article-header m-article-header--hero{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--hero{{ (isset($variation)) ? ' '.$variation : '' }}">
   <div class="m-article-header__img">
       @if ($img)
         @component('components.atoms._img')
@@ -42,4 +42,4 @@
         @endif
       @endif
   </div>
-</{{ $tag or 'header' }}>
+</{{ $tag ?? 'header' }}>

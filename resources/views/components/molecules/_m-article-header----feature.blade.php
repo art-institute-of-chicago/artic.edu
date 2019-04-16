@@ -1,4 +1,4 @@
-<{{ $tag or 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--feature{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
   <div class="m-article-header__img" data-blur-img>
       @if ($img)
         @component('components.atoms._img')
@@ -75,4 +75,4 @@
         @endif
       @endif
   </div>
-</{{ $tag or 'header' }}>
+</{{ $tag ?? 'header' }}>

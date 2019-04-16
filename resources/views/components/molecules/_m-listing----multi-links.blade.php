@@ -1,11 +1,11 @@
 
 
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
-    <{{ $tag or 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
+    <{{ $tag ?? 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
         <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">{{ $item['title'] }}</h3>
         <a href="{!! $item['titleLink'] !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
 @else
-    <{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+    <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
         <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">{{ $item['title'] }}</h3>
 @endif
 
@@ -77,4 +77,4 @@
         @endif
     </div>
 
-</{{ $tag or 'li' }}>
+</{{ $tag ?? 'li' }}>

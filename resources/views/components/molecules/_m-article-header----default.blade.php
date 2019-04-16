@@ -1,4 +1,4 @@
-<{{ $tag or 'header' }} class="m-article-header m-article-header--default{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--default{{ (isset($variation)) ? ' '.$variation : '' }}">
     @if (!empty($title))
         @component('components.atoms._title')
             @slot('tag','h1')
@@ -30,4 +30,4 @@
             {{ $type }}
         @endcomponent
     @endif
-</{{ $tag or 'header' }}>
+</{{ $tag ?? 'header' }}>

@@ -1,7 +1,7 @@
 @php
     $fullscreen = ($item->embed and isset($fullscreen) and $fullscreen) ? true : false;
 @endphp
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
+<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}"{!! (isset($variation) and strrpos($variation, "--hero") > -1 and !$item->videoFront) ? ' data-behavior="blurMyBackground"' : '' !!}>
 
     {{-- TODO: Audio should not be using the video route --}}
     @if ($fullscreen)
@@ -46,4 +46,4 @@
         <textarea style="display: none;">{!! is_array($item->embed) ? array_first($item->embed) : $item->embed !!}</textarea>
         @endif
     </a>
-</{{ $tag or 'li' }}>
+</{{ $tag ?? 'li' }}>

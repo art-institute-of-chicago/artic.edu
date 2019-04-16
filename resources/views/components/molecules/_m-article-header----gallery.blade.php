@@ -19,7 +19,7 @@ if ($maxZoomWindowSize >= 843) {
 }
 @endphp
 
-<{{ $tag or 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--gallery{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="headerGallery">
 <div class="m-article-header__img">
       <div class="m-article-header__img-container" data-gallery-hero>
          @php
@@ -205,6 +205,6 @@ if ($maxZoomWindowSize >= 843) {
       @endforeach
   </ul>
 
-</{{ $tag or 'header' }}>
+</{{ $tag ?? 'header' }}>
 
 @endif
