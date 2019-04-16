@@ -73,14 +73,7 @@
             @elseif (isset($variation) && strpos($variation, 'm-aside-newsletter--inline') !== false)
 
             <div class="m-aside-newsletter__also" aria-hidden="true">
-
-                @component('components.atoms._checkbox')
-                    @slot('id', 'subscriptions-OptEnews')
-                    @slot('value', 'OptEnews')
-                    @slot('name', 'subscriptions[]')
-                    @slot('label', 'I\'d also like to receive general news and announcements.')
-                @endcomponent
-
+                <span class="f-secondary">Includes news and exhibition announcements from the Art Institute of Chicago.</span>
             </div>
             <input type="hidden" name="subscriptions[]" id="subscriptions-{{ $list }}" value="{{ $list }}">
 
