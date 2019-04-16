@@ -15,19 +15,28 @@ class SlideMedia extends JsonResource
     public function toArray($request)
     {
         return [
-            'src' => '',
+            'src' => $this->getImageSrc($this->image('experience_image')),
             'credits' => [
-                'creditsACP' => 'Girard Thibault (Flemish, died ca. 1629)',
-                'creditsTitle' => 'Academie de lespee',
-                'creditsDate' => '1627',
-                'creditsMedium' => 'Illustrated book',
-                'creditsDimensions' => '',
-                'creditsCreditLine' => '',
-                'creditsRefNum' => '',
-                'creditsCopyright' => '',
-                'type' => 'manual',
+                'creditsACP' => $this->artist,
+                'creditsTitle' => $this->credit_title,
+                'creditsDate' => $this->credit_date,
+                'creditsMedium' => $this->medium,
+                'creditsDimensions' => $this->dimensions,
+                'creditsCreditLine' => $this->credit_line,
+                'creditsRefNum' => $this->main_refernece_number,
+                'creditsCopyright' => $this->copyright_notice,
+                'type' => $this->credits_input,
             ],
-            'altText' => '',
+            'altText' => $this->alt_text,
         ];
+    }
+
+    protected function getImageSrc($url)
+    {
+        $matched = preg_match('/(?<=https:\/\/artic-web.imgix.net\/).+(?=\?)/', $url, $matches);
+        if ($matched) {
+            return $matches[0];
+        }
+        return '';
     }
 }

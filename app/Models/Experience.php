@@ -76,50 +76,10 @@ class Experience extends Model implements Sortable
 
     public function getContentBundleAttribute()
     {
-        $slides = new SlideResource($this);
-        // $attract_slide = [
-        //     'id' => null,
-        //     'type' => 'attract',
-        //     'headline' => $this->attract_title,
-        //     'subhead' => $this->attract_subhead,
-        //     'media' => [],
-        //     '__option_subhead' => !empty($this->attract_subhead),
-        //     'seamlessAsset' => [],
-        //     'assetType' => 'standard',
-        //     '__mediaType' => null,
-        //     'moduleTitle' => 'title',
-        //     'exhibitionID' => null,
-        //     'isActive' => true,
-        //     'experienceId' => $this->id,
-        //     'experienceType' => 'LABEL',
-        //     'colorCode' => $this->digitalLabel->color,
-        //     'bgColorCode' => $this->digitalLabel->grouping_background_color,
-        //     'vScalePercent' => 0,
-        // ];
-        // $end_slide = [
-        //     'id' => null,
-        //     'headline' => $this->end_credit_subhead,
-        //     'copy' => $this->end_credit_copy,
-        //     'button' => 'Start Over',
-        //     '__option_credits' => true,
-        //     'modals' => [],
-        //     'seamlessAsset' => [],
-        //     'type' => 'end',
-        //     'media' => [],
-        //     '__option_background_image' => true,
-        //     '__mediaType' => null,
-        //     'assetType' => 'standard',
-        //     'moduleTitle' => 'title',
-        //     'exhibitionId' => null,
-        //     'isActive' => true,
-        //     'experienceId' => $this->id,
-        //     'experienceType' => 'LABEL',
-        //     'colorCode' => $this->digitalLabel->color,
-        //     'bgColorCode' => $this->digitalLabel->grouping_background_color,
-        //     'vScalePercent' => 0,
-        // ];
-        // $slides = array_prepend(SlideResource::collection($this->slides)->toArray(request()), $attract_slide);
-        // array_push($slides, $end_slide);
+        $attract_slide = (new SlideResource($this, true))->toArray(request());
+        $end_slide = (new SlideResource($this, false))->toArray(request());
+        $slides = array_prepend(SlideResource::collection($this->slides)->toArray(request()), $attract_slide);
+        array_push($slides, $end_slide);
         return $slides;
     }
 
