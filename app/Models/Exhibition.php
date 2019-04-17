@@ -11,6 +11,7 @@ use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Page;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class Exhibition extends AbstractModel
 {
@@ -190,7 +191,7 @@ class Exhibition extends AbstractModel
                 }
 
                 $this->selectedFeaturedRelated = [
-                    'type' => str_singular($type),
+                    'type' => Str::singular($type),
                     'items' => [$item],
                 ];
                 return $this->selectedFeaturedRelated;
@@ -241,7 +242,7 @@ class Exhibition extends AbstractModel
                 "name" => 'image_url',
                 "doc" => "Image URL",
                 "type" => "string",
-                "value" => function () {return starts_with($this->image('hero'), 'http') ? $this->image('hero') : null;},
+                "value" => function () {return Str::startsWith($this->image('hero'), 'http') ? $this->image('hero') : null;},
             ],
             [
                 "name" => 'web_url',

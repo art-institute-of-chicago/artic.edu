@@ -2,6 +2,8 @@
 
 namespace App\Libraries\Search\Filters;
 
+use Illuminate\Support\Str;
+
 class Sort
 {
     protected $activeList = false;
@@ -62,7 +64,7 @@ class Sort
             case 'artist_title':
                 return 'Artist';
             default:
-                return str_replace('_', ' ', title_case($parameter));
+                return str_replace('_', ' ', Str::title($parameter));
         }
     }
 

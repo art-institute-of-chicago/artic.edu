@@ -8,11 +8,13 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRecurrentDates;
-use Carbon\Carbon;
 use App\Models\Behaviors\HasApiRelations;
+use Carbon\Carbon;
 
 // TODO: Use `whereJsonContains` in Laravel 5.7 - https://github.com/laravel/framework/pull/24330
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+
 use PDO;
 
 class Event extends AbstractModel
@@ -512,7 +514,7 @@ class Event extends AbstractModel
                 "name" => "alt_event_types",
                 "doc" => "Alternate Type",
                 "type" => "number",
-                "value" => function () {return array_pluck($this->alt_types, 'id');},
+                "value" => function () {return Arr::pluck($this->alt_types, 'id');},
             ],
             [
                 "name" => "audience",
@@ -524,13 +526,13 @@ class Event extends AbstractModel
                 "name" => "alt_audiences",
                 "doc" => "Alternate Audiences",
                 "type" => "number",
-                "value" => function () {return array_pluck($this->alt_audiences, 'id');},
+                "value" => function () {return Arr::pluck($this->alt_audiences, 'id');},
             ],
             [
                 "name" => "programs",
                 "doc" => "Programs",
                 "type" => "number",
-                "value" => function () {return array_pluck($this->programs, 'pivot.event_program_id');},
+                "value" => function () {return Arr::pluck($this->programs, 'pivot.event_program_id');},
             ],
             [
                 "name" => "is_ticketed",

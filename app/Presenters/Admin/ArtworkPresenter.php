@@ -9,6 +9,7 @@ namespace App\Presenters\Admin;
 use App\Presenters\BasePresenter;
 use App\Helpers\DatesHelpers;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class ArtworkPresenter extends BasePresenter
 {
@@ -116,7 +117,7 @@ class ArtworkPresenter extends BasePresenter
                 return ['label' => $title, 'href' => route('artists.show', ['id' => $item->artist_id . '/' . getUtf8Slug($item->artist_title)]), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"'];
             });
             $details[] = [
-                'key'   => str_plural('Artist', count($this->entity->artist_pivots)),
+                'key'   => Str::plural('Artist', count($this->entity->artist_pivots)),
                 'links' => $artistLinks,
                 'itemprop' => 'creator',
             ];
@@ -150,7 +151,7 @@ class ArtworkPresenter extends BasePresenter
             });
 
             $details[] = [
-                'key'   => str_plural('Place', count($this->entity->place_pivots)),
+                'key'   => Str::plural('Place', count($this->entity->place_pivots)),
                 'value' => join(', ', $places->toArray()),
                 'itemprop' => 'locationCreated',
             ];
@@ -186,7 +187,7 @@ class ArtworkPresenter extends BasePresenter
                 ];
             });
             $details[] = [
-                'key'   => str_plural('Date', count($this->entity->dates)),
+                'key'   => Str::plural('Date', count($this->entity->dates)),
                 'itemprop' => 'dateCreated',
                 'links' => $dates,
             ];

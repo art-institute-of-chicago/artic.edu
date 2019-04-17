@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Arr;
+
 if (!function_exists('extractAggregation')) {
     function extractAggregation($aggregations, $names)
     {
@@ -9,7 +11,7 @@ if (!function_exists('extractAggregation')) {
 
         $count = 0;
         foreach ($names as $name) {
-            $element = array_first($aggregations, function($value) use ($name) {
+            $element = Arr::first($aggregations, function($value) use ($name) {
                 return $value->key == $name;
             });
 

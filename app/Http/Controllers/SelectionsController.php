@@ -6,6 +6,8 @@ use App\Repositories\SelectionRepository;
 use App\Models\Selection;
 use App\Libraries\ExploreFurther\SelectionService as ExploreFurther;
 
+use Illuminate\Support\Str;
+
 class SelectionsController extends FrontController
 {
     protected $repository;
@@ -24,7 +26,7 @@ class SelectionsController extends FrontController
         // Redirect to the canonical page if it wasn't requested
         $canonicalPath = route('selections.show', ['id' => $item->id, 'slug' => $item->getSlug()]);
 
-        if (!ends_with($canonicalPath, request()->path())) {
+        if (!Str::endsWith($canonicalPath, request()->path())) {
             return redirect($canonicalPath, 301);
         }
 

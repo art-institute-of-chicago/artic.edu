@@ -4,6 +4,7 @@ namespace App\Presenters\Admin;
 
 use Carbon\Carbon;
 use App\Presenters\BasePresenter;
+use Illuminate\Support\Str;
 
 class ExhibitionPresenter extends BasePresenter
 {
@@ -146,7 +147,7 @@ class ExhibitionPresenter extends BasePresenter
 
         if ($count > 0) {
             return [
-                'label' =>  $count . ' related ' . str_plural('event', $count),
+                'label' =>  $count . ' related ' . Str::plural('event', $count),
                 'href' => '#related_events',
                 'iconBefore' => 'calendar'
             ];

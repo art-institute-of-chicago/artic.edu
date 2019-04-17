@@ -32,7 +32,7 @@
     <span class="checkbox f-secondary">
         <input type="checkbox" value="{{ request()->url() }}" id="limit-search" name="limit-search"  data-behavior="limitSearch">
         <span class="f-secondary">
-            <label for="limit-search">Limit my search to {{ title_case(str_replace('-', ' ', request()->segment(count(request()->segments())))) }}</label>
+            <label for="limit-search">Limit my search to {{ Str::title(str_replace('-', ' ', request()->segment(count(request()->segments())))) }}</label>
         </span>
     </span>
     @endif

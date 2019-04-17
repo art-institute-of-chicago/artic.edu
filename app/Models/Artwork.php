@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 
+use Illuminate\Support\Str;
+
 class Artwork extends AbstractModel
 {
     use HasApiModel, HasApiRelations;
@@ -76,7 +78,7 @@ class Artwork extends AbstractModel
                 }
 
                 $this->selectedFeaturedRelated = [
-                    'type' => str_singular($type),
+                    'type' => Str::singular($type),
                     'items' => [$item],
                 ];
                 return $this->selectedFeaturedRelated;

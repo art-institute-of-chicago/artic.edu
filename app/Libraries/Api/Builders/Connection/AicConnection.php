@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Libraries\Api\Builders\Connection;
+
+use Illuminate\Support\Arr;
 use App\Libraries\Api\Builders\Grammar\AicGrammar;
 
 class AicConnection implements ApiConnectionInterface
@@ -75,8 +77,8 @@ class AicConnection implements ApiConnectionInterface
      */
     public function execute($endpoint = null, $params = []) {
         $queryKeys = ['ids', 'include'];
-        $queryParams = array_only($params, $queryKeys);
-        $bodyParams = array_except($params, $queryKeys);
+        $queryParams = Arr::only($params, $queryKeys);
+        $bodyParams = Arr::except($params, $queryKeys);
 
         // Some Libraries need to adapt the format for the parameters
         // Guzzle needs to receive ['query' => [ 'par1' => val1, 'par2' => val2 .....]]

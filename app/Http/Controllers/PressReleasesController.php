@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Repositories\PressReleaseRepository;
 use App\Models\PressRelease;
 
@@ -165,7 +166,7 @@ class PressReleasesController extends BaseScopedController
         // Redirect to the canonical page if it wasn't requested
         $canonicalPath = route('about.press.show', ['id' => $page->id, 'slug' => $page->getSlug()]);
 
-        if (!ends_with($canonicalPath, request()->path())) {
+        if (!Str::endsWith($canonicalPath, request()->path())) {
             return redirect($canonicalPath, 301);
         }
 

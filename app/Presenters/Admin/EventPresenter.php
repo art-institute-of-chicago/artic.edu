@@ -6,6 +6,8 @@ use Carbon\Carbon;
 
 use App\Presenters\BasePresenter;
 
+use Illuminate\Support\Str;
+
 class EventPresenter extends BasePresenter
 {
     public function titleInBucket()
@@ -216,6 +218,6 @@ class EventPresenter extends BasePresenter
             ],
         ]);
 
-        return str_before($settings['srcset'], ' ');
+        return Str::before($settings['srcset'], ' ');
     }
 }

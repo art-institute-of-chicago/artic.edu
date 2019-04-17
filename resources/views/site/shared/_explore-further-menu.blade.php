@@ -8,7 +8,7 @@
 
                 @php
                     $active = collect(request()->input())->filter(function($value, $key) {
-                        return str_contains($key, 'ef-');
+                        return Str::contains($key, 'ef-');
                     })->isEmpty();
                 @endphp
 

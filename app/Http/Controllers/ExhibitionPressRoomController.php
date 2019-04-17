@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Repositories\ExhibitionPressRoomRepository;
 use App\Models\ExhibitionPressRoom;
@@ -61,7 +62,7 @@ class ExhibitionPressRoomController extends FrontController
         // Redirect to the canonical page if it wasn't requested
         $canonicalPath = route('about.exhibitionPressRooms.show', ['id' => $page->id, 'slug' => $page->getSlug()]);
 
-        if (!ends_with($canonicalPath, request()->path())) {
+        if (!Str::endsWith($canonicalPath, request()->path())) {
             return redirect($canonicalPath, 301);
         }
 

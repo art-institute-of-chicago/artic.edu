@@ -22,6 +22,8 @@ use App\Http\Controllers\StaticsController;
 
 use App\Libraries\Search\CollectionService;
 
+use Illuminate\Support\Str;
+
 use LakeviewImageService;
 
 class SearchController extends BaseScopedController
@@ -370,7 +372,7 @@ class SearchController extends BaseScopedController
 
     protected function buildLabel($name, $total, $href, $active) {
         return [
-            'label' => ($name == 'All' ? 'All' : str_plural($name, $total)),
+            'label' => ($name == 'All' ? 'All' : Str::plural($name, $total)),
             'href' => $href,
             'active' => $active
         ];

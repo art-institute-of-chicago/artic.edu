@@ -36,7 +36,7 @@
             @if (isset($item['links']) and $item['links'])
                 <br>
                 @if (count($item['links']) > 1)
-                   <ul class="f-secondary" aria-labelledby="h-{{ str_slug($item['title']) }}">
+                   <ul class="f-secondary" aria-labelledby="h-{{ Str::slug($item['title']) }}">
                 @else
                   <span class="f-secondary last-child">
                 @endif

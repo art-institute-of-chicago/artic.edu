@@ -6,7 +6,7 @@
     'additionalFieldsets' => $additionalFieldsets
 ])
 
-@include('admin.pages.form_' . snake_case($pageType))
+@include('admin.pages.form_' . Str::snake($pageType))
 
 @push('vuexStore')
   window.STORE.publication.submitOptions = {

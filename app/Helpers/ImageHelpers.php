@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 /***
 
 aic_convertFromImageProxy
@@ -370,7 +372,7 @@ function aic_imageSettings($data) {
         }
 
         // Special settings for GIFs [WEB-955]
-        if (ends_with(explode('?', $originalSrc)[0], 'gif')) {
+        if (Str::endsWith(explode('?', $originalSrc)[0], 'gif')) {
             $imgixSettings['auto'] = 'format,compress';
             $imgixSettings['fm'] = 'gif';
             $imgixSettings['gif-q'] = 45;

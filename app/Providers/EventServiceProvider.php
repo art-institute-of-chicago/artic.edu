@@ -5,6 +5,7 @@ namespace App\Providers;
 use A17\Twill\Repositories\UserRepository;
 use Auth;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
@@ -35,8 +36,8 @@ class EventServiceProvider extends ServiceProvider
             $user = $event->getSaml2User();
             $userData = [
                 // 'id' => $user->getUserId(),
-                'email' => array_first($user->getAttribute('email')),
-                'name' => array_first($user->getAttribute('email')),
+                'email' => Arr::first($user->getAttribute('email')),
+                'name' => Arr::first($user->getAttribute('email')),
                 'role' => 'VIEW_ONLY',
             ];
 

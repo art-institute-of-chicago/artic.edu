@@ -2,11 +2,11 @@
 
 @if (isset($item['titleLink']) and $item['titleLink'] and isset($item['image']) and !empty($item['image']))
     <{{ $tag ?? 'li' }} class="m-listing m-listing--hover-bar{{ (isset($variation)) ? ' '.$variation : '' }}">
-        <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">{{ $item['title'] }}</h3>
+        <h3 class="sr-only" id="h-{{ Str::slug($item['title']) }}">{{ $item['title'] }}</h3>
         <a href="{!! $item['titleLink'] !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
 @else
     <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-        <h3 class="sr-only" id="h-{{ str_slug($item['title']) }}">{{ $item['title'] }}</h3>
+        <h3 class="sr-only" id="h-{{ Str::slug($item['title']) }}">{{ $item['title'] }}</h3>
 @endif
 
         @if ( isset($item['image']) and !empty($item['image']) )
@@ -54,7 +54,7 @@
         @if (isset($item['links']) and $item['links'])
             <br>
             @if (count($item['links']) > 1)
-              <ul class="f-secondary" aria-labelledby="h-{{ str_slug($item['title']) }}">
+              <ul class="f-secondary" aria-labelledby="h-{{ Str::slug($item['title']) }}">
             @else
               <span class="f-secondary last-child">
             @endif

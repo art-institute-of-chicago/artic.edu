@@ -33,7 +33,7 @@
         </span>
         <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
             @if ($item->embed)
-                <em class="type f-tag">{{ (strrpos((is_array($item->embed) ? array_first($item->embed) : $item->embed), "api.soundcloud.com") > 0) ? 'Audio' : 'Video' }}</em>
+                <em class="type f-tag">{{ (strrpos((is_array($item->embed) ? Arr::first($item->embed) : $item->embed), "api.soundcloud.com") > 0) ? 'Audio' : 'Video' }}</em>
                 <br>
             @endif
             <strong class="title {{ $titleFont ?? 'f-list-3' }}">{!! $item->title_display ?? $item->title !!}</strong>
@@ -43,7 +43,7 @@
             @endif
         </span>
         @if ($fullscreen)
-        <textarea style="display: none;">{!! is_array($item->embed) ? array_first($item->embed) : $item->embed !!}</textarea>
+        <textarea style="display: none;">{!! is_array($item->embed) ? Arr::first($item->embed) : $item->embed !!}</textarea>
         @endif
     </a>
 </{{ $tag ?? 'li' }}>

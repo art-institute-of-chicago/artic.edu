@@ -5,7 +5,7 @@ namespace App\Libraries\Api\Builders;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Arr;
 use App\Libraries\Api\Builders\ApiModelBuilder;
 
 class ApiModelBuilderSearch extends ApiModelBuilder
@@ -84,7 +84,7 @@ class ApiModelBuilderSearch extends ApiModelBuilder
         $segregatedResults = $this->extractModels($results);
 
         // Mix them all up together
-        $flatResults = collectApi(array_filter(array_flatten($segregatedResults)));
+        $flatResults = collectApi(array_filter(Arr::flatten($segregatedResults)));
 
         // Sort results in their original order
         $sorted = $flatResults->sortBy(function($model, $key) use ($original) {

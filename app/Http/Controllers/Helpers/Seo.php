@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Helpers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo as BaseSeo;
 
+use Illuminate\Support\Str;
+
 class Seo extends BaseSeo
 {
 
@@ -19,7 +21,7 @@ class Seo extends BaseSeo
             ]);
 
             if ($settings['srcset']) {
-                $this->image = str_before($settings['srcset'], ' ');
+                $this->image = Str::before($settings['srcset'], ' ');
                 $this->width = 1200;
                 $this->height = floor((1200 / $settings['width']) * $settings['height']);
             }

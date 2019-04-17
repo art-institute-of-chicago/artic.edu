@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Libraries\ExploreFurther;
+
 use App\Models\Api\Search;
+use Illuminate\Support\Arr;
 
 /**
  *
@@ -121,7 +123,7 @@ class ArtworkService extends BaseService
             }
         }
 
-        return array_where($tags, function($key, $value) {
+        return Arr::where($tags, function($key, $value) {
             return !empty($value);
         });
     }

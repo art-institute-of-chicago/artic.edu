@@ -7,6 +7,7 @@ use App\Models\FeeAge;
 use App\Models\FeeCategory;
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class VisitController extends FrontController
 {
@@ -69,7 +70,7 @@ class VisitController extends FrontController
         $titles = [];
         foreach (FeeCategory::ordered()->get() as $category) {
             $titles[$category->id]['title'] = $category->title;
-            $titles[$category->id]['id'] = str_slug($category->title);
+            $titles[$category->id]['id'] = Str::slug($category->title);
             $titles[$category->id]['tooltip'] = $category->tooltip;
 
             foreach (FeeAge::ordered()->get() as $age) {
