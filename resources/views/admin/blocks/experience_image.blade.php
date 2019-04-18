@@ -23,6 +23,7 @@
 @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'inline_credits',
         'fieldValues' => 'on',
+        'keepAlive' => true,
         'renderForBlocks' => true
 ])
     @formField('radios', [
@@ -44,7 +45,8 @@
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'credits_input',
         'fieldValues' => 'datahub',
-        'renderForBlocks' => true
+        'renderForBlocks' => true,
+        'keepAlive' => true,
     ])
         @formField('input', [
             'name' => 'object_id',
@@ -55,7 +57,8 @@
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'credits_input',
         'fieldValues' => 'manual',
-        'renderForBlocks' => true
+        'renderForBlocks' => true,
+        'keepAlive' => true,
     ])
         @formField('input', [
             'name' => 'artist',

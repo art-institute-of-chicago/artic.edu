@@ -164,8 +164,9 @@
         ]
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'image_sequence_caption',
-        'label' => 'Caption'
+        'label' => 'Caption',
+        'maxlength' => 500,
     ])
 @endcomponent

@@ -37,6 +37,7 @@
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'module_type',
         'fieldValues' => 'split',
+        'keepAlive' => true,
     ])
         @formField('multi_select', [
             'name' => 'attributes',
@@ -77,6 +78,7 @@
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'module_type',
             'fieldValues' => 'split',
+            'keepAlive' => true,
         ])
             @formField('repeater', ['type' => 'slide_primary_experience_image'])
                 
@@ -109,9 +111,10 @@
             </div>
         
             <div style="display: none" id="caption">
-                @formField('input', [
+                @formField('wysiwyg', [
                     'name' => 'caption',
-                    'label' => 'Caption'
+                    'label' => 'Caption',
+                    'maxlength' => 500,
                 ])
             </div>
         
@@ -127,6 +130,7 @@
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'module_type',
             'fieldValues' => 'interstitial',
+            'keepAlive' => true,
         ])
             @formField('input', [
                 'name' => 'interstitial_headline',
@@ -149,12 +153,14 @@
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'module_type',
             'fieldValues' => 'full-width-media',
+            'keepAlive' => true,
         ])
             @formField('repeater', ['type' => 'experience_image'])
             @formField('repeater', ['type' => 'experience_modal'])
-            @formField('input', [
+            @formField('wysiwyg', [
                 'name' => 'caption',
-                'label' => 'Caption'
+                'label' => 'Caption',
+                'maxlength' => 500,
             ])
             @formField('checkbox', [
                 'name' => 'fullwidth_inset',
@@ -171,9 +177,10 @@
                 'name' => 'object_title',
                 'label' => 'Object Title',
             ])
-            @formField('input', [
+            @formField('wysiwyg', [
                 'name' => 'caption',
-                'label' => 'Caption'
+                'label' => 'Caption',
+                'maxlength' => 500,
             ])
             <component v-bind:is="`a17-block-tooltip`" :name="`tooltip`" :hotspotsdata="{{ isset($form_fields['tooptip_hotspots']) ? $form_fields['tooltip_hotspots'] : '[]' }}"></component>
         @endcomponent
@@ -181,6 +188,7 @@
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'module_type',
             'fieldValues' => 'compare',
+            'keepAlive' => true,
         ])
             @formField('input', [
                 'name' => 'compare_title',
