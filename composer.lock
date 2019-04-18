@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2fbef16adf9afd9877648ab9e991e7d",
+    "content-hash": "99878910acb4591cc15e336432594307",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -4795,16 +4795,16 @@
         },
         {
             "name": "spatie/laravel-feed",
-            "version": "2.2.1",
+            "version": "dev-feature/support-for-flipboard",
             "source": {
                 "type": "git",
-                "url": "https://github.com/spatie/laravel-feed.git",
-                "reference": "b8dc5ce330d61c4b4edc851014b54cf0e0b7b68f"
+                "url": "https://github.com/nikhiltri/laravel-feed.git",
+                "reference": "594c993f9d950d9c446a5a6942c3ae59871c9763"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-feed/zipball/b8dc5ce330d61c4b4edc851014b54cf0e0b7b68f",
-                "reference": "b8dc5ce330d61c4b4edc851014b54cf0e0b7b68f",
+                "url": "https://api.github.com/repos/nikhiltri/laravel-feed/zipball/594c993f9d950d9c446a5a6942c3ae59871c9763",
+                "reference": "594c993f9d950d9c446a5a6942c3ae59871c9763",
                 "shasum": ""
             },
             "require": {
@@ -4829,14 +4829,23 @@
                     "Spatie\\Feed\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Spatie\\Feed\\Test\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
+                    "name": "Jolita Grazyte",
+                    "email": "jolita@spatie.be",
                     "homepage": "https://spatie.be",
                     "role": "Developer"
                 },
@@ -4847,8 +4856,8 @@
                     "role": "Developer"
                 },
                 {
-                    "name": "Jolita Grazyte",
-                    "email": "jolita@spatie.be",
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
                     "homepage": "https://spatie.be",
                     "role": "Developer"
                 }
@@ -4861,7 +4870,10 @@
                 "rss",
                 "spatie"
             ],
-            "time": "2019-03-06T11:44:14+00:00"
+            "support": {
+                "source": "https://github.com/nikhiltri/laravel-feed/tree/feature/support-for-flipboard"
+            },
+            "time": "2019-04-18T21:58:13+00:00"
         },
         {
             "name": "spatie/laravel-sitemap",
@@ -8511,7 +8523,8 @@
     "stability-flags": {
         "aacotroneo/laravel-saml2": 20,
         "aic/data-hub-foundation": 20,
-        "onelogin/php-saml": 20
+        "onelogin/php-saml": 20,
+        "spatie/laravel-feed": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
