@@ -5,8 +5,8 @@
     <br />
     <div class="previewer-container">
         <div class="previewer">
-            <div class="previewer-image-container" v-on:click.prevent.stop="addHotspot">
-                <img :src="imageUrl" class="previewr-image" />
+            <div class="previewer-image-container" v-on:click.prevent.stop="addHotspot" v-show="imageUrl">
+                <img :src="imageUrl" class="previewer-image" id="previewer-image"/>
                 <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="index" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" v-on:click.stop="showHotspotInfo(index)"></div>
             </div>
         </div>
@@ -100,12 +100,31 @@
             this.$store.commit(FORM.UPDATE_FORM_FIELD, field)
         },
         updateImage: function() {
-            this.imageUrl = undefined;
+            this.hotspots = [];
+            this.imageUrl = "";
             for (const selectedMediaName in this.selectedMedias) {
                 const matched = selectedMediaName.match(/^blocks\[tooltipExperienceImage\-\d+\]\[experience_image\]$/) || selectedMediaName.match(/^blocks\[\d+\]\[experience_image\]$/);
                 if (matched) {
                     this.imageUrl = this.selectedMedias[matched[0]][0]['medium'];
+                    this.resizeImage();
                     break;
+                }
+            }
+        },
+        resizeImage: function() {
+            const img = document.getElementById('previewer-image');
+            if (img) {
+                img.onload = function(){
+                    img.style.width = 'auto';
+                    img.style.height = 'auto';
+                    const ratio = img.width / img.height;
+                    if (ratio > 1) {
+                        img.style.width = '500px';
+                        img.style.height = 500 / ratio + 'px';
+                    } else {
+                        img.style.height = '500px';
+                        img.style.width = 500 * ratio + 'px';
+                    }
                 }
             }
         }
@@ -122,30 +141,31 @@
 
     .previewer {
         display: inline-block;
-        width: 70%;
+        width: 500px;
+        height: 500px;
         position: relative;
         background-color: black;
     }
 
-    .previewer:before {
-        content: "";
-        display: block;
-        margin-top: 100%;
-    }
+    // .previewer:before {
+    //     content: "";
+    //     display: block;
+    //     margin-top: 100%;
+    // }
 
     .previewer-image-container {
         position: absolute;
         overflow: hidden;
-        top: 0;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
-        height: 100%;
+        transform: translate(-50%, -50%);
         max-width: 100%;
         max-height: 100%;
     }
 
-    .previewr-image {
-        height: 100%;
+    .previewer-image {
+        max-width: 500px;
+        max-height: 500px;
     }
 
     .hotspot {
@@ -153,7 +173,7 @@
         width: 10px;
         height: 10px;
         background-color: orange;
-        border: 2px solid white;
+        border: 2px solid gray;
         border-radius: 50% 50%;
         box-sizing: border-box; 
         transform: translate(-50%, -50%);
@@ -178,11 +198,11 @@
     }
 
     .hotspot-info-container {
+        width: calc(100% - 500px);
+        height: 100%;
         display: block;
         position: relative;
         float: right;
         padding: 0 20px;
-        width: 30%;
-        height: 100%;
     }
 </style>
