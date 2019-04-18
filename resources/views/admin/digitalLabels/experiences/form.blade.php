@@ -21,12 +21,13 @@
         'label' => 'Title'
     ])
 
-    @formField('repeater', ['type' => 'attract_experience_image'])
-
     @formField('input', [
         'name' => 'attract_subhead',
         'label' => 'Subhead'
     ])
+    
+    @formField('repeater', ['type' => 'attract_experience_image'])
+
 </a17-fieldset>
 
 <a17-fieldset title="End" id="end" :open="true">
