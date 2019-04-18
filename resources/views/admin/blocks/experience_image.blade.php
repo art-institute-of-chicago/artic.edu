@@ -1,21 +1,6 @@
-@formField('input', [
-    'name' => 'title',
-    'label' => 'Title'
-])
-
 @formField('medias', [
     'name' => 'experience_image',
     'label' => 'Image',
-])
-
-@formField('input', [
-    'name' => 'youtube_url',
-    'label' => 'Youtube URL'
-])
-
-@formField('input', [
-    'name' => 'alt_text',
-    'label' => 'Alt Text'
 ])
 
 @formField('radios', [

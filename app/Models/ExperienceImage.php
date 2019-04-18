@@ -17,10 +17,7 @@ class ExperienceImage extends Model implements Sortable
 
     protected $fillable = [
         'published',
-        'title',
         'position',
-        'youtube_url',
-        'alt_text',
         'inline_credits',
         'credits_input',
         'object_id',
