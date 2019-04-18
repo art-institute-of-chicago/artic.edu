@@ -31,8 +31,14 @@
 
 <a17-fieldset title="End" id="end" :open="true">
     @formField('input', [
-        'name' => 'media_title',
-        'label' => 'Media Title'
+        'name' => 'end_headline',
+        'label' => 'Headline'
+    ])
+
+    @formField('input', [
+        'name' => 'end_copy',
+        'label' => 'Copy',
+        'placeholder' => 'The End',
     ])
 
     @formField('repeater', ['type' => 'end_bg_experience_image'])
