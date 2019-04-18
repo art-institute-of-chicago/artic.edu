@@ -236,7 +236,7 @@ class Article extends AbstractModel implements Feedable
            'id' => $this->id,
            'title' => $this->title,
            'date' => $this->present()->date,
-           'summary' => $this->heading ?? $this->list_description ?? 'Article',
+           'description' => $this->heading ?? $this->list_description ?? 'Article',
            'author' => $this->author ?? 'AIC',
            'updated' => $this->updated_at,
            'link' => route('articles.show', $this)
