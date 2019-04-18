@@ -101,8 +101,8 @@
         },
         updateImage: function() {
             this.imageUrl = undefined;
-            for (const selectedmMediaName in this.selectedMedias) {
-                const matched = selectedmMediaName.match(/^blocks\[tooltipExperienceImage\-\d+\]\[experience_image\]$/);
+            for (const selectedMediaName in this.selectedMedias) {
+                const matched = selectedMediaName.match(/^blocks\[tooltipExperienceImage\-\d+\]\[experience_image\]$/) || selectedMediaName.match(/^blocks\[\d+\]\[experience_image\]$/);
                 if (matched) {
                     this.imageUrl = this.selectedMedias[matched[0]][0]['medium'];
                     break;
