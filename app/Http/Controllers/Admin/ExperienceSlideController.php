@@ -16,6 +16,10 @@ class ExperienceSlideController extends ModuleController
         return 'experience_id';
     }
 
+    protected $indexOptions = [
+        'reorder' => true,
+    ];
+
     protected function indexData($request)
     {
         $experience = app(ExperienceRepository::class)->getById(request('experience'));
