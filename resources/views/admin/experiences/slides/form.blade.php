@@ -170,7 +170,7 @@
                 'name' => 'caption',
                 'label' => 'Caption'
             ])
-            <component v-bind:is="`a17-block-tooltip`" :name="`tooltip`" :hotspotsdata="{{ $form_fields['tooltip_hotspots'] }}"></component>
+            <component v-bind:is="`a17-block-tooltip`" :name="`tooltip`" :hotspotsdata="{{ isset($form_fields['tooptip_hotspots']) ? $form_fields['tooltip_hotspots'] : '[]' }}"></component>
         @endcomponent
 
         @component('twill::partials.form.utils._connected_fields', [
