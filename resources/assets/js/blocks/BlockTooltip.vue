@@ -27,6 +27,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import BlockMixin from '@/mixins/block'
   import FormStoreMixin from '@/mixins/formStore'
   import { FORM } from '@/store/mutations'
@@ -38,12 +39,13 @@
         if (this.hotspotsdata) {
             this.hotspots = this.hotspotsdata;
         };
+        this.updateImage();
     },
     data: function() {
         return {
             hotspots: [],
             currentHotspotPos: [undefined, undefined],
-            imageUrl: "https://artic-web.imgix.net/23063a3f-d292-4052-bf80-b2a841fdc894/MirrorPiecesInstallation.jpg?auto=compress%2Cformat&fit=min&fm=jpg&h=430&q=80"
+            imageUrl: undefined,
         } 
     },
     computed: {
@@ -51,11 +53,17 @@
             return this.hotspots.find(function(el) {
                 return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
             }, this);
-        }
+        },
+        ...mapState({
+            selectedMedias: state => state.mediaLibrary.selected,
+      })
     },
     watch: {
         hotspots: function() {
             this.saveHotspots();
+        },
+        selectedMedias: function() {
+            this.updateImage();
         }
     },
     methods: {
@@ -90,6 +98,16 @@
             field.name = 'tooltip_hotspots'
             field.value = this.hotspots
             this.$store.commit(FORM.UPDATE_FORM_FIELD, field)
+        },
+        updateImage: function() {
+            this.imageUrl = undefined;
+            for (const selectedmMediaName in this.selectedMedias) {
+                const matched = selectedmMediaName.match(/^blocks\[tooltipExperienceImage\-\d+\]\[experience_image\]$/);
+                if (matched) {
+                    this.imageUrl = this.selectedMedias[matched[0]][0]['medium'];
+                    break;
+                }
+            }
         }
     }
   }
