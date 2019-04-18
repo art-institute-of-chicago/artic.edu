@@ -80,6 +80,23 @@
         ])
             @formField('repeater', ['type' => 'slide_primary_experience_image'])
                 
+            @formField('radios', [
+                'name' => 'image_side',
+                'label' => 'Primary Image Side',
+                'default' => 'left',
+                'inline' => true,
+                'options' => [
+                    [
+                        'value' => 'left',
+                        'label' => 'Left'
+                    ],
+                    [
+                        'value' => 'right',
+                        'label' => 'Right'
+                    ],
+                    ]
+            ])
+
             <div style="display: none" id="secondary_image">
                 @formField('repeater', ['type' => 'slide_secondary_experience_image'])
             </div>
@@ -98,22 +115,6 @@
                 ])
             </div>
         
-            @formField('radios', [
-                'name' => 'image_side',
-                'label' => 'Image Side',
-                'default' => 'left',
-                'inline' => true,
-                'options' => [
-                    [
-                        'value' => 'left',
-                        'label' => 'Left'
-                    ],
-                    [
-                        'value' => 'right',
-                        'label' => 'Right'
-                    ],
-                    ]
-            ])
         
             <div style="display: none" id="primary_modal">
                 @formField('repeater', ['type' => 'primary_experience_modal'])
@@ -154,6 +155,10 @@
             @formField('input', [
                 'name' => 'caption',
                 'label' => 'Caption'
+            ])
+            @formField('checkbox', [
+                'name' => 'fullwidth_inset',
+                'label' => 'Inset',
             ])
         @endcomponent
 

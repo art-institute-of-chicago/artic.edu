@@ -36,6 +36,7 @@ class Slide extends Model implements Sortable
         'object_title',
         'compare_title',
         'tooltip_hotspots',
+        'fullwidth_inset',
         // 'public',
         // 'featured',
         // 'publish_start_date',
