@@ -257,6 +257,7 @@ class Article extends AbstractModel implements Feedable
            'enclosure' => $heroImage['src'],
            'enclosureLength' => $length,
            'enclosureType' => $type,
+           'category' => $this->categories->first()->name ?? '',
        ]);
     }
 

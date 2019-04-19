@@ -25,6 +25,9 @@
             </description>
             <enclosure url="{{ url($item->enclosure) }}" length="{{ $item->enclosureLength }}" type="{{ $item->enclosureType }}" />
             <pubDate>{{ $item->updated->toAtomString() }}</pubDate>
+            @if ($item->category)
+            <category>{{ $item->category }}</category>
+            @endif
         </item>
     @endforeach
 </channel>
