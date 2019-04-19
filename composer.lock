@@ -4799,12 +4799,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikhiltri/laravel-feed.git",
-                "reference": "594c993f9d950d9c446a5a6942c3ae59871c9763"
+                "reference": "0a8a57a792baa066372fc1859e6cecb22170946e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikhiltri/laravel-feed/zipball/594c993f9d950d9c446a5a6942c3ae59871c9763",
-                "reference": "594c993f9d950d9c446a5a6942c3ae59871c9763",
+                "url": "https://api.github.com/repos/nikhiltri/laravel-feed/zipball/0a8a57a792baa066372fc1859e6cecb22170946e",
+                "reference": "0a8a57a792baa066372fc1859e6cecb22170946e",
                 "shasum": ""
             },
             "require": {
@@ -4873,7 +4873,7 @@
             "support": {
                 "source": "https://github.com/nikhiltri/laravel-feed/tree/feature/support-for-flipboard"
             },
-            "time": "2019-04-18T21:58:13+00:00"
+            "time": "2019-04-19T20:35:31+00:00"
         },
         {
             "name": "spatie/laravel-sitemap",
