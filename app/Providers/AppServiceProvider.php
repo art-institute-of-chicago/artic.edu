@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use A17\Twill\Http\Controllers\Front\Helpers\Seo;
+use A17\Twill\Models\File;
 use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
 use App\Libraries\LakeviewImageService;
 use App\Models\Hour;
+use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerLakeviewImageService();
         $this->registerEmbedConverterService();
         $this->composeTemplatesViews();
+        File::observe(FileObserver::class);
 
         \Illuminate\Pagination\AbstractPaginator::defaultView("site.pagination.aic");
         \Illuminate\Pagination\AbstractPaginator::defaultSimpleView("site.pagination.simple-aic");
