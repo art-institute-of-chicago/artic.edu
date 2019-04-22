@@ -16,7 +16,10 @@ class CreateSeamlessImagesTable extends Migration
         Schema::create('seamless_images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('file_name');
-            $table->string('zip_file_id');
+            $table->unsignedInteger('zip_file_id');
+            $table->foreign('zip_file_id')
+                ->references('id')->on('files')
+                ->onDelete('cascade');
             $table->integer('frame');
         });
     }
