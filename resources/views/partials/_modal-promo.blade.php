@@ -33,7 +33,7 @@
         <div class="g-modal__main">
             <h3 class="g-modal__title f-display-1">{{ $modal['title'] }}</h3>
             @if (isset($modal['subheader']))
-                <h4 class="g-modal__subheader f-headline">{{ $modal['subheader'] }}</h3>
+                <h4 class="g-modal__subheader f-headline-lightbox">{{ $modal['subheader'] }}</h3>
             @endif
             <div class="g-modal__intro f-secondary">{!! $modal['intro'] !!}</div>
 
