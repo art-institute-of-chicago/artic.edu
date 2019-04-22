@@ -1,15 +1,17 @@
 <template>
-  <div class="content">
+  <div class="content" v-if="images.length > 0">
     <br />
     <h1>Seamless Previewer</h1>
     <br />
     <div class="previewer">
-        <div class="images-container">
+        <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{ left: imagePos.x + 'px', top: imagePos.y + 'px', cursor: isDragging ? 'grabbing' : 'grab', transform: 'scale(' + scale / 100 + ')' }"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
         </div>
         <div class="previewer-panel">
             <p>Frame {{ currentFrame }}</p>
             <input type="range" :min="minFrame" :max="maxFrame" class="frame-slider" step="1" v-model.number="currentFrame">
+            <p>Scale {{ scale }}%</p>
+            <input type="range" min=10 max=200 class="scale-slider" step="1" v-model.number="scale">
         </div>
     </div>
   </div>
@@ -27,7 +29,17 @@
     data () {
         return {
             images: [],
-            currentFrame: 0
+            currentFrame: 0,
+            isDragging: false,
+            scale: 100,
+            imagePos: {
+                x: 0,
+                y: 0
+            },
+            mousePos: {
+                x: 0,
+                y: 0
+            },
         }
     },
     computed: {
@@ -42,7 +54,26 @@
         axios.get('http://aic.dev.a17.io/api/v1/seamless-images/745').then(rsp => {
             this.images = rsp.data;
         });
+        window.addEventListener('mouseup', this.dragStop);
     },
+    methods: {
+        dragStart(event) {
+            this.isDragging = true;
+            this.mousePos.x = event.clientX
+            this.mousePos.y = event.clientY
+        },
+        dragging(event) {
+            if (this.isDragging) {
+                this.imagePos.x = this.imagePos.x + (event.clientX - this.mousePos.x);
+                this.imagePos.y = this.imagePos.y + (event.clientY - this.mousePos.y);
+                this.mousePos.x = event.clientX;
+                this.mousePos.y = event.clientY;
+            }
+        },
+        dragStop() {
+            this.isDragging = false;
+        }
+    }
   }
 </script>
 
@@ -51,17 +82,14 @@
         position: relative;
         width: 100%;
         height: 500px;
-        background-color: black;
+        background-color: white;
         overflow: hidden;
         border: 1px solid gainsboro;
     }
     .images-container {
         position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
-        overflow: hidden;
     }
     .sequence-image {
         position: absolute;
@@ -71,6 +99,7 @@
     }
     .previewer-panel {
         position: absolute;
+        padding: 10px;
         bottom: 0;
         left: 0;
         background-color: hsla(0,0%,100%,.8);
