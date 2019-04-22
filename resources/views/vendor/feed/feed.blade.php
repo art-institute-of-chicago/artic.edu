@@ -27,7 +27,9 @@
             <description>
                 <![CDATA[{!! $item->summary !!}]]>
             </description>
-            <enclosure url="{{ url($item->enclosure) }}" length="{{ $item->enclosureLength }}" type="{{ $item->enclosureType }}" />
+            @if($item->__isset('enclosure'))
+                <enclosure url="{{ url($item->enclosure) }}" length="{{ $item->enclosureLength }}" type="{{ $item->enclosureType }}" />
+            @endif
             <pubDate>{{ $item->updated->toRssString() }}</pubDate>
             @if ($item->category)
             <category>{{ $item->category }}</category>
