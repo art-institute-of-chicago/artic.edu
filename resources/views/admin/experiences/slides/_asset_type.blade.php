@@ -60,6 +60,8 @@
             'noTranslate' => true,
             'max' => 1,
         ])
+
+        <component v-bind:is="`a17-block-seamless`" :name="`seamless`"></component>
     @endcomponent
 
     @formField('input', [

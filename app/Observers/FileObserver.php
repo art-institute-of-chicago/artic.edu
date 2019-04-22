@@ -127,6 +127,7 @@ class FileObserver
             return in_array(end($fileNameArray), ['jpg', 'png', 'jpeg']) && strlen($fileNameArray[0]) > 0;
         })));
         foreach ($images as $index => $imageName) {
+            debug($imageName);
             $uploaded = Storage::disk('s3')->putFile('seq', new HttpFile(storage_path('app') . '/' . $imageName), 'public');
             DB::table('seamless_images')->insert(
                 [
