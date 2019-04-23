@@ -27,8 +27,6 @@ class ExperienceModal extends Model implements Sortable
         'modalble_type',
         'modalble_id',
         'modalble_repeater_name',
-        // For experience image use
-        'experience_image',
         'title',
         'youtube_url',
         'alt_text',

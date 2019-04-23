@@ -32,6 +32,7 @@ class Slide extends Model implements Sortable
         'caption',
         'interstitial_headline',
         'body_copy',
+        'split_primary_copy',
         'section_title',
         'object_title',
         'compare_title',

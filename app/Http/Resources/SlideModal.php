@@ -25,7 +25,7 @@ class SlideModal extends JsonResource
             'id' => $this->id,
             '__mediaType' => $this->modal_type,
             'src' => SlideMediaResource::collection($this->experienceImage)->toArray(request()),
-            'caption' => 'This is an example caption',
+            'caption' => $this->imageCaption('experience_image'),
             'poster' => 'ead4b67d-941c-4281-8c77-e2a3d9ed86ae',
         ];
     }

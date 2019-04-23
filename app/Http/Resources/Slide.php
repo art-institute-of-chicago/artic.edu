@@ -24,13 +24,19 @@ class Slide extends JsonResource
     }
     public function toArray($request)
     {
+        return $this->commonStructure() + $this->getSlideAttributes();
+    }
+
+    protected function getSlideAttributes()
+    {
+        $attributes = [];
         if ($this->is_attract) {
-            return $this->commonStructure() + [
+            return [
                 'subhead' => $this->attract_subhead,
                 '__option_subhead' => !empty($this->attract_subhead),
             ];
         } elseif ($this->is_end) {
-            return $this->commonStructure() + [
+            return [
                 'button' => 'Start Over',
                 '__option_credits' => true,
                 'modals' => [
@@ -46,8 +52,25 @@ class Slide extends JsonResource
                 ],
                 '__option_background_image' => count($this->endBackgroundExperienceImages) > 0,
             ];
+        } elseif ($this->module_type === 'split') {
+            return [
+                'primaryCopy' => $this->split_primary_copy,
+            ];
+        } elseif ($this->module_type === 'interstitial') {
+            return [
+                'title' => $this->section_title,
+                'copy' => $this->body_copy,
+                '__option_headline' => !empty($this->headline),
+                '__option_body_copy' => !empty($this->body_copy),
+                '__option_section_title' => !empty($this->section_title),
+                '__option_background_image' => count($this->experienceImage) > 0,
+            ];
+        } elseif ($this->module_type === 'fullwidthmedia') {
+            return [
+
+            ];
         } else {
-            return $this->commonStructure() + [
+            return [
 
             ];
         }
@@ -60,7 +83,6 @@ class Slide extends JsonResource
             'type' => $this->is_experience_resource ? ($this->is_attract ? 'attract' : 'end') : $this->module_type,
             'headline' => $this->is_experience_resource ? ($this->is_attract ? $this->attract_title : $this->end_credit_subhead) : $this->headline,
             'media' => $this->getMedia(),
-            'copy' => $this->is_experience_resource ? ($this->is_end ? $this->end_credit_copy : '') : $this->body_copy,
             'seamlessAsset' => [
                 'assetId' => '0',
                 'x' => 0,
@@ -68,9 +90,9 @@ class Slide extends JsonResource
                 'scale' => 1,
                 'frame' => 0,
             ],
-            'assetType' => 'seamless',
+            'assetType' => $this->is_experience_resource ? 'seamless' : $this->asset_type,
             '__mediaType' => null,
-            'moduleTitle' => $this->is_experience_resource ? null : null,
+            'moduleTitle' => $this->is_experience_resource ? null : $this->title,
             'exhibitonId' => $this->is_experience_resource ? $this->digitalLabel->id : $this->experience->digitalLabel->id,
             'isActive' => $this->is_experience_resource ? true : true,
             'experienceId' => $this->id,
@@ -88,7 +110,7 @@ class Slide extends JsonResource
                 '__option_inset' => $this->module_type === 'split' ?
                 in_array(['id' => 'inset'], $this->split_attributes) :
                 ($this->module_type === 'fullwidthmedia' ? $this->fullwidth_inset : false),
-                'modal' => $this->getModal(),
+                'modals' => $this->getModal(),
             ];
         }
 
@@ -111,6 +133,10 @@ class Slide extends JsonResource
             $images = $this->attractExperienceImages;
         } elseif ($this->is_end) {
             $images = $this->endBackgroundExperienceImages;
+        } elseif ($this->module_type === 'split') {
+            $images = $this->primaryExperienceImage;
+        } elseif ($this->module_type === 'interstitial') {
+            $images = $this->experienceImage;
         } else {
             return null;
         }

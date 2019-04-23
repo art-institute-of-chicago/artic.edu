@@ -80,6 +80,13 @@
             'fieldValues' => 'split',
             'keepAlive' => true,
         ])
+            @formField('input', [
+                'name' => 'split_primary_copy',
+                'type' => 'textarea',
+                'label' => 'Primary Copy',
+                'rows' => 4
+            ])
+
             @formField('repeater', ['type' => 'slide_primary_experience_image'])
                 
             @formField('radios', [
