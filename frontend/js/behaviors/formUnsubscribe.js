@@ -13,6 +13,8 @@ const formUnsubscribe = function(container) {
       } else {
         // disable
         el.setAttribute('disabled', 'true');
+        el.removeAttribute('checked');
+        el.checked = false;
         container.querySelector('input[type=checkbox][name="unsubscribe"]').checked = true;
       }
     });
