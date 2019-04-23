@@ -26,7 +26,7 @@ class Slide extends Model implements Sortable
         'media_type',
         'media_title',
         'position',
-        'attributes',
+        'split_attributes',
         'headline',
         'image_side',
         'caption',
@@ -50,6 +50,11 @@ class Slide extends Model implements Sortable
     //     'active',
     // ];
 
+    protected $casts = [
+        'split_attributes' => 'array',
+        'tooltip_hotspots' => 'array',
+    ];
+
     // uncomment and modify this as needed if you use the HasSlug trait
     public $slugAttributes = [
         'title',
@@ -62,12 +67,12 @@ class Slide extends Model implements Sortable
 
     public $filesParams = ['sequence_file'];
 
-    public function getAttributesAttribute()
+    public function getSplitAttributesAttribute()
     {
-        if ($this->attributes['attributes']) {
+        if ($this->attributes['split_attributes']) {
             return array_map(function ($option) {
                 return ['id' => $option];
-            }, json_decode($this->attributes['attributes']));
+            }, json_decode($this->attributes['split_attributes']));
         }
     }
 

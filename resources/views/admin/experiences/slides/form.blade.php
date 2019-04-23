@@ -24,7 +24,7 @@
                 'label' => 'Tooltip'
             ],
             [
-                'value' => 'full-width-media',
+                'value' => 'fullwidthmedia',
                 'label' => 'Full-Width Media'
             ],
             [
@@ -40,7 +40,7 @@
         'keepAlive' => true,
     ])
         @formField('multi_select', [
-            'name' => 'attributes',
+            'name' => 'split_attributes',
             'label' => 'Attributes',
             'options' => [
                 [
@@ -152,7 +152,7 @@
 
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'module_type',
-            'fieldValues' => 'full-width-media',
+            'fieldValues' => 'fullwidthmedia',
             'keepAlive' => true,
         ])
             @formField('repeater', ['type' => 'experience_image'])
@@ -204,7 +204,7 @@
 @stop
 @push('extra_js')
     <script>
-        const attributesField = window.STORE.form.fields.find(field => field.name == 'attributes');
+        const attributesField = window.STORE.form.fields.find(field => field.name == 'split_attributes');
         if (attributesField) {
             attributesField.value.forEach(function (option) {
                 const e = document.getElementById(option);
@@ -218,7 +218,7 @@
                 return state.form.fields;
             },
             function (newVal, oldVal) {
-                const attributes = newVal.find(field => field.name == 'attributes');
+                const attributes = newVal.find(field => field.name == 'split_attributes');
                 if (attributes) {
                     const options = ['inset', 'primary_modal', 'headline', 'secondary_image', 'secondary_modal', 'caption'];
                     options.forEach(function (option) {

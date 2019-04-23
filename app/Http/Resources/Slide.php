@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\SlideMedia as SlideMediaResource;
+use App\Http\Resources\SlideModal as SlideModalResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Slide extends JsonResource
@@ -54,16 +55,11 @@ class Slide extends JsonResource
 
     protected function commonStructure()
     {
-        return [
+        $rst = [
             'id' => $this->is_experience_resource ? null : $this->id,
-            'type' => $this->is_experience_resource ? ($this->is_attract ? 'attract' : 'end') : null,
-            'headline' => $this->is_experience_resource ? ($this->is_attract ? $this->attract_title : $this->end_credit_subhead) : null,
-            'media' => $this->is_experience_resource ? (
-                $this->is_attract ?
-                SlideMediaResource::collection($this->attractExperienceImages)->toArray(request()) :
-                SlideMediaResource::collection($this->endBackgroundExperienceImages)->toArray(request())
-            ) :
-            null,
+            'type' => $this->is_experience_resource ? ($this->is_attract ? 'attract' : 'end') : $this->module_type,
+            'headline' => $this->is_experience_resource ? ($this->is_attract ? $this->attract_title : $this->end_credit_subhead) : $this->headline,
+            'media' => $this->getMedia(),
             'copy' => $this->is_experience_resource ? ($this->is_end ? $this->end_credit_copy : '') : $this->body_copy,
             'seamlessAsset' => [
                 'assetId' => '0',
@@ -83,5 +79,41 @@ class Slide extends JsonResource
             'bgColorCode' => $this->is_experience_resource ? $this->digitalLabel->grouping_background_color : null,
             'vScalePercent' => 0,
         ];
+
+        if (!$this->is_experience_resource && in_array($this->module_type, ['split', 'fullwidthmedia'])) {
+            $rst += [
+                '__mediaType__options' => [
+                    'image', 'video',
+                ],
+                '__option_inset' => $this->module_type === 'split' ?
+                in_array(['id' => 'inset'], $this->split_attributes) :
+                ($this->module_type === 'fullwidthmedia' ? $this->fullwidth_inset : false),
+                'modal' => $this->getModal(),
+            ];
+        }
+
+        return $rst;
+    }
+
+    protected function getModal()
+    {
+        if ($this->is_experience_resource) {
+
+        } elseif ($this->module_type === 'split') {
+            $modals = $this->primaryExperienceModal;
+        }
+        return SlideModalResource::collection($modals)->toArray(request());
+    }
+
+    protected function getMedia()
+    {
+        if ($this->is_attract) {
+            $images = $this->attractExperienceImages;
+        } elseif ($this->is_end) {
+            $images = $this->endBackgroundExperienceImages;
+        } else {
+            return null;
+        }
+        return SlideMediaResource::collection($images)->toArray(request());
     }
 }
