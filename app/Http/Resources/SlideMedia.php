@@ -15,7 +15,7 @@ class SlideMedia extends JsonResource
     public function toArray($request)
     {
         return [
-            'src' => $this->getImageSrc($this->image('experience_image')),
+            'src' => $this->image('experience_image'),
             'credits' => [
                 'creditsACP' => $this->artist,
                 'creditsTitle' => $this->credit_title,
@@ -23,20 +23,20 @@ class SlideMedia extends JsonResource
                 'creditsMedium' => $this->medium,
                 'creditsDimensions' => $this->dimensions,
                 'creditsCreditLine' => $this->credit_line,
-                'creditsRefNum' => $this->main_refernece_number,
+                'creditsRefNum' => $this->main_reference_number,
                 'creditsCopyright' => $this->copyright_notice,
                 'type' => $this->credits_input,
             ],
-            'altText' => $this->alt_text,
+            'altText' => $this->imageAltText('experience_image'),
         ];
     }
 
-    protected function getImageSrc($url)
-    {
-        $matched = preg_match('/(?<=https:\/\/artic-web.imgix.net\/).+(?=\?)/', $url, $matches);
-        if ($matched) {
-            return $matches[0];
-        }
-        return '';
-    }
+    // protected function getImageSrc($url)
+    // {
+    //     $matched = preg_match('/(?<=https:\/\/' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '\/).+(?=\?)/', $url, $matches);
+    //     if ($matched) {
+    //         return $matches[0];
+    //     }
+    //     return '';
+    // }
 }

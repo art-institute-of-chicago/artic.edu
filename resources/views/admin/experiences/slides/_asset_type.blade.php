@@ -61,7 +61,7 @@
             'max' => 1,
         ])
 
-        <component v-bind:is="`a17-block-seamless`" :name="`seamless`"></component>
+        <component v-bind:is="`a17-block-seamless`" :name="`seamless`" :file-id="`745`"></component>
     @endcomponent
 
     @formField('input', [

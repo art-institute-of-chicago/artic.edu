@@ -101,11 +101,11 @@
         'inline' => true,
         'options' => [
             [
-                'value' => 'grey',
+                'value' => '#f7f7f7',
                 'label' => 'Grey'
             ],
             [
-                'value' => 'white',
+                'value' => '#ffffff',
                 'label' => 'White'
             ],
         ]

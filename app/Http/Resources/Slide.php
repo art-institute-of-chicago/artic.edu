@@ -30,7 +30,20 @@ class Slide extends JsonResource
             ];
         } elseif ($this->is_end) {
             return $this->commonStructure() + [
-
+                'button' => 'Start Over',
+                '__option_credits' => true,
+                'modals' => [
+                    [
+                        'id' => null,
+                        'subhead' => $this->end_credit_subhead,
+                        'copy' => $this->end_credit_copy,
+                        '__option_subhead' => !empty($this->end_credit_subhead),
+                        '__option_copy' => !empty($this->end_credit_subhead),
+                        '__option_media' => count($this->endExperienceImages) > 0,
+                        'media' => SlideMediaResource::collection($this->endExperienceImages)->toArray(request()),
+                    ],
+                ],
+                '__option_background_image' => count($this->endBackgroundExperienceImages) > 0,
             ];
         } else {
             return $this->commonStructure() + [
@@ -48,7 +61,7 @@ class Slide extends JsonResource
             'media' => $this->is_experience_resource ? (
                 $this->is_attract ?
                 SlideMediaResource::collection($this->attractExperienceImages)->toArray(request()) :
-                SlideMediaResource::collection($this->endExperienceImages)->toArray(request())
+                SlideMediaResource::collection($this->endBackgroundExperienceImages)->toArray(request())
             ) :
             null,
             'copy' => $this->is_experience_resource ? ($this->is_end ? $this->end_credit_copy : '') : $this->body_copy,
@@ -62,7 +75,7 @@ class Slide extends JsonResource
             'assetType' => 'seamless',
             '__mediaType' => null,
             'moduleTitle' => $this->is_experience_resource ? null : null,
-            'exhibitonId' => null,
+            'exhibitonId' => $this->is_experience_resource ? $this->digitalLabel->id : $this->experience->digitalLabel->id,
             'isActive' => $this->is_experience_resource ? true : true,
             'experienceId' => $this->id,
             'experienceType' => 'LABEL',

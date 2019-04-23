@@ -26,6 +26,7 @@
 
   export default {
     mixins: [BlockMixin],
+    props: ['fileId'],
     data () {
         return {
             images: [],
@@ -51,9 +52,11 @@
         }
     },
     mounted () {
-        axios.get('http://aic.dev.a17.io/api/v1/seamless-images/745').then(rsp => {
-            this.images = rsp.data;
-        });
+        if (this.fileId) {
+            axios.get('http://aic.dev.a17.io/api/v1/seamless-images/' + this.fileId).then(rsp => {
+                this.images = rsp.data;
+            });
+        }
         window.addEventListener('mouseup', this.dragStop);
     },
     methods: {

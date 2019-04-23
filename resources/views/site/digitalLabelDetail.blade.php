@@ -2,7 +2,7 @@
 @section('content')
     <section class="o-closer-look" data-behavior="closerLook">
         <script type="application/json" data-closerLook-contentBundle>
-            {{ dd($item->contentBundle) }}
+            {{-- {{ dd($item->contentBundle) }} --}}
             {!! json_encode($item->contentBundle) !!}
         </script>
         <script type="application/json" data-closerLook-assetLibrary>
@@ -18,7 +18,7 @@
         </script>
     </section> --}}
 
-    <section>
+    {{-- <section>
         @component('components.molecules._m-title-bar')
             Further Reading
         @endcomponent
@@ -46,6 +46,6 @@
                 @endcomponent
             @endforeach
         @endcomponent
-    </section>
+    </section> --}}
 
 @endsection

@@ -71,6 +71,11 @@ class Slide extends Model implements Sortable
         }
     }
 
+    public function experience()
+    {
+        return $this->belongsTo('App\Models\Experience');
+    }
+
     public function experienceImage()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'experience_image');
