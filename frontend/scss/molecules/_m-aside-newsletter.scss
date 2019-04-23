@@ -223,6 +223,7 @@
 .m-aside-newsletter--inline .m-aside-newsletter__also {
   background-color: #f5f6f7;
   padding: 8px 16px;
+  text-align: right;
 }
 
 .m-aside-newsletter--inline .m-aside-newsletter__also span::before,
@@ -458,4 +459,29 @@
 
 .m-aside-newsletter--wide .checkbox label {
   padding-right: 16px;
+}
+
+$f-aside-subtitle: generate-font-obj(
+  (
+    font-family: $sans-serif-font,
+    font-family-loaded: $sans-serif-font--loaded,
+    font-loaded-class: $sans-serif-font-loaded-class,
+    settings: (
+      'xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
+      'medium+': (font-size: 14, line-height: 28, push: 0)
+    )
+  )
+);
+
+
+.m-aside-newsletter .subtitle {
+  @include font-styles($f-aside-subtitle);
+
+  a {
+    color: $color__link--accent;
+
+    &:hover {
+      color: $color__link--accent-hover;
+    }
+  }
 }
