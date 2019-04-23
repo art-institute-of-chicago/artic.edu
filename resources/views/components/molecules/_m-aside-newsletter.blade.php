@@ -73,7 +73,7 @@
             @elseif (isset($variation) && strpos($variation, 'm-aside-newsletter--inline') !== false)
 
             <div class="m-aside-newsletter__also" aria-hidden="true">
-                <span class="f-secondary">Includes news and exhibition announcements from the Art Institute of Chicago.</span>
+                <span class="f-secondary subtitle">Includes monthly news and announcements from the Art Institute of Chicago.</span>
             </div>
             <input type="hidden" name="subscriptions[]" id="subscriptions-{{ $list }}" value="{{ $list }}">
 
