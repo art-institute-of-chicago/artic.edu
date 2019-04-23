@@ -30,29 +30,7 @@
         'label' => 'Zoomable'
     ])
 
-    @formField('radios', [
-        'name' => 'has_experience_image',
-        'label' => 'Experience Image',
-        'default' => false,
-        'inline' => true,
-        'options' => [
-            [
-                'value' => true,
-                'label' => 'On'
-            ],
-            [
-                'value' => false,
-                'label' => 'Off'
-            ]
-        ]
-    ])
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'has_experience_image',
-        'fieldValues' => true,
-        'renderForBlocks' => true
-    ])
-        @include('admin.blocks.experience_image')
-    @endcomponent
+    @include('admin.blocks.experience_image')
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
