@@ -1,7 +1,7 @@
 @if (isset($screenreaderTitle))
-<h3 class="sr-only" id="{{ 'h-' .str_slug($screenreaderTitle) }}">{{ $screenreaderTitle }}</h3>
+<h3 class="sr-only" id="{{ 'h-' .Str::slug($screenreaderTitle) }}">{{ $screenreaderTitle }}</h3>
 @endif
-<ul class="m-link-list{{ (isset($variation)) ? ' '.$variation : '' }}"{!! isset($screenreaderTitle) ? ' aria-labelledby="h-' .str_slug($screenreaderTitle) .'"' : '' !!}>
+  <ul class="m-link-list{{ (isset($variation)) ? ' '.$variation : '' }}"{!! isset($screenreaderTitle) ? ' aria-labelledby="h-' .Str::slug($screenreaderTitle) .'"' : '' !!}>
     @foreach ($links as $link)
     <li class="m-link-list__item{{ (isset($link['active']) and $link['active']) ? ' s-active' : '' }}">
         @if (isset($variation) && strrpos($variation, "--download"))
@@ -27,7 +27,7 @@
                 @if (isset($link['iconBefore']) and $link['iconBefore'])<svg aria-hidden="true" class="m-link-list__icon-before icon--{{ $link['iconBefore'] }}"><use xlink:href="#icon--{{ $link['iconBefore'] }}" /></svg>@endif
                 <span class="m-link-list__label"{!! (isset($link['itemprop'])) ? ' itemprop="'.$link['itemprop'].'"' : '' !!}>{!! $link['label'] !!}</span>
                 @if (isset($link['iconAfter']) and $link['iconAfter'])<svg aria-hidden="true" class="m-link-list__icon-after icon--{{ $link['iconAfter'] }}"><use xlink:href="#icon--{{ $link['iconAfter'] }}" /></svg>@endif
-                @if (isset($link['embed']))<textarea style="display: none;">{!! is_array($link['embed']) ? array_first($link['embed']) : $link['embed'] !!}</textarea>@endif
+                @if (isset($link['embed']))<textarea style="display: none;">{!! is_array($link['embed']) ? Arr::first($link['embed']) : $link['embed'] !!}</textarea>@endif
             </a>
             @else
             <span class="m-link-list__trigger {{ $font ?? 'f-secondary' }}{{ (isset($link['variation'])) ? ' '.$link['variation'] : '' }}">

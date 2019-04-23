@@ -18,7 +18,7 @@
                             @endcomponent
                         </span>
                         @endif
-                        <strong>{{ str_limit($item->text, 100) }}</strong>
+                            <strong>{{ Str::limit($item->text, 100) }}</strong>
                         @unless(empty($item->section))
                             in
                             <strong>{{ $item->section }}</strong>

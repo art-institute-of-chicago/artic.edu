@@ -17,6 +17,9 @@ class HomeFeature extends AbstractModel
         'published',
         'publish_start_date',
         'publish_end_date',
+        'tag',
+        'call_to_action',
+        'url',
     ];
 
     protected $dispatchesEvents = [
@@ -101,8 +104,11 @@ class HomeFeature extends AbstractModel
         return $this->imageFront('hero');
     }
 
-    public function videoFront($image)
+    public function videoFront($image = null)
     {
+        if (!$image) {
+            $image = $this->featureImage;
+        }
         if (($videoUrl = $this->file('video')) != null) {
             $video = [
                 'src' => $videoUrl,

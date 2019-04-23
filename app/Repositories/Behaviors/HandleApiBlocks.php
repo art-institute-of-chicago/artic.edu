@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Behaviors;
 
+use Illuminate\Support\Str;
+
 trait HandleApiBlocks
 {
 
@@ -46,7 +48,7 @@ trait HandleApiBlocks
     protected function getModelRepository($relation, $model = null)
     {
         if (!$model) {
-            $model = ucfirst(camel_case(str_singular($relation)));
+            $model = ucfirst(Str::camel(Str::singular($relation)));
         }
 
         // Always load the API repository first and fallback to the augmented or regular one.

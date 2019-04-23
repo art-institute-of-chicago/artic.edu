@@ -1,4 +1,4 @@
-<{{ $tag or 'header' }} class="m-article-header m-article-header--generic{{ (isset($img)) ? ' m-article-header--generic-w-img' : ''}}{{ (!isset($breadcrumb)) ? ' m-article-header--generic-no-breadcrumb' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--generic{{ (isset($img)) ? ' m-article-header--generic-w-img' : ''}}{{ (!isset($breadcrumb)) ? ' m-article-header--generic-no-breadcrumb' : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="blurMyBackground">
     @if ($img)
     <div class="m-article-header__img" data-blur-img>
         @component('components.atoms._img')
@@ -44,4 +44,4 @@
           @endforeach
       </ul>
   @endif
-</{{ $tag or 'header' }}>
+</{{ $tag ?? 'header' }}>

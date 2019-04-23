@@ -11,6 +11,8 @@ use App\Models\Api\Search;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 
+use Illuminate\Support\Str;
+
 class Selection extends AbstractModel
 {
     use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable;
@@ -160,7 +162,7 @@ class Selection extends AbstractModel
                 }
 
                 $this->selectedFeaturedRelated = [
-                    'type' => str_singular($type),
+                    'type' => Str::singular($type),
                     'items' => [$item],
                 ];
                 return $this->selectedFeaturedRelated;

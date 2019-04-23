@@ -19,14 +19,14 @@
         "aacotroneo/laravel-saml2": "dev-remove_mcrypt",
         "aic/data-hub-foundation": "dev-master",
         "area17/twill": "1.2.*",
-        "darkaonline/l5-swagger": "5.6.*",
+        "darkaonline/l5-swagger": "5.8.*",
         "digitaladditive/exacttarget-laravel": "^2.2",
         "eluceo/ical": "0.14.*",
         "fideloper/proxy": "~4.0",
         "guzzlehttp/guzzle": "6.3.0",
         "intervention/httpauth": "^2.0",
         "kalnoy/nestedset": "^4.3",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "onelogin/php-saml": "3.0.0.x-dev@dev",
         "rlanvin/php-rrule": "1.*",
@@ -36,12 +36,12 @@
         "spatie/laravel-sitemap": "^5.2"
     },
     "require-dev": {
-        "filp/whoops": "^2.0",
+        "filp/whoops": "^2.3",
         "fzaninotto/faker": "^1.4",
         "laravel/homestead": "^6.5",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^2.0",
-        "phpunit/phpunit": "^7.0"
+        "nunomaduro/collision": "^3.0",
+        "phpunit/phpunit": "^7.5"
     },
     "autoload": {
         "classmap": [

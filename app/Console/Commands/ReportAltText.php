@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class ReportAltText extends Command
 {
@@ -213,6 +214,6 @@ class ReportAltText extends Command
     }
 
     function pathPrefix($item) {
-        return str_plural(strtolower(class_basename(get_class($item))));
+        return Str::plural(strtolower(class_basename(get_class($item))));
     }
 }

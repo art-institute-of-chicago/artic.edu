@@ -1,4 +1,4 @@
-<{{ $tag or 'li' }} class="m-listing m-listing--inline m-listing--rtl{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }} class="m-listing m-listing--inline m-listing--rtl{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $item->url ?? $item->web_url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
 
         <span class="m-listing__title">
@@ -38,4 +38,4 @@
         @endif
 
     </a>
-</{{ $tag or 'li' }}>
+</{{ $tag ?? 'li' }}>

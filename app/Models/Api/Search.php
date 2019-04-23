@@ -5,6 +5,7 @@ namespace App\Models\Api;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Libraries\Api\Builders\ApiModelBuilderSearch;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class Search extends BaseApiModel
 {
@@ -445,10 +446,10 @@ class Search extends BaseApiModel
     protected function transformYear($year) {
         // Year could come with BC, AD, or 'Present'
 
-        if (str_contains($year, 'BC')) {
+        if (Str::contains($year, 'BC')) {
             $year = - (integer) $year;
         } else {
-            if (str_contains($year, 'Present')) {
+            if (Str::contains($year, 'Present')) {
                 $year = Carbon::now()->year;
             } else {
                 $year = (integer) $year;
@@ -627,7 +628,7 @@ class Search extends BaseApiModel
     {
         $params = [
             'bool' => [
-                'must' => [
+                'filter' => [
                     [
                         'bool' => [
                             'should' => [
@@ -642,6 +643,50 @@ class Search extends BaseApiModel
                                     'term' => [
                                         'is_published' => [
                                             'value' => true,
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        'bool' => [
+                            'should' => [
+                                [
+                                    'range' => [
+                                        'publish_start_date' => [
+                                            'lte' => 'now',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'bool' => [
+                                        'must_not' => [
+                                            'exists' => [
+                                                'field' => 'publish_start_date',
+                                            ],
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        'bool' => [
+                            'should' => [
+                                [
+                                    'range' => [
+                                        'publish_end_date' => [
+                                            'gte' => 'now',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'bool' => [
+                                        'must_not' => [
+                                            'exists' => [
+                                                'field' => 'publish_end_date',
+                                            ],
                                         ]
                                     ]
                                 ]

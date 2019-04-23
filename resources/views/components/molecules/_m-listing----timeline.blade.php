@@ -10,7 +10,7 @@
         {{ $item->title }}
     @endcomponent
     @if (isset($item->blurb))
-        @if (starts_with($item->blurb, '<p'))
+        @if (Str::startsWith($item->blurb, '<p'))
             {!! str_replace('<p>', '<p class="f-body">', $item->blurb) !!}
         @else
             <p class="f-body">{{ $item->blurb }}</p>

@@ -103,7 +103,7 @@
             @component('components.blocks._text')
                 @slot('font', 'f-subheading-1')
                 @slot('tag', 'h4')
-                {{ str_plural('Catalogue', $item->historyDocuments->count()) }}
+                {{ Str::plural('Catalogue', $item->historyDocuments->count()) }}
             @endcomponent
             @foreach ($item->historyDocuments->toArray() as $catalogue)
                 @component('components.molecules._m-download-file')
@@ -119,7 +119,7 @@
             @component('components.blocks._text')
                 @slot('font', 'f-subheading-1')
                 @slot('tag', 'h4')
-                {{ str_plural('Picture', $item->historyImages->count()) }}
+                {{ Str::plural('Picture', $item->historyImages->count()) }}
             @endcomponent
             @foreach ($item->historyImages->toArray() as $picture)
                     @component('components.molecules._m-media')

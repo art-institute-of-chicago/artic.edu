@@ -14,7 +14,7 @@
         <span class="f-secondary">
             @if (isset($total))
                 @if ($hasAnyFilter ?? null)
-                    {{ $total }} {{ str_plural('result', $total) }}
+                    {{ $total }} {{ Str::plural('result', $total) }}
                 @else
                     All results
                 @endif

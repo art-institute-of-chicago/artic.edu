@@ -5,6 +5,8 @@ namespace App\Models\Api;
 use App\Libraries\Api\Models\BaseApiModel;
 use App\Models\Behaviors\HasMediasApi;
 
+use Illuminate\Support\Str;
+
 class Asset extends BaseApiModel
 {
     // We are modifying imageFront to use it when we have a youtube video
@@ -73,7 +75,7 @@ class Asset extends BaseApiModel
         $assets_url = str_replace('/iiif', '/assets', config('lakeview.base_url'));
         $assets_cdn_url = str_replace('/iiif', '/assets', config('lakeview.base_url_cdn'));
 
-        if (starts_with($content, $assets_url)) {
+        if (Str::startsWith($content, $assets_url)) {
             return str_replace($assets_url, $assets_cdn_url, $content);
         }
 

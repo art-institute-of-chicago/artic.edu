@@ -610,6 +610,10 @@
     display: none;
   }
 
+  .m-listing--feature .short-description.show {
+    display: block;
+  }
+
   .m-listing--feature .m-listing__link:hover .title {
     color: $color__text--title-contrast;
     opacity: 1;
@@ -821,6 +825,10 @@
 .m-listing--hero .short-description.f-secondary,
 .m-listing--hero .short-description.f-tertiary {
   display: none;
+}
+
+.m-listing--hero .short-description.show {
+  display: block;
 }
 
 .m-listing--hero .title {

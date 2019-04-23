@@ -169,7 +169,7 @@
         @endif
 
         @if ($fullscreen and $type == 'embed')
-        <textarea style="display: none;">{!! is_array($media['embed']) ? array_first($media['embed']) : $media['embed'] !!}</textarea>
+            <textarea style="display: none;">{!! is_array($media['embed']) ? Arr::first($media['embed']) : $media['embed'] !!}</textarea>
         @endif
 
     </span>

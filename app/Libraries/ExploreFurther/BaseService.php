@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Libraries\ExploreFurther;
+
 use App\Models\Api\Search;
+
+use Illuminate\Support\Str;
 
 /**
  *
@@ -90,7 +93,7 @@ class BaseService
             ->forceEndpoint('search');
 
         $active = $parameters->filter(function($value, $key) {
-            return str_contains($key, 'ef-');
+            return Str::contains($key, 'ef-');
         })->isNotEmpty();
 
         if ($active) {

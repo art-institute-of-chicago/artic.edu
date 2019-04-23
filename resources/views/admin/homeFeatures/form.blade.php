@@ -20,6 +20,9 @@
                 $selectedFeature = $featureType;
             }
         }
+        if ($item->url) {
+            $selectedFeature = 'custom';
+        }
     @endphp
 
     @formField('radios', [
@@ -43,6 +46,10 @@
             [
                 'value' => 'selections',
                 'label' => 'Collection Highlights'
+            ],
+            [
+                'value' => 'custom',
+                'label' => 'Custom'
             ],
         ]
     ])
@@ -97,6 +104,29 @@
             'moduleName' => 'selections',
             'name' => 'selections',
             'label' => 'Collection Highlights'
+        ])
+    @endcomponent
+
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => '_featureType',
+        'renderForBlocks' => false,
+        'fieldValues' => 'custom'
+    ])
+        @formField('input', [
+            'name' => 'tag',
+            'label' => 'Tag',
+            'note' => 'Small text, eg "Exhibition"'
+        ])
+
+        @formField('input', [
+            'name' => 'call_to_action',
+            'label' => 'Call to action',
+            'note' => 'Displays where dates do for Exhibitions'
+        ])
+
+        @formField('input', [
+            'name' => 'url',
+            'label' => 'URL for link'
         ])
     @endcomponent
 @stop

@@ -8,7 +8,7 @@
 @component('components.blocks._text')
     @slot('font', 'f-module-title-1')
     @slot('tag', 'h4')
-    {{ 'Featured '.str_plural('Product', $items->count()) }}
+    {{ 'Featured '.Str::plural('Product', $items->count()) }}
 @endcomponent
 
 @component('components.organisms._o-row-listing')

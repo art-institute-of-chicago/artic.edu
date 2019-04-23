@@ -205,6 +205,11 @@
   .g-modal__title {
   }
 
+  .g-modal__subheader {
+    margin-top: 12px;
+    color: $color__text--accent;
+  }
+
   .g-modal__intro {
     margin-top: 24px;
     color: $color__text--secondary;
@@ -273,5 +278,26 @@
       &:active:hover {
         color: $color__link--accent-active;
       }
+  }
+
+  // Borrowed from _m-article-header (m-article-header--hero)
+  .m-article-header__info-trigger {
+    bottom: 24px;
+    right: 24px;
+
+    @include breakpoint('small+') {
+      bottom: 28px;
+      right: 28px;
+    }
+  }
+
+  .m-article-header__info {
+    bottom: 56px;
+    right: 56px;
+
+    @include breakpoint('small+') {
+      bottom: 60px;
+      right: 60px;
+    }
   }
 }

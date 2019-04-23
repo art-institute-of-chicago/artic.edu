@@ -12,6 +12,8 @@ use A17\Twill\Models\Behaviors\Sortable;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasApiRelations;
 use Kalnoy\Nestedset\NodeTrait;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class GenericPage extends AbstractModel implements Sortable
 {
@@ -113,11 +115,11 @@ class GenericPage extends AbstractModel implements Sortable
 
     public static function saveTreeFromIds($nodesArray)
     {
-        $parentNodes = self::find(array_pluck($nodesArray, 'id'));
+        $parentNodes = self::find(Arr::pluck($nodesArray, 'id'));
 
         self::updateTreeRoots($nodesArray, $parentNodes);
 
-        $parentNodes = self::find(array_pluck($nodesArray, 'id'));
+        $parentNodes = self::find(Arr::pluck($nodesArray, 'id'));
 
         self::rebuildTree($nodesArray, $parentNodes);
     }
@@ -141,7 +143,7 @@ class GenericPage extends AbstractModel implements Sortable
                 $parent = $parentNodes->where('id', $nodeArray['id'])->first();
                 if (isset($nodeArray['children']) && is_array($nodeArray['children'])) {
                     $position = 1;
-                    $nodes = self::find(array_pluck($nodeArray['children'], 'id'));
+                    $nodes = self::find(Arr::pluck($nodeArray['children'], 'id'));
                     foreach ($nodeArray['children'] as $child) {
                         //append the children to their (old/new)parents
                         $descendant = $nodes->where('id', $child['id'])->first();
@@ -198,7 +200,7 @@ class GenericPage extends AbstractModel implements Sortable
                 }
 
                 $this->selectedFeaturedRelated = [
-                    'type' => str_singular($type),
+                    'type' => Str::singular($type),
                     'items' => [$item]
                 ];
                 return $this->selectedFeaturedRelated;

@@ -12,7 +12,7 @@
                 $activePrimaryLink = $i;
             }
             if ($i == 0) {
-                $headingId .= '-' .kebab_case($linksPrimary[$i]['label']);
+                $headingId .= '-' .Str::kebab($linksPrimary[$i]['label']);
             }
         }
     }

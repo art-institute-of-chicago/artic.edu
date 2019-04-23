@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 /***
 
 aic_convertFromImageProxy
@@ -367,6 +369,14 @@ function aic_imageSettings($data) {
             $imgixSettings['crop'] = 'faces,edges,entropy';
         } else {
             $imgixSettings['crop'] = $settings['crop'];
+        }
+
+        // Special settings for GIFs [WEB-955]
+        if (Str::endsWith(explode('?', $originalSrc)[0], 'gif')) {
+            $imgixSettings['auto'] = 'format,compress';
+            $imgixSettings['fm'] = 'gif';
+            $imgixSettings['gif-q'] = 45;
+            unset($imgixSettings['q']);
         }
 
         $imgixSettings['w'] = $width;

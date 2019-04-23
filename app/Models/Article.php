@@ -8,6 +8,7 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
+use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
@@ -215,7 +216,7 @@ class Article extends AbstractModel implements Feedable
                 }
 
                 $this->selectedFeaturedRelated = [
-                    'type' => str_singular($type),
+                    'type' => Str::singular($type),
                     'items' => [$item],
                 ];
                 return $this->selectedFeaturedRelated;

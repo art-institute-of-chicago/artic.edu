@@ -14,6 +14,7 @@ use App\Jobs\ReorderPages;
 use App\Models\GenericPage;
 use App\Models\Api\Search;
 use DB;
+use Illuminate\Support\Arr;
 
 class GenericPageRepository extends ModuleRepository
 {
@@ -28,7 +29,7 @@ class GenericPageRepository extends ModuleRepository
 
     public function setNewOrder($ids)
     {
-        if (is_array(array_first($ids))) {
+        if (is_array(Arr::first($ids))) {
             ReorderPages::dispatch($ids);
         } else {
             parent::setNewOrder($ids);

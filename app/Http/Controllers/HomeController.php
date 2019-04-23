@@ -58,6 +58,7 @@ class HomeController extends FrontController
 
         return [
             'title' => $lightbox->header,
+            'subheader' => $lightbox->subheader,
             'intro' => $lightbox->body,
             'action_url' => $lightbox->action_url,
             'form_id' => $lightbox->form_id,
@@ -67,6 +68,7 @@ class HomeController extends FrontController
             'expiry_period' => $lightbox->expiry_period,
             'terms_text' => $lightbox->terms_text,
             'image' => $lightbox->imageFront('cover'),
+            'cover_caption' => $lightbox->cover_caption,
         ];
     }
 

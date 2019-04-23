@@ -125,7 +125,7 @@
                         @component('components.blocks._text')
                             @slot('font', 'f-module-title-1')
                             @slot('tag', 'h4')
-                            {{ 'Featured '.str_plural(ucfirst($block['subtype']), sizeof($block['items'])) }}
+                            {{ 'Featured '.Str::plural(ucfirst($block['subtype']), sizeof($block['items'])) }}
                         @endcomponent
                     @endif
                     @component('components.organisms._o-row-listing')

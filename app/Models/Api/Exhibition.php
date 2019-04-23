@@ -96,7 +96,9 @@ class Exhibition extends BaseApiModel
     public function getIsClosingSoonAttribute()
     {
         if (!empty($this->dateEnd)) {
-            return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
+            if (empty($this->dateStart) || Carbon::now()->gt($this->dateStart->endOfDay())) {
+                return Carbon::now()->between($this->dateEnd->endOfDay()->subWeeks(2), $this->dateEnd->endOfDay());
+            }
         }
 
     }

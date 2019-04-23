@@ -1,4 +1,4 @@
-<{{ $tag or 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $item->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) or (isset($hideImage) && !($hideImage)))
             @if (isset($image) || $item->imageFront('default'))
@@ -36,7 +36,7 @@
             @if (isset($item['links']) and $item['links'])
                 <br>
                 @if (count($item['links']) > 1)
-                   <ul class="f-secondary" aria-labelledby="h-{{ str_slug($item['title']) }}">
+                   <ul class="f-secondary" aria-labelledby="h-{{ Str::slug($item['title']) }}">
                 @else
                   <span class="f-secondary last-child">
                 @endif
@@ -89,4 +89,4 @@
             @endif
         </span>
     </a>
-</{{ $tag or 'li' }}>
+</{{ $tag ?? 'li' }}>

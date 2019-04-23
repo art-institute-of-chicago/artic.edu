@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Libraries\ExactTargetService;
 
 class SubscribeController extends Controller
@@ -21,7 +22,7 @@ class SubscribeController extends Controller
 
         $error = $response->results[0]->ErrorMessage ?? '';
 
-        if (starts_with($error, 'Violation of PRIMARY KEY constraint'))
+        if (Str::startsWith($error, 'Violation of PRIMARY KEY constraint'))
         {
             return response()->json([
                 'message' => 'It looks like this email address is already receiving the newsletter.',

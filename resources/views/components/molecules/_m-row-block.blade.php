@@ -1,4 +1,4 @@
-<{{ $tag or 'div' }} class="m-row-block{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'div' }} class="m-row-block{{ (isset($variation)) ? ' '.$variation : '' }}">
     @if (isset($title) && isset($variation) && !strrpos($variation, "inline-title"))
         @component('components.blocks._text')
             @slot('font', $titleFont ?? 'f-module-title-1')
@@ -33,4 +33,4 @@
             @endif
         </div>
     @endif
-</{{ $tag or 'div' }}>
+</{{ $tag ?? 'div' }}>

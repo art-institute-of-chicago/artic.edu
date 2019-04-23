@@ -18,6 +18,7 @@ use Symfony\Component\DomCrawler\Link;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class GenerateSitemap extends Command
 {
@@ -98,11 +99,11 @@ class GenerateSitemap extends Command
 
             $url = $page->url;
 
-            if (starts_with($url, 'http')) {
+            if (Str::startsWith($url, 'http')) {
                 continue;
             }
 
-            if (!starts_with($url, '/')) {
+            if (!Str::startsWith($url, '/')) {
                 $url = '/' . $url;
             }
 
@@ -137,13 +138,13 @@ class GenerateSitemap extends Command
             $path = parse_url($url, PHP_URL_PATH);
             return (
                 // Eliminate buggy paths that lead nowhere
-                empty(parse_url($url, PHP_URL_FRAGMENT)) && !ends_with($url, '#')
+                empty(parse_url($url, PHP_URL_FRAGMENT)) && !Str::endsWith($url, '#')
             ) && (
                 // Keep links to filters and top artworks
-                ends_with($path, 'collection') || strpos($path, 'artworks') !== false
+                Str::endsWith($path, 'collection') || strpos($path, 'artworks') !== false
             ) && (
                 // ...but don't link to the collection itself
-                !ends_with($url, 'collection')
+                !Str::endsWith($url, 'collection')
             );
         })->unique()->values()->map(function (string $url) use (&$sitemap) {
             // TODO: Collect last updated times for these pages..?
@@ -214,11 +215,11 @@ class GenerateSitemap extends Command
     private function add(&$sitemap, $url)
     {
         $slashUrl = $url->url ?? $url;
-        $slashUrl = starts_with($slashUrl, '/') ? $slashUrl : '/' . $slashUrl;
+        $slashUrl = Str::startsWith($slashUrl, '/') ? $slashUrl : '/' . $slashUrl;
 
         $fullUrl = $this->prefix . $slashUrl;
 
-        if(!starts_with($slashUrl, $this->prefix))
+        if(!Str::startsWith($slashUrl, $this->prefix))
         {
             if (is_string($url)) {
                 $url = $fullUrl;
