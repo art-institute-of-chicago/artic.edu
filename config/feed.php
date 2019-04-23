@@ -20,7 +20,7 @@ return [
 
             'title' => 'Articles',
 
-            'description' => 'The latest articles about the Art Insitute of Chicago and our collection.',
+            'description' => 'The latest articles from the Art Institute of Chicago',
 
             'language' => 'en-US',
 
