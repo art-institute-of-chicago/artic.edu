@@ -16,7 +16,6 @@ class GalleryPresenter extends BasePresenter
     {
         return route('collection', [
             'gallery_ids' => $this->entity->id,
-            'is_on_view' => true,
         ]);
     }
 }
