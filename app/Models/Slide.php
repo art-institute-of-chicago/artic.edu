@@ -39,6 +39,12 @@ class Slide extends Model implements Sortable
         'tooltip_hotspots',
         'fullwidth_inset',
         'seamless_asset',
+        'attract_title',
+        'attract_subhead',
+        'end_headline',
+        'end_copy',
+        'end_credit_subhead',
+        'end_credit_copy',
         // 'public',
         // 'featured',
         // 'publish_start_date',
@@ -107,6 +113,21 @@ class Slide extends Model implements Sortable
     public function secondaryExperienceImage()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'slide_secondary_experience_image');
+    }
+
+    public function attractExperienceImages()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'attract_experience_image');
+    }
+
+    public function endExperienceImages()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'end_experience_image');
+    }
+
+    public function endBackgroundExperienceImages()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'end_bg_experience_image');
     }
 
     public function ExperienceModal()
