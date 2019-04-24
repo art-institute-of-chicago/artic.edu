@@ -179,17 +179,22 @@
             'fieldName' => 'module_type',
             'fieldValues' => 'tooltip',
         ])
-            @formField('repeater', ['type' => 'tooltip_experience_image'])
             @formField('input', [
                 'name' => 'object_title',
                 'label' => 'Object Title',
-            ])
+                ])
             @formField('wysiwyg', [
                 'name' => 'caption',
                 'label' => 'Caption',
                 'maxlength' => 500,
+                ])
+            @component('twill::partials.form.utils._connected_fields', [
+                'fieldName' => 'asset_type',
+                'fieldValues' => 'standard',
             ])
-            <component v-bind:is="`a17-block-tooltip`" :name="`tooltip`" :hotspotsdata="{{ isset($form_fields['tooptip_hotspots']) ? $form_fields['tooltip_hotspots'] : '[]' }}"></component>
+                @formField('repeater', ['type' => 'tooltip_experience_image'])
+                <component v-bind:is="`a17-block-tooltip`" :name="`tooltip`" :hotspotsdata="{{ isset($form_fields['tooptip_hotspots']) ? $form_fields['tooltip_hotspots'] : '[]' }}"></component>
+            @endcomponent
         @endcomponent
 
         @component('twill::partials.form.utils._connected_fields', [

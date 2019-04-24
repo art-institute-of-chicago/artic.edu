@@ -26,11 +26,19 @@
 
   export default {
     mixins: [BlockMixin],
-    props: ['fileId'],
+    props: ['seamlessAssetData'],
+    mounted () {
+        if (this.seamlessAssetData) {
+            this.seamlessAsset = this.seamlessAssetData;
+        };
+        this.updateSequence();
+        window.addEventListener('mouseup', this.dragStop);
+    },
     data () {
         return {
+            tooltipEnabled: false,
             images: [],
-            currentFrame: 0,
+            currentFrame: 1,
             isDragging: false,
             scale: 100,
             imagePos: {
@@ -41,23 +49,49 @@
                 x: 0,
                 y: 0
             },
+            fileId: null,
         }
     },
     computed: {
         minFrame: function() {
-            return 0;
+            return 1;
         },
         maxFrame: function() {
-            return this.images.length - 1;
-        }
+            return this.images.length;
+        },
+        seamlessAsset: {
+            get: function() {
+                return {
+                    assetId: this.fileId,
+                    frame: this.currentFrame,
+                    x: this.imagePos.x,
+                    y: this.imagePos.y,
+                    scale: this.scale
+                }
+            },
+            set: function(data) {
+                this.currentFrame = data.frame;
+                this.imagePos.x = data.x,
+                this.imagePos.y = data.y,
+                this.scale = data.scale 
+            }
+        },
+        ...mapState({
+            selectedMeidas: state => state.mediaLibrary.selected,
+        })
     },
-    mounted () {
-        if (this.fileId) {
+    watch: {
+        selectedMeidas: function() {
+            this.updateSequence();
+        },
+        fileId: function() {
             axios.get('http://aic.dev.a17.io/api/v1/seamless-images/' + this.fileId).then(rsp => {
                 this.images = rsp.data;
             });
+        },
+        seamlessAsset: function() {
+            this.saveSeamlessAsset();
         }
-        window.addEventListener('mouseup', this.dragStop);
     },
     methods: {
         dragStart(event) {
@@ -75,6 +109,25 @@
         },
         dragStop() {
             this.isDragging = false;
+        },
+        updateSequence() {
+            if (this.selectedMeidas.hasOwnProperty('sequence_file[en]')) {
+                const sequenceFile = this.selectedMeidas['sequence_file[en]'][0];
+                const fileName = sequenceFile['name'];
+                if (/(?:\.([^.]+))?$/.exec(fileName)[1] === 'zip') {
+                    this.fileId = sequenceFile['id'];
+                }
+
+            } else {
+                this.images = [];
+            }
+        },
+        saveSeamlessAsset() {
+            const field = {
+                name: 'seamless_asset',
+                value: this.seamlessAsset
+            };
+            this.$store.commit(FORM.UPDATE_FORM_FIELD, field);
         }
     }
   }

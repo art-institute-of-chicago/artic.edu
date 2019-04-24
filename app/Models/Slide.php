@@ -38,6 +38,7 @@ class Slide extends Model implements Sortable
         'compare_title',
         'tooltip_hotspots',
         'fullwidth_inset',
+        'seamless_asset',
         // 'public',
         // 'featured',
         // 'publish_start_date',
@@ -54,6 +55,7 @@ class Slide extends Model implements Sortable
     protected $casts = [
         'split_attributes' => 'array',
         'tooltip_hotspots' => 'array',
+        'seamless_asset' => 'array',
     ];
 
     // uncomment and modify this as needed if you use the HasSlug trait
