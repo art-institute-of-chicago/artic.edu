@@ -59,6 +59,7 @@ class BaseScopedController extends FrontController
         // Hidden from filters but present in Quick facets
         'theme_ids'     => 'byThemes',
         'gallery_ids'   => 'byGalleryIds',
+        // 'gallery_ids'   => 'byGalleryIdsOnView',
         'technique_ids' => 'byTechniques',
     ];
 

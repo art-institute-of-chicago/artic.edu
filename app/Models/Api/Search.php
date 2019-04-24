@@ -135,6 +135,14 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
+    public function scopeByGalleryIdsOnView($query, $ids)
+    {
+        $result = $this->scopeByGalleryIds($query, $ids);
+        $result = $this->scopeOnView($query, true);
+
+        return $result;
+    }
+
     public function scopeByGalleryIds($query, $ids)
     {
         return $this->scopeByListType($query, $ids, 'gallery_id');

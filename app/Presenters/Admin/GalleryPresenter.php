@@ -14,6 +14,9 @@ class GalleryPresenter extends BasePresenter
 
     protected function collectionFilteredUrl()
     {
-        return route('collection', ['gallery_ids' => $this->entity->id]);
+        return route('collection', [
+            'gallery_ids' => $this->entity->id,
+            'is_on_view' => true,
+        ]);
     }
 }
