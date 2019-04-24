@@ -86,7 +86,7 @@
             this.updateSequence();
         },
         fileId: function() {
-            axios.get('http://aic.dev.a17.io/api/v1/seamless-images/' + this.fileId).then(rsp => {
+            axios.get('https://aic.dev.a17.io/api/v1/seamless-images/' + this.fileId).then(rsp => {
                 this.images = rsp.data;
             });
         },
