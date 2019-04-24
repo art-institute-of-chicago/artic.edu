@@ -60,7 +60,7 @@
             'noTranslate' => true,
             'max' => 1,
         ])
-        <component v-bind:is="`a17-block-seamless`" :name="`seamless`" :seamless-asset-data="{{ isset($form_fields['seamless_asset']) ? json_encode($form_fields['seamless_asset']) : null }}"></component>
+        <component v-bind:is="`a17-block-seamless`" :name="`seamless`" :seamless-asset-data="{{ isset($form_fields['seamless_asset']) ? json_encode($form_fields['seamless_asset']) : "0" }}"></component>
     @endcomponent
 
     @formField('input', [

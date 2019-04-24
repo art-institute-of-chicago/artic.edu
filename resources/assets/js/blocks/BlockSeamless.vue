@@ -1,9 +1,10 @@
 <template>
-  <div class="content" v-if="images.length > 0">
+  <div class="content">
     <br />
     <h1>Seamless Previewer</h1>
     <br />
     <div class="previewer">
+        <h1 v-if="images.length === 0"> No images found in the zip, please try re-uploading the zip file</h1>
         <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{ left: imagePos.x + 'px', top: imagePos.y + 'px', cursor: isDragging ? 'grabbing' : 'grab', transform: 'scale(' + scale / 100 + ')' }"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
         </div>
@@ -28,7 +29,7 @@
     mixins: [BlockMixin],
     props: ['seamlessAssetData'],
     mounted () {
-        if (this.seamlessAssetData) {
+        if (this.seamlessAssetData && Object.keys(this.seamlessAssetData).length === 5) {
             this.seamlessAsset = this.seamlessAssetData;
         };
         this.updateSequence();
