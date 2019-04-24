@@ -78,7 +78,7 @@ class FileObserver
             $zipFile = $this->downloadZip($file);
             $zipFolderName = $this->unzip($zipFile);
             $this->uploadToS3($zipFolderName, $file);
-            // $this->cleanAssets($zipFile, $extractDir);
+            $this->cleanAssets();
         } catch (Exception $e) {
             debug($e);
         }
@@ -139,9 +139,9 @@ class FileObserver
         }
     }
 
-    private function cleanAssets($zipFile, $extractDir)
+    private function cleanAssets()
     {
-        unlink($zipFile);
-        unlink($extractDir);
+        Storage::disk('local')->delete('tempFile.zip');
+        Storage::disk('local')->deleteDirectory('tempDir');
     }
 }
