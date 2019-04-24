@@ -69,6 +69,12 @@ class Slide extends JsonResource
             return [
 
             ];
+        } elseif ($this->module_type === 'tooltip') {
+            return [
+                'title' => $this->object_title,
+                '__option_object_title' => !empty($this->object_title),
+                'hotspots' => $this->mapHotspots($this->tooltip_hotspots),
+            ];
         } else {
             return [
 
@@ -137,9 +143,22 @@ class Slide extends JsonResource
             $images = $this->primaryExperienceImage;
         } elseif ($this->module_type === 'interstitial') {
             $images = $this->experienceImage;
+        } elseif ($this->module_type === 'tooltip') {
+            $images = $this->tooltipExperienceImage;
         } else {
             return null;
         }
         return SlideMediaResource::collection($images)->toArray(request());
+    }
+
+    protected function mapHotspots($hotspots)
+    {
+        return array_map(function ($hotspot) {
+            return [
+                'x' => $hotspot['x'],
+                'y' => $hotspot['y'],
+                'content' => isset($hotspot['description']) ? $hotspot['description'] : '',
+            ];
+        }, $hotspots);
     }
 }
