@@ -9,16 +9,14 @@ class ExactTargetList
     public static function getList()
     {
         return collect([
-            'OptEveningAssociates' => 'Evening Associates',
-            'OptEvents' => 'Public Programs',
-            'OptFamilyPrograms' => 'Family Programs',
-            'OptMemberTravel' => 'Member Travel',
-            'OptStudentTeacherPrograms' => 'Student and Teacher Programs',
-            'OptTeenPrograms' => 'Teen Programs',
-            'OptAcademicEngagement' => 'Academic Engagement',
+            'OptEnews' => 'News and Exhibitions',
             'OptHumanResources' => 'Career Opportunities',
-            'OptEnews' => 'E-news',
-            'DP Test' => 'DP test list',
+            'OptEveningAssociates' => 'Evening Associates',
+            'OptFamilyPrograms' => 'Families',
+            'OptEvents' => 'Public Programs',
+            'OptStudentTeacherPrograms' => 'Students and Teachers',
+            'OptTeenPrograms' => 'Teens',
+            'OptAcademicEngagement' => 'Academic Engagement and Research',
         ]);
     }
 }

@@ -151,6 +151,15 @@ Route::name('forms.ryerson-class-visit')->get('/library/request-a-class-visit/sc
 Route::name('forms.ryerson-class-visit.store')->post('/library/request-a-class-visit/schedule', 'Forms\RyersonClassVisitController@store');
 Route::name('forms.ryerson-class-visit.thanks')->get('/library/request-a-class-visit/schedule/thanks', 'Forms\RyersonClassVisitController@thanks');
 
+// Email subscriptions request
+Route::name('forms.email-subscriptions')->get('/email-subscriptions', 'Forms\EmailSubscriptionsController@index');
+Route::name('forms.email-subscriptions.store')->post('/email-subscriptions', 'Forms\EmailSubscriptionsController@store');
+Route::name('forms.email-subscriptions.thanks')->get('/email-subscriptions/thanks', 'Forms\EmailSubscriptionsController@thanks');
+
+Route::get('enews', function () {
+    return redirect()->route('forms.email-subscriptions', request()->all());
+});
+
 // Feed routes
 Route::feeds();
 

@@ -466,6 +466,7 @@
                     @slot('disabled', $block['disabled'] ?? false)
                     @slot('label', $block['label'] ?? false)
                     @slot('checked', $block['checked'] ?? false)
+                    @slot('behavior', $block['behavior'] ?? false)
                 @endcomponent
             @endif
 

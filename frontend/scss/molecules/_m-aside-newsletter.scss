@@ -123,7 +123,7 @@
 }
 
 
-.m-aside-newsletter button {
+.m-aside-newsletter button.m-aside-newsletter__btn--submit {
   @include untuck;
   display: block;
   flex: 0 0 auto;
@@ -155,16 +155,16 @@
 }
 
 @include breakpoint('medium+') {
-  .m-aside-newsletter input:hover + button {
+  .m-aside-newsletter input:hover + button.m-aside-newsletter__btn--submit {
     border-color: $color__input-border--hover;
   }
 
-  .m-aside-newsletter input:focus + button {
+  .m-aside-newsletter input:focus + button.m-aside-newsletter__btn--submit {
     border-color: $color__input-border--focus;
   }
 
   .m-aside-newsletter .s-error input,
-  .m-aside-newsletter .s-error input + button {
+  .m-aside-newsletter .s-error input + button.m-aside-newsletter__btn--submit {
     border-color: $color__input-border--error;
   }
 }
@@ -198,7 +198,7 @@
   padding-top: 32px;
 }
 
-.m-aside-newsletter--inline label {
+.m-aside-newsletter--inline .m-aside-newsletter__field label {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -210,15 +210,26 @@
   overflow: hidden;
 }
 
-.m-aside-newsletter--inline label + input {
+.m-aside-newsletter--inline .m-aside-newsletter__field label + input {
   margin-top: 0;
 }
 
-.m-aside-newsletter--inline button {
+.m-aside-newsletter--inline button.m-aside-newsletter__btn--submit {
   @include breakpoint('small+') {
     margin-top: 0;
   }
 }
+
+.m-aside-newsletter--inline .m-aside-newsletter__also {
+  padding: 8px 2px;
+  text-align: right;
+}
+
+.m-aside-newsletter--inline .m-aside-newsletter__also span::before,
+.m-aside-newsletter--inline .m-aside-newsletter__also span::after, {
+  content: none;
+}
+
 
 // variation `.m-aside-newsletter--inline` inside `.m-inline-aside`
 
@@ -232,7 +243,7 @@
   }
 }
 
-.m-inline-aside .m-aside-newsletter--inline button {
+.m-inline-aside .m-aside-newsletter--inline button.m-aside-newsletter__btn--submit {
   @include breakpoint('small') {
     width: 100%;
     margin-top: 16px;
@@ -287,19 +298,29 @@
   @include tucked-margin-top($f-list-3, ('xsmall': 44, 'small+': 52, 'large+': 82, 'xlarge': 84));
 }
 
-.m-aside-newsletter--wide .m-aside-newsletter__field {
+.m-aside-newsletter--wide .m-aside-newsletter__field__wrapper {
   padding-top: 0.02px;
-  padding-bottom: 28px;
+  padding-bottom: 16px; // 28
 
   @include breakpoint('small+') {
-    flex-flow: row nowrap;
     padding-top: 20px;
-    padding-bottom: 40px;
+    padding-bottom: 16px; // 40
   }
 
   @include breakpoint('large+') {
     padding-top: 52px;
-    padding-bottom: 60px;
+    padding-bottom: 16px; // 60
+  }
+}
+
+.m-aside-newsletter--wide .m-aside-newsletter__field {
+  @include breakpoint('small+') {
+    padding-top: 20px;
+    flex-flow: row nowrap;
+  }
+
+  @include breakpoint('large+') {
+    padding-top: 0px;
   }
 }
 
@@ -324,7 +345,7 @@
   }
 }
 
-.m-aside-newsletter--wide button {
+.m-aside-newsletter--wide button.m-aside-newsletter__btn--submit {
   width: auto;
   margin-top: 0;
   padding: 0;
@@ -347,19 +368,119 @@
   }
 }
 
-.m-aside-newsletter--wide input:hover + button {
+.m-aside-newsletter--wide input:hover + button.m-aside-newsletter__btn--submit {
   border-color: $color__input-border--hover;
 }
 
-.m-aside-newsletter--wide input:focus + button {
+.m-aside-newsletter--wide input:focus + button.m-aside-newsletter__btn--submit {
   border-color: $color__input-border--focus;
 }
 
 .m-aside-newsletter--wide .s-error input,
-.m-aside-newsletter--wide .s-error input + button {
+.m-aside-newsletter--wide .s-error input + button.m-aside-newsletter__btn--submit {
   border-color: $color__input-border--error;
+}
+
+.m-aside-newsletter--wide .m-aside-newsletter__btn--list__wrapper {
+  text-align: right;
+}
+
+.m-aside-newsletter--wide button.m-aside-newsletter__btn--list {
+  @include untuck;
+  height: 48px;
+  margin: 16px 0 0 0;
+  padding: 0;
+  border: transparent;
+  border-radius: 0;
+  background-color: transparent;
+  color: $color__text--title;
+  cursor: pointer;
+
+  &:hover,
+  &:focus:hover {
+    border-color: $color__black--30;
+    color: $color__text--title;
+  }
+
+  &:active:hover {
+    border-color: $color__black--42;
+    color: $color__text--title;
+  }
+
+  @include breakpoint('small+') {
+    width: auto;
+    margin-left: -1px;
+  }
+
+  svg {
+    transform: rotate(90deg);
+    transition: transform .2s $bezier--ease-in-out;
+  }
+
+  &.m-aside-newsletter__btn--list--opened svg {
+    transform: rotate(-90deg);
+  }
+}
+
+.m-aside-newsletter__list-wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: height .2s $bezier--ease-in-out, padding .2s $bezier--ease-in-out;
+
+  &[aria-hidden="false"] {
+    height: auto;
+    overflow: initial;
+
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+}
+
+.m-aside-newsletter__list {
+  @include breakpoint('small+') {
+    display: flex;
+  }
+}
+
+.m-aside-newsletter__list .m-fieldset__field--group {
+  margin-top: 8px;
+}
+
+.m-aside-newsletter__list__right .m-fieldset__field--group {
+  @include breakpoint('xsmall') {
+    margin-top: 4px;
+  }
 }
 
 .m-aside-newsletter--wide .m-aside-newsletter__msg {
   @include background-fill;
+}
+
+.m-aside-newsletter--wide .checkbox label {
+  padding-right: 16px;
+}
+
+$f-aside-subtitle: generate-font-obj(
+  (
+    font-family: $sans-serif-font,
+    font-family-loaded: $sans-serif-font--loaded,
+    font-loaded-class: $sans-serif-font-loaded-class,
+    settings: (
+      'xsmall': (font-size: 13, line-height: 24, font-weight: 300, letter-spacing: 0.01em, push: 1),
+      'medium+': (font-size: 14, line-height: 28, push: 0)
+    )
+  )
+);
+
+
+.m-aside-newsletter .subtitle {
+  @include font-styles($f-aside-subtitle);
+
+  a {
+    color: $color__link--accent;
+
+    &:hover {
+      color: $color__link--accent-hover;
+    }
+  }
 }

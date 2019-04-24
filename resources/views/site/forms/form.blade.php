@@ -8,6 +8,13 @@
 
 <article class="o-article o-article--generic-page">
 
+  @if (isset($errors->notices) && $errors->notices->any()))
+      @component('components.molecules._m-notification')
+          @slot('variation', 'm-notification--error')
+          {{ $errors->notices->first() }}
+      @endcomponent
+  @endif
+
   @component('components.molecules._m-article-header')
     @slot('headerType', 'generic')
     @slot('variation', 'o-article__header')
@@ -30,6 +37,7 @@
   @if (!$isWideBody)
       <div class="o-article__secondary-actions">
         @component('components.molecules._m-article-actions')
+            @slot('hideShare', 'true')
         @endcomponent
 
         @if (isset($featuredRelated) and $featuredRelated)
@@ -143,6 +151,7 @@
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
+        @slot('hideShare', 'true')
     @endcomponent
   </div>
 
