@@ -78,8 +78,8 @@
     <a17-fieldset title="Content" id="content">
         @if($item->module_type === 'attract')
             @formField('input', [
-                'name' => 'attract_title',
-                'label' => 'Title'
+                'name' => 'headline',
+                'label' => 'Headline'
             ])
         
             @formField('input', [
@@ -92,7 +92,7 @@
 
         @if($item->module_type === 'end')
             @formField('input', [
-                'name' => 'end_headline',
+                'name' => 'headline',
                 'label' => 'Headline'
             ])
         

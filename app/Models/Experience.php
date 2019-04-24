@@ -71,11 +71,7 @@ class Experience extends Model implements Sortable
 
     public function getContentBundleAttribute()
     {
-        $attract_slide = (new SlideResource($this, true))->toArray(request());
-        $end_slide = (new SlideResource($this, false))->toArray(request());
-        $slides = array_prepend(SlideResource::collection($this->slides)->toArray(request()), $attract_slide);
-        array_push($slides, $end_slide);
-        return $slides;
+        return SlideResource::collection($this->slides)->toArray(request());
     }
 
     public function slides()
