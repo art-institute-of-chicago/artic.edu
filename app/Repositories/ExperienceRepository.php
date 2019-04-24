@@ -44,4 +44,22 @@ class ExperienceRepository extends ModuleRepository
         $scope = $scope + ['archived' => false];
         return parent::getCountByStatusSlug($slug, $scope);
     }
+
+    public function create($fields)
+    {
+        $experience = parent::create($fields);
+        $attract_fields = [
+            'title' => 'Attract',
+            'module_type' => 'attract',
+            'experience_id' => $experience->id,
+        ];
+        $end_fields = [
+            'title' => 'End',
+            'module_type' => 'end',
+            'experience_id' => $experience->id,
+        ];
+        app(\App\Repositories\SlideRepository::class)->create($attract_fields);
+        app(\App\Repositories\SlideRepository::class)->create($end_fields);
+        return $experience;
+    }
 }

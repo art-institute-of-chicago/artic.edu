@@ -58,6 +58,11 @@ class Slide extends Model implements Sortable
         'seamless_asset' => 'array',
     ];
 
+    protected function getCanDeleteAttribute()
+    {
+        return $this->module_type != 'attract' && $this->module_type != 'end';
+    }
+
     // uncomment and modify this as needed if you use the HasSlug trait
     public $slugAttributes = [
         'title',

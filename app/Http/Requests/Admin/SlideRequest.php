@@ -16,7 +16,7 @@ class SlideRequest extends Request
     public function rulesForUpdate()
     {
         return [
-            'module_type' => 'required',
+
         ];
     }
 }

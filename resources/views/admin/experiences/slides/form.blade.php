@@ -5,34 +5,36 @@
 @section('contentFields')
     @include('admin.experiences.slides._asset_type')
 
-    @formField('select', [
-        'name' => 'module_type',
-        'required' => true,
-        'label' => 'Module Type',
-        'placeholder' => 'Select a type',
-        'options' => [
-            [
-                'value' => 'split',
-                'label' => 'Split'
-            ],
-            [
-                'value' => 'interstitial',
-                'label' => 'Interstitial'
-            ],
-            [
-                'value' => 'tooltip',
-                'label' => 'Tooltip'
-            ],
-            [
-                'value' => 'fullwidthmedia',
-                'label' => 'Full-Width Media'
-            ],
-            [
-                'value' => 'compare',
-                'label' => 'Compare'
-            ],
-        ]
-    ])
+    @unless($item->module_type === 'attract' || $item->module_type === 'end')
+        @formField('select', [
+            'name' => 'module_type',
+            'required' => true,
+            'label' => 'Module Type',
+            'placeholder' => 'Select a type',
+            'options' => [
+                [
+                    'value' => 'split',
+                    'label' => 'Split'
+                ],
+                [
+                    'value' => 'interstitial',
+                    'label' => 'Interstitial'
+                ],
+                [
+                    'value' => 'tooltip',
+                    'label' => 'Tooltip'
+                ],
+                [
+                    'value' => 'fullwidthmedia',
+                    'label' => 'Full-Width Media'
+                ],
+                [
+                    'value' => 'compare',
+                    'label' => 'Compare'
+                ],
+            ]
+        ])
+    @endunless
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'module_type',
@@ -74,6 +76,50 @@
 
 @section('fieldsets')
     <a17-fieldset title="Content" id="content">
+        @if($item->module_type === 'attract')
+            @formField('input', [
+                'name' => 'attract_title',
+                'label' => 'Title'
+            ])
+        
+            @formField('input', [
+                'name' => 'attract_subhead',
+                'label' => 'Subhead'
+            ])
+            
+            @formField('repeater', ['type' => 'attract_experience_image'])
+        @endif
+
+        @if($item->module_type === 'end')
+            @formField('input', [
+                'name' => 'end_headline',
+                'label' => 'Headline'
+            ])
+        
+            @formField('input', [
+                'name' => 'end_copy',
+                'label' => 'Copy',
+                'placeholder' => 'The End',
+            ])
+        
+            @formField('repeater', ['type' => 'end_bg_experience_image'])
+        
+            <br />
+        
+            <a17-fieldset title="Credit" id="end" :open="true">
+                @formField('input', [
+                    'name' => 'end_credit_subhead',
+                    'label' => 'Subhead'
+                ])
+        
+                @formField('input', [
+                    'name' => 'end_credit_copy',
+                    'label' => 'Copy'
+                ])
+        
+                @formField('repeater', ['type' => 'end_experience_image'])
+            </a17-fieldset>
+        @endif
 
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'module_type',
