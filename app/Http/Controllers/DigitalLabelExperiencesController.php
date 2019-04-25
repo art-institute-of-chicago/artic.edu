@@ -63,7 +63,6 @@ class DigitalLabelExperiencesController extends FrontController
         $articles = Article::published()
             ->orderBy('date', 'desc')
             ->paginate(4);
-
         return view('site.digitalLabelDetail', [
             'contrastHeader' => true,
             'item' => $item,

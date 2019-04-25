@@ -62,8 +62,11 @@ class Slide extends JsonResource
     {
         $this->media = $this->primaryExperienceImage;
         $this->modal = $this->primaryExperienceModal;
+
         return [
             'primaryCopy' => $this->split_primary_copy,
+            '__option_flip' => $this->image_side === 'right',
+            '__option_secondary_image' => in_array(['id' => 'secondary_image'], $this->split_attributes),
         ];
     }
 
@@ -73,7 +76,6 @@ class Slide extends JsonResource
         return [
             'title' => $this->section_title,
             'copy' => $this->body_copy,
-            '__option_headline' => !empty($this->headline),
             '__option_body_copy' => !empty($this->body_copy),
             '__option_section_title' => !empty($this->section_title),
             '__option_background_image' => count($this->experienceImage) > 0,
@@ -132,11 +134,11 @@ class Slide extends JsonResource
             'headline' => $this->headline,
             'media' => SlideMediaResource::collection($this->media)->toArray(request()),
             'seamlessAsset' => [
-                'assetId' => '0',
-                'x' => 0,
-                'y' => 0,
-                'scale' => 1,
-                'frame' => 0,
+                'assetId' => $this->seamless_asset ? $this->seamless_asset['assetId'] : "0",
+                'x' => $this->seamless_asset ? $this->seamless_asset['x'] : 0,
+                'y' => $this->seamless_asset ? $this->seamless_asset['y'] : 0,
+                'scale' => $this->seamless_asset ? $this->seamless_asset['scale'] : 1,
+                'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] : 0,
             ],
             'assetType' => $this->asset_type,
             '__mediaType' => null,
@@ -159,6 +161,12 @@ class Slide extends JsonResource
                 $this->split_attributes && in_array(['id' => 'inset'], $this->split_attributes) :
                 ($this->module_type === 'fullwidthmedia' ? $this->fullwidth_inset : false),
                 'modals' => SlideModalResource::collection($this->modal)->toArray(request()),
+            ];
+        }
+
+        if (in_array($this->module_type, ['split', 'interstitial'])) {
+            $rst += [
+                '__option_headline' => !empty($this->headline),
             ];
         }
 

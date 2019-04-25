@@ -46,11 +46,13 @@ class ExperienceRepository extends ModuleRepository
             'title' => 'Attract',
             'module_type' => 'attract',
             'experience_id' => $experience->id,
+            'published' => true,
         ];
         $end_fields = [
             'title' => 'End',
             'module_type' => 'end',
             'experience_id' => $experience->id,
+            'published' => true,
         ];
         app(\App\Repositories\SlideRepository::class)->create($attract_fields);
         app(\App\Repositories\SlideRepository::class)->create($end_fields);
