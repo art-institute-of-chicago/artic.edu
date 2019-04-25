@@ -11,6 +11,7 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
+use App\Http\Resources\SlideAsset as SlideAssetResource;
 use App\Http\Resources\Slide as SlideResource;
 
 class Experience extends Model implements Sortable
@@ -72,6 +73,11 @@ class Experience extends Model implements Sortable
     public function getContentBundleAttribute()
     {
         return SlideResource::collection($this->slides()->orderBy('position')->get())->toArray(request());
+    }
+
+    public function getAssetLibraryAttribute()
+    {
+        return SlideAssetResource::collection($this->slides()->orderBy('position')->get())->toArray(request());
     }
 
     public function slides()
