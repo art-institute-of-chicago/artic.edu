@@ -17,7 +17,7 @@ class Departments extends BaseFilteredList
                 'title'       => "Departments",
                 'active'      => $this->activeList,
                 'list'        => $list,
-                'listSearch'  => true,
+                'listSearch'  => false,
                 'type'        => 'list',
                 'aggregation' => $this->aggregationName,
                 'listSearchUrl' => route('collection.categorySearch', request()->except(['categoryQuery']) + ['categoryName' => 'departments'])

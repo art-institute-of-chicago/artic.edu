@@ -42,12 +42,13 @@ class Search extends BaseApiModel
         return new ApiModelBuilderSearch($query);
     }
 
-    protected function buildListAggregation($name, $parameter, $queryFilter = null)
+    protected function buildListAggregation($name, array $parameter, $queryFilter = null)
     {
         $agg = [
             $name => [
                 'terms' => [
-                    'field' => $parameter,
+                    'field' => $parameter['field'],
+                    'size' => $parameter['size'],
                 ]
             ]
         ];
@@ -88,9 +89,20 @@ class Search extends BaseApiModel
             'materials'        => 'material_titles.keyword',
             'subjects'         => 'subject_titles.keyword',
             'places'           => 'place_of_origin.keyword',
-            'departments'      => 'department_title.keyword',
+            'departments'      => [
+                'field' => 'department_title.keyword',
+                'size' => 20,
+            ],
             'is_public_domain' => 'is_public_domain'
         ];
+
+        // Standardize to array with default size 5
+        $aggsParams = array_map(function ($param) {
+            return is_array($param) ? $param : [
+                'field' => $param,
+                'size' => 5,
+            ];
+        }, $aggsParams);
 
         // If we get a category filter, then we should just pass that aggregation
         // to improve performance. This is done because it means we are searching over that category.
@@ -98,7 +110,7 @@ class Search extends BaseApiModel
         foreach ($aggsParams as $facet => $parameter) {
             if ($categoryFilter) {
                 if ($categoryFilter == $facet) {
-                    $aggs = array_merge($aggs ,$this->buildListAggregation($facet, $parameter, $queryFilter));
+                    $aggs = array_merge($aggs, $this->buildListAggregation($facet, $parameter, $queryFilter));
                 }
             } else {
                 $aggs = array_merge($aggs, $this->buildListAggregation($facet, $parameter));

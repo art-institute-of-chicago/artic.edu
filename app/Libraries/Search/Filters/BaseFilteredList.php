@@ -46,7 +46,11 @@ class BaseFilteredList
                 'label' => $this->findLabel($item->key),
                 'enabled' => $enabled
             ];
-        })->sortByDesc('enabled'); // Move selected ones to the top
+        })->sortByDesc('count');
+
+        // TODO: Is this necessary to keep? Issues with size > 10 [WEB-968]
+        // I figure the `enabled` items will always have the highest count.
+        // })->sortByDesc('enabled'); // Move selected ones to the top
 
         return $list;
     }
