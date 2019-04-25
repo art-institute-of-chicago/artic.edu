@@ -175,6 +175,9 @@ class Slide extends JsonResource
 
     protected function mapHotspots($hotspots)
     {
+        if (!$hotspots) {
+            return [];
+        }
         return array_map(function ($hotspot) {
             return [
                 'x' => $hotspot['x'],

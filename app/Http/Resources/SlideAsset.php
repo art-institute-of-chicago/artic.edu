@@ -32,9 +32,9 @@ class SlideAsset extends JsonResource
         return [
             'type' => $this->media_type === 'type_image' ? 'image' : 'sequence',
             'title' => $this->media_title,
-            'id' => $this->id,
-            'width' => 100,
-            'height' => 213,
+            'id' => $this->seamless_asset ? $this->seamless_asset['assetId'] : "0",
+            'width' => 683,
+            'height' => 1024,
             'src' => $src,
         ];
     }
