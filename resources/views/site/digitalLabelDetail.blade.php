@@ -2,10 +2,12 @@
 @section('content')
     <section class="o-closer-look" data-behavior="closerLook">
         <script type="application/json" data-closerLook-contentBundle>
-            {{ dd($item->contentBundle) }}
+            {{-- {{ dd(json_encode($item->contentBundle, JSON_UNESCAPED_SLASHES)) }} --}}
+            {{-- {{ dd($item->contentBundle) }} --}}
             {!! json_encode($item->contentBundle) !!}
         </script>
         <script type="application/json" data-closerLook-assetLibrary>
+            {{-- {{ dd(json_encode($item->assetLibrary, JSON_UNESCAPED_SLASHES)) }} --}}
             {{-- {{ dd($item->assetLibrary) }} --}}
             {!! json_encode($item->assetLibrary) !!}
         </script>

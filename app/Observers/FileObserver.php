@@ -128,13 +128,15 @@ class FileObserver
             return in_array(end($fileNameArray), ['jpg', 'png', 'jpeg']) && strlen($fileNameArray[0]) > 0;
         })));
         foreach ($images as $index => $imageName) {
-            debug($imageName);
+            $image_size = getimagesize(storage_path('app') . '/' . $imageName);
             $uploaded = Storage::disk('s3')->putFile('seq', new HttpFile(storage_path('app') . '/' . $imageName), 'public');
             DB::table('seamless_images')->insert(
                 [
                     'file_name' => substr($uploaded, 4),
                     'zip_file_id' => $file->id,
                     'frame' => $index + 1,
+                    'width' => $image_size[0],
+                    'height' => $image_size[1],
                 ]
             );
         }

@@ -25,17 +25,20 @@ class SlideAsset extends JsonResource
                     'frame' => $image->frame,
                 ];
             })->toArray();
+            return [
+                'type' => $this->media_type === 'type_image' ? 'image' : 'sequence',
+                'title' => $this->media_title,
+                'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
+                'width' => $images->first()->width,
+                'height' => $images->first()->height,
+                'src' => $src,
+            ];
         } else {
-            $src = [];
+            return [
+                'type' => $this->media_type === 'type_image' ? 'image' : 'sequence',
+                'title' => $this->media_title,
+                'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
+            ];
         }
-
-        return [
-            'type' => $this->media_type === 'type_image' ? 'image' : 'sequence',
-            'title' => $this->media_title,
-            'id' => $this->seamless_asset ? $this->seamless_asset['assetId'] : "0",
-            'width' => 683,
-            'height' => 1024,
-            'src' => $src,
-        ];
     }
 }

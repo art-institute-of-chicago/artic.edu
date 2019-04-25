@@ -13,6 +13,10 @@
             <input type="range" :min="minFrame" :max="maxFrame" class="frame-slider" step="1" v-model.number="currentFrame">
             <p>Scale {{ scale }}%</p>
             <input type="range" min=10 max=200 class="scale-slider" step="1" v-model.number="scale">
+            <p> X </p>
+            <input type="text" v-model.number="imagePos.x">
+            <p> Y </p>
+            <input type="text" v-model.number="imagePos.x">
         </div>
     </div>
   </div>
@@ -41,7 +45,7 @@
             images: [],
             currentFrame: 1,
             isDragging: false,
-            scale: 100,
+            scale: 10,
             imagePos: {
                 x: 0,
                 y: 0
@@ -137,9 +141,9 @@
 <style lang="scss" scoped>
     .previewer {
         position: relative;
-        width: 100%;
+        width: 640px;
         height: 500px;
-        background-color: white;
+        background-color: gainsboro;
         overflow: hidden;
         border: 1px solid gainsboro;
     }
@@ -152,7 +156,6 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
     }
     .previewer-panel {
         position: absolute;

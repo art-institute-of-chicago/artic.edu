@@ -132,12 +132,12 @@ class Slide extends JsonResource
             'id' => $this->id,
             'type' => $this->module_type,
             'headline' => $this->headline,
-            'media' => SlideMediaResource::collection($this->media)->toArray(request()),
+            'media' => $this->getMedia(),
             'seamlessAsset' => [
-                'assetId' => $this->seamless_asset ? $this->seamless_asset['assetId'] : "0",
+                'assetID' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
                 'x' => $this->seamless_asset ? $this->seamless_asset['x'] : 0,
                 'y' => $this->seamless_asset ? $this->seamless_asset['y'] : 0,
-                'scale' => $this->seamless_asset ? $this->seamless_asset['scale'] : 1,
+                'scale' => $this->seamless_asset ? $this->seamless_asset['scale'] / 100 : 1,
                 'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] : 0,
             ],
             'assetType' => $this->asset_type,
@@ -171,6 +171,14 @@ class Slide extends JsonResource
         }
 
         return $rst;
+    }
+
+    protected function getMedia()
+    {
+        if ($this->module_type === 'tooltip') {
+            return $this->media->first() ? (new SlideMediaResource($this->media->first()))->toArray(request()) : [];
+        }
+        return SlideMediaResource::collection($this->media)->toArray(request());
     }
 
     protected function mapHotspots($hotspots)
