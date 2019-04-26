@@ -3,10 +3,13 @@
     <br />
     <h1>Seamless Previewer</h1>
     <br />
-    <div class="previewer">
+    <div class="previewer" v-on:click.prevent.stop="addHotspot">
         <h1 v-if="images.length === 0"> No images found in the zip, please try re-uploading the zip file</h1>
         <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{ left: imagePos.x + 'px', top: imagePos.y + 'px', cursor: isDragging ? 'grabbing' : 'grab', transform: 'scale(' + scale / 100 + ')' }"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
+        </div>
+        <div class="hotspot-container" v-if="hotspotsEnabled">
+            <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="index" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" v-on:click.stop="showHotspotInfo(index)"></div>
         </div>
         <div class="previewer-panel">
             <p>Frame {{ currentFrame }}</p>
@@ -18,6 +21,18 @@
             <p> Y </p>
             <input type="text" v-model.number="imagePos.x">
         </div>
+    </div>
+    <div class="hotspot-info-container" v-if="currentHotspot && hotspotsEnabled">
+        <a17-textfield
+            label="Description"
+            in-store="value"
+            type="textarea"
+            name="description"
+            :initial-value="currentHotspot ? currentHotspot.description : ''"
+            v-on:change="changeCurrentDescription"
+        ></a17-textfield>
+        <br />
+        <a17-button variant="secondary" data-action @click="deleteCurrentHotspot()">Delete <span v-svg symbol="close_icon"></span></a17-button>
     </div>
   </div>
 </template>
@@ -31,10 +46,21 @@
 
   export default {
     mixins: [BlockMixin],
-    props: ['seamlessAssetData'],
+    props: {
+        seamlessAssetData: {
+            type: Object
+        },
+        hotspotsdata: {
+            type: Array
+        },
+    },
     mounted () {
         if (this.seamlessAssetData && Object.keys(this.seamlessAssetData).length === 5) {
             this.seamlessAsset = this.seamlessAssetData;
+        };
+        if (this.hotspotsdata) {
+            console.log(this.hotspotsdata);
+            this.hotspots = this.hotspotsdata;
         };
         this.updateSequence();
         window.addEventListener('mouseup', this.dragStop);
@@ -43,6 +69,9 @@
         return {
             tooltipEnabled: false,
             images: [],
+            hotspots: [],
+            hotspotsEnabled: false,
+            currentHotspotPos: [undefined, undefined],
             currentFrame: 1,
             isDragging: false,
             scale: 10,
@@ -58,6 +87,11 @@
         }
     },
     computed: {
+        currentHotspot: function() {
+            return this.hotspots.find(function(el) {
+                return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
+            }, this);
+        },
         minFrame: function() {
             return 1;
         },
@@ -83,6 +117,7 @@
         },
         ...mapState({
             selectedMeidas: state => state.mediaLibrary.selected,
+            fields: state => state.form.fields
         })
     },
     watch: {
@@ -94,8 +129,21 @@
                 this.images = rsp.data;
             });
         },
+        hotspots: function() {
+            this.saveHotspots();
+        },
         seamlessAsset: function() {
             this.saveSeamlessAsset();
+        },
+        fields: function() {
+            const moduleTypeField = this.fields.find(function (field) {
+                return field.name === 'module_type';
+            })
+            if (moduleTypeField && moduleTypeField.value === 'tooltip') {
+                this.hotspotsEnabled = true;
+            } else {
+                this.hotspotsEnabled = false;
+            }
         }
     },
     methods: {
@@ -133,7 +181,41 @@
                 value: this.seamlessAsset
             };
             this.$store.commit(FORM.UPDATE_FORM_FIELD, field);
-        }
+        },
+        addHotspot: function (e) {
+            if (this.hotspotsEnabled) {
+                const rect = e.currentTarget.getBoundingClientRect()
+                const x = (e.clientX - rect.left) / rect.width * 100
+                const y = (e.clientY - rect.top) / rect.height * 100
+                this.hotspots = this.hotspots.concat({
+                    "x": x,
+                    "y": y,
+                });
+                this.showHotspotInfo(this.hotspots.length - 1);
+            }
+        },
+        showHotspotInfo: function (index) {
+            this.currentHotspotPos = [this.hotspots[index].x, this.hotspots[index].y];
+        },
+        deleteCurrentHotspot: function () {
+            this.hotspots = this.hotspots.filter(function (hotspot) {
+                return hotspot !== this.currentHotspot;
+            }, this)
+        },
+        changeCurrentDescription: function (newValue) {
+            this.hotspots = this.hotspots.map(hotspot => {
+                if (hotspot === this.currentHotspot) {
+                    hotspot.description = newValue;
+                }
+                return hotspot;
+            })
+        },
+        saveHotspots: function () {
+            let field = {}
+            field.name = 'tooltip_hotspots'
+            field.value = this.hotspots
+            this.$store.commit(FORM.UPDATE_FORM_FIELD, field)
+        },
     }
   }
 </script>
@@ -141,6 +223,7 @@
 <style lang="scss" scoped>
     .previewer {
         position: relative;
+        display: inline-block;
         width: 640px;
         height: 500px;
         background-color: gainsboro;
@@ -163,5 +246,37 @@
         bottom: 0;
         left: 0;
         background-color: hsla(0,0%,100%,.8);
+    }
+    .hotspot {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: orange;
+        border: 2px solid gray;
+        border-radius: 50% 50%;
+        box-sizing: border-box; 
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+    .hotspot_active {
+        transform: translateX(-25%) translateY(-25%) scale(2);
+        background-color: yellow;
+        transform-origin: center center;
+    }
+    .hotspot:hover {
+        cursor: pointer;
+    }
+    .hotspot-info-container {
+        width: calc(100% - 640px);
+        height: 100%;
+        display: block;
+        position: relative;
+        float: right;
+        padding: 0 20px;
+    }
+    .hotspot-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
     }
 </style>
