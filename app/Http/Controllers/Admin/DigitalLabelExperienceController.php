@@ -11,6 +11,7 @@ class DigitalLabelExperienceController extends ModuleController
 {
     protected $moduleName = 'digitalLabels.experiences';
     protected $modelName = 'Experience';
+    protected $previewView = 'site.digitalLabelDetail';
 
     protected function getParentModuleForeignKey()
     {

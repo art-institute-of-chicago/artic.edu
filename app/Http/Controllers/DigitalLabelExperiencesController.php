@@ -59,15 +59,15 @@ class DigitalLabelExperiencesController extends FrontController
 
     protected function show($slug)
     {
-        $item = $this->repository->forSlug($slug);
+        $experience = $this->repository->forSlug($slug);
         $articles = Article::published()
             ->orderBy('date', 'desc')
             ->paginate(4);
         return view('site.digitalLabelDetail', [
             'contrastHeader' => true,
-            'item' => $item,
+            'experience' => $experience,
             'furtherReading' => $articles,
-            'canonicalUrl' => route('digitalLabels.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
+            'canonicalUrl' => route('digitalLabels.show', ['id' => $experience->id, 'slug' => $experience->titleSlug]),
         ]);
     }
 

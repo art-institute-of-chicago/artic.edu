@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
+use App\Models\Article;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\SlideRepository;
 
@@ -10,6 +11,7 @@ class ExperienceSlideController extends ModuleController
 {
     protected $moduleName = 'experiences.slides';
     protected $modelName = 'Slide';
+    protected $previewView = 'site.digitalLabelDetail';
 
     protected function getParentModuleForeignKey()
     {
@@ -18,6 +20,7 @@ class ExperienceSlideController extends ModuleController
 
     protected $indexOptions = [
         'reorder' => true,
+        'permalink' => false,
     ];
 
     protected function indexData($request)
@@ -82,6 +85,23 @@ class ExperienceSlideController extends ModuleController
                 ],
 
             ],
+        ];
+    }
+
+    protected function previewData($item)
+    {
+        $experience = $item->experience;
+
+        $articles = Article::published()
+            ->orderBy('date', 'desc')
+            ->paginate(4);
+
+        return [
+            'contrastHeader' => true,
+            'experience' => $experience,
+            'slide' => $item,
+            'furtherReading' => $articles,
+            'canonicalUrl' => route('digitalLabels.show', ['id' => $experience->id, 'slug' => $experience->titleSlug]),
         ];
     }
 
