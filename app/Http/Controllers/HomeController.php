@@ -19,7 +19,7 @@ class HomeController extends FrontController
 
         $exhibitions = $page->apiModels('homeExhibitions', 'Exhibition');
         $products    = $page->apiModels('homeShopItems', 'ShopItem');
-        $events      = $page->homeEvents;
+        $events      = $page->homeEvents()->future()->published()->limit(4)->get();
 
         $mainFeatures       = $page->homeFeatures()->published()->limit(3)->get();
         $collectionFeatures = $page->collectionFeatures()->published()->get();

@@ -31,11 +31,11 @@
 
     @formField('browser', [
         'routePrefix' => 'exhibitions_events',
-        'max' => 4,
+        'max' => 10,
         'moduleName' => 'events',
         'name' => 'homeEvents',
         'label' => 'Featured events',
-        'note' => 'Select up to 4 events you want to feature on the homepage'
+        'note' => 'Select up to 10 events you want to feature on the homepage'
     ])
 
 

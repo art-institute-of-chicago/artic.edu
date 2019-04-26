@@ -313,6 +313,13 @@ class Event extends AbstractModel
         return $query->whereIsPrivate(false);
     }
 
+    public function scopeFuture($query)
+    {
+        return $query->whereHas('eventMetas', function ($query) {
+            $query->where('date_end', '>=', Carbon::now());
+        });
+    }
+
     public function scopeBetweenDates($query, $startDate, $endDate = null)
     {
         $query->rightJoin('event_metas', function ($join) {
