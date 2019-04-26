@@ -14,12 +14,12 @@
     <span class="m-listing__meta">
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-4')
-            @slot('title', $item->title)
-            @slot('title_display', $item->title_display)
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
         @endcomponent
 
         <br>
-        <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->list_description !!}</span>
+        <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->list_description !!}</span>
         <br>
 
         <span class="m-listing__meta-bottom">

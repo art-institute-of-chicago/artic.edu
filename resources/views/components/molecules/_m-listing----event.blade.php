@@ -45,22 +45,22 @@
             @endcomponent
         @else
             @component('components.atoms._type')
-                {{ $item->present()->type }}
+                {!! $item->present()->type !!}
             @endcomponent
         @endif
       <br>
     @endif
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-3')
-            @slot('title', $item->title)
-            @slot('title_display', $item->title_display)
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
             @slot('itemprop', 'name')
         @endcomponent
       <br>
       <span class="m-listing__meta-bottom">
         @if (!empty($item->forced_date))
             @component('components.atoms._date')
-            {!! $item->forced_date !!}
+            {!! $item->present()->forced_date !!}
             @endcomponent
         @else
             @component('components.atoms._date')

@@ -12,16 +12,16 @@
     foreach($artworks as $artwork) {
         $image = $artwork->imageFront('hero', 'thumbnail');
 
-        $title = $artwork->title;
+        $title = $artwork->present()->title;
         if (!empty($artwork->date_block)) {
-            $title .= ', ' . $artwork->date_block;
+            $title .= ', ' . $artwork->present()->date_block;
         }
 
         $caption = "";
         if (!empty($artwork->artist_title)) {
-            $caption = $artwork->artist_title;
+            $caption = $artwork->present()->artist_title;
         } else if (!empty($artwork->place_of_origin)) {
-            $caption = $artwork->place_of_origin;
+            $caption = $artwork->present()->place_of_origin;
         }
 
         $item = [];
@@ -69,7 +69,7 @@
     @endif
 
     @slot('variation', 'o-blocks__block')
-    @slot('title', $block->input('title'))
-    @slot('caption', $block->input('subhead'))
+    @slot('title', $block->present()->input('title'))
+    @slot('caption', $block->present()->input('subhead'))
     @slot('items', $items)
 @endcomponent

@@ -13,12 +13,12 @@
 
   @component('components.molecules._m-article-header')
     {{-- @slot('editorial', false) --}}
-    @slot('headerType', $item->headerType)
+    @slot('headerType', $item->present()->headerType)
     {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
-    @slot('title', $item->title)
-    @slot('date',  $item->date)
-    @slot('type',  $item->type)
-    @slot('intro', $item->heading)
+    @slot('title', $item->present()->title)
+    @slot('date',  $item->present()->date)
+    @slot('type',  $item->present()->type)
+    @slot('intro', $item->present()->heading)
     @slot('img',   $item->imageFront('hero'))
     @slot('galleryImages', $item->galleryImages)
     @slot('isZoomable', $item->is_zoomable)
@@ -39,10 +39,10 @@
 
     <ul class="list list--inline f-secondary">
       @if ($item->department_id)
-      <li><a href="{!! route('departments.show', [$item->department_id . '/' . getUtf8Slug($item->department_title)]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{{ $item->department_title }}</a></li>
+      <li><a href="{!! route('departments.show', [$item->department_id . '/' . getUtf8Slug($item->department_title)]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{!! $item->present()->department_title !!}</a></li>
       @endif
       @if ($item->is_on_view && $item->gallery_id)
-      <li><a href="{!! route('galleries.show', [$item->gallery_id . '/' . getUtf8Slug($item->gallery_title)]) !!}" data-gtm-event="{{ $item->gallery_title }}"  data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{{ $item->gallery_title }}</a></li>
+      <li><a href="{!! route('galleries.show', [$item->gallery_id . '/' . getUtf8Slug($item->gallery_title)]) !!}" data-gtm-event="{{ $item->gallery_title }}"  data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{!! $item->present()->gallery_title !!}</a></li>
       @endif
     </ul>
   </div>
@@ -81,7 +81,7 @@
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
           @slot('ariaHidden', 'true')
-          {{ $item->title }}
+          {!! $item->present()->title !!}
       @endcomponent
     @endif
 
@@ -91,7 +91,7 @@
           @slot('tag','p')
           @slot('font', 'f-secondary')
           @slot('variation', 'o-article__inline-header-display')
-          {{ $item->date_display }}
+          {!! $item->present()->date_display !!}
       @endcomponent
     @endif
 
@@ -101,7 +101,7 @@
           @slot('tag','p')
           @slot('font', 'f-secondary')
           @slot('variation', 'o-article__inline-header-display')
-          {{ $item->artist_display }}
+          {!! $item->present()->artist_display !!}
       @endcomponent
     @endif
   </div>
@@ -142,7 +142,7 @@
 
     @component('components.molecules._m-article-actions')
         @slot('variation','m-article-actions--keyline-top')
-        @slot('articleType', $item->type)
+        @slot('articleType', $item->present()->type)
     @endcomponent
   </div>
 

@@ -1,9 +1,9 @@
 @php
     $items = [];
     foreach ($block->childs as $item) {
-        $item->subtype = $item->input('tag');
-        $item->title = $item->input('header');
-        $item->shortDesc = $item->input('description');
+        $item->subtype = $item->present()->input('tag');
+        $item->title = $item->present()->input('header');
+        $item->shortDesc = $item->present()->input('description');
         $item->url = $item->input('external_link');
         $items[] = $item;
     }

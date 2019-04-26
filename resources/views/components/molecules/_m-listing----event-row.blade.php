@@ -46,14 +46,14 @@
         @endif
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-4')
-            @slot('title', $item->title)
-            @slot('title_display', $item->title_display)
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
         @endcomponent
 
         @if (!empty($item->list_description))
             <br>
             @component('components.atoms._short-description')
-                {!! $item->list_description !!}
+                {!! $item->present()->list_description !!}
             @endcomponent
         @endif
 
@@ -105,7 +105,7 @@
                         @slot('tag','button')
                         @slot('behavior', 'getUrl')
                         @slot('dataAttributes', 'data-href="'. $item->buy_tickets_link .'"')
-                        {{ !empty($item->buy_button_text) ? $item->buy_button_text : 'Buy ticket'}}
+                        {!! !empty($item->buy_button_text) ? $item->present()->buy_button_text : 'Buy ticket' !!}
                     @endcomponent
                     @break
             @endswitch

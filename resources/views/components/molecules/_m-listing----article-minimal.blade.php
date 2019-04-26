@@ -25,9 +25,9 @@
             @endif
         </span>
         <span class="m-listing__meta">
-            <em class="type f-tag">{{ $item->subtype }}</em>
+            <em class="type f-tag">{!! $item->present()->subtype !!}</em>
             <br>
-            <strong class="title {{ $titleFont ?? 'f-list-3' }}">{!! $item->title_display ?? $item->title !!}</strong>
+            <strong class="title {{ $titleFont ?? 'f-list-3' }}">{!! $item->present()->title_display ?? $item->present()->title !!}</strong>
             <br>
             <span class="m-listing__meta-bottom">
                 <span class="intro f-caption">

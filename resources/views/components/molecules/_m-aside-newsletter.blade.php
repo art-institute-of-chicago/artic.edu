@@ -3,7 +3,7 @@
 @endphp
 <form class="m-aside-newsletter{{ (isset($variation)) ? ' '.$variation : ' ' }}{{ (isset($error) and $error) ? ' s-error' : '' }}{{ (isset($success) and $success) ? ' s-success' : '' }}" action="/subscribe" data-behavior="newsletter" novalidate>
     <fieldset>
-        <legend><h2 class="title f-list-3">{{ $copy ?? 'Sign up for our enewsletter to receive updates.' }}</h2></legend>
+        <legend><h2 class="title f-list-3">{!! $copy ?? 'Sign up for our enewsletter to receive updates.' !!}</h2></legend>
         <div class="m-aside-newsletter__field__wrapper">
             <span class="m-aside-newsletter__field">
                 <label for="email{{ $rand }}" class="f-secondary">Email address</label>

@@ -23,11 +23,11 @@
     </span>
     <span class="m-listing__meta">
       @component('components.atoms._title')
-          {{ $item->title }}
+          {!! $item->present()->title !!}
       @endcomponent
       <br>
       @component('components.atoms._short-description')
-          {{ $item->description }}
+          {!! $item->present()->description !!}
       @endcomponent
       <br>
       @if ($item->sale_price)

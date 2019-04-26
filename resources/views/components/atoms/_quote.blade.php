@@ -2,7 +2,7 @@
     <p class="{{ $font ?? 'f-quote' }}">{{ $slot }}</p>
 
     @if ( !empty( $attribution ) )
-        <cite class="f-secondary">{{ $attribution }}</cite>
+        <cite class="f-secondary">{!! $attribution !!}</cite>
     @endif
 
     <svg class="quote__icon" aria-hidden="true">

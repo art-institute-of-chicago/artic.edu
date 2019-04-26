@@ -237,6 +237,7 @@ return [
 
         'LakeviewImageService' => App\Facades\LakeviewImageServiceFacade::class,
         'EmbedConverter' => App\Facades\EmbedConverterFacade::class,
+        'SmartyPants' => Michelf\SmartyPants::class,
     ],
 
 ];

@@ -13,7 +13,7 @@
             @component('components.blocks._text')
                 @slot('tag', 'div')
                 @slot('font', 'f-list-1--dense')
-                {!! $block->input('callout') !!}
+                {!! $block->present()->input('callout') !!}
             @endcomponent
         </div>
     </div>

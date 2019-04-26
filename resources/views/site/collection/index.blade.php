@@ -9,7 +9,7 @@
 @endcomponent
 
 @component('components.molecules._m-intro-block')
-    {!! $page->art_intro !!}
+    {!! $page->present()->art_intro !!}
 @endcomponent
 
 @component('components.molecules._m-links-bar')
@@ -59,7 +59,7 @@
                         @slot('variation', 'tag--senary')
                     @endif
                     @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $category->title ) . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="collection-quick-search"')
-                    {{ $category->title }}
+                    {!! $category->present()->title !!}
                 @endcomponent
             </li>
         @endforeach
@@ -121,7 +121,7 @@
 
 <div class="o-collection-search" data-behavior="collectionSearch">
     @component('components.molecules._m-search-bar')
-        @slot('placeholder','Search...')
+        @slot('placeholder','Search…')
         @slot('name', 'collection-search')
         @slot('value', request('q'))
         @slot('action', route('collection'))
@@ -135,7 +135,7 @@
             @foreach ($page->apiModels('artCategoryTerms', 'CategoryTerm') as $category)
                 <li>
                     <a href="{!! $category->present()->collectionUrl !!}" class="tag tag--quinary f-tag" data-gtm-old-label="quick-search-click" data-gtm-event="{{ getUtf8Slug($category->title) }}"  data-gtm-action="discover-art-artists" data-gtm-event-category="collection-search">
-                        {{ $category->title }}
+                        {!! $category->present()->title !!}
                     </a>
                 </li>
             @endforeach

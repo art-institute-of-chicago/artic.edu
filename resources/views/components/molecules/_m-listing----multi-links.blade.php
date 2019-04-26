@@ -31,15 +31,15 @@
                     @slot('tag', 'a')
                     @slot('href', $item['titleLink'])
                     @slot('gtmAttributes', $gtmAttributes ?? null)
-                    {{ $item['title_display'] ?? $item['title'] }} <span class='title__arrow' aria-hidden="true">&rsaquo;</span>
+                    {!! SmartyPants::defaultTransform($item['title_display'] ?? $item['title']) !!} <span class='title__arrow' aria-hidden="true">&rsaquo;</span>
                 @endcomponent
             @else
                 @component('components.atoms._title')
                     @slot('font', $titleFont ?? 'f-list-3')
                     @slot('tag', 'span')
                     @slot('ariaHidden', 'true')
-                    @slot('title', $item['title'])
-                    @slot('title_display', $item['title_display'] ?? null)
+                    @slot('title', SmartyPants::defaultTransform($item['title'] ?? null))
+                    @slot('title_display', SmartyPants::defaultTransform($item['title_display'] ?? null))
                 @endcomponent
             @endif
             <br>
@@ -48,7 +48,7 @@
             @component('components.blocks._text')
                 @slot('font', 'f-secondary')
                 @slot('tag', 'div')
-                {!! $item['text'] !!}
+                {!! SmartyPants::defaultTransform($item['text']) !!}
             @endcomponent
         @endif
         @if (isset($item['links']) and $item['links'])

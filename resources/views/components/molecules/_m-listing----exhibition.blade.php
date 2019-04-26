@@ -41,7 +41,7 @@
         @else
             @component('components.atoms._type')
                 @slot('font', '')
-                {{ $item->present()->exhibitionType }}
+                {!! $item->present()->exhibitionType !!}
             @endcomponent
         @endif
 
@@ -76,13 +76,13 @@
       <br>
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-3')
-            @slot('title', $item->title)
-            @slot('title_display', $item->title_display)
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
         @endcomponent
         <br>
         @if (!empty($variation) && strpos($variation, 'm-listing--hero') === false && strpos($variation, 'm-listing--feature') === false && $item->list_description)
             @component('components.atoms._short-description')
-                {!! truncateStr($item->list_description) !!}
+                {!! truncateStr($item->present()->list_description) !!}
             @endcomponent
             <br>
         @endif

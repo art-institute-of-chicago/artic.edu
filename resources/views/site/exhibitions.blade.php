@@ -3,11 +3,11 @@
 @section('content')
 
 @component('components.molecules._m-header-block')
-    {!! $page->title_display ?? $page->title !!}
+    {!! $page->present()->title_display ?? $page->present()->title !!}
 @endcomponent
 
 @component('components.molecules._m-intro-block')
-    {{ $page->exhibition_intro }}
+    {{ $page->present()->exhibition_intro }}
 @endcomponent
 
 @component('components.molecules._m-links-bar')

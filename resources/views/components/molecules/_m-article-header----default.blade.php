@@ -27,7 +27,7 @@
     @if (!empty($type))
         @component('components.atoms._type')
             @slot('tag','p')
-            {{ $type }}
+            {!! $type !!}
         @endcomponent
     @endif
 </{{ $tag ?? 'header' }}>

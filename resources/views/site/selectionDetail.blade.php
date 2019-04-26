@@ -8,11 +8,11 @@
     @slot('editorial', false)
     @slot('headerType', $item->present()->headerType)
     @slot('variation', ($item->headerVariation ?? null))
-    @slot('title', $item->title)
-    @slot('title_display', $item->title_display)
+    @slot('title', $item->present()->title)
+    @slot('title_display', $item->present()->title_display)
     @slot('type', $item->present()->type)
     @slot('img', $item->imageFront('hero'))
-    @slot('credit', $item->hero_caption)
+    @slot('credit', $item->present()->hero_caption)
   @endcomponent
 
   <div class="o-article__primary-actions{{ ($item->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}{{ ($item->articleType === 'artwork') ? ' u-show@large+' : '' }}">
@@ -77,7 +77,7 @@
           @component('components.blocks._text')
               @slot('font', 'f-deck')
               @slot('tag', 'span')
-              {!! $item->short_copy !!}
+              {!! $item->present()->short_copy !!}
           @endcomponent
         </div>
     @endif

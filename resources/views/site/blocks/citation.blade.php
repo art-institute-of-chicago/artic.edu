@@ -7,5 +7,5 @@
 @endcomponent
 @component('components.blocks._text')
     @slot('font', 'f-secondary')
-    {!! $block->input('citation') !!}
+    {!! $block->present()->input('citation') !!}
 @endcomponent

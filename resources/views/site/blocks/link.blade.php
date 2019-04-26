@@ -2,7 +2,7 @@
     $file = $block->file('attachment');
 
     $link = $block->input('link');
-    $label = $block->input('title');
+    $label = $block->present()->input('title');
 
     if ($file) {
         if (empty($link)) {
