@@ -242,6 +242,10 @@ return [
                 'title' => 'Event Programs',
                 'module' => true,
             ],
+            'vanityRedirects' => [
+                'title' => 'Vanity Redirects',
+                'module' => true
+            ]
         ],
     ],
 
