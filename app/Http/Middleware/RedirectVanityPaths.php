@@ -17,7 +17,7 @@ class RedirectVanityPaths
      */
     public function handle($request, Closure $next)
     {
-        $redirect = VanityRedirect::where('path', $request->path())->first();
+        $redirect = VanityRedirect::published()->where('path', $request->path())->first();
 
         if ($redirect) {
             return redirect($redirect->destination);
