@@ -21,7 +21,16 @@ class HomeController extends FrontController
         $products    = $page->apiModels('homeShopItems', 'ShopItem');
         $events      = $page->homeEvents()->future()->published()->limit(4)->get();
 
-        $mainFeatures       = $page->homeFeatures()->published()->limit(3)->get();
+        $mainHomeFeatures       = $page->mainHomeFeatures()->published()->limit(1)->get();
+        $secondaryHomeFeatures  = $page->secondaryHomeFeatures()->published()->limit(2)->get();
+
+        $mainFeatures = $mainHomeFeatures->concat($secondaryHomeFeatures);
+
+        // TODO: Finish deprecating `homeFeatures` relationship
+        if ($mainFeatures->count() < 1) {
+            $mainFeatures = $page->homeFeatures()->published()->limit(3)->get();
+        }
+
         $collectionFeatures = $page->collectionFeatures()->published()->get();
 
         $view_data = [

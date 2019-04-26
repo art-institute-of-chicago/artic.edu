@@ -220,9 +220,22 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');
     }
 
+    /**
+     * DEPRECATED
+     */
     public function homeFeatures()
     {
         return $this->belongsToMany('App\Models\HomeFeature', 'page_home_home_feature')->withPivot('position')->orderBy('position');
+    }
+
+    public function mainHomeFeatures()
+    {
+        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_main_home_feature')->withPivot('position')->orderBy('position');
+    }
+
+    public function secondaryHomeFeatures()
+    {
+        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_secondary_home_feature')->withPivot('position')->orderBy('position');
     }
 
     public function collectionFeatures()
