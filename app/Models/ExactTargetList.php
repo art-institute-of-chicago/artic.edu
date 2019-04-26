@@ -11,7 +11,7 @@ class ExactTargetList
         return collect([
             'OptEnews' => 'News and Exhibitions',
             'OptHumanResources' => 'Career Opportunities',
-            'OptEveningAssociates' => 'Evening Associates',
+            'OptEveningAssociates' => 'Young Professionals',
             'OptFamilyPrograms' => 'Families',
             'OptEvents' => 'Public Programs',
             'OptStudentTeacherPrograms' => 'Students and Teachers',
