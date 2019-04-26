@@ -22,6 +22,9 @@ class HomeFeature extends AbstractModel
         'url',
     ];
 
+    protected $presenter = 'App\Presenters\Admin\HomeFeaturePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\HomeFeaturePresenter';
+
     protected $dispatchesEvents = [
         'saved' => \App\Events\UpdateHomeFeature::class,
         'deleted' => \App\Events\UpdateHomeFeature::class,
