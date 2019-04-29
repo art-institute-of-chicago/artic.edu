@@ -23,6 +23,7 @@ class Slide extends Model implements Sortable
         'experience_id',
         'asset_type',
         'module_type',
+        'standard_media_type',
         'media_type',
         'media_title',
         'position',

@@ -22,9 +22,9 @@ class SlideModal extends JsonResource
             '__option_inset' => false,
             '__option_caption' => false,
             '__option_loop' => false,
-            'id' => $this->id,
+            'id' => (string) $this->id,
             '__mediaType' => $this->modal_type,
-            'src' => SlideMediaResource::collection($this->experienceImage)->toArray(request()),
+            'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [$this->youtube_url],
             'caption' => $this->imageCaption('experience_image'),
             'poster' => 'ead4b67d-941c-4281-8c77-e2a3d9ed86ae',
         ];

@@ -39,7 +39,7 @@
         'renderForBlocks' => true
 ])
     @formField('input', [
-        'name' => 'video_url',
+        'name' => 'youtube_url',
         'label' => 'Youtube URL'
     ])
 

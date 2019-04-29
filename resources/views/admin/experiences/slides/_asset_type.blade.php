@@ -14,6 +14,29 @@
         ],
     ]
 ])
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'asset_type',
+    'fieldValues' => 'standard',
+    'renderForBlocks' => false,
+    'keepAlive' => true
+])
+    @formField('radios', [
+        'name' => 'standard_media_type',
+        'label' => 'Media Type',
+        'default' => 'type_image',
+        'inline' => true,
+        'options' => [
+            [
+                'value' => 'type_image',
+                'label' => 'Image'
+            ],
+            [
+                'value' => 'type_video',
+                'label' => 'Video'
+            ],
+        ]
+    ])
+@endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'asset_type',
@@ -24,7 +47,7 @@
     @formField('radios', [
         'name' => 'media_type',
         'label' => 'Media Type',
-        'default' => 'image',
+        'default' => 'type_image',
         'inline' => true,
         'options' => [
             [

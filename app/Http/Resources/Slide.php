@@ -61,13 +61,31 @@ class Slide extends JsonResource
     protected function getSplitAttributes()
     {
         $this->media = $this->primaryExperienceImage;
-        $this->modal = $this->primaryExperienceModal;
+        $primaryExperienceImage = $this->primaryExperienceImage->first();
+        $secondaryExperienceImage = $this->secondaryExperienceImage->first();
+        $primaryExperienceModal = $this->primaryExperienceModal->first();
+        $secondaryExperienceModal = $this->secondaryExperienceModal->first();
+        $this->modal = collect([$primaryExperienceModal, $secondaryExperienceModal])->filter(function ($modal) {
+            return $modal;
+        });
 
         return [
             'primaryCopy' => $this->split_primary_copy,
             '__option_flip' => $this->image_side === 'right',
             '__option_secondary_image' => in_array(['id' => 'secondary_image'], $this->split_attributes ?? []),
             '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
+            'primaryimglink' => $primaryExperienceImage ? [
+                'type' => 'imagelink',
+                'src' => (new SlideMediaResource($primaryExperienceImage))->toArray(request()),
+                'modalReference' => $primaryExperienceModal ? (string) $primaryExperienceModal->id : '',
+                'caption' => $primaryExperienceImage->imageCaption('experience_image'),
+            ] : ['modalReference' => ''],
+            'imglink' => $secondaryExperienceImage ? [
+                'type' => 'imagelink',
+                'src' => (new SlideMediaResource($secondaryExperienceImage))->toArray(request()),
+                'modalReference' => $secondaryExperienceModal ? (string) $secondaryExperienceModal->id : '',
+                'caption' => $secondaryExperienceImage->imageCaption('experience_image'),
+            ] : ['modalReference' => ''],
         ];
     }
 
@@ -98,16 +116,22 @@ class Slide extends JsonResource
         $this->media = $this->experienceImage;
         $this->modal = $this->experienceModal;
         return [
-            '__option_inset' => $this->fullwidth_inset,
             'src' => $this->media->map(function ($image) {
                 return $image->image('experience_image');
             })->toArray(),
+            '__option_open_modal' => false,
+            '__option_autoplay' => true,
+            '__option_inset' => $this->fullwidth_inset,
+            '__option_zoomable' => false,
+            '__option_caption' => false,
+            '__option_loop' => false,
         ];
     }
 
     protected function getCompareAttributes()
     {
         $this->media = $this->experienceImage;
+        return [];
     }
 
     protected function getEndAttributes()
@@ -139,14 +163,14 @@ class Slide extends JsonResource
             'headline' => $this->headline,
             'media' => $this->getMedia(),
             'seamlessAsset' => [
-                'assetID' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
+                'assetID' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : '0',
                 'x' => $this->seamless_asset ? $this->seamless_asset['x'] : 0,
                 'y' => $this->seamless_asset ? $this->seamless_asset['y'] : 0,
                 'scale' => $this->seamless_asset ? $this->seamless_asset['scale'] / 100 : 1,
                 'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] : 0,
             ],
             'assetType' => $this->asset_type,
-            '__mediaType' => 'image',
+            '__mediaType' => $this->standard_media_type === 'type_image' ? 'image' : 'video',
             'moduleTitle' => $this->title,
             'exhibitonId' => $this->experience->digitalLabel->id,
             'isActive' => $this->published,
@@ -160,7 +184,7 @@ class Slide extends JsonResource
         if (in_array($this->module_type, ['split', 'fullwidthmedia'])) {
             $rst += [
                 '__mediaType__options' => [
-                    'image', 'video',
+                    'video', 'image',
                 ],
                 'modals' => SlideModalResource::collection($this->modal)->toArray(request()),
             ];
