@@ -66,7 +66,8 @@ class Slide extends JsonResource
         return [
             'primaryCopy' => $this->split_primary_copy,
             '__option_flip' => $this->image_side === 'right',
-            '__option_secondary_image' => in_array(['id' => 'secondary_image'], $this->split_attributes),
+            '__option_secondary_image' => in_array(['id' => 'secondary_image'], $this->split_attributes ?? []),
+            '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
         ];
     }
 
@@ -95,8 +96,12 @@ class Slide extends JsonResource
     protected function getFullWidthMediaAttributes()
     {
         $this->media = $this->experienceImage;
+        $this->modal = $this->experienceModal;
         return [
-
+            '__option_inset' => $this->fullwidth_inset,
+            'src' => $this->media->map(function ($image) {
+                return $image->image('experience_image');
+            })->toArray(),
         ];
     }
 
@@ -141,7 +146,7 @@ class Slide extends JsonResource
                 'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] : 0,
             ],
             'assetType' => $this->asset_type,
-            '__mediaType' => null,
+            '__mediaType' => 'image',
             'moduleTitle' => $this->title,
             'exhibitonId' => $this->experience->digitalLabel->id,
             'isActive' => $this->published,
@@ -157,9 +162,6 @@ class Slide extends JsonResource
                 '__mediaType__options' => [
                     'image', 'video',
                 ],
-                '__option_inset' => $this->module_type === 'split' ?
-                $this->split_attributes && in_array(['id' => 'inset'], $this->split_attributes) :
-                ($this->module_type === 'fullwidthmedia' ? $this->fullwidth_inset : false),
                 'modals' => SlideModalResource::collection($this->modal)->toArray(request()),
             ];
         }

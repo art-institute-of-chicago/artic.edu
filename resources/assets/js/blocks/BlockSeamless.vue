@@ -2,15 +2,17 @@
   <div class="content">
     <br />
     <h1>Seamless Previewer</h1>
+    <div v-if="hotspotsEnabled">
+        <br />
+        <input type="checkbox" v-model="hotspotsMode"> Hotspots Mode 
+    </div>
     <br />
     <div class="previewer" v-on:click.prevent.stop="addHotspot">
         <h1 v-if="images.length === 0"> No images found in the zip, please try re-uploading the zip file</h1>
         <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{ left: imagePos.x + 'px', top: imagePos.y + 'px', cursor: isDragging ? 'grabbing' : 'grab', transform: 'scale(' + scale / 100 + ')' }"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
         </div>
-        <div class="hotspot-container" v-if="hotspotsEnabled">
-            <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="index" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" v-on:click.stop="showHotspotInfo(index)"></div>
-        </div>
+        <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="index" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" v-on:click.stop="showHotspotInfo(index)"></div>
         <div class="previewer-panel">
             <p>Frame {{ currentFrame }}</p>
             <input type="range" :min="minFrame" :max="maxFrame" class="frame-slider" step="1" v-model.number="currentFrame">
@@ -19,10 +21,10 @@
             <p> X </p>
             <input type="text" v-model.number="imagePos.x">
             <p> Y </p>
-            <input type="text" v-model.number="imagePos.x">
+            <input type="text" v-model.number="imagePos.y">
         </div>
     </div>
-    <div class="hotspot-info-container" v-if="currentHotspot && hotspotsEnabled">
+    <div class="hotspot-info-container" v-if="currentHotspot && hotspotsEnabled && hotspotsMode">
         <a17-textfield
             label="Description"
             in-store="value"
@@ -67,10 +69,10 @@
     },
     data () {
         return {
-            tooltipEnabled: false,
             images: [],
             hotspots: [],
             hotspotsEnabled: false,
+            hotspotsMode: false,
             currentHotspotPos: [undefined, undefined],
             currentFrame: 1,
             isDragging: false,
@@ -160,7 +162,7 @@
                 this.mousePos.y = event.clientY;
             }
         },
-        dragStop() {
+        dragStop(event) {
             this.isDragging = false;
         },
         updateSequence() {
@@ -183,7 +185,7 @@
             this.$store.commit(FORM.UPDATE_FORM_FIELD, field);
         },
         addHotspot: function (e) {
-            if (this.hotspotsEnabled) {
+            if (this.hotspotsEnabled && this.hotspotsMode) {
                 const rect = e.currentTarget.getBoundingClientRect()
                 const x = (e.clientX - rect.left) / rect.width * 100
                 const y = (e.clientY - rect.top) / rect.height * 100
@@ -195,7 +197,9 @@
             }
         },
         showHotspotInfo: function (index) {
-            this.currentHotspotPos = [this.hotspots[index].x, this.hotspots[index].y];
+            if (this.hotspotsEnabled && this.hotspotsMode) {
+                this.currentHotspotPos = [this.hotspots[index].x, this.hotspots[index].y];
+            }
         },
         deleteCurrentHotspot: function () {
             this.hotspots = this.hotspots.filter(function (hotspot) {
