@@ -45,7 +45,7 @@ class SlideRepository extends ModuleRepository
         $fields = $this->getExperienceModule($object, $fields, 'secondaryExperienceImage', 'ExperienceImage', 'slide_secondary_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'tooltipExperienceImage', 'ExperienceImage', 'tooltip_experience_image');
-        $fields = $this->getExperienceModule($object, $fields, 'compareExperienceImage2', 'ExperienceImage', 'compare_experience_image_1');
+        $fields = $this->getExperienceModule($object, $fields, 'compareExperienceImage1', 'ExperienceImage', 'compare_experience_image_1');
         $fields = $this->getExperienceModule($object, $fields, 'compareExperienceImage2', 'ExperienceImage', 'compare_experience_image_2');
         $fields = $this->getExperienceModule($object, $fields, 'compareExperienceModal', 'ExperienceImage', 'compare_experience_modal');
         $fields = $this->getExperienceModule($object, $fields, 'experienceModal', 'ExperienceModal', 'experience_modal');

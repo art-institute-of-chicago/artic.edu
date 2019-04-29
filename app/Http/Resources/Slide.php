@@ -131,7 +131,18 @@ class Slide extends JsonResource
     protected function getCompareAttributes()
     {
         $this->media = $this->experienceImage;
-        return [];
+        $this->modal = $this->compareExperienceModal;
+        $compareImage1 = $this->compareExperienceImage1->first();
+        $compareImage2 = $this->compareExperienceImage2->first();
+        $compareModal = $this->compareExperienceModal->first();
+        return [
+            'object1Src' => (new SlideMediaResource($compareImage1))->toArray(request()),
+            'object1Caption' => $compareImage1->imageCaption('experience_image'),
+            'object2Src' => (new SlideMediaResource($compareImage2))->toArray(request()),
+            'object2Caption' => $compareImage2->imageCaption('experience_image'),
+            'modalReference' => $compareModal ? (string) $compareModal->id : '',
+            '__option_captions' => !empty($compareImage1->imageCaption('experience_image')) | !empty($compareImage2->imageCaption('experience_image')),
+        ];
     }
 
     protected function getEndAttributes()
