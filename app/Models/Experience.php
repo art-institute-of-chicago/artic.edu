@@ -72,12 +72,12 @@ class Experience extends Model implements Sortable
 
     public function getContentBundleAttribute()
     {
-        return SlideResource::collection($this->slides()->orderBy('position')->get())->toArray(request());
+        return SlideResource::collection($this->slides()->published()->orderBy('position')->get())->toArray(request());
     }
 
     public function getAssetLibraryAttribute()
     {
-        return SlideAssetResource::collection($this->slides()->orderBy('position')->get())->toArray(request());
+        return SlideAssetResource::collection($this->slides()->published()->orderBy('position')->get())->toArray(request());
     }
 
     public function slides()
