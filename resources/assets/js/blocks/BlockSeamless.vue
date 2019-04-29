@@ -9,7 +9,7 @@
     <br />
     <div class="previewer" v-on:click.prevent.stop="addHotspot">
         <h1 v-if="images.length === 0"> No images found in the zip, please try re-uploading the zip file</h1>
-        <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{ left: imagePos.x + 'px', top: imagePos.y + 'px', cursor: isDragging ? 'grabbing' : 'grab', transform: 'scale(' + scale / 100 + ')' }"> 
+        <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePosPercentage.y + '%', left: imagePosPercentage.x + '%', transform: 'scale(' + scale / 100 + ')'}"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
         </div>
         <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="index" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" v-on:click.stop="showHotspotInfo(index)"></div>
@@ -19,9 +19,9 @@
             <p>Scale {{ scale }}%</p>
             <input type="range" min=10 max=200 class="scale-slider" step="1" v-model.number="scale">
             <p> X </p>
-            <input type="text" v-model.number="imagePos.x">
+            <input type="text" v-model.number="imagePosPercentage.x">
             <p> Y </p>
-            <input type="text" v-model.number="imagePos.y">
+            <input type="text" v-model.number="imagePosPercentage.y">
         </div>
     </div>
     <div class="hotspot-info-container" v-if="currentHotspot && hotspotsEnabled && hotspotsMode">
@@ -61,7 +61,6 @@
             this.seamlessAsset = this.seamlessAssetData;
         };
         if (this.hotspotsdata) {
-            console.log(this.hotspotsdata);
             this.hotspots = this.hotspotsdata;
         };
         this.updateSequence();
@@ -76,7 +75,7 @@
             currentHotspotPos: [undefined, undefined],
             currentFrame: 1,
             isDragging: false,
-            scale: 10,
+            scale: 100,
             imagePos: {
                 x: 0,
                 y: 0
@@ -89,6 +88,12 @@
         }
     },
     computed: {
+        imagePosPercentage: function() {
+            return {
+                x: this.imagePos.x / 6.4,
+                y: this.imagePos.y / 5
+            }
+        },
         currentHotspot: function() {
             return this.hotspots.find(function(el) {
                 return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
@@ -105,8 +110,8 @@
                 return {
                     assetId: this.fileId,
                     frame: this.currentFrame,
-                    x: this.imagePos.x,
-                    y: this.imagePos.y,
+                    x: this.imagePosPercentage.x,
+                    y: this.imagePosPercentage.y,
                     scale: this.scale
                 }
             },
@@ -236,8 +241,11 @@
     }
     .images-container {
         position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
+        transform-origin: top left;
     }
     .sequence-image {
         position: absolute;
