@@ -7,13 +7,13 @@ use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
-use App\Models\DigitalCatalog;
+use App\Models\DigitalPublication;
 
-class DigitalCatalogRepository extends ModuleRepository
+class DigitalPublicationRepository extends ModuleRepository
 {
     use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
 
-    public function __construct(DigitalCatalog $model)
+    public function __construct(DigitalPublication $model)
     {
         $this->model = $model;
     }

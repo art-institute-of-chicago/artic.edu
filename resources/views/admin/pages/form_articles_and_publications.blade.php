@@ -11,9 +11,9 @@
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
         'max' => 3,
-        'moduleName' => 'digitalCatalogs',
-        'name' => 'digitalCatalogs',
-        'label' => 'Digital Catalogues'
+        'moduleName' => 'digitalPublications',
+        'name' => 'digitalPublications',
+        'label' => 'Digital Publications'
     ])
 
     @formField('browser', [

@@ -84,8 +84,8 @@ class StaticPagesController extends BaseController
             ],
             [
                 'id' => 8,
-                'title' => 'Digital Catalogues',
-                'url' => route('collection.publications.digital-catalogs', [], false),
+                'title' => 'Digital Publications',
+                'url' => route('collection.publications.digital-publications', [], false),
             ],
             [
                 'id' => 9,

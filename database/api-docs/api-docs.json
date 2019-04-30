@@ -635,41 +635,41 @@
                 }
             }
         },
-        "/api/v1/digitalcatalogs": {
+        "/api/v1/digitalpublications": {
             "get": {
                 "tags": [
                     "pages"
                 ],
-                "summary": "List all digital catalogs",
-                "operationId": "getDigitalCatalogs",
+                "summary": "List all digital publications",
+                "operationId": "getDigitalPublications",
                 "responses": {
                     "200": {
-                        "description": "List all digital catalogs"
+                        "description": "List all digital publications"
                     }
                 }
             }
         },
-        "/api/v1/digitalcatalogs/deleted": {
+        "/api/v1/digitalpublications/deleted": {
             "get": {
                 "tags": [
                     "pages"
                 ],
-                "summary": "List all deleted digital catalogs",
-                "operationId": "getDeletedDigitalCatalogs",
+                "summary": "List all deleted digital publications",
+                "operationId": "getDeletedDigitalPublications",
                 "responses": {
                     "200": {
-                        "description": "List all deleted digital catalogs"
+                        "description": "List all deleted digital publications"
                     }
                 }
             }
         },
-        "/api/v1/digitalcatalogs/{id}": {
+        "/api/v1/digitalpublications/{id}": {
             "get": {
                 "tags": [
                     "pages"
                 ],
-                "summary": "Fetch digital catalog details",
-                "operationId": "getDigitalCatalog",
+                "summary": "Fetch digital publication details",
+                "operationId": "getDigitalPublication",
                 "parameters": [
                     {
                         "name": "id",
@@ -681,7 +681,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get a specific digital catalog"
+                        "description": "Get a specific digital publication"
                     }
                 }
             }
@@ -1497,7 +1497,7 @@
             },
             "type": "object"
         },
-        "DigitalCatalog": {
+        "DigitalPublication": {
             "required": [
                 "id"
             ],

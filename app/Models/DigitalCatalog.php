@@ -12,7 +12,7 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class DigitalCatalog extends AbstractModel
+class DigitalPublication extends AbstractModel
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
 
@@ -87,11 +87,11 @@ class DigitalCatalog extends AbstractModel
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('collection.publications.digital-catalogs'), '/', $this->id, '-']);
+        return join([route('collection.publications.digital-publications'), '/', $this->id, '-']);
     }
 
     public function getUrlAttribute() {
-        return route('collection.publications.digital-catalogs.show', $this->slug);
+        return route('collection.publications.digital-publications.show', $this->slug);
     }
 
     public function scopeIds($query, $ids = [])

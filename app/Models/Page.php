@@ -303,9 +303,9 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
     }
 
-    public function digitalCatalogs()
+    public function digitalPublications()
     {
-        return $this->belongsToMany('App\Models\DigitalCatalog')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\DigitalPublication')->withPivot('position')->orderBy('position');
     }
 
     public function printedCatalogs()

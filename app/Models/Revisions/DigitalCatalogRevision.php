@@ -4,15 +4,15 @@ namespace App\Models\Revisions;
 
 use A17\Twill\Models\Revision;
 
-class DigitalCatalogRevision extends Revision
+class DigitalPublicationRevision extends Revision
 {
-    protected $table = "digital_catalog_revisions";
+    protected $table = "digital_publication_revisions";
 
-    protected $touches = ['digitalCatalog'];
+    protected $touches = ['digitalPublication'];
 
-    public function digitalCatalog()
+    public function digitalPublication()
     {
-        return $this->belongsTo('App\Models\DigitalCatalog');
+        return $this->belongsTo('App\Models\DigitalPublication');
     }
 
 }

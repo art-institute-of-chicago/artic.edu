@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Repositories\DigitalCatalogRepository;
-use App\Models\DigitalCatalog;
+use App\Repositories\DigitalPublicationRepository;
+use App\Models\DigitalPublication;
 
-class DigitalCatalogsController extends CatalogsController
+class DigitalPublicationsController extends CatalogsController
 {
 
     protected $repository;
 
-    public function __construct(DigitalCatalogRepository $repository)
+    public function __construct(DigitalPublicationRepository $repository)
     {
         $this->repository = $repository;
 
@@ -21,9 +21,9 @@ class DigitalCatalogsController extends CatalogsController
 
     public function index(Request $request)
     {
-        $items = DigitalCatalog::published()->ordered()->paginate();
+        $items = DigitalPublication::published()->ordered()->paginate();
 
-        $title = 'Digital Catalogues';
+        $title = 'Digital Publications';
 
         $this->seo->setTitle($title);
 
@@ -32,7 +32,7 @@ class DigitalCatalogsController extends CatalogsController
         $view_data = [
             'wideBody' => true,
             'filters' => null,
-            'listingCountText' => 'Showing '.$items->total().' digital catalogues',
+            'listingCountText' => 'Showing '.$items->total().' digital publications',
             'listingItems' => $items,
         ] + $navElements;
 
@@ -52,7 +52,7 @@ class DigitalCatalogsController extends CatalogsController
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Digital Catalogues', 'href' => route('collection.publications.digital-catalogs')],
+            ['label' => 'Digital Publications', 'href' => route('collection.publications.digital-publications')],
             ['label' => $page->title, 'href' => '']
         ];
 

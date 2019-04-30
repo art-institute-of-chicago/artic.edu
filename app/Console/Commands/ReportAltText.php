@@ -21,7 +21,7 @@ class ReportAltText extends Command
             \App\Models\Artist::class,
             \App\Models\CategoryTerm::class,
             \App\Models\Department::class,
-            \App\Models\DigitalCatalog::class,
+            \App\Models\DigitalPublication::class,
             \App\Models\DiningHour::class,
             \App\Models\EducatorResource::class,
             \App\Models\Event::class,
@@ -130,8 +130,8 @@ class ReportAltText extends Command
         $slug = $item->idSlug;
 
         // Alter prefixes
-        if (\App\Models\DigitalCatalog::class == get_class($item)) {
-            $prefix = 'digital-catalogues';
+        if (\App\Models\DigitalPublication::class == get_class($item)) {
+            $prefix = 'digital-publications';
         }
         if (\App\Models\PrintedCatalog::class == get_class($item)) {
             $prefix = 'print-catalogues';

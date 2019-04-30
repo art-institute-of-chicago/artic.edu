@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
-use App\Repositories\DigitalCatalogRepository;
+use App\Repositories\DigitalPublicationRepository;
 
-class DigitalCatalogController extends ModuleController
+class DigitalPublicationController extends ModuleController
 {
-    protected $moduleName = 'digitalCatalogs';
+    protected $moduleName = 'digitalPublications';
     protected $previewView = 'site.genericPage.show';
 
     protected function formData($request)
     {
-        $baseUrl = '//' . config('app.url') . "/digital-catalogues/";
+        $baseUrl = '//' . config('app.url') . "/digital-publications/";
         return [
             'baseUrl' => $baseUrl,
         ];

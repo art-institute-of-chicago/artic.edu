@@ -1098,7 +1098,7 @@ class StaticsController extends FrontController {
           ],
           'featureHero' => $this->getArticle(),
           'features' => $this->getArticles(4),
-          'digitalCatalogs' => [
+          'digitalPublications' => [
               'items' => $this->getCatalogs(3),
           ],
           'printedCatalogs' => [

@@ -6,7 +6,7 @@ use App\Models\Article;
 use App\Models\Event;
 use App\Models\Exhibition;
 use App\Models\PrintedCatalog;
-use App\Models\DigitalCatalog;
+use App\Models\DigitalPublication;
 use App\Models\GenericPage;
 
 use App\Repositories\GenericPageRepository;
@@ -77,7 +77,7 @@ class GenerateSitemap extends Command
         $this->addRoute($sitemap, 'about.press');
         $this->addRoute($sitemap, 'about.press.archive', 0.6);
         $this->addRoute($sitemap, 'collection.publications.printed-catalogs', 0.6);
-        $this->addRoute($sitemap, 'collection.publications.digital-catalogs', 0.6);
+        $this->addRoute($sitemap, 'collection.publications.digital-publications', 0.6);
         $this->addRoute($sitemap, 'collection.research_resources');
         $this->addRoute($sitemap, 'collection.resources.research-guides');
         $this->addRoute($sitemap, 'collection.resources.educator-resources');
@@ -117,7 +117,7 @@ class GenerateSitemap extends Command
         $this->addNativeModel($sitemap, Event::class, 'events.show', 0.8, Url::CHANGE_FREQUENCY_WEEKLY);
         $this->addNativeModel($sitemap, Article::class, 'articles.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY);
         $this->addNativeModel($sitemap, PrintedCatalog::class, 'collection.publications.printed-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->slug];});
-        $this->addNativeModel($sitemap, DigitalCatalog::class, 'collection.publications.digital-catalogs.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->slug];});
+        $this->addNativeModel($sitemap, DigitalPublication::class, 'collection.publications.digital-publications.show', 0.7, Url::CHANGE_FREQUENCY_MONTHLY, function($entity) {return ['id' => $entity->slug];});
     }
 
     // get <a/>'s to filters, artworks, and category-terms from /collection
