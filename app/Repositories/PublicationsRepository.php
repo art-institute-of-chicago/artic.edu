@@ -10,7 +10,7 @@ class PublicationsRepository
     public function searchApi($string, $perPage = null, $page = null, $columns = [])
     {
         // Find top-level catalogs that match the search
-        $search = Search::query()->search($string)->published()->resources(["digital-publications", "printed-publications"]);
+        $search = Search::query()->search($string)->published()->resources(["digital-catalogs", "printed-catalogs"]);
         $results = $search->getSearch($perPage, $columns, null, $page);
 
         // Now find matching `sections` and add them to the catalogs
