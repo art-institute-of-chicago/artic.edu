@@ -42,6 +42,7 @@
             ]
         ]
     ])
+
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'credits_input',
         'fieldValues' => 'datahub',
@@ -54,43 +55,37 @@
         ])
     @endcomponent
 
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'credits_input',
-        'fieldValues' => 'manual',
-        'renderForBlocks' => true,
-        'keepAlive' => true,
+    @formField('input', [
+        'name' => 'artist',
+        'label' => 'Artist'
     ])
-        @formField('input', [
-            'name' => 'artist',
-            'label' => 'Artist'
-        ])
-        @formField('input', [
-            'name' => 'credit_title',
-            'label' => 'Title'
-        ])
-        @formField('input', [
-            'name' => 'credit_date',
-            'label' => 'Date'
-        ])
-        @formField('input', [
-            'name' => 'medium',
-            'label' => 'Medium'
-        ])
-        @formField('input', [
-            'name' => 'dimensions',
-            'label' => 'Dimensions'
-        ])
-        @formField('input', [
-            'name' => 'credit_line',
-            'label' => 'Credit Line'
-        ])
-        @formField('input', [
-            'name' => 'main_reference_number',
-            'label' => 'Main Reference Number'
-        ])
-        @formField('input', [
-            'name' => 'copyright_notice',
-            'label' => 'Copyright Notice'
-        ])
-    @endcomponent
+    @formField('input', [
+        'name' => 'credit_title',
+        'label' => 'Title'
+    ])
+    @formField('input', [
+        'name' => 'credit_date',
+        'label' => 'Date'
+    ])
+    @formField('input', [
+        'name' => 'medium',
+        'label' => 'Medium'
+    ])
+    @formField('input', [
+        'name' => 'dimensions',
+        'label' => 'Dimensions'
+    ])
+    @formField('input', [
+        'name' => 'credit_line',
+        'label' => 'Credit Line'
+    ])
+    @formField('input', [
+        'name' => 'main_reference_number',
+        'label' => 'Main Reference Number'
+    ])
+    @formField('input', [
+        'name' => 'copyright_notice',
+        'label' => 'Copyright Notice'
+    ])
+
 @endcomponent

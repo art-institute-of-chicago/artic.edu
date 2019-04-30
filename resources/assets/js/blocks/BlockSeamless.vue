@@ -173,10 +173,12 @@
             const currentImage = this.images.find(function(image) {
                 return image.frame === this.currentFrame;
             }, this);
-            this.translate.x = this.translate.x + this.imagePos.x / currentImage.width * 100,
-            this.translate.y = this.translate.y + this.imagePos.y / currentImage.height * 100,
-            this.imagePos.x = 0,
-            this.imagePos.y = 0
+            if (currentImage) {
+                this.translate.x = this.translate.x + this.imagePos.x / currentImage.width * 100;
+                this.translate.y = this.translate.y + this.imagePos.y / currentImage.height * 100;
+            }
+            this.imagePos.x = 0;
+            this.imagePos.y = 0;
         },
         updateSequence() {
             if (this.selectedMeidas.hasOwnProperty('sequence_file[en]')) {
