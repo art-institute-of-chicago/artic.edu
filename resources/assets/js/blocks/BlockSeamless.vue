@@ -9,7 +9,7 @@
     <br />
     <div class="previewer" v-on:click.prevent.stop="addHotspot">
         <h1 v-if="images.length === 0"> No images found in the zip, please try re-uploading the zip file</h1>
-        <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePosPercentage.y + '%', left: imagePosPercentage.x + '%', transform: 'scale(' + scale / 100 + ')'}"> 
+        <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
         </div>
         <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="index" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" v-on:click.stop="showHotspotInfo(index)"></div>
@@ -19,9 +19,9 @@
             <p>Scale {{ scale }}%</p>
             <input type="range" min=10 max=200 class="scale-slider" step="1" v-model.number="scale">
             <p> X </p>
-            <input type="text" v-model.number="imagePosPercentage.x">
+            <input type="text" v-model.number="translate.x">
             <p> Y </p>
-            <input type="text" v-model.number="imagePosPercentage.y">
+            <input type="text" v-model.number="translate.y">
         </div>
     </div>
     <div class="hotspot-info-container" v-if="currentHotspot && hotspotsEnabled && hotspotsMode">
@@ -80,6 +80,10 @@
                 x: 0,
                 y: 0
             },
+            translate: {
+                x: 0,
+                y: 0,
+            },
             mousePos: {
                 x: 0,
                 y: 0
@@ -88,12 +92,6 @@
         }
     },
     computed: {
-        imagePosPercentage: function() {
-            return {
-                x: this.imagePos.x / 6.4,
-                y: this.imagePos.y / 5
-            }
-        },
         currentHotspot: function() {
             return this.hotspots.find(function(el) {
                 return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
@@ -110,15 +108,15 @@
                 return {
                     assetId: this.fileId,
                     frame: this.currentFrame,
-                    x: this.imagePosPercentage.x,
-                    y: this.imagePosPercentage.y,
+                    x: this.translate.x,
+                    y: this.translate.y,
                     scale: this.scale
                 }
             },
             set: function(data) {
                 this.currentFrame = data.frame;
-                this.imagePos.x = data.x,
-                this.imagePos.y = data.y,
+                this.translate.x = data.x,
+                this.translate.y = data.y,
                 this.scale = data.scale 
             }
         },
@@ -156,8 +154,8 @@
     methods: {
         dragStart(event) {
             this.isDragging = true;
-            this.mousePos.x = event.clientX
-            this.mousePos.y = event.clientY
+            this.mousePos.x = event.clientX;
+            this.mousePos.y = event.clientY;
         },
         dragging(event) {
             if (this.isDragging) {
@@ -169,6 +167,16 @@
         },
         dragStop(event) {
             this.isDragging = false;
+            this.calculateTranslate();
+        },
+        calculateTranslate() {
+            const currentImage = this.images.find(function(image) {
+                return image.frame === this.currentFrame;
+            }, this);
+            this.translate.x = this.translate.x + this.imagePos.x / currentImage.width * 100,
+            this.translate.y = this.translate.y + this.imagePos.y / currentImage.height * 100,
+            this.imagePos.x = 0,
+            this.imagePos.y = 0
         },
         updateSequence() {
             if (this.selectedMeidas.hasOwnProperty('sequence_file[en]')) {

@@ -15,6 +15,8 @@ class SeamlessImagesController extends Controller
                 'id' => $image->id,
                 'url' => 'https://' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '/seq/' . $image->file_name,
                 'frame' => $image->frame,
+                'width' => $image->width,
+                'height' => $image->height,
             ];
         });
         return response()->json($images)->withHeaders([
