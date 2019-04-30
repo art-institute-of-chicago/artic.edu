@@ -6,7 +6,7 @@ use A17\Twill\Models\Revision;
 
 class PrintedPublicationRevision extends Revision
 {
-    protected $table = "printed_publication_revisions";
+    protected $table = "printed_catalog_revisions";
 
     protected $touches = ['printedPublication'];
 

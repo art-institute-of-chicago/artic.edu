@@ -305,12 +305,12 @@ class Page extends AbstractModel
 
     public function digitalPublications()
     {
-        return $this->belongsToMany('App\Models\DigitalPublication')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\DigitalPublication', 'digital_catalog_page', null, 'digital_catalog_id')->withPivot('position')->orderBy('position');
     }
 
     public function printedPublications()
     {
-        return $this->belongsToMany('App\Models\PrintedPublication')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\PrintedPublication', 'page_printed_catalog', null, 'printed_catalog_id')->withPivot('position')->orderBy('position');
     }
 
     public function visitTourPages()
