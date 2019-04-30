@@ -63,35 +63,12 @@ class DigitalLabelExperiencesController extends FrontController
         $articles = Article::published()
             ->orderBy('date', 'desc')
             ->paginate(4);
-        return view('site.digitalLabelDetail', [
+        $view = in_array('kiosk', request()->segments()) ? 'site.digitalLabelDetailKiosk' : 'site.digitalLabelDetail';
+        return view($view, [
             'contrastHeader' => true,
             'experience' => $experience,
             'furtherReading' => $articles,
             'canonicalUrl' => route('digitalLabels.show', ['id' => $experience->id, 'slug' => $experience->titleSlug]),
-        ]);
-    }
-
-    protected function test()
-    {
-        $articles = Article::published()
-            ->orderBy('date', 'desc')
-            ->paginate(4);
-
-        return view('site.digitalLabelDetailTest', [
-            'contrastHeader' => true,
-            'furtherReading' => $articles,
-        ]);
-    }
-
-    protected function kiosk()
-    {
-        $articles = Article::published()
-            ->orderBy('date', 'desc')
-            ->paginate(4);
-
-        return view('site.digitalLabelKiosk', [
-            'contrastHeader' => true,
-            'furtherReading' => $articles,
         ]);
     }
 }

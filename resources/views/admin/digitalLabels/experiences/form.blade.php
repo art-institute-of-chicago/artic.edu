@@ -1,5 +1,5 @@
 @php
-    $ipad_url = $baseUrl . $item->slug . '/ipad';
+    $ipad_url = $baseUrl . 'kiosk/' . $item->slug;
 @endphp
 
 @extends('twill::layouts.form')
