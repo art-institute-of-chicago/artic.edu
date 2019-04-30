@@ -297,7 +297,7 @@ Route::get('/', function () {
  *     ),
  *
   *     @SWG\Definition(
- *        definition="PrintedCatalog",
+ *        definition="PrintedPublication",
  *        type="object",
  *        required={"id"},
  *        @SWG\Property(property="id", type="integer", description="ID"),
@@ -931,38 +931,38 @@ Route::group(['prefix' => 'v1'], function()
 
     /**
      *
-     * - printed catalogs ------------------------------------------------------
+     * - printed publications ------------------------------------------------------
      *
      * @SWG\Get(
-     *      path="/api/v1/printedcatalogs",
+     *      path="/api/v1/printedpublications",
      *      tags={"pages"},
-     *      operationId="getPrintedCatalogs",
-     *      summary="List all printed catalogs",
-     *      @SWG\Response(response="200", description="List all printed catalogs")
+     *      operationId="getPrintedPublications",
+     *      summary="List all printed publications",
+     *      @SWG\Response(response="200", description="List all printed publications")
      *  )
      *
      */
-    Route::get('printedcatalogs', 'API\PrintedCatalogsController@index');
+    Route::get('printedpublications', 'API\PrintedPublicationsController@index');
 
     /**
      *
      * @SWG\Get(
-     *      path="/api/v1/printedcatalogs/deleted",
+     *      path="/api/v1/printedpublications/deleted",
      *      tags={"pages"},
-     *      operationId="getDeletedPrintedCatalogs",
-     *      summary="List all deleted printed catalogs",
-     *      @SWG\Response(response="200", description="List all deleted printed catalogs")
+     *      operationId="getDeletedPrintedPublications",
+     *      summary="List all deleted printed publications",
+     *      @SWG\Response(response="200", description="List all deleted printed publications")
      *  )
      *
      */
-    Route::get('printedcatalogs/deleted', 'API\PrintedCatalogsController@deleted');
+    Route::get('printedpublications/deleted', 'API\PrintedPublicationsController@deleted');
 
     /**
      * @SWG\Get(
-     *      path="/api/v1/printedcatalogs/{id}",
+     *      path="/api/v1/printedpublications/{id}",
      *      tags={"pages"},
-     *      operationId="getPrintedCatalog",
-     *      summary="Fetch printed catalog details",
+     *      operationId="getPrintedPublication",
+     *      summary="Fetch printed publication details",
      *      @SWG\Parameter(
      *          name="id",
      *          in="path",
@@ -970,10 +970,10 @@ Route::group(['prefix' => 'v1'], function()
      *          type="integer",
      *          description="id",
      *      ),
-     *      @SWG\Response(response="200", description="Get a specific printed catalog")
+     *      @SWG\Response(response="200", description="Get a specific printed publication")
      *  )
      *
      */
-    Route::get('printedcatalogs/{id}', 'API\PrintedCatalogsController@show');
+    Route::get('printedpublications/{id}', 'API\PrintedPublicationsController@show');
 
 });

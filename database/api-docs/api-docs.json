@@ -686,41 +686,41 @@
                 }
             }
         },
-        "/api/v1/printedcatalogs": {
+        "/api/v1/printedpublications": {
             "get": {
                 "tags": [
                     "pages"
                 ],
-                "summary": "List all printed catalogs",
-                "operationId": "getPrintedCatalogs",
+                "summary": "List all printed publications",
+                "operationId": "getPrintedPublications",
                 "responses": {
                     "200": {
-                        "description": "List all printed catalogs"
+                        "description": "List all printed publications"
                     }
                 }
             }
         },
-        "/api/v1/printedcatalogs/deleted": {
+        "/api/v1/printedpublications/deleted": {
             "get": {
                 "tags": [
                     "pages"
                 ],
-                "summary": "List all deleted printed catalogs",
-                "operationId": "getDeletedPrintedCatalogs",
+                "summary": "List all deleted printed publications",
+                "operationId": "getDeletedPrintedPublications",
                 "responses": {
                     "200": {
-                        "description": "List all deleted printed catalogs"
+                        "description": "List all deleted printed publications"
                     }
                 }
             }
         },
-        "/api/v1/printedcatalogs/{id}": {
+        "/api/v1/printedpublications/{id}": {
             "get": {
                 "tags": [
                     "pages"
                 ],
-                "summary": "Fetch printed catalog details",
-                "operationId": "getPrintedCatalog",
+                "summary": "Fetch printed publication details",
+                "operationId": "getPrintedPublication",
                 "parameters": [
                     {
                         "name": "id",
@@ -732,7 +732,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get a specific printed catalog"
+                        "description": "Get a specific printed publication"
                     }
                 }
             }
@@ -1553,7 +1553,7 @@
             },
             "type": "object"
         },
-        "PrintedCatalog": {
+        "PrintedPublication": {
             "required": [
                 "id"
             ],

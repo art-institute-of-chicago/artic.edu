@@ -60,7 +60,7 @@ class Page extends AbstractModel
         'art_intro',
 
         // Printed catalogs
-        'printed_catalogs_intro',
+        'printed_publications_intro',
 
         // Resources Landing page
         'resources_landing_title',
@@ -308,9 +308,9 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\DigitalPublication')->withPivot('position')->orderBy('position');
     }
 
-    public function printedCatalogs()
+    public function printedPublications()
     {
-        return $this->belongsToMany('App\Models\PrintedCatalog')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\PrintedPublication')->withPivot('position')->orderBy('position');
     }
 
     public function visitTourPages()

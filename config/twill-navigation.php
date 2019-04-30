@@ -125,8 +125,8 @@ return [
                         'title' => 'Videos',
                         'module' => true,
                     ],
-                    'printedCatalogs' => [
-                        'title' => 'Print Catalogues',
+                    'printedPublications' => [
+                        'title' => 'Print Publications',
                         'module' => true,
                     ],
                     'digitalPublications' => [

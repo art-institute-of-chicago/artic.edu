@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-class PrintedCatalogsController extends BaseController
+class PrintedPublicationsController extends BaseController
 {
-    protected $model = \App\Models\PrintedCatalog::class;
-    protected $transformer = \App\Http\Transformers\PrintedCatalogTransformer::class;
+    protected $model = \App\Models\PrintedPublication::class;
+    protected $transformer = \App\Http\Transformers\PrintedPublicationTransformer::class;
 
     public function validateId($id)
     {

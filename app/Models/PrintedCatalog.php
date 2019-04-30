@@ -10,7 +10,7 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class PrintedCatalog extends AbstractModel
+class PrintedPublication extends AbstractModel
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
 
@@ -104,12 +104,12 @@ class PrintedCatalog extends AbstractModel
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('collection.publications.printed-catalogs'), '/', $this->id, '-']);
+        return join([route('collection.publications.printed-publications'), '/', $this->id, '-']);
     }
 
     public function getUrlAttribute()
     {
-        return route('collection.publications.printed-catalogs.show', $this->slug);
+        return route('collection.publications.printed-publications.show', $this->slug);
     }
 
     protected function transformMappingInternal()

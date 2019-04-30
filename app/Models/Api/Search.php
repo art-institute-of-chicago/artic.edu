@@ -24,7 +24,7 @@ class Search extends BaseApiModel
         'sections'    => 'App\Models\Api\Section',
         'events'      => 'App\Models\Event',
         'articles'    => 'App\Models\Article',
-        'printed-catalogs'    => 'App\Models\PrintedCatalog',
+        'printed-publications'    => 'App\Models\PrintedPublication',
         'digital-publications'    => 'App\Models\DigitalPublication',
         'static-pages'        => false,
         'generic-pages'       => 'App\Models\GenericPage',

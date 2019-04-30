@@ -1101,9 +1101,9 @@ class StaticsController extends FrontController {
           'digitalPublications' => [
               'items' => $this->getCatalogs(3),
           ],
-          'printedCatalogs' => [
+          'printedPublications' => [
               'intro' => $this->faker->paragraph(),
-              'items' => $this->getCatalogs(4), // image dims should be max of 160x160 on printed catalogs
+              'items' => $this->getCatalogs(4), // image dims should be max of 160x160 on printed publications
           ],
           'journalHero' => $this->getArticle(),
           'journals' => $this->getArticles(4),

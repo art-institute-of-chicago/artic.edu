@@ -36,7 +36,7 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesStudyRoomMore', 'position', 'GenericPage');
 
         $this->hydrateOrderedBelongsTomany($object, $fields, 'articles', 'position', 'Article');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'printedCatalogs', 'position', 'PrintedCatalog');
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
 
         return parent::hydrate($object, $fields);
@@ -78,7 +78,7 @@ class PageRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'researchResourcesStudyRoomMore');
 
         $this->updateBrowser($object, $fields, 'articles');
-        $this->updateBrowser($object, $fields, 'printedCatalogs');
+        $this->updateBrowser($object, $fields, 'printedPublications');
         $this->updateBrowser($object, $fields, 'digitalPublications');
 
         parent::afterSave($object, $fields);
@@ -128,7 +128,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['researchResourcesStudyRoomMore'] = $this->getFormFieldsForBrowser($object, 'researchResourcesStudyRoomMore', 'generic', 'title', 'genericPages');
 
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications', 'title', 'articles');
-        $fields['browsers']['printedCatalogs'] = $this->getFormFieldsForBrowser($object, 'printedCatalogs', 'collection.articles_publications', 'title', 'printedCatalogs');
+        $fields['browsers']['printedPublications'] = $this->getFormFieldsForBrowser($object, 'printedPublications', 'collection.articles_publications', 'title', 'printedPublications');
         $fields['browsers']['digitalPublications'] = $this->getFormFieldsForBrowser($object, 'digitalPublications', 'collection.articles_publications', 'title', 'digitalPublications');
 
         return $fields;

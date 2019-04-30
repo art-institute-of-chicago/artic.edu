@@ -117,7 +117,7 @@ class SearchController extends BaseScopedController
     public function autocomplete()
     {
         $collection = GeneralSearch::search(request('q'))
-            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-publications', 'printed-catalogs'])
+            ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-publications', 'printed-publications'])
             ->getSearch(self::AUTOCOMPLETE_PER_PAGE);
 
         foreach($collection as &$item) {
@@ -146,9 +146,9 @@ class SearchController extends BaseScopedController
                     $item->url = route('collection.publications.digital-publications.show', $item);
                     $item->section = 'Digital Publications';
                     break;
-                case 'PrintedCatalog':
-                    $item->url = route('collection.publications.printed-catalogs.show', $item);
-                    $item->section = 'Print Catalogues';
+                case 'PrintedPublication':
+                    $item->url = route('collection.publications.printed-publications.show', $item);
+                    $item->section = 'Print Publications';
                     break;
             }
 
@@ -357,8 +357,8 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'articles')) {
             array_push($links, $this->buildLabel('Articles', extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
         }
-        if (extractAggregation($aggregations, ['digital-publications', 'printed-catalogs'])) {
-            array_push($links, $this->buildLabel('Publications', extractAggregation($aggregations, ['digital-publications', 'printed-catalogs']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
+        if (extractAggregation($aggregations, ['digital-publications', 'printed-publications'])) {
+            array_push($links, $this->buildLabel('Publications', extractAggregation($aggregations, ['digital-publications', 'printed-publications']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
         if (extractAggregation($aggregations, ['research-guides','educator-resources'])) {
             array_push($links, $this->buildLabel('Resources', extractAggregation($aggregations, ['research-guides', 'educator-resources']), route('search.research-guides', ['q' => request('q')]), $active == 'research-guides'));

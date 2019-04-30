@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Repositories\CatalogCategoryRepository;
-use App\Repositories\PrintedCatalogRepository;
+use App\Repositories\PrintedPublicationRepository;
 
-class PrintedCatalogController extends ModuleController
+class PrintedPublicationController extends ModuleController
 {
-    protected $moduleName = 'printedCatalogs';
+    protected $moduleName = 'printedPublications';
     protected $previewView = 'site.genericPage.show';
 
     protected function formData($request)
     {
-        $baseUrl = '//' . config('app.url') . "/print-catalogues/";
+        $baseUrl = '//' . config('app.url') . "/print-publications/";
         return [
             'categoriesList' => app(CatalogCategoryRepository::class)->listAll('name'),
             'baseUrl' => $baseUrl,

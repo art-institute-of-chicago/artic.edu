@@ -35,7 +35,7 @@ class ReportAltText extends Command
             \App\Models\Offer::class,
             \App\Models\Page::class,
             \App\Models\PressRelease::class,
-            \App\Models\PrintedCatalog::class,
+            \App\Models\PrintedPublication::class,
             \App\Models\ResearchGuide::class,
             \App\Models\Selection::class,
             \App\Models\Video::class,
@@ -133,8 +133,8 @@ class ReportAltText extends Command
         if (\App\Models\DigitalPublication::class == get_class($item)) {
             $prefix = 'digital-publications';
         }
-        if (\App\Models\PrintedCatalog::class == get_class($item)) {
-            $prefix = 'print-catalogues';
+        if (\App\Models\PrintedPublication::class == get_class($item)) {
+            $prefix = 'print-publications';
         }
         if (\App\Models\EducatorResource::class == get_class($item)) {
             $prefix = 'collection/resources/educator-resources';

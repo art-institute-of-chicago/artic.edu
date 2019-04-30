@@ -160,16 +160,16 @@
 
         <section>
             @component('components.molecules._m-title-bar')
-                @slot('links', array(array('label' => 'Browse all print catalogues', 'href' => route('collection.publications.printed-catalogs'))))
-                Print Catalogues
+                @slot('links', array(array('label' => 'Browse all print publications', 'href' => route('collection.publications.printed-publications'))))
+                Print Publications
             @endcomponent
 
-            @if (!empty($printedCatalogs['intro']))
+            @if (!empty($printedPublications['intro']))
                 @component('components.atoms._hr')
                 @endcomponent
 
                 @component('components.molecules._m-intro-block')
-                    {!! $printedCatalogs['intro'] !!}
+                    {!! $printedPublications['intro'] !!}
                 @endcomponent
             @endif
 
@@ -180,7 +180,7 @@
                 @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
                 @slot('cols_large','4')
                 @slot('cols_xlarge','4')
-                @foreach ($printedCatalogs['items'] as $item)
+                @foreach ($printedPublications['items'] as $item)
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
@@ -205,8 +205,8 @@
                 @slot('variation', 'm-links-bar--title-bar-companion')
                 @slot('linksPrimary', array(
                     array(
-                        'label' => 'Browse all print catalogues',
-                        'href' => route('collection.publications.printed-catalogs'),
+                        'label' => 'Browse all print publications',
+                        'href' => route('collection.publications.printed-publications'),
                         'variation' => 'btn btn--secondary'
                     ),
                 ))
