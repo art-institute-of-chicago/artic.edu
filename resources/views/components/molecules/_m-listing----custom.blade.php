@@ -35,19 +35,19 @@
         @component('components.atoms._type')
             @slot('variation', 'type--membership')
             @slot('font', '')
-            {!! $item->tag !!}
+            {!! $item->present()->tag !!}
         @endcomponent
       </span>
       <br>
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-3')
-            @slot('title', $item->title)
-            @slot('title_display', $item->title_display)
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
         @endcomponent
         <br>
         @component('components.atoms._short-description')
             @slot('variation', 'show')
-            {!! truncateStr($item->call_to_action) !!}
+            {!! truncateStr($item->present()->call_to_action) !!}
         @endcomponent
         <br>
     </span>

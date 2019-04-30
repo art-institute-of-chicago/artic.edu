@@ -7,8 +7,8 @@
         $item->size = 'gallery';
         $item->fullscreen = true;
         $item->media = $item->imageAsArray('image', 'desktop');
-        $item->captionTitle = $item->input('captionTitle');
-        $item->caption = $item->input('caption');
+        $item->captionTitle = $item->present()->input('captionTitle');
+        $item->caption = $item->present()->input('caption');
         $items[] = $item;
     }
 @endphp
@@ -40,8 +40,8 @@
     @endif
 
     @slot('variation', 'o-blocks__block')
-    @slot('title', $block->input('title'))
-    @slot('caption', $block->input('description'))
+    @slot('title', $block->present()->input('title'))
+    @slot('caption', $block->present()->input('description'))
     @slot('allLink', null);
     @slot('items', $items)
 @endcomponent

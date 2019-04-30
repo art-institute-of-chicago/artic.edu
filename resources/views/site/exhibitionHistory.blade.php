@@ -7,7 +7,7 @@
     @endcomponent
 
     @component('components.molecules._m-intro-block')
-        {!! $page->exhibition_history_sub_heading !!}
+        {!! $page->present()->exhibition_history_sub_heading !!}
     @endcomponent
 
     @component('components.organisms._o-grid-listing')

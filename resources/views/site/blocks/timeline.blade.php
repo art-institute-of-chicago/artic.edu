@@ -1,9 +1,9 @@
 @php
     $items = [];
     foreach ($block->childs as $item) {
-        $item->time = $item->input('time');
-        $item->title = $item->input('title');
-        $item->blurb = $item->input('description');
+        $item->time = $item->present()->input('time');
+        $item->title = $item->present()->input('title');
+        $item->blurb = $item->present()->input('description');
         $item->image = $item->imageAsArray('image', 'desktop');
         $items[] = $item;
     }

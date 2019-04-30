@@ -2,5 +2,5 @@
     @slot('variation','m-aside-newsletter--inline o-blocks__block')
     @slot('placeholder','Email Address')
     @slot('list', $block->input('list'))
-    @slot('copy', $block->input('copy'))
+    @slot('copy', $block->present()->input('copy'))
 @endcomponent

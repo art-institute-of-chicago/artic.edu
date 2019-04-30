@@ -9,7 +9,7 @@
 
 @component('components.molecules._m-header-block')
     @slot('itemprop','name')
-    {!! $item->title_display ?? $item->title !!}
+    {!! $item->present()->title_display ?? $item->present()->title !!}
 @endcomponent
 
     @component('components.organisms._o-artist-bio')

@@ -11,4 +11,7 @@ class TourStop extends BaseApiModel
         'resource'   => '/api/v1/mobile-sounds/{id}',
         'search'     => '/api/v1/mobile-sounds/search'
     ];
+
+    protected $presenter = 'App\Presenters\Admin\TourStopPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\TourStopPresenter';
 }

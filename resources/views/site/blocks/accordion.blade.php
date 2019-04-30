@@ -1,11 +1,11 @@
 @php
     $items = [];
     foreach ($block->childs as $item) {
-        $item->title = $item->input('header');
+        $item->title = $item->present()->input('header');
         $item->blocks = [
             [
                 'type' => 'text',
-                'content' => $item->input('description')
+                'content' => $item->present()->input('description')
             ]
         ];
 
@@ -19,4 +19,3 @@
     @slot('items', $items)
     @slot('loopIndex', $block->id)
 @endcomponent
-

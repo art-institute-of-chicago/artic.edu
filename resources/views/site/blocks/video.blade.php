@@ -3,8 +3,8 @@
     $image = $block->imageAsArray('image', 'desktop');
     $embed_code = EmbedConverter::convertUrl($source_url);
     $size = $block->input('size', 'm');
-    $captionTitle = $block->input('caption_title');
-    $caption = $block->input('caption');
+    $captionTitle = $block->present()->input('caption_title');
+    $caption = $block->present()->input('caption');
 @endphp
 
 @if ($source_url)

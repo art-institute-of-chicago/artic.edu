@@ -4,6 +4,8 @@ namespace App\Presenters;
 
 use Carbon\Carbon;
 
+use Michelf\SmartyPants;
+
 abstract class BasePresenter
 {
 
@@ -16,11 +18,16 @@ abstract class BasePresenter
 
     public function __get($property)
     {
+        $return = $this->entity->{$property};
+
         if (method_exists($this, $property)) {
-            return $this->{$property}();
+            $return = $this->{$property}();
         }
 
-        return $this->entity->{$property};
+        if (is_string($return)) {
+            return $return ? SmartyPants::defaultTransform($return) : null;
+        }
+        return $return;
     }
 
     public function contrastHeader()

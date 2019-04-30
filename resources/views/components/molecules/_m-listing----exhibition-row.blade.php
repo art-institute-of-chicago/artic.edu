@@ -25,7 +25,7 @@
         <span class="m-listing__types f-tag">
             @component('components.atoms._type')
                 @slot('font', '')
-                {{ $item->present()->exhibitionType }}
+                {!! $item->present()->exhibitionType !!}
             @endcomponent
 
             @if ($item->isClosed)
@@ -58,13 +58,13 @@
         </span>
         <br>
         @component('components.atoms._title')
-            @slot('title', $item->title)
-            @slot('title_display', $item->title_display)
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
         @endcomponent
         <br>
         @if ($item->list_description)
             @component('components.atoms._short-description')
-                {!! $item->list_description !!}
+                {!! $item->present()->list_description !!}
             @endcomponent
             <br>
         @endif

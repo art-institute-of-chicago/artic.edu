@@ -6,13 +6,13 @@
                 @slot('font', $titleFont ?? 'f-list-3')
                 @slot('variation', 'title--w-right-arrow')
                 @slot('gtmAttributes', $gtmAttributes ?? null)
-                {{ $item['title_display'] ?? $item['title'] }} <span class='title__arrow' aria-hidden="true">&rsaquo;</span>
+                {!! $item->present()->title_display ?? $item->present()->title !!} <span class='title__arrow' aria-hidden="true">&rsaquo;</span>
             @endcomponent
         </span>
 
         <span class="m-listing__meta">
             <span class="intro {{ $captionFont ?? 'f-secondary' }}">
-                {!! $item->listing_description ?? '&nbsp;' !!}
+                {!! $item->present()->listing_description ?? '&nbsp;' !!}
             </span>
         </span>
 

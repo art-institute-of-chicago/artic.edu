@@ -23,14 +23,14 @@
         @endif
         <span class="m-listing__meta">
             @if ($item->subtype)
-            <em class="type f-tag">{{ $item->subtype }}</em>
+            <em class="type f-tag">{!! $item->present()->subtype !!}</em>
             <br>
             @endif
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
                 @slot('variation', $titleVariation ?? '')
-                @slot('title', $item->title)
-                @slot('title_display', $item->title_display)
+                @slot('title', $item->present()->title)
+                @slot('title_display', $item->present()->title_display)
             @endcomponent
 
             @if (isset($item['links']) and $item['links'])
@@ -59,15 +59,15 @@
             @else
                 @if ($item->intro)
                 <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->intro }}</span>
+                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->intro !!}</span>
                 @endif
                 @if ($item->shortDesc)
                 <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->shortDesc !!}</span>
+                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->shortDesc !!}</span>
                 @endif
                 @if ($item->listing_description)
                 <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->listing_description !!}</span>
+                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->listing_description !!}</span>
                 @endif
             @endif
 

@@ -24,12 +24,12 @@
     <span class="m-listing__meta">
 {{--         @if (!isset($simple) or !$simple)
             @component('components.atoms._type')
-                {{ $item->type }}
+                {!! $item->present()->type !!}
             @endcomponent
             <br>
         @endif --}}
         @component('components.atoms._title')
-            {{ $item->title }}
+            {!! $item->present()->title !!}
         @endcomponent
         @if (!isset($simple) or !$simple)
             <br>

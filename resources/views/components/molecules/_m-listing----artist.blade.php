@@ -26,13 +26,13 @@
         <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
-                {{ $item->title }}
+                {!! $item->present()->title !!}
             @endcomponent
             @if ($item->nationality or $item->birth_date or $item->death_date)
             <br>
             <span class="intro {{ $captionFont ?? 'f-secondary' }}">
                 @if ($item->nationality)
-                    {{ $item->nationality }},
+                    {!! $item->present()->nationality !!},
                 @endif
                 @if ($item->birth_date)
                     {{ $item->birth_date }}

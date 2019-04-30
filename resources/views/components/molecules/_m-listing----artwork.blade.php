@@ -23,15 +23,15 @@
         </span>
         <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
             @if ( !empty( $item->subtype ) )
-                <em class="type f-tag">{{ $item->subtype }}</em>
+                <em class="type f-tag">{!! $item->present()->subtype !!}</em>
                 <br>
             @endif
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-1')
-                {{ $item->listingTitle }}
+                {!! $item->present()->listingTitle !!}
             @endcomponent
             <br>
-            <span class="subtitle {{ $subtitleFont ?? 'f-secondary'}}">{{ $item->listingSubtitle }}</span>
+            <span class="subtitle {{ $subtitleFont ?? 'f-secondary'}}">{!! $item->present()->listingSubtitle !!}</span>
         </span>
     </a>
 </{{ $tag ?? 'li' }}>

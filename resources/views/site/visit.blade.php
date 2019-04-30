@@ -90,11 +90,11 @@
         <div class="o-blocks">
           @component('components.blocks._text')
               @slot('font','f-list-4')
-              {{ $hours['primary'] }}
+              {!! SmartyPants::defaultTransform($hours['primary']) !!}
           @endcomponent
           @component('components.blocks._text')
               @slot('font','f-secondary')
-              {{ $hours['secondary'] }}
+              {!! SmartyPants::defaultTransform($hours['secondary']) !!}
           @endcomponent
         </div>
     @endcomponent
@@ -116,12 +116,12 @@
                     @slot('font','f-null')
                     @slot('href', $section['external_link'])
                     @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($section['title'] ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
-                    {{ $section['title'] }}
+                    {!! SmartyPants::defaultTransform($section['title']) !!}
                 @endcomponent
             @endcomponent
           </div>
           <div class="o-blocks">
-            {!! preg_replace('/<p>/i', '<p class="f-secondary">', $section['copy']); !!}
+            {!! SmartyPants::defaultTransform(preg_replace('/<p>/i', '<p class="f-secondary">', $section['copy'])); !!}
           </div>
       @endcomponent
 
@@ -144,13 +144,13 @@
                     @slot('font', 'f-module-title-1')
                     @slot('tag','span')
                     @slot('id', 'h-' .$categoryData['id'])
-                    {{ $categoryData['title'] }}
+                    {!! SmartyPants::defaultTransform($categoryData['title']) !!}
                 @endcomponent
                 @if (isset($categoryData['tooltip']))
                   &nbsp;
                   @component('components.atoms._info-button')
                       @slot('id', $categoryData['id'])
-                      {{ $categoryData['tooltip'] }}
+                      {!! SmartyPants::defaultTransform($categoryData['tooltip']) !!}
                   @endcomponent
                 @endif
               </th>
@@ -165,13 +165,13 @@
                       @component('components.blocks._text')
                           @slot('font', 'f-module-title-1')
                           @slot('tag','span')
-                          {{ $ageData['title'] }}
+                          {!! SmartyPants::defaultTransform($ageData['title']) !!}
                       @endcomponent
                       @if (isset($ageData['subtitle']))
                         @component('components.blocks._text')
                             @slot('font', 'f-secondary')
                             @slot('tag','em')
-                            &nbsp;({{ $ageData['subtitle'] }})
+                            &nbsp;({!! SmartyPants::defaultTransform($ageData['subtitle']) !!})
                         @endcomponent
                       @endif
                     </th>
@@ -237,7 +237,7 @@
         @slot('tag', 'div')
 
         <div class="o-blocks">
-          {!! $admission['text'] !!}
+          {!! SmartyPants::defaultTransform($admission['text']) !!}
         </div>
         <div class="o-blocks">
           <h3 class="sr-only" id="h-ticket-actions">Buy ticket options</h3>
@@ -248,7 +248,7 @@
                       @slot('tag', 'a')
                       @slot('href', $admission['buy_tickets']['link'])
                       @slot('gtmAttributes', 'data-gtm-event="'. getUtf8Slug($admission['buy_tickets']['label']) .'" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"')
-                      {{ $admission['buy_tickets']['label'] }}
+                      {!! SmartyPants::defaultTransform($admission['buy_tickets']['label']) !!}
                   @endcomponent
               </li>
               <li class="m-ticket-actions__action">
@@ -257,7 +257,7 @@
                       @slot('tag', 'a')
                       @slot('href', $admission['become_member']['link'])
                       @slot('gtmAttributes', 'data-gtm-event="become-a-member" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"')
-                      {{ $admission['become_member']['label'] }}
+                      {!! SmartyPants::defaultTransform($admission['become_member']['label']) !!}
                   @endcomponent
               </li>
           </ul>
@@ -284,11 +284,11 @@
         @component('components.atoms._title')
             @slot('font', 'f-module-title-1')
             @slot('tag','h3')
-            {{ $admission['cityPass']['title'] }}
+            {!! SmartyPants::defaultTransform($admission['cityPass']['title']) !!}
         @endcomponent
         @component('components.blocks._text')
             @slot('font', 'f-secondary')
-            {{ $admission['cityPass']['text'] }}
+            {!! SmartyPants::defaultTransform($admission['cityPass']['text']) !!}
         @endcomponent
       </div>
       @component('components.atoms._btn')
@@ -296,7 +296,7 @@
           @slot('tag', 'a')
           @slot('href', $admission['cityPass']['link']['href'])
           @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $admission['cityPass']['link']['label']) . ' " data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-cta-button"')
-          {{ $admission['cityPass']['link']['label'] }}
+          {!! SmartyPants::defaultTransform($admission['cityPass']['link']['label']) !!}
       @endcomponent
     </div>
 
@@ -310,7 +310,7 @@
 
     @component('components.molecules._m-intro-block')
         @slot('itemprop','description')
-        {{ $directions['intro'] }}
+        {!! SmartyPants::defaultTransform($directions['intro']) !!}
     @endcomponent
 
     <div class="m-directions-block">
@@ -324,7 +324,7 @@
       <div class="m-directions-block__text o-blocks">
         @foreach ($directions['locations'] as $location)
           <div class="f-secondary" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-            <h3>{!! $location['name'] !!}</h3>
+            <h3>{!! SmartyPants::defaultTransform($location['name']) !!}</h3>
             <p>
               <span itemprop="streetAddress">{!! $location['street'] !!} {!! $location['addres'] !!}</span><br />
               <span itemprop="addressLocality">{!! $location['city'] !!}</span> <span itemprop="addressRegion">{!! $location['state'] !!}</span> <span itemprop="postalCode">{!! $location['zip'] !!}</span>

@@ -6,12 +6,12 @@
         <header>
             @component('components.molecules._m-header-block')
                 @slot('tag', 'div')
-                {{ $title }}
+                {!! SmartyPants::defaultTransform($title) !!}
             @endcomponent
 
             @component('components.molecules._m-intro-block')
                 @slot('variation', 'm-intro-block--tight')
-                {!! $intro !!}
+                {!! SmartyPants::defaultTransform($intro) !!}
             @endcomponent
         </header>
 
@@ -44,13 +44,13 @@
                     @component('components.blocks._text')
                         @slot('font','f-list-4')
                         @slot('tag','h3')
-                        {{ $page->resources_landing_title }}
+                        {!! $page->present()->resources_landing_title !!}
                     @endcomponent
 
                     @if (!empty($page->resources_landing_intro))
                         @component('components.blocks._text')
                             @slot('font','f-body')
-                            {{ $page->resources_landing_intro }}
+                            {!! $page->present()->resources_landing_intro !!}
                         @endcomponent
                     @endif
                 </div>

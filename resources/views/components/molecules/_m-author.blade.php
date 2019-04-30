@@ -22,9 +22,9 @@
         @slot('font', 'f-secondary')
         @if (isset($name))
             @if (isset($link))
-                <a href="{{ $link ?? '#' }}">{{ $name ?? '' }}</a>
+                <a href="{{ $link ?? '#' }}">{!! $name ?? '' !!}</a>
             @else
-                {{ $name ?? '' }}
+                {!! $name ?? '' !!}
             @endif
         @endif
         @if (isset($name) and isset($date))

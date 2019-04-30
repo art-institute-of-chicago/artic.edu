@@ -8,11 +8,11 @@
     @slot('editorial', ($item->articleType === 'editorial'))
     @slot('headerType', $item->present()->headerType)
     @slot('variation', ($item->headerVariation ?? null))
-    @slot('title', $item->title)
-    @slot('title_display', $item->title_display)
+    @slot('title', $item->present()->title)
+    @slot('title_display', $item->present()->title_display)
     @slot('date', $item->date)
-    @slot('type', $item->subtype)
-    @slot('intro', $item->heading)
+    @slot('type', $item->present()->subtype)
+    @slot('intro', $item->present()->heading)
     @slot('img', $item->imageFront('hero'))
     @slot('galleryImages', $item->galleryImages)
     @slot('nextArticle', $item->nextArticle)
@@ -31,7 +31,7 @@
             @slot('variation', 'm-author---keyline-top')
             @slot('editorial', ($item->articleType === 'editorial'))
             @slot('img', $item->imageFront('author', 'square'));
-            @slot('name', $item->author ?? null);
+            @slot('name', $item->present()->author ?? null);
             @slot('link', null);
             @slot('date', $item->date ?? null);
         @endcomponent
@@ -101,8 +101,8 @@
           @slot('tag','h1')
           @slot('font', 'f-headline-editorial')
           @slot('variation', 'o-article__inline-header-title')
-          @slot('title', $item->title)
-          @slot('title_display', $item->title_display)
+          @slot('title', $item->present()->title)
+          @slot('title_display', $item->present()->title_display)
       @endcomponent
     @endif
 
@@ -111,7 +111,7 @@
           @slot('tag','p')
           @slot('font', 'f-secondary')
           @slot('variation', 'o-article__inline-header-subtitle')
-          {{ $item->subtitle }}
+          {!! $item->present()->subtitle !!}
       @endcomponent
     @endif
   </div>
@@ -122,7 +122,7 @@
     @component('components.blocks._text')
         @slot('font', 'f-deck')
         @slot('tag', 'span')
-        {!! $item->heading !!}
+        {!! $item->present()->heading !!}
     @endcomponent
   </div>
   @endif
@@ -131,7 +131,7 @@
   {{-- dupe 😢 - hidden medium+ --}}
   <div class="o-article__related">
     @component('components.blocks._inline-aside')
-        @slot('type', $item->featuredRelated['type'])
+        @slot('type', $item->present()->featuredRelated['type'])
         @slot('items', $item->featuredRelated['items'])
         @slot('titleFont', "f-list-1")
         @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
@@ -256,7 +256,7 @@
         @endcomponent
         @component('components.blocks._text')
             @slot('font', 'f-secondary')
-            {!! $item->citations !!}
+            {!! $item->present()->citations !!}
         @endcomponent
     @endif
 
