@@ -160,4 +160,12 @@ class DigitalLabelExperienceController extends ModuleController
     {
         return request()->getScheme() . '://' . config('app.url') . '/interactive-features/';
     }
+
+    protected function previewData($item)
+    {
+        dd($item);
+        return [
+            'experience' => $item,
+        ];
+    }
 }
