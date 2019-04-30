@@ -27,12 +27,12 @@ Route::group([
 });
 Route::name('collection.categorySearch')->get('/collection/categorySearch/{categoryName}', 'CollectionController@categorySearch');
 
-// Collection Publications Printed Catalogs
-Route::name('collection.publications.printed-catalogs')->get('/print-catalogues', 'PrintedCatalogsController@index');
-Route::name('collection.publications.printed-catalogs.show')->get('/print-catalogues/{id}', 'PrintedCatalogsController@show');
-// Collection Publications Digital Catalogs
-Route::name('collection.publications.digital-catalogs')->get('/digital-catalogues', 'DigitalCatalogsController@index');
-Route::name('collection.publications.digital-catalogs.show')->get('/digital-catalogues/{id}', 'DigitalCatalogsController@show');
+// Collection Publications Printed Publications
+Route::name('collection.publications.printed-publications')->get('/print-publications', 'PrintedPublicationsController@index');
+Route::name('collection.publications.printed-publications.show')->get('/print-publications/{id}', 'PrintedPublicationsController@show');
+// Collection Publications Digital Publications
+Route::name('collection.publications.digital-publications')->get('/digital-publications', 'DigitalPublicationsController@index');
+Route::name('collection.publications.digital-publications.show')->get('/digital-publications/{id}', 'DigitalPublicationsController@show');
 
 // Collection Research
 Route::name('collection.research_resources')->get('/collection/research_resources', 'ResearchController@index');

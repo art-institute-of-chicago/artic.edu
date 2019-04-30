@@ -40,12 +40,12 @@ class ArticlesPublicationsController extends FrontController
             ],
             'featureHero' => $featureHero,
             'features' => $articles,
-            'digitalCatalogs' => [
-                'items' => $page->digitalCatalogs
+            'digitalPublications' => [
+                'items' => $page->digitalPublications
             ],
-            'printedCatalogs' => [
-                'intro' => $page->present()->printed_catalogs_intro,
-                'items' => $page->printedCatalogs
+            'printedPublications' => [
+                'intro' => $page->present()->printed_publications_intro,
+                'items' => $page->printedPublications
             ]
         ]);
 

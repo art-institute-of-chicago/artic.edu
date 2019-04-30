@@ -7,13 +7,13 @@ use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
-use App\Models\PrintedCatalog;
+use App\Models\PrintedPublication;
 
-class PrintedCatalogRepository extends ModuleRepository
+class PrintedPublicationRepository extends ModuleRepository
 {
     use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
 
-    public function __construct(PrintedCatalog $model)
+    public function __construct(PrintedPublication $model)
     {
         $this->model = $model;
     }

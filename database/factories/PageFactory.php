@@ -36,7 +36,7 @@ $factory->define(App\Models\Page::class, function (Faker $faker) {
         'visit_become_member_link' => $faker->url,
         'visit_faq_accessibility_link' => $faker->url,
         'visit_faq_more_link' => $faker->url,
-        'printed_catalogs_intro' => $faker->paragraph(3),
+        'printed_publications_intro' => $faker->paragraph(3),
         'resources_landing_title' => $faker->sentence(8),
         'resources_landing_intro' => $faker->paragraph(3),
         'visit_dining_link' => $faker->url,

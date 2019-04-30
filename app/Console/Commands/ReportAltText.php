@@ -21,7 +21,7 @@ class ReportAltText extends Command
             \App\Models\Artist::class,
             \App\Models\CategoryTerm::class,
             \App\Models\Department::class,
-            \App\Models\DigitalCatalog::class,
+            \App\Models\DigitalPublication::class,
             \App\Models\DiningHour::class,
             \App\Models\EducatorResource::class,
             \App\Models\Event::class,
@@ -35,7 +35,7 @@ class ReportAltText extends Command
             \App\Models\Offer::class,
             \App\Models\Page::class,
             \App\Models\PressRelease::class,
-            \App\Models\PrintedCatalog::class,
+            \App\Models\PrintedPublication::class,
             \App\Models\ResearchGuide::class,
             \App\Models\Selection::class,
             \App\Models\Video::class,
@@ -130,11 +130,11 @@ class ReportAltText extends Command
         $slug = $item->idSlug;
 
         // Alter prefixes
-        if (\App\Models\DigitalCatalog::class == get_class($item)) {
-            $prefix = 'digital-catalogues';
+        if (\App\Models\DigitalPublication::class == get_class($item)) {
+            $prefix = 'digital-publications';
         }
-        if (\App\Models\PrintedCatalog::class == get_class($item)) {
-            $prefix = 'print-catalogues';
+        if (\App\Models\PrintedPublication::class == get_class($item)) {
+            $prefix = 'print-publications';
         }
         if (\App\Models\EducatorResource::class == get_class($item)) {
             $prefix = 'collection/resources/educator-resources';

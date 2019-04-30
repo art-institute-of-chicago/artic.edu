@@ -279,7 +279,7 @@ Route::get('/', function () {
  *     ),
  *
  *     @SWG\Definition(
- *        definition="DigitalCatalog",
+ *        definition="DigitalPublication",
  *        type="object",
  *        required={"id"},
  *        @SWG\Property(property="id", type="integer", description="ID"),
@@ -297,7 +297,7 @@ Route::get('/', function () {
  *     ),
  *
   *     @SWG\Definition(
- *        definition="PrintedCatalog",
+ *        definition="PrintedPublication",
  *        type="object",
  *        required={"id"},
  *        @SWG\Property(property="id", type="integer", description="ID"),
@@ -884,37 +884,37 @@ Route::group(['prefix' => 'v1'], function()
 
     /**
      *
-     * - digital catalogs ------------------------------------------------------
+     * - digital publications ------------------------------------------------------
      *
      * @SWG\Get(
-     *      path="/api/v1/digitalcatalogs",
+     *      path="/api/v1/digitalpublications",
      *      tags={"pages"},
-     *      operationId="getDigitalCatalogs",
-     *      summary="List all digital catalogs",
-     *      @SWG\Response(response="200", description="List all digital catalogs")
+     *      operationId="getDigitalPublications",
+     *      summary="List all digital publications",
+     *      @SWG\Response(response="200", description="List all digital publications")
      *  )
      *
      */
-    Route::get('digitalcatalogs', 'API\DigitalCatalogsController@index');
+    Route::get('digitalpublications', 'API\DigitalPublicationsController@index');
 
     /**
      * @SWG\Get(
-     *      path="/api/v1/digitalcatalogs/deleted",
+     *      path="/api/v1/digitalpublications/deleted",
      *      tags={"pages"},
-     *      operationId="getDeletedDigitalCatalogs",
-     *      summary="List all deleted digital catalogs",
-     *      @SWG\Response(response="200", description="List all deleted digital catalogs")
+     *      operationId="getDeletedDigitalPublications",
+     *      summary="List all deleted digital publications",
+     *      @SWG\Response(response="200", description="List all deleted digital publications")
      *  )
      *
      */
-    Route::get('digitalcatalogs/deleted', 'API\DigitalCatalogsController@deleted');
+    Route::get('digitalpublications/deleted', 'API\DigitalPublicationsController@deleted');
 
     /**
      * @SWG\Get(
-     *      path="/api/v1/digitalcatalogs/{id}",
+     *      path="/api/v1/digitalpublications/{id}",
      *      tags={"pages"},
-     *      operationId="getDigitalCatalog",
-     *      summary="Fetch digital catalog details",
+     *      operationId="getDigitalPublication",
+     *      summary="Fetch digital publication details",
      *      @SWG\Parameter(
      *          name="id",
      *          in="path",
@@ -922,47 +922,47 @@ Route::group(['prefix' => 'v1'], function()
      *          type="integer",
      *          description="id",
      *      ),
-     *      @SWG\Response(response="200", description="Get a specific digital catalog")
+     *      @SWG\Response(response="200", description="Get a specific digital publication")
      *  )
      *
      */
-    Route::get('digitalcatalogs/{id}', 'API\DigitalCatalogsController@show');
+    Route::get('digitalpublications/{id}', 'API\DigitalPublicationsController@show');
 
 
     /**
      *
-     * - printed catalogs ------------------------------------------------------
+     * - printed publications ------------------------------------------------------
      *
      * @SWG\Get(
-     *      path="/api/v1/printedcatalogs",
+     *      path="/api/v1/printedpublications",
      *      tags={"pages"},
-     *      operationId="getPrintedCatalogs",
-     *      summary="List all printed catalogs",
-     *      @SWG\Response(response="200", description="List all printed catalogs")
+     *      operationId="getPrintedPublications",
+     *      summary="List all printed publications",
+     *      @SWG\Response(response="200", description="List all printed publications")
      *  )
      *
      */
-    Route::get('printedcatalogs', 'API\PrintedCatalogsController@index');
+    Route::get('printedpublications', 'API\PrintedPublicationsController@index');
 
     /**
      *
      * @SWG\Get(
-     *      path="/api/v1/printedcatalogs/deleted",
+     *      path="/api/v1/printedpublications/deleted",
      *      tags={"pages"},
-     *      operationId="getDeletedPrintedCatalogs",
-     *      summary="List all deleted printed catalogs",
-     *      @SWG\Response(response="200", description="List all deleted printed catalogs")
+     *      operationId="getDeletedPrintedPublications",
+     *      summary="List all deleted printed publications",
+     *      @SWG\Response(response="200", description="List all deleted printed publications")
      *  )
      *
      */
-    Route::get('printedcatalogs/deleted', 'API\PrintedCatalogsController@deleted');
+    Route::get('printedpublications/deleted', 'API\PrintedPublicationsController@deleted');
 
     /**
      * @SWG\Get(
-     *      path="/api/v1/printedcatalogs/{id}",
+     *      path="/api/v1/printedpublications/{id}",
      *      tags={"pages"},
-     *      operationId="getPrintedCatalog",
-     *      summary="Fetch printed catalog details",
+     *      operationId="getPrintedPublication",
+     *      summary="Fetch printed publication details",
      *      @SWG\Parameter(
      *          name="id",
      *          in="path",
@@ -970,10 +970,10 @@ Route::group(['prefix' => 'v1'], function()
      *          type="integer",
      *          description="id",
      *      ),
-     *      @SWG\Response(response="200", description="Get a specific printed catalog")
+     *      @SWG\Response(response="200", description="Get a specific printed publication")
      *  )
      *
      */
-    Route::get('printedcatalogs/{id}', 'API\PrintedCatalogsController@show');
+    Route::get('printedpublications/{id}', 'API\PrintedPublicationsController@show');
 
 });
