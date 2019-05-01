@@ -9,14 +9,20 @@
 @section('fieldsets')
     <a17-fieldset title="Content" id="content">
         @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'standard_media_type',
-            'fieldValues' => 'type_video',
+            'fieldName' => 'asset_type',
+            'fieldValues' => 'standard',
             'keepAlive' => true,
         ])
-            <br/>
-            <a17-fieldset title="Video" id="video">
-                @include('admin.experiences.slides._youtube_form')
-            </a17-fieldset>
+            @component('twill::partials.form.utils._connected_fields', [
+                'fieldName' => 'standard_media_type',
+                'fieldValues' => 'type_video',
+                'keepAlive' => true,
+            ])
+                <br/>
+                <a17-fieldset title="Video" id="video">
+                    @include('admin.experiences.slides._youtube_form')
+                </a17-fieldset>
+            @endcomponent
         @endcomponent
 
         @include('admin.experiences.slides._attract')
