@@ -22,7 +22,7 @@ class AddPublicationYearToCatalogues extends Migration
         });
 
         // Extract the publication year from the page text and populate the new field.
-        foreach (['App\Models\PrintedCatalog', 'App\Models\DigitalCatalog'] as $catalogClass) {
+        foreach (['App\Models\PrintedPublication', 'App\Models\DigitalPublication'] as $catalogClass) {
             foreach ($catalogClass::where('published', TRUE)->get() as $catalog) {
 
                 // If the first block is a Split Block

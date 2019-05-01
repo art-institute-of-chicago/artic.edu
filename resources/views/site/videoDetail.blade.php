@@ -5,11 +5,11 @@
     <article class="o-article o-article--video">
 
         @component('components.molecules._m-article-header')
-            @slot('title', $item->title)
-            @slot('title_display', $item->title_display)
-            @slot('type', $item->type)
+            @slot('title', $item->present()->title)
+            @slot('title_display', $item->present()->title_display)
+            @slot('type', $item->present()->type)
             @slot('date', $item->date)
-            @slot('intro', $item->heading)
+            @slot('intro', $item->present()->heading)
         @endcomponent
 
         <div class="o-article__body o-blocks">

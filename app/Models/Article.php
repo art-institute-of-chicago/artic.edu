@@ -232,6 +232,20 @@ class Article extends AbstractModel implements Feedable
 
     public function toFeedItem()
     {
+        $heroImage = $this->imageFront('hero');
+
+        $ch = curl_init($heroImage['src']);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, TRUE);
+        curl_setopt($ch, CURLOPT_NOBODY, TRUE);
+
+        $data = curl_exec($ch);
+        $length = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+        $type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+
+        curl_close($ch);
+
         return FeedItem::create([
            'id' => $this->id,
            'title' => $this->title,
@@ -239,7 +253,11 @@ class Article extends AbstractModel implements Feedable
            'summary' => $this->heading ?? $this->list_description ?? 'Article',
            'author' => $this->author ?? 'AIC',
            'updated' => $this->updated_at,
-           'link' => route('articles.show', $this)
+           'link' => route('articles.show', $this),
+           'enclosure' => $heroImage['src'],
+           'enclosureLength' => $length,
+           'enclosureType' => $type,
+           'category' => $this->categories->first()->name ?? '',
        ]);
     }
 

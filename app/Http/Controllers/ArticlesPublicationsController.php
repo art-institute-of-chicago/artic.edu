@@ -22,7 +22,7 @@ class ArticlesPublicationsController extends FrontController
         return view('site.articles_publications.index', [
             'primaryNavCurrent' => 'collection',
             'title' => 'The Collection',
-            'intro' => $artIdeasPage->art_intro,
+            'intro' => $artIdeasPage->present()->art_intro,
             'linksBar' => [
                 [
                     'href' => route('collection'),
@@ -40,12 +40,12 @@ class ArticlesPublicationsController extends FrontController
             ],
             'featureHero' => $featureHero,
             'features' => $articles,
-            'digitalCatalogs' => [
-                'items' => $page->digitalCatalogs
+            'digitalPublications' => [
+                'items' => $page->digitalPublications
             ],
-            'printedCatalogs' => [
-                'intro' => $page->printed_catalogs_intro,
-                'items' => $page->printedCatalogs
+            'printedPublications' => [
+                'intro' => $page->present()->printed_publications_intro,
+                'items' => $page->printedPublications
             ]
         ]);
 

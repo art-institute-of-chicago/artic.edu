@@ -60,7 +60,7 @@ class Page extends AbstractModel
         'art_intro',
 
         // Printed catalogs
-        'printed_catalogs_intro',
+        'printed_publications_intro',
 
         // Resources Landing page
         'resources_landing_title',
@@ -220,9 +220,22 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');
     }
 
+    /**
+     * DEPRECATED
+     */
     public function homeFeatures()
     {
         return $this->belongsToMany('App\Models\HomeFeature', 'page_home_home_feature')->withPivot('position')->orderBy('position');
+    }
+
+    public function mainHomeFeatures()
+    {
+        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_main_home_feature')->withPivot('position')->orderBy('position');
+    }
+
+    public function secondaryHomeFeatures()
+    {
+        return $this->belongsToMany('App\Models\HomeFeature', 'page_home_secondary_home_feature')->withPivot('position')->orderBy('position');
     }
 
     public function collectionFeatures()
@@ -290,14 +303,14 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
     }
 
-    public function digitalCatalogs()
+    public function digitalPublications()
     {
-        return $this->belongsToMany('App\Models\DigitalCatalog')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\DigitalPublication', 'digital_catalog_page', null, 'digital_catalog_id')->withPivot('position')->orderBy('position');
     }
 
-    public function printedCatalogs()
+    public function printedPublications()
     {
-        return $this->belongsToMany('App\Models\PrintedCatalog')->withPivot('position')->orderBy('position');
+        return $this->belongsToMany('App\Models\PrintedPublication', 'page_printed_catalog', null, 'printed_catalog_id')->withPivot('position')->orderBy('position');
     }
 
     public function visitTourPages()

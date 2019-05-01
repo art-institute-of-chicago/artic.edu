@@ -34,7 +34,7 @@ class Gallery extends BaseApiModel
         return Search::query()
             ->resources(['artworks'])
             ->forceEndpoint('search')
-            ->byGalleryIds($this->id)
+            ->byGalleryIdsOnView($this->id)
             ->aggregationClassifications(3)
             ->getSearch($perPage);
     }

@@ -12,6 +12,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/aacotroneo/laravel-saml2.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/nikhiltri/laravel-feed.git"
         }
     ],
     "require": {
@@ -28,11 +32,12 @@
         "kalnoy/nestedset": "^4.3",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "michelf/php-smartypants": "^1.8",
         "onelogin/php-saml": "3.0.0.x-dev@dev",
         "rlanvin/php-rrule": "1.*",
         "sentry/sentry-laravel": "^0.8.0",
         "spatie/calendar-links": "^1.0",
-        "spatie/laravel-feed": "^2.1",
+        "spatie/laravel-feed": "dev-feature/support-for-flipboard",
         "spatie/laravel-sitemap": "^5.2"
     },
     "require-dev": {

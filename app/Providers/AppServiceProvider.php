@@ -57,7 +57,11 @@ class AppServiceProvider extends ServiceProvider
             'articles' => 'App\Models\Article',
             'selections' => 'App\Models\Selection',
             'artists' => 'App\Models\Artist',
-            'homeFeatures' => 'App\Models\HomeFeature'
+            'homeFeatures' => 'App\Models\HomeFeature',
+
+            // Hacky way of preserving mediable and blockable after rename
+            'App\Models\DigitalCatalog' => 'App\Models\DigitalPublication',
+            'App\Models\PrintedCatalog' => 'App\Models\PrintedPublication',
         ]);
     }
 

@@ -15,6 +15,9 @@ class ShopItem extends BaseApiModel
         'search'     => '/api/v1/products/search'
     ];
 
+    protected $presenter = 'App\Presenters\Admin\ShopItemPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\ShopItemPresenter';
+
     public $mediasParams = [
         'hero' => [
             'default' => [

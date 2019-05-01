@@ -1,7 +1,7 @@
 <div class="o-accordion{{ (isset($variation)) ? ' '.$variation : '' }}" data-behavior="accordion">
     @foreach ($items as $item)
     <h3><button id="{{ getUtf8Slug($item['title']) }}" class="o-accordion__trigger {{ $titleFont ?? 'f-list-3' }}" tabindex="0"{!! (isset($item['gtmAttributes'])) ? ' '.$item['gtmAttributes'].'' : '' !!}>
-        {{ $item['title'] }}
+        {!! $item['title'] !!}
         <span class="o-accordion__trigger-icon">
             <svg class="icon--plus"><use xlink:href="#icon--plus" /></svg>
             <svg class="icon--minus"><use xlink:href="#icon--minus" /></svg>

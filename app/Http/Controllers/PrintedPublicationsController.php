@@ -4,22 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Repositories\PrintedCatalogRepository;
-use App\Models\PrintedCatalog;
+use App\Repositories\PrintedPublicationRepository;
+use App\Models\PrintedPublication;
 use App\Models\CatalogCategory;
 
-class PrintedCatalogsController extends CatalogsController
+class PrintedPublicationsController extends CatalogsController
 {
 
     protected $repository;
 
-    protected $entity = \App\Models\PrintedCatalog::class;
+    protected $entity = \App\Models\PrintedPublication::class;
 
     protected $scopes = [
         'category' => 'byCategory',
     ];
 
-    public function __construct(PrintedCatalogRepository $repository)
+    public function __construct(PrintedPublicationRepository $repository)
     {
         $this->repository = $repository;
 
@@ -37,7 +37,7 @@ class PrintedCatalogsController extends CatalogsController
     {
         $items = $this->collection()->ordered()->paginate();
 
-        $title = 'Print Catalogues';
+        $title = 'Print Publications';
 
         $this->seo->setTitle($title);
 
@@ -46,7 +46,7 @@ class PrintedCatalogsController extends CatalogsController
         $view_data = [
             'wideBody' => true,
             'filters' => $this->getFilters(),
-            'listingCountText' => 'Showing '.$items->total().' print catalogues',
+            'listingCountText' => 'Showing '.$items->total().' print publications',
             'listingItems' => $items,
         ] + $navElements;
 
@@ -67,7 +67,7 @@ class PrintedCatalogsController extends CatalogsController
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
-            ['label' => 'Print Catalogues', 'href' => route('collection.publications.printed-catalogs')],
+            ['label' => 'Print Publications', 'href' => route('collection.publications.printed-publications')],
             ['label' => $page->title, 'href' => '']
         ];
 
@@ -88,13 +88,13 @@ class PrintedCatalogsController extends CatalogsController
 
         $categoryLinks[] = [
             'label'  => 'All',
-            'href'   => route('collection.publications.printed-catalogs'),
+            'href'   => route('collection.publications.printed-publications'),
             'active' => empty(request('category', null))
         ];
 
         foreach (CatalogCategory::all() as $category) {
             $categoryLinks[] = [
-                'href'   => route('collection.publications.printed-catalogs', request()->except('category') + ['category' => $category->id]),
+                'href'   => route('collection.publications.printed-publications', request()->except('category') + ['category' => $category->id]),
                 'label'  => $category->name,
                 'active' => request('category') == $category->id
             ];

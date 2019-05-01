@@ -27,16 +27,16 @@
         <span class="m-listing__meta" data-blur-clip-to>
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
-                @slot('title', $item->title)
-                @slot('title_display', $item->title_display)
+                @slot('title', $item->present()->title)
+                @slot('title_display', $item->present()->title_display)
             @endcomponent
             <br>
-            <span class="intro {{ $captionFont ?? 'f-caption' }}">{!! truncateStr($item->list_description) !!}</span>
+            <span class="intro {{ $captionFont ?? 'f-caption' }}">{!! truncateStr($item->present()->list_description) !!}</span>
             <br>
             <span class="m-listing__meta-bottom">
                 @if ($item->subtype)
                     @component('components.atoms._type')
-                        {{ $item->subtype }}
+                        {!! $item->present()->subtype !!}
                     @endcomponent
                 <br>
                 @endif

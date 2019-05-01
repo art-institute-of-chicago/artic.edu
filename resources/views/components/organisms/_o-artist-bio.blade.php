@@ -8,7 +8,7 @@
                 @endcomponent
                 @if ($item->caption)
                 <figcaption>
-                    {!! $item->caption !!}
+                    {!! $item->present()->caption !!}
                 </figcaption>
                 @endif
             </figure>
@@ -19,7 +19,7 @@
                 <dl>
                     @if ($item->also_known_as)
                         <dt>Also known as</dt>
-                        <dd itemprop="additionalName">{{ $item->also_known_as }}</dd>
+                        <dd itemprop="additionalName">{!! $item->present()->also_known_as !!}</dd>
                     @endif
 
                     @if ($item->birth_date)
@@ -36,7 +36,7 @@
 
             @if (gettype($item->intro) === 'string' and $item->intro !== "")
                 <div class="o-artist-bio__body o-blocks" itemprop="description">
-                    {!! $item->intro !!}
+                    {!! $item->present()->intro !!}
                 </div>
             @endif
 
@@ -46,7 +46,7 @@
                         <li>
                             @component('components.atoms._tag')
                                 @slot('href', $link['href'])
-                                {{ $link['label'] }}
+                                {!! SmartyPants::defaultTransform($link['label']) !!}
                             @endcomponent
                         </li>
                     @endforeach

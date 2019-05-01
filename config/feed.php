@@ -20,6 +20,10 @@ return [
 
             'title' => 'Articles',
 
+            'description' => 'The latest articles from the Art Institute of Chicago',
+
+            'language' => 'en-US',
+
             /*
              * The view that will render the feed.
              */

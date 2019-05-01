@@ -57,8 +57,8 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('articles');
         Route::module('categories');
         Route::module('videos');
-        Route::module('printedCatalogs');
-        Route::module('digitalCatalogs');
+        Route::module('printedPublications');
+        Route::module('digitalPublications');
     });
 
     Route::module('galleries');
@@ -75,8 +75,6 @@ Route::group(['prefix' => 'generic'], function () {
     Route::module('genericPages');
     Route::module('pressReleases');
     Route::module('exhibitionPressRooms');
-
-
 });
 
 Route::group(['prefix' => 'general'], function () {
@@ -88,6 +86,7 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('shopItems');
     Route::module('eventPrograms');
     Route::module('tourStops');
+    Route::module('vanityRedirects');
 });
 
 // TODO: This will be fixed in our next Twill release to use auth_login_redirect_path automatically

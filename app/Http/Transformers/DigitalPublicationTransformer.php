@@ -4,7 +4,7 @@ namespace App\Http\Transformers;
 
 use App\Models\Collections\Page;
 
-class PrintedCatalogTransformer extends ApiTransformer
+class DigitalPublicationTransformer extends ApiTransformer
 {
 
 }

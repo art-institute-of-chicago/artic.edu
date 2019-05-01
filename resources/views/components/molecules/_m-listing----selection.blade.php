@@ -21,12 +21,12 @@
             </span>
         </span>
         <span class="m-listing__meta">
-            <em class="type f-tag">{{isset($variation) && $variation == 'm-listing--feature' ? 'Collection ' : '' }}{{ $item->subtype }}</em>
+            <em class="type f-tag">{{isset($variation) && $variation == 'm-listing--feature' ? 'Collection ' : '' }}{!! $item->present()->subtype !!}</em>
             <br>
             @component('components.atoms._title')
                 @slot('font', $titleFont ?? 'f-list-3')
-                @slot('title', $item->title)
-                @slot('title_display', $item->title_display)
+                @slot('title', $item->present()->title)
+                @slot('title_display', $item->present()->title_display)
             @endcomponent
         </span>
     </a>

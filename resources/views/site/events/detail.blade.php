@@ -10,12 +10,12 @@
   @component('components.molecules._m-article-header')
     @slot('editorial', false)
     @slot('headerType', $item->present()->headerType)
-    @slot('title', $item->title)
-    @slot('title_display', $item->title_display)
+    @slot('title', $item->present()->title)
+    @slot('title_display', $item->present()->title_display)
     @slot('formattedDate', $item->present()->formattedNextOcurrence)
     @slot('type', $item->is_member_exclusive ? 'Member Exclusive' : ($item->audience === \App\Models\Event::SUSTAINING_FELLOWS ? 'Sustaining Fellows' : $item->present()->type))
     @slot('img', $item->imageAsArray('hero'))
-    @slot('credit', $item->hero_caption)
+    @slot('credit', $item->present()->hero_caption)
   @endcomponent
 
   <div class="o-article__primary-actions{{ ($item->headerType === 'gallery') ? ' o-article__primary-actions--inline-header' : '' }}">
@@ -53,7 +53,7 @@
         @if ($item->present()->isSoldOut)
             @slot('disabled',true)
         @endif
-        @slot('eventName',$item->title)
+        @slot('eventName',$item->present()->title)
     @endcomponent
 
     @if ($item->featuredRelated)
@@ -73,7 +73,7 @@
     @component('components.blocks._text')
         @slot('font', 'f-deck')
         @slot('tag', 'span')
-        {!! $item->description !!}
+        {!! $item->present()->description !!}
     @endcomponent
   </div>
   @endif

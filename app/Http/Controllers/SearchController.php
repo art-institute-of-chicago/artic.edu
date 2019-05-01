@@ -142,13 +142,13 @@ class SearchController extends BaseScopedController
                     $item->url = route('articles.show', $item);
                     $item->section = 'Articles';
                     break;
-                case 'DigitalCatalog':
-                    $item->url = route('collection.publications.digital-catalogs.show', $item);
-                    $item->section = 'Digital Catalogues';
+                case 'DigitalPublication':
+                    $item->url = route('collection.publications.digital-publications.show', $item);
+                    $item->section = 'Digital Publications';
                     break;
-                case 'PrintedCatalog':
-                    $item->url = route('collection.publications.printed-catalogs.show', $item);
-                    $item->section = 'Print Catalogues';
+                case 'PrintedPublication':
+                    $item->url = route('collection.publications.printed-publications.show', $item);
+                    $item->section = 'Print Publications';
                     break;
             }
 

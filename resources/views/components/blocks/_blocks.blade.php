@@ -32,13 +32,13 @@
                         $block['content'] = preg_replace('/<\/p>/im', '</'.$tag.'>', $block['content']);
                     }
                 @endphp
-                {!! $block['content'] !!}
+                {!! SmartyPants::defaultTransform($block['content']) !!}
             @endif
 
             @if ($block['type'] === 'intro')
                 @component('components.blocks._text')
                     @slot('font', 'f-deck')
-                    {!! $block['content'] !!}
+                    {!! SmartyPants::defaultTransform($block['content']) !!}
                 @endcomponent
             @endif
 
@@ -48,7 +48,7 @@
                     @slot('font', (isset($editorial) and $editorial) ? 'f-deck' : null)
                     {{-- @slot('attribution', 'Vestibulum Malesuada Sem Fermentum Dapibus') --}}
 
-                    {{ $block['content'] }}
+                    {{ SmartyPants::defaultTransform($block['content']) }}
                 @endcomponent
             @endif
 
@@ -466,6 +466,7 @@
                     @slot('disabled', $block['disabled'] ?? false)
                     @slot('label', $block['label'] ?? false)
                     @slot('checked', $block['checked'] ?? false)
+                    @slot('behavior', $block['behavior'] ?? false)
                 @endcomponent
             @endif
 

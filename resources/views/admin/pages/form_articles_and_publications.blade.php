@@ -11,22 +11,22 @@
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
         'max' => 3,
-        'moduleName' => 'digitalCatalogs',
-        'name' => 'digitalCatalogs',
-        'label' => 'Digital Catalogues'
+        'moduleName' => 'digitalPublications',
+        'name' => 'digitalPublications',
+        'label' => 'Digital Publications'
     ])
 
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
         'max' => 4,
-        'moduleName' => 'printedCatalogs',
-        'name' => 'printedCatalogs',
-        'label' => 'Print Catalogues'
+        'moduleName' => 'printedPublications',
+        'name' => 'printedPublications',
+        'label' => 'Print Publications'
     ])
 
     @formField('input', [
         'type' => 'textarea',
-        'name' => 'printed_catalogs_intro',
-        'label' => 'Print Catalogues intro text',
+        'name' => 'printed_publications_intro',
+        'label' => 'Print Publications intro text',
     ])
 @stop

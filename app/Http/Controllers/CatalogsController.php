@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 /*
-    Class inherited by PrintedCatalogs and DigitalCatalogs
+    Class inherited by PrintedPublications and DigitalPublications
 */
 
 class CatalogsController extends BaseScopedController
@@ -15,14 +15,14 @@ class CatalogsController extends BaseScopedController
     {
         $subNav = [
             [
-                'label'  => 'Print Catalogues',
-                'href'   => route('collection.publications.printed-catalogs'),
-                'active' => request()->route()->getName() == 'collection.publications.printed-catalogs'
+                'label'  => 'Print Publications',
+                'href'   => route('collection.publications.printed-publications'),
+                'active' => request()->route()->getName() == 'collection.publications.printed-publications'
             ],
             [
-                'label'  => 'Digital Catalogues',
-                'href'   => route('collection.publications.digital-catalogs'),
-                'active' => request()->route()->getName() == 'collection.publications.digital-catalogs'
+                'label'  => 'Digital Publications',
+                'href'   => route('collection.publications.digital-publications'),
+                'active' => request()->route()->getName() == 'collection.publications.digital-publications'
             ]
         ];
 

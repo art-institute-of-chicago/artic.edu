@@ -11,17 +11,17 @@
     @slot('editorial', false)
     @slot('headerType', $item->present()->headerType)
     {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
-    @slot('title', $item->title)
-    @slot('title_display', $item->title_display)
+    @slot('title', $item->present()->title)
+    @slot('title_display', $item->present()->title_display)
     @slot('date', $item->present()->date)
     @slot('previewDateStart', $item->member_preview_start_date)
     @slot('previewDateEnd', $item->member_preview_end_date)
     @slot('dateStart', $item->present()->startAt)
     @slot('dateEnd', $item->present()->endAt)
     @slot('type', $item->present()->exhibitionType)
-    @slot('intro', $item->header_copy)
+    @slot('intro', $item->present()->header_copy)
     @slot('img', $item->imageAsArray('hero'))
-    @slot('credit', $item->hero_caption)
+    @slot('credit', $item->present()->hero_caption)
   @endcomponent
 
   <div class="o-article__primary-actions">
@@ -52,7 +52,7 @@
     @unless ($item->isClosed)
         @component('components.molecules._m-ticket-actions----exhibition')
             @slot('pricingAttendanceMessage', $item->exhibition_message)
-            @slot('exhibitionName', $item->title)
+            @slot('exhibitionName', $item->present()->title)
         @endcomponent
     @endunless
 
@@ -74,7 +74,7 @@
     @component('components.blocks._text')
         @slot('font', 'f-deck')
         @slot('tag', 'span')
-        {!! $item->header_copy !!}
+        {!! $item->present()->header_copy !!}
     @endcomponent
   </div>
   @endif
@@ -297,7 +297,7 @@
                           'xlarge' => '7',
                     )),
                 ))
-                @slot('exhibitionTitle', $item->title)
+                @slot('exhibitionTitle', $item->present()->title)
             @endcomponent
         @endforeach
     @endcomponent

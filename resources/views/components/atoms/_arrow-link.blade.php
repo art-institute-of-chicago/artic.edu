@@ -9,4 +9,3 @@
         {!! $slot !!}<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>
     @endif
 </{{ $tag ?? 'a' }}>
-

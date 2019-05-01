@@ -3,7 +3,7 @@
 
         <label class="m-search-bar__label--hiden" for="{{ $name ?? '' }}">Search</label>
 
-        <input class="f-secondary{{ (isset($value) and $value and isset($clearLink) and $clearLink) ? ' s-populated' : '' }}" id="{{ $name ?? '' }}" name="{{ $name ?? '' }}" placeholder="{{ $placeholder ?? '' }}" type="text" value="{{ $value ?? '' }}" autocomplete="off">
+        <input class="f-secondary{{ (isset($value) and $value and isset($clearLink) and $clearLink) ? ' s-populated' : '' }}" id="{{ $name ?? '' }}" name="{{ $name ?? '' }}" placeholder="{!! $placeholder ?? '' !!}" type="text" value="{{ $value ?? '' }}" autocomplete="off">
 
         <button class="m-search-bar__submit" type="submit" aria-label="Search"><svg aria-hidden="true" class="icon--search--24"><use xlink:href="#icon--search--24" /></svg></button>
 

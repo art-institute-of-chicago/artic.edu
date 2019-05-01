@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2fbef16adf9afd9877648ab9e991e7d",
+    "content-hash": "1118a089b262ba9220c3c38bcf6cdf45",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -2887,6 +2887,56 @@
             "time": "2017-12-15T11:13:46+00:00"
         },
         {
+            "name": "michelf/php-smartypants",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-smartypants.git",
+                "reference": "47d17c90a4dfd0ccf1f87e25c65e6c8012415aad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-smartypants/zipball/47d17c90a4dfd0ccf1f87e25c65e6c8012415aad",
+                "reference": "47d17c90a4dfd0ccf1f87e25c65e6c8012415aad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "https://daringfireball.net/"
+                }
+            ],
+            "description": "PHP SmartyPants",
+            "homepage": "https://michelf.ca/projects/php-smartypants/",
+            "keywords": [
+                "dashes",
+                "quotes",
+                "spaces",
+                "typographer",
+                "typography"
+            ],
+            "time": "2016-12-13T01:01:17+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.24.0",
             "source": {
@@ -4795,16 +4845,16 @@
         },
         {
             "name": "spatie/laravel-feed",
-            "version": "2.2.1",
+            "version": "dev-feature/support-for-flipboard",
             "source": {
                 "type": "git",
-                "url": "https://github.com/spatie/laravel-feed.git",
-                "reference": "b8dc5ce330d61c4b4edc851014b54cf0e0b7b68f"
+                "url": "https://github.com/nikhiltri/laravel-feed.git",
+                "reference": "8e646bc8e2ebb6abf5f4a99a4f7b7921720c6b59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-feed/zipball/b8dc5ce330d61c4b4edc851014b54cf0e0b7b68f",
-                "reference": "b8dc5ce330d61c4b4edc851014b54cf0e0b7b68f",
+                "url": "https://api.github.com/repos/nikhiltri/laravel-feed/zipball/8e646bc8e2ebb6abf5f4a99a4f7b7921720c6b59",
+                "reference": "8e646bc8e2ebb6abf5f4a99a4f7b7921720c6b59",
                 "shasum": ""
             },
             "require": {
@@ -4829,14 +4879,23 @@
                     "Spatie\\Feed\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Spatie\\Feed\\Test\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
+                    "name": "Jolita Grazyte",
+                    "email": "jolita@spatie.be",
                     "homepage": "https://spatie.be",
                     "role": "Developer"
                 },
@@ -4847,8 +4906,8 @@
                     "role": "Developer"
                 },
                 {
-                    "name": "Jolita Grazyte",
-                    "email": "jolita@spatie.be",
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
                     "homepage": "https://spatie.be",
                     "role": "Developer"
                 }
@@ -4861,7 +4920,10 @@
                 "rss",
                 "spatie"
             ],
-            "time": "2019-03-06T11:44:14+00:00"
+            "support": {
+                "source": "https://github.com/nikhiltri/laravel-feed/tree/feature/support-for-flipboard"
+            },
+            "time": "2019-04-22T21:52:08+00:00"
         },
         {
             "name": "spatie/laravel-sitemap",
@@ -8511,7 +8573,8 @@
     "stability-flags": {
         "aacotroneo/laravel-saml2": 20,
         "aic/data-hub-foundation": 20,
-        "onelogin/php-saml": 20
+        "onelogin/php-saml": 20,
+        "spatie/laravel-feed": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

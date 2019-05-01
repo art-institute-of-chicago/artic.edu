@@ -24,6 +24,7 @@ return [
     'block_editor' => [
         'block_single_layout' => 'layouts.block',
         'block_preview_render_childs' => false,
+        'block_presenter_path' => App\Presenters\Admin\BlockPresenter::class,
         'blocks' => [
             'paragraph' => [
                 'title' => 'Paragraph',

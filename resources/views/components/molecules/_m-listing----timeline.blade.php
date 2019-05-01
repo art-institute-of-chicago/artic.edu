@@ -2,18 +2,18 @@
 <div class="m-listing__meta">
     @component('components.atoms._date')
         @slot('tag','p')
-        {{ $item->time }}
+        {!! $item->present()->time !!}
     @endcomponent
     @component('components.atoms._title')
         @slot('tag','h4')
         @slot('font','f-list-3')
-        {{ $item->title }}
+        {!! $item->present()->title !!}
     @endcomponent
     @if (isset($item->blurb))
         @if (Str::startsWith($item->blurb, '<p'))
-            {!! str_replace('<p>', '<p class="f-body">', $item->blurb) !!}
+            {!! str_replace('<p>', '<p class="f-body">', $item->present()->blurb) !!}
         @else
-            <p class="f-body">{{ $item->blurb }}</p>
+            <p class="f-body">{!! $item->present()->blurb !!}</p>
         @endif
     @endif
 </div>

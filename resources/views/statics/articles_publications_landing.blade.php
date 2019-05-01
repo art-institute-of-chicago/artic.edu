@@ -109,8 +109,8 @@
 
         <section>
             @component('components.molecules._m-title-bar')
-                @slot('links', array(array('label' => 'Browse all digital catalogues', 'href' => '#')))
-                Digital Catalogues
+                @slot('links', array(array('label' => 'Browse all digital publications', 'href' => '#')))
+                Digital Publications
             @endcomponent
 
             @component('components.atoms._hr')
@@ -120,7 +120,7 @@
                 @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
                 @slot('cols_large','3')
                 @slot('cols_xlarge','3')
-                @foreach ($digitalCatalogs['items'] as $item)
+                @foreach ($digitalPublications['items'] as $item)
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
@@ -144,7 +144,7 @@
                 @slot('variation', 'm-links-bar--title-bar-companion')
                 @slot('linksPrimary', array(
                     array(
-                        'label' => 'Browse all digital catalogues',
+                        'label' => 'Browse all digital publications',
                         'href' => '#',
                         'variation' => 'btn btn--secondary'
                     ),
@@ -154,15 +154,15 @@
 
         <section>
             @component('components.molecules._m-title-bar')
-                @slot('links', array(array('label' => 'Browse all printed catalogs', 'href' => '#')))
-                Printed Catalogs
+                @slot('links', array(array('label' => 'Browse all printed publications', 'href' => '#')))
+                Printed Publications
             @endcomponent
 
             @component('components.atoms._hr')
             @endcomponent
 
             @component('components.molecules._m-intro-block')
-                {!! $printedCatalogs['intro'] !!}
+                {!! $printedPublications['intro'] !!}
             @endcomponent
 
             @component('components.atoms._hr')
@@ -172,7 +172,7 @@
                 @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
                 @slot('cols_large','4')
                 @slot('cols_xlarge','4')
-                @foreach ($printedCatalogs['items'] as $item)
+                @foreach ($printedPublications['items'] as $item)
                     @component('components.molecules._m-listing----generic')
                         @slot('variation', 'm-listing--row@small m-listing--row@medium')
                         @slot('item', $item)
@@ -196,7 +196,7 @@
                 @slot('variation', 'm-links-bar--title-bar-companion')
                 @slot('linksPrimary', array(
                     array(
-                        'label' => 'Browse all printed catalogs',
+                        'label' => 'Browse all printed publications',
                         'href' => '#',
                         'variation' => 'btn btn--secondary'
                     ),

@@ -125,12 +125,12 @@ return [
                         'title' => 'Videos',
                         'module' => true,
                     ],
-                    'printedCatalogs' => [
-                        'title' => 'Print Catalogues',
+                    'printedPublications' => [
+                        'title' => 'Print Publications',
                         'module' => true,
                     ],
-                    'digitalCatalogs' => [
-                        'title' => 'Digital Catalogues',
+                    'digitalPublications' => [
+                        'title' => 'Digital Publications',
                         'module' => true,
                     ]
                 ],
@@ -242,6 +242,10 @@ return [
                 'title' => 'Event Programs',
                 'module' => true,
             ],
+            'vanityRedirects' => [
+                'title' => 'Vanity Redirects',
+                'module' => true
+            ]
         ],
     ],
 

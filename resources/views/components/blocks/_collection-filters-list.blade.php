@@ -6,7 +6,7 @@
     </form>
     <ul class="m-filters__list">
 @else
-    <ul class="m-filters__list{{ (sizeof($filterCategory['list']) > 8) ? ' s-capped' : '' }}">
+    <ul class="m-filters__list{{ (sizeof($filterCategory['list']) > 8) and (!isset($filterCategory['showMore']) or $filterCategory['showMore']) ? ' s-capped' : '' }}">
 @endif
     @foreach ($filterCategory['list'] as $link)
     <li>
@@ -16,7 +16,7 @@
     </li>
     @endforeach
 </ul>
-@if ( (!isset($filterCategory['listSearch']) or !$filterCategory['listSearch']) and sizeof($filterCategory['list']) > 8)
+@if (((!isset($filterCategory['listSearch']) or !$filterCategory['listSearch']) and sizeof($filterCategory['list']) > 8) and (!isset($filterCategory['showMore']) or $filterCategory['showMore']))
 <button class="m-filters__show-more-toggle f-secondary" data-behavior="filterToggleShowMore">
     <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
     <span>Show more</span>

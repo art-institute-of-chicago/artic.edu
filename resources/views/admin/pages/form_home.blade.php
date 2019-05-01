@@ -6,15 +6,34 @@
     ])
 
     @formField('browser', [
-    'routePrefix' => 'homepage',
+        'routePrefix' => 'homepage',
+        'max' => 3,
+        'moduleName' => 'homeFeatures',
+        'name' => 'mainHomeFeatures',
+        'label' => 'Main feature',
+        'note' => 'Queue up to 3 home features for the large hero area',
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'homepage',
+        'max' => 5,
+        'moduleName' => 'homeFeatures',
+        'name' => 'secondaryHomeFeatures',
+        'label' => 'Secondary features',
+        'note' => 'Queue up to 5 home features for the two smaller hero areas',
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'homepage',
         'max' => 10,
         'moduleName' => 'homeFeatures',
         'name' => 'homeFeatures',
-        'label' => 'Home features'
+        'label' => 'Home features (DEPRECATED)',
+        'note' => 'For reference only! Please use the two fields above instead.',
     ])
 
-     @formField('browser', [
-    'routePrefix' => 'homepage',
+    @formField('browser', [
+        'routePrefix' => 'homepage',
         'max' => 20,
         'moduleName' => 'collectionFeatures',
         'name' => 'collectionFeatures',
@@ -31,11 +50,11 @@
 
     @formField('browser', [
         'routePrefix' => 'exhibitions_events',
-        'max' => 4,
+        'max' => 10,
         'moduleName' => 'events',
         'name' => 'homeEvents',
         'label' => 'Featured events',
-        'note' => 'Select up to 4 events you want to feature on the homepage'
+        'note' => 'Select up to 10 events you want to feature on the homepage'
     ])
 
 

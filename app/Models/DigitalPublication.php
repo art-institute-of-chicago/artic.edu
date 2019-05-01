@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use PDO;
+use Illuminate\Support\Facades\DB;
+
 use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasMedias;
@@ -10,9 +12,11 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasMediasEloquent;
 
-class PrintedCatalog extends AbstractModel
+class DigitalPublication extends AbstractModel
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
+
+    protected $table = "digital_catalogs";
 
     protected $fillable = [
         'listing_description',
@@ -23,9 +27,6 @@ class PrintedCatalog extends AbstractModel
         'public',
         'publish_start_date',
         'publish_end_date',
-        'publication_date',
-        'migrated_node_id',
-        'migrated_at',
         'meta_title',
         'meta_description',
     ];
@@ -34,11 +35,21 @@ class PrintedCatalog extends AbstractModel
         'title',
     ];
 
-    public $checkboxes = ['published', 'active', 'public'];
-    public $dates = ['publish_start_date', 'publish_end_date', 'migrated_at'];
-
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
+
+    public $checkboxes = [
+        'published',
+        'active',
+        'public',
+    ];
+
+    public $dates = [
+        'publish_start_date',
+        'publish_end_date',
+    ];
+
+    public $sections = [];
 
     public $mediasParams = [
         'listing' => [
@@ -65,30 +76,14 @@ class PrintedCatalog extends AbstractModel
         ],
     ];
 
-    public function categories()
+    public function slugs()
     {
-        return $this->belongsToMany('App\Models\CatalogCategory');
+        return $this->hasMany("App\Models\Slugs\\" . $this->getSlugClassName(), 'digital_catalog_id');
     }
 
-    public function scopeIds($query, $ids = [])
+    public function revisions()
     {
-        return $query->whereIn('id', $ids);
-    }
-
-    public function scopeByCategory($query, $category = null)
-    {
-        if (!empty($category)) {
-            $query->whereHas('categories', function ($query) use ($category) {
-                $query->where('catalog_category_id', $category);
-            });
-        }
-
-        return $this->scopeOrdered($query);
-    }
-
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy(\DB::raw("COALESCE(publication_date, '1970-01-01')"), 'desc');
+        return $this->hasMany("App\Models\Revisions\\" . class_basename($this) . "Revision", 'digital_catalog_id')->orderBy('created_at', 'desc');
     }
 
     // Generates the id-slug type of URL
@@ -104,12 +99,46 @@ class PrintedCatalog extends AbstractModel
 
     public function getUrlWithoutSlugAttribute()
     {
-        return join([route('collection.publications.printed-catalogs'), '/', $this->id, '-']);
+        return join([route('collection.publications.digital-publications'), '/', $this->id, '-']);
     }
 
-    public function getUrlAttribute()
+    public function getUrlAttribute() {
+        return route('collection.publications.digital-publications.show', $this->slug);
+    }
+
+    public function scopeIds($query, $ids = [])
     {
-        return route('collection.publications.printed-catalogs.show', $this->slug);
+        return $query->whereIn('id', $ids);
+    }
+
+    /**
+     * Alphabetical sort by title [WEB-964]
+     * @link https://stackoverflow.com/questions/3252577
+     * @link https://stackoverflow.com/questions/47903727
+     */
+    public function scopeOrdered($query)
+    {
+        $driver = DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        return $query->orderByRaw($driver === 'pgsql' ? (
+            "regexp_replace(lower(title), '^(an?|the) (.*)$', '\\2, \\1')"
+        ) : (
+            "CASE
+                WHEN title REGEXP '^(\"a|an|the|el|la\")[[:space:]]' = 1 THEN
+                    TRIM(SUBSTR(title, INSTR(title, ' ')))
+                ELSE title
+            END ASC"
+        ));
+    }
+
+    public function sections()
+    {
+        return $this->sections;
+    }
+
+    public function addSection($section)
+    {
+        return $this->sections[] = $section;
     }
 
     protected function transformMappingInternal()
