@@ -21,7 +21,7 @@ class SlideAsset extends JsonResource
             $images = SeamlessImage::where('zip_file_id', $seamless_file->id)->get();
             $src = $images->map(function ($image) {
                 return [
-                    'src' => 'https://' . env('IMGIX_SOURCE_HOST') . '/seq/' . $image->file_name,
+                    'src' => 'https://' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '/seq/' . $image->file_name,
                     'frame' => $image->frame,
                 ];
             })->toArray();
