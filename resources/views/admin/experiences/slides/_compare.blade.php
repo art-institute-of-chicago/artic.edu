@@ -5,7 +5,7 @@
 ])
     @formField('input', [
         'name' => 'compare_title',
-        'label' => 'Title'
+        'label' => 'Primary Copy'
     ])
 
     @formField('repeater', ['type' => 'compare_experience_image_1'])

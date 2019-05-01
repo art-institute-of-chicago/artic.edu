@@ -318,7 +318,7 @@ return [
                 'max' => 1,
             ],
             'primary_experience_modal' => [
-                'title' => 'Primay Experience Modal',
+                'title' => 'Primary Experience Modal',
                 'trigger' => 'Add Primary Experience Modal',
                 'component' => 'a17-block-experience_modal',
                 'max' => 1,
