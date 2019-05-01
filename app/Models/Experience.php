@@ -80,6 +80,18 @@ class Experience extends Model implements Sortable
         return SlideAssetResource::collection($this->slides()->published()->orderBy('position')->get())->toArray(request());
     }
 
+    public function imageFront()
+    {
+        $attract_slide = $this->slides()->where('module_type', 'attract')->first();
+        $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
+        $image = $attract_image ? $attract_image->cmsImage('experience_image', 'default') : '';
+        if (!empty($image)) {
+            return [
+                'src' => $image
+            ];
+        }
+    }
+
     public function slides()
     {
         return $this->hasMany('App\Models\Slide', 'experience_id');
@@ -98,5 +110,10 @@ class Experience extends Model implements Sortable
     public function scopeUnarchived($query)
     {
         return $query->where('archived', false);
+    }
+
+    public function getUrl()
+    {
+        return route('digitalLabels.show', $this->slug);
     }
 }

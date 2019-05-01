@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\DigitalLabel;
+use App\Models\Experience;
 use App\Repositories\ExperienceRepository;
 use Illuminate\Http\Request;
 
@@ -31,7 +31,7 @@ class DigitalLabelExperiencesController extends FrontController
 
     public function index(Request $request)
     {
-        $items = DigitalLabel::paginate();
+        $items = Experience::published()->unarchived()->paginate();
         $title = 'Interactive Features';
 
         $nav = [
