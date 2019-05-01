@@ -13,7 +13,10 @@
             'fieldValues' => 'type_video',
             'keepAlive' => true,
         ])
-            @include('admin.experiences.slides._youtube_form')
+            <br/>
+            <a17-fieldset title="Video" id="video">
+                @include('admin.experiences.slides._youtube_form')
+            </a17-fieldset>
         @endcomponent
 
         @include('admin.experiences.slides._attract')

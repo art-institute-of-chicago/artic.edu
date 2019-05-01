@@ -3,7 +3,13 @@
     'fieldValues' => 'fullwidthmedia',
     'keepAlive' => true,
 ])
-    @formField('repeater', ['type' => 'experience_image'])
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'standard_media_type',
+        'fieldValues' => 'type_image',
+        'keepAlive' => true,
+    ])
+        @formField('repeater', ['type' => 'experience_image'])
+    @endcomponent
     @formField('repeater', ['type' => 'experience_modal'])
     @formField('wysiwyg', [
         'name' => 'caption',
