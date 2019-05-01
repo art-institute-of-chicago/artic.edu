@@ -14,29 +14,31 @@
         ],
     ]
 ])
-@component('twill::partials.form.utils._connected_fields', [
-    'fieldName' => 'asset_type',
-    'fieldValues' => 'standard',
-    'renderForBlocks' => false,
-    'keepAlive' => true
-])
-    @formField('radios', [
-        'name' => 'standard_media_type',
-        'label' => 'Media Type',
-        'default' => 'type_image',
-        'inline' => true,
-        'options' => [
-            [
-                'value' => 'type_image',
-                'label' => 'Image'
-            ],
-            [
-                'value' => 'type_video',
-                'label' => 'Video'
-            ],
-        ]
+@unless(in_array($item->module_type, ['attract', 'end']))
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'asset_type',
+        'fieldValues' => 'standard',
+        'renderForBlocks' => false,
+        'keepAlive' => true
     ])
-@endcomponent
+        @formField('radios', [
+            'name' => 'standard_media_type',
+            'label' => 'Media Type',
+            'default' => 'type_image',
+            'inline' => true,
+            'options' => [
+                [
+                    'value' => 'type_image',
+                    'label' => 'Image'
+                ],
+                [
+                    'value' => 'type_video',
+                    'label' => 'Video'
+                ],
+            ]
+        ])
+    @endcomponent
+@endunless
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'asset_type',
