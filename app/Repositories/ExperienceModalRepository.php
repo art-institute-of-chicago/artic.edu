@@ -23,7 +23,7 @@ class ExperienceModalRepository extends ModuleRepository
     {
         // $this->updateExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'experience_image');
         parent::afterSave($object, $fields);
-    }
+}
 
     public function getFormFields($object)
     {

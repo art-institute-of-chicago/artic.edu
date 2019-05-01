@@ -59,13 +59,13 @@ class SlideRepository extends ModuleRepository
 
     public function prepareFieldsBeforeSave($object, $fields)
     {
-        // if (isset($fields['attributes'])) {
-        //     $fields['split_attributes'] = json_encode($fields['split_attributes']);
-        // }
+        if (isset($fields['video_play_settings'])) {
+            $fields['video_play_settings'] = json_encode($fields['video_play_settings']);
+        }
 
-        // if (isset($fields['tooltip_hotspots'])) {
-        //     $fields['tooltip_hotspots'] = json_encode($fields['tooltip_hotspots']);
-        // }
+        if (isset($fields['video_playback'])) {
+            $fields['video_playback'] = json_encode($fields['video_playback']);
+        }
 
         return parent::prepareFieldsBeforeSave($object, $fields);
     }

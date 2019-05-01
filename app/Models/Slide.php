@@ -94,6 +94,24 @@ class Slide extends Model implements Sortable
         }
     }
 
+    public function getVideoPlaySettingsAttribute()
+    {
+        if ($this->attributes['video_play_settings']) {
+            return array_map(function ($option) {
+                return ['id' => $option];
+            }, json_decode($this->attributes['video_play_settings']));
+        }
+    }
+
+    public function getVideoPlaybackAttribute()
+    {
+        if ($this->attributes['video_playback']) {
+            return array_map(function ($option) {
+                return ['id' => $option];
+            }, json_decode($this->attributes['video_playback']));
+        }
+    }
+
     public function experience()
     {
         return $this->belongsTo('App\Models\Experience');
