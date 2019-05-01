@@ -183,7 +183,7 @@ class Slide extends JsonResource
                 'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] : 0,
             ],
             'assetType' => $this->asset_type,
-            '__mediaType' => $this->standard_media_type === 'type_image' ? 'image' : 'video',
+            '__mediaType' => $this->module_type === 'standard' ? ($this->standard_media_type === 'type_image' ? 'image' : 'video') : ($this->media_type === 'type_image' ? 'image' : 'sequence'),
             'moduleTitle' => $this->title,
             'exhibitonId' => $this->experience->digitalLabel->id,
             'isActive' => $this->published,
