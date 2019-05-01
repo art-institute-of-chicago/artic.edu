@@ -382,10 +382,22 @@ return [
             'experience_image' => [
                 'default' => [
                     [
-                        'name' => 'Uncropped',
-                        'ratio' => null,
+                        'name' => '16:9',
+                        'ratio' => 16 / 9
                     ],
-                ],
+                    [
+                        'name' => '4:3',
+                        'ratio' => 4 / 3
+                    ],
+                    [
+                        'name' => '1:1',
+                        'ratio' => 1 / 1
+                    ],
+                    [
+                        'name' => '3:4',
+                        'ratio' => 3 / 4
+                    ]
+                ]
             ],
         ],
         'files' => [

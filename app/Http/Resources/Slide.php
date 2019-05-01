@@ -116,7 +116,8 @@ class Slide extends JsonResource
         $this->media = $this->experienceImage;
         $this->modal = $this->experienceModal;
         if ($this->standard_media_type === 'type_video') {
-            $src = '';
+            parse_str( parse_url( $this->youtube_url, PHP_URL_QUERY ), $youtube_url);
+            $src = isset($youtube_url['v']) ? [$youtube_url['v']] : [];
         } else {
             $src = $this->media->map(function ($image) {
                 return $image->image('experience_image');
