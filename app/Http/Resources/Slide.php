@@ -115,10 +115,15 @@ class Slide extends JsonResource
     {
         $this->media = $this->experienceImage;
         $this->modal = $this->experienceModal;
-        return [
-            'src' => $this->media->map(function ($image) {
+        if ($this->standard_media_type === 'type_video') {
+            $src = '';
+        } else {
+            $src = $this->media->map(function ($image) {
                 return $image->image('experience_image');
-            })->toArray(),
+            })->toArray();
+        }
+        return [
+            'src' => $src,
             '__option_open_modal' => false,
             '__option_autoplay' => true,
             '__option_inset' => $this->fullwidth_inset,
@@ -183,7 +188,7 @@ class Slide extends JsonResource
                 'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] : 0,
             ],
             'assetType' => $this->asset_type,
-            '__mediaType' => $this->module_type === 'standard' ? ($this->standard_media_type === 'type_image' ? 'image' : 'video') : ($this->media_type === 'type_image' ? 'image' : 'sequence'),
+            '__mediaType' => $this->asset_type === 'standard' ? ($this->standard_media_type === 'type_image' ? 'image' : 'video') : ($this->media_type === 'type_image' ? 'image' : 'sequence'),
             'moduleTitle' => $this->title,
             'exhibitonId' => $this->experience->digitalLabel->id,
             'isActive' => $this->published,
