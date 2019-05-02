@@ -3,6 +3,13 @@
             'fieldValues' => 'split',
             'keepAlive' => true,
         ])
+            <div style="display: none" id="headline">
+                @formField('input', [
+                    'name' => 'headline',
+                    'label' => 'Headline'
+                ])
+            </div>
+
             @formField('input', [
                 'name' => 'split_primary_copy',
                 'type' => 'textarea',
@@ -31,13 +38,6 @@
 
             <div style="display: none" id="secondary_image">
                 @formField('repeater', ['type' => 'slide_secondary_experience_image'])
-            </div>
-    
-            <div style="display: none" id="headline">
-                @formField('input', [
-                    'name' => 'headline',
-                    'label' => 'Headline'
-                ])
             </div>
         
             <div style="display: none" id="caption">
