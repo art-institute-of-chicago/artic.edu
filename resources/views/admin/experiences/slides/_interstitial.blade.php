@@ -18,5 +18,11 @@
         'label' => 'Body Copy'
     ])
 
-    @formField('repeater', ['type' => 'experience_image'])
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'asset_type',
+        'fieldValues' => 'standard',
+        'keepAlive' => true,
+    ])
+        @formField('repeater', ['type' => 'experience_image'])
+    @endcomponent
 @endcomponent
