@@ -81,23 +81,32 @@
         ])
     @endcomponent
 
+    <br />
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'media_type',
         'fieldValues' => 'type_sequence',
         'renderForBlocks' => false
     ])
-        @formField('files', [
-            'name' => 'sequence_file',
-            'label' => 'Sequence zip file',
-            'noTranslate' => true,
-            'max' => 1,
-        ])
-        <component
-            v-bind:is="`a17-block-seamless`"
-            :name="`seamless`"
-            :seamless-asset-data="{{ isset($form_fields['seamless_asset']) ? json_encode($form_fields['seamless_asset']) : "0" }}"
-            :hotspotsdata="{{ isset($form_fields['tooltip_hotspots']) ? json_encode($form_fields['tooltip_hotspots']) : '[]' }}">
-        </component>
+        <a17-fieldset title="Seamless Sequence" id="seamless-asset">
+            @formField('files', [
+                'name' => 'sequence_file',
+                'label' => 'Sequence zip file',
+                'noTranslate' => true,
+                'max' => 1,
+            ])
+
+            <component
+                v-bind:is="`a17-block-seamless`"
+                :name="`seamless`"
+                :seamless-asset-data="{{ isset($form_fields['seamless_asset']) ? json_encode($form_fields['seamless_asset']) : "0" }}"
+                :hotspotsdata="{{ isset($form_fields['tooltip_hotspots']) ? json_encode($form_fields['tooltip_hotspots']) : '[]' }}">
+            </component>
+
+            @formField('input', [
+                'name' => 'seamless_alt_text',
+                'label' => 'Alt Text'
+            ])
+        </a17-fieldset>
     @endcomponent
 
     @component('twill::partials.form.utils._connected_fields', [
