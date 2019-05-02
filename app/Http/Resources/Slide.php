@@ -74,6 +74,7 @@ class Slide extends JsonResource
             '__option_flip' => $this->image_side === 'right',
             '__option_secondary_image' => in_array(['id' => 'secondary_image'], $this->split_attributes ?? []),
             '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
+            '__option_headline' => !empty($this->headline),
             'primaryimglink' => $primaryExperienceImage ? [
                 'type' => 'imagelink',
                 'src' => (new SlideMediaResource($primaryExperienceImage))->toArray(request()),
@@ -98,6 +99,7 @@ class Slide extends JsonResource
             '__option_body_copy' => !empty($this->body_copy),
             '__option_section_title' => !empty($this->section_title),
             '__option_background_image' => count($this->experienceImage) > 0,
+            '__option_headline' => !empty($this->interstitial_headline),
         ];
     }
 
@@ -115,7 +117,7 @@ class Slide extends JsonResource
     {
         $this->media = $this->experienceImage;
         $this->modal = $this->experienceModal;
-        if ($this->standard_media_type === 'type_video') {
+        if ($this->fullwidthmedia_standard_media_type === 'type_video') {
             parse_str( parse_url( $this->youtube_url, PHP_URL_QUERY ), $youtube_url);
             $src = isset($youtube_url['v']) ? [$youtube_url['v']] : [];
         } else {
@@ -170,7 +172,6 @@ class Slide extends JsonResource
                     '__option_subhead' => !empty($this->end_credit_subhead),
                     '__option_copy' => !empty($this->end_credit_subhead),
                     '__option_media' => count($this->endExperienceImages) > 0,
-                    'media' => SlideMediaResource::collection($this->endExperienceImages)->toArray(request()),
                 ],
             ],
             '__option_background_image' => count($this->endBackgroundExperienceImages) > 0,
@@ -179,10 +180,23 @@ class Slide extends JsonResource
 
     protected function commonStructure()
     {
+        if ($this->asset_type === 'standard') {
+            if ($this->moduleType === 'split') {
+                $mediaType = $this->split_standard_media_type === 'type_image' ? 'image' : 'video';
+            }
+            elseif ($this->moduleType === 'fullwidthmedia') {
+                $mediaType = $this->fullwidthmedia_standard_media_type === 'type_image' ? 'image' : 'video';
+            }
+            else {
+                $mediaType = 'image';
+            }
+        } else {
+            $mediaType = $this->media_type === 'type_image' ? 'image' : 'sequence';
+        }
         $rst = [
             'id' => $this->id,
             'type' => $this->module_type,
-            'headline' => $this->headline,
+            'headline' => $this->module_type === 'interstitial' ? $this->interstitial_headline : $this->headline,
             'media' => $this->getMedia(),
             'seamlessAsset' => [
                 'assetID' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : '0',
@@ -192,7 +206,7 @@ class Slide extends JsonResource
                 'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] : 0,
             ],
             'assetType' => $this->asset_type,
-            '__mediaType' => $this->asset_type === 'standard' ? ($this->standard_media_type === 'type_image' ? 'image' : 'video') : ($this->media_type === 'type_image' ? 'image' : 'sequence'),
+            '__mediaType' => $mediaType,
             'moduleTitle' => $this->title,
             'exhibitonId' => $this->experience->digitalLabel->id,
             'isActive' => $this->published,
@@ -212,21 +226,21 @@ class Slide extends JsonResource
             ];
         }
 
-        if (in_array($this->module_type, ['split', 'interstitial'])) {
-            $rst += [
-                '__option_headline' => !empty($this->headline),
-            ];
-        }
-
         return $rst;
     }
 
     protected function getMedia()
     {
-        if ($this->module_type === 'tooltip') {
-            return $this->media->first() ? (new SlideMediaResource($this->media->first()))->toArray(request()) : [];
+        switch ($this->module_type) {
+            case 'tooltip':
+                return $this->media->first() ? (new SlideMediaResource($this->media->first()))->toArray(request()) : [];
+                break;
+            case 'interstitial':
+                return $this->media->first() ? (new SlideMediaResource($this->media->first()))->toArray(request()) : [];
+                break;
+            default:
+                return SlideMediaResource::collection($this->media)->toArray(request());
         }
-        return SlideMediaResource::collection($this->media)->toArray(request());
     }
 
     protected function mapHotspots($hotspots)

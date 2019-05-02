@@ -14,31 +14,38 @@
         ],
     ]
 ])
-@unless(in_array($item->module_type, ['attract', 'end']))
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'asset_type',
-        'fieldValues' => 'standard',
-        'renderForBlocks' => false,
-        'keepAlive' => true
-    ])
-        @formField('radios', [
-            'name' => 'standard_media_type',
-            'label' => 'Media Type',
-            'default' => 'type_image',
-            'inline' => true,
-            'options' => [
-                [
-                    'value' => 'type_image',
-                    'label' => 'Image'
-                ],
-                [
-                    'value' => 'type_video',
-                    'label' => 'Video'
-                ],
-            ]
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'asset_type',
+    'fieldValues' => 'standard',
+    'renderForBlocks' => false,
+    'keepAlive' => true
+])
+    @foreach(['split', 'fullwidthmedia'] as $type)
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'module_type',
+            'fieldValues' => $type,
+            'renderForBlocks' => false,
+            'keepAlive' => true,
         ])
-    @endcomponent
-@endunless
+            @formField('radios', [
+                'name' => $type . '_standard_media_type',
+                'label' => 'Media Type',
+                'default' => 'type_image',
+                'inline' => true,
+                'options' => [
+                    [
+                        'value' => 'type_image',
+                        'label' => 'Image'
+                    ],
+                    [
+                        'value' => 'type_video',
+                        'label' => 'Video'
+                    ],
+                ]
+            ])
+        @endcomponent
+    @endforeach
+@endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'asset_type',

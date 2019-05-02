@@ -4,7 +4,7 @@
     'keepAlive' => true,
 ])
     @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'standard_media_type',
+        'fieldName' => 'fullwidthmedia_standard_media_type',
         'fieldValues' => 'type_image',
         'keepAlive' => true,
     ])

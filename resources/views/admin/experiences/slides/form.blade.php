@@ -13,16 +13,25 @@
             'fieldValues' => 'standard',
             'keepAlive' => true,
         ])
-            @component('twill::partials.form.utils._connected_fields', [
-                'fieldName' => 'standard_media_type',
-                'fieldValues' => 'type_video',
-                'keepAlive' => true,
-            ])
-                <br/>
-                <a17-fieldset title="Video" id="video">
-                    @include('admin.experiences.slides._youtube_form')
-                </a17-fieldset>
-            @endcomponent
+            @foreach(['split', 'fullwidthmedia'] as $type)
+                @component('twill::partials.form.utils._connected_fields', [
+                    'fieldName' => $type . '_standard_media_type',
+                    'fieldValues' => 'type_video',
+                    'keepAlive' => true,
+                ])
+                    @component('twill::partials.form.utils._connected_fields', [
+                        'fieldName' => 'module_type',
+                        'fieldValues' => $type,
+                        'renderForBlocks' => false,
+                        'keepAlive' => true,
+                    ])
+                        <br/>
+                        <a17-fieldset title="Video" id="video">
+                            @include('admin.experiences.slides._youtube_form')
+                        </a17-fieldset>
+                    @endcomponent
+                @endcomponent
+            @endforeach
         @endcomponent
 
         @include('admin.experiences.slides._attract')
