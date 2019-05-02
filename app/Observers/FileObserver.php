@@ -118,7 +118,6 @@ class FileObserver
 
     private function uploadToS3($zipFolderName, $file)
     {
-        // $filename = str_replace(' ', '%20', substr($file->filename, 0, -4));
         $files = Storage::disk('local')->allFiles('/tempDir\/' . $zipFolderName);
         $images = array_values(Arr::sort(array_filter($files, function ($filePath) {
             $fileNameArray = explode('.', basename($filePath));

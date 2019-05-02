@@ -17,7 +17,19 @@
                 'rows' => 4
             ])
 
-            @formField('repeater', ['type' => 'slide_primary_experience_image'])
+            @component('twill::partials.form.utils._connected_fields', [
+                'fieldName' => 'asset_type',
+                'fieldValues' => 'standard',
+                'keepAlive' => true,
+            ])
+                @component('twill::partials.form.utils._connected_fields', [
+                    'fieldName' => 'split_standard_media_type',
+                    'fieldValues' => 'type_image',
+                    'keepAlive' => true,
+                ])
+                    @formField('repeater', ['type' => 'slide_primary_experience_image'])
+                @endcomponent
+            @endcomponent
                 
             @formField('radios', [
                 'name' => 'image_side',
