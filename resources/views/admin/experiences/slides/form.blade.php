@@ -8,6 +8,8 @@
 
 @section('fieldsets')
     <a17-fieldset title="Content" id="content">
+        @include('admin.experiences.slides._asset_type')
+
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'asset_type',
             'fieldValues' => 'standard',
