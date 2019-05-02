@@ -14,7 +14,7 @@
             'fieldName' => 'asset_type',
             'fieldValues' => 'standard',
             'keepAlive' => true,
-        ])
+            ])
             @foreach(['split', 'fullwidthmedia'] as $type)
                 @component('twill::partials.form.utils._connected_fields', [
                     'fieldName' => $type . '_standard_media_type',

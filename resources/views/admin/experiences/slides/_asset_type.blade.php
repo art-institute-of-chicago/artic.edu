@@ -92,12 +92,23 @@
             'noTranslate' => true,
             'max' => 1,
         ])
-        <component
+        {{-- <component
             v-bind:is="`a17-block-seamless`"
             :name="`seamless`"
             :seamless-asset-data="{{ isset($form_fields['seamless_asset']) ? json_encode($form_fields['seamless_asset']) : "0" }}"
             :hotspotsdata="{{ isset($form_fields['tooltip_hotspots']) ? json_encode($form_fields['tooltip_hotspots']) : '[]' }}">
-        </component>
+        </component> --}}
+    @endcomponent
+
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'module_type',
+        'fieldValues' => 'compare',
+        'renderForBlocks' => false,
+    ])
+        @formField('input', [
+            'name' => 'caption',
+            'label' => 'Caption'
+        ])
     @endcomponent
 
     @formField('input', [
