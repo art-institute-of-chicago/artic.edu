@@ -105,9 +105,10 @@
         'fieldValues' => 'compare',
         'renderForBlocks' => false,
     ])
-        @formField('input', [
+        @formField('wysiwyg', [
             'name' => 'caption',
-            'label' => 'Caption'
+            'label' => 'Caption',
+            'maxlength' => 500,
         ])
     @endcomponent
 
