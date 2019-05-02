@@ -33,7 +33,7 @@
         
     @formField('radios', [
         'name' => 'image_side',
-        'label' => 'Primary Image Side',
+        'label' => 'Primary Content Side',
         'default' => 'left',
         'inline' => true,
         'options' => [
