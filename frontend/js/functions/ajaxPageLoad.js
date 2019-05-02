@@ -233,6 +233,13 @@ const ajaxPageLoad = function() {
               modalComplete(options, doc);
               break;
             default:
+              // check canonical URL for redirects for pushState
+              var canonicalElement = doc.querySelector('head link[rel="canonical"]');
+              var canonicalUrl = canonicalElement ? canonicalElement.getAttribute('href') : options.href;
+              canonicalUrl = canonicalUrl ? canonicalUrl : options.href;
+
+              options.href = canonicalUrl;
+
               // essentially, type = page
               defaultComplete(options, doc);
           }
