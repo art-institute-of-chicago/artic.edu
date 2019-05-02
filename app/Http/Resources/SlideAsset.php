@@ -29,8 +29,8 @@ class SlideAsset extends JsonResource
                 'type' => $this->media_type === 'type_image' ? 'image' : 'sequence',
                 'title' => $this->media_title,
                 'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
-                'width' => $images->first()->width,
-                'height' => $images->first()->height,
+                'width' => $images->first() ? $images->first()->width : 0,
+                'height' => $images->first() ? $images->first()->height : 0,
                 'src' => $src,
             ];
         } else {
