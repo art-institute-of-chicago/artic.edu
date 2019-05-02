@@ -30,7 +30,7 @@
         'label' => 'Zoomable'
     ])
 
-    @include('admin.blocks.experience_image')
+    @formField('repeater', ['type' => 'experience_image'])
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
