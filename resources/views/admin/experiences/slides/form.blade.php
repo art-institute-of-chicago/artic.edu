@@ -15,15 +15,15 @@
             'fieldValues' => 'standard',
             'keepAlive' => true,
             ])
-            @foreach(['split', 'fullwidthmedia'] as $type)
+            @foreach(['split', 'fullwidthmedia'] as $moduleType)
                 @component('twill::partials.form.utils._connected_fields', [
-                    'fieldName' => $type . '_standard_media_type',
+                    'fieldName' => $moduleType . '_standard_media_type',
                     'fieldValues' => 'type_video',
                     'keepAlive' => true,
                 ])
                     @component('twill::partials.form.utils._connected_fields', [
                         'fieldName' => 'module_type',
-                        'fieldValues' => $type,
+                        'fieldValues' => $moduleType,
                         'renderForBlocks' => false,
                         'keepAlive' => true,
                     ])

@@ -20,15 +20,15 @@
     'renderForBlocks' => false,
     'keepAlive' => true
 ])
-    @foreach(['split', 'fullwidthmedia'] as $type)
+    @foreach(['split', 'fullwidthmedia'] as $moduleType)
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'module_type',
-            'fieldValues' => $type,
+            'fieldValues' => $moduleType,
             'renderForBlocks' => false,
             'keepAlive' => true,
         ])
             @formField('radios', [
-                'name' => $type . '_standard_media_type',
+                'name' => $moduleType . '_standard_media_type',
                 'label' => 'Media Type',
                 'default' => 'type_image',
                 'inline' => true,
