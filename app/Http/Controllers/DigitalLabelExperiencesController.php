@@ -71,4 +71,15 @@ class DigitalLabelExperiencesController extends FrontController
             'canonicalUrl' => route('digitalLabels.show', ['id' => $experience->id, 'slug' => $experience->titleSlug]),
         ]);
     }
+
+    protected function test()
+    {
+        $articles = Article::published()
+            ->orderBy('date', 'desc')
+            ->paginate(4);
+        return view('site.digitalLabelDetailTest', [
+            'contrastHeader' => true,
+            'furtherReading' => $articles,
+        ]);
+    }
 }
