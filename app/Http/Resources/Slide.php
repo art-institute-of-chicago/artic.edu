@@ -147,8 +147,8 @@ class Slide extends JsonResource
         $compareImage1 = $this->compareExperienceImage1->first();
         $compareImage2 = $this->compareExperienceImage2->first();
         $compareModal = $this->compareExperienceModal->first();
-        $caption1 = $compareImage2 ? $compareImage1->imageCaption('experience_image') : null;
-        $caption2 = $compareImage2 ? $compareImage2->imageCaption('experience_image') : null;
+        $caption1 = $compareImage2 ? ($compareImage1->caption ?? $compareImage1->imageCaption('experience_image')) : null;
+        $caption2 = $compareImage2 ? ($compareImage2->caption ?? $compareImage2->imageCaption('experience_image')) : null;
         return [
             'object1Src' => $compareImage1 ? (new SlideMediaResource($compareImage1))->toArray(request()) : [],
             'object1Caption' => $caption1,

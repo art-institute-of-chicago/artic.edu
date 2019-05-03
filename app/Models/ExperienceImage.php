@@ -22,6 +22,7 @@ class ExperienceImage extends Model implements Sortable
         'credits_input',
         'object_id',
         'artist',
+        'caption',
         'credit_title',
         'credit_date',
         'medium',

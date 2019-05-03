@@ -25,6 +25,7 @@ class ExperienceModal extends Model implements Sortable
         'image_sequence_playback',
         'image_sequence_caption',
         'modalble_type',
+        'caption',
         'modalble_id',
         'modalble_repeater_name',
         'title',

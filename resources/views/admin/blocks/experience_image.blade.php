@@ -3,6 +3,12 @@
     'label' => 'Image',
 ])
 
+@formField('wysiwyg', [
+    'name' => 'caption',
+    'label' => 'Caption',
+    'maxlength' => 500,
+])
+
 @formField('radios', [
     'name' => 'inline_credits',
     'label' => 'Inline Credits',
