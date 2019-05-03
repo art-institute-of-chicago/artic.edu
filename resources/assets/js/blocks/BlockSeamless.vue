@@ -8,7 +8,7 @@
     </div>
     <br />
     <div class="previewer" v-on:click.prevent.stop="addHotspot">
-        <h1 v-if="images.length === 0"> No images found in the zip, please try re-uploading the zip file</h1>
+        <h1 v-if="images.length === 0"> Error: Something went wrong. Please try re-uploading the zip file</h1>
         <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
         </div>
