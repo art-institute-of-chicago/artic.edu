@@ -182,10 +182,10 @@ class Slide extends JsonResource
     protected function commonStructure()
     {
         if ($this->asset_type === 'standard') {
-            if ($this->moduleType === 'split') {
+            if ($this->module_type === 'split') {
                 $mediaType = $this->split_standard_media_type === 'type_image' ? 'image' : 'video';
             }
-            elseif ($this->moduleType === 'fullwidthmedia') {
+            elseif ($this->module_type === 'fullwidthmedia') {
                 $mediaType = $this->fullwidthmedia_standard_media_type === 'type_image' ? 'image' : 'video';
             }
             else {
