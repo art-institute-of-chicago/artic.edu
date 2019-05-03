@@ -120,9 +120,4 @@
             'maxlength' => 500,
         ])
     @endcomponent
-
-    @formField('input', [
-        'name' => 'media_title',
-        'label' => 'Media Title'
-    ])
 @endcomponent
