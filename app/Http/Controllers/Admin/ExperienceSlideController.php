@@ -97,6 +97,7 @@ class ExperienceSlideController extends ModuleController
             ->paginate(4);
 
         return [
+            'singleSlide' => true,
             'contrastHeader' => true,
             'experience' => $experience,
             'slide' => $item,

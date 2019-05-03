@@ -13,6 +13,7 @@ use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 use App\Http\Resources\SlideAsset as SlideAssetResource;
 use App\Http\Resources\Slide as SlideResource;
+use App\Models\SeamlessImage;
 
 class Experience extends Model implements Sortable
 {

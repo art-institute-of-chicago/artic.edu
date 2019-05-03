@@ -1,16 +1,17 @@
 @extends('layouts.app')
 @section('content')
+    @php($item = isset($singleSlide) && $singleSlide ? $slide : $experience)
     <section class="o-closer-look" data-behavior="closerLook">
-        <script type="application/json" data-closerLook-contentBundle>
-            {{-- {{ dd(json_encode($experience->contentBundle, JSON_UNESCAPED_SLASHES)) }} --}}
-            {{-- {{ dd($experience->contentBundle) }} --}}
-            {!! json_encode($experience->contentBundle) !!}
-        </script>
-        <script type="application/json" data-closerLook-assetLibrary>
-            {{-- {{ dd(json_encode($experience->assetLibrary, JSON_UNESCAPED_SLASHES)) }} --}}
-            {{-- {{ dd($experience->assetLibrary) }} --}}
-            {!! json_encode($experience->assetLibrary) !!}
-        </script>
+            <script type="application/json" data-closerLook-contentBundle>
+                {{-- {{ dd(json_encode($item->contentBundle, JSON_UNESCAPED_SLASHES)) }} --}}
+                {{-- {{ dd($item->contentBundle) }} --}}
+                {!! json_encode($item->contentBundle) !!}
+            </script>
+            <script type="application/json" data-closerLook-assetLibrary>
+                {{-- {{ dd(json_encode($item->assetLibrary, JSON_UNESCAPED_SLASHES)) }} --}}
+                {{-- {{ dd($item->assetLibrary) }} --}}
+                {!! json_encode($item->assetLibrary) !!}
+            </script>
     </section>
     {{-- <section class="o-closer-look" data-behavior="closerLook">
         <script type="application/json" data-closerLook-contentBundle>

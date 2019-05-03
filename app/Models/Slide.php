@@ -11,6 +11,9 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
+use App\Http\Resources\SlideAsset as SlideAssetResource;
+use App\Http\Resources\Slide as SlideResource;
+use App\Models\SeamlessImage;
 
 class Slide extends Model implements Sortable
 {
@@ -182,6 +185,20 @@ class Slide extends Model implements Sortable
     public function compareExperienceModal()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'compare_experience_modal');
+    }
+
+    public function getContentBundleAttribute()
+    {
+        return SlideResource::collection(collect([$this]))->toArray(request());
+    }
+
+    public function getAssetLibraryAttribute()
+    {
+        $slides = collect([$this])->filter(function ($slide) {
+            $seamless_file = $this->fileObject('sequence_file');
+            return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
+        });
+        return SlideAssetResource::collection($slides)->toArray(request());
     }
 
     // uncomment and modify this as needed if you use the HasMedias trait
