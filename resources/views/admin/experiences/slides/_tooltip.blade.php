@@ -15,6 +15,7 @@
         'fieldName' => 'asset_type',
         'fieldValues' => 'standard',
     ])
+        {{-- {{ dd($form_fields) }} --}}
         @formField('repeater', ['type' => 'tooltip_experience_image'])
         <component
         v-bind:is="`a17-block-tooltip`"

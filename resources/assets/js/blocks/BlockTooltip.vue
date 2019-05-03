@@ -37,7 +37,6 @@
     props: ['hotspotsdata'],
     mounted: function () {
         if (this.hotspotsdata) {
-            console.log(this.hotspotsdata);
             this.hotspots = this.hotspotsdata;
         };
         this.updateImage();
@@ -101,7 +100,6 @@
             this.$store.commit(FORM.UPDATE_FORM_FIELD, field)
         },
         updateImage: function() {
-            this.hotspots = [];
             this.imageUrl = "";
             for (const selectedMediaName in this.selectedMedias) {
                 const matched = selectedMediaName.match(/^blocks\[tooltipExperienceImage\-\d+\]\[experience_image\]$/) || selectedMediaName.match(/^blocks\[\d+\]\[experience_image\]$/);
