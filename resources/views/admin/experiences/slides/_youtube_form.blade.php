@@ -8,6 +8,7 @@
     'label' => 'Video Player Setting',
     'min' => 1,
     'max' => 3,
+    'default' => 'autoplay',
     'options' => [
         [
             'value' => 'autoplay',

@@ -15,30 +15,19 @@ class SlideAsset extends JsonResource
      */
     public function toArray($request)
     {
-        $seamless_file = $this->fileObject('sequence_file');
-
-        if ($seamless_file) {
-            $images = SeamlessImage::where('zip_file_id', $seamless_file->id)->get();
-            $src = $images->map(function ($image) {
-                return [
-                    'src' => 'https://' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '/seq/' . $image->file_name,
-                    'frame' => $image->frame,
-                ];
-            })->toArray();
+        $src = $images->map(function ($image) {
             return [
-                'type' => $this->media_type === 'type_image' ? 'image' : 'sequence',
-                'title' => $this->media_title,
-                'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
-                'width' => $images->first() ? $images->first()->width : 0,
-                'height' => $images->first() ? $images->first()->height : 0,
-                'src' => $src,
+                'src' => 'https://' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '/seq/' . $image->file_name,
+                'frame' => $image->frame,
             ];
-        } else {
-            return [
-                'type' => $this->media_type === 'type_image' ? 'image' : 'sequence',
-                'title' => $this->media_title,
-                'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
-            ];
-        }
+        })->toArray();
+        return [
+            'type' => $this->media_type === 'type_image' ? 'image' : 'sequence',
+            'title' => $this->media_title,
+            'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
+            'width' => $images->first() ? $images->first()->width : 0,
+            'height' => $images->first() ? $images->first()->height : 0,
+            'src' => $src,
+        ];
     }
 }
