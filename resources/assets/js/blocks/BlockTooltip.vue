@@ -37,6 +37,7 @@
     props: ['hotspotsdata'],
     mounted: function () {
         if (this.hotspotsdata) {
+            console.log(this.hotspotsdata);
             this.hotspots = this.hotspotsdata;
         };
         this.updateImage();

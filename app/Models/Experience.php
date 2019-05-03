@@ -79,7 +79,7 @@ class Experience extends Model implements Sortable
     public function getAssetLibraryAttribute()
     {
         $slides = $this->slides()->published()->orderBy('position')->get()->filter(function ($slide) {
-            $seamless_file = $this->fileObject('sequence_file');
+            $seamless_file = $slide->fileObject('sequence_file');
             return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
         });
         return SlideAssetResource::collection($slides)->toArray(request());
