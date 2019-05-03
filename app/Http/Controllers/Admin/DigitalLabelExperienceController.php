@@ -163,7 +163,6 @@ class DigitalLabelExperienceController extends ModuleController
 
     protected function previewData($item)
     {
-        dd($item);
         return [
             'experience' => $item,
         ];
