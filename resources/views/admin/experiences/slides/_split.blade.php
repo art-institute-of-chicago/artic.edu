@@ -53,11 +53,11 @@
     </div>
 
     <div style="display: none" id="caption">
-        @formField('wysiwyg', [
+        {{-- @formField('wysiwyg', [
             'name' => 'caption',
             'label' => 'Caption',
             'maxlength' => 500,
-        ])
+        ]) --}}
     </div>
 
 

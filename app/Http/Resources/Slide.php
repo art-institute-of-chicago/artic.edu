@@ -76,6 +76,7 @@ class Slide extends JsonResource
             '__option_secondary_image' => in_array(['id' => 'secondary_image'], $this->split_attributes ?? []),
             '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
             '__option_headline' => !empty($this->headline),
+            '__option_caption' => !empty($this->caption),
             'primaryimglink' => $primaryExperienceImage ? [
                 'type' => 'imagelink',
                 'src' => (new SlideMediaResource($primaryExperienceImage))->toArray(request()),
