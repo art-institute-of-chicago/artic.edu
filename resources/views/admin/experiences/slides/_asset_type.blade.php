@@ -116,7 +116,7 @@
     ])
         @formField('wysiwyg', [
             'name' => 'caption',
-            'label' => 'Caption',
+            'label' => 'Seamless Caption',
             'maxlength' => 500,
         ])
     @endcomponent

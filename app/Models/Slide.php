@@ -50,7 +50,7 @@ class Slide extends Model implements Sortable
         'end_copy',
         'end_credit_subhead',
         'end_credit_copy',
-        'seamless_alt_text'
+        'seamless_alt_text',
         // 'public',
         // 'featured',
         // 'publish_start_date',
