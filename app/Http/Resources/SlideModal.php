@@ -20,12 +20,12 @@ class SlideModal extends JsonResource
             '__option_controls' => true,
             '__option_controls_light' => true,
             '__option_inset' => false,
-            '__option_caption' => false,
+            '__option_caption' => !empty($this->image_sequence_caption) || !empty($this->imageCaption('experience_image')),
             '__option_loop' => false,
             'id' => (string) $this->id,
             '__mediaType' => $this->modal_type,
-            'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [$this->youtube_url],
-            'caption' => $this->imageCaption('experience_image'),
+            'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [parseYoutubeUrl($this->youtube_url)],
+            'caption' => $this->image_sequence_caption ?? $this->imageCaption('experience_image'),
             'poster' => 'ead4b67d-941c-4281-8c77-e2a3d9ed86ae',
         ];
     }

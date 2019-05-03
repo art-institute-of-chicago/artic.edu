@@ -72,6 +72,7 @@ class Slide extends JsonResource
         return [
             'primaryCopy' => $this->split_primary_copy,
             '__option_flip' => $this->image_side === 'right',
+            '__option_primary_modal' => $primaryExperienceModal ? true : false,
             '__option_secondary_image' => in_array(['id' => 'secondary_image'], $this->split_attributes ?? []),
             '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
             '__option_headline' => !empty($this->headline),
