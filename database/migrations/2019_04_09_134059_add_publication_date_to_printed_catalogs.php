@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 use Carbon\Carbon;
-use App\Models\PrintedCatalog;
+use App\Models\PrintedPublication;
 
 class AddPublicationDateToPrintedCatalogs extends Migration
 {
@@ -20,7 +20,7 @@ class AddPublicationDateToPrintedCatalogs extends Migration
             $table->date('publication_date')->nullable()->after('publication_year');
         });
 
-        foreach (PrintedCatalog::all() as $catalog) {
+        foreach (PrintedPublication::all() as $catalog) {
             $catalog->publication_date = empty($catalog->publication_year) ? null : (new Carbon())
                 ->year($catalog->publication_year)
                 ->month(1)
