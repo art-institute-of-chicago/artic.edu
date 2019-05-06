@@ -166,6 +166,7 @@ class Slide extends JsonResource
             'object2Caption' => $caption2,
             'modalReference' => $compareModal ? (string) $compareModal->id : '',
             '__option_captions' => $caption1 || $caption2,
+            'copy' => $this->compare_title,
         ];
     }
 
