@@ -12,4 +12,8 @@
         'name' => 'archived',
         'label' => 'Archived'
     ])
+    @formField('checkbox', [
+        'name' => 'kiosk_only',
+        'label' => 'Kiosk only',
+    ])
 @stop

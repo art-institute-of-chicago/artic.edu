@@ -31,7 +31,7 @@ class DigitalLabelExperiencesController extends FrontController
 
     public function index(Request $request)
     {
-        $items = Experience::published()->unarchived()->paginate();
+        $items = Experience::published()->unarchived()->where('kiosk_only', false)->paginate();
         $title = 'Interactive Features';
 
         $nav = [
@@ -60,10 +60,17 @@ class DigitalLabelExperiencesController extends FrontController
     protected function show($slug)
     {
         $experience = $this->repository->forSlug($slug);
+        if (in_array('kiosk', request()->segments())) {
+            $view = 'site.digitalLabelDetailKiosk';
+        } else {
+            if ($experience->kiosk_only === true) {
+                abort(404);
+            }
+            $view = 'site.digitalLabelDetail';
+        }
         $articles = Article::published()
             ->orderBy('date', 'desc')
             ->paginate(4);
-        $view = in_array('kiosk', request()->segments()) ? 'site.digitalLabelDetailKiosk' : 'site.digitalLabelDetail';
         return view($view, [
             'contrastHeader' => true,
             'experience' => $experience,
