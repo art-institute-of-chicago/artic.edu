@@ -69,7 +69,7 @@ class FileObserver
         //
     }
 
-    private function handleImageSequenceZip($file)
+    public function handleImageSequenceZip($file)
     {
         if (!$this->checkZipType($file)) {
             return;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SeamlessImage;
+use A17\Twill\Models\File;
 use DB;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,12 @@ class SeamlessImagesController extends Controller
 {
     public function byFile($file_id)
     {
+        // If no images found has been uploaded before, upload now
+        if (SeamlessImage::where('zip_file_id', $file_id)->count() === 0) {
+            $file = File::findOrFail($file_id);
+            app('App\Observers\FileObserver')->handleImageSequenceZip($file);
+        }
+        
         $images = SeamlessImage::where('zip_file_id', $file_id)->get()->map(function ($image) {
             return [
                 'id' => $image->id,

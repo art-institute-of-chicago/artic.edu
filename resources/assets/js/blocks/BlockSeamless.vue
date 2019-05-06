@@ -8,7 +8,8 @@
     </div>
     <br />
     <div class="previewer" v-on:click.prevent.stop="addHotspot">
-        <h1 v-if="images.length === 0"> Error: Something went wrong. Please try re-uploading the zip file</h1>
+        <h1 v-if="processing"> Processing... </h1>
+        <h1 v-if="images.length === 0 && !processing"> Error: Something went wrong. Please try re-uploading the zip file</h1>
         <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
         </div>
@@ -76,6 +77,7 @@
             currentFrame: 1,
             isDragging: false,
             scale: 100,
+            processing: true,
             imagePos: {
                 x: 0,
                 y: 0
@@ -130,8 +132,10 @@
             this.updateSequence();
         },
         fileId: function() {
+            this.processing = true;
             axios.get('/api/v1/seamless-images/' + this.fileId).then(rsp => {
                 this.images = rsp.data;
+                this.processing = false;
             });
         },
         hotspots: function() {
