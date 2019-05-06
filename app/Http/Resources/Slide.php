@@ -67,15 +67,17 @@ class Slide extends JsonResource
         $secondaryExperienceModal = $this->secondaryExperienceModal->first();
         $this->modal = collect([$primaryExperienceModal, $secondaryExperienceModal])->filter(function ($modal) {
             return $modal;
-        });
+        })->values();
+        $secondary_image_enabled = in_array(['id' => 'secondary_image'], $this->split_attributes ?? []);
 
         return [
             'primaryCopy' => $this->split_primary_copy,
             '__option_flip' => $this->image_side === 'right',
             '__option_primary_modal' => $primaryExperienceModal ? true : false,
-            '__option_secondary_image' => in_array(['id' => 'secondary_image'], $this->split_attributes ?? []),
+            '__option_secondary_image' => $secondary_image_enabled,
+            '__option_secondary_modal' => $secondaryExperienceModal ? true : false,
             '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
-            '__option_headline' => !empty($this->headline),
+            '__option_headline' => in_array(['id' => 'headline'], $this->split_attributes ?? []),
             '__option_caption' => !empty($this->caption),
             'primaryimglink' => $primaryExperienceImage ? [
                 'type' => 'imagelink',
@@ -83,7 +85,7 @@ class Slide extends JsonResource
                 'modalReference' => $primaryExperienceModal ? (string) $primaryExperienceModal->id : '',
                 'caption' => $primaryExperienceImage->imageCaption('experience_image'),
             ] : ['modalReference' => ''],
-            'imglink' => $secondaryExperienceImage ? [
+            'imglink' => ($secondary_image_enabled && $secondaryExperienceImage) ? [
                 'type' => 'imagelink',
                 'src' => (new SlideMediaResource($secondaryExperienceImage))->toArray(request()),
                 'modalReference' => $secondaryExperienceModal ? (string) $secondaryExperienceModal->id : '',
