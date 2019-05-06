@@ -1,13 +1,17 @@
 @if($item->module_type === 'attract')
-@formField('input', [
+
+@formField('wysiwyg', [
     'name' => 'headline',
-    'label' => 'Headline'
+    'label' => 'Headline',
+    'maxlength' => 500,
 ])
 
-@formField('input', [
+@formField('wysiwyg', [
     'name' => 'attract_subhead',
-    'label' => 'Subhead'
+    'label' => 'Subhead',
+    'maxlength' => 500,
 ])
+
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'asset_type',
     'fieldValues' => 'standard',
