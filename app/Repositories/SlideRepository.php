@@ -60,7 +60,6 @@ class SlideRepository extends ModuleRepository
     public function prepareFieldsBeforeSave($object, $fields)
     {
         if (isset($fields['video_play_settings'])) {
-            dd($fields);
             $fields['video_play_settings'] = json_encode($fields['video_play_settings']);
         }
 
