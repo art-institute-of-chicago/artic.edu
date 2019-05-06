@@ -29,7 +29,6 @@ class Slide extends Model implements Sortable
         'fullwidthmedia_standard_media_type',
         'split_standard_media_type',
         'video_play_settings',
-        'video_playback',
         'youtube_url',
         'media_type',
         'media_title',
@@ -105,16 +104,7 @@ class Slide extends Model implements Sortable
             return array_map(function ($option) {
                 return ['id' => $option];
             }, json_decode($this->attributes['video_play_settings']));
-        }
-    }
-
-    public function getVideoPlaybackAttribute()
-    {
-        if ($this->attributes['video_playback']) {
-            return array_map(function ($option) {
-                return ['id' => $option];
-            }, json_decode($this->attributes['video_playback']));
-        }
+        };
     }
 
     public function experience()

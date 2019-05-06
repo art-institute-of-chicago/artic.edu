@@ -20,7 +20,6 @@ class ExperienceModal extends Model implements Sortable
         'modal_type',
         'zoomable',
         'video_play_settings',
-        'video_playback',
         'video_url',
         'image_sequence_playback',
         'image_sequence_caption',
@@ -87,7 +86,6 @@ class ExperienceModal extends Model implements Sortable
     {
         $fields = $this->attributesToArray();
         $fields['video_play_settings'] = json_decode($fields['video_play_settings']) ?? [];
-        $fields['video_playback'] = json_decode($fields['video_playback']) ?? [];
         $fields['image_sequence_playback'] = json_decode($fields['image_sequence_playback']) ?? [];
         return $fields;
     }

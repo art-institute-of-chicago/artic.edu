@@ -139,7 +139,7 @@ class Slide extends JsonResource
             '__option_inset' => $this->fullwidth_inset,
             '__option_zoomable' => $this->modal->count() > 0 && $this->modal->first()->zoomable,
             '__option_caption' => !empty($this->caption),
-            '__option_loop' => $this->video_playback && in_array(['id' => 'loop'], $this->video_playback),
+            '__option_loop' => $this->video_play_settings && in_array(['id' => 'loop'], $this->video_play_settings),
             '__option_controls' => $this->video_play_settings && in_array(['id' => 'control_dark'], $this->video_play_settings),
             '__option_reverse' => false,
             '__option_infinite' => true,

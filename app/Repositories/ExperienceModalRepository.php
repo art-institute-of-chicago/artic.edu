@@ -29,8 +29,7 @@ class ExperienceModalRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
         $fields['video_play_settings'] = json_decode($fields['video_play_settings']);
-        $fields['video_playback'] = json_decode($fields['video_playback']);
-        // $fields = $this->getExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'experience_image');
+        $fields = $this->getExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'modal_experience_image');
         // $fields['blocks'] = $fields['repeaters'];
         return $fields;
     }
@@ -44,10 +43,6 @@ class ExperienceModalRepository extends ModuleRepository
 
         if (isset($fields['video_play_settings'])) {
             $fields['video_play_settings'] = json_encode($fields['video_play_settings']);
-        }
-
-        if (isset($fields['video_playback'])) {
-            $fields['video_playback'] = json_encode($fields['video_playback']);
         }
 
         if (isset($fields['image_sequence_playback'])) {

@@ -6,8 +6,6 @@
 @formField('multi_select', [
     'name' => 'video_play_settings',
     'label' => 'Video Player Setting',
-    'min' => 1,
-    'max' => 3,
     'default' => 'autoplay',
     'options' => [
         [
@@ -21,14 +19,7 @@
         [
             'value' => 'controls_light',
             'label' => 'Controls Light'
-        ]
-    ]
-])
-
-@formField('multi_select', [
-    'name' => 'video_playback',
-    'label' => 'playback',
-    'options' => [
+        ],
         [
             'value' => 'inset',
             'label' => 'Inset'
