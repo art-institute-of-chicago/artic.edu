@@ -79,7 +79,7 @@ class FileObserver
             $zipFile = $this->downloadZip($file);
             $zipFolderName = $this->unzip($zipFile);
             $this->uploadToS3($zipFolderName, $file);
-            $this->cleanAssets();
+            // $this->cleanAssets();
         } catch (Exception $e) {
             debug($e);
         }
@@ -110,6 +110,9 @@ class FileObserver
             $zip->extractTo(storage_path('app') . '/tempDir');
             $zipFolderName = trim($zip->getNameIndex(0), '/');
             $zip->close();
+            if (strpos($zipFolderName, '.')) {
+                return '';
+            }
             return $zipFolderName;
         } else {
             throw new Exception('Cannot read the zip file');
