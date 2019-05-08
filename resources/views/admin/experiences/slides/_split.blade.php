@@ -39,14 +39,14 @@
         // The value and label not matched because on FE, it's controlling the image's side, but client want to rename the label to primary copy side
         'options' => [
             [
-                'value' => 'left',
-                'label' => 'Right'
-            ],
-            [
                 'value' => 'right',
                 'label' => 'Left'
             ],
-            ]
+            [
+                'value' => 'left',
+                'label' => 'Right'
+            ],
+        ]
     ])
 
     <div style="display: none" id="secondary_image">
