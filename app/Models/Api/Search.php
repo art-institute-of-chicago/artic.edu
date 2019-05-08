@@ -12,6 +12,7 @@ class Search extends BaseApiModel
 
     protected $endpoints = [
         'search' => '/api/v1/search',
+        'msearch' => '/api/v1/msearch',
     ];
 
     // This defines how to map a returned type to one of our API models
