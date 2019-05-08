@@ -384,6 +384,48 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeByMostSimilar($query, $id)
+    {
+        if (empty($id)) {
+            return $query;
+        }
+
+        $query->forceEndpoint('msearch');
+
+        // How do we not assume the model here?
+        $item = \App\Models\Api\Artwork::query()
+            ->findOrFail((Integer) $id);
+
+        $shoulds = [
+            $this->basicQuery('artist_id', $this->mainArtist ? $this->mainArtist->first()->citi_id : null),
+            $this->basicQuery('style_id', $item->style_id),
+            $this->basicQuery('classification_id', $item->classification_id),
+        ];
+
+        $date_start = incrementBefore($item->date_start);
+        $date_end = incrementAfter($item->date_start);
+        $dateQuery = $this->dateQuery($date_start, $date_end);
+        //$dateQuery['bool']['boost'] = 1;
+        array_push($shoulds, $dateQuery);
+
+        if ($item->image->metadata->color ?? false) {
+            $colorQuery = $this->colorQuery($artw->image->metadata->color);
+            $colorQuery['bool']['boost'] = 1;
+            array_push( $shoulds, $colorQuery );
+        }
+
+        // Filter out empty array queries
+        $shoulds = array_filter($shoulds);
+
+        $params = [
+            "bool" => [
+                "should" => collect($shoulds)->values()->all(),
+            ],
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeYearMin($query, $year)
     {
         if (empty($year)) {
@@ -729,5 +771,82 @@ class Search extends BaseApiModel
         ];
 
         return $query->rawQuery($params);
+    }
+
+    protected function basicQuery($field, $value)
+    {
+        if (!$value)
+        {
+            return [];
+        }
+        return [
+            "term" => [
+                $field => $value,
+            ],
+        ];
+    }
+
+    protected function dateQuery($date_start, $date_end)
+    {
+        if (!$date_start || !$date_end) {
+            return [];
+        }
+        return [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "date_start" => [
+                                "gte" => $date_start
+                            ]
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "date_end" => [
+                                "lte" => $date_end
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    protected function colorQuery($color)
+    {
+        if (!$color) {
+            return [];
+        }
+        return [
+            "bool" => [
+                "must" => [
+                    [
+                        "range" => [
+                            "color.h" => [
+                                "gte" => ($color->h - 5),
+                                "lte" => ($color->h + 5),
+                            ]
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "color.s" => [
+                                "gte" => ($color->s - 5),
+                                "lte" => ($color->s + 5),
+                            ]
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "color.l" => [
+                                "gte" => ($color->l - 5),
+                                "lte" => ($color->l + 5),
+                            ]
+                        ]
+                    ]
+                ],
+            ],
+        ];
     }
 }

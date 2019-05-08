@@ -25,6 +25,7 @@ class BaseService
         'ef-style_ids',
         'ef-date_ids',
         'ef-color_ids',
+        'ef-most-similar_ids',
     ];
 
     protected $resource;
@@ -97,11 +98,16 @@ class BaseService
         })->isNotEmpty();
 
         if ($active) {
-            $query->byClassifications($parameters->get('ef-classification_ids'))
-                  ->byArtists($parameters->get('ef-artist_ids'))
-                  ->byStyles($parameters->get('ef-style_ids'))
-                  ->yearRange(incrementBefore($parameters->get('ef-date_ids')), incrementAfter($parameters->get('ef-date_ids')))
-                  ->byColor($parameters->get('ef-color_ids'));
+            if ($parameters->get('ef-most-similar_ids')) {
+                $query->byMostSimilar($this->resource->id);
+            }
+            else {
+                $query->byClassifications($parameters->get('ef-classification_ids'))
+                    ->byArtists($parameters->get('ef-artist_ids'))
+                    ->byStyles($parameters->get('ef-style_ids'))
+                    ->yearRange(incrementBefore($parameters->get('ef-date_ids')), incrementAfter($parameters->get('ef-date_ids')))
+                    ->byColor($parameters->get('ef-color_ids'));
+            }
         } else {
             // When no filter selected, use the first filter available.
             $category = key($this->tags());
@@ -132,7 +138,7 @@ class BaseService
                     $query->byColor($id);
                     break;
                 case 'most-similar':
-                    $query->byMostSimilar();
+                    $query->byMostSimilar($this->resource->id);
                     break;
             }
         }
