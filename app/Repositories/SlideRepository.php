@@ -57,15 +57,6 @@ class SlideRepository extends ModuleRepository
         return $fields;
     }
 
-    public function prepareFieldsBeforeSave($object, $fields)
-    {
-        if (isset($fields['video_play_settings'])) {
-            $fields['video_play_settings'] = json_encode($fields['video_play_settings']);
-        }
-
-        return parent::prepareFieldsBeforeSave($object, $fields);
-    }
-
     public function create($fields)
     {
         $slide = parent::create($fields);

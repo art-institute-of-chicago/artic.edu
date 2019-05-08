@@ -1,10 +1,10 @@
 @formField('input', [
-    'name' => 'youtube_url',
+    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_youtube_url' : 'youtube_url',
     'label' => 'Youtube URL'
 ])
 
 @formField('multi_select', [
-    'name' => 'video_play_settings',
+    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_video_play_settings' : 'video_play_settings',
     'label' => 'Video Player Setting',
     'default' => 'autoplay',
     'options' => [

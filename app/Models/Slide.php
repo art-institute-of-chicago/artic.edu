@@ -28,7 +28,9 @@ class Slide extends Model implements Sortable
         'module_type',
         'fullwidthmedia_standard_media_type',
         'split_standard_media_type',
+        'split_video_play_settings',
         'video_play_settings',
+        'split_youtube_url',
         'youtube_url',
         'media_type',
         'media_title',
@@ -70,6 +72,8 @@ class Slide extends Model implements Sortable
         'split_attributes' => 'array',
         'tooltip_hotspots' => 'array',
         'seamless_asset' => 'array',
+        'video_play_settings' => 'array',
+        'split_video_play_settings' => 'array'
     ];
 
     protected function getCanDeleteAttribute()
@@ -104,6 +108,15 @@ class Slide extends Model implements Sortable
             return array_map(function ($option) {
                 return ['id' => $option];
             }, json_decode($this->attributes['video_play_settings']));
+        };
+    }
+
+    public function getSplitVideoPlaySettingsAttribute()
+    {
+        if ($this->attributes['split_video_play_settings']) {
+            return array_map(function ($option) {
+                return ['id' => $option];
+            }, json_decode($this->attributes['split_video_play_settings']));
         };
     }
 
