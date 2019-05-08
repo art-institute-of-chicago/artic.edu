@@ -408,8 +408,8 @@ class Search extends BaseApiModel
         //$dateQuery['bool']['boost'] = 1;
         array_push($shoulds, $dateQuery);
 
-        if ($item->image->metadata->color ?? false) {
-            $colorQuery = $this->colorQuery($artw->image->metadata->color);
+        if ($item->color ?? false) {
+            $colorQuery = $this->colorQuery($item->color);
             $colorQuery['bool']['boost'] = 1;
             array_push( $shoulds, $colorQuery );
         }
