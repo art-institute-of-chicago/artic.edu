@@ -52,6 +52,11 @@ class Slide extends JsonResource
     protected function getAttractAttributes()
     {
         $this->media = $this->attractExperienceImages;
+        
+        if ($this->asset_type === 'seamless' && $this->media_type === 'type_image') {
+            $this->media = $this->seamlessImage;
+        }
+
         return [
             'subhead' => $this->attract_subhead,
             '__option_subhead' => !empty($this->attract_subhead),
