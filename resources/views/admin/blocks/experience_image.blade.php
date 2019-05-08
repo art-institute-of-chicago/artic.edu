@@ -37,6 +37,7 @@
         'label' => 'Credits Input',
         'default' => 'datahub',
         'inline' => true,
+        'maxlength' => 150,
         'options' => [
             [
                 'value' => 'datahub',
@@ -57,41 +58,50 @@
     ])
         @formField('input', [
             'name' => 'object_id',
-            'label' => 'Object ID'
+            'label' => 'Object ID',
+            'maxlength' => 150,
         ])
     @endcomponent
 
     @formField('input', [
         'name' => 'artist',
-        'label' => 'Artist'
+        'label' => 'Artist',
+        'maxlength' => 150,
     ])
     @formField('input', [
         'name' => 'credit_title',
-        'label' => 'Title'
+        'label' => 'Title',
+        'maxlength' => 150,
     ])
     @formField('input', [
         'name' => 'credit_date',
-        'label' => 'Date'
+        'label' => 'Date',
+        'maxlength' => 150,
     ])
     @formField('input', [
         'name' => 'medium',
-        'label' => 'Medium'
+        'label' => 'Medium',
+        'maxlength' => 150,
     ])
     @formField('input', [
         'name' => 'dimensions',
-        'label' => 'Dimensions'
+        'label' => 'Dimensions',
+        'maxlength' => 150,
     ])
     @formField('input', [
         'name' => 'credit_line',
-        'label' => 'Credit Line'
+        'label' => 'Credit Line',
+        'maxlength' => 150,
     ])
     @formField('input', [
         'name' => 'main_reference_number',
-        'label' => 'Main Reference Number'
+        'label' => 'Main Reference Number',
+        'maxlength' => 150,
     ])
     @formField('input', [
         'name' => 'copyright_notice',
-        'label' => 'Copyright Notice'
+        'label' => 'Copyright Notice',
+        'maxlength' => 150,
     ])
 
 @endcomponent

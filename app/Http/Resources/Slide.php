@@ -228,10 +228,18 @@ class Slide extends JsonResource
             })->toArray();
         }
 
+        if ($this->module_type === 'interstitial') {
+            $headline =  $this->interstitial_headline;
+        } elseif ($this->module_type === 'attract') {
+            $headline = $this->attract_title;
+        } else {
+            $headline = $this->headline;
+        }
+
         $rst = [
             'id' => $this->id,
             'type' => $this->module_type,
-            'headline' => $this->module_type === 'interstitial' ? $this->interstitial_headline : $this->headline,
+            'headline' => $headline,
             'media' => $this->getMedia(),
             'seamlessAsset' => [
                 'assetID' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : '0',

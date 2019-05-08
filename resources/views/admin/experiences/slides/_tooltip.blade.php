@@ -5,7 +5,8 @@
     @formField('input', [
         'name' => 'object_title',
         'label' => 'Object Title',
-        ])
+        'maxlength' => 150,
+    ])
     @formField('wysiwyg', [
         'name' => 'caption',
         'label' => 'Caption',

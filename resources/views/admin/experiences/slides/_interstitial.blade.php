@@ -5,17 +5,20 @@
 ])
     @formField('input', [
         'name' => 'section_title',
-        'label' => 'Section Title'
+        'label' => 'Section Title',
+        'maxlength' => 150,
     ])
 
     @formField('input', [
         'name' => 'interstitial_headline',
-        'label' => 'Headline'
+        'label' => 'Headline',
+        'maxlength' => 150,
     ])
 
     @formField('input', [
         'name' => 'body_copy',
-        'label' => 'Body Copy'
+        'label' => 'Body Copy',
+        'maxlength' => 150,
     ])
 
     @component('twill::partials.form.utils._connected_fields', [

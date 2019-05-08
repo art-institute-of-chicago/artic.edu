@@ -1,7 +1,7 @@
 @if($item->module_type === 'attract')
 
 @formField('wysiwyg', [
-    'name' => 'headline',
+    'name' => 'attract_title',
     'label' => 'Headline',
     'maxlength' => 500,
 ])
