@@ -4,7 +4,7 @@
     <section class="o-closer-look" data-behavior="closerLook">
             <script type="application/json" data-closerLook-contentBundle>
                 {{-- {{ dd(json_encode($item->contentBundle, JSON_UNESCAPED_SLASHES)) }} --}}
-                {{-- {{ dd($item->contentBundle) }} --}}
+                {{ dd($item->contentBundle) }}
                 {!! json_encode($item->contentBundle) !!}
             </script>
             <script type="application/json" data-closerLook-assetLibrary>

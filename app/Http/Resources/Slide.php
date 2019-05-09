@@ -156,10 +156,10 @@ class Slide extends JsonResource
     protected function getCompareAttributes()
     {
         $this->media = $this->experienceImage;
-        $this->modal = $this->compareExperienceModal;
         $compareImage1 = $this->compareExperienceImage1->first();
         $compareImage2 = $this->compareExperienceImage2->first();
-        $compareModal = $this->compareExperienceModal->first();
+        $compareModal1 = $this->compareExperienceModal->first();
+        $compareModal2 = $this->compareExperienceModal->count() > 1 ? $this->compareExperienceModal->get(1) : null;
         if ($this->asset_type === 'seamless') {
             $caption1 = $this->caption;
         } else {
@@ -171,9 +171,12 @@ class Slide extends JsonResource
             'object1Caption' => $caption1,
             'object2Src' => $compareImage2 ? (new SlideMediaResource($compareImage2))->toArray(request()) : [],
             'object2Caption' => $caption2,
-            'modalReference' => $compareModal ? (string) $compareModal->id : '',
+            'modalReference1' => $compareModal1 ? (string) $compareModal1->id : '',
+            'modalReference2' => $compareModal2 ? (string) $compareModal2->id : '',
             '__option_captions' => $caption1 || $caption2,
             'copy' => $this->compare_title,
+            'modal1' => $compareModal1 ? (new SlideMediaResource($compareModal1))->toArray(request()) : null,
+            'modal2' => $compareModal2 ? (new SlideMediaResource($compareModal2))->toArray(request()) : null,
         ];
     }
 

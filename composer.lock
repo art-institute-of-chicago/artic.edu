@@ -170,12 +170,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/area17/twill.git",
-                "reference": "d2f4008cd1fb56d8e684a08074f78e4af29efd92"
+                "reference": "60a239b8bad3e2f2da383f88577cedadea81aee3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/area17/twill/zipball/d2f4008cd1fb56d8e684a08074f78e4af29efd92",
-                "reference": "d2f4008cd1fb56d8e684a08074f78e4af29efd92",
+                "url": "https://api.github.com/repos/area17/twill/zipball/60a239b8bad3e2f2da383f88577cedadea81aee3",
+                "reference": "60a239b8bad3e2f2da383f88577cedadea81aee3",
                 "shasum": ""
             },
             "require": {
@@ -261,7 +261,7 @@
                 "laravel",
                 "twill"
             ],
-            "time": "2019-03-22T16:44:53+00:00"
+            "time": "2019-05-09T19:04:03+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
