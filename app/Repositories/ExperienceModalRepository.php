@@ -28,8 +28,6 @@ class ExperienceModalRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        // $fields = $this->getFormFieldsForRepeater($object, $fields, 'experienceImage', 'ExperienceImage', 'modal_experience_image');
-        // $fields['blocks'] = $fields['repeaters'];
         return $fields;
     }
 
@@ -39,10 +37,6 @@ class ExperienceModalRepository extends ModuleRepository
             $fields['repeaters'] = $fields['blocks'];
             unset($fields['blocks']);
         };
-
-        if (isset($fields['video_play_settings'])) {
-            $fields['video_play_settings'] = json_encode($fields['video_play_settings']);
-        }
 
         if (isset($fields['image_sequence_playback'])) {
             $fields['image_sequence_playback'] = json_encode($fields['image_sequence_playback']);
