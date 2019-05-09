@@ -21,7 +21,7 @@ class ExperienceModalRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        // $this->updateRepeater($object, $fields, 'experienceImage', 'ExperienceImage', 'modal_experience_image');
+        $this->updateRepeater($object, $fields, 'experienceImage', 'ExperienceImage', 'modal_experience_image');
         parent::afterSave($object, $fields);
 }
 
