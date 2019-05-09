@@ -55,6 +55,10 @@ class ExperienceModal extends Model implements Sortable
         'published',
     ];
 
+    protected $casts = [
+        'video_play_settings' => 'array',
+    ];
+
     // uncomment and modify this as needed if you use the HasMedias trait
     // public $mediasParams = [
     //     'cover' => [
@@ -75,7 +79,7 @@ class ExperienceModal extends Model implements Sortable
     //             ],
     //         ],
     //     ],
-    // ];
+// ];
 
     public function experienceImage()
     {
@@ -85,7 +89,6 @@ class ExperienceModal extends Model implements Sortable
     public function toRepeaterArray()
     {
         $fields = $this->attributesToArray();
-        $fields['video_play_settings'] = json_decode($fields['video_play_settings']) ?? [];
         $fields['image_sequence_playback'] = json_decode($fields['image_sequence_playback']) ?? [];
         return $fields;
     }

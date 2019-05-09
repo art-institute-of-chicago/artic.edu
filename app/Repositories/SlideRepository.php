@@ -54,6 +54,24 @@ class SlideRepository extends ModuleRepository
         $fields = $this->getExperienceModule($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
+        // $fields['repeaters'] += ['modal_experience_image' => [
+        //     [
+        //         'id' => 'experienceImage-1928',
+        //         'type' => 'a17-block-experience_image',
+        //         'title' => 'Modal Experience Image'
+        //     ]
+        // ]];
+        // $fields['repeaterFields'] += ['modal_experience_image' => [
+        //     [
+        //         'name' => 'blocks[modalExperienceImage-1928][id]',
+        //         'value' => 584
+        //     ],
+        //     [
+        //         'name' => 'blocks[modalExperienceImage-1928][caption]',
+        //         'value' => '<p>test</p>'
+        //     ],
+        // ]];
+        // dd($fields);
         return $fields;
     }
 

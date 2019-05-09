@@ -79,6 +79,16 @@ trait HandleExperienceModule
                 'title' => $repeatersConfig[$fieldName]['title'],
             ];
 
+            // if ($model === 'ExperienceModal') {
+            //     foreach ($relationItem->experienceImage as $relationItem) {
+            //         $repeaters[] = [
+            //             'id' => 'modalExperienceImage-' . $relationItem->id,
+            //             'type' => $repeatersConfig['modal_experience_image']['component'],
+            //             'title' => $repeatersConfig['modal_experience_image']['title'],
+            //         ];
+            //     }
+            // }
+            
             $relatedItemFormFields = $relationRepository->getFormFields($relationItem);
             $translatedFields = [];
 
