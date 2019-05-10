@@ -129,12 +129,12 @@ const modals = function() {
 
   function _roadblockSubmit(event) {
     // We pass values from lightbox to form via a cookie
-    var cookieValue = JSON.stringify({
+    var cookieValue = encodeURIComponent(JSON.stringify({
       firstname: document.getElementById('edit-submitted-first-name').value,
       lastname: document.getElementById('edit-submitted-last-name').value,
       email: document.getElementById('edit-submitted-mail').value,
       tlcsource: document.querySelectorAll('[name="submitted[tlcsource]"]').value,
-    });
+    }));
 
     // Ensure this cookie works across subdomains
     cookieValue += ';domain=.artic.edu';
