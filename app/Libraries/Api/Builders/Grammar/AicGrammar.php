@@ -12,6 +12,7 @@ class AicGrammar
         'wheres',
         'limit',
         'offset',
+        'boost',
         'page',
         'orders',
         'ids',
@@ -162,6 +163,13 @@ class AicGrammar
         return [
             'offset' => $offset,
             'from'   => $offset // Elasticsearch search parameter for offset
+        ];
+    }
+
+    protected function compileBoost($query, $boost)
+    {
+        return [
+            'boost' => $boost,
         ];
     }
 

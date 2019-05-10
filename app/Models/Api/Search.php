@@ -391,6 +391,7 @@ class Search extends BaseApiModel
         }
 
         $query->forceEndpoint('msearch');
+        $query->boost(FALSE);
 
         // How do we not assume the model here?
         $item = \App\Models\Api\Artwork::query()

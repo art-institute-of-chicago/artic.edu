@@ -39,6 +39,13 @@ class ApiQueryBuilder {
      */
     public $offset;
 
+    /**
+     * Whether to apply boosting or not
+     *
+     * @var boolean
+     */
+    public $boost = TRUE;
+
 
     /**
      * The current page number
@@ -389,6 +396,19 @@ class ApiQueryBuilder {
         if ($value >= 0) {
             $this->limit = $value;
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the "boost" value of the query.
+     *
+     * @param  boolean  $value
+     * @return $this
+     */
+    public function boost($value = TRUE)
+    {
+        $this->boost = $value;
 
         return $this;
     }
