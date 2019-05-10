@@ -34,21 +34,28 @@ trait HandleExperienceModule
         $currentIdList = [];
 
         foreach ($relationFields as $index => $relationField) {
-            $relationField['position'] = $index + 1;
+            // $relationField['position'] = $index + 1;
             if (isset($relationField['id']) && starts_with($relationField['id'], $relation)) {
                 // row already exists, let's update
                 $id = str_replace($relation . '-', '', $relationField['id']);
                 if ($fieldName === 'modal_experience_image') {
+                    $medias = $relationField['medias'];
                     $relationField = $relationField['content'];
+                    $relationField['medias'] = $medias;
                 }
                 $relationRepository->update($id, $relationField);
                 $currentIdList[] = $id;
             } else {
                 // new row, let's attach to our object and create
+                unset($relationField['id']);
+                if ($fieldName === 'modal_experience_image') {
+                    $medias = $relationField['medias'];
+                    $relationField = $relationField['content'];
+                    $relationField['medias'] = $medias;
+                }
                 $relationField[$morphKey . '_type'] = get_class($object);
                 $relationField[$morphKey . '_id'] = $object->id;
                 $relationField[$morphKey . '_repeater_name'] = $fieldName;
-                unset($relationField['id']);
                 $newRelation = $relationRepository->create($relationField);
                 $currentIdList[] = $newRelation['id'];
             }
