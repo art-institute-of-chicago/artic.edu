@@ -221,7 +221,7 @@ class Slide extends JsonResource
             'x' => $this->seamless_asset ? $this->seamless_asset['x'] : 0,
             'y' => $this->seamless_asset ? $this->seamless_asset['y'] : 0,
             'scale' => $this->seamless_asset ? $this->seamless_asset['scale'] / 100 : 1,
-            'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] : 0,
+            'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] - 1 : 0,
             'altText' => $this->seamless_alt_text
         ];
 
