@@ -74,7 +74,6 @@ class Slide extends JsonResource
             return $modal;
         })->values();
         $secondary_image_enabled = in_array(['id' => 'secondary_image'], $this->split_attributes ?? []);
-
         return [
             'primaryCopy' => $this->split_primary_copy,
             '__option_flip' => $this->image_side === 'right',
@@ -84,6 +83,7 @@ class Slide extends JsonResource
             '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
             '__option_headline' => in_array(['id' => 'headline'], $this->split_attributes ?? []),
             '__option_caption' => !empty($this->caption),
+            'src' => $this->asset_type === 'standard' && $this->split_standard_media_type === 'type_video' ? parseYoutubeUrl($this->split_youtube_url) : '',
             'primaryimglink' => $primaryExperienceImage ? [
                 'type' => 'imagelink',
                 'src' => (new SlideMediaResource($primaryExperienceImage))->toArray(request()),
