@@ -79,3 +79,21 @@
         )
     </script>
 @endpush
+
+@push('vuexStore')
+    @foreach($form_fields['repeaterFields']['modal_experience_image'] ?? [] as $field)
+        window.STORE.form.fields.push({!! json_encode($field) !!})
+    @endforeach
+
+    @foreach($form_fields['repeaterMedias']['modal_experience_image'] ?? [] as $name => $medias)
+        window.STORE.medias.selected["{{ $name }}"] = {!! json_encode($medias) !!}
+    @endforeach
+
+    @foreach($form_fields['repeaterFiles']['modal_experience_image'] ?? [] as $name => $files)
+        window.STORE.medias.selected["{{ $name }}"] = {!! json_encode($files) !!}
+    @endforeach
+
+    @foreach($form_fields['repeaterBrowsers']['modal_experience_image'] ?? [] as $name => $fields)
+        window.STORE.browser.selected["{{ $name }}"] = {!! json_encode($fields) !!}
+    @endforeach
+@endpush

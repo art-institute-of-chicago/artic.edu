@@ -38,6 +38,9 @@ trait HandleExperienceModule
             if (isset($relationField['id']) && starts_with($relationField['id'], $relation)) {
                 // row already exists, let's update
                 $id = str_replace($relation . '-', '', $relationField['id']);
+                if ($fieldName === 'modal_experience_image') {
+                    $relationField = $relationField['content'];
+                }
                 $relationRepository->update($id, $relationField);
                 $currentIdList[] = $id;
             } else {
@@ -130,6 +133,17 @@ trait HandleExperienceModule
             }
 
             $itemFields = method_exists($relationItem, 'toRepeaterArray') ? $relationItem->toRepeaterArray() : array_except($relationItem->attributesToArray(), $translatedFields);
+            
+            if ($model === 'ExperienceModal') {
+                foreach($relationItem->experienceImage->toArray() as $experienceImage) {
+                    foreach($experienceImage as $field => $value) {
+                        $fields['repeaterFields']['modal_experience_image'][] = [
+                            'name' => 'blocks[experienceImage-' . $experienceImage['id'] . '][' . $field .']',
+                            'value' => $value
+                        ];
+                    }
+                }
+            }
 
             foreach ($itemFields as $key => $value) {
                 $repeatersFields[] = [
@@ -150,6 +164,7 @@ trait HandleExperienceModule
 
         $fields['repeaterBrowsers'][$fieldName] = $repeatersBrowsers;
 
+        // dd($fields);
         return $fields;
 
     }

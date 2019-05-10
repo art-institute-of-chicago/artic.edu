@@ -30,7 +30,7 @@
         'label' => 'Zoomable'
     ])
 
-    @formField('repeater', ['type' => 'modal_experience_image', 'renderForBlocks' => false])
+    @formField('repeater', ['type' => 'modal_experience_image'])
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [

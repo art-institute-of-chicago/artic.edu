@@ -74,7 +74,7 @@
             hotspotsEnabled: false,
             hotspotsMode: false,
             currentHotspotPos: [undefined, undefined],
-            currentFrame: 1,
+            currentFrame: 0,
             isDragging: false,
             scale: 100,
             processing: true,
@@ -100,10 +100,10 @@
             }, this);
         },
         minFrame: function() {
-            return 1;
+            return 0;
         },
         maxFrame: function() {
-            return this.images.length;
+            return this.images.length - 1;
         },
         seamlessAsset: {
             get: function() {

@@ -21,7 +21,6 @@ class ExperienceModalRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        // dd($fields);
         $this->updateExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'modal_experience_image');
         parent::afterSave($object, $fields);
 }
@@ -34,7 +33,7 @@ class ExperienceModalRepository extends ModuleRepository
 
     public function prepareFieldsBeforeSave($object, $fields)
     {
-        if (isset($fields['blocks']) && !is_null($fields['blocks'])) {
+        if (isset($fields['blocks']) && !empty($fields['blocks'])) {
             $fields['repeaters'] = $fields['blocks'];
             unset($fields['blocks']);
         };
