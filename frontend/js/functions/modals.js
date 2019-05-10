@@ -133,7 +133,7 @@ const modals = function() {
       firstname: document.getElementById('edit-submitted-first-name').value,
       lastname: document.getElementById('edit-submitted-last-name').value,
       email: document.getElementById('edit-submitted-mail').value,
-      tlcsource: document.querySelectorAll('[name="submitted[tlcsource]"]').value,
+      tlcsource: document.getElementById('edit-submitted-tlcsource').value,
     }));
 
     // Ensure this cookie works across subdomains

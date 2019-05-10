@@ -66,7 +66,7 @@
                     </p>
                 </div>
 
-                <input type="hidden" name="submitted[tlcsource]" value="{{ $modal['form_tlc_source'] }}">
+                <input type="hidden" name="submitted[tlcsource]" id="edit-submitted-tlcsource" value="{{ $modal['form_tlc_source'] }}" >
                 <input type="hidden" name="form_token" value="{{ $modal['form_token'] }}">
                 <input type="hidden" name="form_id" value="{{ $modal['form_id'] }}">
 
