@@ -89,16 +89,6 @@ trait HandleExperienceModule
                 'title' => $repeatersConfig[$fieldName]['title'],
             ];
 
-            // if ($model === 'ExperienceModal') {
-            //     foreach ($relationItem->experienceImage as $relationItem) {
-            //         $repeaters[] = [
-            //             'id' => 'modalExperienceImage-' . $relationItem->id,
-            //             'type' => $repeatersConfig['modal_experience_image']['component'],
-            //             'title' => $repeatersConfig['modal_experience_image']['title'],
-            //         ];
-            //     }
-            // }
-            
             $relatedItemFormFields = $relationRepository->getFormFields($relationItem);
             $translatedFields = [];
 
@@ -142,7 +132,14 @@ trait HandleExperienceModule
             $itemFields = method_exists($relationItem, 'toRepeaterArray') ? $relationItem->toRepeaterArray() : array_except($relationItem->attributesToArray(), $translatedFields);
             
             if ($model === 'ExperienceModal') {
+                $modal_name = $relation . '-' . $relationItem->id;
                 foreach($relationItem->experienceImage->toArray() as $experienceImage) {
+                    $experienceImageRepository = app('App\Repositories\ExperienceImageRepository');
+                    $experienceImageFormFields = $experienceImageRepository->getFormFields($experienceImageRepository->getById($experienceImage['id']));
+                    if (isset($experienceImageFormFields['medias'])) {
+                        $fields['repeaterMedias']['modal_experience_image']['blocks[experienceImage-' . $experienceImage['id'] . '][experience_image]'] = $experienceImageFormFields['medias']['experience_image'];
+                    }
+;
                     foreach($experienceImage as $field => $value) {
                         $fields['repeaterFields']['modal_experience_image'][] = [
                             'name' => 'blocks[experienceImage-' . $experienceImage['id'] . '][' . $field .']',
@@ -150,6 +147,14 @@ trait HandleExperienceModule
                         ];
                     }
                 }
+
+                $fields['repeaters']['blocks-' . $modal_name . '_modal_experience_image'] = $relationItem->experienceImage->map(function($experienceImage) use ($repeatersConfig) {
+                    return [
+                        'id' => 'experienceImage-' . $experienceImage->id,
+                        'type' => $repeatersConfig['modal_experience_image']['component'],
+                        'title' => $repeatersConfig['modal_experience_image']['title'],
+                    ];
+                });
             }
 
             foreach ($itemFields as $key => $value) {
@@ -171,7 +176,6 @@ trait HandleExperienceModule
 
         $fields['repeaterBrowsers'][$fieldName] = $repeatersBrowsers;
 
-        // dd($fields);
         return $fields;
 
     }
