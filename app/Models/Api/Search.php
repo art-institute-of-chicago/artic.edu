@@ -399,14 +399,14 @@ class Search extends BaseApiModel
         $shoulds = [
             $this->basicQuery('artist_id', $this->mainArtist ? $this->mainArtist->first()->citi_id : null),
             $this->basicQuery('style_id', $item->style_id),
-            //$this->basicQuery('classification_id', $item->classification_id),
+            $this->basicQuery('classification_id', $item->classification_id),
         ];
 
-        // $date_start = incrementBefore($item->date_start);
-        // $date_end = incrementAfter($item->date_start);
-        // $dateQuery = $this->dateQuery($date_start, $date_end);
-        // $dateQuery['bool']['boost'] = 0;
-        // array_push($shoulds, $dateQuery);
+        $date_start = incrementBefore($item->date_start);
+        $date_end = incrementAfter($item->date_start);
+        $dateQuery = $this->dateQuery($date_start, $date_end);
+        $dateQuery['bool']['boost'] = 0;
+        array_push($shoulds, $dateQuery);
 
         if ($item->color ?? false) {
             $colorQuery = $this->colorQuery($item->color);
