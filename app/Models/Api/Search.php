@@ -409,11 +409,11 @@ class Search extends BaseApiModel
         $dateQuery['bool']['boost'] = 0;
         array_push($shoulds, $dateQuery);
 
-        if ($item->color ?? false) {
-            $colorQuery = $this->colorQuery($item->color);
-            $colorQuery['bool']['boost'] = 1;
-            array_push( $shoulds, $colorQuery );
-        }
+        // if ($item->color ?? false) {
+        //     $colorQuery = $this->colorQuery($item->color);
+        //     $colorQuery['bool']['boost'] = 1;
+        //     array_push( $shoulds, $colorQuery );
+        // }
 
         // Filter out empty array queries
         $shoulds = array_filter($shoulds);
