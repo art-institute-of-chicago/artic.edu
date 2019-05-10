@@ -69,17 +69,15 @@
             ],
         ]
     ])
-    @component('twill::partials.form.utils._connected_fields', [
-        'fieldName' => 'media_type',
-        'fieldValues' => 'type_image',
-        'renderForBlocks' => false
-    ])
-        @formField('medias', [
-            'name' => 'image',
-            'label' => 'Image',
-            'max' => 1,
+    @unless($item->module_type === 'attract')
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'media_type',
+            'fieldValues' => 'type_image',
+            'renderForBlocks' => false
         ])
-    @endcomponent
+            @formField('repeater', ['type' => 'seamless_image'])
+        @endcomponent
+    @endunless
 
     <br />
     @component('twill::partials.form.utils._connected_fields', [
