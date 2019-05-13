@@ -141,6 +141,7 @@ class Slide extends JsonResource
         
         return [
             'src' => $src,
+            'caption' => $this->media->first() ? $this->media->first()->caption : '',
             '__option_open_modal' => $this->modal->count() > 0,
             '__option_autoplay' => $this->video_play_settings && in_array(['id' => 'autoplay'], $this->video_play_settings),
             '__option_inset' => $this->fullwidth_inset,
