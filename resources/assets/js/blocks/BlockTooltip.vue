@@ -5,8 +5,7 @@
     <br />
     <div class="previewer-container">
         <div class="previewer">
-            <div class="previewer-image-container" v-on:click.prevent.stop="addHotspot" v-show="imageUrl">
-                <img :src="imageUrl" class="previewer-image" id="previewer-image"/>
+            <div class="previewer-image-container" v-on:click.prevent.stop="addHotspot" v-show="imageUrl" :style="{ backgroundImage: 'url(' + imageUrl + this.rectParam + ')' }">
                 <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="index" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" v-on:click.stop="showHotspotInfo(index)"></div>
             </div>
         </div>
@@ -45,7 +44,11 @@
         return {
             hotspots: [],
             currentHotspotPos: [undefined, undefined],
-            imageUrl: undefined,
+            media: undefined,
+            mediaPos: {
+                x: 0,
+                y: 0
+            }
         } 
     },
     computed: {
@@ -53,6 +56,15 @@
             return this.hotspots.find(function(el) {
                 return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
             }, this);
+        },
+        imageUrl: function() {
+            return this.media ? this.media['medium'] : '';
+        },
+        crop: function() {
+            return this.media ? (this.media['crops'] ? this.media['crops']['default'] : undefined) : undefined;
+        },
+        rectParam: function() {
+            return this.crop ? '&rect=' + this.crop.x + ',' + this.crop.y + ',' + this.crop.width + ',' + this.crop.height : '';
         },
         ...mapState({
             selectedMedias: state => state.mediaLibrary.selected,
@@ -62,9 +74,12 @@
         hotspots: function() {
             this.saveHotspots();
         },
-        selectedMedias: function() {
-            this.updateImage();
-        }
+        selectedMedias: {
+            handler: function() {
+                this.updateImage();
+            },
+            deep: true
+        },
     },
     methods: {
         addHotspot: function (e) {
@@ -100,33 +115,68 @@
             this.$store.commit(FORM.UPDATE_FORM_FIELD, field)
         },
         updateImage: function() {
-            this.imageUrl = "";
             for (const selectedMediaName in this.selectedMedias) {
                 const matched = selectedMediaName.match(/^blocks\[tooltipExperienceImage\-\d+\]\[experience_image\]$/) || selectedMediaName.match(/^blocks\[\d+\]\[experience_image\]$/);
                 if (matched) {
-                    this.imageUrl = this.selectedMedias[matched[0]][0]['medium'];
-                    this.resizeImage();
-                    break;
+                    this.media = this.selectedMedias[matched[0]][0];
+                    if (this.media) {
+                        this.resizeImage();
+                        break;
+                    }
                 }
             }
         },
         resizeImage: function() {
-            const img = document.getElementById('previewer-image');
-            if (img) {
-                img.onload = function(){
-                    img.style.width = 'auto';
-                    img.style.height = 'auto';
-                    const ratio = img.width / img.height;
-                    if (ratio > 1) {
-                        img.style.width = '500px';
-                        img.style.height = 500 / ratio + 'px';
-                    } else {
-                        img.style.height = '500px';
-                        img.style.width = 500 * ratio + 'px';
-                    }
+            const imgContainer = document.getElementsByClassName('previewer-image-container')[0];
+            if (imgContainer) {
+                console.log(this.crop);
+                if (this.crop) {
+                    const ratio = this.crop.width / this.crop.height;
+                    this.mediaPos.x = this.crop.x / this.media.width * 100;
+                    this.mediaPos.y = this.crop.y / this.media.height * 100;
+                    imgContainer.style.width = ratio > 1 ? '500px' : 500 * ratio + 'px';
+                    imgContainer.style.height = ratio > 1 ? 500 / ratio + 'px' : '500px';
                 }
             }
         }
+        // resizeImage: function() {
+        //     const img = document.getElementById('previewer-image');
+        //     const imgContainer = document.getElementsByClassName('previewer-image-container')[0];
+        //     if (img && imgContainer) {
+        //         let vm = this;
+        //         img.onload = function(){
+        //             img.style.width = 'auto';
+        //             img.style.height = 'auto';
+
+        //             console.log(vm.crop);
+        //             if (vm.crop) {
+        //                 const crop = vm.crop;
+        //                 const ratio = crop.width / crop.height;
+        //                 console.log(ratio);
+        //                 if (ratio > 1) {
+        //                     imgContainer.style.width = '500px';
+        //                     imgContainer.style.height = 500 / ratio + 'px';
+        //                     img.style.width = '500px';
+        //                     img.style.height = 500 / ratio + 'px';
+        //                 } else {
+        //                     imgContainer.style.height = '500px';
+        //                     imgContainer.style.width = 500 * ratio + 'px';
+        //                     img.style.height = '500px';
+        //                     img.style.width = 500 * ratio + 'px';
+        //                 }
+        //             } else {
+        //                 const ratio = img.width / img.height;
+        //                 if (ratio > 1) {
+        //                     img.style.width = '500px';
+        //                     img.style.height = 500 / ratio + 'px';
+        //                 } else {
+        //                     img.style.height = '500px';
+        //                     img.style.width = 500 * ratio + 'px';
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
   }
 </script>
@@ -155,16 +205,14 @@
     .previewer-image-container {
         position: absolute;
         overflow: hidden;
+        background-repeat: no-repeat;
+        background-size: cover;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         max-width: 100%;
         max-height: 100%;
-    }
-
-    .previewer-image {
-        max-width: 500px;
-        max-height: 500px;
+        overflow: hidden;
     }
 
     .hotspot {
