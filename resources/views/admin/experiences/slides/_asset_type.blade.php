@@ -1,19 +1,35 @@
-@formField('radios', [
-    'name' => 'asset_type',
-    'label' => 'Asset Type',
-    'default' => 'standard',
-    'inline' => true,
-    'options' => [
-        [
-            'value' => 'standard',
-            'label' => 'Standard'
-        ],
-        [
-            'value' => 'seamless',
-            'label' => 'Seamless'
-        ],
-    ]
-])
+@if($item->module_type === 'attract')
+    @formField('radios', [
+        'name' => 'asset_type',
+        'label' => 'Asset Type',
+        'default' => 'standard',
+        'inline' => true,
+        'options' => [
+            [
+                'value' => 'standard',
+                'label' => 'Standard'
+            ]
+        ]
+    ])
+@else
+    @formField('radios', [
+        'name' => 'asset_type',
+        'label' => 'Asset Type',
+        'default' => 'standard',
+        'inline' => true,
+        'options' => [
+            [
+                'value' => 'standard',
+                'label' => 'Standard'
+            ],
+            [
+                'value' => 'seamless',
+                'label' => 'Seamless'
+            ],
+        ]
+    ])
+@endif
+
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'asset_type',
     'fieldValues' => 'standard',
@@ -69,15 +85,14 @@
             ],
         ]
     ])
-    @unless($item->module_type === 'attract')
-        @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'media_type',
-            'fieldValues' => 'type_image',
-            'renderForBlocks' => false
-        ])
-            @formField('repeater', ['type' => 'seamless_image'])
-        @endcomponent
-    @endunless
+
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'media_type',
+        'fieldValues' => 'type_image',
+        'renderForBlocks' => false
+    ])
+        @formField('repeater', ['type' => 'seamless_image'])
+    @endcomponent
 
     <br />
     @component('twill::partials.form.utils._connected_fields', [
