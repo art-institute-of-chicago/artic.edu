@@ -7,13 +7,13 @@
         <input type="checkbox" v-model="hotspotsMode"> Hotspots Mode 
     </div>
     <br />
-    <div class="previewer" v-on:click.prevent.stop="addHotspot">
+    <div class="previewer">
         <h1 v-if="processing"> Processing... </h1>
         <h1 v-if="images.length === 0 && !processing"> Error: Something went wrong. Please try re-uploading the zip file</h1>
-        <div class="images-container" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}"> 
+        <div class="images-container"  v-on:click.prevent.stop="addHotspot" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
+            <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="hotspot.x" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%', transform: currentHotspot === hotspot ? 'translateX(-25%) translateY(-25%) scale(' + 200 / scale + ')' : 'translate(-50%, -50%) scale(' + 100 / scale + ')'}" v-on:click.stop="showHotspotInfo(index)" v-show="hotspotsEnabled"></div>
         </div>
-        <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="index" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" v-on:click.stop="showHotspotInfo(index)" v-show="hotspotsEnabled"></div>
         <div class="previewer-panel">
             <p>Frame {{ currentFrame }}</p>
             <input type="range" :min="minFrame" :max="maxFrame" class="frame-slider" step="1" v-model.number="currentFrame">
@@ -277,11 +277,9 @@
         border: 2px solid gray;
         border-radius: 50% 50%;
         box-sizing: border-box; 
-        transform: translate(-50%, -50%);
         z-index: 1;
     }
     .hotspot_active {
-        transform: translateX(-25%) translateY(-25%) scale(2);
         background-color: yellow;
         transform-origin: center center;
     }
