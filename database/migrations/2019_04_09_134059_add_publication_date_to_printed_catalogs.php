@@ -21,7 +21,9 @@ class AddPublicationDateToPrintedCatalogs extends Migration
         });
 
         if (Schema::hasColumn('printed_catalog_slugs', 'printed_catalog_id')) {
-            $table->renameColumn('printed_catalog_id', 'printed_publication_id');
+            Schema::table('printed_catalog_slugs', function (Blueprint $table) {
+                $table->renameColumn('printed_catalog_id', 'printed_publication_id');
+            });
         }
 
         foreach (PrintedPublication::all() as $catalog) {
