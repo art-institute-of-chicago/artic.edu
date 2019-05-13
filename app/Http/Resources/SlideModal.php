@@ -22,6 +22,7 @@ class SlideModal extends JsonResource
             '__option_inset' => false,
             '__option_caption' => !empty($this->image_sequence_caption) || !empty($this->imageCaption('experience_image')),
             '__option_loop' => false,
+            '__option_zoomable' => $this->zoomable,
             'id' => (string) $this->id,
             '__mediaType' => $this->modal_type,
             'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [parseYoutubeUrl($this->youtube_url)],
