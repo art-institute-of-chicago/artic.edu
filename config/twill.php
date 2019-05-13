@@ -388,8 +388,16 @@ return [
             'experience_image' => [
                 'default' => [
                     [
+                        'name' => 'free',
+                        'ratio' => null,
+                    ],
+                    [
                         'name' => '16:9',
                         'ratio' => 16 / 9
+                    ],
+                    [
+                        'name' => '9:16',
+                        'ratio' => 9 / 16
                     ],
                     [
                         'name' => '4:3',
