@@ -31,7 +31,7 @@
         "michelf/php-smartypants": "^1.8",
         "onelogin/php-saml": "3.0.0.x-dev@dev",
         "rlanvin/php-rrule": "1.*",
-        "sentry/sentry-laravel": "1.0.2",
+        "sentry/sentry-laravel": "^0.8.0",
         "spatie/calendar-links": "^1.0",
         "spatie/laravel-feed": "^2.1",
         "spatie/laravel-sitemap": "^5.3"
