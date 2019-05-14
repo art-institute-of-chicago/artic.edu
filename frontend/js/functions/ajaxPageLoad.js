@@ -236,7 +236,12 @@ const ajaxPageLoad = function() {
               // check canonical URL for redirects for pushState
               var canonicalElement = doc.querySelector('head link[rel="canonical"]');
               var canonicalUrl = canonicalElement ? canonicalElement.getAttribute('href') : options.href;
-              canonicalUrl = canonicalUrl ? canonicalUrl : options.href;
+              var re = new RegExp('(\\?.*)', 'gi');
+              var params = '';
+              if ((match = re.exec(options.href)) !== null) {
+                params = match[1];
+              }
+              canonicalUrl = canonicalUrl ? (canonicalUrl + params) : options.href;
 
               options.href = canonicalUrl;
 
