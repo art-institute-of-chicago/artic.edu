@@ -88,13 +88,13 @@ class Slide extends JsonResource
                 'type' => 'imagelink',
                 'src' => (new SlideMediaResource($primaryExperienceImage))->toArray(request()),
                 'modalReference' => $primaryExperienceModal ? (string) $primaryExperienceModal->id : '',
-                'caption' => $primaryExperienceImage->imageCaption('experience_image'),
+                'caption' => $primaryExperienceImage->caption ?? $primaryExperienceImage->imageCaption('experience_image'),
             ] : ['modalReference' => ''],
             'imglink' => ($secondary_image_enabled && $secondaryExperienceImage) ? [
                 'type' => 'imagelink',
                 'src' => (new SlideMediaResource($secondaryExperienceImage))->toArray(request()),
                 'modalReference' => $secondaryExperienceModal ? (string) $secondaryExperienceModal->id : '',
-                'caption' => $secondaryExperienceImage->imageCaption('experience_image'),
+                'caption' => $secondaryExperienceImage->caption ?? $secondaryExperienceImage->imageCaption('experience_image'),
             ] : ['modalReference' => ''],
         ];
     }
