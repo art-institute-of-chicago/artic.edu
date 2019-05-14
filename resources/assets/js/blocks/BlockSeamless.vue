@@ -247,8 +247,8 @@
     .previewer {
         position: relative;
         display: inline-block;
-        width: 715px;
-        height: 500px;
+        width: 572px;
+        height: 400px;
         background-color: gainsboro;
         overflow: hidden;
         border: 1px solid gainsboro;
@@ -287,7 +287,7 @@
         cursor: pointer;
     }
     .hotspot-info-container {
-        width: calc(100% - 640px);
+        width: calc(100% - 572px);
         height: 100%;
         display: block;
         position: relative;
