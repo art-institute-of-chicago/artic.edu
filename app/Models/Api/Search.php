@@ -393,20 +393,20 @@ class Search extends BaseApiModel
         $query->forceEndpoint('msearch');
         $query->boost(FALSE);
 
-        // How do we not assume the model here?
+        // Generalize this if we want to use this scope on Selections or
+        // other pages
         $item = \App\Models\Api\Artwork::query()
-            ->findOrFail((Integer) $id);
+              ->findOrFail((Integer) $id);
 
         $shoulds = [
-            $this->basicQuery('artist_id', $this->mainArtist ? $this->mainArtist->first()->citi_id : null),
-            $this->basicQuery('style_id', $item->style_id),
-            $this->basicQuery('classification_id', $item->classification_id),
+            $this->basicQuery('classification_id', $item->classification_id, 4),
+            $this->basicQuery('artist_id', $item->artist_id, 3),
+            $this->basicQuery('style_id', $item->style_id, 2),
         ];
 
         $date_start = incrementBefore($item->date_start);
         $date_end = incrementAfter($item->date_start);
-        $dateQuery = $this->dateQuery($date_start, $date_end);
-        $dateQuery['bool']['boost'] = 0;
+        $dateQuery = $this->dateQuery($date_start, $date_end, 1);
         array_push($shoulds, $dateQuery);
 
         // if ($item->color ?? false) {
@@ -421,6 +421,7 @@ class Search extends BaseApiModel
         $params = [
             "bool" => [
                 "should" => collect($shoulds)->values()->all(),
+                "minimum_should_match" => 2,
             ],
         ];
 
@@ -774,26 +775,34 @@ class Search extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    protected function basicQuery($field, $value)
+    protected function basicQuery($field, $value, $boost = 0)
     {
         if (!$value)
         {
             return [];
         }
         return [
-            "term" => [
-                $field => $value,
+            "bool" => [
+                "boost" => $boost,
+                "must" => [
+                    [
+                        "term" => [
+                            $field => $value,
+                        ],
+                    ],
+                ],
             ],
         ];
     }
 
-    protected function dateQuery($date_start, $date_end)
+    protected function dateQuery($date_start, $date_end, $boost = 0)
     {
         if (!$date_start || !$date_end) {
             return [];
         }
         return [
             "bool" => [
+                "boost" => $boost,
                 "must" => [
                     [
                         "range" => [
@@ -814,13 +823,14 @@ class Search extends BaseApiModel
         ];
     }
 
-    protected function colorQuery($color)
+    protected function colorQuery($color, $boost = 0)
     {
         if (!$color) {
             return [];
         }
         return [
             "bool" => [
+                "boost" => $boost,
                 "must" => [
                     [
                         "range" => [
