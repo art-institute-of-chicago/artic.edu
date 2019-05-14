@@ -247,7 +247,7 @@
     .previewer {
         position: relative;
         display: inline-block;
-        width: 640px;
+        width: 715px;
         height: 500px;
         background-color: gainsboro;
         overflow: hidden;
