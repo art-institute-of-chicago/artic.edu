@@ -254,37 +254,37 @@ return [
             'experience_image' => [
                 'title' => 'Image',
                 'trigger' => 'Add Image',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 1,
             ],
             'modal_experience_image' => [
                 'title' => 'Image',
                 'trigger' => 'Add Image',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 3,
             ],
             'tooltip_experience_image' => [
                 'title' => 'Image',
                 'trigger' => 'Add Image',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 1,
             ],
             'attract_experience_image' => [
                 'title' => 'Image',
                 'trigger' => 'Add Image',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 3,
             ],
             'end_experience_image' => [
                 'title' => 'Image',
                 'trigger' => 'Add Image',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 3,
             ],
             'end_bg_experience_image' => [
                 'title' => 'Background Image',
                 'trigger' => 'Add Background Image',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 1,
             ],
             'slide_primary_experience_image' => [
@@ -302,19 +302,19 @@ return [
             'compare_experience_image_1' => [
                 'title' => 'Compare Image 1',
                 'trigger' => 'Add Compare Image 1',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 1,
             ],
             'compare_experience_image_2' => [
                 'title' => 'Compare Image 2',
                 'trigger' => 'Add Compare Image 2',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 1,
             ],
             'compare_experience_modal' => [
                 'title' => 'Compare experience modal',
                 'trigger' => 'Add Compare Experience Modal',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 2,
             ],
             'experience_modal' => [
