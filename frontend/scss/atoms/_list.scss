@@ -64,6 +64,10 @@ ul.list--inline,
 ol.list--inline {
   padding-left: 0;
   list-style-type: none;
+
+  display: flex;
+  align-items: flex-end;
+  padding-top: 8px;
 }
 
 .list--inline > li {
