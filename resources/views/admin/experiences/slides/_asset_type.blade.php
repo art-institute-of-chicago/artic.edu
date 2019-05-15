@@ -78,7 +78,7 @@
         'fieldValues' => 'type_image',
         'renderForBlocks' => false
     ])
-        @formField('repeater', ['type' => 'seamless_image'])
+        @formField('repeater', ['type' => 'seamless_experience_image'])
     @endcomponent
 
     <br />

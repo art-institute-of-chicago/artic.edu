@@ -263,6 +263,12 @@ return [
                 'component' => 'a17-block-experience_image_with_caption',
                 'max' => 3,
             ],
+            'seamless_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 1,
+            ],
             'tooltip_experience_image' => [
                 'title' => 'Image',
                 'trigger' => 'Add Image',

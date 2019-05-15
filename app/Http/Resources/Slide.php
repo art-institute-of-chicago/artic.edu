@@ -226,8 +226,8 @@ class Slide extends JsonResource
             'altText' => $this->seamless_alt_text
         ];
 
-        if ($this->asset_type === 'seamless' && $this->media_type === 'type_image') {
-            $seamlessAsset['src'] = $this->seamlessImage->map(function($image) {
+        if ($this->asset_type === 'seamless' && $this->media_type === 'type_image' && $this->seamlessExperienceImage->count() > 0) {
+            $seamlessAsset['src'] = $this->seamlessExperienceImage->map(function($image) {
                 return $image->image('experience_image');
             })->toArray();
         }
@@ -245,13 +245,7 @@ class Slide extends JsonResource
             'type' => $this->module_type,
             'headline' => $headline,
             'media' => $this->getMedia(),
-            'seamlessAsset' => [
-                'assetID' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : '0',
-                'x' => $this->seamless_asset ? $this->seamless_asset['x'] : 0,
-                'y' => $this->seamless_asset ? $this->seamless_asset['y'] : 0,
-                'scale' => $this->seamless_asset ? $this->seamless_asset['scale'] / 100 : 1,
-                'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] : 0,
-            ],
+            'seamlessAsset' => $seamlessAsset,
             'assetType' => $this->asset_type,
             '__mediaType' => $mediaType,
             'moduleTitle' => $this->title,

@@ -25,6 +25,7 @@ class SlideRepository extends ModuleRepository
         $this->updateExperienceModule($object, $fields, 'primaryExperienceImage', 'ExperienceImage', 'slide_primary_experience_image');
         $this->updateExperienceModule($object, $fields, 'secondaryExperienceImage', 'ExperienceImage', 'slide_secondary_experience_image');
         $this->updateExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'experience_image');
+        $this->updateExperienceModule($object, $fields, 'seamlessExperienceImage', 'ExperienceImage', 'seamless_experience_image');
         $this->updateExperienceModule($object, $fields, 'tooltipExperienceImage', 'ExperienceImage', 'tooltip_experience_image');
         $this->updateExperienceModule($object, $fields, 'compareExperienceImage1', 'ExperienceImage', 'compare_experience_image_1');
         $this->updateExperienceModule($object, $fields, 'compareExperienceImage2', 'ExperienceImage', 'compare_experience_image_2');
@@ -44,6 +45,7 @@ class SlideRepository extends ModuleRepository
         $fields = $this->getExperienceModule($object, $fields, 'primaryExperienceImage', 'ExperienceImage', 'slide_primary_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'secondaryExperienceImage', 'ExperienceImage', 'slide_secondary_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'experience_image');
+        $fields = $this->getExperienceModule($object, $fields, 'seamlessExperienceImage', 'ExperienceImage', 'seamless_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'tooltipExperienceImage', 'ExperienceImage', 'tooltip_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'compareExperienceImage1', 'ExperienceImage', 'compare_experience_image_1');
         $fields = $this->getExperienceModule($object, $fields, 'compareExperienceImage2', 'ExperienceImage', 'compare_experience_image_2');
