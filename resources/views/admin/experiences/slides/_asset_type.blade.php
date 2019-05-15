@@ -84,6 +84,7 @@
             v-bind:is="`a17-block-seamless`"
             :is-seamless-image="{{ 'true' }}"
             :seamless-asset-data="{{ isset($form_fields['seamless_image_asset']) ? json_encode($form_fields['seamless_image_asset']) : "null" }}"
+            :hotspotsdata="{{ isset($form_fields['tooltip_hotspots']) ? json_encode($form_fields['tooltip_hotspots']) : '[]' }}"
             :name="`seamless_image`">
         </component>
     @endcomponent

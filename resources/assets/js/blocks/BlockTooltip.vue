@@ -5,8 +5,15 @@
     <br />
     <div class="previewer-container">
         <div class="previewer">
-            <div class="previewer-image-container" v-on:click.prevent.stop="addHotspot" v-show="imageUrl" :style="{ backgroundImage: 'url(' + imageUrl + this.rectParam + ')' }">
-                <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="index" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" v-on:click.stop="showHotspotInfo(index)"></div>
+            <div class="previewer-image-container" v-on:click.self="addHotspot" @mousemove.stop="dragging" v-show="imageUrl" :style="{ backgroundImage: 'url(' + imageUrl + this.rectParam + ')' }">
+                <div class="hotspot" 
+                    v-bind:class="{ hotspot_active: currentHotspot == hotspot }" 
+                    v-for="(hotspot, index) in hotspots" 
+                    :key="index" 
+                    v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%' }" 
+                    v-on:click="showHotspotInfo(index)"
+                    @mousedown.stop="dragStart($event, index)"
+                    ></div>
             </div>
         </div>
         <div class="hotspot-info-container" v-if="currentHotspot">
@@ -39,6 +46,7 @@
             this.hotspots = this.hotspotsdata;
         };
         this.updateImage();
+        window.addEventListener('mouseup', this.dragStop);
     },
     data: function() {
         return {
@@ -48,14 +56,30 @@
             mediaPos: {
                 x: 0,
                 y: 0
+            },
+            hotspotIndexDragging: undefined,
+            mousePos: {
+                x: 0,
+                y: 0
             }
         } 
     },
     computed: {
-        currentHotspot: function() {
-            return this.hotspots.find(function(el) {
-                return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
-            }, this);
+        currentHotspot: {
+            get: function() {
+                return this.hotspots.find(function(el) {
+                    return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
+                }, this);
+            },
+            set: function(data) {
+                const foundIndex = this.hotspots.findIndex(function(el) {
+                    return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
+                }, this);
+                this.hotspots[foundIndex] = {
+                    ...this.hotspots[foundIndex],
+                    ...data
+                };
+            }
         },
         imageUrl: function() {
             return this.media ? this.media['medium'] : '';
@@ -71,9 +95,6 @@
       })
     },
     watch: {
-        hotspots: function() {
-            this.saveHotspots();
-        },
         selectedMedias: {
             handler: function() {
                 this.updateImage();
@@ -83,14 +104,17 @@
     },
     methods: {
         addHotspot: function (e) {
-            const rect = e.currentTarget.getBoundingClientRect()
-            const x = (e.clientX - rect.left) / rect.width * 100
-            const y = (e.clientY - rect.top) / rect.height * 100
-            this.hotspots = this.hotspots.concat({
-                "x": x,
-                "y": y,
-            });
-            this.showHotspotInfo(this.hotspots.length - 1);
+            if (this.hotspotIndexDragging === undefined) {
+                const rect = e.currentTarget.getBoundingClientRect()
+                const x = (e.clientX - rect.left) / rect.width * 100
+                const y = (e.clientY - rect.top) / rect.height * 100
+                this.hotspots = this.hotspots.concat({
+                    "x": x,
+                    "y": y,
+                });
+                this.showHotspotInfo(this.hotspots.length - 1);
+                this.saveHotspots();
+            }
         },
         showHotspotInfo: function (index) {
             this.currentHotspotPos = [this.hotspots[index].x, this.hotspots[index].y];
@@ -99,14 +123,13 @@
             this.hotspots = this.hotspots.filter(function (hotspot) {
                 return hotspot !== this.currentHotspot;
             }, this)
+            this.saveHotspots();
         },
         changeCurrentDescription: function (newValue) {
-            this.hotspots = this.hotspots.map(hotspot => {
-                if (hotspot === this.currentHotspot) {
-                    hotspot.description = newValue;
-                }
-                return hotspot;
-            })
+            this.currentHotspot = {
+                description: newValue
+            };
+            this.saveHotspots();
         },
         saveHotspots: function () {
             let field = {}
@@ -129,7 +152,6 @@
         resizeImage: function() {
             const imgContainer = document.getElementsByClassName('previewer-image-container')[0];
             if (imgContainer) {
-                console.log(this.crop);
                 if (this.crop) {
                     const ratio = this.crop.width / this.crop.height;
                     this.mediaPos.x = this.crop.x / this.media.width * 100;
@@ -138,45 +160,33 @@
                     imgContainer.style.height = ratio > 1 ? 500 / ratio + 'px' : '500px';
                 }
             }
-        }
-        // resizeImage: function() {
-        //     const img = document.getElementById('previewer-image');
-        //     const imgContainer = document.getElementsByClassName('previewer-image-container')[0];
-        //     if (img && imgContainer) {
-        //         let vm = this;
-        //         img.onload = function(){
-        //             img.style.width = 'auto';
-        //             img.style.height = 'auto';
+        },
+        dragStart(event, hotspotIndex) {
+            this.hotspotIndexDragging = hotspotIndex;
+            this.mousePos.x = event.clientX;
+            this.mousePos.y = event.clientY;
+        },
+        dragging(event) {
+            if (this.hotspotIndexDragging !== undefined) {
+                const rect = event.currentTarget.getBoundingClientRect();
+                const hotspot = this.hotspots[this.hotspotIndexDragging];
+                console.log(event.clientX);
+                console.log(this.mousePos.x);
+                console.log(event.clientX - this.mousePos.x);
+                console.log((event.clientX - this.mousePos.x) / rect.width * 100);
+                this.hotspots.splice(this.hotspotIndexDragging, 1, {
+                    x: hotspot.x + (event.clientX - this.mousePos.x) / rect.width * 100,
+                    y: hotspot.y + (event.clientY - this.mousePos.y) / rect.height * 100
+                });
+                this.mousePos.x = event.clientX;
+                this.mousePos.y = event.clientY;
 
-        //             console.log(vm.crop);
-        //             if (vm.crop) {
-        //                 const crop = vm.crop;
-        //                 const ratio = crop.width / crop.height;
-        //                 console.log(ratio);
-        //                 if (ratio > 1) {
-        //                     imgContainer.style.width = '500px';
-        //                     imgContainer.style.height = 500 / ratio + 'px';
-        //                     img.style.width = '500px';
-        //                     img.style.height = 500 / ratio + 'px';
-        //                 } else {
-        //                     imgContainer.style.height = '500px';
-        //                     imgContainer.style.width = 500 * ratio + 'px';
-        //                     img.style.height = '500px';
-        //                     img.style.width = 500 * ratio + 'px';
-        //                 }
-        //             } else {
-        //                 const ratio = img.width / img.height;
-        //                 if (ratio > 1) {
-        //                     img.style.width = '500px';
-        //                     img.style.height = 500 / ratio + 'px';
-        //                 } else {
-        //                     img.style.height = '500px';
-        //                     img.style.width = 500 * ratio + 'px';
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+            }
+        },
+        dragStop(event) {
+            this.hotspotIndexDragging = undefined;
+            this.saveHotspots();
+        }
     }
   }
 </script>
