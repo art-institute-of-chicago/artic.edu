@@ -76,16 +76,24 @@
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'media_type',
         'fieldValues' => 'type_image',
-        'renderForBlocks' => false
+        'renderForBlocks' => false,
+        'keepAlive' => true
     ])
         @formField('repeater', ['type' => 'seamless_experience_image'])
+        <component
+            v-bind:is="`a17-block-seamless`"
+            :is-seamless-image="{{ 'true' }}"
+            :seamless-asset-data="{{ isset($form_fields['seamless_image_asset']) ? json_encode($form_fields['seamless_image_asset']) : "null" }}"
+            :name="`seamless_image`">
+        </component>
     @endcomponent
 
     <br />
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'media_type',
         'fieldValues' => 'type_sequence',
-        'renderForBlocks' => false
+        'renderForBlocks' => false,
+        'keepAlive' => true
     ])
         <a17-fieldset title="Seamless Sequence" id="seamless-asset">
             @formField('files', [
@@ -98,7 +106,7 @@
             <component
                 v-bind:is="`a17-block-seamless`"
                 :name="`seamless`"
-                :seamless-asset-data="{{ isset($form_fields['seamless_asset']) ? json_encode($form_fields['seamless_asset']) : "0" }}"
+                :seamless-asset-data="{{ isset($form_fields['seamless_asset']) ? json_encode($form_fields['seamless_asset']) : "null" }}"
                 :hotspotsdata="{{ isset($form_fields['tooltip_hotspots']) ? json_encode($form_fields['tooltip_hotspots']) : '[]' }}">
             </component>
 

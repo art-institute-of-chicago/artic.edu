@@ -226,10 +226,31 @@ class Slide extends JsonResource
             'altText' => $this->seamless_alt_text
         ];
 
-        if ($this->asset_type === 'seamless' && $this->media_type === 'type_image' && $this->seamlessExperienceImage->count() > 0) {
-            $seamlessAsset['src'] = $this->seamlessExperienceImage->map(function($image) {
-                return $image->image('experience_image');
-            })->toArray();
+        if ($this->asset_type === 'seamless') {
+            if ($this->media_type === 'type_image' && $this->seamlessExperienceImage->count() > 0) {
+                $seamlessAsset = [
+                    'assetID' => $this->seamless_image_asset ? (string) $this->seamless_image_asset['assetId'] : '0',
+                    'x' => $this->seamless_image_asset ? $this->seamless_image_asset['x'] : 0,
+                    'y' => $this->seamless_image_asset ? $this->seamless_image_asset['y'] : 0,
+                    'scale' => $this->seamless_image_asset ? $this->seamless_image_asset['scale'] / 100 : 1,
+                    'frame' => $this->seamless_image_asset ? $this->seamless_image_asset['frame'] - 1 : 0,
+                    'altText' => $this->seamless_alt_text,
+                    'src' => $this->seamlessExperienceImage->map(function($image) {
+                        return $image->image('experience_image');
+                    })->toArray()
+                ];
+            } else {
+                $seamlessAsset = [
+                    'assetID' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : '0',
+                    'x' => $this->seamless_asset ? $this->seamless_asset['x'] : 0,
+                    'y' => $this->seamless_asset ? $this->seamless_asset['y'] : 0,
+                    'scale' => $this->seamless_asset ? $this->seamless_asset['scale'] / 100 : 1,
+                    'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] - 1 : 0,
+                    'altText' => $this->seamless_alt_text
+                ];
+            }
+        } else {
+            $seamlessAsset = null;
         }
 
         if ($this->module_type === 'interstitial') {

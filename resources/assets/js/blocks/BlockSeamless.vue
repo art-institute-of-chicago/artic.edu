@@ -8,15 +8,15 @@
     </div>
     <br />
     <div class="previewer">
-        <h1 v-if="processing"> Processing... </h1>
+        <h1 v-if="fileId && processing"> Processing... </h1>
         <h1 v-if="images.length === 0 && !processing"> Error: Something went wrong. Please try re-uploading the zip file</h1>
         <div class="images-container"  v-on:click.prevent.stop="addHotspot" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
             <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="hotspot.x" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%', transform: currentHotspot === hotspot ? 'translateX(-25%) translateY(-25%) scale(' + 200 / scale + ')' : 'translate(-50%, -50%) scale(' + 100 / scale + ')'}" v-on:click.stop="showHotspotInfo(index)" v-show="hotspotsEnabled"></div>
         </div>
         <div class="previewer-panel">
-            <p>Frame {{ currentFrame }}</p>
-            <input type="range" :min="minFrame" :max="maxFrame" class="frame-slider" step="1" v-model.number="currentFrame">
+            <p v-if="!isSeamlessImage">Frame {{ currentFrame }}</p>
+            <input type="range" :min="minFrame" :max="maxFrame" class="frame-slider" step="1" v-model.number="currentFrame" v-if="!isSeamlessImage">
             <p>Scale {{ scale }}%</p>
             <input type="range" min=10 max=200 class="scale-slider" step="1" v-model.number="scale">
             <p> X </p>
@@ -56,12 +56,16 @@
         hotspotsdata: {
             type: Array
         },
+        isSeamlessImage: {
+            type: Boolean,
+            default: false
+        }
     },
     mounted () {
         if (this.seamlessAssetData && Object.keys(this.seamlessAssetData).length === 5) {
             this.seamlessAsset = this.seamlessAssetData;
         };
-        if (this.hotspotsdata) {
+        if (!this.isSeamlessImage && this.hotspotsdata) {
             this.hotspots = this.hotspotsdata;
         };
         this.updateSequence();
@@ -123,12 +127,12 @@
             }
         },
         ...mapState({
-            selectedMeidas: state => state.mediaLibrary.selected,
+            selectedMedias: state => state.mediaLibrary.selected,
             fields: state => state.form.fields
         })
     },
     watch: {
-        selectedMeidas: function() {
+        selectedMedias: function() {
             this.updateSequence();
         },
         fileId: function() {
@@ -185,20 +189,36 @@
             this.imagePos.y = 0;
         },
         updateSequence() {
-            if (this.selectedMeidas.hasOwnProperty('sequence_file[en]')) {
-                const sequenceFile = this.selectedMeidas['sequence_file[en]'][0];
+            if (!this.isSeamlessImage && this.selectedMedias.hasOwnProperty('sequence_file[en]')) {
+                const sequenceFile = this.selectedMedias['sequence_file[en]'][0];
                 const fileName = sequenceFile['name'];
                 if (/(?:\.([^.]+))?$/.exec(fileName)[1] === 'zip') {
                     this.fileId = sequenceFile['id'];
                 }
 
+            } else if (this.isSeamlessImage) {
+                for (const selectedMediaName in this.selectedMedias) {
+                    const matched = selectedMediaName.match(/^blocks\[seamlessExperienceImage\-\d+\]\[experience_image\]$/) || selectedMediaName.match(/^blocks\[\d+\]\[experience_image\]$/);
+                    if (matched) {
+                        const media = this.selectedMedias[matched[0]][0];
+                        if (media) {
+                            this.images = [{
+                                url: media['original'],
+                                frame: this.currentFrame,
+                                width: media['width'],
+                                height: media['height']
+                            }];
+                            break;
+                        }
+                    }
+                }
             } else {
                 this.images = [];
             }
         },
         saveSeamlessAsset() {
             const field = {
-                name: 'seamless_asset',
+                name: this.isSeamlessImage ? 'seamless_image_asset' : 'seamless_asset',
                 value: this.seamlessAsset
             };
             this.$store.commit(FORM.UPDATE_FORM_FIELD, field);

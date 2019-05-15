@@ -48,6 +48,7 @@ class Slide extends Model implements Sortable
         'tooltip_hotspots',
         'fullwidth_inset',
         'seamless_asset',
+        'seamless_image_asset',
         'attract_title',
         'attract_subhead',
         'end_headline',
@@ -72,6 +73,7 @@ class Slide extends Model implements Sortable
         'split_attributes' => 'array',
         'tooltip_hotspots' => 'array',
         'seamless_asset' => 'array',
+        'seamless_image_asset' => 'array',
         'video_play_settings' => 'array',
         'split_video_play_settings' => 'array'
     ];
