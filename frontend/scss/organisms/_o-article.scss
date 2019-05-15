@@ -439,6 +439,10 @@
 }
 // /border above main content
 
+.o-article__secondary-actions aside:not(:first-child) {
+  margin-top: 36px;
+}
+
 .o-article--generic-page {
 
   .o-article__primary-actions {
