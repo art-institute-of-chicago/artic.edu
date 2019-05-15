@@ -1,17 +1,4 @@
-@if($item->module_type === 'attract')
-    @formField('radios', [
-        'name' => 'asset_type',
-        'label' => 'Asset Type',
-        'default' => 'standard',
-        'inline' => true,
-        'options' => [
-            [
-                'value' => 'standard',
-                'label' => 'Standard'
-            ]
-        ]
-    ])
-@else
+@unless($item->module_type === 'attract')
     @formField('radios', [
         'name' => 'asset_type',
         'label' => 'Asset Type',
@@ -28,7 +15,7 @@
             ],
         ]
     ])
-@endif
+@endunless
 
 @component('twill::partials.form.utils._connected_fields', [
     'fieldName' => 'asset_type',
