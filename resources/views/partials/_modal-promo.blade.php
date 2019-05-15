@@ -43,6 +43,7 @@
                         @component('components.atoms._input')
                             @slot('id', 'edit-submitted-first-name')
                             @slot('name', 'submitted[first_name]')
+                            @slot('required', 'required')
                             First name
                         @endcomponent
                     </p>
@@ -51,6 +52,7 @@
                         @component('components.atoms._input')
                             @slot('id', 'edit-submitted-last-name')
                             @slot('name', 'submitted[last_name]')
+                            @slot('required', 'required')
                             Last name
                         @endcomponent
                     </p>
@@ -61,6 +63,7 @@
                         @component('components.atoms._email')
                             @slot('id', 'edit-submitted-mail')
                             @slot('name', 'submitted[mail]')
+                            @slot('required', 'required')
                             Email address
                         @endcomponent
                     </p>
