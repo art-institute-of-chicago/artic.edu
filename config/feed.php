@@ -18,7 +18,7 @@ return [
              */
             'url' => 'feed',
 
-            'title' => 'Articles',
+            'title' => 'Art Institute of Chicago',
 
             'description' => 'The latest articles from the Art Institute of Chicago',
 
