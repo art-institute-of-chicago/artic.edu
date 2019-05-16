@@ -195,11 +195,17 @@
             }
             if (this.hotspotIndexDragging !== undefined) {
                 const rect = event.currentTarget.getBoundingClientRect();
-                const hotspot = this.hotspots[this.hotspotIndexDragging];
-                this.hotspots.splice(this.hotspotIndexDragging, 1, {
-                    x: hotspot.x + (event.clientX - this.mousePos.x) / rect.width * 100,
-                    y: hotspot.y + (event.clientY - this.mousePos.y) / rect.height * 100
-                });
+                this.hotspots = this.hotspots.map(function(hotspot, idx) {
+                    if (idx === this.hotspotIndexDragging) {
+                        return {
+                            ...hotspot,
+                            x: hotspot.x + (event.clientX - this.mousePos.x) / rect.width * 100,
+                            y: hotspot.y + (event.clientY - this.mousePos.y) / rect.height * 100
+                        };
+                    } else {
+                        return hotspot;
+                    }
+                }, this)
                 this.mousePos.x = event.clientX;
                 this.mousePos.y = event.clientY;
             }

@@ -201,7 +201,7 @@
         width: 100%;
     }
 
-    .hidden-div {
+    .hidden-box {
         position: absolute;
         height: 100%;
         width: 100%;
