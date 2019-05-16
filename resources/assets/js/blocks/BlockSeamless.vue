@@ -10,9 +10,16 @@
     <div class="previewer">
         <h1 v-if="fileId && processing"> Processing... </h1>
         <h1 v-if="images.length === 0 && !processing"> Error: Something went wrong. Please try re-uploading the zip file</h1>
-        <div class="images-container"  v-on:click.prevent.stop="addHotspot" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}"> 
+        <div class="images-container"  v-on:click="addHotspot" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}"> 
             <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
-            <div class="hotspot" v-bind:class="{ hotspot_active: currentHotspot == hotspot }" v-for="(hotspot, index) in hotspots" :key="hotspot.x" v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%', transform: currentHotspot === hotspot ? 'translateX(-25%) translateY(-25%) scale(' + 200 / scale + ')' : 'translate(-50%, -50%) scale(' + 100 / scale + ')'}" v-on:click.stop="showHotspotInfo(index)" v-show="hotspotsEnabled"></div>
+            <div class="hotspot"
+                v-bind:class="{ hotspot_active: currentHotspot == hotspot }"
+                v-for="(hotspot, index) in hotspots" :key="hotspot.x"
+                v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%', transform: currentHotspot === hotspot ? 'translateX(-25%) translateY(-25%) scale(' + 200 / scale + ')' : 'translate(-50%, -50%) scale(' + 100 / scale + ')'}"
+                v-on:click.stop="showHotspotInfo(index)"
+                v-show="hotspotsEnabled"
+                @mousedown.stop="hotspotDragStart($event, index)"
+                ></div>
         </div>
         <div class="previewer-panel">
             <p v-if="!isSeamlessImage">Frame {{ currentFrame }}</p>
@@ -82,6 +89,7 @@
             isDragging: false,
             scale: 100,
             processing: true,
+            hotspotIndexDragging: undefined,
             imagePos: {
                 x: 0,
                 y: 0
@@ -98,10 +106,21 @@
         }
     },
     computed: {
-        currentHotspot: function() {
-            return this.hotspots.find(function(el) {
-                return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
-            }, this);
+        currentHotspot: {
+            get: function() {
+                return this.hotspots.find(function(el) {
+                    return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
+                }, this);
+            },
+            set: function(data) {
+                const foundIndex = this.hotspots.findIndex(function(el) {
+                    return el.x === this.currentHotspotPos[0] && el.y === this.currentHotspotPos[1];
+                }, this);
+                this.hotspots[foundIndex] = {
+                    ...this.hotspots[foundIndex],
+                    ...data
+                };
+            }
         },
         minFrame: function() {
             return 1;
@@ -142,9 +161,6 @@
                 this.processing = false;
             });
         },
-        hotspots: function() {
-            this.saveHotspots();
-        },
         seamlessAsset: function() {
             this.saveSeamlessAsset();
         },
@@ -165,6 +181,11 @@
             this.mousePos.x = event.clientX;
             this.mousePos.y = event.clientY;
         },
+        hotspotDragStart(event, hotspotIndex) {
+            this.hotspotIndexDragging = hotspotIndex;
+            this.mousePos.x = event.clientX;
+            this.mousePos.y = event.clientY;
+        },
         dragging(event) {
             if (this.isDragging) {
                 this.imagePos.x = this.imagePos.x + (event.clientX - this.mousePos.x);
@@ -172,10 +193,27 @@
                 this.mousePos.x = event.clientX;
                 this.mousePos.y = event.clientY;
             }
+            if (this.hotspotIndexDragging !== undefined) {
+                const rect = event.currentTarget.getBoundingClientRect();
+                const hotspot = this.hotspots[this.hotspotIndexDragging];
+                this.hotspots.splice(this.hotspotIndexDragging, 1, {
+                    x: hotspot.x + (event.clientX - this.mousePos.x) / rect.width * 100,
+                    y: hotspot.y + (event.clientY - this.mousePos.y) / rect.height * 100
+                });
+                this.mousePos.x = event.clientX;
+                this.mousePos.y = event.clientY;
+            }
         },
         dragStop(event) {
-            this.isDragging = false;
-            this.calculateTranslate();
+            if (this.isDragging = true) {
+                this.isDragging = false;
+                this.calculateTranslate();
+            }
+
+            if (this.hotspotIndexDragging !== undefined) {
+                this.hotspotIndexDragging = undefined;
+                this.saveHotspots();
+            }
         },
         calculateTranslate() {
             const currentImage = this.images.find(function(image) {
@@ -233,6 +271,7 @@
                     "y": y,
                 });
                 this.showHotspotInfo(this.hotspots.length - 1);
+                this.saveHotspots();
             }
         },
         showHotspotInfo: function (index) {
@@ -244,14 +283,13 @@
             this.hotspots = this.hotspots.filter(function (hotspot) {
                 return hotspot !== this.currentHotspot;
             }, this)
+            this.saveHotspots();
         },
         changeCurrentDescription: function (newValue) {
-            this.hotspots = this.hotspots.map(hotspot => {
-                if (hotspot === this.currentHotspot) {
-                    hotspot.description = newValue;
-                }
-                return hotspot;
-            })
+             this.currentHotspot = {
+                description: newValue
+            };
+            this.saveHotspots();
         },
         saveHotspots: function () {
             let field = {}
