@@ -79,7 +79,7 @@ class FileObserver
             $zipFile = $this->downloadZip($file);
             $zipFolderName = $this->unzip($zipFile);
             $this->uploadToS3($zipFolderName, $file);
-            // $this->cleanAssets();
+            $this->cleanAssets();
         } catch (Exception $e) {
             debug($e);
         }

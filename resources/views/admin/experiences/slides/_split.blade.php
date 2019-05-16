@@ -10,11 +10,9 @@
         ])
     </div>
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'split_primary_copy',
-        'type' => 'textarea',
         'label' => 'Primary Copy',
-        'rows' => 4
     ])
 
     @component('twill::partials.form.utils._connected_fields', [
