@@ -529,6 +529,7 @@ class GroupReservationsController extends FormController
         $groupReservation->no_of_audio_tours = $validated['no_of_audio_tours'] ?? '';
         $groupReservation->topic = $validated['topic'] ?? '';
         $groupReservation->needs = isset($validated['needs']) ? implode(", ", $validated['needs']) : '';
+        $groupReservation->additional_info = $validated['additional_info'] ?? '';
 
         Mail::to(config('forms.email_group_reservations_to'))
             ->send(new FormGroupReservation($groupReservation));

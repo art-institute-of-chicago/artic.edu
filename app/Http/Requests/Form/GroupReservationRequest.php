@@ -30,6 +30,7 @@ class GroupReservationRequest extends FormRequest
             'no_of_audio_tours' => 'sometimes',
             'topic' => 'sometimes',
             'needs' => 'sometimes',
+            'additional_info' => 'sometimes',
         ];
     }
 
