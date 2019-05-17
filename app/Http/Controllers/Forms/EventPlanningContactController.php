@@ -251,6 +251,25 @@ class EventPlanningContactController extends FormController
         }
         $inquiryFields[] = $howDidYouHearFields;
 
+        $inquiryFields[]= array(
+            'variation' => null,
+            'blocks' => array(
+                array(
+                  'type' => 'input',
+                  'variation' => null,
+                  'id' => 'how_did_you_hear_other',
+                  'placeholder' => '',
+                  'textCount' => false,
+                  'value' => old('how_did_you_hear_other'),
+                  'error' => (!empty($errors) && $errors->first('how_did_you_hear_other')) ? $errors->first('how_did_you_hear_other') : null,
+                  'optional' => null,
+                  'hint' => null,
+                  'disabled' => false,
+                  'label' => 'Other',
+                ),
+            ),
+        );
+
         $areYouPlanningFields = [
             'variation' => 'm-fieldset__field--group',
             'blocks' => array(
@@ -287,6 +306,24 @@ class EventPlanningContactController extends FormController
         }
         $inquiryFields[] = $typeOfEventFields;
 
+        $inquiryFields[]= array(
+            'variation' => null,
+            'blocks' => array(
+                array(
+                  'type' => 'input',
+                  'variation' => null,
+                  'id' => 'type_of_event_other',
+                  'placeholder' => '',
+                  'textCount' => false,
+                  'value' => old('type_of_event_other'),
+                  'error' => (!empty($errors) && $errors->first('type_of_event_other')) ? $errors->first('type_of_event_other') : null,
+                  'optional' => null,
+                  'hint' => null,
+                  'disabled' => false,
+                  'label' => 'Other',
+                ),
+            ),
+        );
 
         /*
          *
@@ -474,8 +511,10 @@ class EventPlanningContactController extends FormController
         $eventPlanningContact->preferred_contact = $validated['preferred_contact'] ?? '';
 
         $eventPlanningContact->how_did_you_hear = $validated['how_did_you_hear'] ?? '';
+        $eventPlanningContact->how_did_you_hear_other = $validated['how_did_you_hear_other'] ?? '';
         $eventPlanningContact->are_you_currently_planning = $validated['are_you_currently_planning'] ?? '';
         $eventPlanningContact->type_of_event = $validated['type_of_event'] ?? '';
+        $eventPlanningContact->type_of_event_other = $validated['type_of_event_other'] ?? '';
         $eventPlanningContact->no_of_expected_guests = $validated['no_of_expected_guests'] ?? '';
         $eventPlanningContact->possible_date_1 = $this->getDateField($validated, 'possible_date_1');
         $eventPlanningContact->possible_date_2 = $this->getDateField($validated, 'possible_date_2');
@@ -522,7 +561,7 @@ class EventPlanningContactController extends FormController
     private function getHowDidYouHearArray($selected)
     {
         $hows = ['Open Table', 'TripAdvisor', 'Website search', 'Special event', 'Museum visit', 'The Knot', 'Chicago Social',
-                 'Party Slate', 'Choose Chicago', 'Other'];
+                 'Party Slate', 'Choose Chicago'];
 
         $list = [];
         foreach($hows as $value) {
@@ -554,7 +593,7 @@ class EventPlanningContactController extends FormController
 
     private function getTypeOfEventArray($selected)
     {
-        $types = ['Reception', 'Seated dinner', 'Wedding', 'Meeting', 'Performance Program', 'Nonprofit fundraiser', 'Other'];
+        $types = ['Reception', 'Seated dinner', 'Wedding', 'Meeting', 'Performance Program', 'Nonprofit fundraiser'];
 
         $list = [];
         foreach($types as $value) {
