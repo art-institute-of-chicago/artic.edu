@@ -83,9 +83,9 @@ class Slide extends JsonResource
             '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
             '__option_headline' => in_array(['id' => 'headline'], $this->split_attributes ?? []),
             '__option_caption' => !empty($this->caption),
-            '__option_autoplay' => $this->video_play_settings && in_array(['id' => 'autoplay'], $this->video_play_settings),
-            '__option_loop' => $this->video_play_settings && in_array(['id' => 'loop'], $this->video_play_settings),
-            '__option_controls' => $this->video_play_settings && in_array(['id' => 'control_dark'], $this->video_play_settings),
+            '__option_autoplay' => $this->split_video_play_settings && in_array(['id' => 'autoplay'], $this->split_video_play_settings),
+            '__option_loop' => $this->split_video_play_settings && in_array(['id' => 'loop'], $this->split_video_play_settings),
+            '__option_controls' => $this->split_video_play_settings && in_array(['id' => 'control_dark'], $this->split_video_play_settings),
             'src' => $this->asset_type === 'standard' && $this->split_standard_media_type === 'type_video' ? parseYoutubeUrl($this->split_youtube_url) : '',
             'primaryimglink' => $primaryExperienceImage ? [
                 'type' => 'imagelink',
