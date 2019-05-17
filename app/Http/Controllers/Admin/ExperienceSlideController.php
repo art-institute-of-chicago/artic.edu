@@ -106,6 +106,18 @@ class ExperienceSlideController extends ModuleController
         ];
     }
 
+    public function destroy($id, $submoduleId = null)
+    {
+        $item = $this->repository->getById($submoduleId);
+        if ($this->repository->delete($submoduleId ?? $id)) {
+            $this->fireEvent();
+            activity()->performedOn($item)->log('deleted');
+            return $this->respondWithSuccess($this->modelTitle . ' moved to trash!');
+        }
+
+        return $this->respondWithError($this->modelTitle . ' was not moved to trash. Something wrong happened!');
+    }
+
     // public function index($digitalLabelId = null, $experienceId = null)
     // {
     //     $this->digitalLabelId = $digitalLabelId;
