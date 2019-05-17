@@ -58,7 +58,18 @@ class ExperienceSlideController extends ModuleController
         $experience = app(ExperienceRepository::class)->getById(request('experience'));
         $digitalLabel = $experience->digitalLabel;
         $slide = app(SlideRepository::class)->getById(request('slide'));
+        $slides = $this->repository->get([], ['experience_id' => $experience->id], ['position' => 'asc']);
+        $currentSlideIndex = $slides->search($slide);
         return [
+            'parentPreviousUrl' => $currentSlideIndex !== false && $currentSlideIndex > 0 ? $this->getModuleRoute($slides[$currentSlideIndex - 1], 'edit') : '',
+            'parentNextUrl' => $currentSlideIndex !== false && $currentSlideIndex < $slides->count() - 1 ? $this->getModuleRoute($slides[$currentSlideIndex + 1], 'edit') : '',
+            'parents' => $slides->map(function ($slide) {
+                return [
+                    'id' => $slide->id,
+                    'name' => $slide->title,
+                    'edit' => $this->getModuleRoute($slide->id, 'edit')
+                ];
+            }),
             'breadcrumb' => [
                 [
                     'label' => 'Groupings',
