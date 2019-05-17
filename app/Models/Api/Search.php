@@ -422,6 +422,11 @@ class Search extends BaseApiModel
             "bool" => [
                 "should" => collect($shoulds)->values()->all(),
                 "minimum_should_match" => 2,
+                "filter" => [
+                    'exists' => [
+                        'field' => 'image_id',
+                    ],
+                ],
             ],
         ];
 
