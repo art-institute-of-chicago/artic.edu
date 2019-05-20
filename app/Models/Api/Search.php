@@ -348,6 +348,9 @@ class Search extends BaseApiModel
 
         $hsl = explode('-', $hsl);
 
+        // Match `percentInterval` in colorPickerFilter.js
+        $percentInterval = 12.5;
+
         $params = [
             "bool" => [
                 "must" => [
@@ -355,24 +358,24 @@ class Search extends BaseApiModel
                         [
                             "range" => [
                                 "color.h" => [
-                                    "gte" => ($hsl[0] - 5),
-                                    "lte" => ($hsl[0] + 5),
+                                    "gte" => ($hsl[0] - $percentInterval/2 / 100 * 360),
+                                    "lte" => ($hsl[0] + $percentInterval/2 / 100 * 360),
                                 ]
                             ]
                         ],
                         [
                             "range" => [
                                 "color.s" => [
-                                    "gte" => ($hsl[1] - 5),
-                                    "lte" => ($hsl[1] + 5),
+                                    "gte" => ($hsl[1] - $percentInterval/2),
+                                    "lte" => ($hsl[1] + $percentInterval/2),
                                 ]
                             ]
                         ],
                         [
                             "range" => [
                                 "color.l" => [
-                                    "gte" => ($hsl[2] - 5),
-                                    "lte" => ($hsl[2] + 5),
+                                    "gte" => ($hsl[2] - $percentInterval/2),
+                                    "lte" => ($hsl[2] + $percentInterval/2),
                                 ]
                             ]
                         ]

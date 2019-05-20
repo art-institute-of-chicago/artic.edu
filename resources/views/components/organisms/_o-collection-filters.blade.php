@@ -44,6 +44,11 @@
                                 @endcomponent
                             @endif
 
+                            @if ($filterCategory['type'] === 'color')
+                                @component('components.organisms._o-color-picker-filter')
+                                @endcomponent
+                            @endif
+
                             @if ($filterCategory['type'] === 'list')
                                 @component('components.blocks._collection-filters-list')
                                     @slot('filterCategory', $filterCategory)
@@ -70,6 +75,11 @@
 
                             @if ($filterCategory['type'] === 'date')
                                 @component('components.atoms._range-slider----date-filter')
+                                @endcomponent
+                            @endif
+
+                            @if ($filterCategory['type'] === 'color')
+                                @component('components.organisms._o-color-picker-filter')
                                 @endcomponent
                             @endif
 
