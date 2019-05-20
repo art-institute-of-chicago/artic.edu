@@ -139,7 +139,8 @@ const colorPickerFilter = function(container) {
         a.innerHTML = 'Color: '
           + '<span style="color:' + currentColorString + '">'
           + currentColorString
-          + '</span>';
+          + '</span>'
+          + '<svg class="icon--close"><use xlink:href="#icon--close" /></svg>';
       }
     });
 
