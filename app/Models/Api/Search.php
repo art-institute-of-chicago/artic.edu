@@ -349,34 +349,67 @@ class Search extends BaseApiModel
         $hsl = explode('-', $hsl);
 
         // Match `percentInterval` in colorPickerFilter.js
-        $percentInterval = 12.5;
+        $hi = 20;
+        $si = 30;
+        $li = 30;
+
+        $hueMin = ($hsl[0] - $hi/2 / 100 * 360);
+        $hueMax = ($hsl[0] + $hi/2 / 100 * 360);
+
+        $hueQueries = [
+            [
+                "range" => [
+                    "color.h" => [
+                        "gte" => max($hueMin, 0),
+                        "lte" => min($hueMax, 360),
+                    ]
+                ]
+            ],
+        ];
+
+        if ($hueMin < 0) {
+            $hueQueries[] = [
+                "range" => [
+                    "color.h" => [
+                        "gte" => $hueMin + 360,
+                        "lte" => 360,
+                    ]
+                ]
+            ];
+        }
+
+        if ($hueMax > 360) {
+            $hueQueries[] = [
+                "range" => [
+                    "color.h" => [
+                        "gte" => 0,
+                        "lte" => $hueMax - 360,
+                    ]
+                ]
+            ];
+        }
 
         $params = [
             "bool" => [
                 "must" => [
                     [
-                        [
-                            "range" => [
-                                "color.h" => [
-                                    "gte" => ($hsl[0] - $percentInterval/2 / 100 * 360),
-                                    "lte" => ($hsl[0] + $percentInterval/2 / 100 * 360),
-                                ]
+                        'bool' => [
+                            'should' => $hueQueries,
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "color.s" => [
+                                "gte" => max($hsl[1] - $si/2, 0),
+                                "lte" => min($hsl[1] + $si/2, 100),
                             ]
-                        ],
-                        [
-                            "range" => [
-                                "color.s" => [
-                                    "gte" => ($hsl[1] - $percentInterval/2),
-                                    "lte" => ($hsl[1] + $percentInterval/2),
-                                ]
-                            ]
-                        ],
-                        [
-                            "range" => [
-                                "color.l" => [
-                                    "gte" => ($hsl[2] - $percentInterval/2),
-                                    "lte" => ($hsl[2] + $percentInterval/2),
-                                ]
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "color.l" => [
+                                "gte" => max($hsl[2] - $li/2, 0),
+                                "lte" => min($hsl[2] + $li/2, 100),
                             ]
                         ]
                     ]

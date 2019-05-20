@@ -37,7 +37,6 @@ const colorPickerFilter = function(container) {
     'transparent',
   ];
 
-  const percentInterval = 12.5;
   const handleOffset = 5;
 
   let hueWheelAngle = 0;
@@ -93,6 +92,10 @@ const colorPickerFilter = function(container) {
     submitButton = document.querySelector('.o-color-picker__submit');
 
     [shadeHandleElement, hueHandleElement, centerHandleElement].forEach(function(handleElement, i) {
+      let percentInterval = (
+        handleElement === shadeHandleElement ? 30 : 20
+      );
+
       handleElement.querySelectorAll('circle').forEach(function(circleElement) {
         // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset#Usage_notes
         // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-width#Usage_notes
