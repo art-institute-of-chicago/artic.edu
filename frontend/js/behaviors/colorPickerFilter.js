@@ -7,7 +7,6 @@ const colorPickerFilter = function(container) {
 
   let hueWheelElement,
       shadeWheelElement,
-      shadeUnderlayElement,
       hueHandleElement,
       shadeHandleElement,
       centerHandleElement,
@@ -27,20 +26,23 @@ const colorPickerFilter = function(container) {
   ];
 
   const anglePerColor = 360 / (colors.length - 1);
-  const maxShadeFactor = 0.35;
+  const maxShadeFactor = 0.65;
+
+  const maxDarkShade = lerpColor(0x777777, 0x000000, maxShadeFactor);
+  const maxLightShade = lerpColor(0x777777, 0xffffff, maxShadeFactor);
 
   const shades = [
-    'transparent',
-    'rgba(0,0,0,' + maxShadeFactor + ')',
-    'transparent',
-    'rgba(255,255,255,' + maxShadeFactor + ')',
-    'transparent',
+    '#' + maxDarkShade.toString(16),
+    '#' + 0x777777.toString(16),
+    '#' + maxLightShade.toString(16),
+    '#' + 0x777777.toString(16),
+    '#' + maxDarkShade.toString(16),
   ];
 
   const handleOffset = 5;
 
   let hueWheelAngle = 0;
-  let shadeWheelAngle = 0;
+  let shadeWheelAngle = 270;
 
   let currentHue = colors[0];
   let currentShade = 0.5;
@@ -81,7 +83,6 @@ const colorPickerFilter = function(container) {
 
     hueWheelElement = document.querySelector('.o-color-picker__wheel--hue');
     shadeWheelElement = document.querySelector('.o-color-picker__wheel--shade');
-    shadeUnderlayElement = document.querySelector('.o-color-picker__wheel--shade__underlay');
 
     hueHandleElement = document.querySelector('.o-color-picker__handle--hue');
     shadeHandleElement = document.querySelector('.o-color-picker__handle--shade');
@@ -267,26 +268,27 @@ const colorPickerFilter = function(container) {
 
   function updateShadeWheel() {
 
-    let admixedShade = shadeWheelAngle < 180 ? 0x000000 : 0xffffff;
-    let angleToShade = 90 - Math.abs(shadeWheelAngle < 180 ? shadeWheelAngle - 90 : shadeWheelAngle - 270);
+    let admixedShade = shadeWheelAngle > 270 || shadeWheelAngle < 90 ? 0x000000 : 0xffffff;
+    let angleToShade = Math.abs(admixedShade === 0x000000 ? (
+      shadeWheelAngle > 270 ? shadeWheelAngle - 360 : shadeWheelAngle
+    ) : (
+      shadeWheelAngle - 180
+    ));
 
     currentShadedColor = lerpColor(
       currentColor,
       admixedShade,
-      angleToShade/90 * maxShadeFactor * 2
+      (1 - angleToShade/90) * maxShadeFactor
     );
 
     currentColorString = '#' + currentShadedColor.toString(16);
 
-    shadeUnderlayElement.setAttribute(
-      'style',
-      'background-color:' + '#' + currentColor.toString(16) + ';'
-    );
+    let currentShade = lerpColor(maxDarkShade, maxLightShade, 1 - Math.abs(shadeWheelAngle - 180)/180);
 
     shadeHandleElement.setAttribute(
       'style',
       'transform:translate(-50%, -50%) rotate(' + shadeWheelAngle + 'deg);' +
-      'color:' + '#' + currentShadedColor.toString(16) + ';'
+      'color:' + '#' + currentShade.toString(16) + ';'
     );
 
   }

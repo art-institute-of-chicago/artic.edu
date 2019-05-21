@@ -1,7 +1,5 @@
 <div class="o-color-picker__wrapper">
   <div class="o-color-picker" data-behavior="colorPickerFilter">
-    <div class="o-color-picker__wheel o-color-picker__wheel--shade__underlay">
-    </div>
     <div class="o-color-picker__wheel o-color-picker__wheel--shade">
       <div class="o-color-picker__handle o-color-picker__handle--shade">
         <svg width="100%" height="100%" viewBox="0 0 42 42">

@@ -44,11 +44,6 @@
     overflow: hidden;
   }
 
-  .o-color-picker__wheel--shade__underlay {
-    @include centered-circle(100%);
-    background-color: red;
-  }
-
   .o-color-picker__wheel--shade {
     @include centered-circle(100%);
     &:after {
