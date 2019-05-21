@@ -417,28 +417,32 @@ class Search extends BaseApiModel
             ]
         ];
 
+        // An alternative to `sort` that doesn't override relevancy:
+        // $query = $query->rawQuery([
+        //     'functions' => [
+        //         'artworks' => [
+        //             [
+        //                 'filter' => [
+        //                     'exists' => [
+        //                         'field' => 'color.percentage',
+        //                     ],
+        //                 ],
+        //                 'field_value_factor' => [
+        //                     'field' => 'color.percentage',
+        //                     'modifier' => 'log1p',
+        //                     'factor' => 1.5,
+        //                     'missing' => 0,
+        //                 ],
+        //             ],
+        //         ],
+        //     ],
+        // ]);
+
+        // The `sort` option was preferred by users during testing:
         $query = $query->rawQuery([
             'sort' => [
                 'color.percentage' => 'desc'
-            ],
-            // TODO: Cleanup this function score
-            // 'functions' => [
-            //     'artworks' => [
-            //         [
-            //             'filter' => [
-            //                 'exists' => [
-            //                     'field' => 'color.percentage',
-            //                 ],
-            //             ],
-            //             'field_value_factor' => [
-            //                 'field' => 'color.percentage',
-            //                 'modifier' => 'log1p',
-            //                 'factor' => 1.5,
-            //                 'missing' => 0,
-            //             ],
-            //         ],
-            //     ],
-            // ],
+            ]
         ]);
 
         return $query->rawSearch($params);
