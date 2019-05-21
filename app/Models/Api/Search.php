@@ -349,7 +349,7 @@ class Search extends BaseApiModel
         $hsl = explode('-', $hsl);
 
         // Match `percentInterval` in colorPickerFilter.js
-        $hi = 20;
+        $hi = 12.5;
         $si = 30;
         $li = 30;
 

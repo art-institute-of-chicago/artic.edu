@@ -93,7 +93,7 @@ const colorPickerFilter = function(container) {
 
     [shadeHandleElement, hueHandleElement, centerHandleElement].forEach(function(handleElement, i) {
       let percentInterval = (
-        handleElement === shadeHandleElement ? 30 : 20
+        handleElement === shadeHandleElement ? 30 : 12.5
       );
 
       handleElement.querySelectorAll('circle').forEach(function(circleElement) {
