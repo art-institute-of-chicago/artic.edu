@@ -140,9 +140,8 @@ const colorPickerFilter = function(container) {
 
     document.querySelectorAll('.m-active-filters__item a').forEach( function(a) {
       if (a.textContent.trim().startsWith('Color')) {
-        a.innerHTML = 'Color: '
-          + '<span style="color:' + currentColorString + '">'
-          + currentColorString
+        a.innerHTML = 'Color:'
+          + '<span class="tag__color-swatch" style="background-color:' + currentColorString + '">'
           + '</span>'
           + '<svg class="icon--close"><use xlink:href="#icon--close" /></svg>';
       }
