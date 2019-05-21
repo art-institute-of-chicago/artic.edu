@@ -33,6 +33,7 @@
   @mixin centered-circle($size) {
     @include centered;
     @include circle($size);
+    touch-action: none;
   }
 
   @include centered;

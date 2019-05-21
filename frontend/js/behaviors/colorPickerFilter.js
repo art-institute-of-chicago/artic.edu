@@ -202,8 +202,8 @@ const colorPickerFilter = function(container) {
     document.addEventListener('mouseup', disableDragFunction, false);
     document.addEventListener('touchend', disableDragFunction, false);
 
-    window.addEventListener('mousemove', currentDragFunction, false);
-    window.addEventListener('touchmove', currentDragFunction, false);
+    window.addEventListener('mousemove', currentDragFunction, {passive: false});
+    window.addEventListener('touchmove', currentDragFunction, {passive: false});
   };
 
   function disableDragFunction() {
@@ -315,6 +315,9 @@ const colorPickerFilter = function(container) {
   };
 
   function hueDragFunction(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     hueWheelAngle = getAngleFunction(event, hueWheelElement);
     updateHueWheel();
     updateShadeWheel();
@@ -322,6 +325,9 @@ const colorPickerFilter = function(container) {
   };
 
   function shadeDragFunction(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     shadeWheelAngle = getAngleFunction(event, shadeWheelElement);
     updateShadeWheel();
     updateCurrentColorElement();
