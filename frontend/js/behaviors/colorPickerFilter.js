@@ -88,13 +88,13 @@ const colorPickerFilter = function(container) {
     shadeHandleElement = document.querySelector('.o-color-picker__handle--shade');
     centerHandleElement = document.querySelector('.o-color-picker__handle--center');
 
-    currentColorElement = document.querySelector('.o-color-picker__center');
+    currentColorElement = document.querySelector('.o-color-picker__center__swatch');
 
     submitButton = document.querySelector('.o-color-picker__submit');
 
     [shadeHandleElement, hueHandleElement, centerHandleElement].forEach(function(handleElement, i) {
       let percentInterval = (
-        handleElement === shadeHandleElement ? 30 : 12.5
+        12.5 // handleElement === shadeHandleElement ? 30 : 12.5
       );
 
       handleElement.querySelectorAll('circle').forEach(function(circleElement) {

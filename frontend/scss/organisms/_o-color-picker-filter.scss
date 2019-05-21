@@ -72,8 +72,13 @@
   .o-color-picker__center {
     cursor: pointer;
     @include centered-circle(35%);
-    background-color: red;
     overflow: hidden;
+
+    .o-color-picker__center__swatch {
+      @include centered-circle(95%);
+      content: '';
+      background-color: red;
+    }
   }
 
 }
