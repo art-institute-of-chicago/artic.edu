@@ -27,16 +27,20 @@ const colorPickerFilter = function(container) {
 
   const anglePerColor = 360 / (colors.length - 1);
   const maxShadeFactor = 0.65;
+  const displayShadeFactor = 0.95;
 
   const maxDarkShade = lerpColor(0x777777, 0x000000, maxShadeFactor);
   const maxLightShade = lerpColor(0x777777, 0xffffff, maxShadeFactor);
 
+  const displayDarkShade = lerpColor(0x777777, 0x000000, displayShadeFactor);
+  const displayLightShade = lerpColor(0x777777, 0xffffff, displayShadeFactor);
+
   const shades = [
-    '#' + maxDarkShade.toString(16),
-    '#' + 0x777777.toString(16),
-    '#' + maxLightShade.toString(16),
-    '#' + 0x777777.toString(16),
-    '#' + maxDarkShade.toString(16),
+    hexToCss(displayDarkShade),
+    hexToCss(0x777777),
+    hexToCss(displayLightShade),
+    hexToCss(0x777777),
+    hexToCss(displayDarkShade),
   ];
 
   const handleOffset = 5;
@@ -282,12 +286,12 @@ const colorPickerFilter = function(container) {
 
     currentColorString = '#' + currentShadedColor.toString(16);
 
-    let currentShade = lerpColor(maxDarkShade, maxLightShade, 1 - Math.abs(shadeWheelAngle - 180)/180);
+    let currentDisplayShade = lerpColor(displayDarkShade, displayLightShade, 1 - Math.abs(shadeWheelAngle - 180)/180);
 
     shadeHandleElement.setAttribute(
       'style',
       'transform:translate(-50%, -50%) rotate(' + shadeWheelAngle + 'deg);' +
-      'color:' + '#' + currentShade.toString(16) + ';'
+      'color:' + '#' + currentDisplayShade.toString(16) + ';'
     );
 
   }
@@ -382,6 +386,10 @@ const colorPickerFilter = function(container) {
     HSL['s']=s;
     HSL['l']=l;
     return HSL;
+  }
+
+  function hexToCss(hex) {
+    return '#' + hex.toString(16).padEnd(6, '0');
   }
 };
 
