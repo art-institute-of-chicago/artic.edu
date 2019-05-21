@@ -391,7 +391,7 @@ const colorPickerFilter = function(container) {
   }
 
   function hexToCss(hex) {
-    return '#' + hex.toString(16).padEnd(6, '0');
+    return '#' + hex.toString(16).padStart(6, '0');
   }
 };
 
