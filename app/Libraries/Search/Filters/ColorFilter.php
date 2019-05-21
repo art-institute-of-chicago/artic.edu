@@ -15,7 +15,7 @@ class ColorFilter
         ];
 
         if (request()->filled('color')) {
-            $base['href'] = route('collection', request()->except(['page', 'color']));
+            $base['href'] = route('collection', request()->except(['page', 'color', 'angle']));
             $base['label'] = $this->generateLabel();
             $base['active'] = true;
             $base['enabled'] = true;
