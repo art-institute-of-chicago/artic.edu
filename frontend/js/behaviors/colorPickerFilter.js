@@ -299,10 +299,10 @@ const colorPickerFilter = function(container) {
       'background-color:' + '#' + currentShadedColor.toString(16) + ';'
     );
 
-    submitButton.innerHTML = 'Search for color: '
-      + '<span style="color:' + currentColorString + '">'
-      + currentColorString
-      + '</span>';
+    submitButton.innerHTML = ''
+      + '<span style="background-color:' + currentColorString + '">'
+      + '</span>'
+      + 'OK';
   }
 
   function enableHueDragFunction() {

@@ -28,4 +28,6 @@
   </div>
 </div>
 
-<button class="o-color-picker__submit" type="button">Search for color</button>
+<div class="o-color-picker__form">
+  <button class="o-color-picker__submit" type="button">OK</button>
+</div>

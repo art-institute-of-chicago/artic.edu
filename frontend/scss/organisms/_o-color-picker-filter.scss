@@ -83,9 +83,12 @@
 
 }
 
+.o-color-picker__form {
+  text-align: center;
+}
+
 .o-color-picker__submit {
   @extend %f-tag;
-  @include untuck;
   display: inline-block;
   margin-top: 16px;
   padding: 8px 12px;
@@ -98,4 +101,18 @@
   white-space: nowrap;
   cursor: pointer;
   -webkit-appearance: none;
+
+  &:before, &:after {
+    content: none;
+  }
+
+  span {
+    display: inline-block;
+    width: 96px;
+    height: 32px;
+    margin-top: -8px;
+    margin-left: -12px;
+    margin-bottom: -12px;
+    margin-right: 12px;
+  }
 }
