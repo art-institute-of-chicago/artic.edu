@@ -96,11 +96,11 @@ class Search extends BaseApiModel
             'is_public_domain' => 'is_public_domain'
         ];
 
-        // Standardize to array with default size 5
+        // Standardize to array with default size 8
         $aggsParams = array_map(function ($param) {
             return is_array($param) ? $param : [
                 'field' => $param,
-                'size' => 5,
+                'size' => 8,
             ];
         }, $aggsParams);
 

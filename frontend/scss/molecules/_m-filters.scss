@@ -72,8 +72,8 @@
   }
 }
 
-.m-filters__list.s-capped > li:nth-child(5) ~ li,
-.m-filters__whittle-down:not(.s-whittling) + .m-filters__list > li:nth-child(5) ~ li {
+.m-filters__list.s-capped > li:nth-child(8) ~ li,
+.m-filters__whittle-down:not(.s-whittling) + .m-filters__list > li:nth-child(8) ~ li {
   display: none;
 }
 
