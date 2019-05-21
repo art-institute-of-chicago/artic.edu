@@ -199,7 +199,7 @@ const colorPickerFilter = function(container) {
     }, 432);
   }
 
-  function enableDragFunction() {
+  function enableDragFunction(event) {
     document.addEventListener('mouseup', currentDragFunction, false);
     document.addEventListener('touchend', currentDragFunction, false);
 
@@ -208,6 +208,8 @@ const colorPickerFilter = function(container) {
 
     window.addEventListener('mousemove', currentDragFunction, {passive: false});
     window.addEventListener('touchmove', currentDragFunction, {passive: false});
+
+    currentDragFunction(event);
   };
 
   function disableDragFunction() {
@@ -308,14 +310,14 @@ const colorPickerFilter = function(container) {
       + 'OK';
   }
 
-  function enableHueDragFunction() {
+  function enableHueDragFunction(event) {
     currentDragFunction = hueDragFunction;
-    enableDragFunction();
+    enableDragFunction(event);
   };
 
-  function enableShadeDragFunction() {
+  function enableShadeDragFunction(event) {
     currentDragFunction = shadeDragFunction;
-    enableDragFunction();
+    enableDragFunction(event);
   };
 
   function hueDragFunction(event) {
