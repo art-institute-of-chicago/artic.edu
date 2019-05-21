@@ -52,7 +52,7 @@ const colorPickerFilter = function(container) {
   let currentShade = 0.5;
   let currentColor = colors[0];
   let currentShadedColor = currentColor;
-  let currentColorString = '#' + currentShadedColor.toString(16);
+  let currentColorString = hexToCss(currentShadedColor);
 
   function _handleSubmit(event) {
     event.preventDefault();
@@ -111,7 +111,7 @@ const colorPickerFilter = function(container) {
     });
 
     let hueGradient = new ConicGradient({
-      stops: colors.map(x => '#' + x.toString(16)).join(', '),
+      stops: colors.map(x => hexToCss(x)).join(', '),
       size: hueWheelElement.getBoundingClientRect().offsetWidth,
     });
 
@@ -262,7 +262,7 @@ const colorPickerFilter = function(container) {
     hueHandleElement.setAttribute(
       'style',
       'transform:translate(-50%, -50%) rotate(' + hueWheelAngle + 'deg);' +
-      'color:' + '#' + currentColor.toString(16) + ';'
+      'color:' + hexToCss(currentColor) + ';'
     );
 
     centerHandleElement.setAttribute(
@@ -286,14 +286,14 @@ const colorPickerFilter = function(container) {
       (1 - angleToShade/90) * maxShadeFactor
     );
 
-    currentColorString = '#' + currentShadedColor.toString(16);
+    currentColorString = hexToCss(currentShadedColor);
 
     let currentDisplayShade = lerpColor(displayDarkShade, displayLightShade, 1 - Math.abs(shadeWheelAngle - 180)/180);
 
     shadeHandleElement.setAttribute(
       'style',
       'transform:translate(-50%, -50%) rotate(' + shadeWheelAngle + 'deg);' +
-      'color:' + '#' + currentDisplayShade.toString(16) + ';'
+      'color:' + hexToCss(currentDisplayShade) + ';'
     );
 
   }
@@ -301,7 +301,7 @@ const colorPickerFilter = function(container) {
   function updateCurrentColorElement() {
     currentColorElement.setAttribute(
       'style',
-      'background-color:' + '#' + currentShadedColor.toString(16) + ';'
+      'background-color:' + hexToCss(currentShadedColor) + ';'
     );
 
     submitButton.innerHTML = ''
