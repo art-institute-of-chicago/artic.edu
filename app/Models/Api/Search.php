@@ -358,10 +358,10 @@ class Search extends BaseApiModel
 
         $hueQueries = [
             [
-                "range" => [
-                    "color.h" => [
-                        "gte" => max($hueMin, 0),
-                        "lte" => min($hueMax, 360),
+                'range' => [
+                    'color.h' => [
+                        'gte' => max($hueMin, 0),
+                        'lte' => min($hueMax, 360),
                     ]
                 ]
             ],
@@ -369,10 +369,10 @@ class Search extends BaseApiModel
 
         if ($hueMin < 0) {
             $hueQueries[] = [
-                "range" => [
-                    "color.h" => [
-                        "gte" => $hueMin + 360,
-                        "lte" => 360,
+                'range' => [
+                    'color.h' => [
+                        'gte' => $hueMin + 360,
+                        'lte' => 360,
                     ]
                 ]
             ];
@@ -380,36 +380,36 @@ class Search extends BaseApiModel
 
         if ($hueMax > 360) {
             $hueQueries[] = [
-                "range" => [
-                    "color.h" => [
-                        "gte" => 0,
-                        "lte" => $hueMax - 360,
+                'range' => [
+                    'color.h' => [
+                        'gte' => 0,
+                        'lte' => $hueMax - 360,
                     ]
                 ]
             ];
         }
 
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
                         'bool' => [
                             'should' => $hueQueries,
                         ]
                     ],
                     [
-                        "range" => [
-                            "color.s" => [
-                                "gte" => max($hsl[1] - $si/2, 0),
-                                "lte" => min($hsl[1] + $si/2, 100),
+                        'range' => [
+                            'color.s' => [
+                                'gte' => max($hsl[1] - $si/2, 0),
+                                'lte' => min($hsl[1] + $si/2, 100),
                             ]
                         ]
                     ],
                     [
-                        "range" => [
-                            "color.l" => [
-                                "gte" => max($hsl[2] - $li/2, 0),
-                                "lte" => min($hsl[2] + $li/2, 100),
+                        'range' => [
+                            'color.l' => [
+                                'gte' => max($hsl[2] - $li/2, 0),
+                                'lte' => min($hsl[2] + $li/2, 100),
                             ]
                         ]
                     ]
