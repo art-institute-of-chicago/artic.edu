@@ -86,15 +86,6 @@ const rangeSlider = function(container){
       inputs[handle].value = rangeValues[values[handle]];
       displays[handle].innerHTML = rangeValues[values[handle]];
     });
-
-    $slideTrack.noUiSlider.on('set', function( values, handle ) {
-      clearTimeout(timer);
-
-      // set event is triggered each time a handle is set so it will run 4 times when using the custom inputs. Set timeout to only trigger 1 pageload.
-      timer = setTimeout(function(){
-        _triggerPageLoad(values[0], values[1]);
-      }, 500);
-    });
   }
 
   function _handleClick(e){
@@ -107,6 +98,8 @@ const rangeSlider = function(container){
       }
     });
     $slideTrack.noUiSlider.set([ indexes.fromIndex, indexes.toIndex ]);
+
+    _triggerPageLoad(indexes.fromIndex, indexes.toIndex);
 
     e.preventDefault();
   }

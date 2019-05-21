@@ -5,6 +5,8 @@
 
   <div class="range-slider__slider" data-range-slider></div>
 
+  <button class="range-slider__custom-btn" data-range-custom-btn>OK</button>
+
   <div class="range-slider__custom">
       <div class="range-slider__custom-row">
           <div class="range-slider__custom-input">
@@ -15,8 +17,6 @@
               <input type="num" id="rangeTo" name="rangeTo" data-range-custom-to />
           </div>
       </div>
-
-      <button class="range-slider__custom-btn" data-range-custom-btn>OK</button>
   </div>
 </div>
 
