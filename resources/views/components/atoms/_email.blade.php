@@ -10,7 +10,7 @@
     @if (isset($textCount) and $textCount)
     <span class="input__io-container" data-behavior="textCount">
     @endif
-    <input class="f-secondary" type="{{ $type ?? 'email'}}" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" {{ $disabled ?? '' }}>
+    <input class="f-secondary" type="{{ $type ?? 'email'}}" value="{{ $value ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" {{ $disabled ?? '' }} {{ $required ?? '' }}>
     @if (isset($textCount) and $textCount)
     <output for="{{ $id ?? '' }}" class="f-secondary"></output></span>
     @endif

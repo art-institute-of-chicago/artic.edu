@@ -1,0 +1,140 @@
+.o-color-picker__wrapper {
+  height: 0;
+  width: 100;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.o-color-picker {
+  $color-background: white;
+
+  display: none; // for performance
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  @mixin centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @mixin circle($size) {
+    border-radius: 50%;
+    width: $size;
+    height: 0;
+    padding-bottom: $size;
+    box-shadow: inset 0 0 0 0.5px $color-background;
+  }
+
+  @mixin centered-circle($size) {
+    @include centered;
+    @include circle($size);
+    touch-action: none;
+  }
+
+  // https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
+  @mixin overflow-hidden() {
+    overflow: hidden;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+
+  @include centered;
+  width: 90%;
+  height: 0;
+  padding-bottom: 90%;
+
+  .o-color-picker__wheel {
+    @include overflow-hidden();
+  }
+
+  .o-color-picker__wheel--shade {
+    @include centered-circle(100%);
+    &:after {
+      @include centered-circle(90%);
+      content: '';
+      background-color: $color-background;
+    }
+  }
+
+  .o-color-picker__wheel--hue {
+    @include centered-circle(85%);
+    &:after {
+      @include centered-circle(45%);
+      content: '';
+      background-color: $color-background;
+    }
+  }
+
+  .o-color-picker__handle {
+    cursor: pointer;
+    @include centered;
+    width: 100%;
+    height: 100%;
+    display: none; // change via JS
+  }
+
+  .o-color-picker__center {
+    cursor: pointer;
+    @include centered-circle(35%);
+    @include overflow-hidden();
+
+    .o-color-picker__center__swatch {
+      @include centered-circle(95%);
+      content: '';
+      background-color: red;
+    }
+  }
+
+}
+
+.o-color-picker__form {
+  text-align: center;
+
+  height: 0;
+  overflow: hidden;
+  transition: height 0.15s;
+}
+
+.o-color-picker__submit {
+  @extend %f-tag;
+  display: inline-block;
+  margin-top: 16px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: $border-radius;
+  background-color: $color__black--5;
+  color: $color__black--54;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-appearance: none;
+
+  &:before, &:after {
+    content: none;
+  }
+
+  span {
+    display: inline-block;
+    width: 96px;
+    height: 32px;
+    margin-top: -8px;
+    margin-left: -12px;
+    margin-bottom: -12px;
+    margin-right: 12px;
+  }
+}
+
+.tag__color-swatch {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-top: -12px;
+  margin-bottom: -16px;
+  margin-left: 12px;
+  margin-right: 12px;
+}

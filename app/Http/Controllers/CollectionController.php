@@ -38,6 +38,14 @@ class CollectionController extends BaseScopedController
     {
         $collection = $this->collection()->perPage(static::PER_PAGE)->results();
 
+        // If first artwork accession number matches search query, redirect to artwork page
+        if ($collection->count()) {
+            $artwork = $collection->first();
+            if ($artwork->main_reference_number == request('q')) {
+                return redirect(route('artworks.show', $artwork));
+            }
+        }
+
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();

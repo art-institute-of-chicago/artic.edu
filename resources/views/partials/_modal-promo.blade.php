@@ -43,6 +43,7 @@
                         @component('components.atoms._input')
                             @slot('id', 'edit-submitted-first-name')
                             @slot('name', 'submitted[first_name]')
+                            @slot('required', 'required')
                             First name
                         @endcomponent
                     </p>
@@ -51,6 +52,7 @@
                         @component('components.atoms._input')
                             @slot('id', 'edit-submitted-last-name')
                             @slot('name', 'submitted[last_name]')
+                            @slot('required', 'required')
                             Last name
                         @endcomponent
                     </p>
@@ -61,12 +63,13 @@
                         @component('components.atoms._email')
                             @slot('id', 'edit-submitted-mail')
                             @slot('name', 'submitted[mail]')
+                            @slot('required', 'required')
                             Email address
                         @endcomponent
                     </p>
                 </div>
 
-                <input type="hidden" name="submitted[tlcsource]" value="{{ $modal['form_tlc_source'] }}">
+                <input type="hidden" name="submitted[tlcsource]" id="edit-submitted-tlcsource" value="{{ $modal['form_tlc_source'] }}" >
                 <input type="hidden" name="form_token" value="{{ $modal['form_token'] }}">
                 <input type="hidden" name="form_id" value="{{ $modal['form_id'] }}">
 
@@ -84,7 +87,7 @@
             </form>
 
             <button class="g-modal__close" data-behavior="closeRoadblock">
-                <svg aria-hidden="true" class="icon--close"><use xlink:href="#icon--close" /></svg>
+                <svg aria-hidden="true" class="icon--close" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="M3 3l10 10M13 3L3 13"></path></svg>
             </button>
         </div>
     </div>

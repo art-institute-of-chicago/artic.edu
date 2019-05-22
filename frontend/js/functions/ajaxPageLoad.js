@@ -221,6 +221,29 @@ const ajaxPageLoad = function() {
           clearTimeout(ajaxTimer);
         } catch(err) {}
         try {
+
+          // Parse response into a traversable Document object
+          var doc = document.implementation.createHTMLDocument('');
+          doc.open();
+          doc.write(data);
+          doc.close();
+
+          // Check canonical URL for redirects for pushState
+          var canonicalElement = doc.querySelector('head link[rel="canonical"]');
+          var canonicalUrl = canonicalElement ? canonicalElement.getAttribute('href') : options.href;
+          var re = new RegExp('(\\?.*)', 'gi');
+          var params = '';
+          var match = re.exec(options.href);
+          if (match) {
+            params = match[1];
+          }
+          var redirected = canonicalUrl ? (canonicalUrl + params) : options.href;
+
+          var el = document.createElement('a');
+          el.href = redirected;
+
+          options.href = el.pathname + params;
+
           triggerCustomEvent(document, 'setScrollDirection:machineScroll', { 'machineScroll': true });
           // parse returned page
           var doc = parseHTML(data,'native');

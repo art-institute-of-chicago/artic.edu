@@ -22,6 +22,9 @@ class ArtworkService extends BaseService
     {
         $tags = [];
 
+        // Build Most Similar Tag
+        $tags['most-similar'] = collect(['most-similar' => 'Most Similar']);
+
         // Build Style Tags
         if ($this->resource->style_id) {
             $exploreFurtherTags = Search::query()->resources(['category-terms'])->byIds($this->resource->style_id)->get();

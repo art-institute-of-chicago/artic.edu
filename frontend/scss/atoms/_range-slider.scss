@@ -73,7 +73,7 @@ range-slider
   @extend %f-tag;
   @include untuck;
   display: inline-block;
-  margin-top: 16px;
+  margin-top: 24px;
   padding: 8px 12px;
   border: 0;
   border-radius: $border-radius;
@@ -87,7 +87,7 @@ range-slider
 }
 
 .range-slider.s-capped {
-  max-height: 64px;
+  max-height: 120px;
 }
 
 .range-slider.s-capped + .m-filters__show-more-toggle svg {

@@ -12,7 +12,7 @@ class Search extends BaseApiModel
 
     protected $endpoints = [
         'search' => '/api/v1/search',
-        'autocomplete' => '/api/v2/msuggest' // TODO: Dead code?
+        'msearch' => '/api/v1/msearch',
     ];
 
     // This defines how to map a returned type to one of our API models
@@ -96,11 +96,11 @@ class Search extends BaseApiModel
             'is_public_domain' => 'is_public_domain'
         ];
 
-        // Standardize to array with default size 5
+        // Standardize to array with default size 8
         $aggsParams = array_map(function ($param) {
             return is_array($param) ? $param : [
                 'field' => $param,
-                'size' => 5,
+                'size' => 8,
             ];
         }, $aggsParams);
 
@@ -348,37 +348,150 @@ class Search extends BaseApiModel
 
         $hsl = explode('-', $hsl);
 
+        // Match `percentInterval` in colorPickerFilter.js
+        $hi = 12.5;
+        $si = 30;
+        $li = 30;
+
+        $hueMin = ($hsl[0] - $hi/2 / 100 * 360);
+        $hueMax = ($hsl[0] + $hi/2 / 100 * 360);
+
+        $hueQueries = [
+            [
+                'range' => [
+                    'color.h' => [
+                        'gte' => max($hueMin, 0),
+                        'lte' => min($hueMax, 360),
+                    ]
+                ]
+            ],
+        ];
+
+        if ($hueMin < 0) {
+            $hueQueries[] = [
+                'range' => [
+                    'color.h' => [
+                        'gte' => $hueMin + 360,
+                        'lte' => 360,
+                    ]
+                ]
+            ];
+        }
+
+        if ($hueMax > 360) {
+            $hueQueries[] = [
+                'range' => [
+                    'color.h' => [
+                        'gte' => 0,
+                        'lte' => $hueMax - 360,
+                    ]
+                ]
+            ];
+        }
+
         $params = [
-            "bool" => [
-                "must" => [
+            'bool' => [
+                'must' => [
                     [
-                        [
-                            "range" => [
-                                "color.h" => [
-                                    "gte" => ($hsl[0] - 5),
-                                    "lte" => ($hsl[0] + 5),
-                                ]
+                        'bool' => [
+                            'should' => $hueQueries,
+                        ]
+                    ],
+                    [
+                        'range' => [
+                            'color.s' => [
+                                'gte' => max($hsl[1] - $si/2, 0),
+                                'lte' => min($hsl[1] + $si/2, 100),
                             ]
-                        ],
-                        [
-                            "range" => [
-                                "color.s" => [
-                                    "gte" => ($hsl[1] - 5),
-                                    "lte" => ($hsl[1] + 5),
-                                ]
-                            ]
-                        ],
-                        [
-                            "range" => [
-                                "color.l" => [
-                                    "gte" => ($hsl[2] - 5),
-                                    "lte" => ($hsl[2] + 5),
-                                ]
+                        ]
+                    ],
+                    [
+                        'range' => [
+                            'color.l' => [
+                                'gte' => max($hsl[2] - $li/2, 0),
+                                'lte' => min($hsl[2] + $li/2, 100),
                             ]
                         ]
                     ]
                 ]
             ]
+        ];
+
+        // An alternative to `sort` that doesn't override relevancy:
+        // $query = $query->rawQuery([
+        //     'functions' => [
+        //         'artworks' => [
+        //             [
+        //                 'filter' => [
+        //                     'exists' => [
+        //                         'field' => 'color.percentage',
+        //                     ],
+        //                 ],
+        //                 'field_value_factor' => [
+        //                     'field' => 'color.percentage',
+        //                     'modifier' => 'log1p',
+        //                     'factor' => 1.5,
+        //                     'missing' => 0,
+        //                 ],
+        //             ],
+        //         ],
+        //     ],
+        // ]);
+
+        // The `sort` option was preferred by users during testing:
+        $query = $query->rawQuery([
+            'sort' => [
+                'color.percentage' => 'desc'
+            ]
+        ]);
+
+        return $query->rawSearch($params);
+    }
+
+    public function scopeByMostSimilar($query, $id)
+    {
+        if (empty($id)) {
+            return $query;
+        }
+
+        $query->forceEndpoint('msearch');
+        $query->boost(FALSE);
+
+        // Generalize this if we want to use this scope on Selections or
+        // other pages
+        $item = \App\Models\Api\Artwork::query()
+              ->findOrFail((Integer) $id);
+
+        $shoulds = [
+            $this->basicQuery('classification_id', $item->classification_id, 4),
+            $this->basicQuery('artist_id', $item->artist_id, 3),
+            $this->basicQuery('style_id', $item->style_id, 2),
+        ];
+
+        $date_start = incrementBefore($item->date_start);
+        $date_end = incrementAfter($item->date_start);
+        $dateQuery = $this->dateQuery($date_start, $date_end, 1);
+        array_push($shoulds, $dateQuery);
+
+        // if ($item->color ?? false) {
+        //     $colorQuery = $this->colorQuery($item->color);
+        //     $colorQuery['bool']['boost'] = 1;
+        //     array_push( $shoulds, $colorQuery );
+        // }
+
+        // Filter out empty array queries
+        $shoulds = array_filter($shoulds);
+
+        $params = [
+            "bool" => [
+                "should" => collect($shoulds)->values()->all(),
+                "minimum_should_match" => 2,
+                "filter" => [
+                    'exists' => [
+                        'field' => 'image_id',
+                    ],
+                ],
+            ],
         ];
 
         return $query->rawSearch($params);
@@ -729,5 +842,91 @@ class Search extends BaseApiModel
         ];
 
         return $query->rawQuery($params);
+    }
+
+    protected function basicQuery($field, $value, $boost = 0)
+    {
+        if (!$value)
+        {
+            return [];
+        }
+        return [
+            "bool" => [
+                "boost" => $boost,
+                "must" => [
+                    [
+                        "term" => [
+                            $field => $value,
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    protected function dateQuery($date_start, $date_end, $boost = 0)
+    {
+        if (!$date_start || !$date_end) {
+            return [];
+        }
+        return [
+            "bool" => [
+                "boost" => $boost,
+                "must" => [
+                    [
+                        "range" => [
+                            "date_start" => [
+                                "gte" => $date_start
+                            ]
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "date_end" => [
+                                "lte" => $date_end
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    protected function colorQuery($color, $boost = 0)
+    {
+        if (!$color) {
+            return [];
+        }
+        return [
+            "bool" => [
+                "boost" => $boost,
+                "must" => [
+                    [
+                        "range" => [
+                            "color.h" => [
+                                "gte" => ($color->h - 5),
+                                "lte" => ($color->h + 5),
+                            ]
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "color.s" => [
+                                "gte" => ($color->s - 5),
+                                "lte" => ($color->s + 5),
+                            ]
+                        ]
+                    ],
+                    [
+                        "range" => [
+                            "color.l" => [
+                                "gte" => ($color->l - 5),
+                                "lte" => ($color->l + 5),
+                            ]
+                        ]
+                    ]
+                ],
+            ],
+        ];
     }
 }

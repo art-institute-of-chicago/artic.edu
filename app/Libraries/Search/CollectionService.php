@@ -76,6 +76,9 @@ class CollectionService
         // Generate listing filters
         $filters = $this->buildListFilters($this->results->getMetadata('aggregations'));
 
+        // Color Filter
+        $filters->prepend($this->buildColorFilters());
+
         // Date Filter
         $filters->prepend($this->buildDateFilters());
 
@@ -123,7 +126,7 @@ class CollectionService
                     if ($category['enabled']) {
                         $activeFilters->push([
                             'href'  => $category['href'],
-                            'label' => 'Color'
+                            'label' => $category['label']
                         ]);
                     }
                     break;
@@ -143,9 +146,8 @@ class CollectionService
         $themes     = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
         $galleries  = (new Filters\Galleries())->generate();
-        $color      = (new Filters\ColorFilter())->generate();
 
-        return array_merge($themes, $techniques, $galleries, $color);
+        return array_merge($themes, $techniques, $galleries);
     }
 
     /**
@@ -186,6 +188,12 @@ class CollectionService
     {
         $dateFilters = new DateRange();
         return $dateFilters->generate();
+    }
+
+    protected function buildColorFilters()
+    {
+        $colorFilters = new ColorFilter();
+        return $colorFilters->generate();
     }
 
     protected function buildBooleanFilters()

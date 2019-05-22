@@ -5,6 +5,7 @@ namespace App\Libraries\Api\Builders;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Container\Container;
+use App\Libraries\Api\Builders\Grammar\MsearchGrammar;
 
 class ApiQueryBuilder {
 
@@ -37,6 +38,13 @@ class ApiQueryBuilder {
      * @var int
      */
     public $offset;
+
+    /**
+     * Whether to apply boosting or not
+     *
+     * @var boolean
+     */
+    public $boost = TRUE;
 
 
     /**
@@ -393,6 +401,19 @@ class ApiQueryBuilder {
     }
 
     /**
+     * Set the "boost" value of the query.
+     *
+     * @param  boolean  $value
+     * @return $this
+     */
+    public function boost($value = TRUE)
+    {
+        $this->boost = $value;
+
+        return $this;
+    }
+
+    /**
      * Search for specific resources
      *
      * @param  string  $search
@@ -484,8 +505,12 @@ class ApiQueryBuilder {
 
         $this->columns = $original;
 
-        // If it's a single element return as a collection with 1 element
-        if (is_array($results->body->data)) {
+        if (is_array($results->body)) {
+            // If it's an msearch result return first element
+            $collection = collectApi($results->body[0]->data);
+        }
+        elseif (is_array($results->body->data)) {
+            // If it's a single element return as a collection with 1 element
             $collection = collectApi($results->body->data);
         } else {
             $collection = collectApi([$results->body->data]);
@@ -542,7 +567,11 @@ class ApiQueryBuilder {
      */
     public function runGet($endpoint)
     {
-        return $this->connection->ttl($this->ttl)->get($endpoint, $this->resolveParameters());
+        $grammar = null;
+        if ($endpoint == '/api/v1/msearch') {
+            $grammar = new MsearchGrammar;
+        }
+        return $this->connection->ttl($this->ttl)->get($endpoint, $this->resolveParameters($grammar));
     }
 
     /**
@@ -550,8 +579,11 @@ class ApiQueryBuilder {
      *
      * @return string
      */
-    public function resolveParameters()
+    public function resolveParameters($grammar = null)
     {
+        if ($grammar) {
+            return $grammar->compileParameters($this);
+        }
         return $this->grammar->compileParameters($this);
     }
 

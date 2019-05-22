@@ -124,6 +124,16 @@ a.m-link-list__trigger.f-secondary {
   &:active:hover .m-link-list__label {
     @include text-underline(1.02em, $color__link--active);
   }
+
+  .m-link-list--quiet & {
+    color: $color__link--active;
+
+    &:hover,
+    &:focus:hover,
+    &:active:hover {
+      color: $color__link--hover;
+    }
+  }
 }
 
 // TODO: Is this needed anymore?

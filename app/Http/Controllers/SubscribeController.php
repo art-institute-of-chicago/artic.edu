@@ -13,7 +13,7 @@ class SubscribeController extends Controller
     {
         $data = $request->validate(['email'=>'required|email', 'subscriptions' => 'sometimes']);
 
-        $exactTarget = new ExactTargetService($data['email'], $data['subscriptions']);
+        $exactTarget = new ExactTargetService($data['email'], $data['subscriptions'] ?? null);
         $response = $exactTarget->subscribe(false);
 
         if ($response === true) {

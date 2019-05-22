@@ -59,6 +59,7 @@
         "files": [
             "app/Helpers/BlockHelpers.php",
             "app/Helpers/ImageHelpers.php",
+            "app/Helpers/ColorHelpers.php",
             "app/Helpers/DatesHelpers.php",
             "app/Helpers/QueryHelpers.php",
             "app/Helpers/SessionHelpers.php",

@@ -20,6 +20,7 @@ export { default as filterToggleShowMore } from './filterToggleShowMore';
 export { default as filterWhittleDown } from './filterWhittleDown';
 export { default as rangeSlider } from './rangeSlider';
 export { default as collectionSearch } from './collectionSearch';
+export { default as colorPickerFilter } from './colorPickerFilter';
 export { default as showCollectionFilters } from './showCollectionFilters';
 export { default as showCollectionSearch } from './showCollectionSearch';
 export { default as hideCollectionFilters } from './hideCollectionFilters';
