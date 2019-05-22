@@ -1,25 +1,27 @@
 <template>
-  <div class="content">
+  <div class="content" ref="wrapper">
     <br />
     <h1>Seamless Previewer</h1>
     <div v-if="hotspotsEnabled">
         <br />
-        <input type="checkbox" v-model="hotspotsMode"> Hotspots Mode 
+        <input type="checkbox" v-model="hotspotsMode"> Hotspots Mode
     </div>
     <br />
     <div class="previewer">
         <h1 v-if="fileId && processing"> Processing... </h1>
         <h1 v-if="images.length === 0 && !processing"> Error: Something went wrong. Please try re-uploading the zip file</h1>
-        <div class="images-container"  v-on:click="addHotspot" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}"> 
-            <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
-            <div class="hotspot"
-                v-bind:class="{ hotspot_active: currentHotspot == hotspot }"
-                v-for="(hotspot, index) in hotspots" :key="hotspot.x"
-                v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%', transform: currentHotspot === hotspot ? 'translateX(-25%) translateY(-25%) scale(' + 200 / scale + ')' : 'translate(-50%, -50%) scale(' + 100 / scale + ')'}"
-                v-on:click.stop="showHotspotInfo(index)"
-                v-show="hotspotsEnabled"
-                @mousedown.stop="hotspotDragStart($event, index)"
-                ></div>
+        <div class="previewer__inner" :style="{transform: 'scale('+ previewerScale +')'}">
+            <div class="images-container"  v-on:click="addHotspot" @mousedown.prevent="dragStart" @mousemove.prevent="dragging" :style="{cursor: isDragging ? 'grabbing' : 'grab', top: imagePos.y + 'px', left: imagePos.x + 'px', transform: 'translate(' + translate.x + '%, ' + translate.y + '%) scale(' + scale / 100 + ')'}">
+                <img v-for="image in images" v-bind:key="image.frame" :src="image.url" class="sequence-image" v-show="currentFrame === image.frame"/>
+                <div class="hotspot"
+                    v-bind:class="{ hotspot_active: currentHotspot == hotspot }"
+                    v-for="(hotspot, index) in hotspots" :key="hotspot.x"
+                    v-bind:style="{ left: hotspot.x + '%', top: hotspot.y + '%', transform: currentHotspot === hotspot ? 'translateX(-25%) translateY(-25%) scale(' + 200 / scale + ')' : 'translate(-50%, -50%) scale(' + 100 / scale + ')'}"
+                    v-on:click.stop="showHotspotInfo(index)"
+                    v-show="hotspotsEnabled"
+                    @mousedown.stop="hotspotDragStart($event, index)"
+                    ></div>
+            </div>
         </div>
         <div class="previewer-panel">
             <p v-if="!isSeamlessImage">Frame {{ currentFrame }}</p>
@@ -77,6 +79,10 @@
         };
         this.updateSequence();
         window.addEventListener('mouseup', this.dragStop);
+        window.addEventListener('resize', this.onResize);
+    },
+    updated () {
+        this.setPreviewerSize();
     },
     data () {
         return {
@@ -103,6 +109,7 @@
                 y: 0
             },
             fileId: null,
+            previewerScale: 1,
         }
     },
     computed: {
@@ -142,7 +149,7 @@
                 this.currentFrame = data.frame;
                 this.translate.x = data.x,
                 this.translate.y = data.y,
-                this.scale = data.scale 
+                this.scale = data.scale
             }
         },
         ...mapState({
@@ -303,6 +310,16 @@
             field.value = this.hotspots
             this.$store.commit(FORM.UPDATE_FORM_FIELD, field)
         },
+        setPreviewerSize(){
+            let colWidth = this.$refs.wrapper.clientWidth;
+            let winWidth = 1366;
+            let scale = colWidth / winWidth;
+
+            this.previewerScale = scale;
+        },
+        onResize(event) {
+            this.setPreviewerSize();
+        }
     }
   }
 </script>
@@ -311,11 +328,23 @@
     .previewer {
         position: relative;
         display: inline-block;
-        width: 572px;
-        height: 400px;
+        width: 100%;
+        padding-top: 75%;
+        // width: 1366px;
+        // height: 1024px;
         background-color: gainsboro;
         overflow: hidden;
         border: 1px solid gainsboro;
+        transform-origin: top left;
+    }
+    .previewer__inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1366px;
+        height: 1024px;
+        transform-origin: top left;
+        overflow: hidden;
     }
     .images-container {
         position: absolute;
@@ -340,7 +369,7 @@
         background-color: orange;
         border: 2px solid gray;
         border-radius: 50% 50%;
-        box-sizing: border-box; 
+        box-sizing: border-box;
         z-index: 1;
     }
     .hotspot_active {
