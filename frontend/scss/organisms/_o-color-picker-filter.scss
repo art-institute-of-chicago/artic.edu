@@ -68,6 +68,7 @@
     @include centered;
     width: 100%;
     height: 100%;
+    display: none; // change via JS
   }
 
   .o-color-picker__center {
@@ -86,6 +87,10 @@
 
 .o-color-picker__form {
   text-align: center;
+
+  height: 0;
+  overflow: hidden;
+  transition: height 0.15s;
 }
 
 .o-color-picker__submit {

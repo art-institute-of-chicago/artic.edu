@@ -11,6 +11,7 @@ const colorPickerFilter = function(container) {
       shadeHandleElement,
       centerHandleElement,
       currentColorElement,
+      submitForm,
       submitButton;
 
   const colors = [
@@ -45,6 +46,8 @@ const colorPickerFilter = function(container) {
 
   const handleOffset = 5;
 
+  let hasInitialized = false;
+
   let hueWheelAngle = 0;
   let shadeWheelAngle = 270;
 
@@ -53,6 +56,11 @@ const colorPickerFilter = function(container) {
   let currentColor = colors[0];
   let currentShadedColor = currentColor;
   let currentColorString = hexToCss(currentShadedColor);
+
+  function initShowElements() {
+    submitForm.setAttribute('style', 'height: 48px');
+    hasInitialized = true;
+  }
 
   function _handleSubmit(event) {
     event.preventDefault();
@@ -94,6 +102,7 @@ const colorPickerFilter = function(container) {
 
     currentColorElement = document.querySelector('.o-color-picker__center__swatch');
 
+    submitForm = document.querySelector('.o-color-picker__form');
     submitButton = document.querySelector('.o-color-picker__submit');
 
     [shadeHandleElement, hueHandleElement, centerHandleElement].forEach(function(handleElement, i) {
@@ -136,6 +145,7 @@ const colorPickerFilter = function(container) {
       let angles = queryStringObject.angle.split('-');
       hueWheelAngle = angles[0];
       shadeWheelAngle = angles[1];
+      initShowElements();
     }
 
     updateHueWheel();
@@ -209,6 +219,8 @@ const colorPickerFilter = function(container) {
     window.addEventListener('mousemove', currentDragFunction, {passive: false});
     window.addEventListener('touchmove', currentDragFunction, {passive: false});
 
+    initShowElements();
+
     currentDragFunction(event);
   };
 
@@ -262,12 +274,14 @@ const colorPickerFilter = function(container) {
     hueHandleElement.setAttribute(
       'style',
       'transform:translate(-50%, -50%) rotate(' + hueWheelAngle + 'deg);' +
-      'color:' + hexToCss(currentColor) + ';'
+      'color:' + hexToCss(currentColor) + ';' +
+      (hasInitialized ? 'display: block;' : '')
     );
 
     centerHandleElement.setAttribute(
       'style',
-      'transform:translate(-50%, -50%) rotate(' + hueWheelAngle + 'deg);'
+      'transform:translate(-50%, -50%) rotate(' + hueWheelAngle + 'deg);' +
+      (hasInitialized ? 'display: block;' : '')
     );
   }
 
@@ -293,7 +307,8 @@ const colorPickerFilter = function(container) {
     shadeHandleElement.setAttribute(
       'style',
       'transform:translate(-50%, -50%) rotate(' + shadeWheelAngle + 'deg);' +
-      'color:' + hexToCss(currentDisplayShade) + ';'
+      'color:' + hexToCss(currentDisplayShade) + ';' +
+      (hasInitialized ? 'display: block;' : '')
     );
 
   }
@@ -301,7 +316,7 @@ const colorPickerFilter = function(container) {
   function updateCurrentColorElement() {
     currentColorElement.setAttribute(
       'style',
-      'background-color:' + hexToCss(currentShadedColor) + ';'
+      'background-color:' + (hasInitialized ? hexToCss(currentShadedColor) : 'transparent') + ';'
     );
 
     submitButton.innerHTML = ''
