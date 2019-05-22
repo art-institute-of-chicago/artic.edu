@@ -36,13 +36,19 @@
     touch-action: none;
   }
 
+  // https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
+  @mixin overflow-hidden() {
+    overflow: hidden;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+
   @include centered;
   width: 90%;
   height: 0;
   padding-bottom: 90%;
 
   .o-color-picker__wheel {
-    overflow: hidden;
+    @include overflow-hidden();
   }
 
   .o-color-picker__wheel--shade {
@@ -74,7 +80,7 @@
   .o-color-picker__center {
     cursor: pointer;
     @include centered-circle(35%);
-    overflow: hidden;
+    @include overflow-hidden();
 
     .o-color-picker__center__swatch {
       @include centered-circle(95%);
