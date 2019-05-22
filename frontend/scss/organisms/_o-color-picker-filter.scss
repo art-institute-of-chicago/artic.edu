@@ -74,7 +74,11 @@
     @include centered;
     width: 100%;
     height: 100%;
-    display: none; // change via JS
+    display: none;
+
+    &.o-color-picker__handle--initialized {
+      display: block;
+    }
   }
 
   .o-color-picker__center {

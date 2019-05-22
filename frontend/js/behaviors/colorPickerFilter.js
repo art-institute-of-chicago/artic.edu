@@ -59,6 +59,9 @@ const colorPickerFilter = function(container) {
 
   function initShowElements() {
     submitForm.setAttribute('style', 'height: 48px');
+    [shadeHandleElement, hueHandleElement, centerHandleElement].forEach(function(handleElement, i) {
+      handleElement.classList.add('o-color-picker__handle--initialized');
+    });
     hasInitialized = true;
   }
 
@@ -274,14 +277,12 @@ const colorPickerFilter = function(container) {
     hueHandleElement.setAttribute(
       'style',
       'transform:translate(-50%, -50%) rotate(' + hueWheelAngle + 'deg);' +
-      'color:' + hexToCss(currentColor) + ';' +
-      (hasInitialized ? 'display: block;' : '')
+      'color:' + hexToCss(currentColor) + ';'
     );
 
     centerHandleElement.setAttribute(
       'style',
-      'transform:translate(-50%, -50%) rotate(' + hueWheelAngle + 'deg);' +
-      (hasInitialized ? 'display: block;' : '')
+      'transform:translate(-50%, -50%) rotate(' + hueWheelAngle + 'deg);'
     );
   }
 
@@ -307,8 +308,7 @@ const colorPickerFilter = function(container) {
     shadeHandleElement.setAttribute(
       'style',
       'transform:translate(-50%, -50%) rotate(' + shadeWheelAngle + 'deg);' +
-      'color:' + hexToCss(currentDisplayShade) + ';' +
-      (hasInitialized ? 'display: block;' : '')
+      'color:' + hexToCss(currentDisplayShade) + ';'
     );
 
   }
