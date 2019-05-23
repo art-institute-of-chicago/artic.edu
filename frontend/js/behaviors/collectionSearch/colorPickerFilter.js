@@ -144,10 +144,8 @@ const colorPickerFilter = function(container) {
 
     let queryStringObject = queryStringHandler.toObject(window.location.href);
 
-    if (queryStringObject.hasOwnProperty('angle')) {
-      let angles = queryStringObject.angle.split('-');
-      hueWheelAngle = angles[0];
-      shadeWheelAngle = angles[1];
+    if (queryStringObject.hasOwnProperty('color')) {
+      convertColorParam(queryStringObject.color);
       initShowElements();
     }
 
@@ -210,6 +208,57 @@ const colorPickerFilter = function(container) {
     setTimeout(function(){
       container.setAttribute('style', 'display: none');
     }, 432);
+  }
+
+  // Figure out how to transform a color into angles
+  function convertColorParam(rawColorParam) {
+    rawColorParam = rawColorParam.split('-');
+
+    let colorParam = {
+      'h': rawColorParam[0],
+      's': rawColorParam[1],
+      'l': rawColorParam[2],
+    };
+
+    let colorParamHex = hslToHex(colorParam.h, colorParam.s, colorParam.l);
+
+    let hslColors = colors.map(x => hexToHslInt(hexToCss(x)));
+    hslColors[hslColors.length - 1].h += 360; // duplicate color
+
+    let floorColorIndex = null;
+
+    // Assuming that the hues in `colors` increment, find the "floor" color
+    hslColors.forEach(function(hslColor, i) {
+      if (i === 0) {
+        return;
+      }
+
+      if (hslColors[i-1].h < colorParam.h && colorParam.h < hslColor.h) {
+        floorColorIndex = i-1;
+      }
+    });
+
+    if (floorColorIndex === null) {
+      return;
+    }
+
+    // Determine the hue angle
+    let floorColorHue = hslColors[floorColorIndex].h;
+    let ceilColorHue = hslColors[floorColorIndex+1].h;
+
+    hueWheelAngle = anglePerColor * floorColorIndex;
+    hueWheelAngle += anglePerColor * (colorParam.h - floorColorHue) / (ceilColorHue - floorColorHue);
+
+    // Figure out the max and min shades possible at this hue
+    let minShadedColor = hexToHslInt(hexToCss(lerpColor(colorParamHex, 0x000000, maxShadeFactor)));
+    let maxShadedColor = hexToHslInt(hexToCss(lerpColor(colorParamHex, 0xffffff, maxShadeFactor)));
+
+    // TODO: This percentage is not linear
+    let luminocityPercent = (colorParam.l - minShadedColor.l) / (maxShadedColor.l - minShadedColor.l);
+    let saturationPercent = (colorParam.s - minShadedColor.s) / (maxShadedColor.s - minShadedColor.s);
+    let shadePercent = (luminocityPercent + saturationPercent) / 2;
+
+    shadeWheelAngle = Math.floor(180 * shadePercent);
   }
 
   function enableDragFunction(event) {
@@ -405,8 +454,48 @@ const colorPickerFilter = function(container) {
     return HSL;
   }
 
+  function hexToHslInt(hex) {
+    let hsl = hexToHSL(hex);
+    hsl.h = Math.floor(hsl.h * 360);
+    hsl.s = Math.floor(hsl.s * 100);
+    hsl.l = Math.floor(hsl.l * 100);
+    return hsl;
+  }
+
   function hexToCss(hex) {
     return '#' + hex.toString(16).padStart(6, '0');
+  }
+
+  /**
+   * @link https://stackoverflow.com/questions/36721830/convert-hsl-to-rgb-and-hex
+   */
+  function hslToHex(h, s, l) {
+    h /= 360;
+    s /= 100;
+    l /= 100;
+    let r, g, b;
+    if (s === 0) {
+      r = g = b = l; // achromatic
+    } else {
+      const hue2rgb = (p, q, t) => {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
+      };
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      const p = 2 * l - q;
+      r = hue2rgb(p, q, h + 1 / 3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1 / 3);
+    }
+    const toHex = x => {
+      const hex = Math.round(x * 255).toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    };
+    return parseInt(`0x${toHex(r)}${toHex(g)}${toHex(b)}`, 16);
   }
 };
 
