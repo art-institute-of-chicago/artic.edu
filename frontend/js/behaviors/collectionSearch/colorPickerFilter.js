@@ -10,9 +10,11 @@ const colorPickerFilter = function(container) {
       hueHandleElement,
       shadeHandleElement,
       centerHandleElement,
-      currentColorElement,
+      colorSwatchElement,
+      monochromeSwatchElement,
       submitForm,
-      submitButton;
+      submitButton,
+      monochromeButton;
 
   const colors = [
     0xff3e3e,
@@ -46,8 +48,6 @@ const colorPickerFilter = function(container) {
 
   const handleOffset = 5;
 
-  let hasInitialized = false;
-
   let hueWheelAngle = 0;
   let shadeWheelAngle = 270;
 
@@ -57,18 +57,65 @@ const colorPickerFilter = function(container) {
   let currentShadedColor = currentColor;
   let currentColorString = hexToCss(currentShadedColor);
 
-  function initShowElements() {
+  let isMonochromeSelected = false;
+
+  function showSharedElements() {
     submitForm.setAttribute('style', 'height: 48px');
+  }
+
+  function toggleColorElements(shouldHide) {
+    shouldHide = (typeof shouldHide !== 'undefined' ? shouldHide : false)
+    let method = shouldHide ? 'remove' : 'add';
     [shadeHandleElement, hueHandleElement, centerHandleElement].forEach(function(handleElement, i) {
-      handleElement.classList.add('o-color-picker__handle--initialized');
+      handleElement.classList[method]('o-color-picker__handle--initialized');
     });
-    hasInitialized = true;
+    colorSwatchElement.classList[method]('o-color-picker__center__swatch--initialized');
+    showSharedElements();
+  }
+
+  function toggleMonochromeElements(shouldHide) {
+    shouldHide = (typeof shouldHide !== 'undefined' ? shouldHide : false)
+    let method = shouldHide ? 'remove' : 'add';
+    monochromeSwatchElement.classList[method]('o-color-picker__center__swatch--initialized');
+    showSharedElements();
+    if (!shouldHide) {
+      submitButton.innerHTML = ''
+        + '<span class="o-color-picker__button--submit--monochrome">'
+        + '</span>'
+        + 'OK';
+    }
+  }
+
+  function selectMonochrome() {
+    isMonochromeSelected = true;
+
+    toggleMonochromeElements();
+    toggleColorElements(true);
   }
 
   function _handleSubmit(event) {
     event.preventDefault();
     event.stopPropagation();
 
+    let href = isMonochromeSelected ? getMonochromeHref() : getColorHref();
+
+    triggerCustomEvent(document, 'ajax:getPage', {
+      url: href,
+      ajaxScrollTarget: 'collection'
+    });
+  }
+
+  function getMonochromeHref() {
+    let href = window.location.href;
+
+    href = queryStringHandler.updateParameter(href, 'monochrome', '1');
+    href = removeURLParameter(href, 'color');
+    href = removeURLParameter(href, 'angle');
+
+    return href;
+  }
+
+  function getColorHref() {
     let currentColorQuery = hexToHSL(currentColorString);
 
     currentColorQuery = [
@@ -81,11 +128,9 @@ const colorPickerFilter = function(container) {
 
     href = queryStringHandler.updateParameter(href, 'color', currentColorQuery.join('-'))
     href = queryStringHandler.updateParameter(href, 'angle', [hueWheelAngle, shadeWheelAngle].join('-'))
+    href = removeURLParameter(href, 'monochrome');
 
-    triggerCustomEvent(document, 'ajax:getPage', {
-      url: href,
-      ajaxScrollTarget: 'collection'
-    });
+    return href;
   }
 
   const that = this;
@@ -103,10 +148,13 @@ const colorPickerFilter = function(container) {
     shadeHandleElement = document.querySelector('.o-color-picker__handle--shade');
     centerHandleElement = document.querySelector('.o-color-picker__handle--center');
 
-    currentColorElement = document.querySelector('.o-color-picker__center__swatch');
+    colorSwatchElement = document.querySelector('.o-color-picker__center__swatch--color');
+    monochromeSwatchElement = document.querySelector('.o-color-picker__center__swatch--monochrome');
 
     submitForm = document.querySelector('.o-color-picker__form');
-    submitButton = document.querySelector('.o-color-picker__submit');
+    submitButton = document.querySelector('.o-color-picker__button--submit');
+
+    monochromeButton = document.querySelector('.o-color-picker__button--monochrome');
 
     [shadeHandleElement, hueHandleElement, centerHandleElement].forEach(function(handleElement, i) {
       let percentInterval = (
@@ -146,7 +194,12 @@ const colorPickerFilter = function(container) {
 
     if (queryStringObject.hasOwnProperty('color')) {
       convertColorParam(queryStringObject.color);
-      initShowElements();
+      toggleColorElements();
+      toggleMonochromeElements(true);
+    } else if (queryStringObject.hasOwnProperty('monochrome')) {
+      isMonochromeSelected = true;
+      toggleMonochromeElements();
+      toggleColorElements(true);
     }
 
     updateHueWheel();
@@ -160,6 +213,12 @@ const colorPickerFilter = function(container) {
           + '</span>'
           + '<svg class="icon--close"><use xlink:href="#icon--close" /></svg>';
       }
+      if (a.textContent.trim().startsWith('Monochrome')) {
+        a.innerHTML = 'Monochrome'
+          + '<span class="tag__color-swatch tag__color-swatch--monochrome">'
+          + '</span>'
+          + '<svg class="icon--close"><use xlink:href="#icon--close" /></svg>';
+      }
     });
 
     // Toggle `display` for performance as sidebar resizes
@@ -169,6 +228,7 @@ const colorPickerFilter = function(container) {
     document.addEventListener('ajaxPageLoad:complete', _init, false);
 
     submitButton.addEventListener('click', _handleSubmit, false);
+    monochromeButton.addEventListener('click', selectMonochrome, false);
 
     if ((document.querySelector('html').className + " ").replace(/[\n\t]/g, " ").indexOf(" s-collection-filters-active ") > -1) {
       _showFilters();
@@ -178,6 +238,7 @@ const colorPickerFilter = function(container) {
   this.destroy = function() {
     // Remove specific event handlers
     submitButton.removeEventListener('click', _handleSubmit);
+    monochromeButton.removeEventListener('click', selectMonochrome);
 
     hueWheelElement.removeEventListener('mousedown', enableHueDragFunction);
     hueWheelElement.removeEventListener('touchstart', enableHueDragFunction);
@@ -271,7 +332,10 @@ const colorPickerFilter = function(container) {
     window.addEventListener('mousemove', currentDragFunction, {passive: false});
     window.addEventListener('touchmove', currentDragFunction, {passive: false});
 
-    initShowElements();
+    isMonochromeSelected = false;
+
+    toggleColorElements();
+    toggleMonochromeElements(true);
 
     currentDragFunction(event);
   };
@@ -363,15 +427,17 @@ const colorPickerFilter = function(container) {
   }
 
   function updateCurrentColorElement() {
-    currentColorElement.setAttribute(
+    colorSwatchElement.setAttribute(
       'style',
-      'background-color:' + (hasInitialized ? hexToCss(currentShadedColor) : 'transparent') + ';'
+      'background-color:' + hexToCss(currentShadedColor) + ';'
     );
 
-    submitButton.innerHTML = ''
-      + '<span style="background-color:' + currentColorString + '">'
-      + '</span>'
-      + 'OK';
+    if (!isMonochromeSelected) {
+      submitButton.innerHTML = ''
+        + '<span style="background-color:' + currentColorString + '">'
+        + '</span>'
+        + 'OK';
+    }
   }
 
   function enableHueDragFunction(event) {
@@ -496,6 +562,27 @@ const colorPickerFilter = function(container) {
       return hex.length === 1 ? '0' + hex : hex;
     };
     return parseInt(`0x${toHex(r)}${toHex(g)}${toHex(b)}`, 16);
+  }
+
+  function removeURLParameter(url, parameter) {
+    //prefer to use l.search if you have a location/link object
+    var urlparts = url.split('?');
+    if (urlparts.length >= 2) {
+
+        var prefix = encodeURIComponent(parameter) + '=';
+        var pars = urlparts[1].split(/[&;]/g);
+
+        //reverse iteration as may be destructive
+        for (var i = pars.length; i-- > 0;) {
+            //idiom for string.startsWith
+            if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+                pars.splice(i, 1);
+            }
+        }
+
+        return urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
+    }
+    return url;
   }
 };
 

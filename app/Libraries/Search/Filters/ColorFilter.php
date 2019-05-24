@@ -18,7 +18,12 @@ class ColorFilter
 
         if (request()->filled('color')) {
             $base['href'] = route('collection', request()->except(['page', 'color', 'angle']));
-            $base['label'] = $this->generateLabel();
+            $base['label'] = $this->generateColorLabel();
+            $base['active'] = true;
+            $base['enabled'] = true;
+        } elseif (request()->filled('monochrome')) {
+            $base['href'] = route('collection', request()->except(['page', 'monochrome']));
+            $base['label'] = 'Monochrome';
             $base['active'] = true;
             $base['enabled'] = true;
         }
@@ -26,7 +31,7 @@ class ColorFilter
         return $base;
     }
 
-    private function generateLabel()
+    private function generateColorLabel()
     {
         $color = explode('-', request()->get('color'));
         $color[0] = $color[0] / 360;

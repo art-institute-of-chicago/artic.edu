@@ -46,6 +46,7 @@ class BaseScopedController extends FrontController
         'place_ids' => 'byPlaces',
         'artwork_type_id' => 'byArtworkType',
         'color' => 'byColor',
+        'monochrome' => 'isMonochrome',
         'sort_by' => 'sortBy',
         'date-start' => 'yearMin',
         'date-end' => 'yearMax',

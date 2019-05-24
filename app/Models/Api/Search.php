@@ -408,6 +408,23 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopeIsMonochrome($query, $monochromacity)
+    {
+        $params = [
+            "bool" => [
+                "must" => [
+                    [
+                        "term" => [
+                            "colorfulness" => 0
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopeByColor($query, $hsl)
     {
         if (empty($hsl)) {

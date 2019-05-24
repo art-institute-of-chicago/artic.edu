@@ -17,7 +17,13 @@
       </div>
     </div>
     <div class="o-color-picker__center">
-      <div class="o-color-picker__center__swatch">
+      <div class="o-color-picker__center__swatch o-color-picker__center__swatch--color">
+      </div>
+      <div class="o-color-picker__center__swatch o-color-picker__center__swatch--monochrome">
+        <svg width="100%" height="100%" viewBox="0 0 29.5 29.5">
+          <circle class="st0" cx="14.8" cy="14.8" r="14.2" fill="#fff" stroke="#000"/>
+          <path d="M25.9,23.6c4.9-6.1,4-15.1-2.2-20s-15.1-4-20,2.2L25.9,23.6z"/>
+        </svg>
       </div>
       <div class="o-color-picker__handle o-color-picker__handle--center">
         <svg width="100%" height="100%" viewBox="0 0 42 42">
@@ -26,8 +32,14 @@
       </div>
     </div>
   </div>
+  <div class="o-color-picker__button--monochrome">
+    <svg width="100%" height="100%" viewBox="0 0 29.5 29.5">
+      <circle class="st0" cx="14.8" cy="14.8" r="14.2" fill="#fff" stroke="#000"/>
+      <path d="M25.9,23.6c4.9-6.1,4-15.1-2.2-20s-15.1-4-20,2.2L25.9,23.6z"/>
+    </svg>
+  </div>
 </div>
 
 <div class="o-color-picker__form">
-  <button class="o-color-picker__submit" type="button">OK</button>
+  <button class="o-color-picker__button--submit" type="button">OK</button>
 </div>
