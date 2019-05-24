@@ -3,6 +3,7 @@
     'label' => ucfirst($titleFormKey ?? 'title'),
     'translated' => $translateTitle ?? false,
     'required' => true,
+    'note' => 'Must be defined in lowercase',
 ])
 
 @if (!isset($item))
