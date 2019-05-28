@@ -3,11 +3,13 @@ import { purgeProperties, forEach, ajaxRequest, triggerCustomEvent } from '@area
 const loadMore = function(container) {
   var ajaxUrl = container.getAttribute('data-load-more-url');
   var target = container.getAttribute('data-load-more-target');
+  var limitText = container.getAttribute('data-load-more-limit-text');
   var $target = document.querySelector(target);
   var page = 1;
   var ajaxTimer;
   var loaderKlass = 's-loading';
   var hideKlass = 's-hidden';
+  var maxPage = 20;
 
   function _showLoader() {
     container.classList.add(loaderKlass);
@@ -15,6 +17,22 @@ const loadMore = function(container) {
 
   function _hideLoader() {
     container.classList.remove(loaderKlass);
+  }
+
+  function _hideLoadMore() {
+    // Hide link
+    container.classList.add(hideKlass);
+
+    // Add message
+    let h2 = document.createElement('h2');
+    h2.setAttribute('class','title f-list-3');
+    h2.textContent = 'Sorry, we limit the results for any query after 20 pages.';
+    container.parentNode.appendChild(h2);
+
+    let p = document.createElement('p');
+    p.setAttribute('class','f-caption');
+    p.textContent = 'Try using our filters to refine your search.' + (limitText ? ' ' + limitText : '');
+    container.parentNode.appendChild(p);
   }
 
   function _doAjax() {
@@ -51,7 +69,12 @@ const loadMore = function(container) {
           } catch (err) {
             console.error('Error updating autocomplete: '+ err);
           }
+
           _hideLoader();
+
+          if (page >= maxPage) {
+            _hideLoadMore();
+          }
         },
         onError: function(data){
           console.error('Error: '+ data);
