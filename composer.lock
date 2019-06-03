@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c7276aad500746a0378fce9bf8903a7",
+    "content-hash": "dc48f007b418e6712cc2cf6da1f23a1b",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -166,16 +166,16 @@
         },
         {
             "name": "area17/twill",
-            "version": "1.2.x-dev",
+            "version": "dev-fix/remove-extra-semicolon",
             "source": {
                 "type": "git",
-                "url": "https://github.com/area17/twill.git",
-                "reference": "eb780a5b087565fd389c7bdb3c186f1e7b3edaa6"
+                "url": "https://github.com/yanhao-li/twill.git",
+                "reference": "348239dfbd4138bb04707f0eb1180e1a99c9ee79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/area17/twill/zipball/eb780a5b087565fd389c7bdb3c186f1e7b3edaa6",
-                "reference": "eb780a5b087565fd389c7bdb3c186f1e7b3edaa6",
+                "url": "https://api.github.com/repos/yanhao-li/twill/zipball/348239dfbd4138bb04707f0eb1180e1a99c9ee79",
+                "reference": "348239dfbd4138bb04707f0eb1180e1a99c9ee79",
                 "shasum": ""
             },
             "require": {
@@ -211,7 +211,6 @@
                     "A17\\Twill\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -227,6 +226,12 @@
                     "email": "antoine@area17.com",
                     "homepage": "https://area17.com/about/antoine-doury",
                     "role": "Lead frontend developer"
+                },
+                {
+                    "name": "Antonin Caudron",
+                    "email": "antonin@area17.com",
+                    "homepage": "https://area17.com/about/antonin-caudron",
+                    "role": "Frontend developer"
                 },
                 {
                     "name": "Fernando Petrelli",
@@ -245,12 +250,6 @@
                     "email": "me@mubs.me",
                     "homepage": "http://mubs.me/",
                     "role": "Backend developer"
-                },
-                {
-                    "name": "Antonin Caudron",
-                    "email": "antonin@area17.com",
-                    "homepage": "https://area17.com/about/antonin-caudron",
-                    "role": "Frontend developer"
                 }
             ],
             "description": "Twill is an open source CMS toolkit for Laravel that helps developers rapidly create a custom admin console that is intuitive, powerful and flexible.",
@@ -261,7 +260,10 @@
                 "laravel",
                 "twill"
             ],
-            "time": "2019-05-28T23:34:20+00:00"
+            "support": {
+                "source": "https://github.com/yanhao-li/twill/tree/fix/remove-extra-semicolon"
+            },
+            "time": "2019-06-03T22:09:16+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
@@ -696,16 +698,16 @@
         },
         {
             "name": "digitaladditive/php-fuel-sdk-fork",
-            "version": "1.2.0",
+            "version": "1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/patrickisgreat/da-php-fuel-sdk.git",
-                "reference": "6935f51b4d3dbd0923aed746620955fd63789549"
+                "reference": "292c8ee61f52820e1e7c1f49bc522e33dc7287f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/patrickisgreat/da-php-fuel-sdk/zipball/6935f51b4d3dbd0923aed746620955fd63789549",
-                "reference": "6935f51b4d3dbd0923aed746620955fd63789549",
+                "url": "https://api.github.com/repos/patrickisgreat/da-php-fuel-sdk/zipball/292c8ee61f52820e1e7c1f49bc522e33dc7287f0",
+                "reference": "292c8ee61f52820e1e7c1f49bc522e33dc7287f0",
                 "shasum": ""
             },
             "require": {
@@ -713,7 +715,7 @@
                 "ext-curl": "*",
                 "ext-openssl": "*",
                 "ext-soap": "*",
-                "firebase/php-jwt": ">=5.0.0",
+                "firebase/php-jwt": "~3.0|~4.0",
                 "php": ">=5.6.24"
             },
             "require-dev": {
@@ -742,7 +744,7 @@
                 "salesforce",
                 "sdk"
             ],
-            "time": "2018-05-02T18:15:16+00:00"
+            "time": "2018-08-17T16:23:38+00:00"
         },
         {
             "name": "digitaladditive/wse-php-fork",
@@ -1565,23 +1567,20 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v5.0.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
+                "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
-                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
+                "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": " 4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -1607,7 +1606,7 @@
             ],
             "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
             "homepage": "https://github.com/firebase/php-jwt",
-            "time": "2017-06-27T22:17:23+00:00"
+            "time": "2016-07-18T04:51:16+00:00"
         },
         {
             "name": "google/apiclient",
