@@ -360,6 +360,10 @@ function aic_imageSettings($data) {
             $imgixSettings['fit'] = $settings['fit'];
         }
 
+        if(!empty($settings['fill'])) {
+            $imgixSettings['fill'] = $settings['fill'];
+        }
+
         if(empty($settings['bg'])) {
         } else {
             $imgixSettings['bg'] = $settings['bg'];
