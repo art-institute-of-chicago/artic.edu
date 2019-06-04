@@ -460,7 +460,7 @@ class GroupReservationsController extends FormController
           .'The Art Institute of Chicago<br/>'
           .'111 S. Michigan Avenue<br/>'
           .'Chicago, IL 60603-6110<br/>'
-          .'Fax: (312) 857-7104</p>'
+          .'(312) 857-7104</p>'
         ));
 
         array_push($blocks, array(
