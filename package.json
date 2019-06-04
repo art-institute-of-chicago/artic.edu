@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@antoine_a17/a17-node-sassdown": "1.0.7",
-    "a17-script": "git+https://code.area17.com/a17/a17-script.git#c3516a79a44c5bf8ee12ffa7baa1c3b88ac32521",
+    "a17-script": "git+ssh://git@github.com/art-institute-of-chicago/a17-script.git#c3516a79a44c5bf8ee12ffa7baa1c3b88ac32521",
     "concurrently": "^3.5.0",
     "watch": "^1.0.2"
   },
