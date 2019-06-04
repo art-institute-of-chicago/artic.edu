@@ -17,7 +17,7 @@ class GroupReservationsController extends FormController
     public function index()
     {
 
-        $this->title = 'Group Reservation Form';
+        $this->title = 'Adult and University Group Reservation Form';
         $this->seo->setTitle($this->title);
 
         $blocks = array();
@@ -415,7 +415,7 @@ class GroupReservationsController extends FormController
                   'optional' => null,
                   'hint' => '',
                   'disabled' => false,
-                  'label' => 'Additional details (specify language, any needs not listed, etc.)',
+                  'label' => 'Additional details (specify language, any needs not listed, purpose or occasion for your visit, etc.)',
                 ),
             ),
         ];
@@ -454,12 +454,13 @@ class GroupReservationsController extends FormController
           'type' => 'text',
           'content' => '<p>Thank you for your request. Please note if you are booking a visit for a student group, pre-K–12th grade, use the <a href="https://scheduler.artic.edu/">student tours application form</a>.</p>'
           .'<p>Group visits require a minimum of 15 people. Reservations are requested 21 days in advance and will be confirmed in writing within 10 business days of receipt. Thank you for thinking of the Art Institute of Chicago.</p>'
+          .'<p>Contact us at (312) 857-7104 or groupsales@artic.edu if you have questions or cannot find what you need.</p>'
           .'<p>You may also print this form and return it to:</p>'
           .'<p>Group Sales<br/>'
           .'The Art Institute of Chicago<br/>'
           .'111 S. Michigan Avenue<br/>'
           .'Chicago, IL 60603-6110<br/>'
-          .'Fax: (312) 541-9480</p>'
+          .'Fax: (312) 857-7104</p>'
         ));
 
         array_push($blocks, array(
@@ -540,7 +541,7 @@ class GroupReservationsController extends FormController
 
     private function getDiningOptionArray($selected)
     {
-        $options = array('Lunch' => 'Lunch', 'Wine-and-cheese reception' => 'Wine-and-cheese reception');
+        $options = array('Lunch' => 'Lunch');
 
         $list = [];
         foreach($options as $value => $label) {
@@ -581,7 +582,7 @@ class GroupReservationsController extends FormController
                         'Mindfulness Tours',
                         'Modern Wing Highlights: Modern and Contemporary Art',
                         'Underdogs and Hidden Histories',
-                        'Special Exhibition',
+                        'None',
         );
 
         $list = [];
