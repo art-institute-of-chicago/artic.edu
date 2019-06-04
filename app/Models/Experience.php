@@ -79,9 +79,25 @@ class Experience extends Model implements Sortable
 
     public function getAssetLibraryAttribute()
     {
+        // $slides = $this->slides()->published()->orderBy('position')->get()->filter(function ($slide) {
+        //     $seamless_file = $slide->fileObject('sequence_file');
+        //     return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
+        // });
         $slides = $this->slides()->published()->orderBy('position')->get()->filter(function ($slide) {
-            $seamless_file = $slide->fileObject('sequence_file');
-            return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
+            if ($slide->asset_type !== 'seamless') {
+                return false;
+            }
+
+            if ($slide->media_type === 'type_image' && $slide->seamlessExperienceImage()->count() === 0) {
+                return false;
+            }
+
+            if ($slide->media_type === 'seamless') {
+                $seamless_file = $slide->fileObject('sequence_file');
+                return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
+            }
+
+            return true;
         });
         return SlideAssetResource::collection($slides)->toArray(request());
     }

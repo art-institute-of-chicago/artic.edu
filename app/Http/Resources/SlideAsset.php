@@ -15,20 +15,32 @@ class SlideAsset extends JsonResource
      */
     public function toArray($request)
     {
-        $images = SeamlessImage::where('zip_file_id', $this->fileObject('sequence_file')->id)->get();
-        $src = $images->map(function ($image) {
+        if ($this->media_type === 'type_image') {
+            $image = $this->seamlessExperienceImage->first();
             return [
-                'src' => 'https://' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '/seq/' . $image->file_name,
-                'frame' => $image->frame,
+                'type' => 'image',
+                'title' => $this->media_title,
+                'id' => $image->id,
+                'width' => $image->imageObject('experience_image')->width,
+                'height' => $image->imageObject('experience_image')->height,
+                'src' => [$image->image('experience_image')],
             ];
-        })->toArray();
-        return [
-            'type' => $this->media_type === 'type_image' ? 'image' : 'sequence',
-            'title' => $this->media_title,
-            'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
-            'width' => $images->first() ? $images->first()->width : 0,
-            'height' => $images->first() ? $images->first()->height : 0,
-            'src' => $src,
-        ];
+        } else {
+            $images = SeamlessImage::where('zip_file_id', $this->fileObject('sequence_file')->id)->get();
+            $src = $images->map(function ($image) {
+                return [
+                    'src' => 'https://' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '/seq/' . $image->file_name,
+                    'frame' => $image->frame,
+                ];
+            })->toArray();
+            return [
+                'type' => 'sequence',
+                'title' => $this->media_title,
+                'id' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : "0",
+                'width' => $images->first() ? $images->first()->width : 0,
+                'height' => $images->first() ? $images->first()->height : 0,
+                'src' => $src,
+            ];
+        }
     }
 }

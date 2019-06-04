@@ -82,7 +82,7 @@ class Slide extends JsonResource
             '__option_secondary_modal' => $secondaryExperienceModal ? true : false,
             '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
             '__option_headline' => in_array(['id' => 'headline'], $this->split_attributes ?? []),
-            '__option_caption' => !empty($this->caption),
+            '__option_caption' => true,
             '__option_autoplay' => $this->split_video_play_settings && in_array(['id' => 'autoplay'], $this->split_video_play_settings),
             '__option_loop' => $this->split_video_play_settings && in_array(['id' => 'loop'], $this->split_video_play_settings),
             '__option_controls' => $this->split_video_play_settings && in_array(['id' => 'control_dark'], $this->split_video_play_settings),
@@ -232,15 +232,12 @@ class Slide extends JsonResource
         if ($this->asset_type === 'seamless') {
             if ($this->media_type === 'type_image' && $this->seamlessExperienceImage->count() > 0) {
                 $seamlessAsset = [
-                    'assetID' => $this->seamless_image_asset ? (string) $this->seamless_image_asset['assetId'] : '0',
+                    'assetID' => $this->seamlessExperienceImage->first()->id,
                     'x' => $this->seamless_image_asset ? $this->seamless_image_asset['x'] : 0,
                     'y' => $this->seamless_image_asset ? $this->seamless_image_asset['y'] : 0,
                     'scale' => $this->seamless_image_asset ? $this->seamless_image_asset['scale'] / 100 : 1,
                     'frame' => $this->seamless_image_asset ? $this->seamless_image_asset['frame'] - 1 : 0,
-                    'altText' => $this->seamless_alt_text,
-                    'src' => $this->seamlessExperienceImage->map(function($image) {
-                        return $image->image('experience_image');
-                    })->toArray()
+                    'altText' => $this->seamless_alt_text
                 ];
             } else {
                 $seamlessAsset = [
