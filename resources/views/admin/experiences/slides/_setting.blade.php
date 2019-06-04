@@ -57,11 +57,7 @@
             [
                 'value' => 'secondary_modal',
                 'label' => 'Secondary Modal'
-            ],
-            [
-                'value' => 'caption',
-                'label' => 'Caption'
-            ],
+            ]
         ]
     ])
 @endcomponent

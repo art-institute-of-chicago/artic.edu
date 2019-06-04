@@ -296,13 +296,13 @@ return [
             'slide_primary_experience_image' => [
                 'title' => 'Primary Image',
                 'trigger' => 'Add Primary Image',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 1,
             ],
             'slide_secondary_experience_image' => [
                 'title' => 'Secondary Image',
                 'trigger' => 'Add Secondary Image',
-                'component' => 'a17-block-experience_image',
+                'component' => 'a17-block-experience_image_with_caption',
                 'max' => 1,
             ],
             'compare_experience_image_1' => [

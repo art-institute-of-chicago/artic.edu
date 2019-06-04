@@ -56,7 +56,6 @@ class Slide extends Model implements Sortable
         'end_credit_subhead',
         'end_credit_copy',
         'seamless_alt_text',
-        'secondary_caption'
         // 'public',
         // 'featured',
         // 'publish_start_date',
