@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc48f007b418e6712cc2cf6da1f23a1b",
+    "content-hash": "1c7276aad500746a0378fce9bf8903a7",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -166,16 +166,16 @@
         },
         {
             "name": "area17/twill",
-            "version": "dev-fix/remove-extra-semicolon",
+            "version": "1.2.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/yanhao-li/twill.git",
-                "reference": "348239dfbd4138bb04707f0eb1180e1a99c9ee79"
+                "url": "https://github.com/area17/twill.git",
+                "reference": "b1485a20d12f09a9f6a2581da0abcd0b22d2a8dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yanhao-li/twill/zipball/348239dfbd4138bb04707f0eb1180e1a99c9ee79",
-                "reference": "348239dfbd4138bb04707f0eb1180e1a99c9ee79",
+                "url": "https://api.github.com/repos/area17/twill/zipball/b1485a20d12f09a9f6a2581da0abcd0b22d2a8dd",
+                "reference": "b1485a20d12f09a9f6a2581da0abcd0b22d2a8dd",
                 "shasum": ""
             },
             "require": {
@@ -211,6 +211,7 @@
                     "A17\\Twill\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -226,12 +227,6 @@
                     "email": "antoine@area17.com",
                     "homepage": "https://area17.com/about/antoine-doury",
                     "role": "Lead frontend developer"
-                },
-                {
-                    "name": "Antonin Caudron",
-                    "email": "antonin@area17.com",
-                    "homepage": "https://area17.com/about/antonin-caudron",
-                    "role": "Frontend developer"
                 },
                 {
                     "name": "Fernando Petrelli",
@@ -250,6 +245,12 @@
                     "email": "me@mubs.me",
                     "homepage": "http://mubs.me/",
                     "role": "Backend developer"
+                },
+                {
+                    "name": "Antonin Caudron",
+                    "email": "antonin@area17.com",
+                    "homepage": "https://area17.com/about/antonin-caudron",
+                    "role": "Frontend developer"
                 }
             ],
             "description": "Twill is an open source CMS toolkit for Laravel that helps developers rapidly create a custom admin console that is intuitive, powerful and flexible.",
@@ -260,10 +261,7 @@
                 "laravel",
                 "twill"
             ],
-            "support": {
-                "source": "https://github.com/yanhao-li/twill/tree/fix/remove-extra-semicolon"
-            },
-            "time": "2019-06-03T22:09:16+00:00"
+            "time": "2019-06-04T00:43:39+00:00"
         },
         {
             "name": "aws/aws-sdk-php",

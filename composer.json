@@ -16,17 +16,13 @@
         {	
             "type": "vcs",	
             "url": "https://github.com/nikhiltri/laravel-feed.git"	
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/yanhao-li/twill.git"
         }
     ],
     "require": {
         "php": ">=7.0.0",
         "aacotroneo/laravel-saml2": "dev-remove_mcrypt",
         "aic/data-hub-foundation": "dev-master",
-        "area17/twill": "dev-fix/remove-extra-semicolon",
+        "area17/twill": "1.2.x-dev",
         "darkaonline/l5-swagger": "5.8.*",
         "digitaladditive/exacttarget-laravel": "^2.2",
         "eluceo/ical": "0.14.*",
