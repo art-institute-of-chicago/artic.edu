@@ -26,6 +26,11 @@
             'keepAlive' => true,
         ])
             @formField('repeater', ['type' => 'slide_primary_experience_image'])
+            @formField('wysiwyg', [
+                'name' => 'caption',
+                'label' => 'Primary Image Caption',
+                'maxlength' => 500,
+            ])
         @endcomponent
     @endcomponent
         
@@ -52,11 +57,11 @@
     </div>
 
     <div style="display: none" id="caption">
-        {{-- @formField('wysiwyg', [
-            'name' => 'caption',
-            'label' => 'Caption',
+        @formField('wysiwyg', [
+            'name' => 'secondary_caption',
+            'label' => 'Secondary Image Caption',
             'maxlength' => 500,
-        ]) --}}
+        ])
     </div>
 
 
