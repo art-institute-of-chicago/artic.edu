@@ -16,7 +16,13 @@
             @formField('repeater', ['type' => 'experience_image'])
         @endcomponent
     @endcomponent
-    @formField('repeater', ['type' => 'experience_modal'])
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'fullwidthmedia_standard_media_type',
+        'fieldValues' => 'type_image',
+        'keepAlive' => true,
+    ])
+        @formField('repeater', ['type' => 'experience_modal'])
+    @endcomponent
     @formField('wysiwyg', [
         'name' => 'caption',
         'label' => 'Caption',
