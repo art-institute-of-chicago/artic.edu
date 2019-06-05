@@ -339,13 +339,13 @@
             'label' => 'Add to event email series',
         ])
 
-        <hr/>
-
         @component('twill::partials.form.utils._connected_fields', [
             'fieldName' => 'add_to_event_email_series',
             'renderForBlocks' => false,
             'fieldValues' => true
         ])
+            <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
+
             <p>Please select the emails you wish to opt-in to:</p>
 
             @foreach ( \App\Models\EmailSeries::all() as $series)
@@ -420,6 +420,34 @@
 
             @endforeach
 
+            <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
+
+            @formField('select', [
+                'name' => 'entrance',
+                'label' => 'Entrance',
+                'options' => $eventEntrancesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+                'default' => \App\Models\Event::NULL_OPTION, // no effect?
+            ])
+
+            @formField('checkbox', [
+                'name' => 'is_presented_by_affiliate',
+                'label' => 'Include "This event is presented by %%AffiliateGroup%%" in all pre-registration event emails',
+            ])
+
+            @formField('input', [
+                'name' => 'join_url',
+                'label' => 'Join URL'
+            ])
+
+            @formField('input', [
+                'name' => 'survey_url',
+                'label' => 'Questionnaire Survey URL',
+                'note' => 'Sent 1 day after user registers if URL is populated',
+            ])
+
+            <br>
+
+            <p><b>Note:</b> This is the questionnaire for event options or guest names, not the Event Response Survey.</p>
         @endcomponent
 
     </a17-fieldset>

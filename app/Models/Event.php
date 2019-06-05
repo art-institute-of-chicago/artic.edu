@@ -132,6 +132,26 @@ class Event extends AbstractModel
         self::LARGE_LAYOUT => 'Large Feature',
     ];
 
+    const MICHIGAN_AVE = 1;
+    const MODERN_WING = 2;
+    const COLUMBUS_DRIVE = 3;
+    const NORTH_GARDEN = 4;
+    const PRITZKER_GARDEN = 5;
+    const SOUTH_GARDEN = 6;
+    const OFF_SITE = 7;
+    const WEST_BOX = 8;
+
+    public static $eventEntrances = [
+        self::MICHIGAN_AVE => 'Michigan Avenue ',
+        self::MODERN_WING => 'Modern Wing ',
+        self::COLUMBUS_DRIVE => 'Columbus Drive',
+        self::NORTH_GARDEN => 'North Garden',
+        self::PRITZKER_GARDEN => 'Pritzker Garden',
+        self::SOUTH_GARDEN => 'South Garden',
+        self::OFF_SITE => 'Off Site',
+        self::WEST_BOX => 'West Box',
+    ];
+
     public $slugAttributes = [
         'title',
     ];
