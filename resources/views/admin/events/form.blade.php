@@ -4,7 +4,9 @@
         ['fieldset' => 'ticketing', 'label' => 'Ticketing Information'],
         ['fieldset' => 'dates', 'label' => 'Date Rules'],
         ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
-        ['fieldset' => 'related_elements', 'label' => 'Right rail related slot'],
+        ['fieldset' => 'related_elements', 'label' => 'Related'],
+        ['fieldset' => 'metadata', 'label' => 'Metadata'],
+        ['fieldset' => 'event_series', 'label' => 'Email Series'],
     ]
 ])
 
@@ -179,7 +181,7 @@
             'toolbarOptions' => ['bold']
         ])
 
-        <p>If you attach an event from the ticketing system, we will automatically display the date and time of when its registration opens above this field's text in the sidebar.</p>
+        <p>If you attach an event from the ticketing system, we will automatically display the date and time of when its registration opens above this text in the sidebar.</p>
 
         <hr/>
         <p>Event Tags<br/>
@@ -231,22 +233,6 @@
         @formField('checkbox', [
             'name' => 'is_after_hours',
             'label' => 'Is After Hours',
-        ])
-
-        @formField('select', [
-            'name' => 'email_series',
-            'label' => 'Add to event email series?',
-            'options' => [
-                [
-                    'value' => 'Yes',
-                    'label' => 'Yes'
-                ],
-                [
-                    'value' => 'No',
-                    'label' => 'No'
-                ],
-            ],
-            'default' => 'No',
         ])
 
         @formField('input', [
@@ -344,6 +330,97 @@
         ])
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
+
+    </a17-fieldset>
+
+    <a17-fieldset id="event_series" title="Event series emails">
+        @formField('checkbox', [
+            'name' => 'add_to_event_email_series',
+            'label' => 'Add to event email series',
+        ])
+
+        <hr/>
+
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'add_to_event_email_series',
+            'renderForBlocks' => false,
+            'fieldValues' => true
+        ])
+            <p>Please select the emails you wish to opt-in to:</p>
+
+            @foreach ( \App\Models\EmailSeries::all() as $series)
+
+                @php
+                    $currentSeriesName = 'email_series_' . $series->id;
+                @endphp
+
+                @formField('checkbox', [
+                    'name' => $currentSeriesName,
+                    'label' => $series->title,
+                ])
+
+                @component('twill::partials.form.utils._connected_fields', [
+                    'fieldName' => $currentSeriesName,
+                    'renderForBlocks' => false,
+                    'fieldValues' => true
+                ])
+
+                    <div style="padding-left: 35px">
+
+                    @foreach ([
+                        'affiliate_member' => 'Affiliate Members',
+                        'member' => 'Members',
+                        'sustaining_fellow' => 'Sustaining Fellows',
+                        'non_member' => 'Non-Members',
+                    ] as $subFieldName => $subFieldLabel)
+
+                        @formField('checkbox', [
+                            'name' => $currentSeriesName . '_send_' . $subFieldName,
+                            'label' => 'Send to ' . $subFieldLabel,
+                        ])
+
+                        @component('twill::partials.form.utils._connected_fields', [
+                            'fieldName' => $currentSeriesName . '_send_' . $subFieldName,
+                            'renderForBlocks' => false,
+                            'fieldValues' => true
+                        ])
+
+                            <div style="padding-left: 35px">
+
+                            @formField('checkbox', [
+                                'name' => $currentSeriesName . '_send_' . $subFieldName . '_override',
+                                'label' => 'Override default copy for ' . $subFieldLabel,
+                            ])
+
+                            @component('twill::partials.form.utils._connected_fields', [
+                                'fieldName' => $currentSeriesName . '_send_' . $subFieldName . '_override',
+                                'renderForBlocks' => false,
+                                'fieldValues' => true
+                            ])
+
+                                @formField('wysiwyg', [
+                                    'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
+                                    'label' => 'Custom "' . $subFieldLabel . '" copy',
+                                    'toolbarOptions' => [
+                                        'bold', 'italic', 'link'
+                                    ],
+                                ])
+
+                            @endcomponent
+
+                            </div>
+
+                        @endcomponent
+
+                    @endforeach
+
+                    </div>
+
+                @endcomponent
+
+            @endforeach
+
+        @endcomponent
 
     </a17-fieldset>
 
