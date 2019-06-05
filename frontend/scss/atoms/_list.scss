@@ -64,10 +64,6 @@ ul.list--inline,
 ol.list--inline {
   padding-left: 0;
   list-style-type: none;
-
-  display: flex;
-  align-items: flex-end;
-  padding-top: 8px;
 }
 
 .list--inline > li {
@@ -75,6 +71,6 @@ ol.list--inline {
   padding-left: 0;
 }
 
-.list--inline > li:not(:first-child)::before {
+.list--inline > li:first-child:not(:only-child)::after {
   content: ", ";
 }
