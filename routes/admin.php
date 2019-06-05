@@ -36,6 +36,8 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 
     Route::module('digitalLabels');
     Route::name('exhibitions_events.digitalLabels.augment')->get('interactive-features/augment/{datahub_id}', 'DigitalLabelController@augment');
+
+    Route::module('emailSeries');
 });
 
 Route::group(['prefix' => 'collection'], function () {
