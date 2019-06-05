@@ -25,7 +25,7 @@ class CreateEventSeriesFields extends Migration
         });
 
         Schema::create('email_series', function (Blueprint $table) {
-            createDefaultTableFields($table, false, false);
+            createDefaultTableFields($table);
             $table->string('title');
             $table->boolean('show_affiliate_member')->default(false);
             $table->text('affiliate_member_copy')->nullable();
@@ -71,7 +71,7 @@ class CreateEventSeriesFields extends Migration
             $table->dropColumn('entrance');
         });
 
-        Schema::dropIfExists('email_series');
         Schema::dropIfExists('event_email_series');
+        Schema::dropIfExists('email_series');
     }
 }
