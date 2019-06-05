@@ -17,7 +17,7 @@
     @slot('overflow', true)
     @slot('isPrimaryPageNav', true)
     @slot('linksPrimary', [
-        ['label' => 'Artworks', 'href' => '#', 'active' => true],
+        ['label' => 'Artworks', 'href' => route('collection'), 'active' => true],
         ['label' => 'Writings', 'href' => route('articles_publications')],
         ['label' => 'Resources', 'href' => route('collection.research_resources')]
     ])
