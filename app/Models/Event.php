@@ -80,6 +80,7 @@ class Event extends AbstractModel
     protected $casts = [
         'alt_types' => 'array',
         'alt_audiences' => 'array',
+        'is_presented_by_affiliate' => 'boolean',
         // TODO: Confirm that this is safe to do?
         // 'is_private' => 'boolean',
         // 'is_ticketed' => 'boolean',
@@ -198,16 +199,19 @@ class Event extends AbstractModel
 
     public function emailSeries()
     {
-        return $this->belongsToMany('App\Models\EmailSeries', 'event_email_series')->withPivot(
-            'send_affiliate_member',
-            'affiliate_member_copy',
-            'send_member',
-            'member_copy',
-            'send_sustaining_fellow',
-            'sustaining_fellow_copy',
-            'send_non_member',
-            'non_member_copy'
-        );
+        return $this
+            ->belongsToMany('App\Models\EmailSeries', 'event_email_series')
+            ->using('App\Models\EventEmailSeries')
+            ->withPivot(
+                'send_affiliate_member',
+                'affiliate_member_copy',
+                'send_member',
+                'member_copy',
+                'send_sustaining_fellow',
+                'sustaining_fellow_copy',
+                'send_non_member',
+                'non_member_copy'
+            );
     }
 
     // Generates the id-slug type of URL
@@ -650,30 +654,6 @@ class Event extends AbstractModel
                 "value" => function () {return $this->is_private;},
             ],
             [
-                "name" => "is_admission_required",
-                "doc" => "Is admission required",
-                "type" => "boolean",
-                "value" => function () {return $this->is_admission_required;},
-            ],
-            [
-                "name" => "is_after_hours",
-                "doc" => "Is after hhours",
-                "type" => "boolean",
-                "value" => function () {return $this->is_after_hours;},
-            ],
-            [
-                "name" => "email_series",
-                "doc" => "Email series",
-                "type" => "string",
-                "value" => function () {return $this->email_series;},
-            ],
-            [
-                "name" => "survey_url",
-                "doc" => "URL to the survey associated with this event",
-                "type" => "string",
-                "value" => function () {return $this->survey_link;},
-            ],
-            [
                 "name" => "start_time",
                 "doc" => "Start Time",
                 "type" => "string",
@@ -757,6 +737,48 @@ class Event extends AbstractModel
                 "doc" => "search_tags",
                 "type" => "string",
                 "value" => function () {return $this->search_tags;},
+            ],
+            [
+                "name" => "is_admission_required",
+                "doc" => "Is admission required",
+                "type" => "boolean",
+                "value" => function () {return $this->is_admission_required;},
+            ],
+            [
+                "name" => "is_after_hours",
+                "doc" => "Is after hours",
+                "type" => "boolean",
+                "value" => function () {return $this->is_after_hours;},
+            ],
+            [
+                "name" => "entrance",
+                "doc" => "Which entrance to use for this event",
+                "type" => "string",
+                "value" => function () {return $this->eventEntrances[$this->entrance] ?? null;},
+            ],
+            [
+                "name" => "is_presented_by_affiliate",
+                "doc" => "Whether this event is presented by an affiliate group",
+                "type" => "boolean",
+                "value" => function () {return $this->is_presented_by_affiliate;},
+            ],
+            [
+                "name" => "join_url",
+                "doc" => "URL to the membership signup page",
+                "type" => "string",
+                "value" => function () {return $this->join_url;},
+            ],
+            [
+                "name" => "survey_url",
+                "doc" => "URL to the survey associated with this event",
+                "type" => "string",
+                "value" => function () {return $this->survey_url;},
+            ],
+            [
+                "name" => "email_series",
+                "doc" => "email_series",
+                "type" => "string",
+                "value" => function () {return $this->emailSeries->pluck('pivot');},
             ],
         ];
     }
