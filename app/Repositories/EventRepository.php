@@ -11,6 +11,7 @@ use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Models\Event;
+use App\Models\EmailSeries;
 use App\Models\Api\Search;
 use App\Models\Api\TicketedEvent;
 use Carbon\Carbon;
@@ -61,6 +62,31 @@ class EventRepository extends ModuleRepository
 
                     // Do not update `rsvp_link` attribute
                     $fields['rsvp_link'] = null;
+                }
+            }
+        }
+
+        if (isset($fields['add_to_event_email_series']))
+        {
+            $emailSeries = EmailSeries::all();
+
+            foreach ($emailSeries as $series) {
+                $types = ['affiliate_member', 'member', 'sustaining_fellow', 'non_member'];
+                foreach ($types as $type) {
+                    $pivotAttributes = [];
+                    if (isset($fields['email_series_' .$series->id .'_send_' .$type])) {
+                        $pivotAttributes['send_' .$type] = true;
+                        if (isset($fields['email_series_' .$series->id .'_send_' .$type .'_override'])) {
+                            $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'];
+                        }
+                        else {
+                            $pivotAttributes[$type .'_copy'] = null;
+                        }
+                        $object->emailSeries()->syncWithoutDetaching($series->id, $pivotAttributes);
+                    }
+                    else {
+                        $object->emailSeries()->detach($series->id);
+                    }
                 }
             }
         }

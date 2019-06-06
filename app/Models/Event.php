@@ -191,6 +191,20 @@ class Event extends AbstractModel
         ],
     ];
 
+    public function emailSeries()
+    {
+        return $this->belongsToMany('App\Models\EmailSeries', 'event_email_series')->withPivot(
+            'send_affiliate_member',
+            'affiliate_member_copy',
+            'send_member',
+            'member_copy',
+            'send_sustaining_fellow',
+            'sustaining_fellow_copy',
+            'send_non_member',
+            'non_member_copy'
+        );
+    }
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {
