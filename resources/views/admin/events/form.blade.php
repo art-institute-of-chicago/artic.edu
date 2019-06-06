@@ -6,6 +6,7 @@
         ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
         ['fieldset' => 'related_elements', 'label' => 'Related'],
         ['fieldset' => 'metadata', 'label' => 'Metadata'],
+        ['fieldset' => 'sales_site', 'label' => 'Sales Site'],
         ['fieldset' => 'event_series', 'label' => 'Email Series'],
     ]
 ])
@@ -221,24 +222,6 @@
             'name' => 'is_private',
             'label' => 'Is Private',
         ])
-
-        <hr/>
-        <p>Sales site fields</p>
-
-        @formField('checkbox', [
-            'name' => 'is_admission_required',
-            'label' => 'Is Admission Required',
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_after_hours',
-            'label' => 'Is After Hours',
-        ])
-
-        @formField('input', [
-            'name' => 'survey_link',
-            'label' => 'Survey URL',
-        ])
     </a17-fieldset>
 
     <a17-fieldset id="dates" title="Date rules">
@@ -331,6 +314,18 @@
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
 
+    </a17-fieldset>
+
+    <a17-fieldset id="sales_site" title="Sales site fields">
+        @formField('checkbox', [
+            'name' => 'is_admission_required',
+            'label' => 'Is Admission Required',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_after_hours',
+            'label' => 'Is After Hours',
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="event_series" title="Event series emails">
