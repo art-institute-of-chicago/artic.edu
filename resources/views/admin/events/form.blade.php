@@ -394,7 +394,8 @@
 
                             @formField('wysiwyg', [
                                 'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                'label' => 'Copy for "' . $subFieldLabel . '"',
+                                'label' => '', // Empty to save vertical space
+                                // 'label' => 'Copy for "' . $subFieldLabel . '"',
                                 'toolbarOptions' => [
                                     'bold', 'italic', 'link'
                                 ],
