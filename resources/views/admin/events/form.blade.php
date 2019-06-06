@@ -50,36 +50,44 @@
 
     <hr>
 
+    <p><strong>Note:</strong> For the following three fields, please keep character count below 255.</p>
+
     @formField('wysiwyg', [
         'name' => 'description',
         'label' => 'Header',
         'maxlength' => 255,
-        'note' => 'Max 255 characters',
+        'note' => 'Used by website, displayed above main content',
         'toolbarOptions' => [
             'italic'
         ],
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'short_description',
         'label' => 'Short description',
-        'note' => 'Used for SEO',
-        'maxlength' => 255
+        'note' => 'Used by Sales Site and for event emails',
+        'maxlength' => 255,
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('wysiwyg', [
         'name' => 'list_description',
         'label' => 'Listing description',
         'maxlength'  => 255,
-        'note' => 'Max 255 characters',
+        'note' => 'Used by website and Mobile App for listings',
         'toolbarOptions' => [
             'italic'
         ],
     ])
 
+    <hr>
+
     @formField('input', [
         'name' => 'location',
-        'label' => 'Location'
+        'label' => 'Location',
+        'note' => 'Displayed in left sidebar',
     ])
 
     @formField('block_editor', [
