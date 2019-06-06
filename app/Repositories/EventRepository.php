@@ -66,30 +66,30 @@ class EventRepository extends ModuleRepository
             }
         }
 
+        $relatedEmailSeries = [];
+
         if (isset($fields['add_to_event_email_series']))
         {
-            $emailSeries = EmailSeries::all();
-
-            foreach ($emailSeries as $series) {
-                $types = ['affiliate_member', 'member', 'sustaining_fellow', 'non_member'];
-                foreach ($types as $type) {
-                    $pivotAttributes = [];
-                    if (isset($fields['email_series_' .$series->id .'_send_' .$type])) {
-                        $pivotAttributes['send_' .$type] = true;
+            foreach (EmailSeries::all() as $series) {
+                $pivotAttributes = [];
+                foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $type) {
+                    $sendToTypeFieldName = 'email_series_' .$series->id .'_send_' .$type;
+                    if (isset($fields[$sendToTypeFieldName])) {
+                        $pivotAttributes['send_' .$type] = $fields[$sendToTypeFieldName];
                         if (isset($fields['email_series_' .$series->id .'_send_' .$type .'_override'])) {
                             $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'];
-                        }
-                        else {
+                        } else {
                             $pivotAttributes[$type .'_copy'] = null;
                         }
-                        $object->emailSeries()->syncWithoutDetaching($series->id, $pivotAttributes);
                     }
-                    else {
-                        $object->emailSeries()->detach($series->id);
-                    }
+                }
+                if (count($pivotAttributes) > 0) {
+                    $relatedEmailSeries[$series->id] = $pivotAttributes;
                 }
             }
         }
+
+        $object->emailSeries()->sync($relatedEmailSeries);
 
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
