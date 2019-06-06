@@ -120,6 +120,26 @@ class EventRepository extends ModuleRepository
 
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');
 
+        if (isset($fields['add_to_event_email_series']))
+        {
+            foreach ($object->emailSeries as $series) {
+                $currentSeriesName = 'email_series_' . $series->id;
+                $fields[$currentSeriesName] = true;
+
+                foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $subFieldName) {
+                    if ($series->pivot->{'send_' . $subFieldName}) {
+                        $fields[$currentSeriesName . '_send_' . $subFieldName] = true;
+
+                        $copyForOverride = $series->pivot->{$subFieldName . '_copy'};
+                        if ($copyForOverride) {
+                            $fields[$currentSeriesName . '_send_' . $subFieldName . '_override'] = true;
+                            $fields[$currentSeriesName . '_' . $subFieldName . '_copy'] = $copyForOverride;
+                        }
+                    }
+                }
+            }
+        }
+
         return $fields;
     }
 
