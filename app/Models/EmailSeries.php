@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Model;
-
-class EmailSeries extends Model
+class EmailSeries extends AbstractModel
 {
+    use Transformable;
+
     protected $fillable = [
         'title',
         'show_affiliate_member',
@@ -25,4 +25,73 @@ class EmailSeries extends Model
         'show_non_member',
         'published',
     ];
+
+    public $casts = [
+        'show_affiliate_member' => 'boolean',
+        'show_member' => 'boolean',
+        'show_sustaining_fellow' => 'boolean',
+        'show_non_member' => 'boolean',
+        'published' => 'boolean',
+    ];
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'title',
+                'doc' => 'Name of this email series',
+                'type' => 'string',
+                'value' => function () {return $this->title;},
+            ],
+            [
+                "name" => 'show_affiliate_member',
+                'doc' => 'Whether to show the "Send to Affiliate Members" option',
+                'type' => 'boolean',
+                'value' => function () {return $this->show_affiliate_member;},
+            ],
+            [
+                "name" => 'affiliate_member_copy',
+                'doc' => 'Default copy for emails to Affiliate Members',
+                'type' => 'string',
+                'value' => function () {return $this->affiliate_member_copy;},
+            ],
+            [
+                "name" => 'show_member',
+                'doc' => 'Whether to show the "Send to Members" option',
+                'type' => 'boolean',
+                'value' => function () {return $this->show_member;},
+            ],
+            [
+                "name" => 'member_copy',
+                'doc' => 'Default copy for emails to Members',
+                'type' => 'string',
+                'value' => function () {return $this->member_copy;},
+            ],
+            [
+                "name" => 'show_sustaining_fellow',
+                'doc' => 'Whether to show the "Send to Sustaining Fellows" option',
+                'type' => 'boolean',
+                'value' => function () {return $this->show_sustaining_fellow;},
+            ],
+            [
+                "name" => 'sustaining_fellow_copy',
+                'doc' => 'Default copy for emails to Sustaining Fellows',
+                'type' => 'string',
+                'value' => function () {return $this->sustaining_fellow_copy;},
+            ],
+            [
+                "name" => 'show_non_member',
+                'doc' => 'Whether to show the "Send to Non-Members" option',
+                'type' => 'boolean',
+                'value' => function () {return $this->show_non_member;},
+            ],
+            [
+                "name" => 'non_member_copy',
+                'doc' => 'Default copy for emails to Non-Members',
+                'type' => 'string',
+                'value' => function () {return $this->non_member_copy;},
+            ],
+        ];
+    }
+
 }
