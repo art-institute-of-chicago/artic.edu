@@ -76,11 +76,8 @@ class EventRepository extends ModuleRepository
                     $sendToTypeFieldName = 'email_series_' .$series->id .'_send_' .$type;
                     if (isset($fields[$sendToTypeFieldName])) {
                         $pivotAttributes['send_' .$type] = $fields[$sendToTypeFieldName];
-                        if (isset($fields['email_series_' .$series->id .'_send_' .$type .'_override'])) {
-                            $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'];
-                        } else {
-                            $pivotAttributes[$type .'_copy'] = null;
-                        }
+                        $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null;
+                        $pivotAttributes[$type .'_copy'] = $pivotAttributes[$type .'_copy'] ?: null;
                     }
                 }
                 if (count($pivotAttributes) > 0) {
@@ -132,10 +129,20 @@ class EventRepository extends ModuleRepository
 
                         $copyForOverride = $series->pivot->{$subFieldName . '_copy'};
                         if ($copyForOverride) {
-                            $fields[$currentSeriesName . '_send_' . $subFieldName . '_override'] = true;
                             $fields[$currentSeriesName . '_' . $subFieldName . '_copy'] = $copyForOverride;
                         }
                     }
+                }
+            }
+        }
+
+        foreach (EmailSeries::all() as $series) {
+            $currentSeriesName = 'email_series_' . $series->id;
+            foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $subFieldName) {
+                $currentCopyField = $currentSeriesName . '_' . $subFieldName . '_copy';
+
+                if (!isset($fields[$currentCopyField])) {
+                    $fields[$currentCopyField] = $series->{$subFieldName . '_copy'};
                 }
             }
         }

@@ -392,26 +392,13 @@
 
                             <div style="padding-left: 35px">
 
-                            @formField('checkbox', [
-                                'name' => $currentSeriesName . '_send_' . $subFieldName . '_override',
-                                'label' => 'Override default copy for ' . $subFieldLabel,
+                            @formField('wysiwyg', [
+                                'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
+                                'label' => 'Copy for "' . $subFieldLabel . '"',
+                                'toolbarOptions' => [
+                                    'bold', 'italic', 'link'
+                                ],
                             ])
-
-                            @component('twill::partials.form.utils._connected_fields', [
-                                'fieldName' => $currentSeriesName . '_send_' . $subFieldName . '_override',
-                                'renderForBlocks' => false,
-                                'fieldValues' => true
-                            ])
-
-                                @formField('wysiwyg', [
-                                    'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                    'label' => 'Custom "' . $subFieldLabel . '" copy',
-                                    'toolbarOptions' => [
-                                        'bold', 'italic', 'link'
-                                    ],
-                                ])
-
-                            @endcomponent
 
                             </div>
 
