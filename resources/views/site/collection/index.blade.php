@@ -17,7 +17,7 @@
     @slot('overflow', true)
     @slot('isPrimaryPageNav', true)
     @slot('linksPrimary', [
-        ['label' => 'Artworks', 'href' => '#', 'active' => true],
+        ['label' => 'Artworks', 'href' => route('collection'), 'active' => true],
         ['label' => 'Writings', 'href' => route('articles_publications')],
         ['label' => 'Resources', 'href' => route('collection.research_resources')]
     ])
@@ -149,7 +149,7 @@
 @if ($artworks->hasMorePages())
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--buttons')
-        @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection.more', request()->input()), 'loadMoreTarget' => '#artworksList')))
+    @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection.more', request()->input()), 'loadMoreTarget' => '#artworksList', 'loadMoreLimitText' => 'If you\'re still having trouble finding what you\'re looking for, please email collections@artic.edu.')))
     @endcomponent
 @endif
 

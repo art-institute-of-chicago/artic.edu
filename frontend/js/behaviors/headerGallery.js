@@ -44,13 +44,18 @@ const headerGallery = function(container) {
   }
 
   function _fixDisplay() {
-    let $hero = nodes.hero.querySelector('img');
-    if (nodes.hero.offsetWidth >= nodes.hero.offsetHeight) {
-      $hero.style.height = nodes.hero.offsetHeight + 'px';
-      $hero.style.width = null;
+    let $image = nodes.hero.querySelector('img');
+
+    let heroAspect = nodes.hero.offsetWidth / nodes.hero.offsetHeight;
+    let imageAspect = $image.offsetWidth / $image.offsetHeight;
+    let diffAspect = imageAspect - heroAspect;
+
+    if (diffAspect > 0) {
+      $image.style.width = nodes.hero.offsetWidth + 'px';
+      $image.style.height = null;
     } else {
-      $hero.style.width = nodes.hero.offsetWidth + 'px';
-      $hero.style.height = null;
+      $image.style.height = nodes.hero.offsetHeight + 'px';
+      $image.style.width = null;
     }
   }
 
@@ -95,7 +100,9 @@ const headerGallery = function(container) {
       $hero.width = data[activeIndex].width;
       $hero.height = data[activeIndex].height;
       $hero.alt = data[activeIndex].alt;
-      _fixDisplay();
+
+      // WEB-1028: Disabling dimension limiting to prevent stretching
+      // _fixDisplay();
 
       let creditNode;
       creditNode = document.createElement('span');

@@ -212,7 +212,8 @@
             @slot('item', $item)
             @slot('imgVariation','m-listing__img--tall')
             @slot('imageSettings', array(
-                'fit' => 'clamp',
+                'fit' => 'fill',
+                'fill'=> 'blur',
                 'ratio' => '3:4',
                 'srcset' => array(200,400,600),
                 'sizes' => aic_imageSizes(array(
