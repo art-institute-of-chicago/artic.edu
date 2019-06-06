@@ -68,6 +68,11 @@ class Event extends AbstractModel
         'meta_title',
         'meta_description',
         'search_tags',
+        'add_to_event_email_series',
+        'join_url',
+        'survey_url',
+        'is_presented_by_affiliate',
+        'entrance',
         'publish_start_date',
         'publish_end_date',
     ];
