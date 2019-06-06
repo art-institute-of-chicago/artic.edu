@@ -148,8 +148,8 @@ class Event extends AbstractModel
     const WEST_BOX = 8;
 
     public static $eventEntrances = [
-        self::MICHIGAN_AVE => 'Michigan Avenue ',
-        self::MODERN_WING => 'Modern Wing ',
+        self::MICHIGAN_AVE => 'Michigan Avenue',
+        self::MODERN_WING => 'Modern Wing',
         self::COLUMBUS_DRIVE => 'Columbus Drive',
         self::NORTH_GARDEN => 'North Garden',
         self::PRITZKER_GARDEN => 'Pritzker Garden',
@@ -754,7 +754,7 @@ class Event extends AbstractModel
                 "name" => "entrance",
                 "doc" => "Which entrance to use for this event",
                 "type" => "string",
-                "value" => function () {return $this->eventEntrances[$this->entrance] ?? null;},
+                "value" => function () {return self::$eventEntrances[$this->entrance] ?? null;},
             ],
             [
                 "name" => "is_presented_by_affiliate",
