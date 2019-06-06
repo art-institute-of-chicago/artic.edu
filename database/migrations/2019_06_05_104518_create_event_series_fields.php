@@ -41,10 +41,7 @@ class CreateEventSeriesFields extends Migration
 
         Schema::create('event_email_series', function (Blueprint $table) {
             createDefaultTableFields($table, false, false);
-            $table->integer('event_id')->unsigned()->index();
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-            $table->integer('email_series_id')->unsigned()->index();
-            $table->foreign('email_series_id')->references('id')->on('email_series')->onDelete('cascade');
+            createDefaultRelationshipTableFields($table, 'event', 'email_series');
             $table->boolean('send_affiliate_member')->default(false);
             $table->text('affiliate_member_copy')->nullable();
             $table->boolean('send_member')->default(false);
