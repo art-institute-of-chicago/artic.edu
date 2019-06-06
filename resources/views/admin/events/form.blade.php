@@ -374,6 +374,8 @@
                         'non_member' => 'Non-Members',
                     ] as $subFieldName => $subFieldLabel)
 
+                        @continue(!$series->{'show_' . $subFieldName})
+
                         @formField('checkbox', [
                             'name' => $currentSeriesName . '_send_' . $subFieldName,
                             'label' => 'Send to ' . $subFieldLabel,
