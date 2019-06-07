@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@area17/a17-helpers": "^0.6.7",
-    "closer-look": "git+ssh://git@code.area17.com:AIC/digital-labels-ui.git#8a8244b2b5585bfa88999a5fccff2d67621855b1",
+    "closer-look": "git+ssh://git@code.area17.com:AIC/digital-labels-ui.git#af914d47f8b71547021f9bf78a22b50e73978949",
     "intersection-observer": "^0.5.1",
     "react": "^16.7.0",
     "react-app-polyfill": "^0.2.0",

@@ -16,6 +16,7 @@ class SlideMedia extends JsonResource
     {
         return [
             'src' => $this->image('experience_image'),
+            '__option_credits' => $this->inline_credits === 'on',
             'credits' => [
                 'creditsACP' => $this->artist,
                 'creditsTitle' => $this->credit_title,
