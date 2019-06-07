@@ -26,6 +26,6 @@
         'fieldValues' => 'standard',
         'keepAlive' => true,
     ])
-        @formField('repeater', ['type' => 'experience_image'])
+        @formField('repeater', ['type' => 'interstitial_experience_image'])
     @endcomponent
 @endcomponent

@@ -137,6 +137,16 @@ class Slide extends Model implements Sortable
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'seamless_experience_image');
     }
 
+    public function interstitialExperienceImage()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'interstitial_experience_image');
+    }
+
+    public function fullwidthmediaExperienceImage()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'fullwidthmedia_experience_image');
+    }
+
     public function tooltipExperienceImage()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'tooltip_experience_image');
