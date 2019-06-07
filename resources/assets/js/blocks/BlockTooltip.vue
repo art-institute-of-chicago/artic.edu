@@ -23,7 +23,7 @@
                 in-store="value"
                 type="textarea"
                 name="description"
-                :initial-value="currentHotspot ? currentHotspot.description : ''"
+                :initial-value="currentDescription"
                 v-on:change="changeCurrentDescription"
             ></a17-textfield>
             <br />
@@ -59,6 +59,7 @@
                 y: 0
             },
             hotspotIndexDragging: undefined,
+            currentDescription: '',
             mousePos: {
                 x: 0,
                 y: 0
@@ -101,7 +102,7 @@
                 this.updateImage();
             },
             deep: true
-        },
+        }
     },
     methods: {
         addHotspot: function (e) {
@@ -112,13 +113,16 @@
                 this.hotspots = this.hotspots.concat({
                     "x": x,
                     "y": y,
+                    "description": ''
                 });
                 this.showHotspotInfo(this.hotspots.length - 1);
+                this.currentDescription = '';
                 this.saveHotspots();
             }
         },
         showHotspotInfo: function (index) {
             this.currentHotspotPos = [this.hotspots[index].x, this.hotspots[index].y];
+            this.currentDescription = this.currentHotspot.description;
         },
         deleteCurrentHotspot: function () {
             this.hotspots = this.hotspots.filter(function (hotspot) {
@@ -130,6 +134,7 @@
             this.currentHotspot = {
                 description: newValue
             };
+            this.currentDescription = newValue;
             this.saveHotspots();
         },
         saveHotspots: function () {
