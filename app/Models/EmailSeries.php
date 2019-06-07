@@ -17,6 +17,7 @@ class EmailSeries extends AbstractModel
         'show_non_member',
         'non_member_copy',
         'use_short_description',
+        'published',
     ];
 
     public $checkboxes = [

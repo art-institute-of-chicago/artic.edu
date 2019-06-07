@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\EmailSeries;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 use Illuminate\Console\Command;
 
@@ -15,6 +17,7 @@ class UpdateEmailSeries extends Command
 
     private $emailSeries = [
         'Save the Date 90' => [
+            'published' => true,
             'show_affiliate_member' => true,
             'show_member' => true,
             'show_sustaining_fellow' => true,
@@ -22,6 +25,7 @@ class UpdateEmailSeries extends Command
             'use_short_description' => true,
         ],
         'Save the Date 60' => [
+            'published' => true,
             'show_affiliate_member' => true,
             'show_member' => true,
             'show_sustaining_fellow' => true,
@@ -29,6 +33,7 @@ class UpdateEmailSeries extends Command
             'use_short_description' => true,
         ],
         'Save the Date 30' => [
+            'published' => true,
             'show_affiliate_member' => true,
             'show_member' => true,
             'show_sustaining_fellow' => true,
@@ -36,6 +41,7 @@ class UpdateEmailSeries extends Command
             'use_short_description' => true,
         ],
         'Registration Open' => [
+            'published' => true,
             'show_affiliate_member' => true,
             'show_member' => true,
             'show_sustaining_fellow' => true,
@@ -47,6 +53,7 @@ class UpdateEmailSeries extends Command
             'non_member_copy' => '<p>Be sure to reserve your spot at this event.</p>',
         ],
         'Tickets on Sale' => [
+            'published' => true,
             'show_affiliate_member' => true,
             'show_member' => true,
             'show_sustaining_fellow' => true,
@@ -58,6 +65,7 @@ class UpdateEmailSeries extends Command
             'non_member_copy' => '<p>Tickets will go fast—so grab yours today!</p>',
         ],
         'Tickets on Sale Reminder' => [
+            'published' => true,
             'show_affiliate_member' => true,
             'show_member' => true,
             'show_sustaining_fellow' => true,
@@ -69,6 +77,7 @@ class UpdateEmailSeries extends Command
             'non_member_copy' => '<p>There are only a few tickets left—don’t miss out!</p>',
         ],
         'Event Reminder' => [
+            'published' => true,
             'show_affiliate_member' => true,
             'show_member' => true,
             'show_sustaining_fellow' => true,
@@ -80,6 +89,7 @@ class UpdateEmailSeries extends Command
             'non_member_copy' => '<p>%FirstName%%, your event, %%EventName%%, is coming up—we look forward to seeing you there.</p>',
         ],
         'Event Thank You' => [
+            'published' => true,
             'show_affiliate_member' => true,
             'show_member' => true,
             'show_sustaining_fellow' => true,
@@ -91,6 +101,7 @@ class UpdateEmailSeries extends Command
             'non_member_copy' => '<p>We’re so happy you were able to join us for %%EventName%% and hope you enjoyed the event.</p><p>We have a wide range of great programs coming up in the next couple months. Check out <a href="https://www.artic.edu/events">our calendar</a> to see the full lineup.</p>',
         ],
         'Event Please Join Us for a Future Event' => [
+            'published' => true,
             'show_affiliate_member' => true,
             'show_member' => true,
             'show_sustaining_fellow' => true,
@@ -109,9 +120,14 @@ class UpdateEmailSeries extends Command
             exit(1);
         }
 
-        EmailSeries::each(function($series) {
-            $series->delete();
-        });
+        // EmailSeries::withTrashed()->each(function($series) {
+        //     $series->forceDelete();
+        // });
+
+        Schema::disableForeignKeyConstraints();
+        DB::table('event_email_series')->truncate();
+        DB::table('email_series')->truncate();
+        Schema::enableForeignKeyConstraints();
 
         foreach ($this->emailSeries as $key => $values)
         {
