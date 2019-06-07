@@ -3,19 +3,19 @@
     'fieldValues' => 'interstitial',
     'keepAlive' => true,
 ])
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'section_title',
         'label' => 'Section Title',
         'maxlength' => 150,
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'interstitial_headline',
         'label' => 'Headline',
         'maxlength' => 150,
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'body_copy',
         'label' => 'Body Copy',
         'maxlength' => 150,
