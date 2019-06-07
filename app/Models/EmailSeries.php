@@ -16,6 +16,7 @@ class EmailSeries extends AbstractModel
         'sustaining_fellow_copy',
         'show_non_member',
         'non_member_copy',
+        'use_short_description',
     ];
 
     public $checkboxes = [
@@ -23,6 +24,7 @@ class EmailSeries extends AbstractModel
         'show_member',
         'show_sustaining_fellow',
         'show_non_member',
+        'use_short_description',
         'published',
     ];
 
@@ -31,6 +33,7 @@ class EmailSeries extends AbstractModel
         'show_member' => 'boolean',
         'show_sustaining_fellow' => 'boolean',
         'show_non_member' => 'boolean',
+        'use_short_description' => 'boolean',
         'published' => 'boolean',
     ];
 
@@ -90,6 +93,12 @@ class EmailSeries extends AbstractModel
                 'doc' => 'Default copy for emails to Non-Members',
                 'type' => 'string',
                 'value' => function () {return $this->non_member_copy;},
+            ],
+            [
+                "name" => 'use_short_description',
+                'doc' => 'Whether to use the event short description as the default copy',
+                'type' => 'boolean',
+                'value' => function () {return $this->use_short_description;},
             ],
         ];
     }

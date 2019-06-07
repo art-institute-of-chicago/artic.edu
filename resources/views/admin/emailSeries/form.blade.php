@@ -1,17 +1,10 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
+
     @formField('checkbox', [
         'name' => 'show_affiliate_member',
         'label' => 'Show "Send to Affiliate Members" option'
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'affiliate_member_copy',
-        'label' => 'Default "Affiliate Member" copy',
-        'toolbarOptions' => [
-            'bold', 'italic', 'link'
-        ],
     ])
 
     @formField('checkbox', [
@@ -19,37 +12,71 @@
         'label' => 'Show "Send to Members" option'
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'member_copy',
-        'label' => 'Default "Members" copy',
-        'toolbarOptions' => [
-            'bold', 'italic', 'link'
-        ],
-    ])
-
     @formField('checkbox', [
         'name' => 'show_sustaining_fellow',
         'label' => 'Show "Send to Sustaining Fellows" option'
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'sustaining_fellow_copy',
-        'label' => 'Default "Sustaining Fellows" copy',
-        'toolbarOptions' => [
-            'bold', 'italic', 'link'
-        ],
-    ])
-
     @formField('checkbox', [
         'name' => 'show_non_member',
-        'label' => 'Show "Send to non-members" option'
+        'label' => 'Show "Send to Non-Members" option'
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'non_member_copy',
-        'label' => 'Default "non-member" copy',
-        'toolbarOptions' => [
-            'bold', 'italic', 'link'
-        ],
+    <hr>
+
+    @formField('checkbox', [
+        'name' => 'use_short_description',
+        'label' => 'Use short description as default copy',
     ])
+
+    <hr>
+
+
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'use_short_description',
+        'renderForBlocks' => false,
+        'fieldValues' => true,
+    ])
+        <p>Uncheck "Use short description" to set default fields.</p>
+    @endcomponent
+
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'use_short_description',
+        'renderForBlocks' => false,
+        'fieldValues' => false,
+    ])
+        @formField('wysiwyg', [
+            'name' => 'affiliate_member_copy',
+            'label' => 'Default "Affiliate Member" copy',
+            'toolbarOptions' => [
+                'bold', 'italic', 'link'
+            ],
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'member_copy',
+            'label' => 'Default "Members" copy',
+            'toolbarOptions' => [
+                'bold', 'italic', 'link'
+            ],
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'sustaining_fellow_copy',
+            'label' => 'Default "Sustaining Fellows" copy',
+            'toolbarOptions' => [
+                'bold', 'italic', 'link'
+            ],
+        ])
+
+
+        @formField('wysiwyg', [
+            'name' => 'non_member_copy',
+            'label' => 'Default "Non-Member" copy',
+            'toolbarOptions' => [
+                'bold', 'italic', 'link'
+            ],
+        ])
+    @endcomponent
+
 @stop

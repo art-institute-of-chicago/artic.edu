@@ -68,18 +68,33 @@ class EventRepository extends ModuleRepository
 
         $relatedEmailSeries = [];
 
-        if (isset($fields['add_to_event_email_series']))
+        if ($fields['add_to_event_email_series'] ?? false)
         {
             foreach (EmailSeries::all() as $series) {
+                if (!($fields['email_series_' . $series->id] ?? false)) {
+                    continue;
+                }
+
                 $pivotAttributes = [];
+
                 foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $type) {
-                    $sendToTypeFieldName = 'email_series_' .$series->id .'_send_' .$type;
-                    if (isset($fields[$sendToTypeFieldName])) {
-                        $pivotAttributes['send_' .$type] = $fields[$sendToTypeFieldName];
-                        $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null;
+                    $pivotAttributes['send_' .$type] = $fields['email_series_' .$series->id .'_send_' .$type] ?? false;
+                    if ($pivotAttributes['send_' .$type]) {
+                        if ($series->use_short_description) {
+                            if (($fields['email_series_' .$series->id .'_' .$type .'_override'] ?? 'default') === 'custom') {
+                                $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null;
+                            } else {
+                                $pivotAttributes[$type .'_copy'] = $fields['short_description'];
+                            }
+                        } else {
+                            $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null;
+                        }
                         $pivotAttributes[$type .'_copy'] = $pivotAttributes[$type .'_copy'] ?: null;
+                    } else {
+                        $pivotAttributes[$type .'_copy'] = null;
                     }
                 }
+
                 if (count($pivotAttributes) > 0) {
                     $relatedEmailSeries[$series->id] = $pivotAttributes;
                 }
@@ -139,10 +154,19 @@ class EventRepository extends ModuleRepository
         foreach (EmailSeries::all() as $series) {
             $currentSeriesName = 'email_series_' . $series->id;
             foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $subFieldName) {
-                $currentCopyField = $currentSeriesName . '_' . $subFieldName . '_copy';
+                $currentSubField = $currentSeriesName . '_' . $subFieldName;
 
-                if (!isset($fields[$currentCopyField])) {
-                    $fields[$currentCopyField] = $series->{$subFieldName . '_copy'};
+                if (empty($fields[$currentSubField . '_copy'])) {
+                    if ($series->use_short_description) {
+                        $fields[$currentSubField . '_copy'] = $fields['short_description'];
+                    } else {
+                        $fields[$currentSubField . '_copy'] = $series->{$subFieldName . '_copy'};
+                    }
+                }
+
+                if ($series->use_short_description && $fields[$currentSubField . '_copy'] !== $fields['short_description']) {
+                    // Prevents "Uncaught ReferenceError: custom is not defined"
+                    $fields[$currentSubField . '_override'] = '"custom"';
                 }
             }
         }

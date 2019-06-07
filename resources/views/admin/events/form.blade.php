@@ -392,14 +392,48 @@
 
                             <div style="padding-left: 35px">
 
-                            @formField('wysiwyg', [
-                                'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                'label' => '', // Empty to save vertical space
-                                // 'label' => 'Copy for "' . $subFieldLabel . '"',
-                                'toolbarOptions' => [
-                                    'bold', 'italic', 'link'
-                                ],
-                            ])
+                            @if ($series->use_short_description)
+
+                                @formField('radios', [
+                                    'name' => $currentSeriesName . '_' . $subFieldName . '_override',
+                                    'label' => '', // Empty to save vertical space
+                                    'default' => 'default',
+                                    'inline' => true,
+                                    'options' => [
+                                        [
+                                            'value' => 'default',
+                                            'label' => 'Use short description'
+                                        ],
+                                        [
+                                            'value' => 'custom',
+                                            'label' => 'Use custom copy'
+                                        ],
+                                    ]
+                                ])
+
+                                @component('twill::partials.form.utils._connected_fields', [
+                                    'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override',
+                                    'renderForBlocks' => false,
+                                    'fieldValues' => 'custom'
+                                ])
+                                    @formField('wysiwyg', [
+                                        'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
+                                        'label' => '',
+                                        'toolbarOptions' => [
+                                            'bold', 'italic', 'link'
+                                        ],
+                                    ])
+                                @endcomponent
+
+                            @else
+                                @formField('wysiwyg', [
+                                    'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
+                                    'label' => '',
+                                    'toolbarOptions' => [
+                                        'bold', 'italic', 'link'
+                                    ],
+                                ])
+                            @endif
 
                             </div>
 
