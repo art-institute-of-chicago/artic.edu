@@ -3,8 +3,8 @@
 @section('contentFields')
 
     @formField('checkbox', [
-        'name' => 'show_affiliate_member',
-        'label' => 'Show "Send to Affiliate Members" option'
+        'name' => 'show_non_member',
+        'label' => 'Show "Send to Non-Members" option'
     ])
 
     @formField('checkbox', [
@@ -18,8 +18,8 @@
     ])
 
     @formField('checkbox', [
-        'name' => 'show_non_member',
-        'label' => 'Show "Send to Non-Members" option'
+        'name' => 'show_affiliate_member',
+        'label' => 'Show "Send to Affiliate Members" option'
     ])
 
     <hr>
@@ -46,8 +46,8 @@
         'fieldValues' => false,
     ])
         @formField('wysiwyg', [
-            'name' => 'affiliate_member_copy',
-            'label' => 'Default "Affiliate Member" copy',
+            'name' => 'non_member_copy',
+            'label' => 'Default "Non-Member" copy',
             'toolbarOptions' => [
                 'bold', 'italic', 'link'
             ],
@@ -55,7 +55,7 @@
 
         @formField('wysiwyg', [
             'name' => 'member_copy',
-            'label' => 'Default "Members" copy',
+            'label' => 'Default "Member" copy',
             'toolbarOptions' => [
                 'bold', 'italic', 'link'
             ],
@@ -69,10 +69,9 @@
             ],
         ])
 
-
         @formField('wysiwyg', [
-            'name' => 'non_member_copy',
-            'label' => 'Default "Non-Member" copy',
+            'name' => 'affiliate_member_copy',
+            'label' => 'Default "Affiliate Group" copy',
             'toolbarOptions' => [
                 'bold', 'italic', 'link'
             ],
