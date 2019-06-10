@@ -11,7 +11,8 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Page;
 use Carbon\Carbon;
 
-class DigitalLabel extends Model
+class InteractiveFeature
+ extends Model
 {
     use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, Transformable;
 
@@ -56,7 +57,7 @@ class DigitalLabel extends Model
 
     public function getUrl()
     {
-        return route('digitalLabels.show', ['id' => $this->datahub_id, 'slug' => str_slug($this->title, '-')]);
+        return route('interactiveFeatures.show', ['id' => $this->datahub_id, 'slug' => str_slug($this->title, '-')]);
     }
 
     protected function transformMappingInternal()
@@ -79,7 +80,7 @@ class DigitalLabel extends Model
 
     public function experiences()
     {
-        return $this->hasMany('App\Models\Experience', 'digital_label_id');
+        return $this->hasMany('App\Models\Experience', 'interactive_feature_id');
     }
 
     public function scopeArchived($query)

@@ -82,7 +82,7 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    <br /><strong><a href="{{ url('/collection/digitalLabels/' . $item->id . '/experiences') }}">{{ $item->experiences->count() }} Experiences</a></strong>
+    <br /><strong><a href="{{ url('/collection/interactiveFeatures/' . $item->id . '/experiences') }}">{{ $item->experiences->count() }} Experiences</a></strong>
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Image',

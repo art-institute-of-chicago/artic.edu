@@ -24,7 +24,7 @@ class Experience extends Model implements Sortable
         'title',
         'description',
         'position',
-        'digital_label_id',
+        'interactive_feature_id',
         'archived',
         'kiosk_only',
         // 'public',
@@ -119,9 +119,9 @@ class Experience extends Model implements Sortable
         return $this->hasMany('App\Models\Slide', 'experience_id');
     }
 
-    public function digitalLabel()
+    public function interactiveFeature()
     {
-        return $this->belongsTo('App\Models\DigitalLabel');
+        return $this->belongsTo('App\Models\InteractiveFeature');
     }
 
     public function scopeArchived($query)
@@ -136,6 +136,6 @@ class Experience extends Model implements Sortable
 
     public function getUrl()
     {
-        return route('digitalLabels.show', $this->slug);
+        return route('interactiveFeatures.show', $this->slug);
     }
 }

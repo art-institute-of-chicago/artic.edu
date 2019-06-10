@@ -11,7 +11,7 @@ class ExperienceSlideController extends ModuleController
 {
     protected $moduleName = 'experiences.slides';
     protected $modelName = 'Slide';
-    protected $previewView = 'site.digitalLabelDetail';
+    protected $previewView = 'site.experienceDetail';
 
     protected function getParentModuleForeignKey()
     {
@@ -26,24 +26,24 @@ class ExperienceSlideController extends ModuleController
     protected function indexData($request)
     {
         $experience = app(ExperienceRepository::class)->getById(request('experience'));
-        $digitalLabel = $experience->digitalLabel;
+        $interactiveFeature = $experience->interactiveFeature;
         return [
             'breadcrumb' => [
                 [
                     'label' => 'Groupings',
-                    'url' => moduleRoute('digitalLabels', 'collection', 'index'),
+                    'url' => moduleRoute('interactiveFeatures', 'collection', 'index'),
                 ],
                 [
-                    'label' => $digitalLabel->title,
-                    'url' => moduleRoute('digitalLabels', 'collection', 'edit', $digitalLabel->id),
+                    'label' => $interactiveFeature->title,
+                    'url' => moduleRoute('interactiveFeatures', 'collection', 'edit', $interactiveFeature->id),
                 ],
                 [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'index', $experience->digitalLabel->id),
+                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'index', $experience->interactiveFeature->id),
                 ],
                 [
                     'label' => $experience->title,
-                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'edit', [$digitalLabel->id, $experience->id]),
+                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'edit', [$interactiveFeature->id, $experience->id]),
                 ],
                 [
                     'label' => 'Slides',
@@ -56,7 +56,7 @@ class ExperienceSlideController extends ModuleController
     protected function formData($request)
     {
         $experience = app(ExperienceRepository::class)->getById(request('experience'));
-        $digitalLabel = $experience->digitalLabel;
+        $interactiveFeature = $experience->interactiveFeature;
         $slide = app(SlideRepository::class)->getById(request('slide'));
         $slides = $this->repository->get([], ['experience_id' => $experience->id], ['position' => 'asc']);
         $currentSlideIndex = $slides->search($slide);
@@ -73,19 +73,19 @@ class ExperienceSlideController extends ModuleController
             'breadcrumb' => [
                 [
                     'label' => 'Groupings',
-                    'url' => moduleRoute('digitalLabels', 'collection', 'index'),
+                    'url' => moduleRoute('interactiveFeatures', 'collection', 'index'),
                 ],
                 [
-                    'label' => $digitalLabel->title,
-                    'url' => moduleRoute('digitalLabels', 'collection', 'edit', $digitalLabel->id),
+                    'label' => $interactiveFeature->title,
+                    'url' => moduleRoute('interactiveFeatures', 'collection', 'edit', $interactiveFeature->id),
                 ],
                 [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'index', $experience->digitalLabel->id),
+                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'index', $experience->interactiveFeature->id),
                 ],
                 [
                     'label' => $experience->title,
-                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'edit', [$digitalLabel->id, $experience->id]),
+                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'edit', [$interactiveFeature->id, $experience->id]),
                 ],
                 [
                     'label' => 'Slides',
@@ -113,7 +113,7 @@ class ExperienceSlideController extends ModuleController
             'experience' => $experience,
             'slide' => $item,
             'furtherReading' => $articles,
-            'canonicalUrl' => route('digitalLabels.show', ['id' => $experience->id, 'slug' => $experience->titleSlug]),
+            'canonicalUrl' => route('interactiveFeatures.show', ['id' => $experience->id, 'slug' => $experience->titleSlug]),
         ];
     }
 

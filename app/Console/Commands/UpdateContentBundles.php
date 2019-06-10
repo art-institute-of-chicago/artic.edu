@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\DigitalLabel;
+use App\Models\InteractiveFeature;
 
 use Illuminate\Console\Command;
 use DB;
@@ -29,7 +29,7 @@ class UpdateContentBundles extends Command
         // Check for datahub_id command param
         if(isset($datahubId)) {
             // Update a single digital label content bundle
-            $record = DB::table('digital_labels')->where('datahub_id', $datahubId);
+            $record = DB::table('interactive_features')->where('datahub_id', $datahubId);
             $assetResponse = file_get_contents(endpoint("asset", $datahubId));
             $contentResponse = file_get_contents(endpoint("content", $datahubId));
 
@@ -39,12 +39,12 @@ class UpdateContentBundles extends Command
             ]);
         } else {
             // Update all digital label content bundles
-            $digitalLabels = DB::table('digital_labels')->select('*')->get();
+            $interactiveFeatures = DB::table('interactive_features')->select('*')->get();
     
-            foreach ($digitalLabels as $digitalLabel) {
-                $record = DB::table('digital_labels')->where('datahub_id', $digitalLabel->datahub_id);
-                $assetResponse = file_get_contents(endpoint("asset", $digitalLabel->datahub_id));
-                $contentResponse = file_get_contents(endpoint("content", $digitalLabel->datahub_id));
+            foreach ($interactiveFeatures as $interactiveFeature) {
+                $record = DB::table('digital_labels')->where('datahub_id', $interactiveFeature->datahub_id);
+                $assetResponse = file_get_contents(endpoint("asset", $interactiveFeature->datahub_id));
+                $contentResponse = file_get_contents(endpoint("content", $interactiveFeature->datahub_id));
     
                 $record->update([
                     'asset_library' => $assetResponse,

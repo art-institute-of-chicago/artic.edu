@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\Experience;
-use App\Repositories\DigitalLabelRepository;
+use App\Repositories\InteractiveFeatureRepository;
 use App\Repositories\ExperienceRepository;
 
-class DigitalLabelExperienceController extends ModuleController
+class InteractiveFeatureExperienceController extends ModuleController
 {
-    protected $moduleName = 'digitalLabels.experiences';
+    protected $moduleName = 'interactiveFeatures.experiences';
     protected $modelName = 'Experience';
-    protected $previewView = 'site.digitalLabelDetail';
+    protected $previewView = 'site.experienceDetail';
 
     protected function getParentModuleForeignKey()
     {
-        return 'digital_label_id';
+        return 'interactive_feature_id';
     }
 
     protected $indexColumns = [
@@ -39,16 +39,16 @@ class DigitalLabelExperienceController extends ModuleController
 
     protected function indexData($request)
     {
-        $digitalLabel = app(DigitalLabelRepository::class)->getById(request('digitalLabel'));
+        $interactiveFeature = app(InteractiveFeatureRepository::class)->getById(request('interactiveFeature'));
         return [
             'breadcrumb' => [
                 [
                     'label' => 'Groupings',
-                    'url' => moduleRoute('digitalLabels', 'collection', 'index'),
+                    'url' => moduleRoute('interactiveFeatures', 'collection', 'index'),
                 ],
                 [
-                    'label' => $digitalLabel->title,
-                    'url' => moduleRoute('digitalLabels', 'collection', 'edit', $digitalLabel->id),
+                    'label' => $interactiveFeature->title,
+                    'url' => moduleRoute('interactiveFeatures', 'collection', 'edit', $interactiveFeature->id),
                 ],
                 [
                     'label' => 'Experiences',
@@ -65,15 +65,15 @@ class DigitalLabelExperienceController extends ModuleController
             'breadcrumb' => [
                 [
                     'label' => 'Groupings',
-                    'url' => moduleRoute('digitalLabels', 'collection', 'index'),
+                    'url' => moduleRoute('interactiveFeatures', 'collection', 'index'),
                 ],
                 [
-                    'label' => $experience->digitalLabel->title,
-                    'url' => moduleRoute('digitalLabels', 'collection', 'edit', $experience->digitalLabel->id),
+                    'label' => $experience->interactiveFeature->title,
+                    'url' => moduleRoute('interactiveFeatures', 'collection', 'edit', $experience->interactiveFeature->id),
                 ],
                 [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('digitalLabels.experiences', 'collection', 'index', $request->route('digitalLabel')),
+                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'index', $request->route('interactiveFeature')),
                 ],
                 [
                     'label' => $experience->title,

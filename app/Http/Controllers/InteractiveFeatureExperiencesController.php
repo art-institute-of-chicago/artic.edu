@@ -7,10 +7,10 @@ use App\Models\Experience;
 use App\Repositories\ExperienceRepository;
 use Illuminate\Http\Request;
 
-class DigitalLabelExperiencesController extends FrontController
+class InteractiveFeatureExperiencesController extends FrontController
 {
     protected $apiRepository;
-    protected $moduleName = 'digitalLabels';
+    protected $moduleName = 'interactiveFeature.experiences';
     protected $hasAugmentedModel = true;
 
     protected $indexColumns = [
@@ -61,12 +61,12 @@ class DigitalLabelExperiencesController extends FrontController
     {
         $experience = $this->repository->forSlug($slug);
         if (in_array('kiosk', request()->segments())) {
-            $view = 'site.digitalLabelDetailKiosk';
+            $view = 'site.experienceDetailKiosk';
         } else {
             if ($experience->kiosk_only === true) {
                 abort(404);
             }
-            $view = 'site.digitalLabelDetail';
+            $view = 'site.experienceDetail';
         }
         $articles = Article::published()
             ->orderBy('date', 'desc')
@@ -75,7 +75,7 @@ class DigitalLabelExperiencesController extends FrontController
             'contrastHeader' => true,
             'experience' => $experience,
             'furtherReading' => $articles,
-            'canonicalUrl' => route('digitalLabels.show', ['id' => $experience->id, 'slug' => $experience->titleSlug]),
+            'canonicalUrl' => route('interactiveFeatures.show', ['id' => $experience->id, 'slug' => $experience->titleSlug]),
         ]);
     }
 
@@ -84,7 +84,7 @@ class DigitalLabelExperiencesController extends FrontController
         $articles = Article::published()
             ->orderBy('date', 'desc')
             ->paginate(4);
-        return view('site.digitalLabelDetailTest', [
+        return view('site.experienceDetailTest', [
             'contrastHeader' => true,
             'furtherReading' => $articles,
         ]);

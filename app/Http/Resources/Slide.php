@@ -270,12 +270,12 @@ class Slide extends JsonResource
             'assetType' => $this->asset_type,
             '__mediaType' => $mediaType,
             'moduleTitle' => $this->title,
-            'exhibitonId' => $this->experience->digitalLabel->id,
+            'exhibitonId' => $this->experience->interactiveFeature->id,
             'isActive' => $this->published,
             'experienceId' => $this->experience->id,
             'experienceType' => 'LABEL',
-            'colorCode' => $this->experience->digitalLabel->color,
-            'bgColorCode' => $this->experience->digitalLabel->grouping_background_color,
+            'colorCode' => $this->experience->interactiveFeature->color,
+            'bgColorCode' => $this->experience->interactiveFeature->grouping_background_color,
             'vScalePercent' => 0,
         ];
 

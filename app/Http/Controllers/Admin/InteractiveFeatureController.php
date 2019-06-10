@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
-use App\Models\DigitalLabel;
+use App\Models\InteractiveFeature;
 use App\Repositories\SiteTagRepository;
 
-class DigitalLabelController extends ModuleController
+class InteractiveFeatureController extends ModuleController
 {
-    protected $moduleName = 'digitalLabels';
-    protected $previewView = 'site.digitalLabelDetail';
+    protected $moduleName = 'interactiveFeatures';
 
     protected $indexColumns = [
         'title' => [
@@ -47,24 +46,13 @@ class DigitalLabelController extends ModuleController
         return [];
     }
 
-    protected function formData($request)
-    {
-        $item = $this->repository->getById(request('digitalLabel') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/interactive-features/' . $item->datahub_id . '/';
-
-        return [
-            'editableTitle' => true,
-            'baseUrl' => $baseUrl,
-        ];
-    }
-
     protected function getIndexTableMainFilters($items, $scopes = [])
     {
         $statusFilters = parent::getIndexTableMainFilters($items, $scopes);
         array_push($statusFilters, [
             'name' => 'Archived',
             'slug' => 'archived',
-            'number' => DigitalLabel::archived()->count(),
+            'number' => InteractiveFeature::archived()->count(),
         ]);
         return $statusFilters;
     }

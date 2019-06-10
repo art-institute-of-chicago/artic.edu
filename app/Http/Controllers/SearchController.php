@@ -12,7 +12,6 @@ use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\ArtistRepository;
 use App\Repositories\Api\SearchRepository;
 use App\Repositories\Api\ExhibitionRepository;
-use App\Repositories\Api\DigitalLabelRepository;
 use App\Repositories\ArticleRepository;
 use App\Repositories\PublicationsRepository;
 use App\Repositories\EventRepository;
@@ -61,7 +60,6 @@ class SearchController extends BaseScopedController
         ArtistRepository $artists,
         SearchRepository $search,
         ExhibitionRepository $exhibitions,
-        DigitalLabelRepository $digitalLabels,
         ArticleRepository $articles,
         PublicationsRepository $publications,
         EventRepository $events,
@@ -73,7 +71,6 @@ class SearchController extends BaseScopedController
         $this->artistsRepository = $artists;
         $this->searchRepository = $search;
         $this->exhibitionsRepository = $exhibitions;
-        $this->digitalLabelsRepository = $digitalLabels;
         $this->articlesRepository = $articles;
         $this->eventsRepository = $events;
         $this->publicationsRepository = $publications;
@@ -100,7 +97,6 @@ class SearchController extends BaseScopedController
         $artworks     = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
         $artists      = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
         $exhibitions  = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
-        $digitalLabels  = $this->digitalLabelsRepository->searchApi(request('q'), self::ALL_PER_PAGE_DIGITAL_LABELS);
         $events       = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
         $pages        = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
         $guides       = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
@@ -140,7 +136,7 @@ class SearchController extends BaseScopedController
                     $item->section = 'Exhibitions and Events';
                     break;
                 case 'DigitalLabel':
-                    $item->url = route('digitalLabels.show', $item);
+                    $item->url = route('interactiveFeatures.show', $item);
                     $item->section = 'Interactive Features';
                     break;
                 case 'Artist':
@@ -238,7 +234,6 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general     = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $digitalLabels = $this->digitalLabelsRepository->searchApi(request('q'), self::DIGITAL_LABELS_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'interactive-features');
 
