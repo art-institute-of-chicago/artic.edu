@@ -380,9 +380,6 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'exhibitions')) {
             array_push($links, $this->buildLabel('Exhibitions', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
         }
-        if (extractAggregation($aggregations, 'digital-labels')) {
-            array_push($links, $this->buildLabel('Interactive Features', extractAggregation($aggregations, 'digital-labels'), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
-        }
         if (extractAggregation($aggregations, 'events')) {
             array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('search.events', ['q' => request('q')]), $active == 'events'));
         }

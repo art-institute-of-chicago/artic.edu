@@ -7,22 +7,13 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Model;
-use App\Models\Behaviors\HasApiModel;
-use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Page;
 use Carbon\Carbon;
 
 class DigitalLabel extends Model
 {
-    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiModel, HasApiRelations, Transformable;
-
-    protected $apiModel = 'App\Models\Api\DigitalLabel';
-
-    // protected $dispatchesEvents = [
-    //     'saved' => \App\Events\UpdateDigitalLabel::class,
-    //     'deleted' => \App\Events\UpdateDigitalLabel::class,
-    // ];
+    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, Transformable;
 
     protected $fillable = [
         'content',

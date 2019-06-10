@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\DigitalLabel;
-use App\Repositories\Api\DigitalLabelRepository;
 use App\Repositories\SiteTagRepository;
 
 class DigitalLabelController extends ModuleController
@@ -57,18 +56,6 @@ class DigitalLabelController extends ModuleController
             'editableTitle' => true,
             'baseUrl' => $baseUrl,
         ];
-    }
-
-    protected function previewData($item)
-    {
-        // The ID is a datahub_id not a local ID
-        $apiRepo = app(DigitalLabelRepository::class);
-        $apiItem = $apiRepo->getById($item->datahub_id);
-
-        // Force the augmented model
-        $apiItem->setAugmentedModel($item);
-
-        return $apiRepo->getShowData($apiItem);
     }
 
     protected function getIndexTableMainFilters($items, $scopes = [])
