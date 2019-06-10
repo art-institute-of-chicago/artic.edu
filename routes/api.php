@@ -296,7 +296,7 @@ Route::get('/', function () {
  *     ),
  *
  *     @SWG\Definition(
- *        definition="PrintedCatalog",
+ *        definition="PrintedPublication",
  *        type="object",
  *        required={"id"},
  *        @SWG\Property(property="id", type="integer", description="ID"),
