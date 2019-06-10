@@ -441,7 +441,6 @@ return [
             'events' => 'exhibitions_events',
             'selections' => 'collection',
             'artworks' => 'collection',
-            'digitalLabels' => 'collection',
         ],
     ],
 

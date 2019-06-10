@@ -45,7 +45,7 @@ class PageRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms', 'digitalLabels']);
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
@@ -73,7 +73,6 @@ class PageRepository extends ModuleRepository
         // $this->updateBrowser($object, $fields, 'artArticles');
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
-            'digitalLabels' => true
         ]);
 
         // Research
@@ -125,16 +124,16 @@ class PageRepository extends ModuleRepository
         // Art & Ideas
         // $fields['browsers']['artArticles'] = $this->getFormFieldsForBrowser($object, 'artArticles', 'collection.articles_publications', 'title', 'articles');
         $fields['browsers']['artCategoryTerms'] = $this->getFormFieldsForBrowserApi($object, 'artCategoryTerms', 'App\Models\Api\CategoryTerm', 'collection', 'title', 'categoryTerms');
-        $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [
-            'digitalLabels' => [
-                'apiModel' => 'App\Models\Api\DigitalLabel',
-                'routePrefix' => 'collection',
-                'moduleName' => 'digitalLabels',
-            ],   
-        ], [ 
-            'articles' => false,
-            'digitalLabels' => true
-        ]);
+        // $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [
+        //     'digitalLabels' => [
+        //         'apiModel' => 'App\Models\Api\DigitalLabel',
+        //         'routePrefix' => 'collection',
+        //         'moduleName' => 'digitalLabels',
+        //     ],   
+        // ], [ 
+        //     'articles' => false,
+        //     'digitalLabels' => true
+        // ]);
 
         // Research
         $fields['browsers']['researchResourcesFeaturePages'] = $this->getFormFieldsForBrowser($object, 'researchResourcesFeaturePages', 'generic', 'title', 'genericPages');
