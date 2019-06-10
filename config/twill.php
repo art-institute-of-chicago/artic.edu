@@ -4,11 +4,8 @@ return [
     'users_table' => 'users',
     'password_resets_table' => 'password_resets',
     'bind_exception_handler' => false,
-
     'auth_login_redirect_path' => '/homepage/landing',
-
     'templates_on_frontend_domain' => true,
-
     'frontend' => [
         'dev_assets_path' => '/dist',
     ],
@@ -556,4 +553,5 @@ return [
         'width' => 7500,
         'height' => 5000,
     ],
+    'imgix_source_host' => env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net')
 ];
