@@ -14,8 +14,6 @@ class PrintedPublication extends AbstractModel
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
 
-    protected $table = "printed_catalogs";
-
     protected $fillable = [
         'listing_description',
         'short_description',
@@ -66,16 +64,6 @@ class PrintedPublication extends AbstractModel
             ],
         ],
     ];
-
-    public function slugs()
-    {
-        return $this->hasMany("App\Models\Slugs\\" . $this->getSlugClassName(), 'printed_catalog_id');
-    }
-
-    public function revisions()
-    {
-        return $this->hasMany("App\Models\Revisions\\" . class_basename($this) . "Revision", 'printed_catalog_id')->orderBy('created_at', 'desc');
-    }
 
     public function categories()
     {
