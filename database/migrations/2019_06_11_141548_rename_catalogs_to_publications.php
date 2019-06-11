@@ -161,8 +161,14 @@ class RenameCatalogsToPublications extends Migration
             $oldSecondTableName,
             $newSecondTableName
         ) {
-            $table->renameColumn("{$oldFirstTableName}_id", "{$newFirstTableName}_id");
-            $table->renameColumn("{$oldSecondTableName}_id", "{$newSecondTableName}_id");
+            // MySQL doesn't care, but PostgreSQL will throw exception
+            if ($oldFirstTableName !== $newFirstTableName) {
+                $table->renameColumn("{$oldFirstTableName}_id", "{$newFirstTableName}_id");
+            }
+            if ($oldSecondTableName !== $newSecondTableName) {
+                $table->renameColumn("{$oldSecondTableName}_id", "{$newSecondTableName}_id");
+            }
+
             $table->foreign("{$newFirstTableName}_id")
                 ->references('id')
                 ->on(str_plural($newFirstTableName))
