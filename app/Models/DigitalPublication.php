@@ -16,8 +16,6 @@ class DigitalPublication extends AbstractModel
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
 
-    protected $table = "digital_catalogs";
-
     protected $fillable = [
         'listing_description',
         'short_description',
@@ -75,16 +73,6 @@ class DigitalPublication extends AbstractModel
             ],
         ],
     ];
-
-    public function slugs()
-    {
-        return $this->hasMany("App\Models\Slugs\\" . $this->getSlugClassName(), 'digital_catalog_id');
-    }
-
-    public function revisions()
-    {
-        return $this->hasMany("App\Models\Revisions\\" . class_basename($this) . "Revision", 'digital_catalog_id')->orderBy('created_at', 'desc');
-    }
 
     // Generates the id-slug type of URL
     public function getRouteKeyName()
