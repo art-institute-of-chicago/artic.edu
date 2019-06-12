@@ -334,6 +334,13 @@
             'name' => 'is_after_hours',
             'label' => 'Is After Hours',
         ])
+
+        @formField('select', [
+            'name' => 'entrance',
+            'label' => 'Entrance',
+            'options' => $eventEntrancesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="event_series" title="Event series emails">
@@ -448,13 +455,6 @@
             @endforeach
 
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
-
-            @formField('select', [
-                'name' => 'entrance',
-                'label' => 'Entrance',
-                'options' => $eventEntrancesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
-                'default' => \App\Models\Event::NULL_OPTION, // no effect?
-            ])
 
             @formField('checkbox', [
                 'name' => 'is_presented_by_affiliate',
