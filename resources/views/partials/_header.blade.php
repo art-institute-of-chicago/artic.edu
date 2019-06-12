@@ -1,3 +1,9 @@
+@php
+    $_hours = [
+        'general' => \App\Models\Hour::getOpeningUnlessClosure(),
+        'closure' => \App\Models\Closure::today()->first(),
+    ];
+@endphp
 <header class="g-header">
   <div class="g-header__inner">
       <a href="#content" class="skip-nav f-body">Skip to Content</a>

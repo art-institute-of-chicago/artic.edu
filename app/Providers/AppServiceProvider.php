@@ -7,7 +7,6 @@ use A17\Twill\Models\File;
 use App\Libraries\Api\Consumers\GuzzleApiConsumer;
 use App\Libraries\EmbedConverterService;
 use App\Libraries\LakeviewImageService;
-use App\Models\Hour;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
@@ -103,15 +102,8 @@ class AppServiceProvider extends ServiceProvider
     private function composeTemplatesViews()
     {
         view()->composer('*', function ($view) {
-            // $hours_today = Hour::getOpeningToday();
-            $hours_general = Hour::getOpeningWithClosure();
 
             $view->with([
-                '_hours' => [
-                    'general' => $hours_general
-                    , 'opening_today' => '',
-                ]
-                ,
                 '_pages' => [
                     'visit' => route('visit')
                     , 'hours' => route('visit') . '#hours'
