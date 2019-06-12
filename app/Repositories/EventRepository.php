@@ -11,6 +11,7 @@ use App\Repositories\Behaviors\HandleRecurrence;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Models\Event;
+use App\Models\EmailSeries;
 use App\Models\Api\Search;
 use App\Models\Api\TicketedEvent;
 use Carbon\Carbon;
@@ -65,6 +66,43 @@ class EventRepository extends ModuleRepository
             }
         }
 
+        $relatedEmailSeries = [];
+
+        if ($fields['add_to_event_email_series'] ?? false)
+        {
+            foreach (EmailSeries::all() as $series) {
+                if (!($fields['email_series_' . $series->id] ?? false)) {
+                    continue;
+                }
+
+                $pivotAttributes = [];
+
+                foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $type) {
+                    $pivotAttributes['send_' .$type] = $fields['email_series_' .$series->id .'_send_' .$type] ?? false;
+                    if ($pivotAttributes['send_' .$type]) {
+                        if ($series->use_short_description) {
+                            if (($fields['email_series_' .$series->id .'_' .$type .'_override'] ?? 'default') === 'custom') {
+                                $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null;
+                            } else {
+                                $pivotAttributes[$type .'_copy'] = $fields['short_description'];
+                            }
+                        } else {
+                            $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null;
+                        }
+                        $pivotAttributes[$type .'_copy'] = $pivotAttributes[$type .'_copy'] ?: null;
+                    } else {
+                        $pivotAttributes[$type .'_copy'] = null;
+                    }
+                }
+
+                if (count($pivotAttributes) > 0) {
+                    $relatedEmailSeries[$series->id] = $pivotAttributes;
+                }
+            }
+        }
+
+        $object->emailSeries()->sync($relatedEmailSeries);
+
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
 
@@ -94,6 +132,45 @@ class EventRepository extends ModuleRepository
 
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'dateRules', 'DateRule');
 
+        if (isset($fields['add_to_event_email_series']))
+        {
+            foreach ($object->emailSeries as $series) {
+                $currentSeriesName = 'email_series_' . $series->id;
+                $fields[$currentSeriesName] = true;
+
+                foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $subFieldName) {
+                    if ($series->pivot->{'send_' . $subFieldName}) {
+                        $fields[$currentSeriesName . '_send_' . $subFieldName] = true;
+
+                        $copyForOverride = $series->pivot->{$subFieldName . '_copy'};
+                        if ($copyForOverride) {
+                            $fields[$currentSeriesName . '_' . $subFieldName . '_copy'] = $copyForOverride;
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (EmailSeries::all() as $series) {
+            $currentSeriesName = 'email_series_' . $series->id;
+            foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $subFieldName) {
+                $currentSubField = $currentSeriesName . '_' . $subFieldName;
+
+                if (empty($fields[$currentSubField . '_copy'])) {
+                    if ($series->use_short_description) {
+                        $fields[$currentSubField . '_copy'] = $fields['short_description'];
+                    } else {
+                        $fields[$currentSubField . '_copy'] = $series->{$subFieldName . '_copy'};
+                    }
+                }
+
+                if ($series->use_short_description && $fields[$currentSubField . '_copy'] !== $fields['short_description']) {
+                    // Prevents "Uncaught ReferenceError: custom is not defined"
+                    $fields[$currentSubField . '_override'] = '"custom"';
+                }
+            }
+        }
+
         return $fields;
     }
 
@@ -107,6 +184,10 @@ class EventRepository extends ModuleRepository
 
     public function getEventLayoutsList() {
         return collect($this->model::$eventLayouts);
+    }
+
+    public function getEventEntrancesList() {
+        return collect($this->model::$eventEntrances);
     }
 
     public function groupByDate($collection)

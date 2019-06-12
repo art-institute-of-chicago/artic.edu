@@ -687,6 +687,10 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::get('staticpages/{id}', 'API\StaticPagesController@show');
 
+    Route::get('emailseries', 'API\EmailSeriesController@index');
+
+    Route::get('emailseries/{id}', 'API\EmailSeriesController@show');
+
     /**
      *
      * - generic pages ------------------------------------------------------
