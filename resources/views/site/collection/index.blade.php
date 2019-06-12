@@ -163,7 +163,7 @@
     @endcomponent
     <div class="o-feature-plus-4">
         @if ($featuredArticlesHero)
-        @component('components.molecules._m-listing----article')
+        @component('components.molecules._m-listing----' . strtolower($featuredArticlesHero->type))
             @slot('tag', 'div')
             @slot('titleFont', 'f-headline-editorial')
             @slot('captionFont', 'f-body-editorial')
@@ -188,7 +188,7 @@
         <ul class="o-feature-plus-4__items-1" aria-labelledby="h-featured-plus-1">
         @foreach ($featuredArticles as $item)
             @if ($loop->index < 2)
-                @component('components.molecules._m-listing----article-minimal')
+                @component('components.molecules._m-listing----' . strtolower($item->type) . '-minimal')
                     @slot('item', $item)
                     @slot('imageSettings', array(
                         'fit' => 'crop',

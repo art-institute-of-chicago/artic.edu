@@ -41,7 +41,12 @@ class Artwork extends AbstractModel
         return $this->belongsToMany('App\Models\Article', 'article_artwork')->withPivot('position')->orderBy('position');
     }
 
-     public function getTrackingSlugAttribute()
+    public function sidebarDigitalLabels()
+    {
+        return $this->apiElements()->where('relation', 'sidebarDigitalLabels');
+    }
+
+    public function getTrackingSlugAttribute() 
     {
         return $this->title;
     }
@@ -58,7 +63,7 @@ class Artwork extends AbstractModel
             return $this->selectedFeaturedRelated;
         }
 
-        $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
+        $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent', 'sidebarDigitalLabels'])->shuffle();
         foreach ($types as $type) {
             if ($item = $this->$type()->first()) {
                 switch ($type) {
@@ -74,6 +79,10 @@ class Artwork extends AbstractModel
                     case 'sidebarExhibitions':
                         $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
                         $type = 'exhibition';
+                        break;
+                     case 'sidebarDigitalLabels':
+                        $item = $this->apiModels('sidebarDigitalLabels', 'DigitalLabel')->first();
+                        $type = 'LABEL';
                         break;
                 }
 

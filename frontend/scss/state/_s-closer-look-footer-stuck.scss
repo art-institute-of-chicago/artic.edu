@@ -1,0 +1,17 @@
+.s-closer-look-footer-stuck {
+  #footer,
+  .o-closer-look ~ * {
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        @if (map-get($main-col-widths, $name) == 'fluid') {
+          left: 0;
+          right: 0;
+          margin-right: map-get($outer-gutters, $name);
+          margin-left: map-get($outer-gutters, $name);
+        } @else {
+          width: map-get($main-col-widths, $name);
+        }
+      }
+    }
+  }
+}

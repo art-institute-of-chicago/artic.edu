@@ -13,16 +13,16 @@
             "type": "vcs",
             "url": "https://github.com/aacotroneo/laravel-saml2.git"
         },
-        {
-            "type": "vcs",
-            "url": "https://github.com/nikhiltri/laravel-feed.git"
+        {	
+            "type": "vcs",	
+            "url": "https://github.com/nikhiltri/laravel-feed.git"	
         }
     ],
     "require": {
         "php": ">=7.0.0",
         "aacotroneo/laravel-saml2": "dev-remove_mcrypt",
         "aic/data-hub-foundation": "dev-master",
-        "area17/twill": "1.2.*",
+        "area17/twill": "1.2.x-dev",
         "darkaonline/l5-swagger": "5.8.*",
         "digitaladditive/exacttarget-laravel": "^2.2",
         "eluceo/ical": "0.14.*",
@@ -30,7 +30,7 @@
         "guzzlehttp/guzzle": "6.3.0",
         "intervention/httpauth": "^2.0",
         "kalnoy/nestedset": "^4.3",
-        "laravel/framework": "5.8.*",
+        "laravel/framework": "5.8.1",
         "laravel/tinker": "^1.0",
         "michelf/php-smartypants": "^1.8",
         "onelogin/php-saml": "3.0.0.x-dev@dev",
@@ -38,7 +38,7 @@
         "sentry/sentry-laravel": "^0.8.0",
         "spatie/calendar-links": "^1.0",
         "spatie/laravel-feed": "dev-feature/support-for-flipboard",
-        "spatie/laravel-sitemap": "^5.2"
+        "spatie/laravel-sitemap": "^5.3"
     },
     "require-dev": {
         "filp/whoops": "^2.3",

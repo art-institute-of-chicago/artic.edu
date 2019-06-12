@@ -1,11 +1,28 @@
 @section('contentFields')
-
     @formField('browser', [
         'routePrefix' => 'collection.articles_publications',
         'max' => 5,
         'moduleName' => 'articles',
-        'name' => 'articles',
-        'label' => 'Featured articles'
+        'name' => 'featured_items',
+        'endpoints' => [
+            [
+                'label' => 'Article',
+                'value' => '/collection/articles_publications/articles/browser'
+            ],
+            [
+                'label' => 'Interactive feature',
+                'value' => '/collection/digitalLabels/browser'
+            ]
+        ],
+        'label' => 'Featured items',
+    ])
+
+    @formField('browser', [
+        'routePrefix' => 'collection.articles_publications',
+        'max' => 4,
+        'moduleName' => 'digitalLabels',
+        'name' => 'digitalLabels',
+        'label' => 'Interactive Features'
     ])
 
     @formField('browser', [

@@ -11,17 +11,15 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
-
 Route::get('/', function () {
     return redirect('/api/v1');
 });
-
 
 /**
  * @SWG\Swagger(
@@ -296,8 +294,8 @@ Route::get('/', function () {
  *        @SWG\Property(property="content", type="json", description="Content"),*
  *     ),
  *
-  *     @SWG\Definition(
- *        definition="PrintedPublication",
+ *     @SWG\Definition(
+ *        definition="PrintedCatalog",
  *        type="object",
  *        required={"id"},
  *        @SWG\Property(property="id", type="integer", description="ID"),
@@ -313,11 +311,10 @@ Route::get('/', function () {
  *        @SWG\Property(property="last_updated_at", type="datetime", description="Updated Timestamp"),
  *        @SWG\Property(property="content", type="json", description="Content"),*
  *     ),
-* )
+ * )
  */
 
-Route::group(['prefix' => 'v1'], function()
-{
+Route::group(['prefix' => 'v1'], function () {
 
     Route::get('/', function () {
         return "API";
@@ -690,8 +687,6 @@ Route::group(['prefix' => 'v1'], function()
 
     Route::get('staticpages/{id}', 'API\StaticPagesController@show');
 
-
-
     /**
      *
      * - generic pages ------------------------------------------------------
@@ -928,7 +923,6 @@ Route::group(['prefix' => 'v1'], function()
      */
     Route::get('digitalpublications/{id}', 'API\DigitalPublicationsController@show');
 
-
     /**
      *
      * - printed publications ------------------------------------------------------
@@ -976,4 +970,40 @@ Route::group(['prefix' => 'v1'], function()
      */
     Route::get('printedpublications/{id}', 'API\PrintedPublicationsController@show');
 
+    /**
+     *
+     * - digital labels ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/digital-labels",
+     *      tags={"digitalLabels"},
+     *      operationId="getDigitalLabel",
+     *      summary="List all digital labels",
+     *      @SWG\Response(response="200", description="List all digital labels")
+     *  )
+     *
+     */
+
+    Route::get('digital-labels', 'API\DigitalLabelsController@index');
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/digital-labels/{id}",
+     *      tags={"digitalLabels"},
+     *      operationId="getDigitalLabel",
+     *      summary="Fetch digital label details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific digital label")
+     *  )
+     *
+     */
+    Route::get('digital-labels/{id}', 'API\DigitalLabelsController@show');
+
+    Route::options('seamless-images/{id}', 'SeamlessImagesController@byFile');
+    Route::get('seamless-images/{id}', 'SeamlessImagesController@byFile');
 });

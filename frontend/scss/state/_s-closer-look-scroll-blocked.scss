@@ -1,0 +1,18 @@
+/***
+
+Closer Looks Scroll Blocking
+============================
+
+Closer Looks can block scroll, we'll need to hide the header in that instance.
+
+
+***/
+
+.s-closer-look-scroll-blocked {
+  .top-link {
+    bottom: -48px;
+  }
+  .g-header {
+    display: none;
+  }
+}

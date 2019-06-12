@@ -89,7 +89,22 @@ class CollectionController extends BaseScopedController
             return $view;
         }
 
-        $featuredArticles = $page->artArticles ?? null;
+        // $featuredArticles = $page->artArticles ?? null;
+
+        $page = Page::forType('Art and Ideas')->with('apiElements')->first();
+        $filters       = $this->collection()->generateFilters();
+        $activeFilters = $this->collection()->activeFilters();
+
+        $featuredArticles = $page->getRelatedWithApiModels("featured_items", [
+            'digitalLabels' => [
+                'apiModel' => 'App\Models\Api\DigitalLabel',
+                'moduleName' => 'digitalLabels',
+            ],   
+        ], [ 
+            'articles' => false,
+            'digitalLabels' => true
+        ]) ?? null;
+        
         if ($featuredArticles->count()) {
             $featuredArticlesHero = $featuredArticles->shift();
         }

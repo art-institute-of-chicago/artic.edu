@@ -173,6 +173,10 @@ return [
                 'title' => 'Departments',
                 'module' => true,
             ],
+            'digitalLabels' => [
+                'title' => 'Interactive Features',
+                'module' => true,
+            ],
         ]
     ],
 

@@ -115,10 +115,10 @@
 
                 @component('components.organisms._o-row-listing')
                     @foreach ($listingItems as $item)
-                        @component('components.molecules._m-listing----generic-row')
+                        @component('components.molecules._m-listing----' . (isset($type) ? $type : 'generic') . '-row')
                             @slot('variation', 'm-listing--generic m-listing--row')
                             @slot('item', $item)
-                            @slot('image', $item->imageFront('listing'))
+                            @slot('image', $item->imageFront('listing') ?? $item->imageFront('hero'))
                             @slot('hideImage', $hideImage ?? null)
                             @slot('imageSettings', array(
                                 'fit' => 'crop',

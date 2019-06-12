@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ArticleRepository;
 use App\Models\Page;
 use App\Models\Article;
+use App\Models\DigitalLabel;
 
 class ArticleController extends FrontController
 {
@@ -23,18 +24,39 @@ class ArticleController extends FrontController
         $this->seo->setTitle('Articles');
 
         $page = Page::forType('Articles')->with('articlesArticles')->first();
-        $heroArticle = $page->articlesArticles->first();
+        $featuredItems = $page->getRelatedWithApiModels(
+            "featured_items", [
+                'digitalLabels' => [
+                    'apiModel' => 'App\Models\Api\DigitalLabel',
+                    'moduleName' => 'digitalLabels',
+                ],   
+            ], [ 
+                'articles' => false,
+                'digitalLabels' => true
+            ]);
+        $heroArticle = $featuredItems->first();
+        
+        // $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
 
-        $articles = Article::published()
-            ->byCategory(request('category'))
-            ->whereNotIn('id', $page->articlesArticles->pluck('id'))
-            ->orderBy('date', 'desc')
-            ->paginate(self::ARTICLES_PER_PAGE);
+        if (request('category') !== 'interactive-features') {
+            $articles = Article::published()
+                ->byCategory(request('category'))
+                ->whereNotIn('id', $page->articlesArticles->pluck('id'))
+                ->orderBy('date', 'desc')
+                ->paginate(self::ARTICLES_PER_PAGE);
+        } else {
+            // Retrieve digital label entires
+            $digitalLabelsCount = DigitalLabel::query('published', true)->paginate()->count();
+            $articles = DigitalLabel::query('published', true)->paginate(self::ARTICLES_PER_PAGE);
+            // $articles = new \Illuminate\Pagination\LengthAwarePaginator($digitalLabels, count($digitalLabels), self::ARTICLES_PER_PAGE);
+        }
+        
 
         // Featured articles are the selected ones if no filters are applied
         // otherwise those are just the first two from the collection
         if (empty(request()->get('category', null))) {
-            $featuredArticles = $page->articlesArticles->slice(1, 2);
+            $featuredArticles = $featuredItems->slice(1, 2) ?? null;
+            // $featuredArticles = $page->articlesArticles->slice(1, 2);
         } else {
             $featuredArticles = $articles->getCollection()->slice(0, 2);
             $newCollection = $articles->slice(2);
@@ -63,6 +85,16 @@ class ArticleController extends FrontController
                 ]
             );
         }
+
+        array_push($categories,
+            [
+                'label' => 'Interactive Features',
+                'href' => route('articles', ['category' => 'interactive-features']),
+                'active' => request()->get('category') == 'interactive-features',
+                'ajaxScrollTarget' => 'listing',
+            ]
+        );
+
 
         return view('site.articles', [
             'primaryNavCurrent' => 'collection',
@@ -96,9 +128,20 @@ class ArticleController extends FrontController
             $item->topics = $item->categories;
         }
 
+        $featuredArticles = $item->getRelatedWithApiModels("further_reading_items", [
+            'digitalLabels' => [
+                'apiModel' => 'App\Models\Api\DigitalLabel',
+                'moduleName' => 'digitalLabels',
+            ],   
+        ], [ 
+            'articles' => false,
+            'digitalLabels' => true
+        ]) ?? null;
+        
         return view('site.articleDetail', [
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,
+            'featuredArticles'     => $featuredArticles ?? null,
             'canonicalUrl' => route('articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
     }

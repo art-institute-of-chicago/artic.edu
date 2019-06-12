@@ -32,6 +32,14 @@
         'label' => 'Related event',
         'max' => 1
     ])
+    
+    @formField('browser', [
+        'routePrefix' => 'exhibitions_events',
+        'max' => 1,
+        'name' => 'sidebarDigitalLabels',
+        'label' => 'Related Interactive Features',
+        'moduleName' => 'digitalLabels',
+    ])
 @stop
 
 

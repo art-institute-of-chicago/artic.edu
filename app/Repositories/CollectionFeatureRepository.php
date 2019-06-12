@@ -28,6 +28,7 @@ class CollectionFeatureRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'articles');
         $this->updateBrowser($object, $fields, 'selections');
         $this->updateBrowserApiRelated($object, $fields, ['artworks']);
+        $this->updateBrowserApiRelated($object, $fields, ['digitalLabels']);
 
         parent::afterSave($object, $fields);
     }
@@ -39,6 +40,7 @@ class CollectionFeatureRepository extends ModuleRepository
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
         $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'collection');
         $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'collection');
+        $fields['browsers']['digitalLabels'] = $this->getFormFieldsForBrowserApi($object, 'digitalLabels', 'App\Models\Api\DigitalLabel', 'collection');
 
         return $fields;
     }
