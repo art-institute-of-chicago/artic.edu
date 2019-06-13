@@ -104,13 +104,13 @@ class Slide extends JsonResource
 
     protected function getInterstitalAttributes()
     {
-        $this->media = $this->experienceImage;
+        $this->media = $this->interstitialExperienceImage;
         return [
             'title' => $this->section_title,
             'copy' => $this->body_copy,
             '__option_body_copy' => !empty($this->body_copy),
             '__option_section_title' => !empty($this->section_title),
-            '__option_background_image' => count($this->experienceImage) > 0,
+            '__option_background_image' => count($this->interstitialExperienceImage) > 0,
             '__option_headline' => !empty($this->interstitial_headline),
         ];
     }
@@ -127,7 +127,7 @@ class Slide extends JsonResource
 
     protected function getFullWidthMediaAttributes()
     {
-        $this->media = $this->experienceImage;
+        $this->media = $this->fullwidthmediaExperienceImage;
         $this->modal = $this->experienceModal;
 
         if ($this->asset_type === 'standard' && $this->fullwidthmedia_standard_media_type === 'type_video') {
@@ -159,7 +159,6 @@ class Slide extends JsonResource
 
     protected function getCompareAttributes()
     {
-        $this->media = $this->experienceImage;
         $compareImage1 = $this->compareExperienceImage1->first();
         $compareImage2 = $this->compareExperienceImage2->first();
         $compareModal1 = $this->compareExperienceModal->first();
