@@ -13,7 +13,7 @@
             'fieldValues' => 'type_image',
             'keepAlive' => true,
         ])
-            @formField('repeater', ['type' => 'experience_image'])
+            @formField('repeater', ['type' => 'fullwidthmedia_experience_image'])
         @endcomponent
     @endcomponent
     @component('twill::partials.form.utils._connected_fields', [
