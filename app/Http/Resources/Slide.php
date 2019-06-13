@@ -292,6 +292,10 @@ class Slide extends JsonResource
 
     protected function getMedia()
     {
+        if (!$this->media) {
+            return [];
+        }
+        
         switch ($this->module_type) {
             case 'tooltip':
                 return $this->media->first() ? (new SlideMediaResource($this->media->first()))->toArray(request()) : [];
