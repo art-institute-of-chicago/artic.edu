@@ -23,3 +23,9 @@
         'italic', 'link',
     ],
 ])
+
+@formField('input', [
+    'name' => 'videoUrl',
+    'label' => 'YouTube URL',
+    'note' => 'Provide to show video in modal instead of image',
+])
