@@ -21,11 +21,6 @@ class InteractiveFeatureController extends ModuleController
             'field' => 'updated_at',
             'sort' => true,
         ],
-        'augmented' => [
-            'title' => 'Augmented?',
-            'field' => 'augmented',
-            'present' => true,
-        ],
         'experiences' => [
             'title' => 'Experiences',
             'nested' => 'experiences',
