@@ -219,19 +219,10 @@ class Slide extends JsonResource
             $mediaType = $this->media_type === 'type_image' ? 'image' : 'sequence';
         }
 
-        $seamlessAsset = [
-            'assetID' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : '0',
-            'x' => $this->seamless_asset ? $this->seamless_asset['x'] : 0,
-            'y' => $this->seamless_asset ? $this->seamless_asset['y'] : 0,
-            'scale' => $this->seamless_asset ? $this->seamless_asset['scale'] / 100 : 1,
-            'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] - 1 : 0,
-            'altText' => $this->seamless_alt_text
-        ];
-
         if ($this->asset_type === 'seamless') {
             if ($this->media_type === 'type_image' && $this->seamlessExperienceImage->count() > 0) {
                 $seamlessAsset = [
-                    'assetID' => $this->seamlessExperienceImage->first()->id,
+                    'assetID' => $this->seamlessExperienceImage->first()->imageObject('experience_image') ? $this->seamlessExperienceImage->first()->imageObject('experience_image')->id : '0',
                     'x' => $this->seamless_image_asset ? $this->seamless_image_asset['x'] : 0,
                     'y' => $this->seamless_image_asset ? $this->seamless_image_asset['y'] : 0,
                     'scale' => $this->seamless_image_asset ? $this->seamless_image_asset['scale'] / 100 : 1,

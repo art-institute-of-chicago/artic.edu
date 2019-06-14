@@ -20,7 +20,7 @@ class SlideAsset extends JsonResource
             return [
                 'type' => 'image',
                 'title' => $this->media_title,
-                'id' => $image->id,
+                'id' => $image->imageObject('experience_image') ? $image->imageObject('experience_image')->id : '0',
                 'width' => $image->imageObject('experience_image')->width,
                 'height' => $image->imageObject('experience_image')->height,
                 'src' => [$image->image('experience_image')],
