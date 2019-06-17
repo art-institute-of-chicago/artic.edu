@@ -6,8 +6,8 @@
     $fullscreen = (isset($item['fullscreen']) and $item['fullscreen']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
 
-    // WEB-912: For Gallery Items
-    if (!empty($item->present()->input('videoUrl')))
+    // WEB-912: For Gallery Items; image module is an array, but gallery item is object?
+    if (!is_array($item) && !empty($item->present()->input('videoUrl')))
     {
         $type = 'embed';
         $poster = $media;
