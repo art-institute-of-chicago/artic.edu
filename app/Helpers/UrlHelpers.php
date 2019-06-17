@@ -23,8 +23,11 @@ if (!function_exists('secureRoute')) {
     function secureRoute($routeName)
     {
         $url = url();
+        $defaultScheme = $url->formatScheme();
         $url->forceScheme('https');
+        $route = $url->route($routeName);
+        $url->forceScheme($defaultScheme);
 
-        return $url->route($routeName);
+        return $route;
     }
 }
