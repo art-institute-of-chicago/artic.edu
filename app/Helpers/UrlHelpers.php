@@ -17,3 +17,14 @@ if (!function_exists('parseYoutubeUrl')) {
         return isset($youtube_url['v']) ? $youtube_url['v'] : null;
     }
 }
+
+
+if (!function_exists('secureRoute')) {
+    function secureRoute($routeName)
+    {
+        $url = url();
+        $url->forceScheme('https');
+
+        return $url->route($routeName);
+    }
+}
