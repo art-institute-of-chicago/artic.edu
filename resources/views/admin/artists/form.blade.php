@@ -39,14 +39,20 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="attributes" title="Related">
+    <a17-fieldset id="related" title="Related">
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
-            'name' => 'articles',
+            'name' => 'related_items',
             'moduleName' => 'articles',
-            'max' => 4,
-            'label' => 'Related Articles',
+            'endpoints' => [
+                [
+                    'label' => 'Article',
+                    'value' => '/collection/articles_publications/articles/browser'
+                ],
+            ],
+            'max' => 1000,
+            'label' => 'Related items',
         ])
 
     </a17-fieldset>

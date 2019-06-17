@@ -18,14 +18,21 @@ class ArtistRepository extends BaseApiRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateBrowser($object, $fields, 'articles');
+        $this->updateMultiBrowserApiRelated($object, $fields, 'related_items', [
+            'articles' => false,
+        ]);
+
         parent::afterSave($object, $fields);
     }
 
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
+
+        $fields['browsers']['related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'related_items', [], [
+            'articles' => false,
+        ]);
+
         return $fields;
     }
 

@@ -33,6 +33,10 @@ class ArtistController extends FrontController
         $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
         $exploreFurther = new ExploreArtists($item, $artworks->getMetadata('aggregations'));
 
+        $relatedItems = $item->getRelatedWithApiModels("related_items", [], [
+            'articles' => false,
+        ]) ?? null;
+
         return view('site.tagDetail', [
             'item'     => $item,
             'artworks' => $artworks,
@@ -40,6 +44,7 @@ class ArtistController extends FrontController
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'canonicalUrl' => route('artists.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
+            'relatedItems' => $relatedItems,
         ]);
     }
 
