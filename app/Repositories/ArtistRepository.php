@@ -40,11 +40,6 @@ class ArtistRepository extends BaseApiRepository
                 'routePrefix' => 'collection',
                 'moduleName' => 'digitalLabels',
             ],
-            'digitalPublications' => [
-                'apiModel' => 'App\Models\DigitalPublication',
-                'routePrefix' => 'articles_publications',
-                'moduleName' => 'digitalPublications',
-            ],
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
                 'routePrefix' => 'exhibitions_events',
@@ -53,8 +48,8 @@ class ArtistRepository extends BaseApiRepository
         ], [
             'articles' => false,
             'digitalPublications' => false,
-            'printedPublication' => false,
-            'educatorResource' => false,
+            'printedPublications' => false,
+            'educatorResources' => false,
             'digitalLabels' => false,
             'exhibitions' => true,
         ]);
