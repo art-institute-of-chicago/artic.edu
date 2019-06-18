@@ -50,6 +50,26 @@
                     'label' => 'Article',
                     'value' => '/collection/articles_publications/articles/browser'
                 ],
+                [
+                    'label' => 'Digital Publications',
+                    'value' => '/collection/articles_publications/digitalPublications/browser'
+                ],
+                [
+                    'label' => 'Print Publications',
+                    'value' => '/collection/articles_publications/printedPublications/browser'
+                ],
+                [
+                    'label' => 'Educational Resources',
+                    'value' => '/collection/research_resources/educatorResources/browser'
+                ],
+                [
+                    'label' => 'Interactive Features',
+                    'value' => '/collection/digitalLabels/browser'
+                ],
+                [
+                    'label' => 'Exhibition',
+                    'value' => '/exhibitions_events/exhibitions/browser'
+                ],
             ],
             'max' => 1000,
             'label' => 'Related items',

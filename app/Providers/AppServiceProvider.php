@@ -61,7 +61,15 @@ class AppServiceProvider extends ServiceProvider
             // Hacky way of preserving mediable and blockable after rename
             'App\Models\DigitalCatalog' => 'App\Models\DigitalPublication',
             'App\Models\PrintedCatalog' => 'App\Models\PrintedPublication',
-            'interactiveFeatures.experiences' => 'App\Models\Experience'
+
+            'interactiveFeatures.experiences' => 'App\Models\Experience',
+
+            // TODO: Figure out what to do about this rebase left-over?
+            // 'digitalLabels' => 'App\Models\DigitalLabel',
+
+            'digitalPublications' => 'App\Models\DigitalPublication',
+            'printedPublications' => 'App\Models\PrintedPublication',
+            'educatorResources' => 'App\Models\EducatorResource',
         ]);
     }
 
