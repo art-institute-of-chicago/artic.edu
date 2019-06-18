@@ -77,14 +77,16 @@
     @component('components.molecules._m-title-bar')
         Related Content
     @endcomponent
+    @component('components.atoms._hr')
+    @endcomponent
     @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
         @slot('cols_medium','3')
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
-        @slot('behavior','dragScroll')
         @foreach ($relatedItems as $item)
-            @component('components.molecules._m-listing----' . strtolower($item->type))
+            @component('components.molecules._m-listing----' . (strtolower($item->type ?? 'article')))
                 @slot('item', $item)
                 @slot('imageSettings', array(
                     'fit' => 'crop',

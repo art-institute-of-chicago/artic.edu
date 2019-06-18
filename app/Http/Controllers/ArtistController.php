@@ -33,9 +33,7 @@ class ArtistController extends FrontController
         $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
         $exploreFurther = new ExploreArtists($item, $artworks->getMetadata('aggregations'));
 
-        $relatedItems = $item->getRelatedWithApiModels("related_items", [], [
-            'articles' => false,
-        ]) ?? null;
+        $relatedItems = $this->getRelatedItems($item);
 
         return view('site.tagDetail', [
             'item'     => $item,
@@ -46,6 +44,47 @@ class ArtistController extends FrontController
             'canonicalUrl' => route('artists.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
             'relatedItems' => $relatedItems,
         ]);
+    }
+
+    private function getRelatedItems($item)
+    {
+        $relatedItems = $item->getRelatedWithApiModels("related_items", [
+            'exhibitions' => [
+                'apiModel' => 'App\Models\Api\Exhibition',
+                'routePrefix' => 'exhibitions_events',
+                'moduleName' => 'exhibitions',
+            ],
+        ], [
+            // See $typeUsesApi in HasApiRelations class
+            'exhibitions' => true,
+            'articles' => false,
+            'digitalLabels' => false,
+            'digitalPublications' => false,
+            'printedPublications' => false,
+            'educatorResources' => false,
+        ]) ?? null;
+
+        foreach ($relatedItems as $relatedItem) {
+            switch (get_class($relatedItem)) {
+                case \App\Models\DigitalPublication::class:
+                    $relatedItem->subtype = 'Digital Publication';
+                    break;
+                case \App\Models\PrintedPublication::class:
+                    $relatedItem->subtype = 'Print Publication';
+                    break;
+                case \App\Models\EducatorResource::class:
+                    $relatedItem->subtype = 'Educator Resource';
+                    break;
+                case \App\Models\DigitalLabel::class:
+                    $relatedItem->subtype = 'Interactive Feature';
+                    break;
+            }
+
+            // Default to 'article' i/o 'generic' for default image
+            $relatedItem->type = $relatedItem->type ?? 'article';
+        }
+
+        return $relatedItems;
     }
 
 }
