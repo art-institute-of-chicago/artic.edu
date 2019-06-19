@@ -29,17 +29,4 @@ class ModuleRepository extends BaseModuleRepository
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
 
-    /**
-     * Overrides and calls \A17\Twill\Repositories\ModuleRepository::afterSave()
-     * Touch object after updating its relationships to bump its timestamps for API.
-     * Note that we are calling `save()` on the model, not `update()` on the module,
-     * so this shouldn't cause an infinite loop.
-     */
-    public function afterSave($object, $fields)
-    {
-        parent::afterSave($object, $fields);
-
-        $object->touch();
-    }
-
 }
