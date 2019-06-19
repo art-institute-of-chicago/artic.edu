@@ -89,7 +89,19 @@
             @endforeach
         </ol>
 
-        <p style="margin-top: 1em">If this logic is satisfactory, there's no need to add exhibitions to the "Custom related items" field. However, if you'd like to control the order of exhibitions relative to other related content, feel free to add them using the field above.</p>
+        <p style="margin-top: 1em">If this logic is satisfactory, there's no need to add exhibitions to the "Custom related items" field. However, if you'd like to control the order of exhibitions relative to other related content, feel free to add them using the field above. If you'd like to ensure that certain exhibitions never show up on this artist's detail page, use the following field:</p>
+
+        @formField('browser', [
+            'name' => 'hidden_related_items',
+            'endpoints' => [
+                [
+                    'label' => 'Exhibition',
+                    'value' => '/exhibitions_events/exhibitions/browser'
+                ],
+            ],
+            'max' => 1000,
+            'label' => 'Suppressed related items',
+        ])
 
     </a17-fieldset>
 

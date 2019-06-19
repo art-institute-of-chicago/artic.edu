@@ -27,6 +27,10 @@ class ArtistRepository extends BaseApiRepository
             'exhibitions' => true,
         ]);
 
+        $this->updateMultiBrowserApiRelated($object, $fields, 'hidden_related_items', [
+            'exhibitions' => true,
+        ]);
+
         parent::afterSave($object, $fields);
     }
 
@@ -54,7 +58,16 @@ class ArtistRepository extends BaseApiRepository
             'exhibitions' => true,
         ]);
 
+        $fields['browsers']['hidden_related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'hidden_related_items', [
+            'exhibitions' => [
+                'apiModel' => 'App\Models\Api\Exhibition',
+                'routePrefix' => 'exhibitions_events',
+                'moduleName' => 'exhibitions',
+            ],
+        ], [
+            'exhibitions' => true,
+        ]);
+
         return $fields;
     }
-
 }

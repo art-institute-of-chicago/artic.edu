@@ -39,7 +39,7 @@ trait HasApiRelations
     public function getRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi)
     {
 
-        if ($this->relatedCache[$browser_name] === null) {
+        if (!isset($this->relatedCache[$browser_name])) {
             $this->loadRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi);
         }
 

@@ -18,7 +18,19 @@ class ArtistRepository extends BaseApiRepository
     {
         $relatedItems = $this->getCustomRelatedItems($item);
 
-        $apiItems = $this->getApiRelatedItems($item, $relatedItems);
+        $hiddenItems = $item->getRelatedWithApiModels('hidden_related_items', [
+            'exhibitions' => [
+                'apiModel' => 'App\Models\Api\Exhibition',
+                'routePrefix' => 'exhibitions_events',
+                'moduleName' => 'exhibitions',
+            ],
+        ], [
+            'exhibitions' => true,
+        ]) ?? collect([]);
+
+        $excludedItems = $relatedItems->merge($hiddenItems);
+
+        $apiItems = $this->getApiRelatedItems($item, $excludedItems);
 
         return $relatedItems->merge($apiItems);
     }
