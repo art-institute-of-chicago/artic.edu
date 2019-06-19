@@ -86,7 +86,11 @@ class ArtistController extends FrontController
         }
 
         // Query for and append exhibitions that haven't been explicitly linked
-        $apiItems = Search::query()->exhibitionGlobal()->resources(['exhibitions'])->rawSearch([
+        $apiItems = Search::query()
+        ->exhibitionGlobal()
+        ->exhibitionOrderByDate('desc')
+        ->resources(['exhibitions'])
+        ->rawSearch([
             'bool' => [
                 'must' => [
                     'term' => [
