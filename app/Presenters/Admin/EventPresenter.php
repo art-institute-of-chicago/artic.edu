@@ -152,6 +152,9 @@ class EventPresenter extends BasePresenter
             );
     }
 
+    /**
+     * WEB-414: Do not use this in the API. Replicate this logic in the aggregator for touches.
+     */
     public function isSoldOut()
     {
         $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();

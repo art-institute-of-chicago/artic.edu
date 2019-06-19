@@ -639,7 +639,8 @@ class Event extends AbstractModel
                 "name" => "is_sold_out",
                 "doc" => "is_sold_out",
                 "type" => "boolean",
-                "value" => function () {return $this->present()->isSoldOut;},
+                // WEB-414: Do not use `$this->present()->isSoldOut` here
+                "value" => function () {return $this->is_sold_out;},
             ],
             [
                 "name" => "is_free",
