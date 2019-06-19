@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Api\Search;
 use App\Repositories\Api\ArtistRepository;
 use App\Libraries\ExploreFurther\BaseService as ExploreArtists;
 
@@ -62,7 +63,7 @@ class ArtistController extends FrontController
             'digitalPublications' => false,
             'printedPublications' => false,
             'educatorResources' => false,
-        ]) ?? null;
+        ]) ?? collect([]);
 
         foreach ($relatedItems as $relatedItem) {
             switch (get_class($relatedItem)) {
@@ -84,7 +85,29 @@ class ArtistController extends FrontController
             $relatedItem->type = $relatedItem->type ?? 'article';
         }
 
-        return $relatedItems;
+        // Query for and append exhibitions that haven't been explicitly linked
+        $apiItems = Search::query()->exhibitionGlobal()->resources(['exhibitions'])->rawSearch([
+            'bool' => [
+                'must' => [
+                    'term' => [
+                        'artist_ids' => $item->id,
+                    ],
+                ],
+                'must_not' => [
+                    'terms' => [
+                        'id' => $relatedItems->map(function($relatedItem) {
+                            if (get_class($relatedItem) == \App\Models\Api\Exhibition::class) {
+                                return $relatedItem->datahub_id;
+                            }
+                        })->filter()->values()->all()
+                    ],
+                ],
+            ],
+        ])->getPaginatedModel(500, \App\Models\Api\Exhibition::SEARCH_FIELDS)->items();
+
+        $allItems = $relatedItems->merge($apiItems);
+
+        return $allItems;
     }
 
 }
