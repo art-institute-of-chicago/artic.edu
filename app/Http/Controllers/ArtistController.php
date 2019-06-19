@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Api\Search;
 use App\Repositories\Api\ArtistRepository;
 use App\Libraries\ExploreFurther\BaseService as ExploreArtists;
 
@@ -34,7 +33,8 @@ class ArtistController extends FrontController
         $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
         $exploreFurther = new ExploreArtists($item, $artworks->getMetadata('aggregations'));
 
-        $relatedItems = $this->getRelatedItems($item);
+        // TODO: Do these methods belong in the API ArtistRepository, or in the CMS one?
+        $relatedItems = $this->repository->getRelatedItems($item);
 
         return view('site.tagDetail', [
             'item'     => $item,
@@ -43,78 +43,8 @@ class ArtistController extends FrontController
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'canonicalUrl' => route('artists.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
-            'relatedItems' => $relatedItems,
+            'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
         ]);
-    }
-
-    private function getRelatedItems($item)
-    {
-        $relatedItems = $item->getRelatedWithApiModels("related_items", [
-            'exhibitions' => [
-                'apiModel' => 'App\Models\Api\Exhibition',
-                'routePrefix' => 'exhibitions_events',
-                'moduleName' => 'exhibitions',
-            ],
-        ], [
-            // See $typeUsesApi in HasApiRelations class
-            'exhibitions' => true,
-            'articles' => false,
-            'digitalLabels' => false,
-            'digitalPublications' => false,
-            'printedPublications' => false,
-            'educatorResources' => false,
-        ]) ?? collect([]);
-
-        foreach ($relatedItems as $relatedItem) {
-            switch (get_class($relatedItem)) {
-                case \App\Models\Article::class:
-                    $relatedItem->subtype = 'Article';
-                    break;
-                case \App\Models\DigitalPublication::class:
-                    $relatedItem->subtype = 'Digital Publication';
-                    break;
-                case \App\Models\PrintedPublication::class:
-                    $relatedItem->subtype = 'Print Publication';
-                    break;
-                case \App\Models\EducatorResource::class:
-                    $relatedItem->subtype = 'Educator Resource';
-                    break;
-                case \App\Models\DigitalLabel::class:
-                    $relatedItem->subtype = 'Interactive Feature';
-                    break;
-            }
-
-            // Default to 'article' i/o 'generic' for default image
-            $relatedItem->type = $relatedItem->type ?? 'article';
-        }
-
-        // Query for and append exhibitions that haven't been explicitly linked
-        $apiItems = Search::query()
-        ->exhibitionGlobal()
-        ->exhibitionOrderByDate('desc')
-        ->resources(['exhibitions'])
-        ->rawSearch([
-            'bool' => [
-                'must' => [
-                    'term' => [
-                        'artist_ids' => $item->id,
-                    ],
-                ],
-                'must_not' => [
-                    'terms' => [
-                        'id' => $relatedItems->map(function($relatedItem) {
-                            if (get_class($relatedItem) == \App\Models\Api\Exhibition::class) {
-                                return $relatedItem->datahub_id;
-                            }
-                        })->filter()->values()->all()
-                    ],
-                ],
-            ],
-        ])->getPaginatedModel(500, \App\Models\Api\Exhibition::SEARCH_FIELDS)->items();
-
-        $allItems = $relatedItems->merge($apiItems);
-
-        return $allItems;
     }
 
 }
