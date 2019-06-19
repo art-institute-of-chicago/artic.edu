@@ -67,6 +67,9 @@ class ArtistController extends FrontController
 
         foreach ($relatedItems as $relatedItem) {
             switch (get_class($relatedItem)) {
+                case \App\Models\Article::class:
+                    $relatedItem->subtype = 'Article';
+                    break;
                 case \App\Models\DigitalPublication::class:
                     $relatedItem->subtype = 'Digital Publication';
                     break;
