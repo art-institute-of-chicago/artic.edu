@@ -28,8 +28,6 @@ class EventProgramController extends ModuleController
             'field' => 'isAffiliateGroup',
             'optional' => false,
             'present' => true,
-            'sort' => true,
-            'sortKey' => 'is_affiliate_group',
         ],
     ];
 
