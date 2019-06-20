@@ -47,6 +47,7 @@ class SearchController extends BaseScopedController
     const PUBLICATIONS_PER_PAGE = 20;
     const ARTISTS_PER_PAGE = 30;
     const AUTOCOMPLETE_PER_PAGE = 10;
+    const ALL_PER_PAGE_INTERACTIVEFEATURES = 10;
 
     protected $artworksRepository;
     protected $artistsRepository;
@@ -103,7 +104,7 @@ class SearchController extends BaseScopedController
         $pages                      = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
         $guides                     = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
         $press                      = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        // $interactiveFeatures        = $this->interactiveFeatureRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $interactiveFeatures        = $this->interactiveFeatureRespository->search(request('q'), self::ALL_PER_PAGE_INTERACTIVEFEATURES);
 
         return view('site.search.index', [
             'featuredResults' => $general->where('is_boosted', true),
@@ -113,7 +114,7 @@ class SearchController extends BaseScopedController
             'events'   => $events,
             'pages'    => $pages,
             'exhibitions'  => $exhibitions,
-            // 'interactiveFeature'  => $interactiveFeatures,
+            'interactiveFeature'  => $interactiveFeatures,
             'publications' => $publications,
             'pressReleases'  => $press,
             'researchGuides' => $guides,
@@ -122,7 +123,7 @@ class SearchController extends BaseScopedController
         ]);
     }
 
-    public function autocomplete()
+    public function collectionautocomplete()
     {
         $collection = GeneralSearch::search(request('q'))
             ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs'])

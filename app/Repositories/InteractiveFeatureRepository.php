@@ -34,4 +34,9 @@ class InteractiveFeatureRepository extends ModuleRepository
         return parent::getCountByStatusSlug($slug, $scope);
     }
 
+    function search($string, $perPage = null)
+    {
+
+    }
+
 }
