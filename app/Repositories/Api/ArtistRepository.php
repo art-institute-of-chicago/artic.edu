@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Api;
 
+use Carbon\Carbon;
 use App\Models\Api\Artist;
 use App\Models\Api\Search;
 use App\Repositories\Api\BaseApiRepository;
@@ -53,6 +54,28 @@ class ArtistRepository extends BaseApiRepository
             'educatorResources' => false,
             'videos' => false,
         ]) ?? collect([]);
+
+        $now = Carbon::now();
+
+        $relatedItems = $relatedItems->filter(function($relatedItem) use ($now) {
+            // We check if the exhibitions are published in `getApiRelatedItems`
+            if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
+                return true;
+            }
+
+            $isPublished = isset($relatedItem->published) && $relatedItem->published;
+            $isVisible = (
+                !$relatedItem->isFillable('publish_start_date') ||
+                !isset($relatedItem->publish_start_date) ||
+                $relatedItem->publish_start_date < $now
+            ) && (
+                !$relatedItem->isFillable('publish_end_date') ||
+                !isset($relatedItem->publish_end_date) ||
+                $relatedItem->publish_end_date > $now
+            );
+
+            return $isPublished && $isVisible;
+        })->values();
 
         foreach ($relatedItems as $relatedItem) {
             switch (get_class($relatedItem)) {
