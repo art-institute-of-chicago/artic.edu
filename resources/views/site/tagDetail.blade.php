@@ -88,6 +88,7 @@
         @foreach ($relatedItems as $item)
             @component('components.molecules._m-listing----' . (strtolower($item->type ?? 'article')))
                 @slot('item', $item)
+                @slot('hideImage', false)
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',

@@ -76,8 +76,9 @@ class ArtistRepository extends BaseApiRepository
                     break;
             }
 
-            // Default to 'article' i/o 'generic' for default image
-            $relatedItem->type = $relatedItem->type ?? 'article';
+            $relatedItem->type = $relatedItem->type ?? 'generic';
+            $relatedItem->intro = $relatedItem->shortDesc = $relatedItem->listing_description = null;
+            $relatedItem->date = null;
         }
 
         return $relatedItems;

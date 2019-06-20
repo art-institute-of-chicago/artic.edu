@@ -1,7 +1,7 @@
 <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $item->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
-        @if (!isset($hideImage) or (isset($hideImage) && !($hideImage)))
-            @if (isset($image) || $item->imageFront('default'))
+        @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
+            @if (!isset($hideImage) && (isset($image) || $item->imageFront('default')))
                 <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
                     @component('components.atoms._img')
                         @slot('image', $image ?? $item->imageFront('default'))
@@ -19,6 +19,8 @@
                         @endcomponent
                     @endif
                 </span>
+            @elseif (isset($hideImage) && !$hideImage)
+                <span class="default-img"></span>
             @endif
         @endif
         <span class="m-listing__meta">
