@@ -484,8 +484,10 @@
             @formField('select', [
                 'name' => 'affiliate_group_id',
                 'label' => 'Affiliate Group',
-                'options' => $eventAffiliateGroupsList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
-                'default' => \App\Models\Event::NULL_OPTION, // no effect?
+                'options' => $eventAffiliateGroupsList->concat([
+                    \App\Models\Event::NULL_OPTION_AFFILIATE_GROUP => '[None]',
+                ]),
+                'default' => \App\Models\Event::NULL_OPTION_AFFILIATE_GROUP, // no effect?
                 'note' => 'Will automatically replace `%%AffiliateGroup%%` in email series fields',
             ])
 

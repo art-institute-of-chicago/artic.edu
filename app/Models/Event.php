@@ -95,7 +95,9 @@ class Event extends AbstractModel
         // 'is_sold_out' => 'boolean',
     ];
 
-    const NULL_OPTION = 42; // Dropdown does not accept null keys; use big number
+    // Dropdown does not accept null keys; use big numbers
+    const NULL_OPTION = 42;
+    const NULL_OPTION_AFFILIATE_GROUP = 1024;
 
     const CLASSES_AND_WORKSHOPS = 1;
     const LIVE_ARTS = 2;
