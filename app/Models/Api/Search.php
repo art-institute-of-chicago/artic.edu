@@ -147,6 +147,34 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
+    public function scopeAggregationStyles($query, $max = 3)
+    {
+        $aggs = [
+            'styles' => [
+                'terms' => [
+                    'field' => 'style_titles.keyword',
+                    'size'  => $max
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
+    public function scopeAggregationPlaces($query, $max = 3)
+    {
+        $aggs = [
+            'place_of_origin' => [
+                'terms' => [
+                    'field' => 'place_of_origin.keyword',
+                    'size'  => $max
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
     public function scopeByGalleryIdsOnView($query, $ids)
     {
         $result = $this->scopeByGalleryIds($query, $ids);
