@@ -106,7 +106,7 @@
         @formField('select', [
             'name' => 'event_type',
             'label' => 'Event type (preferred)',
-            'options' => $eventTypesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'options' => $eventTypesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
             'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
 
@@ -120,7 +120,7 @@
         @formField('select', [
             'name' => 'audience',
             'label' => 'Event audience (preferred)',
-            'options' => $eventAudiencesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'options' => $eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
             'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
 
@@ -363,7 +363,7 @@
         @formField('select', [
             'name' => 'entrance',
             'label' => 'Entrance',
-            'options' => $eventEntrancesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'options' => $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
             'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
     </a17-fieldset>
@@ -484,9 +484,9 @@
             @formField('select', [
                 'name' => 'affiliate_group_id',
                 'label' => 'Affiliate Group',
-                'options' => $eventAffiliateGroupsList->concat([
-                    \App\Models\Event::NULL_OPTION_AFFILIATE_GROUP => '[None]',
-                ]),
+                'options' => $eventAffiliateGroupsList->put(
+                    strval(\App\Models\Event::NULL_OPTION_AFFILIATE_GROUP), '[None]'
+                ),
                 'default' => \App\Models\Event::NULL_OPTION_AFFILIATE_GROUP, // no effect?
                 'note' => 'Will automatically replace `%%AffiliateGroup%%` in email series fields',
             ])
