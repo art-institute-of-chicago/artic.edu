@@ -493,7 +493,7 @@
 
             @formField('checkbox', [
                 'name' => 'is_presented_by_affiliate',
-                'label' => 'Include "This event is presented by %%AffiliateGroup%%" in all pre-registration event emails',
+                'label' => 'Include "This event is presented by the %%AffiliateGroup%%." in all pre-registration event emails',
             ])
 
             @formField('input', [
