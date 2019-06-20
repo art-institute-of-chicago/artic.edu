@@ -32,7 +32,7 @@ class ArtistRepository extends BaseApiRepository
 
         $apiItems = $this->getApiRelatedItems($item, $excludedItems);
 
-        return $relatedItems->merge($apiItems);
+        return $relatedItems->merge($apiItems)->slice(0, 12)->values();
     }
 
     public function getCustomRelatedItems($item)
