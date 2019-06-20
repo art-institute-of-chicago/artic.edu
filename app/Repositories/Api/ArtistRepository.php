@@ -51,6 +51,7 @@ class ArtistRepository extends BaseApiRepository
             'digitalPublications' => false,
             'printedPublications' => false,
             'educatorResources' => false,
+            'videos' => false,
         ]) ?? collect([]);
 
         foreach ($relatedItems as $relatedItem) {
@@ -69,6 +70,9 @@ class ArtistRepository extends BaseApiRepository
                     break;
                 case \App\Models\DigitalLabel::class:
                     $relatedItem->subtype = 'Interactive Feature';
+                    break;
+                case \App\Models\Video::class:
+                    $relatedItem->subtype = 'Video';
                     break;
             }
 

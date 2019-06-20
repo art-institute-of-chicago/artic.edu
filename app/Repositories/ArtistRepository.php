@@ -24,6 +24,7 @@ class ArtistRepository extends BaseApiRepository
             'printedPublications' => false,
             'educatorResources' => false,
             'digitalLabels' => false,
+            'videos' => false,
             'exhibitions' => true,
         ]);
 
@@ -55,6 +56,7 @@ class ArtistRepository extends BaseApiRepository
             'printedPublications' => false,
             'educatorResources' => false,
             'digitalLabels' => false,
+            'videos' => false,
             'exhibitions' => true,
         ]);
 

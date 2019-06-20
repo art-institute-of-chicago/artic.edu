@@ -59,11 +59,6 @@ class Video extends AbstractModel
         return 'id_slug';
     }
 
-    public function getTypeAttribute()
-    {
-        return 'video';
-    }
-
     public function getIdSlugAttribute()
     {
         return join([$this->id, $this->getSlug()], '-');

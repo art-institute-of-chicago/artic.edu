@@ -47,7 +47,7 @@
             'name' => 'related_items',
             'endpoints' => [
                 [
-                    'label' => 'Article',
+                    'label' => 'Articles',
                     'value' => '/collection/articles_publications/articles/browser'
                 ],
                 [
@@ -67,7 +67,11 @@
                     'value' => '/collection/digitalLabels/browser'
                 ],
                 [
-                    'label' => 'Exhibition',
+                    'label' => 'Videos',
+                    'value' => '/collection/articles_publications/videos/browser'
+                ],
+                [
+                    'label' => 'Exhibitions',
                     'value' => '/exhibitions_events/exhibitions/browser'
                 ],
             ],
