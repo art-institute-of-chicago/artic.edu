@@ -450,21 +450,25 @@
                                 ])
                                     @formField('wysiwyg', [
                                         'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                        'label' => '',
+                                        'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
                                         'toolbarOptions' => [
                                             'bold', 'italic', 'link'
                                         ],
+                                        'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
                                     ])
                                 @endcomponent
 
                             @else
+
                                 @formField('wysiwyg', [
                                     'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                    'label' => '',
+                                    'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
                                     'toolbarOptions' => [
                                         'bold', 'italic', 'link'
                                     ],
+                                    'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
                                 ])
+
                             @endif
 
                             </div>
