@@ -102,6 +102,10 @@
                     'label' => 'Exhibition',
                     'value' => '/exhibitions_events/exhibitions/browser'
                 ],
+                [
+                    'label' => 'Videos',
+                    'value' => '/collection/articles_publications/videos/browser'
+                ],
             ],
             'max' => 1000,
             'label' => 'Suppressed related items',
