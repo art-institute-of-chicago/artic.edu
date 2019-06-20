@@ -341,6 +341,11 @@ class Event extends AbstractModel
         return $this->belongsToMany('App\Models\EventProgram');
     }
 
+    public function affiliateGroup()
+    {
+        return $this->belongsTo('App\Models\EventProgram', 'affiliate_group_id');
+    }
+
     public function getProgramUrlsAttribute()
     {
         return $this->programs->reduce(function($carry, $item) {
@@ -782,10 +787,24 @@ class Event extends AbstractModel
                 "value" => function () {return self::$eventEntrances[$this->entrance] ?? null;},
             ],
             [
-                "name" => "is_presented_by_affiliate",
-                "doc" => "Whether this event is presented by an affiliate group",
+                "name" => "affiliate_group_display",
+                "doc" => "Identifier of affiliate group (event program) associated with this event",
                 "type" => "boolean",
-                "value" => function () {return $this->is_presented_by_affiliate;},
+                "value" => function () {
+                    if ($this->is_presented_by_affiliate && $this->affiliateGroup) {
+                        return str_replace(
+                            '%%AffiliateGroup%%',
+                            $this->affiliateGroup->name,
+                            '<p>This event is presented by the %%AffiliateGroup%%.</p>'
+                        );
+                    }
+                },
+            ],
+            [
+                "name" => "affiliate_group_id",
+                "doc" => "Identifier of affiliate group (event program) associated with this event",
+                "type" => "boolean",
+                "value" => function () {return $this->affiliateGroup->id ?? null;},
             ],
             [
                 "name" => "join_url",
