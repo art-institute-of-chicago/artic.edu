@@ -824,7 +824,31 @@ class Event extends AbstractModel
                 "name" => "email_series",
                 "doc" => "email_series",
                 "type" => "string",
-                "value" => function () {return $this->emailSeries->pluck('pivot');},
+                "value" => function () {
+                    $affiliateGroupTitle = $this->affiliateGroup->name ?? null;
+                    $emailSeriesPivots = $this->emailSeries->pluck('pivot');
+
+                    return $emailSeriesPivots->each(function($item) use ($affiliateGroupTitle) {
+                        foreach ([
+                            'affiliate_member_copy',
+                            'member_copy',
+                            'sustaining_fellow_copy',
+                            'non_member_copy',
+                        ] as $field) {
+                            if (isset($item->$field)) {
+                                if (isset($affiliateGroupTitle)) {
+                                    $item->$field = str_replace(
+                                        '%%AffiliateGroup%%',
+                                        $affiliateGroupTitle,
+                                        $item->$field
+                                    );
+                                } else {
+                                    // TODO: Rip out this paragraph
+                                }
+                            }
+                        }
+                    });
+                },
             ],
         ];
     }
