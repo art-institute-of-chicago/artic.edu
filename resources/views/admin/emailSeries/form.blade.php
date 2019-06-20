@@ -2,6 +2,14 @@
 
 @section('contentFields')
 
+    @formField('input', [
+        'name' => 'id',
+        'label' => 'Email Series ID',
+        'disabled' => true
+    ])
+
+    <hr>
+
     @formField('checkbox', [
         'name' => 'show_non_member',
         'label' => 'Show "Send to Non-Members" option'
@@ -30,7 +38,6 @@
     ])
 
     <hr>
-
 
     @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'use_short_description',
