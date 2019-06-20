@@ -20,6 +20,12 @@ class EventProgram extends AbstractModel
     protected $presenter = 'App\Presenters\Admin\EventProgramPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\EventProgramPresenter';
 
+    public function scopeAffiliateGroups($query)
+    {
+        return $query->where('is_affiliate_group', true);
+
+    }
+
     protected function transformMappingInternal()
     {
         return [

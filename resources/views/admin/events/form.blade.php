@@ -481,6 +481,14 @@
 
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
+            @formField('select', [
+                'name' => 'affiliate_group_id',
+                'label' => 'Affiliate Group',
+                'options' => $eventAffiliateGroupsList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+                'default' => \App\Models\Event::NULL_OPTION, // no effect?
+                'note' => 'Will automatically replace `%%AffiliateGroup%%` in email series fields',
+            ])
+
             @formField('checkbox', [
                 'name' => 'is_presented_by_affiliate',
                 'label' => 'Include "This event is presented by %%AffiliateGroup%%" in all pre-registration event emails',

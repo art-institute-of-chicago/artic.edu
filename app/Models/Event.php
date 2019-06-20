@@ -74,6 +74,7 @@ class Event extends AbstractModel
         'join_url',
         'survey_url',
         'is_presented_by_affiliate',
+        'affiliate_group_id',
         'entrance',
         'publish_start_date',
         'publish_end_date',
