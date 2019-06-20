@@ -453,6 +453,16 @@ class Event extends AbstractModel
         $this->attributes['audience'] = $value > count(self::$eventAudiences) ? null : $value; // 1-based
     }
 
+    public function setEntranceAttribute($value)
+    {
+        $this->attributes['entrance'] = $value > count(self::$eventEntrances) ? null : $value; // 1-based
+    }
+
+    public function setAffiliateGroupIdAttribute($value)
+    {
+        $this->attributes['affiliate_group_id'] = ($value == self::NULL_OPTION_AFFILIATE_GROUP) ? null : $value;
+    }
+
     public function scopeDefault($query)
     {
         return $query->betweenDates(Carbon::today(), Carbon::today()->addDay(14));
