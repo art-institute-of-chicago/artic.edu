@@ -853,7 +853,11 @@ class Event extends AbstractModel
                                         $item->$field
                                     );
                                 } else {
-                                    // TODO: Rip out this paragraph
+                                    $paragraphs = preg_split( '/(?<=<\/p>)\s*(?=<p)/', $item->$field, -1, PREG_SPLIT_DELIM_CAPTURE);
+                                    $paragraphs = array_filter($paragraphs, function($paragraph) {
+                                        return strpos($paragraph, '%%AffiliateGroup%%') === false;
+                                    });
+                                    $item->$field = count($paragraphs) > 0 ? implode('', $paragraphs) : null;
                                 }
                             }
                         }
