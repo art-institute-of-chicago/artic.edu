@@ -1,5 +1,5 @@
 <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <a href="{!! $item->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+    <a href="{!! $item->present()->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
             @if ((isset($image) || $item->imageFront('default') || $item->imageFront('hero')))
                 <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
