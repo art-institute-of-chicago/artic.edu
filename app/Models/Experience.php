@@ -77,6 +77,14 @@ class Experience extends Model implements Sortable
                 'src' => $image
             ];
         }
+        return null;
+    }
+
+    public function defaultCmsImage($params = [])
+    {
+        $attract_slide = $this->slides()->where('module_type', 'attract')->first();
+        $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
+        return $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
     }
 
     public function slides()
