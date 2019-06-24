@@ -32,22 +32,21 @@ class SearchController extends BaseScopedController
     const ALL_PER_PAGE = 5;
     const ALL_PER_PAGE_ARTWORKS = 8;
     const ALL_PER_PAGE_EXHIBITIONS = 4;
-    const ALL_PER_PAGE_DIGITAL_LABELS = 4;
     const ALL_PER_PAGE_EVENTS = 4;
     const ALL_PER_PAGE_PAGES = 3;
     const ALL_PER_PAGE_ARTICLES = 4;
     const ALL_PER_PAGE_PUBLICATIONS = 4;
+    const ALL_PER_PAGE_INTERACTIVEFEATURES = 4;
 
     const ARTWORKS_PER_PAGE = 20;
     const PAGES_PER_PAGE = 20;
     const EXHIBITIONS_PER_PAGE = 20;
-    const DIGITAL_LABELS_PER_PAGE = 20;
+    const INTERACTIVEFEATURES_PER_PAGE = 20;
     const ARTICLES_PER_PAGE = 20;
     const EVENTS_PER_PAGE = 20;
     const PUBLICATIONS_PER_PAGE = 20;
     const ARTISTS_PER_PAGE = 30;
     const AUTOCOMPLETE_PER_PAGE = 10;
-    const ALL_PER_PAGE_INTERACTIVEFEATURES = 10;
 
     protected $artworksRepository;
     protected $artistsRepository;
@@ -104,7 +103,7 @@ class SearchController extends BaseScopedController
         $pages                      = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
         $guides                     = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
         $press                      = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $interactiveFeatures        = $this->interactiveFeatureRespository->searchIn(request('q'))->pagiante(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
+        $interactiveFeatures        = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
 
         return view('site.search.index', [
             'featuredResults' => $general->where('is_boosted', true),
@@ -114,7 +113,7 @@ class SearchController extends BaseScopedController
             'events'   => $events,
             'pages'    => $pages,
             'exhibitions'  => $exhibitions,
-            'interactiveFeature'  => $interactiveFeatures,
+            'interactiveFeatures'  => $interactiveFeatures,
             'publications' => $publications,
             'pressReleases'  => $press,
             'researchGuides' => $guides,
@@ -238,11 +237,12 @@ class SearchController extends BaseScopedController
         $this->seo->setTitle('Search');
 
         $general = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $interactiveFeatures = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::INTERACTIVEFEATURES_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'interactive-features');
 
         return view('site.search.index', [
-            'digitalLabels' => $digitalLabels,
+            'interactiveFeatures' => $interactiveFeatures,
             'allResultsView' => true,
             'searchResultsTypeLinks' => $links,
         ]);

@@ -706,11 +706,11 @@
     @endif
 @endif
 
-@if (isset($interactiveFeatures) && $interactiveFeatures->getMetadata('pagination')->total > 0)
+@if (isset($interactiveFeatures) && $interactiveFeatures->total() > 0)
 
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $interactiveFeatures->getMetadata('pagination')->total. ' '. str_plural('interactive feature', $interactiveFeatures->getMetadata('pagination')->total), 'href' => route('search.interactive-features', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $interactiveFeatures->total(). ' '. str_plural('interactive feature', $interactiveFeatures->total()), 'href' => route('search.interactive-features', ['q' => request('q')]))))
         @endunless
         Interactive Features
     @endcomponent
@@ -726,7 +726,7 @@
           @foreach ($interactiveFeatures as $item)
             @component('components.molecules._m-listing----label')
                 @slot('item', $item)
-                @slot('image', $item->imageFront('hero'))
+                @slot('image', $item->imageFront())
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
