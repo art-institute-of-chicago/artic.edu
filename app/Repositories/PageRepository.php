@@ -73,6 +73,7 @@ class PageRepository extends ModuleRepository
         // $this->updateBrowser($object, $fields, 'artArticles');
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
+            'interactiveFeatures.experiences' => false
         ]);
 
         // Research
@@ -124,16 +125,12 @@ class PageRepository extends ModuleRepository
         // Art & Ideas
         // $fields['browsers']['artArticles'] = $this->getFormFieldsForBrowser($object, 'artArticles', 'collection.articles_publications', 'title', 'articles');
         $fields['browsers']['artCategoryTerms'] = $this->getFormFieldsForBrowserApi($object, 'artCategoryTerms', 'App\Models\Api\CategoryTerm', 'collection', 'title', 'categoryTerms');
-        // $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [
-        //     'digitalLabels' => [
-        //         'apiModel' => 'App\Models\Api\DigitalLabel',
-        //         'routePrefix' => 'collection',
-        //         'moduleName' => 'digitalLabels',
-        //     ],   
-        // ], [ 
-        //     'articles' => false,
-        //     'digitalLabels' => true
-        // ]);
+        $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [
+
+        ], [ 
+            'articles' => false,
+            'interactiveFeatures.experiences' => false
+        ]);
 
         // Research
         $fields['browsers']['researchResourcesFeaturePages'] = $this->getFormFieldsForBrowser($object, 'researchResourcesFeaturePages', 'generic', 'title', 'genericPages');
