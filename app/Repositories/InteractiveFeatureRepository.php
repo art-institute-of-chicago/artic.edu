@@ -9,14 +9,11 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\InteractiveFeature;
-use App\Repositories\Behaviors\HandleApiBlocks;
 use Artisan;
 
 class InteractiveFeatureRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleRepeaters, HandleApiBlocks {
-        HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
-    }
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleRepeaters;
 
     function __construct(InteractiveFeature $model)
     {
@@ -33,10 +30,4 @@ class InteractiveFeatureRepository extends ModuleRepository
         $scope = $scope + ['archived' => false];
         return parent::getCountByStatusSlug($slug, $scope);
     }
-
-    function search($string, $perPage = null)
-    {
-
-    }
-
 }
