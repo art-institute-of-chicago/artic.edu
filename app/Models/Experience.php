@@ -89,6 +89,11 @@ class Experience extends Model implements Sortable
         return $this->belongsTo('App\Models\InteractiveFeature');
     }
 
+    public function getTypeAttribute()
+    {
+        return 'experience';
+    }
+
     public function scopeArchived($query)
     {
         return $query->where('archived', true);

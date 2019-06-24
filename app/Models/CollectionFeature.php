@@ -38,11 +38,17 @@ class CollectionFeature extends AbstractModel
         return $this->belongsToMany(\App\Models\Selection::class, 'collection_feature_selection', 'collection_feature_id', 'selection_id')->withPivot('position')->orderBy('position');
     }
 
+    public function experiences()
+    {
+        return $this->belongsToMany(\App\Models\Experience::class, 'collection_feature_experience', 'collection_feature_id', 'experience_id')->withPivot('position')->orderBy('position');
+    }
+
     public function enclosedItem()
     {
         $item = $this->articles->first();
         $item = $item ?? $this->selections->first();
         $item = $item ?? $this->apiModels('artworks', 'Artwork')->first();
+        $item = $item ?? $this->experiences->first();
 
         if (!$item) {
             return null;

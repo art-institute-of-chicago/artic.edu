@@ -167,4 +167,40 @@ class InteractiveFeatureExperienceController extends ModuleController
             'experience' => $item,
         ];
     }
+
+    protected function getBrowserTableData($items)
+    {
+        $withImage = $this->moduleHas('medias');
+
+        return $items->map(function ($item) use ($withImage) {
+            $columnsData = collect($this->browserColumns)->mapWithKeys(function ($column) use ($item, $withImage) {
+                return $this->getItemColumnData($item, $column);
+            })->toArray();
+
+            $name = $columnsData[$this->titleColumnKey];
+            unset($columnsData[$this->titleColumnKey]);
+
+            return [
+                'id' => $item->id,
+                'name' => $name,
+                'edit' => '',
+                'endpointType' => $this->moduleName,
+            ] + $columnsData + ($withImage && !array_key_exists('thumbnail', $columnsData) ? [
+                'thumbnail' => $item->defaultCmsImage(['w' => 100, 'h' => 100]),
+            ] : []);
+        })->toArray();
+    }
+
+    protected function getBrowserData($prependScope = [])
+    {
+        if (request()->has('except')) {
+            $prependScope['exceptIds'] = request('except');
+        }
+
+        $scopes = $this->filterScope($prependScope);
+        $items = $this->getBrowserItems($scopes);
+        $data = $this->getBrowserTableData($items);
+
+        return array_replace_recursive(['data' => $data], []);
+    }
 }
