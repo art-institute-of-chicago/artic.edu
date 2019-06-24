@@ -366,7 +366,7 @@ class SearchController extends BaseScopedController
         $aggregations = $all->getMetadata('aggregations')->types->buckets;
 
         array_push($links, $this->buildLabel('All', $all->getMetadata('pagination')->total, route('search', ['q' => request('q')]), $active == 'all'));
-
+        
         if (extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
@@ -394,6 +394,8 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'press-releases')) {
             array_push($links, $this->buildLabel('Press Releases', extractAggregation($aggregations, 'press-releases'), route('search.press-releases', ['q' => request('q')]), $active == 'press-releases'));
         }
+        
+        array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
 
         return $links;
     }
