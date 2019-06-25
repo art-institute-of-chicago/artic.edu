@@ -10,3 +10,7 @@
         </script>
     </section>
 @endsection
+
+@section('extra_scripts')
+    <script src="{{revAsset('scripts/interactiveFeatures.js')}}"></script>
+@endsection
