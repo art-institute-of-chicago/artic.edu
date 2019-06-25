@@ -41,9 +41,9 @@ class Artwork extends AbstractModel
         return $this->belongsToMany('App\Models\Article', 'article_artwork')->withPivot('position')->orderBy('position');
     }
 
-    public function sidebarDigitalLabels()
+    public function experiences()
     {
-        return $this->apiElements()->where('relation', 'sidebarDigitalLabels');
+        return $this->belongsToMany('App\Models\Experience', 'artwork_experience')->withPivot('position')->orderBy('position');
     }
 
     public function getTrackingSlugAttribute() 
