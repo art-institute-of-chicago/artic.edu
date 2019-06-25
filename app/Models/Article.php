@@ -332,6 +332,12 @@ class Article extends AbstractModel implements Feedable
                 "type" => "string",
                 "value" => function () {return $this->author;},
             ],
+            [
+                "name" => 'related',
+                "doc" => "Related Content",
+                "type" => "array",
+                "value" => function () { return $this->transformRelated(); },
+            ],
         ];
     }
 }

@@ -275,6 +275,12 @@ class Exhibition extends AbstractModel
                 "type" => "number",
                 "value" => function () {return $this->cms_exhibition_type;},
             ],
+            [
+                "name" => 'related',
+                "doc" => "Related Content",
+                "type" => "array",
+                "value" => function () { return $this->transformRelated(); },
+            ],
         ];
     }
 

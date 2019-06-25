@@ -187,6 +187,12 @@ class DigitalPublication extends AbstractModel
                 "type" => "text",
                 "value" => function() { return $this->blocks; }
             ],
+            [
+                "name" => 'related',
+                "doc" => "Related Content",
+                "type" => "array",
+                "value" => function () { return $this->transformRelated(); },
+            ],
         ];
     }
 

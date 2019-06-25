@@ -60,9 +60,15 @@ class Artist extends AbstractModel
             ],
             [
                 "name" => 'datahub_id',
-                "doc" => "Type",
+                "doc" => "Data Hub ID",
                 "type" => "string",
                 "value" => function () {return $this->datahub_id;},
+            ],
+            [
+                "name" => 'related',
+                "doc" => "Related Content",
+                "type" => "array",
+                "value" => function () { return $this->transformRelated(); },
             ],
         ];
     }
