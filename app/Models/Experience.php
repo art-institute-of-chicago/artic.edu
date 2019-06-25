@@ -69,9 +69,7 @@ class Experience extends Model implements Sortable
 
     public function imageFront()
     {
-        $attract_slide = $this->slides()->where('module_type', 'attract')->first();
-        $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
-        $image = $attract_image ? $attract_image->cmsImage('experience_image', 'default') : '';
+        $image = $this->defaultCmsImage();
         if (!empty($image)) {
             return [
                 'src' => $image
@@ -82,9 +80,13 @@ class Experience extends Model implements Sortable
 
     public function defaultCmsImage($params = [])
     {
-        $attract_slide = $this->slides()->where('module_type', 'attract')->first();
-        $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
-        return $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
+        if ($this->hasImage('thumbnail')) {
+            return $this->image('thumbnail');
+        } else {
+            $attract_slide = $this->slides()->where('module_type', 'attract')->first();
+            $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
+            return $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
+        }
     }
 
     public function slides()
@@ -116,4 +118,15 @@ class Experience extends Model implements Sortable
     {
         return route('interactiveFeatures.show', $this->slug);
     }
+
+    public $mediasParams = [
+        'thumbnail' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1 / 1,
+                ],
+            ],
+        ]
+    ];
 }

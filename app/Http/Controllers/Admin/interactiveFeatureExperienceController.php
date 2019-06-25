@@ -100,9 +100,7 @@ class InteractiveFeatureExperienceController extends ModuleController
                 ? $column['variant']['params']
                 : ['w' => 80, 'h' => 80, 'fit' => 'crop'];
 
-                $attract_slide = $item->slides()->where('module_type', 'attract')->first();
-                $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
-                $thumbnail_image = $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
+                $thumbnail_image = $item->defaultCmsImage($params);
                 return [
                     'thumbnail' => $thumbnail_image,
                 ];
