@@ -68,7 +68,7 @@ class AppServiceProvider extends ServiceProvider
             'educatorResources' => 'App\Models\EducatorResource',
             'videos' => 'App\Models\Video',
 
-            'exhibitions' => 'App\Models\Api\Exhibition',
+            'exhibitions' => 'App\Models\Exhibition',
         ]);
     }
 
