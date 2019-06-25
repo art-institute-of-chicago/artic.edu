@@ -11,7 +11,7 @@ use App\Models\Behaviors\HasRelated;
 
 class Video extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasRelated;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasRelated, Transformable;
 
     protected $presenter = 'App\Presenters\Admin\VideoPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\VideoPresenter';
@@ -69,5 +69,65 @@ class Video extends AbstractModel
     {
         // Workaround for the CMS, should be moved away from the model
         return join([route('videos'), '/', $this->id, '-']);
+    }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'published',
+                "doc" => "Published",
+                "type" => "boolean",
+                "value" => function () {return $this->published;},
+            ],
+            [
+                "name" => 'publish_start_date',
+                "doc" => "Publish Start Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_start_date; }
+            ],
+            [
+                "name" => 'publish_end_date',
+                "doc" => "Publish End Date",
+                "type" => "datetime",
+                "value" => function() { return $this->publish_end_date; }
+            ],
+            [
+                "name" => 'date',
+                "doc" => "Date",
+                "type" => "date",
+                "value" => function () {return $this->date;},
+            ],
+            [
+                "name" => 'video_url',
+                "doc" => "Video URL",
+                "type" => "text",
+                "value" => function () {return $this->video_url;},
+            ],
+            [
+                "name" => "slug",
+                "doc" => "slug",
+                "type" => "string",
+                "value" => function () {return $this->slug;},
+            ],
+            [
+                "name" => "web_url",
+                "doc" => "web_url",
+                "type" => "string",
+                "value" => function () {return url(route('articles.show', $this));},
+            ],
+            [
+                "name" => "heading",
+                "doc" => "heading",
+                "type" => "string",
+                "value" => function () {return $this->heading;},
+            ],
+            [
+                "name" => 'related',
+                "doc" => "Related Content",
+                "type" => "array",
+                "value" => function () { return $this->transformRelated(); },
+            ],
+        ];
     }
 }
