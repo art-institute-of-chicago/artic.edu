@@ -113,10 +113,10 @@
         </section>
 
 
-        @if(sizeof($digitalLabels['items']) > 0)
+        @if(sizeof($experiences['items']) > 0)
             <section>
                 @component('components.molecules._m-title-bar')
-                    @slot('links', array(array('label' => 'Browse all interactive features', 'href' => route('digitalLabels'))))
+                    @slot('links', array(array('label' => 'Browse all interactive features', 'href' => route('interactiveFeatures'))))
                     Interactive Features
                 @endcomponent
 
@@ -127,8 +127,8 @@
                     @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
                     @slot('cols_large','4')
                     @slot('cols_xlarge','4')
-                    @foreach ($digitalLabels['items'] as $item)
-                        @component('components.molecules._m-listing----label')
+                    @foreach ($experiences['items'] as $item)
+                        @component('components.molecules._m-listing----experience')
                             @slot('variation', 'm-listing--row@small m-listing--row@medium')
                             @slot('item', $item)
                             @slot('image', $item->imageFront('hero') ?? null)
@@ -153,7 +153,7 @@
                     @slot('linksPrimary', array(
                         array(
                             'label' => 'Browse all interactive features',
-                            'href' => route('digitalLabels'),
+                            'href' => route('interactiveFeatures'),
                             'variation' => 'btn btn--secondary'
                         ),
                     ))

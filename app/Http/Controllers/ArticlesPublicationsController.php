@@ -50,6 +50,9 @@ class ArticlesPublicationsController extends FrontController
             'digitalCatalogs' => [
                 'items' => $page->digitalCatalogs
             ],
+            'experiences' => [
+                'items' => $page->experiences
+            ],
             'printedPublications' => [
                 'intro' => $page->present()->printed_publications_intro,
                 'items' => $page->printedPublications
