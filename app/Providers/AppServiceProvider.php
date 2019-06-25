@@ -63,9 +63,9 @@ class AppServiceProvider extends ServiceProvider
             // TODO: Figure out what to do about this rebase left-over?
             // 'digitalLabels' => 'App\Models\DigitalLabel',
 
-            'digitalPublications' => 'App\Models\DigitalPublication',
-            'printedPublications' => 'App\Models\PrintedPublication',
-            'educatorResources' => 'App\Models\EducatorResource',
+            'digitalpublications' => 'App\Models\DigitalPublication',
+            'printedpublications' => 'App\Models\PrintedPublication',
+            'educatorresources' => 'App\Models\EducatorResource',
             'videos' => 'App\Models\Video',
 
             'exhibitions' => 'App\Models\Exhibition',
