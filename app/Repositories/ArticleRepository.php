@@ -33,7 +33,7 @@ class ArticleRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'videos');
         $this->updateMultiBrowserApiRelated($object, $fields, 'further_reading_items', [
             'articles' => false,
-            'digitalLabels' => true
+            'interactiveFeatures.experiences' => false
         ]);
 
         parent::afterSave($object, $fields);
@@ -49,15 +49,9 @@ class ArticleRepository extends ModuleRepository
         $fields['browsers']['videos'] = $this->getFormFieldsForBrowser($object, 'videos', 'collection.articles_publications');
         $fields['browsers']['sidebarEvent'] = $this->getFormFieldsForBrowser($object, 'sidebarEvent', 'exhibitions_events', 'title', 'events');
         $fields['browsers']['sidebarArticle'] = $this->getFormFieldsForBrowser($object, 'sidebarArticle', 'collection.articles_publications', 'title', 'articles');
-        $fields['browsers']['further_reading_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'further_reading_items', [
-            'digitalLabels' => [
-                'apiModel' => 'App\Models\Api\DigitalLabel',
-                'routePrefix' => 'collection',
-                'moduleName' => 'digitalLabels',
-            ],   
-        ], [ 
+        $fields['browsers']['further_reading_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'further_reading_items', [], [ 
             'articles' => false,
-            'digitalLabels' => true
+            'interactiveFeatures.experiences' => false
         ]);
 
         return $fields;
