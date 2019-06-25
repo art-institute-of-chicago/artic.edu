@@ -82,6 +82,7 @@ class PageRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'researchResourcesStudyRoomMore');
 
         $this->updateBrowser($object, $fields, 'articles');
+        $this->updateBrowser($object, $fields, 'experiences');
         $this->updateBrowser($object, $fields, 'printedPublications');
         $this->updateBrowser($object, $fields, 'digitalPublications');
 
@@ -136,6 +137,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['researchResourcesStudyRoomMore'] = $this->getFormFieldsForBrowser($object, 'researchResourcesStudyRoomMore', 'generic', 'title', 'genericPages');
 
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications', 'title', 'articles');
+        $fields['browsers']['experiences'] = $this->getFormFieldsForBrowser($object, 'experiences', 'collection', 'title', 'interactiveFeatures.experiences');
         $fields['browsers']['printedPublications'] = $this->getFormFieldsForBrowser($object, 'printedPublications', 'collection.articles_publications', 'title', 'printedPublications');
         $fields['browsers']['digitalPublications'] = $this->getFormFieldsForBrowser($object, 'digitalPublications', 'collection.articles_publications', 'title', 'digitalPublications');
 
@@ -146,5 +148,24 @@ class PageRepository extends ModuleRepository
     {
         $type = array_search($name, $this->model::$types);
         return $this->model->whereType($type)->with($with)->first();
+    }
+
+    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
+    {
+        if ($relation === 'experiences') {
+            return $object->$relation->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName) {
+                return [
+                    'id' => $relatedElement->id,
+                    'name' => $relatedElement->titleInBrowser ?? $relatedElement->$titleKey,
+                    'edit' => '',
+                    'endpointType' => $relatedElement->getMorphClass(),
+                ] + (classHasTrait($relatedElement, HasMedias::class) ? [
+                    'thumbnail' => $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]),
+                ] : []);
+            })->toArray();
+        } else {
+            return parent::getFormFieldsForBrowser($object, $relation, $routePrefix, $titleKey, $moduleName);
+        }
+
     }
 }

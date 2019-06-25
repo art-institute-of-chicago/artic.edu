@@ -309,6 +309,11 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\DigitalPublication')->withPivot('position')->orderBy('position');
     }
 
+    public function experiences()
+    {
+        return $this->belongsToMany('App\Models\Experience')->withPivot('position')->orderBy('position');
+    }
+
     public function printedPublications()
     {
         return $this->belongsToMany('App\Models\PrintedPublication')->withPivot('position')->orderBy('position');
