@@ -483,7 +483,6 @@ class Search extends BaseApiModel
         }
 
         $query->forceEndpoint('msearch');
-        $query->boost(FALSE);
 
         // Generalize to use this scope on artworks as well as artists
         $item = $class::query()
@@ -491,6 +490,8 @@ class Search extends BaseApiModel
 
         $shoulds = [];
         if ($class == \App\Models\Api\Artwork::class) {
+            $query->boost(FALSE);
+
             $shoulds = [
                 $this->basicQuery('classification_id', $item->classification_id, 4),
                 $this->basicQuery('artist_id', $item->artist_id, 3),
