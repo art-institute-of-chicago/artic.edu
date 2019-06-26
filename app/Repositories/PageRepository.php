@@ -70,7 +70,6 @@ class PageRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'articlesCategories');
 
         // Art & Ideas
-        // $this->updateBrowser($object, $fields, 'artArticles');
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
             'interactiveFeatures.experiences' => false
@@ -124,7 +123,6 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articles_publications', 'name', 'categories');
 
         // Art & Ideas
-        // $fields['browsers']['artArticles'] = $this->getFormFieldsForBrowser($object, 'artArticles', 'collection.articles_publications', 'title', 'articles');
         $fields['browsers']['artCategoryTerms'] = $this->getFormFieldsForBrowserApi($object, 'artCategoryTerms', 'App\Models\Api\CategoryTerm', 'collection', 'title', 'categoryTerms');
         $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [ 
             'articles' => false,

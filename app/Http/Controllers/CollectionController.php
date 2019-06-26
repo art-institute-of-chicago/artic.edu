@@ -89,14 +89,18 @@ class CollectionController extends BaseScopedController
             return $view;
         }
 
-        $featuredArticles = $page->artArticles ?? null;
+        $featuredItems = $page->getRelatedWithApiModels(
+            'featured_items', [], [ 
+                'articles' => false,
+                'interactiveFeatures.experiences' => false
+        ]);
 
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
         
-        if ($featuredArticles->count()) {
-            $featuredArticlesHero = $featuredArticles->shift();
+        if ($featuredItems->count()) {
+            $featuredItemsHero = $featuredItems->shift();
         }
 
         return view('site.collection.index', [
@@ -106,8 +110,8 @@ class CollectionController extends BaseScopedController
           'filterCategories'  => $filters,
           'activeFilters'     => $activeFilters,
           'hasAnyFilter'      => $this->hasAnyScope(),
-          'featuredArticlesHero' => $featuredArticlesHero ?? null,
-          'featuredArticles'     => $featuredArticles ?? null,
+          'featuredItemsHero' => $featuredItemsHero ?? null,
+          'featuredItems'     => $featuredItems ?? null,
         ]);
     }
 
