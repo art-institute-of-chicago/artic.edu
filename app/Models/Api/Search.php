@@ -482,6 +482,7 @@ class Search extends BaseApiModel
             return $query;
         }
 
+        $query->boost(FALSE);
         $query->forceEndpoint('msearch');
 
         // Generalize to use this scope on artworks as well as artists
@@ -490,7 +491,6 @@ class Search extends BaseApiModel
 
         $shoulds = [];
         if ($class == \App\Models\Api\Artwork::class) {
-            $query->boost(FALSE);
 
             $shoulds = [
                 $this->basicQuery('classification_id', $item->classification_id, 4),
@@ -511,14 +511,12 @@ class Search extends BaseApiModel
         }
         elseif ($class == \App\Models\Api\Artist::class) {
             $shoulds = [
-                $this->basicQuery('style_titles', $item->artworks()->getMetadata('aggregations')->styles->buckets[0]->key ?? null),
-                $this->basicQuery('place_of_origin', $item->artworks()->getMetadata('aggregations')->place_of_origin->buckets[0]->key ?? null),
+                $this->basicQuery('style_titles', $item->artworks()->getMetadata('aggregations')->styles->buckets[0]->key ?? null, 0, 'match'),
+                $this->basicQuery('place_of_origin', $item->artworks()->getMetadata('aggregations')->place_of_origin->buckets[0]->key ?? null, 0, 'match'),
             ];
 
             $dateQuery = $this->dateQuery($item->birth_date, $item->death_date);
             array_push($shoulds, $dateQuery);
-
-            array_push($shoulds, $this->basicQuery('artist_id', $item->id, 0, 'must_not'));
 
             // all tags start with 50
         }
@@ -537,6 +535,10 @@ class Search extends BaseApiModel
                 ],
             ],
         ];
+
+        if ($class == \App\Models\Api\Artist::class) {
+            $params["bool"]["must_not"] = $this->basicQuery('artist_id', $item->id);
+        }
 
         return $query->rawSearch($params);
     }
@@ -888,23 +890,23 @@ class Search extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    protected function basicQuery($field, $value, $boost = 0, $occurence_type = 'must')
+    protected function basicQuery($field, $value, $boost = 0, $queryType = 'term')
     {
         if (!$value)
         {
             return [];
         }
         $ret = [
-            "term" => [
+            $queryType => [
                 $field => $value,
             ],
         ];
 
-        if ($boost || $occurence_type != 'must') {
+        if ($boost) {
             return [
                 "bool" => [
                     'boost' => $boost,
-                    $occurence_type => [
+                    'must' => [
                         $ret,
                     ],
                 ],
