@@ -724,7 +724,7 @@
           @slot('cols_large','4')
           @slot('cols_xlarge','4')
           @foreach ($interactiveFeatures as $item)
-            @component('components.molecules._m-listing----label')
+            @component('components.molecules._m-listing----experience')
                 @slot('item', $item)
                 @slot('image', $item->imageFront())
                 @slot('imageSettings', array(
@@ -752,7 +752,7 @@
             @slot('cols_xlarge','4')
 
             @foreach ($interactiveFeatures as $item)
-                @component('components.molecules._m-listing----label')
+                @component('components.molecules._m-listing----experience')
                     @slot('item', $item)
                     @slot('image', $item->imageFront('hero'))
                     @slot('imageSettings', array(

@@ -122,7 +122,7 @@ class SearchController extends BaseScopedController
         ]);
     }
 
-    public function collectionautocomplete()
+    public function autocomplete()
     {
         $collection = GeneralSearch::search(request('q'))
             ->resources(['artworks', 'exhibitions', 'artists', 'agents', 'events', 'articles', 'digital-catalogs', 'printed-catalogs'])
