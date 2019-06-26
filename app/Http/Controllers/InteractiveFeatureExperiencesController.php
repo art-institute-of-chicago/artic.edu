@@ -51,7 +51,7 @@ class InteractiveFeatureExperiencesController extends FrontController
             'filters' => null,
             'listingCountText' => 'Showing ' . $items->total() . ' items',
             'listingItems' => $items,
-            'type' => 'label',
+            'type' => 'experience',
         ];
 
         return view('site.genericPage.index', $view_data);
