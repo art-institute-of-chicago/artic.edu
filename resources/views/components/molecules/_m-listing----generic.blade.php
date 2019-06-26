@@ -1,10 +1,10 @@
 <{{ $tag ?? 'li' }} class="m-listing{{ (isset($variation)) ? ' '.$variation : '' }}">
     <a href="{!! $item->present()->url !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
         @if (!isset($hideImage) || (isset($hideImage) && !($hideImage)))
-            @if ((isset($image) || $item->imageFront('default') || $item->imageFront('hero')))
+            @if ((isset($image) || $item->imageFront('default') || $item->imageFront('hero') || $item->imageFront('listing')))
                 <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}">
                     @component('components.atoms._img')
-                        @slot('image', $image ?? $item->imageFront('default') ?? $item->imageFront('hero'))
+                        @slot('image', $image ?? $item->imageFront('default') ?? $item->imageFront('hero') ?? $item->imageFront('listing'))
                         @slot('settings', $imageSettings ?? '')
                     @endcomponent
                     @if ($item->videoFront)
@@ -13,7 +13,7 @@
                             @slot('autoplay', true)
                             @slot('loop', true)
                             @slot('muted', true)
-                            @slot('title', $item->videoFront['fallbackImage']['alt'] ?? $item->imageFront('hero')['alt'] ?? $item->imageFront('default')['alt'] ?? $image['alt'] ?? null)
+                            @slot('title', $item->videoFront['fallbackImage']['alt'] ?? $image['alt'] ?? $item->imageFront('default')['alt'] ?? $item->imageFront('hero')['alt'] ?? $item->imageFront('listing')['alt'] ?? null)
                         @endcomponent
                         @component('components.atoms._media-play-pause-video')
                         @endcomponent
