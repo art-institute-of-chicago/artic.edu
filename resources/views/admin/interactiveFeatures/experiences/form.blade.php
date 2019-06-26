@@ -15,6 +15,12 @@
         'max' => 1,
     ])
 
+    @formField('input', [
+        'name' => 'subtitle',
+        'label' => 'Subtitle',
+        'maxlength' => 300
+    ])
+
     @formField('checkbox', [
         'name' => 'archived',
         'label' => 'Archived'

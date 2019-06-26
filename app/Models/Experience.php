@@ -22,6 +22,7 @@ class Experience extends Model implements Sortable
     protected $fillable = [
         'published',
         'title',
+        'subtitle',
         'description',
         'position',
         'interactive_feature_id',
