@@ -41,7 +41,7 @@ class Artwork extends AbstractModel
         return $this->belongsToMany('App\Models\Article', 'article_artwork')->withPivot('position')->orderBy('position');
     }
 
-    public function experiences()
+    public function sidebarExperiences()
     {
         return $this->belongsToMany('App\Models\Experience', 'artwork_experience')->withPivot('position')->orderBy('position');
     }
@@ -63,7 +63,7 @@ class Artwork extends AbstractModel
             return $this->selectedFeaturedRelated;
         }
 
-        $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent', 'sidebarDigitalLabels'])->shuffle();
+        $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent', 'sidebarExperiences'])->shuffle();
         foreach ($types as $type) {
             if ($item = $this->$type()->first()) {
                 switch ($type) {
@@ -80,9 +80,8 @@ class Artwork extends AbstractModel
                         $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
                         $type = 'exhibition';
                         break;
-                     case 'sidebarDigitalLabels':
-                        $item = $this->apiModels('sidebarDigitalLabels', 'DigitalLabel')->first();
-                        $type = 'LABEL';
+                     case 'sidebarExperiences':
+                        $type = 'experience';
                         break;
                 }
 

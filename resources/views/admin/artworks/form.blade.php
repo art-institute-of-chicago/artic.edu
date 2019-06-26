@@ -36,7 +36,7 @@
     @formField('browser', [
         'routePrefix' => 'collection',
         'max' => 1,
-        'name' => 'sidebarInteractiveFeatures',
+        'name' => 'sidebarExperiences',
         'label' => 'Related Interactive Features',
         'moduleName' => 'interactiveFeatures.experiences',
     ])
