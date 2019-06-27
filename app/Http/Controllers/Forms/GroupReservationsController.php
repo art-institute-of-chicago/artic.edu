@@ -573,9 +573,10 @@ class GroupReservationsController extends FormController
     private function getTopicsArray()
     {
         $topics = array('Highlights of the Art Institute',
+                        'Adult Interactive Workshop (additional fees apply)',
                         'American Art',
+                        'Asian Art Through a Global Lens',
                         'Chicago Stories',
-                        'Drawing Tours',
                         'The Foodie’s Tour',
                         'Impressionism: Monet, Degas, Renoir, and More',
                         'Innovators and Renegades',
