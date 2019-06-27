@@ -50,6 +50,7 @@
         @slot('buttonText', $item->present()->buyButtonText);
         @slot('buttonCaption', $item->present()->buyButtonCaption);
         @slot('isTicketed', $item->present()->isTicketed);
+        @slot('isSalesButtonHidden', $item->is_sales_button_hidden);
         @if ($item->present()->isSoldOut)
             @slot('disabled',true)
         @endif

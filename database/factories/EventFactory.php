@@ -17,6 +17,7 @@ $factory->define(App\Models\Event::class, function (Faker $faker) {
         'hero_caption' => $faker->sentence(3),
         'description' => $faker->paragraph(5),
         'is_private' => $faker->boolean,
+        'is_sales_button_hidden' => $faker->boolean,
         'is_ticketed' => $faker->boolean,
         'is_after_hours' => $faker->boolean,
         'is_free' => $faker->boolean,

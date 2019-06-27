@@ -48,6 +48,7 @@ class Event extends AbstractModel
         'end_time',
         'door_time',
         'is_private',
+        'is_sales_button_hidden',
         'is_after_hours',
         'is_ticketed',
         'is_sold_out',
@@ -84,6 +85,7 @@ class Event extends AbstractModel
         'is_presented_by_affiliate' => 'boolean',
         // TODO: Confirm that this is safe to do?
         // 'is_private' => 'boolean',
+        // 'is_sales_button_hidden' => 'boolean',
         // 'is_ticketed' => 'boolean',
         // 'is_free' => 'boolean',
         // 'is_rsvp' => 'boolean',
@@ -171,6 +173,7 @@ class Event extends AbstractModel
     public $checkboxes = [
         'published',
         'is_private',
+        'is_sales_button_hidden',
         'is_after_hours',
         'is_ticketed',
         'is_free',
@@ -662,6 +665,12 @@ class Event extends AbstractModel
                 "doc" => "Is Private",
                 "type" => "boolean",
                 "value" => function () {return $this->is_private;},
+            ],
+            [
+                "name" => "is_sales_button_hidden",
+                "doc" => "Is Sales Button Hidden",
+                "type" => "boolean",
+                "value" => function () {return $this->is_sales_button_hidden;},
             ],
             [
                 "name" => "start_time",

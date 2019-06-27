@@ -250,6 +250,11 @@
             'name' => 'is_private',
             'label' => 'Is Private',
         ])
+
+        @formField('checkbox', [
+            'name' => 'is_sales_button_hidden',
+            'label' => 'Hide Sales Button',
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="dates" title="Date rules">
