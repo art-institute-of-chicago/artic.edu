@@ -165,7 +165,7 @@
         @formField('input', [
             'name' => 'rsvp_link',
             'label' => 'Custom tickets link',
-            'note' => 'Use this to set a custom ticket link and/or override the sales.artic.edu "Buy tickets link"'
+            'note' => 'Only use this field when using an alternate sales platform, e.g., Eventbrite.'
         ])
 
         @formField('input', [
