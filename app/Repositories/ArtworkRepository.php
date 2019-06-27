@@ -39,7 +39,7 @@ class ArtworkRepository extends BaseApiRepository
 
     public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
     {
-        if ($relation === 'experiences') {
+        if ($relation === 'sidebarExperiences') {
             return $object->$relation->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName) {
                 return [
                     'id' => $relatedElement->id,
