@@ -57,11 +57,11 @@ class EventPresenter extends BasePresenter
         }
 
         if ($this->entity->is_free) {
-            if ($this->entity->is_ticketed) {
-                return 'rsvp';
-            } else {
-                return 'free';
-            }
+            return 'free';
+        }
+
+        if ($this->entity->is_rsvp) {
+            return 'rsvp';
         }
 
         if ($this->isTicketed) {

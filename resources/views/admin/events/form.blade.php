@@ -209,7 +209,7 @@
 
         <hr/>
         <p>Event Tags<br/>
-        <span class="f--note f--small">Will display a tag above the event title, and as default button text</span></p>
+        <span class="f--note f--small">Will display a tag above the event title</span></p>
 
         @formField('checkbox', [
             'name' => 'is_member_exclusive',
@@ -218,7 +218,7 @@
 
         <hr/>
         <p>Event Labels<br/>
-        <span class="f--note f--small">Will display a label beneath the event time, and as default button text</span></p>
+        <span class="f--note f--small">Will display a label beneath the event time</span></p>
 
         @formField('checkbox', [
             'name' => 'is_registration_required',
@@ -231,8 +231,13 @@
         ])
 
         @formField('checkbox', [
-            'name' => 'is_free',
+            'name' => 'is_rsvp',
             'label' => 'RSVP',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_free',
+            'label' => 'Free',
         ])
 
         <p>If you attach an event from the ticketing system, we will handle "Sold Out" for you automatically.</p>
