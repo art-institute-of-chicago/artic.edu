@@ -135,6 +135,10 @@ class EventPresenter extends BasePresenter
             return false;
         }
 
+        if ($this->entity->is_sales_button_hidden) {
+            return false;
+        }
+
         $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
 
         return ( !isset($ticketedEvent) )
