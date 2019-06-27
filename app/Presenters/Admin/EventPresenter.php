@@ -168,22 +168,6 @@ class EventPresenter extends BasePresenter
             return $this->entity->buy_button_text;
         }
 
-        if ($this->isSoldOut) {
-            return 'Sold out';
-        }
-
-        if ($this->entity->is_free) {
-            return 'RSVP';
-        }
-
-        if ($this->entity->is_member_exclusive) {
-            return 'Member Exclusive';
-        }
-
-        if ($this->entity->is_registration_required) {
-            return 'Register';
-        }
-
         return 'Buy tickets';
     }
 

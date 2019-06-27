@@ -175,10 +175,25 @@
             'note' => 'Save and refresh the page to see the link preview',
         ])
 
-        @formField('input', [
+        @formField('radios', [
             'name' => 'buy_button_text',
-            'label' => 'Button text',
-            'note' => 'Optional, will override default button text, based on labels'
+            'label' => 'Sales button text',
+            'default' => 'Buy Tickets',
+            'inline' => true,
+            'options' => [
+                [
+                    'value' => 'Buy Tickets',
+                    'label' => 'Buy Tickets'
+                ],
+                [
+                    'value' => 'Register',
+                    'label' => 'Register'
+                ],
+                [
+                    'value' => 'RSVP',
+                    'label' => 'RSVP'
+                ],
+            ]
         ])
 
         <hr/>
