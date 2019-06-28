@@ -13,14 +13,14 @@
                 {{ $buttonText ?? 'Buy tickets' }}
             @endcomponent
         </li>
+    @endif
 
-        @if (isset($buttonCaption) and $buttonCaption)
-            <li class="m-ticket-actions__inline-list">
-                <div class="m-ticket-actions__inline-list-items f-caption">
-                    {!! $buttonCaption !!}
-                </div>
-            </li>
-        @endif
+    @if (isset($buttonCaption) and $buttonCaption)
+        <li class="m-ticket-actions__inline-list">
+            <div class="m-ticket-actions__inline-list-items f-caption">
+                {!! $buttonCaption !!}
+            </div>
+        </li>
     @endif
 
 </ul>
