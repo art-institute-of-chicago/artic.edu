@@ -559,6 +559,21 @@ Route::group(['prefix' => 'v1'], function () {
 
     /**
      *
+     * - sponsors ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/sponsors",
+     *      tags={"sponsors"},
+     *      operationId="getSponsors",
+     *      summary="List all sponsors",
+     *      @SWG\Response(response="200", description="List all sponsors")
+     *  )
+     *
+     */
+    Route::get('sponsors', 'API\SponsorsController@index');
+
+    /**
+     *
      * - event-programs ------------------------------------------------------
      *
      * @SWG\Get(

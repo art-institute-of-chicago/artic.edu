@@ -710,6 +710,12 @@ class Event extends AbstractModel
             ],
             // sponsor
             [
+                "name" => "sponsor_id",
+                "doc" => "Sponsor ID",
+                "type" => "integer",
+                "value" => function () {return $this->sponsors->first()->id;},
+            ],
+            [
                 "name" => "content",
                 "doc" => "Content",
                 "type" => "string",
