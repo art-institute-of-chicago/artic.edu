@@ -1,5 +1,5 @@
 <{{ $tag ?? 'li' }} class="m-listing m-listing--label m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <a href="{!! $item->getUrl() ?? route('interactiveFeatures.show', ['id' => $item->id, 'slug' => $item->titleSlug ]) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
+    <a href="{!! $item->getUrl() ?? route('interactiveFeatures.show', ['id' => $item->id, 'slug' => $item->titleSlug ]) !!}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!} data-no-ajax>
         <span class="m-listing__img{{ (isset($imgVariation)) ? ' '.$imgVariation : '' }}{{ ($item->videoFront) ? ' m-listing__img--video' : '' }}">
             @if ($item->imageFront('hero'))
                 @component('components.atoms._img')
