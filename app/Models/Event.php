@@ -708,12 +708,11 @@ class Event extends AbstractModel
                 "type" => "string",
                 "value" => function () {return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%i') : null;},
             ],
-            // sponsor
             [
                 "name" => "sponsor_id",
                 "doc" => "Sponsor ID",
                 "type" => "integer",
-                "value" => function () {return $this->sponsors->first()->id;},
+                "value" => function () {return $this->sponsors->first()->id ?? null;},
             ],
             [
                 "name" => "content",
