@@ -48,7 +48,7 @@
     @component('components.molecules._m-ticket-actions----event')
         @slot('ticketLink', $item->buy_tickets_link);
         @slot('buttonText', $item->present()->buyButtonText);
-        @slot('buttonCaption', $item->present()->buyButtonCaption);
+        @slot('buttonCaption', $item->buy_button_caption);
         @slot('isTicketed', $item->present()->isTicketed);
         @if ($item->present()->isSoldOut)
             @slot('disabled',true)

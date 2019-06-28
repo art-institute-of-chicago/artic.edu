@@ -2,8 +2,6 @@
 
 namespace App\Presenters\Admin;
 
-use Carbon\Carbon;
-
 use App\Presenters\BasePresenter;
 
 use Illuminate\Support\Str;
@@ -173,31 +171,6 @@ class EventPresenter extends BasePresenter
         }
 
         return 'Buy tickets';
-    }
-
-    public function buyButtonCaption()
-    {
-        $caption = $this->entity->buy_button_caption ?? '';
-
-        $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
-
-        if ($ticketedEvent && $ticketedEvent->on_sale_at)
-        {
-            $onSaleAt = new Carbon($ticketedEvent->on_sale_at);
-
-            // Don't show if the event has already begun
-            if ($onSaleAt->gt(Carbon::now()))
-            {
-                // TODO: Support variations?
-                $caption = sprintf(
-                    '<p>Registration opens on %s %s CST.</p>',
-                    $onSaleAt->format('l, F j \a\t g:i'),
-                    ($onSaleAt->hour < 12 ? 'a.m.' : 'p.m.')
-                ) . ($caption ? '<p><br></p>' . $caption : '');
-            }
-        }
-
-        return $caption;
     }
 
     public function imageUrl() {
