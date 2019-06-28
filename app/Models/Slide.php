@@ -201,10 +201,6 @@ class Slide extends Model implements Sortable
 
     public function getAssetLibraryAttribute()
     {
-        $slides = collect([$this])->filter(function ($slide) {
-            $seamless_file = $this->fileObject('sequence_file');
-            return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
-        });
-        return SlideAssetResource::collection($slides)->toArray(request());
+        return $this->experience->assetLibrary;
     }
 }
