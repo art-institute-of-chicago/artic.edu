@@ -68,15 +68,25 @@ class Experience extends Model implements Sortable
         return SlideAssetResource::collection($slides)->toArray(request());
     }
 
-    public function imageFront()
-    {
-        $image = $this->defaultCmsImage();
-        if (!empty($image)) {
-            return [
-                'src' => $image
-            ];
+    public function imageFront() {
+        if ($this->hasImage('thumbnail')) {
+            $imageObject = $this->imageObject('thumbnail');
+        } else {
+            $attract_slide = $this->slides()->where('module_type', 'attract')->first();
+            $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
+            $imageObject = $attract_image ? $attract_image->imageObject('experience_image', 'default', $params) : '';
         }
-        return null;
+
+        if ($imageObject) {
+            $cropParams = [
+                'crop_x' => $imageObject->pivot->crop_x,
+                'crop_y' => $imageObject->pivot->crop_y,
+                'crop_w' => $imageObject->pivot->crop_w,
+                'crop_h' => $imageObject->pivot->crop_h
+            ];
+
+            return aic_convertFromImage($imageObject, $cropParams);
+        }
     }
 
     public function defaultCmsImage($params = [])
