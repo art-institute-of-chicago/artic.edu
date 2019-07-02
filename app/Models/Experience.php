@@ -74,7 +74,7 @@ class Experience extends Model implements Sortable
         } else {
             $attract_slide = $this->slides()->where('module_type', 'attract')->first();
             $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
-            $imageObject = $attract_image ? $attract_image->imageObject('experience_image', 'default', $params) : '';
+            $imageObject = $attract_image ? $attract_image->imageObject('experience_image', 'default') : '';
         }
 
         if ($imageObject) {
