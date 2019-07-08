@@ -16,7 +16,7 @@ use App\Repositories\Behaviors\HandleApiBlocks;
 class SelectionRepository extends ModuleRepository
 {
 
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBLocks, HandleApiBlocks, HandleApiRelations {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 

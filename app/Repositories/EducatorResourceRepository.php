@@ -9,9 +9,13 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use App\Models\EducatorResource;
 
+use App\Repositories\Behaviors\HandleApiBlocks;
+
 class EducatorResourceRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleApiBlocks {
+        HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
+    }
 
     public function __construct(EducatorResource $model)
     {
