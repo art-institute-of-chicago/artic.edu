@@ -189,6 +189,7 @@ class Slide extends JsonResource
         return [
             'button' => 'Start Over',
             '__option_credits' => true,
+            'copy' => $this->end_copy,
             'modals' => [
                 [
                     'id' => null,
@@ -197,6 +198,7 @@ class Slide extends JsonResource
                     '__option_subhead' => !empty($this->end_credit_subhead),
                     '__option_copy' => !empty($this->end_credit_subhead),
                     '__option_media' => count($this->endExperienceImages) > 0,
+                    'media' => SlideMediaResource::collection($this->endExperienceImages)->toArray(request())
                 ],
             ],
             '__option_background_image' => count($this->endBackgroundExperienceImages) > 0,
