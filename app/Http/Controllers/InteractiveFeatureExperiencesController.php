@@ -60,6 +60,10 @@ class InteractiveFeatureExperiencesController extends FrontController
     protected function show($slug)
     {
         $experience = $this->repository->forSlug($slug);
+        if (!$experience) {
+            abort(404);
+        }
+        
         if (in_array('kiosk', request()->segments())) {
             $view = 'site.experienceDetailKiosk';
         } else {
