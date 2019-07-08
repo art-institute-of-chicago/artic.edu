@@ -1,7 +1,11 @@
 @php
     $ids = $block->browserIds('artworks');
-    $artwork = \App\Models\Api\Artwork::query()->ids($ids)->get()->first();
-    if ($artwork) {
+
+    if (!empty($ids)) {
+        $artwork = \App\Models\Api\Artwork::query()->ids($ids)->get()->first();
+    }
+
+    if (isset($artwork)) {
         $image = $artwork->imageFront('hero', 'thumbnail');
 
         $galleryLocation = '';
@@ -43,7 +47,9 @@
         $artworkItem['maxZoomWindowSize'] = $artwork->max_zoom_window_size;
     }
 @endphp
-@component('components.molecules._m-media')
-    @slot('variation', 'o-blocks__block')
-    @slot('item', $artworkItem)
-@endcomponent
+@if(isset($artworkItem))
+    @component('components.molecules._m-media')
+        @slot('variation', 'o-blocks__block')
+        @slot('item', $artworkItem)
+    @endcomponent
+@endif
