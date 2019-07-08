@@ -49,17 +49,11 @@ class ExperienceModal extends Model implements Sortable
 
     protected $casts = [
         'video_play_settings' => 'array',
+        'image_sequence_playback' => 'array'
     ];
 
     public function experienceImage()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'modal_experience_image');
-    }
-
-    public function toRepeaterArray()
-    {
-        $fields = $this->attributesToArray();
-        $fields['image_sequence_playback'] = json_decode($fields['image_sequence_playback']) ?? [];
-        return $fields;
     }
 }

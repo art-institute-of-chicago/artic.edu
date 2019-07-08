@@ -14,6 +14,7 @@ use A17\Twill\Models\Model;
 use App\Http\Resources\SlideAsset as SlideAssetResource;
 use App\Http\Resources\Slide as SlideResource;
 use App\Models\SeamlessImage;
+use App\Models\ExperienceModal;
 
 class Experience extends Model implements Sortable
 {
@@ -65,7 +66,30 @@ class Experience extends Model implements Sortable
 
             return true;
         });
-        return SlideAssetResource::collection($slides)->toArray(request());
+
+        $assets = SlideAssetResource::collection($slides)->toArray(request());
+
+        // Include all experience modal's image sequence
+        $experienceModals = ExperienceModal::whereIn('modalble_id', $this->slides()->pluck('id'))->where('modal_type', 'image_sequence')->get();
+        foreach($experienceModals as $experienceModal) {
+            if ($experienceModal->fileObject('image_sequence_file')) {
+                $images = SeamlessImage::where('zip_file_id', $experienceModal->fileObject('image_sequence_file')->id)->get();
+                $asset = [
+                    'type' => 'sequence',
+                    'id' => $experienceModal->fileObject('image_sequence_file')->id,
+                    'width' => $images->first() ? $images->first()->width : 0,
+                    'height' => $images->first() ? $images->first()->height : 0,
+                    'src' => $images->map(function ($image) {
+                        return [
+                            'src' => 'https://' . config('twill.imgix_source_host') . '/seq/' . $image->file_name,
+                            'frame' => $image->frame,
+                        ];
+                    })->toArray(),
+                ];
+                array_push($assets, $asset);
+            }
+        };
+        return $assets;
     }
 
     public function imageFront() {
