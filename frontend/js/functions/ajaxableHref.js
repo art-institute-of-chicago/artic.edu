@@ -3,6 +3,7 @@ const ajaxableHref = function(href, event) {
   if (!href || href === '#') {
     return false;
   }
+
   // fail if external or not same protocol
   var el = document.createElement('a');
   el.href = href;
@@ -10,10 +11,21 @@ const ajaxableHref = function(href, event) {
     // off site link
     return false;
   }
-  if (event.target.host === window.location.host && event.target.pathname === window.location.pathname && event.target.hash) {
+
+  // sometimes the target is an element within the anchor
+  var target = event.target;
+  if (target.tagName !== 'A') {
+    target = target.closest('a');
+  }
+  if (target === null) {
+    return false;
+  }
+
+  if (target.host === window.location.host && target.pathname === window.location.pathname && target.hash) {
     // probably a same page anchor link
     return false;
   }
+
   /*
   if (el.origin === window.location.origin) {
     if (!el.search) {
@@ -22,6 +34,7 @@ const ajaxableHref = function(href, event) {
     }
   }
   */
+
   el = null;
   // passed?
   return true;
