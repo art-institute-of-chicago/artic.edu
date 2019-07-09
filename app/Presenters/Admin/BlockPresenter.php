@@ -4,7 +4,7 @@ namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
 
-use Michelf\SmartyPants;
+use App\Libraries\SmartyPants;
 
 class BlockPresenter extends BasePresenter
 {
