@@ -20,7 +20,7 @@ class SlideAsset extends JsonResource
             return [
                 'type' => 'image',
                 'title' => $this->media_title,
-                'id' => $image->id,
+                'id' => $image->imageObject('experience_image') ? $image->imageObject('experience_image')->id : '0',
                 'width' => $image->imageObject('experience_image')->width,
                 'height' => $image->imageObject('experience_image')->height,
                 'src' => [$image->image('experience_image')],
@@ -29,7 +29,7 @@ class SlideAsset extends JsonResource
             $images = SeamlessImage::where('zip_file_id', $this->fileObject('sequence_file')->id)->get();
             $src = $images->map(function ($image) {
                 return [
-                    'src' => 'https://' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '/seq/' . $image->file_name,
+                    'src' => 'https://' . config('twill.imgix_source_host') . '/seq/' . $image->file_name,
                     'frame' => $image->frame,
                 ];
             })->toArray();

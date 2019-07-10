@@ -104,13 +104,13 @@ class Slide extends JsonResource
 
     protected function getInterstitalAttributes()
     {
-        $this->media = $this->experienceImage;
+        $this->media = $this->interstitialExperienceImage;
         return [
             'title' => $this->section_title,
             'copy' => $this->body_copy,
             '__option_body_copy' => !empty($this->body_copy),
             '__option_section_title' => !empty($this->section_title),
-            '__option_background_image' => count($this->experienceImage) > 0,
+            '__option_background_image' => count($this->interstitialExperienceImage) > 0,
             '__option_headline' => !empty($this->interstitial_headline),
         ];
     }
@@ -127,7 +127,7 @@ class Slide extends JsonResource
 
     protected function getFullWidthMediaAttributes()
     {
-        $this->media = $this->experienceImage;
+        $this->media = $this->fullwidthmediaExperienceImage;
         $this->modal = $this->experienceModal;
 
         if ($this->asset_type === 'standard' && $this->fullwidthmedia_standard_media_type === 'type_video') {
@@ -159,7 +159,6 @@ class Slide extends JsonResource
 
     protected function getCompareAttributes()
     {
-        $this->media = $this->experienceImage;
         $compareImage1 = $this->compareExperienceImage1->first();
         $compareImage2 = $this->compareExperienceImage2->first();
         $compareModal1 = $this->compareExperienceModal->first();
@@ -190,6 +189,7 @@ class Slide extends JsonResource
         return [
             'button' => 'Start Over',
             '__option_credits' => true,
+            'copy' => $this->end_copy,
             'modals' => [
                 [
                     'id' => null,
@@ -198,6 +198,7 @@ class Slide extends JsonResource
                     '__option_subhead' => !empty($this->end_credit_subhead),
                     '__option_copy' => !empty($this->end_credit_subhead),
                     '__option_media' => count($this->endExperienceImages) > 0,
+                    'media' => SlideMediaResource::collection($this->endExperienceImages)->toArray(request())
                 ],
             ],
             '__option_background_image' => count($this->endBackgroundExperienceImages) > 0,
@@ -220,19 +221,10 @@ class Slide extends JsonResource
             $mediaType = $this->media_type === 'type_image' ? 'image' : 'sequence';
         }
 
-        $seamlessAsset = [
-            'assetID' => $this->seamless_asset ? (string) $this->seamless_asset['assetId'] : '0',
-            'x' => $this->seamless_asset ? $this->seamless_asset['x'] : 0,
-            'y' => $this->seamless_asset ? $this->seamless_asset['y'] : 0,
-            'scale' => $this->seamless_asset ? $this->seamless_asset['scale'] / 100 : 1,
-            'frame' => $this->seamless_asset ? $this->seamless_asset['frame'] - 1 : 0,
-            'altText' => $this->seamless_alt_text
-        ];
-
         if ($this->asset_type === 'seamless') {
             if ($this->media_type === 'type_image' && $this->seamlessExperienceImage->count() > 0) {
                 $seamlessAsset = [
-                    'assetID' => $this->seamlessExperienceImage->first()->id,
+                    'assetID' => $this->seamlessExperienceImage->first()->imageObject('experience_image') ? $this->seamlessExperienceImage->first()->imageObject('experience_image')->id : '0',
                     'x' => $this->seamless_image_asset ? $this->seamless_image_asset['x'] : 0,
                     'y' => $this->seamless_image_asset ? $this->seamless_image_asset['y'] : 0,
                     'scale' => $this->seamless_image_asset ? $this->seamless_image_asset['scale'] / 100 : 1,
@@ -270,12 +262,12 @@ class Slide extends JsonResource
             'assetType' => $this->asset_type,
             '__mediaType' => $mediaType,
             'moduleTitle' => $this->title,
-            'exhibitonId' => $this->experience->digitalLabel->id,
+            'exhibitonId' => $this->experience->interactiveFeature->id,
             'isActive' => $this->published,
             'experienceId' => $this->experience->id,
             'experienceType' => 'LABEL',
-            'colorCode' => $this->experience->digitalLabel->color,
-            'bgColorCode' => $this->experience->digitalLabel->grouping_background_color,
+            'colorCode' => $this->experience->interactiveFeature->color,
+            'bgColorCode' => $this->experience->interactiveFeature->grouping_background_color,
             'vScalePercent' => 0,
         ];
 
@@ -293,6 +285,10 @@ class Slide extends JsonResource
 
     protected function getMedia()
     {
+        if (!$this->media) {
+            return [];
+        }
+        
         switch ($this->module_type) {
             case 'tooltip':
                 return $this->media->first() ? (new SlideMediaResource($this->media->first()))->toArray(request()) : [];

@@ -130,7 +130,6 @@ trait HandleApiRelations
             ->where('browser_name', $browser_name)
             ->groupBy('related_type')
             ->map(function ($items, $type) use($apiModelsDefinitions, $browser_name, $typeUsesApi) {
-
                 if ($typeUsesApi[$type]) {
                     $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions);
                     $localApiMapping = $this->getLocalApiMapping($items, $apiElements);

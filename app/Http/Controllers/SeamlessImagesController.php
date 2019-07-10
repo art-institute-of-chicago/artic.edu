@@ -20,7 +20,7 @@ class SeamlessImagesController extends Controller
         $images = SeamlessImage::where('zip_file_id', $file_id)->get()->map(function ($image) {
             return [
                 'id' => $image->id,
-                'url' => 'https://' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '/seq/' . $image->file_name,
+                'url' => 'https://' . config('twill.imgix_source_host') . '/seq/' . $image->file_name,
                 'frame' => $image->frame,
                 'width' => $image->width,
                 'height' => $image->height,

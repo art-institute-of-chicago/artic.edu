@@ -56,18 +56,7 @@ class Slide extends Model implements Sortable
         'end_credit_subhead',
         'end_credit_copy',
         'seamless_alt_text',
-        // 'public',
-        // 'featured',
-        // 'publish_start_date',
-        // 'publish_end_date',
     ];
-
-    // uncomment and modify this as needed if you use the HasTranslation trait
-    // public $translatedAttributes = [
-    //     'title',
-    //     'description',
-    //     'active',
-    // ];
 
     protected $casts = [
         'split_attributes' => 'array',
@@ -83,12 +72,10 @@ class Slide extends Model implements Sortable
         return $this->module_type != 'attract' && $this->module_type != 'end';
     }
 
-    // uncomment and modify this as needed if you use the HasSlug trait
     public $slugAttributes = [
         'title',
     ];
 
-    // add checkbox fields names here (published toggle is itself a checkbox)
     public $checkboxes = [
         'published',
     ];
@@ -135,6 +122,16 @@ class Slide extends Model implements Sortable
     public function seamlessExperienceImage()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'seamless_experience_image');
+    }
+
+    public function interstitialExperienceImage()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'interstitial_experience_image');
+    }
+
+    public function fullwidthmediaExperienceImage()
+    {
+        return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'fullwidthmedia_experience_image');
     }
 
     public function tooltipExperienceImage()
@@ -204,32 +201,6 @@ class Slide extends Model implements Sortable
 
     public function getAssetLibraryAttribute()
     {
-        $slides = collect([$this])->filter(function ($slide) {
-            $seamless_file = $this->fileObject('sequence_file');
-            return $seamless_file && SeamlessImage::where('zip_file_id', $seamless_file->id)->get()->count() > 0;
-        });
-        return SlideAssetResource::collection($slides)->toArray(request());
+        return $this->experience->assetLibrary;
     }
-
-    // uncomment and modify this as needed if you use the HasMedias trait
-    // public $mediasParams = [
-    //     'cover' => [
-    //         'default' => [
-    //             [
-    //                 'name' => 'landscape',
-    //                 'ratio' => 16 / 9,
-    //             ],
-    //             [
-    //                 'name' => 'portrait',
-    //                 'ratio' => 3 / 4,
-    //             ],
-    //         ],
-    //         'mobile' => [
-    //             [
-    //                 'name' => 'mobile',
-    //                 'ratio' => 1,
-    //             ],
-    //         ],
-    //     ],
-    // ];
 }

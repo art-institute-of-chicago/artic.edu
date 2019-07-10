@@ -4,11 +4,8 @@ return [
     'users_table' => 'users',
     'password_resets_table' => 'password_resets',
     'bind_exception_handler' => false,
-
     'auth_login_redirect_path' => '/homepage/landing',
-
     'templates_on_frontend_domain' => true,
-
     'frontend' => [
         'dev_assets_path' => '/dist',
     ],
@@ -269,6 +266,18 @@ return [
                 'component' => 'a17-block-experience_image',
                 'max' => 1,
             ],
+            'interstitial_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'fullwidthmedia_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
             'tooltip_experience_image' => [
                 'title' => 'Image',
                 'trigger' => 'Add Image',
@@ -429,7 +438,6 @@ return [
             'events' => 'exhibitions_events',
             'selections' => 'collection',
             'artworks' => 'collection',
-            'digitalLabels' => 'collection',
         ],
     ],
 
@@ -545,4 +553,5 @@ return [
         'width' => 7500,
         'height' => 5000,
     ],
+    'imgix_source_host' => env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net')
 ];

@@ -31,13 +31,4 @@ class SlideMedia extends JsonResource
             'altText' => $this->imageAltText('experience_image'),
         ];
     }
-
-    // protected function getImageSrc($url)
-    // {
-    //     $matched = preg_match('/(?<=https:\/\/' . env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net') . '\/).+(?=\?)/', $url, $matches);
-    //     if ($matched) {
-    //         return $matches[0];
-    //     }
-    //     return '';
-    // }
 }

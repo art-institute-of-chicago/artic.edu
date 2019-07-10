@@ -14,6 +14,7 @@ use A17\Twill\Models\Model;
 use App\Http\Resources\SlideAsset as SlideAssetResource;
 use App\Http\Resources\Slide as SlideResource;
 use App\Models\SeamlessImage;
+use App\Models\ExperienceModal;
 
 class Experience extends Model implements Sortable
 {
@@ -22,55 +23,21 @@ class Experience extends Model implements Sortable
     protected $fillable = [
         'published',
         'title',
+        'subtitle',
         'description',
         'position',
-        'digital_label_id',
+        'interactive_feature_id',
         'archived',
         'kiosk_only',
-        // 'public',
-        // 'featured',
-        // 'publish_start_date',
-        // 'publish_end_date',
     ];
 
-    // uncomment and modify this as needed if you use the HasTranslation trait
-    // public $translatedAttributes = [
-    //     'title',
-    //     'description',
-    //     'active',
-    // ];
-
-    // uncomment and modify this as needed if you use the HasSlug trait
     public $slugAttributes = [
         'title',
     ];
 
-    // add checkbox fields names here (published toggle is itself a checkbox)
     public $checkboxes = [
         'published',
     ];
-
-    // uncomment and modify this as needed if you use the HasMedias trait
-    // public $mediasParams = [
-    //     'cover' => [
-    //         'default' => [
-    //             [
-    //                 'name' => 'landscape',
-    //                 'ratio' => 16 / 9,
-    //             ],
-    //             [
-    //                 'name' => 'portrait',
-    //                 'ratio' => 3 / 4,
-    //             ],
-    //         ],
-    //         'mobile' => [
-    //             [
-    //                 'name' => 'mobile',
-    //                 'ratio' => 1,
-    //             ],
-    //         ],
-    //     ],
-    // ];
 
     public function getContentBundleAttribute()
     {
@@ -99,18 +66,61 @@ class Experience extends Model implements Sortable
 
             return true;
         });
-        return SlideAssetResource::collection($slides)->toArray(request());
+
+        $assets = SlideAssetResource::collection($slides)->toArray(request());
+
+        // Include all experience modal's image sequence
+        $experienceModals = ExperienceModal::whereIn('modalble_id', $this->slides()->pluck('id'))->where('modal_type', 'image_sequence')->get();
+        foreach($experienceModals as $experienceModal) {
+            if ($experienceModal->fileObject('image_sequence_file')) {
+                $images = SeamlessImage::where('zip_file_id', $experienceModal->fileObject('image_sequence_file')->id)->get();
+                $asset = [
+                    'type' => 'sequence',
+                    'id' => $experienceModal->fileObject('image_sequence_file')->id,
+                    'width' => $images->first() ? $images->first()->width : 0,
+                    'height' => $images->first() ? $images->first()->height : 0,
+                    'src' => $images->map(function ($image) {
+                        return [
+                            'src' => 'https://' . config('twill.imgix_source_host') . '/seq/' . $image->file_name,
+                            'frame' => $image->frame,
+                        ];
+                    })->toArray(),
+                ];
+                array_push($assets, $asset);
+            }
+        };
+        return $assets;
     }
 
-    public function imageFront()
-    {
-        $attract_slide = $this->slides()->where('module_type', 'attract')->first();
-        $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
-        $image = $attract_image ? $attract_image->cmsImage('experience_image', 'default') : '';
-        if (!empty($image)) {
-            return [
-                'src' => $image
+    public function imageFront() {
+        if ($this->hasImage('thumbnail')) {
+            $imageObject = $this->imageObject('thumbnail');
+        } else {
+            $attract_slide = $this->slides()->where('module_type', 'attract')->first();
+            $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
+            $imageObject = $attract_image ? $attract_image->imageObject('experience_image', 'default') : '';
+        }
+
+        if ($imageObject) {
+            $cropParams = [
+                'crop_x' => $imageObject->pivot->crop_x,
+                'crop_y' => $imageObject->pivot->crop_y,
+                'crop_w' => $imageObject->pivot->crop_w,
+                'crop_h' => $imageObject->pivot->crop_h
             ];
+
+            return aic_convertFromImage($imageObject, $cropParams);
+        }
+    }
+
+    public function defaultCmsImage($params = [])
+    {
+        if ($this->hasImage('thumbnail')) {
+            return $this->image('thumbnail');
+        } else {
+            $attract_slide = $this->slides()->where('module_type', 'attract')->first();
+            $attract_image = $attract_slide ? $attract_slide->attractExperienceImages()->first() : null;
+            return $attract_image ? $attract_image->cmsImage('experience_image', 'default', $params) : '';
         }
     }
 
@@ -119,9 +129,14 @@ class Experience extends Model implements Sortable
         return $this->hasMany('App\Models\Slide', 'experience_id');
     }
 
-    public function digitalLabel()
+    public function interactiveFeature()
     {
-        return $this->belongsTo('App\Models\DigitalLabel');
+        return $this->belongsTo('App\Models\InteractiveFeature');
+    }
+
+    public function getTypeAttribute()
+    {
+        return 'experience';
     }
 
     public function scopeArchived($query)
@@ -136,6 +151,17 @@ class Experience extends Model implements Sortable
 
     public function getUrl()
     {
-        return route('digitalLabels.show', $this->slug);
+        return route('interactiveFeatures.show', $this->slug);
     }
+
+    public $mediasParams = [
+        'thumbnail' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 1 / 1,
+                ],
+            ],
+        ]
+    ];
 }

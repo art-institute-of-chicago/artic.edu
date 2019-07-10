@@ -11,17 +11,17 @@
             ],
             [
                 'label' => 'Interactive feature',
-                'value' => '/collection/digitalLabels/browser'
+                'value' => moduleRoute('interactiveFeatures.experiences', 'collection', 'browser')
             ]
         ],
         'label' => 'Featured items',
     ])
 
     @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
+        'routePrefix' => 'collection',
         'max' => 4,
-        'moduleName' => 'digitalLabels',
-        'name' => 'digitalLabels',
+        'moduleName' => 'interactiveFeatures.experiences',
+        'name' => 'experiences',
         'label' => 'Interactive Features'
     ])
 

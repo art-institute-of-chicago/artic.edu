@@ -177,7 +177,7 @@ return [
                 'title' => 'Departments',
                 'module' => true,
             ],
-            'digitalLabels' => [
+            'interactiveFeatures' => [
                 'title' => 'Interactive Features',
                 'module' => true,
             ],

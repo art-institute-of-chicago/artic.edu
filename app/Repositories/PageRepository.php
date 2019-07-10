@@ -45,7 +45,7 @@ class PageRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms', 'digitalLabels']);
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
@@ -70,10 +70,9 @@ class PageRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'articlesCategories');
 
         // Art & Ideas
-        // $this->updateBrowser($object, $fields, 'artArticles');
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
-            'digitalLabels' => true
+            'interactiveFeatures.experiences' => false
         ]);
 
         // Research
@@ -82,6 +81,7 @@ class PageRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'researchResourcesStudyRoomMore');
 
         $this->updateBrowser($object, $fields, 'articles');
+        $this->updateBrowser($object, $fields, 'experiences');
         $this->updateBrowser($object, $fields, 'printedPublications');
         $this->updateBrowser($object, $fields, 'digitalPublications');
 
@@ -107,8 +107,6 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['exhibitionsCurrent'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsCurrent', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
         $fields['browsers']['exhibitionsUpcoming'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcoming', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
 
-        $fields['browsers']['digitalLabels'] = $this->getFormFieldsForBrowserApi($object, 'digitalLabels', 'App\Models\Api\DigitalLabel', 'collection.articles_publications');
-
         // Visits
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'admissions', 'Admission');
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'locations', 'Location');
@@ -125,17 +123,10 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articles_publications', 'name', 'categories');
 
         // Art & Ideas
-        // $fields['browsers']['artArticles'] = $this->getFormFieldsForBrowser($object, 'artArticles', 'collection.articles_publications', 'title', 'articles');
         $fields['browsers']['artCategoryTerms'] = $this->getFormFieldsForBrowserApi($object, 'artCategoryTerms', 'App\Models\Api\CategoryTerm', 'collection', 'title', 'categoryTerms');
-        $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [
-            'digitalLabels' => [
-                'apiModel' => 'App\Models\Api\DigitalLabel',
-                'routePrefix' => 'collection',
-                'moduleName' => 'digitalLabels',
-            ],   
-        ], [ 
+        $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [ 
             'articles' => false,
-            'digitalLabels' => true
+            'interactiveFeatures.experiences' => false
         ]);
 
         // Research
@@ -144,6 +135,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['researchResourcesStudyRoomMore'] = $this->getFormFieldsForBrowser($object, 'researchResourcesStudyRoomMore', 'generic', 'title', 'genericPages');
 
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications', 'title', 'articles');
+        $fields['browsers']['experiences'] = $this->getFormFieldsForBrowser($object, 'experiences', 'collection', 'title', 'interactiveFeatures.experiences');
         $fields['browsers']['printedPublications'] = $this->getFormFieldsForBrowser($object, 'printedPublications', 'collection.articles_publications', 'title', 'printedPublications');
         $fields['browsers']['digitalPublications'] = $this->getFormFieldsForBrowser($object, 'digitalPublications', 'collection.articles_publications', 'title', 'digitalPublications');
 
@@ -154,5 +146,24 @@ class PageRepository extends ModuleRepository
     {
         $type = array_search($name, $this->model::$types);
         return $this->model->whereType($type)->with($with)->first();
+    }
+
+    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
+    {
+        if ($relation === 'experiences') {
+            return $object->$relation->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName) {
+                return [
+                    'id' => $relatedElement->id,
+                    'name' => $relatedElement->titleInBrowser ?? $relatedElement->$titleKey,
+                    'edit' => '',
+                    'endpointType' => $relatedElement->getMorphClass(),
+                ] + (classHasTrait($relatedElement, HasMedias::class) ? [
+                    'thumbnail' => $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]),
+                ] : []);
+            })->toArray();
+        } else {
+            return parent::getFormFieldsForBrowser($object, $relation, $routePrefix, $titleKey, $moduleName);
+        }
+
     }
 }

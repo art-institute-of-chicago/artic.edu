@@ -43,53 +43,17 @@ class ExperienceModal extends Model implements Sortable
         'copyright_notice',
     ];
 
-    // uncomment and modify this as needed if you use the HasTranslation trait
-    // public $translatedAttributes = [
-    //     'title',
-    //     'description',
-    //     'active',
-    // ];
-
-    // add checkbox fields names here (published toggle is itself a checkbox)
     public $checkboxes = [
         'published',
     ];
 
     protected $casts = [
         'video_play_settings' => 'array',
+        'image_sequence_playback' => 'array'
     ];
-
-    // uncomment and modify this as needed if you use the HasMedias trait
-    // public $mediasParams = [
-    //     'cover' => [
-    //         'default' => [
-    //             [
-    //                 'name' => 'landscape',
-    //                 'ratio' => 16 / 9,
-    //             ],
-    //             [
-    //                 'name' => 'portrait',
-    //                 'ratio' => 3 / 4,
-    //             ],
-    //         ],
-    //         'mobile' => [
-    //             [
-    //                 'name' => 'mobile',
-    //                 'ratio' => 1,
-    //             ],
-    //         ],
-    //     ],
-// ];
 
     public function experienceImage()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'modal_experience_image');
-    }
-
-    public function toRepeaterArray()
-    {
-        $fields = $this->attributesToArray();
-        $fields['image_sequence_playback'] = json_decode($fields['image_sequence_playback']) ?? [];
-        return $fields;
     }
 }

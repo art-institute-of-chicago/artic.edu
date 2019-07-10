@@ -24,7 +24,7 @@
             ],
             [
                 'label' => 'Interactive feature',
-                'value' => '/collection/digitalLabels/browser'
+                'value' => moduleRoute('interactiveFeatures.experiences', 'collection', 'browser')
             ]
         ],
         'label' => 'Featured items',

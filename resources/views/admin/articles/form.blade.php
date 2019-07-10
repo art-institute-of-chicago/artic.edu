@@ -118,7 +118,7 @@
                 ],
                 [
                     'label' => 'Interactive feature',
-                    'value' => '/collection/digitalLabels/browser'
+                    'value' => moduleRoute('interactiveFeatures.experiences', 'collection', 'browser')
                 ]
             ],
             'max' => 4,

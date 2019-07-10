@@ -79,7 +79,7 @@ class ReportAltText extends Command
         // Prep for str_putcsv()
         foreach ($medias as $id => $props) {
             $out[] = [
-                'image_url' => 'https://' .env('IMGIX_SOURCE_HOST') .'/' .$props['uuid'],
+                'image_url' => 'https://' . config('twill.imgix_source_host') .'/' .$props['uuid'],
                 'alt_text' => $props['alt_text'],
                 'on_page' => $props['url'],
                 'id' => $id,

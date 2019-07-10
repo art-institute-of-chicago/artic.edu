@@ -31,7 +31,7 @@
     @endcomponent
 @endif
 
-@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($digitalLabels))
+@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($interactiveFeatures))
     @component('components.molecules._m-no-results')
     @endcomponent
 @endif
@@ -706,11 +706,11 @@
     @endif
 @endif
 
-@if (isset($digitalLabels) && $digitalLabels->getMetadata('pagination')->total > 0)
+@if (isset($interactiveFeatures) && $interactiveFeatures->total() > 0)
 
     @component('components.molecules._m-title-bar')
         @unless($allResultsView)
-            @slot('links', array(array('label' => 'See all '. $digitalLabels->getMetadata('pagination')->total. ' '. str_plural('interactive feature', $digitalLabels->getMetadata('pagination')->total), 'href' => route('search.interactive-features', ['q' => request('q')]))))
+            @slot('links', array(array('label' => 'See all '. $interactiveFeatures->total(). ' '. str_plural('interactive feature', $interactiveFeatures->total()), 'href' => route('search.interactive-features', ['q' => request('q')]))))
         @endunless
         Interactive Features
     @endcomponent
@@ -723,10 +723,10 @@
           @slot('cols_medium','3')
           @slot('cols_large','4')
           @slot('cols_xlarge','4')
-          @foreach ($digitalLabels as $item)
-            @component('components.molecules._m-listing----label')
+          @foreach ($interactiveFeatures as $item)
+            @component('components.molecules._m-listing----experience')
                 @slot('item', $item)
-                @slot('image', $item->imageFront('hero'))
+                @slot('image', $item->imageFront())
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
@@ -751,8 +751,8 @@
             @slot('cols_large','4')
             @slot('cols_xlarge','4')
 
-            @foreach ($digitalLabels as $item)
-                @component('components.molecules._m-listing----label')
+            @foreach ($interactiveFeatures as $item)
+                @component('components.molecules._m-listing----experience')
                     @slot('item', $item)
                     @slot('image', $item->imageFront('hero'))
                     @slot('imageSettings', array(

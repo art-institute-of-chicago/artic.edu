@@ -1,0 +1,27 @@
+/***
+
+Icons
+=====
+
+Icons are combined into one SVG as symbols by the Gulp task. This also generates a SCSS file detailing the dimensions of each icon with a corresponding CSS class name. The compiled symbols SVG is ajax'd into the document in the head.js.
+
+Read more about our suggested accessibility approaches [here](https://code.area17.com/a17/fe-boilerplate/wikis/svg-sprite).
+
+```
+{{#shapes}}
+<svg class="{{#selector.dimensions}}{{#last}}{{#classname}}{{raw}}{{/classname}}{{/last}}{{/selector.dimensions}}">
+  <use xlink:href="#{{name}}"></use>
+</svg>
+{{/shapes}}
+```
+
+***/
+
+{{#shapes}}
+{{#selector.dimensions}}{{expression}}{{^last}},
+{{/last}}{{/selector.dimensions}} {
+  width: {{width.outer}}px;
+  height: {{height.outer}}px;
+}
+
+{{/shapes}}

@@ -34,11 +34,11 @@
     ])
     
     @formField('browser', [
-        'routePrefix' => 'exhibitions_events',
+        'routePrefix' => 'collection',
         'max' => 1,
-        'name' => 'sidebarDigitalLabels',
+        'name' => 'sidebarExperiences',
         'label' => 'Related Interactive Features',
-        'moduleName' => 'digitalLabels',
+        'moduleName' => 'interactiveFeatures.experiences',
     ])
 @stop
 

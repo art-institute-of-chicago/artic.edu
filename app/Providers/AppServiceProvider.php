@@ -61,7 +61,7 @@ class AppServiceProvider extends ServiceProvider
             // Hacky way of preserving mediable and blockable after rename
             'App\Models\DigitalCatalog' => 'App\Models\DigitalPublication',
             'App\Models\PrintedCatalog' => 'App\Models\PrintedPublication',
-            'digitalLabels' => 'App\Models\DigitalLabel'
+            'interactiveFeatures.experiences' => 'App\Models\Experience'
         ]);
     }
 

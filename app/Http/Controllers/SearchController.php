@@ -6,19 +6,18 @@ use App\Models\Api\Artwork;
 use App\Models\Api\Artist;
 use App\Models\Api\Search as GeneralSearch;
 use App\Models\Api\Exhibition;
-use App\Models\Api\DigitalLabel;
 
 use App\Repositories\Api\ArtworkRepository;
 use App\Repositories\Api\ArtistRepository;
 use App\Repositories\Api\SearchRepository;
 use App\Repositories\Api\ExhibitionRepository;
-use App\Repositories\Api\DigitalLabelRepository;
 use App\Repositories\ArticleRepository;
 use App\Repositories\PublicationsRepository;
 use App\Repositories\EventRepository;
 use App\Repositories\GenericPageRepository;
 use App\Repositories\PressReleaseRepository;
 use App\Repositories\ResearchGuideRepository;
+use App\Repositories\InteractiveFeatureRepository;
 
 use App\Http\Controllers\StaticsController;
 
@@ -33,16 +32,16 @@ class SearchController extends BaseScopedController
     const ALL_PER_PAGE = 5;
     const ALL_PER_PAGE_ARTWORKS = 8;
     const ALL_PER_PAGE_EXHIBITIONS = 4;
-    const ALL_PER_PAGE_DIGITAL_LABELS = 4;
     const ALL_PER_PAGE_EVENTS = 4;
     const ALL_PER_PAGE_PAGES = 3;
     const ALL_PER_PAGE_ARTICLES = 4;
     const ALL_PER_PAGE_PUBLICATIONS = 4;
+    const ALL_PER_PAGE_INTERACTIVEFEATURES = 4;
 
     const ARTWORKS_PER_PAGE = 20;
     const PAGES_PER_PAGE = 20;
     const EXHIBITIONS_PER_PAGE = 20;
-    const DIGITAL_LABELS_PER_PAGE = 20;
+    const INTERACTIVEFEATURES_PER_PAGE = 20;
     const ARTICLES_PER_PAGE = 20;
     const EVENTS_PER_PAGE = 20;
     const PUBLICATIONS_PER_PAGE = 20;
@@ -53,33 +52,33 @@ class SearchController extends BaseScopedController
     protected $artistsRepository;
     protected $searchRepository;
     protected $exhibitionsRepository;
-    protected $digitalLabelsRepository;
     protected $articlesRepository;
+    protected $interactiveFeatureRepository;
 
     public function __construct(
         ArtworkRepository $artworks,
         ArtistRepository $artists,
         SearchRepository $search,
         ExhibitionRepository $exhibitions,
-        DigitalLabelRepository $digitalLabels,
         ArticleRepository $articles,
         PublicationsRepository $publications,
         EventRepository $events,
         GenericPageRepository $pages,
         ResearchGuideRepository $researchGuide,
-        PressReleaseRepository $press
+        PressReleaseRepository $press,
+        InteractiveFeatureRepository $interactiveFeature
     ) {
         $this->artworksRepository = $artworks;
         $this->artistsRepository = $artists;
         $this->searchRepository = $search;
         $this->exhibitionsRepository = $exhibitions;
-        $this->digitalLabelsRepository = $digitalLabels;
         $this->articlesRepository = $articles;
         $this->eventsRepository = $events;
         $this->publicationsRepository = $publications;
         $this->pagesRepository = $pages;
         $this->researchGuideRepository = $researchGuide;
         $this->pressRepository = $press;
+        $this->interactiveFeatureRespository = $interactiveFeature;
 
         parent::__construct();
     }
@@ -95,16 +94,16 @@ class SearchController extends BaseScopedController
 
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
-        $publications = $this->publicationsRepository->searchApi(request('q'), self::ALL_PER_PAGE_PUBLICATIONS);
-        $articles     = $this->articlesRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
-        $artworks     = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
-        $artists      = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
-        $exhibitions  = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
-        $digitalLabels  = $this->digitalLabelsRepository->searchApi(request('q'), self::ALL_PER_PAGE_DIGITAL_LABELS);
-        $events       = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $pages        = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
-        $guides       = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
-        $press        = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $publications               = $this->publicationsRepository->searchApi(request('q'), self::ALL_PER_PAGE_PUBLICATIONS);
+        $articles                   = $this->articlesRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
+        $artworks                   = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
+        $artists                    = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
+        $exhibitions                = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
+        $events                     = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $pages                      = $this->pagesRepository->searchApi(request('q'), self::ALL_PER_PAGE_PAGES);
+        $guides                     = $this->researchGuideRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $press                      = $this->pressRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
+        $interactiveFeatures        = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::ALL_PER_PAGE_INTERACTIVEFEATURES);
 
         return view('site.search.index', [
             'featuredResults' => $general->where('is_boosted', true),
@@ -114,7 +113,7 @@ class SearchController extends BaseScopedController
             'events'   => $events,
             'pages'    => $pages,
             'exhibitions'  => $exhibitions,
-            // 'digitalLabels'  => $digitalLabels,
+            'interactiveFeatures'  => $interactiveFeatures,
             'publications' => $publications,
             'pressReleases'  => $press,
             'researchGuides' => $guides,
@@ -140,7 +139,7 @@ class SearchController extends BaseScopedController
                     $item->section = 'Exhibitions and Events';
                     break;
                 case 'DigitalLabel':
-                    $item->url = route('digitalLabels.show', $item);
+                    $item->url = route('interactiveFeatures.show', $item);
                     $item->section = 'Interactive Features';
                     break;
                 case 'Artist':
@@ -233,17 +232,17 @@ class SearchController extends BaseScopedController
         ]);
     }
 
-    public function digitalLabels()
+    public function interactiveFeatures()
     {
         $this->seo->setTitle('Search');
 
-        $general     = $this->searchRepository->forSearchQuery(request('q'), 0);
-        $digitalLabels = $this->digitalLabelsRepository->searchApi(request('q'), self::DIGITAL_LABELS_PER_PAGE);
+        $general = $this->searchRepository->forSearchQuery(request('q'), 0);
+        $interactiveFeatures = $this->interactiveFeatureRespository->search(request('q'))->paginate(self::INTERACTIVEFEATURES_PER_PAGE);
 
         $links = $this->buildSearchLinks($general, 'interactive-features');
 
         return view('site.search.index', [
-            'digitalLabels' => $digitalLabels,
+            'interactiveFeatures' => $interactiveFeatures,
             'allResultsView' => true,
             'searchResultsTypeLinks' => $links,
         ]);
@@ -367,7 +366,7 @@ class SearchController extends BaseScopedController
         $aggregations = $all->getMetadata('aggregations')->types->buckets;
 
         array_push($links, $this->buildLabel('All', $all->getMetadata('pagination')->total, route('search', ['q' => request('q')]), $active == 'all'));
-
+        
         if (extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
@@ -379,9 +378,6 @@ class SearchController extends BaseScopedController
         }
         if (extractAggregation($aggregations, 'exhibitions')) {
             array_push($links, $this->buildLabel('Exhibitions', extractAggregation($aggregations, 'exhibitions'), route('search.exhibitions', ['q' => request('q')]), $active == 'exhibitions'));
-        }
-        if (extractAggregation($aggregations, 'digital-labels')) {
-            array_push($links, $this->buildLabel('Interactive Features', extractAggregation($aggregations, 'digital-labels'), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
         }
         if (extractAggregation($aggregations, 'events')) {
             array_push($links, $this->buildLabel('Events', extractAggregation($aggregations, 'events'), route('search.events', ['q' => request('q')]), $active == 'events'));
@@ -398,6 +394,8 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'press-releases')) {
             array_push($links, $this->buildLabel('Press Releases', extractAggregation($aggregations, 'press-releases'), route('search.press-releases', ['q' => request('q')]), $active == 'press-releases'));
         }
+        
+        array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
 
         return $links;
     }

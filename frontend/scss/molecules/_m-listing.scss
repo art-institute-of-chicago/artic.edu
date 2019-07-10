@@ -1916,6 +1916,7 @@ $f-audio-subtitle: generate-font-obj(
   );
 }
 
+.m-listing--interactive .m-listing__img .m-listing__img__overlay,
 .m-listing--selection .m-listing__img .m-listing__img__overlay {
   @include m-listing__img__overlay;
 }

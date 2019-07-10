@@ -63,7 +63,7 @@ Route::name('search.artworks')->get('/search/artworks', 'SearchController@artwor
 Route::name('search.press-releases')->get('/search/press-releases', 'SearchController@pressReleases');
 Route::name('search.research-guides')->get('/search/research-guides', 'SearchController@researchGuides');
 Route::name('search.exhibitions')->get('/search/exhibitions', 'SearchController@exhibitions');
-Route::name('search.interactive-features')->get('/search/interactive-features', 'SearchController@digitalLabels');
+Route::name('search.interactive-features')->get('/search/interactive-features', 'SearchController@interactiveFeatures');
 
 // Events routes
 Route::name('events')->get('/events', 'EventsController@index');
@@ -161,10 +161,10 @@ Route::get('enews', function () {
     return redirect()->route('forms.email-subscriptions', request()->all());
 });
 // Digital labels
-Route::name('digitalLabels')->get('/interactive-features', 'DigitalLabelExperiencesController@index');
-Route::name('digitalLabels.showKiosk')->get('/interactive-features/kiosk/{slug}', 'DigitalLabelExperiencesController@show');
-Route::name('digitalLabels.test')->get('/interactive-features/test', 'DigitalLabelExperiencesController@test');
-Route::name('digitalLabels.show')->get('/interactive-features/{slug}', 'DigitalLabelExperiencesController@show');
+Route::name('interactiveFeatures')->get('/interactive-features', 'InteractiveFeatureExperiencesController@index');
+Route::name('interactiveFeatures.showKiosk')->get('/interactive-features/kiosk/{slug}', 'InteractiveFeatureExperiencesController@show');
+Route::name('interactiveFeatures.test')->get('/interactive-features/test', 'InteractiveFeatureExperiencesController@test');
+Route::name('interactiveFeatures.show')->get('/interactive-features/{slug}', 'InteractiveFeatureExperiencesController@show');
 
 // Feed routes
 Route::feeds();

@@ -37,11 +37,7 @@ class ExperienceModalRepository extends ModuleRepository
             $fields['repeaters'] = $fields['blocks'];
             unset($fields['blocks']);
         };
-
-        if (isset($fields['image_sequence_playback'])) {
-            $fields['image_sequence_playback'] = json_encode($fields['image_sequence_playback']);
-        }
-
+        
         return parent::prepareFieldsBeforeCreate($fields);
     }
 }

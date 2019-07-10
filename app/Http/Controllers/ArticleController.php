@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ArticleRepository;
 use App\Models\Page;
 use App\Models\Article;
-use App\Models\DigitalLabel;
+use App\Models\Experience;
 
 class ArticleController extends FrontController
 {
@@ -25,14 +25,9 @@ class ArticleController extends FrontController
 
         $page = Page::forType('Articles')->with('articlesArticles')->first();
         $featuredItems = $page->getRelatedWithApiModels(
-            "featured_items", [
-                'digitalLabels' => [
-                    'apiModel' => 'App\Models\Api\DigitalLabel',
-                    'moduleName' => 'digitalLabels',
-                ],   
-            ], [ 
+            "featured_items", [], [ 
                 'articles' => false,
-                'digitalLabels' => true
+                'interactiveFeatures.experiences' => false
             ]);
         $heroArticle = $featuredItems->first();
         
@@ -45,10 +40,9 @@ class ArticleController extends FrontController
                 ->orderBy('date', 'desc')
                 ->paginate(self::ARTICLES_PER_PAGE);
         } else {
-            // Retrieve digital label entires
-            $digitalLabelsCount = DigitalLabel::query('published', true)->paginate()->count();
-            $articles = DigitalLabel::query('published', true)->paginate(self::ARTICLES_PER_PAGE);
-            // $articles = new \Illuminate\Pagination\LengthAwarePaginator($digitalLabels, count($digitalLabels), self::ARTICLES_PER_PAGE);
+            // Retrieve experiences entires
+            $experiencesCount = Experience::query('published', true)->paginate()->count();
+            $articles = Experience::query('published', true)->paginate(self::ARTICLES_PER_PAGE);
         }
         
 
@@ -128,14 +122,9 @@ class ArticleController extends FrontController
             $item->topics = $item->categories;
         }
 
-        $featuredArticles = $item->getRelatedWithApiModels("further_reading_items", [
-            'digitalLabels' => [
-                'apiModel' => 'App\Models\Api\DigitalLabel',
-                'moduleName' => 'digitalLabels',
-            ],   
-        ], [ 
+        $featuredArticles = $item->getRelatedWithApiModels("further_reading_items", [], [ 
             'articles' => false,
-            'digitalLabels' => true
+            'interactiveFeatures.experiences' => false
         ]) ?? null;
         
         return view('site.articleDetail', [
