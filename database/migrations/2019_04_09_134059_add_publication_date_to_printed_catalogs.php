@@ -26,14 +26,15 @@ class AddPublicationDateToPrintedCatalogs extends Migration
             });
         }
 
-        foreach (PrintedPublication::all() as $catalog) {
-            $catalog->publication_date = empty($catalog->publication_year) ? null : (new Carbon())
-                ->year($catalog->publication_year)
-                ->month(1)
-                ->day(1)
-                ->startOfDay();
-            $catalog->save();
-        }
+        // TODO: Avoid referencing models in migrations!
+        // foreach (PrintedPublication::all() as $catalog) {
+        //     $catalog->publication_date = empty($catalog->publication_year) ? null : (new Carbon())
+        //         ->year($catalog->publication_year)
+        //         ->month(1)
+        //         ->day(1)
+        //         ->startOfDay();
+        //     $catalog->save();
+        // }
     }
 
     /**
