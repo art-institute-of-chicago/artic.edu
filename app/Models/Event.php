@@ -74,6 +74,7 @@ class Event extends AbstractModel
         'join_url',
         'survey_url',
         'is_presented_by_affiliate',
+        'affiliate_group_id',
         'entrance',
         'publish_start_date',
         'publish_end_date',
@@ -94,7 +95,9 @@ class Event extends AbstractModel
         // 'is_sold_out' => 'boolean',
     ];
 
-    const NULL_OPTION = 42; // Dropdown does not accept null keys; use big number
+    // Dropdown does not accept null keys; use big numbers
+    const NULL_OPTION = 42;
+    const NULL_OPTION_AFFILIATE_GROUP = 1024;
 
     const CLASSES_AND_WORKSHOPS = 1;
     const LIVE_ARTS = 2;
@@ -340,6 +343,11 @@ class Event extends AbstractModel
         return $this->belongsToMany('App\Models\EventProgram');
     }
 
+    public function affiliateGroup()
+    {
+        return $this->belongsTo('App\Models\EventProgram', 'affiliate_group_id');
+    }
+
     public function getProgramUrlsAttribute()
     {
         return $this->programs->reduce(function($carry, $item) {
@@ -443,6 +451,16 @@ class Event extends AbstractModel
     public function setAudienceAttribute($value)
     {
         $this->attributes['audience'] = $value > count(self::$eventAudiences) ? null : $value; // 1-based
+    }
+
+    public function setEntranceAttribute($value)
+    {
+        $this->attributes['entrance'] = $value > count(self::$eventEntrances) ? null : $value; // 1-based
+    }
+
+    public function setAffiliateGroupIdAttribute($value)
+    {
+        $this->attributes['affiliate_group_id'] = ($value == self::NULL_OPTION_AFFILIATE_GROUP) ? null : $value;
     }
 
     public function scopeDefault($query)
@@ -781,10 +799,24 @@ class Event extends AbstractModel
                 "value" => function () {return self::$eventEntrances[$this->entrance] ?? null;},
             ],
             [
-                "name" => "is_presented_by_affiliate",
-                "doc" => "Whether this event is presented by an affiliate group",
+                "name" => "affiliate_group_display",
+                "doc" => "Identifier of affiliate group (event program) associated with this event",
                 "type" => "boolean",
-                "value" => function () {return $this->is_presented_by_affiliate;},
+                "value" => function () {
+                    if ($this->is_presented_by_affiliate && $this->affiliateGroup) {
+                        return str_replace(
+                            '%%AffiliateGroup%%',
+                            $this->affiliateGroup->name,
+                            '<p>This event is presented by the %%AffiliateGroup%%.</p>'
+                        );
+                    }
+                },
+            ],
+            [
+                "name" => "affiliate_group_id",
+                "doc" => "Identifier of affiliate group (event program) associated with this event",
+                "type" => "boolean",
+                "value" => function () {return $this->affiliateGroup->id ?? null;},
             ],
             [
                 "name" => "join_url",
@@ -802,7 +834,35 @@ class Event extends AbstractModel
                 "name" => "email_series",
                 "doc" => "email_series",
                 "type" => "string",
-                "value" => function () {return $this->emailSeries->pluck('pivot');},
+                "value" => function () {
+                    $affiliateGroupTitle = $this->affiliateGroup->name ?? null;
+                    $emailSeriesPivots = $this->emailSeries->pluck('pivot');
+
+                    return $emailSeriesPivots->each(function($item) use ($affiliateGroupTitle) {
+                        foreach ([
+                            'affiliate_member_copy',
+                            'member_copy',
+                            'sustaining_fellow_copy',
+                            'non_member_copy',
+                        ] as $field) {
+                            if (isset($item->$field)) {
+                                if (isset($affiliateGroupTitle)) {
+                                    $item->$field = str_replace(
+                                        '%%AffiliateGroup%%',
+                                        $affiliateGroupTitle,
+                                        $item->$field
+                                    );
+                                } else {
+                                    $paragraphs = preg_split( '/(?<=<\/p>)\s*(?=<p)/', $item->$field, -1, PREG_SPLIT_DELIM_CAPTURE);
+                                    $paragraphs = array_filter($paragraphs, function($paragraph) {
+                                        return strpos($paragraph, '%%AffiliateGroup%%') === false;
+                                    });
+                                    $item->$field = count($paragraphs) > 0 ? implode('', $paragraphs) : null;
+                                }
+                            }
+                        }
+                    });
+                },
             ],
         ];
     }

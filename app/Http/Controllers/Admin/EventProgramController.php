@@ -22,6 +22,13 @@ class EventProgramController extends ModuleController
             'edit_link' => true,
             'field' => 'name',
         ],
+        'is_affiliate_group' => [
+            'title' => 'Affiliate Group?',
+            'edit_link' => false,
+            'field' => 'isAffiliateGroup',
+            'optional' => false,
+            'present' => true,
+        ],
     ];
 
     protected $defaultOrders = [

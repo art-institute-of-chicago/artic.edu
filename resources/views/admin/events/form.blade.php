@@ -106,7 +106,7 @@
         @formField('select', [
             'name' => 'event_type',
             'label' => 'Event type (preferred)',
-            'options' => $eventTypesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'options' => $eventTypesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
             'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
 
@@ -120,7 +120,7 @@
         @formField('select', [
             'name' => 'audience',
             'label' => 'Event audience (preferred)',
-            'options' => $eventAudiencesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'options' => $eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
             'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
 
@@ -363,7 +363,7 @@
         @formField('select', [
             'name' => 'entrance',
             'label' => 'Entrance',
-            'options' => $eventEntrancesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'options' => $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
             'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
     </a17-fieldset>
@@ -450,21 +450,25 @@
                                 ])
                                     @formField('wysiwyg', [
                                         'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                        'label' => '',
+                                        'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
                                         'toolbarOptions' => [
                                             'bold', 'italic', 'link'
                                         ],
+                                        'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
                                     ])
                                 @endcomponent
 
                             @else
+
                                 @formField('wysiwyg', [
                                     'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                    'label' => '',
+                                    'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
                                     'toolbarOptions' => [
                                         'bold', 'italic', 'link'
                                     ],
+                                    'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
                                 ])
+
                             @endif
 
                             </div>
@@ -481,9 +485,19 @@
 
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
+            @formField('select', [
+                'name' => 'affiliate_group_id',
+                'label' => 'Affiliate Group',
+                'options' => $eventAffiliateGroupsList->put(
+                    strval(\App\Models\Event::NULL_OPTION_AFFILIATE_GROUP), '[None]'
+                ),
+                'default' => \App\Models\Event::NULL_OPTION_AFFILIATE_GROUP, // no effect?
+                'note' => 'Will automatically replace `%%AffiliateGroup%%` in email series fields',
+            ])
+
             @formField('checkbox', [
                 'name' => 'is_presented_by_affiliate',
-                'label' => 'Include "This event is presented by %%AffiliateGroup%%" in all pre-registration event emails',
+                'label' => 'Include "This event is presented by the %%AffiliateGroup%%." in all pre-registration event emails',
             ])
 
             @formField('input', [

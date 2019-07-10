@@ -1,9 +1,6 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    {{-- @formField('input', [
-        'name' => 'description',
-        'label' => 'Description',
-        'maxlength' => 100
-    ]) --}}
+    {{-- `create.blade.php` is used for updating --}}
+    {{-- See `editInModal` in `Controllers\Admin\EventProgramController` --}}
 @stop
