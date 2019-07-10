@@ -40,6 +40,7 @@ $bioBreakpoints: (
 
 .o-artist-bio__main,
 .o-artist-bio__image {
+  width: 100%;
   @each $name, $point in $bioBreakpoints {
     @include breakpoint('#{$name}') {
       width: colspan(grid-cols-to-colspan(2), $name);
@@ -55,15 +56,17 @@ $bioBreakpoints: (
   display: block;
   max-width: 100%;
   height: auto;
-  margin-top: 16px;
 
-  @include breakpoint('small+') {
-    margin-top: 40px;
-  }
+  // Disabled for WEB-1079:
+  // margin-top: 16px;
 
-  @include breakpoint('large+') {
-    margin-top: 0;
-  }
+  // @include breakpoint('small+') {
+  //   margin-top: 40px;
+  // }
+
+  // @include breakpoint('large+') {
+  //   margin-top: 0;
+  // }
 }
 
 .o-artist-bio__image figcaption {

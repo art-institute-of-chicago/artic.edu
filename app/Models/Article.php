@@ -8,10 +8,10 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use A17\Twill\Models\Behaviors\HasRelated;
 
 class Article extends AbstractModel implements Feedable
 {
@@ -331,6 +331,12 @@ class Article extends AbstractModel implements Feedable
                 "doc" => "author",
                 "type" => "string",
                 "value" => function () {return $this->author;},
+            ],
+            [
+                "name" => 'related',
+                "doc" => "Related Content",
+                "type" => "array",
+                "value" => function () { return $this->transformRelated(); },
             ],
         ];
     }

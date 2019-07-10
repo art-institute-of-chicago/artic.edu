@@ -73,33 +73,32 @@
     @endcomponent
 @endif
 
-@if ($item->articles && $item->articles->count() > 0)
+@if ($relatedItems)
     @component('components.molecules._m-title-bar')
-        Related
+        Related Content
     @endcomponent
-
     @component('components.atoms._hr')
     @endcomponent
-
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
         @slot('cols_small','2')
         @slot('cols_medium','3')
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
-        @foreach ($item->articles as $item)
-            @component('components.molecules._m-listing----article')
+        @foreach ($relatedItems as $item)
+            @component('components.molecules._m-listing----' . (strtolower($item->type ?? 'article')))
                 @slot('item', $item)
+                @slot('hideImage', false)
                 @slot('imageSettings', array(
                     'fit' => 'crop',
                     'ratio' => '16:9',
-                    'srcset' => array(200,400,600,1000),
-                    'sizes' => aic_gridListingImageSizes(array(
-                          'xsmall' => '1',
-                          'small' => '2',
-                          'medium' => '3',
-                          'large' => '4',
-                          'xlarge' => '4',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                          'xsmall' => '216px',
+                          'small' => '216px',
+                          'medium' => '18',
+                          'large' => '13',
+                          'xlarge' => '13',
                     )),
                 ))
             @endcomponent
@@ -182,6 +181,6 @@
     @endcomponent
 @endif
 
-<div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
+{{-- <div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div> --}}
 
 @endsection

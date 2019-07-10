@@ -33,6 +33,9 @@ class ArtistController extends FrontController
         $artworks = $item->artworks(self::ARTWORKS_PER_PAGE);
         $exploreFurther = new ExploreArtists($item, $artworks->getMetadata('aggregations'));
 
+        // TODO: Do these methods belong in the API ArtistRepository, or in the CMS one?
+        $relatedItems = $this->repository->getRelatedItems($item);
+
         return view('site.tagDetail', [
             'item'     => $item,
             'artworks' => $artworks,
@@ -40,6 +43,7 @@ class ArtistController extends FrontController
             'exploreFurther'        => $exploreFurther->collection(request()->all()),
             'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'canonicalUrl' => route('artists.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
+            'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
         ]);
     }
 

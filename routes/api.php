@@ -990,6 +990,52 @@ Route::group(['prefix' => 'v1'], function () {
      */
     Route::get('printedpublications/{id}', 'API\PrintedPublicationsController@show');
 
+    /**
+     *
+     * - videos --------------------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/videos",
+     *      tags={"pages"},
+     *      operationId="getVideos",
+     *      summary="List all videos",
+     *      @SWG\Response(response="200", description="List all videos publications")
+     *  )
+     *
+     */
+    Route::get('videos', 'API\VideosController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/videos/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedVideos",
+     *      summary="List all deleted videos",
+     *      @SWG\Response(response="200", description="List all deleted videos")
+     *  )
+     *
+     */
+    Route::get('videos/deleted', 'API\VideosController@deleted');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/videos/{id}",
+     *      tags={"pages"},
+     *      operationId="getVideo",
+     *      summary="Fetch video details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific video")
+     *  )
+     *
+     */
+    Route::get('videos/{id}', 'API\VideosController@show');
+
     Route::options('seamless-images/{id}', 'SeamlessImagesController@byFile');
     Route::get('seamless-images/{id}', 'SeamlessImagesController@byFile');
 });

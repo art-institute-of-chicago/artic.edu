@@ -147,6 +147,34 @@ class Search extends BaseApiModel
         return $query->aggregations($aggs);
     }
 
+    public function scopeAggregationStyles($query, $max = 3)
+    {
+        $aggs = [
+            'styles' => [
+                'terms' => [
+                    'field' => 'style_titles.keyword',
+                    'size'  => $max
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
+    public function scopeAggregationPlaces($query, $max = 3)
+    {
+        $aggs = [
+            'place_of_origin' => [
+                'terms' => [
+                    'field' => 'place_of_origin.keyword',
+                    'size'  => $max
+                ]
+            ]
+        ];
+
+        return $query->aggregations($aggs);
+    }
+
     public function scopeByGalleryIdsOnView($query, $ids)
     {
         $result = $this->scopeByGalleryIds($query, $ids);
@@ -448,36 +476,50 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
-    public function scopeByMostSimilar($query, $id)
+    public function scopeByMostSimilar($query, $id, $class = \App\Models\Api\Artwork::class)
     {
         if (empty($id)) {
             return $query;
         }
 
-        $query->forceEndpoint('msearch');
         $query->boost(FALSE);
+        $query->forceEndpoint('msearch');
 
-        // Generalize this if we want to use this scope on Selections or
-        // other pages
-        $item = \App\Models\Api\Artwork::query()
+        // Generalize to use this scope on artworks as well as artists
+        $item = $class::query()
               ->findOrFail((Integer) $id);
 
-        $shoulds = [
-            $this->basicQuery('classification_id', $item->classification_id, 4),
-            $this->basicQuery('artist_id', $item->artist_id, 3),
-            $this->basicQuery('style_id', $item->style_id, 2),
-        ];
+        $shoulds = [];
+        if ($class == \App\Models\Api\Artwork::class) {
 
-        $date_start = incrementBefore($item->date_start);
-        $date_end = incrementAfter($item->date_start);
-        $dateQuery = $this->dateQuery($date_start, $date_end, 1);
-        array_push($shoulds, $dateQuery);
+            $shoulds = [
+                $this->basicQuery('classification_id', $item->classification_id, 4),
+                $this->basicQuery('artist_id', $item->artist_id, 3),
+                $this->basicQuery('style_id', $item->style_id, 2),
+            ];
 
-        // if ($item->color ?? false) {
-        //     $colorQuery = $this->colorQuery($item->color);
-        //     $colorQuery['bool']['boost'] = 1;
-        //     array_push( $shoulds, $colorQuery );
-        // }
+            $date_start = incrementBefore($item->date_start);
+            $date_end = incrementAfter($item->date_start);
+            $dateQuery = $this->dateQuery($date_start, $date_end, 1);
+            array_push($shoulds, $dateQuery);
+
+            // if ($item->color ?? false) {
+            //     $colorQuery = $this->colorQuery($item->color);
+            //     $colorQuery['bool']['boost'] = 1;
+            //     array_push( $shoulds, $colorQuery );
+            // }
+        }
+        elseif ($class == \App\Models\Api\Artist::class) {
+            $shoulds = [
+                $this->basicQuery('style_titles', $item->artworks()->getMetadata('aggregations')->styles->buckets[0]->key ?? null, 0, 'match'),
+                $this->basicQuery('place_of_origin', $item->artworks()->getMetadata('aggregations')->place_of_origin->buckets[0]->key ?? null, 0, 'match'),
+            ];
+
+            $dateQuery = $this->dateQuery($item->birth_date, $item->death_date);
+            array_push($shoulds, $dateQuery);
+
+            // all tags start with 50
+        }
 
         // Filter out empty array queries
         $shoulds = array_filter($shoulds);
@@ -493,6 +535,10 @@ class Search extends BaseApiModel
                 ],
             ],
         ];
+
+        if ($class == \App\Models\Api\Artist::class) {
+            $params["bool"]["must_not"] = $this->basicQuery('artist_id', $item->id);
+        }
 
         return $query->rawSearch($params);
     }
@@ -844,24 +890,30 @@ class Search extends BaseApiModel
         return $query->rawQuery($params);
     }
 
-    protected function basicQuery($field, $value, $boost = 0)
+    protected function basicQuery($field, $value, $boost = 0, $queryType = 'term')
     {
         if (!$value)
         {
             return [];
         }
-        return [
-            "bool" => [
-                "boost" => $boost,
-                "must" => [
-                    [
-                        "term" => [
-                            $field => $value,
-                        ],
-                    ],
-                ],
+        $ret = [
+            $queryType => [
+                $field => $value,
             ],
         ];
+
+        if ($boost) {
+            return [
+                "bool" => [
+                    'boost' => $boost,
+                    'must' => [
+                        $ret,
+                    ],
+                ],
+            ];
+        }
+
+        return $ret;
     }
 
     protected function dateQuery($date_start, $date_end, $boost = 0)
@@ -869,9 +921,8 @@ class Search extends BaseApiModel
         if (!$date_start || !$date_end) {
             return [];
         }
-        return [
+        $ret = [
             "bool" => [
-                "boost" => $boost,
                 "must" => [
                     [
                         "range" => [
@@ -890,6 +941,12 @@ class Search extends BaseApiModel
                 ]
             ]
         ];
+
+        if ($boost) {
+            $ret['bool']['boost'] = $boost;
+        }
+
+        return $ret;
     }
 
     protected function colorQuery($color, $boost = 0)
@@ -897,9 +954,8 @@ class Search extends BaseApiModel
         if (!$color) {
             return [];
         }
-        return [
+        $ret = [
             "bool" => [
-                "boost" => $boost,
                 "must" => [
                     [
                         "range" => [
@@ -928,5 +984,11 @@ class Search extends BaseApiModel
                 ],
             ],
         ];
+
+        if ($boost) {
+            $ret['bool']['boost'] = $boost;
+        }
+
+        return $ret;
     }
 }

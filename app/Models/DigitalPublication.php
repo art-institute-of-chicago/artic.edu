@@ -11,10 +11,11 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
 
 class DigitalPublication extends AbstractModel
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasMediasEloquent, Transformable, HasRelated;
 
     protected $fillable = [
         'listing_description',
@@ -185,6 +186,12 @@ class DigitalPublication extends AbstractModel
                 "doc" => "Content",
                 "type" => "text",
                 "value" => function() { return $this->blocks; }
+            ],
+            [
+                "name" => 'related',
+                "doc" => "Related Content",
+                "type" => "array",
+                "value" => function () { return $this->transformRelated(); },
             ],
         ];
     }

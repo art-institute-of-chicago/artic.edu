@@ -9,7 +9,7 @@
         @slot('name', 'collection-search-mobile')
         @slot('value', request('q'))
         @slot('behaviors','autocomplete')
-        @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
+        @slot('dataAttributes','data-autocomplete-url="'. secureRoute('collection.autocomplete') .'"')
         @slot('action', route('collection'))
         @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-category="collection-search"')
     @endcomponent

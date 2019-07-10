@@ -39,7 +39,7 @@ trait HasApiRelations
     public function getRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi)
     {
 
-        if ($this->relatedCache[$browser_name] === null) {
+        if (!isset($this->relatedCache[$browser_name])) {
             $this->loadRelatedWithApiModels($browser_name, $apiModelsDefinitions, $typeUsesApi);
         }
 
@@ -54,6 +54,10 @@ trait HasApiRelations
             ->where('browser_name', $browser_name)
             ->groupBy('related_type')
             ->map(function ($items, $type) use ($apiModelsDefinitions, $browser_name, $typeUsesApi) {
+                if (!isset($typeUsesApi[$type])) {
+                    throw new \Exception('Cannot tell if type uses API: ' . $type);
+                }
+
                 if ($typeUsesApi[$type]) {
 
                     $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions);

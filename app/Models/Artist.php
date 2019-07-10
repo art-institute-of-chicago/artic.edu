@@ -7,10 +7,11 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
 
 class Artist extends AbstractModel
 {
-    use HasSlug, HasApiModel, HasApiRelations, HasMedias, HasMediasEloquent, Transformable;
+    use HasSlug, HasApiModel, HasApiRelations, HasMedias, HasMediasEloquent, Transformable, HasRelated;
 
     protected $apiModel = 'App\Models\Api\Artist';
 
@@ -38,11 +39,6 @@ class Artist extends AbstractModel
         ],
     ];
 
-    public function articles()
-    {
-        return $this->belongsToMany('App\Models\Article', 'article_artist')->withPivot('position')->orderBy('position');
-    }
-
     public function featuredArtworks()
     {
         return $this->apiElements()->where('relation', 'featuredArtworks');
@@ -64,9 +60,15 @@ class Artist extends AbstractModel
             ],
             [
                 "name" => 'datahub_id',
-                "doc" => "Type",
+                "doc" => "Data Hub ID",
                 "type" => "string",
                 "value" => function () {return $this->datahub_id;},
+            ],
+            [
+                "name" => 'related',
+                "doc" => "Related Content",
+                "type" => "array",
+                "value" => function () { return $this->transformRelated(); },
             ],
         ];
     }
