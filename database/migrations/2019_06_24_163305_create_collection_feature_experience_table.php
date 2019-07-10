@@ -13,6 +13,8 @@ class CreateCollectionFeatureExperienceTable extends Migration
      */
     public function up()
     {
+        $this->down();
+
         Schema::create('collection_feature_experience', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
@@ -21,7 +23,7 @@ class CreateCollectionFeatureExperienceTable extends Migration
             $table->foreign('experience_id')->references('id')->on('experiences')->onDelete('cascade');
             $table->integer("collection_feature_id")->unsigned();
             $table->foreign("collection_feature_id")->references('id')->on('collection_features')->onDelete('cascade');
-            $table->index(["collection_feature_id", "experience_id"], 'collection_feature_experience_collection_feature_id_experience_id_idx');
+            $table->index(["collection_feature_id", "experience_id"], 'collection_feature_experience_idx');
 
             $table->integer('position')->unsigned()->index();
         });
