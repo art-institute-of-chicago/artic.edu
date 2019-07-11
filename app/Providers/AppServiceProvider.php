@@ -65,10 +65,11 @@ class AppServiceProvider extends ServiceProvider
 
             'digitalPublications' => 'App\Models\DigitalPublication',
             'printedPublications' => 'App\Models\PrintedPublication',
-            'educatorResources' => 'App\Models\EducatorResource',
-            'videos' => 'App\Models\Video',
 
-            'exhibitions' => 'App\Models\Exhibition',
+            // TODO: Do UpdatePolymorphicRelationsForPublicationsRename for these
+            // 'educatorResources' => 'App\Models\EducatorResource',
+            // 'videos' => 'App\Models\Video',
+            // 'exhibitions' => 'App\Models\Exhibition',
         ]);
     }
 
