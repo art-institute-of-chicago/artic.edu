@@ -20,7 +20,15 @@ class GuzzleApiConsumer implements ApiConsumerInterface
     public function request($method, $uri = '', array $options = [])
     {
         $response = $this->client->request($method, $uri, $options);
-        $body = json_decode($response->getBody()->getContents());
+        $contents = $response->getBody()->getContents();
+        $body = json_decode($contents);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception($contents);
+        } elseif (isset($body->error)) {
+            // throw new \Exception(json_encode($body, JSON_PRETTY_PRINT));
+            throw new \Exception($contents);
+        }
 
         return (object) [
             'body'       => $body,

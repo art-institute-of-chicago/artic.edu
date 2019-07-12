@@ -27,6 +27,7 @@ class CollectionFeatureRepository extends ModuleRepository
     {
         $this->updateBrowser($object, $fields, 'articles');
         $this->updateBrowser($object, $fields, 'selections');
+        $this->updateBrowser($object, $fields, 'experiences');
         $this->updateBrowserApiRelated($object, $fields, ['artworks']);
 
         parent::afterSave($object, $fields);
@@ -38,9 +39,28 @@ class CollectionFeatureRepository extends ModuleRepository
 
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
         $fields['browsers']['selections'] = $this->getFormFieldsForBrowser($object, 'selections', 'collection');
+        $fields['browsers']['experiences'] = $this->getFormFieldsForBrowser($object, 'experiences', 'collection');
         $fields['browsers']['artworks'] = $this->getFormFieldsForBrowserApi($object, 'artworks', 'App\Models\Api\Artwork', 'collection');
 
         return $fields;
+    }
+
+    public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
+    {
+        if ($relation === 'experiences') {
+            return $object->$relation->map(function ($relatedElement) use ($titleKey, $routePrefix, $relation, $moduleName) {
+                return [
+                    'id' => $relatedElement->id,
+                    'name' => $relatedElement->titleInBrowser ?? $relatedElement->$titleKey,
+                    'edit' => '',
+                    'endpointType' => $relatedElement->getMorphClass(),
+                ] + (classHasTrait($relatedElement, HasMedias::class) ? [
+                    'thumbnail' => $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]),
+                ] : []);
+            })->toArray();
+        } else {
+            return parent::getFormFieldsForBrowser($object, $relation, $routePrefix, $titleKey, $moduleName);
+        }
     }
 
 

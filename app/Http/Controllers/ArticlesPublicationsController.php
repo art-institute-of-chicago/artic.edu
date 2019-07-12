@@ -13,7 +13,11 @@ class ArticlesPublicationsController extends FrontController
         $page = Page::forType('Articles and Publications')->first();
         $artIdeasPage = Page::forType('Art and Ideas')->first();
 
-        $articles = $page->articles;
+        $articles = $page->getRelatedWithApiModels("featured_items", [], [ 
+            'articles' => false,
+            'interactiveFeatures.experiences' => false
+        ]) ?? null;
+
         $featureHero = $articles->shift();
 
         $this->seo->setTitle('Publications');
@@ -42,6 +46,12 @@ class ArticlesPublicationsController extends FrontController
             'features' => $articles,
             'digitalPublications' => [
                 'items' => $page->digitalPublications
+            ],
+            'digitalCatalogs' => [
+                'items' => $page->digitalCatalogs
+            ],
+            'experiences' => [
+                'items' => $page->experiences
             ],
             'printedPublications' => [
                 'intro' => $page->present()->printed_publications_intro,

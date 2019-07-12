@@ -33,6 +33,10 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
     Route::module('ticketedEvents');
 
     Route::name('exhibitions_events.history')->get('history', 'PageController@exhibitionHistory');
+
+    Route::name('exhibitions_events.digitalLabels.augment')->get('interactive-features/augment/{datahub_id}', 'DigitalLabelController@augment');
+
+    Route::module('emailSeries');
 });
 
 Route::group(['prefix' => 'collection'], function () {
@@ -41,6 +45,9 @@ Route::group(['prefix' => 'collection'], function () {
     Route::name('collection.artworks.augment')->get('artworks/augment/{datahub_id}', 'ArtworkController@augment');
     Route::module('artists');
     Route::name('collection.artists.augment')->get('artists/augment/{datahub_id}', 'ArtistController@augment');
+    Route::module('interactiveFeatures');
+    Route::module('interactiveFeatures.experiences');
+    Route::module('experiences.slides');
 
     Route::module('categoryTerms');
     Route::name('collection.categoryTerms.augment')->get('categoryTerms/augment/{datahub_id}', 'CategoryTermController@augment');
@@ -59,6 +66,8 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('videos');
         Route::module('printedPublications');
         Route::module('digitalPublications');
+        Route::module('printedCatalogs');
+        Route::module('digitalCatalogs');
     });
 
     Route::module('galleries');
@@ -90,6 +99,6 @@ Route::group(['prefix' => 'general'], function () {
 });
 
 // TODO: This will be fixed in our next Twill release to use auth_login_redirect_path automatically
-Route::get('/', function() {
+Route::get('/', function () {
     return redirect('/homepage/landing');
 });

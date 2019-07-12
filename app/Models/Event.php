@@ -48,10 +48,12 @@ class Event extends AbstractModel
         'end_time',
         'door_time',
         'is_private',
+        'is_sales_button_hidden',
         'is_after_hours',
         'is_ticketed',
         'is_sold_out',
         'is_free',
+        'is_rsvp',
         'is_member_exclusive',
         'is_registration_required',
         'is_admission_required',
@@ -68,6 +70,12 @@ class Event extends AbstractModel
         'meta_title',
         'meta_description',
         'search_tags',
+        'add_to_event_email_series',
+        'join_url',
+        'survey_url',
+        'is_presented_by_affiliate',
+        'affiliate_group_id',
+        'entrance',
         'publish_start_date',
         'publish_end_date',
     ];
@@ -75,16 +83,21 @@ class Event extends AbstractModel
     protected $casts = [
         'alt_types' => 'array',
         'alt_audiences' => 'array',
+        'is_presented_by_affiliate' => 'boolean',
         // TODO: Confirm that this is safe to do?
         // 'is_private' => 'boolean',
+        // 'is_sales_button_hidden' => 'boolean',
         // 'is_ticketed' => 'boolean',
         // 'is_free' => 'boolean',
+        // 'is_rsvp' => 'boolean',
         // 'is_member_exclusive' => 'boolean',
         // 'is_registration_required' => 'boolean',
         // 'is_sold_out' => 'boolean',
     ];
 
-    const NULL_OPTION = 42; // Dropdown does not accept null keys; use big number
+    // Dropdown does not accept null keys; use big numbers
+    const NULL_OPTION = 42;
+    const NULL_OPTION_AFFILIATE_GROUP = 1024;
 
     const CLASSES_AND_WORKSHOPS = 1;
     const LIVE_ARTS = 2;
@@ -132,6 +145,26 @@ class Event extends AbstractModel
         self::LARGE_LAYOUT => 'Large Feature',
     ];
 
+    const MICHIGAN_AVE = 1;
+    const MODERN_WING = 2;
+    const COLUMBUS_DRIVE = 3;
+    const NORTH_GARDEN = 4;
+    const PRITZKER_GARDEN = 5;
+    const SOUTH_GARDEN = 6;
+    const OFF_SITE = 7;
+    const WEST_BOX = 8;
+
+    public static $eventEntrances = [
+        self::MICHIGAN_AVE => 'Michigan Avenue',
+        self::MODERN_WING => 'Modern Wing',
+        self::COLUMBUS_DRIVE => 'Columbus Drive',
+        self::NORTH_GARDEN => 'North Garden',
+        self::PRITZKER_GARDEN => 'Pritzker Garden',
+        self::SOUTH_GARDEN => 'South Garden',
+        self::OFF_SITE => 'Off Site',
+        self::WEST_BOX => 'West Box',
+    ];
+
     public $slugAttributes = [
         'title',
     ];
@@ -143,9 +176,11 @@ class Event extends AbstractModel
     public $checkboxes = [
         'published',
         'is_private',
+        'is_sales_button_hidden',
         'is_after_hours',
         'is_ticketed',
         'is_free',
+        'is_rsvp',
         'is_member_exclusive',
         'is_admission_required',
         'is_sold_out',
@@ -170,6 +205,23 @@ class Event extends AbstractModel
             ],
         ],
     ];
+
+    public function emailSeries()
+    {
+        return $this
+            ->belongsToMany('App\Models\EmailSeries', 'event_email_series')
+            ->using('App\Models\EventEmailSeries')
+            ->withPivot(
+                'send_affiliate_member',
+                'affiliate_member_copy',
+                'send_member',
+                'member_copy',
+                'send_sustaining_fellow',
+                'sustaining_fellow_copy',
+                'send_non_member',
+                'non_member_copy'
+            );
+    }
 
     // Generates the id-slug type of URL
     public function getRouteKeyName()
@@ -291,6 +343,11 @@ class Event extends AbstractModel
         return $this->belongsToMany('App\Models\EventProgram');
     }
 
+    public function affiliateGroup()
+    {
+        return $this->belongsTo('App\Models\EventProgram', 'affiliate_group_id');
+    }
+
     public function getProgramUrlsAttribute()
     {
         return $this->programs->reduce(function($carry, $item) {
@@ -394,6 +451,16 @@ class Event extends AbstractModel
     public function setAudienceAttribute($value)
     {
         $this->attributes['audience'] = $value > count(self::$eventAudiences) ? null : $value; // 1-based
+    }
+
+    public function setEntranceAttribute($value)
+    {
+        $this->attributes['entrance'] = $value > count(self::$eventEntrances) ? null : $value; // 1-based
+    }
+
+    public function setAffiliateGroupIdAttribute($value)
+    {
+        $this->attributes['affiliate_group_id'] = ($value == self::NULL_OPTION_AFFILIATE_GROUP) ? null : $value;
     }
 
     public function scopeDefault($query)
@@ -596,7 +663,8 @@ class Event extends AbstractModel
                 "name" => "is_sold_out",
                 "doc" => "is_sold_out",
                 "type" => "boolean",
-                "value" => function () {return $this->present()->isSoldOut;},
+                // WEB-414: Do not use `$this->present()->isSoldOut` here
+                "value" => function () {return $this->is_sold_out;},
             ],
             [
                 "name" => "is_free",
@@ -605,34 +673,22 @@ class Event extends AbstractModel
                 "value" => function () {return $this->is_free;},
             ],
             [
+                "name" => "is_rsvp",
+                "doc" => "Is RSVP",
+                "type" => "boolean",
+                "value" => function () {return $this->is_rsvp;},
+            ],
+            [
                 "name" => "is_private",
                 "doc" => "Is Private",
                 "type" => "boolean",
                 "value" => function () {return $this->is_private;},
             ],
             [
-                "name" => "is_admission_required",
-                "doc" => "Is admission required",
+                "name" => "is_sales_button_hidden",
+                "doc" => "Is Sales Button Hidden",
                 "type" => "boolean",
-                "value" => function () {return $this->is_admission_required;},
-            ],
-            [
-                "name" => "is_after_hours",
-                "doc" => "Is after hhours",
-                "type" => "boolean",
-                "value" => function () {return $this->is_after_hours;},
-            ],
-            [
-                "name" => "email_series",
-                "doc" => "Email series",
-                "type" => "string",
-                "value" => function () {return $this->email_series;},
-            ],
-            [
-                "name" => "survey_url",
-                "doc" => "URL to the survey associated with this event",
-                "type" => "string",
-                "value" => function () {return $this->survey_link;},
+                "value" => function () {return $this->is_sales_button_hidden;},
             ],
             [
                 "name" => "start_time",
@@ -670,7 +726,12 @@ class Event extends AbstractModel
                 "type" => "string",
                 "value" => function () {return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%i') : null;},
             ],
-            // sponsor
+            [
+                "name" => "sponsor_id",
+                "doc" => "Sponsor ID",
+                "type" => "integer",
+                "value" => function () {return $this->sponsors->first()->id ?? null;},
+            ],
             [
                 "name" => "content",
                 "doc" => "Content",
@@ -718,6 +779,90 @@ class Event extends AbstractModel
                 "doc" => "search_tags",
                 "type" => "string",
                 "value" => function () {return $this->search_tags;},
+            ],
+            [
+                "name" => "is_admission_required",
+                "doc" => "Is admission required",
+                "type" => "boolean",
+                "value" => function () {return $this->is_admission_required;},
+            ],
+            [
+                "name" => "is_after_hours",
+                "doc" => "Is after hours",
+                "type" => "boolean",
+                "value" => function () {return $this->is_after_hours;},
+            ],
+            [
+                "name" => "entrance",
+                "doc" => "Which entrance to use for this event",
+                "type" => "string",
+                "value" => function () {return self::$eventEntrances[$this->entrance] ?? null;},
+            ],
+            [
+                "name" => "affiliate_group_display",
+                "doc" => "Identifier of affiliate group (event program) associated with this event",
+                "type" => "boolean",
+                "value" => function () {
+                    if ($this->is_presented_by_affiliate && $this->affiliateGroup) {
+                        return str_replace(
+                            '%%AffiliateGroup%%',
+                            $this->affiliateGroup->name,
+                            '<p>This event is presented by the %%AffiliateGroup%%.</p>'
+                        );
+                    }
+                },
+            ],
+            [
+                "name" => "affiliate_group_id",
+                "doc" => "Identifier of affiliate group (event program) associated with this event",
+                "type" => "boolean",
+                "value" => function () {return $this->affiliateGroup->id ?? null;},
+            ],
+            [
+                "name" => "join_url",
+                "doc" => "URL to the membership signup page",
+                "type" => "string",
+                "value" => function () {return $this->join_url;},
+            ],
+            [
+                "name" => "survey_url",
+                "doc" => "URL to the survey associated with this event",
+                "type" => "string",
+                "value" => function () {return $this->survey_url;},
+            ],
+            [
+                "name" => "email_series",
+                "doc" => "email_series",
+                "type" => "string",
+                "value" => function () {
+                    $affiliateGroupTitle = $this->affiliateGroup->name ?? null;
+                    $emailSeriesPivots = $this->emailSeries->pluck('pivot');
+
+                    return $emailSeriesPivots->each(function($item) use ($affiliateGroupTitle) {
+                        foreach ([
+                            'affiliate_member_copy',
+                            'member_copy',
+                            'sustaining_fellow_copy',
+                            'non_member_copy',
+                        ] as $field) {
+                            if (isset($item->$field)) {
+                                if (isset($affiliateGroupTitle)) {
+                                    $item->$field = str_replace(
+                                        '%%AffiliateGroup%%',
+                                        $affiliateGroupTitle,
+                                        $item->$field
+                                    );
+                                } else {
+                                    $paragraphs = preg_split( '/(?<=<\/p>)\s*(?=<p)/', $item->$field, -1, PREG_SPLIT_DELIM_CAPTURE);
+                                    $paragraphs = array_filter($paragraphs, function($paragraph) {
+                                        return strpos($paragraph, '%%AffiliateGroup%%') === false;
+                                    });
+                                    $item->$field = count($paragraphs) > 0 ? implode('', $paragraphs) : null;
+                                }
+                            }
+                        }
+                    });
+                },
             ],
         ];
     }

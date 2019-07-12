@@ -57,11 +57,11 @@ class EventPresenter extends BasePresenter
         }
 
         if ($this->entity->is_free) {
-            if ($this->entity->is_ticketed) {
-                return 'rsvp';
-            } else {
-                return 'free';
-            }
+            return 'free';
+        }
+
+        if ($this->entity->is_rsvp) {
+            return 'rsvp';
         }
 
         if ($this->isTicketed) {
@@ -135,6 +135,10 @@ class EventPresenter extends BasePresenter
             return false;
         }
 
+        if ($this->entity->is_sales_button_hidden) {
+            return false;
+        }
+
         $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
 
         return ( !isset($ticketedEvent) )
@@ -152,6 +156,9 @@ class EventPresenter extends BasePresenter
             );
     }
 
+    /**
+     * WEB-414: Do not use this in the API. Replicate this logic in the aggregator for touches.
+     */
     public function isSoldOut()
     {
         $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
@@ -165,48 +172,7 @@ class EventPresenter extends BasePresenter
             return $this->entity->buy_button_text;
         }
 
-        if ($this->isSoldOut) {
-            return 'Sold out';
-        }
-
-        if ($this->entity->is_free) {
-            return 'RSVP';
-        }
-
-        if ($this->entity->is_member_exclusive) {
-            return 'Member Exclusive';
-        }
-
-        if ($this->entity->is_registration_required) {
-            return 'Register';
-        }
-
         return 'Buy tickets';
-    }
-
-    public function buyButtonCaption()
-    {
-        $caption = $this->entity->buy_button_caption ?? '';
-
-        $ticketedEvent = $this->entity->apiModels('ticketedEvent', 'TicketedEvent')->first();
-
-        if ($ticketedEvent && $ticketedEvent->on_sale_at)
-        {
-            $onSaleAt = new Carbon($ticketedEvent->on_sale_at);
-
-            // Don't show if the event has already begun
-            if ($onSaleAt->gt(Carbon::now()))
-            {
-                // TODO: Support variations?
-                $caption = sprintf(
-                    '<p>Registration opens on %s %s CST.</p>',
-                    $onSaleAt->format('l, F j \a\t g:i'),
-                    ($onSaleAt->hour < 12 ? 'a.m.' : 'p.m.')
-                ) . ($caption ? '<p><br></p>' . $caption : '');
-            }
-        }
-
-        return $caption;
     }
 
     public function imageUrl() {

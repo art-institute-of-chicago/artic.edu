@@ -31,7 +31,7 @@
     @endcomponent
 @endif
 
-@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles))
+@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($interactiveFeatures))
     @component('components.molecules._m-no-results')
     @endcomponent
 @endif
@@ -699,6 +699,74 @@
                 @component('components.molecules._m-listing----generic')
                     @slot('item', $item)
                     @slot('hideImage', true)
+                @endcomponent
+            @endforeach
+        @endcomponent
+
+    @endif
+@endif
+
+@if (isset($interactiveFeatures) && $interactiveFeatures->total() > 0)
+
+    @component('components.molecules._m-title-bar')
+        @unless($allResultsView)
+            @slot('links', array(array('label' => 'See all '. $interactiveFeatures->total(). ' '. str_plural('interactive feature', $interactiveFeatures->total()), 'href' => route('search.interactive-features', ['q' => request('q')]))))
+        @endunless
+        Interactive Features
+    @endcomponent
+
+    @if (isset($allResultsView) && $allResultsView)
+
+        @component('components.organisms._o-grid-listing')
+          @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+          @slot('cols_small','2')
+          @slot('cols_medium','3')
+          @slot('cols_large','4')
+          @slot('cols_xlarge','4')
+          @foreach ($interactiveFeatures as $item)
+            @component('components.molecules._m-listing----experience')
+                @slot('item', $item)
+                @slot('image', $item->imageFront())
+                @slot('imageSettings', array(
+                    'fit' => 'crop',
+                    'ratio' => '16:9',
+                    'srcset' => array(200,400,600),
+                    'sizes' => aic_imageSizes(array(
+                            'xsmall' => '216px',
+                            'small' => '216px',
+                            'medium' => '18',
+                            'large' => '13',
+                            'xlarge' => '13',
+                    )),
+                ))              
+            @endcomponent
+          @endforeach
+        @endcomponent
+
+    @else
+
+        @component('components.organisms._o-grid-listing')
+            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+            @slot('cols_medium','3')
+            @slot('cols_large','4')
+            @slot('cols_xlarge','4')
+
+            @foreach ($interactiveFeatures as $item)
+                @component('components.molecules._m-listing----experience')
+                    @slot('item', $item)
+                    @slot('image', $item->imageFront('hero'))
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600),
+                        'sizes' => aic_imageSizes(array(
+                                'xsmall' => '216px',
+                                'small' => '216px',
+                                'medium' => '18',
+                                'large' => '13',
+                                'xlarge' => '13',
+                        )),
+                    ))              
                 @endcomponent
             @endforeach
         @endcomponent

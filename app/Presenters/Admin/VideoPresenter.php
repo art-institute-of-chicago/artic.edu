@@ -34,4 +34,8 @@ class VideoPresenter extends BasePresenter
         ];
     }
 
+    public function url()
+    {
+        return route('videos.show', $this->entity);
+    }
 }

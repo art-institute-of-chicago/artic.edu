@@ -4,11 +4,8 @@ return [
     'users_table' => 'users',
     'password_resets_table' => 'password_resets',
     'bind_exception_handler' => false,
-
     'auth_login_redirect_path' => '/homepage/landing',
-
     'templates_on_frontend_domain' => true,
-
     'frontend' => [
         'dev_assets_path' => '/dist',
     ],
@@ -166,7 +163,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-footnote',
             ],
-
+            'digital_label' => [
+                'title' => 'Interactive feature',
+                'icon' => 'image',
+                'component' => 'a17-block-digital_label',
+            ],
         ],
         'repeaters' => [
             'admissions' => [
@@ -247,6 +248,108 @@ return [
                 'component' => 'a17-block-timeline_item',
                 'max' => 10,
             ],
+            'experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'modal_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 3,
+            ],
+            'seamless_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image',
+                'max' => 1,
+            ],
+            'interstitial_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'fullwidthmedia_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'tooltip_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'attract_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 3,
+            ],
+            'end_experience_image' => [
+                'title' => 'Image',
+                'trigger' => 'Add Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 3,
+            ],
+            'end_bg_experience_image' => [
+                'title' => 'Background Image',
+                'trigger' => 'Add Background Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'slide_primary_experience_image' => [
+                'title' => 'Primary Image',
+                'trigger' => 'Add Primary Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'slide_secondary_experience_image' => [
+                'title' => 'Secondary Image',
+                'trigger' => 'Add Secondary Image',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'compare_experience_image_1' => [
+                'title' => 'Compare Image 1',
+                'trigger' => 'Add Compare Image 1',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'compare_experience_image_2' => [
+                'title' => 'Compare Image 2',
+                'trigger' => 'Add Compare Image 2',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 1,
+            ],
+            'compare_experience_modal' => [
+                'title' => 'Compare experience modal',
+                'trigger' => 'Add Compare Experience Modal',
+                'component' => 'a17-block-experience_image_with_caption',
+                'max' => 2,
+            ],
+            'experience_modal' => [
+                'title' => 'Experience Modal',
+                'trigger' => 'Add Experience Modal',
+                'component' => 'a17-block-experience_modal',
+                'max' => 1,
+            ],
+            'primary_experience_modal' => [
+                'title' => 'Primary Experience Modal',
+                'trigger' => 'Add Primary Experience Modal',
+                'component' => 'a17-block-experience_modal',
+                'max' => 1,
+            ],
+            'secondary_experience_modal' => [
+                'title' => 'Secondary Experience Modal',
+                'trigger' => 'Add Secondary Experience Modal',
+                'component' => 'a17-block-experience_modal',
+                'max' => 1,
+            ],
         ],
         'crops' => [
             'image' => [
@@ -297,10 +400,39 @@ return [
                     ],
                 ],
             ],
+            'experience_image' => [
+                'default' => [
+                    [
+                        'name' => 'free',
+                        'ratio' => null,
+                    ],
+                    [
+                        'name' => '16:9',
+                        'ratio' => 16 / 9
+                    ],
+                    [
+                        'name' => '9:16',
+                        'ratio' => 9 / 16
+                    ],
+                    [
+                        'name' => '4:3',
+                        'ratio' => 4 / 3
+                    ],
+                    [
+                        'name' => '1:1',
+                        'ratio' => 1 / 1
+                    ],
+                    [
+                        'name' => '3:4',
+                        'ratio' => 3 / 4
+                    ]
+                ]
+            ],
         ],
         'files' => [
             'attachment',
             'video',
+            'image_sequence_file',
         ],
         'browser_route_prefixes' => [
             'events' => 'exhibitions_events',
@@ -421,4 +553,5 @@ return [
         'width' => 7500,
         'height' => 5000,
     ],
+    'imgix_source_host' => env('IMGIX_SOURCE_HOST', 'artic-web.imgix.net')
 ];

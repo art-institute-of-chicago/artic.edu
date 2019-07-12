@@ -8,13 +8,14 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
 class Article extends AbstractModel implements Feedable
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable, HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
@@ -162,11 +163,6 @@ class Article extends AbstractModel implements Feedable
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
-    }
-
-    public function apiElements()
-    {
-        return $this->morphToMany(\App\Models\ApiRelation::class, 'api_relatable')->withPivot(['position', 'relation'])->orderBy('position');
     }
 
     public function sidebarExhibitions()
@@ -335,6 +331,12 @@ class Article extends AbstractModel implements Feedable
                 "doc" => "author",
                 "type" => "string",
                 "value" => function () {return $this->author;},
+            ],
+            [
+                "name" => 'related',
+                "doc" => "Related Content",
+                "type" => "array",
+                "value" => function () { return $this->transformRelated(); },
             ],
         ];
     }

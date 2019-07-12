@@ -32,6 +32,14 @@
         'label' => 'Related event',
         'max' => 1
     ])
+    
+    @formField('browser', [
+        'routePrefix' => 'collection',
+        'max' => 1,
+        'name' => 'sidebarExperiences',
+        'label' => 'Related Interactive Features',
+        'moduleName' => 'interactiveFeatures.experiences',
+    ])
 @stop
 
 

@@ -23,7 +23,6 @@ class ClosureRepository extends ModuleRepository
 
     // public function prepareDatesField($fields, $f)
     // {
-    //     dd($fields);
     //     if (($datetime = DateTime::createFromFormat("Y-m-d", $fields[$f]))) {
     //         $fields[$f] = $datetime->format("Y-m-d");
     //     } else {

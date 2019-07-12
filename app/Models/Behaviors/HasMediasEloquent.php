@@ -11,7 +11,7 @@ trait HasMediasEloquent
     // Implement an image helper to avoid overwriting the Twill ones.
     // If it has an image run it through aic_convertFromImage
 
-    public function imageFront( ...$parameters ) {
+    public function imageFront(...$parameters ) {
         $imageObject = $this->imageObject(...$parameters);
         if ($imageObject) {
             $cropParams = [

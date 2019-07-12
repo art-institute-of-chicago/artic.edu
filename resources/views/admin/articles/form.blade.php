@@ -98,7 +98,7 @@
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'artwork', 'artworks', 'hr', 'citation', 'split_block',
-            'membership_banner', 'tour_stop', 'button', 'mobile_app'
+            'membership_banner', 'digital_label', 'tour_stop', 'button', 'mobile_app'
         ])
     ])
 
@@ -109,10 +109,20 @@
 
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
-            'name' => 'articles',
+            'name' => 'further_reading_items',
             'moduleName' => 'articles',
+            'endpoints' => [
+                [
+                    'label' => 'Article',
+                    'value' => '/collection/articles_publications/articles/browser'
+                ],
+                [
+                    'label' => 'Interactive feature',
+                    'value' => moduleRoute('interactiveFeatures.experiences', 'collection', 'browser')
+                ]
+            ],
             'max' => 4,
-            'label' => 'Related articles',
+            'label' => 'Related items',
         ])
 
     </a17-fieldset>
@@ -150,6 +160,24 @@
             'max' => 1
         ])
     </a17-fieldset>
+
+    @php
+        $relatedTos = $item->relatedTos;
+    @endphp
+    @if ($relatedTos->isNotEmpty())
+        <a17-fieldset id="related" title="Related">
+
+            <p>The following content has been related to this one. These will be used to bring this item into global search results.</p>
+
+            <ol style="margin: 1em 0; padding-left: 40px">
+                @foreach($relatedTos as $related)
+                    <li style="list-style-type: decimal; margin-bottom: 0.5em">
+                        {!! Str::title($related->subject_type) !!}: <a href="{!! route($related->subject_type .'.show', $related->subject) !!}">{{ $related->subject->title }}</a>
+                    </li>
+                @endforeach
+            </ol>
+        </a17-fieldset>
+    @endif
 
     @include('admin.partials.meta')
 

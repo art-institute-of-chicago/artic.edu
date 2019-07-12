@@ -7,7 +7,7 @@
     @foreach ($mainFeatures as $key => $item)
         @php ($countMain = $countMain + 1)
         @if ($item->enclosedItem())
-            @component('components.molecules._m-listing----'.$item->enclosedItem()->type)
+            @component('components.molecules._m-listing----' . strtolower($item->enclosedItem()->type))
                 @slot('item', $item->enclosedItem())
                 @if ($item->enclosedItem()->type === 'selection')
                     @slot('singleImage',true)
@@ -111,7 +111,7 @@
                       'xlarge' => '4',
                 )),
             ))
-             ))
+            ))
             @slot('gtmAttributes', 'data-gtm-event="' . $item->title . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')
         @endcomponent
     @endforeach
@@ -159,7 +159,7 @@
     @foreach ($theCollection as $k => $item)
     @php($countCollection = $countCollection+1)
         @if ($item->enclosedItem())
-            @component('components.molecules._m-listing----'.$item->enclosedItem()->type)
+            @component('components.molecules._m-listing----' . strtolower($item->enclosedItem()->type))
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item->enclosedItem())
                 @if ($item->enclosedItem()->type === 'selection')

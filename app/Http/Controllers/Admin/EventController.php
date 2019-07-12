@@ -115,6 +115,8 @@ class EventController extends ModuleController
             'eventAudiencesList' => $this->repository->getEventAudiencesList(),
             'eventLayoutsList' => $this->repository->getEventLayoutsList(),
             'eventProgramsList' => app(EventProgramRepository::class)->listAll('name'),
+            'eventAffiliateGroupsList' => app(EventProgramRepository::class)->affiliateGroups()->get()->pluck('name', 'id'),
+            'eventEntrancesList' => $this->repository->getEventEntrancesList(),
             'baseUrl' => $baseUrl,
         ];
     }

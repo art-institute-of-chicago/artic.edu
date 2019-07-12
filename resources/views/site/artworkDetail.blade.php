@@ -53,10 +53,10 @@
       {{-- dupe 😢 - shows medium+ --}}
       @component('components.blocks._inline-aside')
           @slot('variation', 'u-show@medium+')
-          @slot('type', $item->featuredRelated['type'])
+          @slot('type', title_case(str_replace("-", " ", $item->featuredRelated['type'])))
           @slot('items', $item->featuredRelated['items'])
           @slot('titleFont', "f-list-1")
-          @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
+          @slot('itemsMolecule', '_m-listing----'.strtolower($item->featuredRelated['type']))
           @slot('imageSettings', array(
               'fit' => 'crop',
               'ratio' => '16:9',
@@ -114,7 +114,7 @@
         @slot('type', $item->featuredRelated['type'])
         @slot('items', $item->featuredRelated['items'])
         @slot('titleFont', "f-list-1")
-        @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
+        @slot('itemsMolecule', '_m-listing----'.strtolower($item->featuredRelated['type']))
         @slot('imageSettings', array(
             'fit' => 'crop',
             'ratio' => '16:9',
@@ -170,7 +170,7 @@
             @slot('id','explore-further-pinboard')
             @slot('title', 'Artworks related to tag')
             @foreach ($exploreFurther as $item)
-                @component('components.molecules._m-listing----'.$item->type)
+                @component('components.molecules._m-listing----'.strtolower($item->type))
                     @slot('variation', 'o-pinboard__item')
                     @slot('item', $item)
                     @slot('imageSettings', array(

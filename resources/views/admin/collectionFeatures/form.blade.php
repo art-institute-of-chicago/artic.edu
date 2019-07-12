@@ -3,7 +3,7 @@
 @section('contentFields')
     @php
         $selectedFeature = 'articles';
-        foreach (['articles', 'artworks', 'selections'] as $featureType) {
+        foreach (['articles', 'artworks', 'selections', 'experiences'] as $featureType) {
             if (isset($form_fields['browsers'][$featureType]) && !empty($form_fields['browsers'][$featureType])) {
                 $selectedFeature = $featureType;
             }
@@ -27,6 +27,10 @@
             [
                 'value' => 'selections',
                 'label' => 'Highlight'
+            ],
+            [
+                'value' => 'experiences',
+                'label' => 'Interactive Feature'
             ],
         ]
     ])
@@ -67,6 +71,19 @@
             'moduleName' => 'selections',
             'name' => 'selections',
             'label' => 'Highlight'
+        ])
+    @endcomponent
+
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => '_featureType',
+        'renderForBlocks' => false,
+        'fieldValues' => 'experiences'
+    ])
+        @formField('browser', [
+            'routePrefix' => 'collection',
+            'moduleName' => 'interactiveFeatures.experiences',
+            'name' => 'experiences',
+            'label' => 'Interactive Feature'
         ])
     @endcomponent
 @stop

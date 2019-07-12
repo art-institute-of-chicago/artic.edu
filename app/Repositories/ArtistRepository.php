@@ -18,15 +18,58 @@ class ArtistRepository extends BaseApiRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateBrowser($object, $fields, 'articles');
+        $this->updateMultiBrowserApiRelated($object, $fields, 'related_items', [
+            'articles' => false,
+            'digitalPublications' => false,
+            'printedPublications' => false,
+            'educatorResources' => false,
+            'digitalLabels' => false,
+            'videos' => false,
+            'exhibitions' => true,
+        ]);
+
+        $this->updateMultiBrowserApiRelated($object, $fields, 'hidden_related_items', [
+            'exhibitions' => true,
+        ]);
+
         parent::afterSave($object, $fields);
     }
 
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
+
+        $fields['browsers']['related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'related_items', [
+            'digitalLabels' => [
+                'apiModel' => 'App\Models\Api\DigitalLabel',
+                'routePrefix' => 'collection',
+                'moduleName' => 'digitalLabels',
+            ],
+            'exhibitions' => [
+                'apiModel' => 'App\Models\Api\Exhibition',
+                'routePrefix' => 'exhibitions_events',
+                'moduleName' => 'exhibitions',
+            ],
+        ], [
+            'articles' => false,
+            'digitalPublications' => false,
+            'printedPublications' => false,
+            'educatorResources' => false,
+            'digitalLabels' => false,
+            'videos' => false,
+            'exhibitions' => true,
+        ]);
+
+        $fields['browsers']['hidden_related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'hidden_related_items', [
+            'exhibitions' => [
+                'apiModel' => 'App\Models\Api\Exhibition',
+                'routePrefix' => 'exhibitions_events',
+                'moduleName' => 'exhibitions',
+            ],
+        ], [
+            'exhibitions' => true,
+        ]);
+
         return $fields;
     }
-
 }

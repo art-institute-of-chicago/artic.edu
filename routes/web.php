@@ -6,10 +6,10 @@ Route::name('home')->get('/', 'HomeController@index');
 
 // Statics routes
 if (!app()->environment('production')) {
-  Route::get('/autocomplete/{slug?}', 'StaticsController@autocomplete');
-  Route::get('/collections/search/{slug?}', 'StaticsController@collectionsAutocomplete');
-  Route::get('/exhibitions_load_more', 'StaticsController@exhibitions_load_more');
-  Route::get('/statics/{slug?}', 'StaticsController@index');
+    Route::get('/autocomplete/{slug?}', 'StaticsController@autocomplete');
+    Route::get('/collections/search/{slug?}', 'StaticsController@collectionsAutocomplete');
+    Route::get('/exhibitions_load_more', 'StaticsController@exhibitions_load_more');
+    Route::get('/statics/{slug?}', 'StaticsController@index');
 }
 
 // Collection routes
@@ -17,11 +17,11 @@ Route::name('collection')->get('/collection', 'CollectionController@index');
 Route::name('collection.more')->get('/collection/more', 'CollectionController@index');
 /*Route::name('collection.autocomplete')->get('/collection/autocomplete', 'CollectionController@autocomplete');
 Route::name('collection.autocomplete')->get('/collection/autocomplete', function(){
-    return redirect('//aggregator-data-test.artic.edu/api/v1/autocomplete?q='.request('q'));
+return redirect('//aggregator-data-test.artic.edu/api/v1/autocomplete?q='.request('q'));
 });
-*/
+ */
 Route::group([
-   "domain" => config('api.base_uri')
+    "domain" => config('api.base_uri'),
 ], function () {
     Route::get("api/v1/msuggest")->name("collection.autocomplete");
 });
@@ -63,6 +63,7 @@ Route::name('search.artworks')->get('/search/artworks', 'SearchController@artwor
 Route::name('search.press-releases')->get('/search/press-releases', 'SearchController@pressReleases');
 Route::name('search.research-guides')->get('/search/research-guides', 'SearchController@researchGuides');
 Route::name('search.exhibitions')->get('/search/exhibitions', 'SearchController@exhibitions');
+Route::name('search.interactive-features')->get('/search/interactive-features', 'SearchController@interactiveFeatures');
 
 // Events routes
 Route::name('events')->get('/events', 'EventsController@index');
@@ -78,7 +79,7 @@ Route::name('articles')->get('/articles', 'ArticleController@index');
 Route::name('articles.show')->get('/articles/{id}/{slug?}', 'ArticleController@show');
 
 // Videos routes
-Route::name('videos')->get('videos', function() { return abort(404); });
+Route::name('videos')->get('videos', function () {return abort(404);});
 Route::name('videos.show')->get('/videos/{slug}', 'VideoController@show');
 
 // Exhibition history routes
@@ -89,7 +90,7 @@ Route::name('exhibitions.history.show')->get('exhibitions/history/{id}', 'Exhibi
 // Exhibition routes
 Route::name('exhibitions')->get('/exhibitions', 'ExhibitionsController@index');
 Route::name('exhibitions.upcoming')->get('/exhibitions/upcoming', 'ExhibitionsController@upcoming');
-Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/relatedEvents', 'ExhibitionsController@loadMoreRelatedEvents')->where('id', '(.*)');;
+Route::name('exhibitions.loadMoreRelatedEvents')->get('/exhibitions/{id}/relatedEvents', 'ExhibitionsController@loadMoreRelatedEvents')->where('id', '(.*)');
 Route::name('exhibitions.show')->get('/exhibitions/{id}/{slug?}', 'ExhibitionsController@show');
 
 // Artwork routes
@@ -159,14 +160,21 @@ Route::name('forms.email-subscriptions.thanks')->get('/email-subscriptions/thank
 Route::get('enews', function () {
     return redirect()->route('forms.email-subscriptions', request()->all());
 });
+// Digital labels
+Route::name('interactiveFeatures')->get('/interactive-features', 'InteractiveFeatureExperiencesController@index');
+Route::name('interactiveFeatures.showKiosk')->get('/interactive-features/kiosk/{slug}', 'InteractiveFeatureExperiencesController@show');
+Route::name('interactiveFeatures.test')->get('/interactive-features/test', 'InteractiveFeatureExperiencesController@test');
+Route::name('interactiveFeatures.show')->get('/interactive-features/{slug}', 'InteractiveFeatureExperiencesController@show');
 
 // Feed routes
 Route::feeds();
 
 // Generic Page w/ httpauth
-Route::name('about.press.art-institute-images')->middleware(['httpauth'])->get('/press/art-institute-images', function() {
+Route::name('about.press.art-institute-images')->middleware(['httpauth'])->get('/press/art-institute-images', function () {
     return App::make(App\Http\Controllers\GenericPagesController::class)->show('/press/art-institute-images');
 });
+
+Route::get('blablabla')->name('blablabla');
 
 // Generic Page
 Route::get('{any}', ['as' => 'genericPages.show', 'uses' => 'GenericPagesController@show'])->where('any', '.*');

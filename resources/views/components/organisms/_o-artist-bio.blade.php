@@ -2,9 +2,14 @@
     <div class="o-artist-bio__inner">
         @if ($item->imageFront('hero'))
             <figure class="o-artist-bio__image">
-                @component('components.atoms._img')
-                    @slot('image', $item->imageFront('hero'))
-                    @slot('settings', $imageSettings ?? '')
+                {{-- Mimicking an image block here. --}}
+                @component('components.molecules._m-media')
+                    @slot('variation', 'o-blocks__block')
+                    @slot('item', [
+                        'type' => 'image',
+                        'imageSettings' => $imageSettings ?? '',
+                        'media' => $item->imageFront('hero'),
+                    ])
                 @endcomponent
                 @if ($item->caption)
                 <figcaption>

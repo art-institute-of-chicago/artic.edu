@@ -20,7 +20,6 @@
           </a>
 
           <ul class="g-footer__link-list" aria-labelledby="h-footer-nav-primary">
-            <li>{!! $_hours['opening_today'] !!}</li>
             <li><a href="{{ $_pages['visit'] }}">Visit</a></li>
             <li><a href="{{ $_pages['exhibitions'] }}">Exhibitions and Events</a></li>
             <li><a href="{{ $_pages['collection'] }}">The Collection</a></li>

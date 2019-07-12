@@ -4,7 +4,7 @@ namespace App\Presenters;
 
 use Carbon\Carbon;
 
-use Michelf\SmartyPants;
+use App\Libraries\SmartyPants;
 
 abstract class BasePresenter
 {

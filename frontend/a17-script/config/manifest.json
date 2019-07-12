@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "app.css": {
+      "files": [
+        "scss/app.scss"
+      ]
+    },
+    "html4css.css": {
+      "files": [
+        "scss/html4css.scss"
+      ]
+    }
+  },
+  "paths": {
+    "source": "frontend/",
+    "icons": "icons/",
+    "styles": "scss/",
+    "scripts": "js/",
+    "dist": "dist/",
+    "toolkit": "toolkit/",
+    "iconsTemplate": false
+  },
+  "config": {
+    "devUrl": "http://fe.dev.a17.io",
+    "whitelist": [
+      "/wp-admin/admin-ajax.php"
+    ],
+    "blacklist": [
+      "/wp-admin/**"
+    ]
+  }
+}

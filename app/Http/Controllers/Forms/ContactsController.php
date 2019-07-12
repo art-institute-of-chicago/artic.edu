@@ -379,7 +379,6 @@ class ContactsController extends FormController
 
     private function getWeekDayArray($selected)
     {
-        // dd($selected);
         $days = array('mon' => 'Monday', 'tue' => 'Tuesday', 'wed' => 'Wednesday', 'thu' => 'Thursday', 'fri' => 'Friday');
 
         $list = [];

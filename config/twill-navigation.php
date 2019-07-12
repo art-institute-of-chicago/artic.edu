@@ -86,6 +86,10 @@ return [
                 'title' => 'History Landing',
                 'route' => 'admin.exhibitions_events.history',
             ],
+            'emailSeries' => [
+                'title' => 'Email Series',
+                'module' => true
+            ]
         ]
     ],
 
@@ -173,6 +177,10 @@ return [
                 'title' => 'Departments',
                 'module' => true,
             ],
+            // 'interactiveFeatures' => [
+            //     'title' => 'Interactive Features',
+            //     'module' => true,
+            // ],
         ]
     ],
 

@@ -1,0 +1,15 @@
+.o-closer-look {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  min-height: 100vh;
+  background: #000;
+  z-index: 1;
+}
+
+.o-closer-look,
+.o-closer-look ~ *,
+#footer {
+  backface-visibility: hidden;
+}

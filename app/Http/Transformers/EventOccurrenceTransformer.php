@@ -14,7 +14,7 @@ class EventOccurrenceTransformer extends ApiTransformer
         return [
             'id' => $item->id,
             'title' => $item->title,
-            'short_description' => $this->getString($item->short_description),
+            'short_description' => $this->getString($item->list_description),
             'description' => $item->present()->copy(),
             'image_url' => $item->present()->imageUrl() ?? null,
             'image_caption' => $item->hero_caption,
@@ -54,6 +54,12 @@ class EventOccurrenceTransformer extends ApiTransformer
         if (!isset($value)) {
             return null;
         }
+
+        // WEB-1053: `list_description` is WYSIWYG, `short_description` was not
+        $value = strip_tags($value);
+
+        // Remove &nbsp;
+        $value = str_replace("&nbsp;", "", $value);
 
         $value = trim($value);
 

@@ -28,4 +28,5 @@ class ModuleRepository extends BaseModuleRepository
 
         return parent::prepareFieldsBeforeSave($object, $fields);
     }
+
 }

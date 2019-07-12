@@ -18,6 +18,8 @@ class Artist extends BaseApiModel
     protected $presenter = 'App\Presenters\Admin\ArtistPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArtistPresenter';
 
+    protected $artworks;
+
     public function getTypeAttribute()
     {
         return 'artist';
@@ -25,11 +27,13 @@ class Artist extends BaseApiModel
 
     public function artworks($perPage = 20)
     {
-        return Search::query()
+        return $this->artworks ?? $this->artworks = Search::query()
             ->resources(['artworks'])
             ->forceEndpoint('search')
             ->byArtists($this->title)
-            ->aggregationClassifications(3)
+            ->aggregationClassifications(2)
+            ->aggregationPlaces(1)
+            ->aggregationStyles(1)
             ->getSearch($perPage);
     }
 

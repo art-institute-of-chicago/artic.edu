@@ -153,6 +153,7 @@ $include-icons: false; // see icons.scss!
 @import 'organisms/o-sticky-filters';
 @import 'organisms/o-collapsing-nav';
 @import 'organisms/o-search-results';
+@import 'organisms/o-closer-look';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 
@@ -201,3 +202,5 @@ $include-icons: false; // see icons.scss!
 @import 'state/s-scroll-direction';
 @import 'state/s-page-nav';
 @import 'state/s-sticky-filters';
+@import 'state/s-closer-look-scroll-blocked';
+@import 'state/s-closer-look-footer-stuck';

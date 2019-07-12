@@ -23,6 +23,7 @@ class BaseService
         'ef-classification_ids',
         'ef-artist_ids',
         'ef-style_ids',
+        'ef-place_ids',
         'ef-date_ids',
         'ef-color_ids',
         'ef-most-similar_ids',
@@ -65,24 +66,47 @@ class BaseService
 
     public function tags()
     {
-        $tags = collect([]);
+        $tags = [];
 
-        // Build Classification Tags
-        if ($this->resource->id) {
-            foreach($this->aggregations()->classifications->buckets as $index => $item) {
-                if ($index == self::MAX_TAGS) {
-                    break;
-                }
+        if (get_class($this->resource) == \App\Models\Api\Artist::class) {
+            // Build Most Similar Tag
+            $tags['most-similar'] = collect(['most-similar' => 'Most Similar']);
 
-                $tags = $tags->merge(
-                    [$item->key => ucfirst($item->key)]
-                );
-            };
+            // Build Style Tag
+            $style = $this->resource->artworks()->getMetadata('aggregations')->styles->buckets[0]->key ?? false;
+            if ($style) {
+                $tags['style'] = collect([$style => $style]);
+            }
+
+            // Build Place tag
+            $place = $this->resource->artworks()->getMetadata('aggregations')->place_of_origin->buckets[0]->key ?? false;
+            if ($place) {
+                $tags['place'] = collect([$place => $place]);
+            }
+
+            // Build Date Tags
+            if ($this->resource->birth_date && $this->resource->birth_date) {
+                $tags['date'] = collect([$this->resource->birth_date .'|' .$this->resource->death_date => printYear($this->resource->birth_date) ."–" .printYear($this->resource->death_date)]);
+            }
+        }
+        else {
+            // Build Classification Tags
+            $classification = collect([]);
+            if ($this->resource->id) {
+                foreach($this->aggregations()->classifications->buckets as $index => $item) {
+                    if ($index == self::MAX_TAGS) {
+                        break;
+                    }
+
+                    $classification = $classification->merge(
+                        [$item->key => ucfirst($item->key)]
+                    );
+                };
+            }
+            $tags['classification'] = $classification;
         }
 
-        return [
-            'classification' => $tags,
-        ];
+        return $tags;
     }
 
     public function collection($parameters = [])
@@ -99,13 +123,19 @@ class BaseService
 
         if ($active) {
             if ($parameters->get('ef-most-similar_ids')) {
-                $query->byMostSimilar($this->resource->id);
+                $query->byMostSimilar($this->resource->id, get_class($this->resource));
             }
             else {
+                $years = explode('|', $parameters->get('ef-date_ids'));
+
+                $beforeYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[0] : incrementBefore($parameters->get('ef-date_ids'));
+                $afterYear = Str::contains($parameters->get('ef-date_ids'), '|') ? $years[1] : incrementAfter($parameters->get('ef-date_ids'));
+
                 $query->byClassifications($parameters->get('ef-classification_ids'))
                     ->byArtists($parameters->get('ef-artist_ids'))
                     ->byStyles($parameters->get('ef-style_ids'))
-                    ->yearRange(incrementBefore($parameters->get('ef-date_ids')), incrementAfter($parameters->get('ef-date_ids')))
+                    ->byPlaces($parameters->get('ef-place_ids'))
+                    ->yearRange($beforeYear, $afterYear)
                     ->byColor($parameters->get('ef-color_ids'));
             }
         } else {
@@ -131,6 +161,9 @@ class BaseService
                 case 'style':
                     $query->byStyles($id);
                     break;
+                case 'place':
+                    $query->byPlaces($id);
+                    break;
                 case 'date':
                     $query->dateRange(incrementBefore($id), incrementAfter($id));
                     break;
@@ -138,7 +171,7 @@ class BaseService
                     $query->byColor($id);
                     break;
                 case 'most-similar':
-                    $query->byMostSimilar($this->resource->id);
+                    $query->byMostSimilar($this->resource->id, get_class($this->resource));
                     break;
             }
         }
@@ -195,6 +228,9 @@ class BaseService
                         break;
                     case 'style':
                         return route('collection', ['style_ids' => $id]);
+                        break;
+                    case 'place':
+                        return route('collection', ['place_ids' => $id]);
                         break;
                     case 'date':
                         return route('collection', ['date-start' => incrementBefore($id), 'date-end' => incrementAfter($id)]);

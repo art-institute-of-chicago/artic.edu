@@ -28,7 +28,7 @@
     @slot('name', 'collection-search')
     @slot('value', request('q'))
     @slot('behaviors','autocomplete')
-    @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
+    @slot('dataAttributes','data-autocomplete-url="'. secureRoute('collection.autocomplete') .'"')
     @slot('gtmAttributes', 'data-gtm-event="click" data-gtm-event-action="' . $seo->title .'" data-gtm-event-category="collection-search"')
     @slot('action', route('collection'))
 @endcomponent
@@ -126,7 +126,7 @@
         @slot('value', request('q'))
         @slot('action', route('collection'))
         @slot('behaviors','autocomplete')
-        @slot('dataAttributes','data-autocomplete-url="'. route('collection.autocomplete') .'"')
+        @slot('dataAttributes','data-autocomplete-url="'. secureRoute('collection.autocomplete') .'"')
         @slot('gtmAttributes', 'data-gtm-old-label="click" data-gtm-event-action="discover-art-artists" data-gtm-event-category="collection-search"')
     @endcomponent
     <div class="o-collection-search__scroll-area">
@@ -154,7 +154,7 @@
 @endif
 
 
-@if ($featuredArticles)
+@if ($featuredItems)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all articles', 'href' => route('articles'))))
         Featured
@@ -162,13 +162,13 @@
     @component('components.atoms._hr')
     @endcomponent
     <div class="o-feature-plus-4">
-        @if ($featuredArticlesHero)
-        @component('components.molecules._m-listing----article')
+        @if ($featuredItemsHero)
+        @component('components.molecules._m-listing----' . strtolower($featuredItemsHero->type))
             @slot('tag', 'div')
             @slot('titleFont', 'f-headline-editorial')
             @slot('captionFont', 'f-body-editorial')
             @slot('variation', 'o-feature-plus-4__feature')
-            @slot('item', $featuredArticlesHero)
+            @slot('item', $featuredItemsHero)
             @slot('imageSettings', array(
                 'fit' => 'crop',
                 'ratio' => '16:9',
@@ -181,14 +181,14 @@
                       'xlarge' => '28',
                 )),
             ))
-            @slot('gtmAttributes', 'data-gtm-event="' . $featuredArticlesHero->title . '" data-gtm-event-action="feature" data-gtm-event-category="collection-nav"')
+            @slot('gtmAttributes', 'data-gtm-event="' . $featuredItemsHero->title . '" data-gtm-event-action="feature" data-gtm-event-category="collection-nav"')
         @endcomponent
         @endif
         <h3 class="sr-only" id="h-featured-plus-1">Featured articles</h3>
         <ul class="o-feature-plus-4__items-1" aria-labelledby="h-featured-plus-1">
-        @foreach ($featuredArticles as $item)
+        @foreach ($featuredItems as $item)
             @if ($loop->index < 2)
-                @component('components.molecules._m-listing----article-minimal')
+                @component('components.molecules._m-listing----' . strtolower($item->type) . '-minimal')
                     @slot('item', $item)
                     @slot('imageSettings', array(
                         'fit' => 'crop',
@@ -209,7 +209,7 @@
         </ul>
         <h3 class="sr-only" id="h-featured-plus-2">More featured articles</h3>
         <ul class="o-feature-plus-4__items-2" aria-labelledby="h-featured-plus-2">
-        @foreach ($featuredArticles as $item)
+        @foreach ($featuredItems as $item)
             @if ($loop->index > 1)
                 @component('components.molecules._m-listing----article-minimal')
                     @slot('item', $item)

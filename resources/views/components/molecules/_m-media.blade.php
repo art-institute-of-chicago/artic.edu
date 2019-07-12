@@ -6,6 +6,14 @@
     $fullscreen = (isset($item['fullscreen']) and $item['fullscreen']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
 
+    // WEB-912: For Gallery Items; image module is an array, but gallery item is object?
+    if (!is_array($item) && !empty($item->present()->input('videoUrl')))
+    {
+        $type = 'embed';
+        $poster = $media;
+        $media['embed'] = \App\Facades\EmbedConverterFacade::convertUrl($item->present()->input('videoUrl'));
+    }
+
     if ($type === 'embed' and strrpos($media['embed'],'api.soundcloud.com')) {
         $size = 's';
     }

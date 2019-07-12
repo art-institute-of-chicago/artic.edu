@@ -4,7 +4,10 @@
         ['fieldset' => 'ticketing', 'label' => 'Ticketing Information'],
         ['fieldset' => 'dates', 'label' => 'Date Rules'],
         ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
-        ['fieldset' => 'related_elements', 'label' => 'Right rail related slot'],
+        ['fieldset' => 'related_elements', 'label' => 'Related'],
+        ['fieldset' => 'metadata', 'label' => 'Metadata'],
+        ['fieldset' => 'sales_site', 'label' => 'Sales Site'],
+        ['fieldset' => 'event_series', 'label' => 'Email Series'],
     ]
 ])
 
@@ -47,36 +50,44 @@
 
     <hr>
 
+    <p><strong>Note:</strong> For the following three fields, please keep character count below 255.</p>
+
     @formField('wysiwyg', [
         'name' => 'description',
         'label' => 'Header',
         'maxlength' => 255,
-        'note' => 'Max 255 characters',
+        'note' => 'Used by website, displayed above main content',
         'toolbarOptions' => [
             'italic'
         ],
     ])
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'short_description',
         'label' => 'Short description',
-        'note' => 'Used for SEO',
-        'maxlength' => 255
+        'note' => 'Used by Sales Site and for event emails',
+        'maxlength' => 255,
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('wysiwyg', [
         'name' => 'list_description',
         'label' => 'Listing description',
         'maxlength'  => 255,
-        'note' => 'Max 255 characters',
+        'note' => 'Used by website and Mobile App for listings',
         'toolbarOptions' => [
             'italic'
         ],
     ])
 
+    <hr>
+
     @formField('input', [
         'name' => 'location',
-        'label' => 'Location'
+        'label' => 'Location',
+        'note' => 'Displayed in left sidebar',
     ])
 
     @formField('block_editor', [
@@ -95,7 +106,7 @@
         @formField('select', [
             'name' => 'event_type',
             'label' => 'Event type (preferred)',
-            'options' => $eventTypesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'options' => $eventTypesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
             'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
 
@@ -109,7 +120,7 @@
         @formField('select', [
             'name' => 'audience',
             'label' => 'Event audience (preferred)',
-            'options' => $eventAudiencesList->concat([\App\Models\Event::NULL_OPTION => '[None]']),
+            'options' => $eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
             'default' => \App\Models\Event::NULL_OPTION, // no effect?
         ])
 
@@ -154,7 +165,7 @@
         @formField('input', [
             'name' => 'rsvp_link',
             'label' => 'Custom tickets link',
-            'note' => 'Use this to set a custom ticket link and/or override the sales.artic.edu "Buy tickets link"'
+            'note' => 'Only use this field when using an alternate sales platform, e.g., Eventbrite.'
         ])
 
         @formField('input', [
@@ -164,10 +175,25 @@
             'note' => 'Save and refresh the page to see the link preview',
         ])
 
-        @formField('input', [
+        @formField('radios', [
             'name' => 'buy_button_text',
-            'label' => 'Button text',
-            'note' => 'Optional, will override default button text, based on labels'
+            'label' => 'Sales button text',
+            'default' => 'Buy Tickets',
+            'inline' => true,
+            'options' => [
+                [
+                    'value' => 'Buy Tickets',
+                    'label' => 'Buy Tickets'
+                ],
+                [
+                    'value' => 'Register',
+                    'label' => 'Register'
+                ],
+                [
+                    'value' => 'RSVP',
+                    'label' => 'RSVP'
+                ],
+            ]
         ])
 
         <hr/>
@@ -179,11 +205,11 @@
             'toolbarOptions' => ['bold']
         ])
 
-        <p>If you attach an event from the ticketing system, we will automatically display the date and time of when its registration opens above this field's text in the sidebar.</p>
+        <p>If you attach an event from the ticketing system, we will automatically display the date and time of when its registration opens above this text in the sidebar.</p>
 
         <hr/>
         <p>Event Tags<br/>
-        <span class="f--note f--small">Will display a tag above the event title, and as default button text</span></p>
+        <span class="f--note f--small">Will display a tag above the event title</span></p>
 
         @formField('checkbox', [
             'name' => 'is_member_exclusive',
@@ -192,7 +218,7 @@
 
         <hr/>
         <p>Event Labels<br/>
-        <span class="f--note f--small">Will display a label beneath the event time, and as default button text</span></p>
+        <span class="f--note f--small">Will display a label beneath the event time</span></p>
 
         @formField('checkbox', [
             'name' => 'is_registration_required',
@@ -205,8 +231,13 @@
         ])
 
         @formField('checkbox', [
-            'name' => 'is_free',
+            'name' => 'is_rsvp',
             'label' => 'RSVP',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_free',
+            'label' => 'Free',
         ])
 
         <p>If you attach an event from the ticketing system, we will handle "Sold Out" for you automatically.</p>
@@ -220,38 +251,9 @@
             'label' => 'Is Private',
         ])
 
-        <hr/>
-        <p>Sales site fields</p>
-
         @formField('checkbox', [
-            'name' => 'is_admission_required',
-            'label' => 'Is Admission Required',
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_after_hours',
-            'label' => 'Is After Hours',
-        ])
-
-        @formField('select', [
-            'name' => 'email_series',
-            'label' => 'Add to event email series?',
-            'options' => [
-                [
-                    'value' => 'Yes',
-                    'label' => 'Yes'
-                ],
-                [
-                    'value' => 'No',
-                    'label' => 'No'
-                ],
-            ],
-            'default' => 'No',
-        ])
-
-        @formField('input', [
-            'name' => 'survey_link',
-            'label' => 'Survey URL',
+            'name' => 'is_sales_button_hidden',
+            'label' => 'Hide Sales Button',
         ])
     </a17-fieldset>
 
@@ -346,5 +348,176 @@
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
 
     </a17-fieldset>
+
+    <a17-fieldset id="sales_site" title="Sales site fields">
+        @formField('checkbox', [
+            'name' => 'is_admission_required',
+            'label' => 'Is Admission Required',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'is_after_hours',
+            'label' => 'Is After Hours',
+        ])
+
+        @formField('select', [
+            'name' => 'entrance',
+            'label' => 'Entrance',
+            'options' => $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
+            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+        ])
+    </a17-fieldset>
+
+{{--
+    <a17-fieldset id="event_series" title="Event series emails">
+        @formField('checkbox', [
+            'name' => 'add_to_event_email_series',
+            'label' => 'Add to event email series',
+        ])
+
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => 'add_to_event_email_series',
+            'renderForBlocks' => false,
+            'fieldValues' => true
+        ])
+            <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
+
+            <p>Please select the emails you wish to opt-in to:</p>
+
+            @foreach ( \App\Models\EmailSeries::all() as $series)
+
+                @php
+                    $currentSeriesName = 'email_series_' . $series->id;
+                @endphp
+
+                @formField('checkbox', [
+                    'name' => $currentSeriesName,
+                    'label' => $series->title,
+                ])
+
+                @component('twill::partials.form.utils._connected_fields', [
+                    'fieldName' => $currentSeriesName,
+                    'renderForBlocks' => false,
+                    'fieldValues' => true
+                ])
+
+                    <div style="padding-left: 35px">
+
+                    @foreach ([
+                        'non_member' => 'Non-Members',
+                        'member' => 'Members',
+                        'sustaining_fellow' => 'Sustaining Fellows',
+                        'affiliate_member' => 'Affiliate Members',
+                    ] as $subFieldName => $subFieldLabel)
+
+                        @continue(!$series->{'show_' . $subFieldName})
+
+                        @formField('checkbox', [
+                            'name' => $currentSeriesName . '_send_' . $subFieldName,
+                            'label' => 'Send to ' . $subFieldLabel,
+                        ])
+
+                        @component('twill::partials.form.utils._connected_fields', [
+                            'fieldName' => $currentSeriesName . '_send_' . $subFieldName,
+                            'renderForBlocks' => false,
+                            'fieldValues' => true
+                        ])
+
+                            <div style="padding-left: 35px">
+
+                            @if ($series->use_short_description)
+
+                                @formField('radios', [
+                                    'name' => $currentSeriesName . '_' . $subFieldName . '_override',
+                                    'label' => '', // Empty to save vertical space
+                                    'default' => 'default',
+                                    'inline' => true,
+                                    'options' => [
+                                        [
+                                            'value' => 'default',
+                                            'label' => 'Use short description'
+                                        ],
+                                        [
+                                            'value' => 'custom',
+                                            'label' => 'Use custom copy'
+                                        ],
+                                    ]
+                                ])
+
+                                @component('twill::partials.form.utils._connected_fields', [
+                                    'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override',
+                                    'renderForBlocks' => false,
+                                    'fieldValues' => 'custom'
+                                ])
+                                    @formField('wysiwyg', [
+                                        'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
+                                        'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
+                                        'toolbarOptions' => [
+                                            'bold', 'italic', 'link'
+                                        ],
+                                        'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
+                                    ])
+                                @endcomponent
+
+                            @else
+
+                                @formField('wysiwyg', [
+                                    'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
+                                    'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
+                                    'toolbarOptions' => [
+                                        'bold', 'italic', 'link'
+                                    ],
+                                    'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
+                                ])
+
+                            @endif
+
+                            </div>
+
+                        @endcomponent
+
+                    @endforeach
+
+                    </div>
+
+                @endcomponent
+
+            @endforeach
+
+            <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
+
+            @formField('select', [
+                'name' => 'affiliate_group_id',
+                'label' => 'Affiliate Group',
+                'options' => $eventAffiliateGroupsList->put(
+                    strval(\App\Models\Event::NULL_OPTION_AFFILIATE_GROUP), '[None]'
+                ),
+                'default' => \App\Models\Event::NULL_OPTION_AFFILIATE_GROUP, // no effect?
+                'note' => 'Will automatically replace `%%AffiliateGroup%%` in email series fields',
+            ])
+
+            @formField('checkbox', [
+                'name' => 'is_presented_by_affiliate',
+                'label' => 'Include "This event is presented by the %%AffiliateGroup%%." in all pre-registration event emails',
+            ])
+
+            @formField('input', [
+                'name' => 'join_url',
+                'label' => 'Join URL'
+            ])
+
+            @formField('input', [
+                'name' => 'survey_url',
+                'label' => 'Questionnaire Survey URL',
+                'note' => 'Sent 1 day after user registers if URL is populated',
+            ])
+
+            <br>
+
+            <p><b>Note:</b> This is the questionnaire for event options or guest names, not the Event Response Survey.</p>
+        @endcomponent
+
+    </a17-fieldset>
+--}}
 
 @endsection

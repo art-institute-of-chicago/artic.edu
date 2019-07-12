@@ -20,14 +20,21 @@ class AddPublicationDateToPrintedCatalogs extends Migration
             $table->date('publication_date')->nullable()->after('publication_year');
         });
 
-        foreach (PrintedPublication::all() as $catalog) {
-            $catalog->publication_date = empty($catalog->publication_year) ? null : (new Carbon())
-                ->year($catalog->publication_year)
-                ->month(1)
-                ->day(1)
-                ->startOfDay();
-            $catalog->save();
+        if (Schema::hasColumn('printed_catalog_slugs', 'printed_catalog_id')) {
+            Schema::table('printed_catalog_slugs', function (Blueprint $table) {
+                $table->renameColumn('printed_catalog_id', 'printed_publication_id');
+            });
         }
+
+        // TODO: Avoid referencing models in migrations!
+        // foreach (PrintedPublication::all() as $catalog) {
+        //     $catalog->publication_date = empty($catalog->publication_year) ? null : (new Carbon())
+        //         ->year($catalog->publication_year)
+        //         ->month(1)
+        //         ->day(1)
+        //         ->startOfDay();
+        //     $catalog->save();
+        // }
     }
 
     /**

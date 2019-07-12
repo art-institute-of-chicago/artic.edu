@@ -11,17 +11,15 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
-
 Route::get('/', function () {
     return redirect('/api/v1');
 });
-
 
 /**
  * @SWG\Swagger(
@@ -116,6 +114,7 @@ Route::get('/', function () {
  *        @SWG\Property(property="is_after_hours", type="boolean", description="Is After Hours?"),
  *        @SWG\Property(property="is_ticketed", type="boolean", description="Is Tickted?"),
  *        @SWG\Property(property="is_free", type="boolean", description="Is Free?"),
+ *        @SWG\Property(property="is_rsvp", type="boolean", description="Is RSVP?"),
  *        @SWG\Property(property="is_member_exclusive", type="boolean", description="Is Member Exclusive?"),
  *        @SWG\Property(property="is_registration_required", type="boolean", description="Is Registration Required?"),
  *        @SWG\Property(property="hidden", type="boolean", description="Hidden?"),
@@ -296,7 +295,7 @@ Route::get('/', function () {
  *        @SWG\Property(property="content", type="json", description="Content"),*
  *     ),
  *
-  *     @SWG\Definition(
+ *     @SWG\Definition(
  *        definition="PrintedPublication",
  *        type="object",
  *        required={"id"},
@@ -313,11 +312,10 @@ Route::get('/', function () {
  *        @SWG\Property(property="last_updated_at", type="datetime", description="Updated Timestamp"),
  *        @SWG\Property(property="content", type="json", description="Content"),*
  *     ),
-* )
+ * )
  */
 
-Route::group(['prefix' => 'v1'], function()
-{
+Route::group(['prefix' => 'v1'], function () {
 
     Route::get('/', function () {
         return "API";
@@ -561,6 +559,21 @@ Route::group(['prefix' => 'v1'], function()
 
     /**
      *
+     * - sponsors ------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/sponsors",
+     *      tags={"sponsors"},
+     *      operationId="getSponsors",
+     *      summary="List all sponsors",
+     *      @SWG\Response(response="200", description="List all sponsors")
+     *  )
+     *
+     */
+    Route::get('sponsors', 'API\SponsorsController@index');
+
+    /**
+     *
      * - event-programs ------------------------------------------------------
      *
      * @SWG\Get(
@@ -690,7 +703,9 @@ Route::group(['prefix' => 'v1'], function()
 
     Route::get('staticpages/{id}', 'API\StaticPagesController@show');
 
+    Route::get('emailseries', 'API\EmailSeriesController@index');
 
+    Route::get('emailseries/{id}', 'API\EmailSeriesController@show');
 
     /**
      *
@@ -928,7 +943,6 @@ Route::group(['prefix' => 'v1'], function()
      */
     Route::get('digitalpublications/{id}', 'API\DigitalPublicationsController@show');
 
-
     /**
      *
      * - printed publications ------------------------------------------------------
@@ -976,4 +990,52 @@ Route::group(['prefix' => 'v1'], function()
      */
     Route::get('printedpublications/{id}', 'API\PrintedPublicationsController@show');
 
+    /**
+     *
+     * - videos --------------------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/videos",
+     *      tags={"pages"},
+     *      operationId="getVideos",
+     *      summary="List all videos",
+     *      @SWG\Response(response="200", description="List all videos publications")
+     *  )
+     *
+     */
+    Route::get('videos', 'API\VideosController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/videos/deleted",
+     *      tags={"pages"},
+     *      operationId="getDeletedVideos",
+     *      summary="List all deleted videos",
+     *      @SWG\Response(response="200", description="List all deleted videos")
+     *  )
+     *
+     */
+    Route::get('videos/deleted', 'API\VideosController@deleted');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/videos/{id}",
+     *      tags={"pages"},
+     *      operationId="getVideo",
+     *      summary="Fetch video details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific video")
+     *  )
+     *
+     */
+    Route::get('videos/{id}', 'API\VideosController@show');
+
+    Route::options('seamless-images/{id}', 'SeamlessImagesController@byFile');
+    Route::get('seamless-images/{id}', 'SeamlessImagesController@byFile');
 });

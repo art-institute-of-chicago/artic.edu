@@ -77,7 +77,7 @@
           @slot('type', $item->featuredRelated['type'])
           @slot('items', $item->featuredRelated['items'])
           @slot('titleFont', "f-list-1")
-          @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
+          @slot('itemsMolecule', '_m-listing----'.strtolower($item->featuredRelated['type']))
           @slot('imageSettings', array(
               'fit' => 'crop',
               'ratio' => '16:9',
@@ -134,7 +134,7 @@
         @slot('type', $item->present()->featuredRelated['type'])
         @slot('items', $item->featuredRelated['items'])
         @slot('titleFont', "f-list-1")
-        @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
+        @slot('itemsMolecule', '_m-listing----'.strtolower($item->featuredRelated['type']))
         @slot('imageSettings', array(
             'fit' => 'crop',
             'ratio' => '16:9',
@@ -413,7 +413,7 @@
     @endcomponent
 @endif
 
-@if ($item->articles()->count())
+@if ($featuredArticles)
     @component('components.molecules._m-title-bar')
         Further Reading
     @endcomponent
@@ -423,8 +423,8 @@
         @slot('cols_large','4')
         @slot('cols_xlarge','4')
         @slot('behavior','dragScroll')
-        @foreach ($item->articles as $item)
-            @component('components.molecules._m-listing----article')
+        @foreach ($featuredArticles as $item)
+            @component('components.molecules._m-listing----' . strtolower($item->type))
                 @slot('item', $item)
                 @slot('imageSettings', array(
                     'fit' => 'crop',
@@ -460,7 +460,7 @@
             @slot('cols_xlarge','4')
             @slot('maintainOrder','false')
             @foreach ($article->exploreFurther['items'] as $item)
-                @component('components.molecules._m-listing----'.$item->type)
+                @component('components.molecules._m-listing----' . strtolower($item->type))
                     @slot('variation', 'o-pinboard__item')
                     @slot('item', $item)
                     @slot('imageSettings', array(
