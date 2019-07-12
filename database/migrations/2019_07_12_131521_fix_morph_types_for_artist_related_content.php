@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdatePolymorphicRelationsForPublicationsRename extends Migration
+class FixMorphTypesForArtistRelatedContent extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class UpdatePolymorphicRelationsForPublicationsRename extends Migration
      */
     public function up()
     {
-        $this->renameMorphTypes('App\Models\DigitalCatalog', 'digitalPublications');
-        $this->renameMorphTypes('App\Models\PrintedCatalog', 'printedPublications');
+        $this->renameMorphTypes('App\Models\EducatorResource', 'educatorResources');
+        $this->renameMorphTypes('App\Models\Video', 'videos');
+        $this->renameMorphTypes('App\Models\Exhibition', 'exhibitions');
     }
 
     /**
@@ -24,8 +25,9 @@ class UpdatePolymorphicRelationsForPublicationsRename extends Migration
      */
     public function down()
     {
-        $this->renameMorphTypes('digitalPublications', 'App\Models\DigitalCatalog');
-        $this->renameMorphTypes('printedPublications', 'App\Models\PrintedCatalog');
+        $this->renameMorphTypes('educatorResources', 'App\Models\EducatorResource');
+        $this->renameMorphTypes('videos', 'App\Models\Video');
+        $this->renameMorphTypes('exhibitions', 'App\Models\Exhibition');
     }
 
     /**
