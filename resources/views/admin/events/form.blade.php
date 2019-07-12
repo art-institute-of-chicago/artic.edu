@@ -66,7 +66,6 @@
         'name' => 'short_description',
         'label' => 'Short description',
         'note' => 'Used by Sales Site and for event emails',
-        'maxlength' => 255,
         'toolbarOptions' => [
             'italic'
         ],
