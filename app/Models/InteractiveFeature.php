@@ -25,7 +25,6 @@ class InteractiveFeature
         'content',
         'published',
         'title',
-        'datahub_id',
         'sub_title',
         'archived',
         'grouping_background_color',
@@ -59,29 +58,6 @@ class InteractiveFeature
 
     public $type = 'label';
     public $checkboxes = ['published'];
-
-    public function getUrl()
-    {
-        return route('interactiveFeatures.show', ['id' => $this->datahub_id, 'slug' => str_slug($this->title, '-')]);
-    }
-
-    protected function transformMappingInternal()
-    {
-        return [
-            [
-                "name" => 'datahub_id',
-                "doc" => "Type",
-                "type" => "string",
-                "value" => function () {return $this->datahub_id;},
-            ],
-            [
-                "name" => 'image_url',
-                "doc" => "Image URL",
-                "type" => "string",
-                "value" => function () {return starts_with($this->image('image'), 'http') ? $this->image('image') : null;},
-            ],
-        ];
-    }
 
     public function experiences()
     {
