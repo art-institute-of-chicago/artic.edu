@@ -367,7 +367,6 @@
         ])
     </a17-fieldset>
 
-{{--
     <a17-fieldset id="event_series" title="Event series emails">
         @formField('checkbox', [
             'name' => 'add_to_event_email_series',
@@ -517,6 +516,5 @@
         @endcomponent
 
     </a17-fieldset>
---}}
 
 @endsection
