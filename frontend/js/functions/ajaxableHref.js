@@ -15,7 +15,11 @@ const ajaxableHref = function(href, event) {
   // sometimes the target is an element within the anchor
   var target = event.target;
   if (target.tagName !== 'A') {
-    target = target.closest('a');
+    if (target === document) {
+      return true;
+    } else {
+      target = target.closest('a');
+    }
   }
   if (target === null) {
     return false;
