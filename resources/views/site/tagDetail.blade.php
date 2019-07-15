@@ -73,7 +73,7 @@
     @endcomponent
 @endif
 
-@if ($relatedItems)
+@if (isset($relatedItems))
     @component('components.molecules._m-title-bar')
         Related Content
     @endcomponent
