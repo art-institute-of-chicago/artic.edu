@@ -138,10 +138,10 @@ class SearchController extends BaseScopedController
                     $item->url = route('exhibitions.show', $item);
                     $item->section = 'Exhibitions and Events';
                     break;
-                case 'DigitalLabel':
-                    $item->url = route('interactiveFeatures.show', $item);
-                    $item->section = 'Interactive Features';
-                    break;
+                // case 'DigitalLabel':
+                //     $item->url = route('interactiveFeatures.show', $item);
+                //     $item->section = 'Interactive Features';
+                //     break;
                 case 'Artist':
                     $item->url = route('artists.show', $item);
                     $item->section = 'Artists';
@@ -366,7 +366,7 @@ class SearchController extends BaseScopedController
         $aggregations = $all->getMetadata('aggregations')->types->buckets;
 
         array_push($links, $this->buildLabel('All', $all->getMetadata('pagination')->total, route('search', ['q' => request('q')]), $active == 'all'));
-        
+
         if (extractAggregation($aggregations, 'agents')) {
             array_push($links, $this->buildLabel('Artist', extractAggregation($aggregations, 'agents'), route('search.artists', ['q' => request('q')]), $active == 'artists'));
         }
@@ -394,7 +394,7 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'press-releases')) {
             array_push($links, $this->buildLabel('Press Releases', extractAggregation($aggregations, 'press-releases'), route('search.press-releases', ['q' => request('q')]), $active == 'press-releases'));
         }
-        
+
         array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
 
         return $links;
