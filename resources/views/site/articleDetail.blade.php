@@ -413,7 +413,7 @@
     @endcomponent
 @endif
 
-@if ($featuredArticles)
+@if (isset($featuredArticles) && $featuredArticles)
     @component('components.molecules._m-title-bar')
         Further Reading
     @endcomponent
