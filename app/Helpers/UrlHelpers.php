@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
+
 if (!function_exists('currentUrlWithQuery')) {
     function currentUrlWithQuery($options = [])
     {
@@ -23,7 +25,7 @@ if (!function_exists('secureRoute')) {
     function secureRoute($routeName)
     {
         $url = url();
-        $defaultScheme = $url->formatScheme();
+        $defaultScheme = Request::getScheme();
         $url->forceScheme('https');
         $route = $url->route($routeName);
         $url->forceScheme($defaultScheme);
