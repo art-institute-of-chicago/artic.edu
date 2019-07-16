@@ -19,6 +19,7 @@ class Department extends AbstractModel
         'caption',
         'meta_title',
         'meta_description',
+        'pinboard_title',
         'should_append_artworks',
         'max_artworks',
     ];

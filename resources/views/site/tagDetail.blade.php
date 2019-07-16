@@ -30,7 +30,7 @@
 
 @unless ($artworks->isEmpty())
     @component('components.molecules._m-title-bar')
-        Artworks
+        {{ $item->getAugmentedModel()->pinboard_title ?? 'Artworks' }}
     @endcomponent
 
     @component('components.organisms._o-pinboard')

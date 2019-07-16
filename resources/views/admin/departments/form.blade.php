@@ -32,7 +32,13 @@
 @section('fieldsets')
     <a17-fieldset id="artworks" title="Artworks">
 
-        <p>Use this field to control which artworks are displayed on the page. The order specified here will be preserved. If there are no artworks selected here, we will filter artworks from CITI by departmental publish category and order the results by relevance.</p>
+        @formField('input', [
+            'name' => 'pinboard_title',
+            'label' => 'Artwork Pinboard Title',
+            'note' => 'Defaults to "Artworks" if empty',
+        ])
+
+        <p>Use the field below to control which artworks are displayed on the page. The order specified here will be preserved. If there are no artworks selected here, we will filter artworks from CITI by departmental publish category and order the results by relevance.</p>
 
         @php
             $maxArtworks = \App\Http\Controllers\DepartmentController::ARTWORKS_PER_PAGE;
