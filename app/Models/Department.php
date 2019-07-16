@@ -6,10 +6,11 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
 
 class Department extends AbstractModel
 {
-    use HasApiModel, Transformable, HasMedias, HasApiRelations, HasMediasEloquent;
+    use HasApiModel, Transformable, HasMedias, HasApiRelations, HasMediasEloquent, HasRelated;
 
     protected $apiModel = 'App\Models\Api\Department';
 
@@ -19,6 +20,13 @@ class Department extends AbstractModel
         'caption',
         'meta_title',
         'meta_description',
+        'pinboard_title',
+        'should_append_artworks',
+        'max_artworks',
+    ];
+
+    public $checkboxes = [
+        'should_append_artworks',
     ];
 
     public $slugAttributes = [
@@ -35,6 +43,11 @@ class Department extends AbstractModel
             ],
         ],
     ];
+
+    public function customRelatedArtworks()
+    {
+        return $this->apiElements()->where('relation', 'customRelatedArtworks');
+    }
 
     public function getSlugAttribute()
     {

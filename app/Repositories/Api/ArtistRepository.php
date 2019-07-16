@@ -36,6 +36,9 @@ class ArtistRepository extends BaseApiRepository
         return $relatedItems->merge($apiItems)->slice(0, 12)->values();
     }
 
+    /**
+     * TODO: De-dupe w/ DepartmentRepository?
+     */
     public function getCustomRelatedItems($item)
     {
         $relatedItems = $item->getRelatedWithApiModels('related_items', [
