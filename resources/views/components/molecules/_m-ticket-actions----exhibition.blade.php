@@ -4,7 +4,7 @@
         @component('components.atoms._btn')
             @slot('variation', 'btn--full')
             @slot('tag', 'a')
-            @slot('href', 'https://sales.artic.edu/')
+            @slot('href', 'https://sales.artic.edu/admissions')
             @slot('gtmAttributes', 'data-gtm-event="buy-tickets" data-gtm-event-action="' . $exhibitionName . '" data-gtm-event-category="nav-cta-button"')
             Buy tickets
         @endcomponent
