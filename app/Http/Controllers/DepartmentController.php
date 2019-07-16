@@ -32,6 +32,7 @@ class DepartmentController extends FrontController
         $this->seo->setImage($item->imageFront('hero'));
 
         $artworks = $this->repository->getRelatedArtworks($item);
+        $relatedItems = $this->repository->getRelatedItems($item);
 
         // $exploreFurther = new ExploreDepartments($item, $artworks->getMetadata('aggregations'));
 
@@ -42,6 +43,7 @@ class DepartmentController extends FrontController
             // 'exploreFurther'        => $exploreFurther->collection(request()->all()),
             // 'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
             'canonicalUrl' => route('departments.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
+            'relatedItems' => $relatedItems->count() > 0 ? $relatedItems : null,
         ]);
     }
 

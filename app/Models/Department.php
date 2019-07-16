@@ -6,10 +6,11 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
 
 class Department extends AbstractModel
 {
-    use HasApiModel, Transformable, HasMedias, HasApiRelations, HasMediasEloquent;
+    use HasApiModel, Transformable, HasMedias, HasApiRelations, HasMediasEloquent, HasRelated;
 
     protected $apiModel = 'App\Models\Api\Department';
 

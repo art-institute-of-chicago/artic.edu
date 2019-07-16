@@ -81,6 +81,50 @@
 
     </a17-fieldset>
 
+    <a17-fieldset id="related" title="Related">
+
+        <p>Use "Custom related items" to relate as many items as possible. No more than 12 will be shown on the department's detail page, but all of them will be used to augment search. See special note on exhibitions below.</p>
+
+        @formField('browser', [
+            'name' => 'related_items',
+            'endpoints' => [
+                [
+                    'label' => 'Articles',
+                    'value' => '/collection/articles_publications/articles/browser'
+                ],
+                [
+                    'label' => 'Digital Publications',
+                    'value' => '/collection/articles_publications/digitalPublications/browser'
+                ],
+                [
+                    'label' => 'Print Publications',
+                    'value' => '/collection/articles_publications/printedPublications/browser'
+                ],
+                [
+                    'label' => 'Educational Resources',
+                    'value' => '/collection/research_resources/educatorResources/browser'
+                ],
+                [
+                    'label' => 'Interactive Features',
+                    'value' => '/collection/digitalLabels/browser'
+                ],
+                [
+                    'label' => 'Videos',
+                    'value' => '/collection/articles_publications/videos/browser'
+                ],
+                [
+                    'label' => 'Exhibitions',
+                    'value' => '/exhibitions_events/exhibitions/browser'
+                ],
+            ],
+            'max' => 1000,
+            'label' => 'Custom related items',
+        ])
+
+        <p style="margin-top: 2em;">At this time, we are unable to use CITI data to determine which exhibitions are related to each department, so we cannot automatically add them to department pages. Feel free to relate historic exhibitions here.</p>
+
+    </a17-fieldset>
+
     @include('admin.partials.meta')
 
 @endsection

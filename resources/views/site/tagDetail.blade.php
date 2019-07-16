@@ -165,7 +165,7 @@
 </div>
 @endif
 
-@if ($item->exhibitions)
+@if (isset($item->exhibitions))
     @component('components.molecules._m-title-bar')
         Exhibitions
     @endcomponent
