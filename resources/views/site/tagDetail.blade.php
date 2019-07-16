@@ -30,6 +30,12 @@
 
 @unless ($artworks->isEmpty())
     @component('components.molecules._m-title-bar')
+        @slot('links', [
+            [
+                'label' => "See all {$artworks->total()} artworks",
+                'href'  => $item->present()->collectionFilteredUrl,
+            ]
+        ])
         {{ $item->getAugmentedModel()->pinboard_title ?? 'Artworks' }}
     @endcomponent
 
