@@ -19,6 +19,12 @@ class Department extends AbstractModel
         'caption',
         'meta_title',
         'meta_description',
+        'should_append_artworks',
+        'max_artworks',
+    ];
+
+    public $checkboxes = [
+        'should_append_artworks',
     ];
 
     public $slugAttributes = [
@@ -35,6 +41,11 @@ class Department extends AbstractModel
             ],
         ],
     ];
+
+    public function customRelatedArtworks()
+    {
+        return $this->apiElements()->where('relation', 'customRelatedArtworks');
+    }
 
     public function getSlugAttribute()
     {
