@@ -5,6 +5,7 @@ use App\Libraries\Search\Filters\Sort as SortFilters;
 use App\Libraries\Search\Filters\DateRange;
 use App\Libraries\Search\Filters\BooleanFilter;
 use App\Libraries\Search\Filters\ColorFilter;
+use App\Models\Api\Search;
 
 class CollectionService
 {
@@ -35,7 +36,7 @@ class CollectionService
     public function __construct()
     {
         // Use as a chain a general search
-        $this->chain = \App\Models\Api\Search::query();
+        $this->chain = Search::query();
     }
 
     /**
@@ -71,10 +72,10 @@ class CollectionService
     public function generateFilters()
     {
         // Ensure search query has been executed
-        $this->results();
+        $results = $this->results();
 
         // Generate listing filters
-        $filters = $this->buildListFilters($this->results->getMetadata('aggregations'));
+        $filters = $this->buildListFilters($results->getMetadata('aggregations'));
 
         // Color Filter
         $filters->prepend($this->buildColorFilters());
