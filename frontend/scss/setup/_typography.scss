@@ -273,10 +273,6 @@ $f-deck: generate-font-obj(
 %f-deck i,
 .f-deck i {
   font-style: italic;
-
-  strong, b {
-    font-weight: 600;
-  }
 }
 
 %f-deck strong,
@@ -286,7 +282,7 @@ $f-deck: generate-font-obj(
   font-weight: 600;
 
   em, i {
-    font-style: italic;
+    font-weight: 600;
   }
 }
 
@@ -463,11 +459,6 @@ $f-body-emphasis: generate-font-obj(
 %f-body i,
 .f-body i {
   @include f-body-emphasis;
-
-  strong, b {
-    font-weight: 500;
-    color: $color__black;
-  }
 }
 
 %f-body em,
@@ -489,8 +480,7 @@ $f-body-emphasis: generate-font-obj(
   color: $color__black;
 
   em, i {
-    @include f-body-emphasis;
-    @include untuck;
+    font-weight: 500;
   }
 }
 
@@ -560,11 +550,6 @@ $f-body-editorial-emphasis: generate-font-obj(
 %f-body-editorial i,
 .f-body-editorial i {
   @include f-body-editorial-emphasis;
-
-  strong, b {
-    font-weight: 600;
-    color: $color__text--title;
-  }
 }
 
 %f-body-editorial em,
@@ -586,8 +571,7 @@ $f-body-editorial-emphasis: generate-font-obj(
   color: $color__text--title;
 
   em, i {
-    @include f-body-editorial-emphasis;
-    @include untuck;
+    font-weight: 600;
   }
 }
 
@@ -716,10 +700,6 @@ $f-secondary: generate-font-obj(
 %f-secondary i,
 .f-secondary i {
   font-style: italic;
-
-  strong, b {
-    font-weight: 400;
-  }
 }
 
 %f-secondary strong,
@@ -730,7 +710,7 @@ $f-secondary: generate-font-obj(
   color: $color__text;
 
   em, i {
-    font-style: italic;
+    font-weight: 400;
   }
 }
 
@@ -1240,10 +1220,6 @@ $f-quote: generate-font-obj(
 %f-quote i,
 .f-quote i {
   font-style: italic;
-
-  strong, b {
-    font-weight: 600;
-  }
 }
 
 %f-quote strong,
@@ -1253,7 +1229,7 @@ $f-quote: generate-font-obj(
   font-weight: 600;
 
   em, i {
-    font-style: italic;
+    font-weight: 600;
   }
 }
 
