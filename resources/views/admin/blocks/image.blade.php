@@ -41,3 +41,9 @@
         'italic', 'link',
     ],
 ])
+
+@formField('input', [
+    'name' => 'image_link',
+    'label' => 'Link (optional)',
+    'note' => 'Makes image clickable',
+])

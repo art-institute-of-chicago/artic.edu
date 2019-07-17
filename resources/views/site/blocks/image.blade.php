@@ -23,6 +23,9 @@
                 "creditUrl" => '',
                 "alt" => $image['alt'],
             ],
+            'showUrl' => !empty($block->input('image_link')),
+            'showUrlFullscreen' => !empty($block->input('image_link')),
+            'urlTitle' => $block->input('image_link') ?? null,
         ])
     @endcomponent
 @endif
