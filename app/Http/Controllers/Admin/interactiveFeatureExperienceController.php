@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\Experience;
+use App\Models\Article;
 use App\Repositories\InteractiveFeatureRepository;
 use App\Repositories\ExperienceRepository;
 
@@ -161,8 +162,17 @@ class InteractiveFeatureExperienceController extends ModuleController
 
     protected function previewData($item)
     {
+        $articles = Article::published()
+        ->orderBy('date', 'desc')
+        ->paginate(4);
+
         return [
             'experience' => $item,
+            'singleSlide' => true,
+            'contrastHeader' => true,
+            'slide' => $item,
+            'furtherReading' => $articles,
+            'canonicalUrl' => route('interactiveFeatures.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
         ];
     }
 
