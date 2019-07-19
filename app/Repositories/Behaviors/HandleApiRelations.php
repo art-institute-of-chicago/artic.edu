@@ -113,6 +113,12 @@ trait HandleApiRelations
             // If it contains an augmented model create an edit link
             if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
                 $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'edit', $apiElement->getAugmentedModel()->id);
+
+                if (classHasTrait($apiElement->getAugmentedModel(), \A17\Twill\Models\Behaviors\HasMedias::class)) {
+                    $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
+                }
+            } else {
+                // WEB-1187: Add augment route here!
             }
 
             return [
@@ -144,6 +150,12 @@ trait HandleApiRelations
                         // If it contains an augmented model create an edit link
                         if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
                             $data['edit'] = moduleRoute($apiModelDefinition['moduleName'], $apiModelDefinition['routePrefix'] ?? '', 'edit', $apiElement->getAugmentedModel()->id);
+
+                            if (classHasTrait($apiElement->getAugmentedModel(), \A17\Twill\Models\Behaviors\HasMedias::class)) {
+                                $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
+                            }
+                        } else {
+                            // WEB-1187: Add augment route here!
                         }
 
                         return [
