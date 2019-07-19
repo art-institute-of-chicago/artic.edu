@@ -136,7 +136,7 @@ class FileObserver
                 [
                     'file_name' => substr($uploaded, 4),
                     'zip_file_id' => $file->id,
-                    'frame' => $index + 1,
+                    'frame' => $index,
                     'width' => $image_size[0],
                     'height' => $image_size[1],
                 ]
