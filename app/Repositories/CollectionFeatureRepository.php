@@ -54,7 +54,7 @@ class CollectionFeatureRepository extends ModuleRepository
                     'name' => $relatedElement->titleInBrowser ?? $relatedElement->$titleKey,
                     'edit' => '',
                     'endpointType' => $relatedElement->getMorphClass(),
-                ] + (classHasTrait($relatedElement, HasMedias::class) ? [
+                ] + (classHasTrait($relatedElement, \A17\Twill\Models\Behaviors\HasMedias::class) ? [
                     'thumbnail' => $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]),
                 ] : []);
             })->toArray();

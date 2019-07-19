@@ -91,8 +91,14 @@ class DigitalPublication extends AbstractModel
         return join([route('collection.publications.digital-publications'), '/', $this->id, '-']);
     }
 
-    public function getUrlAttribute() {
+    public function getUrlAttribute()
+    {
         return route('collection.publications.digital-publications.show', $this->slug);
+    }
+
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.articles_publications.digitalPublications.edit', $this->id);
     }
 
     public function scopeIds($query, $ids = [])

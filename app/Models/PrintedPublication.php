@@ -113,6 +113,11 @@ class PrintedPublication extends AbstractModel
         return route('collection.publications.printed-publications.show', $this->slug);
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.articles_publications.printedPublications.edit', $this->id);
+    }
+
     protected function transformMappingInternal()
     {
         return [

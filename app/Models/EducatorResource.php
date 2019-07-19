@@ -92,6 +92,11 @@ class EducatorResource extends AbstractModel
         return url(route('collection.resources.educator-resources.show', $this->id_slug));
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.research_resources.educatorResources.edit', $this->id);
+    }
+
     public function scopeIds($query, $ids = [])
     {
         return $query->whereIn('id', $ids);

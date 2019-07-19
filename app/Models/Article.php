@@ -134,6 +134,11 @@ class Article extends AbstractModel implements Feedable
         return join([route('articles'), '/', $this->id, '/']);
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.articles_publications.articles.edit', $this->id);
+    }
+
     public function categories()
     {
         return $this->belongsToMany('App\Models\Category', 'article_category');
