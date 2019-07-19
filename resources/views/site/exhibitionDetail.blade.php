@@ -234,7 +234,7 @@
         Related Offers
     @endcomponent
     @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
         @slot('cols_medium','3')
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
@@ -342,7 +342,7 @@
 
 @if ($item->shopItems() && $item->shopItems()->count() > 0)
     @component('components.molecules._m-title-bar')
-        Related Offers
+        Related Products
     @endcomponent
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
