@@ -163,9 +163,8 @@ trait HandleApiRelations
                             'name' => $element->titleInBrowser ?? $element->title,
                             'endpointType' => $element->getMorphClass(),
                             'position' => $elementPosition,
-                        ] + (($element->adminEditUrl ?? null) ? [] : [
                             'edit' => $element->adminEditUrl,
-                        ]) + ((classHasTrait($element, HasMedias::class)) ? [
+                        ] + ((classHasTrait($element, HasMedias::class)) ? [
                             'thumbnail' => $element->defaultCmsImage(['w' => 100, 'h' => 100]),
                         ] : []);
                     });

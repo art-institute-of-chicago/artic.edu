@@ -71,6 +71,11 @@ class Video extends AbstractModel
         return join([route('videos'), '/', $this->id, '-']);
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.articles_publications.videos.edit', $this->id);
+    }
+
     protected function transformMappingInternal()
     {
         return [
