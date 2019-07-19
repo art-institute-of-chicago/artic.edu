@@ -164,7 +164,7 @@ trait HandleApiRelations
                             'endpointType' => $element->getMorphClass(),
                             'position' => $elementPosition,
                             'edit' => $element->adminEditUrl,
-                        ] + ((classHasTrait($element, HasMedias::class)) ? [
+                        ] + ((classHasTrait($element, \A17\Twill\Models\Behaviors\HasMedias::class)) ? [
                             'thumbnail' => $element->defaultCmsImage(['w' => 100, 'h' => 100]),
                         ] : []);
                     });
