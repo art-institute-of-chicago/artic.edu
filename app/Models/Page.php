@@ -279,11 +279,6 @@ class Page extends AbstractModel
         return $this->hasMany(FeaturedHour::class)->orderBy('position');
     }
 
-    public function articlesArticles()
-    {
-        return $this->belongsToMany('App\Models\Article', 'page_article_article')->withPivot('position')->orderBy('position');
-    }
-
     public function articlesCategories()
     {
         return $this->belongsToMany('App\Models\Category', 'page_article_category')->withPivot('position')->orderBy('position');
