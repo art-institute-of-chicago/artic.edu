@@ -25,7 +25,7 @@ trait HandleApiRelations
 
             $fieldsHasElements = isset($fields['browsers'][$relationship]) && !empty($fields['browsers'][$relationship]);
             $relatedElements = $fieldsHasElements ? $fields['browsers'][$relationship] : [];
-        
+
             // If we don't have an element to save the datahub_id, let's create one
             $relatedElements = array_map(function($element) {
                 return ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
@@ -123,7 +123,7 @@ trait HandleApiRelations
     }
 
     public function getFormFieldsForMultiBrowserApi($object, $browser_name, $apiModelsDefinitions, $typeUsesApi)
-    {   
+    {
         $results = collect();
 
         $typedFormFields = $object->relatedItems
@@ -134,7 +134,7 @@ trait HandleApiRelations
                     $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions);
                     $localApiMapping = $this->getLocalApiMapping($items, $apiElements);
                     $apiModelDefinition = $apiModelsDefinitions[$type];
-                    
+
                     return $localApiMapping->map(function ($relatedElement) use ($apiModelDefinition, $apiElements) {
                         $data = [];
                         // Get the API elements and use them to build the browser elements
@@ -171,10 +171,10 @@ trait HandleApiRelations
                     });
                 }
             });
-        
+
         return $typedFormFields->flatten(1)->sortBy(function ($browserItem, $key) {
             return $browserItem['position'];
         })->values()->toArray();
-         
+
     }
 }
