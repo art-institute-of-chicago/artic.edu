@@ -23,20 +23,21 @@ class ArticleController extends FrontController
     {
         $this->seo->setTitle('Articles');
 
-        $page = Page::forType('Articles')->with('articlesArticles')->first();
-        $featuredItems = $page->getRelatedWithApiModels(
-            "featured_items", [], [ 
-                'articles' => false,
-                'interactiveFeatures.experiences' => false
-            ]);
+        $page = Page::forType('Articles')->first();
+
+        $featuredItems = $page->getRelatedWithApiModels("featured_items", [], [
+            'articles' => false,
+            'interactiveFeatures.experiences' => false
+        ]);
+
         $heroArticle = $featuredItems->first();
-        
+
         // $articles = new \Illuminate\Pagination\LengthAwarePaginator(collect(), 0, self::ARTICLES_PER_PAGE);
 
         if (request('category') !== 'interactive-features') {
             $articles = Article::published()
                 ->byCategory(request('category'))
-                ->whereNotIn('id', $page->articlesArticles->pluck('id'))
+                ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->paginate(self::ARTICLES_PER_PAGE);
         } else {
@@ -44,13 +45,11 @@ class ArticleController extends FrontController
             $experiencesCount = Experience::query('published', true)->paginate()->count();
             $articles = Experience::query('published', true)->paginate(self::ARTICLES_PER_PAGE);
         }
-        
 
         // Featured articles are the selected ones if no filters are applied
         // otherwise those are just the first two from the collection
         if (empty(request()->get('category', null))) {
             $featuredArticles = $featuredItems->slice(1, 2) ?? null;
-            // $featuredArticles = $page->articlesArticles->slice(1, 2);
         } else {
             $featuredArticles = $articles->getCollection()->slice(0, 2);
             $newCollection = $articles->slice(2);
@@ -122,11 +121,11 @@ class ArticleController extends FrontController
             $item->topics = $item->categories;
         }
 
-        $featuredArticles = $item->getRelatedWithApiModels("further_reading_items", [], [ 
+        $featuredArticles = $item->getRelatedWithApiModels("further_reading_items", [], [
             'articles' => false,
             'interactiveFeatures.experiences' => false
         ]) ?? null;
-        
+
         return view('site.articleDetail', [
             'contrastHeader' => $item->present()->contrastHeader,
             'item' => $item,

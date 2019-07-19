@@ -13,6 +13,7 @@ class MigrateArticleBrowsers extends Migration
      */
     public function up()
     {
+        // WEB-1183: page_article_article missing here
         $artArticles = DB::table('article_article')->select('*')->get();
         $pageArticles = DB::table('article_page')->select('*')->get();
         $pageArtArticles = DB::table('page_art_article')->select('*')->get();
