@@ -96,6 +96,8 @@
         $imageSettings['infoUrl'] = $item['urlTitle'];
     }
 
+    $showUrlFullscreen = $item['showUrl'] ?? false && $item['showUrlFullscreen']  ?? false && $item['urlTitle'] ?? null;
+
     if (isset($item['isArtwork'])) {
         $variation = ($variation ?? '').' m-media--artwork';
         $isZoomable = $item['isZoomable'] ?? false;
@@ -110,10 +112,16 @@
 <{{ $tag ?? 'figure' }} data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}>
         @if ($type == 'image')
+            @if ($showUrlFullscreen)
+                <a href="{!! $item['urlTitle'] !!}">
+            @endif
             @component('components.atoms._img')
                 @slot('image', $media)
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
+            @if ($showUrlFullscreen)
+                </a>
+            @endif
         @elseif ($type == 'embed' and !$poster and !$fullscreen)
             {!! $media['embed'] ?? '' !!}
         @elseif ($type == 'embed' and $poster and !$fullscreen)

@@ -131,10 +131,10 @@
             }
         },
         minFrame: function() {
-            return 1;
+            return 0;
         },
         maxFrame: function() {
-            return this.images.length;
+            return this.images.length - 1;
         },
         seamlessAsset: {
             get: function() {

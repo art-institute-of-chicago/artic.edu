@@ -24,6 +24,12 @@ class Department extends BaseApiModel
         return getUtf8Slug($this->title);
     }
 
+    /**
+     * TODO: Obsolete code, delete? See WEB-1169, WEB-1181.
+     * Now in App\Repositories\Api\DepartmentRepository
+     * Would also be used for "Explore Further" via controller,
+     * but that functionality is disabled for departments.
+     */
     public function artworks($perPage = 20)
     {
         return Search::query()

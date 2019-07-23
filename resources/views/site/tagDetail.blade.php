@@ -30,7 +30,13 @@
 
 @unless ($artworks->isEmpty())
     @component('components.molecules._m-title-bar')
-        Artworks
+        @slot('links', [
+            [
+                'label' => "See all {$artworks->total()} artworks",
+                'href'  => $item->present()->collectionFilteredUrl,
+            ]
+        ])
+        {{ $item->getAugmentedModel()->pinboard_title ?? 'Artworks' }}
     @endcomponent
 
     @component('components.organisms._o-pinboard')
@@ -159,7 +165,7 @@
 </div>
 @endif
 
-@if ($item->exhibitions)
+@if (isset($item->exhibitions))
     @component('components.molecules._m-title-bar')
         Exhibitions
     @endcomponent

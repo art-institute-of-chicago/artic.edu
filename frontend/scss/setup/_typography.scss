@@ -280,6 +280,10 @@ $f-deck: generate-font-obj(
 %f-deck b,
 .f-deck b {
   font-weight: 600;
+
+  em, i {
+    font-weight: 600;
+  }
 }
 
 /***
@@ -474,6 +478,10 @@ $f-body-emphasis: generate-font-obj(
 .f-body b {
   font-weight: 500;
   color: $color__black;
+
+  em, i {
+    font-weight: 500;
+  }
 }
 
 /***
@@ -561,6 +569,10 @@ $f-body-editorial-emphasis: generate-font-obj(
 .f-body-editorial b {
   font-weight: 600;
   color: $color__text--title;
+
+  em, i {
+    font-weight: 600;
+  }
 }
 
 /***
@@ -696,6 +708,10 @@ $f-secondary: generate-font-obj(
 .f-secondary b {
   font-weight: 400;
   color: $color__text;
+
+  em, i {
+    font-weight: 400;
+  }
 }
 
 /***
@@ -1211,6 +1227,10 @@ $f-quote: generate-font-obj(
 %f-quote b,
 .f-quote b {
   font-weight: 600;
+
+  em, i {
+    font-weight: 600;
+  }
 }
 
 /***

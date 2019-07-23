@@ -22,18 +22,34 @@ class BaseFilteredList
 
     public function generateFilteredCategory()
     {
+        // Get all ID's for the category
+        $inputs = request()->input($this->parameter);
+        $inputs = collect($inputs ? explode(';', $inputs) : []);
+
+        // WEB-1035: If there's no item with a requested id in buckets, prepend it
+        foreach ($inputs as $input) {
+            if (!$this->buckets->contains(function ($item) use ($input) {
+                return $item->key === $input;
+            })) {
+                $this->buckets->prepend((object) [
+                    'key' => $input,
+                    'doc_count' => 'N/A',
+                ]);
+            }
+        }
+
         // Build options list and sort by selected (move selected at the beginning)
-        $list = $this->buckets->map(function ($item) {
-            // Get all ID's for the category
-            $input = collect(explode(';', request()->input($this->parameter)));
+        $list = $this->buckets->map(function ($item) use ($inputs) {
+            // Start afresh so we aren't modifying the same collection each time
+            $inputs = clone $inputs;
 
             // If input contains the ID, remove it from the URL (uncheck link)
-            if ($enabled = $input->contains($item->key)) {
+            if ($enabled = $inputs->contains($item->key)) {
                 // If there's any selected element open the tab by default
                 $this->activeList = true;
-                $newInput = $input->forget($input->search($item->key))->filter();
+                $newInput = $inputs->forget($inputs->search($item->key))->filter();
             } else {
-                $newInput = $input->push($item->key)->filter();
+                $newInput = $inputs->push($item->key)->filter();
             }
 
             $extraParams = $newInput->isEmpty() ? [] : [$this->parameter => join(';', $newInput->toArray())];

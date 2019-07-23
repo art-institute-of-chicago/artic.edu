@@ -25,7 +25,7 @@ trait HandleApiRelations
 
             $fieldsHasElements = isset($fields['browsers'][$relationship]) && !empty($fields['browsers'][$relationship]);
             $relatedElements = $fieldsHasElements ? $fields['browsers'][$relationship] : [];
-        
+
             // If we don't have an element to save the datahub_id, let's create one
             $relatedElements = array_map(function($element) {
                 return ApiRelation::firstOrCreate(['datahub_id' => $element['id']]);
@@ -113,6 +113,12 @@ trait HandleApiRelations
             // If it contains an augmented model create an edit link
             if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
                 $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'edit', $apiElement->getAugmentedModel()->id);
+
+                if (classHasTrait($apiElement->getAugmentedModel(), \A17\Twill\Models\Behaviors\HasMedias::class)) {
+                    $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
+                }
+            } else {
+                // WEB-1187: Add augment route here!
             }
 
             return [
@@ -123,7 +129,7 @@ trait HandleApiRelations
     }
 
     public function getFormFieldsForMultiBrowserApi($object, $browser_name, $apiModelsDefinitions, $typeUsesApi)
-    {   
+    {
         $results = collect();
 
         $typedFormFields = $object->relatedItems
@@ -134,7 +140,7 @@ trait HandleApiRelations
                     $apiElements = $this->getApiElements($items, $type, $apiModelsDefinitions);
                     $localApiMapping = $this->getLocalApiMapping($items, $apiElements);
                     $apiModelDefinition = $apiModelsDefinitions[$type];
-                    
+
                     return $localApiMapping->map(function ($relatedElement) use ($apiModelDefinition, $apiElements) {
                         $data = [];
                         // Get the API elements and use them to build the browser elements
@@ -144,6 +150,12 @@ trait HandleApiRelations
                         // If it contains an augmented model create an edit link
                         if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
                             $data['edit'] = moduleRoute($apiModelDefinition['moduleName'], $apiModelDefinition['routePrefix'] ?? '', 'edit', $apiElement->getAugmentedModel()->id);
+
+                            if (classHasTrait($apiElement->getAugmentedModel(), \A17\Twill\Models\Behaviors\HasMedias::class)) {
+                                $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
+                            }
+                        } else {
+                            // WEB-1187: Add augment route here!
                         }
 
                         return [
@@ -163,18 +175,17 @@ trait HandleApiRelations
                             'name' => $element->titleInBrowser ?? $element->title,
                             'endpointType' => $element->getMorphClass(),
                             'position' => $elementPosition,
-                        ] + (($element->adminEditUrl ?? null) ? [] : [
                             'edit' => $element->adminEditUrl,
-                        ]) + ((classHasTrait($element, HasMedias::class)) ? [
+                        ] + ((classHasTrait($element, \A17\Twill\Models\Behaviors\HasMedias::class)) ? [
                             'thumbnail' => $element->defaultCmsImage(['w' => 100, 'h' => 100]),
                         ] : []);
                     });
                 }
             });
-        
+
         return $typedFormFields->flatten(1)->sortBy(function ($browserItem, $key) {
             return $browserItem['position'];
         })->values()->toArray();
-         
+
     }
 }

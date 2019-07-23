@@ -12,10 +12,7 @@
     foreach($artworks as $artwork) {
         $image = $artwork->imageFront('hero', 'thumbnail');
 
-        $title = $artwork->present()->title;
-        if (!empty($artwork->date_block)) {
-            $title .= ', ' . $artwork->present()->date_block;
-        }
+        $title = $artwork->present()->listingTitle;
 
         $caption = "";
         if (!empty($artwork->artist_title)) {

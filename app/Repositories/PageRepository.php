@@ -63,9 +63,6 @@ class PageRepository extends ModuleRepository
         $this->updateRepeater($object, $fields, 'families', 'Family');
         $this->updateBrowser($object, $fields, 'visitTourPages');
 
-        // Articles
-        $this->updateBrowser($object, $fields, 'articlesArticles');
-
         // Article Categories
         $this->updateBrowser($object, $fields, 'articlesCategories');
 
@@ -116,15 +113,12 @@ class PageRepository extends ModuleRepository
         $fields = $this->getFormFieldsForRepeater($object, $fields, 'families', 'Family');
         $fields['browsers']['visitTourPages'] = $this->getFormFieldsForBrowser($object, 'visitTourPages', 'generic', 'title', 'genericPages');
 
-        // Articles
-        $fields['browsers']['articlesArticles'] = $this->getFormFieldsForBrowser($object, 'articlesArticles', 'collection.articles_publications', 'title', 'articles');
-
         // Article Categories
         $fields['browsers']['articlesCategories'] = $this->getFormFieldsForBrowser($object, 'articlesCategories', 'collection.articles_publications', 'name', 'categories');
 
         // Art & Ideas
         $fields['browsers']['artCategoryTerms'] = $this->getFormFieldsForBrowserApi($object, 'artCategoryTerms', 'App\Models\Api\CategoryTerm', 'collection', 'title', 'categoryTerms');
-        $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [ 
+        $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [
             'articles' => false,
             'interactiveFeatures.experiences' => false
         ]);
@@ -157,7 +151,7 @@ class PageRepository extends ModuleRepository
                     'name' => $relatedElement->titleInBrowser ?? $relatedElement->$titleKey,
                     'edit' => '',
                     'endpointType' => $relatedElement->getMorphClass(),
-                ] + (classHasTrait($relatedElement, HasMedias::class) ? [
+                ] + (classHasTrait($relatedElement, \A17\Twill\Models\Behaviors\HasMedias::class) ? [
                     'thumbnail' => $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100]),
                 ] : []);
             })->toArray();

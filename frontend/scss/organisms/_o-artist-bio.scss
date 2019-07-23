@@ -52,10 +52,12 @@ $bioBreakpoints: (
 .o-artist-bio__image {
 }
 
-.o-artist-bio__image img {
+// WEB-1163: Hyper-specific override for _m-media.scss
+.o-artist-bio__image .m-media--s.o-blocks__block .m-media__img img {
   display: block;
   max-width: 100%;
   height: auto;
+  max-height: 65vh;
 
   // Disabled for WEB-1079:
   // margin-top: 16px;
