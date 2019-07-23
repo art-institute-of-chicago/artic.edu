@@ -172,7 +172,7 @@ class EventPresenter extends BasePresenter
             return $this->entity->buy_button_text;
         }
 
-        return 'Buy tickets';
+        return 'Buy Tickets';
     }
 
     public function imageUrl() {

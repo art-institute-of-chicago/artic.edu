@@ -633,14 +633,15 @@ class Event extends AbstractModel
                 "name" => "rsvp_link",
                 "doc" => "RSVP Link",
                 "type" => "string",
-                // WEB-1198: Work-around for backlogged datahub deploy.
+                // WEB-1198: Derive sales site link from related ticketed event
                 "value" => function () {return $this->buy_tickets_link;},
             ],
             [
                 "name" => "buy_button_text",
                 "doc" => "buy_button_text",
                 "type" => "string",
-                "value" => function () {return $this->buy_button_text;},
+                // WEB-1198: Derive sales site link from related ticketed event
+                "value" => function () {return $this->present()->buyButtonText();},
             ],
             [
                 "name" => "buy_button_caption",
