@@ -60,6 +60,7 @@
     "toolkit": "node ./frontend/a17-script/bin/a17_script.js toolkit",
     "production": "node ./frontend/a17-script/bin/a17_script.js prod",
     "twill-build": "rm -f public/hot && npm run twill-copy-blocks && cd vendor/area17/twill && npm ci && npm run prod && cp -R public/* ${INIT_CWD}/public",
+    "twill-build-fast": "rm -f public/hot && cd vendor/area17/twill && npm run prod && cp -R public/* ${INIT_CWD}/public",
     "twill-copy-blocks": "npm run twill-clean-blocks && mkdir -p resources/assets/js/blocks/ && cp -R resources/assets/js/blocks/ vendor/area17/twill/frontend/js/components/blocks/customs/",
     "twill-clean-blocks": "rm -rf vendor/area17/twill/frontend/js/components/blocks/customs",
     "twill-dev": "mkdir -p vendor/area17/twill/public && npm run twill-copy-blocks && concurrently \"cd vendor/area17/twill && npm ci && npm run hot\" \"npm run twill-watch\" && npm run twill-clean-blocks",
