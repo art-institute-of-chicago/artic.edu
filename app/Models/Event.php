@@ -633,7 +633,8 @@ class Event extends AbstractModel
                 "name" => "rsvp_link",
                 "doc" => "RSVP Link",
                 "type" => "string",
-                "value" => function () {return $this->rsvp_link;},
+                // WEB-1198: Work-around for backlogged datahub deploy.
+                "value" => function () {return $this->buy_tickets_link;},
             ],
             [
                 "name" => "buy_button_text",
