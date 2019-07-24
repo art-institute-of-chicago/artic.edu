@@ -810,24 +810,18 @@ class Event extends AbstractModel
                 "value" => function () {return self::$eventEntrances[$this->entrance] ?? null;},
             ],
             [
-                "name" => "affiliate_group_display",
-                "doc" => "Identifier of affiliate group (event program) associated with this event",
-                "type" => "boolean",
-                "value" => function () {
-                    if ($this->is_presented_by_affiliate && $this->affiliateGroup) {
-                        return str_replace(
-                            '%%AffiliateGroup%%',
-                            $this->affiliateGroup->name,
-                            '<p>This event is presented by the %%AffiliateGroup%%.</p>'
-                        );
-                    }
-                },
-            ],
-            [
                 "name" => "affiliate_group_id",
                 "doc" => "Identifier of affiliate group (event program) associated with this event",
                 "type" => "boolean",
                 "value" => function () {return $this->affiliateGroup->id ?? null;},
+            ],
+            [
+                "name" => "show_affiliate_message",
+                "doc" => "Whether to include the presented-by-affiliate message in emails",
+                "type" => "boolean",
+                "value" => function () {
+                    return $this->is_presented_by_affiliate;
+                },
             ],
             [
                 "name" => "join_url",
