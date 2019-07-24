@@ -696,13 +696,19 @@ class Event extends AbstractModel
                 "name" => "start_time",
                 "doc" => "Start Time",
                 "type" => "string",
-                "value" => function () {return $this->start_time;},
+                "value" => function () {
+                    // https://www.php.net/manual/en/dateinterval.format.php
+                    return $this->start_time ? \Carbon\CarbonInterval::create($this->start_time)->format('%H:%I') : null;
+                }
             ],
             [
                 "name" => "end_time",
                 "doc" => "End Time",
                 "type" => "string",
-                "value" => function () {return $this->end_time;},
+                "value" => function () {
+                    // https://www.php.net/manual/en/dateinterval.format.php
+                    return $this->end_time ? \Carbon\CarbonInterval::create($this->end_time)->format('%H:%I') : null;
+                }
             ],
             [
                 "name" => "start_date",
@@ -726,7 +732,10 @@ class Event extends AbstractModel
                 "name" => "door_time",
                 "doc" => "door_time",
                 "type" => "string",
-                "value" => function () {return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%i') : null;},
+                "value" => function () {
+                    // https://www.php.net/manual/en/dateinterval.format.php
+                    return $this->door_time ? \Carbon\CarbonInterval::create($this->door_time)->format('%H:%I') : null;
+                }
             ],
             [
                 "name" => "sponsor_id",
