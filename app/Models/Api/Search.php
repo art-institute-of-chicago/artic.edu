@@ -803,6 +803,25 @@ class Search extends BaseApiModel
         return $query->rawSearch($params);
     }
 
+    public function scopePublic($query)
+    {
+        $params = [
+            'bool' => [
+                'filter' => [
+                    [
+                        'term' => [
+                            'is_private' => [
+                                'value' => false,
+                            ],
+                        ],
+                    ]
+                ]
+            ]
+        ];
+
+        return $query->rawSearch($params);
+    }
+
     public function scopePublished($query)
     {
         $params = [
