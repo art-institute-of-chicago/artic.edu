@@ -168,6 +168,10 @@ class EventPresenter extends BasePresenter
 
     public function buyButtonText()
     {
+        if ($this->isSoldOut()) {
+            return "Sold Out";
+        }
+
         if ($this->entity->buy_button_text) {
             return $this->entity->buy_button_text;
         }
