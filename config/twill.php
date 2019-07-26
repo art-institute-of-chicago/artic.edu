@@ -153,11 +153,6 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-references',
             ],
-            'plan_your_visit' => [
-                'title' => 'Plan Your Visit',
-                'icon' => 'text',
-                'component' => 'a17-block-plan_your_visit',
-            ],
             'footnote' => [
                 'title' => 'Footnote',
                 'icon' => 'text',
