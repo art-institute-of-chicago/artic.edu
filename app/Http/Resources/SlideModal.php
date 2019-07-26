@@ -29,7 +29,7 @@ class SlideModal extends JsonResource
                 return [
                     '__mediaType' => 'video',
                     '__option_autoplay' => $this->video_play_settings && in_array('autoplay', $this->video_play_settings),
-                    '__option_control' => $this->video_play_settings && in_array('control', $this->video_play_settings),
+                    '__option_controls' => $this->video_play_settings && in_array('control', $this->video_play_settings),
                     '__option_inset' => $this->video_play_settings && in_array('inset', $this->video_play_settings),
                     '__option_caption' => !empty($this->image_sequence_caption) || !empty($this->imageCaption('experience_image')),
                     '__option_loop' => $this->video_play_settings && in_array('loop', $this->video_play_settings),

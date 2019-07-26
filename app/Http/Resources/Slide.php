@@ -85,7 +85,7 @@ class Slide extends JsonResource
             '__option_caption' => true,
             '__option_autoplay' => $this->split_video_play_settings && in_array(['id' => 'autoplay'], $this->split_video_play_settings),
             '__option_loop' => $this->split_video_play_settings && in_array(['id' => 'loop'], $this->split_video_play_settings),
-            '__option_controls' => $this->split_video_play_settings && in_array(['id' => 'control_dark'], $this->split_video_play_settings),
+            '__option_controls' => $this->split_video_play_settings && in_array(['id' => 'control'], $this->split_video_play_settings),
             'src' => $this->asset_type === 'standard' && $this->split_standard_media_type === 'type_video' ? parseVimeoUrl($this->split_youtube_url) : '',
             'primaryimglink' => $primaryExperienceImage ? [
                 'type' => 'imagelink',
@@ -151,7 +151,7 @@ class Slide extends JsonResource
             '__option_zoomable' => $this->modal->count() > 0 && $this->modal->first()->zoomable,
             '__option_caption' => !empty($this->caption),
             '__option_loop' => $this->video_play_settings && in_array(['id' => 'loop'], $this->video_play_settings),
-            '__option_controls' => $this->video_play_settings && in_array(['id' => 'control_dark'], $this->video_play_settings),
+            '__option_controls' => $this->video_play_settings && in_array(['id' => 'control'], $this->video_play_settings),
             '__option_reverse' => false,
             '__option_infinite' => true,
         ];
