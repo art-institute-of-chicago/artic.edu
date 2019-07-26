@@ -18,7 +18,7 @@
     @formField('wysiwyg', [
         'name' => 'body_copy',
         'label' => 'Body Copy',
-        'maxlength' => 150,
+        'maxlength' => 250,
     ])
 
     @component('twill::partials.form.utils._connected_fields', [
