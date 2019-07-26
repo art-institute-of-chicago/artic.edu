@@ -297,6 +297,7 @@
             }
         },
         deleteCurrentHotspot: function () {
+            console.log('delteing');
             this.hotspots = this.hotspots.filter(function (hotspot) {
                 return hotspot !== this.currentHotspot;
             }, this)
@@ -369,10 +370,10 @@
     }
     .hotspot {
         position: absolute;
-        width: 10px;
-        height: 10px;
+        width: 30px;
+        height: 30px;
         background-color: orange;
-        border: 2px solid gray;
+        border: 6px solid gray;
         border-radius: 50% 50%;
         box-sizing: border-box;
         z-index: 1;
@@ -385,11 +386,10 @@
         cursor: pointer;
     }
     .hotspot-info-container {
-        width: calc(100% - 572px);
-        height: 100%;
+        width: 100%;
+        height: auto;
         display: block;
         position: relative;
-        float: right;
         padding: 0 20px;
     }
     .hotspots-container {
