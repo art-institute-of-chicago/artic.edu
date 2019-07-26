@@ -9,14 +9,11 @@ if (!function_exists('currentUrlWithQuery')) {
     }
 }
 
-if (!function_exists('parseYoutubeUrl')) {
-    function parseYoutubeUrl($url)
+if (!function_exists('parseVimeoUrl')) {
+    function parseVimeoUrl($url)
     {
-        if (str_contains($url, 'youtu.be')) {
-            return ltrim(parse_url($url, PHP_URL_PATH), '/');
-        }
-        parse_str( parse_url( $url, PHP_URL_QUERY ), $youtube_url);
-        return isset($youtube_url['v']) ? $youtube_url['v'] : null;
+        preg_match('/\d+/', $url, $matches);
+        return isset($matches[0]) ? $matches[0] : 0;
     }
 }
 

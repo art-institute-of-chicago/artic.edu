@@ -9,7 +9,7 @@
     "buble": "^0.19.8",
     "buble-loader": "^0.5.0",
     "chalk": "^2.2.0",
-    "closer-look": "git+ssh://git@code.area17.com:AIC/digital-labels-ui.git#053030c2424bbe500b4ee851e31769fa5e7f3e7a",
+    "closer-look": "git+ssh://git@code.area17.com:AIC/digital-labels-ui.git#6d70ce8c017b6516f32b2644ab6092499753d9c2",
     "cross-spawn": "^6.0.5",
     "del": "^3.0.0",
     "fs-extra": "^5.0.0",
@@ -43,7 +43,7 @@
     "react-dom": "^16.7.0",
     "read-pkg-up": "^3.0.0",
     "readline-sync": "^1.4.7",
-    "webpack": "^4.36.1",
+    "webpack": "^4.38.0",
     "webpack-stream": "^4.0.0",
     "which": "^1.3.0"
   },
