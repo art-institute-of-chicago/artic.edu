@@ -94,9 +94,18 @@ class SearchController extends BaseScopedController
 
         // Specific elements search. We run separate queries because we want to ensure elements
         // in all sections. A general search sorting might cause empty categories.
+        $artworks                   = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
+
+        // If first artwork accession number matches search query, redirect to artwork page
+        if ($artworks->count()) {
+            $artwork = $artworks->first();
+            if ($artwork->main_reference_number == request('q')) {
+                return redirect(route('artworks.show', $artwork));
+            }
+        }
+
         $publications               = $this->publicationsRepository->searchApi(request('q'), self::ALL_PER_PAGE_PUBLICATIONS);
         $articles                   = $this->articlesRepository->searchApi(request('q'), self::ALL_PER_PAGE_ARTICLES);
-        $artworks                   = $this->collection()->perPage(self::ALL_PER_PAGE_ARTWORKS)->results();
         $artists                    = $this->artistsRepository->forSearchQuery(request('q'), self::ALL_PER_PAGE);
         $exhibitions                = $this->exhibitionsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EXHIBITIONS);
         $events                     = $this->eventsRepository->searchApi(request('q'), self::ALL_PER_PAGE_EVENTS);
