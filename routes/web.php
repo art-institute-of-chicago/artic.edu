@@ -160,6 +160,10 @@ Route::name('forms.email-subscriptions.thanks')->get('/email-subscriptions/thank
 Route::get('enews', function () {
     return redirect()->route('forms.email-subscriptions', request()->all());
 });
+Route::get('e-news', function () {
+    return redirect()->route('forms.email-subscriptions', request()->all());
+});
+
 // Digital labels
 Route::name('interactiveFeatures')->get('/interactive-features', 'InteractiveFeatureExperiencesController@index');
 Route::name('interactiveFeatures.showKiosk')->get('/interactive-features/kiosk/{slug}', 'InteractiveFeatureExperiencesController@show');
