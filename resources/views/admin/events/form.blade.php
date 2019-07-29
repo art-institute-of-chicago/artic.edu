@@ -405,7 +405,7 @@
                         'affiliate_member' => 'Affiliate Members',
                         'member' => 'Members',
                         'sustaining_fellow' => 'Sustaining Fellows',
-                        'non_member' => 'Non-Members',
+                        'non_member' => 'Nonmembers',
                     ] as $subFieldName => $subFieldLabel)
 
                         @continue(!$series->{'show_' . $subFieldName})

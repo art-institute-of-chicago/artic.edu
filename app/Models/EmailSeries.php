@@ -85,13 +85,13 @@ class EmailSeries extends AbstractModel
             ],
             [
                 "name" => 'show_non_member',
-                'doc' => 'Whether to show the "Send to Non-Members" option',
+                'doc' => 'Whether to show the "Send to Nonmembers" option',
                 'type' => 'boolean',
                 'value' => function () {return $this->show_non_member;},
             ],
             [
                 "name" => 'non_member_copy',
-                'doc' => 'Default copy for emails to Non-Members',
+                'doc' => 'Default copy for emails to Nonmembers',
                 'type' => 'string',
                 'value' => function () {return $this->non_member_copy;},
             ],

@@ -12,7 +12,7 @@
 
     @formField('checkbox', [
         'name' => 'show_non_member',
-        'label' => 'Show "Send to Non-Members" option'
+        'label' => 'Show "Send to Nonmembers" option'
     ])
 
     @formField('checkbox', [
@@ -54,7 +54,7 @@
     ])
         @formField('wysiwyg', [
             'name' => 'non_member_copy',
-            'label' => 'Default "Non-Member" copy',
+            'label' => 'Default "Nonmember" copy',
             'toolbarOptions' => [
                 'bold', 'italic', 'link'
             ],
