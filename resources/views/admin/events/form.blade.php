@@ -386,11 +386,16 @@
 
                 @php
                     $currentSeriesName = 'email_series_' . $series->id;
+                    $currentSeriesTitle = $series->title;
+
+                    if (isset($series->timing_message)) {
+                        $currentSeriesTitle .= ' (' . $series->timing_message . ')';
+                    }
                 @endphp
 
                 @formField('checkbox', [
                     'name' => $currentSeriesName,
-                    'label' => $series->title,
+                    'label' => $currentSeriesTitle,
                 ])
 
                 @component('twill::partials.form.utils._connected_fields', [

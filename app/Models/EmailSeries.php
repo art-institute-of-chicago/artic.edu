@@ -12,6 +12,7 @@ class EmailSeries extends AbstractModel implements Sortable
 
     protected $fillable = [
         'title',
+        'timing_message',
         'alert_message',
         'show_affiliate_member',
         'affiliate_member_copy',
@@ -52,6 +53,12 @@ class EmailSeries extends AbstractModel implements Sortable
                 'doc' => 'Name of this email series',
                 'type' => 'string',
                 'value' => function () {return $this->title;},
+            ],
+            [
+                "name" => 'timing_message',
+                'doc' => 'Notice regarding how often this email series is sent',
+                'type' => 'string',
+                'value' => function () {return $this->timing_message;},
             ],
             [
                 "name" => 'alert_message',

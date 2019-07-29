@@ -8,6 +8,12 @@
         'disabled' => true
     ])
 
+    @formField('input', [
+        'name' => 'timing_message',
+        'label' => 'Timing information',
+        'note' => 'Will be appended in parentheses to the label'
+    ])
+
     <hr>
 
     @formField('checkbox', [
