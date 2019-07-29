@@ -412,7 +412,7 @@
 
                         @formField('checkbox', [
                             'name' => $currentSeriesName . '_send_' . $subFieldName,
-                            'label' => 'Include ' . $subFieldLabel . '-specific copy',
+                            'label' => 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)',
                         ])
 
                         @component('twill::partials.form.utils._connected_fields', [
