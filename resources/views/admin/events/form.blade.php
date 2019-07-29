@@ -401,6 +401,12 @@
 
                     <div style="padding-left: 35px">
 
+                    @if ($series->alert_message)
+                        <div style="padding-top: 35px">
+                            {!! $series->alert_message !!}
+                        </div>
+                    @endif
+
                     @php
                         $subFields = [
                             'affiliate_member' => 'affiliate',

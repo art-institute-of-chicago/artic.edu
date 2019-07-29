@@ -36,6 +36,17 @@
 
     <hr>
 
+    @formField('wysiwyg', [
+        'name' => 'alert_message',
+        'label' => 'General alert message',
+        'note' => 'Will be displayed before the copy selection options',
+        'toolbarOptions' => [
+            'bold', 'italic', 'link'
+        ],
+    ])
+
+    <hr>
+
     @formField('checkbox', [
         'name' => 'use_short_description',
         'label' => 'Use short description as default copy',
