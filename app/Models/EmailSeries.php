@@ -49,7 +49,7 @@ class EmailSeries extends AbstractModel
             ],
             [
                 "name" => 'show_affiliate_member',
-                'doc' => 'Whether to show the "Send to Affiliate Members" option',
+                'doc' => 'Whether to show the "Include affiliate-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {return $this->show_affiliate_member;},
             ],
@@ -61,7 +61,7 @@ class EmailSeries extends AbstractModel
             ],
             [
                 "name" => 'show_member',
-                'doc' => 'Whether to show the "Send to Members" option',
+                'doc' => 'Whether to show the "Include member-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {return $this->show_member;},
             ],
@@ -73,7 +73,7 @@ class EmailSeries extends AbstractModel
             ],
             [
                 "name" => 'show_sustaining_fellow',
-                'doc' => 'Whether to show the "Send to Sustaining Fellows" option',
+                'doc' => 'Whether to show the "Include sustaining fellow-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {return $this->show_sustaining_fellow;},
             ],
@@ -85,7 +85,7 @@ class EmailSeries extends AbstractModel
             ],
             [
                 "name" => 'show_non_member',
-                'doc' => 'Whether to show the "Send to Nonmembers" option',
+                'doc' => 'Whether to show the "Include nonmember-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {return $this->show_non_member;},
             ],

@@ -402,17 +402,17 @@
                     <div style="padding-left: 35px">
 
                     @foreach ([
-                        'affiliate_member' => 'Affiliate Members',
-                        'member' => 'Members',
-                        'sustaining_fellow' => 'Sustaining Fellows',
-                        'non_member' => 'Nonmembers',
+                        'affiliate_member' => 'affiliate',
+                        'member' => 'member',
+                        'sustaining_fellow' => 'sustaining fellow',
+                        'non_member' => 'nonmember',
                     ] as $subFieldName => $subFieldLabel)
 
                         @continue(!$series->{'show_' . $subFieldName})
 
                         @formField('checkbox', [
                             'name' => $currentSeriesName . '_send_' . $subFieldName,
-                            'label' => 'Send to ' . $subFieldLabel,
+                            'label' => 'Include ' . $subFieldLabel . '-specific copy',
                         ])
 
                         @component('twill::partials.form.utils._connected_fields', [

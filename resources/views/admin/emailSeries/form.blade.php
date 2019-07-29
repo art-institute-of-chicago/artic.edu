@@ -12,22 +12,22 @@
 
     @formField('checkbox', [
         'name' => 'show_affiliate_member',
-        'label' => 'Show "Send to Affiliate Members" option'
+        'label' => 'Show "Include affiliate-specific copy" option'
     ])
 
     @formField('checkbox', [
         'name' => 'show_member',
-        'label' => 'Show "Send to Members" option'
+        'label' => 'Show "Include member-specific copy" option'
     ])
 
     @formField('checkbox', [
         'name' => 'show_sustaining_fellow',
-        'label' => 'Show "Send to Sustaining Fellows" option'
+        'label' => 'Show "Include sustaining fellow-specific copy" option'
     ])
 
     @formField('checkbox', [
         'name' => 'show_non_member',
-        'label' => 'Show "Include to Nonmembers" option'
+        'label' => 'Show "Include nonmember-specific copy" option'
     ])
 
     <hr>
