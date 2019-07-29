@@ -20,7 +20,6 @@ class ExperienceModal extends Model implements Sortable
         'modal_type',
         'zoomable',
         'video_play_settings',
-        'video_url',
         'image_sequence_playback',
         'image_sequence_caption',
         'modalble_type',
@@ -28,7 +27,7 @@ class ExperienceModal extends Model implements Sortable
         'modalble_id',
         'modalble_repeater_name',
         'title',
-        'youtube_url',
+        'video_url',
         'alt_text',
         'inline_credits',
         'credits_input',
@@ -55,5 +54,13 @@ class ExperienceModal extends Model implements Sortable
     public function experienceImage()
     {
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'modal_experience_image');
+    }
+
+    public function toRepeaterArray()
+    {
+        $fields = $this->attributesToArray();
+        $fields['image_sequence_playback'] = json_decode($fields['image_sequence_playback']) ?? [];
+        $fields['video_play_settings'] = json_decode($fields['video_play_settings']) ?? [];
+        return $fields;
     }
 }

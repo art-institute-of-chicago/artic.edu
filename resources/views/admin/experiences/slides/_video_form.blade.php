@@ -1,6 +1,6 @@
 @formField('input', [
-    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_youtube_url' : 'youtube_url',
-    'label' => 'Youtube URL'
+    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_video_url' : 'video_url',
+    'label' => 'Vimeo URL'
 ])
 
 @formField('multi_select', [
@@ -13,12 +13,8 @@
             'label' => 'Autoplay'
         ],
         [
-            'value' => 'controls_dark',
-            'label' => 'Controls Dark'
-        ],
-        [
-            'value' => 'controls_light',
-            'label' => 'Controls Light'
+            'value' => 'control',
+            'label' => 'Control'
         ],
         [
             'value' => 'inset',
