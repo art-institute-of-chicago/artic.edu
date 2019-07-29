@@ -86,6 +86,11 @@ class ExhibitionPressRoom extends AbstractModel
         return route('about.exhibitionPressRooms.show', $this);
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.generic.exhibitionPressRooms.edit', $this->id);
+    }
+
     public function scopeOrdered($query)
     {
         return $query->orderBy('publish_start_date', 'desc');

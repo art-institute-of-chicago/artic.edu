@@ -99,6 +99,11 @@ class PressRelease extends AbstractModel
         return route('about.press.show', $this);
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.generic.pressReleases.edit', $this->id);
+    }
+
     public function scopeRecent($query)
     {
         return $query->orderBy('publish_start_date', 'desc');

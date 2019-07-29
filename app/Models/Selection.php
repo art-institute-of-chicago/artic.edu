@@ -103,6 +103,11 @@ class Selection extends AbstractModel
         return $this->title;
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.selections.edit', $this->id);
+    }
+
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');

@@ -128,6 +128,11 @@ class Exhibition extends AbstractModel
         return $this->title;
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.exhibitions_events.exhibitions.edit', $this->id);
+    }
+
     public function events()
     {
         return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');

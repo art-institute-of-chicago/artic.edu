@@ -90,6 +90,11 @@ class ResearchGuide extends AbstractModel
         return url(route('collection.resources.research-guides.show', $this->id_slug));
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.collection.research_resources.researchGuides.edit', $this->id);
+    }
+
     protected function transformMappingInternal()
     {
         return [

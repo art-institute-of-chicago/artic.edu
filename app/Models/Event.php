@@ -239,6 +239,11 @@ class Event extends AbstractModel
         return join([route('events'), '/', $this->id, '/']);
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.exhibitions_events.events.edit', $this->id);
+    }
+
     public function getTimeStartAttribute()
     {
         if ($this->date) {
