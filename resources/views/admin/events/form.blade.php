@@ -411,12 +411,12 @@
                         @continue(!$series->{'show_' . $subFieldName})
 
                         @formField('checkbox', [
-                            'name' => $currentSeriesName . '_send_' . $subFieldName,
+                            'name' => $currentSeriesName . '_' . $subFieldName . '_send',
                             'label' => 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)',
                         ])
 
                         @component('twill::partials.form.utils._connected_fields', [
-                            'fieldName' => $currentSeriesName . '_send_' . $subFieldName,
+                            'fieldName' => $currentSeriesName . '_' . $subFieldName . '_send',
                             'renderForBlocks' => false,
                             'fieldValues' => true
                         ])

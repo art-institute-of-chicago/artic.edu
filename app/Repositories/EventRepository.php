@@ -78,7 +78,7 @@ class EventRepository extends ModuleRepository
                 $pivotAttributes = [];
 
                 foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $type) {
-                    $pivotAttributes['send_' .$type] = $fields['email_series_' .$series->id .'_send_' .$type] ?? false;
+                    $pivotAttributes['send_' .$type] = $fields['email_series_' .$series->id .'_' .$type .'_send'] ?? false;
                     if ($pivotAttributes['send_' .$type]) {
                         if ($series->use_short_description) {
                             if (($fields['email_series_' .$series->id .'_' .$type .'_override'] ?? 'default') === 'custom') {
@@ -140,7 +140,7 @@ class EventRepository extends ModuleRepository
 
                 foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $subFieldName) {
                     if ($series->pivot->{'send_' . $subFieldName}) {
-                        $fields[$currentSeriesName . '_send_' . $subFieldName] = true;
+                        $fields[$currentSeriesName . '_' . $subFieldName . '_send'] = true;
 
                         $copyForOverride = $series->pivot->{$subFieldName . '_copy'};
                         if ($copyForOverride) {
