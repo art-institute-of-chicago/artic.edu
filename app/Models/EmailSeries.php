@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
-class EmailSeries extends AbstractModel
+use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\Sortable;
+
+class EmailSeries extends AbstractModel implements Sortable
 {
     use Transformable;
+    use HasPosition;
 
     protected $fillable = [
         'title',
@@ -17,6 +21,7 @@ class EmailSeries extends AbstractModel
         'show_non_member',
         'non_member_copy',
         'use_short_description',
+        'position',
         'published',
     ];
 

@@ -382,7 +382,7 @@
 
             <p>Please select the emails you wish to opt-in to:</p>
 
-            @foreach ( \App\Models\EmailSeries::all() as $series)
+            @foreach ( \App\Models\EmailSeries::ordered()->get() as $series)
 
                 @php
                     $currentSeriesName = 'email_series_' . $series->id;
