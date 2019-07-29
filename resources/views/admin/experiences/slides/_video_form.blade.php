@@ -1,5 +1,5 @@
 @formField('input', [
-    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_youtube_url' : 'youtube_url',
+    'name' => isset($moduleType) && $moduleType === 'split' ? 'split_video_url' : 'video_url',
     'label' => 'Vimeo URL'
 ])
 

@@ -9,8 +9,8 @@ if (!function_exists('currentUrlWithQuery')) {
     }
 }
 
-if (!function_exists('parseVimeoUrl')) {
-    function parseVimeoUrl($url)
+if (!function_exists('parseVideoUrl')) {
+    function parseVideoUrl($url)
     {
         preg_match('/\d+/', $url, $matches);
         return isset($matches[0]) ? $matches[0] : 0;

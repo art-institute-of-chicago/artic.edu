@@ -21,7 +21,7 @@ class SlideModal extends JsonResource
                     '__mediaType' => 'image',
                     '__option_caption' => !empty($this->image_sequence_caption) || !empty($this->imageCaption('experience_image')),
                     'id' => (string) $this->id,
-                    'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [parseVimeoUrl($this->youtube_url)],
+                    'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [parseVideoUrl($this->video_url)],
                     'caption' => $this->image_sequence_caption ?? $this->imageCaption('experience_image'),
                 ];
                 break;
@@ -35,7 +35,7 @@ class SlideModal extends JsonResource
                     '__option_loop' => $this->video_play_settings && in_array('loop', $this->video_play_settings),
                     '__option_zoomable' => $this->zoomable,
                     'id' => (string) $this->id,
-                    'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [parseVimeoUrl($this->youtube_url)],
+                    'src' => $this->modal_type === 'image' ? SlideMediaResource::collection($this->experienceImage)->toArray(request()) : [parseVideoUrl($this->video_url)],
                     'caption' => $this->image_sequence_caption ?? $this->imageCaption('experience_image'),
                 ];
                 break;
