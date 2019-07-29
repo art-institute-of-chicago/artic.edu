@@ -9,7 +9,7 @@
     "buble": "^0.19.8",
     "buble-loader": "^0.5.0",
     "chalk": "^2.2.0",
-    "closer-look": "git+ssh://git@code.area17.com:AIC/digital-labels-ui.git#dbd4385fbae9ed7e9b14a580928807cad556346b",
+    "closer-look": "git+ssh://git@code.area17.com:AIC/digital-labels-ui.git#1625a30c6cc335a81ed3f63a8dc12643982790aa",
     "cross-spawn": "^6.0.5",
     "del": "^3.0.0",
     "fs-extra": "^5.0.0",
