@@ -1,4 +1,4 @@
-@unless($item->module_type === 'attract')
+@unless(in_array($item->module_type, ['attract', 'end']))
     @formField('radios', [
         'name' => 'asset_type',
         'label' => 'Asset Type',

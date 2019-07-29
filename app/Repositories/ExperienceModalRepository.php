@@ -28,6 +28,9 @@ class ExperienceModalRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
+        if (!$fields['video_play_settings']) {
+            $fields['video_play_settings'] = ['autoplay'];
+        }
         return $fields;
     }
 
