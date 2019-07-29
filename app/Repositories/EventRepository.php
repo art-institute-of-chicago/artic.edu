@@ -84,7 +84,7 @@ class EventRepository extends ModuleRepository
                             if (($fields['email_series_' .$series->id .'_' .$type .'_override'] ?? 'default') === 'custom') {
                                 $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null;
                             } else {
-                                $pivotAttributes[$type .'_copy'] = $fields['short_description'];
+                                $pivotAttributes[$type .'_copy'] = $fields['short_description'] ?? null;
                             }
                         } else {
                             $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null;
