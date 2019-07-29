@@ -402,10 +402,10 @@
                     <div style="padding-left: 35px">
 
                     @foreach ([
-                        'non_member' => 'Non-Members',
+                        'affiliate_member' => 'Affiliate Members',
                         'member' => 'Members',
                         'sustaining_fellow' => 'Sustaining Fellows',
-                        'affiliate_member' => 'Affiliate Members',
+                        'non_member' => 'Non-Members',
                     ] as $subFieldName => $subFieldLabel)
 
                         @continue(!$series->{'show_' . $subFieldName})
