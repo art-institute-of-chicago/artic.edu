@@ -30,6 +30,10 @@
         'label' => 'Show "Include nonmember-specific copy" option'
     ])
 
+    <p>The phrase "(overrides default copy)" will be appended to each option in the event form.</p>
+
+    <p>If only one option is shown, we will label the option "Override default copy" for simplicity.</p>
+
     <hr>
 
     @formField('checkbox', [

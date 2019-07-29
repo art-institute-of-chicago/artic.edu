@@ -401,18 +401,29 @@
 
                     <div style="padding-left: 35px">
 
-                    @foreach ([
-                        'affiliate_member' => 'affiliate',
-                        'member' => 'member',
-                        'sustaining_fellow' => 'sustaining fellow',
-                        'non_member' => 'nonmember',
-                    ] as $subFieldName => $subFieldLabel)
+                    @php
+                        $subFields = [
+                            'affiliate_member' => 'affiliate',
+                            'member' => 'member',
+                            'sustaining_fellow' => 'sustaining fellow',
+                            'non_member' => 'nonmember',
+                        ];
 
-                        @continue(!$series->{'show_' . $subFieldName})
+                        $enabledSubFields = array_filter($subFields, function ($subFieldName) use ($series) {
+                            return $series->{'show_' . $subFieldName};
+                        }, ARRAY_FILTER_USE_KEY);
+
+                        $useShortLabel = count($enabledSubFields) < 2;
+                    @endphp
+
+                    @foreach ($enabledSubFields as $subFieldName => $subFieldLabel)
 
                         @formField('checkbox', [
                             'name' => $currentSeriesName . '_' . $subFieldName . '_send',
-                            'label' => 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)',
+                            'label' => ($useShortLabel ?
+                                'Override default copy' :
+                                'Include ' . $subFieldLabel . '-specific copy (overrides default copy)'
+                            ),
                         ])
 
                         @component('twill::partials.form.utils._connected_fields', [
