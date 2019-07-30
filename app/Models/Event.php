@@ -213,14 +213,14 @@ class Event extends AbstractModel
             ->belongsToMany('App\Models\EmailSeries', 'event_email_series')
             ->using('App\Models\EventEmailSeries')
             ->withPivot(
-                'send_affiliate_member',
-                'affiliate_member_copy',
+                'send_affiliate',
+                'affiliate_copy',
                 'send_member',
                 'member_copy',
                 'send_sustaining_fellow',
                 'sustaining_fellow_copy',
-                'send_non_member',
-                'non_member_copy'
+                'send_nonmember',
+                'nonmember_copy'
             );
     }
 
@@ -867,10 +867,10 @@ class Event extends AbstractModel
 
                     return $emailSeriesPivots->each(function($item) use ($eventHostTitle) {
                         foreach ([
-                            'affiliate_member_copy',
+                            'affiliate_copy',
                             'member_copy',
                             'sustaining_fellow_copy',
-                            'non_member_copy',
+                            'nonmember_copy',
                         ] as $field) {
                             if (isset($item->$field)) {
                                 if (isset($eventHostTitle)) {

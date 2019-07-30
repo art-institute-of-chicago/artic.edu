@@ -17,7 +17,7 @@
     <hr>
 
     @formField('checkbox', [
-        'name' => 'show_affiliate_member',
+        'name' => 'show_affiliate',
         'label' => 'Show "Include affiliate-specific copy" option'
     ])
 
@@ -32,7 +32,7 @@
     ])
 
     @formField('checkbox', [
-        'name' => 'show_non_member',
+        'name' => 'show_nonmember',
         'label' => 'Show "Include nonmember-specific copy" option'
     ])
 
@@ -74,7 +74,7 @@
         'fieldValues' => false,
     ])
         @formField('wysiwyg', [
-            'name' => 'affiliate_member_copy',
+            'name' => 'affiliate_copy',
             'label' => 'Default "Affiliate Group" copy',
             'toolbarOptions' => [
                 'bold', 'italic', 'link'
@@ -98,7 +98,7 @@
         ])
 
         @formField('wysiwyg', [
-            'name' => 'non_member_copy',
+            'name' => 'nonmember_copy',
             'label' => 'Default "Nonmember" copy',
             'toolbarOptions' => [
                 'bold', 'italic', 'link'

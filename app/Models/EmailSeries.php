@@ -14,33 +14,33 @@ class EmailSeries extends AbstractModel implements Sortable
         'title',
         'timing_message',
         'alert_message',
-        'show_affiliate_member',
-        'affiliate_member_copy',
+        'show_affiliate',
+        'affiliate_copy',
         'show_member',
         'member_copy',
         'show_sustaining_fellow',
         'sustaining_fellow_copy',
-        'show_non_member',
-        'non_member_copy',
+        'show_nonmember',
+        'nonmember_copy',
         'use_short_description',
         'position',
         'published',
     ];
 
     public $checkboxes = [
-        'show_affiliate_member',
+        'show_affiliate',
         'show_member',
         'show_sustaining_fellow',
-        'show_non_member',
+        'show_nonmember',
         'use_short_description',
         'published',
     ];
 
     public $casts = [
-        'show_affiliate_member' => 'boolean',
+        'show_affiliate' => 'boolean',
         'show_member' => 'boolean',
         'show_sustaining_fellow' => 'boolean',
-        'show_non_member' => 'boolean',
+        'show_nonmember' => 'boolean',
         'use_short_description' => 'boolean',
         'published' => 'boolean',
     ];
@@ -67,16 +67,16 @@ class EmailSeries extends AbstractModel implements Sortable
                 'value' => function () {return $this->alert_message;},
             ],
             [
-                "name" => 'show_affiliate_member',
+                "name" => 'show_affiliate',
                 'doc' => 'Whether to show the "Include affiliate-specific copy" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_affiliate_member;},
+                'value' => function () {return $this->show_affiliate;},
             ],
             [
-                "name" => 'affiliate_member_copy',
+                "name" => 'affiliate_copy',
                 'doc' => 'Default copy for emails to Affiliate Members',
                 'type' => 'string',
-                'value' => function () {return $this->affiliate_member_copy;},
+                'value' => function () {return $this->affiliate_copy;},
             ],
             [
                 "name" => 'show_member',
@@ -103,16 +103,16 @@ class EmailSeries extends AbstractModel implements Sortable
                 'value' => function () {return $this->sustaining_fellow_copy;},
             ],
             [
-                "name" => 'show_non_member',
+                "name" => 'show_nonmember',
                 'doc' => 'Whether to show the "Include nonmember-specific copy" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_non_member;},
+                'value' => function () {return $this->show_nonmember;},
             ],
             [
-                "name" => 'non_member_copy',
+                "name" => 'nonmember_copy',
                 'doc' => 'Default copy for emails to Nonmembers',
                 'type' => 'string',
-                'value' => function () {return $this->non_member_copy;},
+                'value' => function () {return $this->nonmember_copy;},
             ],
             [
                 "name" => 'use_short_description',
