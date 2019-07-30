@@ -11,10 +11,12 @@ class EventProgram extends AbstractModel
     protected $fillable = [
         'name',
         'is_affiliate_group',
+        'is_event_host',
     ];
 
     protected $casts = [
         'is_affiliate_group' => 'boolean',
+        'is_event_host' => 'boolean',
     ];
 
     protected $presenter = 'App\Presenters\Admin\EventProgramPresenter';
@@ -23,6 +25,12 @@ class EventProgram extends AbstractModel
     public function scopeAffiliateGroups($query)
     {
         return $query->where('is_affiliate_group', true);
+
+    }
+
+    public function scopeEventHosts($query)
+    {
+        return $query->where('is_event_host', true);
 
     }
 
@@ -40,6 +48,12 @@ class EventProgram extends AbstractModel
                 "doc" => "Is Affiliate Group",
                 "type" => "boolean",
                 "value" => function () {return $this->is_affiliate_group;},
+            ],
+            [
+                "name" => "is_event_host",
+                "doc" => "Is Event Host",
+                "type" => "boolean",
+                "value" => function () {return $this->is_event_host;},
             ],
         ];
     }

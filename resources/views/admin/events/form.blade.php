@@ -380,6 +380,25 @@
         ])
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
+            @formField('select', [
+                'name' => 'event_host_id',
+                'label' => 'Event Host',
+                'options' => $eventHostsList->put(
+                    // TODO: Use new null option!
+                    strval(\App\Models\Event::NULL_OPTION_EVENT_HOST), '[None]'
+                ),
+                'default' => \App\Models\Event::NULL_OPTION_EVENT_HOST, // no effect?
+                'note' => 'Will automatically replace `%%EventHost%%` in email series fields',
+                'optional' => false,
+            ])
+
+            @formField('checkbox', [
+                'name' => 'show_presented_by',
+                'label' => 'Include "This event is presented by the %%EventHost%%." in all pre-registration event emails',
+            ])
+
+            <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
+
             <p>Please select the emails you wish to opt-in to:</p>
 
             @foreach ( \App\Models\EmailSeries::ordered()->get() as $series)
@@ -471,11 +490,11 @@
                                 ])
                                     @formField('wysiwyg', [
                                         'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                        'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
+                                        'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? '…' : '',
                                         'toolbarOptions' => [
                                             'bold', 'italic', 'link'
                                         ],
-                                        'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
+                                        'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? 'Remember to select an "Event Host" below' : '',
                                     ])
                                 @endcomponent
 
@@ -483,11 +502,11 @@
 
                                 @formField('wysiwyg', [
                                     'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                    'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
+                                    'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? '…' : '',
                                     'toolbarOptions' => [
                                         'bold', 'italic', 'link'
                                     ],
-                                    'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
+                                    'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? 'Remember to select an "Event Host" below' : '',
                                 ])
 
                             @endif
@@ -505,21 +524,6 @@
             @endforeach
 
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
-
-            @formField('select', [
-                'name' => 'affiliate_group_id',
-                'label' => 'Affiliate Group',
-                'options' => $eventAffiliateGroupsList->put(
-                    strval(\App\Models\Event::NULL_OPTION_AFFILIATE_GROUP), '[None]'
-                ),
-                'default' => \App\Models\Event::NULL_OPTION_AFFILIATE_GROUP, // no effect?
-                'note' => 'Will automatically replace `%%AffiliateGroup%%` in email series fields',
-            ])
-
-            @formField('checkbox', [
-                'name' => 'is_presented_by_affiliate',
-                'label' => 'Include "This event is presented by the %%AffiliateGroup%%." in all pre-registration event emails',
-            ])
 
             @formField('input', [
                 'name' => 'join_url',
