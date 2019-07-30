@@ -56,10 +56,14 @@ const setScrollDirection = function() {
         for (let scrollCheck in scrollChecks) {
           if (sT >= scrollChecks[scrollCheck].pos && !scrollChecks[scrollCheck].hit) {
             scrollChecks[scrollCheck].hit = true;
-            triggerCustomEvent(document, 'gtm:push', {
-              'event': (dE.classList.contains('p-artworks-show') ? 'artwork-' : '' ) + scrollCheck + '%',
-              'eventCategory': 'scroll-tracking',
-            });
+
+            // don't trigger this event on the interactive features
+            if( window.location.href.indexOf('/interactive-features') === -1 ){
+              triggerCustomEvent(document, 'gtm:push', {
+                'event': (dE.classList.contains('p-artworks-show') ? 'artwork-' : '' ) + scrollCheck + '%',
+                'eventCategory': 'scroll-tracking',
+              });
+            }
           }
         }
       }
