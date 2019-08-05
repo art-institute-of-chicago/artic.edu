@@ -42,8 +42,8 @@ class ArticleController extends FrontController
                 ->paginate(self::ARTICLES_PER_PAGE);
         } else {
             // Retrieve experiences entires
-            $experiencesCount = Experience::query('published', true)->paginate()->count();
-            $articles = Experience::query('published', true)->paginate(self::ARTICLES_PER_PAGE);
+            $experiencesCount = Experience::published()->paginate()->count();
+            $articles = Experience::published()->paginate(self::ARTICLES_PER_PAGE);
         }
 
         // Featured articles are the selected ones if no filters are applied

@@ -59,8 +59,8 @@ class ExperienceModal extends Model implements Sortable
     public function toRepeaterArray()
     {
         $fields = $this->attributesToArray();
-        $fields['image_sequence_playback'] = json_decode($fields['image_sequence_playback']) ?? [];
-        $fields['video_play_settings'] = json_decode($fields['video_play_settings']) ?? [];
+        $fields['image_sequence_playback'] = $fields['image_sequence_playback'] ?? [];
+        $fields['video_play_settings'] = $fields['video_play_settings'] ?? [];
         return $fields;
     }
 }

@@ -34,7 +34,7 @@ class InteractiveFeatureRepository extends ModuleRepository
 
     public function search($search)
     {
-        return Experience::where('title', 'ILIKE', "%{$search}%");
+        return Experience::where('title', 'ILIKE', "%{$search}%")->published();
     }
     
 }
