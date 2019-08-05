@@ -159,8 +159,6 @@ class EventRepository extends ModuleRepository
                 if (empty($fields[$currentSubField . '_copy'])) {
                     if ($series->use_short_description) {
                         $fields[$currentSubField . '_copy'] = $fields['short_description'];
-                    } else {
-                        $fields[$currentSubField . '_copy'] = $series->{$subFieldName . '_copy'};
                     }
                 }
 
