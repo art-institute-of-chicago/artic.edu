@@ -51,11 +51,4 @@
         ],
     ])
 
-    <hr>
-
-    @formField('checkbox', [
-        'name' => 'use_short_description',
-        'label' => 'Use short description as default copy',
-    ])
-
 @stop

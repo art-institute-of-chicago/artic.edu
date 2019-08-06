@@ -28,7 +28,6 @@ class EmailSeries extends AbstractModel implements Sortable
         'show_member',
         'show_sustaining_fellow',
         'show_nonmember',
-        'use_short_description',
         'position',
         'published',
     ];
@@ -38,7 +37,6 @@ class EmailSeries extends AbstractModel implements Sortable
         'show_member',
         'show_sustaining_fellow',
         'show_nonmember',
-        'use_short_description',
         'published',
     ];
 
@@ -47,7 +45,6 @@ class EmailSeries extends AbstractModel implements Sortable
         'show_member' => 'boolean',
         'show_sustaining_fellow' => 'boolean',
         'show_nonmember' => 'boolean',
-        'use_short_description' => 'boolean',
         'published' => 'boolean',
     ];
 
@@ -95,12 +92,6 @@ class EmailSeries extends AbstractModel implements Sortable
                 'doc' => 'Whether to show the "Include nonmember-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {return $this->show_nonmember;},
-            ],
-            [
-                "name" => 'use_short_description',
-                'doc' => 'Whether to use the event short description as the default copy',
-                'type' => 'boolean',
-                'value' => function () {return $this->use_short_description;},
             ],
         ];
     }

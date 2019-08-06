@@ -462,52 +462,14 @@
 
                             <div style="padding-left: 35px">
 
-                            @if ($series->use_short_description)
-
-                                @formField('radios', [
-                                    'name' => $currentSeriesName . '_' . $subFieldName . '_override_subtype',
-                                    'label' => '', // Empty to save vertical space
-                                    'default' => 'default',
-                                    'inline' => true,
-                                    'options' => [
-                                        [
-                                            'value' => 'default',
-                                            'label' => 'Use short description'
-                                        ],
-                                        [
-                                            'value' => 'custom',
-                                            'label' => 'Use custom copy'
-                                        ],
-                                    ]
-                                ])
-
-                                @component('twill::partials.form.utils._connected_fields', [
-                                    'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override_subtype',
-                                    'renderForBlocks' => false,
-                                    'fieldValues' => 'custom'
-                                ])
-                                    @formField('wysiwyg', [
-                                        'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                        'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? '…' : '',
-                                        'toolbarOptions' => [
-                                            'bold', 'italic', 'link'
-                                        ],
-                                        'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? 'Remember to select an "Event Host" below' : '',
-                                    ])
-                                @endcomponent
-
-                            @else
-
-                                @formField('wysiwyg', [
-                                    'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                    'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? '…' : '',
-                                    'toolbarOptions' => [
-                                        'bold', 'italic', 'link'
-                                    ],
-                                    'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? 'Remember to select an "Event Host" below' : '',
-                                ])
-
-                            @endif
+                            @formField('wysiwyg', [
+                                'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
+                                'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? '…' : '',
+                                'toolbarOptions' => [
+                                    'bold', 'italic', 'link'
+                                ],
+                                'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? 'Remember to select an "Event Host" below' : '',
+                            ])
 
                             </div>
 
