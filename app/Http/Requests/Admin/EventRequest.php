@@ -15,6 +15,7 @@ class EventRequest extends Request
         $rules = [
             'start_time' => 'required',
             'end_time'   => 'required',
+            'short_description'   => 'required',
         ];
 
         return $rules;

@@ -64,8 +64,9 @@
 
     @formField('wysiwyg', [
         'name' => 'short_description',
-        'label' => 'Short description',
+        'label' => 'Short description (required)',
         'note' => 'Used by Sales Site and for event emails',
+        'required' => true,
         'toolbarOptions' => [
             'italic'
         ],
@@ -389,7 +390,7 @@
                 ),
                 'default' => \App\Models\Event::NULL_OPTION_EVENT_HOST, // no effect?
                 'note' => 'Will automatically replace `%%EventHost%%` in email series fields',
-                'optional' => false,
+                'required' => true,
             ])
 
             @formField('checkbox', [
