@@ -369,6 +369,8 @@
     </a17-fieldset>
 
     <a17-fieldset id="event_series" title="Event series emails">
+        <p>Please review the <a href="https://docs.google.com/document/d/19SN1uMkJy2ldk83uBnEL0GHSZFDOB5j2exz-X1oSb4Y/edit">documentation for email series</a> before proceeding.</p>
+
         @formField('checkbox', [
             'name' => 'add_to_event_email_series',
             'label' => 'Add to event email series',
