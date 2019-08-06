@@ -449,7 +449,7 @@
                     @foreach ($enabledSubFields as $subFieldName => $subFieldLabel)
 
                         @formField('checkbox', [
-                            'name' => $currentSeriesName . '_' . $subFieldName . '_send',
+                            'name' => $currentSeriesName . '_' . $subFieldName . '_override',
                             'label' => ($useShortLabel ?
                                 'Override default copy' :
                                 'Include ' . $subFieldLabel . '-specific copy (overrides default copy)'
@@ -457,7 +457,7 @@
                         ])
 
                         @component('twill::partials.form.utils._connected_fields', [
-                            'fieldName' => $currentSeriesName . '_' . $subFieldName . '_send',
+                            'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override',
                             'renderForBlocks' => false,
                             'fieldValues' => true
                         ])
@@ -467,7 +467,7 @@
                             @if ($series->use_short_description)
 
                                 @formField('radios', [
-                                    'name' => $currentSeriesName . '_' . $subFieldName . '_override',
+                                    'name' => $currentSeriesName . '_' . $subFieldName . '_override_subtype',
                                     'label' => '', // Empty to save vertical space
                                     'default' => 'default',
                                     'inline' => true,
@@ -484,7 +484,7 @@
                                 ])
 
                                 @component('twill::partials.form.utils._connected_fields', [
-                                    'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override',
+                                    'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override_subtype',
                                     'renderForBlocks' => false,
                                     'fieldValues' => 'custom'
                                 ])

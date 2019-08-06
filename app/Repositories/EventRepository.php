@@ -78,10 +78,10 @@ class EventRepository extends ModuleRepository
                 $pivotAttributes = [];
 
                 foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $type) {
-                    $pivotAttributes['send_' .$type] = $fields['email_series_' .$series->id .'_' .$type .'_send'] ?? false;
-                    if ($pivotAttributes['send_' .$type]) {
+                    $pivotAttributes['override_' .$type] = $fields['email_series_' .$series->id .'_' .$type .'_override'] ?? false;
+                    if ($pivotAttributes['override_' .$type]) {
                         if ($series->use_short_description) {
-                            if (($fields['email_series_' .$series->id .'_' .$type .'_override'] ?? 'default') === 'custom') {
+                            if (($fields['email_series_' .$series->id .'_' .$type .'_override_subtype'] ?? 'default') === 'custom') {
                                 $pivotAttributes[$type .'_copy'] = $fields['email_series_' .$series->id .'_' .$type .'_copy'] ?? null;
                             } else {
                                 $pivotAttributes[$type .'_copy'] = $fields['short_description'] ?? null;
@@ -139,8 +139,8 @@ class EventRepository extends ModuleRepository
                 $fields[$currentSeriesName] = true;
 
                 foreach (['affiliate_member', 'member', 'sustaining_fellow', 'non_member'] as $subFieldName) {
-                    if ($series->pivot->{'send_' . $subFieldName}) {
-                        $fields[$currentSeriesName . '_' . $subFieldName . '_send'] = true;
+                    if ($series->pivot->{'override_' . $subFieldName}) {
+                        $fields[$currentSeriesName . '_' . $subFieldName . '_override'] = true;
 
                         $copyForOverride = $series->pivot->{$subFieldName . '_copy'};
                         if ($copyForOverride) {
@@ -164,7 +164,7 @@ class EventRepository extends ModuleRepository
 
                 if ($series->use_short_description && $fields[$currentSubField . '_copy'] !== $fields['short_description']) {
                     // Prevents "Uncaught ReferenceError: custom is not defined"
-                    $fields[$currentSubField . '_override'] = '"custom"';
+                    $fields[$currentSubField . '_override_subtype'] = '"custom"';
                 }
             }
         }
