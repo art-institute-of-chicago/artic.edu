@@ -64,8 +64,9 @@
 
     @formField('wysiwyg', [
         'name' => 'short_description',
-        'label' => 'Short description',
+        'label' => 'Short description (required)',
         'note' => 'Used by Sales Site and for event emails',
+        'required' => true,
         'toolbarOptions' => [
             'italic'
         ],
@@ -368,6 +369,8 @@
     </a17-fieldset>
 
     <a17-fieldset id="event_series" title="Event series emails">
+        <p>Please review the <a href="https://docs.google.com/document/d/19SN1uMkJy2ldk83uBnEL0GHSZFDOB5j2exz-X1oSb4Y/edit">documentation for email series</a> before proceeding.</p>
+
         @formField('checkbox', [
             'name' => 'add_to_event_email_series',
             'label' => 'Add to event email series',
@@ -380,17 +383,41 @@
         ])
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
+            @formField('select', [
+                'name' => 'event_host_id',
+                'label' => 'Event Host',
+                'options' => $eventHostsList->put(
+                    // TODO: Use new null option!
+                    strval(\App\Models\Event::NULL_OPTION_EVENT_HOST), '[None]'
+                ),
+                'default' => \App\Models\Event::NULL_OPTION_EVENT_HOST, // no effect?
+                'note' => 'Will automatically replace `%%EventHost%%` in email series fields',
+                'required' => true,
+            ])
+
+            @formField('checkbox', [
+                'name' => 'show_presented_by',
+                'label' => 'Include "This event is presented by the %%EventHost%%." in all pre-registration event emails',
+            ])
+
+            <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
+
             <p>Please select the emails you wish to opt-in to:</p>
 
-            @foreach ( \App\Models\EmailSeries::all() as $series)
+            @foreach ( \App\Models\EmailSeries::ordered()->get() as $series)
 
                 @php
                     $currentSeriesName = 'email_series_' . $series->id;
+                    $currentSeriesTitle = $series->title;
+
+                    if (isset($series->timing_message)) {
+                        $currentSeriesTitle .= ' (' . $series->timing_message . ')';
+                    }
                 @endphp
 
                 @formField('checkbox', [
                     'name' => $currentSeriesName,
-                    'label' => $series->title,
+                    'label' => $currentSeriesTitle,
                 ])
 
                 @component('twill::partials.form.utils._connected_fields', [
@@ -401,74 +428,47 @@
 
                     <div style="padding-left: 35px">
 
-                    @foreach ([
-                        'non_member' => 'Non-Members',
-                        'member' => 'Members',
-                        'sustaining_fellow' => 'Sustaining Fellows',
-                        'affiliate_member' => 'Affiliate Members',
-                    ] as $subFieldName => $subFieldLabel)
+                    @if ($series->alert_message)
+                        <div style="padding-top: 35px">
+                            {!! $series->alert_message !!}
+                        </div>
+                    @endif
 
-                        @continue(!$series->{'show_' . $subFieldName})
+                    @php
+                        $subFields = \App\Models\EmailSeries::$memberTypes;
+
+                        $enabledSubFields = array_filter($subFields, function ($subFieldName) use ($series) {
+                            return $series->{'show_' . $subFieldName};
+                        }, ARRAY_FILTER_USE_KEY);
+
+                        $useShortLabel = count($enabledSubFields) < 2;
+                    @endphp
+
+                    @foreach ($enabledSubFields as $subFieldName => $subFieldLabel)
 
                         @formField('checkbox', [
-                            'name' => $currentSeriesName . '_send_' . $subFieldName,
-                            'label' => 'Send to ' . $subFieldLabel,
+                            'name' => $currentSeriesName . '_' . $subFieldName . '_override',
+                            'label' => ($useShortLabel ?
+                                'Override default copy' :
+                                'Include ' . $subFieldLabel . '-specific copy (overrides default copy)'
+                            ),
                         ])
 
                         @component('twill::partials.form.utils._connected_fields', [
-                            'fieldName' => $currentSeriesName . '_send_' . $subFieldName,
+                            'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override',
                             'renderForBlocks' => false,
                             'fieldValues' => true
                         ])
 
                             <div style="padding-left: 35px">
 
-                            @if ($series->use_short_description)
-
-                                @formField('radios', [
-                                    'name' => $currentSeriesName . '_' . $subFieldName . '_override',
-                                    'label' => '', // Empty to save vertical space
-                                    'default' => 'default',
-                                    'inline' => true,
-                                    'options' => [
-                                        [
-                                            'value' => 'default',
-                                            'label' => 'Use short description'
-                                        ],
-                                        [
-                                            'value' => 'custom',
-                                            'label' => 'Use custom copy'
-                                        ],
-                                    ]
-                                ])
-
-                                @component('twill::partials.form.utils._connected_fields', [
-                                    'fieldName' => $currentSeriesName . '_' . $subFieldName . '_override',
-                                    'renderForBlocks' => false,
-                                    'fieldValues' => 'custom'
-                                ])
-                                    @formField('wysiwyg', [
-                                        'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                        'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
-                                        'toolbarOptions' => [
-                                            'bold', 'italic', 'link'
-                                        ],
-                                        'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
-                                    ])
-                                @endcomponent
-
-                            @else
-
-                                @formField('wysiwyg', [
-                                    'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                    'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? '…' : '',
-                                    'toolbarOptions' => [
-                                        'bold', 'italic', 'link'
-                                    ],
-                                    'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%AffiliateGroup%%') ? 'Remember to select an "Affiliate Group" below' : '',
-                                ])
-
-                            @endif
+                            @formField('wysiwyg', [
+                                'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
+                                'label' => '',
+                                'toolbarOptions' => [
+                                    'bold', 'italic', 'link'
+                                ],
+                            ])
 
                             </div>
 
@@ -483,21 +483,6 @@
             @endforeach
 
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
-
-            @formField('select', [
-                'name' => 'affiliate_group_id',
-                'label' => 'Affiliate Group',
-                'options' => $eventAffiliateGroupsList->put(
-                    strval(\App\Models\Event::NULL_OPTION_AFFILIATE_GROUP), '[None]'
-                ),
-                'default' => \App\Models\Event::NULL_OPTION_AFFILIATE_GROUP, // no effect?
-                'note' => 'Will automatically replace `%%AffiliateGroup%%` in email series fields',
-            ])
-
-            @formField('checkbox', [
-                'name' => 'is_presented_by_affiliate',
-                'label' => 'Include "This event is presented by the %%AffiliateGroup%%." in all pre-registration event emails',
-            ])
 
             @formField('input', [
                 'name' => 'join_url',

@@ -73,8 +73,8 @@ class Event extends AbstractModel
         'add_to_event_email_series',
         'join_url',
         'survey_url',
-        'is_presented_by_affiliate',
-        'affiliate_group_id',
+        'show_presented_by',
+        'event_host_id',
         'entrance',
         'publish_start_date',
         'publish_end_date',
@@ -83,7 +83,7 @@ class Event extends AbstractModel
     protected $casts = [
         'alt_types' => 'array',
         'alt_audiences' => 'array',
-        'is_presented_by_affiliate' => 'boolean',
+        'show_presented_by' => 'boolean',
         // TODO: Confirm that this is safe to do?
         // 'is_private' => 'boolean',
         // 'is_sales_button_hidden' => 'boolean',
@@ -98,6 +98,7 @@ class Event extends AbstractModel
     // Dropdown does not accept null keys; use big numbers
     const NULL_OPTION = 42;
     const NULL_OPTION_AFFILIATE_GROUP = 1024;
+    const NULL_OPTION_EVENT_HOST = 1024;
 
     const CLASSES_AND_WORKSHOPS = 1;
     const LIVE_ARTS = 2;
@@ -212,14 +213,14 @@ class Event extends AbstractModel
             ->belongsToMany('App\Models\EmailSeries', 'event_email_series')
             ->using('App\Models\EventEmailSeries')
             ->withPivot(
-                'send_affiliate_member',
-                'affiliate_member_copy',
-                'send_member',
+                'override_affiliate',
+                'override_member',
+                'override_sustaining_fellow',
+                'override_nonmember',
+                'affiliate_copy',
                 'member_copy',
-                'send_sustaining_fellow',
                 'sustaining_fellow_copy',
-                'send_non_member',
-                'non_member_copy'
+                'nonmember_copy'
             );
     }
 
@@ -353,6 +354,11 @@ class Event extends AbstractModel
         return $this->belongsTo('App\Models\EventProgram', 'affiliate_group_id');
     }
 
+    public function eventHost()
+    {
+        return $this->belongsTo('App\Models\EventProgram', 'event_host_id');
+    }
+
     public function getProgramUrlsAttribute()
     {
         return $this->programs->reduce(function($carry, $item) {
@@ -466,6 +472,11 @@ class Event extends AbstractModel
     public function setAffiliateGroupIdAttribute($value)
     {
         $this->attributes['affiliate_group_id'] = ($value == self::NULL_OPTION_AFFILIATE_GROUP) ? null : $value;
+    }
+
+    public function setEventHostIdAttribute($value)
+    {
+        $this->attributes['event_host_id'] = ($value == self::NULL_OPTION_EVENT_HOST) ? null : $value;
     }
 
     public function scopeDefault($query)
@@ -821,11 +832,17 @@ class Event extends AbstractModel
                 "value" => function () {return $this->affiliateGroup->id ?? null;},
             ],
             [
-                "name" => "show_affiliate_message",
-                "doc" => "Whether to include the presented-by-affiliate message in emails",
+                "name" => "event_host_id",
+                "doc" => "Identifier of an event host (event program) associated with this event",
+                "type" => "boolean",
+                "value" => function () {return $this->eventHost->id ?? null;},
+            ],
+            [
+                "name" => "show_presented_by",
+                "doc" => "Whether to include the presented-by-host message in emails",
                 "type" => "boolean",
                 "value" => function () {
-                    return $this->is_presented_by_affiliate;
+                    return $this->show_presented_by;
                 },
             ],
             [
@@ -845,27 +862,27 @@ class Event extends AbstractModel
                 "doc" => "email_series",
                 "type" => "string",
                 "value" => function () {
-                    $affiliateGroupTitle = $this->affiliateGroup->name ?? null;
+                    $eventHostTitle = $this->eventHost->name ?? null;
                     $emailSeriesPivots = $this->emailSeries->pluck('pivot');
 
-                    return $emailSeriesPivots->each(function($item) use ($affiliateGroupTitle) {
+                    return $emailSeriesPivots->each(function($item) use ($eventHostTitle) {
                         foreach ([
-                            'affiliate_member_copy',
+                            'affiliate_copy',
                             'member_copy',
                             'sustaining_fellow_copy',
-                            'non_member_copy',
+                            'nonmember_copy',
                         ] as $field) {
                             if (isset($item->$field)) {
-                                if (isset($affiliateGroupTitle)) {
+                                if (isset($eventHostTitle)) {
                                     $item->$field = str_replace(
-                                        '%%AffiliateGroup%%',
-                                        $affiliateGroupTitle,
+                                        '%%EventHost%%',
+                                        $eventHostTitle,
                                         $item->$field
                                     );
                                 } else {
                                     $paragraphs = preg_split( '/(?<=<\/p>)\s*(?=<p)/', $item->$field, -1, PREG_SPLIT_DELIM_CAPTURE);
                                     $paragraphs = array_filter($paragraphs, function($paragraph) {
-                                        return strpos($paragraph, '%%AffiliateGroup%%') === false;
+                                        return strpos($paragraph, '%%EventHost%%') === false;
                                     });
                                     $item->$field = count($paragraphs) > 0 ? implode('', $paragraphs) : null;
                                 }

@@ -2,39 +2,49 @@
 
 namespace App\Models;
 
-class EmailSeries extends AbstractModel
+use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\Sortable;
+
+class EmailSeries extends AbstractModel implements Sortable
 {
     use Transformable;
+    use HasPosition;
+
+    /**
+     * Key is for field names, value is for labels.
+     */
+    public static $memberTypes = [
+        'affiliate' => 'affiliate',
+        'member' => 'member',
+        'sustaining_fellow' => 'sustaining fellow',
+        'nonmember' => 'nonmember',
+    ];
 
     protected $fillable = [
         'title',
-        'show_affiliate_member',
-        'affiliate_member_copy',
+        'timing_message',
+        'alert_message',
+        'show_affiliate',
         'show_member',
-        'member_copy',
         'show_sustaining_fellow',
-        'sustaining_fellow_copy',
-        'show_non_member',
-        'non_member_copy',
-        'use_short_description',
+        'show_nonmember',
+        'position',
         'published',
     ];
 
     public $checkboxes = [
-        'show_affiliate_member',
+        'show_affiliate',
         'show_member',
         'show_sustaining_fellow',
-        'show_non_member',
-        'use_short_description',
+        'show_nonmember',
         'published',
     ];
 
     public $casts = [
-        'show_affiliate_member' => 'boolean',
+        'show_affiliate' => 'boolean',
         'show_member' => 'boolean',
         'show_sustaining_fellow' => 'boolean',
-        'show_non_member' => 'boolean',
-        'use_short_description' => 'boolean',
+        'show_nonmember' => 'boolean',
         'published' => 'boolean',
     ];
 
@@ -48,58 +58,40 @@ class EmailSeries extends AbstractModel
                 'value' => function () {return $this->title;},
             ],
             [
-                "name" => 'show_affiliate_member',
-                'doc' => 'Whether to show the "Send to Affiliate Members" option',
-                'type' => 'boolean',
-                'value' => function () {return $this->show_affiliate_member;},
+                "name" => 'timing_message',
+                'doc' => 'Notice regarding how often this email series is sent',
+                'type' => 'string',
+                'value' => function () {return $this->timing_message;},
             ],
             [
-                "name" => 'affiliate_member_copy',
-                'doc' => 'Default copy for emails to Affiliate Members',
+                "name" => 'alert_message',
+                'doc' => 'Custom notice to display above the copy selection options',
                 'type' => 'string',
-                'value' => function () {return $this->affiliate_member_copy;},
+                'value' => function () {return $this->alert_message;},
+            ],
+            [
+                "name" => 'show_affiliate',
+                'doc' => 'Whether to show the "Include affiliate-specific copy" option',
+                'type' => 'boolean',
+                'value' => function () {return $this->show_affiliate;},
             ],
             [
                 "name" => 'show_member',
-                'doc' => 'Whether to show the "Send to Members" option',
+                'doc' => 'Whether to show the "Include member-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {return $this->show_member;},
             ],
             [
-                "name" => 'member_copy',
-                'doc' => 'Default copy for emails to Members',
-                'type' => 'string',
-                'value' => function () {return $this->member_copy;},
-            ],
-            [
                 "name" => 'show_sustaining_fellow',
-                'doc' => 'Whether to show the "Send to Sustaining Fellows" option',
+                'doc' => 'Whether to show the "Include sustaining fellow-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {return $this->show_sustaining_fellow;},
             ],
             [
-                "name" => 'sustaining_fellow_copy',
-                'doc' => 'Default copy for emails to Sustaining Fellows',
-                'type' => 'string',
-                'value' => function () {return $this->sustaining_fellow_copy;},
-            ],
-            [
-                "name" => 'show_non_member',
-                'doc' => 'Whether to show the "Send to Non-Members" option',
+                "name" => 'show_nonmember',
+                'doc' => 'Whether to show the "Include nonmember-specific copy" option',
                 'type' => 'boolean',
-                'value' => function () {return $this->show_non_member;},
-            ],
-            [
-                "name" => 'non_member_copy',
-                'doc' => 'Default copy for emails to Non-Members',
-                'type' => 'string',
-                'value' => function () {return $this->non_member_copy;},
-            ],
-            [
-                "name" => 'use_short_description',
-                'doc' => 'Whether to use the event short description as the default copy',
-                'type' => 'boolean',
-                'value' => function () {return $this->use_short_description;},
+                'value' => function () {return $this->show_nonmember;},
             ],
         ];
     }

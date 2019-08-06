@@ -10,4 +10,9 @@ class EventProgramPresenter extends BasePresenter
     {
         return $this->entity->is_affiliate_group ? 'Yes' : 'No';
     }
+
+    protected function isEventHost()
+    {
+        return $this->entity->is_event_host ? 'Yes' : 'No';
+    }
 }
