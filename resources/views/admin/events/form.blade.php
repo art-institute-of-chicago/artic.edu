@@ -433,10 +433,10 @@
 
                     @php
                         $subFields = [
-                            'affiliate_member' => 'affiliate',
+                            'affiliate' => 'affiliate',
                             'member' => 'member',
                             'sustaining_fellow' => 'sustaining fellow',
-                            'non_member' => 'nonmember',
+                            'nonmember' => 'nonmember',
                         ];
 
                         $enabledSubFields = array_filter($subFields, function ($subFieldName) use ($series) {
