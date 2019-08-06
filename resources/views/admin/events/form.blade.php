@@ -432,12 +432,7 @@
                     @endif
 
                     @php
-                        $subFields = [
-                            'affiliate' => 'affiliate',
-                            'member' => 'member',
-                            'sustaining_fellow' => 'sustaining fellow',
-                            'nonmember' => 'nonmember',
-                        ];
+                        $subFields = \App\Models\EmailSeries::$memberTypes;
 
                         $enabledSubFields = array_filter($subFields, function ($subFieldName) use ($series) {
                             return $series->{'show_' . $subFieldName};

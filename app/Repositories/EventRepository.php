@@ -77,7 +77,7 @@ class EventRepository extends ModuleRepository
 
                 $pivotAttributes = [];
 
-                foreach (['affiliate', 'member', 'sustaining_fellow', 'nonmember'] as $type) {
+                foreach (array_keys(EmailSeries::$memberTypes) as $type) {
                     $pivotAttributes['override_' .$type] = $fields['email_series_' .$series->id .'_' .$type .'_override'] ?? false;
                     if ($pivotAttributes['override_' .$type]) {
                         if ($series->use_short_description) {
@@ -138,7 +138,7 @@ class EventRepository extends ModuleRepository
                 $currentSeriesName = 'email_series_' . $series->id;
                 $fields[$currentSeriesName] = true;
 
-                foreach (['affiliate', 'member', 'sustaining_fellow', 'nonmember'] as $subFieldName) {
+                foreach (array_keys(EmailSeries::$memberTypes) as $subFieldName) {
                     if ($series->pivot->{'override_' . $subFieldName}) {
                         $fields[$currentSeriesName . '_' . $subFieldName . '_override'] = true;
 
@@ -153,7 +153,7 @@ class EventRepository extends ModuleRepository
 
         foreach (EmailSeries::all() as $series) {
             $currentSeriesName = 'email_series_' . $series->id;
-            foreach (['affiliate', 'member', 'sustaining_fellow', 'nonmember'] as $subFieldName) {
+            foreach (array_keys(EmailSeries::$memberTypes) as $subFieldName) {
                 $currentSubField = $currentSeriesName . '_' . $subFieldName;
 
                 if (empty($fields[$currentSubField . '_copy'])) {

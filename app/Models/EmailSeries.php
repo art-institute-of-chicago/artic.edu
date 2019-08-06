@@ -10,6 +10,16 @@ class EmailSeries extends AbstractModel implements Sortable
     use Transformable;
     use HasPosition;
 
+    /**
+     * Key is for field names, value is for labels.
+     */
+    public static $memberTypes = [
+        'affiliate' => 'affiliate',
+        'member' => 'member',
+        'sustaining_fellow' => 'sustaining fellow',
+        'nonmember' => 'nonmember',
+    ];
+
     protected $fillable = [
         'title',
         'timing_message',
