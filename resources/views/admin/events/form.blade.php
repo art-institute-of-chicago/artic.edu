@@ -464,11 +464,10 @@
 
                             @formField('wysiwyg', [
                                 'name' => $currentSeriesName . '_' . $subFieldName . '_copy',
-                                'label' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? '…' : '',
+                                'label' => '',
                                 'toolbarOptions' => [
                                     'bold', 'italic', 'link'
                                 ],
-                                'note' => strpos($form_fields[$currentSeriesName . '_' . $subFieldName . '_copy'] ?? '', '%%EventHost%%') ? 'Remember to select an "Event Host" below' : '',
                             ])
 
                             </div>
