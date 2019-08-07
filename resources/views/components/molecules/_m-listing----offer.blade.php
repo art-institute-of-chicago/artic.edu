@@ -25,9 +25,6 @@
         </span>
     </span>
     <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
-        @component('components.atoms._type')
-            Offer
-        @endcomponent
         <br>
         @component('components.atoms._title')
             @slot('font', $titleFont ?? 'f-list-4')
