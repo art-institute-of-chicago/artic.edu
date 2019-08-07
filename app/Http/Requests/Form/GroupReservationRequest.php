@@ -26,7 +26,6 @@ class GroupReservationRequest extends FormRequest
             'no_of_students' => 'sometimes',
             'no_of_seniors' => 'sometimes',
 
-            'dining_option' => 'sometimes',
             'no_of_audio_tours' => 'sometimes',
             'topic' => 'sometimes',
             'needs' => 'sometimes',
