@@ -32,26 +32,6 @@
         @endcomponent
         <br>
         <span class="intro {{ $captionFont ?? 'f-body' }}">{{ $item->description }}</span>
-        <br>
-        <span class="m-listing__meta-bottom">
-            @if ($item->priceSale)
-                @component('components.atoms._price')
-                    @slot('salePrice')
-                        {{ $item->currency }}{{ $item->price }}
-                    @endslot
-                    {{ $item->currency }}{{ $item->priceSale }}
-                @endcomponent
-            @else
-                @component('components.atoms._price')
-                    {{ $item->currency }}{{ $item->price }}
-                @endcomponent
-            @endif
-
-{{--             @component('components.atoms._price')
-                @slot('variation','price--offer')
-                {{ $item->currency }}{{ $item->price }}
-            @endcomponent --}}
-        </span>
     </span>
   </a>
 </{{ $tag ?? 'li' }}>

@@ -17,16 +17,12 @@
 ])
 
 @formField('input', [
-    'name' => 'price',
-    'label' => 'Price'
-])
-
-@formField('input', [
     'name' => 'label',
-    'label' => 'Label'
+    'label' => 'Label',
+    'note' => 'Displayed at bottom-right of image',
 ])
 
 @formField('input', [
     'name' => 'url',
-    'label' => 'Url'
+    'label' => 'URL'
 ])
