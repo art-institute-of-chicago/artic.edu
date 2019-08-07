@@ -48,7 +48,7 @@
                     @slot('font', (isset($editorial) and $editorial) ? 'f-deck' : null)
                     {{-- @slot('attribution', 'Vestibulum Malesuada Sem Fermentum Dapibus') --}}
 
-                    {{ SmartyPants::defaultTransform($block['content']) }}
+                    {!! SmartyPants::defaultTransform($block['content']) !!}
                 @endcomponent
             @endif
 

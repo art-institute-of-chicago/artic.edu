@@ -86,7 +86,7 @@
         @component('components.blocks._text')
             @slot('font','f-deck')
             @slot('tag','span')
-            {!! $intro !!}
+            {!! SmartyPants::defaultTransform($intro) !!}
         @endcomponent
     @endif
     {!! $page->renderBlocks(false) !!}

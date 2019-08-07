@@ -43,7 +43,7 @@
         array('label' => 'Hours and admission fees<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['hours'], 'variation' => 'arrow-link'),
         array('label' => 'Directions and parking<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['directions'], 'variation' => 'arrow-link')
     ))
-    {{ $intro }}
+    {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent
 
 @component('components.molecules._m-title-bar')

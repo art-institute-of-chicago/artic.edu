@@ -35,9 +35,9 @@
             @endcomponent
         </div>
         <div class="m-cta-banner__txt">
-            <p class="m-cta-banner__title f-module-title-2">{!! $headline !!}</p>
-            <p class="m-cta-banner__msg f-list-2">{!! $short_copy !!}</p>
-            <p class="m-cta-banner__action"><span class="btn f-buttons btn--contrast">{!! $button_text !!}</span></p>
+            <p class="m-cta-banner__title f-module-title-2">{!! SmartyPants::defaultTransform($headline) !!}</p>
+            <p class="m-cta-banner__msg f-list-2">{!! SmartyPants::defaultTransform($short_copy) !!}</p>
+            <p class="m-cta-banner__action"><span class="btn f-buttons btn--contrast">{!! SmartyPants::defaultTransform($button_text) !!}</span></p>
         </div>
     </a>
 </aside>
