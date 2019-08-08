@@ -391,7 +391,7 @@
                     strval(\App\Models\Event::NULL_OPTION_EVENT_HOST), '[None]'
                 ),
                 'default' => \App\Models\Event::NULL_OPTION_EVENT_HOST, // no effect?
-                'note' => 'Will automatically replace `%%EventHost%%` in email series fields',
+                'note' => 'This field is mandatory and will be used to determine audience list for email send',
                 'required' => true,
             ])
 
