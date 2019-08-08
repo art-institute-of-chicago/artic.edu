@@ -323,7 +323,8 @@
   .m-media--l,
   .m-cta-banner,
   .m-mobile-block,
-  .m-aside-newsletter--wide {
+  .m-aside-newsletter--wide,
+  .o-grid-block {
     @include breakpoint('medium+') {
       width: colspan(58, medium);
       margin-right: colspan(20, medium, 0, true);
