@@ -1,5 +1,5 @@
 @formField('medias', [
-    'name' => 'hero',
+    'name' => 'image',
     'label' => 'Image',
     'max' => '1'
 ])
@@ -7,6 +7,12 @@
 @formField('input', [
     'name' => 'title',
     'label' => 'Title'
+])
+
+@formField('input', [
+    'name' => 'tag',
+    'label' => 'Tag',
+    'note' => 'Displayed in smaller font above title',
 ])
 
 @formField('input', [
