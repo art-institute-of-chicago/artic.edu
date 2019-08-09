@@ -93,7 +93,7 @@
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
-            'list', 'newsletter_signup_inline', 'timeline', 'link', 'shop_items',
+            'list', 'newsletter_signup_inline', 'timeline', 'link',
             'artworks', 'artwork', 'hr', 'split_block', 'tour_stop', 'button',
             'mobile_app'
         ])

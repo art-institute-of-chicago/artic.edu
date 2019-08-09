@@ -123,11 +123,6 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-mobile_app',
             ],
-            'shop_items' => [
-                'title' => 'Featured products',
-                'icon' => 'image',
-                'component' => 'a17-block-shop_items',
-            ],
             'event' => [
                 'title' => 'Event',
                 'icon' => 'text',
