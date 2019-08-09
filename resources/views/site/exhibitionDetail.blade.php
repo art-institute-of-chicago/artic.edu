@@ -260,7 +260,7 @@
     @endcomponent
 @endif
 
-@if ($relatedEventsByDay)
+@if ($relatedEventsByDay && $relatedEventsByDay->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => route('events'))))
         @slot('id', 'related_events')
