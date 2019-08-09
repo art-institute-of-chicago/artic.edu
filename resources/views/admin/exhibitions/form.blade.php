@@ -4,7 +4,7 @@
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'related', 'label' => 'Related'],
         ['fieldset' => 'side_related', 'label' => 'Right rail related slot'],
-        ['fieldset' => 'offers', 'label' => 'Offers'],
+        ['fieldset' => 'offers', 'label' => 'Offers and Products'],
         ['fieldset' => 'api', 'label' => 'Datahub fields'],
     ]
 ])
@@ -173,8 +173,36 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="offers" title="Offers">
+    <a17-fieldset id="offers" title="Offers and Products">
         @formField('repeater', ['type' => 'offers'])
+
+        <hr />
+
+        @formField('input', [
+            'name' => 'product_section_title',
+            'label' => 'Shop section title',
+            'note' => 'Defaults to "Related Products" if blank'
+        ])
+
+        @formField('input', [
+            'name' => 'product_section_title_link_label',
+            'label' => 'Shop link label',
+            'note' => 'Defaults to "Explore the shop" if blank'
+        ])
+
+        @formField('input', [
+            'name' => 'product_section_title_link_href',
+            'label' => 'Shop link URL',
+            'note' => 'Defaults to "https://shop.artic.edu" if blank'
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'general',
+            'name' => 'shopItems',
+            'moduleName' => 'shopItems',
+            'label' => 'Shop items',
+            'max' => 5,
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="side_related" title="Right rail related slot - Only one will show up randomly">
