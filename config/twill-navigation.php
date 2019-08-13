@@ -177,10 +177,10 @@ return [
                 'title' => 'Departments',
                 'module' => true,
             ],
-            'interactiveFeatures' => [
-                'title' => 'Interactive Features',
-                'module' => true,
-            ],
+            // 'interactiveFeatures' => [
+            //     'title' => 'Interactive Features',
+            //     'module' => true,
+            // ],
         ]
     ],
 

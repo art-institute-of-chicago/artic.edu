@@ -147,10 +147,10 @@ class SearchController extends BaseScopedController
                     $item->url = route('exhibitions.show', $item);
                     $item->section = 'Exhibitions and Events';
                     break;
-                case 'DigitalLabel':
-                    $item->url = route('interactiveFeatures.show', $item);
-                    $item->section = 'Interactive Features';
-                    break;
+                // case 'DigitalLabel':
+                //     $item->url = route('interactiveFeatures.show', $item);
+                //     $item->section = 'Interactive Features';
+                //     break;
                 case 'Artist':
                     $item->url = route('artists.show', $item);
                     $item->section = 'Artists';
@@ -404,7 +404,7 @@ class SearchController extends BaseScopedController
             array_push($links, $this->buildLabel('Press Releases', extractAggregation($aggregations, 'press-releases'), route('search.press-releases', ['q' => request('q')]), $active == 'press-releases'));
         }
 
-        array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
+        // array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
 
         return $links;
     }
