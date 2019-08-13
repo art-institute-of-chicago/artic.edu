@@ -2,7 +2,7 @@
 <html dir="ltr" lang="{{ app()->getLocale() }}" class="no-js{{ isset($_COOKIE["A17_fonts_cookie_serif"]) ? ' s-serif-loaded' : '' }}{{ isset($_COOKIE["A17_fonts_cookie_sans-serif"]) ? ' s-sans-serif-loaded' : '' }} s-env-{{ app()->environment() }} s-interactive-feature--kiosk">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="format-detection" content="telephone=no">
 
