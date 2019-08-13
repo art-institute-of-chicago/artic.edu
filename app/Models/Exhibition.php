@@ -83,7 +83,7 @@ class Exhibition extends AbstractModel
             'special' => [
                 [
                     'name' => 'special',
-                    'ratio' => 16 / 9,
+                    'ratio' => 1 / 1,
                 ],
             ],
         ],

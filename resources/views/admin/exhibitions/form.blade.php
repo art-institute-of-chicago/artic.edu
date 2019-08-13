@@ -13,14 +13,15 @@
     @formField('input', [
         'name' => 'title_display',
         'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+        'note' => 'Use <i> tag to add italics, e.g. <i>Nighthawks</i>'
     ])
 
     @formField('select', [
         'name' => 'cms_exhibition_type',
         'label' => 'Exhibition layout',
         'options' => $exhibitionTypesList,
-        'default' => '0'
+        'default' => '0',
+        'note' => '"Special" crop is used for "Special exhibition" layout',
     ])
 
     @formField('medias', [

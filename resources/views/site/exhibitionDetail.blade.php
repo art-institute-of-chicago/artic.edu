@@ -20,7 +20,7 @@
     @slot('dateEnd', $item->present()->endAt)
     @slot('type', $item->present()->exhibitionType)
     @slot('intro', $item->present()->header_copy)
-    @slot('img', $item->imageAsArray('hero'))
+    @slot('img', $item->imageAsArray('hero', $item->cms_exhibition_type == \App\Models\Exhibition::SPECIAL ? 'special' : 'default'))
     @slot('credit', $item->present()->hero_caption)
   @endcomponent
 
