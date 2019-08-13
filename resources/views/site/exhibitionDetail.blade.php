@@ -262,11 +262,11 @@
 
 @if ($item->shopItems() && $item->shopItems()->count() > 0)
     @component('site.shared._featuredProducts')
-        @slot('title', $item->product_section_title ?? 'Related Products')
+        @slot('title', $item->product_section_title ?: 'Related Products')
         @slot('titleLinks', [
             [
-                'label' => $item->product_section_title_link_label ?? 'Explore the shop',
-                'href' => $item->product_section_title_link_href ?? 'https://shop.artic.edu',
+                'label' => $item->product_section_title_link_label ?: 'Explore the shop',
+                'href' => $item->product_section_title_link_href ?: 'https://shop.artic.edu',
             ]
         ])
         @slot('products', $item->apiModels('shopItems', 'ShopItem'))
