@@ -102,7 +102,7 @@ class PrintedPublicationsController extends CatalogsController
 
         return [
             [
-                'prompt' => 'Type',
+                'prompt' => 'Subject',
                 'links'  => collect($categoryLinks)
             ]
         ];

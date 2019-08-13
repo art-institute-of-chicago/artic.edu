@@ -65,7 +65,7 @@
         ))
     @endif
 
-    @slot('variation', 'o-blocks__block')
+    @slot('variation', 'o-blocks__block o-gallery----theme-' . ($block->input('theme') ?? 'dark'))
     @slot('title', $block->present()->input('title'))
     @slot('caption', $block->present()->input('subhead'))
     @slot('items', $items)

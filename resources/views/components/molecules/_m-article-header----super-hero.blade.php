@@ -62,7 +62,7 @@
             @slot('font','f-deck')
             @slot('variation', 'm-article-header__intro')
             @slot('tag', 'span')
-            {!! $intro !!}
+            {!! SmartyPants::defaultTransform($intro) !!}
         @endcomponent
       @endif
       @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))

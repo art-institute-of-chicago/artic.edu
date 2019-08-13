@@ -113,6 +113,11 @@ class GenericPage extends AbstractModel implements Sortable
         return $prefix . "/" . $this->slug;
     }
 
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.generic.genericPages.edit', $this->id);
+    }
+
     public static function saveTreeFromIds($nodesArray)
     {
         $parentNodes = self::find(Arr::pluck($nodesArray, 'id'));

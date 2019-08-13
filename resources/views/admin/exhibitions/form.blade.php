@@ -4,7 +4,7 @@
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'related', 'label' => 'Related'],
         ['fieldset' => 'side_related', 'label' => 'Right rail related slot'],
-        ['fieldset' => 'offers', 'label' => 'Offers'],
+        ['fieldset' => 'offers', 'label' => 'Offers and Products'],
         ['fieldset' => 'api', 'label' => 'Datahub fields'],
     ]
 ])
@@ -13,14 +13,15 @@
     @formField('input', [
         'name' => 'title_display',
         'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+        'note' => 'Use <i> tag to add italics, e.g. <i>Nighthawks</i>'
     ])
 
     @formField('select', [
         'name' => 'cms_exhibition_type',
         'label' => 'Exhibition layout',
         'options' => $exhibitionTypesList,
-        'default' => '0'
+        'default' => '0',
+        'note' => '"Special" crop is used for "Special exhibition" layout',
     ])
 
     @formField('medias', [
@@ -123,7 +124,7 @@
         'blocks' => getBlocksForEditor([
             'event', 'paragraph', 'image', 'video', 'gallery',
             'media_embed', 'quote', 'list', 'accordion', 'newsletter_signup_inline',
-            'shop_items', 'timeline', 'link', 'artwork', 'artworks',
+            'timeline', 'link', 'artwork', 'artworks',
             'hr', 'split_block', 'tour_stop', 'button', 'mobile_app'
         ])
     ])
@@ -173,8 +174,36 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="offers" title="Offers">
+    <a17-fieldset id="offers" title="Offers and Products">
         @formField('repeater', ['type' => 'offers'])
+
+        <hr />
+
+        @formField('input', [
+            'name' => 'product_section_title',
+            'label' => 'Shop section title',
+            'note' => 'Defaults to "Related Products" if blank'
+        ])
+
+        @formField('input', [
+            'name' => 'product_section_title_link_label',
+            'label' => 'Shop link label',
+            'note' => 'Defaults to "Explore the shop" if blank'
+        ])
+
+        @formField('input', [
+            'name' => 'product_section_title_link_href',
+            'label' => 'Shop link URL',
+            'note' => 'Defaults to "https://shop.artic.edu" if blank'
+        ])
+
+        @formField('browser', [
+            'routePrefix' => 'general',
+            'name' => 'shopItems',
+            'moduleName' => 'shopItems',
+            'label' => 'Shop items',
+            'max' => 5,
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="side_related" title="Right rail related slot - Only one will show up randomly">

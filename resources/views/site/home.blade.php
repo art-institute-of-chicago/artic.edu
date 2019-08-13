@@ -43,7 +43,7 @@
         array('label' => 'Hours and admission fees<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['hours'], 'variation' => 'arrow-link'),
         array('label' => 'Directions and parking<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['directions'], 'variation' => 'arrow-link')
     ))
-    {{ $intro }}
+    {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent
 
 @component('components.molecules._m-title-bar')
@@ -190,43 +190,16 @@
     @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title .'"  data-gtm-event-category="nav-link"')))
 @endcomponent
 
-
-
-@component('components.molecules._m-title-bar')
-    @slot('links', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')))
-    From the Shop
-@endcomponent
-
-@component('components.atoms._hr')
-@endcomponent
-
-@component('components.organisms._o-grid-listing')
-    @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
-    @slot('cols_medium','4')
-    @slot('cols_large','5')
-    @slot('cols_xlarge','5')
-    @slot('behavior','dragScroll')
-    @foreach ($products as $item)
-        @component('components.molecules._m-listing----product')
-            @slot('simple', true)
-            @slot('item', $item)
-            @slot('imgVariation','m-listing__img--tall')
-            @slot('imageSettings', array(
-                'fit' => 'fill',
-                'fill'=> 'blur',
-                'ratio' => '3:4',
-                'srcset' => array(200,400,600),
-                'sizes' => aic_imageSizes(array(
-                      'xsmall' => '216px',
-                      'small' => '216px',
-                      'medium' => '18',
-                      'large' => '13',
-                      'xlarge' => '13',
-                )),
-            ))
-            @slot('gtmAttributes', 'data-gtm-event="'.getUtf8Slug($item['title'] ?? 'unknown title').'" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="shop-listing'.($loop->index + 1).'"')
-        @endcomponent
-    @endforeach
+@component('site.shared._featuredProducts')
+    @slot('title', 'From the shop')
+    @slot('titleLinks', [
+        [
+            'label' => 'Explore the shop',
+            'href' => $_pages['shop'],
+            'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
+        ]
+    ])
+    @slot('products', $products)
 @endcomponent
 
 @component('components.molecules._m-links-bar')

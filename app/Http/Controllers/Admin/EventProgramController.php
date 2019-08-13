@@ -26,8 +26,17 @@ class EventProgramController extends ModuleController
             'title' => 'Affiliate Group?',
             'edit_link' => false,
             'field' => 'isAffiliateGroup',
-            'optional' => false,
+            'optional' => true,
             'present' => true,
+            'visible' => true,
+        ],
+        'is_event_host' => [
+            'title' => 'Event Host?',
+            'edit_link' => false,
+            'field' => 'isEventHost',
+            'optional' => true,
+            'present' => true,
+            'visible' => true,
         ],
     ];
 

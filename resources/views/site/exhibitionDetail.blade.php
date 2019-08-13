@@ -20,7 +20,7 @@
     @slot('dateEnd', $item->present()->endAt)
     @slot('type', $item->present()->exhibitionType)
     @slot('intro', $item->present()->header_copy)
-    @slot('img', $item->imageAsArray('hero'))
+    @slot('img', $item->imageAsArray('hero', $item->cms_exhibition_type == \App\Models\Exhibition::SPECIAL ? 'special' : 'default'))
     @slot('credit', $item->present()->hero_caption)
   @endcomponent
 
@@ -235,10 +235,10 @@
     @endcomponent
     @component('components.organisms._o-grid-listing')
         @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-rows')
+        @slot('cols_small','2')
         @slot('cols_medium','3')
         @slot('cols_large','3')
         @slot('cols_xlarge','3')
-        @slot('behavior','dragScroll')
         @foreach ($item->offers as $offer)
             @component('components.molecules._m-listing----offer')
                 @slot('item', $offer)
@@ -260,7 +260,20 @@
     @endcomponent
 @endif
 
-@if ($relatedEventsByDay)
+@if ($item->shopItems() && $item->shopItems()->count() > 0)
+    @component('site.shared._featuredProducts')
+        @slot('title', $item->product_section_title ?: 'Related Products')
+        @slot('titleLinks', [
+            [
+                'label' => $item->product_section_title_link_label ?: 'Explore the shop',
+                'href' => $item->product_section_title_link_href ?: 'https://shop.artic.edu',
+            ]
+        ])
+        @slot('products', $item->apiModels('shopItems', 'ShopItem'))
+    @endcomponent
+@endif
+
+@if ($relatedEventsByDay && $relatedEventsByDay->count() > 0)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => route('events'))))
         @slot('id', 'related_events')
@@ -335,36 +348,6 @@
                     )),
                 ))
                 @slot('gtmAttributes', 'data-gtm-event="exhibition-recirculation" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-link"')
-            @endcomponent
-        @endforeach
-    @endcomponent
-@endif
-
-@if ($item->shopItems() && $item->shopItems()->count() > 0)
-    @component('components.molecules._m-title-bar')
-        Related Products
-    @endcomponent
-    @component('components.organisms._o-grid-listing')
-        @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--hide-extra@medium o-grid-listing--gridlines-cols')
-        @slot('cols_medium','3')
-        @slot('cols_large','3')
-        @slot('cols_xlarge','3')
-        @slot('behavior','dragScroll')
-        @foreach ($item->apiModels('shopItems', 'ShopItem') as $item)
-            @component('components.molecules._m-listing----offer')
-                @slot('item', $item)
-                @slot('imageSettings', array(
-                    'fit' => 'crop',
-                    'ratio' => '16:9',
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '216px',
-                          'small' => '216px',
-                          'medium' => '18',
-                          'large' => '18',
-                          'xlarge' => '18',
-                    )),
-                ))
             @endcomponent
         @endforeach
     @endcomponent

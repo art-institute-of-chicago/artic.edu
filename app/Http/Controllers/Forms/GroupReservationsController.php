@@ -328,24 +328,6 @@ class GroupReservationsController extends FormController
             ),
         );
 
-        $diningOptionFields = [
-            'variation' => 'm-fieldset__field--group',
-            'blocks' => array(
-                array(
-                  'type' => 'label',
-                  'variation' => 'm-fieldset__group-label',
-                  'error' => (!empty($errors) && $errors->first('dining_option')) ? $errors->first('dining_option') : null,
-                  'optional' => null,
-                  'hint' => null,
-                  'label' => 'Dining options',
-                )
-            ),
-        ];
-        foreach($this->getDiningOptionArray(old('dining_option')) as $t) {
-            array_push($diningOptionFields['blocks'], $t);
-        }
-        $visitInformationFields[] = $diningOptionFields;
-
         $visitInformationFields[]= array(
             'variation' => null,
             'blocks' => array(
@@ -526,7 +508,6 @@ class GroupReservationsController extends FormController
         $groupReservation->no_of_adults = $validated['no_of_adults'] ?? '';
         $groupReservation->no_of_students = $validated['no_of_students'] ?? '';
         $groupReservation->no_of_seniors = $validated['no_of_seniors'] ?? '';
-        $groupReservation->dining_option = $validated['dining_option'] ?? '';
         $groupReservation->no_of_audio_tours = $validated['no_of_audio_tours'] ?? '';
         $groupReservation->topic = $validated['topic'] ?? '';
         $groupReservation->needs = isset($validated['needs']) ? implode(", ", $validated['needs']) : '';
@@ -538,37 +519,6 @@ class GroupReservationsController extends FormController
         return redirect(route('forms.group-reservation.thanks'));
 
     }
-
-    private function getDiningOptionArray($selected)
-    {
-        $options = array('Lunch' => 'Lunch');
-
-        $list = [];
-        foreach($options as $value => $label) {
-            $item = [
-              'type' => 'radio',
-              'variation' => '',
-              'id' => 'dining_option_'.$value,
-              'name' => 'dining_option',
-              'value' => $value,
-              'error' => null,
-              'optional' => null,
-              'hint' => null,
-              'disabled' => false,
-              'checked' => false,
-              'label' => $label
-            ];
-
-            if ($selected == $value) {
-                $item['checked'] = 'checked';
-            }
-
-            $list[] = $item;
-        }
-
-        return $list;
-    }
-
 
     private function getTopicsArray()
     {

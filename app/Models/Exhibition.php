@@ -54,6 +54,9 @@ class Exhibition extends AbstractModel
         'public_end_date',
         'member_preview_start_date',
         'member_preview_end_date',
+        'product_section_title',
+        'product_section_title_link_label',
+        'product_section_title_link_href',
     ];
 
     protected $casts = [
@@ -80,7 +83,7 @@ class Exhibition extends AbstractModel
             'special' => [
                 [
                     'name' => 'special',
-                    'ratio' => 16 / 9,
+                    'ratio' => 1 / 1,
                 ],
             ],
         ],
@@ -126,6 +129,11 @@ class Exhibition extends AbstractModel
     public function getTitleInBucketAttribute()
     {
         return $this->title;
+    }
+
+    public function getAdminEditUrlAttribute()
+    {
+        return route('admin.exhibitions_events.exhibitions.edit', $this->id);
     }
 
     public function events()

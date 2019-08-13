@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class EventEmailSeries extends Pivot
 {
     protected $casts = [
-        'send_affiliate_member' => 'boolean',
-        'send_member' => 'boolean',
-        'send_sustaining_fellow' => 'boolean',
-        'send_non_member' => 'boolean',
+        'override_affiliate' => 'boolean',
+        'override_member' => 'boolean',
+        'override_sustaining_fellow' => 'boolean',
+        'override_nonmember' => 'boolean',
     ];
 }

@@ -43,6 +43,11 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-split_block',
             ],
+            'grid' => [
+                'title' => 'Grid',
+                'icon' => 'image',
+                'component' => 'a17-block-grid',
+            ],
             'gallery' => [
                 'title' => 'Gallery',
                 'icon' => 'image',
@@ -117,11 +122,6 @@ return [
                 'title' => 'Mobile app promo',
                 'icon' => 'text',
                 'component' => 'a17-block-mobile_app',
-            ],
-            'shop_items' => [
-                'title' => 'Featured products',
-                'icon' => 'image',
-                'component' => 'a17-block-shop_items',
             ],
             'event' => [
                 'title' => 'Event',
@@ -212,6 +212,12 @@ return [
                 'trigger' => 'Add item',
                 'component' => 'a17-block-list_item',
                 'max' => 10,
+            ],
+            'grid_item' => [
+                'title' => 'Grid Item',
+                'trigger' => 'Add Grid Item',
+                'component' => 'a17-block-grid_item',
+                'max' => 48,
             ],
             'gallery_item' => [
                 'title' => 'Gallery Item',

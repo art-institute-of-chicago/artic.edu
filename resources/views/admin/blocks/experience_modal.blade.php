@@ -36,15 +36,17 @@
 @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'modal_type',
         'fieldValues' => 'video',
-        'renderForBlocks' => true
+        'renderForBlocks' => true,
+        'keepAlive' => true
 ])
-    @include('admin.experiences.slides._youtube_form')
+    @include('admin.experiences.slides._video_form')
 @endcomponent
 
 @component('twill::partials.form.utils._connected_fields', [
         'fieldName' => 'modal_type',
         'fieldValues' => 'image_sequence',
-        'renderForBlocks' => true
+        'renderForBlocks' => true,
+        'keepAlive' => true
 ])
     @formField('files', [
         'name' => 'image_sequence_file',
