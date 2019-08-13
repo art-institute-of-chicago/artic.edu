@@ -6,6 +6,8 @@
     $isWideBody = (isset($wideBody) && $wideBody);
 @endphp
 
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
 <article class="o-article o-article--generic-page">
 
   @if (isset($errors->notices) && $errors->notices->any()))
