@@ -8,7 +8,6 @@ use View;
 
 class FrontController extends BaseController
 {
-    public $seo;
 
     public function __construct()
     {
