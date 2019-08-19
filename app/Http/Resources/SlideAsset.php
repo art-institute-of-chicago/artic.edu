@@ -26,7 +26,7 @@ class SlideAsset extends JsonResource
                 'src' => [$image->image('experience_image')],
             ];
         } elseif ($this->fileObject('sequence_file')) {
-            $images = SeamlessImage::where('zip_file_id', $this->fileObject('sequence_file')->id)->get();
+            $images = SeamlessImage::where('zip_file_id', $this->fileObject('sequence_file')->id)->orderBy('frame', 'asc')->get();
             $src = $images->map(function ($image) {
                 return [
                     'src' => 'https://' . config('twill.imgix_source_host') . '/seq/' . $image->file_name,
