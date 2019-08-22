@@ -25,6 +25,10 @@
             'value' => 'compare',
             'label' => 'Compare'
         ],
+        [
+            'value' => '3dtour',
+            'label' => '3D Tour'
+        ]
     ]
 ])
 @endunless
