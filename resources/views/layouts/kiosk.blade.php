@@ -20,6 +20,8 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  @include('partials._head-js')
+
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/612324/7579192/css/fonts.css" />
   <style>
   *, *:before, *:after {
