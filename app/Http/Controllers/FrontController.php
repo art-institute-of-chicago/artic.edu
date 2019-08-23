@@ -11,16 +11,10 @@ class FrontController extends BaseController
 
     public function __construct()
     {
+
         parent::__construct();
 
-        if (!in_array(request()->getHost(), config('aic.domains'))) {
-            return redirect((request()->secure() ? 'https://' : 'http://')
-                . config('app.url')
-                . request()->getRequestUri(), 301);
-        }
-
         $this->seo = new Seo;
-
         $this->seo->title = config('twill.seo.site_title');
         $this->seo->description = config('twill.seo.site_desc');
         $this->seo->image = config('twill.seo.image');
