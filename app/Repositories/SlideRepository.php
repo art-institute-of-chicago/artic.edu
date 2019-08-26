@@ -64,6 +64,7 @@ class SlideRepository extends ModuleRepository
         $fields = $this->getExperienceModule($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
+        $fields = $this->getFormFieldsFor3DModel($object, $fields);
         return $fields;
     }
 
@@ -89,12 +90,31 @@ class SlideRepository extends ModuleRepository
             && !empty($fields['camera_target'])
             && !empty($fields['annotation_list'])
         ) {
-            AIC3DModel::create([
-                'model_id' => $fields['model_id'],
-                'camera_position' => $fields['camera_position'],
-                'camera_target' => $fields['camera_target'],
-                'annotation_list' => $fields['annotation_list'],
-            ]);
+            $model = AIC3DModel::updateOrCreate(
+                [
+                    'model_id' => $fields['model_id']
+                ],
+                [
+                    'model_id' => $fields['model_id'],
+                    'camera_position' => $fields['camera_position'],
+                    'camera_target' => $fields['camera_target'],
+                    'annotation_list' => $fields['annotation_list'],
+                ]
+            );
+            $object->AIC3DModel()->associate($model);
+            $object->save();
         }
+    }
+
+    private function getFormFieldsFor3DModel($object, $fields)
+    {
+        $aic3dModel = $object->AIC3DModel;
+        if ($aic3dModel) {
+            $fields['model_id'] = $aic3dModel->model_id;
+            $fields['camera_position'] = $aic3dModel->camera_position;
+            $fields['camera_target'] = $aic3dModel->camera_target;
+            $fields['annotation_list'] = $aic3dModel->annotation_list;
+        };
+        return $fields;
     }
 }
