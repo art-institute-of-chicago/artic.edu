@@ -9,6 +9,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Slide;
+use App\Models\AIC3DModel;
 use App\Repositories\Behaviors\HandleExperienceModule;
 
 class SlideRepository extends ModuleRepository
@@ -38,6 +39,9 @@ class SlideRepository extends ModuleRepository
         $this->updateExperienceModule($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
         $this->updateExperienceModule($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
         $this->updateExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
+        if ($object->module_type === '3dtour') {
+            $this->handle3DModel($object, $fields);
+        }
         parent::afterSave($object, $fields);
     }
 
@@ -76,5 +80,21 @@ class SlideRepository extends ModuleRepository
         $end_slide->position = $this->getCountForAll() + 1;
         $end_slide->save();
         return $slide;
+    }
+
+    private function handle3DModel($object, $fields)
+    {
+        if (!empty($fields['model_id']) 
+            && !empty($fields['camera_position'])
+            && !empty($fields['camera_target'])
+            && !empty($fields['annotation_list'])
+        ) {
+            AIC3DModel::create([
+                'model_id' => $fields['model_id'],
+                'camera_position' => $fields['camera_position'],
+                'camera_target' => $fields['camera_target'],
+                'annotation_list' => $fields['annotation_list'],
+            ]);
+        }
     }
 }
