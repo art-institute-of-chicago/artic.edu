@@ -43,6 +43,9 @@ class Slide extends JsonResource
             case 'compare':
                 return $this->getCompareAttributes();
                 break;
+            case '3dtour':
+                return $this->get3DTourAttributes();
+                break;
             case 'end':
                 return $this->getEndAttributes();
                 break;
@@ -181,6 +184,23 @@ class Slide extends JsonResource
             'modal1' => $compareModal1 ? (new SlideMediaResource($compareModal1))->toArray(request()) : null,
             'modal2' => $compareModal2 ? (new SlideMediaResource($compareModal2))->toArray(request()) : null,
         ];
+    }
+
+    protected function get3DTourAttributes()
+    {
+        $aic3DModel = $this->AIC3DModel()->first();
+        if ($aic3DModel) {
+            return [
+                'model_id' => $aic3DModel->model_id,
+                'camera_position' => $aic3DModel->camera_position,
+                'camera_target' => $aic3DModel->camera_target,
+                'annotation_list' => $aic3DModel->annotation_list
+            ];
+        } else {
+            return [
+
+            ];
+        }
     }
 
     protected function getEndAttributes()
