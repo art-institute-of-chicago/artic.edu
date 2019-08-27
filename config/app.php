@@ -28,6 +28,18 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | The domains that this website serves
+    |--------------------------------------------------------------------------
+    |
+    | List all the domains that this website servers. Any requests outside of
+    | this list will be redirected to www.
+    |
+    */
+    'allowed_domains' => array_map('trim', explode(',', env('ALLOWED_DOMAINS', 'www.artic.edu'))),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
