@@ -20,6 +20,9 @@ class Experience extends Model implements Sortable
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition;
 
+    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
+
     protected $fillable = [
         'published',
         'title',
