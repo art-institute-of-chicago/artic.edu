@@ -50,11 +50,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         $allowedDomains = config('app.allowed_domains') ?? [ config('app.url') ];
 
-        forEach($allowedDomains as $domain)
-        {
+        foreach ($allowedDomains as $domain) {
             Route::middleware('web', 'noDebugBar')
                 ->namespace($this->namespace)
-                ->domain(config($domain))
+                ->domain($domain)
                 ->group(base_path('routes/web.php'));
         }
     }
