@@ -36,10 +36,7 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
         $this->mapWebRoutes();
-
-        //
     }
 
     /**
@@ -51,10 +48,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web', 'noDebugBar')
-             ->namespace($this->namespace)
-             ->domain(config('app.url'))
-             ->group(base_path('routes/web.php'));
+        $allowedDomains = config('app.allowed_domains') ?? [ config('app.url') ];
+
+        forEach($allowedDomains as $domain)
+        {
+            Route::middleware('web', 'noDebugBar')
+                ->namespace($this->namespace)
+                ->domain(config($domain))
+                ->group(base_path('routes/web.php'));
+        }
     }
 
     /**
