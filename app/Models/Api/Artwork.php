@@ -65,6 +65,7 @@ class Artwork extends BaseApiModel
         return ($artist->title ?? '') . ($artist && $artist->title && $this->date_display ? ', ' : '') . ($this->date_display ?? '');
     }
 
+    // Search codebase for `listingSubtitle`, not `listing_subtitle`
     public function getListingSubtitleAttribute()
     {
         if ($this->artist_pivots != null && count($this->artist_pivots) > 0) {

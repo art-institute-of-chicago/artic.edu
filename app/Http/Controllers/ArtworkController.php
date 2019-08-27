@@ -35,10 +35,6 @@ class ArtworkController extends BaseScopedController
         $this->seo->setDescription($item->meta_description ?: $item->fullArtist);
         $this->seo->setImage($item->imageFront('hero'));
 
-        // Get previous and next artwork using BaseScopedController filters
-        // Basically it performs a search again and locates both prev/next works
-        $prevNext = $this->collection()->getPrevNext($item);
-
         // Build Explore further module
         $exploreFurther = new ExploreFurther($item);
 
@@ -46,7 +42,6 @@ class ArtworkController extends BaseScopedController
           'item' => $item,
           'contrastHeader'    => $item->present()->contrastHeader,
           'borderlessHeader'  => $item->present()->borderlessHeader,
-          'prevNextObject'    => $prevNext,
           'primaryNavCurrent' => 'collection',
           'exploreFurtherTags'    => $exploreFurther->tags(),
           'exploreFurther'        => $exploreFurther->collection(request()->all()),
@@ -74,11 +69,6 @@ class ArtworkController extends BaseScopedController
             ->forceEndpoint('search');
 
         return $collectionService;
-    }
-
-    protected function getPrevNext()
-    {
-        $collection = $this->collection()->perPage(static::PER_PAGE)->results();
     }
 
     public function recentlyViewed(RecentlyViewedService $service)
