@@ -86,19 +86,21 @@
     <script>
         const iframe = document.getElementById( 'api-frame' );
         const moduleTypeField = window.STORE.form.fields.find((e) => e.name === 'module_type');
+        let oldModelId = '';
 
         if (moduleTypeField.value === '3dtour') {
             window.vm.$store.subscribe((mutation, state) => {
             const { payload, type } = mutation;
-            if (type === 'updateFormLoading' && payload === true) {
-                const modelIdField = window.STORE.form.fields.find((e) => e.name === 'model_id')
-                const id = modelIdField.value;
-                console.log(id)
-                // reset model data fields
-                updateFormField('camera_position', '');
-                updateFormField('camera_target', '');
-                updateFormField('annotation_list', '');
-                fetchModel(id);
+            if (type === 'updateFormField' && payload.name === 'model_id') {
+                const id = payload.value;
+                if (oldModelId !== id) {
+                    // reset model data fields
+                    updateFormField('camera_position', '');
+                    updateFormField('camera_target', '');
+                    updateFormField('annotation_list', '');
+                    fetchModel(id);
+                    oldModelId = id;
+                }
             }
         })
         }
