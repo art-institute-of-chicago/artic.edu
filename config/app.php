@@ -38,7 +38,7 @@ return [
     | this list will be redirected to www.
     |
     */
-    'allowed_domains' => array_map('trim', explode(',', env('ALLOWED_DOMAINS', 'www.artic.edu'))),
+    'allowed_domains' => array_map('trim', explode(',', env('ALLOWED_DOMAINS', env('APP_URL', 'www.artic.edu')))),
 
     /*
     |--------------------------------------------------------------------------
