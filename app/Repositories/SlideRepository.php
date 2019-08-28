@@ -111,9 +111,9 @@ class SlideRepository extends ModuleRepository
         $aic3dModel = $object->AIC3DModel;
         if ($aic3dModel) {
             $fields['model_id'] = $aic3dModel->model_id;
-            $fields['camera_position'] = $aic3dModel->camera_position;
-            $fields['camera_target'] = $aic3dModel->camera_target;
-            $fields['annotation_list'] = $aic3dModel->annotation_list;
+            $fields['camera_position'] = $aic3dModel->getOriginal('camera_position');
+            $fields['camera_target'] = $aic3dModel->getOriginal('camera_target');
+            $fields['annotation_list'] = $aic3dModel->getOriginal('annotation_list');
         };
         return $fields;
     }
