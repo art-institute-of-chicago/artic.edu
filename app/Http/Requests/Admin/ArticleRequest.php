@@ -10,6 +10,7 @@ class ArticleRequest extends Request
     {
         $rules = [
             'title' => 'required',
+            'date' => 'required',
             'heading' => 'max:255',
         ];
 

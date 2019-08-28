@@ -16,6 +16,8 @@
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Display date',
+        'optional' => false,
+        'note' => 'Required',
     ])
 
     @formField('select', [
