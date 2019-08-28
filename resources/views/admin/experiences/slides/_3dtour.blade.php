@@ -3,6 +3,6 @@
     'fieldValues' => '3dtour',
     'keepAlive' => true,
 ])
-    @include('admin.blocks.3d_model')
+    @include('admin.blocks.aic_3d_model')
 
 @endcomponent

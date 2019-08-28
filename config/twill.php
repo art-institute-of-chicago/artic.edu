@@ -169,6 +169,11 @@ return [
                 'icon' => 'image',
                 'component' => 'a17-block-digital_label',
             ],
+            '3d_model' => [
+                'title' => '3D Model',
+                'icon' => 'image',
+                'component' => 'a17-block-aic_3d_model'
+            ]
         ],
         'repeaters' => [
             'admissions' => [

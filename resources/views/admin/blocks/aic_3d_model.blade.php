@@ -22,13 +22,13 @@
         'disabled' => true
     ])
     
-    <iframe src="" id="api-frame" allow="autoplay; fullscreen; vr" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" hidden></iframe>
+    <iframe src="" id="sketchfab-frame" allow="autoplay; fullscreen; vr" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" hidden></iframe>
 </div>
 
 @push('extra_js')
     <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.5.1.js"></script>
     <script>
-        const iframe = document.getElementById( 'api-frame' );
+        const iframe = document.getElementById( 'sketchfab-frame' );
         const moduleTypeField = window.STORE.form.fields.find((e) => e.name === 'module_type');
         let oldModelId = '';
 
@@ -58,8 +58,6 @@
                 success: onSuccess = (api) => {
                     api.start();
                     api.getCameraLookAt((err, camera) => {
-                        console.log('hello');
-                        console.log(camera.position);
                         updateFormField('camera_position', camera.position);
                         updateFormField('camera_target', camera.target);
                     })

@@ -169,16 +169,17 @@ trait HandleApiRelations
                     return $items->map(function ($relatedElement) {
                         $element = $relatedElement->related;
                         $elementPosition = $relatedElement->position;
-
-                        return [
-                            'id' => $element->id,
-                            'name' => $element->titleInBrowser ?? $element->title,
-                            'endpointType' => $element->getMorphClass(),
-                            'position' => $elementPosition,
-                            'edit' => $element->adminEditUrl,
-                        ] + ((classHasTrait($element, \App\Models\Behaviors\HasMedias::class)) ? [
-                            'thumbnail' => $element->defaultCmsImage(['w' => 100, 'h' => 100]),
-                        ] : []);
+                        if ($element) {
+                            return [
+                                'id' => $element->id,
+                                'name' => $element->titleInBrowser ?? $element->title,
+                                'endpointType' => $element->getMorphClass(),
+                                'position' => $elementPosition,
+                                'edit' => $element->adminEditUrl,
+                            ] + ((classHasTrait($element, \A17\Twill\Models\Behaviors\HasMedias::class)) ? [
+                                'thumbnail' => $element->defaultCmsImage(['w' => 100, 'h' => 100]),
+                            ] : []);
+                        }
                     });
                 }
             });
