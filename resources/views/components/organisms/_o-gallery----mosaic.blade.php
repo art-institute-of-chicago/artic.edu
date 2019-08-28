@@ -19,13 +19,6 @@
                 {!! $caption !!}
             @endcomponent
         @endif
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--contrast-secondary btn--icon o-gallery__share')
-            @slot('font', '')
-            @slot('icon', 'icon--share--24')
-            @slot('behavior','sharePage')
-            @slot('ariaLabel','Share page')
-        @endcomponent
     </div>
     <div class="o-gallery__media o-gallery__media--2-col@small  o-gallery__media--2-col@medium  o-gallery__media--2-col@large  o-gallery__media--2-col@xlarge" data-behavior="pinboard">
         @if (isset($items) && !empty($items))
