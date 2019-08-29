@@ -49,11 +49,11 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         $allowedDomains = config('app.allowed_domains') ?? [ config('app.url') ];
-
-        foreach ($allowedDomains as $domain) {
+        $host = request()->getHttpHost();
+        if (in_array($host, $allowedDomains)) {
             Route::middleware('web', 'noDebugBar')
                 ->namespace($this->namespace)
-                ->domain($domain)
+                ->domain($host)
                 ->group(base_path('routes/web.php'));
         }
     }
