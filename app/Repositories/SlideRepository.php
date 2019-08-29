@@ -85,20 +85,20 @@ class SlideRepository extends ModuleRepository
 
     private function handle3DModel($object, $fields)
     {
-        if (!empty($fields['model_id']) 
-            && !empty($fields['camera_position'])
-            && !empty($fields['camera_target'])
-            && !empty($fields['annotation_list'])
+        if (!empty($fields['aic_3d_model[model_id]']) 
+            && !empty($fields['aic_3d_model[camera_position]'])
+            && !empty($fields['aic_3d_model[camera_target]'])
+            && !empty($fields['aic_3d_model[annotation_list]'])
         ) {
             $model = AIC3DModel::updateOrCreate(
                 [
-                    'model_id' => $fields['model_id']
+                    'model_id' => $fields['aic_3d_model[model_id]']
                 ],
                 [
-                    'model_id' => $fields['model_id'],
-                    'camera_position' => $fields['camera_position'],
-                    'camera_target' => $fields['camera_target'],
-                    'annotation_list' => $fields['annotation_list'],
+                    'model_id' => $fields['aic_3d_model[model_id]'],
+                    'camera_position' => $fields['aic_3d_model[camera_position]'],
+                    'camera_target' => $fields['aic_3d_model[camera_target]'],
+                    'annotation_list' => $fields['aic_3d_model[annotation_list]'],
                 ]
             );
             $object->AIC3DModel()->associate($model);
@@ -110,10 +110,10 @@ class SlideRepository extends ModuleRepository
     {
         $aic3dModel = $object->AIC3DModel;
         if ($aic3dModel) {
-            $fields['model_id'] = $aic3dModel->model_id;
-            $fields['camera_position'] = $aic3dModel->getOriginal('camera_position');
-            $fields['camera_target'] = $aic3dModel->getOriginal('camera_target');
-            $fields['annotation_list'] = $aic3dModel->getOriginal('annotation_list');
+            $fields['aic_3d_model[model_id]'] = $aic3dModel->model_id;
+            $fields['aic_3d_model[camera_position]'] = $aic3dModel->getOriginal('camera_position');
+            $fields['aic_3d_model[camera_target]'] = $aic3dModel->getOriginal('camera_target');
+            $fields['aic_3d_model[annotation_list]'] = $aic3dModel->getOriginal('annotation_list');
         };
         return $fields;
     }

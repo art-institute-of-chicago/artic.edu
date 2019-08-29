@@ -1,14 +1,75 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" in-store="value" ></a17-textfield><div> <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value" ></a17-textfield> <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" ></a17-textfield> <a17-textfield label="Annotation List" :name="fieldName('annotation_list')" type="text" disabled in-store="value" ></a17-textfield> <iframe src="" id="api-frame" allow="autoplay; fullscreen; vr" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" hidden></iframe></div>
+        <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" in-store="value" :initial-value="modelId"></a17-textfield>
+        <div>
+          <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value" :initial-value="cameraPosition"></a17-textfield>
+          <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" :initial-value="cameraTarget"></a17-textfield>
+          <a17-textfield label="Annotation List" :name="fieldName('annotation_list')" type="text" disabled in-store="value" :initial-value="annotationList"></a17-textfield>
+          <iframe src="" id="sketchfab-frame" allow="autoplay; fullscreen; vr" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" hidden></iframe>
+        </div>
     </div>
 </template>
 
 <script>
   import BlockMixin from '@/mixins/block'
+  import { mapState } from 'vuex'
+  import store from '@/store'
+  const Sketchfab = require('./sketchfab-viewer.js')
 
   export default {
-    mixins: [BlockMixin]
+    mixins: [BlockMixin],
+    props: ['modelId', 'cameraPosition', 'cameraTarget', 'annotationList'],
+    computed: {
+      ...mapState({
+        fields: state => state.form.fields
+      })
+    },
+    mounted: function () {
+        const moduleTypeField = this.fields.find((e) => e.name === 'module_type')
+        let oldModelId = ''
+        if (moduleTypeField.value === '3dtour') {
+          this.$store.subscribe((mutation, state) => {
+            const { payload, type } = mutation;
+            if (type === 'updateFormField' && payload.name === 'aic_3d_model[model_id]') {
+                const id = payload.value;
+                if (oldModelId !== id) {
+                    // reset model data fields
+                    this.updateFormField('aic_3d_model[camera_position]', '');
+                    this.updateFormField('aic_3d_model[camera_target]', '');
+                    this.updateFormField('aic_3d_model[annotation_list]', '');
+                    this.fetchModel(id);
+                    oldModelId = id;
+                }
+            }
+          })
+        }
+    },
+    methods: {
+      fetchModel: function(id) {
+        if (id === '') {
+          return;
+        }
+        const client = new Sketchfab(document.getElementById('sketchfab-frame'));
+        client.init(id, {
+            success: (api) => {
+                api.start();
+                api.getCameraLookAt((err, camera) => {
+                    this.updateFormField('aic_3d_model[camera_position]', camera.position);
+                    this.updateFormField('aic_3d_model[camera_target]', camera.target);
+                })
+                api.getAnnotationList((err, annotations) => {
+                    this.updateFormField('aic_3d_model[annotation_list]', JSON.stringify(annotations));
+                })
+            }
+        })
+      },
+      updateFormField: function(name, value) {
+        this.$store.commit('updateFormField', {
+            name: name,
+            value: value
+        });
+      }
+    }
   }
 </script>
