@@ -51,12 +51,12 @@ class RouteServiceProvider extends ServiceProvider
     {
         $allowedDomains = config('app.allowed_domains') ?? [ config('app.url') ];
         $host = request()->getHttpHost();
-        if (in_array($host, $allowedDomains)) {
-            Route::middleware('web', 'noDebugBar')
-                ->namespace($this->namespace)
-                ->domain($host)
-                ->group(base_path('routes/web.php'));
-        }
+        $domain = in_array($host, $allowedDomains) ? $host : config('app.url');
+
+        Route::middleware('web', 'noDebugBar')
+            ->namespace($this->namespace)
+            ->domain($domain)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
