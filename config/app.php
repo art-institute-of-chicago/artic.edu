@@ -42,6 +42,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | The domains that this website serves
+    |--------------------------------------------------------------------------
+    |
+    | List all the domains that this website servers. Any requests outside of
+    | this list will be redirected to www.
+    |
+    */
+    'kiosk_domain' => env('KIOSK_DOMAIN', 'kiosk.artic.edu'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |
