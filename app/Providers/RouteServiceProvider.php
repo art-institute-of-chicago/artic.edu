@@ -75,7 +75,7 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "api" routes for the application.
+     * Define the "kiosk" routes for the application.
      *
      * These routes are typically stateless.
      *
@@ -83,9 +83,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapKioskRoutes()
     {
+
+        $domain = config('app.kiosk_domain');
+
         Route::middleware('web', 'noDebugBar')
                 ->namespace($this->namespace)
-                ->domain(config('app.kiosk_domain'))
+                ->domain($domain)
                 ->group(base_path('routes/kiosk.php'));
     }
 

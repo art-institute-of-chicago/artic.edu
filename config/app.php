@@ -42,27 +42,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | The domains that this website serves
+    | Kiosk Domain
     |--------------------------------------------------------------------------
     |
-    | List all the domains that this website servers. Any requests outside of
-    | this list will be redirected to www.
-    |
-    */
-    'kiosk_domain' => env('KIOSK_DOMAIN', 'kiosk.artic.edu'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Debug Mode
-    |--------------------------------------------------------------------------
-    |
-    | When your application is in debug mode, detailed error messages with
-    | stack traces will be shown on every error that occurs within your
-    | application. If disabled, a simple generic error page is shown.
+    | The domain used for rending the "Kiosk" kayout of Interactive Features
     |
      */
-
-    'debug' => env('APP_DEBUG', false),
+    'kiosk_domain' => env('KIOSK_DOMAIN', 'kiosk.artic.edu'),
 
     /*
     |--------------------------------------------------------------------------

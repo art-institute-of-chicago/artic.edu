@@ -5,15 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="format-detection" content="telephone=no">
-
-    @if (isset($seo))
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="og:type" content="article" />
-      @section('meta_title') @include('partials.metas._title') @show
-      @section('meta_description') @include('partials.metas._description') @show
-      @section('meta_url') @include('partials.metas._url') @show
-      @section('meta_image') @include('partials.metas._image') @show
-    @endif
+  <meta name="robots" content="noindex">
 
   <!-- Main Favicon -->
   <link rel="shortcut icon" type="image/png" href="{{revAsset('images/favicon-16.png')}}">
