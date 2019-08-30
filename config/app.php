@@ -28,6 +28,18 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application Debug Mode
+    |--------------------------------------------------------------------------
+    |
+    | When your application is in debug mode, detailed error messages with
+    | stack traces will be shown on every error that occurs within your
+    | application. If disabled, a simple generic error page is shown.
+    |
+     */
+
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,16 +54,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Debug Mode
+    | Kiosk Domain
     |--------------------------------------------------------------------------
     |
-    | When your application is in debug mode, detailed error messages with
-    | stack traces will be shown on every error that occurs within your
-    | application. If disabled, a simple generic error page is shown.
+    | The domain used for rending the "Kiosk" kayout of Interactive Features
     |
      */
-
-    'debug' => env('APP_DEBUG', false),
+    'kiosk_domain' => env('KIOSK_DOMAIN', 'kiosk.artic.edu'),
 
     /*
     |--------------------------------------------------------------------------

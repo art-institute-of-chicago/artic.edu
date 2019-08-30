@@ -59,27 +59,51 @@ class InteractiveFeatureExperiencesController extends FrontController
 
     protected function show($slug)
     {
+
+        if (in_array('kiosk', request()->segments())) {
+            return redirect()->action(
+                'InteractiveFeatureExperiencesController@showKiosk',
+                ['slug' => $slug]
+            );
+        }
+
         $experience = $this->repository->forSlug($slug);
-        if (!$experience) {
+
+        if (!$experience || $experience->kiosk_only === true) {
             abort(404);
         }
-        
-        if (in_array('kiosk', request()->segments())) {
-            $view = 'site.experienceDetailKiosk';
-        } else {
-            if ($experience->kiosk_only === true) {
-                abort(404);
-            }
-            $view = 'site.experienceDetail';
-        }
+
+        $view = 'site.experienceDetail';
+
         $articles = Article::published()
             ->orderBy('date', 'desc')
             ->paginate(4);
+
         return view($view, [
             'contrastHeader' => true,
             'experience' => $experience,
             'furtherReading' => $articles,
-            'canonicalUrl' => route('interactiveFeatures.show', ['id' => $experience->id, 'slug' => $experience->titleSlug]),
+            'canonicalUrl' => route('interactiveFeatures.show',
+                [
+                    'id' => $experience->id,
+                    'slug' => $experience->titleSlug
+                ]
+            ),
+        ]);
+    }
+
+    protected function showKiosk($slug)
+    {
+        $experience = $this->repository->forSlug($slug);
+        if (!$experience) {
+            abort(404);
+        }
+
+        $view = 'site.experienceDetailKiosk';
+
+        return view($view, [
+            'contrastHeader' => true,
+            'experience' => $experience
         ]);
     }
 

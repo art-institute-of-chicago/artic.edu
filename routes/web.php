@@ -166,9 +166,9 @@ Route::get('e-news', function () {
 
 // Digital labels
 Route::name('interactiveFeatures')->get('/interactive-features', 'InteractiveFeatureExperiencesController@index');
-Route::name('interactiveFeatures.showKiosk')->get('/interactive-features/kiosk/{slug}', 'InteractiveFeatureExperiencesController@show');
 Route::name('interactiveFeatures.test')->get('/interactive-features/test', 'InteractiveFeatureExperiencesController@test');
 Route::name('interactiveFeatures.show')->get('/interactive-features/{slug}', 'InteractiveFeatureExperiencesController@show');
+Route::name('interactiveFeatures.showKiosk')->get('/interactive-features/kiosk/{slug}', 'InteractiveFeatureExperiencesController@show');
 
 // Feed routes
 Route::feeds();
