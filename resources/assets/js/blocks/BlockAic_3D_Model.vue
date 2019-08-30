@@ -1,11 +1,11 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" in-store="value" :initial-value="modelId"></a17-textfield>
+        <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" in-store="value"></a17-textfield>
         <div>
-          <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value" :initial-value="cameraPosition"></a17-textfield>
-          <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" :initial-value="cameraTarget"></a17-textfield>
-          <a17-textfield label="Annotation List" :name="fieldName('annotation_list')" type="text" disabled in-store="value" :initial-value="annotationList"></a17-textfield>
+          <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value"></a17-textfield>
+          <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" ></a17-textfield>
+          <a17-textfield label="Annotation List" :name="fieldName('annotation_list')" type="text" disabled in-store="value"></a17-textfield>
           <iframe src="" id="sketchfab-frame" allow="autoplay; fullscreen; vr" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" hidden></iframe>
         </div>
     </div>
@@ -25,16 +25,23 @@
         fields: state => state.form.fields
       })
     },
+    created: function () {
+        this.updateFormField(this.fieldName('model_id'), this.modelId);
+        this.updateFormField(this.fieldName('camera_position'), this.cameraPosition);
+        this.updateFormField(this.fieldName('camera_target'), this.cameraTarget);
+        this.updateFormField(this.fieldName('annotation_list'), this.annotationList);
+    },
     mounted: function () {
         const moduleTypeField = this.fields.find((e) => e.name === 'module_type')
         let oldModelId = ''
         if (!moduleTypeField || moduleTypeField.value === '3dtour') {
           this.$store.subscribe((mutation, state) => {
             const { payload, type } = mutation;
-            if (type === 'updateFormField' && payload.name.includes('model_id')) {
-                const id = payload.value;
+            if (type === 'updateFormField' && payload.name === this.fieldName('model_id')) {
+                const matches = payload.value.match(/[a-z0-9]{10,}$/g);
+                const id = matches ? matches[0] : '';
                 if (oldModelId !== id) {
-                    // reset model data fields
+                  // reset model data fields
                     this.updateFormField(this.fieldName('camera_position'), '');
                     this.updateFormField(this.fieldName('camera_target'), '');
                     this.updateFormField(this.fieldName('annotation_list'), '');
