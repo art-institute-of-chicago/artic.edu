@@ -28,16 +28,16 @@
     mounted: function () {
         const moduleTypeField = this.fields.find((e) => e.name === 'module_type')
         let oldModelId = ''
-        if (moduleTypeField.value === '3dtour') {
+        if (!moduleTypeField || moduleTypeField.value === '3dtour') {
           this.$store.subscribe((mutation, state) => {
             const { payload, type } = mutation;
-            if (type === 'updateFormField' && payload.name === 'aic_3d_model[model_id]') {
+            if (type === 'updateFormField' && payload.name.includes('model_id')) {
                 const id = payload.value;
                 if (oldModelId !== id) {
                     // reset model data fields
-                    this.updateFormField('aic_3d_model[camera_position]', '');
-                    this.updateFormField('aic_3d_model[camera_target]', '');
-                    this.updateFormField('aic_3d_model[annotation_list]', '');
+                    this.updateFormField(this.fieldName('camera_position'), '');
+                    this.updateFormField(this.fieldName('camera_target'), '');
+                    this.updateFormField(this.fieldName('annotation_list'), '');
                     this.fetchModel(id);
                     oldModelId = id;
                 }
@@ -55,11 +55,11 @@
             success: (api) => {
                 api.start();
                 api.getCameraLookAt((err, camera) => {
-                    this.updateFormField('aic_3d_model[camera_position]', camera.position);
-                    this.updateFormField('aic_3d_model[camera_target]', camera.target);
+                    this.updateFormField(this.fieldName('camera_position'), camera.position);
+                    this.updateFormField(this.fieldName('camera_target'), camera.target);
                 })
                 api.getAnnotationList((err, annotations) => {
-                    this.updateFormField('aic_3d_model[annotation_list]', JSON.stringify(annotations));
+                    this.updateFormField(this.fieldName('annotation_list'), JSON.stringify(annotations));
                 })
             }
         })
