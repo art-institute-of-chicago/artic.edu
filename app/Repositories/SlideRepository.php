@@ -85,7 +85,8 @@ class SlideRepository extends ModuleRepository
 
     private function handle3DModel($object, $fields)
     {
-        if (!empty($fields['aic_3d_model[model_id]']) 
+        if (!empty($fields['aic_3d_model[model_url]']) 
+            && !empty($fields['aic_3d_model[model_id]'])
             && !empty($fields['aic_3d_model[camera_position]'])
             && !empty($fields['aic_3d_model[camera_target]'])
             && !empty($fields['aic_3d_model[annotation_list]'])
@@ -95,6 +96,7 @@ class SlideRepository extends ModuleRepository
                     'model_id' => $fields['aic_3d_model[model_id]']
                 ],
                 [
+                    'model_url' => $fields['aic_3d_model[model_url]'],
                     'model_id' => $fields['aic_3d_model[model_id]'],
                     'camera_position' => $fields['aic_3d_model[camera_position]'],
                     'camera_target' => $fields['aic_3d_model[camera_target]'],

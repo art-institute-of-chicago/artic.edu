@@ -1,8 +1,9 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" in-store="value"></a17-textfield>
+        <a17-textfield label="Model URL" :name="fieldName('model_url')" type="text" in-store="value"></a17-textfield>
         <div>
+          <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" disabled in-store="value"></a17-textfield>
           <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value"></a17-textfield>
           <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" ></a17-textfield>
           <a17-textfield label="Annotation List" :name="fieldName('annotation_list')" type="text" disabled in-store="value"></a17-textfield>
@@ -19,17 +20,10 @@
 
   export default {
     mixins: [BlockMixin],
-    props: ['modelId', 'cameraPosition', 'cameraTarget', 'annotationList'],
     computed: {
       ...mapState({
         fields: state => state.form.fields
       })
-    },
-    created: function () {
-        this.updateFormField(this.fieldName('model_id'), this.modelId);
-        this.updateFormField(this.fieldName('camera_position'), this.cameraPosition);
-        this.updateFormField(this.fieldName('camera_target'), this.cameraTarget);
-        this.updateFormField(this.fieldName('annotation_list'), this.annotationList);
     },
     mounted: function () {
         const moduleTypeField = this.fields.find((e) => e.name === 'module_type')
@@ -37,11 +31,12 @@
         if (!moduleTypeField || moduleTypeField.value === '3dtour') {
           this.$store.subscribe((mutation, state) => {
             const { payload, type } = mutation;
-            if (type === 'updateFormField' && payload.name === this.fieldName('model_id')) {
+            if (type === 'updateFormField' && payload.name === this.fieldName('model_url')) {
                 const matches = payload.value.match(/[a-z0-9]{10,}$/g);
                 const id = matches ? matches[0] : '';
                 if (oldModelId !== id) {
                   // reset model data fields
+                    this.updateFormField(this.fieldName('model_id'), id);
                     this.updateFormField(this.fieldName('camera_position'), '');
                     this.updateFormField(this.fieldName('camera_target'), '');
                     this.updateFormField(this.fieldName('annotation_list'), '');

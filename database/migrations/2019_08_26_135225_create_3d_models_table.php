@@ -15,6 +15,7 @@ class Create3dModelsTable extends Migration
     {
         Schema::create('3d_models', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('model_url');
             $table->string('model_id');
             $table->string('camera_position');
             $table->string('camera_target');

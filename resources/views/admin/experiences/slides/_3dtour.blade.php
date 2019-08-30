@@ -6,9 +6,15 @@
     @php($aic3dModel = $item->AIC3DModel)
     <a17-block-aic_3d_model
         name="aic_3d_model"
-        :model-id="{{ json_encode($aic3dModel ? $aic3dModel->model_id : '') }}"
-        :camera-position="{{ json_encode($aic3dModel ? $aic3dModel->getOriginal('camera_position') : '') }}"
-        :camera-target="{{ json_encode($aic3dModel ? $aic3dModel->getOriginal('camera_target') : '') }}"
-        :annotation-list="{{ json_encode($aic3dModel ? $aic3dModel->getOriginal('annotation_list') : '') }}"
     />
 @endcomponent
+
+@push('vuexStore')
+    @php($aic3DModel = $item->AIC3DModel)
+    @foreach (['model_url', 'model_id', 'camera_position', 'camera_target', 'annotation_list'] as $name)
+        window.STORE.form.fields.push({
+            name: "{{ 'aic_3d_model[' . $name . ']' }}",
+            value: {!! json_encode($aic3DModel ? $aic3DModel->$name : '') !!}
+        })
+    @endforeach
+@endpush
