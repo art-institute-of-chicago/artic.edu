@@ -21,6 +21,9 @@ class InteractiveFeature
 
     protected $apiModel = 'App\Models\Api\DigitalLabel';
 
+    protected $presenter = 'App\Presenters\Admin\InteractiveFeaturePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\InteractiveFeaturePresenter';
+
     protected $fillable = [
         'content',
         'published',
@@ -29,10 +32,6 @@ class InteractiveFeature
         'archived',
         'grouping_background_color',
         'color',
-    ];
-
-    protected $casts = [
-        'updated_at' => 'string',
     ];
 
     public $slugAttributes = [
