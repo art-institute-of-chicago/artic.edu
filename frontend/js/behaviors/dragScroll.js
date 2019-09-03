@@ -9,6 +9,7 @@ const dragScroll = function(container) {
   let xVelocity = 0;
   let allow = false;
   let scrollPositionCheck = 0;
+  let imgChildEls = [];
 
   function _wideEnoughToScroll() {
     allow = container.scrollWidth > container.clientWidth;
@@ -128,6 +129,13 @@ const dragScroll = function(container) {
     window.addEventListener('mousemove', _mouseMove, false);
     window.addEventListener('resized', _wideEnoughToScroll, false);
 
+    // See `lazyLoad` in @area17/a17-helpers
+    imgChildEls = container.querySelectorAll('img');
+
+    for (let i = 0; i < imgChildEls.length; i++) {
+      imgChildEls[i].addEventListener('load', _wideEnoughToScroll, false);
+    }
+
     _wideEnoughToScroll();
   }
 
@@ -139,6 +147,10 @@ const dragScroll = function(container) {
     window.removeEventListener('mouseup', _mouseUp);
     window.removeEventListener('mousemove', _mouseMove);
     window.removeEventListener('resized', _wideEnoughToScroll);
+
+    for (let i = 0; i < imgChildEls.length; i++) {
+      imgChildEls[i].removeEventListener('load', _wideEnoughToScroll);
+    }
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
