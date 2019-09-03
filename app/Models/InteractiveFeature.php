@@ -21,6 +21,9 @@ class InteractiveFeature
 
     protected $apiModel = 'App\Models\Api\DigitalLabel';
 
+    protected $presenter = 'App\Presenters\Admin\InteractiveFeaturePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\InteractiveFeaturePresenter';
+
     protected $fillable = [
         'content',
         'published',
@@ -29,10 +32,6 @@ class InteractiveFeature
         'archived',
         'grouping_background_color',
         'color',
-    ];
-
-    protected $casts = [
-        'updated_at' => 'string',
     ];
 
     public $slugAttributes = [
@@ -72,5 +71,47 @@ class InteractiveFeature
     public function scopeUnarchived($query)
     {
         return $query->where('archived', false);
+    }
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'title',
+                "doc" => "Title",
+                "type" => "string",
+                "value" => function () {return $this->title;},
+            ],
+            [
+                "name" => 'sub_title',
+                "doc" => "Sub-title",
+                "type" => "string",
+                "value" => function () {return $this->sub_title;},
+            ],
+            [
+                "name" => 'grouping_background_color',
+                "doc" => "Grouping background color",
+                "type" => "string",
+                "value" => function () {return $this->grouping_background_color;},
+            ],
+            [
+                "name" => 'color',
+                "doc" => "Color",
+                "type" => "string",
+                "value" => function () {return $this->color;},
+            ],
+            [
+                "name" => 'archived',
+                "doc" => "Archived",
+                "type" => "boolean",
+                "value" => function () {return $this->archived;},
+            ],
+            [
+                "name" => 'published',
+                "doc" => "Published",
+                "type" => "boolean",
+                "value" => function () {return $this->published;},
+            ],
+        ];
     }
 }

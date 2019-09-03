@@ -18,8 +18,8 @@ class InteractiveFeatureController extends ModuleController
         ],
         'updated_at' => [
             'title' => 'Updated At',
-            'field' => 'updated_at',
-            'sort' => true,
+            'field' => 'updatedDate',
+            'present' => true,
         ],
         'experiences' => [
             'title' => 'Experiences',
