@@ -18,7 +18,7 @@ use App\Models\ExperienceModal;
 
 class Experience extends Model implements Sortable
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, Transformable;
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
@@ -167,4 +167,58 @@ class Experience extends Model implements Sortable
             ],
         ]
     ];
+
+    protected function transformMappingInternal()
+    {
+        return [
+            [
+                "name" => 'title',
+                "doc" => "Title",
+                "type" => "string",
+                "value" => function () {return $this->title;},
+            ],
+            [
+                "name" => 'sub_title',
+                "doc" => "Sub-title",
+                "type" => "string",
+                "value" => function () {return $this->sub_title;},
+            ],
+            [
+                "name" => 'description',
+                "doc" => "Description",
+                "type" => "string",
+                "value" => function () {return $this->description;},
+            ],
+            [
+                "name" => 'position',
+                "doc" => "Position",
+                "type" => "number",
+                "value" => function () {return $this->position;},
+            ],
+            [
+                "name" => 'interactive_feature_id',
+                "doc" => "Interactive feature ID",
+                "type" => "number",
+                "value" => function () {return $this->interactive_feature_id;},
+            ],
+            [
+                "name" => 'archived',
+                "doc" => "Archived",
+                "type" => "boolean",
+                "value" => function () {return $this->archived;},
+            ],
+            [
+                "name" => 'kiosk_only',
+                "doc" => "Kiosk-only",
+                "type" => "boolean",
+                "value" => function () {return $this->kiosk_only;},
+            ],
+            [
+                "name" => 'published',
+                "doc" => "Published",
+                "type" => "boolean",
+                "value" => function () {return $this->published;},
+            ],
+        ];
+    }
 }
