@@ -1036,6 +1036,40 @@ Route::group(['prefix' => 'v1'], function () {
      */
     Route::get('videos/{id}', 'API\VideosController@show');
 
+    /**
+     *
+     * - interactive features --------------------------------------------------------------------
+     *
+     * @SWG\Get(
+     *      path="/api/v1/interactive-features",
+     *      tags={"pages"},
+     *      operationId="getInteractiveFeatures",
+     *      summary="List all interactive features",
+     *      @SWG\Response(response="200", description="List all interactive features")
+     *  )
+     *
+     */
+    Route::get('interactive-features', 'API\InteractiveFeaturesController@index');
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/interactive-features/{id}",
+     *      tags={"pages"},
+     *      operationId="getInteractiveFeature",
+     *      summary="Fetch interactive feature details",
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="id",
+     *      ),
+     *      @SWG\Response(response="200", description="Get a specific interactive feature")
+     *  )
+     *
+     */
+    Route::get('interactive-features/{id}', 'API\InteractiveFeaturesController@show');
+
     Route::options('seamless-images/{id}', 'SeamlessImagesController@byFile');
     Route::get('seamless-images/{id}', 'SeamlessImagesController@byFile');
 });
