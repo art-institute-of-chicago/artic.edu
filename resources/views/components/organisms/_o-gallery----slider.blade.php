@@ -10,16 +10,16 @@
         @endcomponent
     </p>
     @endif
-    <div class="o-gallery__caption">
-        @component('components.atoms._hr')
-        @endcomponent
-        @if (isset($caption))
+    @if (!empty($caption))
+        <div class="o-gallery__caption">
+            @component('components.atoms._hr')
+            @endcomponent
             @component('components.blocks._text')
                 @slot('font','f-caption')
                 {!! $caption !!}
             @endcomponent
-        @endif
-    </div>
+        </div>
+    @endif
     <div class="o-gallery__media-wrapper">
         <div class="o-gallery__media" data-behavior="dragScroll">
             @if (isset($items))
