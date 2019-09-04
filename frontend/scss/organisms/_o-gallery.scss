@@ -13,10 +13,6 @@
 }
 
 .o-gallery__title {
-  @include breakpoint('medium+') {
-    padding-right: 50%;
-  }
-
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: 100%;
@@ -158,6 +154,32 @@
 
 
 .o-gallery--mosaic {
+  .o-gallery__media,
+  .o-gallery__title,
+  .o-gallery__caption {
+    @include breakpoint('large+') {
+      margin-left: auto;
+      margin-right: auto;
+
+      column-gap: colspan(1, large);
+      width: colspan(46, large);
+    }
+
+    @include breakpoint('xlarge') {
+      column-gap: colspan(1, xlarge);
+      width: colspan(46, xlarge);
+    }
+  }
+
+  .o-gallery__caption p {
+    @include breakpoint('large+') {
+      padding-right: colspan(23, large);
+    }
+
+    @include breakpoint('xlarge') {
+      padding-right: colspan(23, xlarge);
+    }
+  }
 
   .o-gallery__media {
     padding-bottom: 56px;
@@ -173,15 +195,6 @@
     @include breakpoint('medium+') {
       padding-bottom: 84px - 48px;
       column-gap: colspan(2, medium);
-    }
-
-    @include breakpoint('large+') {
-      column-gap: colspan(2, large);
-    }
-
-    @include breakpoint('xlarge') {
-      column-gap: colspan(1, xlarge);
-      width: colspan(43, xlarge);
     }
   }
 
@@ -202,11 +215,11 @@
     }
 
     @include breakpoint('large+') {
-      width: colspan(28, large);
+      width: colspan(22, large);
     }
 
     @include breakpoint('xlarge') {
-      width: colspan(21, xlarge);
+      width: colspan(22, xlarge);
     }
   }
 
@@ -244,11 +257,11 @@
     }
 
     @include breakpoint('large+') {
-      max-height: #{colspan(28, large) * 4/3};
+      max-height: #{colspan(22, large) * 4/3};
     }
 
     @include breakpoint('xlarge') {
-      max-height: #{colspan(21, xlarge) * 4/3};
+      max-height: #{colspan(22, xlarge) * 4/3};
     }
   }
 
@@ -521,37 +534,6 @@
   hr,
   .hr {
     border-top-color: $color__rules--secondary;
-  }
-}
-
-/**
- * How the gallery should look like if title + description are omitted
- */
-.o-gallery----headerless {
-  @include breakpoint('large+') {
-    display: flex;
-    justify-content: center;
-  }
-
-  &.o-gallery--mosaic {
-    .o-gallery__media {
-      @include breakpoint('large+') {
-        column-gap: colspan(1, large);
-        width: colspan(43, large);
-      }
-    }
-
-    .o-gallery__media > * {
-      @include breakpoint('large+') {
-        width: colspan(21, large);
-      }
-    }
-
-    .m-media__img img {
-      @include breakpoint('large+') {
-        max-height: #{colspan(21, large) * 4/3};
-      }
-    }
   }
 }
 
