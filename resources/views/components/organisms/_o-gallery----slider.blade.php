@@ -1,4 +1,4 @@
-<div class="o-gallery o-gallery--slider{{ (isset($variation)) ? ' '.$variation : '' }}">
+<div class="o-gallery o-gallery--slider{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
     @if (!empty($title))
         <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
@@ -10,15 +10,19 @@
         @endcomponent
     </p>
     @endif
-    <div class="o-gallery__caption">
-        @component('components.atoms._hr')
-        @endcomponent
-        @if (isset($caption))
+    @if (!empty($title) && !empty($caption))
+        <div class="o-gallery__caption">
+            @component('components.atoms._hr')
+            @endcomponent
             @component('components.blocks._text')
                 @slot('font','f-caption')
                 {!! $caption !!}
             @endcomponent
-        @endif
+        </div>
+    @endif
+    <div class="o-gallery--slider__controls" aria-hidden="true">
+        <button class="b-drag-scroll__btn-prev btn btn--transparent f-buttons arrow-link arrow-link--back f-link"><svg class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow--24"></use></svg></button>
+        <button class="b-drag-scroll__btn-next btn btn--transparent f-buttons arrow-link f-link"><svg class="icon--arrow"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--arrow--24"></use></svg></button>
     </div>
     <div class="o-gallery__media-wrapper">
         <div class="o-gallery__media" data-behavior="dragScroll">

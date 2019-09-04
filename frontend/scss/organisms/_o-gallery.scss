@@ -1,4 +1,3 @@
-
 .o-gallery {
   @include background-fill;
   padding-top: .02px;
@@ -14,10 +13,6 @@
 }
 
 .o-gallery__title {
-  @include breakpoint('medium+') {
-    padding-right: 50%;
-  }
-
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: 100%;
@@ -45,7 +40,10 @@
 .o-gallery__media {
   position: relative;
   margin-top: 40px;
+}
 
+// Avoid targeting headerless galleries
+.o-gallery__caption + .o-gallery__media {
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
     margin-left: colspan(2, xlarge);
@@ -156,6 +154,32 @@
 
 
 .o-gallery--mosaic {
+  .o-gallery__media,
+  .o-gallery__title,
+  .o-gallery__caption {
+    @include breakpoint('large+') {
+      margin-left: auto;
+      margin-right: auto;
+
+      column-gap: colspan(1, large);
+      width: colspan(46, large);
+    }
+
+    @include breakpoint('xlarge') {
+      column-gap: colspan(1, xlarge);
+      width: colspan(46, xlarge);
+    }
+  }
+
+  .o-gallery__caption p {
+    @include breakpoint('large+') {
+      padding-right: colspan(23, large);
+    }
+
+    @include breakpoint('xlarge') {
+      padding-right: colspan(23, xlarge);
+    }
+  }
 
   .o-gallery__media {
     padding-bottom: 56px;
@@ -171,15 +195,6 @@
     @include breakpoint('medium+') {
       padding-bottom: 84px - 48px;
       column-gap: colspan(2, medium);
-    }
-
-    @include breakpoint('large+') {
-      column-gap: colspan(2, large);
-    }
-
-    @include breakpoint('xlarge') {
-      column-gap: colspan(1, xlarge);
-      width: colspan(43, xlarge);
     }
   }
 
@@ -200,11 +215,11 @@
     }
 
     @include breakpoint('large+') {
-      width: colspan(28, large);
+      width: colspan(22, large);
     }
 
     @include breakpoint('xlarge') {
-      width: colspan(21, xlarge);
+      width: colspan(22, xlarge);
     }
   }
 
@@ -242,11 +257,11 @@
     }
 
     @include breakpoint('large+') {
-      max-height: #{colspan(28, large) * 4/3};
+      max-height: #{colspan(22, large) * 4/3};
     }
 
     @include breakpoint('xlarge') {
-      max-height: #{colspan(21, xlarge) * 4/3};
+      max-height: #{colspan(22, xlarge) * 4/3};
     }
   }
 
@@ -268,6 +283,72 @@
 
 .o-gallery--slider {
   padding-bottom: .02px;
+
+  .o-gallery--slider__controls {
+    .arrow-link svg {
+      transform: scale(2);
+    }
+
+    .arrow-link--back svg {
+      transform: scale(2) rotate(180deg);
+    }
+
+    @include breakpoint('xsmall') {
+      position: relative;
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    @include breakpoint('small+') {
+      position: absolute;
+      right: 0;
+      top: 32px;
+    }
+
+    @include breakpoint('medium+') {
+      top: 46px;
+    }
+
+    // This causes the title to collide with the arrows:
+    // @include breakpoint('xlarge') {
+    //   // Width of caption plus margin-left of .o-gallery__media-wrapper
+    //   left: calc( #{colspan(13, xlarge)} + #{colspan(2, xlarge)});
+    //   right: initial;
+    // }
+  }
+
+  &.o-gallery----headerless {
+    .o-gallery--slider__controls {
+      margin-bottom: 32px;
+
+      @include breakpoint('xsmall') {
+        text-align: left;
+      }
+      @include breakpoint('small+') {
+        position: relative;
+      }
+    }
+
+    .o-gallery__media-wrapper {
+      @include breakpoint('xlarge') {
+        margin-right: calc((100vw - #{colspan(58, xlarge)})/-2);
+        margin-left: 0;
+        padding-left: 0;
+        width: auto;
+      }
+    }
+  }
+
+  .o-gallery__title {
+    @include breakpoint('small+') {
+      padding-right: 200px;
+    }
+
+    // Per the design, but see note above:
+    // @include breakpoint('xlarge') {
+    //   padding-right: 0;
+    // }
+  }
 
   .o-gallery__media-wrapper {
     margin-right: colspan(3, xsmall, 0, true);
@@ -316,8 +397,12 @@
     margin-bottom: -(32px + 20px);
     padding-bottom: 32px + 20px;
 
-    // Allow more space for the social media icons
-    margin-top: 55px;
+    // Allow more space for the navigation arrows
+    margin-top: 32px;
+
+    @include breakpoint('small+') {
+      margin-top: 55px;
+    }
 
     &::after {
       content: '';
@@ -521,3 +606,4 @@
     border-top-color: $color__rules--secondary;
   }
 }
+

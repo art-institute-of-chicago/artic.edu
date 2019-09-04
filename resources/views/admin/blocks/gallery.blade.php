@@ -11,7 +11,8 @@
     'name' => 'description',
     'label' => 'Description',
     'rows' => 4,
-    'maxlength' => 500
+    'maxlength' => 500,
+    'note' => 'Will be hidden if title is empty',
 ])
 
 @formField('repeater', ['type' => 'gallery_item'])

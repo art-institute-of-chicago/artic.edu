@@ -1,5 +1,5 @@
-<div class="o-gallery o-gallery--mosaic{{ (isset($variation)) ? ' '.$variation : '' }}">
-    @if (isset($title))
+<div class="o-gallery o-gallery--mosaic{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
+    @if (!empty($title))
         <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
     @if (!empty($allLink))
@@ -10,16 +10,16 @@
         @endcomponent
     </p>
     @endif
-    <div class="o-gallery__caption">
-        @component('components.atoms._hr')
-        @endcomponent
-        @if (isset($caption))
+    @if (!empty($title) && !empty($caption))
+        <div class="o-gallery__caption">
+            @component('components.atoms._hr')
+            @endcomponent
             @component('components.blocks._text')
                 @slot('font','f-caption')
                 {!! $caption !!}
             @endcomponent
-        @endif
-    </div>
+        </div>
+    @endif
     <div class="o-gallery__media o-gallery__media--2-col@small  o-gallery__media--2-col@medium  o-gallery__media--2-col@large  o-gallery__media--2-col@xlarge" data-behavior="pinboard">
         @if (isset($items) && !empty($items))
             @foreach ($items as $item)

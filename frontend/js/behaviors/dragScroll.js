@@ -9,6 +9,11 @@ const dragScroll = function(container) {
   let xVelocity = 0;
   let allow = false;
   let scrollPositionCheck = 0;
+  let imgChildEls = [];
+  let prevBtnEl;
+  let nextBtnEl;
+
+  const percentOfContainerToScrollPerClick = 0.5;
 
   function _wideEnoughToScroll() {
     allow = container.scrollWidth > container.clientWidth;
@@ -120,6 +125,22 @@ const dragScroll = function(container) {
     }
   }
 
+  function _scrollPrev(event) {
+    container.scrollTo({
+      top: 0,
+      left: Math.max(container.scrollLeft - container.clientWidth * percentOfContainerToScrollPerClick, 0),
+      behavior: 'smooth',
+    });
+  }
+
+  function _scrollNext(event) {
+    container.scrollTo({
+      top: 0,
+      left: Math.min(container.scrollLeft + container.clientWidth * percentOfContainerToScrollPerClick, container.scrollWidth),
+      behavior: 'smooth',
+    });
+  }
+
   function _init() {
     container.addEventListener('click', _clicks, false);
     container.addEventListener('mousedown', _mouseDown, false);
@@ -127,6 +148,33 @@ const dragScroll = function(container) {
     window.addEventListener('mouseup', _mouseUp, false);
     window.addEventListener('mousemove', _mouseMove, false);
     window.addEventListener('resized', _wideEnoughToScroll, false);
+
+    // See `lazyLoad` in @area17/a17-helpers
+    imgChildEls = container.querySelectorAll('img');
+
+    for (let i = 0; i < imgChildEls.length; i++) {
+      imgChildEls[i].addEventListener('load', _wideEnoughToScroll, false);
+    }
+
+    // WEB-1294: For scrolling slider image galleries
+    let commonParent = container.parentNode;
+
+    if (commonParent) {
+      commonParent = commonParent.parentNode;
+    }
+
+    if (commonParent) {
+      prevBtnEl = commonParent.querySelector('.b-drag-scroll__btn-prev');
+      nextBtnEl = commonParent.querySelector('.b-drag-scroll__btn-next');
+    }
+
+    if (prevBtnEl) {
+      prevBtnEl.addEventListener('click', _scrollPrev, false);
+    }
+
+    if (nextBtnEl) {
+      nextBtnEl.addEventListener('click', _scrollNext, false);
+    }
 
     _wideEnoughToScroll();
   }
@@ -139,6 +187,13 @@ const dragScroll = function(container) {
     window.removeEventListener('mouseup', _mouseUp);
     window.removeEventListener('mousemove', _mouseMove);
     window.removeEventListener('resized', _wideEnoughToScroll);
+
+    for (let i = 0; i < imgChildEls.length; i++) {
+      imgChildEls[i].removeEventListener('load', _wideEnoughToScroll);
+    }
+
+    prevBtnEl.removeEventListener('click', _scrollPrev);
+    nextBtnEl.removeEventListener('click', _scrollNext);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
