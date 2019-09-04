@@ -284,6 +284,50 @@
 .o-gallery--slider {
   padding-bottom: .02px;
 
+  .o-gallery--slider__controls {
+    .arrow-link svg {
+      transform: scale(2);
+    }
+
+    .arrow-link--back svg {
+      transform: scale(2) rotate(180deg);
+    }
+
+    @include breakpoint('xsmall') {
+      position: relative;
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    @include breakpoint('small+') {
+      position: absolute;
+      right: 0;
+      top: 32px;
+    }
+
+    @include breakpoint('medium+') {
+      top: 46px;
+    }
+
+    // This causes the title to collide with the arrows:
+    // @include breakpoint('xlarge') {
+    //   // Width of caption plus margin-left of .o-gallery__media-wrapper
+    //   left: calc( #{colspan(13, xlarge)} + #{colspan(2, xlarge)});
+    //   right: initial;
+    // }
+  }
+
+  .o-gallery__title {
+    @include breakpoint('small+') {
+      padding-right: 200px;
+    }
+
+    // Per the design, but see note above:
+    // @include breakpoint('xlarge') {
+    //   padding-right: 0;
+    // }
+  }
+
   .o-gallery__media-wrapper {
     margin-right: colspan(3, xsmall, 0, true);
     margin-bottom: 24px;
@@ -331,8 +375,12 @@
     margin-bottom: -(32px + 20px);
     padding-bottom: 32px + 20px;
 
-    // Allow more space for the social media icons
-    margin-top: 55px;
+    // Allow more space for the navigation arrows
+    margin-top: 32px;
+
+    @include breakpoint('small+') {
+      margin-top: 55px;
+    }
 
     &::after {
       content: '';
