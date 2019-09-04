@@ -2,6 +2,7 @@
     <!-- eslint-disable -->
     <div class="block__body">
         <a17-textfield label="Model URL" :name="fieldName('model_url')" type="text" in-store="value"></a17-textfield>
+        <a17-textfield label="Model Caption" :name="fieldName('model_caption')" type="text" in-store="value"></a17-textfield>
         <a17-inputframe label="Cover image" name="medias.cover" >
           <a17-mediafield :name="fieldName('image')" crop-context="image" ></a17-mediafield>
         </a17-inputframe>
@@ -9,7 +10,7 @@
           <a17-browserfield
             :name="fieldName('artworks')"
             item-label="collection objects"
-            :max="4"
+            :max="1"
             :wide="false"
             endpoint=""
             :endpoints='[
@@ -29,7 +30,7 @@
             modal-title="Attach collection objects"
             :draggable="true"
           >
-            Add up to 4 collection objects
+            Link a collection object
           </a17-browserfield>
         </a17-inputframe>
         <div>
