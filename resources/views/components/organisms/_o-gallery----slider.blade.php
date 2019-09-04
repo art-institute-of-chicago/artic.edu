@@ -1,4 +1,4 @@
-<div class="o-gallery o-gallery--slider{{ (isset($variation)) ? ' '.$variation : '' }}">
+<div class="o-gallery o-gallery--slider{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
     @if (!empty($title))
         <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
@@ -10,7 +10,7 @@
         @endcomponent
     </p>
     @endif
-    @if (!empty($caption))
+    @if (!empty($title) && !empty($caption))
         <div class="o-gallery__caption">
             @component('components.atoms._hr')
             @endcomponent

@@ -1,4 +1,4 @@
-<div class="o-gallery o-gallery--mosaic{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) && empty($caption) ? ' o-gallery----headerless' : '' }}">
+<div class="o-gallery o-gallery--mosaic{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
     @if (!empty($title))
         <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
@@ -10,12 +10,10 @@
         @endcomponent
     </p>
     @endif
-    @if (!empty($caption))
+    @if (!empty($title) && !empty($caption))
         <div class="o-gallery__caption">
-            @if (!empty($title))
-                @component('components.atoms._hr')
-                @endcomponent
-            @endif
+            @component('components.atoms._hr')
+            @endcomponent
             @component('components.blocks._text')
                 @slot('font','f-caption')
                 {!! $caption !!}

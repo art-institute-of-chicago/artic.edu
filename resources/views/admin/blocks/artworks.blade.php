@@ -16,6 +16,7 @@
 
 @formField('input', [
     'name' => 'subhead',
-    'label' => 'Image Subhead'
+    'label' => 'Image Subhead',
+    'note' => 'Will be hidden if title is empty',
 ])
 
