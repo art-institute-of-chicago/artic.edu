@@ -12,8 +12,10 @@
     @endif
     @if (!empty($caption))
         <div class="o-gallery__caption">
-            @component('components.atoms._hr')
-            @endcomponent
+            @if (!empty($title))
+                @component('components.atoms._hr')
+                @endcomponent
+            @endif
             @component('components.blocks._text')
                 @slot('font','f-caption')
                 {!! $caption !!}
