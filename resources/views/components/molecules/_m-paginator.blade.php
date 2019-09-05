@@ -39,6 +39,7 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
           <ul class="m-paginator__pages">
 
             @php
+                $maxDotCount = max(0, count(array_filter($elements, 'is_string')) - 1);
                 $dotCount = 0;
             @endphp
 
@@ -49,7 +50,7 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
                     <li><span class="f-buttons">&hellip;</span></li>
                     @php
                         $dotCount++;
-                        if ($dotCount > 1) {
+                        if ($dotCount > $maxDotCount) {
                             break;
                         }
                     @endphp
