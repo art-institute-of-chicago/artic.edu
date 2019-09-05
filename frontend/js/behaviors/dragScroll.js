@@ -113,14 +113,26 @@ const dragScroll = function(container) {
 
       if (lastScrollLeft > 0) {
         container.parentElement.classList.add('s-scroll-start');
+        if (prevBtnEl) {
+          prevBtnEl.disabled = false;
+        }
       } else {
         container.parentElement.classList.remove('s-scroll-start');
+        if (prevBtnEl) {
+          prevBtnEl.disabled = true;
+        }
       }
 
       if (container.clientWidth + lastScrollLeft >= container.scrollWidth){
         container.parentElement.classList.add('s-scroll-end');
+        if (nextBtnEl) {
+          nextBtnEl.disabled = true;
+        }
       } else {
         container.parentElement.classList.remove('s-scroll-end');
+        if (nextBtnEl) {
+          nextBtnEl.disabled = false;
+        }
       }
     }
   }
