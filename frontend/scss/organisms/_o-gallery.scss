@@ -315,6 +315,18 @@
     //   left: calc( #{colspan(13, xlarge)} + #{colspan(2, xlarge)});
     //   right: initial;
     // }
+
+    .btn {
+      color: $color__text--title-contrast;
+    }
+  }
+
+  &.o-gallery----theme-2 {
+    .o-gallery--slider__controls {
+      .btn {
+        color: $color__text--title;
+      }
+    }
   }
 
   &.o-gallery----headerless {
@@ -606,4 +618,3 @@
     border-top-color: $color__rules--secondary;
   }
 }
-
