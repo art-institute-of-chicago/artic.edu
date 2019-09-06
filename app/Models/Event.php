@@ -312,10 +312,9 @@ class Event extends AbstractModel
         if ($this->rsvp_link) {
             return $this->rsvp_link;
         }
-        $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
-        if ($ticketedEvent) {
+        if ($this->firstTicketedEvent) {
             $date = $this->nextOcurrence->date ?? $this->lastOcurrence->date ?? null;
-            return "https://sales.artic.edu/Events/Event/" . $ticketedEvent->id . ($date ? "?date=" . $date->format('n/j/Y') : '');
+            return "https://sales.artic.edu/Events/Event/" . $this->firstTicketedEvent->id . ($date ? "?date=" . $date->format('n/j/Y') : '');
         }
         return $value;
     }
@@ -342,6 +341,14 @@ class Event extends AbstractModel
     public function ticketedEvent()
     {
         return $this->apiElements()->where('relation', 'ticketedEvent');
+    }
+
+    public function getFirstTicketedEventAttribute() {
+        static $return;
+        if (!$return) {
+            $return = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
+        }
+        return $return;
     }
 
     public function programs()
@@ -635,8 +642,7 @@ class Event extends AbstractModel
                 "doc" => "Unique identifer of the event in our central ticketing system",
                 "type" => "string",
                 "value" => function () {
-                    $ticketedEvent = $this->apiModels('ticketedEvent', 'TicketedEvent')->first();
-                    return $ticketedEvent ? $ticketedEvent->id : null;
+                    return $this->firstTicketedEvent ? $this->firstTicketedEvent->id : null;
                 },
             ],
             [
