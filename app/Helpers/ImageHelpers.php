@@ -66,6 +66,7 @@ function aic_convertFromImage($imageObject, $cropParams = [])
         "alt" => $imageObject->alt_text ?? null,
         "caption" => $imageObject->caption ?? null,
         "iiifId" => $imageObject->iiifId ?? null,
+        "restrict" => $imageObject->tags->contains('name', 'Restrict Download') ?? false,
     );
 
     return $image;
