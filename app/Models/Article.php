@@ -253,7 +253,7 @@ class Article extends AbstractModel implements Feedable
            'date' => $this->present()->date, // Unused?
            'summary' => $this->heading ?? $this->list_description ?? 'Article',
            'author' => $this->author ?? 'AIC',
-           'updated' => $this->date, // WEB-1278: Display date
+           'updated' => $this->date ?? $this->updated_at, // WEB-1278: Display date
            'link' => route('articles.show', $this),
            'enclosure' => $heroImage['src'],
            'enclosureLength' => $length,
