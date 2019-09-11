@@ -136,16 +136,22 @@
 
   .o-gallery__title,
   .o-gallery__caption {
+    width: colspan(58, xsmall);
+
     @include breakpoint('small+') {
-      width: colspan(30, small);
+      width: colspan(46, small);
     }
 
     @include breakpoint('medium+') {
-      width: colspan(18, medium);
+      width: colspan(36, medium);
     }
 
     @include breakpoint('large+') {
-      width: colspan(18, large);
+      width: colspan(36, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(36, xlarge);
     }
   }
 
@@ -254,16 +260,22 @@
 
   .o-gallery__title,
   .o-gallery__caption {
+    width: colspan(58, xsmall);
+
     @include breakpoint('small+') {
-      width: colspan(30, small);
+      width: colspan(46, small);
     }
 
     @include breakpoint('medium+') {
-      width: colspan(18, medium);
+      width: colspan(36, medium);
     }
 
     @include breakpoint('large+') {
-      width: colspan(18, large);
+      width: colspan(36, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(36, xlarge);
     }
   }
 
