@@ -38,13 +38,13 @@
 @endphp
 <img
     alt="{{ $image['alt'] ?? '' }}{{ $alt ?? '' }}"
-    class="{{ $image['class'] ?? '' }} {{ $class ?? '' }} {{ $image['restrict'] ? 'restrict' : '' }}"
+    class="{{ $image['class'] ?? '' }} {{ $class ?? '' }} {{ isset($image['restrict']) && $image['restrict'] ? 'restrict' : '' }}"
     @if (empty($srcset) and isset($src))
         data-src="{{ $src ?? '' }}"
     @else
         src="{{ $src ?? '' }}"
     @endif
-    @if ($image['restrict'])
+    @if (isset($image['restrict']) && $image['restrict'])
        data-behavior="restrictDownload"
     @endif
     @if (isset($_GET['print']) or (isset($settings['lazyload']) and $settings['lazyload'] === false))
