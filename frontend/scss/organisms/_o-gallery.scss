@@ -336,10 +336,6 @@
         width: auto;
       }
     }
-
-    .o-gallery__media {
-      margin-top: 0;
-    }
   }
 
   .o-gallery__media-wrapper {
@@ -349,6 +345,13 @@
     padding-bottom: 32px;
 
     overflow: hidden;
+
+    // Allow more space for the navigation arrows
+    padding-top: 32px;
+
+    @include breakpoint('small+') {
+      padding-top: 55px;
+    }
 
     @include breakpoint('small+') {
       margin-right: colspan(3, small, 0, true);
@@ -383,12 +386,8 @@
     margin-bottom: -(32px + 20px);
     padding-bottom: 32px + 20px;
 
-    // Allow more space for the navigation arrows
-    margin-top: 32px;
-
-    @include breakpoint('small+') {
-      margin-top: 55px;
-    }
+    // Avoid double-spacing navigation arrows
+    margin-top: 0px;
 
     &::after {
       content: '';
