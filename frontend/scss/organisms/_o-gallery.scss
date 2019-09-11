@@ -121,14 +121,17 @@
   .o-gallery__title,
   .o-gallery__caption {
     @include breakpoint('large+') {
-      margin-left: auto;
-      margin-right: auto;
+      margin-left: colspan(6, large);
+      margin-right: colspan(6, large);
 
       column-gap: colspan(1, large);
       width: colspan(46, large);
     }
 
     @include breakpoint('xlarge') {
+      margin-left: colspan(6, xlarge);
+      margin-right: colspan(6, xlarge);
+
       column-gap: colspan(1, xlarge);
       width: colspan(46, xlarge);
     }
