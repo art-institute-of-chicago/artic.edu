@@ -44,54 +44,6 @@ if ($maxZoomWindowSize >= 843) {
             @endif
         @endcomponent
       </div>
-      @if ($prevNextObject->next or $prevNextObject->prev)
-      <ul class="m-article-header__img-nav">
-        @if ($prevNextObject->next)
-        <li class="m-article-header__img-nav-next-artwork">
-          <a href="{!! route('artworks.show', ['id' => $prevNextObject->next->id, 'slug' => $prevNextObject->next->titleSlug ] + $prevNextObject->nextParams) !!}" class="m-article-header__img-nav-artwork-preview" aria-labelledby="h-next h-next-artwork-title h-next-artwork-image">
-            <span class="sr-only" id="h-next">Next: </span>
-            <span class="m-article-header__img-nav-artwork-preview-img">
-              @component('components.atoms._img')
-                  @slot('image', $prevNextObject->next->imageFront())
-                  @slot('id', 'h-next-artwork-image')
-                  @slot('settings', array(
-                    'srcset' => array(120,240),
-                    'sizes' => '120px',
-                  ))
-              @endcomponent
-            </span>
-            <span class="f-caption" id="h-next-artwork-title">
-              <strong>{{ Str::limit($prevNextObject->next->title, 18) }}</strong> <br>
-              {{ Str::limit($prevNextObject->next->listingSubtitle, 25) }}
-            </span>
-            <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
-          </a>
-        </li>
-        @endif
-        @if ($prevNextObject->prev)
-        <li class="m-article-header__img-nav-prev-artwork">
-          <a href="{!! route('artworks.show', ['id' => $prevNextObject->prev->id, 'slug' => $prevNextObject->prev->titleSlug ] + $prevNextObject->prevParams) !!}" class="m-article-header__img-nav-artwork-preview" aria-labelledby="h-prev h-prev-artwork-title h-prev-artwork-image">
-            <span class="sr-only" id="h-prev">Previous: </span>
-            <span class="m-article-header__img-nav-artwork-preview-img">
-              @component('components.atoms._img')
-                  @slot('image', $prevNextObject->prev->imageFront())
-                  @slot('id', 'h-prev-artwork-image')
-                  @slot('settings', array(
-                    'srcset' => array(120,240),
-                    'sizes' => '120px',
-                  ))
-              @endcomponent
-            </span>
-            <span class="f-caption" id="h-prev-artwork-title">
-              <strong>{{ Str::limit($prevNextObject->prev->title, 18) }}</strong> <br>
-              {{ Str::limit($prevNextObject->prev->listingSubtitle, 25) }}
-            </span>
-            <svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
-          </a>
-        </li>
-        @endif
-      </ul>
-      @endif
     @if (isset($images->first()['creditUrl']))
         <a href="{{ $images->first()['creditUrl'] }}" class="m-article-header__img-credit f-caption" aria-label="credit" data-gallery-credit>
             {{ $images->first()['credit'] ?? $images->first()['creditUrl'] ?? '' }}

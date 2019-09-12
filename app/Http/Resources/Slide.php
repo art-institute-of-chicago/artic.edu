@@ -77,7 +77,7 @@ class Slide extends JsonResource
         return [
             'primaryCopy' => $this->split_primary_copy,
             '__option_flip' => $this->image_side === 'right',
-            '__option_primary_modal' => $primaryExperienceModal ? true : false,
+            '__option_primary_modal' => in_array(['id' => 'primary_modal'], $this->split_attributes ?? []),
             '__option_secondary_image' => $secondary_image_enabled,
             '__option_secondary_modal' => $secondaryExperienceModal ? true : false,
             '__option_inset' => in_array(['id' => 'inset'], $this->split_attributes ?? []),
@@ -192,13 +192,15 @@ class Slide extends JsonResource
             'copy' => $this->end_copy,
             'modals' => [
                 [
-                    'id' => null,
+                    'id' => 'end',
+                    '__mediaType' => 'image',
                     'subhead' => $this->end_credit_subhead,
-                    'copy' => $this->end_credit_copy,
+                    'caption' => $this->end_credit_copy,
+                    '__option_caption' => true,
                     '__option_subhead' => !empty($this->end_credit_subhead),
                     '__option_copy' => !empty($this->end_credit_subhead),
                     '__option_media' => count($this->endExperienceImages) > 0,
-                    'media' => SlideMediaResource::collection($this->endExperienceImages)->toArray(request())
+                    'src' => SlideMediaResource::collection($this->endExperienceImages)->toArray(request())
                 ],
             ],
             '__option_background_image' => count($this->endBackgroundExperienceImages) > 0,

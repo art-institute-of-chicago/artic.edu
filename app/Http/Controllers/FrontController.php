@@ -8,14 +8,13 @@ use View;
 
 class FrontController extends BaseController
 {
-    public $seo;
 
     public function __construct()
     {
+
         parent::__construct();
 
         $this->seo = new Seo;
-
         $this->seo->title = config('twill.seo.site_title');
         $this->seo->description = config('twill.seo.site_desc');
         $this->seo->image = config('twill.seo.image');

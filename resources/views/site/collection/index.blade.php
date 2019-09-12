@@ -146,11 +146,15 @@
     </p>
 </div>
 
-@if ($artworks->hasMorePages())
+@if ($artworks->hasMorePages() && app()->environment('production'))
     @component('components.molecules._m-links-bar')
         @slot('variation', 'm-links-bar--buttons')
     @slot('linksPrimary', array(array('label' => 'Load more', 'href' => '#', 'variation' => 'btn--secondary', 'loadMoreUrl' => route('collection.more', request()->input(), false), 'loadMoreTarget' => '#artworksList', 'loadMoreLimitText' => 'If you\'re still having trouble finding what you\'re looking for, please email collections@artic.edu.')))
     @endcomponent
+@endif
+
+@if ($artworks->hasMorePages() && !app()->environment('production'))
+    {!! $artworks->appends(request()->input())->links() !!}
 @endif
 
 

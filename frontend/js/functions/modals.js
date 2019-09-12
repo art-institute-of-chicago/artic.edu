@@ -11,7 +11,6 @@ const modals = function() {
   let active = false;
 
   var cookieName = 'has_seen_lightbox';
-  var cookie = cookieHandler.read(cookieName) || '';
 
   function _media(e) {
     let embedCode = e.data.embedCode;
@@ -101,6 +100,7 @@ const modals = function() {
     if (!document.documentElement.classList.contains(roadblockDefinedClass)) {
       return;
     }
+    var cookie = cookieHandler.read(cookieName) || '';
     var expiryPeriodInDays = parseInt($modalPromo.getAttribute('data-expires')) / 60 / 60 / 24;
     if (cookie && expiryPeriodInDays > 0) {
       return;

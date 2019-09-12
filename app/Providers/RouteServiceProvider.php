@@ -36,10 +36,8 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
+        $this->mapKioskRoutes();
         $this->mapWebRoutes();
-
-        //
     }
 
     /**
@@ -51,9 +49,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
+        $allowedDomains = config('app.allowed_domains') ?? [ config('app.url') ];
+        $host = request()->getHttpHost();
+        $domain = in_array($host, $allowedDomains) ? $host : config('app.url');
+
         Route::middleware('web', 'noDebugBar')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->domain($domain)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -70,4 +73,23 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
+
+    /**
+     * Define the "kiosk" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapKioskRoutes()
+    {
+
+        $domain = config('app.kiosk_domain');
+
+        Route::middleware('web', 'noDebugBar')
+                ->namespace($this->namespace)
+                ->domain($domain)
+                ->group(base_path('routes/kiosk.php'));
+    }
+
 }

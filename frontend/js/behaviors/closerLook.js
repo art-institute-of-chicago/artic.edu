@@ -23,11 +23,16 @@ const closerLook = function(container) {
     document.documentElement.classList.toggle('s-closer-look-footer-stuck', isStuck);
 
     let elementsOffsetHeight = 0;
-    elements.forEach(function(element) {
-      element.style.position = isStuck ? "fixed" : null;
-      element.style.top = isStuck ? `${elementsOffsetHeight}px` : null;
-      elementsOffsetHeight += getAbsoluteHeight(element);
-    });
+
+    if( elements.length > 0 ){
+      elements.forEach(function(element) {
+        if( element ){
+          element.style.position = isStuck ? "fixed" : null;
+          element.style.top = isStuck ? `${elementsOffsetHeight}px` : null;
+          elementsOffsetHeight += getAbsoluteHeight(element);
+        }
+      });
+    }
 
     $a17.style.minHeight = `${container.offsetHeight + elementsOffsetHeight}px`;
   }

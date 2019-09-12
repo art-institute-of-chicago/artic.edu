@@ -1,23 +1,12 @@
-
 .o-gallery {
   @include background-fill;
   padding-top: .02px;
   background-color: $color__bg--gallery;
   color: $color__text--contrast;
   transform: translateZ(0);
-
-  @include breakpoint('xlarge') {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-  }
 }
 
 .o-gallery__title {
-  @include breakpoint('medium+') {
-    padding-right: 50%;
-  }
-
   @include breakpoint('xlarge') {
     flex: 0 0 auto;
     width: 100%;
@@ -35,21 +24,11 @@
   @include breakpoint('medium+') {
     margin-top: 40px;
   }
-
-  @include breakpoint('xlarge') {
-    flex: 0 0 auto;
-    width: colspan(13, xlarge);
-  }
 }
 
 .o-gallery__media {
   position: relative;
   margin-top: 40px;
-
-  @include breakpoint('xlarge') {
-    flex: 0 0 auto;
-    margin-left: colspan(2, xlarge);
-  }
 }
 
 .o-gallery__title,
@@ -105,24 +84,6 @@
   width: 100%;
 }
 
-.o-gallery__caption p {
-  @include breakpoint('small+') {
-    padding-right: colspan(8, small);
-  }
-
-  @include breakpoint('medium+') {
-    padding-right: colspan(28, medium);
-  }
-
-  @include breakpoint('large+') {
-    padding-right: colspan(28, large);
-  }
-
-  @include breakpoint('xlarge') {
-    padding-right: 0;
-  }
-}
-
 .o-gallery__share {
   display: block;
   margin-top: 20px;
@@ -156,6 +117,46 @@
 
 
 .o-gallery--mosaic {
+  .o-gallery__media,
+  .o-gallery__title,
+  .o-gallery__caption {
+    @include breakpoint('large+') {
+      margin-left: colspan(6, large);
+      margin-right: colspan(6, large);
+
+      column-gap: colspan(1, large);
+      width: colspan(46, large);
+    }
+
+    @include breakpoint('xlarge') {
+      margin-left: colspan(6, xlarge);
+      margin-right: colspan(6, xlarge);
+
+      column-gap: colspan(1, xlarge);
+      width: colspan(46, xlarge);
+    }
+  }
+
+  .o-gallery__title,
+  .o-gallery__caption {
+    width: colspan(58, xsmall);
+
+    @include breakpoint('small+') {
+      width: colspan(46, small);
+    }
+
+    @include breakpoint('medium+') {
+      width: colspan(36, medium);
+    }
+
+    @include breakpoint('large+') {
+      width: colspan(36, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(36, xlarge);
+    }
+  }
 
   .o-gallery__media {
     padding-bottom: 56px;
@@ -171,15 +172,6 @@
     @include breakpoint('medium+') {
       padding-bottom: 84px - 48px;
       column-gap: colspan(2, medium);
-    }
-
-    @include breakpoint('large+') {
-      column-gap: colspan(2, large);
-    }
-
-    @include breakpoint('xlarge') {
-      column-gap: colspan(1, xlarge);
-      width: colspan(43, xlarge);
     }
   }
 
@@ -200,11 +192,11 @@
     }
 
     @include breakpoint('large+') {
-      width: colspan(28, large);
+      width: colspan(22, large);
     }
 
     @include breakpoint('xlarge') {
-      width: colspan(21, xlarge);
+      width: colspan(22, xlarge);
     }
   }
 
@@ -242,11 +234,11 @@
     }
 
     @include breakpoint('large+') {
-      max-height: #{colspan(28, large) * 4/3};
+      max-height: #{colspan(22, large) * 4/3};
     }
 
     @include breakpoint('xlarge') {
-      max-height: #{colspan(21, xlarge) * 4/3};
+      max-height: #{colspan(22, xlarge) * 4/3};
     }
   }
 
@@ -269,40 +261,122 @@
 .o-gallery--slider {
   padding-bottom: .02px;
 
+  .o-gallery__title,
+  .o-gallery__caption {
+    width: colspan(58, xsmall);
+
+    @include breakpoint('small+') {
+      width: colspan(46, small);
+    }
+
+    @include breakpoint('medium+') {
+      width: colspan(36, medium);
+    }
+
+    @include breakpoint('large+') {
+      width: colspan(36, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(36, xlarge);
+    }
+  }
+
+  .o-gallery--slider__controls {
+    .arrow-link svg {
+      transform: scale(2);
+    }
+
+    .arrow-link--back svg {
+      transform: scale(2) rotate(180deg);
+    }
+
+    @include breakpoint('xsmall') {
+      position: relative;
+      margin-top: 32px;
+      margin-left: -36px;
+    }
+
+    @include breakpoint('small+') {
+      position: absolute;
+      right: 0;
+      top: 32px;
+      margin-left: 0;
+      margin-right: -36px;
+    }
+
+    @include breakpoint('medium+') {
+      top: 46px;
+    }
+
+    // This causes the title to collide with the arrows:
+    // @include breakpoint('xlarge') {
+    //   // Width of caption plus margin-left of .o-gallery__media-wrapper
+    //   left: calc( #{colspan(13, xlarge)} + #{colspan(2, xlarge)});
+    //   right: initial;
+    // }
+
+    .btn {
+      color: $color__text--title-contrast;
+    }
+  }
+
+  &.o-gallery----theme-2 {
+    .o-gallery--slider__controls {
+      .btn {
+        color: $color__text--title;
+      }
+    }
+  }
+
+  &.o-gallery----headerless {
+    .o-gallery--slider__controls {
+      margin-bottom: 32px;
+
+      @include breakpoint('small+') {
+        position: relative;
+        margin-left: -36px;
+        margin-right: 0;
+      }
+    }
+
+    .o-gallery__media-wrapper {
+      @include breakpoint('xlarge') {
+        width: auto;
+      }
+    }
+  }
+
   .o-gallery__media-wrapper {
     margin-right: colspan(3, xsmall, 0, true);
     margin-bottom: 24px;
-    margin-left: colspan(3, xsmall, 0, true);
     padding-bottom: 32px;
-    padding-left: colspan(2, xsmall);
 
     overflow: hidden;
+
+    // Allow more space for the navigation arrows
+    padding-top: 32px;
+
+    @include breakpoint('small+') {
+      padding-top: 55px;
+    }
 
     @include breakpoint('small+') {
       margin-right: colspan(3, small, 0, true);
       margin-bottom: 32px;
-      margin-left: colspan(3, small, 0, true);
-      padding-left: colspan(2, small);
     }
 
     @include breakpoint('medium+') {
       margin-right: colspan(3, medium, 0, true);
       margin-bottom: 52px;
-      margin-left: colspan(3, medium, 0, true);
-      padding-left: colspan(2, medium);
     }
 
     @include breakpoint('large+') {
       margin-right: colspan(3, large, 0, true);
-      margin-left: colspan(3, large, 0, true);
-      padding-left: colspan(2, large);
     }
 
     @include breakpoint('xlarge') {
-      width: calc(100vw - #{colspan(15, xlarge)} - ((100vw - #{colspan(58, xlarge)})/2));
-      margin-right: calc((100vw - #{colspan(58, xlarge)})/-2);
-      margin-left: colspan(2, xlarge);
-      padding-left: 0;
+      margin-right: colspan(3, xlarge, 0, true);
     }
   }
 
@@ -316,8 +390,8 @@
     margin-bottom: -(32px + 20px);
     padding-bottom: 32px + 20px;
 
-    // Allow more space for the social media icons
-    margin-top: 55px;
+    // Avoid double-spacing navigation arrows
+    margin-top: 0px;
 
     &::after {
       content: '';
@@ -350,6 +424,23 @@
     margin-top: 0;
     margin-left: colspan(2, xsmall);
 
+    &:first-child {
+      margin-left: 0;
+
+
+      @include breakpoint('small+') {
+        margin-left: 0;
+      }
+
+      @include breakpoint('medium+') {
+        margin-left: 0;
+      }
+
+      @include breakpoint('large+') {
+        margin-left: 0;
+      }
+    }
+
     @include breakpoint('small+') {
       margin-left: colspan(1, small);
     }
@@ -366,10 +457,6 @@
       flex: 0 0 auto;
       width: colspan(18, xlarge);
       margin-left: colspan(1, xlarge);
-
-      &:first-child {
-        margin-left: 0;
-      }
     }
   }
 

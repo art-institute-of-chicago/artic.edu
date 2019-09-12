@@ -158,6 +158,12 @@ return [
                 'icon' => 'text',
                 'component' => 'a17-block-footnote',
             ],
+            'table' => [
+                'title' => 'Table',
+                'icon' => 'text',
+                'component' => 'a17-block-table',
+                // TODO: Look into `rules` per \A17\Twill\ValidationServiceProvider
+            ],
             'digital_label' => [
                 'title' => 'Interactive feature',
                 'icon' => 'image',

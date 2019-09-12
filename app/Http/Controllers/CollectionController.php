@@ -36,6 +36,15 @@ class CollectionController extends BaseScopedController
 
     public function index()
     {
+        // WEB-1287: Redirect some common boolean filters
+        if (in_array(strtolower(request('q')), [
+            'cc0',
+            'public domain',
+            'creative commons',
+        ])) {
+            return redirect(route('collection', ['is_public_domain' => 1]));
+        }
+
         $collection = $this->collection()->perPage(static::PER_PAGE)->results();
 
         // If first artwork accession number matches search query, redirect to artwork page
@@ -90,7 +99,7 @@ class CollectionController extends BaseScopedController
         }
 
         $featuredItems = $page->getRelatedWithApiModels(
-            'featured_items', [], [ 
+            'featured_items', [], [
                 'articles' => false,
                 'interactiveFeatures.experiences' => false
         ]);
@@ -98,7 +107,7 @@ class CollectionController extends BaseScopedController
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();
         $filters       = $this->collection()->generateFilters();
         $activeFilters = $this->collection()->activeFilters();
-        
+
         if ($featuredItems->count()) {
             $featuredItemsHero = $featuredItems->shift();
         }

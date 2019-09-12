@@ -38,11 +38,22 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
           </ul>
           <ul class="m-paginator__pages">
 
+            @php
+                $maxDotCount = max(0, count(array_filter($elements, 'is_string')) - 1);
+                $dotCount = 0;
+            @endphp
+
             {{-- Pagination Elements --}}
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
                     <li><span class="f-buttons">&hellip;</span></li>
+                    @php
+                        $dotCount++;
+                        if ($dotCount > $maxDotCount) {
+                            break;
+                        }
+                    @endphp
                 @endif
 
                 {{-- Array Of Links --}}
@@ -56,6 +67,11 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
                     @endforeach
                 @endif
             @endforeach
+
+            @php
+                unset($dotCount);
+            @endphp
+
           </ul>
           <p class="m-paginator__current-page f-buttons">Page {{ $paginator->currentPage() }}</p>
         </nav>

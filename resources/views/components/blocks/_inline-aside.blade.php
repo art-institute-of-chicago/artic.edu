@@ -3,7 +3,7 @@
     @if (sizeof($items) === 1)
         @slot('title', 'Related '. ($type == 'label' ? 'Interactive Feature' : ucfirst($type)))
         @component('components.molecules.'.$itemsMolecule)
-            @slot('tag', 'p')
+            @slot('tag', 'span')
             @slot('variation', $itemsVariation ?? null)
             @slot('item', $items[0])
             @slot('fullscreen', false)

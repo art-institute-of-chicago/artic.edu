@@ -129,8 +129,13 @@ class ArtistRepository extends BaseApiRepository
             $query['bool']['must_not'] = [
                 'terms' => [
                     'id' => $excludedItems->map(function($excludedItem) {
-                        if (get_class($excludedItem) == \App\Models\Api\Exhibition::class) {
-                            return $excludedItem->datahub_id;
+                        switch (get_class($excludedItem)) {
+                            case \App\Models\Api\Exhibition::class:
+                                return $excludedItem->id;
+                                break;
+                            case \App\Models\Exhibition::class:
+                                return $excludedItem->datahub_id;
+                                break;
                         }
                     })->filter()->values()->all()
                 ],

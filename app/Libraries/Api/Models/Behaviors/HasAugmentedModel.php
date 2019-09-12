@@ -17,14 +17,21 @@ trait HasAugmentedModel
 
     public function getAugmentedModel()
     {
-        if (!$this->augmented)
+        if (!$this->augmented) {
             return;
+        }
 
-        if ($this->augmentedModel)
+        if ($this->augmentedModel) {
             return $this->augmentedModel;
+        }
 
-        return $this->augmentedModel =
-            $this->augmentedModelClass::where('datahub_id', $this->id)->first();
+        $this->augmentedModel = $this->augmentedModelClass::where('datahub_id', $this->id)->first();
+
+        if (!$this->augmentedModel) {
+            $this->augmented = false;
+        }
+
+        return $this->augmentedModel;
     }
 
     public function hasAugmentedModel()
@@ -38,7 +45,6 @@ trait HasAugmentedModel
      */
     public function __call($method, $parameters)
     {
-        
         if (method_exists($this, $method)) {
             return $this->$method($parameters);
         }
