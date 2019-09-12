@@ -17,7 +17,7 @@ class AddRestrictDownloadTag extends Migration
     {
         $tag = new IlluminateTag;
         $tag->name = 'Restrict Download';
-        $tag->slug = 'restrictDownload';
+        $tag->slug = 'restrict-download';
         $tag->namespace = 'media';
         $tag->save();
     }
@@ -29,7 +29,7 @@ class AddRestrictDownloadTag extends Migration
      */
     public function down()
     {
-        $tag = IlluminateTag::where('slug', 'restrictDownload')->first();
+        $tag = IlluminateTag::where('slug', 'restrict-download')->first();
         $tag->delete();
     }
 }
