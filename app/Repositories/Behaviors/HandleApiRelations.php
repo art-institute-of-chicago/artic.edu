@@ -114,7 +114,7 @@ trait HandleApiRelations
             if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
                 $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'edit', $apiElement->getAugmentedModel()->id);
 
-                if (classHasTrait($apiElement->getAugmentedModel(), \A17\Twill\Models\Behaviors\HasMedias::class)) {
+                if (classHasTrait($apiElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
                     $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
                 }
             } else {
@@ -151,7 +151,7 @@ trait HandleApiRelations
                         if ($apiElement->hasAugmentedModel() && $apiElement->getAugmentedModel()) {
                             $data['edit'] = moduleRoute($apiModelDefinition['moduleName'], $apiModelDefinition['routePrefix'] ?? '', 'edit', $apiElement->getAugmentedModel()->id);
 
-                            if (classHasTrait($apiElement->getAugmentedModel(), \A17\Twill\Models\Behaviors\HasMedias::class)) {
+                            if (classHasTrait($apiElement->getAugmentedModel(), \App\Models\Behaviors\HasMedias::class)) {
                                 $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
                             }
                         } else {
@@ -176,7 +176,7 @@ trait HandleApiRelations
                             'endpointType' => $element->getMorphClass(),
                             'position' => $elementPosition,
                             'edit' => $element->adminEditUrl,
-                        ] + ((classHasTrait($element, \A17\Twill\Models\Behaviors\HasMedias::class)) ? [
+                        ] + ((classHasTrait($element, \App\Models\Behaviors\HasMedias::class)) ? [
                             'thumbnail' => $element->defaultCmsImage(['w' => 100, 'h' => 100]),
                         ] : []);
                     });

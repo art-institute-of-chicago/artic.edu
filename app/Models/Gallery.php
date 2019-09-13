@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasApiModel;
+use App\Models\Behaviors\HasMedias;
 
 class Gallery extends AbstractModel
 {

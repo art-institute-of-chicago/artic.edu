@@ -4,7 +4,6 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasFiles;
-use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
@@ -14,6 +13,7 @@ use A17\Twill\Models\Model;
 use App\Http\Resources\SlideAsset as SlideAssetResource;
 use App\Http\Resources\Slide as SlideResource;
 use App\Models\SeamlessImage;
+use App\Models\Behaviors\HasMedias;
 
 class Slide extends Model implements Sortable
 {

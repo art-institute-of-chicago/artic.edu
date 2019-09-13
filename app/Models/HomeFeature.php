@@ -4,8 +4,8 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasFiles;
-use A17\Twill\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class HomeFeature extends AbstractModel

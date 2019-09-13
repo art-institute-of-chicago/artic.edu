@@ -4,11 +4,11 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasBlocks;
 use A17\Twill\Models\Behaviors\HasFiles;
-use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\Sortable;
+use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasApiRelations;
 use Kalnoy\Nestedset\NodeTrait;
