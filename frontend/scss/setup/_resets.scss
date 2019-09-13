@@ -74,6 +74,19 @@ table {
   touch-action: inherit;
 }
 
+[role="button"] {
+  cursor: pointer;
+  &:focus {
+    outline: auto;
+  }
+}
+@supports (outline-color: -webkit-focus-ring-color) {
+  [role="button"]:focus {
+      outline: -webkit-focus-ring-color 5px auto;
+  }
+}
+
+
 .svg-sprite {
   position: absolute;
   z-index: -1;
