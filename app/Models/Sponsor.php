@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasBlocks;
+use App\Models\Behaviors\HasBlocks;
 
 class Sponsor extends AbstractModel
 {
