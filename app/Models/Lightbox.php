@@ -43,4 +43,13 @@ class Lightbox extends AbstractModel
             ],
         ],
     ];
+
+    public $casts = [
+        'lightbox_start_date' => 'datetime',
+        'lightbox_end_date' => 'datetime',
+    ];
+
+    protected $presenter = 'App\Presenters\Admin\LightboxPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\LightboxPresenter';
+
 }
