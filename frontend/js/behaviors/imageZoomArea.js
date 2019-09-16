@@ -39,6 +39,9 @@ const imageZoomArea = function(container) {
     $img.removeAttribute('srcset');
     $img.removeAttribute('sizes');
     $img.removeAttribute('src');
+    $img.removeAttribute('class');
+    $img.removeEventListener('contextmenu', preventDefault);
+    $img.removeEventListener('mousedown', preventDefault);
     if (osd) {
       osd.removeAllHandlers();
       osd.destroy();
@@ -62,10 +65,19 @@ const imageZoomArea = function(container) {
     $img.setAttribute('src', eventData.src);
     $img.setAttribute('srcset', eventData.srcset);
     $img.setAttribute('sizes','(min-width: 1280px) 1280px, (min-height: 1024px) 1280px, 100vw');
+    if (eventData.restrict) {
+      $img.setAttribute('class', 'restrict');
+      $img.addEventListener('contextmenu', preventDefault);
+      $img.addEventListener('mousedown', preventDefault);
+    }
 
     if (window.picturefill) {
       window.picturefill($img);
     }
+  }
+
+  function preventDefault(e) {
+    e.preventDefault();
   }
 
   function _finishZoomOpen(id) {
