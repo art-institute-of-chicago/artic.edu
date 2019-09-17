@@ -192,7 +192,7 @@ return [
         /*
          * Application Service Providers...
          */
-        // App\Providers\VendorServiceProvider::class, // Commented our because it breaks saving images in image blocks
+        App\Providers\VendorServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
