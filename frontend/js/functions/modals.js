@@ -160,6 +160,11 @@ const modals = function() {
       }
 
       $modalPromo.innerHTML = $modalTemplate.innerHTML;
+
+      // Reinitialize behaviors for close button, etc.
+      triggerCustomEvent($modalPromo, 'content:updated', {
+        el: $modalPromo,
+      });
   }
 
   function _roadblockOpen() {
