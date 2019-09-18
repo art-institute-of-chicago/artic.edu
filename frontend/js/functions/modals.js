@@ -10,6 +10,11 @@ const modals = function() {
   const $modalPromo = document.getElementById('modal-promo');
   let active = false;
 
+  // Do not reset this between AJAX reloads!
+  let isLocal = null;
+
+  let isWaitingOnGeotarget = false;
+
   var cookieName = 'has_seen_lightbox';
 
   function _media(e) {
@@ -122,26 +127,30 @@ const modals = function() {
       return template.dataset['geotarget'];
     });
 
+    isWaitingOnGeotarget = false;
+
     // See HomeController::getLightboxGeotarget()
     if (geotargets.includes('all')) {
-      let $modalTemplate = document.querySelector('.g-modal--promo--template[data-geotarget="all"]');
-      // copy class attribute
-      $modalPromo.innerHTML = $modalTemplate.innerHTML;
+      _swapRoadblock('all');
     } else {
-      document.documentElement.classList.remove(roadblockDefinedClass);
-      ajaxRequest({
-        url: '/api/v1/geotarget',
-        type: 'GET',
-        onSuccess: function(data) {
-          document.documentElement.classList.add(roadblockDefinedClass);
-          let isLocal = JSON.parse(data)['is_local'];
-          _swapRoadblock(isLocal ? 'local' : 'not-local');
-        },
-        onError: function(data) {
-          document.documentElement.classList.add(roadblockDefinedClass);
-          _swapRoadblock('all');
-        }
-      });
+      if (isLocal !== null) {
+        _swapRoadblock(isLocal ? 'local' : 'not-local');
+      } else {
+        isWaitingOnGeotarget = true;
+        ajaxRequest({
+          url: '/api/v1/geotarget',
+          type: 'GET',
+          onSuccess: function(data) {
+            isLocal = JSON.parse(data)['is_local'];
+            _swapRoadblock(isLocal ? 'local' : 'not-local');
+            isWaitingOnGeotarget = false;
+          },
+          onError: function(data) {
+            _swapRoadblock('local');
+            isWaitingOnGeotarget = false;
+          }
+        });
+      }
     }
 
     setTimeout(_roadblockOpen, 3000);
@@ -151,12 +160,15 @@ const modals = function() {
       let $modalTemplate = document.querySelector('.g-modal--promo--template[data-geotarget="' + geotarget + '"]');
 
       if (!$modalTemplate) {
-        if (geotarget !== 'all') {
-          _swapRoadblock('all');
-          return;
-        } else {
-          document.documentElement.classList.remove(roadblockDefinedClass);
+        switch (geotarget) {
+          case 'local':
+            _swapRoadblock('all');
+            break;
+          case 'all':
+            document.documentElement.classList.remove(roadblockDefinedClass);
+            break;
         }
+        return;
       }
 
       $modalPromo.dataset['expires'] = $modalTemplate.dataset['expires'];
@@ -166,12 +178,24 @@ const modals = function() {
       triggerCustomEvent($modalPromo, 'content:updated', {
         el: $modalPromo,
       });
+
+      document.documentElement.classList.add(roadblockDefinedClass);
   }
 
-  function _roadblockOpen() {
+  function _roadblockOpen(hasGeotargetTimedOut) {
     if (!document.documentElement.classList.contains(roadblockDefinedClass)) {
       return;
     }
+
+    if (isWaitingOnGeotarget && !hasGeotargetTimedOut) {
+      setTimeout(function() {
+        _roadblockOpen(true);
+      }, 2000);
+      return;
+    }
+
+    isWaitingOnGeotarget = false;
+
     var cookie = cookieHandler.read(cookieName) || '';
     var expiryPeriodInDays = parseInt($modalPromo.getAttribute('data-expires')) / 60 / 60 / 24;
     if (cookie && expiryPeriodInDays > 0) {
