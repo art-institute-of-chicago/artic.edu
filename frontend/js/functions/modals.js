@@ -1,4 +1,4 @@
-import { triggerCustomEvent, setFocusOnTarget, queryStringHandler, cookieHandler } from '@area17/a17-helpers';
+import { triggerCustomEvent, setFocusOnTarget, queryStringHandler, cookieHandler, ajaxRequest } from '@area17/a17-helpers';
 import { parseHTML, youtubePercentTracking } from '../functions';
 
 const modals = function() {
@@ -93,7 +93,73 @@ const modals = function() {
   }
 
   function _roadblockOpenDelayed() {
+    // We do some duplicate checks in this function to reduce geotarget calls
+    if (!document.documentElement.classList.contains(roadblockDefinedClass)) {
+      return;
+    }
+
+    // Figure out which modal template to use and copy it to $modalPromo
+    let $modalTemplates = document.getElementsByClassName('g-modal--promo--template');
+
+    if ($modalTemplates.length < 1) {
+      return;
+    }
+
+    // Check if the data-expires of all templates is equal, and if there's a cookie already
+    let cookie = cookieHandler.read(cookieName) || '';
+    let expiryPeriodInDaysForAll = Array.prototype.map.call($modalTemplates, function(template) {
+      return template.dataset['expires'];
+    });
+    let isExpirySameForAll = expiryPeriodInDaysForAll.every(function(val, i, arr) {
+      return val === arr[0];
+    });
+
+    if (cookie && isExpirySameForAll && expiryPeriodInDaysForAll[0] > 0) {
+      return;
+    }
+
+    let geotargets = Array.prototype.map.call($modalTemplates, function(template) {
+      return template.dataset['geotarget'];
+    });
+
+    // See HomeController::getLightboxGeotarget()
+    if (geotargets.includes('all')) {
+      let $modalTemplate = document.querySelector('.g-modal--promo--template[data-geotarget="all"]');
+      // copy class attribute
+      $modalPromo.innerHTML = $modalTemplate.innerHTML;
+    } else {
+      document.documentElement.classList.remove(roadblockDefinedClass);
+      ajaxRequest({
+        url: '/api/v1/geotarget',
+        type: 'GET',
+        onSuccess: function(data) {
+          document.documentElement.classList.add(roadblockDefinedClass);
+          let isLocal = JSON.parse(data)['is_local'];
+          _swapRoadblock(isLocal ? 'local' : 'not-local');
+        },
+        onError: function(data) {
+          document.documentElement.classList.add(roadblockDefinedClass);
+          _swapRoadblock('all');
+        }
+      });
+    }
+
     setTimeout(_roadblockOpen, 3000);
+  }
+
+  function _swapRoadblock(geotarget) {
+      let $modalTemplate = document.querySelector('.g-modal--promo--template[data-geotarget="' + geotarget + '"]');
+
+      if (!$modalTemplate) {
+        if (geotarget !== 'all') {
+          _swapRoadblock('all');
+          return;
+        } else {
+          document.documentElement.classList.remove(roadblockDefinedClass);
+        }
+      }
+
+      $modalPromo.innerHTML = $modalTemplate.innerHTML;
   }
 
   function _roadblockOpen() {

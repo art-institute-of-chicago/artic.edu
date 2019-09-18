@@ -16,6 +16,7 @@ class Lightbox extends AbstractModel
         'subheader',
         'cover_caption',
         'body',
+        'geotarget',
         'lightbox_start_date',
         'lightbox_end_date',
         'expiry_period',
@@ -52,4 +53,7 @@ class Lightbox extends AbstractModel
     protected $presenter = 'App\Presenters\Admin\LightboxPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\LightboxPresenter';
 
+    const GEOTARGET_ALL = 1;
+    const GEOTARGET_LOCAL = 2;
+    const GEOTARGET_NOT_LOCAL = 3;
 }

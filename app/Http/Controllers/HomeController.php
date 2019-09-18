@@ -47,24 +47,50 @@ class HomeController extends FrontController
             'membership_module_headline' =>  $page->home_membership_module_headline,
             'membership_module_button_text' => $page->home_membership_module_button_text,
             'membership_module_short_copy' => $page->home_membership_module_short_copy,
-            'roadblock' => $this->getLightbox(),
+            'roadblocks' => $this->getLightboxes(),
         ];
 
         return view('site.home', $view_data);
     }
 
-    private function getLightbox()
+    private function getLightboxes()
     {
-        $lightbox = Lightbox::orderBy('lightbox_start_date', 'DESC')
+        $activeLightboxes = Lightbox::orderBy('lightbox_start_date', 'DESC')
             ->where('lightbox_start_date', '<=', Carbon::today())
             ->where('lightbox_end_date', '>=', Carbon::today())
             ->published()
-            ->first();
+            ->get();
 
-        if (!$lightbox) {
+        if (!$activeLightboxes || $activeLightboxes->count() < 1) {
             return null;
         }
 
+        $forAllLightbox = $activeLightboxes->firstWhere('geotarget', Lightbox::GEOTARGET_ALL);
+
+        if (!$forAllLightbox) {
+            $forAllLightbox = $activeLightboxes->firstWhere('geotarget', null);
+        }
+
+        if ($forAllLightbox) {
+            return collect([$this->getLightbox($forAllLightbox)]);
+        }
+
+        $displayedLightboxes = collect([
+            $activeLightboxes->firstWhere('geotarget', Lightbox::GEOTARGET_LOCAL),
+            $activeLightboxes->firstWhere('geotarget', Lightbox::GEOTARGET_NOT_LOCAL),
+        ])->filter()->map(function($lightbox) {
+            return $this->getLightbox($lightbox);
+        });
+
+        if ($displayedLightboxes->count() > 0) {
+            return $displayedLightboxes;
+        }
+
+        return collect([$this->getLightbox($activeLightboxes->first())]);
+    }
+
+    private function getLightbox($lightbox)
+    {
         return [
             'title' => $lightbox->header,
             'subheader' => $lightbox->subheader,
@@ -75,10 +101,29 @@ class HomeController extends FrontController
             'form_tlc_source' => $lightbox->form_tlc_source,
             'lightbox_button_text' => $lightbox->lightbox_button_text,
             'expiry_period' => $lightbox->expiry_period,
+            'geotarget' => $this->getLightboxGeotarget($lightbox->geotarget),
             'terms_text' => $lightbox->terms_text,
             'image' => $lightbox->imageFront('cover'),
             'cover_caption' => $lightbox->cover_caption,
         ];
+    }
+
+    private function getLightboxGeotarget($value = null)
+    {
+        switch ($value) {
+            case Lightbox::GEOTARGET_LOCAL:
+                return 'local';
+                break;
+            case Lightbox::GEOTARGET_NOT_LOCAL:
+                return 'not-local';
+                break;
+            case Lightbox::GEOTARGET_ALL:
+                // passthrough
+            default:
+                // also catches null
+                return 'all';
+                break;
+        }
     }
 
 }

@@ -317,6 +317,12 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'v1'], function () {
 
+    Route::get('geotarget', function() {
+        return [
+            'is_local' => false,
+        ];
+    });
+
     Route::get('/', function () {
         return "API";
     });

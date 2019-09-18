@@ -1,4 +1,9 @@
-<div id="modal-promo" class="g-modal g-modal--promo{{ $modal['image'] ? ' g-modal--image' : '' }}" data-expires="{{ $modal['expiry_period'] ?? 86400 }}">
+{{--
+    Meant to be used inside <script type="text/template" class="g-modal--promo--template" data-geotarget="{{ $roadblock['geotarget'] }}"  data-expires="{{ $roadblock['expiry_period'] ?? 86400 }}"/>
+    Adjust $roadblock['geotarget'] from $roadblock to whatever you need.
+    Copy all attributes from the top-level div here into the actual promo modal container.
+--}}
+<div class="{{ $modal['image'] ? 'g-modal--image' : '' }}">
     <div class="g-modal__content">
         @if ( $modal['image'] )
             <div class="g-modal__image">
