@@ -159,6 +159,7 @@ const modals = function() {
         }
       }
 
+      $modalPromo.dataset['expires'] = $modalTemplate.dataset['expires'];
       $modalPromo.innerHTML = $modalTemplate.innerHTML;
 
       // Reinitialize behaviors for close button, etc.
