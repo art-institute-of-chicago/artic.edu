@@ -142,6 +142,7 @@ const modals = function() {
           type: 'GET',
           onSuccess: function(data) {
             isLocal = JSON.parse(data)['is_local'];
+            isLocal = isLocal === null ? true : isLocal;
             _swapRoadblock(isLocal ? 'local' : 'not-local');
             isWaitingOnGeotarget = false;
           },

@@ -144,6 +144,20 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | IPinfo Access Token
+    |--------------------------------------------------------------------------
+    |
+    | Used for geotargeting lightboxes.
+    |
+    | https://ipinfo.io/account
+    */
+
+    'ipinfo' => env('IPINFO_TOKEN'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

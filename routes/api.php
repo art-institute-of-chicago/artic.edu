@@ -318,8 +318,25 @@ Route::get('/', function () {
 Route::group(['prefix' => 'v1'], function () {
 
     Route::get('geotarget', function() {
+
+        // Will be `null` for https://ipinfo.io/bogon
+        $url = 'https://ipinfo.io/' . request()->ip() . '/city?token=' . config('app.ipinfo');
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        // Set so curl_exec returns the result instead of outputting it.
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Disable SSL cert verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        // Get the response and close the channel.
+        $response = curl_exec($ch);
+        curl_close($ch);
+
         return [
-            'is_local' => false,
+            'is_local' => json_decode($response),
         ];
     });
 
