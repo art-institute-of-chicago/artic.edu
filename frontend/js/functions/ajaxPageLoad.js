@@ -46,7 +46,7 @@ const ajaxPageLoad = function() {
     if (doc.documentElement.classList.contains('s-roadblock-defined')) {
       let promos = doc.querySelector('.g-modal--promo');
       if (promos) {
-        promos.each(function(promo) {
+        Array.prototype.forEach.call(promos, function(promo) {
           let promoClone = promo.cloneNode(true);
           document.body.append(promoClone);
         });
