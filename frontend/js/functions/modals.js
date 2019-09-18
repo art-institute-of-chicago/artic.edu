@@ -187,11 +187,15 @@ const modals = function() {
       return;
     }
 
-    if (isWaitingOnGeotarget && !hasGeotargetTimedOut) {
-      setTimeout(function() {
-        _roadblockOpen(true);
-      }, 2000);
-      return;
+    if (isWaitingOnGeotarget) {
+      if (!hasGeotargetTimedOut) {
+        setTimeout(function() {
+          _roadblockOpen(true);
+        }, 2000);
+        return;
+      } else {
+        _swapRoadblock('local');
+      }
     }
 
     isWaitingOnGeotarget = false;
