@@ -3,7 +3,7 @@
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $media = $item['media'];
-    $fullscreen = (isset($item['fullscreen']) and $item['fullscreen']);
+    $fullscreen = (isset($item['fullscreen']) && $item['fullscreen']) && (!isset($media['restrict']) || !$media['restrict']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
 
     // WEB-912: For Gallery Items; image module is an array, but gallery item is object?
@@ -82,7 +82,7 @@
     }
 
     $mediaBehavior = false;
-    if ($fullscreen and $type !== 'embed' and (!isset($media['restrict']) || !$media['restrict'])) {
+    if ($fullscreen and $type !== 'embed') {
       $mediaBehavior = 'openImageFullScreen';
     }
     if ($fullscreen and $type == 'embed') {
