@@ -82,7 +82,7 @@
     }
 
     $mediaBehavior = false;
-    if ($fullscreen and $type !== 'embed') {
+    if ($fullscreen and $type !== 'embed' and (!isset($media['restrict']) || !$media['restrict'])) {
       $mediaBehavior = 'openImageFullScreen';
     }
     if ($fullscreen and $type == 'embed') {
