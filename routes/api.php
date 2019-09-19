@@ -319,7 +319,8 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::get('geotarget', function() {
 
-        // Will be `null` for https://ipinfo.io/bogon
+        // Will be "" for https://ipinfo.io/bogon
+        // Response is a string that ends with a newline
         $url = 'https://ipinfo.io/' . request()->ip() . '/city?token=' . config('app.ipinfo');
 
         $ch = curl_init();
@@ -336,7 +337,7 @@ Route::group(['prefix' => 'v1'], function () {
         curl_close($ch);
 
         return [
-            'is_local' => json_decode($response),
+            'is_local' => (empty($response) ? null : (strpos($response, 'Chicago') !== false)),
         ];
     });
 
