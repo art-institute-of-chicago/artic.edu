@@ -10,6 +10,7 @@
     @formField('radios', [
         'name' => 'geotarget',
         'label' => 'Geotargeting',
+        'note' => '"Local" refers to Chicago area',
         'default' => \App\Models\Lightbox::GEOTARGET_ALL,
         'inline' => false,
         'options' => [
@@ -19,13 +20,13 @@
             ],
             [
                 'value' => \App\Models\Lightbox::GEOTARGET_LOCAL,
-                'label' => 'Chicago users only'
+                'label' => 'Local users only'
             ],
             [
                 'value' => \App\Models\Lightbox::GEOTARGET_NOT_LOCAL,
                 'label' => 'Non-local users only'
             ]
-        ]
+        ],
     ])
 
     @formField('medias', [
