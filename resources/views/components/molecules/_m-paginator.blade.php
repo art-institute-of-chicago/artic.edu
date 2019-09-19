@@ -4,6 +4,12 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
 }
 @endphp
 @if (isset($paginator))
+    @if (10000 < ($paginator->currentPage() + 1) * $paginator->perPage())
+        @component('components.molecules._m-no-results')
+            @slot('text', 'Sorry, we cannot show more than 10,000 results.')
+        @endcomponent
+    @endif
+
     @if ($paginator->hasPages())
         <nav class="m-paginator">
           <ul class="m-paginator__prev-next">
@@ -59,6 +65,10 @@ if (!isset($ajaxScrollTarget) && isset($GLOBALS['paginationAjaxScrollTarget'])) 
                 {{-- Array Of Links --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
+                        {{-- Don't cross the 10,000 limit --}}
+                        @if ($page * $paginator->perPage() > 10000)
+                            @continue
+                        @endif
                         @if ($page == $paginator->currentPage())
                             <li class="s-active"><a href="{{ $url }}" class="f-buttons"{!! (isset($ajaxScrollTarget) and $ajaxScrollTarget) ? ' data-ajax-scroll-target="'.$ajaxScrollTarget.'"' : '' !!}>{{ $page }}</a></li>
                         @else
