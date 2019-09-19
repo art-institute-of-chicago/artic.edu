@@ -7,6 +7,28 @@
 
 @section('contentFields')
 
+    @formField('radios', [
+        'name' => 'geotarget',
+        'label' => 'Geotargeting',
+        'note' => '"Local" refers to Chicago area',
+        'default' => \App\Models\Lightbox::GEOTARGET_ALL,
+        'inline' => false,
+        'options' => [
+            [
+                'value' => \App\Models\Lightbox::GEOTARGET_ALL,
+                'label' => 'All users'
+            ],
+            [
+                'value' => \App\Models\Lightbox::GEOTARGET_LOCAL,
+                'label' => 'Local users only'
+            ],
+            [
+                'value' => \App\Models\Lightbox::GEOTARGET_NOT_LOCAL,
+                'label' => 'Non-local users only'
+            ]
+        ],
+    ])
+
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Cover Image',

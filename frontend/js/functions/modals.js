@@ -1,4 +1,4 @@
-import { triggerCustomEvent, setFocusOnTarget, queryStringHandler, cookieHandler } from '@area17/a17-helpers';
+import { triggerCustomEvent, setFocusOnTarget, queryStringHandler, cookieHandler, ajaxRequest } from '@area17/a17-helpers';
 import { parseHTML, youtubePercentTracking } from '../functions';
 
 const modals = function() {
@@ -9,6 +9,11 @@ const modals = function() {
   const $modal = document.getElementById('modal');
   const $modalPromo = document.getElementById('modal-promo');
   let active = false;
+
+  // Do not reset this between AJAX reloads!
+  let isLocal = null;
+
+  let isWaitingOnGeotarget = false;
 
   var cookieName = 'has_seen_lightbox';
 
@@ -93,13 +98,109 @@ const modals = function() {
   }
 
   function _roadblockOpenDelayed() {
-    setTimeout(_roadblockOpen, 3000);
-  }
-
-  function _roadblockOpen() {
+    // We do some duplicate checks in this function to reduce geotarget calls
     if (!document.documentElement.classList.contains(roadblockDefinedClass)) {
       return;
     }
+
+    // Figure out which modal template to use and copy it to $modalPromo
+    let $modalTemplates = document.getElementsByClassName('g-modal--promo--template');
+
+    if ($modalTemplates.length < 1) {
+      return;
+    }
+
+    // Check if the data-expires of all templates is equal, and if there's a cookie already
+    let cookie = cookieHandler.read(cookieName) || '';
+    let expiryPeriodInDaysForAll = Array.prototype.map.call($modalTemplates, function(template) {
+      return template.dataset['expires'];
+    });
+    let isExpirySameForAll = expiryPeriodInDaysForAll.every(function(val, i, arr) {
+      return val === arr[0];
+    });
+
+    if (cookie && isExpirySameForAll && expiryPeriodInDaysForAll[0] > 0) {
+      return;
+    }
+
+    let geotargets = Array.prototype.map.call($modalTemplates, function(template) {
+      return template.dataset['geotarget'];
+    });
+
+    isWaitingOnGeotarget = false;
+
+    // See HomeController::getLightboxGeotarget()
+    if (geotargets.includes('all')) {
+      _swapRoadblock('all');
+    } else {
+      if (isLocal !== null) {
+        _swapRoadblock(isLocal ? 'local' : 'not-local');
+      } else {
+        isWaitingOnGeotarget = true;
+        ajaxRequest({
+          url: '/api/v1/geotarget',
+          type: 'GET',
+          onSuccess: function(data) {
+            isLocal = JSON.parse(data)['is_local'];
+            isLocal = isLocal === null ? true : isLocal;
+            _swapRoadblock(isLocal ? 'local' : 'not-local');
+            isWaitingOnGeotarget = false;
+          },
+          onError: function(data) {
+            _swapRoadblock('local');
+            isWaitingOnGeotarget = false;
+          }
+        });
+      }
+    }
+
+    setTimeout(_roadblockOpen, 3000);
+  }
+
+  function _swapRoadblock(geotarget) {
+      let $modalTemplate = document.querySelector('.g-modal--promo--template[data-geotarget="' + geotarget + '"]');
+
+      if (!$modalTemplate) {
+        switch (geotarget) {
+          case 'local':
+            _swapRoadblock('all');
+            break;
+          case 'all':
+            document.documentElement.classList.remove(roadblockDefinedClass);
+            break;
+        }
+        return;
+      }
+
+      $modalPromo.dataset['expires'] = $modalTemplate.dataset['expires'];
+      $modalPromo.innerHTML = $modalTemplate.innerHTML;
+
+      // Reinitialize behaviors for close button, etc.
+      triggerCustomEvent($modalPromo, 'content:updated', {
+        el: $modalPromo,
+      });
+
+      document.documentElement.classList.add(roadblockDefinedClass);
+  }
+
+  function _roadblockOpen(hasGeotargetTimedOut) {
+    if (!document.documentElement.classList.contains(roadblockDefinedClass)) {
+      return;
+    }
+
+    if (isWaitingOnGeotarget) {
+      if (!hasGeotargetTimedOut) {
+        setTimeout(function() {
+          _roadblockOpen(true);
+        }, 2000);
+        return;
+      } else {
+        _swapRoadblock('local');
+      }
+    }
+
+    isWaitingOnGeotarget = false;
+
     var cookie = cookieHandler.read(cookieName) || '';
     var expiryPeriodInDays = parseInt($modalPromo.getAttribute('data-expires')) / 60 / 60 / 24;
     if (cookie && expiryPeriodInDays > 0) {

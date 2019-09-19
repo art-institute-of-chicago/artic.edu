@@ -44,10 +44,12 @@ const ajaxPageLoad = function() {
     }
     // check to see if we need the roadblock class
     if (doc.documentElement.classList.contains('s-roadblock-defined')) {
-      let promo = doc.querySelector('#modal-promo');
-      if (promo) {
-        let promoClone = promo.cloneNode(true);
-        document.body.append(promoClone);
+      let promos = doc.querySelector('.g-modal--promo');
+      if (promos) {
+        Array.prototype.forEach.call(promos, function(promo) {
+          let promoClone = promo.cloneNode(true);
+          document.body.append(promoClone);
+        });
         document.documentElement.classList.add('s-roadblock-defined');
       }
     } else {

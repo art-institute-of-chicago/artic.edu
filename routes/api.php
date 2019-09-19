@@ -317,6 +317,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'v1'], function () {
 
+    Route::get('geotarget', 'API\GeotargetController@geotarget');
+
     Route::get('/', function () {
         return "API";
     });
