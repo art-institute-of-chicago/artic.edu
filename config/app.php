@@ -144,6 +144,20 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | IPinfo Access Token
+    |--------------------------------------------------------------------------
+    |
+    | Used for geotargeting lightboxes.
+    |
+    | https://ipinfo.io/account
+    */
+
+    'ipinfo' => env('IPINFO_TOKEN'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -192,7 +206,7 @@ return [
         /*
          * Application Service Providers...
          */
-        // App\Providers\VendorServiceProvider::class, // Commented our because it breaks saving images in image blocks
+        App\Providers\VendorServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

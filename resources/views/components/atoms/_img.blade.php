@@ -18,6 +18,7 @@
         $width = $settings['width'];
         $height = $settings['height'];
         $iiifId = $settings['iiifId'];
+        $restrict = $settings['restrict'] ?? null;
     }
 
     if (empty($srcset) && empty($src)) {
@@ -35,14 +36,21 @@
     if (empty($height) && isset($image['height'])) {
         $height = $image['height'];
     }
+
+    if (empty($restrict) && isset($image['restrict'])) {
+        $restrict = $image['restrict'];
+    }
 @endphp
 <img
     alt="{{ $image['alt'] ?? '' }}{{ $alt ?? '' }}"
-    class="{{ $image['class'] ?? '' }} {{ $class ?? '' }}"
+    class="{{ $image['class'] ?? '' }} {{ $class ?? '' }} {{ $restrict ? 'restrict' : '' }}"
     @if (empty($srcset) and isset($src))
         data-src="{{ $src ?? '' }}"
     @else
         src="{{ $src ?? '' }}"
+    @endif
+    @if ($restrict)
+       data-behavior="restrictDownload"
     @endif
     @if (isset($_GET['print']) or (isset($settings['lazyload']) and $settings['lazyload'] === false))
     srcset="{{ $srcset ?? '' }}"

@@ -35,8 +35,8 @@
 @formField('wysiwyg', [
     'name' => 'caption',
     'label' => 'Caption',
-    'maxlength' => 200,
-    'note' => 'Max 200 characters',
+    'maxlength' => 300,
+    'note' => 'Max 300 characters',
     'toolbarOptions' => [
         'italic', 'link',
     ],

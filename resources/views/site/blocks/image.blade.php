@@ -22,6 +22,7 @@
                 "credit" => '',
                 "creditUrl" => '',
                 "alt" => $image['alt'],
+                "restrict" => $image['restict'] ?? false,
             ],
             'showUrl' => !empty($block->input('image_link')),
             'showUrlFullscreen' => !empty($block->input('image_link')),

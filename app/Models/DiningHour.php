@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasTranslation;
+use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class DiningHour extends AbstractModel

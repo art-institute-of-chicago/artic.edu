@@ -3,7 +3,7 @@
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
     $media = $item['media'];
-    $fullscreen = (isset($item['fullscreen']) and $item['fullscreen']);
+    $fullscreen = (isset($item['fullscreen']) && $item['fullscreen']) && (!isset($media['restrict']) || !$media['restrict']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
 
     // WEB-912: For Gallery Items; image module is an array, but gallery item is object?
@@ -110,7 +110,7 @@
     }
 @endphp
 <{{ $tag ?? 'figure' }} data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}>
+    <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}>
         @if ($type == 'image')
             @if ($showUrlFullscreen)
                 <a href="{!! $item['urlTitle'] !!}">

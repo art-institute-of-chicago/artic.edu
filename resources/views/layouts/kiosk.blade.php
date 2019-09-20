@@ -7,6 +7,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="robots" content="noindex">
 
+  @if (isset($seo))
+    @section('meta_title') @include('partials.metas._title') @show
+  @endif
+
   <!-- Main Favicon -->
   <link rel="shortcut icon" type="image/png" href="{{revAsset('images/favicon-16.png')}}">
   <!-- Apple Touch Icons (ipad/iphone standard+retina) -->

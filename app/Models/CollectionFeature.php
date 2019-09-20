@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class CollectionFeature extends AbstractModel

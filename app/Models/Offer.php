@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
+use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class Offer extends AbstractModel implements Sortable

@@ -26,6 +26,7 @@ class InteractiveFeatureExperiencesController extends FrontController
 
     public function __construct(ExperienceRepository $repository)
     {
+        parent::__construct();
         $this->repository = $repository;
     }
 
@@ -60,6 +61,7 @@ class InteractiveFeatureExperiencesController extends FrontController
     protected function show($slug)
     {
 
+
         if (in_array('kiosk', request()->segments())) {
             return redirect()->action(
                 'InteractiveFeatureExperiencesController@showKiosk',
@@ -72,6 +74,8 @@ class InteractiveFeatureExperiencesController extends FrontController
         if (!$experience || $experience->kiosk_only === true) {
             abort(404);
         }
+
+        $this->seo->setTitle($experience->title);
 
         $view = 'site.experienceDetail';
 
@@ -98,6 +102,8 @@ class InteractiveFeatureExperiencesController extends FrontController
         if (!$experience) {
             abort(404);
         }
+
+        $this->seo->setTitle($experience->title);
 
         $view = 'site.experienceDetailKiosk';
 

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasMedias;
+use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 
 class Lightbox extends AbstractModel
@@ -16,6 +16,7 @@ class Lightbox extends AbstractModel
         'subheader',
         'cover_caption',
         'body',
+        'geotarget',
         'lightbox_start_date',
         'lightbox_end_date',
         'expiry_period',
@@ -43,4 +44,16 @@ class Lightbox extends AbstractModel
             ],
         ],
     ];
+
+    public $casts = [
+        'lightbox_start_date' => 'datetime',
+        'lightbox_end_date' => 'datetime',
+    ];
+
+    protected $presenter = 'App\Presenters\Admin\LightboxPresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\LightboxPresenter';
+
+    const GEOTARGET_ALL = 1;
+    const GEOTARGET_LOCAL = 2;
+    const GEOTARGET_NOT_LOCAL = 3;
 }
