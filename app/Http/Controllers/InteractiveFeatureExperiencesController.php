@@ -35,6 +35,8 @@ class InteractiveFeatureExperiencesController extends FrontController
         $items = Experience::published()->unarchived()->where('kiosk_only', false)->paginate();
         $title = 'Interactive Features';
 
+        $this->seo->setTitle($title);
+
         $nav = [
             ['label' => 'Writings', 'href' => route('articles_publications')],
         ];

@@ -6,8 +6,8 @@ import getAbsoluteHeight from "../functions/getAbsoluteHeight";
 
 const closerLook = function(container) {
   const elements = [];
-
   const $a17 = document.getElementById("a17");
+  const nextSibling = container.nextElementSibling;
   let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   let ticking = false;
 
@@ -17,6 +17,7 @@ const closerLook = function(container) {
     const diff = Math.abs(
       Math.min(0, container.offsetHeight - window.innerHeight - scrollTop)
     );
+
     const fromBottom = window.innerHeight * -1 + diff;
     const isStuck = fromBottom <= 0;
 
@@ -49,10 +50,20 @@ const closerLook = function(container) {
     requestTick();
   }
 
+  function handleFocus() {
+    if ( nextSibling.contains(document.activeElement) &&
+         scrollTop < container.offsetHeight ) {
+      window.scrollTo(0, container.offsetHeight);
+    }
+  }
+
   function _init() {
     window.scrollTo(0,0);
     window.addEventListener("scroll", handleScroll);
     handleScroll();
+
+    document.addEventListener('focusin', handleFocus);
+    handleFocus();
 
     let target = container;
     while(target = target.nextElementSibling) {
@@ -78,6 +89,7 @@ const closerLook = function(container) {
   this.destroy = function() {
     window.removeEventListener('resized', handleResize);
     window.removeEventListener("scroll", handleScroll);
+    document.removeEventListener('focusin', handleFocus);
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };
