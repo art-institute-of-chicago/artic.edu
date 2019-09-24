@@ -30,6 +30,11 @@ const ajaxableHref = function(href, event) {
     return false;
   }
 
+  if (window.location.pathname.includes('/interactive-features/')) {
+    // user is in an interactive feature
+    return false;
+  }
+
   /*
   if (el.origin === window.location.origin) {
     if (!el.search) {
