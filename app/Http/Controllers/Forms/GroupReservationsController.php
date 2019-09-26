@@ -436,7 +436,7 @@ class GroupReservationsController extends FormController
           'type' => 'text',
           'content' => '<p>Please note the form below is for booking adult or university group tours only. Use the <a href="https://scheduler.artic.edu/">student tours application form</a> for pre-K–12th grade student tours.</p>'
           .'<p>Group visits require a minimum of 15 people. Reservations are requested 21 days in advance and will be confirmed in writing within 10 business days of receipt. Thank you for thinking of the Art Institute of Chicago.</p>'
-          .'<p>Contact us at (312) 857-7104 or groupsales@artic.edu.</p>'
+          .'<p>Contact us at (312) 857-7104 or <a href="mailto:groupsales@artic.edu">groupsales@artic.edu</a>.</p>'
           .'<p>You may also print this form and return it to:</p>'
           .'<p>Group Sales<br/>'
           .'The Art Institute of Chicago<br/>'
