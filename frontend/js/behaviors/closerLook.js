@@ -1,12 +1,12 @@
-import ReactDOM from "react-dom";
-import "intersection-observer";
-import React from "react";
-import CloserLook, { Modal } from "closer-look";
-import getAbsoluteHeight from "../functions/getAbsoluteHeight";
+import ReactDOM from 'react-dom';
+import 'intersection-observer';
+import React from 'react';
+import CloserLook, { Modal } from 'closer-look';
+import getAbsoluteHeight from '../functions/getAbsoluteHeight';
 
 const closerLook = function(container) {
   const elements = [];
-  const $a17 = document.getElementById("a17");
+  const $a17 = document.getElementById('a17');
   const nextSibling = container.nextElementSibling;
   let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   let ticking = false;
@@ -14,9 +14,7 @@ const closerLook = function(container) {
   function update() {
     ticking = false;
 
-    const diff = Math.abs(
-      Math.min(0, container.offsetHeight - window.innerHeight - scrollTop)
-    );
+    const diff = Math.abs(Math.min(0, container.offsetHeight - window.innerHeight - scrollTop));
 
     const fromBottom = window.innerHeight * -1 + diff;
     const isStuck = fromBottom <= 0;
@@ -25,10 +23,10 @@ const closerLook = function(container) {
 
     let elementsOffsetHeight = 0;
 
-    if( elements.length > 0 ){
+    if (elements.length > 0) {
       elements.forEach(function(element) {
-        if( element ){
-          element.style.position = isStuck ? "fixed" : null;
+        if (element) {
+          element.style.position = isStuck ? 'fixed' : null;
           element.style.top = isStuck ? `${elementsOffsetHeight}px` : null;
           elementsOffsetHeight += getAbsoluteHeight(element);
         }
@@ -39,7 +37,7 @@ const closerLook = function(container) {
   }
 
   function requestTick() {
-    if(!ticking) {
+    if (!ticking) {
       requestAnimationFrame(update);
     }
     ticking = true;
@@ -51,33 +49,28 @@ const closerLook = function(container) {
   }
 
   function handleFocus() {
-    if ( nextSibling.contains(document.activeElement) &&
-         scrollTop < container.offsetHeight ) {
+    if (nextSibling && nextSibling.contains(document.activeElement) && scrollTop < container.offsetHeight) {
       window.scrollTo(0, container.offsetHeight);
     }
   }
 
   function _init() {
-    window.scrollTo(0,0);
-    window.addEventListener("scroll", handleScroll);
+    window.scrollTo(0, 0);
+    window.addEventListener('scroll', handleScroll);
     handleScroll();
 
     document.addEventListener('focusin', handleFocus);
     handleFocus();
 
     let target = container;
-    while(target = target.nextElementSibling) {
+    while ((target = target.nextElementSibling)) {
       elements.push(target);
     }
     elements.push(document.getElementById('footer'));
 
     const props = {
-      contentBundle: JSON.parse(
-        document.querySelector("[data-closerLook-contentBundle]").innerHTML
-      ),
-      assetLibrary: JSON.parse(
-        document.querySelector("[data-closerLook-assetLibrary]").innerHTML
-      )
+      contentBundle: JSON.parse(document.querySelector('[data-closerLook-contentBundle]').innerHTML),
+      assetLibrary: JSON.parse(document.querySelector('[data-closerLook-assetLibrary]').innerHTML)
     };
 
     window.closerLook = props;
@@ -88,7 +81,7 @@ const closerLook = function(container) {
 
   this.destroy = function() {
     window.removeEventListener('resized', handleResize);
-    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener('scroll', handleScroll);
     document.removeEventListener('focusin', handleFocus);
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
