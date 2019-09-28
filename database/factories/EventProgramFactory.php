@@ -4,8 +4,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\EventProgram::class, function (Faker $faker) {
     return [
-        'created_at' => $faker->dateTimeThisYear,
-        'updated_at' => $faker->dateTimeThisYear,
         'name' => $faker->sentence(3),
+        'is_affiliate_group' => $faker->boolean,
+        'is_event_host' => $faker->boolean,
     ];
 });
