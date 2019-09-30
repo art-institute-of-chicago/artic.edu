@@ -6,28 +6,24 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\Event;
+use App\Models\EventMeta;
 use App\Models\EventProgram;
 
 class EventTest extends TestCase
 {
-
-    use RefreshDatabase;
 
     /** @test */
     public function it_loads_events_by_program()
     {
         $eventProgram = factory(EventProgram::class)->create();
         $events = factory(Event::class, 2)->create()->each(function($event) use ($eventProgram) {
-            $event->programs()->save($eventProgram);
+            $event->programs()->attach($eventProgram->id);
+            $event->eventMetas()->save(factory(EventMeta::class)->make(['event_id' => $event->id]));
+            $event->save();
         });
 
-        /*
-         * This request breaks due to SQLite's lack of support for `right join`s. I believe
-         * the Event model's scopyByProgram method performs this query.
-         * @TODO: Either refactor phpunit to spin up a temporary MySQL database for
-         *   testing, or refactor queries to support SQLite's limited syntax.
+        $response = $this->get('/events', [], ['program' => $eventProgram->id]);
 
-        $response = $this->get('/events?program=' .$eventProgram->id);
         $response->assertStatus(200);
 
         // See two events
@@ -38,7 +34,19 @@ class EventTest extends TestCase
 
         // See results title
         $response->assertSee($eventProgram->name);
-        */
     }
 
+    /**
+     * Visit the given URI with a GET request.
+     *
+     * @param  string  $uri
+     * @param  array  $headers
+     * @return \Illuminate\Foundation\Testing\TestResponse
+     */
+    public function get($uri, array $headers = [], $parameters = [])
+    {
+        $server = $this->transformHeadersToServerVars($headers);
+
+        return $this->call('GET', $uri, $parameters, [], [], $server);
+    }
 }
