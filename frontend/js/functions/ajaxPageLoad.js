@@ -319,7 +319,13 @@ const ajaxPageLoad = function() {
     }
     // if link opens in this tab, halt execution while we tell GTM
     // TODO: This tends to break things and overrides core browser behavior. Remove..?
-    if (event && link && link.getAttribute('target') !== '_blank' && link.href && link.href.indexOf('#') < 0) {
+    if (
+      event && link && link.getAttribute('target') !== '_blank' && link.href
+      && link.href.indexOf('#') < 0
+      // WEB-1323
+      && link.href.indexOf('interactive-features') < 0
+      && window.location.href.indexOf('interactive-features') < 0
+    ) {
       event.preventDefault();
       var win = window.open(link.href, '_blank');
       win.focus();
