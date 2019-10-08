@@ -25,15 +25,6 @@
 
     @formField('browser', [
         'routePrefix' => 'homepage',
-        'max' => 10,
-        'moduleName' => 'homeFeatures',
-        'name' => 'homeFeatures',
-        'label' => 'Home features (DEPRECATED)',
-        'note' => 'For reference only! Please use the two fields above instead.',
-    ])
-
-    @formField('browser', [
-        'routePrefix' => 'homepage',
         'max' => 20,
         'moduleName' => 'collectionFeatures',
         'name' => 'collectionFeatures',
