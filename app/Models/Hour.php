@@ -11,22 +11,13 @@ class Hour extends AbstractModel
     protected $presenter = 'App\Presenters\HoursPresenter';
     protected $presenterAdmin = 'App\Presenters\HoursPresenter';
 
-    static $days = array(
-        0 => 'Sunday',
-        1 => 'Monday',
-        2 => 'Tuesday',
-        3 => 'Wednesday',
-        4 => 'Thursday',
-        5 => 'Friday',
-        6 => 'Saturday',
-    );
-
     protected $fillable = [
-        'day_of_week',
-        'opening_time',
-        'closing_time',
+        'valid_from',
+        'valid_through',
         'type',
-        'closed',
+        'title',
+        'url',
+        'published',
     ];
 
     public static $types = [
@@ -35,28 +26,51 @@ class Hour extends AbstractModel
         2 => 'Library',
     ];
 
-    public $dates = ['opening_time', 'closing_time'];
+    public $dates = ['valid_from', 'valid_through'];
 
     // those fields get auto set to null if not submited
     public $nullable = [];
 
     // those fields get auto set to false if not submited
-    public $checkboxes = ['closed'];
+    public $checkboxes = ['published'];
+
+    public function scopeToday($query, $type = 0)
+    {
+        $today = Carbon::today();
+
+        $queryModified = clone $query;
+        $queryModified
+            ->published()
+            ->where('type', $type)
+            ->whereDate('valid_from', '<=', $today)
+            ->whereDate('valid_through', '>=', $today);
+
+        return $queryModified->exists() ? $queryModified : $this->scopeDefault($query, $type);
+    }
+
+    public function scopeDefault($query, $type = 0)
+    {
+        return $query
+            ->published()
+            ->where('type', $type)
+            ->whereNull('valid_from')
+            ->whereNull('valid_through');
+    }
 
     protected function transformMappingInternal()
     {
         return [
             [
-                "name" => 'opening_time',
-                "doc" => "Opening Time",
+                "name" => 'valid_from',
+                "doc" => "Valid From",
                 "type" => "datetime",
-                "value" => function () {return $this->opening_time;},
+                "value" => function () {return $this->valid_from;},
             ],
             [
-                "name" => 'closing_time',
-                "doc" => "Closing Time",
+                "name" => 'valid_through',
+                "doc" => "Valid Through",
                 "type" => "datetime",
-                "value" => function () {return $this->closing_time;},
+                "value" => function () {return $this->valid_through;},
             ],
             [
                 "name" => 'type',
@@ -65,23 +79,30 @@ class Hour extends AbstractModel
                 "value" => function () {return $this->type;},
             ],
             [
-                "name" => 'day_of_week',
-                "doc" => "Day of Week",
-                "type" => "number",
-                "value" => function () {return $this->day_of_week;},
+                "name" => 'title',
+                "doc" => "Title",
+                "type" => "string",
+                "value" => function () {return $this->title;},
             ],
             [
-                "name" => 'closed',
-                "doc" => "Closed",
+                "name" => 'url',
+                "doc" => "URL",
+                "type" => "string",
+                "value" => function () {return $this->url;},
+            ],
+            [
+                "name" => 'published',
+                "doc" => "Published",
                 "type" => "boolean",
-                "value" => function () {return $this->closed;},
+                "value" => function () {return $this->published;},
             ],
         ];
     }
 
     public static function getOpening()
     {
-        return 'Open daily 10:30&ndash;5:00, Thursdays until 8:00';
+        $hour = Hour::today()->first();
+        return $hour->title ?? 'Open daily 10:30&ndash;5:00';
     }
 
     public static function getOpeningUnlessClosure()
@@ -91,37 +112,10 @@ class Hour extends AbstractModel
         return $closure ? null : self::getOpening();
     }
 
-    /**
-     * TODO: Dead code. Delete?
-     */
-    public static function getOpeningWithClosure()
+    public static function getOpeningUrl()
     {
-        $closure = Closure::today()->first();
-        if ($closure) {
-            return $closure->closure_copy;
-        }
-
-        return self::getOpening();
+        $hour = Hour::today()->first();
+        return $hour->url ?? 'visit';
     }
 
-    /**
-     * TODO: Dead code. Delete?
-     */
-    public static function getOpeningToday($type = 0)
-    {
-        $day = date('N');
-        $today = Carbon::today();
-
-        $closure = Closure::published()->where('date_start', '>=', $today)->where('date_end', '<=', $today)->first();
-        if ($closure) {
-            return $closure->closure_copy;
-        } else {
-            $hours = Hour::where('type', $type)->where('day_of_week', $day)->first();
-            if ($hours && $hours->opening_time && $hours->closing_time) {
-                return "Open today " . $hours->opening_time->format('g:i') . '&ndash;' . $hours->closing_time->format('g:i');
-            }
-        }
-
-        return "";
-    }
 }

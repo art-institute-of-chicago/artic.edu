@@ -15,7 +15,7 @@ class HourController extends ModuleController
         'create' => false,
     ];
 
-    protected $titleColumnKey = 'presentType';
+    protected $titleColumnKey = 'title';
 
     protected $indexColumns = [
         'type' => [
@@ -24,26 +24,26 @@ class HourController extends ModuleController
             'field' => 'presentType',
             'edit_link' => true,
         ],
-        'day_of_week' => [
-            'title' => 'Day of Week',
+        'title' => [
+            'title' => 'Title',
             'present' => true,
-            'field' => 'dayOfWeek',
+            'field' => 'title',
             'edit_link' => true,
         ],
-        'closed' => [
-            'title' => 'Open/Closed',
+        'url' => [
+            'title' => 'Link URL',
             'present' => true,
-            'field' => 'presentClosed',
+            'field' => 'url',
         ],
-        'opening_time' => [
-            'title' => 'Opening Time',
+        'valieFrom' => [
+            'title' => 'Valid From',
             'present' => true,
-            'field' => 'presentOpeningTime',
+            'field' => 'validFrom',
         ],
-        'closing_time' => [
-            'title' => 'Closing Time',
+        'validThrough' => [
+            'title' => 'Valid Through',
             'present' => true,
-            'field' => 'presentClosingTime',
+            'field' => 'validThrough',
         ],
     ];
 

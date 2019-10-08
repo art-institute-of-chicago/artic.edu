@@ -1,6 +1,7 @@
 @php
     $_hours = [
         'general' => \App\Models\Hour::getOpeningUnlessClosure(),
+        'url' => \App\Models\Hour::getOpeningUrl(),
         'closure' => \App\Models\Closure::today()->first(),
     ];
 @endphp
@@ -52,7 +53,7 @@
           <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="top-nav" data-gtm-event="shop">Shop</a></li>
         </ul>
       </nav>
-      <p class="g-header__opening-hours f-secondary"><a href="{{ $_pages['visit'] }}">{!! $_hours['general'] !!}</a></p>
+      <p class="g-header__opening-hours f-secondary"><a href="/{{ $_hours['url'] }}">{!! $_hours['general'] !!}</a></p>
       <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile" aria-label="Show menu">Menu<svg class="icon--menu--24" aria-hidden="true"><use xlink:href="#icon--menu--24" /></svg></button>
   </div>
   @if (isset($_hours['closure']))

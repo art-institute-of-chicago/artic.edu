@@ -1,18 +1,23 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    @formField('checkbox', [
-        'name' => 'closed',
-        'label' => 'Closed (data below will be ignored)',
+    @formField('input', [
+        'name' => 'title',
+        'label' => 'Title',
+    ])
+
+    @formField('input', [
+        'name' => 'url',
+        'label' => 'URL',
     ])
 
     @formField('date_picker', [
-        'name' => 'opening_time',
-        'label' => 'Opening Time',
+        'name' => 'valid_from',
+        'label' => 'Valid From',
     ])
 
     @formField('date_picker', [
-        'name' => 'closing_time',
-        'label' => 'Closing Time',
+        'name' => 'valid_through',
+        'label' => 'Valid Through',
     ])
 @stop
