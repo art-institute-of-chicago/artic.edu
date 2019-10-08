@@ -16,6 +16,7 @@ class Lightbox extends AbstractModel
         'subheader',
         'cover_caption',
         'body',
+        'hide_fields',
         'geotarget',
         'lightbox_start_date',
         'lightbox_end_date',
@@ -32,7 +33,10 @@ class Lightbox extends AbstractModel
         'title',
     ];
 
-    public $checkboxes = ['published'];
+    public $checkboxes = [
+        'published',
+        'hide_fields',
+    ];
 
     public $mediasParams = [
         'cover' => [

@@ -43,36 +43,38 @@
             <div class="g-modal__intro f-secondary">{!! $modal['intro'] !!}</div>
 
             <form class="g-modal__form" action="{{ $modal['action_url'] }}" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-                <div class="g-modal__form-row g-modal__form-row--split">
-                    <p>
-                        @component('components.atoms._input')
-                            @slot('id', 'edit-submitted-first-name')
-                            @slot('name', 'submitted[first_name]')
-                            @slot('required', 'required')
-                            First name
-                        @endcomponent
-                    </p>
+                @if (!$modal['hide_fields'])
+                    <div class="g-modal__form-row g-modal__form-row--split">
+                        <p>
+                            @component('components.atoms._input')
+                                @slot('id', 'edit-submitted-first-name')
+                                @slot('name', 'submitted[first_name]')
+                                @slot('required', 'required')
+                                First name
+                            @endcomponent
+                        </p>
 
-                    <p>
-                        @component('components.atoms._input')
-                            @slot('id', 'edit-submitted-last-name')
-                            @slot('name', 'submitted[last_name]')
-                            @slot('required', 'required')
-                            Last name
-                        @endcomponent
-                    </p>
-                </div>
+                        <p>
+                            @component('components.atoms._input')
+                                @slot('id', 'edit-submitted-last-name')
+                                @slot('name', 'submitted[last_name]')
+                                @slot('required', 'required')
+                                Last name
+                            @endcomponent
+                        </p>
+                    </div>
 
-                <div class="g-modal__form-row">
-                    <p>
-                        @component('components.atoms._email')
-                            @slot('id', 'edit-submitted-mail')
-                            @slot('name', 'submitted[mail]')
-                            @slot('required', 'required')
-                            Email address
-                        @endcomponent
-                    </p>
-                </div>
+                    <div class="g-modal__form-row">
+                        <p>
+                            @component('components.atoms._email')
+                                @slot('id', 'edit-submitted-mail')
+                                @slot('name', 'submitted[mail]')
+                                @slot('required', 'required')
+                                Email address
+                            @endcomponent
+                        </p>
+                    </div>
+                @endif
 
                 <input type="hidden" name="submitted[tlcsource]" id="edit-submitted-tlcsource" value="{{ $modal['form_tlc_source'] }}" >
                 <input type="hidden" name="form_token" value="{{ $modal['form_token'] }}">

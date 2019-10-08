@@ -66,6 +66,12 @@
         ],
     ])
 
+    @formField('checkbox', [
+        'name' => 'hide_fields',
+        'label' => 'Hide first name, last name, and email fields',
+        'default' => false,
+    ])
+
     @formField('input', [
         'name' => 'lightbox_button_text',
         'label' => 'Button Text',
