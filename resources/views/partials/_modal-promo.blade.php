@@ -3,7 +3,7 @@
     Adjust $roadblock['geotarget'] from $roadblock to whatever you need.
     Copy all attributes from the top-level div here into the actual promo modal container.
 --}}
-<div>
+<div class="{{ ($modal['hide_fields'] ?? false) ? 'g-modal--promo--hide_fields' : '' }}">
     <div class="g-modal__content">
         @if ( $modal['image'] )
             <div class="g-modal__image">

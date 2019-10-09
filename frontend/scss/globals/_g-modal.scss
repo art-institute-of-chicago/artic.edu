@@ -169,6 +169,13 @@
     object-fit: cover;
   }
 
+  .g-modal--promo--hide_fields {
+    .g-modal__image img {
+      position: relative;
+      object-fit: inherit;
+    }
+  }
+
   .g-modal__main {
     position: relative;
     padding: 16px 40px 40px;
