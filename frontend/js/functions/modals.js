@@ -229,12 +229,17 @@ const modals = function() {
   }
 
   function _roadblockSubmit(event) {
+    let firstnameElement = document.getElementById('edit-submitted-first-name');
+    let lastnameElement = document.getElementById('edit-submitted-last-name');
+    let emailElement = document.getElementById('edit-submitted-mail');
+    let tlcsourceElement = document.getElementById('edit-submitted-tlcsource');
+
     // We pass values from lightbox to form via a cookie
-    var cookieValue = encodeURIComponent(JSON.stringify({
-      firstname: document.getElementById('edit-submitted-first-name').value,
-      lastname: document.getElementById('edit-submitted-last-name').value,
-      email: document.getElementById('edit-submitted-mail').value,
-      tlcsource: document.getElementById('edit-submitted-tlcsource').value,
+    let cookieValue = encodeURIComponent(JSON.stringify({
+      firstname: firstnameElement ? firstnameElement.value : null,
+      lastname: lastnameElement ? lastnameElement.value : null,
+      email: emailElement ? emailElement.value : null,
+      tlcsource: tlcsourceElement ? tlcsourceElement.value : null,
     }));
 
     // Ensure this cookie works across subdomains
