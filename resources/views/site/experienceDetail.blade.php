@@ -3,7 +3,7 @@
     @php($item = isset($singleSlide) && $singleSlide ? $slide : $experience)
     <section class="o-closer-look" data-behavior="closerLook">
             <script type="application/json" data-closerLook-contentBundle>
-                {{-- {{ dd(json_encode($item->contentBundle, JSON_UNESCAPED_SLASHES)) }} --}}
+                {{-- {{ dd(json_encode($item->contentBundle)) }} --}}
                 {{-- {{ dd($item->contentBundle) }} --}}
                 {!! json_encode($item->contentBundle) !!}
             </script>

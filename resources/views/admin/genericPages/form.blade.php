@@ -74,7 +74,7 @@
             'child_pages', 'accordion', 'membership_banner', 'timeline',
             'link', 'newsletter_signup_inline', 'artwork', 'artworks',
             'hr', 'split_block', 'search_bar', 'tour_stop', 'button',
-            'mobile_app', 'grid', 'table',
+            'mobile_app', 'grid', 'table', '3d_model'
         ])
     ])
 @stop
