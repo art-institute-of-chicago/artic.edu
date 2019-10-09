@@ -215,7 +215,7 @@ const modals = function() {
     triggerCustomEvent(document, 'focus:trap', {
       element: $modalPromo
     });
-    $modalPromo.addEventListener('submit', _roadblockSubmit, true);
+    $modalPromo.querySelector('form').addEventListener('submit', _roadblockSubmit, true);
     if (expiryPeriodInDays > 0) {
       cookieHandler.create(cookieName, true, expiryPeriodInDays);
     } else {
@@ -241,6 +241,8 @@ const modals = function() {
     cookieValue += ';domain=.artic.edu';
 
     cookieHandler.create('tlc_lb_signup', cookieValue, 30);
+
+    triggerCustomEvent(document, 'roadblock:close');
   }
 
   function _resized() {
