@@ -32,7 +32,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['daily', 'sentry'],
             'ignore_exceptions' => false,
         ],
 
@@ -66,6 +66,12 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+
+        'sentry' => [
+            'driver' => 'sentry',
+            'level' => 'error',
+        ],
+
     ],
 
 ];
