@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\SlideMedia as SlideMediaResource;
 use App\Http\Resources\SlideModal as SlideModalResource;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Slide extends JsonResource
@@ -194,7 +195,7 @@ class Slide extends JsonResource
                 'model_id' => $aic3DModel->model_id,
                 'camera_position' => $aic3DModel->camera_position,
                 'camera_target' => $aic3DModel->camera_target,
-                'annotation_list' => $aic3DModel->annotation_list
+                'annotation_list' => json_decode($aic3DModel->annotation_list)
             ];
         } else {
             return [
@@ -300,6 +301,10 @@ class Slide extends JsonResource
                 ],
                 'modals' => SlideModalResource::collection($this->modal)->toArray(request()),
             ];
+        }
+
+        if ($this->module_type === '3dtour') {
+            Arr::forget($rst, ['seamlessAsset', 'assetType', '__mediaType', 'media', 'headline', 'vScalePercent']);
         }
 
         return $rst;
