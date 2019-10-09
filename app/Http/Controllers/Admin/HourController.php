@@ -9,19 +9,13 @@ class HourController extends ModuleController
 {
     protected $moduleName = 'hours';
 
-    protected $indexOptions = [
-        'publish' => false,
-        'delete' => false,
-        'create' => false,
-    ];
-
     protected $titleColumnKey = 'title';
 
     protected $indexColumns = [
         'type' => [
             'title' => 'Type',
             'present' => true,
-            'field' => 'presentType',
+            'field' => 'type',
             'edit_link' => true,
         ],
         'title' => [
@@ -35,15 +29,17 @@ class HourController extends ModuleController
             'present' => true,
             'field' => 'url',
         ],
-        'valieFrom' => [
+        'validFrom' => [
             'title' => 'Valid From',
             'present' => true,
             'field' => 'validFrom',
+            'sort_key' => 'valid_from',
         ],
         'validThrough' => [
             'title' => 'Valid Through',
             'present' => true,
             'field' => 'validThrough',
+            'sort_key' => 'valid_through',
         ],
     ];
 
@@ -57,7 +53,7 @@ class HourController extends ModuleController
      */
     protected $formWith = [];
 
-    protected $defaultOrders = ['type' => 'asc'];
+    protected $defaultOrders = ['valid_from' => 'desc'];
 
     protected function indexData($request)
     {
