@@ -42,7 +42,7 @@
             @endif
             <div class="g-modal__intro f-secondary">{!! $modal['intro'] !!}</div>
 
-            <form class="g-modal__form" action="{{ $modal['action_url'] }}" method="post" enctype="multipart/form-data" accept-charset="UTF-8" target="_blank">
+            <form class="g-modal__form" action="{{ $modal['action_url'] }}" method="post" enctype="multipart/form-data" accept-charset="UTF-8" target="_blank" data-gtm-event-category="lightbox" data-gtm-event-action="{{$seo->title}}" data-gtm-event="{{ $modal['lightbox_button_text'] ?? 'Join Now' }}">
                 @if (!$modal['hide_fields'])
                     <div class="g-modal__form-row g-modal__form-row--split">
                         <p>

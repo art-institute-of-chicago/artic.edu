@@ -1,5 +1,5 @@
 import { triggerCustomEvent, setFocusOnTarget, queryStringHandler, cookieHandler, ajaxRequest } from '@area17/a17-helpers';
-import { parseHTML, youtubePercentTracking } from '../functions';
+import { parseHTML, youtubePercentTracking, googleTagManagerDataFromLink } from '../functions';
 
 const modals = function() {
 
@@ -241,6 +241,11 @@ const modals = function() {
     cookieValue += ';domain=.artic.edu';
 
     cookieHandler.create('tlc_lb_signup', cookieValue, 30);
+
+    let googleTagManagerObject = googleTagManagerDataFromLink(event.target);
+    if (googleTagManagerObject) {
+      triggerCustomEvent(document, 'gtm:push', googleTagManagerObject);
+    }
 
     triggerCustomEvent(document, 'roadblock:close');
   }
