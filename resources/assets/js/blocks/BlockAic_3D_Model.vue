@@ -57,6 +57,7 @@
       })
     },
     mounted: function () {
+        console.log('called');
         const moduleTypeField = this.fields.find((e) => e.name === 'module_type')
         let oldModelId = ''
         if (!moduleTypeField || moduleTypeField.value === '3dtour') {

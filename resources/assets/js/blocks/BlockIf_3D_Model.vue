@@ -28,7 +28,7 @@
     mounted: function () {
         const moduleTypeField = this.fields.find((e) => e.name === 'module_type')
         let oldModelId = ''
-        if (!moduleTypeField || moduleTypeField.value === '3dtour') {
+        if (!moduleTypeField || moduleTypeField.value === '3dtour' || moduleTypeField.value === 'split') {
           this.$store.subscribe((mutation, state) => {
             const { payload, type } = mutation;
             if (type === 'updateFormField' && payload.name === this.fieldName('model_url')) {

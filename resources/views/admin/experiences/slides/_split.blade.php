@@ -28,6 +28,17 @@
             @formField('repeater', ['type' => 'slide_primary_experience_image'])
         @endcomponent
     @endcomponent
+
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'asset_type',
+        'fieldValues' => '3dModel',
+        'keepAlive' => true,
+    ])
+        <br />
+        <a17-fieldset title="3D Object" id="3dModel">
+            <a17-block-if_3d_model name="aic_3d_model" />
+        </a17-fieldset>
+    @endcomponent
         
     @formField('radios', [
         'name' => 'image_side',
