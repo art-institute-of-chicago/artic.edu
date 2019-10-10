@@ -12,7 +12,7 @@
             [
                 'value' => 'seamless',
                 'label' => 'Seamless'
-            ],
+            ]
         ]
     ])
 @endunless

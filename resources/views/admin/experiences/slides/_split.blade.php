@@ -21,7 +21,7 @@
         'keepAlive' => true,
     ])
         @component('twill::partials.form.utils._connected_fields', [
-            'fieldName' => 'split_stiandard_media_type',
+            'fieldName' => 'split_standard_media_type',
             'fieldValues' => 'type_image',
             'keepAlive' => true,
         ])
