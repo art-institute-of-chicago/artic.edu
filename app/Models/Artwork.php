@@ -26,6 +26,11 @@ class Artwork extends AbstractModel
         return $this->title;
     }
 
+    public function AIC3DModel()
+    {
+        return $this->belongsTo('App\Models\AIC3DModel', '3d_model_id');
+    }
+
     public function getTrackingSlugAttribute()
     {
         return $this->title;
