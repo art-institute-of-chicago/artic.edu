@@ -41,7 +41,8 @@
     @slot('links', array(
         array('label' => 'Plan your visit', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="Plan your visit" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"'),
         array('label' => 'Hours and admission fees<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['hours'], 'variation' => 'arrow-link'),
-        array('label' => 'Directions and parking<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['directions'], 'variation' => 'arrow-link')
+        array('label' => 'Directions and parking<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $_pages['directions'], 'variation' => 'arrow-link'),
+        array('label' => SmartyPants::defaultTransform($plan_your_visit_link_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_url),
     ))
     {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent

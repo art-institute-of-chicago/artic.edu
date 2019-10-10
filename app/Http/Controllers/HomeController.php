@@ -38,6 +38,8 @@ class HomeController extends FrontController
             'filledLogo'     => sizeof($mainFeatures) > 0,
             'mainFeatures' => $mainFeatures,
             'intro' => $page->home_intro,
+            'plan_your_visit_link_text' => $page->home_plan_your_visit_link_text,
+            'plan_your_visit_link_url' => $page->home_plan_your_visit_link_url,
             'exhibitions' => $exhibitions,
             'events' => $events,
             'theCollection' => $collectionFeatures,
