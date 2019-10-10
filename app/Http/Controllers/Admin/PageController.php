@@ -30,7 +30,10 @@ class PageController extends ModuleController
         Session::put("pages_back_link", route('admin.homepage.landing'));
 
         $additionalFieldsets = [
+            ['fieldset' => 'exhibitions-and-events', 'label' => 'Exhibitions and Event'],
             ['fieldset' => 'membership', 'label' => 'Membership Module'],
+            ['fieldset' => 'from-the-collection', 'label' => 'From the Collection'],
+            ['fieldset' => 'from-the-shop', 'label' => 'From the Shop'],
         ];
         $fields = $this->form($page->id);
         $fields['additionalFieldsets'] = $additionalFieldsets;
