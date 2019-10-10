@@ -33,9 +33,7 @@
             'required' => true,
             'translated' => true,
         ])
-        @formField('input', [
-            'type' => 'text',
-            'rows' => 3,
+        @formField('wysiwyg', [
             'name' => 'visit_hour_subheader',
             'field_name' => 'visit_hour_subheader',
             'label' => 'Description',
