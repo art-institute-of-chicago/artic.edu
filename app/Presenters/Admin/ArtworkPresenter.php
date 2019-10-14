@@ -111,9 +111,15 @@ class ArtworkPresenter extends BasePresenter
      */
     private function getArtistLink($pivot)
     {
+        $label = $pivot->artist_title;
+
+        // Don't show role if the role is "Artist" or "Culture"
+        if (isset($pivot->role_title) && isset($pivot->role_id) && !in_array($pivot->role_id, [219, 555])) {
+            $label .= ' (' . $pivot->role_title . ')';
+        }
+
         return [
-            // Don't show role if the role is "Artist" or [TODO] "Creator"
-            'label' => $pivot->artist_title . (($pivot->role_title && !in_array($pivot->role_id, [219, 555])) ? " ({$pivot->role_title})" : '' ),
+            'label' => $label,
             'href' => route('artists.show', $pivot->artist_id . '/' . getUtf8Slug($pivot->artist_title)),
             'gtmAttributes' => 'data-gtm-event="'. $pivot->artist_title . '"'
                 . ' data-gtm-event-action="' . $this->entity->title . '"'
@@ -126,7 +132,10 @@ class ArtworkPresenter extends BasePresenter
         $details = [];
 
         if ($this->entity->artist_pivots != null && count($this->entity->artist_pivots) > 0) {
-            $artistPivots = collect($this->entity->artist_pivots);
+            $artistPivots = collect($this->entity->artist_pivots)->filter(function($item) {
+                // TODO: Ensure that all relationships point to existing items [WEB-118, WEB-1026]
+                return isset($item->artist_id) && isset($item->artist_title);
+            });
 
             $preferredArtist = $artistPivots->firstWhere('preferred', true);
             $showCultureFirst = false;
