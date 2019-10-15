@@ -2,44 +2,44 @@
     <!-- eslint-disable -->
     <div class="block__body">
         <a17-textfield label="Model URL" :name="fieldName('model_url')" type="text" in-store="value"></a17-textfield>
-        <a17-textfield label="Model Caption" :name="fieldName('model_caption')" type="text" in-store="value"></a17-textfield>
-        <a17-inputframe label="Cover image" name="medias.cover" >
-          <a17-mediafield :name="fieldName('image')" crop-context="image" ></a17-mediafield>
-        </a17-inputframe>
-        <a17-inputframe label="Collection Objects" name="browsers.artworks">
-          <a17-browserfield
-            :name="fieldName('artworks')"
-            item-label="collection objects"
-            :max="1"
-            :wide="false"
-            endpoint=""
-            :endpoints='[
-              {
-                "label":"Artworks",
-                "value":"\/collection\/artworks\/browser"
-              },
-              {
-                "label":"Artists",
-                "value":"\/collection\/artists\/browser"
-              },
-              {
-                "label":"Interactive Features",
-                "value":"\/collection\/interactiveFeatures\/experiences\/browser"
-              }
-            ]'
-            modal-title="Attach collection objects"
-            :draggable="true"
-          >
-            Link a collection object
-          </a17-browserfield>
-        </a17-inputframe>
-        <div>
-          <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" disabled in-store="value"></a17-textfield>
-          <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value"></a17-textfield>
-          <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" ></a17-textfield>
-          <a17-textfield label="Annotation List" :name="fieldName('annotation_list')" type="text" disabled in-store="value"></a17-textfield>
-          <iframe src="" id="sketchfab-frame" allow="autoplay; fullscreen; vr" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" hidden></iframe>
+        <div v-if="enhanced">
+          <a17-textfield label="Model Caption" :name="fieldName('model_caption')" type="text" in-store="value"></a17-textfield>
+          <a17-inputframe label="Cover image" name="medias.cover" >
+            <a17-mediafield :name="fieldName('image')" crop-context="image" ></a17-mediafield>
+          </a17-inputframe>
+          <a17-inputframe label="Collection Objects" name="browsers.artworks">
+            <a17-browserfield
+              :name="fieldName('artworks')"
+              item-label="collection objects"
+              :max="1"
+              :wide="false"
+              endpoint=""
+              :endpoints='[
+                {
+                  "label":"Artworks",
+                  "value":"\/collection\/artworks\/browser"
+                },
+                {
+                  "label":"Artists",
+                  "value":"\/collection\/artists\/browser"
+                },
+                {
+                  "label":"Interactive Features",
+                  "value":"\/collection\/interactiveFeatures\/experiences\/browser"
+                }
+              ]'
+              modal-title="Attach collection objects"
+              :draggable="true"
+            >
+              Link a collection object
+            </a17-browserfield>
+          </a17-inputframe>
         </div>
+        <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" disabled in-store="value"></a17-textfield>
+        <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value"></a17-textfield>
+        <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" ></a17-textfield>
+        <a17-textfield label="Annotation List" :name="fieldName('annotation_list')" type="text" disabled in-store="value"></a17-textfield>
+        <iframe src="" id="sketchfab-frame" allow="autoplay; fullscreen; vr" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" hidden></iframe>
     </div>
 </template>
 
@@ -51,13 +51,18 @@
 
   export default {
     mixins: [BlockMixin],
+    props: {
+      enhanced: {
+        type: Boolean,
+        default: false 
+      }
+    },
     computed: {
       ...mapState({
         fields: state => state.form.fields
       })
     },
     mounted: function () {
-        console.log('called');
         const moduleTypeField = this.fields.find((e) => e.name === 'module_type')
         let oldModelId = ''
         if (!moduleTypeField || moduleTypeField.value === '3dtour') {

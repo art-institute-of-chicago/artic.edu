@@ -3,7 +3,7 @@
     'fieldValues' => '3dtour',
     'keepAlive' => true,
 ])
-    <a17-block-if_3d_model name="aic_3d_model" />
+    <a17-block-aic_3d_model name="aic_3d_model" :enhanced="false" />
 @endcomponent
 
 @push('vuexStore')
