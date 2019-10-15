@@ -54,7 +54,7 @@
     props: {
       enhanced: {
         type: Boolean,
-        default: false 
+        default: true 
       }
     },
     computed: {
