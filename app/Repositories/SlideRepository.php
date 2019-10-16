@@ -39,7 +39,7 @@ class SlideRepository extends ModuleRepository
         $this->updateExperienceModule($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
         $this->updateExperienceModule($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
         $this->updateExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
-        if (in_array($object->module_type, ['3dtour', 'split'])) {
+        if (in_array($object->module_type, ['3dtour', 'split', 'fullwidthmedia'])) {
             $this->handle3DModel($object, $fields);
         }
         parent::afterSave($object, $fields);

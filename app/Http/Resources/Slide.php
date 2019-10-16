@@ -142,6 +142,21 @@ class Slide extends JsonResource
                 return $image->image('experience_image');
             })->toArray();
         }
+        elseif ($this->asset_type === '3dModel') {
+            $aic3DModel = $this->AIC3DModel()->first();
+            if ($aic3DModel) {
+                return [
+                    'model_id' => $aic3DModel->model_id,
+                    'camera_position' => $aic3DModel->camera_position,
+                    'camera_target' => $aic3DModel->camera_target,
+                    'annotation_list' => json_decode($aic3DModel->annotation_list)
+                ];
+            } else {
+                return [
+    
+                ];
+            }
+        }
         else {
             $src = '';
         }

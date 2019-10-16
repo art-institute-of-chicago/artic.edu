@@ -12,9 +12,43 @@
             [
                 'value' => 'seamless',
                 'label' => 'Seamless'
+            ],
+            [
+                'value' => '3dModel',
+                'label' => '3D model'
             ]
         ]
     ])
+
+    @push('extra_js')
+    <script>
+        const find3dOption = () => {
+            return [].slice.call(document.querySelectorAll("input[value='3dModel']")).find(
+                el => el.className === 'singleselector__radio'
+            )
+        }
+        const currentModuleType = window.STORE.form.fields.find(field => field.name == 'module_type').value;
+        
+        if (currentModuleType !== 'fullwidthmedia' && find3dOption()) {
+            find3dOption().parentNode.style.display = "none";
+        }
+        window.vm.$store.watch(
+            function (state) {
+                return state.form.fields;
+            },
+            function (newVal, oldVal) {
+                const moduleType = newVal.find(field => field.name == 'module_type');
+                if(moduleType && find3dOption()) {
+                    if (moduleType.value !== 'fullwidthmedia') {
+                        find3dOption().parentNode.style.display = "none";
+                    } else {
+                        find3dOption().parentNode.style.display = "block";
+                    }
+                }
+            })
+    </script>
+    @endpush
+
 @endunless
 
 @component('twill::partials.form.utils._connected_fields', [
