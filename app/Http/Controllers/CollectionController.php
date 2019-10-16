@@ -31,6 +31,10 @@ class CollectionController extends BaseScopedController
             ->allAggregations(request()->route('categoryName'), request()->get('categoryQuery'))
             ->forceEndpoint('search');
 
+        if (request('is_deaccessioned')) {
+            $collectionService->resources(['deaccessions']);
+        }
+
         return $collectionService;
     }
 
