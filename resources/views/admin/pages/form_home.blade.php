@@ -27,15 +27,35 @@
 @section('fieldsets')
     <a17-fieldset title="Plan your visit" id="plan-your-visit">
         @formField('input', [
-            'name' => 'home_plan_your_visit_link_text',
-            'label' => 'Optional "Plan your visit" link text',
+            'name' => 'home_plan_your_visit_link_1_text',
+            'label' => 'First "Plan your visit" link text',
         ])
 
         @formField('input', [
-            'name' => 'home_plan_your_visit_link_url',
-            'label' => 'Optional "Plan your visit" link URL',
+            'name' => 'home_plan_your_visit_link_1_url',
+            'label' => 'First "Plan your visit" link URL',
         ])
-    </a17-fieldset>
+
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_2_text',
+            'label' => 'Second "Plan your visit" link text',
+        ])
+
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_2_url',
+            'label' => 'Second "Plan your visit" link URL',
+        ])
+
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_3_text',
+            'label' => 'Third "Plan your visit" link text',
+        ])
+
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_3_url',
+            'label' => 'Third "Plan your visit" link URL',
+        ])
+</a17-fieldset>
 
     <a17-fieldset title="Exhibitions and Event" id="exhibitions-and-events">
         @formField('browser', [

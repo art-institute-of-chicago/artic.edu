@@ -42,8 +42,12 @@ class Page extends AbstractModel
 
         // Homepage
         'home_intro',
-        'home_plan_your_visit_link_text',
-        'home_plan_your_visit_link_url',
+        'home_plan_your_visit_link_1_text',
+        'home_plan_your_visit_link_1_url',
+        'home_plan_your_visit_link_2_text',
+        'home_plan_your_visit_link_2_url',
+        'home_plan_your_visit_link_3_text',
+        'home_plan_your_visit_link_3_url',
 
         'home_membership_module_url',
         'home_membership_module_image',
