@@ -63,4 +63,9 @@ class ExperienceModal extends Model implements Sortable
         $fields['video_play_settings'] = $fields['video_play_settings'] ?? [];
         return $fields;
     }
+
+    public function AIC3DModel()
+    {
+        return $this->belongsTo('App\Models\AIC3DModel', '3d_model_id');
+    }
 }

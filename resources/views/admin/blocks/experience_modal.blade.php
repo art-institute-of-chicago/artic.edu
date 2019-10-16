@@ -81,8 +81,8 @@
         'keepAlive' => true
 ])
     <br />
-    <a17-block-aic_3d_model name="aic_split_3d_model" :enhanced="false" />
-    @push('vuexStore')
+    <a17-block-aic_3d_model :name="fieldName('aic_split_3d_model')" :enhanced="false" />
+    {{-- @push('vuexStore')
         @php($aic3DModel = $item->AIC3DModel)
         @foreach (['model_url', 'model_id', 'camera_position', 'camera_target', 'annotation_list'] as $name)
             window.STORE.form.fields.push({
@@ -90,7 +90,7 @@
                 value: {!! json_encode($aic3DModel ? $aic3DModel->$name : '') !!}
             })
         @endforeach
-    @endpush
+    @endpush --}}
 @endcomponent
 
 @formField('wysiwyg', [
