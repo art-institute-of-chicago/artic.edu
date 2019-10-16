@@ -51,6 +51,17 @@ class SlideModal extends JsonResource
                     'caption' => $this->image_sequence_caption ?? $this->imageCaption('experience_image'),
                 ];
                 break;
+            case '3d_model':
+                $aic3dModel = $this->AIC3dModel;
+                if ($aic3dModel) {
+                    return [
+                        'model_id' => $aic3dModel->model_id,
+                        'camera_position' => $aic3dModel->camera_position,
+                        'camera_target' => $aic3dModel->camera_target,
+                        'annotation_list' => json_decode($aic3dModel->annotation_list)
+                    ];
+                }
+                break;
         }
     }
 }

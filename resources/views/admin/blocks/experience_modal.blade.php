@@ -17,7 +17,7 @@
             'label' => 'Image Sequence'
         ],
         [
-            'value' => '3d_modal',
+            'value' => '3d_model',
             'label' => '3D Model'
         ]
     ]
