@@ -75,13 +75,20 @@ class ArtworkPresenter extends BasePresenter
             $view_link .= ', ' . $gallery_link;
         }
 
+        $view_key = $this->entity->is_on_view ? 'On View' : 'Currently Off View';
+
+        if ($this->entity->is_deaccessioned) {
+            $view_key = 'Deaccessioned';
+            $view_link = $dept_link = '';
+        }
+
         array_push($blocks, [
             "type"      => 'deflist',
             "variation" => 'u-hide@large+ sr-show@large+',
             "ariaOwns"  => "dl-artwork-details",
             "items"     => [
                 [
-                    'key' => $this->entity->is_on_view ? 'On View' : 'Currently Off View',
+                    'key' => $view_key,
                     'value' => $view_link,
                 ],
             ]
