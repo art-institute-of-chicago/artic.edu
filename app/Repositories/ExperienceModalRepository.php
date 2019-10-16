@@ -32,7 +32,6 @@ class ExperienceModalRepository extends ModuleRepository
     public function getFormFields($object)
     {
         $fields = parent::getFormFields($object);
-        $fields = $this->getFormFieldsFor3DModel($object, $fields, 'aic_split_3d_model');
 
         return $fields;
     }
