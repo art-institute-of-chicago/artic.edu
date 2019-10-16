@@ -344,7 +344,11 @@
                         <dd{!! (isset($item['itemprop'])) ? ' itemprop="'.$item['itemprop'].'"' : '' !!}>
                             <span class="f-secondary">
                                 @foreach ($item['links'] as $link)
-                                    <a href="{!! $link['href'] !!}"{!! (isset($link['gtmAttributes'])) ? ' '.$link['gtmAttributes'].'' : '' !!}>{{ $link['label'] }}</a>
+                                    @if (isset($link['href']))
+                                        <a href="{!! $link['href'] !!}"{!! (isset($link['gtmAttributes'])) ? ' '.$link['gtmAttributes'].'' : '' !!}>{{ $link['label'] }}</a>
+                                    @else
+                                        {{ $link['label'] }}
+                                    @endif
                                     @if ($loop->remaining), @endif
                                 @endforeach
                             </span>

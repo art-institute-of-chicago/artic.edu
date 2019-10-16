@@ -125,9 +125,16 @@ class ArtworkPresenter extends BasePresenter
             $label .= ' (' . $pivot->role_title . ')';
         }
 
+        // Don't show link if the artwork is deaccessioned
+        if ($this->entity->is_deaccessioned) {
+            $href = null;
+        } else {
+            $href = route('artists.show', $pivot->artist_id . '/' . getUtf8Slug($pivot->artist_title));
+        }
+
         return [
             'label' => $label,
-            'href' => route('artists.show', $pivot->artist_id . '/' . getUtf8Slug($pivot->artist_title)),
+            'href' => $href,
             'gtmAttributes' => 'data-gtm-event="'. $pivot->artist_title . '"'
                 . ' data-gtm-event-action="' . $this->entity->title . '"'
                 . ' data-gtm-event-category="collection-nav"',
