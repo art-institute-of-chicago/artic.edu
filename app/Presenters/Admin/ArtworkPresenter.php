@@ -105,7 +105,10 @@ class ArtworkPresenter extends BasePresenter
         array_push($blocks, [
             "type" => 'hr',
         ]);
-        array_push($blocks, [
+        array_push($blocks, $this->entity->is_deaccessioned ? [
+            "type" => 'text',
+            "content" => '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>',
+        ] : [
             "type" => 'text',
             "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu"></a>.</p>',
         ]);
