@@ -54,7 +54,7 @@ class ArtworkController extends BaseScopedController
         if (!$item->is_deaccessioned) {
             $exploreFurther = new ExploreFurther($item);
 
-            $viewData = array_merge($view_data, [
+            $viewData = array_merge($viewData, [
                 'exploreFurtherTags' => $exploreFurther->tags(),
                 'exploreFurther' => $exploreFurther->collection(request()->all()),
                 'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
