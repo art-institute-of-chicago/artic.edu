@@ -698,6 +698,19 @@ class Search extends BaseApiModel
                 ];
                 break;
 
+            case 'deaccession':
+                $params = [
+                    "sort" => [
+                        'fiscal_year_deaccession' => [
+                            'order' => 'desc',
+                        ],
+                        'title.keyword' => [
+                            'order' => 'asc',
+                        ],
+                    ]
+                ];
+                break;
+
             default:
                 $params = [
                     "sort" => [

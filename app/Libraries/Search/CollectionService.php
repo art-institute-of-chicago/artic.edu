@@ -84,7 +84,9 @@ class CollectionService
         $filters->prepend($this->buildDateFilters());
 
         // Prepend sorting filters at the beginning
-        $filters->prepend($this->buildSortFilters());
+        if (!request('is_deaccessioned')) {
+            $filters->prepend($this->buildSortFilters());
+        }
 
         // Appends boolean filters
         $filters->push($this->buildBooleanFilters());

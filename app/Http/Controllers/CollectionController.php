@@ -32,7 +32,7 @@ class CollectionController extends BaseScopedController
             ->forceEndpoint('search');
 
         if (request('is_deaccessioned')) {
-            $collectionService->resources(['deaccessions']);
+            $collectionService->resources(['deaccessions'])->sortBy('deaccession');
         }
 
         return $collectionService;
