@@ -8,11 +8,6 @@ class HourRequest extends Request
 {
     public function rules()
     {
-        $rules = [
-            'opening_time' => 'required',
-            'closing_time' => 'required',
-        ];
-
-        return $rules;
+        return [];
     }
 }

@@ -9,30 +9,22 @@ use Carbon\Carbon;
 class HoursPresenter extends BasePresenter
 {
 
-    public function presentOpeningTime() {
-        if ($this->entity->opening_time)
-            return $this->entity->opening_time->format('g:i');
-    }
-
-    public function presentClosingTime() {
-        if ($this->entity->closing_time)
-            return $this->entity->closing_time->format('g:i');
-    }
-
-    public function dayOfWeek() {
-        return Hour::$days[$this->entity->day_of_week];
-    }
-
-    public function presentType() {
-        return Hour::$types[$this->entity->type];
-    }
-
-    public function presentClosed() {
-        if ($this->entity->closed) {
-            return 'Closed';
-        } else {
-            return 'Open';
+    public function validFrom()
+    {
+        if ($this->entity->valid_from) {
+            return $this->entity->valid_from->format('M j, Y');
         }
+    }
+
+    public function validThrough()
+    {
+        if ($this->entity->valid_through) {
+            return $this->entity->valid_through->format('M j, Y');
+        }
+    }
+
+    public function type() {
+        return Hour::$types[$this->entity->type];
     }
 
 }

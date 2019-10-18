@@ -1,6 +1,4 @@
-@extends('twill::layouts.form')
-
-@section('contentFields')
+@if(!isset($item))
     @formField('input', [
         'name' => 'title',
         'label' => 'Title',
@@ -20,4 +18,4 @@
         'name' => 'valid_through',
         'label' => 'Valid Through',
     ])
-@stop
+@endif
