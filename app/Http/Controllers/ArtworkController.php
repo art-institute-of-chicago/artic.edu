@@ -21,9 +21,15 @@ class ArtworkController extends BaseScopedController
 
     public function show($id, $slug = null)
     {
-        $item = Artwork::query()
-            ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
-            ->findOrFail((Integer) $id);
+        try {
+            $item = Artwork::query()
+                ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
+                ->findOrFail((Integer) $id);
+        } catch (\Throwable $e) {
+            $item = Artwork::query()->forceEndpoint('deaccession')
+                ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
+                ->findOrFail((Integer) $id);
+        }
 
         // Redirect to the canonical page if it wasn't requested
         $canonicalPath = route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ], false);
@@ -35,20 +41,28 @@ class ArtworkController extends BaseScopedController
         $this->seo->setDescription($item->meta_description ?: $item->fullArtist);
         $this->seo->setImage($item->imageFront('hero'));
 
-        // Build Explore further module
-        $exploreFurther = new ExploreFurther($item);
+        // Start building data for output to view
+        $viewData = [
+            'item' => $item,
+            'contrastHeader'    => $item->present()->contrastHeader,
+            'borderlessHeader'  => $item->present()->borderlessHeader,
+            'primaryNavCurrent' => 'collection',
+            'canonicalUrl' => route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
+        ];
 
-        return view('site.artworkDetail', [
-          'item' => $item,
-          'contrastHeader'    => $item->present()->contrastHeader,
-          'borderlessHeader'  => $item->present()->borderlessHeader,
-          'primaryNavCurrent' => 'collection',
-          'exploreFurtherTags'    => $exploreFurther->tags(),
-          'exploreFurther'        => $exploreFurther->collection(request()->all()),
-          'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
-          'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
-          'canonicalUrl' => route('artworks.show', ['id' => $item->id, 'slug' => $item->titleSlug ]),
-        ]);
+        // Build Explore further module
+        if (!$item->is_deaccessioned) {
+            $exploreFurther = new ExploreFurther($item);
+
+            $viewData = array_merge($viewData, [
+                'exploreFurtherTags' => $exploreFurther->tags(),
+                'exploreFurther' => $exploreFurther->collection(request()->all()),
+                'exploreFurtherAllTags' => $exploreFurther->allTags(request()->all()),
+                'exploreFurtherCollectionUrl' => $exploreFurther->collectionUrl(request()->all()),
+            ]);
+        }
+
+        return view('site.artworkDetail', $viewData);
     }
 
     /**

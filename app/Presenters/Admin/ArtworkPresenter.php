@@ -75,13 +75,20 @@ class ArtworkPresenter extends BasePresenter
             $view_link .= ', ' . $gallery_link;
         }
 
+        $view_key = $this->entity->is_on_view ? 'On View' : 'Currently Off View';
+
+        if ($this->entity->is_deaccessioned) {
+            $view_key = 'Deaccessioned';
+            $view_link = $dept_link = '';
+        }
+
         array_push($blocks, [
             "type"      => 'deflist',
             "variation" => 'u-hide@large+ sr-show@large+',
             "ariaOwns"  => "dl-artwork-details",
             "items"     => [
                 [
-                    'key' => $this->entity->is_on_view ? 'On View' : 'Currently Off View',
+                    'key' => $view_key,
                     'value' => $view_link,
                 ],
             ]
@@ -98,7 +105,10 @@ class ArtworkPresenter extends BasePresenter
         array_push($blocks, [
             "type" => 'hr',
         ]);
-        array_push($blocks, [
+        array_push($blocks, $this->entity->is_deaccessioned ? [
+            "type" => 'text',
+            "content" => '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>',
+        ] : [
             "type" => 'text',
             "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu"></a>.</p>',
         ]);
@@ -118,9 +128,16 @@ class ArtworkPresenter extends BasePresenter
             $label .= ' (' . $pivot->role_title . ')';
         }
 
+        // Don't show link if the artwork is deaccessioned
+        if ($this->entity->is_deaccessioned) {
+            $href = null;
+        } else {
+            $href = route('artists.show', $pivot->artist_id . '/' . getUtf8Slug($pivot->artist_title));
+        }
+
         return [
             'label' => $label,
-            'href' => route('artists.show', $pivot->artist_id . '/' . getUtf8Slug($pivot->artist_title)),
+            'href' => $href,
             'gtmAttributes' => 'data-gtm-event="'. $pivot->artist_title . '"'
                 . ' data-gtm-event-action="' . $this->entity->title . '"'
                 . ' data-gtm-event-category="collection-nav"',
