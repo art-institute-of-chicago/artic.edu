@@ -147,7 +147,7 @@ class ArtistRepository extends BaseApiRepository
             ->exhibitionOrderByDate('desc')
             ->resources(['exhibitions'])
             ->rawSearch($query)
-            ->getPaginatedModel(500, \App\Models\Api\Exhibition::SEARCH_FIELDS)
+            ->getPaginatedModel(100, \App\Models\Api\Exhibition::SEARCH_FIELDS)
             ->items();
     }
 }

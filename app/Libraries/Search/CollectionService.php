@@ -84,7 +84,9 @@ class CollectionService
         $filters->prepend($this->buildDateFilters());
 
         // Prepend sorting filters at the beginning
-        $filters->prepend($this->buildSortFilters());
+        if (!request('is_deaccessioned')) {
+            $filters->prepend($this->buildSortFilters());
+        }
 
         // Appends boolean filters
         $filters->push($this->buildBooleanFilters());
@@ -147,8 +149,9 @@ class CollectionService
         $themes     = (new Filters\Themes())->generate();
         $techniques = (new Filters\Techniques())->generate();
         $galleries  = (new Filters\Galleries())->generate();
+        $deaccessions  = (new Filters\Deaccessions())->generate();
 
-        return array_merge($themes, $techniques, $galleries);
+        return array_merge($themes, $techniques, $galleries, $deaccessions);
     }
 
     /**

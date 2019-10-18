@@ -75,13 +75,20 @@ class ArtworkPresenter extends BasePresenter
             $view_link .= ', ' . $gallery_link;
         }
 
+        $view_key = $this->entity->is_on_view ? 'On View' : 'Currently Off View';
+
+        if ($this->entity->is_deaccessioned) {
+            $view_key = 'Deaccessioned';
+            $view_link = $dept_link = '';
+        }
+
         array_push($blocks, [
             "type"      => 'deflist',
             "variation" => 'u-hide@large+ sr-show@large+',
             "ariaOwns"  => "dl-artwork-details",
             "items"     => [
                 [
-                    'key' => $this->entity->is_on_view ? 'On View' : 'Currently Off View',
+                    'key' => $view_key,
                     'value' => $view_link,
                 ],
             ]
@@ -98,7 +105,10 @@ class ArtworkPresenter extends BasePresenter
         array_push($blocks, [
             "type" => 'hr',
         ]);
-        array_push($blocks, [
+        array_push($blocks, $this->entity->is_deaccessioned ? [
+            "type" => 'text',
+            "content" => '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>',
+        ] : [
             "type" => 'text',
             "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu"></a>.</p>',
         ]);
@@ -106,37 +116,120 @@ class ArtworkPresenter extends BasePresenter
         return array_filter($blocks);
     }
 
+    /**
+     * $item must contain artist_id, artist_title, role_id, role_title
+     */
+    private function getArtistLink($pivot)
+    {
+        $label = $pivot->artist_title;
+
+        // Don't show role if the role is "Artist" or "Culture"
+        if (isset($pivot->role_title) && isset($pivot->role_id) && !in_array($pivot->role_id, [219, 555])) {
+            $label .= ' (' . $pivot->role_title . ')';
+        }
+
+        // Don't show link if the artwork is deaccessioned
+        if ($this->entity->is_deaccessioned) {
+            $href = null;
+        } else {
+            $href = route('artists.show', $pivot->artist_id . '/' . getUtf8Slug($pivot->artist_title));
+        }
+
+        return [
+            'label' => $label,
+            'href' => $href,
+            'gtmAttributes' => 'data-gtm-event="'. $pivot->artist_title . '"'
+                . ' data-gtm-event-action="' . $this->entity->title . '"'
+                . ' data-gtm-event-category="collection-nav"',
+        ];
+    }
+
     protected function getArtworkDetailsBlock()
     {
         $details = [];
 
         if ($this->entity->artist_pivots != null && count($this->entity->artist_pivots) > 0) {
-            $artistLinks = collect($this->entity->artist_pivots)->map(function($item) {
-                // Don't show role if the role is "Artist" or [TODO] "Creator"
-                $title = $item->artist_title . ( ( $item->role_title && $item->role_id !== 219 ) ? " ({$item->role_title})" : '' );
-                return ['label' => $title, 'href' => route('artists.show', ['id' => $item->artist_id . '/' . getUtf8Slug($item->artist_title)]), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"'];
+            $artistPivots = collect($this->entity->artist_pivots)->filter(function($item) {
+                // TODO: Ensure that all relationships point to existing items [WEB-118, WEB-1026]
+                return isset($item->artist_id) && isset($item->artist_title);
             });
-            $details[] = [
-                'key'   => Str::plural('Artist', count($this->entity->artist_pivots)),
-                'links' => $artistLinks,
-                'itemprop' => 'creator',
-            ];
-        } else {
-            if ($this->entity->artist_title) {
-                $label = $this->entity->artist_title;
-                if ($this->entity->artist_id) {
-                    $details[] = [
-                        'key'   => 'Artist',
-                        'links' => [['label' => $label, 'href' => route('artists.show', $this->entity->artist_id . '/' . getUtf8Slug($this->entity->artist_title)), 'gtmAttributes' => 'data-gtm-event="'. $this->entity->artist_title . '" data-gtm-event-action="' . $this->entity->title . '" data-gtm-event-category="collection-nav"']],
-                        'itemprop' => 'creator',
-                    ];
+
+            $preferredArtist = $artistPivots->firstWhere('preferred', true);
+            $showCultureFirst = false;
+
+            $cultureLinks = [];
+            $artistLinks = [];
+
+            if ($preferredArtist) {
+                // Remove this item from the pivot list so it doesn't get duplicated
+                $artistPivots = $artistPivots->filter(function($item) use ($preferredArtist) {
+                    return $item != $preferredArtist;
+                });
+
+                $preferredArtistLink = $this->getArtistLink($preferredArtist);
+
+                if ($preferredArtist->role_id === 555) {
+                    $showCultureFirst = true;
+                    $cultureLinks[] = $preferredArtistLink;
                 } else {
+                    $artistLinks[] = $preferredArtistLink;
+                }
+            }
+
+            $artistPivots->filter(function($item) {
+                return $item->role_id === 555;
+            })->each(function($item) use (&$cultureLinks) {
+                $cultureLinks[] = $this->getArtistLink($item);
+            });
+
+            $artistPivots->filter(function($item) {
+                return $item->role_id !== 555;
+            })->each(function($item) use (&$artistLinks) {
+                $artistLinks[] = $this->getArtistLink($item);
+            });
+
+            if ($showCultureFirst) {
+                if (count($cultureLinks) > 0) {
                     $details[] = [
-                        'key'   => 'Artist',
-                        'value' => $label,
+                        'key'   => Str::plural('Culture', count($cultureLinks)),
+                        'links' => $cultureLinks,
                         'itemprop' => 'creator',
                     ];
                 }
+                if (count($artistLinks) > 0) {
+                    $details[] = [
+                        'key'   => Str::plural('Artist', count($artistLinks)),
+                        'links' => $artistLinks,
+                        'itemprop' => 'creator',
+                    ];
+                }
+            } else {
+                if (count($artistLinks) > 0) {
+                    $details[] = [
+                        'key'   => Str::plural('Artist', count($artistLinks)),
+                        'links' => $artistLinks,
+                        'itemprop' => 'creator',
+                    ];
+                }
+                if (count($cultureLinks) > 0) {
+                    $details[] = [
+                        'key'   => Str::plural('Culture', count($cultureLinks)),
+                        'links' => $cultureLinks,
+                        'itemprop' => 'creator',
+                    ];
+                }
+            }
+        } else {
+            // There should be no cases where there is an `artist_title`, but no `artist_pivots`
+            // ...but let's keep an eye on it just in case:
+            try {
+                throw new \Exception(json_encode([
+                    'id' => $this->entity->id,
+                    'msg' => 'Missing artist_pivots'
+                ]));
+            } catch (\Exception $e) {
+                // https://laravel.com/docs/5.7/errors - The `report` Helper
+                report($e);
             }
         }
 

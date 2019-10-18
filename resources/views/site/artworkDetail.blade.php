@@ -21,8 +21,8 @@
     @slot('intro', $item->present()->heading)
     @slot('img',   $item->imageFront('hero'))
     @slot('galleryImages', $item->galleryImages)
-    @slot('isZoomable', $item->is_zoomable)
-    @slot('isPublicDomain', $item->is_public_domain)
+    @slot('isZoomable', !$item->is_deaccessioned && $item->is_zoomable)
+    @slot('isPublicDomain', !$item->is_deaccessioned && $item->is_public_domain)
     @slot('maxZoomWindowSize', $item->max_zoom_window_size)
     @slot('prevNextObject', $prevNextObject ?? null)
   @endcomponent
@@ -34,17 +34,19 @@
         @slot('tag','h2')
         @slot('font', 'f-module-title-1')
         @slot('ariaHidden', "true")
-        {{ $item->is_on_view ? 'On View' : 'Currently Off View' }}
+        {{ $item->is_deaccessioned ? 'Deaccessioned' : ($item->is_on_view ? 'On View' : 'Currently Off View') }}
     @endcomponent
 
-    <ul class="list list--inline f-secondary">
-      @if ($item->department_id)
-      <li><a href="{!! route('departments.show', [$item->department_id . '/' . getUtf8Slug($item->department_title)]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{!! $item->present()->department_title !!}</a></li>
-      @endif
-      @if ($item->is_on_view && $item->gallery_id)
-      <li><a href="{!! route('galleries.show', [$item->gallery_id . '/' . getUtf8Slug($item->gallery_title)]) !!}" data-gtm-event="{{ $item->gallery_title }}"  data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{!! $item->present()->gallery_title !!}</a></li>
-      @endif
-    </ul>
+    @if (!$item->is_deaccessioned)
+        <ul class="list list--inline f-secondary">
+            @if ($item->department_id)
+                <li><a href="{!! route('departments.show', [$item->department_id . '/' . getUtf8Slug($item->department_title)]) !!}" data-gtm-event="{{ $item->department_title }}" data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{!! $item->present()->department_title !!}</a></li>
+            @endif
+            @if ($item->is_on_view && $item->gallery_id)
+                <li><a href="{!! route('galleries.show', [$item->gallery_id . '/' . getUtf8Slug($item->gallery_title)]) !!}" data-gtm-event="{{ $item->gallery_title }}"  data-gtm-event-action="{{$item->title}}" data-gtm-event-category="collection-nav">{!! $item->present()->gallery_title !!}</a></li>
+            @endif
+        </ul>
+    @endif
   </div>
 
   <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">
@@ -148,7 +150,7 @@
 
 </article>
 
-@if ($exploreFurtherTags && count($exploreFurtherTags) > 0)
+@if (isset($exploreFurtherTags) && count($exploreFurtherTags) > 0)
 <div id="exploreFurther">
     @component('components.molecules._m-title-bar')
         Explore Further

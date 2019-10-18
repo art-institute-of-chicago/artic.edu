@@ -20,6 +20,8 @@ class Artwork extends BaseApiModel
         'resource' => '/api/v1/artworks/{id}',
         'search' => '/api/v1/artworks/search',
         'boosted' => '/api/v1/artworks/boosted',
+        'deaccessions' => '/api/v1/deaccessions',
+        'deaccession' => '/api/v1/deaccessions/{id}',
     ];
 
     protected $augmented = true;
@@ -47,6 +49,11 @@ class Artwork extends BaseApiModel
             ],
         ],
     ];
+
+    public function getIsDeaccessionedAttribute()
+    {
+        return (bool) $this->fiscal_year_deaccession;
+    }
 
     public function getDescriptionFilteredAttribute()
     {

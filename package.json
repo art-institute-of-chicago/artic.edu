@@ -9,7 +9,7 @@
     "buble": "^0.19.8",
     "buble-loader": "^0.5.0",
     "chalk": "^2.2.0",
-    "closer-look": "git+ssh://git@github.com:art-institute-of-chicago/digital-labels-ui.git#58d647dd67f1f9653a8d0ad767291eff2ce19c11",
+    "closer-look": "git+ssh://git@github.com/art-institute-of-chicago/digital-labels-ui.git#master",
     "cross-spawn": "^6.0.5",
     "del": "^3.0.0",
     "fs-extra": "^5.0.0",
