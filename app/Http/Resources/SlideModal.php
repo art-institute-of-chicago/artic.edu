@@ -55,6 +55,7 @@ class SlideModal extends JsonResource
                 $aic3dModel = $this->AIC3dModel;
                 if ($aic3dModel) {
                     return [
+                        'id' => (string) $this->id,
                         'model_id' => $aic3dModel->model_id,
                         'camera_position' => $aic3dModel->camera_position,
                         'camera_target' => $aic3dModel->camera_target,
