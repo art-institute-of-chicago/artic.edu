@@ -125,8 +125,10 @@
   @include breakpoint('xsmall') {
     left: 3.2vw;
     right: 3.2vw;
-    top: 3.2vw;
-    bottom: 3.2vw;
+    top: 50%;
+    bottom: auto;
+    transform: translate(0, -50%);
+    max-height: calc(100% - 6.4vw);
   }
 
   .g-modal__content {
