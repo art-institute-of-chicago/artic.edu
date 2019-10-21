@@ -53,11 +53,11 @@
     props: {
       thumbnail: {
         type: Boolean,
-        default: false
+        default: true
       },
       browser: {
         type: Boolean,
-        default: false
+        default: true
       },
       caption: {
         type: Boolean,
