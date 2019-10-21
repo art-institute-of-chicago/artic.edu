@@ -2,39 +2,38 @@
     <!-- eslint-disable -->
     <div class="block__body">
         <a17-textfield label="Model URL" :name="fieldName('model_url')" type="text" in-store="value"></a17-textfield>
-        <div v-if="enhanced">
-          <a17-textfield label="Model Caption" :name="fieldName('model_caption')" type="text" in-store="value"></a17-textfield>
-          <a17-inputframe label="Cover image" name="medias.cover" >
-            <a17-mediafield :name="fieldName('image')" crop-context="image" ></a17-mediafield>
-          </a17-inputframe>
-          <a17-inputframe label="Collection Objects" name="browsers.artworks">
-            <a17-browserfield
-              :name="fieldName('artworks')"
-              item-label="collection objects"
-              :max="1"
-              :wide="false"
-              endpoint=""
-              :endpoints='[
-                {
-                  "label":"Artworks",
-                  "value":"\/collection\/artworks\/browser"
-                },
-                {
-                  "label":"Artists",
-                  "value":"\/collection\/artists\/browser"
-                },
-                {
-                  "label":"Interactive Features",
-                  "value":"\/collection\/interactiveFeatures\/experiences\/browser"
-                }
-              ]'
-              modal-title="Attach collection objects"
-              :draggable="true"
-            >
-              Link a collection object
-            </a17-browserfield>
-          </a17-inputframe>
-        </div>
+        <a17-textfield v-if="caption" label="Model Caption" :name="fieldName('model_caption')" type="text" in-store="value"></a17-textfield>
+        <a17-inputframe v-if="thumbnail" label="Cover image" name="medias.cover" >
+          <a17-mediafield :name="fieldName('image')" crop-context="image" ></a17-mediafield>
+        </a17-inputframe>
+        <a17-inputframe v-if="browser" label="Collection Objects" name="browsers.artworks">
+          <a17-browserfield
+            :name="fieldName('artworks')"
+            item-label="collection objects"
+            :max="1"
+            :wide="false"
+            v-if="browser"
+            endpoint=""
+            :endpoints='[
+              {
+                "label":"Artworks",
+                "value":"\/collection\/artworks\/browser"
+              },
+              {
+                "label":"Artists",
+                "value":"\/collection\/artists\/browser"
+              },
+              {
+                "label":"Interactive Features",
+                "value":"\/collection\/interactiveFeatures\/experiences\/browser"
+              }
+            ]'
+            modal-title="Attach collection objects"
+            :draggable="true"
+          >
+            Link a collection object
+          </a17-browserfield>
+        </a17-inputframe>
         <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" disabled in-store="value"></a17-textfield>
         <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value"></a17-textfield>
         <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" ></a17-textfield>
@@ -52,9 +51,17 @@
   export default {
     mixins: [BlockMixin],
     props: {
-      enhanced: {
+      thumbnail: {
         type: Boolean,
-        default: true 
+        default: false
+      },
+      browser: {
+        type: Boolean,
+        default: false
+      },
+      caption: {
+        type: Boolean,
+        default: false
       }
     },
     computed: {

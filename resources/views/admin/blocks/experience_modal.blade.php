@@ -81,7 +81,7 @@
         'keepAlive' => true
 ])
     <br />
-    <a17-block-aic_3d_model :name="fieldName('aic_split_3d_model')" :enhanced="false" />
+    <a17-block-aic_3d_model :name="fieldName('aic_split_3d_model')" :thumbnail="false" :caption="false" :browser="false" />
 @endcomponent
 
 @formField('wysiwyg', [
