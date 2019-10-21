@@ -4,7 +4,7 @@
         <a17-textfield label="Model URL" :name="fieldName('model_url')" type="text" in-store="value"></a17-textfield>
         <a17-textfield v-if="caption" label="Model Caption" :name="fieldName('model_caption')" type="text" in-store="value"></a17-textfield>
         <a17-inputframe v-if="thumbnail" label="Cover image" name="medias.cover" >
-          <a17-mediafield :name="fieldName('image')" crop-context="image" ></a17-mediafield>
+          <a17-mediafield :name="fieldName('image')" crop-context="family_cover" ></a17-mediafield>
         </a17-inputframe>
         <a17-inputframe v-if="browser" label="Collection Objects" name="browsers.artworks">
           <a17-browserfield
