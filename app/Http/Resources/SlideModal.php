@@ -60,7 +60,9 @@ class SlideModal extends JsonResource
                         'model_id' => $aic3dModel->model_id,
                         'camera_position' => $aic3dModel->camera_position,
                         'camera_target' => $aic3dModel->camera_target,
-                        'annotation_list' => json_decode($aic3dModel->annotation_list)
+                        'annotation_list' => json_decode($aic3dModel->annotation_list),
+                        'info_url' => 'https://www.artic.edu/artworks/235541/a-sheet-of-anatomical-studies',
+                        'cc0' => true
                     ];
                 }
                 break;
