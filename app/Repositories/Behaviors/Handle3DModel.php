@@ -45,11 +45,11 @@ trait Handle3DModel
             $fields["{$fieldName}[camera_position]"] = $aic3dModel->getOriginal('camera_position');
             $fields["{$fieldName}[camera_target]"] = $aic3dModel->getOriginal('camera_target');
             $fields["{$fieldName}[annotation_list]"] = $aic3dModel->getOriginal('annotation_list');
-
+            
             // Render the 3d model field in repeater block
             if ($object instanceOf \App\Models\Slide &&
-                $object->secondaryExperienceModal->first() &&
-                $aic3dModel = $object->secondaryExperienceModal->first()->AIC3DModel)
+            $object->secondaryExperienceModal->first() &&
+            $aic3dModel = $object->secondaryExperienceModal->first()->AIC3DModel)
             {
                 $secondaryExperienceModal = $object->secondaryExperienceModal->first();
                 $aic3dFields = ['model_url', 'model_id', 'model_caption', 'camera_position', 'camera_target', 'annotation_list'];
@@ -61,7 +61,7 @@ trait Handle3DModel
                 }        
             }
         };
-
+            
         return $fields;
     }
 
