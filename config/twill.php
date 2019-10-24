@@ -173,6 +173,11 @@ return [
                 'title' => '3D Model',
                 'icon' => 'image',
                 'component' => 'a17-block-aic_3d_model'
+            ],
+            '3d_tour' => [
+                'title' => '3D Tour',
+                'icon' => 'image',
+                'component' => 'a17-block-aic_3d_tour'
             ]
         ],
         'repeaters' => [
