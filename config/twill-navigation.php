@@ -1,6 +1,6 @@
 <?php
 
-$nav = [
+return [
     'homepage' => [
         'title' => 'Homepage',
         'route' => 'admin.homepage.landing',
@@ -177,7 +177,10 @@ $nav = [
                 'title' => 'Departments',
                 'module' => true,
             ],
-
+            'interactiveFeatures' => [
+                'title' => 'Interactive Features',
+                'module' => true,
+            ],
         ]
     ],
 
@@ -255,12 +258,3 @@ $nav = [
     ],
 
 ];
-
-if (env('APP_ENV') !== 'production') {
-    $nav['collection']['primary_navigation']['interactiveFeatures'] = [
-        'title' => 'Interactive Features',
-        'module' => true,
-    ];
-}
-
-return $nav;
