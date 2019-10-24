@@ -64,7 +64,8 @@ class SlideRepository extends ModuleRepository
         $fields = $this->getExperienceModule($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
-        $fields = $this->getFormFieldsFor3DModel($object, $fields);
+        $fields = $this->getFormFieldsFor3DModel($object, $fields, 'aic_3d_model');
+        $fields = $this->getFormFieldsFor3DModel($object, $fields, 'aic_split_3d_model');
         return $fields;
     }
 

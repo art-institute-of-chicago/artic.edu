@@ -23,7 +23,7 @@ class ExperienceModalRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         $this->updateExperienceModule($object, $fields, 'experienceImage', 'ExperienceImage', 'modal_experience_image');
-        if ($object->modal_type === '3d_modal') {
+        if ($object->modal_type === '3d_model') {
             $this->handle3DModel($object, $fields, 'aic_split_3d_model');
         }
         parent::afterSave($object, $fields);
