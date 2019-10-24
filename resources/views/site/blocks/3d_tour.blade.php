@@ -13,4 +13,4 @@
     <p>{!! json_encode($camera_position) !!}</p>
     <p>{!! json_encode($camera_target) !!}</p>
     <p>{!! json_encode($annotation_list) !!}</p>
-</div>
+</div>˝
