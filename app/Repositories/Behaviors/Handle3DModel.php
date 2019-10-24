@@ -23,7 +23,7 @@ trait Handle3DModel
                 [
                     'model_url' => $fields["{$fieldName}[model_url]"],
                     'model_id' => $fields["{$fieldName}[model_id]"],
-                    'model_caption' => $fields["{$fieldName}[model_caption]"],
+                    'model_caption' => isset($fields["{$fieldName}[model_caption]"]) ? $fields["{$fieldName}[model_caption]"] : '',
                     'camera_position' => $fields["{$fieldName}[camera_position]"],
                     'camera_target' => $fields["{$fieldName}[camera_target]"],
                     'annotation_list' => $fields["{$fieldName}[annotation_list]"]
