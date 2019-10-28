@@ -32,7 +32,7 @@
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'video', 'media_embed', 'list',
             'accordion', 'membership_banner', 'timeline', 'link', 'newsletter_signup_inline',
-            'hr', '3d_model'
+            'hr'
         ])
     ])
 @stop
