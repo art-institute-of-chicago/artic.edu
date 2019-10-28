@@ -6,7 +6,17 @@
     $artwork_id = Arr::first($block->browserIds('artworks'));
     $artwork = \App\Models\Api\Artwork::query()->find($artwork_id);
     $info_url = route('artworks.show', ['artwork' => $artwork]);
-    $cc0 = empty($artwork->copyright_notice) && $artwork->is_public_domain;
+    switch($block->input('cc0_override')) {
+        case 1:
+            $cc0 = true;
+            break;
+        case 2:
+            $cc0 = false;
+            break;
+        default:
+            $cc0 = empty($artwork->copyright_notice) && $artwork->is_public_domain;
+            break;
+    }
     $camera_position = $block->input('camera_position');
     $camera_target = $block->input('camera_target');
     $annotation_list = $block->input('annotation_list');

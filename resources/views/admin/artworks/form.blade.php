@@ -28,7 +28,7 @@
     </a17-fieldset>
 
     <a17-fieldset title="3D Object" id="3dModel">
-        <a17-block-aic_3d_model name="aic_3d_model" :thumbnail="true" :caption="true" :browser="false"/>
+        <a17-block-aic_3d_model name="aic_3d_model" :thumbnail="true" :caption="true" :browser="false" :cc0="false" />
     </a17-fieldset>
 @stop
 

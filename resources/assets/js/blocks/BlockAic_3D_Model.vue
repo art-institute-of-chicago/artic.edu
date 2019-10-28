@@ -2,7 +2,7 @@
     <!-- eslint-disable -->
     <div class="block__body">
         <a17-textfield label="Model URL" :name="fieldName('model_url')" type="text" in-store="value"></a17-textfield>
-        <a17-singlecheckbox :name="fieldName('model_cc0')" label="CC0" :initial-value="false" :has-default-store="true" in-store="currentValue"></a17-singlecheckbox>
+        <a17-vselect v-if="cc0" label="Override CC0" :name="fieldName('cc0_override')" :options='[{&quot;value&quot;:0,&quot;label&quot;:&quot;Not override&quot;},{&quot;value&quot;:1,&quot;label&quot;:&quot;Display CC0&quot;},{&quot;value&quot;:2,&quot;label&quot;:&quot;Not Display CC0&quot;}]' placeholder="Override CC0 rule?" :has-default-store="true" size="large" in-store="inputValue" > </a17-vselect>
         <a17-textfield v-if="caption" label="Model Caption" :name="fieldName('model_caption')" type="text" in-store="value"></a17-textfield>
         <a17-inputframe v-if="thumbnail" label="Cover image" name="medias.cover" >
           <a17-mediafield :name="fieldName('image')" crop-context="family_cover" ></a17-mediafield>
@@ -61,6 +61,10 @@
         default: true
       },
       caption: {
+        type: Boolean,
+        default: true
+      },
+      cc0: {
         type: Boolean,
         default: true
       }

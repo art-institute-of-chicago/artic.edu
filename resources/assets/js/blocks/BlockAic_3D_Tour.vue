@@ -1,7 +1,7 @@
 <template>
     <!-- eslint-disable -->
     <div class="block__body">
-        <a17-block-aic_3d_model :name="name" :thumbnail="false" :caption="false" :browser="false"/>
+        <a17-block-aic_3d_model :name="name" :thumbnail="false" :caption="false" :browser="false" :cc0="false" />
     </div>
 </template>
 
