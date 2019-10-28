@@ -14,7 +14,8 @@ class AIC3DModel extends Model
         'camera_position',
         'camera_target',
         'annotation_list',
-        'model_caption'
+        'model_caption',
+        'guided_tour'
     ];
     protected $casts = [
         'camera_position' => 'array',
