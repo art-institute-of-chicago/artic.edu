@@ -178,6 +178,11 @@ return [
                 'title' => '3D Tour',
                 'icon' => 'image',
                 'component' => 'a17-block-aic_3d_tour'
+            ],
+            '3d_embed' => [
+                'title' => '3D Embed',
+                'icon' => 'image',
+                'component' => 'a17-block-aic_3d_embed'
             ]
         ],
         'repeaters' => [
