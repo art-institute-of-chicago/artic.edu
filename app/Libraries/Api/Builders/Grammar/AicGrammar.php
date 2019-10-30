@@ -168,9 +168,7 @@ class AicGrammar
 
     protected function compileBoost($query, $boost)
     {
-        return [
-            'boost' => $boost,
-        ];
+        return [];
     }
 
     protected function compilePage($query, $page)

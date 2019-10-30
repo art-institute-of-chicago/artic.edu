@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use App\Libraries\Api\Builders\ApiQueryBuilder;
 
-class MsearchGrammar extends AicGrammar
+class MsearchGrammar extends SearchGrammar
 {
 
     /**

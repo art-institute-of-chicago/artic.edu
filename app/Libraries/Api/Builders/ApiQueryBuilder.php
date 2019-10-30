@@ -2,10 +2,12 @@
 
 namespace App\Libraries\Api\Builders;
 
+use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Container\Container;
 use App\Libraries\Api\Builders\Grammar\MsearchGrammar;
+use App\Libraries\Api\Builders\Grammar\SearchGrammar;
 
 class ApiQueryBuilder {
 
@@ -568,8 +570,11 @@ class ApiQueryBuilder {
     public function runGet($endpoint)
     {
         $grammar = null;
-        if ($endpoint == '/api/v1/msearch') {
+        if (Str::endsWith($endpoint, '/msearch')) {
             $grammar = new MsearchGrammar;
+        }
+        elseif (Str::endsWith($endpoint, '/search')) {
+            $grammar = new SearchGrammar;
         }
         return $this->connection->ttl($this->ttl)->get($endpoint, $this->resolveParameters($grammar));
     }
