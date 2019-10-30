@@ -26,9 +26,9 @@ class Hour extends AbstractModel
         2 => 'Library',
     ];
 
-    protected $casts = [
-        'valid_from' => 'date',
-        'valid_through' => 'date',
+    protected $dates = [
+        'valid_from',
+        'valid_through',
     ];
 
     // those fields get auto set to null if not submited

@@ -7,6 +7,7 @@
     @formField('input', [
         'name' => 'url',
         'label' => 'URL',
+        'note' => 'e.g., /visit'
     ])
 
     @formField('date_picker', [
