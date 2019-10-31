@@ -66,6 +66,7 @@ if ($maxZoomWindowSize >= 843) {
             @endcomponent
         </li>
         @endif
+        @if(isset($module3d) && $module3d)
         <li data-type="module3d">
             @component('components.atoms._btn')
               @slot('variation', 'btn--septenary btn--icon-sq')
@@ -83,6 +84,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('guided', $module3d->guided_tour)
             @endcomponent</textarea>
         </li>
+        @endif 
         @if(isset($isPublicDomain) && $isPublicDomain)
         <li>
             @component('components.atoms._btn')
