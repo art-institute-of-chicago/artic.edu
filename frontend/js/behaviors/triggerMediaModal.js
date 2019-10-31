@@ -4,6 +4,7 @@ const triggerMediaModal = function(container) {
 
   function _handleClicks(event) {
     var textarea = container.querySelector('textarea');
+    if (!textarea) textarea = container.parentNode.querySelector('textarea');
     if (textarea) {
       var embedCode = textarea.value;
       if (embedCode) {

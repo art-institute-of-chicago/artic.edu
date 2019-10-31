@@ -66,6 +66,23 @@ if ($maxZoomWindowSize >= 843) {
             @endcomponent
         </li>
         @endif
+        <li data-type="module3d">
+            @component('components.atoms._btn')
+              @slot('variation', 'btn--septenary btn--icon-sq')
+              @slot('font', '')
+              @slot('icon', 'icon--tour3d')
+              @slot('dataAttributes', 'data-gallery-module3d')
+              @slot('behavior', 'triggerMediaModal')
+              @slot('ariaLabel', 'View 3D Module')
+            @endcomponent
+            <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
+              @slot('type', 'full-width')
+              @slot('uid', $module3d->model_id)
+              @slot('annotations', $module3d->annotation_list)
+              @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
+              @slot('guided', $module3d->guided_tour)
+            @endcomponent</textarea>
+        </li>
         @if(isset($isPublicDomain) && $isPublicDomain)
         <li>
             @component('components.atoms._btn')

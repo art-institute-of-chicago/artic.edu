@@ -251,7 +251,7 @@ const viewer3D = function(container) {
   };
 
   function _onClickFullscreen() {
-    if(cc0 && el.requestFullscreen) el.requestFullscreen();
+    if(cc0 && wrapper.requestFullscreen) wrapper.requestFullscreen();
   };
 
   function _onClickExplore() {
