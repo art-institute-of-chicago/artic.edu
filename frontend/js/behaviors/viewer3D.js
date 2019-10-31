@@ -3,22 +3,24 @@ import vec3 from 'gl-vec3';
 import ScrollWindow from '../functions/scrollWindow';
 import distance2d from '../functions/distance2D';
 
-const viewer3D = function(iframe, containerDiv, moduleId, dataGlobal, annots, isTransparent, zoom, cc, type) {
-  let el = iframe;
-  let container = containerDiv;
-  let layer = container.querySelector('.m-viewer-3d__hotspots');
-  let descriptionBlock = container.querySelector('.m-viewer-3d__annotation');
-  let btnContainer = container.querySelector('.m-viewer-3d__tools');
-  let btnFullscreen = container.querySelector('.m-viewer-3d__fullscreen');
-  let btnZoomIn = container.querySelector('.m-viewer-3d__zoom-in');
-  let btnZoomOut = container.querySelector('.m-viewer-3d__zoom-out');
-  let btnExplore = container.querySelector('.m-viewer-3d__overlay');
-  let hasTransparency = isTransparent;
-  let hasZoom = zoom;
-  let cc0 = cc;
-  let uid = moduleId;
-  let moduleType = type;
-  let data = dataGlobal;
+const viewer3D = function(container) {
+  let wrapper = container;
+  let el = wrapper.querySelector('iframe');
+  let layer = wrapper.querySelector('.m-viewer-3d__hotspots');
+  let descriptionBlock = wrapper.querySelector('.m-viewer-3d__annotation');
+  let btnContainer = wrapper.querySelector('.m-viewer-3d__tools');
+  let btnFullscreen = wrapper.querySelector('.m-viewer-3d__fullscreen');
+  let btnZoomIn = wrapper.querySelector('.m-viewer-3d__zoom-in');
+  let btnZoomOut = wrapper.querySelector('.m-viewer-3d__zoom-out');
+  let btnExplore = wrapper.querySelector('.m-viewer-3d__overlay');
+  let btnCloseAnnotation = descriptionBlock.querySelector('.m-viewer-3d__annotation__close');
+  let cc0 = JSON.parse(wrapper.dataset.cc);
+  let uid = wrapper.dataset.uid;
+  let moduleType = wrapper.dataset.type; 
+  let annotationList = JSON.parse(wrapper.dataset.annotations);
+  let hasTransparency = (moduleType == 'full-width') ? false : true;
+  let hasZoom = (moduleType == 'full-width') ? true : false;
+  let annots = (moduleType == 'full-width') ? annotationList : [];
 
   let annotations = annots.map(function(annotation) {
     return {
@@ -113,10 +115,7 @@ const viewer3D = function(iframe, containerDiv, moduleId, dataGlobal, annots, is
             );
 
             if(btnContainer) btnContainer.classList.add('is-visible');
-
             if(btnFullscreen) btnFullscreen.addEventListener('click', _onClickFullscreen.bind(this, 2));
-
-            var btnCloseAnnotation = descriptionBlock.querySelector('.m-viewer-3d__annotation__close');
             if(btnCloseAnnotation) btnCloseAnnotation.addEventListener('click', _closeAnnotation.bind(this, 2));
 
             var duration = 1, factor = 0.5, minRadius = 5, maxRadius = 50;
@@ -182,7 +181,7 @@ const viewer3D = function(iframe, containerDiv, moduleId, dataGlobal, annots, is
     }
 
     if(moduleType == 'full-width' && annotations.length < 1) {
-      container.classList.add('no-annotations');
+      wrapper.classList.add('no-annotations');
       if(btnExplore) btnExplore.addEventListener('click', _onClickExplore.bind(this, 2));
     }
   };
@@ -205,13 +204,13 @@ const viewer3D = function(iframe, containerDiv, moduleId, dataGlobal, annots, is
     var initialCameraPosition = vec3.clone(cameraPosition),
       cameraPathArr = [],
       cameraScrollSpeed = 1.5,
-      nbHotspots = data.annotation_list.length;
+      nbHotspots = annotationList.length;
 
     if(moduleType == 'article') {
       var containerText = document.querySelector('.article');
     }
 
-    data.annotation_list.forEach(function(annot, i) {
+    annotationList.forEach(function(annot, i) {
       var cameraPathSingle,
         blockText = document.createElement("div");
 
@@ -225,9 +224,9 @@ const viewer3D = function(iframe, containerDiv, moduleId, dataGlobal, annots, is
       }
 
       if(i == 0) {
-        cameraPathSingle = [initialCameraPosition, data.annotation_list[i].eye];
+        cameraPathSingle = [initialCameraPosition, annotationList[i].eye];
       } else {
-        cameraPathSingle = [data.annotation_list[i-1].eye, data.annotation_list[i].eye];
+        cameraPathSingle = [annotationList[i-1].eye, annotationList[i].eye];
       }
 
       cameraPathArr.push(cameraPathSingle);
@@ -255,7 +254,7 @@ const viewer3D = function(iframe, containerDiv, moduleId, dataGlobal, annots, is
   };
 
   function _onClickExplore() {
-    container.classList.remove('no-annotations');
+    wrapper.classList.remove('no-annotations');
     if(btnExplore) btnExplore.removeEventListener('click', _onClickExplore.bind(this, 2));
   };
 
@@ -278,7 +277,20 @@ const viewer3D = function(iframe, containerDiv, moduleId, dataGlobal, annots, is
     }
   };
 
-  _init();
+  this.destroy = function() {
+    // remove specific event handlers
+    if(apiVar) apiVar.removeEventListener('click', onClickFct);
+    if(btnFullscreen) btnFullscreen.removeEventListener('click', _onClickFullscreen.bind(this, 2));
+    if(btnCloseAnnotation) btnCloseAnnotation.removeEventListener('click', _closeAnnotation.bind(this, 2));
+    if(btnExplore) btnExplore.removeEventListener('click', _onClickExplore.bind(this, 2));
+
+    // remove properties of this behavior
+    A17.Helpers.purgeProperties(this);
+  };
+
+  this.init = function() {
+    _init();
+  };
 };
 
 export default viewer3D;

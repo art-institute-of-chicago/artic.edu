@@ -2,6 +2,7 @@
     $model_url = $block->input('model_url');
     $model_id = $block->input('model_id');
     $caption = $block->input('model_caption');
+    $embed_code = EmbedConverter::convertUrl($model_url);
     $thumbnail_url = $block->image('image');
     $guided_tour = $block->input('guided_tour');
     $artwork_id = Arr::first($block->browserIds('artworks'));
@@ -23,8 +24,21 @@
     $annotation_list = $block->input('annotation_list');
 @endphp
 
-<div>
-    <h1>3D Model BLOCK</h1>
+@if ($model_url)
+    @component('components.molecules._m-media')
+        @slot('variation', 'o-blocks__block')
+        @slot('item', [
+            'type' => 'embed',
+            'size' => 's',
+            'media' => ['embed' => $embed_code],
+            'poster' => $thumbnail_url,
+            'caption' => $caption
+        ])
+    @endcomponent
+@endif
+
+<!--<div>
+    <h1>3D Model BLOCK HELLO</h1>
     <p>{{ $model_url }}</p>
     <p>{{ $model_id }}</p>
     <p>{{ $caption }}</p>
@@ -35,4 +49,4 @@
     <p>{!! json_encode($camera_position) !!}</p>
     <p>{!! json_encode($camera_target) !!}</p>
     <p>{!! json_encode($annotation_list) !!}</p>
-</div>
+</div>-->

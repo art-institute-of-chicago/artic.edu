@@ -1,4 +1,4 @@
-const setScrollDirection = function(win, onProgressCallback) {
+const scrollWindow = function(win, onProgressCallback) {
   let windowEl = win;
   let onProgressCallbackFct = onProgressCallback;
   let boundUpdateScrollProgress;
