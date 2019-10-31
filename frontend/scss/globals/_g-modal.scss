@@ -126,6 +126,11 @@
     height:100%;
   }
 
+  .g-modal__content {
+    width:88vw;
+    max-height:auto;
+  }
+
   .g-modal__close {
     position: absolute;
     top: 0;
@@ -144,6 +149,13 @@
     &:active {
       background-color: black !important;
     }
+  }
+}
+
+.g-modal--restricted {
+  .g-modal__content {
+    max-width:1280px;
+    max-height:1024px;
   }
 }
 

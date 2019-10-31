@@ -67,7 +67,11 @@ if ($maxZoomWindowSize >= 843) {
         </li>
         @endif
         @if(isset($module3d) && $module3d)
-        <li data-type="module3d">
+        <li data-type="module3d"
+        @if(!isset($isPublicDomain) || !$isPublicDomain)
+          data-restricted="true"
+        @endif
+        >
             @component('components.atoms._btn')
               @slot('variation', 'btn--septenary btn--icon-sq')
               @slot('font', '')
