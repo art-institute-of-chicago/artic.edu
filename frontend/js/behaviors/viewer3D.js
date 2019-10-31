@@ -1,0 +1,284 @@
+import Sketchfab from '@sketchfab/viewer-api';
+import vec3 from 'gl-vec3';
+import ScrollWindow from '../functions/scrollWindow';
+import distance2d from '../functions/distance2D';
+
+const viewer3D = function(iframe, containerDiv, moduleId, dataGlobal, annots, isTransparent, zoom, cc, type) {
+  let el = iframe;
+  let container = containerDiv;
+  let layer = container.querySelector('.m-viewer-3d__hotspots');
+  let descriptionBlock = container.querySelector('.m-viewer-3d__annotation');
+  let btnContainer = container.querySelector('.m-viewer-3d__tools');
+  let btnFullscreen = container.querySelector('.m-viewer-3d__fullscreen');
+  let btnZoomIn = container.querySelector('.m-viewer-3d__zoom-in');
+  let btnZoomOut = container.querySelector('.m-viewer-3d__zoom-out');
+  let btnExplore = container.querySelector('.m-viewer-3d__overlay');
+  let hasTransparency = isTransparent;
+  let hasZoom = zoom;
+  let cc0 = cc;
+  let uid = moduleId;
+  let moduleType = type;
+  let data = dataGlobal;
+
+  let annotations = annots.map(function(annotation) {
+    return {
+      position3d: annotation.position,
+      position2d: null,
+      distance: null,
+      title: annotation.name,
+      description: annotation.content.raw
+    };
+  });
+  let annotationEls = null;
+  let selectedAnnotation = null;
+  let cameraPosition = null;
+
+  const client = new Sketchfab(el);
+  let cameraConst = null;
+  let apiConst = null;
+
+  function updateAnnotation(annot, i) {
+    function setPosition(coord) {
+      annot.position2d = coord.canvasCoord;
+      if(annotationEls) {
+        var transform = `translate(${coord.canvasCoord[0]}px, ${coord.canvasCoord[1]}px)`;
+        annotationEls[i].style.transform = transform;
+      }
+    }
+    apiConst.getWorldToScreenCoordinates(annot.position3d, setPosition.bind(this));
+  };
+
+  function onTick() {
+    if(apiConst && cameraConst && cameraPosition && moduleType != 'full-width') {
+      apiConst.setCameraLookAt(cameraPosition, cameraConst.target, 0);
+    }
+    annotations.forEach(updateAnnotationFct);
+    requestAnimationFrame(onTickFct);
+  };
+
+  function onClick(e) {
+    var closest = null;
+    var maxDistance = +Infinity;
+    var distance;
+    for (var i = 0, l = annotations.length; i < l; i++) {
+      distance = distance2d(annotations[i].position2d, e.position2D);
+      if (distance < maxDistance) {
+        closest = i;
+        maxDistance = distance;
+      }
+    }
+
+    if(maxDistance < 30) {
+      selectedAnnotation = closest;
+    } else {
+      selectedAnnotation = null;
+    }
+
+    _renderAnnotation();
+  };
+
+  let updateAnnotationFct = updateAnnotation.bind(this);
+  let onTickFct = onTick.bind(this);
+  let onClickFct = onClick.bind(this);
+
+  function _init() {
+    client.init(uid, {
+      ui_controls: 0,
+      ui_infos: 0,
+      ui_stop: 0,
+      ui_inspector: 0,
+      ui_annotations: 0,
+      annotations_visible: 0,
+      preload: 1,
+      camera: 0,
+      scrollwheel: 0,
+      orbit_constraint_pan: 1,
+      transparent: hasTransparency,
+      success: function onSuccess(apiVar) {
+
+        apiVar.start();
+        apiVar.addEventListener(
+          'viewerready',
+          function() {
+
+            apiConst = apiVar;
+            onTick();
+            _buildDOM();
+            apiConst.setCameraEasing('easeLinear');
+            apiConst.getCameraLookAt(
+              function(err, cameraVar) {
+                cameraConst = cameraVar;
+                _isReady();
+              }.bind(this)
+            );
+
+            if(btnContainer) btnContainer.classList.add('is-visible');
+
+            if(btnFullscreen) btnFullscreen.addEventListener('click', _onClickFullscreen.bind(this, 2));
+
+            var btnCloseAnnotation = descriptionBlock.querySelector('.m-viewer-3d__annotation__close');
+            if(btnCloseAnnotation) btnCloseAnnotation.addEventListener('click', _closeAnnotation.bind(this, 2));
+
+            var duration = 1, factor = 0.5, minRadius = 5, maxRadius = 50;
+
+            if(hasZoom) {
+              apiConst.zoom = function(factor, duration, minRadius, maxRadius) {
+                apiConst.getCameraLookAt(function(err, camera) {
+                  if(!err) {
+                    var currentPos = camera.position,
+                    x = currentPos[0],
+                    y = currentPos[1],
+                    z = currentPos[2],
+                    target = camera.target,
+                    rho = Math.sqrt((x * x) + (y * y) + (z * z)),
+                    phi,
+                    theta;
+
+                    if(isNaN(minRadius)) minRadius = 0.1;
+                    if(isNaN(maxRadius)) maxRadius = Infinity;
+                    if(rho === minRadius || rho === maxRadius) return;
+
+                    rho = (rho * factor);
+
+                    if(rho < minRadius && factor < 1) {
+                      rho = minRadius;
+                    } else if (rho > maxRadius && factor > 1) {
+                      rho = maxRadius;
+                    }
+
+                    phi = Math.atan2(y, x);
+                    theta = Math.atan2((Math.sqrt((x * x) + (y * y))), z);
+                    x = (rho * Math.sin(theta) * Math.cos(phi));
+                    y = (rho * Math.sin(theta) * Math.sin(phi));
+                    z = (rho * Math.cos(theta));
+                    apiConst.setCameraLookAt([x, y, z], target, duration);
+                  }
+                });
+              };
+
+              btnZoomIn.addEventListener('click', function() {
+                apiConst.zoom(1 - factor, duration, minRadius, maxRadius);
+              });
+
+              btnZoomOut.addEventListener('click', function() {
+                apiConst.zoom(1 + factor, duration, minRadius, maxRadius);
+              });
+            }
+
+          }.bind(this)
+        );
+        apiVar.addEventListener('click', onClickFct);
+      }.bind(this),
+      error: function onError() {
+        //error
+      }
+    });
+
+    if(!cc0 && btnFullscreen) btnFullscreen.remove();
+
+    if(!hasZoom) {
+      if(btnZoomIn) btnZoomIn.remove();
+      if(btnZoomOut) btnZoomOut.remove();
+    }
+
+    if(moduleType == 'full-width' && annotations.length < 1) {
+      container.classList.add('no-annotations');
+      if(btnExplore) btnExplore.addEventListener('click', _onClickExplore.bind(this, 2));
+    }
+  };
+
+  function _buildDOM() {
+    var html = annotations.map(function(annotation, i) {
+      return `<div class="a-hotspot" data-id="${i}" style="transform: translate(-100%, -100%)"><button class="a-hotspot__point" aria-label="Open hotspot"></button></div>`;
+    }).join('');
+    layer.innerHTML = html;
+    annotationEls = Array.from(layer.querySelectorAll('.a-hotspot'));
+  };
+
+  function _isReady() {
+    cameraPosition = vec3.fromValues(
+      cameraConst.position[0],
+      cameraConst.position[1],
+      cameraConst.position[2]
+    );
+
+    var initialCameraPosition = vec3.clone(cameraPosition),
+      cameraPathArr = [],
+      cameraScrollSpeed = 1.5,
+      nbHotspots = data.annotation_list.length;
+
+    if(moduleType == 'article') {
+      var containerText = document.querySelector('.article');
+    }
+
+    data.annotation_list.forEach(function(annot, i) {
+      var cameraPathSingle,
+        blockText = document.createElement("div");
+
+      if(moduleType == 'article') {
+        var blockWindow = document.createElement("div");
+        blockWindow.classList.add('article__window');
+        blockWindow.setAttribute('data-hotspot', i);
+        blockText.innerHTML = '<p class="article__body"><strong>' + annot.name + '</strong>' + annot.content.raw + '</p>';
+        containerText.appendChild(blockWindow);
+        containerText.appendChild(blockText);
+      }
+
+      if(i == 0) {
+        cameraPathSingle = [initialCameraPosition, data.annotation_list[i].eye];
+      } else {
+        cameraPathSingle = [data.annotation_list[i-1].eye, data.annotation_list[i].eye];
+      }
+
+      cameraPathArr.push(cameraPathSingle);
+    });
+
+    if(moduleType == 'article') {
+
+      var windowDiv = document.querySelectorAll('.article__window'); 
+      windowDiv.forEach(function(div, i) {
+        var scrollWindow = new ScrollWindow(div, function(progress) {
+          if(cameraPosition && progress > 0 && progress < 100) {
+            var cameraProgress = Math.min(100, progress * cameraScrollSpeed);
+            cameraPosition[0] = cameraPathArr[i][0][0] + ((cameraPathArr[i][1][0] - cameraPathArr[i][0][0]) / 100) * cameraProgress;
+            cameraPosition[1] = cameraPathArr[i][0][1] + ((cameraPathArr[i][1][1] - cameraPathArr[i][0][1]) / 100) * cameraProgress;
+            cameraPosition[2] = cameraPathArr[i][0][2] + ((cameraPathArr[i][1][2] - cameraPathArr[i][0][2]) / 100) * cameraProgress;
+          }
+        });
+      });
+
+    }
+  };
+
+  function _onClickFullscreen() {
+    if(cc0 && el.requestFullscreen) el.requestFullscreen();
+  };
+
+  function _onClickExplore() {
+    container.classList.remove('no-annotations');
+    if(btnExplore) btnExplore.removeEventListener('click', _onClickExplore.bind(this, 2));
+  };
+
+  function _closeAnnotation() {
+    selectedAnnotation = null;
+    _renderAnnotation();
+  };
+
+  function _renderAnnotation() {
+    if(selectedAnnotation !== null) {
+      descriptionBlock.querySelector('.m-viewer-3d__annotation__content').innerHTML = '<p class="m-viewer-3d__annotation__title">' + annotations[selectedAnnotation].title + '</p> ' + annotations[selectedAnnotation].description;
+      if (descriptionBlock.className.indexOf(' is-visible') === -1) {
+        descriptionBlock.className += ' is-visible';
+      }
+    } else {
+      descriptionBlock.className = descriptionBlock.className.replace(' is-visible', '');
+      setTimeout(function() {
+        descriptionBlock.querySelector('.m-viewer-3d__annotation__content').innerHTML = '';
+      },400);
+    }
+  };
+
+  _init();
+};
+
+export default viewer3D;
