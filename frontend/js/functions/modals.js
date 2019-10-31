@@ -19,6 +19,11 @@ const modals = function() {
 
   function _media(e) {
     let embedCode = e.data.embedCode;
+    if (e.data.module3d) {
+      $modal.classList.add('g-modal--module3d');
+    } else {
+      $modal.classList.remove('g-modal--module3d');
+    }
     if (embedCode) {
       $modal.classList.add('g-modal--media');
       if (e.data.subtype) {

@@ -144,6 +144,13 @@ a.m-media__img:hover object {
   top: 20px;
 }
 
+.m-media__btn-module3d {
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  bottom: 20px;
+}
+
 .m-media__img.s-inline-media-activated *:not(iframe) {
   display: none;
 }

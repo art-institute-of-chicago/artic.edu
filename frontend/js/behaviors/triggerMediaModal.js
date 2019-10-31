@@ -11,6 +11,7 @@ const triggerMediaModal = function(container) {
         event.stopPropagation();
         triggerCustomEvent(document, 'modal:open', {
           type: 'media',
+          module3d: (container.parentNode.dataset.type == 'module3d') ? true : false,
           embedCode: embedCode,
           subtype: container.getAttribute('data-subtype') || null,
         });

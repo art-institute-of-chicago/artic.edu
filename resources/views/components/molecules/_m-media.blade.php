@@ -85,6 +85,9 @@
     if ($fullscreen and $type !== 'embed') {
       $mediaBehavior = 'openImageFullScreen';
     }
+    if ($fullscreen and $type == 'module3d') {
+      $mediaBehavior = 'triggerMediaModal';
+    }
     if ($fullscreen and $type == 'embed') {
       $mediaBehavior = 'triggerMediaModal';
     }
@@ -135,6 +138,11 @@
                 @slot('image', $poster)
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
+        @elseif ($type == 'module3d' and $poster)
+            @component('components.atoms._img')
+                @slot('image', $poster)
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
         @else
             @if ($size === 'hero')
                 @component('components.atoms._img')
@@ -167,12 +175,20 @@
                 @slot('ariaLabel','Download image')
             @endcomponent
         @endif
-        @if ($type !== 'embed' and $fullscreen)
+        @if ($type !== 'embed' and $type !== 'module3d' and $fullscreen)
             @component('components.atoms._btn')
                 @slot('variation', 'm-media__btn-fullscreen btn--septenary btn--icon btn--icon-circle-48')
                 @slot('font', '')
                 @slot('icon', 'icon--zoom--24')
                 @slot('ariaLabel', 'Open image full screen')
+            @endcomponent
+        @endif
+        @if ($type == 'module3d' and $fullscreen)
+            @component('components.atoms._btn')
+                @slot('variation', 'm-media__btn-module3d btn--septenary btn--icon btn--icon-sq')
+                @slot('font', '')
+                @slot('icon', 'icon--tour3d')
+                @slot('ariaLabel', 'Open the 3D module')
             @endcomponent
         @endif
 
@@ -186,6 +202,14 @@
 
         @if ($fullscreen and $type == 'embed')
             <textarea style="display: none;">{!! is_array($media['embed']) ? Arr::first($media['embed']) : $media['embed'] !!}</textarea>
+        @endif
+
+        @if ($fullscreen and $type == 'module3d')
+            <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
+                @slot('type', 'full-width')
+                @slot('uid', $media['model_id'])
+                @slot('annotations', $media['annotation_list'])
+            @endcomponent</textarea>
         @endif
 
     </span>
