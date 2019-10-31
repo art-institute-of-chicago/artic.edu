@@ -28,4 +28,7 @@
       </svg>
     </button>
   </div>
+  @if (isset($artwork) and $artwork)
+  <a href="/artworks/{{ $artwork->id }}" class="m-viewer-3d__more">Learn more</a>
+  @endif
 </div>

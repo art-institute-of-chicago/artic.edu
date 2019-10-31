@@ -209,6 +209,7 @@
                 @slot('type', 'full-width')
                 @slot('uid', $media['model_id'])
                 @slot('annotations', $media['annotation_list'])
+                @slot('artwork', $media['artwork'])
             @endcomponent</textarea>
         @endif
 

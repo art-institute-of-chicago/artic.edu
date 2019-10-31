@@ -35,7 +35,8 @@
                 'model_id' => $model_id, 
                 'annotation_list' => $annotation_list,
                 'cc' => $cc0,
-                'guided' => $guided_tour
+                'guided' => $guided_tour,
+                'artwork' => $artwork
             ],
             'poster' => [
                 'src' => $thumbnail_url
