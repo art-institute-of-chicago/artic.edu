@@ -103,7 +103,7 @@
     line-height: 20px;
     letter-spacing: 0.01em;
     font-family: "Ideal Sans A", "Ideal Sans B", Helvetica, Arial, sans-serif;
-    z-index: 12;
+    z-index: 7;
     opacity: 0;
     border-radius: 0;
     transition: opacity 0.4s ease;
@@ -123,6 +123,7 @@
       width: 32px;
       height: 32px;
       box-sizing: border-box;
+      border: 0;
     }
 
     &__title {

@@ -23,16 +23,14 @@
     $annotation_list = $block->input('annotation_list');
 @endphp
 
-<div>
-    <h1>3D Model BLOCK</h1>
-    <p>{{ $model_url }}</p>
-    <p>{{ $model_id }}</p>
-    <p>{{ $caption }}</p>
-    <p>{{ $thumbnail_url }}</p>
-    <p>{{ $info_url }}</p>
-    <p>{{ $cc0 }}</p>
-    <p>{{ $guided_tour }}</p>
-    <p>{!! json_encode($camera_position) !!}</p>
-    <p>{!! json_encode($camera_target) !!}</p>
-    <p>{!! json_encode($annotation_list) !!}</p>
-</div>
+@if ($model_url)
+    <div class="m-media m-media--l m-media--3d-embed o-blocks__block">
+        @component('components.molecules._m-viewer-3d')
+            @slot('type', 'standalone')
+            @slot('uid', $model_id)
+            @slot('cc', $cc0)
+            @slot('guided', $guided_tour)
+            @slot('annotations', $annotation_list)
+        @endcomponent
+    </div>
+@endif

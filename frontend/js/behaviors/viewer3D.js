@@ -15,12 +15,13 @@ const viewer3D = function(container) {
   let btnExplore = wrapper.querySelector('.m-viewer-3d__overlay');
   let btnCloseAnnotation = descriptionBlock.querySelector('.m-viewer-3d__annotation__close');
   let cc0 = JSON.parse(wrapper.dataset.cc);
+  let isGuided = JSON.parse(wrapper.dataset.guided);
   let uid = wrapper.dataset.uid;
   let moduleType = wrapper.dataset.type; 
   let annotationList = JSON.parse(wrapper.dataset.annotations);
   let hasTransparency = (moduleType == 'full-width') ? false : true;
   let hasZoom = (moduleType == 'full-width') ? true : false;
-  let annots = (moduleType == 'full-width') ? annotationList : [];
+  let annots = (moduleType != 'article') ? annotationList : [];
 
   let annotations = annots.map(function(annotation) {
     return {
@@ -51,7 +52,7 @@ const viewer3D = function(container) {
   };
 
   function onTick() {
-    if(apiConst && cameraConst && cameraPosition && moduleType != 'full-width') {
+    if(apiConst && cameraConst && cameraPosition && moduleType != 'full-width' && moduleType != 'standalone') {
       apiConst.setCameraLookAt(cameraPosition, cameraConst.target, 0);
     }
     annotations.forEach(updateAnnotationFct);
@@ -207,7 +208,7 @@ const viewer3D = function(container) {
       nbHotspots = annotationList.length;
 
     if(moduleType == 'article') {
-      var containerText = document.querySelector('.article');
+      var containerText = wrapper.parentNode;
     }
 
     annotationList.forEach(function(annot, i) {
@@ -215,8 +216,8 @@ const viewer3D = function(container) {
         blockText = document.createElement("div");
 
       if(moduleType == 'article') {
-        var blockWindow = document.createElement("div");
-        blockWindow.classList.add('article__window');
+        var blockWindow = document.createElement("p");
+        blockWindow.classList.add('m-media--3d-tour__p');
         blockWindow.setAttribute('data-hotspot', i);
         blockText.innerHTML = '<p class="article__body"><strong>' + annot.name + '</strong>' + annot.content.raw + '</p>';
         containerText.appendChild(blockWindow);
@@ -234,7 +235,7 @@ const viewer3D = function(container) {
 
     if(moduleType == 'article') {
 
-      var windowDiv = document.querySelectorAll('.article__window'); 
+      var windowDiv = wrapper.querySelectorAll('.m-media--3d-tour__p'); 
       windowDiv.forEach(function(div, i) {
         var scrollWindow = new ScrollWindow(div, function(progress) {
           if(cameraPosition && progress > 0 && progress < 100) {

@@ -1,4 +1,7 @@
 .m-media {
+  &--3d-tour {
+    pointer-events:none;
+  }
 }
 
 .m-media__img {
