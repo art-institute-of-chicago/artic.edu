@@ -5,7 +5,7 @@
 
     .m-viewer-3d {
       opacity:0;
-      visibility:hidden;
+      //visibility:hidden;
       position:fixed;
       z-index:-1;
       left:0;
@@ -20,7 +20,7 @@
         //z-index:-1;
         //top:0;
         opacity:1;
-        visibility:visible;
+        //visibility:visible;
       }
     }
 
