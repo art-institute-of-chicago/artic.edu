@@ -201,6 +201,28 @@
     }
   }
 
+  &--guided {
+    .a-hotspot {
+      &:before {
+        content:'1';//attr('data-num');
+        position:absolute;
+        left:-24px;
+        top:-24px;
+        width:48px;
+        line-height:50px;
+        text-align:center;
+        color:white;
+        font-size:14px;
+        z-index:2;
+        pointer-events:none;
+      }
+
+      &__point:before {
+        display:none;
+      }
+    }
+  }
+
   &.no-annotations {
     .m-viewer-3d__overlay {
       opacity: 1;

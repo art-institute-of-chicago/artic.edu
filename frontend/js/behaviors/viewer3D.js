@@ -2,6 +2,7 @@ import Sketchfab from '@sketchfab/viewer-api';
 import vec3 from 'gl-vec3';
 import ScrollWindow from '../functions/scrollWindow';
 import distance2d from '../functions/distance2D';
+import { triggerCustomEvent, objectifyForm } from '@area17/a17-helpers';
 
 const viewer3D = function(container) {
   let wrapper = container;
@@ -163,6 +164,8 @@ const viewer3D = function(container) {
               btnZoomOut.addEventListener('click', function() {
                 apiConst.zoom(1 + factor, duration, minRadius, maxRadius);
               });
+
+              triggerCustomEvent(document, 'module3d:loaded');
             }
 
           }.bind(this)
@@ -189,7 +192,7 @@ const viewer3D = function(container) {
 
   function _buildDOM() {
     var html = annotations.map(function(annotation, i) {
-      return `<div class="a-hotspot" data-id="${i}" style="transform: translate(-100%, -100%)"><button class="a-hotspot__point" aria-label="Open hotspot"></button></div>`;
+      return `<div class="a-hotspot" data-id="${i}" data-num="${i+1}" style="transform: translate(-100%, -100%)"><button class="a-hotspot__point" aria-label="Open hotspot"></button></div>`;
     }).join('');
     layer.innerHTML = html;
     annotationEls = Array.from(layer.querySelectorAll('.a-hotspot'));
@@ -216,10 +219,10 @@ const viewer3D = function(container) {
         blockText = document.createElement("div");
 
       if(moduleType == 'article') {
-        var blockWindow = document.createElement("p");
-        blockWindow.classList.add('m-media--3d-tour__p');
+        var blockWindow = document.createElement("div");
+        blockWindow.classList.add('m-media--3d-tour__sep');
         blockWindow.setAttribute('data-hotspot', i);
-        blockText.innerHTML = '<p class="article__body"><strong>' + annot.name + '</strong>' + annot.content.raw + '</p>';
+        blockText.innerHTML = '<p class="m-media--3d-tour__p"><strong>' + annot.name + '</strong>' + annot.content.raw + '</p>';
         containerText.appendChild(blockWindow);
         containerText.appendChild(blockText);
       }
@@ -235,7 +238,7 @@ const viewer3D = function(container) {
 
     if(moduleType == 'article') {
 
-      var windowDiv = wrapper.querySelectorAll('.m-media--3d-tour__p'); 
+      var windowDiv = wrapper.parentNode.querySelectorAll('.m-media--3d-tour__sep'); 
       windowDiv.forEach(function(div, i) {
         var scrollWindow = new ScrollWindow(div, function(progress) {
           if(cameraPosition && progress > 0 && progress < 100) {

@@ -7,7 +7,7 @@
 @endphp
 
 @if ($model_url)
-    <div class="m-media m-media--l m-media--3d-tour o-blocks__block">
+    <div class="m-media m-media--l m-media--3d-tour o-blocks__block" data-behavior="fixedOnScroll">
         @component('components.molecules._m-viewer-3d')
             @slot('type', 'article')
             @slot('uid', $model_id)
@@ -15,12 +15,3 @@
         @endcomponent
     </div>
 @endif
-
-<!--<div>
-    <h1>3D TOUR BLOCK</h1>
-    <p>{{ $model_url }}</p>
-    <p>{{ $model_id }}</p>
-    <p>{!! json_encode($camera_position) !!}</p>
-    <p>{!! json_encode($camera_target) !!}</p>
-    <p>{!! json_encode($annotation_list) !!}</p>
-</div>-->
