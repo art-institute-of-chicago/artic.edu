@@ -41,11 +41,17 @@
         </a17-fieldset>
     @endcomponent
 
-    @formField('wysiwyg', [
-        'name' => 'caption',
-        'label' => 'Caption',
-        'maxlength' => 500,
+    @component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'asset_type',
+        'fieldValues' => '3dModel',
+        'isEqual' => false
     ])
+        @formField('wysiwyg', [
+            'name' => 'caption',
+            'label' => 'Caption',
+            'maxlength' => 500,
+        ])
+    @endcomponent
     @formField('checkbox', [
         'name' => 'fullwidth_inset',
         'label' => 'Inset',
