@@ -76,39 +76,35 @@ class AicConnection implements ApiConnectionInterface
      * @return object
      */
     public function execute($endpoint = null, $params = []) {
+        $headers = $this->client->headers($params);
+        $options = $headers;
+
         $queryKeys = ['ids', 'include'];
         $queryParams = Arr::only($params, $queryKeys);
         $bodyParams = Arr::except($params, $queryKeys);
 
-        // Some Libraries need to adapt the format for the parameters
-        // Guzzle needs to receive ['query' => [ 'par1' => val1, 'par2' => val2 .....]]
-        // Let's leave the specific to the clients.
-        $adaptedParameters = $this->client->adaptParameters($bodyParams);
+        $verb = empty($bodyParams) ? 'GET' : 'POST';
 
-        $headers = $this->client->headers($params);
-        $options = $headers;
-        $verb = 'GET';
-
-        if (!empty($bodyParams)) {
-            $adaptedParameters = $this->client->adaptParameters($params);
-            $options = array_merge($adaptedParameters, $headers);
-            $verb = 'POST';
+        if (in_array(config('api.force_verb'), ['GET', 'POST'])) {
+            $verb = config('api.force_verb');
         }
-        else {
-            if (!empty($queryParams)) {
-                $endpoint = $endpoint .'?' .http_build_query($queryParams);
+
+        if ($verb === 'GET') {
+            if (!empty($params)) {
+                $endpoint = $endpoint . '?' . http_build_query($params);
+            }
+        } else {
+            if (!empty($bodyParams)) {
+                $adaptedParameters = $this->client->adaptParameters($params);
+                $options = array_merge($adaptedParameters, $headers);
             }
         }
-
-        // Allow to force the verb used for the calls (GET/POST)
-        $verb = config('api.force_verb') ?: $verb;
 
         if (config('api.logger')) {
             $ttl = $this->ttl ?? config('api.cache_ttl');
             \Log::info($verb . " ttl = ". $ttl . " " . $endpoint);
             \Log::info(print_r($options, true));
         }
-
 
         // Perform API request and caching
         if (config('api.cache_enabled')) {
