@@ -91,7 +91,8 @@ class AicConnection implements ApiConnectionInterface
 
         if ($verb === 'GET') {
             if (!empty($params)) {
-                $endpoint = $endpoint . '?' . http_build_query($params);
+                // WEB-979: See DecodeParams middleware in data-aggregator
+                $endpoint = $endpoint . '?params=' . urlencode(json_encode($params));
             }
         } else {
             if (!empty($bodyParams)) {
