@@ -93,6 +93,7 @@
               {!! SmartyPants::defaultTransform($hours['primary']) !!}
           @endcomponent
           @component('components.blocks._text')
+              @slot('tag','span')
               @slot('font','f-secondary')
               {!! SmartyPants::defaultTransform($hours['secondary']) !!}
           @endcomponent

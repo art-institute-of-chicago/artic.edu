@@ -9,41 +9,37 @@ class HourController extends ModuleController
 {
     protected $moduleName = 'hours';
 
-    protected $indexOptions = [
-        'publish' => false,
-        'delete' => false,
-        'create' => false,
-    ];
-
-    protected $titleColumnKey = 'presentType';
+    protected $titleColumnKey = 'title';
 
     protected $indexColumns = [
         'type' => [
             'title' => 'Type',
             'present' => true,
-            'field' => 'presentType',
+            'field' => 'type',
             'edit_link' => true,
         ],
-        'day_of_week' => [
-            'title' => 'Day of Week',
+        'title' => [
+            'title' => 'Title',
             'present' => true,
-            'field' => 'dayOfWeek',
+            'field' => 'title',
             'edit_link' => true,
         ],
-        'closed' => [
-            'title' => 'Open/Closed',
+        'url' => [
+            'title' => 'Link URL',
             'present' => true,
-            'field' => 'presentClosed',
+            'field' => 'url',
         ],
-        'opening_time' => [
-            'title' => 'Opening Time',
+        'validFrom' => [
+            'title' => 'Valid From',
             'present' => true,
-            'field' => 'presentOpeningTime',
+            'field' => 'validFrom',
+            'sort_key' => 'valid_from',
         ],
-        'closing_time' => [
-            'title' => 'Closing Time',
+        'validThrough' => [
+            'title' => 'Valid Through',
             'present' => true,
-            'field' => 'presentClosingTime',
+            'field' => 'validThrough',
+            'sort_key' => 'valid_through',
         ],
     ];
 
@@ -57,7 +53,7 @@ class HourController extends ModuleController
      */
     protected $formWith = [];
 
-    protected $defaultOrders = ['type' => 'asc'];
+    protected $defaultOrders = ['valid_from' => 'desc'];
 
     protected function indexData($request)
     {
