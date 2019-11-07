@@ -16,7 +16,8 @@ class Model3d extends Model
         'annotation_list',
         'model_caption_title',
         'model_caption',
-        'guided_tour'
+        'guided_tour',
+        'hide_annotation'
     ];
     protected $casts = [
         'camera_position' => 'array',
