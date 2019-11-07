@@ -40,6 +40,7 @@
         <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value"></a17-textfield>
         <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" ></a17-textfield>
         <a17-textfield label="Annotation List" :name="fieldName('annotation_list')" type="text" disabled in-store="value"></a17-textfield>
+        <a17-singlecheckbox v-if="optionalAnnotation" :name="fieldName('hide_annotation')" label="Hide Annotation" :initial-value="false" :has-default-store="true" in-store="currentValue"></a17-singlecheckbox>
         <iframe src="" id="sketchfab-frame" allow="autoplay; fullscreen; vr" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" hidden></iframe>
     </div>
 </template>
@@ -68,6 +69,10 @@
       cc0: {
         type: Boolean,
         default: true
+      },
+      optionalAnnotation: {
+        type: Boolean,
+        default: false
       }
     },
     computed: {
