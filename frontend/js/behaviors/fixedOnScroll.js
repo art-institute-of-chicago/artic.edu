@@ -1,4 +1,4 @@
-import { triggerCustomEvent, objectifyForm } from '@area17/a17-helpers';
+import { purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
 
 const fixedOnScroll = function(container) {
   const getOffsetTop = element => {
@@ -10,17 +10,16 @@ const fixedOnScroll = function(container) {
     return offsetTop;
   }
 
-  let $header = document.querySelector('header.g-header');
   let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   let containerHeight = container.offsetHeight;
   let containerTop = getOffsetTop(container) + document.body.scrollTop;
   let windowHeight = window.innerHeight || document.documentElement.clientHeight;
-  let ticking = false;
+  //let ticking = false;
 
   function update() {
-    ticking = false;
+    //ticking = false;
 
-    if(scrollTop > containerTop + containerHeight - windowHeight) {
+    if(scrollTop > containerTop + containerHeight - 1.1*windowHeight) {
       if(document.documentElement.classList.contains('is-module3d-fixed')) {
         document.documentElement.classList.remove('is-module3d-fixed');
       }
@@ -35,20 +34,17 @@ const fixedOnScroll = function(container) {
     }
   }
 
-  function requestTick() {
+  /*function requestTick() {
     if (!ticking) {
       requestAnimationFrame(update);
     }
     ticking = true;
-  }
+  }*/
 
   function handleScroll() {
     scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    requestTick();
-  }
-
-  function handleResizeAgain() {
-    handleResize();
+    update();
+    //requestTick();
   }
 
   function handleResize() {
@@ -60,8 +56,9 @@ const fixedOnScroll = function(container) {
   function _init() {
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resized', handleResize);
-    document.addEventListener('module3d:loaded', handleResizeAgain);
+    document.addEventListener('module3d:loaded', handleResize);
     handleScroll();
+    handleResize();
   }
 
   this.destroy = function() {

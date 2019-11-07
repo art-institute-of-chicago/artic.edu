@@ -2,7 +2,7 @@ import Sketchfab from '@sketchfab/viewer-api';
 import vec3 from 'gl-vec3';
 import ScrollWindow from '../functions/scrollWindow';
 import distance2d from '../functions/distance2D';
-import { triggerCustomEvent, objectifyForm } from '@area17/a17-helpers';
+import { purgeProperties, triggerCustomEvent } from '@area17/a17-helpers';
 
 const viewer3D = function(container) {
   let wrapper = container;
@@ -164,8 +164,6 @@ const viewer3D = function(container) {
               btnZoomOut.addEventListener('click', function() {
                 apiConst.zoom(1 + factor, duration, minRadius, maxRadius);
               });
-
-              triggerCustomEvent(document, 'module3d:loaded');
             }
 
           }.bind(this)
@@ -249,6 +247,8 @@ const viewer3D = function(container) {
           }
         });
       });
+
+      triggerCustomEvent(document, 'module3d:loaded');
 
     }
   };
