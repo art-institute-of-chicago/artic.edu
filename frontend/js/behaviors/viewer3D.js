@@ -120,7 +120,7 @@ const viewer3D = function(container) {
             if(btnFullscreen) btnFullscreen.addEventListener('click', _onClickFullscreen.bind(this, 2));
             if(btnCloseAnnotation) btnCloseAnnotation.addEventListener('click', _closeAnnotation.bind(this, 2));
 
-            var duration = 1, factor = 0.5, minRadius = 5, maxRadius = 50;
+            var duration = 0.2, factor = 0.5, minRadius = 5, maxRadius = 50;
 
             if(hasZoom) {
               apiConst.zoom = function(factor, duration, minRadius, maxRadius) {
