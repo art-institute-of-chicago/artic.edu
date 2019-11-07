@@ -39,6 +39,7 @@ const viewer3D = function(container) {
   let cameraPosition = null;
   let initialCameraTarget = null;
   let initialCameraPosition = null;
+  let requestMethod = wrapper.requestFullScreen || wrapper.webkitRequestFullScreen || wrapper.mozRequestFullScreen || wrapper.msRequestFullScreen;
 
   const client = new Sketchfab(el);
   let cameraConst = null;
@@ -96,7 +97,7 @@ const viewer3D = function(container) {
       ui_inspector: 0,
       ui_annotations: 0,
       annotations_visible: 0,
-      preload: 1,
+      preload: 0,
       camera: 0,
       scrollwheel: 0,
       orbit_constraint_pan: 1,
@@ -120,7 +121,7 @@ const viewer3D = function(container) {
             );
 
             if(btnContainer) btnContainer.classList.add('is-visible');
-            if(btnFullscreen) btnFullscreen.addEventListener('click', _onClickFullscreen.bind(this, 2));
+            if(btnFullscreen && cc0 && requestMethod) btnFullscreen.addEventListener('click', _onClickFullscreen.bind(this, 2));
             if(btnCloseAnnotation) btnCloseAnnotation.addEventListener('click', _closeAnnotation.bind(this, 2));
 
             var duration = 0.2, factor = 0.5, minRadius = 5, maxRadius = 50;
@@ -178,7 +179,7 @@ const viewer3D = function(container) {
       }
     });
 
-    if(!cc0 && btnFullscreen) btnFullscreen.remove();
+    if((!cc0 || !requestMethod) && btnFullscreen) btnFullscreen.remove();
 
     if(!hasZoom) {
       if(btnZoomIn) btnZoomIn.remove();
@@ -264,7 +265,7 @@ const viewer3D = function(container) {
   };
 
   function _onClickFullscreen() {
-    if(cc0 && wrapper.requestFullscreen) wrapper.requestFullscreen();
+    if(cc0 && requestMethod) requestMethod.call(wrapper);
   };
 
   function _onClickExplore() {
