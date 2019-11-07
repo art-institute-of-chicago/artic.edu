@@ -206,7 +206,7 @@
 
         @if ($fullscreen and $type == 'module3d')
             <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
-                @slot('type', 'full-width')
+                @slot('type', 'modal')
                 @slot('uid', $media['model_id'])
                 @slot('annotations', $media['annotation_list'])
                 @slot('artwork', $media['artwork'])

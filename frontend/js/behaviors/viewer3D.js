@@ -20,14 +20,15 @@ const viewer3D = function(container) {
   let uid = wrapper.dataset.uid;
   let moduleType = wrapper.dataset.type; 
   let annotationList = JSON.parse(wrapper.dataset.annotations);
-  let hasTransparency = (moduleType == 'full-width') ? false : true;
-  let hasZoom = (moduleType == 'full-width') ? true : false;
+  let hasTransparency = (moduleType == 'modal') ? false : true;
+  let hasZoom = (moduleType == 'modal') ? true : false;
   let annots = (moduleType != 'article') ? annotationList : [];
 
   let annotations = annots.map(function(annotation) {
     return {
       position3d: annotation.position,
       position2d: null,
+      eye: annotation.eye,
       distance: null,
       title: annotation.name,
       description: annotation.content.raw
@@ -36,6 +37,8 @@ const viewer3D = function(container) {
   let annotationEls = null;
   let selectedAnnotation = null;
   let cameraPosition = null;
+  let initialCameraTarget = null;
+  let initialCameraPosition = null;
 
   const client = new Sketchfab(el);
   let cameraConst = null;
@@ -53,7 +56,7 @@ const viewer3D = function(container) {
   };
 
   function onTick() {
-    if(apiConst && cameraConst && cameraPosition && moduleType != 'full-width' && moduleType != 'standalone') {
+    if(apiConst && cameraConst && cameraPosition && moduleType != 'modal' && moduleType != 'standalone') {
       apiConst.setCameraLookAt(cameraPosition, cameraConst.target, 0);
     }
     annotations.forEach(updateAnnotationFct);
@@ -182,7 +185,7 @@ const viewer3D = function(container) {
       if(btnZoomOut) btnZoomOut.remove();
     }
 
-    if(moduleType == 'full-width' && annotations.length < 1) {
+    if(moduleType == 'modal' && annotations.length < 1) {
       wrapper.classList.add('no-annotations');
       if(btnExplore) btnExplore.addEventListener('click', _onClickExplore.bind(this, 2));
     }
@@ -203,8 +206,15 @@ const viewer3D = function(container) {
       cameraConst.position[2]
     );
 
-    var initialCameraPosition = vec3.clone(cameraPosition),
-      cameraPathArr = [],
+    initialCameraTarget = vec3.fromValues(
+      cameraConst.target[0],
+      cameraConst.target[1],
+      cameraConst.target[2]
+    );
+
+    initialCameraPosition = vec3.clone(cameraPosition);
+
+    var cameraPathArr = [],
       cameraScrollSpeed = 1.5,
       nbHotspots = annotationList.length;
 
@@ -273,11 +283,17 @@ const viewer3D = function(container) {
       if (descriptionBlock.className.indexOf(' is-visible') === -1) {
         descriptionBlock.className += ' is-visible';
       }
+      if(moduleType == 'modal') {
+        apiConst.setCameraLookAt(annotations[selectedAnnotation].eye, annotations[selectedAnnotation].position3d, 0.6);
+      }
     } else {
       descriptionBlock.className = descriptionBlock.className.replace(' is-visible', '');
       setTimeout(function() {
         descriptionBlock.querySelector('.m-viewer-3d__annotation__content').innerHTML = '';
       },400);
+      if(moduleType == 'modal') {
+        apiConst.setCameraLookAt(initialCameraPosition, initialCameraTarget, 0.6);
+      }
     }
   };
 

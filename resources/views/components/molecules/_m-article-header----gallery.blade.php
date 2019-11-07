@@ -81,7 +81,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('ariaLabel', 'View 3D Module')
             @endcomponent
             <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
-              @slot('type', 'full-width')
+              @slot('type', 'modal')
               @slot('uid', $module3d->model_id)
               @slot('annotations', $module3d->annotation_list)
               @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
