@@ -187,8 +187,8 @@ const viewer3D = function(container) {
       if(btnZoomOut) btnZoomOut.remove();
     }
 
-    if(moduleType == 'modal' && annotations.length < 1) {
-      wrapper.classList.add('no-annotations');
+    if(moduleType == 'standalone') {
+      wrapper.classList.add('has-overlay');
       if(btnExplore) btnExplore.addEventListener('click', _onClickExplore.bind(this, 2));
     }
   };
@@ -270,7 +270,7 @@ const viewer3D = function(container) {
   };
 
   function _onClickExplore() {
-    wrapper.classList.remove('no-annotations');
+    wrapper.classList.remove('has-overlay');
     if(btnExplore) btnExplore.removeEventListener('click', _onClickExplore.bind(this, 2));
   };
 
