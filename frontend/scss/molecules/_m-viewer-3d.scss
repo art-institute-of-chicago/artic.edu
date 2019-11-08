@@ -85,8 +85,25 @@
     padding: 16px !important;
 
     svg {
+      display: block;
       width: 16px;
       height: 16px;
+
+      &.icon-active {
+        display: none;
+      }
+    }
+
+    &.is-active {
+      svg {
+        &.icon-normal {
+          display: none;
+        }
+
+        &.icon-active {
+          display: block;
+        }
+      }
     }
   }
 

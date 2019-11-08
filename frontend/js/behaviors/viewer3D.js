@@ -266,7 +266,15 @@ const viewer3D = function(container) {
   };
 
   function _onClickFullscreen() {
-    if(cc0 && requestMethod) requestMethod.call(wrapper);
+    if(cc0 && requestMethod) {
+      if(document.fullscreenElement) {
+        btnFullscreen.classList.remove('is-active');
+        document.exitFullscreen();
+      } else {
+        btnFullscreen.classList.add('is-active');
+        requestMethod.call(wrapper);
+      }
+    }
   };
 
   function _onClickExplore() {
