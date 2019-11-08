@@ -20,8 +20,8 @@ const viewer3D = function(container) {
   let uid = wrapper.dataset.uid;
   let moduleType = wrapper.dataset.type; 
   let annotationList = JSON.parse(wrapper.dataset.annotations);
-  let hasTransparency = (moduleType == 'modal') ? false : true;
-  let hasZoom = (moduleType == 'modal') ? true : false;
+  let hasTransparency = (moduleType == 'modal' || moduleType == 'standalone') ? false : true;
+  let hasZoom = (moduleType == 'modal' || moduleType == 'standalone') ? true : false;
   let annots = (moduleType != 'article') ? annotationList : [];
 
   let annotations = annots.map(function(annotation) {
@@ -285,7 +285,7 @@ const viewer3D = function(container) {
       if (descriptionBlock.className.indexOf(' is-visible') === -1) {
         descriptionBlock.className += ' is-visible';
       }
-      if(moduleType == 'modal') {
+      if(moduleType == 'modal' || moduleType == 'standalone') {
         apiConst.setCameraLookAt(annotations[selectedAnnotation].eye, annotations[selectedAnnotation].position3d, 0.6);
       }
     } else {
@@ -293,7 +293,7 @@ const viewer3D = function(container) {
       setTimeout(function() {
         descriptionBlock.querySelector('.m-viewer-3d__annotation__content').innerHTML = '';
       },400);
-      if(moduleType == 'modal') {
+      if(moduleType == 'modal' || moduleType == 'standalone') {
         apiConst.setCameraLookAt(initialCameraPosition, initialCameraTarget, 0.6);
       }
     }
