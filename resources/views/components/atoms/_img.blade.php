@@ -49,8 +49,8 @@
     @else
         src="{{ $src ?? '' }}"
     @endif
-    @if ($restrict)
-       data-behavior="restrictDownload"
+    @if (isset($behavior) || $restrict)
+        data-behavior="{{ $behavior ?? '' }}{{ $restrict ? ' restrictDownload' : ''}}"
     @endif
     @if (isset($_GET['print']) or (isset($settings['lazyload']) and $settings['lazyload'] === false))
     srcset="{{ $srcset ?? '' }}"
