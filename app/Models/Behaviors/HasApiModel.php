@@ -28,6 +28,11 @@ trait HasApiModel
     private $apiFields = [];
 
     /**
+     * Helper to prevent duplicate API queries.
+     */
+    private $apiDataCache;
+
+    /**
      * Refresh the model with API values in case it's not done yet.
      *
      * @var array
@@ -49,12 +54,33 @@ trait HasApiModel
 
     public function getApiModelFilled()
     {
-        return $this->apiModel::query()->find($this->datahub_id);
+        return $this->apiDataCache = $this->apiModel::query()->find($this->datahub_id);
+    }
+
+    public function getApiModelFilledCached()
+    {
+        return $this->apiDataCache ?? $this->getApiModelFilled();
     }
 
     public function getApiModel()
     {
         return $this->apiModel;
+    }
+
+    /**
+     * WEB-1315: When an item from the API gets augmented, the website
+     * takes all the data coming from the API, and uses it to fill out
+     * a new model instance. If there are any name collisions between
+     * API fields and model fields (e.g. title), API data will be saved
+     * to the model permanently. This causes API changes to appear not
+     * to propogate to the website. It seems like this is only the case
+     * with `title`, so here is a work-around for that bug.
+     *
+     * @return string
+     */
+    public function getTitleAttribute()
+    {
+        return $this->getApiModelFilledCached()->title;
     }
 
     /**
