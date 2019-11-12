@@ -15,6 +15,7 @@ const viewer3D = function(container) {
   let btnZoomOut = wrapper.querySelector('.m-viewer-3d__zoom-out');
   let btnExplore = wrapper.querySelector('.m-viewer-3d__overlay');
   let btnCloseAnnotation = descriptionBlock.querySelector('.m-viewer-3d__annotation__close');
+  let hideAnnots = JSON.parse(wrapper.dataset.hideannot);
   let cc0 = JSON.parse(wrapper.dataset.cc);
   let isGuided = JSON.parse(wrapper.dataset.guided);
   let uid = wrapper.dataset.uid;
@@ -185,6 +186,10 @@ const viewer3D = function(container) {
     if(!hasZoom) {
       if(btnZoomIn) btnZoomIn.remove();
       if(btnZoomOut) btnZoomOut.remove();
+    }
+
+    if(hideAnnots) {
+      wrapper.parentNode.classList.add('no-annotations');
     }
 
     if(moduleType == 'standalone') {

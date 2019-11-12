@@ -49,6 +49,13 @@
       height: 100vh;
       padding: 40vh 0 80vh 0;
     }
+
+    &.no-annotations {
+      .m-media--3d-tour__p {
+        opacity:0;
+        visibility:hidden;
+      }
+    }
   }
 }
 
