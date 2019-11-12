@@ -8,7 +8,7 @@
 @endphp
 
 @if ($model_url)
-    <div class="m-media m-media--l m-media--3d-tour o-blocks__block" data-behavior="fixedOnScroll">
+    <div class="m-media m-media--l m-media--3d-tour is-not-loaded o-blocks__block" data-behavior="fixedOnScroll">
         @component('components.molecules._m-viewer-3d')
             @slot('type', 'article')
             @slot('uid', $model_id)
