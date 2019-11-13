@@ -28,7 +28,6 @@ if ($maxZoomWindowSize >= 843) {
          @component('components.atoms._img')
             @slot('image', $image)
             @slot('style', $style)
-            @slot('behavior', 'fixTransformTranslate')
             @slot('settings', array(
                 'lazyload' => false,
                 'srcset' => $srcset,

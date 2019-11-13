@@ -925,27 +925,24 @@ $thumbTease: 4px;
 }
 
 .m-article-header--gallery .m-article-header__img-container {
-  display: block;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
   position: relative;
   flex: 0 0 auto;
   width: 100%;
-  max-width: 843px;
   height: 100%;
+  max-width: 843px;
   max-height: 843px;
   margin: auto;
 }
 
 .m-article-header--gallery .m-article-header__img-container img {
-  display: block;
-  position: relative;
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
   z-index: 1;
-  left: 50%;
-  top: 50%;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  max-height: 100%;
-  transform: translate(-50%, -50%);
   transition: opacity .25s;
 
   &[data-gallery-fullscreen] {
