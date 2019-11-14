@@ -123,8 +123,14 @@ const viewer3D = function(container) {
             );
 
             if(btnContainer) btnContainer.classList.add('is-visible');
-            if(btnFullscreen && cc0 && requestMethod) btnFullscreen.addEventListener('click', _onClickFullscreen.bind(this, 2));
             if(btnCloseAnnotation) btnCloseAnnotation.addEventListener('click', _closeAnnotation.bind(this, 2));
+            if(btnFullscreen && cc0 && requestMethod) {
+              btnFullscreen.addEventListener('click', _onClickFullscreen.bind(this, 2));
+              document.addEventListener('fullscreenchange', _exitFullscreenHandler);
+              document.addEventListener('webkitfullscreenchange', _exitFullscreenHandler);
+              document.addEventListener('mozfullscreenchange', _exitFullscreenHandler);
+              document.addEventListener('MSFullscreenChange', _exitFullscreenHandler);
+            }
 
             var duration = 0.2, factor = 0.5, minRadius = 2, maxRadius = 60;
 
@@ -283,6 +289,10 @@ const viewer3D = function(container) {
     }
   };
 
+  function _exitFullscreenHandler() {
+    if(!document.fullscreenElement && btnFullscreen) btnFullscreen.classList.remove('is-active');
+  };
+
   function _onClickExplore() {
     wrapper.classList.remove('has-overlay');
     if(btnExplore) btnExplore.removeEventListener('click', _onClickExplore.bind(this, 2));
@@ -316,9 +326,15 @@ const viewer3D = function(container) {
   this.destroy = function() {
     // remove specific event handlers
     if(apiVar) apiVar.removeEventListener('click', onClickFct);
-    if(btnFullscreen) btnFullscreen.removeEventListener('click', _onClickFullscreen.bind(this, 2));
     if(btnCloseAnnotation) btnCloseAnnotation.removeEventListener('click', _closeAnnotation.bind(this, 2));
     if(btnExplore) btnExplore.removeEventListener('click', _onClickExplore.bind(this, 2));
+    if(btnFullscreen && cc0 && requestMethod) {
+      btnFullscreen.removeEventListener('click', _onClickFullscreen.bind(this, 2));
+      document.removeEventListener('fullscreenchange', _exitFullscreenHandler);
+      document.removeEventListener('webkitfullscreenchange', _exitFullscreenHandler);
+      document.removeEventListener('mozfullscreenchange', _exitFullscreenHandler);
+      document.removeEventListener('MSFullscreenChange', _exitFullscreenHandler);
+    }
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
