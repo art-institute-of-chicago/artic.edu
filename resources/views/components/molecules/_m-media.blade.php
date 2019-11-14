@@ -208,6 +208,7 @@
             <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
                 @slot('type', 'modal')
                 @slot('uid', $media['model_id'])
+                @slot('cc', $media['cc'])
                 @slot('annotations', $media['annotation_list'])
                 @slot('artwork', $media['artwork'])
                 @slot('guided', $media['guided'])
