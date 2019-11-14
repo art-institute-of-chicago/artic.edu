@@ -32,5 +32,10 @@
             @slot('guided', $guided_tour)
             @slot('annotations', $annotation_list)
         @endcomponent
+        @if ($caption)
+        <div class="m-media--3d-embed__caption">
+            {{ $caption }}
+        </div>
+        @endif
     </div>
 @endif

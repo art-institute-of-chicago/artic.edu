@@ -62,6 +62,41 @@
       }
     }
   }
+
+  &--3d-embed {
+    position: relative;
+
+    &__caption {
+      position: absolute;
+      left: 30px;
+      right: 30px;
+      bottom: 50px;
+      max-width: 60%;
+      z-index: 3;
+      color: white;
+      padding: 20px 30px;
+      margin: 0 auto;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7);
+
+      @include font-styles(generate-font-obj(
+        (
+          font-family: $serif-font,
+          font-family-loaded: $serif-font--loaded,
+          font-loaded-class: $serif-font-loaded-class,
+          settings: (
+            'xsmall': (font-size: 18, line-height: 24, font-weight: 400),
+            'small+': (font-size: 22, line-height: 28, font-weight: 400),
+          )
+        )
+      ));
+
+      &:before,
+      &:after {
+        display:none;
+      }
+    }
+  }
 }
 
 .m-media__img {
