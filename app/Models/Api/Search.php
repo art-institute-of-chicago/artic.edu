@@ -949,7 +949,7 @@ class Search extends BaseApiModel
 
     protected function dateQuery($date_start, $date_end, $boost = 0)
     {
-        if (!$date_start || !$date_end) {
+        if (!$date_start) {
             return [];
         }
         $ret = [
@@ -965,7 +965,7 @@ class Search extends BaseApiModel
                     [
                         "range" => [
                             "date_end" => [
-                                "lte" => $date_end
+                                "lte" => $date_end ?? date("Y")
                             ]
                         ]
                     ]
