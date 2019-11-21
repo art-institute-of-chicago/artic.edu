@@ -1,5 +1,5 @@
 <div class="m-viewer-3d{{ (isset($guided) && $guided != '') ? ' m-viewer-3d--guided' : '' }}" data-guided="{{ (isset($guided) && $guided != '') ? 'true' : 'false' }}" data-hideannot="{{ (isset($hideannot) && $hideannot != '') ? $hideannot : 'false' }}" data-cc="{{ (isset($cc) && $cc != '') ? $cc : 'false' }}" data-annotations='{{ (isset($annotations)) ? $annotations : "" }}' data-uid="{{ (isset($uid)) ? $uid : '' }}" data-type="{{ (isset($type)) ? $type : 'modal' }}" data-behavior="viewer3D">
-  <iframe src="" width="640" height="400" allowFullScreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  <iframe tabindex="-1" src="" width="640" height="400" allowFullScreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
   <div class="m-viewer-3d__overlay">
     <button class="m-viewer-3d__explore" type="button">Click to explore</button>
   </div>
