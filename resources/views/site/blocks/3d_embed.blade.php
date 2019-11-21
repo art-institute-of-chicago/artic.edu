@@ -30,6 +30,7 @@
             @slot('uid', $model_id)
             @slot('cc', $cc0)
             @slot('guided', $guided_tour)
+            @slot('artwork', $artwork_id ? $artwork : '')
             @slot('annotations', $annotation_list)
         @endcomponent
         @if ($caption)
