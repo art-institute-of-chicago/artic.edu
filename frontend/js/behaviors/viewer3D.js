@@ -98,6 +98,7 @@ const viewer3D = function(container) {
       ui_inspector: 0,
       ui_annotations: 0,
       ui_hint: 0,
+      ui_watermark_link: 0,
       annotations_visible: 0,
       preload: 0,
       camera: 0,
