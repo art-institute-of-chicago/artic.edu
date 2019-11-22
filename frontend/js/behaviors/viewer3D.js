@@ -211,6 +211,7 @@ const viewer3D = function(container) {
     }).join('');
     layer.innerHTML = html;
     annotationEls = Array.from(layer.querySelectorAll('.a-hotspot'));
+    document.addEventListener('keyup', _onKeyUp);
   };
 
   function _isReady() {
@@ -313,14 +314,24 @@ const viewer3D = function(container) {
       if(moduleType == 'modal' || moduleType == 'standalone') {
         apiConst.setCameraLookAt(annotations[selectedAnnotation].eye, annotations[selectedAnnotation].position3d, 0.6);
       }
+      descriptionBlock.querySelector('.m-viewer-3d__annotation__close').tabIndex = 0;
+      descriptionBlock.querySelector('.m-viewer-3d__annotation__close').focus();
     } else {
       descriptionBlock.className = descriptionBlock.className.replace(' is-visible', '');
+      descriptionBlock.querySelector('.m-viewer-3d__annotation__close').tabIndex = -1;
       setTimeout(function() {
         descriptionBlock.querySelector('.m-viewer-3d__annotation__content').innerHTML = '';
       },400);
       if(moduleType == 'modal' || moduleType == 'standalone') {
         apiConst.setCameraLookAt(initialCameraPosition, initialCameraTarget, 0.6);
       }
+    }
+  };
+
+  function _onKeyUp(event) {
+    if(event.target.matches('.a-hotspot__point') && (event.keyCode == 13 || event.keyCode == 32)) {
+      selectedAnnotation = parseInt(event.target.parentNode.dataset.id);
+      _renderAnnotation();
     }
   };
 
@@ -336,6 +347,7 @@ const viewer3D = function(container) {
       document.removeEventListener('mozfullscreenchange', _exitFullscreenHandler);
       document.removeEventListener('MSFullscreenChange', _exitFullscreenHandler);
     }
+    document.removeEventListener('keyup', _onKeyUp);
 
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);

@@ -1,18 +1,18 @@
-<div class="m-viewer-3d{{ (isset($guided) && $guided != '') ? ' m-viewer-3d--guided' : '' }}" data-guided="{{ (isset($guided) && $guided != '') ? 'true' : 'false' }}" data-hideannot="{{ (isset($hideannot) && $hideannot != '') ? $hideannot : 'false' }}" data-cc="{{ (isset($cc) && $cc != '') ? $cc : 'false' }}" data-annotations='{{ (isset($annotations)) ? htmlentities($annotations, ENT_QUOTES) : "" }}' data-uid="{{ (isset($uid)) ? $uid : '' }}" data-type="{{ (isset($type)) ? $type : 'modal' }}" data-behavior="viewer3D">
+<div class="m-viewer-3d{{ (isset($guided) && $guided != '') ? ' m-viewer-3d--guided' : '' }}" data-guided="{{ (isset($guided) && $guided != '') ? 'true' : 'false' }}" data-hideannot="{{ (isset($hideannot) && $hideannot != '') ? $hideannot : 'false' }}" data-cc="{{ (isset($cc) && $cc != '') ? $cc : 'false' }}" data-annotations='{{ (isset($annotations)) ? $annotations : "" }}' data-uid="{{ (isset($uid)) ? $uid : '' }}" data-type="{{ (isset($type)) ? $type : 'modal' }}" data-behavior="viewer3D">
   <iframe tabindex="-1" src="" width="640" height="400" allowFullScreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
   <div class="m-viewer-3d__overlay">
     <button class="m-viewer-3d__explore" type="button">Click to explore</button>
   </div>
-  <div class="m-viewer-3d__hotspots"></div>
   <div class="m-viewer-3d__annotation">
     <div class="m-viewer-3d__annotation__content"></div>
-    <button class="m-viewer-3d__annotation__close" type="button" aria-label="Close">
+    <button class="m-viewer-3d__annotation__close" tabindex="-1" type="button" aria-label="Close">
       <svg width="16" height="16" viewBox="0 0 16 16">
         <line x1="3" y1="3" x2="13" y2="13" fill="#ffffff" stroke="currentColor" strokeMiterlimit="10" strokeWidth="1.5"></line>
         <line x1="13" y1="3" x2="3" y2="13" fill="#ffffff" stroke="currentColor" strokeMiterlimit="10" strokeWidth="1.5"></line>
       </svg>
     </button>
   </div>
+  <div class="m-viewer-3d__hotspots"></div>
   <div class="m-viewer-3d__tools">
     <button class="m-viewer-3d__zoom-in" type="button" aria-label="Zoom in">
       <svg viewBox="0 0 24 24" id="icon--zoom-in--24" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><circle cx="10.5" cy="10.5" r="5.5" fill="none" stroke="currentColor" strokeLinejoin="bevel" strokeWidth="1.4"></circle><path fill="none" stroke="currentColor" strokeLinecap="square" strokeLinejoin="bevel" strokeWidth="1.4" d="M14.5 14.5L19 19"></path><path fill="currentColor" d="M10 8h1v5h-1z"></path><path fill="currentColor" d="M13 10v1H8v-1z"></path></svg>
