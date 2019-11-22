@@ -23,6 +23,7 @@ trait Handle3DModel
                 [
                     'model_url' => $fields["{$fieldName}[model_url]"],
                     'model_id' => $fields["{$fieldName}[model_id]"],
+                    'model_caption_title' => isset($fields["{$fieldName}[model_caption_title]"]) ? $fields["{$fieldName}[model_caption_title]"] : '',
                     'model_caption' => isset($fields["{$fieldName}[model_caption]"]) ? $fields["{$fieldName}[model_caption]"] : '',
                     'camera_position' => $fields["{$fieldName}[camera_position]"],
                     'camera_target' => $fields["{$fieldName}[camera_target]"],
@@ -33,8 +34,6 @@ trait Handle3DModel
             );
             $object->AIC3DModel()->associate($model);
             $object->save();
-
-            $this->handle3DModelThumbnail($object, $fields, $model);
         }
     }
 
@@ -46,7 +45,7 @@ trait Handle3DModel
         $aic3dModel = $object->secondaryExperienceModal->first()->AIC3DModel)
         {
             $secondaryExperienceModal = $object->secondaryExperienceModal->first();
-            $aic3dFields = ['model_url', 'model_id', 'model_caption', 'camera_position', 'guided_tour', 'camera_target', 'annotation_list'];
+            $aic3dFields = ['model_url', 'model_id', 'model_caption_title', 'model_caption', 'camera_position', 'guided_tour', 'camera_target', 'annotation_list', 'hide_annotation'];
             foreach ($aic3dFields as $aic3dField) {
                 array_push($fields['repeaterFields']['secondary_experience_modal'], [
                     'name' => "blocks[secondaryExperienceModal-{$secondaryExperienceModal->id}][aic_split_3d_model][{$aic3dField}]",
@@ -58,6 +57,7 @@ trait Handle3DModel
         $aic3dModel = $object->AIC3DModel;
         if ($aic3dModel) {
             $fields["{$fieldName}[model_id]"] = $aic3dModel->model_id;
+            $fields["{$fieldName}[model_caption_title]"] = $aic3dModel->getOriginal('model_caption_title');
             $fields["{$fieldName}[model_caption]"] = $aic3dModel->getOriginal('model_caption');
             $fields["{$fieldName}[guided_tour]"] = $aic3dModel->getOriginal('guided_tour');
             $fields["{$fieldName}[camera_position]"] = $aic3dModel->getOriginal('camera_position');
@@ -66,14 +66,5 @@ trait Handle3DModel
         };
             
         return $fields;
-    }
-
-    private function handle3DModelThumbnail($object, $fields, $aic3dModel) {
-        // if (isset($fields['medias']['aic_3d_model[image]'][0])) {
-        //     $media = $fields['medias']['aic_3d_model[image]'][0];
-        //     $newMedia = Media::withTrashed()->find(is_array($media['id']) ? Arr::first($media['id']) : $media['id']);
-        //     $pivot = $newMedia->newPivot($aic3dModel, Arr::except($media, ['id']), 'mediables', true);
-        //     $newMedia->setRelation('pivot', $pivot);
-        // }
     }
 }

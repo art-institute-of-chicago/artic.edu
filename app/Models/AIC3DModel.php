@@ -14,6 +14,7 @@ class AIC3DModel extends Model
         'camera_position',
         'camera_target',
         'annotation_list',
+        'model_caption_title',
         'model_caption',
         'guided_tour'
     ];
