@@ -19,15 +19,24 @@ const fixedOnScroll = function(container) {
   function update() {
     //ticking = false;
 
-    if(scrollTop > containerTop + containerHeight - 1.1*windowHeight) {
+    if(scrollTop > containerTop + containerHeight - windowHeight) {
       if(document.documentElement.classList.contains('is-module3d-fixed')) {
         document.documentElement.classList.remove('is-module3d-fixed');
       }
+      if(!document.documentElement.classList.contains('is-module3d-bottom')) {
+        document.documentElement.classList.add('is-module3d-bottom');
+      }
     } else if(scrollTop > containerTop) {
+      if(document.documentElement.classList.contains('is-module3d-bottom')) {
+        document.documentElement.classList.remove('is-module3d-bottom');
+      }
       if(!document.documentElement.classList.contains('is-module3d-fixed')) {
         document.documentElement.classList.add('is-module3d-fixed');
       }
     } else {
+      if(document.documentElement.classList.contains('is-module3d-bottom')) {
+        document.documentElement.classList.remove('is-module3d-bottom');
+      }
       if(document.documentElement.classList.contains('is-module3d-fixed')) {
         document.documentElement.classList.remove('is-module3d-fixed');
       }
@@ -64,7 +73,7 @@ const fixedOnScroll = function(container) {
   this.destroy = function() {
     window.removeEventListener('resized', handleResize);
     window.removeEventListener('scroll', handleScroll);
-    document.removeEventListener('module3d:loaded', handleResizeAgain);
+    document.removeEventListener('module3d:loaded', handleResize);
     // remove properties of this behavior
     A17.Helpers.purgeProperties(this);
   };

@@ -1,26 +1,47 @@
 .m-media {
   &--3d-tour {
+    position:relative;
     pointer-events:none;
     padding-bottom:50vh;
 
     .m-viewer-3d {
-      opacity:0;
+      //opacity:0;
       //visibility:hidden;
-      position:fixed;
+      position:absolute;//fixed;
       z-index:-1;
       left:0;
       right:0;
       top:0;
+      bottom:auto;
       height:100vh;
       pointer-events:none;
-      transition:all 0.5s;
+      //transition:all 0.5s;
 
       .is-module3d-fixed & {
-        //position:fixed;
+        position:fixed;
+        margin:0 auto;
+
+        @include breakpoint('medium+') {
+          width: colspan(58, medium);
+        }
+
+        @include breakpoint('large+') {
+          width: colspan(58, large);
+        }
+
+        @include breakpoint('xlarge') {
+          width: colspan(58, xlarge);
+        }
+
         //z-index:-1;
         //top:0;
-        opacity:1;
+        //opacity:1;
         //visibility:visible;
+      }
+
+      .is-module3d-bottom & {
+        bottom:0;
+        top:auto;
       }
     }
 
