@@ -10,6 +10,7 @@
     width: 100%;
     height: 100vh;
     border: 0;
+    touch-action: pan-x;
   }
 
   &__hotspots {
