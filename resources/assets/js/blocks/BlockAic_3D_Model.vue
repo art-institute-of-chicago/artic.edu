@@ -35,7 +35,7 @@
             Link a collection object
           </a17-browserfield>
         </a17-inputframe>
-        <a17-singlecheckbox :name="fieldName('guided_tour')" label="Guided Tour" :initial-value="false" :has-default-store="true" in-store="currentValue"></a17-singlecheckbox>
+        <!-- <a17-singlecheckbox :name="fieldName('guided_tour')" label="Guided Tour" :initial-value="false" :has-default-store="true" in-store="currentValue"></a17-singlecheckbox> -->
         <a17-textfield label="Model ID" :name="fieldName('model_id')" type="text" disabled in-store="value"></a17-textfield>
         <a17-textfield label="Camera Position" :name="fieldName('camera_position')" type="text" disabled in-store="value"></a17-textfield>
         <a17-textfield label="Camera Target" :name="fieldName('camera_target')" type="text" disabled in-store="value" ></a17-textfield>

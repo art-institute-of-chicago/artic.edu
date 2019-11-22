@@ -27,7 +27,8 @@ trait Handle3DModel
                     'camera_position' => $fields["{$fieldName}[camera_position]"],
                     'camera_target' => $fields["{$fieldName}[camera_target]"],
                     'annotation_list' => $fields["{$fieldName}[annotation_list]"],
-                    'guided_tour' => $fields["{$fieldName}[guided_tour]"]
+                    'guided_tour' => isset($fields["{$fieldName}[guided_tour]"]) ? $fields["{$fieldName}[guided_tour]"] : false,
+                    'hide_annotation' => empty($fields["{$fieldName}[hide_annotation]"]) ? false : $fields["{$fieldName}[hide_annotation]"],
                 ]
             );
             $object->AIC3DModel()->associate($model);
