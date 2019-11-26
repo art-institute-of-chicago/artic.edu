@@ -2,6 +2,7 @@
 
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
+    $hasRestriction = isset($item['restricted']) ? $item['restricted'] : false;
     $media = $item['media'];
     $fullscreen = (isset($item['fullscreen']) && $item['fullscreen']) && (!isset($media['restrict']) || !$media['restrict']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
@@ -112,7 +113,7 @@
         }
     }
 @endphp
-<{{ $tag ?? 'figure' }} data-type="{{ $type }}"{!! isset($media['cc0']) && $media['cc0'] ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'figure' }} data-type="{{ $type }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}>
         @if ($type == 'image')
             @if ($showUrlFullscreen)

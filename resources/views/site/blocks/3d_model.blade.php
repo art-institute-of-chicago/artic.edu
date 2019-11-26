@@ -30,6 +30,7 @@
         @slot('item', [
             'type' => 'module3d',
             'size' => 's',
+            'restricted' => !$cc0,
             'fullscreen' => true,
             'media' => [
                 'module3d' => '', 

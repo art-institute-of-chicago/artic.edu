@@ -125,7 +125,7 @@
   bottom:0;
   transform:none;
 
-  @media screen and (min-width: 900px) {
+  @include breakpoint('medium+') {
     top: 40px;
     left: 60px;
     right: 60px;
@@ -171,6 +171,23 @@
   .g-modal__content {
     max-width:1280px !important;
     max-height:1024px !important;
+  }
+
+  &.g-modal--module3d {
+    max-width:1280px !important;
+    max-height:1024px !important;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    right:auto;
+    bottom:auto;
+    width:100%;
+    height:100%;
+
+    @include breakpoint('medium+') {
+      width:calc(100% - 120px);
+      height:calc(100% - 80px);
+    }
   }
 }
 
