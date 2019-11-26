@@ -1,6 +1,7 @@
 @php
     $model_url = $block->input('model_url');
     $model_id = $block->input('model_id');
+    $caption_title = $block->input('model_caption_title');
     $caption = $block->input('model_caption');
     $thumbnail_url = $block->image('image');
     $guided_tour = $block->input('guided_tour');
@@ -41,7 +42,8 @@
             'poster' => [
                 'src' => $thumbnail_url
             ],
-            'caption' => $caption
+            'caption' => $caption,
+            'captionTitle' => $caption_title
         ])
     @endcomponent
 @endif
