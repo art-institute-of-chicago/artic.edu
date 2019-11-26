@@ -38,6 +38,10 @@
     background-color: rgba(#083F6E, 0.7);
   }
 
+  &--selected &__point {
+    background-color: rgba($color__rules--brand, 0.7);
+  }
+
   @include breakpoint('large') {
     &:hover &__point {
       background-color: rgba(#083F6E, 0.7);

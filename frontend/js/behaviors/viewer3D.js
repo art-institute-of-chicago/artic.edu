@@ -314,9 +314,13 @@ const viewer3D = function(container) {
       if(moduleType == 'modal' || moduleType == 'standalone') {
         apiConst.setCameraLookAt(annotations[selectedAnnotation].eye, annotations[selectedAnnotation].position3d, 0.6);
       }
+      annotationEls[selectedAnnotation].classList.add('a-hotspot--selected');
       descriptionBlock.querySelector('.m-viewer-3d__annotation__close').tabIndex = 0;
       descriptionBlock.querySelector('.m-viewer-3d__annotation__close').focus();
     } else {
+      if(layer.querySelector('.a-hotspot--selected') !== null) {
+        layer.querySelector('.a-hotspot--selected').classList.remove('a-hotspot--selected');
+      }
       descriptionBlock.className = descriptionBlock.className.replace(' is-visible', '');
       descriptionBlock.querySelector('.m-viewer-3d__annotation__close').tabIndex = -1;
       setTimeout(function() {
