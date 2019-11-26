@@ -112,7 +112,7 @@
         }
     }
 @endphp
-<{{ $tag ?? 'figure' }} data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'figure' }} data-type="{{ $type }}"{!! isset($media['cc0']) && $media['cc0'] ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}>
         @if ($type == 'image')
             @if ($showUrlFullscreen)
