@@ -32,6 +32,7 @@
             @slot('guided', $guided_tour)
             @slot('artwork', $artwork_id ? $artwork : '')
             @slot('annotations', $annotation_list)
+            @slot('title', $pageTitle ? $pageTitle.' - Inline 3D' : 'Inline 3D')
         @endcomponent
         @if ($caption)
         <div class="m-media--3d-embed__caption">

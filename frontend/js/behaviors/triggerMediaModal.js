@@ -17,6 +17,13 @@ const triggerMediaModal = function(container) {
           embedCode: embedCode,
           subtype: container.getAttribute('data-subtype') || null,
         });
+        if(container.parentNode.dataset.type == 'module3d' && container.dataset.title) {
+          triggerCustomEvent(document, 'gtm:push', {
+            'event': '3D-open-modal',
+            'eventCategory': 'in-page',
+            'eventAction': container.dataset.title+' - Modal 3D'
+          });
+        }
       }
     }
   }

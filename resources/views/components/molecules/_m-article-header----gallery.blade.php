@@ -79,6 +79,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('dataAttributes', 'data-gallery-module3d')
               @slot('behavior', 'triggerMediaModal')
               @slot('ariaLabel', 'View 3D Module')
+              @slot('gtmAttributes', 'data-gtm-event="3D-open-modal" data-gtm-event-action="{{$title}}" data-gtm-event-category="in-page"')
             @endcomponent
             <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
               @slot('type', 'modal')
@@ -86,6 +87,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('annotations', $module3d->annotation_list)
               @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
               @slot('guided', $module3d->guided_tour)
+              @slot('title', $title)
             @endcomponent</textarea>
         </li>
         @endif 

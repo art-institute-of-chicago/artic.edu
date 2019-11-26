@@ -38,7 +38,8 @@
                 'annotation_list' => $annotation_list,
                 'cc' => $cc0,
                 'guided' => $guided_tour,
-                'artwork' => $artwork_id ? $artwork : ''
+                'artwork' => $artwork_id ? $artwork : '',
+                'title' => $pageTitle
             ],
             'poster' => [
                 'src' => $thumbnail_url

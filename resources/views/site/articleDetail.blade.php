@@ -125,7 +125,9 @@
         $_collectedReferences = [];
     @endphp
 
-    {!! $item->renderBlocks(false) !!}
+    {!! $item->renderBlocks(false, [], [
+      'pageTitle' => $item->meta_title ?: $item->title
+    ]) !!}
 
     @if (sizeof($_collectedReferences))
         @component('components.organisms._o-accordion')

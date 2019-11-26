@@ -20,6 +20,7 @@ const viewer3D = function(container) {
   let isGuided = JSON.parse(wrapper.dataset.guided);
   let uid = wrapper.dataset.uid;
   let moduleType = wrapper.dataset.type; 
+  let moduleTitle = wrapper.dataset.title;
   let annotationList = JSON.parse(wrapper.dataset.annotations);
   let hasTransparency = (moduleType == 'modal' || moduleType == 'standalone') ? false : true;
   let hasZoom = (moduleType == 'modal' || moduleType == 'standalone') ? true : false;
@@ -133,6 +134,10 @@ const viewer3D = function(container) {
               document.addEventListener('MSFullscreenChange', _exitFullscreenHandler);
             }
 
+            /*if(document.querySelector('.f-headline-editorial')) {
+              moduleTitle += document.querySelector('.f-headline-editorial').textContent;
+            }*/
+
             var duration = 0.2, factor = 0.5;
 
             if(hasZoom) {
@@ -200,6 +205,11 @@ const viewer3D = function(container) {
 
     if(moduleType == 'standalone') {
       wrapper.classList.add('has-overlay');
+      triggerCustomEvent(document, 'gtm:push', {
+        'event': '3D-tap-start',
+        'eventCategory': 'in-page',
+        'eventAction': moduleTitle
+      });
       if(btnExplore) btnExplore.addEventListener('click', _onClickExplore.bind(this, 2));
     }
   };
@@ -319,6 +329,11 @@ const viewer3D = function(container) {
       annotationEls[selectedAnnotation].classList.add('a-hotspot--selected');
       descriptionBlock.querySelector('.m-viewer-3d__annotation__close').tabIndex = 0;
       descriptionBlock.querySelector('.m-viewer-3d__annotation__close').focus();
+      triggerCustomEvent(document, 'gtm:push', {
+        'event': '3D-tap-hotspot',
+        'eventCategory': 'in-page',
+        'eventAction': moduleTitle+' - '+selectedAnnotation
+      });
     } else {
       descriptionBlock.className = descriptionBlock.className.replace(' is-visible', '');
       descriptionBlock.querySelector('.m-viewer-3d__annotation__close').tabIndex = -1;
