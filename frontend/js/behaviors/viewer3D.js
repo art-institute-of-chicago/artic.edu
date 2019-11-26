@@ -305,6 +305,9 @@ const viewer3D = function(container) {
   };
 
   function _renderAnnotation() {
+    if(layer.querySelector('.a-hotspot--selected') !== null) {
+      layer.querySelector('.a-hotspot--selected').classList.remove('a-hotspot--selected');
+    }
     if(selectedAnnotation !== null) {
       descriptionBlock.querySelector('.m-viewer-3d__annotation__content').innerHTML = '<p class="m-viewer-3d__annotation__title">' + annotations[selectedAnnotation].title + '</p> ' + annotations[selectedAnnotation].description;
       if (descriptionBlock.className.indexOf(' is-visible') === -1) {
@@ -317,9 +320,6 @@ const viewer3D = function(container) {
       descriptionBlock.querySelector('.m-viewer-3d__annotation__close').tabIndex = 0;
       descriptionBlock.querySelector('.m-viewer-3d__annotation__close').focus();
     } else {
-      if(layer.querySelector('.a-hotspot--selected') !== null) {
-        layer.querySelector('.a-hotspot--selected').classList.remove('a-hotspot--selected');
-      }
       descriptionBlock.className = descriptionBlock.className.replace(' is-visible', '');
       descriptionBlock.querySelector('.m-viewer-3d__annotation__close').tabIndex = -1;
       setTimeout(function() {
