@@ -133,10 +133,10 @@ const viewer3D = function(container) {
               document.addEventListener('MSFullscreenChange', _exitFullscreenHandler);
             }
 
-            var duration = 0.2, factor = 0.5, minRadius = 2, maxRadius = 60;
+            var duration = 0.2, factor = 0.5;
 
             if(hasZoom) {
-              apiConst.zoom = function(factor, duration, minRadius, maxRadius) {
+              apiConst.zoom = function(factor, duration) {
                 apiConst.getCameraLookAt(function(err, camera) {
                   if(!err) {
                     var currentPos = camera.position,
@@ -146,12 +146,11 @@ const viewer3D = function(container) {
                     target = camera.target,
                     rho = Math.sqrt((x * x) + (y * y) + (z * z)),
                     phi,
-                    theta;
+                    theta,
+                    minRadius = 0.1,
+                    maxRadius = Infinity;
 
-                    if(isNaN(minRadius)) minRadius = 0.1;
-                    if(isNaN(maxRadius)) maxRadius = Infinity;
                     if(rho === minRadius || rho === maxRadius) return;
-
                     rho = (rho * factor);
 
                     if(rho < minRadius && factor < 1) {
@@ -171,11 +170,11 @@ const viewer3D = function(container) {
               };
 
               btnZoomIn.addEventListener('click', function() {
-                apiConst.zoom(1 - factor, duration, minRadius, maxRadius);
+                apiConst.zoom(1 - factor, duration);
               });
 
               btnZoomOut.addEventListener('click', function() {
-                apiConst.zoom(1 + factor, duration, minRadius, maxRadius);
+                apiConst.zoom(1 + factor, duration);
               });
             }
 
