@@ -17,9 +17,9 @@ use Carbon\Carbon;
 class InteractiveFeature
  extends Model
 {
-    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiModel, HasApiRelations, Transformable, HasRelated;
+    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable, HasRelated;
 
-    protected $apiModel = 'App\Models\Api\DigitalLabel';
+    //protected $apiModel = 'App\Models\Api\DigitalLabel';
 
     protected $presenter = 'App\Presenters\Admin\InteractiveFeaturePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\InteractiveFeaturePresenter';
