@@ -219,18 +219,6 @@ class ArtworkPresenter extends BasePresenter
                     ];
                 }
             }
-        } else {
-            // There should be no cases where there is an `artist_title`, but no `artist_pivots`
-            // ...but let's keep an eye on it just in case:
-            try {
-                throw new \Exception(json_encode([
-                    'id' => $this->entity->id,
-                    'msg' => 'Missing artist_pivots'
-                ]));
-            } catch (\Exception $e) {
-                // https://laravel.com/docs/5.7/errors - The `report` Helper
-                report($e);
-            }
         }
 
         $details = array_merge($details, $this->formatDetailBlocks([
