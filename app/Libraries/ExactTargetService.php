@@ -129,8 +129,11 @@ class ExactTargetService
             // error. It's ok if the user doesn't exist, because that's
             // ultimately what we want. So idenfity if this is the case and
             // move on. The full expected error is 'Concurrency violation: the
-            // DeleteCommand affected 0 of the expected 1 records.'
-            if (!Str::startsWith(($response->results[0]->ErrorMessage ?? ''), 'Concurrency violation')) {
+            // DeleteCommand affected 0 of the expected 1 records.' [WEB-1427]
+            if (Str::startsWith(($response->results[0]->ErrorMessage ?? ''), 'Concurrency violation')) {
+                return true;
+            }
+            else {
                 return $response;
             }
         }
