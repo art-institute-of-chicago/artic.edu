@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Forms;
 
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 use App\Http\Requests\Form\EmailSubscriptionsRequest;
 
@@ -257,6 +258,17 @@ class EmailSubscriptionsController extends FormController
 
         if (array_key_exists('unsubscribe', $validated) && $validated['unsubscribe']) {
             $response = $exactTarget->unsubscribe();
+            if ($response !== true) {
+                // If the user doesn't exist in our email list, ET will throw an
+                // error. It's ok if the user doesn't exist, because that's
+                // ultimately what we want. So idenfity if this is the case and
+                // provide a message to the user. The full expected error is
+                // 'Concurrency violation: the DeleteCommand affected 0 of the
+                // expected 1 records.' [WEB-1427]
+                if (Str::startsWith(($response->results[0]->ErrorMessage ?? ''), 'Concurrency violation')) {
+                    return redirect(route('forms.email-subscriptions'))->withErrors(['email' => 'This email address does not exist in our email list. Please check the address and try again.']);
+                }
+            }
         }
         else {
             $response = $exactTarget->subscribe();
