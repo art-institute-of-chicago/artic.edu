@@ -3,10 +3,11 @@
     position:relative;
     pointer-events:none;
     padding-bottom:50vh;
+    min-height:100vh;
 
     .m-viewer-3d {
-      //opacity:0;
-      //visibility:hidden;
+      opacity:1;
+      visibility:visible;
       position:absolute;//fixed;
       z-index:-1;
       left:0;
@@ -15,7 +16,7 @@
       bottom:auto;
       height:100vh;
       pointer-events:none;
-      //transition:all 0.5s;
+      transition:opacity 0.5s ease, visibility 0.5s ease;
 
       .is-module3d-fixed & {
         position:fixed;
@@ -74,6 +75,11 @@
     &.is-not-loaded {
       padding-bottom:0;
       margin-top:0 !important;
+
+      .m-viewer-3d {
+        opacity:0;
+        visibility:hidden;
+      }
     }
 
     &.no-annotations {
