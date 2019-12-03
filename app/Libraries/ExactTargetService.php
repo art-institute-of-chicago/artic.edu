@@ -8,6 +8,7 @@ use FuelSdk\ET_Client;
 use FuelSdk\ET_DataExtension_Row;
 use FuelSdk\ET_DataExtension;
 use FuelSdk\ET_Subscriber;
+use Illuminate\Support\Str;
 
 class ExactTargetService
 {
@@ -124,7 +125,14 @@ class ExactTargetService
         $response = $deRow->delete();
 
         if (!$response->status) {
-            return $response;
+            // If the user doesn't exist in our email list, ET will throw an
+            // error. It's ok if the user doesn't exist, because that's
+            // ultimately what we want. So idenfity if this is the case and
+            // move on. The full expected error is 'Concurrency violation: the
+            // DeleteCommand affected 0 of the expected 1 records.'
+            if (!Str::startsWith(($response->results[0]->ErrorMessage ?? ''), 'Concurrency violation')) {
+                return $response;
+            }
         }
 
         // Set the subscriber to Unsubscribed
