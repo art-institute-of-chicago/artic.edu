@@ -10,13 +10,14 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Page;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class Exhibition extends AbstractModel
 {
-    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiModel, HasApiRelations, Transformable, HasRelated;
+    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiModel, HasApiRelations, Transformable, HasRelated, HasFeaturedRelated;
 
     protected $apiModel = 'App\Models\Api\Exhibition';
 
@@ -24,8 +25,6 @@ class Exhibition extends AbstractModel
         'saved' => \App\Events\UpdateExhibition::class,
         'deleted' => \App\Events\UpdateExhibition::class,
     ];
-
-    protected $selectedFeaturedRelated = null;
 
     const BASIC = 0;
     const LARGE = 1;
@@ -174,38 +173,6 @@ class Exhibition extends AbstractModel
     public function getUrlWithoutSlugAttribute()
     {
         return route('exhibitions.show', $this->datahub_id);
-    }
-
-    public function getFeaturedRelatedAttribute()
-    {
-        // Select a random element from these relationships below and return one per request
-        if ($this->selectedFeaturedRelated) {
-            return $this->selectedFeaturedRelated;
-        }
-
-        $types = collect(['articles', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
-        foreach ($types as $type) {
-            if ($item = $this->$type()->first()) {
-                switch ($type) {
-                    case 'videos':
-                        $type = 'medias';
-                        break;
-                    case 'sidebarEvent':
-                        $type = 'event';
-                        break;
-                    case 'sidebarExhibitions':
-                        $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
-                        $type = 'exhibition';
-                        break;
-                }
-
-                $this->selectedFeaturedRelated = [
-                    'type' => Str::singular($type),
-                    'items' => [$item],
-                ];
-                return $this->selectedFeaturedRelated;
-            }
-        }
     }
 
     protected function transformMappingInternal()

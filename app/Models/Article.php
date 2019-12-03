@@ -9,18 +9,17 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use App\Models\Behaviors\HasFeaturedRelated;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
 class Article extends AbstractModel implements Feedable
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable, HasRelated;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable, HasRelated, HasFeaturedRelated;
 
     protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
-
-    protected $selectedFeaturedRelated = null;
 
     protected $dispatchesEvents = [
         'saved' => \App\Events\UpdateArticle::class,
@@ -189,42 +188,6 @@ class Article extends AbstractModel implements Feedable
     {
         return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
     }
-
-    public function getFeaturedRelatedAttribute()
-    {
-        // Select a random element from those relationships below and return one per request
-        if ($this->selectedFeaturedRelated) {
-            return $this->selectedFeaturedRelated;
-        }
-
-        $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
-        foreach ($types as $type) {
-            if ($item = $this->$type()->first()) {
-                switch ($type) {
-                    case 'sidebarArticle':
-                        $type = 'article';
-                        break;
-                    case 'videos':
-                        $type = 'medias';
-                        break;
-                    case 'sidebarEvent':
-                        $type = 'event';
-                        break;
-                    case 'sidebarExhibitions':
-                        $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
-                        $type = 'exhibition';
-                        break;
-                }
-
-                $this->selectedFeaturedRelated = [
-                    'type' => Str::singular($type),
-                    'items' => [$item],
-                ];
-                return $this->selectedFeaturedRelated;
-            }
-        }
-    }
-
 
     public static function getAllFeedItems()
     {

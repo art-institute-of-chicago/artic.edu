@@ -11,15 +11,14 @@ use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasFeaturedRelated;
 use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class GenericPage extends AbstractModel implements Sortable
 {
-    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait, Transformable, HasApiRelations;
-
-    protected $selectedFeaturedRelated = null;
+    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait, Transformable, HasApiRelations, HasFeaturedRelated;
 
     protected $fillable = [
         'short_description',
@@ -180,37 +179,6 @@ class GenericPage extends AbstractModel implements Sortable
     public function categories()
     {
         return $this->belongsToMany('App\Models\PageCategory');
-    }
-
-    public function getFeaturedRelatedAttribute()
-    {
-        // Select a random element from these relationships below and return one per request
-        if ($this->selectedFeaturedRelated)
-            return $this->selectedFeaturedRelated;
-
-        $types = collect(['articles', 'events', 'exhibitions'])->shuffle();
-        foreach ($types as $type) {
-            if ($item = $this->$type()->first()) {
-                switch ($type) {
-                    case 'events':
-                        $type = 'event';
-                        break;
-                    case 'articles':
-                        $type = 'article';
-                        break;
-                    case 'exhibitions':
-                        $item = $this->apiModels('exhibitions', 'Exhibition')->first();
-                        $type = 'exhibition';
-                        break;
-                }
-
-                $this->selectedFeaturedRelated = [
-                    'type' => Str::singular($type),
-                    'items' => [$item]
-                ];
-                return $this->selectedFeaturedRelated;
-            }
-        }
     }
 
     protected function transformMappingInternal()
