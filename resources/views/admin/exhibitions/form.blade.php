@@ -206,7 +206,7 @@
         ])
     </a17-fieldset>
 
-    @component('admin.partials.featured-related')
+    @component('admin.partials.featured-related', ['form_fields' => $form_fields])
         @slot('articles', 'articles')
         @slot('events', 'sidebarEvent')
         @slot('exhibitions', 'sidebarExhibitions')
