@@ -207,26 +207,6 @@
         @endforeach
     @endif
 
-    @if ($item->futherSupport)
-        @component('components.molecules._m-row-block')
-            @slot('variation', 'm-row-block--keyline-top')
-            @slot('title', $item->futherSupport['title'] ?? null)
-            @slot('img', $item->futherSupport['logo'] ?? null)
-            @slot('text', $item->futherSupport['text'] ?? null)
-            @slot('imageSettings', array(
-                'srcset' => array(200,400,600),
-                'sizes' => aic_imageSizes(array(
-                      'xsmall' => '13',
-                      'small' => '13',
-                      'medium' => '8',
-                      'large' => '8',
-                      'xlarge' => '8',
-                )),
-            ))
-        @endcomponent
-    @endif
-
-
     @if ($item->references)
         @component('components.organisms._o-accordion')
             @slot('variation', 'o-accordion--section')
