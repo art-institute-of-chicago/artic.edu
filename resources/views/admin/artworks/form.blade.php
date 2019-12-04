@@ -1,52 +1,26 @@
-@extends('twill::layouts.form')
+@extends('twill::layouts.form', [
+    'additionalFieldsets' => [
+        ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
+        ['fieldset' => 'metadata', 'label' => 'Metadata'],
+        ['fieldset' => 'api', 'label' => 'Datahub fields'],
+    ]
+])
 
 @section('contentFields')
-    @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
-        'moduleName' => 'videos',
-        'max' => 1,
-        'name' => 'videos',
-        'label' => 'Related video'
-    ])
-
-    @formField('browser', [
-        'routePrefix' => 'collection.articles_publications',
-        'moduleName' => 'articles',
-        'max' => 1,
-        'name' => 'sidebarArticle',
-        'label' => 'Related article',
-    ])
-
-    @formField('browser', [
-        'routePrefix' => 'exhibitions_events',
-        'max' => 1,
-        'name' => 'sidebarExhibitions',
-        'label' => 'Related Exhibition',
-        'moduleName' => 'exhibitions',
-    ])
-
-    @formField('browser', [
-        'routePrefix' => 'exhibitions_events',
-        'moduleName' => 'events',
-        'name' => 'sidebarEvent',
-        'label' => 'Related event',
-        'max' => 1
-    ])
-    
-    @formField('browser', [
-        'routePrefix' => 'collection',
-        'max' => 1,
-        'name' => 'sidebarExperiences',
-        'label' => 'Related Interactive Features',
-        'moduleName' => 'interactiveFeatures.experiences',
-    ])
+    {{-- Nothing to see here yet. This section will always be shown --}}
+    <p>Artwork content is defined in CITI.</p>
 @stop
 
-
 @section('fieldsets')
+    @component('admin.partials.featured-related')
+        @slot('articles', 'sidebarArticle')
+        @slot('events', 'sidebarEvent')
+        @slot('exhibitions', 'sidebarExhibitions')
+        @slot('experiences', 'sidebarExperiences')
+        @slot('videos', 'videos')
+    @endcomponent
 
     @include('admin.partials.meta')
-
 
     <a17-fieldset id="api" title="Datahub fields">
         @formField('input', [

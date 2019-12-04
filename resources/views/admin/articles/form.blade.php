@@ -129,39 +129,13 @@
 
     </a17-fieldset>
 
-    <a17-fieldset id="side_related" title="Sidebar Related - Only one will show up randomly">
-        @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
-            'moduleName' => 'videos',
-            'max' => 1,
-            'name' => 'videos',
-            'label' => 'Related video'
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
-            'moduleName' => 'articles',
-            'max' => 1,
-            'name' => 'sidebarArticle',
-            'label' => 'Related article',
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'max' => 1,
-            'name' => 'sidebarExhibitions',
-            'label' => 'Related Exhibition',
-            'moduleName' => 'exhibitions',
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'moduleName' => 'events',
-            'name' => 'sidebarEvent',
-            'label' => 'Related event',
-            'max' => 1
-        ])
-    </a17-fieldset>
+    @component('admin.partials.featured-related')
+        @slot('articles', 'sidebarArticle')
+        @slot('events', 'sidebarEvent')
+        @slot('exhibitions', 'sidebarExhibitions')
+        @slot('experiences', null)
+        @slot('videos', 'videos')
+    @endcomponent
 
     @include('admin.partials.related')
 
