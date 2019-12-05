@@ -17,6 +17,6 @@
                   'xlarge' => '13',
             )),
         ))
-        @slot('gtmAttributes', 'data-gtm-event="related-article" data-gtm-event-category="collection-nav"')
+        @slot('gtmAttributes', 'data-gtm-event="related-sidebar" data-gtm-event-category="collection-nav"')
     @endcomponent
 @endif
