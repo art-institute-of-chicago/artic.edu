@@ -103,6 +103,7 @@ const viewer3D = function(container) {
       annotations_visible: 0,
       preload: 0,
       camera: 0,
+      autostart: (moduleType == 'article') ? 1 : 0,
       scrollwheel: (moduleType == 'modal') ? 1 : 0,
       //orbit_constraint_pan: 1,
       transparent: hasTransparency,
@@ -186,6 +187,7 @@ const viewer3D = function(container) {
           }.bind(this)
         );
         apiVar.addEventListener('click', onClickFct);
+
       }.bind(this),
       error: function onError() {
         //error
