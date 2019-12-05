@@ -24,52 +24,18 @@
   </div>
 
   <div class="o-article__secondary-actions">
-    @if ($item->featuredRelated)
-      {{-- dupe 😢 - shows medium+ --}}
-      @component('components.blocks._inline-aside')
-          @slot('variation', 'u-show@medium+')
-          @slot('type', $item->featuredRelated['type'])
-          @slot('items', $item->featuredRelated['items'])
-          @slot('titleFont', "f-list-1")
-          @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
-          @slot('imageSettings', array(
-              'fit' => 'crop',
-              'ratio' => '16:9',
-              'srcset' => array(200,400,600),
-              'sizes' => aic_imageSizes(array(
-                    'xsmall' => '0',
-                    'small' => '23',
-                    'medium' => '18',
-                    'large' => '13',
-                    'xlarge' => '13',
-              )),
-          ))
-      @endcomponent
-    @endif
+    @component('site.shared._featuredRelated')
+        @slot('featuredRelated', $item->featuredRelated ?? null)
+        @slot('variation', 'u-show@medium+')
+    @endcomponent
   </div>
 
   @if ($item->featuredRelated)
-  {{-- dupe 😢 - hidden medium+ --}}
-  <div class="o-article__related">
-    @component('components.blocks._inline-aside')
-        @slot('type', $item->featuredRelated['type'])
-        @slot('items', $item->featuredRelated['items'])
-        @slot('titleFont', "f-list-1")
-        @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
-        @slot('imageSettings', array(
-            'fit' => 'crop',
-            'ratio' => '16:9',
-            'srcset' => array(200,400,600),
-            'sizes' => aic_imageSizes(array(
-                  'xsmall' => '58',
-                  'small' => '23',
-                  'medium' => '18',
-                  'large' => '0',
-                  'xlarge' => '0',
-            )),
-        ))
-    @endcomponent
-  </div>
+    <div class="o-article__related">
+        @component('site.shared._featuredRelated')
+            @slot('featuredRelated', $item->featuredRelated ?? null)
+        @endcomponent
+    </div>
   @endif
 
   @if ($item->short_copy)
