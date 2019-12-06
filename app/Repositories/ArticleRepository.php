@@ -10,10 +10,11 @@ use App\Models\Article;
 use App\Models\Api\Search;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\HandleFeaturedRelated;
 
 class ArticleRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiRelations, HandleApiBlocks, HandleBlocks {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleApiRelations, HandleApiBlocks, HandleBlocks, HandleFeaturedRelated {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 

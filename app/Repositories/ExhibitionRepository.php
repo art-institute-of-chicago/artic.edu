@@ -9,12 +9,13 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Models\Exhibition;
 use App\Repositories\Api\BaseApiRepository;
 
 class ExhibitionRepository extends BaseApiRepository
 {
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleRepeaters, HandleApiBlocks {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleRepeaters, HandleApiBlocks, HandleFeaturedRelated {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 

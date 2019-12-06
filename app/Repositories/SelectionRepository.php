@@ -12,11 +12,12 @@ use App\Models\Api\Search;
 
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\HandleFeaturedRelated;
 
 class SelectionRepository extends ModuleRepository
 {
 
-    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations {
+    use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations, HandleFeaturedRelated {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 

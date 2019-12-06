@@ -10,6 +10,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use App\Repositories\Api\BaseApiRepository;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Jobs\ReorderPages;
 use App\Models\GenericPage;
 use App\Models\Api\Search;
@@ -18,7 +19,7 @@ use Illuminate\Support\Arr;
 
 class GenericPageRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleApiBlocks, HandleApiRelations {
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleApiBlocks, HandleApiRelations, HandleFeaturedRelated {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
