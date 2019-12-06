@@ -105,11 +105,6 @@ class Exhibition extends AbstractModel
         return $this->apiElements()->where('relation', 'exhibitions');
     }
 
-    public function sidebarExhibitions()
-    {
-        return $this->apiElements()->where('relation', 'sidebarExhibitions');
-    }
-
     public function shopItems()
     {
         return $this->apiElements()->where('relation', 'shopItems');
@@ -138,21 +133,6 @@ class Exhibition extends AbstractModel
     public function events()
     {
         return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
-    }
-
-    public function sidebarEvent()
-    {
-        return $this->belongsToMany('App\Models\Event', 'exhibition_event_sidebar')->withPivot('position')->orderBy('position');
-    }
-
-    public function articles()
-    {
-        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
-    }
-
-    public function videos()
-    {
-        return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
     }
 
     public function offers()

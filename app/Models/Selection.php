@@ -124,26 +124,6 @@ class Selection extends AbstractModel
             ->getSearch($perPage);
     }
 
-    public function articles()
-    {
-        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
-    }
-
-    public function sidebarExhibitions()
-    {
-        return $this->apiElements()->where('relation', 'sidebarExhibitions');
-    }
-
-    public function sidebarEvent()
-    {
-        return $this->belongsToMany('App\Models\Event', 'event_selection_sidebar')->withPivot('position')->orderBy('position');
-    }
-
-    public function videos()
-    {
-        return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
-    }
-
     public function getArtworkIds()
     {
         $artwork_ids = collect([]);

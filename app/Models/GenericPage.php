@@ -161,21 +161,6 @@ class GenericPage extends AbstractModel implements Sortable
         }
     }
 
-    public function exhibitions()
-    {
-        return $this->apiElements()->where('relation', 'exhibitions');
-    }
-
-    public function events()
-    {
-        return $this->belongsToMany('App\Models\Event')->withPivot('position')->orderBy('position');
-    }
-
-    public function articles()
-    {
-        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
-    }
-
     public function categories()
     {
         return $this->belongsToMany('App\Models\PageCategory');

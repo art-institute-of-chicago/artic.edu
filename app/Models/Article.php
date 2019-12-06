@@ -159,34 +159,12 @@ class Article extends AbstractModel implements Feedable
         });
     }
 
-    public function selections()
-    {
-        return $this->belongsToMany('App\Models\Selection')->withPivot('position')->orderBy('position');
-    }
-
+    /**
+     * TODO: Drop table! Made obsolete via MigrateArticleBrowsers (WEB-1183)
+     */
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
-    }
-
-    public function sidebarExhibitions()
-    {
-        return $this->apiElements()->where('relation', 'sidebarExhibitions');
-    }
-
-    public function sidebarEvent()
-    {
-        return $this->belongsToMany('App\Models\Event', 'article_event_sidebar')->withPivot('position')->orderBy('position');
-    }
-
-    public function sidebarArticle()
-    {
-        return $this->belongsToMany('App\Models\Article', 'article_article_sidebar', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
-    }
-
-    public function videos()
-    {
-        return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
     }
 
     public static function getAllFeedItems()
