@@ -2,7 +2,7 @@
 
 namespace App\Models\Behaviors;
 
-use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 /**
  * WEB-1415: Requires HasApiRelations and HasRelations.
@@ -13,9 +13,7 @@ trait HasFeaturedRelated
 
     /**
      * Select a random element from the relationships below and return one per request.
-     *
-     * For historical reasons, there's some inconsistency in relationship names,
-     * so we attempt multiple variations and check if the method is defined.
+     * Adapted from \App\Repositories\Api\ArtistRepository::getCustomRelatedItems()
      */
     public function getFeaturedRelatedAttribute()
     {
@@ -23,54 +21,75 @@ trait HasFeaturedRelated
             return $this->selectedFeaturedRelated;
         }
 
-        $types = collect([
-            'sidebarArticle',
-            'sidebarEvent',
-            'sidebarExhibitions',
-            'sidebarExperiences',
-            'articles',
-            'events',
-            'exhibitions',
-            'videos',
-        ])->shuffle();
+        $relatedItems = $this->getRelatedWithApiModels('sidebar_items', [
+            'exhibitions' => [
+                'apiModel' => 'App\Models\Api\Exhibition',
+                'routePrefix' => 'exhibitions_events',
+                'moduleName' => 'exhibitions',
+            ],
+        ], [
+            // See $typeUsesApi in HasApiRelations class
+            'articles' => false,
+            'events' => false,
+            'exhibitions' => true, // API!
+            'interactiveFeatures.experiences' => false,
+            'videos' => false,
+        ]) ?? collect([]);
 
-        foreach ($types as $type) {
-            if (!method_exists($this, $type)) {
-                continue;
+        $now = Carbon::now();
+
+        // Filter out any unpublished items!
+        $relatedItems = $relatedItems->filter(function($relatedItem) use ($now) {
+            // TODO: Verify that we don't need to check if the exhibition is in the future?
+            if (get_class($relatedItem) === \App\Models\Api\Exhibition::class) {
+                return true;
             }
 
-            if ($item = $this->$type()->first()) {
-                switch ($type) {
-                    case 'articles':
-                        // passthrough
-                    case 'sidebarArticle':
-                        $type = 'article';
-                        break;
-                    case 'events':
-                        // passthrough
-                    case 'sidebarEvent':
-                        $type = 'event';
-                        break;
-                    case 'exhibitions':
-                        // passthrough
-                    case 'sidebarExhibitions':
-                        $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
-                        $type = 'exhibition';
-                        break;
-                    case 'sidebarExperiences':
-                        $type = 'experience';
-                        break;
-                    case 'videos':
-                        $type = 'medias';
-                        break;
-                }
+            $isPublished = isset($relatedItem->published) && $relatedItem->published;
+            $isVisible = (
+                !$relatedItem->isFillable('publish_start_date') ||
+                !isset($relatedItem->publish_start_date) ||
+                $relatedItem->publish_start_date < $now
+            ) && (
+                !$relatedItem->isFillable('publish_end_date') ||
+                !isset($relatedItem->publish_end_date) ||
+                $relatedItem->publish_end_date > $now
+            );
 
-                return $this->selectedFeaturedRelated = [
-                    'type' => Str::singular($type),
-                    'items' => [$item],
-                ];
-            }
+            return $isPublished && $isVisible;
+        })->values();
+
+        // We only want a random one that's valid...
+        $relatedItem = $relatedItems->random();
+
+        switch (get_class($relatedItem)) {
+            case \App\Models\Article::class:
+                $type = 'Article';
+                break;
+            case \App\Models\Event::class:
+                $type = 'Event';
+                break;
+            case \App\Models\Api\Exhibition::class:
+                $type = 'Exhibition';
+                break;
+            case \App\Models\Experience::class:
+                // TODO: Changing this affects both label and template filename. Separate?
+                $type = 'Experience';
+                break;
+            case \App\Models\Video::class:
+                $type = 'Media';
+                break;
+            default:
+                throw new \Exception('Cannot determine sidebar item type');
+                break;
         }
+
+        return $this->selectedFeaturedRelated = [
+            'type' => $type,
+            'items' => [
+                $relatedItem,
+            ],
+        ];
     }
 
 }
