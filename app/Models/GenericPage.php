@@ -10,6 +10,7 @@ use A17\Twill\Models\Behaviors\Sortable;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use Kalnoy\Nestedset\NodeTrait;
@@ -18,7 +19,7 @@ use Illuminate\Support\Str;
 
 class GenericPage extends AbstractModel implements Sortable
 {
-    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait, Transformable, HasApiRelations, HasFeaturedRelated;
+    use HasMediasEloquent, HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, NodeTrait, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
 
     protected $fillable = [
         'short_description',

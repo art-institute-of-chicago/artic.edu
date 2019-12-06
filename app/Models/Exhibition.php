@@ -5,11 +5,11 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Behaviors\HasApiModel;
-use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use App\Models\Page;
 use Carbon\Carbon;
@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 
 class Exhibition extends AbstractModel
 {
-    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiModel, HasApiRelations, Transformable, HasRelated, HasFeaturedRelated;
+    use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiModel, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
 
     protected $apiModel = 'App\Models\Api\Exhibition';
 

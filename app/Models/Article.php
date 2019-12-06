@@ -4,11 +4,11 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
@@ -16,7 +16,7 @@ use Spatie\Feed\FeedItem;
 
 class Article extends AbstractModel implements Feedable
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable, HasRelated, HasFeaturedRelated;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
 
     protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';

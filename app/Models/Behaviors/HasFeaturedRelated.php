@@ -4,6 +4,9 @@ namespace App\Models\Behaviors;
 
 use Illuminate\Support\Str;
 
+/**
+ * WEB-1415: Requires HasApiRelations and HasRelations.
+ */
 trait HasFeaturedRelated
 {
     protected $selectedFeaturedRelated;

@@ -6,17 +6,18 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Api\Artwork;
 use App\Models\Api\Search;
-use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
+use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
 
 use Illuminate\Support\Str;
 
 class Selection extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable, HasFeaturedRelated;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
     protected $presenter = 'App\Presenters\Admin\SelectionPresenter';
