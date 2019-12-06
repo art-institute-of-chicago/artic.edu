@@ -34,15 +34,15 @@
         @endcomponent
 
         @component('site.shared._featuredRelated')
-            @slot('featuredRelated', $featuredRelated ?? null)
+            @slot('featuredRelated', $page->featuredRelated ?? null)
             @slot('variation', 'u-show@medium+')
         @endcomponent
       </div>
 
-      @if (isset($featuredRelated) and $featuredRelated)
+      @if ($page->featuredRelated)
           <div class="o-article__related">
               @component('site.shared._featuredRelated')
-                  @slot('featuredRelated', $featuredRelated ?? null)
+                  @slot('featuredRelated', $page->featuredRelated ?? null)
               @endcomponent
           </div>
       @endif

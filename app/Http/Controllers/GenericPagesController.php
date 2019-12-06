@@ -44,7 +44,6 @@ class GenericPagesController extends FrontController
             "title" => $page->title,
             "breadcrumb" => $crumbs,
             "blocks" => null,
-            'featuredRelated' => $page->featuredRelated,
             'page' => $page,
         ]);
     }
