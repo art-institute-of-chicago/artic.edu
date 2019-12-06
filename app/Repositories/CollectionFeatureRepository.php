@@ -45,6 +45,9 @@ class CollectionFeatureRepository extends ModuleRepository
         return $fields;
     }
 
+    /**
+     * TODO: Why is this being overriden? Why do we need to do this for experiences?
+     */
     public function getFormFieldsForBrowser($object, $relation, $routePrefix = null, $titleKey = 'title', $moduleName = null)
     {
         if ($relation === 'experiences') {
