@@ -59,6 +59,11 @@ trait HasFeaturedRelated
             return $isPublished && $isVisible;
         })->values();
 
+        // Exit early if there's nothing to show
+        if ($relatedItems->count() < 1) {
+            return;
+        }
+
         // We only want a random one that's valid...
         $relatedItem = $relatedItems->random();
 
