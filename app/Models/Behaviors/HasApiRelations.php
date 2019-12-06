@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\App;
 
 namespace App\Models\Behaviors;
 
+/**
+ * TODO: Requires HasRelations. Shouldn't this just extend HasRelations, then?
+ */
 trait HasApiRelations
 {
     public function apiElements()

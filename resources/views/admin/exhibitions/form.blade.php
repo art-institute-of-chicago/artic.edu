@@ -207,11 +207,8 @@
     </a17-fieldset>
 
     @component('admin.partials.featured-related', ['form_fields' => $form_fields])
-        @slot('articles', 'articles')
-        @slot('events', 'sidebarEvent')
-        @slot('exhibitions', 'sidebarExhibitions')
-        @slot('experiences', null)
-        @slot('videos', 'videos')
+        @slot('routePrefix', 'exhibitions_events')
+        @slot('moduleName', 'exhibitions')
     @endcomponent
 
     @include('admin.partials.related')

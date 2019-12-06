@@ -61,11 +61,8 @@
 
 @section('fieldsets')
     @component('admin.partials.featured-related', ['form_fields' => $form_fields])
-        @slot('articles', 'articles')
-        @slot('events', 'sidebarEvent')
-        @slot('exhibitions', 'sidebarExhibitions')
-        @slot('experiences', null)
-        @slot('videos', 'videos')
+        @slot('routePrefix', 'collection')
+        @slot('moduleName', 'selections')
     @endcomponent
 
     @include('admin.partials.meta')
