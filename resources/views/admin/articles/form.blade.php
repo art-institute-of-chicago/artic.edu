@@ -131,11 +131,6 @@
     @component('admin.partials.featured-related', ['form_fields' => $form_fields])
         @slot('routePrefix', 'collection.articles_publications')
         @slot('moduleName', 'articles')
-        @slot('articles', 'sidebarArticle')
-        @slot('events', 'sidebarEvent')
-        @slot('exhibitions', 'sidebarExhibitions')
-        @slot('experiences', null)
-        @slot('videos', 'videos')
     @endcomponent
 
     @include('admin.partials.related')
