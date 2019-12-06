@@ -81,6 +81,8 @@
 
 @section('fieldsets')
     @component('admin.partials.featured-related', ['form_fields' => $form_fields])
+        @slot('routePrefix', 'generic')
+        @slot('moduleName', 'genericPages')
         @slot('articles', 'articles')
         @slot('events', 'events')
         @slot('exhibitions', 'exhibitions')

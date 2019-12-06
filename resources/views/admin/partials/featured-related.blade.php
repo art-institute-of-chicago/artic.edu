@@ -3,53 +3,51 @@
 
     <hr style="margin-top: 35px"/>
 
-    @if (isset($articles))
-        @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
-            'moduleName' => 'articles',
-            'max' => 1,
-            'name' => $articles ?? 'sidebarArticle',
-            'label' => 'Related article',
-        ])
-    @endif
+    @php
+        $endpoints = [];
 
-    @if (isset($events))
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'moduleName' => 'events',
-            'name' => $events ?? 'sidebarEvent',
-            'label' => 'Related event',
-            'max' => 1
-        ])
-    @endif
+        if (isset($articles)) {
+            array_push($endpoints, [
+                'label' => 'Article',
+                'value' => moduleRoute('articles', 'collection.articles_publications', 'browser')
+            ]);
+        }
 
-    @if (isset($exhibitions))
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'moduleName' => 'exhibitions',
-            'max' => 1,
-            'name' => $exhibitions ?? 'sidebarExhibitions',
-            'label' => 'Related exhibition',
-        ])
-    @endif
+        if (isset($events)) {
+            array_push($endpoints, [
+                'label' => 'Event',
+                'value' => moduleRoute('events', 'exhibitions_events', 'browser')
+            ]);
+        }
 
-    @if (isset($experiences))
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'moduleName' => 'interactiveFeatures.experiences',
-            'max' => 1,
-            'name' => $experiences ?? 'sidebarExperiences',
-            'label' => 'Related interactive feature',
-        ])
-    @endif
+        if (isset($exhibitions)) {
+            array_push($endpoints, [
+                'label' => 'Exhibition',
+                'value' => moduleRoute('exhibitions', 'exhibitions_events', 'browser')
+            ]);
+        }
 
-    @if (isset($videos))
-        @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
-            'moduleName' => 'videos',
-            'max' => 1,
-            'name' => $videos ?? 'videos',
-            'label' => 'Related video'
-        ])
-    @endif
+        if (isset($experiences)) {
+            array_push($endpoints, [
+                'label' => 'Interactive feature',
+                'value' => moduleRoute('interactiveFeatures.experiences', 'collection', 'browser')
+            ]);
+        }
+
+        if (isset($videos)) {
+            array_push($endpoints, [
+                'label' => 'Video',
+                'value' => moduleRoute('videos', 'collection.articles_publications', 'browser')
+            ]);
+        }
+    @endphp
+
+    @formField('browser', [
+        'routePrefix' => $routePrefix,
+        'moduleName' => $moduleName,
+        'name' => 'sidebar_items',
+        'endpoints' => $endpoints,
+        'max' => 4,
+        'label' => 'Sidebar items',
+    ])
 </a17-fieldset>

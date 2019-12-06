@@ -108,11 +108,10 @@
 
 @section('fieldsets')
     <a17-fieldset id="related" title="Further Reading">
-
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
-            'name' => 'further_reading_items',
             'moduleName' => 'articles',
+            'name' => 'further_reading_items',
             'endpoints' => [
                 [
                     'label' => 'Article',
@@ -130,6 +129,8 @@
     </a17-fieldset>
 
     @component('admin.partials.featured-related', ['form_fields' => $form_fields])
+        @slot('routePrefix', 'collection.articles_publications')
+        @slot('moduleName', 'articles')
         @slot('articles', 'sidebarArticle')
         @slot('events', 'sidebarEvent')
         @slot('exhibitions', 'sidebarExhibitions')
