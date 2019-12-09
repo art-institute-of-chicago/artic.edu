@@ -1,7 +1,7 @@
 @if (isset($featuredRelated) && $featuredRelated)
     @component('components.blocks._inline-aside')
         @slot('variation', $variation ?? null)
-        @slot('type', $featuredRelated['label'])
+        @slot('type', $featuredRelated['label'] ?? null)
         @slot('items', $featuredRelated['items'])
         @slot('titleFont', 'f-list-1')
         @slot('itemsMolecule', '_m-listing----'.strtolower($featuredRelated['type']))

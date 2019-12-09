@@ -70,23 +70,33 @@ trait HasFeaturedRelated
 
         switch (get_class($relatedItem)) {
             case \App\Models\Article::class:
+                // Tag is often "In the Lab", "Collection Spotlight", etc.
                 $label = 'Article';
+                $type = 'article';
                 break;
             case \App\Models\Selection::class:
-                $label = 'Highlight';
+                $label = null;
                 $type = 'selection';
                 break;
             case \App\Models\Event::class:
+                // Tag is replaced by "Tour", "Member Exclusive", etc.
                 $label = 'Event';
+                $type = 'event';
                 break;
             case \App\Models\Api\Exhibition::class:
+                // Tag is often "Closed", "Ongoing", "Closing soon", etc.
                 $label = 'Exhibition';
+                $type = 'exhibition';
                 break;
             case \App\Models\Experience::class:
-                $label = 'Experience';
+                // Tag is "Interactive Feature"
+                $label = null;
+                $type = 'experience';
                 break;
             case \App\Models\Video::class:
+                // Tag is "Video"
                 $label = 'Media';
+                $type = 'media';
                 break;
             default:
                 throw new \Exception('Cannot determine sidebar item type');
@@ -94,8 +104,8 @@ trait HasFeaturedRelated
         }
 
         return $this->selectedFeaturedRelated = [
-            'label' => $label,
-            'type' => $type ?? $label,
+            'label' => $label ?? 'Content',
+            'type' => $type,
             'items' => [
                 $relatedItem,
             ],
