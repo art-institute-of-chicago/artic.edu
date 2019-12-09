@@ -505,9 +505,6 @@
             @foreach ($articles as $item)
                 @component('components.molecules._m-listing----article')
                     @slot('imgVariation','')
-                    @if ($item->type === 'selection')
-                        @slot('singleImage',true)
-                    @endif
                     @slot('item', $item)
                     @slot('imageSettings', array(
                         'fit' => 'crop',
@@ -738,7 +735,7 @@
                             'large' => '13',
                             'xlarge' => '13',
                     )),
-                ))              
+                ))
             @endcomponent
           @endforeach
         @endcomponent
@@ -766,7 +763,7 @@
                                 'large' => '13',
                                 'xlarge' => '13',
                         )),
-                    ))              
+                    ))
                 @endcomponent
             @endforeach
         @endcomponent
