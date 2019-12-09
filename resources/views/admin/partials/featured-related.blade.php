@@ -15,6 +15,10 @@
                 'value' => moduleRoute('articles', 'collection.articles_publications', 'browser'),
             ],
             [
+                'label' => 'Highlight',
+                'value' => moduleRoute('selections', 'collection', 'browser'),
+            ],
+            [
                 'label' => 'Event',
                 'value' => moduleRoute('events', 'exhibitions_events', 'browser'),
             ],

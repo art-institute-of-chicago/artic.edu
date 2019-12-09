@@ -30,6 +30,7 @@ trait HasFeaturedRelated
         ], [
             // See $typeUsesApi in HasApiRelations class
             'articles' => false,
+            'selections' => false,
             'events' => false,
             'exhibitions' => true, // API!
             'interactiveFeatures.experiences' => false,
@@ -70,6 +71,10 @@ trait HasFeaturedRelated
         switch (get_class($relatedItem)) {
             case \App\Models\Article::class:
                 $label = 'Article';
+                break;
+            case \App\Models\Selection::class:
+                $label = 'Highlight';
+                $type = 'selection';
                 break;
             case \App\Models\Event::class:
                 $label = 'Event';

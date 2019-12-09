@@ -11,6 +11,7 @@ trait HandleFeaturedRelated
     {
         $this->updateMultiBrowserApiRelated($object, $fields, 'sidebar_items', [
             'articles' => false,
+            'selections' => false,
             'events' => false,
             'interactiveFeatures.experiences' => false,
             'videos' => false,
@@ -28,6 +29,7 @@ trait HandleFeaturedRelated
             ],
         ], [
             'articles' => false,
+            'selections' => false,
             'events' => false,
             'interactiveFeatures.experiences' => false,
             'videos' => false,
