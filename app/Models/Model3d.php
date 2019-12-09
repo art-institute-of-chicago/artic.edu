@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
-class AIC3DModel extends Model
+class Model3d extends Model
 {
     protected $table = '3d_models';
     protected $fillable = [

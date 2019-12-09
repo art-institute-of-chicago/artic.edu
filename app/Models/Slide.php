@@ -194,9 +194,9 @@ class Slide extends Model implements Sortable
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'compare_experience_modal');
     }
 
-    public function AIC3DModel()
+    public function model3d()
     {
-        return $this->belongsTo('App\Models\AIC3DModel', '3d_model_id');
+        return $this->belongsTo('App\Models\model3d', '3d_model_id');
     }
 
     public function getContentBundleAttribute()

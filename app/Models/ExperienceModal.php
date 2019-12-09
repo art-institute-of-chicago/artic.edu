@@ -64,8 +64,8 @@ class ExperienceModal extends Model implements Sortable
         return $fields;
     }
 
-    public function AIC3DModel()
+    public function model3d()
     {
-        return $this->belongsTo('App\Models\AIC3DModel', '3d_model_id');
+        return $this->belongsTo('App\Models\Model3d', '3d_model_id');
     }
 }

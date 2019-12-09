@@ -113,6 +113,7 @@
             success: (api) => {
                 api.start();
                 api.getCameraLookAt((err, camera) => {
+                    console.log(camera);
                     this.updateFormField(this.fieldName('camera_position'), camera.position);
                     this.updateFormField(this.fieldName('camera_target'), camera.target);
                 })

@@ -143,14 +143,14 @@ class Slide extends JsonResource
             })->toArray();
         }
         elseif ($this->asset_type === '3dModel') {
-            $aic3DModel = $this->AIC3DModel()->first();
-            if ($aic3DModel) {
+            $model3d = $this->model3d()->first();
+            if ($model3d) {
                 return [
-                    'model_id' => $aic3DModel->model_id,
-                    'model_caption' => $aic3DModel->model_caption,
-                    'camera_position' => $aic3DModel->camera_position,
-                    'camera_target' => $aic3DModel->camera_target,
-                    'annotation_list' => json_decode($aic3DModel->annotation_list)
+                    'model_id' => $model3d->model_id,
+                    'model_caption' => $model3d->model_caption,
+                    'camera_position' => $model3d->camera_position,
+                    'camera_target' => $model3d->camera_target,
+                    'annotation_list' => json_decode($model3d->annotation_list)
                 ];
             } else {
                 return [
@@ -205,13 +205,13 @@ class Slide extends JsonResource
 
     protected function get3DTourAttributes()
     {
-        $aic3DModel = $this->AIC3DModel()->first();
-        if ($aic3DModel) {
+        $model3d = $this->model3d()->first();
+        if ($model3d) {
             return [
-                'model_id' => $aic3DModel->model_id,
-                'camera_position' => $aic3DModel->camera_position,
-                'camera_target' => $aic3DModel->camera_target,
-                'annotation_list' => json_decode($aic3DModel->annotation_list)
+                'model_id' => $model3d->model_id,
+                'camera_position' => $model3d->camera_position,
+                'camera_target' => $model3d->camera_target,
+                'annotation_list' => json_decode($model3d->annotation_list)
             ];
         } else {
             return [

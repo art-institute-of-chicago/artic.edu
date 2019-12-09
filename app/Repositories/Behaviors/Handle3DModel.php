@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Behaviors;
 
-use App\Models\AIC3DModel;
+use App\Models\Model3d;
 use A17\Twill\Models\Media;
 use Illuminate\Support\Arr;
 
@@ -16,7 +16,7 @@ trait Handle3DModel
             && !empty($fields["{$fieldName}[camera_target]"])
             && !empty($fields["{$fieldName}[annotation_list]"])
         ) {
-            $model = AIC3DModel::updateOrCreate(
+            $model = Model3d::updateOrCreate(
                 [
                     'model_id' => $fields["{$fieldName}[model_id]"]
                 ],
@@ -32,7 +32,7 @@ trait Handle3DModel
                     'hide_annotation' => empty($fields["{$fieldName}[hide_annotation]"]) ? false : $fields["{$fieldName}[hide_annotation]"],
                 ]
             );
-            $object->AIC3DModel()->associate($model);
+            $object->model3d()->associate($model);
             $object->save();
         }
     }
@@ -42,27 +42,28 @@ trait Handle3DModel
         // Render the 3d model field in repeater block
         if ($object instanceOf \App\Models\Slide &&
         $object->secondaryExperienceModal->first() &&
-        $aic3dModel = $object->secondaryExperienceModal->first()->AIC3DModel)
+        $model3d = $object->secondaryExperienceModal->first()->model3d)
         {
             $secondaryExperienceModal = $object->secondaryExperienceModal->first();
             $aic3dFields = ['model_url', 'model_id', 'model_caption_title', 'model_caption', 'camera_position', 'guided_tour', 'camera_target', 'annotation_list', 'hide_annotation'];
             foreach ($aic3dFields as $aic3dField) {
                 array_push($fields['repeaterFields']['secondary_experience_modal'], [
                     'name' => "blocks[secondaryExperienceModal-{$secondaryExperienceModal->id}][aic_split_3d_model][{$aic3dField}]",
-                    'value' => $aic3dModel->$aic3dField
+                    'value' => $model3d->$aic3dField
                 ]);
             }        
         }
 
-        $aic3dModel = $object->AIC3DModel;
-        if ($aic3dModel) {
-            $fields["{$fieldName}[model_id]"] = $aic3dModel->model_id;
-            $fields["{$fieldName}[model_caption_title]"] = $aic3dModel->getOriginal('model_caption_title');
-            $fields["{$fieldName}[model_caption]"] = $aic3dModel->getOriginal('model_caption');
-            $fields["{$fieldName}[guided_tour]"] = $aic3dModel->getOriginal('guided_tour');
-            $fields["{$fieldName}[camera_position]"] = $aic3dModel->getOriginal('camera_position');
-            $fields["{$fieldName}[camera_target]"] = $aic3dModel->getOriginal('camera_target');
-            $fields["{$fieldName}[annotation_list]"] = $aic3dModel->getOriginal('annotation_list');
+        $model3d = $object->model3d;
+        if ($model3d) {
+            $fields["{$fieldName}[model_id]"] = $model3d->model_id;
+            $fields["{$fieldName}[model_caption_title]"] = $model3d->getOriginal('model_caption_title');
+            $fields["{$fieldName}[model_caption]"] = $model3d->getOriginal('model_caption');
+            $fields["{$fieldName}[guided_tour]"] = $model3d->getOriginal('guided_tour');
+            $fields["{$fieldName}[camera_position]"] = $model3d->getOriginal('camera_position');
+            $fields["{$fieldName}[camera_target]"] = $model3d->getOriginal('camera_target');
+            $fields["{$fieldName}[annotation_list]"] = $model3d->getOriginal('annotation_list');
+            $fields["{$fieldName}[hide_annotation]"] = $model3d->getOriginal('hide_annotation');
         };
             
         return $fields;
