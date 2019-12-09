@@ -31,6 +31,10 @@
                 'value' => moduleRoute('interactiveFeatures.experiences', 'collection', 'browser'),
             ],
             [
+                'label' => 'Digital Publication',
+                'value' => moduleRoute('digitalPublications', 'collection.articles_publications', 'browser'),
+            ],
+            [
                 'label' => 'Video',
                 'value' => moduleRoute('videos', 'collection.articles_publications', 'browser'),
             ],

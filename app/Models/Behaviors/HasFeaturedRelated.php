@@ -34,6 +34,7 @@ trait HasFeaturedRelated
             'events' => false,
             'exhibitions' => true, // API!
             'interactiveFeatures.experiences' => false,
+            'digitalPublications' => false,
             'videos' => false,
         ]) ?? collect([]);
 
@@ -92,6 +93,11 @@ trait HasFeaturedRelated
                 // Tag is "Interactive Feature"
                 $label = null;
                 $type = 'experience';
+                break;
+            case \App\Models\DigitalPublication::class:
+                // No tag
+                $label = 'Digital Publication';
+                $type = 'generic';
                 break;
             case \App\Models\Video::class:
                 // Tag is "Video"
