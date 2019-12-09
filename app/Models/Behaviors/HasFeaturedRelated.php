@@ -69,20 +69,19 @@ trait HasFeaturedRelated
 
         switch (get_class($relatedItem)) {
             case \App\Models\Article::class:
-                $type = 'Article';
+                $label = 'Article';
                 break;
             case \App\Models\Event::class:
-                $type = 'Event';
+                $label = 'Event';
                 break;
             case \App\Models\Api\Exhibition::class:
-                $type = 'Exhibition';
+                $label = 'Exhibition';
                 break;
             case \App\Models\Experience::class:
-                // TODO: Changing this affects both label and template filename. Separate?
-                $type = 'Experience';
+                $label = 'Experience';
                 break;
             case \App\Models\Video::class:
-                $type = 'Media';
+                $label = 'Media';
                 break;
             default:
                 throw new \Exception('Cannot determine sidebar item type');
@@ -90,7 +89,8 @@ trait HasFeaturedRelated
         }
 
         return $this->selectedFeaturedRelated = [
-            'type' => $type,
+            'label' => $label,
+            'type' => $type ?? $label,
             'items' => [
                 $relatedItem,
             ],
