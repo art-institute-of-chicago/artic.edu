@@ -85,28 +85,10 @@
         @endcomponent
     @endif
 
-    @if ($article->featuredRelated)
-      {{-- dupe 😢 - shows medium+ --}}
-      @component('components.blocks._inline-aside')
-          @slot('variation', 'u-show@medium+')
-          @slot('type', $article->featuredRelated['type'])
-          @slot('items', $article->featuredRelated['items'])
-          @slot('titleFont', "f-list-1")
-          @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
-          @slot('imageSettings', array(
-              'fit' => 'crop',
-              'ratio' => '16:9',
-              'srcset' => array(200,400,600),
-              'sizes' => aic_imageSizes(array(
-                    'xsmall' => '0',
-                    'small' => '23',
-                    'medium' => '18',
-                    'large' => '13',
-                    'xlarge' => '13',
-              )),
-          ))
-      @endcomponent
-    @endif
+    @component('site.shared._featuredRelated')
+        @slot('featuredRelated', $article->featuredRelated ?? null)
+        @slot('variation', 'u-show@medium+')
+    @endcomponent
   </div>
 
   @if ($article->headerType === 'gallery')
@@ -142,27 +124,11 @@
   @endif
 
   @if ($article->featuredRelated)
-  {{-- dupe 😢 - hidden medium+ --}}
-  <div class="o-article__related">
-    @component('components.blocks._inline-aside')
-        @slot('type', $article->featuredRelated['type'])
-        @slot('items', $article->featuredRelated['items'])
-        @slot('titleFont', "f-list-1")
-        @slot('itemsMolecule', '_m-listing----'.$article->featuredRelated['type'])
-        @slot('imageSettings', array(
-            'fit' => 'crop',
-            'ratio' => '16:9',
-            'srcset' => array(200,400,600),
-            'sizes' => aic_imageSizes(array(
-                  'xsmall' => '58',
-                  'small' => '23',
-                  'medium' => '18',
-                  'large' => '0',
-                  'xlarge' => '0',
-            )),
-        ))
-    @endcomponent
-  </div>
+      <div class="o-article__related">
+        @component('site.shared._featuredRelated')
+            @slot('featuredRelated', $article->featuredRelated ?? null)
+        @endcomponent
+      </div>
   @endif
 
   <div class="o-article__body o-blocks">
@@ -257,30 +223,6 @@
                 ))
             @endcomponent
         @endforeach
-    @endif
-
-    @if ($article->futherSupport)
-        @component('components.molecules._m-row-block')
-            @slot('variation', 'm-row-block--keyline-top o-blocks__block')
-            @slot('title', preg_replace('/<p>|<\/p>/i', '', $article->futherSupport['title'] ?? null))
-        @endcomponent
-        @component('components.molecules._m-row-block')
-            @slot('img', $article->futherSupport['logo'] ?? null)
-            @slot('text', $article->futherSupport['text'] ?? null)
-            @slot('variation', 'm-row-block--squared')
-            @slot('imageSettings', array(
-                'fit' => 'crop',
-                'ratio' => '1:1',
-                'srcset' => array(200,400,600),
-                'sizes' => aic_imageSizes(array(
-                      'xsmall' => '13',
-                      'small' => '10',
-                      'medium' => '5',
-                      'large' => '5',
-                      'xlarge' => '5',
-                )),
-            ))
-        @endcomponent
     @endif
 
     @if ($article->citation)

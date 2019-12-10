@@ -9,9 +9,6 @@
         @if ($item->enclosedItem())
             @component('components.molecules._m-listing----' . strtolower($item->enclosedItem()->type))
                 @slot('item', $item->enclosedItem())
-                @if ($item->enclosedItem()->type === 'selection')
-                    @slot('singleImage',true)
-                @endif
                 @slot('image', $item->enclosedItem()->featureImage)
                 @slot('variation', ($loop->first) ? 'm-listing--hero' : 'm-listing--feature')
                 @slot('titleFont', ($loop->first) ? 'f-display-1' : 'f-list-4')
@@ -163,9 +160,6 @@
             @component('components.molecules._m-listing----' . strtolower($item->enclosedItem()->type))
                 @slot('variation', 'o-pinboard__item')
                 @slot('item', $item->enclosedItem())
-                @if ($item->enclosedItem()->type === 'selection')
-                    @slot('singleImage',true)
-                @endif
                 @slot('imageSettings', array(
                     'fit' => ($item->enclosedItem()->type !== 'artwork') ? 'crop' : null,
                     'ratio' => ($item->enclosedItem()->type === 'selection') ? '1:1' : (

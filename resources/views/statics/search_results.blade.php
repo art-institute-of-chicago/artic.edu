@@ -411,9 +411,6 @@
         @foreach ($articlesAndPublications['results'] as $item)
             @component('components.molecules._m-listing----'.$item->type)
                 @slot('imgVariation','')
-                @if ($item->type === 'selection')
-                    @slot('singleImage',true)
-                @endif
                 @slot('item', $item)
                 @if (isset($articlesAndPublications['allResultsView']) and $articlesAndPublications['allResultsView'])
                     @slot('imageSettings', array(

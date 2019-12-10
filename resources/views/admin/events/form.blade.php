@@ -314,13 +314,13 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="related_elements" title="Right rail related slot">
+    <a17-fieldset id="related_elements" title="Related Events">
         @formField('browser', [
             'routePrefix' => 'exhibitions_events',
             'moduleName' => 'events',
             'name' => 'events',
             'label' => 'Related events',
-            'note' => 'Select upto 4 events',
+            'note' => 'Show up to 4 events at bottom of page',
             'max' => 4
         ])
     </a17-fieldset>

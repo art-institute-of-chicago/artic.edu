@@ -1,7 +1,9 @@
 @component('components.molecules._m-inline-aside')
     @slot('variation', $variation ?? null)
     @if (sizeof($items) === 1)
-        @slot('title', 'Related '. ($type == 'label' ? 'Interactive Feature' : ucfirst($type)))
+        @if (isset($type))
+            @slot('title', 'Related '.ucfirst($type))
+        @endif
         @component('components.molecules.'.$itemsMolecule)
             @slot('tag', 'span')
             @slot('variation', $itemsVariation ?? null)
@@ -13,7 +15,9 @@
             @slot('gtmAttributes', $gtmAttributes ?? null)
         @endcomponent
     @else
-        @slot('title', 'Related '.ucfirst($type).'s')
+        @if (isset($type))
+            @slot('title', 'Related '.ucfirst($type).'s')
+        @endif
         @component('components.organisms._o-row-listing')
             @foreach ($items as $item)
                 @component('components.molecules.'.$itemsMolecule)

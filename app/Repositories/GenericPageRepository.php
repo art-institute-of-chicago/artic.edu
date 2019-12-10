@@ -10,6 +10,7 @@ use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use App\Repositories\Api\BaseApiRepository;
 use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
+use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Jobs\ReorderPages;
 use App\Models\GenericPage;
 use App\Models\Api\Search;
@@ -18,7 +19,7 @@ use Illuminate\Support\Arr;
 
 class GenericPageRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleApiBlocks, HandleApiRelations {
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleApiBlocks, HandleApiRelations, HandleFeaturedRelated {
         HandleApiBlocks::getBlockBrowsers insteadof HandleBlocks;
     }
 
@@ -36,34 +37,11 @@ class GenericPageRepository extends ModuleRepository
         }
     }
 
-    public function hydrate($object, $fields)
-    {
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'articles', 'position', 'Article');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'events', 'position', 'Event');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'exhibitions', 'position', 'Exhibition');
-        return parent::hydrate($object, $fields);
-    }
-
     public function afterSave($object, $fields)
     {
         $object->categories()->sync($fields['categories'] ?? []);
 
-        $this->updateBrowserApiRelated($object, $fields, ['exhibitions']);
-        $this->updateBrowser($object, $fields, 'events');
-        $this->updateBrowser($object, $fields, 'articles');
-
         parent::afterSave($object, $fields);
-    }
-
-    public function getFormFields($object)
-    {
-        $fields = parent::getFormFields($object);
-
-        $fields['browsers']['exhibitions'] = $this->getFormFieldsForBrowserApi($object, 'exhibitions', 'App\Models\Api\Exhibition', 'exhibitions_events');
-        $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications');
-        $fields['browsers']['events'] = $this->getFormFieldsForBrowser($object, 'events', 'exhibitions_events');
-
-        return $fields;
     }
 
     // Show data, moved here to allow preview

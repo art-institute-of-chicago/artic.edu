@@ -50,30 +50,10 @@
   </div>
 
   <div class="o-article__secondary-actions o-article__secondary-actions--inline-header u-show@medium+">
-
-    @if ($item->featuredRelated)
-      {{-- dupe 😢 - shows medium+ --}}
-      @component('components.blocks._inline-aside')
-          @slot('variation', 'u-show@medium+')
-          @slot('type', title_case(str_replace("-", " ", $item->featuredRelated['type'])))
-          @slot('items', $item->featuredRelated['items'])
-          @slot('titleFont', "f-list-1")
-          @slot('itemsMolecule', '_m-listing----'.strtolower($item->featuredRelated['type']))
-          @slot('imageSettings', array(
-              'fit' => 'crop',
-              'ratio' => '16:9',
-              'srcset' => array(200,400,600),
-              'sizes' => aic_imageSizes(array(
-                    'xsmall' => '0',
-                    'small' => '23',
-                    'medium' => '18',
-                    'large' => '13',
-                    'xlarge' => '13',
-              )),
-          ))
-          @slot('gtmAttributes', 'data-gtm-event="related-article" data-gtm-event-category="collection-nav"')
-      @endcomponent
-    @endif
+    @component('site.shared._featuredRelated')
+        @slot('featuredRelated', $item->featuredRelated) {{-- Do not ?? --}}
+        @slot('variation', 'u-show@medium+')
+    @endcomponent
   </div>
 
   <div class="o-article__inline-header">
@@ -108,30 +88,13 @@
     @endif
   </div>
 
-  {{-- TODO: Integrate related elements. Should be loaded indirectly from related entities --}}
+  {{-- TODO: Integrate related elements? Could be loaded indirectly from related entities --}}
   @if ($item->featuredRelated)
-  {{-- dupe 😢 - hidden medium+ --}}
-  <div class="o-article__related">
-    @component('components.blocks._inline-aside')
-        @slot('type', $item->featuredRelated['type'])
-        @slot('items', $item->featuredRelated['items'])
-        @slot('titleFont', "f-list-1")
-        @slot('itemsMolecule', '_m-listing----'.strtolower($item->featuredRelated['type']))
-        @slot('imageSettings', array(
-            'fit' => 'crop',
-            'ratio' => '16:9',
-            'srcset' => array(200,400,600),
-            'sizes' => aic_imageSizes(array(
-                  'xsmall' => '58',
-                  'small' => '23',
-                  'medium' => '18',
-                  'large' => '0',
-                  'xlarge' => '0',
-            )),
-        ))
-        @slot('gtmAttributes', 'data-gtm-event="related-article" data-gtm-event-category="collection-nav"')
-    @endcomponent
-  </div>
+      <div class="o-article__related">
+          @component('site.shared._featuredRelated')
+              @slot('featuredRelated', $item->featuredRelated) {{-- Do not ?? --}}
+          @endcomponent
+      </div>
   @endif
 
   <div class="o-article__body{{ (empty($item->description) or $item->description === '') ? ' o-article__body--no-description' : '' }} o-blocks">
