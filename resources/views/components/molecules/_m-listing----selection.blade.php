@@ -4,7 +4,9 @@
             @if ($item->imageFront('hero') ?? $item->images[0] ?? false)
                 @component('components.atoms._img')
                     @slot('image', $item->imageFront('hero') ?? $item->images[0])
-                    @slot('settings', $imageSettings ?? '')
+                    @slot('settings', !isset($imageSettings) ? null : array_merge($imageSettings, [
+                        'ratio' => '1:1', // TODO: Verify $imgVariation usage?
+                    ]))
                 @endcomponent
             @else
                 <span class="default-img"></span>
