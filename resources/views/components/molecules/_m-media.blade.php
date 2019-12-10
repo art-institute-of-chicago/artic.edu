@@ -2,6 +2,7 @@
 
     $type = isset($item['type']) ? $item['type'] : 'video';
     $size = isset($item['size']) ? $item['size'] : 's';
+    $hasRestriction = isset($item['restricted']) ? $item['restricted'] : false;
     $media = $item['media'];
     $fullscreen = (isset($item['fullscreen']) && $item['fullscreen']) && (!isset($media['restrict']) || !$media['restrict']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
@@ -85,6 +86,9 @@
     if ($fullscreen and $type !== 'embed') {
       $mediaBehavior = 'openImageFullScreen';
     }
+    if ($fullscreen and $type == 'module3d') {
+      $mediaBehavior = 'triggerMediaModal';
+    }
     if ($fullscreen and $type == 'embed') {
       $mediaBehavior = 'triggerMediaModal';
     }
@@ -109,8 +113,8 @@
         }
     }
 @endphp
-<{{ $tag ?? 'figure' }} data-type="{{ $type }}" class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}>
+<{{ $tag ?? 'figure' }} data-type="{{ $type }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
+    <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
         @if ($type == 'image')
             @if ($showUrlFullscreen)
                 <a href="{!! $item['urlTitle'] !!}">
@@ -131,6 +135,11 @@
                 @slot('settings', $imageSettings ?? '')
             @endcomponent
         @elseif ($type == 'embed' and $poster and $fullscreen)
+            @component('components.atoms._img')
+                @slot('image', $poster)
+                @slot('settings', $imageSettings ?? '')
+            @endcomponent
+        @elseif ($type == 'module3d' and $poster)
             @component('components.atoms._img')
                 @slot('image', $poster)
                 @slot('settings', $imageSettings ?? '')
@@ -167,12 +176,20 @@
                 @slot('ariaLabel','Download image')
             @endcomponent
         @endif
-        @if ($type !== 'embed' and $fullscreen)
+        @if ($type !== 'embed' and $type !== 'module3d' and $fullscreen)
             @component('components.atoms._btn')
                 @slot('variation', 'm-media__btn-fullscreen btn--septenary btn--icon btn--icon-circle-48')
                 @slot('font', '')
                 @slot('icon', 'icon--zoom--24')
                 @slot('ariaLabel', 'Open image full screen')
+            @endcomponent
+        @endif
+        @if ($type == 'module3d' and $fullscreen)
+            @component('components.atoms._btn')
+                @slot('variation', 'm-media__btn-module3d btn--septenary btn--icon btn--icon-sq')
+                @slot('font', '')
+                @slot('icon', 'icon--tour3d')
+                @slot('ariaLabel', 'Open the 3D module')
             @endcomponent
         @endif
 
@@ -186,6 +203,18 @@
 
         @if ($fullscreen and $type == 'embed')
             <textarea style="display: none;">{!! is_array($media['embed']) ? Arr::first($media['embed']) : $media['embed'] !!}</textarea>
+        @endif
+
+        @if ($fullscreen and $type == 'module3d')
+            <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
+                @slot('type', 'modal')
+                @slot('uid', $media['model_id'])
+                @slot('cc', $media['cc'])
+                @slot('annotations', $media['annotation_list'])
+                @slot('artwork', $media['artwork'])
+                @slot('guided', $media['guided'])
+                @slot('title', $media['title'] ? $media['title'].' - Modal 3D' : 'Modal 3D')
+            @endcomponent</textarea>
         @endif
 
     </span>

@@ -15,6 +15,10 @@
         [
             'value' => 'image_sequence',
             'label' => 'Image Sequence'
+        ],
+        [
+            'value' => '3d_model',
+            'label' => '3D Model'
         ]
     ]
 ])
@@ -68,6 +72,16 @@
             ]
         ]
     ])
+@endcomponent
+
+@component('twill::partials.form.utils._connected_fields', [
+        'fieldName' => 'modal_type',
+        'fieldValues' => '3d_model',
+        'renderForBlocks' => true,
+        'keepAlive' => true
+])
+    <br />
+    <a17-block-aic_3d_model :name="fieldName('aic_split_3d_model')" :thumbnail="false" :caption="false" :browser="false" :cc0="false" />
 @endcomponent
 
 @formField('wysiwyg', [

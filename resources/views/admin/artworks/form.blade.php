@@ -26,4 +26,18 @@
             'disabled' => true
         ])
     </a17-fieldset>
+
+    <a17-fieldset title="3D Object" id="3dModel">
+        <a17-block-aic_3d_model name="aic_3d_model" :thumbnail="false" :caption="false" :browser="false" :cc0="false" />
+    </a17-fieldset>
 @stop
+
+@push('vuexStore')
+    @php($model3d = $item->model3d)
+    @foreach (['model_url', 'model_caption', 'model_id', 'camera_position', 'camera_target', 'annotation_list'] as $name)
+        window.STORE.form.fields.push({
+            name: "{{ 'aic_3d_model[' . $name . ']' }}",
+            value: {!! json_encode($model3d ? $model3d->$name : '') !!}
+        })
+    @endforeach
+@endpush

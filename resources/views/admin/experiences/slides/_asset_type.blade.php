@@ -13,8 +13,42 @@
                 'value' => 'seamless',
                 'label' => 'Seamless'
             ],
+            [
+                'value' => '3dModel',
+                'label' => '3D model'
+            ]
         ]
     ])
+
+    @push('extra_js')
+    <script>
+        const find3dOption = () => {
+            return [].slice.call(document.querySelectorAll("input[value='3dModel']")).find(
+                el => el.className === 'singleselector__radio'
+            )
+        }
+        const currentModuleType = window.STORE.form.fields.find(field => field.name == 'module_type').value;
+        
+        if (currentModuleType !== 'fullwidthmedia' && find3dOption()) {
+            find3dOption().parentNode.style.display = "none";
+        }
+        window.vm.$store.watch(
+            function (state) {
+                return state.form.fields;
+            },
+            function (newVal, oldVal) {
+                const moduleType = newVal.find(field => field.name == 'module_type');
+                if(moduleType && find3dOption()) {
+                    if (moduleType.value !== 'fullwidthmedia') {
+                        find3dOption().parentNode.style.display = "none";
+                    } else {
+                        find3dOption().parentNode.style.display = "block";
+                    }
+                }
+            })
+    </script>
+    @endpush
+
 @endunless
 
 @component('twill::partials.form.utils._connected_fields', [
@@ -129,4 +163,30 @@
             'maxlength' => 500,
         ])
     @endcomponent
+@endcomponent
+
+@component('twill::partials.form.utils._connected_fields', [
+    'fieldName' => 'asset_type',
+    'fieldValues' => 'standard',
+    'keepAlive' => true,
+])
+    @foreach(['split', 'fullwidthmedia'] as $moduleType)
+        @component('twill::partials.form.utils._connected_fields', [
+            'fieldName' => $moduleType . '_standard_media_type',
+            'fieldValues' => 'type_video',
+            'keepAlive' => true,
+        ])
+            @component('twill::partials.form.utils._connected_fields', [
+                'fieldName' => 'module_type',
+                'fieldValues' => $moduleType,
+                'renderForBlocks' => false,
+                'keepAlive' => true,
+            ])
+                <br/>
+                <a17-fieldset title="Video" id="video">
+                    @include('admin.experiences.slides._video_form', ['moduleType' => $moduleType])
+                </a17-fieldset>
+            @endcomponent
+        @endcomponent
+    @endforeach
 @endcomponent

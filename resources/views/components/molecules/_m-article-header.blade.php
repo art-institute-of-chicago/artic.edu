@@ -74,6 +74,7 @@
         @slot('isPublicDomain', $isPublicDomain ?? null)
         @slot('maxZoomWindowSize', $maxZoomWindowSize ?? null)
         @slot('prevNextObject', $prevNextObject ?? null)
+        @slot('module3d', $module3d ?? null)
     @endcomponent
 @else
     {{-- Default header --}}

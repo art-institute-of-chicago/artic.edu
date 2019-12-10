@@ -25,6 +25,7 @@
     @slot('isPublicDomain', !$item->is_deaccessioned && $item->is_public_domain)
     @slot('maxZoomWindowSize', $item->max_zoom_window_size)
     @slot('prevNextObject', $prevNextObject ?? null)
+    @slot('module3d', $model3d ?? null)
   @endcomponent
 
   <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+" aria-label="Additional information">
