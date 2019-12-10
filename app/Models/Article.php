@@ -4,23 +4,22 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
+use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasFeaturedRelated;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
 class Article extends AbstractModel implements Feedable
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasApiRelations, HasBlocks, Transformable, HasRelated;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
 
     protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
-
-    protected $selectedFeaturedRelated = null;
 
     protected $dispatchesEvents = [
         'saved' => \App\Events\UpdateArticle::class,
@@ -160,71 +159,13 @@ class Article extends AbstractModel implements Feedable
         });
     }
 
-    public function selections()
-    {
-        return $this->belongsToMany('App\Models\Selection')->withPivot('position')->orderBy('position');
-    }
-
+    /**
+     * TODO: Drop table! Made obsolete via MigrateArticleBrowsers (WEB-1183)
+     */
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
     }
-
-    public function sidebarExhibitions()
-    {
-        return $this->apiElements()->where('relation', 'sidebarExhibitions');
-    }
-
-    public function sidebarEvent()
-    {
-        return $this->belongsToMany('App\Models\Event', 'article_event_sidebar')->withPivot('position')->orderBy('position');
-    }
-
-    public function sidebarArticle()
-    {
-        return $this->belongsToMany('App\Models\Article', 'article_article_sidebar', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
-    }
-
-    public function videos()
-    {
-        return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
-    }
-
-    public function getFeaturedRelatedAttribute()
-    {
-        // Select a random element from those relationships below and return one per request
-        if ($this->selectedFeaturedRelated) {
-            return $this->selectedFeaturedRelated;
-        }
-
-        $types = collect(['sidebarArticle', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
-        foreach ($types as $type) {
-            if ($item = $this->$type()->first()) {
-                switch ($type) {
-                    case 'sidebarArticle':
-                        $type = 'article';
-                        break;
-                    case 'videos':
-                        $type = 'medias';
-                        break;
-                    case 'sidebarEvent':
-                        $type = 'event';
-                        break;
-                    case 'sidebarExhibitions':
-                        $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
-                        $type = 'exhibition';
-                        break;
-                }
-
-                $this->selectedFeaturedRelated = [
-                    'type' => Str::singular($type),
-                    'items' => [$item],
-                ];
-                return $this->selectedFeaturedRelated;
-            }
-        }
-    }
-
 
     public static function getAllFeedItems()
     {

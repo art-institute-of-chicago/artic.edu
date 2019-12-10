@@ -770,14 +770,6 @@ array_push($linksBarPrimarySecondary, array('label' => 'Archive', 'href' => '#')
 @component('components.atoms._hr')
 @endcomponent
 
-<p class="f-quote">m-image-stack:</p>
-@component('components.molecules._m-image-stack')
-    @slot('images', $stackImages)
-@endcomponent
-
-@component('components.atoms._hr')
-@endcomponent
-
 <p class="f-quote" id="test">date-select-trigger:</p>
 
 <p style="margin-top: 20px;">

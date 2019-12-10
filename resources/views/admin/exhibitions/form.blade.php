@@ -3,7 +3,7 @@
         ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
         ['fieldset' => 'attributes', 'label' => 'Attributes'],
         ['fieldset' => 'related', 'label' => 'Related'],
-        ['fieldset' => 'side_related', 'label' => 'Right rail related slot'],
+        ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
         ['fieldset' => 'offers', 'label' => 'Offers and Products'],
         ['fieldset' => 'api', 'label' => 'Datahub fields'],
     ]
@@ -206,39 +206,10 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="side_related" title="Right rail related slot - Only one will show up randomly">
-        @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
-            'moduleName' => 'videos',
-            'max' => 1,
-            'name' => 'videos',
-            'label' => 'Related video'
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
-            'moduleName' => 'articles',
-            'max' => 1,
-            'name' => 'articles',
-            'label' => 'Related article',
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'max' => 1,
-            'name' => 'sidebarExhibitions',
-            'label' => 'Related exhibition',
-            'moduleName' => 'exhibitions',
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'moduleName' => 'events',
-            'name' => 'sidebarEvent',
-            'label' => 'Related event',
-            'max' => 1
-        ])
-    </a17-fieldset>
+    @component('admin.partials.featured-related', ['form_fields' => $form_fields])
+        @slot('routePrefix', 'exhibitions_events')
+        @slot('moduleName', 'exhibitions')
+    @endcomponent
 
     @include('admin.partials.related')
 

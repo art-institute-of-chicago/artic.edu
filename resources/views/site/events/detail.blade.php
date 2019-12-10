@@ -55,17 +55,6 @@
         @endif
         @slot('eventName',$item->present()->title)
     @endcomponent
-
-    @if ($item->featuredRelated)
-      {{-- dupe 😢 - shows medium+ --}}
-      @component('components.blocks._inline-aside')
-          @slot('variation', 'u-show@medium+')
-          @slot('type', $item->featuredRelated['type'])
-          @slot('items', $item->featuredRelated['items'])
-          @slot('titleFont', "f-list-1")
-          @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
-      @endcomponent
-    @endif
   </div>
 
   @if ($item->description and $item->headerType !== 'super-hero')
@@ -74,18 +63,6 @@
         @slot('font', 'f-deck')
         @slot('tag', 'span')
         {!! $item->present()->description !!}
-    @endcomponent
-  </div>
-  @endif
-
-  @if ($item->featuredRelated)
-  {{-- dupe 😢 - hidden medium+ --}}
-  <div class="o-article__related">
-    @component('components.blocks._inline-aside')
-        @slot('type', $item->featuredRelated['type'])
-        @slot('items', $item->featuredRelated['items'])
-        @slot('titleFont', "f-list-1")
-        @slot('itemsMolecule', '_m-listing----'.$item->featuredRelated['type'])
     @endcomponent
   </div>
   @endif

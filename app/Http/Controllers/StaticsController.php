@@ -304,11 +304,6 @@ class StaticsController extends FrontController {
     $article->push('blocks', $this->generateBlocks(6));
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('sponsors', $this->generateBlocks(2));
-    $article->push('futherSupport', array(
-      'logo' => $this->getImage(),
-      'title' => "Further support has been provided by",
-      'text' => $this->faker->paragraph(5),
-    ));
     // $article->push('relatedEventsByDay', $this->makeEventsByDates(1));
     $article->push('relatedExhibitions', $this->getExhibitions(4));
     $article->push('featuredRelated', array(
@@ -375,7 +370,6 @@ class StaticsController extends FrontController {
     $article->push('type', null);
     $article->push('speakers', null);
     $article->push('sponsors', null);
-    $article->push('futherSupport', null);
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
@@ -398,7 +392,6 @@ class StaticsController extends FrontController {
     $article->push('type', null);
     $article->push('speakers', null);
     $article->push('sponsors', null);
-    $article->push('futherSupport', null);
     $article->push('intro', null);
     $article->push('title', "Lorem");
     // now push to a view
@@ -458,11 +451,6 @@ class StaticsController extends FrontController {
     $article->push('blocks', $blocks);
     $article->push('intro', $this->faker->paragraph(6, false));
     $article->push('sponsors', $this->generateBlocks(2));
-    $article->push('futherSupport', array(
-      'logo' => $this->getImage(),
-      'title' => "Further support has been provided by",
-      'text' => $this->faker->paragraph(5),
-    ));
     $article->push('relatedArticles', $this->getArticles(4));
     $article->push('featuredRelated', array(
       'type' => 'event',
@@ -4199,11 +4187,6 @@ class StaticsController extends FrontController {
       )
     );
     $article->push('sponsors', $this->generateBlocks(2));
-    $article->push('futherSupport', array(
-      'logo' => $this->getImage(),
-      'title' => "<p>Further support has been provided by</p>",
-      'text' => $this->faker->paragraph(5),
-    ));
     $article->push('ticketLink', '#');
     $article->push('ticketPrices', '<p>$10 students</p><p>$20 members</p><p>$30 non-members</p>');
     $article->push('nav', $nav);

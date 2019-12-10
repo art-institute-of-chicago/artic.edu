@@ -1,4 +1,9 @@
-@extends('twill::layouts.form')
+@extends('twill::layouts.form', [
+    'additionalFieldsets' => [
+        ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
+        ['fieldset' => 'metadata', 'label' => 'Metadata'],
+    ]
+])
 
 @section('contentFields')
     @formField('input', [
@@ -75,32 +80,10 @@
 @stop
 
 @section('fieldsets')
-    <a17-fieldset id="related" title="Related">
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'max' => 1,
-            'moduleName' => 'exhibitions',
-            'name' => 'exhibitions',
-            'label' => 'Related exhibitions'
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'exhibitions_events',
-            'moduleName' => 'events',
-            'name' => 'events',
-            'label' => 'Related events',
-            'max' => 1
-        ])
-
-        @formField('browser', [
-            'routePrefix' => 'collection.articles_publications',
-            'moduleName' => 'articles',
-            'name' => 'articles',
-            'label' => 'Related articles',
-            'max' => 1
-        ])
-
-    </a17-fieldset>
+    @component('admin.partials.featured-related', ['form_fields' => $form_fields])
+        @slot('routePrefix', 'generic')
+        @slot('moduleName', 'genericPages')
+    @endcomponent
 
     {{-- TODO: Use 'admin.partials.meta' as a component --}}
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">

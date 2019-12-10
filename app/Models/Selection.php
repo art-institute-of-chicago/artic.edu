@@ -6,16 +6,18 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Api\Artwork;
 use App\Models\Api\Search;
-use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
+use App\Models\Behaviors\HasApiRelations;
+use App\Models\Behaviors\HasFeaturedRelated;
 
 use Illuminate\Support\Str;
 
 class Selection extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
     protected $presenter = 'App\Presenters\Admin\SelectionPresenter';
@@ -121,58 +123,6 @@ class Selection extends AbstractModel
             ->byIds($this->getArtworkIds()->toArray())
             ->aggregationClassifications(50)
             ->getSearch($perPage);
-    }
-
-    public function articles()
-    {
-        return $this->belongsToMany('App\Models\Article')->withPivot('position')->orderBy('position');
-    }
-
-    public function sidebarExhibitions()
-    {
-        return $this->apiElements()->where('relation', 'sidebarExhibitions');
-    }
-
-    public function sidebarEvent()
-    {
-        return $this->belongsToMany('App\Models\Event', 'event_selection_sidebar')->withPivot('position')->orderBy('position');
-    }
-
-    public function videos()
-    {
-        return $this->belongsToMany('App\Models\Video')->withPivot('position')->orderBy('position');
-    }
-
-    public function getFeaturedRelatedAttribute()
-    {
-        // Select a random element from these relationships below and return one per request
-        if ($this->selectedFeaturedRelated) {
-            return $this->selectedFeaturedRelated;
-        }
-
-        $types = collect(['articles', 'videos', 'sidebarExhibitions', 'sidebarEvent'])->shuffle();
-        foreach ($types as $type) {
-            if ($item = $this->$type()->first()) {
-                switch ($type) {
-                    case 'videos':
-                        $type = 'medias';
-                        break;
-                    case 'sidebarEvent':
-                        $type = 'event';
-                        break;
-                    case 'sidebarExhibitions':
-                        $item = $this->apiModels('sidebarExhibitions', 'Exhibition')->first();
-                        $type = 'exhibition';
-                        break;
-                }
-
-                $this->selectedFeaturedRelated = [
-                    'type' => Str::singular($type),
-                    'items' => [$item],
-                ];
-                return $this->selectedFeaturedRelated;
-            }
-        }
     }
 
     public function getArtworkIds()
