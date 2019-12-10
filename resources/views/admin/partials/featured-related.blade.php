@@ -8,7 +8,7 @@
         'moduleName' => $moduleName,
         'name' => 'sidebar_items',
         'label' => 'Sidebar items',
-        'max' => 10,
+        'max' => 1,
         'endpoints' => [
             [
                 'label' => 'Article',
