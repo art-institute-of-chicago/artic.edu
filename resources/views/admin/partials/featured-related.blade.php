@@ -1,8 +1,4 @@
 <a17-fieldset id="side_related" title="Sidebar Related">
-    <p>One of the following items will be randomly selected and shown in the right sidebar.</p>
-
-    <hr style="margin-top: 35px"/>
-
     @formField('browser', [
         'routePrefix' => $routePrefix,
         'moduleName' => $moduleName,
