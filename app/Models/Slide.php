@@ -196,7 +196,7 @@ class Slide extends Model implements Sortable
 
     public function model3d()
     {
-        return $this->belongsTo('App\Models\model3d', '3d_model_id');
+        return $this->belongsTo('App\Models\Model3d', '3d_model_id');
     }
 
     public function getContentBundleAttribute()
