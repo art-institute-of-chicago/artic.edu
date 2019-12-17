@@ -1,4 +1,8 @@
-@extends('twill::layouts.form')
+@extends('twill::layouts.form', [
+    'additionalFieldsets' => [
+        ['fieldset' => 'testing', 'label' => 'Testing'],
+    ]
+])
 
 @section('contentFields')
 
@@ -52,3 +56,32 @@
     ])
 
 @stop
+
+
+@section('fieldsets')
+
+    <a17-fieldset id="testing" title="Testing">
+
+        @formField('checkbox', [
+            'name' => 'show_affiliate_test',
+            'label' => 'Show "Send affiliate test" option'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'show_member_test',
+            'label' => 'Show "Send member test" option'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'show_sustaining_fellow_test',
+            'label' => 'Show "Send sustaining fellow test" option'
+        ])
+
+        @formField('checkbox', [
+            'name' => 'show_nonmember_test',
+            'label' => 'Show "Send nonmember test" option'
+        ])
+
+    </a17-fieldset>
+
+@endsection
