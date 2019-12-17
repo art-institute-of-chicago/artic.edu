@@ -500,6 +500,91 @@
             <br>
 
             <p><b>Note:</b> This is the questionnaire for event options or guest names, not the Event Response Survey.</p>
+
+            <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
+
+            @formField('checkbox', [
+                'name' => 'send_test_emails',
+                'label' => 'Send test emails after save',
+            ])
+
+            @component('twill::partials.form.utils._connected_fields', [
+                'fieldName' => 'send_test_emails',
+                'renderForBlocks' => false,
+                'fieldValues' => true
+            ])
+
+                <hr style="height: 5px; margin: 30px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
+
+                <p>Please select which test emails you'd like to send:</p>
+
+                @foreach ( \App\Models\EmailSeries::ordered()->get() as $series)
+
+                    @php
+                        $currentSeriesName = 'email_series_' . $series->id;
+                        $currentSeriesTitle = $series->title;
+
+                        if (isset($series->timing_message)) {
+                            $currentSeriesTitle .= ' (' . $series->timing_message . ')';
+                        }
+                    @endphp
+
+                    @component('twill::partials.form.utils._connected_fields', [
+                        'fieldName' => $currentSeriesName,
+                        'renderForBlocks' => false,
+                        'fieldValues' => true
+                    ])
+
+                        @formField('checkbox', [
+                            'name' => $currentSeriesName . '_test',
+                            'label' => $currentSeriesTitle,
+                        ])
+
+                        @php
+                            $subFields = \App\Models\EmailSeries::$memberTypes;
+
+                            $enabledSubFields = array_filter($subFields, function ($subFieldName) use ($series) {
+                                return $series->{'show_' . $subFieldName . '_test'};
+                            }, ARRAY_FILTER_USE_KEY);
+                        @endphp
+
+                        @if (count($enabledSubFields) < 1)
+
+                            <div style="padding-left: 25px; padding-top: 20px; font-style: italic">
+                                <b>Warning:</b> No "Send [Audience] Test" options enabled for the above email series! No tests will be sent for it.
+                            </div>
+
+                        @elseif(count($enabledSubFields) > 1)
+
+                            @component('twill::partials.form.utils._connected_fields', [
+                                'fieldName' => $currentSeriesName . '_test',
+                                'renderForBlocks' => false,
+                                'fieldValues' => true
+                            ])
+
+                                <div style="padding-left: 35px">
+
+                                    @foreach ($enabledSubFields as $subFieldName => $subFieldLabel)
+
+                                        @formField('checkbox', [
+                                            'name' => $currentSeriesName . '_test_' . $subFieldName,
+                                            'label' => 'Send ' . $subFieldLabel . ' test',
+                                        ])
+
+                                    @endforeach
+
+                                </div>
+
+                            @endcomponent
+
+                        @endif
+
+                    @endcomponent
+
+                @endforeach
+
+            @endcomponent
+
         @endcomponent
 
     </a17-fieldset>

@@ -213,6 +213,10 @@ class Event extends AbstractModel
             ->belongsToMany('App\Models\EmailSeries', 'event_email_series')
             ->using('App\Models\EventEmailSeries')
             ->withPivot(
+                'send_affiliate_test',
+                'send_member_test',
+                'send_sustaining_fellow_test',
+                'send_nonmember_test',
                 'override_affiliate',
                 'override_member',
                 'override_sustaining_fellow',
