@@ -77,6 +77,13 @@ class EventRepository extends ModuleRepository
 
                 $pivotAttributes = [];
 
+                $isOnlyOneTestAudienceFieldShown = 1 === collect([
+                    $series->show_affiliate_test,
+                    $series->show_member_test,
+                    $series->show_sustaining_fellow_test,
+                    $series->show_nonmember_test,
+                ])->filter()->count();
+
                 foreach (array_keys(EmailSeries::$memberTypes) as $type) {
                     $pivotAttributes['override_' .$type] = $fields['email_series_' .$series->id .'_' .$type .'_override'] ?? false;
                     if ($pivotAttributes['override_' .$type]) {
@@ -84,6 +91,18 @@ class EventRepository extends ModuleRepository
                     } else {
                         $pivotAttributes[$type .'_copy'] = null;
                     }
+
+                    $pivotAttributes['send_' . $type . '_test'] = (
+                        $fields['send_test_emails'] ?? false
+                    ) && (
+                        $fields['email_series_' .$series->id .'_test'] ?? false
+                    ) && (
+                        (
+                            $fields['email_series_' .$series->id .'_test_' .$type] ?? false
+                        ) || (
+                            $isOnlyOneTestAudienceFieldShown && $series->{'show_' .$type .'_test'} === true
+                        )
+                    );
                 }
 
                 if (count($pivotAttributes) > 0) {
