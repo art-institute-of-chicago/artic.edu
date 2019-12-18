@@ -516,6 +516,16 @@
 
                 <hr style="height: 5px; margin: 30px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
+                <p>By default, test emails will be sent to the Email Marketing Manager and to any addresses specified in the list that is associated with this event's host in Salesforce. Use this field to add your email to the list of recipients.</p>
+
+                @formField('input', [
+                    'name' => 'test_emails',
+                    'label' => 'Extra Email Addresses',
+                    'note' => 'One or more comma-separated email addresses',
+                ])
+
+                <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
+
                 <p>Please select which test emails you'd like to send:</p>
 
                 @foreach ( \App\Models\EmailSeries::ordered()->get() as $series)

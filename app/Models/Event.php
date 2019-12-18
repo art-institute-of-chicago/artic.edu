@@ -76,6 +76,7 @@ class Event extends AbstractModel
         'show_presented_by',
         'event_host_id',
         'entrance',
+        'test_emails',
         'publish_start_date',
         'publish_end_date',
     ];
@@ -860,6 +861,12 @@ class Event extends AbstractModel
                 "doc" => "URL to the survey associated with this event",
                 "type" => "string",
                 "value" => function () {return $this->survey_url;},
+            ],
+            [
+                "name" => "test_emails",
+                "doc" => "Extra email addresses to which to send email series tests",
+                "type" => "string",
+                "value" => function () {return $this->test_emails;},
             ],
             [
                 "name" => "email_series",
