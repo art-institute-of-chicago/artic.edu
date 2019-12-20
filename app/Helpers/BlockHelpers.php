@@ -6,7 +6,14 @@ if (!function_exists('getBlocksForEditor')) {
      */
     function getBlocksForEditor($toUse = [])
     {
-        return array_intersect(array_keys(config('twill.block_editor.blocks')), $toUse);
+        $allBlocks = array_keys(config('twill.block_editor.blocks'));
+
+        // Hide 3D blocks from production until they're ready for production use
+        if ( app()->environment('production')) {
+            $allBlocks = array_except($allBlocks, ['3d_model', '3d_tour', '3d_embed']);
+        }
+
+        return array_intersect($allBlocks, $toUse);
     }
 }
 
