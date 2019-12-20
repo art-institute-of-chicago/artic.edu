@@ -44,6 +44,7 @@ class ArtworkController extends BaseScopedController
         // Start building data for output to view
         $viewData = [
             'item' => $item,
+            'model3d' => $item->model3d,
             'contrastHeader'    => $item->present()->contrastHeader,
             'borderlessHeader'  => $item->present()->borderlessHeader,
             'primaryNavCurrent' => 'collection',

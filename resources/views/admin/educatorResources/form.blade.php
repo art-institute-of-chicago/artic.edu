@@ -50,7 +50,7 @@
             'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
             'list', 'artwork', 'artworks', 'hr', 'citiation', 'split_block',
             'accordion', 'membership_banner', 'timeline', 'link',
-            'newsletter_signup_inline', 'button', 'mobile_app', 'tour_stop',
+            'newsletter_signup_inline', 'button', 'mobile_app', 'tour_stop','3d_model'
         ])
     ])
 @stop

@@ -194,6 +194,11 @@ class Slide extends Model implements Sortable
         return $this->morphMany('App\Models\ExperienceImage', 'imagable')->where('imagable_repeater_name', 'compare_experience_modal');
     }
 
+    public function model3d()
+    {
+        return $this->belongsTo('App\Models\Model3d', '3d_model_id');
+    }
+
     public function getContentBundleAttribute()
     {
         return SlideResource::collection(collect([$this]))->toArray(request());
@@ -203,4 +208,5 @@ class Slide extends Model implements Sortable
     {
         return $this->experience->assetLibrary;
     }
+
 }

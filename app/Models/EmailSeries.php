@@ -28,6 +28,10 @@ class EmailSeries extends AbstractModel implements Sortable
         'show_member',
         'show_sustaining_fellow',
         'show_nonmember',
+        'show_affiliate_test',
+        'show_member_test',
+        'show_sustaining_fellow_test',
+        'show_nonmember_test',
         'position',
         'published',
     ];
@@ -37,6 +41,10 @@ class EmailSeries extends AbstractModel implements Sortable
         'show_member',
         'show_sustaining_fellow',
         'show_nonmember',
+        'show_affiliate_test',
+        'show_member_test',
+        'show_sustaining_fellow_test',
+        'show_nonmember_test',
         'published',
     ];
 
@@ -45,6 +53,10 @@ class EmailSeries extends AbstractModel implements Sortable
         'show_member' => 'boolean',
         'show_sustaining_fellow' => 'boolean',
         'show_nonmember' => 'boolean',
+        'show_affiliate_test' => 'boolean',
+        'show_member_test' => 'boolean',
+        'show_sustaining_fellow_test' => 'boolean',
+        'show_nonmember_test' => 'boolean',
         'published' => 'boolean',
     ];
 
@@ -92,6 +104,30 @@ class EmailSeries extends AbstractModel implements Sortable
                 'doc' => 'Whether to show the "Include nonmember-specific copy" option',
                 'type' => 'boolean',
                 'value' => function () {return $this->show_nonmember;},
+            ],
+            [
+                "name" => 'show_affiliate_test',
+                'doc' => 'Whether to show the "Send affiliate test" option',
+                'type' => 'boolean',
+                'value' => function () {return $this->show_affiliate_test;},
+            ],
+            [
+                "name" => 'show_member_test',
+                'doc' => 'Whether to show the "Send member test" option',
+                'type' => 'boolean',
+                'value' => function () {return $this->show_member_test;},
+            ],
+            [
+                "name" => 'show_sustaining_fellow_test',
+                'doc' => 'Whether to show the "Send sustaining fellow test" option',
+                'type' => 'boolean',
+                'value' => function () {return $this->show_sustaining_fellow_test;},
+            ],
+            [
+                "name" => 'show_nonmember_test',
+                'doc' => 'Whether to show the "Send nonmember test" option',
+                'type' => 'boolean',
+                'value' => function () {return $this->show_nonmember_test;},
             ],
         ];
     }

@@ -4,6 +4,7 @@ const triggerMediaModal = function(container) {
 
   function _handleClicks(event) {
     var textarea = container.querySelector('textarea');
+    if (!textarea) textarea = container.parentNode.querySelector('textarea');
     if (textarea) {
       var embedCode = textarea.value;
       if (embedCode) {
@@ -11,9 +12,18 @@ const triggerMediaModal = function(container) {
         event.stopPropagation();
         triggerCustomEvent(document, 'modal:open', {
           type: 'media',
+          restricted: (container.parentNode.dataset.restricted == 'true') ? true : false,
+          module3d: (container.parentNode.dataset.type == 'module3d') ? true : false,
           embedCode: embedCode,
           subtype: container.getAttribute('data-subtype') || null,
         });
+        if(container.parentNode.dataset.type == 'module3d' && container.dataset.title) {
+          triggerCustomEvent(document, 'gtm:push', {
+            'event': '3D-open-modal',
+            'eventCategory': 'in-page',
+            'eventAction': container.dataset.title+' - Modal 3D'
+          });
+        }
       }
     }
   }

@@ -10,10 +10,11 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Slide;
 use App\Repositories\Behaviors\HandleExperienceModule;
+use App\Repositories\Behaviors\Handle3DModel;
 
 class SlideRepository extends ModuleRepository
 {
-    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleExperienceModule;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions, HandleExperienceModule, Handle3DModel;
 
     public function __construct(Slide $model)
     {
@@ -38,6 +39,9 @@ class SlideRepository extends ModuleRepository
         $this->updateExperienceModule($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
         $this->updateExperienceModule($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
         $this->updateExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
+        if (in_array($object->module_type, ['3dtour', 'split', 'fullwidthmedia'])) {
+            $this->handle3DModel($object, $fields);
+        }
         parent::afterSave($object, $fields);
     }
 
@@ -60,6 +64,8 @@ class SlideRepository extends ModuleRepository
         $fields = $this->getExperienceModule($object, $fields, 'attractExperienceImages', 'ExperienceImage', 'attract_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'endBackgroundExperienceImages', 'ExperienceImage', 'end_bg_experience_image');
         $fields = $this->getExperienceModule($object, $fields, 'endExperienceImages', 'ExperienceImage', 'end_experience_image');
+        $fields = $this->getFormFieldsFor3DModel($object, $fields, 'aic_3d_model');
+        $fields = $this->getFormFieldsFor3DModel($object, $fields, 'aic_split_3d_model');
         return $fields;
     }
 
@@ -77,4 +83,6 @@ class SlideRepository extends ModuleRepository
         $end_slide->save();
         return $slide;
     }
+
+
 }

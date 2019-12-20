@@ -125,7 +125,7 @@
             'event', 'paragraph', 'image', 'video', 'gallery',
             'media_embed', 'quote', 'list', 'accordion', 'newsletter_signup_inline',
             'timeline', 'link', 'artwork', 'artworks',
-            'hr', 'split_block', 'tour_stop', 'button', 'mobile_app'
+            'hr', 'split_block', 'tour_stop', 'button', 'mobile_app', '3d_model'
         ])
     ])
 @stop

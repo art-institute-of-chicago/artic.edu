@@ -52,13 +52,13 @@ $ npm run toolkit
 To generate CMS build with 'watch' task running (to run locally, not in the VM, and it requires that you have the `npm ci` command available):
 
 ```
-$ npm run cms-dev
+$ npm run twill-dev
 ```
 
 To generate a production CMS build:
 
 ```
-$ npm run cms-prod
+$ npm run twill-build
 ```
 
 ### Deployment

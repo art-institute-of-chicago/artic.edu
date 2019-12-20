@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\SlideMedia as SlideMediaResource;
 use App\Http\Resources\SlideModal as SlideModalResource;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Slide extends JsonResource
@@ -42,6 +43,9 @@ class Slide extends JsonResource
                 break;
             case 'compare':
                 return $this->getCompareAttributes();
+                break;
+            case '3dtour':
+                return $this->get3DTourAttributes();
                 break;
             case 'end':
                 return $this->getEndAttributes();
@@ -138,6 +142,22 @@ class Slide extends JsonResource
                 return $image->image('experience_image');
             })->toArray();
         }
+        elseif ($this->asset_type === '3dModel') {
+            $model3d = $this->model3d()->first();
+            if ($model3d) {
+                return [
+                    'model_id' => $model3d->model_id,
+                    'model_caption' => $model3d->model_caption,
+                    'camera_position' => $model3d->camera_position,
+                    'camera_target' => $model3d->camera_target,
+                    'annotation_list' => json_decode($model3d->annotation_list)
+                ];
+            } else {
+                return [
+    
+                ];
+            }
+        }
         else {
             $src = '';
         }
@@ -181,6 +201,23 @@ class Slide extends JsonResource
             'modal1' => $compareModal1 ? (new SlideMediaResource($compareModal1))->toArray(request()) : null,
             'modal2' => $compareModal2 ? (new SlideMediaResource($compareModal2))->toArray(request()) : null,
         ];
+    }
+
+    protected function get3DTourAttributes()
+    {
+        $model3d = $this->model3d()->first();
+        if ($model3d) {
+            return [
+                'model_id' => $model3d->model_id,
+                'camera_position' => $model3d->camera_position,
+                'camera_target' => $model3d->camera_target,
+                'annotation_list' => json_decode($model3d->annotation_list)
+            ];
+        } else {
+            return [
+
+            ];
+        }
     }
 
     protected function getEndAttributes()
@@ -280,6 +317,10 @@ class Slide extends JsonResource
                 ],
                 'modals' => SlideModalResource::collection($this->modal)->toArray(request()),
             ];
+        }
+
+        if ($this->module_type === '3dtour') {
+            Arr::forget($rst, ['seamlessAsset', 'assetType', '__mediaType', 'media', 'headline', 'vScalePercent']);
         }
 
         return $rst;
