@@ -280,7 +280,7 @@ return [
                 'title' => 'Image',
                 'trigger' => 'Add Image',
                 'component' => 'a17-block-experience_image_with_caption',
-                'max' => 3,
+                'max' => 4,
             ],
             'seamless_experience_image' => [
                 'title' => 'Image',
