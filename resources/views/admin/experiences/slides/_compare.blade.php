@@ -6,7 +6,7 @@
     @formField('input', [
         'name' => 'compare_title',
         'label' => 'Primary Copy',
-        'maxlength' => 150,
+        'maxlength' => 500,
     ])
 
     @component('twill::partials.form.utils._connected_fields', [
