@@ -3,7 +3,7 @@
     'fieldValues' => 'compare',
     'keepAlive' => true,
 ])
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'compare_title',
         'label' => 'Primary Copy',
         'maxlength' => 500,
