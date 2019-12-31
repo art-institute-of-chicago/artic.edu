@@ -63,7 +63,9 @@ Route::name('search.artworks')->get('/search/artworks', 'SearchController@artwor
 Route::name('search.press-releases')->get('/search/press-releases', 'SearchController@pressReleases');
 Route::name('search.research-guides')->get('/search/research-guides', 'SearchController@researchGuides');
 Route::name('search.exhibitions')->get('/search/exhibitions', 'SearchController@exhibitions');
-Route::name('search.interactive-features')->get('/search/interactive-features', 'SearchController@interactiveFeatures');
+if (!app()->environment('production')) {
+    Route::name('search.interactive-features')->get('/search/interactive-features', 'SearchController@interactiveFeatures');
+}
 
 // Events routes
 Route::name('events')->get('/events', 'EventsController@index');
