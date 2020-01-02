@@ -46,11 +46,6 @@
         'fieldValues' => '3dModel',
         'isEqual' => false
     ])
-        @formField('wysiwyg', [
-            'name' => 'caption',
-            'label' => 'Caption',
-            'maxlength' => 500,
-        ])
     @endcomponent
     @formField('checkbox', [
         'name' => 'fullwidth_inset',

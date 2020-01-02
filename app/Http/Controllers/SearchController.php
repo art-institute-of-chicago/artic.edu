@@ -122,7 +122,7 @@ class SearchController extends BaseScopedController
             'events'   => $events,
             'pages'    => $pages,
             'exhibitions'  => $exhibitions,
-            'interactiveFeatures'  => $interactiveFeatures,
+            'interactiveFeatures'  => (!app()->environment('production')) ? $interactiveFeatures : null,
             'publications' => $publications,
             'pressReleases'  => $press,
             'researchGuides' => $guides,
