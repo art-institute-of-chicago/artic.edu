@@ -141,6 +141,10 @@ return [
                         'title' => 'Journal Issues',
                         'module' => true,
                     ],
+                    'journalArticles' => [
+                        'title' => 'Journal Articles',
+                        'module' => true,
+                    ],
                 ],
             ],
             'research_resources' => [
