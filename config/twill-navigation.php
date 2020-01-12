@@ -137,6 +137,10 @@ return [
                         'title' => 'Digital Publications',
                         'module' => true,
                     ],
+                    'journalIssues' => [
+                        'title' => 'Journal Issues',
+                        'module' => true,
+                    ],
                 ],
             ],
             'research_resources' => [

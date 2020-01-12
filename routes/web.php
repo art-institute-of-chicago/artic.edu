@@ -80,6 +80,10 @@ Route::name('articles_publications')->get('/articles_publications', 'ArticlesPub
 Route::name('articles')->get('/articles', 'ArticleController@index');
 Route::name('articles.show')->get('/articles/{id}/{slug?}', 'ArticleController@show');
 
+// Journal Issues routes
+Route::name('collection.articles_publications.journalIssues')->get('/journal/issues', 'JournalIssuesController@index');
+Route::name('collection.articles_publications.journalIssues.show')->get('/journal/issues/{id}/{slug?}', 'JournalIssuesController@show');
+
 // Videos routes
 Route::name('videos')->get('videos', function () {return abort(404);});
 Route::name('videos.show')->get('/videos/{slug}', 'VideoController@show');
