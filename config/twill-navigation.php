@@ -259,12 +259,12 @@ $nav = [
 
 ];
 
-if (env('APP_ENV') !== 'production') {
-    $nav['collection']['primary_navigation']['articles_publications']['journalIssues'] = [
+if (config('app.env') !== 'production') {
+    $nav['collection']['primary_navigation']['articles_publications']['secondary_navigation']['journalIssues'] = [
         'title' => 'Journal Issues',
         'module' => true,
     ];
-    $nav['collection']['primary_navigation']['articles_publications']['journalArticles'] = [
+    $nav['collection']['primary_navigation']['articles_publications']['secondary_navigation']['journalArticles'] = [
         'title' => 'Journal Articles',
         'module' => true,
     ];
