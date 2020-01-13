@@ -80,7 +80,7 @@ trait HasApiModel
      */
     public function getTitleAttribute()
     {
-        return $this->getApiModelFilledCached()->title;
+        return $this->getApiModelFilledCached()->title ?? $this->attributes['title'] ?? null;
     }
 
     /**
