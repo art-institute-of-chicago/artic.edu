@@ -1,6 +1,6 @@
 <?php
 
-return [
+$nav = [
     'homepage' => [
         'title' => 'Homepage',
         'route' => 'admin.homepage.landing',
@@ -137,14 +137,6 @@ return [
                         'title' => 'Digital Publications',
                         'module' => true,
                     ],
-                    'journalIssues' => [
-                        'title' => 'Journal Issues',
-                        'module' => true,
-                    ],
-                    'journalArticles' => [
-                        'title' => 'Journal Articles',
-                        'module' => true,
-                    ],
                 ],
             ],
             'research_resources' => [
@@ -266,3 +258,16 @@ return [
     ],
 
 ];
+
+if (env('APP_ENV') !== 'production') {
+    $nav['collection']['primary_navigation']['articles_publications']['journalIssues'] = [
+        'title' => 'Journal Issues',
+        'module' => true,
+    ];
+    $nav['collection']['primary_navigation']['articles_publications']['journalArticles'] = [
+        'title' => 'Journal Articles',
+        'module' => true,
+    ];
+}
+
+return $nav;
