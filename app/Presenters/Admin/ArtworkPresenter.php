@@ -278,7 +278,7 @@ class ArtworkPresenter extends BasePresenter
                     'key' => 'Date',
                     'itemprop' => 'dateCreated',
                     'links' => [[
-                        'label' => $this->entity->date_block, // See getDateBlockAttribute
+                        'label' => join(' ', [($this->entity->date_qualifier_title ?? ''), $this->entity->date_block]), // See getDateBlockAttribute
                         'href' => $generateDateRangeHref( $this->entity->date_start, $this->entity->date_end ),
                     ]],
                 ];
