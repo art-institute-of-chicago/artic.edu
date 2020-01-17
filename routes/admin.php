@@ -68,6 +68,8 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('digitalPublications');
         Route::module('journalIssues');
         Route::module('journalArticles');
+        Route::module('issues');
+        Route::module('issues.articles');
     });
 
     Route::module('galleries');
