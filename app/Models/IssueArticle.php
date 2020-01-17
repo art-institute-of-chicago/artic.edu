@@ -13,8 +13,8 @@ class IssueArticle extends Model implements Sortable
 {
     use HasSlug, HasMedias, HasRevisions, HasPosition;
 
-    protected $presenter = 'App\Presenters\Admin\JournalArticlePresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\JournalArticlePresenter';
+    protected $presenter = 'App\Presenters\Admin\IssueArticlePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\IssueArticlePresenter';
 
     protected $fillable = [
         'published',
@@ -29,7 +29,7 @@ class IssueArticle extends Model implements Sortable
         'review_status',
         'license_text',
         'publish_start_date',
-        'journal_issue_id',
+        'issue_id',
         'position',
     ];
 

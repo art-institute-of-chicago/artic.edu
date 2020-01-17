@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
+use App\Repositories\IssueRepository;
 
 class IssueArticleController extends ModuleController
 {
@@ -47,9 +48,60 @@ class IssueArticleController extends ModuleController
 
     protected $defaultOrders = ['position' => 'asc'];
 
+    protected function indexData($request)
+    {
+        $issue = app(IssueRepository::class)->getById(request('issue'));
+        return [
+            'breadcrumb' => [
+                [
+                    'label' => 'Issues',
+                    'url' => moduleRoute('issues', 'collection', 'index'),
+                ],
+                [
+                    'label' => $issue->title,
+                    'url' => moduleRoute('issues', 'collection', 'edit', $issue->id),
+                ],
+                [
+                    'label' => 'Articles',
+                ],
+
+            ],
+        ];
+    }
+
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('issueArticle') ?? request('id'));
+        $issue = app(IssueRepository::class)->getById(request('issue'));
+        return [
+            'breadcrumb' => [
+                [
+                    'label' => 'Issues',
+                    'url' => moduleRoute('issues', 'collection', 'index'),
+                ],
+                [
+                    'label' => $issue->title,
+                    'url' => moduleRoute('issues', 'collection', 'edit', $issue->id),
+                ],
+                [
+                    'label' => 'Articles',
+                    'url' => moduleRoute('issues.articles', 'collection', 'index', $request->route('issue')),
+                ],
+                [
+                    'label' => $issue->title,
+                ],
+            ],
+        ];
+    }
+
+    protected function getPermalinkBaseUrl()
+    {
+        $issue = app(IssueRepository::class)->getById(request('issue'));
+        return request()->getScheme() . '://' . config('app.url') . '/journal/issue/' . $issue->id . '/' . $issue->getSlug() . '/';
+    }
+/*
+    protected function formData($request)
+    {
+        $item = $this->repository->getById(request('article') ?? request('id'));
         $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $item->present()->issue_number . '/';
         $baseUrl .= $item->issue ? $item->issue->getSlug() : '';
         $baseUrl .= '/' . $item->id . '/';
@@ -58,4 +110,5 @@ class IssueArticleController extends ModuleController
             'baseUrl' => $baseUrl,
         ];
     }
+    */
 }

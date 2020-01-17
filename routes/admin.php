@@ -49,6 +49,9 @@ Route::group(['prefix' => 'collection'], function () {
     Route::module('interactiveFeatures.experiences');
     Route::module('experiences.slides');
 
+    Route::module('issues');
+    Route::module('issues.articles');
+
     Route::module('categoryTerms');
     Route::name('collection.categoryTerms.augment')->get('categoryTerms/augment/{datahub_id}', 'CategoryTermController@augment');
 
@@ -66,8 +69,6 @@ Route::group(['prefix' => 'collection'], function () {
         Route::module('videos');
         Route::module('printedPublications');
         Route::module('digitalPublications');
-        Route::module('issues');
-        Route::module('issues.articles');
     });
 
     Route::module('galleries');

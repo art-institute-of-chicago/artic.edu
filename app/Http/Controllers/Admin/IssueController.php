@@ -39,6 +39,10 @@ class IssueController extends ModuleController
             'field' => 'issueNumber',
             'present' => true,
         ],
+        'articles' => [
+            'title' => 'Articles',
+            'nested' => 'articles',
+        ]
     ];
 
     protected $defaultOrders = ['position' => 'asc'];

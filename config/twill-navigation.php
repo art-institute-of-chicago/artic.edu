@@ -260,7 +260,7 @@ $nav = [
 ];
 
 if (config('app.env') !== 'production') {
-    $nav['collection']['primary_navigation']['articles_publications']['secondary_navigation']['issues'] = [
+    $nav['collection']['primary_navigation']['issues'] = [
         'title' => 'Issues',
         'module' => true,
     ];
