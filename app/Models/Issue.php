@@ -9,27 +9,22 @@ use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 
-class JournalArticle extends Model implements Sortable
+class Issue extends Model implements Sortable
 {
     use HasSlug, HasMedias, HasRevisions, HasPosition;
 
-    protected $presenter = 'App\Presenters\Admin\JournalArticlePresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\JournalArticlePresenter';
+    protected $presenter = 'App\Presenters\Admin\IssuePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\IssuePresenter';
 
     protected $fillable = [
         'published',
         'title',
         'title_display',
-        'short_title_display',
         'description',
-        'date',
-        'type',
-        'abstract',
-        'author_display',
-        'review_status',
+        'list_description',
+        'issue_number',
         'license_text',
         'publish_start_date',
-        'journal_issue_id',
         'position',
     ];
 
@@ -66,9 +61,9 @@ class JournalArticle extends Model implements Sortable
         ],
     ];
 
-    public function issue()
+    public function articles()
     {
-        return $this->belongsTo('App\Models\JournalIssue');
+        return $this->hasMany('App\Models\IssueArticle', 'issue_id');
     }
 
     // Generates the id-slug type of URL
@@ -79,6 +74,6 @@ class JournalArticle extends Model implements Sortable
 
     public function getIssueSlugAttribute()
     {
-        return join([$this->issue()->issue_number ?? '', $this->issue()->getSlug(), $this->id, $this->getSlug()], '/');
+        return join([$this->issue_number, $this->getSlug()], '/');
     }
 }

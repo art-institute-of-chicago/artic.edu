@@ -26,14 +26,12 @@
   @endcomponent
 
   @if (isset($nav) && !empty($nav))
-  <div class="o-article__primary-actions">
-    @if (isset($nav))
+    <div class="o-article__primary-actions">
         @component('components.organisms._o-collapsing-nav')
             @slot('title', $title)
             @slot('links', $nav);
         @endcomponent
-    @endif
-  </div>
+    </div>
   @endif
 
   @if (!$isWideBody)

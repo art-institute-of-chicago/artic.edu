@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 
-class JournalArticleController extends ModuleController
+class IssueController extends ModuleController
 {
-    protected $moduleName = 'journalArticles';
+    protected $moduleName = 'issues';
 
     protected $permalinkBase = 'journal/issue/';
 
@@ -39,16 +39,18 @@ class JournalArticleController extends ModuleController
             'field' => 'issueNumber',
             'present' => true,
         ],
+        'articles' => [
+            'title' => 'Articles',
+            'nested' => 'articles',
+        ]
     ];
 
     protected $defaultOrders = ['position' => 'asc'];
 
     protected function formData($request)
     {
-        $item = $this->repository->getById(request('journalArticle') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $item->present()->issue_number . '/';
-        $baseUrl .= $item->issue ? $item->issue->getSlug() : '';
-        $baseUrl .= '/' . $item->id . '/';
+        $item = $this->repository->getById(request('issue') ?? request('id'));
+        $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $item->issue_number . '/';
 
         return [
             'baseUrl' => $baseUrl,

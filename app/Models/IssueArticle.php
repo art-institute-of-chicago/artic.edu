@@ -9,22 +9,27 @@ use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 
-class JournalIssue extends Model implements Sortable
+class IssueArticle extends Model implements Sortable
 {
     use HasSlug, HasMedias, HasRevisions, HasPosition;
 
-    protected $presenter = 'App\Presenters\Admin\JournalIssuePresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\JournalIssuePresenter';
+    protected $presenter = 'App\Presenters\Admin\IssueArticlePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\IssueArticlePresenter';
 
     protected $fillable = [
         'published',
         'title',
         'title_display',
+        'short_title_display',
         'description',
-        'list_description',
-        'issue_number',
+        'date',
+        'type',
+        'abstract',
+        'author_display',
+        'review_status',
         'license_text',
         'publish_start_date',
+        'issue_id',
         'position',
     ];
 
@@ -61,6 +66,11 @@ class JournalIssue extends Model implements Sortable
         ],
     ];
 
+    public function issue()
+    {
+        return $this->belongsTo('App\Models\Issue');
+    }
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {
@@ -69,6 +79,6 @@ class JournalIssue extends Model implements Sortable
 
     public function getIssueSlugAttribute()
     {
-        return join([$this->issue_number, $this->getSlug()], '/');
+        return join([$this->issue->issue_number ?? '', $this->issue->getSlug(), $this->id, $this->getSlug()], '/');
     }
 }

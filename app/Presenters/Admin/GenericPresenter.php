@@ -51,9 +51,16 @@ class GenericPresenter extends BasePresenter
 
     public function navigation()
     {
+        $isRoot = $this->entity->isRoot();
+        $childItems = $this->entity->children()->orderBy('position')->published()->get();
+
+        if ($isRoot && $childItems->count() < 1) {
+            return [];
+        }
+
         $subNav = [];
 
-        foreach($this->entity->children()->orderBy('position')->published()->get() as $item) {
+        foreach ($childItems as $item) {
             $element = [
                 'href'  => $item->url,
                 'label' => $item->title
@@ -66,7 +73,7 @@ class GenericPresenter extends BasePresenter
             $subNav[] = $element;
         }
 
-        if ($this->entity->isRoot()) {
+        if ($isRoot) {
             // Build the nav only with children
             $nav[] = [
                 'href'  => $this->entity->url,

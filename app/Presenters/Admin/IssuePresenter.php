@@ -4,7 +4,7 @@ namespace App\Presenters\Admin;
 
 use App\Presenters\BasePresenter;
 
-class JournalIssuePresenter extends BasePresenter
+class IssuePresenter extends BasePresenter
 {
 
     public function date()
@@ -16,8 +16,8 @@ class JournalIssuePresenter extends BasePresenter
 
     public function issueNumber()
     {
-        if ($this->entity->issueNumber) {
-            return sprintf("%02d", $this->entity->issueNumber);
+        if ($this->entity->issue_number) {
+            return sprintf("%02d", $this->entity->issue_number);
         }
     }
 

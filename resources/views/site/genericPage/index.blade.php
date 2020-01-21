@@ -15,12 +15,10 @@
 
     @if (isset($nav) && !empty($nav))
         <div class="o-article__primary-actions">
-            @if (isset($nav))
-                @component('components.organisms._o-collapsing-nav')
-                    @slot('title', $title)
-                    @slot('links', $nav);
-                @endcomponent
-            @endif
+            @component('components.organisms._o-collapsing-nav')
+                @slot('title', $title)
+                @slot('links', $nav);
+            @endcomponent
         </div>
     @endif
 

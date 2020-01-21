@@ -1,6 +1,7 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
+    <br /><strong><a href="{{ url('/collection/issues/' . $item->id . '/articles') }}">{{ $item->articles->count() }} Articles</a></strong>
     @formField('input', [
         'name' => 'title_display',
         'label' => 'Title formatting (optional)',

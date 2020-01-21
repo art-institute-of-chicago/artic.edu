@@ -3,7 +3,6 @@
     'label' => 'Issue number',
     'required' => true,
     'type' => 'number',
-    'maxlength' => 3,
     'note' => 'Required',
 ])
 

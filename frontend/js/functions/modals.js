@@ -209,6 +209,11 @@ const modals = function() {
       }
     }
 
+    // WEB-1499: Do not show skrim if the lightbox is empty
+    if ($modalPromo.innerHTML === '') {
+      return;
+    }
+
     isWaitingOnGeotarget = false;
 
     var cookie = cookieHandler.read(cookieName) || '';

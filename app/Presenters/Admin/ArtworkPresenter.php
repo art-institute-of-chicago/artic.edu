@@ -110,7 +110,7 @@ class ArtworkPresenter extends BasePresenter
             "content" => '<p class="f-caption">Object information is based on information known at time of deaccession and does not reflect any subsequent changes or new research findings about the object.</p>',
         ] : [
             "type" => 'text',
-            "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu"></a>.</p>',
+            "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu"></a>. Information about image downloads and licensing is <a href="/image-licensing">available here</a>.</p>',
         ]);
 
         return array_filter($blocks);
@@ -278,7 +278,7 @@ class ArtworkPresenter extends BasePresenter
                     'key' => 'Date',
                     'itemprop' => 'dateCreated',
                     'links' => [[
-                        'label' => $this->entity->date_block, // See getDateBlockAttribute
+                        'label' => join(' ', [($this->entity->date_qualifier_title ?? ''), $this->entity->date_block]), // See getDateBlockAttribute
                         'href' => $generateDateRangeHref( $this->entity->date_start, $this->entity->date_end ),
                     ]],
                 ];
