@@ -264,6 +264,11 @@ if (config('app.env') !== 'production') {
         'title' => 'Issues',
         'module' => true,
     ];
+
+    $nav['collection']['primary_navigation']['authors'] = [
+        'title' => 'Authors',
+        'module' => true,
+    ];
 }
 
 return $nav;
