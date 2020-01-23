@@ -482,7 +482,6 @@ class StaticsController extends FrontController {
       ),
     ));
     $article->push('citation', $this->faker->paragraph(5));
-    $article->push('comments', '<p class="f-secondary">comments embed code</p>');
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),

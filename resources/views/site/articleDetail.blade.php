@@ -211,24 +211,6 @@
 
 </article>
 
-@if ($item->comments)
-    @component('components.organisms._o-accordion')
-        @slot('variation', 'o-accordion--section')
-        @slot('items', array(
-            array(
-                'title' => "Comments",
-                'blocks' => array(
-                    array(
-                        "type" => 'embed',
-                        "content" => $item->comments
-                    ),
-                ),
-            ),
-        ))
-        @slot('loopIndex', 'references')
-    @endcomponent
-@endif
-
 @if ($item->relatedEventsByDay)
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'See all events', 'href' => '#')))
