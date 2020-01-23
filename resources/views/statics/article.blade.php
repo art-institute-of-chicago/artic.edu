@@ -197,34 +197,6 @@
         @endcomponent
     @endif
 
-    @if ($article->speakers)
-        @component('components.blocks._text')
-            @slot('font', 'f-module-title-2')
-            @slot('tag', 'h4')
-            Speaker{{ sizeof($article->speakers) > 1 ? 's' : '' }}
-        @endcomponent
-        @foreach ($article->speakers as $speaker)
-            @component('components.molecules._m-row-block')
-                @slot('variation', 'm-row-block--inline-title m-row-block--keyline-top')
-                @slot('title', $speaker['title'] ?? null)
-                @slot('img', $speaker['img'] ?? null)
-                @slot('text', $speaker['text'] ?? null)
-                @slot('titleFont', 'f-subheading-1')
-                @slot('textFont', ($article->articleType === 'editorial') ? 'f-body-editorial' : 'f-body')
-                @slot('imageSettings', array(
-                    'srcset' => array(200,400,600),
-                    'sizes' => aic_imageSizes(array(
-                          'xsmall' => '13',
-                          'small' => '13',
-                          'medium' => '8',
-                          'large' => '8',
-                          'xlarge' => '8',
-                    )),
-                ))
-            @endcomponent
-        @endforeach
-    @endif
-
     @if ($article->citation)
         @component('components.atoms._hr')
         @endcomponent
