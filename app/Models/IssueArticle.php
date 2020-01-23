@@ -71,6 +71,11 @@ class IssueArticle extends Model implements Sortable
         return $this->belongsTo('App\Models\Issue');
     }
 
+    public function authors()
+    {
+        return $this->morphToMany('App\Models\Author', 'authorable')->orderBy('position');
+    }
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {

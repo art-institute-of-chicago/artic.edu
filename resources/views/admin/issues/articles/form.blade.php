@@ -63,6 +63,14 @@
         'label' => 'Author display',
     ])
 
+    @formField('browser', [
+        'routePrefix' => 'collection',
+        'moduleName' => 'authors',
+        'name' => 'authors',
+        'label' => 'Authors',
+        'max' => 10
+    ])
+
     @formField('input', [
         'name' => 'review_status',
         'label' => 'Review status',

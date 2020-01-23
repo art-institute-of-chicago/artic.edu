@@ -460,6 +460,7 @@ return [
             'events' => 'exhibitions_events',
             'selections' => 'collection',
             'artworks' => 'collection',
+            'authors' => 'collection',
         ],
     ],
 
