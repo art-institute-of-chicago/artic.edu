@@ -123,6 +123,9 @@
     @php
         global $_collectedReferences;
         $_collectedReferences = [];
+
+        global $_paragraphCount;
+        $_paragraphCount = 0;
     @endphp
 
     {!! $item->renderBlocks(false, [], [
