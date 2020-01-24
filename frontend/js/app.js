@@ -30,6 +30,8 @@ try {
 A17.ajaxLinksActive = true;
 A17.ajaxLinksFailSafe = (A17.env === 'production') ? true : false;
 
+// expose A17 so it's visible to kiosk
+window.A17 = A17;
 
 document.addEventListener('DOMContentLoaded', function(){
   if (A17.print) {
