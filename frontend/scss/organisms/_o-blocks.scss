@@ -464,7 +464,8 @@
 .o-blocks > p:not([class*='f-']) a:not(.btn),
 .o-blocks > ul:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
 .o-blocks > ol:not([class*='f-']):not([class*='o-']):not([class*='m-']) a:not(.btn),
-.o-blocks > .f-body a:not(.btn) {
+.o-blocks > .f-body a:not(.btn),
+.o-blocks > figure > figcaption > .f-caption-title a {
   @include text-underline(1.02em, $color__rules--secondary);
   color: $color__link--accent;
   text-decoration: none;

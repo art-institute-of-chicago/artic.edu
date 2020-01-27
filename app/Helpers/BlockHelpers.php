@@ -30,10 +30,6 @@ if (!function_exists('getTitleWithFigureNumber')) {
         global $_figureCount;
 
         if (isset($_figureCount) && isset($title)) {
-            $_figureCount++;
-
-            $figPrefix = 'Fig. ' . $_figureCount . ': ';
-
             $dom = new DomDocument();
             $dom->loadHTML('<?xml encoding="utf-8" ?>' . $title, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
@@ -42,12 +38,17 @@ if (!function_exists('getTitleWithFigureNumber')) {
 
             // Just a failsafe to prevent breaking the page
             if (!isset($firstChild)) {
-                $_figureCount--;
                 return $title;
             }
 
-            $figTextNode = $dom->createTextNode($figPrefix);
-            $figTextNode = $dom->documentElement->insertBefore(clone $figTextNode, $firstChild);
+            $_figureCount++;
+
+            $figAnchor = $dom->createElement('a');
+            $figAnchor->setAttribute('href', '#fig-' . $_figureCount);
+            $figAnchor->appendChild($dom->createTextNode('Fig. ' . $_figureCount));
+
+            $dom->documentElement->insertBefore($figAnchor, $firstChild);
+            $dom->documentElement->insertBefore($dom->createTextNode(': '), $firstChild);
 
             $title = $dom->saveHTML($dom->documentElement);
         }
