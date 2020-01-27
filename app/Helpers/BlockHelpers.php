@@ -24,3 +24,41 @@ if (!function_exists('innerHTML')) {
                                  iterator_to_array($node->childNodes)));
     }
 }
+
+if (!function_exists('getTitleWithFigureNumber')) {
+    function getTitleWithFigureNumber($title) {
+        global $_figureCount;
+
+        if (isset($_figureCount) && isset($title)) {
+            $_figureCount++;
+
+            $figPrefix = 'Fig. ' . $_figureCount . ': ';
+
+            $dom = new DomDocument();
+            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $title, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+            // Plain text automatically gets wrapped in p-tag during loadHTML
+            $firstChild = $dom->documentElement->firstChild ?? null;
+
+            // Just a failsafe to prevent breaking the page
+            if (!isset($firstChild)) {
+                $_figureCount--;
+                return $title;
+            }
+
+            $figTextNode = $dom->createTextNode($figPrefix);
+            $figTextNode = $dom->documentElement->insertBefore(clone $figTextNode, $firstChild);
+
+            $title = $dom->saveHTML($dom->documentElement);
+        }
+
+        return $title;
+    }
+}
+
+if (!function_exists('getSubtitleWithFigureNumber')) {
+    function getSubtitleWithFigureNumber($subtitle, $title) {
+        return isset($title) ? $subtitle : getTitleWithFigureNumber($subtitle);
+    }
+}
+

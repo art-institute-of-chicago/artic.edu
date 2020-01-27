@@ -9,7 +9,7 @@
 
     if (isset($_paragraphCount)) {
         $dom = new DomDocument();
-        $dom->loadHTML('<?xml encoding="utf-8" ?>' . $content);
+        $dom->loadHTML('<?xml encoding="utf-8" ?>' . $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
         $xpath = new DOMXpath($dom);
         $nodes = $xpath->query('//p');

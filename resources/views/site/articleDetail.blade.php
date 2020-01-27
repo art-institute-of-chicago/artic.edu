@@ -126,6 +126,9 @@
 
         global $_paragraphCount;
         $_paragraphCount = 0;
+
+        global $_figureCount;
+        $_figureCount = 0;
     @endphp
 
     {!! $item->renderBlocks(false, [], [

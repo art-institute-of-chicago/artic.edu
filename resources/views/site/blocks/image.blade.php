@@ -1,5 +1,11 @@
 @php
     $image = $block->imageAsArray('image', 'desktop');
+
+    $title = $block->present()->input('caption_title');
+    $subtitle = $block->present()->input('caption');
+
+    $title = getTitleWithFigureNumber($title);
+    $subtitle = getSubtitleWithFigureNumber($subtitle, $title);
 @endphp
 
 @if (isset($image['src']))
@@ -8,8 +14,8 @@
         @slot('item', [
             'type' => 'image',
             'size' => $block->input('size'),
-            'caption' => $block->present()->input('caption'),
-            'captionTitle' => $block->present()->input('caption_title'),
+            'caption' => $subtitle,
+            'captionTitle' => $title,
             'media' => [
                 "src" => $image['src'],
                 "srcset" => $image['src'],
