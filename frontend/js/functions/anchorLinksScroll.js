@@ -11,7 +11,7 @@ const anchorLinksScroll = function(container) {
       }
       let updateHash = (window.location.hash !== event.target.hash);
       let hash = event.target.hash.replace('#','');
-      let target = document.getElementById(hash);
+      let target = document.getElementById(hash); // fails on quotes
       let offsetTarget = getOffset(target).top - 20;
       event.target.blur();
       scrollToY({

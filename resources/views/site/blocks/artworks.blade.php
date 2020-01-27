@@ -26,8 +26,8 @@
         $item['fullscreen'] = true;
         $item['size'] = 'gallery';
         $item['media'] = $image;
-        $item['captionTitle'] = $title;
-        $item['caption'] = $caption;
+        $item['captionTitle'] = getTitleWithFigureNumber($title);
+        $item['caption'] = getSubtitleWithFigureNumber($caption, $title);
         $item['url'] = route('artworks.show', $artwork);
         $item['urlTitle'] = route('artworks.show', $artwork);
         $item['showUrl'] = true;

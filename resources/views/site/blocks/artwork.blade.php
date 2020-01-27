@@ -20,6 +20,7 @@
         }
 
         $title = $artwork->present()->listingTitle;
+        $title = getTitleWithFigureNumber($title);
 
         $caption = "";
         if (!empty($artwork->artist_title)) {
