@@ -7,9 +7,8 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
-use A17\Twill\Models\Model;
 
-class IssueArticle extends Model implements Sortable
+class IssueArticle extends AbstractModel implements Sortable
 {
     use HasSlug, HasMedias, HasRevisions, HasPosition;
 
@@ -65,6 +64,18 @@ class IssueArticle extends Model implements Sortable
             ],
         ],
     ];
+
+    public function scopePublished($query)
+    {
+        return $query->whereHas('issue', function($q) {
+            $q->visible()->wherePublished(true);
+        })->visible()->wherePublished(true);
+    }
+
+    public function getPublishedAttribute()
+    {
+        return ($this->issue->isPublished ?? false) && $this->isPublished;
+    }
 
     public function issue()
     {

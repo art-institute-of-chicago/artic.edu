@@ -7,9 +7,8 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
-use A17\Twill\Models\Model;
 
-class Issue extends Model implements Sortable
+class Issue extends AbstractModel implements Sortable
 {
     use HasSlug, HasMedias, HasRevisions, HasPosition;
 

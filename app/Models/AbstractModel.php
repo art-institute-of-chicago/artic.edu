@@ -24,4 +24,8 @@ class AbstractModel extends Model
         return $query->visible()->wherePublished(true);
     }
 
+    public function getIsPublishedAttribute()
+    {
+        return self::published()->find($this->id) != null;
+    }
 }
