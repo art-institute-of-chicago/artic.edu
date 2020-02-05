@@ -512,7 +512,6 @@
                     $artworkItem['media'] = $block['item']->imageFront();
                     $artworkItem['captionTitle'] = $block['item']->title.', '.$block['item']->year;
                     $artworkItem['caption'] = $block['item']->artist.'<br>'.$block['item']->galleryLocation;
-                    $artworkItem['hideShare'] = true;
                     $artworkItem['fullscreen'] = true;
                 @endphp
                 @component('components.molecules._m-media')

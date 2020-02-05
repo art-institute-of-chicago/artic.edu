@@ -242,15 +242,6 @@
             @endif
             @if (isset($item['caption']))
                 <span class="f-caption">{!! $item['caption'] !!}</span>
-                @if (!isset($item['hideShare']))
-                    @component('components.atoms._btn')
-                        @slot('variation', 'btn--quinary btn--icon m-media__share')
-                        @slot('font', '')
-                        @slot('icon', 'icon--share--24')
-                        @slot('behavior','sharePage')
-                        @slot('ariaLabel','Share page')
-                    @endcomponent
-                @endif
             @endif
         @endif
     </figcaption>

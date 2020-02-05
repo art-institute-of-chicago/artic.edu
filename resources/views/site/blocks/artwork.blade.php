@@ -35,7 +35,6 @@
         $artworkItem['media'] = $image;
         $artworkItem['captionTitle'] = $title;
         $artworkItem['caption'] = $caption.'<br>'.$galleryLocation;
-        $artworkItem['hideShare'] = true;
         $artworkItem['fullscreen'] = true;
         $artworkItem['urlTitle'] = route('artworks.show', $artwork);
         $artworkItem['showUrl'] = true;

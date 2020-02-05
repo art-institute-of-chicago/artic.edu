@@ -1599,7 +1599,6 @@ class StaticsController extends FrontController {
           $artworkItem['media'] = $artwork->imageFront();
           $artworkItem['captionTitle'] = $artwork->title;
           $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
-          $artworkItem['hideShare'] = true;
           $artworkItem['fullscreen'] = true;
 
           array_push($images, $artworkItem);
@@ -1612,7 +1611,6 @@ class StaticsController extends FrontController {
           $artworkItem['media'] = $artwork->imageFront();
           $artworkItem['captionTitle'] = $artwork->title;
           $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
-          $artworkItem['hideShare'] = true;
           $artworkItem['fullscreen'] = true;
 
         for ($i = 0; $i < $num; $i++) {
