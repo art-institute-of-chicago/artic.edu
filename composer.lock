@@ -7981,6 +7981,7 @@
                 "psr",
                 "psr-7"
             ],
+            "abandoned": "laminas/laminas-diactoros",
             "time": "2019-10-08T20:08:44+00:00"
         },
         {
