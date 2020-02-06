@@ -40,6 +40,11 @@ class IssueArticle extends AbstractModel implements Sortable
         'published'
     ];
 
+    public $dates = [
+        'date',
+        'publish_start_date',
+    ];
+
     public $mediasParams = [
         'hero' => [
             'default' => [

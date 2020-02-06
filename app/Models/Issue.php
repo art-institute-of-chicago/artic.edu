@@ -35,6 +35,10 @@ class Issue extends AbstractModel implements Sortable
         'published'
     ];
 
+    public $dates = [
+        'publish_start_date',
+    ];
+
     public $mediasParams = [
         'hero' => [
             'default' => [
