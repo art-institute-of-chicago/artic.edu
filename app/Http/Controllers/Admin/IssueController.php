@@ -8,7 +8,7 @@ class IssueController extends ModuleController
 {
     protected $moduleName = 'issues';
 
-    protected $permalinkBase = 'journal/issue/';
+    protected $permalinkBase = 'journal/issues/';
 
     protected $indexColumns = [
         'image' => [

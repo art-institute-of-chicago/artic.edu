@@ -96,7 +96,7 @@ class IssueArticleController extends ModuleController
     protected function getPermalinkBaseUrl()
     {
         $issue = app(IssueRepository::class)->getById(request('issue'));
-        return request()->getScheme() . '://' . config('app.url') . '/journal/issue/' . $issue->id . '/' . $issue->getSlug() . '/';
+        return request()->getScheme() . '://' . config('app.url') . '/journal/issues/' . $issue->id . '/' . $issue->getSlug() . '/';
     }
 /*
     protected function formData($request)
