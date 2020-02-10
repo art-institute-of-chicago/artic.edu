@@ -24,16 +24,6 @@
             @slot('ariaLabel', 'Zoom out')
         @endcomponent
       </li>
-      <li>
-        @component('components.atoms._btn')
-            @slot('variation', 'btn--septenary btn--icon-sq')
-            @slot('font', '')
-            @slot('icon', 'icon--share--24')
-            @slot('dataAttributes', 'data-fullscreen-share')
-            @slot('behavior', 'sharePage')
-            @slot('ariaLabel', 'Share page')
-        @endcomponent
-      </li>
     </ul>
     @component('components.atoms._btn')
         @slot('variation', 'btn--octonary btn--icon btn--icon-circle-48 o-fullscreen-image__close')

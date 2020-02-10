@@ -1,17 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-/*
-    Class inherited by PrintedPublications and DigitalPublications
-*/
-
-class CatalogsController extends BaseScopedController
-{
-
-    protected function getNavElements($title)
+if (!function_exists('get_nav_for_publications')) {
+    function get_nav_for_publications(string $title)
     {
         $subNav = [
             [
@@ -23,7 +13,7 @@ class CatalogsController extends BaseScopedController
                 'label'  => 'Digital Publications',
                 'href'   => route('collection.publications.digital-publications'),
                 'active' => request()->route()->getName() == 'collection.publications.digital-publications'
-            ]
+            ],
         ];
 
         $nav = [
@@ -37,5 +27,4 @@ class CatalogsController extends BaseScopedController
 
         return compact('title', 'subNav', 'nav', 'breadcrumb');
     }
-
 }

@@ -368,7 +368,6 @@ class StaticsController extends FrontController {
     $article->push('dateStart', null);
     $article->push('dateEnd', null);
     $article->push('type', null);
-    $article->push('speakers', null);
     $article->push('sponsors', null);
     // now push to a view
     return view('statics/article', [
@@ -390,7 +389,6 @@ class StaticsController extends FrontController {
     $article->push('dateStart', null);
     $article->push('dateEnd', null);
     $article->push('type', null);
-    $article->push('speakers', null);
     $article->push('sponsors', null);
     $article->push('intro', null);
     $article->push('title', "Lorem");
@@ -484,7 +482,6 @@ class StaticsController extends FrontController {
       ),
     ));
     $article->push('citation', $this->faker->paragraph(5));
-    $article->push('comments', '<p class="f-secondary">comments embed code</p>');
     // now push to a view
     return view('statics/article', [
       'contrastHeader' => ($article->headerType === 'feature' || $article->headerType === 'hero' || $article->headerType === 'super-hero'),
@@ -1602,7 +1599,6 @@ class StaticsController extends FrontController {
           $artworkItem['media'] = $artwork->imageFront();
           $artworkItem['captionTitle'] = $artwork->title;
           $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
-          $artworkItem['hideShare'] = true;
           $artworkItem['fullscreen'] = true;
 
           array_push($images, $artworkItem);
@@ -1615,7 +1611,6 @@ class StaticsController extends FrontController {
           $artworkItem['media'] = $artwork->imageFront();
           $artworkItem['captionTitle'] = $artwork->title;
           $artworkItem['caption'] = $artwork->artist.', '.$artwork->year.' <br>'.$artwork->galleryLocation;
-          $artworkItem['hideShare'] = true;
           $artworkItem['fullscreen'] = true;
 
         for ($i = 0; $i < $num; $i++) {
@@ -4178,14 +4173,6 @@ class StaticsController extends FrontController {
     $article->push('headerImage', $this->getImage(true));
     $article->push('blocks', $blocks);
     $article->push('intro', $this->faker->paragraph(6, false));
-    $article->push('speakers', array(
-        array(
-          'img' => $this->getImage(),
-          'title' => $this->faker->firstName.' '.$this->faker->lastName,
-          'text' => $this->faker->paragraph(5),
-        ),
-      )
-    );
     $article->push('sponsors', $this->generateBlocks(2));
     $article->push('ticketLink', '#');
     $article->push('ticketPrices', '<p>$10 students</p><p>$20 members</p><p>$30 non-members</p>');

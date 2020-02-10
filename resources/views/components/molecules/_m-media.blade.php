@@ -112,8 +112,11 @@
             $fullscreen = false;
         }
     }
+
+    global $_figureCount;
+
 @endphp
-<{{ $tag ?? 'figure' }} data-type="{{ $type }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'figure' }} {!! isset($_figureCount) ? 'id="fig-' . $_figureCount . '" ' : '' !!} data-type="{{ $type }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
     <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
         @if ($type == 'image')
             @if ($showUrlFullscreen)
@@ -239,15 +242,6 @@
             @endif
             @if (isset($item['caption']))
                 <span class="f-caption">{!! $item['caption'] !!}</span>
-                @if (!isset($item['hideShare']))
-                    @component('components.atoms._btn')
-                        @slot('variation', 'btn--quinary btn--icon m-media__share')
-                        @slot('font', '')
-                        @slot('icon', 'icon--share--24')
-                        @slot('behavior','sharePage')
-                        @slot('ariaLabel','Share page')
-                    @endcomponent
-                @endif
             @endif
         @endif
     </figcaption>

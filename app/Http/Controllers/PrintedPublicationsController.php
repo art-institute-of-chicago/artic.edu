@@ -8,7 +8,7 @@ use App\Repositories\PrintedPublicationRepository;
 use App\Models\PrintedPublication;
 use App\Models\CatalogCategory;
 
-class PrintedPublicationsController extends CatalogsController
+class PrintedPublicationsController extends BaseScopedController
 {
 
     protected $repository;
@@ -41,7 +41,7 @@ class PrintedPublicationsController extends CatalogsController
 
         $this->seo->setTitle($title);
 
-        $navElements = $this->getNavElements($title);
+        $navElements = get_nav_for_publications($title);
 
         $view_data = [
             'wideBody' => true,

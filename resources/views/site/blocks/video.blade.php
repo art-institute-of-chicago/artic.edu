@@ -16,8 +16,8 @@
             'size' => $size,
             'media' => ['embed' => $embed_code],
             'poster' => $image,
-            'captionTitle' => $captionTitle,
-            'caption' => $caption
+            'captionTitle' => getTitleWithFigureNumber($captionTitle),
+            'caption' => getSubtitleWithFigureNumber($caption, $captionTitle),
         ])
     @endcomponent
 @endif

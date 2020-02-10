@@ -72,6 +72,8 @@ class AppServiceProvider extends ServiceProvider
             'exhibitions' => 'App\Models\Exhibition',
             'departments' => 'App\Models\Department',
             'blocks' => 'App\Models\Vendor\Block',
+
+            'issueArticles' => 'App\Models\IssueArticle',
         ]);
     }
 

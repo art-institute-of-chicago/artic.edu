@@ -51,6 +51,7 @@ Route::group(['prefix' => 'collection'], function () {
 
     Route::module('issues');
     Route::module('issues.articles');
+    Route::module('authors');
 
     Route::module('categoryTerms');
     Route::name('collection.categoryTerms.augment')->get('categoryTerms/augment/{datahub_id}', 'CategoryTermController@augment');

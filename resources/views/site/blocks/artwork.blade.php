@@ -20,6 +20,7 @@
         }
 
         $title = $artwork->present()->listingTitle;
+        $title = getTitleWithFigureNumber($title);
 
         $caption = "";
         if (!empty($artwork->artist_title)) {
@@ -34,7 +35,6 @@
         $artworkItem['media'] = $image;
         $artworkItem['captionTitle'] = $title;
         $artworkItem['caption'] = $caption.'<br>'.$galleryLocation;
-        $artworkItem['hideShare'] = true;
         $artworkItem['fullscreen'] = true;
         $artworkItem['urlTitle'] = route('artworks.show', $artwork);
         $artworkItem['showUrl'] = true;

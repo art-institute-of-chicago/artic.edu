@@ -7,9 +7,8 @@ use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
-use A17\Twill\Models\Model;
 
-class IssueArticle extends Model implements Sortable
+class IssueArticle extends AbstractModel implements Sortable
 {
     use HasSlug, HasMedias, HasRevisions, HasPosition;
 
@@ -41,6 +40,11 @@ class IssueArticle extends Model implements Sortable
         'published'
     ];
 
+    public $dates = [
+        'date',
+        'publish_start_date',
+    ];
+
     public $mediasParams = [
         'hero' => [
             'default' => [
@@ -66,9 +70,26 @@ class IssueArticle extends Model implements Sortable
         ],
     ];
 
+    public function scopePublished($query)
+    {
+        return $query->whereHas('issue', function($q) {
+            $q->visible()->wherePublished(true);
+        })->visible()->wherePublished(true);
+    }
+
+    public function getPublishedAttribute()
+    {
+        return ($this->issue->isPublished ?? false) && $this->isPublished;
+    }
+
     public function issue()
     {
         return $this->belongsTo('App\Models\Issue');
+    }
+
+    public function authors()
+    {
+        return $this->morphToMany('App\Models\Author', 'authorable')->orderBy('position');
     }
 
     // Generates the id-slug type of URL
