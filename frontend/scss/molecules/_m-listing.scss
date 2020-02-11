@@ -1779,7 +1779,8 @@ $f-audio-subtitle: generate-font-obj(
   @include objectFitFix;
   display: block;
   position: static;
-  height: auto;
+  // WEB-1495: Do not "crop" object images in pinboards
+  // height: auto;
   object-fit: contain;
   object-position: center top;
 }
