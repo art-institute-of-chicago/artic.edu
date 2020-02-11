@@ -55,6 +55,18 @@ class GenericPage extends AbstractModel implements Sortable
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
 
+    /**
+     * WEB-1522: Add "publication navigation" to `/journal`.
+     */
+    public function __construct(array $attributes = [])
+    {
+        if (request()->is('journal')) {
+            $this->presenter = $this->presenterAdmin = 'App\Presenters\Admin\JournalPresenter';
+        }
+
+        parent::__construct(...func_get_args());
+    }
+
     // fill this in if you use the HasMedias traits
     public $mediasParams = [
         'listing' => [

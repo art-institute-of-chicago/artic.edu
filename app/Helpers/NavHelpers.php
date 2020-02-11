@@ -26,7 +26,7 @@ if (!function_exists('get_nav_for_publications')) {
             array_push($subNav, [
                 'label'  => $journalPage->present()->title,
                 'href'   => $journalPageUrl,
-                'active' => request()->url() == $journalPageUrl,
+                'active' => request()->path() == ltrim($journalPageUrl, '/'),
             ]);
         }
 
