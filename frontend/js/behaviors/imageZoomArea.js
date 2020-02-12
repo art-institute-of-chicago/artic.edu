@@ -39,7 +39,7 @@ const imageZoomArea = function(container) {
     $img.removeAttribute('srcset');
     $img.removeAttribute('sizes');
     $img.removeAttribute('src');
-    $img.removeAttribute('class');
+    $img.classList.remove('restrict');
     $img.removeEventListener('contextmenu', preventDefault);
     $img.removeEventListener('mousedown', preventDefault);
     if (osd) {
