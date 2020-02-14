@@ -223,6 +223,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\InvalidationServiceProvider::class,
+        App\Providers\DebugServiceProvider::class,
 
         Aic\Hub\Foundation\ResourceServiceProvider::class,
         Intervention\Httpauth\HttpauthServiceProvider::class,

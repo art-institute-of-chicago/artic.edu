@@ -116,3 +116,8 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @include('partials._scripts')
 </body>
 </html>
+@if (config('api.logger'))
+@php
+\Log::info(app('debug')->getOutput());
+@endphp
+@endif
