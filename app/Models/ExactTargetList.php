@@ -16,7 +16,7 @@ class ExactTargetList
             'OptEvents' => 'Public Programs',
             'OptStudentTeacherPrograms' => 'Students and Teachers',
             'OptTeenPrograms' => 'Teens',
-            'OptAcademicEngagement' => 'Academic Engagement and Research',
+            'OptAcademicEngagement' => 'Research, Publishing, and Conservation',
         ]);
     }
 }
