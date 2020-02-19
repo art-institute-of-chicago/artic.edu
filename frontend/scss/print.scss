@@ -73,7 +73,7 @@ table {
 }
 
 body > *:not(#a17),
-#a17 > *:not(#content),
+#a17 > *:not(#content):not(.g-header),
 #content > *:not(.o-article),
 svg[class*=icon--play],
 .icon--return,
@@ -96,7 +96,11 @@ svg[class*=icon--play],
 .o-form,
 .m-article-header__text .m-article-header__info-trigger,
 .m-no-results,
-.m-results-title {
+.m-results-title,
+.g-header__nav-primary,
+.g-header__nav-secondary,
+.g-header__opening-hours,
+.g-header__menu-link {
   display: none;
 }
 
@@ -112,16 +116,6 @@ sub, sup {
 a {
   text-decoration: none;
   background: none;
-}
-
-a::after,
-a[class*=f-]::after {
-  display: inline-block !important;
-  content: " [" attr(href) "] ";
-  clear: both;
-  font-size: 80%;
-  font-weight: normal;
-  padding: 0;
 }
 
 img {
