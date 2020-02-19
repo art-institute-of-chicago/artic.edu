@@ -20,11 +20,16 @@
         @endif
 
         <div class="o-artist-bio__main">
-            @if ($item->also_known_as or $item->birth_date or $item->death_date)
+            @if ($item->also_known_as or $item->birth_date or $item->death_date or $item->gender_title)
                 <dl>
                     @if ($item->also_known_as)
                         <dt>Also known as</dt>
                         <dd itemprop="additionalName">{!! $item->present()->also_known_as !!}</dd>
+                    @endif
+
+                    @if ($item->gender_title && (!app()->environment('production')))
+                        <dt>Gender</dt>
+                        <dd itemprop="gender">{!! $item->gender_title !!}</dd>
                     @endif
 
                     @if ($item->birth_date)
