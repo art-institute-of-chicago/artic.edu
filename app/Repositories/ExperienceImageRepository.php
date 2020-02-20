@@ -20,10 +20,10 @@ class ExperienceImageRepository extends ModuleRepository
         $this->model = $model;
     }
 
-    public function prepareFieldsBeforeCreate($fields)
+    public function prepareFieldsBeforeSave($object, $fields)
     {
-        $fields = parent::prepareFieldsBeforeCreate($fields);
-        if (!empty($fields['object_id'])) {
+        $fields = parent::prepareFieldsBeforeSave($object, $fields);
+        if (!empty($fields['object_id'] && $fields['object_id'] != $object->object_id)) {
             $object_id = $fields['object_id'];
             $apiResult = Artwork::query()->find($object_id);
             if ($apiResult instanceof Artwork) {

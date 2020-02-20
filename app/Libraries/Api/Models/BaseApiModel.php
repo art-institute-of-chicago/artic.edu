@@ -618,6 +618,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
         // it returns as the value, which is useful for transforming values on
         // retrieval from the model to a form that is more useful for usage.
         if ($this->hasGetMutator($key)) {
+            app('debug')->log(class_basename(get_called_class()), $key, true);
             return $this->mutateAttribute($key, $value);
         }
 
@@ -628,6 +629,7 @@ abstract class BaseApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSer
             $value = $this->castAttribute($key, $value);
         }
 
+        app('debug')->log(class_basename(get_called_class()), $key);
         return $value;
     }
 

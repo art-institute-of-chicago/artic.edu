@@ -50,10 +50,10 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   </style>
   <link rel="stylesheet" href="https://vjs.zencdn.net/7.1.0/video-js.css" />
   <meta name="msvalidate.01" content="1E22F0BBEF5CF0D71FF4C150D094A1CA" />
+  <link href="{{revAsset('styles/app.css')}}" rel="stylesheet" />
   @if ($print)
     <link href="{{revAsset('styles/print.css')}}" rel="stylesheet" />
   @else
-      <link href="{{revAsset('styles/app.css')}}" rel="stylesheet" />
       @if (config('services.google_tag_manager.enabled'))
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -116,3 +116,8 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @include('partials._scripts')
 </body>
 </html>
+@if (config('api.logger'))
+@php
+\Log::info(app('debug')->getOutput());
+@endphp
+@endif
