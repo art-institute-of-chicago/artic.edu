@@ -15,7 +15,7 @@ class UpdateEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $item;
-    public $urls;
+    public $urls = [];
 
     /**
      * Create a new event instance.
@@ -25,10 +25,12 @@ class UpdateEvent
     public function __construct(\App\Models\Event $item)
     {
         $this->item = $item;
-        $this->urls = [
-            route('events.show', $item, false),
-            '/'
-        ];
+        if ($item->is_published) {
+            $this->urls = [
+                route('events.show', $item, false),
+                '/'
+            ];
+        }
     }
 
     /**

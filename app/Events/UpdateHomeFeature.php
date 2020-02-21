@@ -15,7 +15,7 @@ class UpdateHomeFeature
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $item;
-    public $urls;
+    public $urls = [];
 
     /**
      * Create a new event instance.
@@ -25,9 +25,11 @@ class UpdateHomeFeature
     public function __construct(\App\Models\HomeFeature $item)
     {
         $this->item = $item;
-        $this->urls = [
-            '/'
-        ];
+        if ($item->is_published) {
+            $this->urls = [
+                '/'
+            ];
+        }
     }
 
     /**

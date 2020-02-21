@@ -15,7 +15,7 @@ class UpdateExhibition
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $item;
-    public $urls;
+    public $urls = [];
 
     /**
      * Create a new event instance.
@@ -25,10 +25,12 @@ class UpdateExhibition
     public function __construct(\App\Models\Exhibition $item)
     {
         $this->item = $item;
-        $this->urls = [
-            route('exhibitions.show', $item->getApiModelFilled(), false),
-            '/'
-        ];
+        if ($item->is_published) {
+            $this->urls = [
+                route('exhibitions.show', $item->getApiModelFilled(), false),
+                '/'
+            ];
+        }
     }
 
     /**
