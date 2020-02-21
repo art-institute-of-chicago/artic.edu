@@ -14,7 +14,7 @@ return [
         'buckets' => true,
         'media-library' => true,
         'file-library' => true,
-        'dashboard' => false,
+        'dashboard' => true,
         'search' => true,
     ],
 
@@ -566,6 +566,21 @@ return [
                 'activity' => true,
                 'drafts' => true,
             ],
+            'selections' => [
+                'label' => 'Highlights',
+                'label_singular' => 'Highlight',
+                'name' => 'selections',
+                'routePrefix' => 'collection',
+                'count' => true,
+                'create' => true,
+                'search' => true,
+                'activity' => true,
+                'drafts' => true,
+            ],
+        ],
+        'analytics' => [
+            'enabled' => true,
+            'service_account_credentials_json' => storage_path('app/analytics/service-account-credentials.json'),
         ],
     ],
 
