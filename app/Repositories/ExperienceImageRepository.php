@@ -23,7 +23,7 @@ class ExperienceImageRepository extends ModuleRepository
     public function prepareFieldsBeforeSave($object, $fields)
     {
         $fields = parent::prepareFieldsBeforeSave($object, $fields);
-        if (!empty($fields['object_id'] && $fields['object_id'] != $object->object_id)) {
+        if (isset($fields['object_id']) && $fields['object_id'] != $object->object_id) {
             $object_id = $fields['object_id'];
             $apiResult = Artwork::query()->find($object_id);
             if ($apiResult instanceof Artwork) {
