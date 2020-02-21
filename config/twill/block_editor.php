@@ -1,0 +1,457 @@
+<?php
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Twill Block Editor configuration
+    |--------------------------------------------------------------------------
+    |
+    | This array allows you to provide the package with your configuration
+    | for the Block editor field and Editor features.
+    |
+     */
+
+    'block_single_layout' => 'layouts.block',
+    'block_preview_render_childs' => false,
+    'block_presenter_path' => App\Presenters\Admin\BlockPresenter::class,
+    'blocks' => [
+        'paragraph' => [
+            'title' => 'Paragraph',
+            'icon' => 'text',
+            'component' => 'a17-block-paragraph',
+        ],
+        'image' => [
+            'title' => 'Image',
+            'icon' => 'image',
+            'component' => 'a17-block-image',
+        ],
+        'artwork' => [
+            'title' => 'Artwork',
+            'icon' => 'image',
+            'component' => 'a17-block-artwork',
+        ],
+        'split_block' => [
+            'title' => 'Split block',
+            'icon' => 'text',
+            'component' => 'a17-block-split_block',
+        ],
+        'grid' => [
+            'title' => 'Grid',
+            'icon' => 'image',
+            'component' => 'a17-block-grid',
+        ],
+        'gallery' => [
+            'title' => 'Gallery',
+            'icon' => 'image',
+            'component' => 'a17-block-gallery',
+        ],
+        'artworks' => [
+            'title' => 'Artworks gallery',
+            'icon' => 'image',
+            'component' => 'a17-block-artworks',
+        ],
+        'child_pages' => [
+            'title' => 'Child pages link block',
+            'icon' => 'image',
+            'component' => 'a17-block-child_pages',
+        ],
+        'link' => [
+            'title' => 'Link',
+            'icon' => 'text',
+            'component' => 'a17-block-link',
+        ],
+        'accordion' => [
+            'title' => 'Accordion',
+            'icon' => 'text',
+            'component' => 'a17-block-accordion',
+        ],
+        'list' => [
+            'title' => 'List',
+            'icon' => 'text',
+            'component' => 'a17-block-list',
+        ],
+        'timeline' => [
+            'title' => 'Timeline',
+            'icon' => 'text',
+            'component' => 'a17-block-timeline',
+        ],
+        'video' => [
+            'title' => 'Video',
+            'icon' => 'image',
+            'component' => 'a17-block-video',
+        ],
+        'tour_stop' => [
+            'title' => 'Audio Tour Stop',
+            'icon' => 'image',
+            'component' => 'a17-block-tour_stop',
+        ],
+        'media_embed' => [
+            'title' => 'Media embed',
+            'icon' => 'text',
+            'component' => 'a17-block-media_embed',
+        ],
+        'quote' => [
+            'title' => 'Quote',
+            'icon' => 'text',
+            'component' => 'a17-block-quote',
+        ],
+        'hr' => [
+            'title' => 'Horizontal rule',
+            'icon' => 'text',
+            'component' => 'a17-block-hr',
+        ],
+        'button' => [
+            'title' => 'Button',
+            'icon' => 'text',
+            'component' => 'a17-block-button',
+        ],
+        'membership_banner' => [
+            'title' => 'Banner',
+            'icon' => 'text',
+            'component' => 'a17-block-membership_banner',
+        ],
+        'mobile_app' => [
+            'title' => 'Mobile app promo',
+            'icon' => 'text',
+            'component' => 'a17-block-mobile_app',
+        ],
+        'event' => [
+            'title' => 'Event',
+            'icon' => 'text',
+            'component' => 'a17-block-event',
+        ],
+        'newsletter_signup_inline' => [
+            'title' => 'Newsletter signup inline',
+            'icon' => 'text',
+            'component' => 'a17-block-newsletter_signup_inline',
+        ],
+        'newsletter_signup_footer' => [
+            'title' => 'Newsletter signup footer',
+            'icon' => 'text',
+            'component' => 'a17-block-newsletter_signup_footer',
+        ],
+        'citation' => [
+            'title' => 'Citation',
+            'icon' => 'text',
+            'component' => 'a17-block-citation',
+        ],
+        'search_bar' => [
+            'title' => 'External search bar',
+            'icon' => 'text',
+            'component' => 'a17-block-search_bar',
+        ],
+        'references' => [
+            'title' => 'References',
+            'icon' => 'text',
+            'component' => 'a17-block-references',
+        ],
+        'footnote' => [
+            'title' => 'Footnote',
+            'icon' => 'text',
+            'component' => 'a17-block-footnote',
+        ],
+        'table' => [
+            'title' => 'Table',
+            'icon' => 'text',
+            'component' => 'a17-block-table',
+            // TODO: Look into `rules` per \A17\Twill\ValidationServiceProvider
+        ],
+        'digital_label' => [
+            'title' => 'Interactive feature',
+            'icon' => 'image',
+            'component' => 'a17-block-digital_label',
+        ],
+        '3d_model' => [
+            'title' => '3D Model',
+            'icon' => 'image',
+            'component' => 'a17-block-aic_3d_model'
+        ],
+        '3d_tour' => [
+            'title' => '3D Tour',
+            'icon' => 'image',
+            'component' => 'a17-block-aic_3d_tour'
+        ],
+        '3d_embed' => [
+            'title' => '3D Embed',
+            'icon' => 'image',
+            'component' => 'a17-block-aic_3d_embed'
+        ]
+    ],
+    'repeaters' => [
+        'admissions' => [
+            'title' => 'Admission',
+            'trigger' => 'Add admission',
+            'component' => 'a17-block-admissions',
+            'max' => 10,
+        ],
+        'locations' => [
+            'title' => 'Museum Address',
+            'trigger' => 'Add Museum Address',
+            'component' => 'a17-block-locations',
+            'max' => 10,
+        ],
+        'featured_hours' => [
+            'title' => 'Museum Hours',
+            'trigger' => 'Add hours',
+            'component' => 'a17-block-featured_hours',
+            'max' => 3,
+        ],
+        'dining_hours' => [
+            'title' => 'Dining',
+            'trigger' => 'Add dining hours',
+            'component' => 'a17-block-dining_hours',
+            'max' => 3,
+        ],
+        'faqs' => [
+            'title' => 'FAQ',
+            'trigger' => 'Add FAQ',
+            'component' => 'a17-block-faqs',
+            'max' => 5,
+        ],
+        'families' => [
+            'title' => 'Families, teens and educators',
+            'trigger' => 'Add item',
+            'component' => 'a17-block-families',
+            'max' => 3,
+        ],
+        'accordion_item' => [
+            'title' => 'Accordion Item',
+            'trigger' => 'Add accordion item',
+            'component' => 'a17-block-accordion_item',
+            'max' => 20,
+        ],
+        'list_item' => [
+            'title' => 'List Item',
+            'trigger' => 'Add item',
+            'component' => 'a17-block-list_item',
+            'max' => 10,
+        ],
+        'grid_item' => [
+            'title' => 'Grid Item',
+            'trigger' => 'Add Grid Item',
+            'component' => 'a17-block-grid_item',
+            'max' => 48,
+        ],
+        'gallery_item' => [
+            'title' => 'Gallery Item',
+            'trigger' => 'Add Image',
+            'component' => 'a17-block-gallery_item',
+            'max' => 10,
+        ],
+        'dateRules' => [
+            'title' => 'Date Rule',
+            'trigger' => 'Add Date Rule',
+            'component' => 'a17-block-date_rule',
+            'max' => 10,
+        ],
+        'offer' => [
+            'title' => 'Offer',
+            'trigger' => 'Add offer',
+            'component' => 'a17-block-offer',
+            'max' => 10,
+        ],
+        'offers' => [
+            'title' => 'Offers',
+            'trigger' => 'Add offer',
+            'component' => 'a17-block-offers',
+            'max' => 10,
+        ],
+        'timeline_item' => [
+            'title' => 'Timeline Item',
+            'trigger' => 'Add Timeline',
+            'component' => 'a17-block-timeline_item',
+            'max' => 10,
+        ],
+        'experience_image' => [
+            'title' => 'Image',
+            'trigger' => 'Add Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 1,
+        ],
+        'modal_experience_image' => [
+            'title' => 'Image',
+            'trigger' => 'Add Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 4,
+        ],
+        'seamless_experience_image' => [
+            'title' => 'Image',
+            'trigger' => 'Add Image',
+            'component' => 'a17-block-experience_image',
+            'max' => 1,
+        ],
+        'interstitial_experience_image' => [
+            'title' => 'Image',
+            'trigger' => 'Add Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 1,
+        ],
+        'fullwidthmedia_experience_image' => [
+            'title' => 'Image',
+            'trigger' => 'Add Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 1,
+        ],
+        'tooltip_experience_image' => [
+            'title' => 'Image',
+            'trigger' => 'Add Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 1,
+        ],
+        'attract_experience_image' => [
+            'title' => 'Image',
+            'trigger' => 'Add Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 3,
+        ],
+        'end_experience_image' => [
+            'title' => 'Image',
+            'trigger' => 'Add Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 3,
+        ],
+        'end_bg_experience_image' => [
+            'title' => 'Background Image',
+            'trigger' => 'Add Background Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 1,
+        ],
+        'slide_primary_experience_image' => [
+            'title' => 'Primary Image',
+            'trigger' => 'Add Primary Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 1,
+        ],
+        'slide_secondary_experience_image' => [
+            'title' => 'Secondary Image',
+            'trigger' => 'Add Secondary Image',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 1,
+        ],
+        'compare_experience_image_1' => [
+            'title' => 'Compare Image 1',
+            'trigger' => 'Add Compare Image 1',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 1,
+        ],
+        'compare_experience_image_2' => [
+            'title' => 'Compare Image 2',
+            'trigger' => 'Add Compare Image 2',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 1,
+        ],
+        'compare_experience_modal' => [
+            'title' => 'Compare experience modal',
+            'trigger' => 'Add Compare Experience Modal',
+            'component' => 'a17-block-experience_image_with_caption',
+            'max' => 2,
+        ],
+        'experience_modal' => [
+            'title' => 'Experience Modal',
+            'trigger' => 'Add Experience Modal',
+            'component' => 'a17-block-experience_modal',
+            'max' => 1,
+        ],
+        'primary_experience_modal' => [
+            'title' => 'Primary Experience Modal',
+            'trigger' => 'Add Primary Experience Modal',
+            'component' => 'a17-block-experience_modal',
+            'max' => 1,
+        ],
+        'secondary_experience_modal' => [
+            'title' => 'Secondary Experience Modal',
+            'trigger' => 'Add Secondary Experience Modal',
+            'component' => 'a17-block-experience_modal',
+            'max' => 1,
+        ],
+    ],
+    'crops' => [
+        'image' => [
+            'desktop' => [
+                [
+                    'name' => 'desktop',
+                    'ratio' => 0,
+                ],
+            ],
+        ],
+        'family_cover' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+        'banner' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 200 / 24,
+                ],
+            ],
+        ],
+        'membership_banner_image' => [
+            'desktop' => [
+                [
+                    'name' => 'desktop',
+                    'ratio' => 0,
+                ],
+            ],
+        ],
+        'listing_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+        'dining_cover' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 16 / 9,
+                ],
+            ],
+        ],
+        'experience_image' => [
+            'default' => [
+                [
+                    'name' => 'free',
+                    'ratio' => null,
+                ],
+                [
+                    'name' => '16:9',
+                    'ratio' => 16 / 9
+                ],
+                [
+                    'name' => '9:16',
+                    'ratio' => 9 / 16
+                ],
+                [
+                    'name' => '4:3',
+                    'ratio' => 4 / 3
+                ],
+                [
+                    'name' => '1:1',
+                    'ratio' => 1 / 1
+                ],
+                [
+                    'name' => '3:4',
+                    'ratio' => 3 / 4
+                ]
+            ]
+        ],
+    ],
+    'files' => [
+        'attachment',
+        'video',
+        'image_sequence_file',
+    ],
+    'browser_route_prefixes' => [
+        'events' => 'exhibitions_events',
+        'selections' => 'collection',
+        'artworks' => 'collection',
+        'authors' => 'collection',
+    ],
+];
