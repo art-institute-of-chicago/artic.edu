@@ -36,13 +36,21 @@ $sans-serif-font--loaded: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans',
   }
 }
 
+header {
+  display: none;
+}
+
+@page :first {
+  header {
+    display: block;
+  }
+}
 
 article,
 aside,
 dialog,
 figure,
 footer,
-header,
 hgroup,
 nav,
 section,
@@ -190,6 +198,10 @@ img {
 
 .o-gallery__caption hr {
   display: none;
+}
+
+.o-accordion__panel {
+  height: auto;
 }
 
 .m-article-header__img-thumbs {
