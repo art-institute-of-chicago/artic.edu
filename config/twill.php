@@ -132,7 +132,7 @@ return [
     |--------------------------------------------------------------------------
     |
      */
-    'auth_login_redirect_path' => '/homepage/landing',
+    'auth_login_redirect_path' => '/',
     'templates_on_frontend_domain' => true,
     'google_maps_api_key' => env('GOOGLE_MAPS_API_KEY'),
 
