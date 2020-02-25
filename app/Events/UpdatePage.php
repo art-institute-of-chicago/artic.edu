@@ -15,7 +15,7 @@ class UpdatePage
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $item;
-    public $urls;
+    public $urls = [];
 
     /**
      * Create a new event instance.
@@ -25,14 +25,16 @@ class UpdatePage
     public function __construct(\App\Models\Page $item)
     {
         $this->item = $item;
-        $this->urls = [
-            route('events', null, false),
-            route('exhibitions', null, false),
-            route('collection', null, false),
-            route('visit', null, false),
-            route('articles', null, false),
-            '/'
-        ];
+        if ($item->is_published) {
+            $this->urls = [
+                route('events', null, false),
+                route('exhibitions', null, false),
+                route('collection', null, false),
+                route('visit', null, false),
+                route('articles', null, false),
+                '/'
+            ];
+        }
     }
 
     /**

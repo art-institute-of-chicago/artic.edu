@@ -15,7 +15,7 @@ class UpdateArticle
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $item;
-    public $urls;
+    public $urls = [];
 
     /**
      * Create a new event instance.
@@ -25,10 +25,12 @@ class UpdateArticle
     public function __construct(\App\Models\Article $item)
     {
         $this->item = $item;
-        $this->urls = [
-            route('articles.show', $item, false),
-            '/'
-        ];
+        if ($item->is_published) {
+            $this->urls = [
+                route('articles.show', $item, false),
+                '/'
+            ];
+        }
     }
 
     /**

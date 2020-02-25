@@ -15,7 +15,7 @@ class UpdateSelection
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $item;
-    public $urls;
+    public $urls = [];
 
     /**
      * Create a new event instance.
@@ -25,10 +25,12 @@ class UpdateSelection
     public function __construct(\App\Models\Selection $item)
     {
         $this->item = $item;
-        $this->urls = [
-            route('selections.show', $item, false),
-            '/'
-        ];
+        if ($item->is_published) {
+            $this->urls = [
+                route('selections.show', $item, false),
+                '/'
+            ];
+        }
     }
 
     /**
