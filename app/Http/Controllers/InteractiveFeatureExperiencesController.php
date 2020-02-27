@@ -32,7 +32,7 @@ class InteractiveFeatureExperiencesController extends FrontController
 
     public function index(Request $request)
     {
-        $items = Experience::published()->unarchived()->where('kiosk_only', false)->paginate();
+        $items = []; //Experience::published()->unarchived()->where('kiosk_only', false)->paginate();
         $title = 'Interactive Features';
 
         $this->seo->setTitle($title);
