@@ -18,6 +18,9 @@ class Artist extends BaseApiModel
     protected $presenter = 'App\Presenters\Admin\ArtistPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArtistPresenter';
 
+    protected static $defaultScopes = [
+        'include' => ['place_pivots']
+    ];
     protected $artworks;
 
     public function getTypeAttribute()
