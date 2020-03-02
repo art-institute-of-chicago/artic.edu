@@ -100,6 +100,6 @@ class IssueArticle extends AbstractModel implements Sortable
 
     public function getIssueSlugAttribute()
     {
-        return join([$this->issue->issue_number ?? '', $this->issue->getSlug(), $this->id, $this->getSlug()], '/');
+        return join([$this->id, $this->getSlug()], '/');
     }
 }
