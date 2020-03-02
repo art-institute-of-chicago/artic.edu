@@ -36,7 +36,7 @@ class ArticleController extends FrontController
 
         if (request('category') !== 'interactive-features') {
             $articles = Article::published()
-                ->byCategory(request('category'))
+                ->byCategories(request('category'))
                 ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')
                 ->paginate(self::ARTICLES_PER_PAGE);
@@ -125,10 +125,7 @@ class ArticleController extends FrontController
             $item->topics = $item->categories;
         }
 
-        $featuredArticles = $item->getRelatedWithApiModels("further_reading_items", [], [
-            'articles' => false,
-            'interactiveFeatures.experiences' => false
-        ]) ?? null;
+        $featuredArticles = $this->repository->getRelatedItems($item) ?? null;
 
         return view('site.articleDetail', [
             'contrastHeader' => $item->present()->contrastHeader,

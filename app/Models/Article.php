@@ -148,14 +148,14 @@ class Article extends AbstractModel implements Feedable
         return $query->whereIn('id', $ids);
     }
 
-    public function scopeByCategory($query, $category = null)
+    public function scopeByCategories($query, $categories = null)
     {
-        if (empty($category)) {
+        if (empty($categories)) {
             return $query;
         }
 
-        return $query->whereHas('categories', function ($query) use ($category) {
-            $query->where('category_id', $category);
+        return $query->whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('category_id', is_array($categories) ? $categories : [$categories]);
         });
     }
 
