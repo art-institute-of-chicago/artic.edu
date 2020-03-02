@@ -17,7 +17,7 @@ class IssueArticlePresenter extends BasePresenter
     public function issueNumber()
     {
         if ($this->entity->issue) {
-            return sprintf("%02d", $this->entity->issue->present()->issueNumber);
+            return $this->entity->issue->present()->issueNumber;
         }
     }
 
