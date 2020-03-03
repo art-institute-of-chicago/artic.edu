@@ -36,7 +36,7 @@ class InteractiveFeatureExperiencesController extends FrontController
             abort(404);
         }
 
-        $items = Experience::published()->unarchived()->where('kiosk_only', false)->paginate();
+        $items = Experience::webPublished()->paginate();
         $title = 'Interactive Features';
 
         $this->seo->setTitle($title);

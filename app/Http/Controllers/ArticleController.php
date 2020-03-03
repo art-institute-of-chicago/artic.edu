@@ -46,8 +46,7 @@ class ArticleController extends FrontController
             }
 
             // Retrieve experiences entires
-            $experiencesCount = Experience::published()->paginate()->count();
-            $articles = Experience::published()->paginate(self::ARTICLES_PER_PAGE);
+            $articles = Experience::webPublished()->paginate(self::ARTICLES_PER_PAGE);
         }
 
         // Featured articles are the selected ones if no filters are applied

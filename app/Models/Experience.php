@@ -141,6 +141,21 @@ class Experience extends AbstractModel implements Sortable
         return 'experience';
     }
 
+    public function scopeWebPublished($query)
+    {
+        return $query
+            ->published()
+            ->unarchived()
+            ->where('kiosk_only', false)
+            ->whereNull('deleted_at')
+            ->whereHas('interactiveFeature', function ($subquery) {
+                $subquery
+                    ->published()
+                    ->unarchived()
+                    ->whereNull('deleted_at');
+            });
+    }
+
     public function scopeArchived($query)
     {
         return $query->where('archived', true);
