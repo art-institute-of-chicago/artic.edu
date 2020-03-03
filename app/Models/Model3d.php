@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 
-class Model3d extends Model
+class Model3d extends AbstractModel
 {
     protected $table = '3d_models';
     protected $fillable = [

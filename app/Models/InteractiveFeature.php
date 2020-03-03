@@ -4,7 +4,6 @@ namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
@@ -14,8 +13,7 @@ use App\Models\Behaviors\HasRelated;
 use App\Models\Page;
 use Carbon\Carbon;
 
-class InteractiveFeature
- extends Model
+class InteractiveFeature extends AbstractModel
 {
     use HasRevisions, HasSlug, HasMedias, HasMediasEloquent, HasBlocks, HasApiRelations, Transformable, HasRelated;
 
