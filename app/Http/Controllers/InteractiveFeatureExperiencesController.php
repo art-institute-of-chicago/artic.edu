@@ -32,6 +32,10 @@ class InteractiveFeatureExperiencesController extends FrontController
 
     public function index(Request $request)
     {
+        if (config('aic.hide_interactive_features')) {
+            abort(404);
+        }
+
         $items = Experience::published()->unarchived()->where('kiosk_only', false)->paginate();
         $title = 'Interactive Features';
 
