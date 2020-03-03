@@ -41,6 +41,10 @@ class ArticleController extends FrontController
                 ->orderBy('date', 'desc')
                 ->paginate(self::ARTICLES_PER_PAGE);
         } else {
+            if (config('aic.hide_interactive_features')) {
+                abort(404);
+            }
+
             // Retrieve experiences entires
             $experiencesCount = Experience::published()->paginate()->count();
             $articles = Experience::published()->paginate(self::ARTICLES_PER_PAGE);
@@ -79,15 +83,16 @@ class ArticleController extends FrontController
             );
         }
 
-        array_push($categories,
-            [
-                'label' => 'Interactive Features',
-                'href' => route('articles', ['category' => 'interactive-features']),
-                'active' => request()->get('category') == 'interactive-features',
-                'ajaxScrollTarget' => 'listing',
-            ]
-        );
-
+        if (!config('aic.hide_interactive_features')) {
+            array_push($categories,
+                [
+                    'label' => 'Interactive Features',
+                    'href' => route('articles', ['category' => 'interactive-features']),
+                    'active' => request()->get('category') == 'interactive-features',
+                    'ajaxScrollTarget' => 'listing',
+                ]
+            );
+        }
 
         return view('site.articles', [
             'primaryNavCurrent' => 'collection',
