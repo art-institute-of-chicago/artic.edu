@@ -48,7 +48,7 @@ class ArticlesPublicationsController extends FrontController
                 'items' => $page->digitalPublications
             ],
             'experiences' => [
-                'items' => $page->experiences
+                'items' => $page->experiences()->webPublished()->get(),
             ],
             'printedPublications' => [
                 'intro' => $page->present()->printed_publications_intro,
