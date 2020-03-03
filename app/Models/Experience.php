@@ -141,18 +141,21 @@ class Experience extends AbstractModel implements Sortable
         return 'experience';
     }
 
+    /**
+     * By default, `withoutTrashed` is applied to `Expereince` and also `IF` through `whereHas`.
+     *
+     * @TODO Consider moving this to just override `published`?
+     */
     public function scopeWebPublished($query)
     {
         return $query
             ->published()
             ->unarchived()
             ->where('kiosk_only', false)
-            ->whereNull('deleted_at')
             ->whereHas('interactiveFeature', function ($subquery) {
                 $subquery
                     ->published()
-                    ->unarchived()
-                    ->whereNull('deleted_at');
+                    ->unarchived();
             });
     }
 
