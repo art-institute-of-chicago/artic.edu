@@ -6,11 +6,10 @@ use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\Sortable;
-use A17\Twill\Models\Model;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 
-class ExperienceModal extends Model implements Sortable
+class ExperienceModal extends AbstractModel implements Sortable
 {
     use HasBlocks, HasMedias, HasFiles, HasRevisions, HasPosition;
 

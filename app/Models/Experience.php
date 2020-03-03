@@ -8,7 +8,6 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasTranslation;
 use A17\Twill\Models\Behaviors\Sortable;
-use A17\Twill\Models\Model;
 use App\Http\Resources\SlideAsset as SlideAssetResource;
 use App\Http\Resources\Slide as SlideResource;
 use App\Models\SeamlessImage;
@@ -16,7 +15,7 @@ use App\Models\ExperienceModal;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 
-class Experience extends Model implements Sortable
+class Experience extends AbstractModel implements Sortable
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, Transformable;
 

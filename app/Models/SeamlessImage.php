@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class SeamlessImage extends Model
+class SeamlessImage extends AbstractModel
 {
     protected $fillable = ['file_name', 'zip_file_id', 'frame'];
 }
