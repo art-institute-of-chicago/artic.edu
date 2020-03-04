@@ -43,6 +43,14 @@ class EventImport extends BaseCommand
                 continue;
             }
 
+            $event->rsvp_link = $record['rsvp_link'];
+            $event->buy_button_text = $record['buy_button_text'];
+            $event->buy_button_caption = $record['buy_button_caption'];
+
+            Event::withoutEvents(function() use ($event) {
+                $event->save();
+            });
+
             $newTicketedEvent = TicketedEvent::query()->find($record['ticketed_event_id']);
 
             if ($newTicketedEvent->error ?? false) {
@@ -64,6 +72,12 @@ class EventImport extends BaseCommand
                     continue;
                 }
             }
+
+            $event->is_ticketed = $record['is_ticketed'];
+
+            Event::withoutEvents(function() use ($event) {
+                $event->save();
+            });
 
             $event->ticketedEvent()->detach();
 

@@ -27,6 +27,10 @@ class EventExport extends BaseCommand
         $this->csv->insertOne([
             'event_id',
             'ticketed_event_id',
+            'is_ticketed',
+            'rsvp_link',
+            'buy_button_text',
+            'buy_button_caption',
         ]);
 
         foreach (Event::cursor() as $event) {
@@ -45,6 +49,10 @@ class EventExport extends BaseCommand
         $row = [
             'event_id' => $event->id,
             'ticketed_event_id' => $ticketedEvent->id,
+            'is_ticketed' => $event->is_ticketed,
+            'rsvp_link' => $event->rsvp_link,
+            'buy_button_text' => $event->buy_button_text,
+            'buy_button_caption' => $event->buy_button_caption,
         ];
 
         $this->info(implode(',', $row));
