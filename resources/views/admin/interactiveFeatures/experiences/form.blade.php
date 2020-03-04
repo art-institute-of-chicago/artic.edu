@@ -42,4 +42,9 @@
         'name' => 'kiosk_only',
         'label' => 'Kiosk only',
     ])
+
+    @formField('checkbox', [
+        'name' => 'show_on_articles',
+        'label' => 'Show on "Articles" listing',
+    ])
 @stop

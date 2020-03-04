@@ -46,7 +46,7 @@ class ArticleController extends FrontController
             }
 
             // Retrieve experiences entires
-            $articles = Experience::webPublished()->paginate(self::ARTICLES_PER_PAGE);
+            $articles = Experience::webPublished()->where('show_on_articles', '=', true)->paginate(self::ARTICLES_PER_PAGE);
         }
 
         // Featured articles are the selected ones if no filters are applied
