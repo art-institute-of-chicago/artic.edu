@@ -73,7 +73,7 @@ class EventImport extends BaseCommand
                 }
             }
 
-            $event->is_ticketed = $record['is_ticketed'];
+            $event->is_ticketed = $record['is_ticketed'] === '1';
 
             Event::withoutEvents(function() use ($event) {
                 $event->save();
