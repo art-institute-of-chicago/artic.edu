@@ -26,6 +26,13 @@
         'maxlength' => 300
     ])
 
+    @formField('input', [
+        'name' => 'description',
+        'label' => 'Description',
+        'maxlength' => 300,
+        'note' => 'Used in listings and for social media',
+    ])
+
     @formField('checkbox', [
         'name' => 'archived',
         'label' => 'Archived'
