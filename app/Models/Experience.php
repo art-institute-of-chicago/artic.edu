@@ -31,6 +31,7 @@ class Experience extends AbstractModel implements Sortable
         'interactive_feature_id',
         'archived',
         'kiosk_only',
+        'show_on_articles',
     ];
 
     public $slugAttributes = [
@@ -180,6 +181,10 @@ class Experience extends AbstractModel implements Sortable
                 [
                     'name' => 'default',
                     'ratio' => 1 / 1,
+                ],
+                [
+                    'name' => 'social',
+                    'ratio' => 16 / 9,
                 ],
             ],
         ]

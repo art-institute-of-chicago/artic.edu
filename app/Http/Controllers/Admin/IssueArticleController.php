@@ -10,6 +10,8 @@ class IssueArticleController extends ModuleController
     protected $moduleName = 'issues.articles';
     protected $modelName = 'IssueArticle';
 
+    protected $permalinkBase = 'journal/articles/';
+
     protected function getParentModuleForeignKey()
     {
         return 'issue_id';
@@ -71,8 +73,12 @@ class IssueArticleController extends ModuleController
 
     protected function formData($request)
     {
+        $item = $this->repository->getById(request('article') ?? request('id'));
+        $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $item->id . '/';
+
         $issue = app(IssueRepository::class)->getById(request('issue'));
         return [
+            'baseUrl' => $baseUrl,
             'breadcrumb' => [
                 [
                     'label' => 'Issues',
@@ -93,22 +99,4 @@ class IssueArticleController extends ModuleController
         ];
     }
 
-    protected function getPermalinkBaseUrl()
-    {
-        $issue = app(IssueRepository::class)->getById(request('issue'));
-        return request()->getScheme() . '://' . config('app.url') . '/journal/issues/' . $issue->id . '/' . $issue->getSlug() . '/';
-    }
-/*
-    protected function formData($request)
-    {
-        $item = $this->repository->getById(request('article') ?? request('id'));
-        $baseUrl = '//' . config('app.url') . '/' .$this->permalinkBase . $item->present()->issue_number . '/';
-        $baseUrl .= $item->issue ? $item->issue->getSlug() : '';
-        $baseUrl .= '/' . $item->id . '/';
-
-        return [
-            'baseUrl' => $baseUrl,
-        ];
-    }
-    */
 }

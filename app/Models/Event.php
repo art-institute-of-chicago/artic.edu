@@ -393,6 +393,11 @@ class Event extends AbstractModel
         });
     }
 
+    public function getIsFutureAttribute()
+    {
+        return self::future()->find($this->id) != null;
+    }
+
     public function scopeBetweenDates($query, $startDate, $endDate = null)
     {
         $query->rightJoin('event_metas', function ($join) {

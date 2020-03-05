@@ -51,6 +51,22 @@ class ArticleRepository extends ModuleRepository
         return collect($this->model::$articleLayouts);
     }
 
+    public function getRelatedItems($item)
+    {
+        // Get items set specifically in the CMS
+        $relatedItems = $item->getRelatedWithApiModels("further_reading_items", [], [
+            'articles' => false,
+            'interactiveFeatures.experiences' => false
+        ]);
+
+        // Append with auto-fills
+        $category_ids = $item->categories->pluck('id')->all();
+        $relatedItems = $relatedItems->concat(\App\Models\Article::byCategories($category_ids)->orderBy('date', 'desc')->take(5)->get());
+
+        // Return the first four
+        return $relatedItems->slice(0, 4)->values();
+    }
+
     public function searchApi($string, $perPage = null)
     {
         $search  = Search::query()->search($string)->published()->resources(['articles']);

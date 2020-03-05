@@ -26,6 +26,13 @@
         'maxlength' => 300
     ])
 
+    @formField('input', [
+        'name' => 'description',
+        'label' => 'Description',
+        'maxlength' => 300,
+        'note' => 'Used in listings and for social media',
+    ])
+
     @formField('checkbox', [
         'name' => 'archived',
         'label' => 'Archived'
@@ -34,5 +41,10 @@
     @formField('checkbox', [
         'name' => 'kiosk_only',
         'label' => 'Kiosk only',
+    ])
+
+    @formField('checkbox', [
+        'name' => 'show_on_articles',
+        'label' => 'Show on "Articles" listing',
     ])
 @stop

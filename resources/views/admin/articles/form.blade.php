@@ -109,6 +109,8 @@
 
 @section('fieldsets')
     <a17-fieldset id="related" title="Further Reading">
+        <p>Use "Custom related items" to relate up to 4 articles to show on the article page. See special note on articles below.</p>
+
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
             'moduleName' => 'articles',
@@ -124,9 +126,26 @@
                 ]
             ],
             'max' => 4,
-            'label' => 'Related items',
+            'label' => 'Custom related items',
         ])
 
+        <p>We use Category data to determine which articles to relate. We automatically append any article related in this way to the "Related Content" section in reverse chronological order. The following articles would be shown on this article's page automatically:</p>
+
+        @php
+            $category_ids = $item->categories->pluck('id')->all();
+            $relatedArticles = \App\Models\Article::byCategories($category_ids)->orderBy('date', 'desc')->take(5)->get();
+        @endphp
+        <ol style="margin: 1em 0; padding-left: 40px">
+            @foreach($relatedArticles as $article)
+                @if($article->id != $item->id)
+                    <li style="list-style-type: decimal; margin-bottom: 0.5em">
+                        <a href="{!! route('articles.show', $article) !!}">{{ $article->title }}</a>
+                    </li>
+                @endif
+            @endforeach
+        </ol>
+
+        <p style="margin-top: 1em">If this logic is satisfactory, there's no need to add exhibitions to the "Custom related items" field. However, if you'd like to control the order of exhibitions relative to other related content, feel free to add them using the field above.</p>
     </a17-fieldset>
 
     @component('admin.partials.featured-related', ['form_fields' => $form_fields])

@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 class Seo extends BaseSeo
 {
+    public $noindex = false;
 
     public function setImage($image)
     {
