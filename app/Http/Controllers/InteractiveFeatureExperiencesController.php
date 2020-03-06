@@ -38,11 +38,33 @@ class InteractiveFeatureExperiencesController extends FrontController
         $this->seo->setTitle($title);
 
         $nav = [
-            ['label' => 'Writings', 'href' => route('articles_publications')],
+            ['label' => 'Writings', 'href' => route('articles_publications'), 'links' => [
+                [
+                    'label' => 'Articles',
+                    'href' => route('articles'),
+                    'active' => false,
+                ],
+                [
+                    'label' => 'Interactive Features',
+                    'href' => route('interactiveFeatures'),
+                    'active' => true,
+                ],
+                [
+                    'label' => 'Digital Publications',
+                    'href' => route('collection.publications.digital-publications'),
+                    'active' => false,
+                ],
+                [
+                    'label' => 'Print Publications',
+                    'href' => route('collection.publications.printed-publications'),
+                    'active' => false,
+                ]
+            ]],
         ];
 
         $crumbs = [
             ['label' => 'The Collection', 'href' => route('collection')],
+            ['label' => 'Writings', 'href' => route('articles_publications')],
             ['label' => $title, 'href' => ''],
         ];
 
