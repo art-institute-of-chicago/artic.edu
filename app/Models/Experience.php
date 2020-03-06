@@ -160,6 +160,11 @@ class Experience extends AbstractModel implements Sortable
             });
     }
 
+    public function scopeArticlePublished($query)
+    {
+        return $query->where('show_on_articles', '=', true);
+    }
+
     public function scopeArchived($query)
     {
         return $query->where('archived', true);

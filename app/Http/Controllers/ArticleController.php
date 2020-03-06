@@ -46,7 +46,7 @@ class ArticleController extends FrontController
             }
 
             // Retrieve experiences entires
-            $articles = Experience::webPublished()->where('show_on_articles', '=', true)->paginate(self::ARTICLES_PER_PAGE);
+            $articles = Experience::webPublished()->articlePublished()->paginate(self::ARTICLES_PER_PAGE);
         }
 
         // Featured articles are the selected ones if no filters are applied
@@ -82,7 +82,7 @@ class ArticleController extends FrontController
             );
         }
 
-        if (!config('aic.hide_interactive_features')) {
+        if (!config('aic.hide_interactive_features') && Experience::webPublished()->articlePublished()->count() > 0) {
             array_push($categories,
                 [
                     'label' => 'Interactive Features',
