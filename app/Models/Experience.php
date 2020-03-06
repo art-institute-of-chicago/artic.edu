@@ -185,10 +185,6 @@ class Experience extends AbstractModel implements Sortable
             'default' => [
                 [
                     'name' => 'default',
-                    'ratio' => 1 / 1,
-                ],
-                [
-                    'name' => 'social',
                     'ratio' => 16 / 9,
                 ],
             ],
