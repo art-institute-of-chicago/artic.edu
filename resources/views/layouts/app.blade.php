@@ -54,6 +54,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @if ($print)
     <link href="{{revAsset('styles/print.css')}}" rel="stylesheet" />
   @else
+      <link href="{{revAsset('styles/print.css')}}" rel="stylesheet" media="print" />
       @if (config('services.google_tag_manager.enabled'))
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
