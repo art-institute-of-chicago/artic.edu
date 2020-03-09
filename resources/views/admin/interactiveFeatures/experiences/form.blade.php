@@ -29,6 +29,7 @@
     @formField('input', [
         'name' => 'description',
         'label' => 'Description',
+        'type' => 'textarea',
         'maxlength' => 300,
         'note' => 'Used in listings and for social media',
     ])

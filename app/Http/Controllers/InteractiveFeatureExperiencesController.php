@@ -99,7 +99,7 @@ class InteractiveFeatureExperiencesController extends FrontController
 
         $this->seo->setTitle($experience->title);
         $this->seo->setDescription($experience->description ?? $experience->subtitle);
-        $this->seo->setImage($experience->imageFront('thumbnail', 'social') ?? $experience->imageFront('thumbnail', 'default'));
+        $this->seo->setImage($experience->imageFront('thumbnail', 'default'));
 
         $view = 'site.experienceDetail';
 
