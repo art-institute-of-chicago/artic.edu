@@ -47,9 +47,24 @@
         'note' => 'Minimum image width 3000px'
     ])
 
-    @formField('input', [
+    @formField('select', [
         'name' => 'type',
         'label' => 'Type',
+        'placeholder' => 'Select a type',
+        'options' => [
+            [
+                'value' => 'editors-note',
+                'label' => 'Editor\'s Note'
+            ],
+            [
+                'value' => 'article',
+                'label' => 'Article'
+            ],
+            [
+                'value' => 'in-conversation',
+                'label' => 'In Conversation'
+            ]
+        ]
     ])
 
     @formField('input', [
