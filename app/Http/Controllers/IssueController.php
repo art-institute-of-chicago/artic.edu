@@ -15,16 +15,16 @@ class IssueController extends FrontController
         parent::__construct();
     }
 
-    public function show($id, $slug = null)
+    public function show($issueNumber, $slug = null)
     {
-        $item = $this->repository->published()->find((Integer) $id);
+        $item = $this->repository->published()->where('issue_number', (Integer) $issueNumber)->first();
 
         if (!$item) {
             abort(404);
         }
 
         // Redirect to the canonical page if it wasn't requested
-        $canonicalPath = route('issues.show', ['id' => $item->id, 'slug' => $item->getSlug()], false);
+        $canonicalPath = route('issues.show', ['issueNumber' => $item->issue_number, 'slug' => $item->getSlug()], false);
         if ('/' .request()->path() != $canonicalPath) {
             return redirect($canonicalPath, 301);
         }
