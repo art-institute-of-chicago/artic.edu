@@ -65,9 +65,9 @@
 
           <ul class="g-footer__link-list" aria-labelledby="h-footer-support-us">
             <li><a href="{{ $_pages['support-us-membership'] }}">Membership</a></li>
-            <li><a href="{{ $_pages['support-us-ways-to-give'] }}">Ways to Give</a></li>
-            <li><a href="{{ $_pages['support-us-ways-to-give-corporate-sponsorship'] }}">Corporate Sponsorship</a></li>
-             <li><a href="{{ $_pages['support-us-art-interest-groups'] }}">Art Interest Groups</a></li>
+            <li><a href="{{ $_pages['support-us-annual-fund'] }}">Annual Fund</a></li>
+            <li><a href="{{ $_pages['support-us-planned-giving'] }}">Planned Giving</a></li>
+            <li><a href="{{ $_pages['support-us-corporate-sponsorship'] }}">Corporate Sponsorship</a></li>
           </ul>
         </div>
       </li>

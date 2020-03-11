@@ -137,10 +137,9 @@ class AppServiceProvider extends ServiceProvider
 
                     , 'support-us' => '/support-us'
                     , 'support-us-membership' => '/support-us/membership'
-                    , 'support-us-ways-to-give' => '/support-us/ways-to-give'
-                    , 'support-us-affiliate-groups' => '/support-us/affiliate-groups'
-                    , 'support-us-ways-to-give-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship'
-                    , 'support-us-art-interest-groups' => '/support-us/art-interest-groups'
+                    , 'support-us-annual-fund' => '/support-us/ways-to-give/annual-fund'
+                    , 'support-us-planned-giving' => '/support-us/ways-to-give/planned-giving'
+                    , 'support-us-corporate-sponsorship' => '/support-us/ways-to-give/corporate-sponsorship'
 
                     , 'learn' => '/learn-with-us'
                     , 'learn-families' => '/learn-with-us/families'
