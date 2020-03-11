@@ -61,7 +61,7 @@ class ArticleRepository extends ModuleRepository
 
         // Append with auto-fills
         $category_ids = $item->categories->pluck('id')->all();
-        $relatedItems = $relatedItems->concat(\App\Models\Article::byCategories($category_ids)->orderBy('date', 'desc')->take(5)->get());
+        $relatedItems = $relatedItems->concat(\App\Models\Article::byCategories($category_ids)->published()->orderBy('date', 'desc')->take(5)->get());
 
         // Return the first four
         return $relatedItems->slice(0, 4)->values();
