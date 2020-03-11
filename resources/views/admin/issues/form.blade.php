@@ -26,8 +26,8 @@
     ])
 
     @formField('wysiwyg', [
-        'name' => 'description',
-        'label' => 'Description',
+        'name' => 'header_text',
+        'label' => 'Header text',
         'toolbarOptions' => [
             'italic'
         ],
@@ -35,9 +35,9 @@
 
     @formField('wysiwyg', [
         'name' => 'list_description',
-        'label' => 'List Description',
+        'label' => 'List description',
         'maxlength' => 255,
-        'note' => 'Max 255 characters. Will be used on the issue landing and listing pages, and social media.',
+        'note' => 'Max 255 characters. Will be used when the issue appears in listings and for social media.',
         'toolbarOptions' => [
             'italic'
         ],
@@ -50,6 +50,8 @@
         'name' => 'hero',
         'note' => 'Minimum image width 3000px'
     ])
+
+    <hr>
 
     @formField('medias', [
         'with_multiple' => false,

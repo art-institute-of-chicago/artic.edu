@@ -22,7 +22,7 @@ class Issue extends AbstractModel implements Sortable
         'title_display',
         'issue_number',
         'date',
-        'description',
+        'header_text',
         'list_description',
         'license_text',
         'publish_start_date',
