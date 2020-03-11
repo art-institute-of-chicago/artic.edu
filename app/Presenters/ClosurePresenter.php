@@ -23,4 +23,11 @@ class ClosurePresenter extends BasePresenter
         return Closure::$types[$this->entity->type];
     }
 
+    public function closureCopy() {
+        $closure_copy = $this->entity->closure_copy;
+        $closure_copy = str_replace('<p>', ' ', $closure_copy);
+        $closure_copy = str_replace('</p>', ' ', $closure_copy);
+        return $closure_copy;
+    }
+
 }

@@ -60,7 +60,7 @@
   <div class="m-notification m-notification--header" data-behavior="notification">
     <div class="m-notification--header__inner">
       <p class="m-notification__text f-secondary">
-        <svg class="icon--info" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--info"></use></svg>{{ $_hours['closure']->closure_copy ?? '' }}
+        <svg class="icon--info" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--info"></use></svg>{!! $_hours['closure']->present()->closureCopy ?? '' !!}
       </p>
       {{--
       <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
