@@ -25,9 +25,12 @@
 
     <p>For a 1 day closure, use the same start and end date.</p>
 
-    @formField('input', [
+    @formField('wysiwyg', [
         'name' => 'closure_copy',
         'label' => 'Closure Copy',
+        'toolbarOptions' => [
+            'italic', 'link'
+        ],
         'maxlength' => 255
     ])
 @stop
