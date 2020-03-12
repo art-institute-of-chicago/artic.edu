@@ -36,12 +36,20 @@
         </div>
     @endif
 
+    @if ($item->getEditorsNote())
+        <div class="o-article__intro">
+            @component('components.blocks._text')
+                @slot('font', 'f-deck')
+                @slot('tag', 'span')
+                {{ $item->getEditorsNote()->title }} {!! $item->getEditorsNote()->description !!}
+            @endcomponent
+        </div>
+    @endif
+
     <div class="o-article__body o-blocks">
 
     </div>
 
 </article>
-
-<div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
 
 @endsection
