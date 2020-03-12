@@ -85,6 +85,7 @@
     @endforeach
 @endcomponent
 
+{{-- Remove events from homepage during COVID-19 cancellations
 @component('components.atoms._hr')
 @endcomponent
 
@@ -114,6 +115,7 @@
         @endcomponent
     @endforeach
 @endcomponent
+--}}
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
