@@ -79,6 +79,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--info-i">
     <use xlink:href="#icon--info-i"></use>
   </svg>
+  <svg class="icon--journal-logo">
+    <use xlink:href="#icon--journal-logo"></use>
+  </svg>
   <svg class="icon--location">
     <use xlink:href="#icon--location"></use>
   </svg>
@@ -325,6 +328,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--info-i {
   width: 16px;
   height: 16px;
+}
+
+.icon--journal-logo {
+  width: 288px;
+  height: 233px;
 }
 
 .icon--location {
