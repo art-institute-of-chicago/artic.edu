@@ -1,4 +1,4 @@
-<{{ $tag ?? 'header' }} class="m-article-header m-article-header--hero">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--journal">
   <div class="m-article-header__img">
       @if ($img)
         @component('components.atoms._img')
@@ -20,15 +20,7 @@
             @slot('title_display', $title_display ?? null)
         @endcomponent
       @endif
-      @if (isset($type))
-        @component('components.atoms._type')
-            @slot('tag','p')
-            {{ $type }}
-        @endcomponent
-      @endif
       @if (isset($intro))
-        @component('components.atoms._hr')
-        @endcomponent
         @component('components.blocks._text')
             @slot('font','f-deck')
             @slot('variation', 'm-article-header__intro')

@@ -3,11 +3,11 @@
 @section('content')
 
 <article class="o-article">
-    @component('components.molecules._m-article-header--journal')
+    @component('components.molecules._m-article-header----journal')
         @slot('title', $item->present()->title ?? null)
         @slot('title_display', $item->present()->title_display ?? null)
         @slot('img', $item->imageFront('hero') ?? null)
-        @slot('headerText',  $item->header_text ?? null)
+        @slot('intro', $item->header_text ?? null)
         @slot('issueNumber', $item->issue_number ?? null)
     @endcomponent
 

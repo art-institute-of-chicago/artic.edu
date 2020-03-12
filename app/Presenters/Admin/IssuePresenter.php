@@ -14,18 +14,4 @@ class IssuePresenter extends BasePresenter
         }
     }
 
-    public function headerType()
-    {
-        return 'journal';
-    }
-
-    public function contrastHeader()
-    {
-        return true;
-    }
-
-    public function borderlessHeader()
-    {
-        return false;
-    }
 }

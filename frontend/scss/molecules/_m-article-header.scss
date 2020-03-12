@@ -711,6 +711,128 @@
 
 
 
+.m-article-header--journal {
+  padding-top: 0;
+
+  @include breakpoint('large+') {
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .m-article-header__img {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100%;
+    margin-left: -50vw;
+    overflow: hidden;
+  }
+
+  .m-article-header__img::after {
+    content: '';
+    border: solid thin white;
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    height: calc(100% - #{12px * 2});
+    width: colspan(58, xsmall);
+
+    @include breakpoint('small+') {
+      height: calc(100% - #{24px * 2});
+      width: colspan(58, small);
+    }
+
+    @include breakpoint('medium+') {
+      height: calc(100% - #{24px * 2});
+      width: colspan(58, medium);
+    }
+
+    @include breakpoint('large+') {
+      height: calc(100% - #{40px * 2});
+      width: colspan(58, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(58, xlarge);
+    }
+  }
+
+  .m-article-header__img img,
+  .m-article-header__img video {
+    @include objectFitFix;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .m-article-header__text {
+    display: flex;
+    position: relative;
+    flex: 1;
+    z-index: 2;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 60vh;
+    padding: calc(#{colspan(2, xsmall)} + 12px) colspan(2, xsmall);
+
+    @include breakpoint('small+') {
+      padding: calc(#{colspan(2, small)} + 24px) colspan(2, small);
+    }
+
+    @include breakpoint('medium+') {
+      padding: calc(#{colspan(2, medium)} + 24px) colspan(2, medium);
+    }
+
+    @include breakpoint('large+') {
+      padding: calc(#{colspan(2, large)} + 40px) colspan(2, large);
+      min-height: 80vh;
+    }
+
+    @include breakpoint('xlarge') {
+      padding: calc(#{colspan(2, xlarge)} + 40px) colspan(2, xlarge);
+      width: colspan(58, xlarge);
+    }
+
+    .title {
+      width: 100%; // ie11 text wrap fix
+      text-align: center;
+      color: $color__text--title-contrast;
+    }
+  }
+
+  .m-article-header__info-trigger {
+    bottom: 24px;
+
+    @include breakpoint('small+') {
+      bottom: 28px;
+    }
+  }
+
+  .m-article-header__info {
+    bottom: 56px;
+
+    @include breakpoint('small+') {
+      bottom: 60px;
+    }
+  }
+}
+
+
+
 
 .m-article-header--generic {
   padding-top: 0;
