@@ -64,7 +64,7 @@
         @slot('breadcrumb', $breadcrumb ?? null)
     @endcomponent
 @elseif (isset($headerType) and $headerType === 'gallery')
-    {{-- Generic header --}}
+    {{-- Gallery header --}}
     @component('components.molecules._m-article-header----gallery')
         @slot('title', $title ?? null)
         @slot('editorial', $editorial ?? null)
