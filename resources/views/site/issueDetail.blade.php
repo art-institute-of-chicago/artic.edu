@@ -28,11 +28,11 @@
     </div>
 
     @if ($item->getEditorsNote())
-        <div class="o-article__intro">
-            @component('components.blocks._text')
-                @slot('font', 'f-deck')
-                @slot('tag', 'span')
-                {{ $item->getEditorsNote()->title }} {!! $item->getEditorsNote()->description !!}
+        <div class="o-issue__intro">
+            @component('components.organisms._o-editors-note')
+                @slot('title', $item->getEditorsNote()->present()->shortTitle)
+                @slot('description', $item->getEditorsNote()->list_description)
+                @slot('issueNumber', $item->issue_number ?? null)
             @endcomponent
         </div>
     @endif

@@ -21,6 +21,7 @@ class IssueArticle extends AbstractModel implements Sortable
         'title_display',
         'short_title_display',
         'description',
+        'list_description',
         'date',
         'type',
         'abstract',
