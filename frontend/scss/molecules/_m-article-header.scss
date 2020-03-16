@@ -122,6 +122,26 @@
   text-align: center;
   cursor: pointer;
   transition: opacity .15s;
+
+  // WEB-1579: Standardize the hero header info trigger buttons
+  &.m-article-header__info-trigger--inverse {
+    background-color: transparent;
+    border-radius: 0;
+
+    opacity: .7;
+
+    .icon--info {
+      width: 28px;
+      height: 28px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+      opacity: .9;
+    }
+  }
 }
 
 .m-article-header__info-trigger:hover,
@@ -802,6 +822,8 @@
     z-index: 3;
 
     min-height: 60vh;
+
+    // We will account for the credit icon later
     padding: calc(#{colspan(2, xsmall)} + 12px) colspan(2, xsmall);
 
     @include breakpoint('small+') {
@@ -827,7 +849,7 @@
       color: $color__text--title-contrast;
     }
 
-    svg {
+    .icon--journal-logo {
       height: 92px;
       width: 120px;
       color: white;
@@ -882,21 +904,80 @@
         margin-top: 60px;
       }
     }
-  }
 
-  .m-article-header__info-trigger {
-    bottom: 24px;
+    &.m-article-header__text--with-credit {
+      padding: calc(#{colspan(2, xsmall)} + 12px) colspan(2, xsmall) calc(#{colspan(2, xsmall)} + 12px + 28px);
 
-    @include breakpoint('small+') {
-      bottom: 28px;
-    }
-  }
+      @include breakpoint('small+') {
+        padding: calc(#{colspan(2, small)} + 24px) colspan(2, small) calc(#{colspan(2, small)} + 24px + 28px);
+      }
 
-  .m-article-header__info {
-    bottom: 56px;
+      @include breakpoint('medium+') {
+        padding: calc(#{colspan(2, medium)} + 24px) colspan(2, medium) calc(#{colspan(2, medium)} + 24px + 28px);
+      }
 
-    @include breakpoint('small+') {
-      bottom: 60px;
+      @include breakpoint('large+') {
+        padding: calc(#{colspan(2, large)} + 40px) colspan(2, large) calc(#{colspan(2, large)} + 40px + 28px);
+        min-height: 80vh;
+      }
+
+      @include breakpoint('xlarge') {
+        padding: calc(#{colspan(2, xlarge)} + 40px) colspan(2, xlarge) calc(#{colspan(2, xlarge)} + 40px + 28px);
+        width: colspan(58, xlarge);
+      }
+
+      // Mirror the padding for .m-article-header__text
+      .m-article-header__info-trigger {
+        right: colspan(1, xsmall);
+        bottom: calc(#{colspan(1, xsmall)} + 12px);
+
+        @include breakpoint('small+') {
+          right: colspan(1, small);
+          bottom: calc(#{colspan(1, small)} + 24px);
+        }
+
+        @include breakpoint('medium+') {
+          right: colspan(1, medium);
+          bottom: calc(#{colspan(1, medium)} + 24px);
+        }
+
+        @include breakpoint('large+') {
+          right: colspan(1, large);
+          bottom: calc(#{colspan(1, large)} + 40px);
+        }
+
+        @include breakpoint('xlarge') {
+          right: colspan(1, xlarge);
+          bottom: calc(#{colspan(1, xlarge)} + 40px);
+        }
+      }
+
+      .m-article-header__info {
+        $button-vertical-offset: 30px;
+
+        right: colspan(1, xsmall);
+        bottom: calc(#{colspan(1, xsmall)} + 12px + #{$button-vertical-offset});
+
+        @include breakpoint('small+') {
+          right: colspan(1, small);
+          bottom: calc(#{colspan(1, small)} + 24px + #{$button-vertical-offset});
+        }
+
+        @include breakpoint('medium+') {
+          right: colspan(1, medium);
+          bottom: calc(#{colspan(1, medium)} + 24px + #{$button-vertical-offset});
+        }
+
+        @include breakpoint('large+') {
+          right: colspan(1, large);
+          bottom: calc(#{colspan(1, large)} + 40px + #{$button-vertical-offset});
+        }
+
+        @include breakpoint('xlarge') {
+          right: colspan(1, xlarge);
+          bottom: calc(#{colspan(1, xlarge)} + 40px + #{$button-vertical-offset});
+        }
+      }
     }
   }
 }

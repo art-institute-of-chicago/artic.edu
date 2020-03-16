@@ -7,6 +7,7 @@
         @slot('title', $item->present()->title ?? null)
         @slot('title_display', $item->present()->title_display ?? null)
         @slot('img', $item->imageFront('hero') ?? null)
+        @slot('credit', $item->hero_caption ?? null)
         @slot('intro', $item->header_text ?? null)
         @slot('issueNumber', $item->issue_number ?? null)
     @endcomponent
