@@ -24,6 +24,7 @@ class Issue extends AbstractModel implements Sortable
         'date',
         'header_text',
         'list_description',
+        'hero_caption',
         'license_text',
         'publish_start_date',
         // https://github.com/area17/twill/issues/227
