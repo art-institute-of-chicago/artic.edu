@@ -14,15 +14,6 @@
       <svg class="icon--journal-logo">
         <use xlink:href="#icon--journal-logo"></use>
       </svg>
-      @if (isset($title))
-        @component('components.atoms._title')
-            @slot('tag','h1')
-            @slot('font', 'f-headline-editorial')
-            @slot('itemprop','name')
-            @slot('title', $title)
-            @slot('title_display', $title_display ?? null)
-        @endcomponent
-      @endif
       @if (isset($intro))
         @component('components.blocks._text')
             @slot('font','f-deck')
@@ -30,6 +21,27 @@
             @slot('tag', 'span')
             {!! SmartyPants::defaultTransform($intro) !!}
         @endcomponent
+      @endif
+      @if (isset($issueNumber) || isset($title))
+        <div class="m-article-header__title-lockup">
+          @if (isset($issueNumber))
+            @component('components.blocks._text')
+                @slot('font','f-subheading-2')
+                @slot('variation', 'm-article-header__issue-number')
+                @slot('tag', 'span')
+                Issue {!! SmartyPants::defaultTransform($issueNumber) !!}
+            @endcomponent
+          @endif
+          @if (isset($title))
+            @component('components.atoms._title')
+                @slot('tag','h1')
+                @slot('font', 'f-subheading-2')
+                @slot('itemprop','name')
+                @slot('title', $title)
+                @slot('title_display', $title_display ?? null)
+            @endcomponent
+          @endif
+        </div>
       @endif
       @if ((isset($credit) and !empty($credit)) or ($img and isset($img['credit']) and $img['credit'] !== ""))
         @if (isset($creditUrl))

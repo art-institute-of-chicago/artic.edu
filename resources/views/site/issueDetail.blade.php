@@ -19,22 +19,12 @@
         @endif
     </div>
 
-    <div class="o-article__secondary-actions{{ ($item->headerType === 'gallery') ? ' o-article__secondary-actions--inline-header' : '' }}{{ ($item->articleType === 'artwork') ? ' u-show@medium+' : '' }}">
+    <div class="o-article__secondary-actions">
         @component('site.shared._featuredRelated')
             @slot('featuredRelated', $item->featuredRelated ?? null)
             @slot('variation', 'u-show@medium+')
         @endcomponent
     </div>
-
-    @if ($item->heading)
-        <div class="o-article__intro">
-            @component('components.blocks._text')
-                @slot('font', 'f-deck')
-                @slot('tag', 'span')
-                {!! $item->present()->heading !!}
-            @endcomponent
-        </div>
-    @endif
 
     @if ($item->getEditorsNote())
         <div class="o-article__intro">
