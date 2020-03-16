@@ -11,6 +11,9 @@
       @endif
   </div>
   <div class="m-article-header__text">
+      <svg class="icon--journal-logo">
+        <use xlink:href="#icon--journal-logo"></use>
+      </svg>
       @if (isset($title))
         @component('components.atoms._title')
             @slot('tag','h1')
