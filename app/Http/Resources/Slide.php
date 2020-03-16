@@ -56,7 +56,7 @@ class Slide extends JsonResource
     protected function getAttractAttributes()
     {
         $this->media = $this->attractExperienceImages;
-        
+
         if ($this->asset_type === 'seamless' && $this->media_type === 'type_image') {
             $this->media = $this->seamlessImage;
         }
@@ -126,6 +126,7 @@ class Slide extends JsonResource
             'title' => $this->object_title,
             '__option_object_title' => !empty($this->object_title),
             'hotspots' => $this->mapHotspots($this->tooltip_hotspots),
+            'caption' => $this->caption,
         ];
     }
 
@@ -154,14 +155,14 @@ class Slide extends JsonResource
                 ];
             } else {
                 return [
-    
+
                 ];
             }
         }
         else {
             $src = '';
         }
-        
+
         return [
             'src' => $src,
             'caption' => $this->media->first() ? $this->media->first()->caption : '',
@@ -331,7 +332,7 @@ class Slide extends JsonResource
         if (!$this->media) {
             return [];
         }
-        
+
         switch ($this->module_type) {
             case 'tooltip':
                 return $this->media->first() ? (new SlideMediaResource($this->media->first()))->toArray(request()) : [];
