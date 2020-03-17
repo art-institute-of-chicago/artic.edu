@@ -6,7 +6,19 @@
     ];
 @endphp
 <header class="g-header">
-  <div class="g-header__inner">
+    @if (isset($_hours['closure']))
+    <div class="m-notification m-notification--header" data-behavior="notification">
+      <div class="m-notification--header__inner">
+        <p class="m-notification__text f-secondary">
+          <svg class="icon--info" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--info"></use></svg>{!! $_hours['closure']->present()->closureCopy ?? '' !!}
+        </p>
+        {{--
+        <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
+        --}}
+      </div>
+    </div>
+    @endif
+    <div class="g-header__inner">
       <a href="#content" class="skip-nav f-body">Skip to Content</a>
       <nav aria-label="primary">
         @if (isset($filledLogo) and $filledLogo)
@@ -56,16 +68,4 @@
       <p class="g-header__opening-hours f-secondary"><a href="{{ $_hours['url'] }}">{!! $_hours['general'] !!}</a></p>
       <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile" aria-label="Show menu">Menu<svg class="icon--menu--24" aria-hidden="true"><use xlink:href="#icon--menu--24" /></svg></button>
   </div>
-  @if (isset($_hours['closure']))
-  <div class="m-notification m-notification--header" data-behavior="notification">
-    <div class="m-notification--header__inner">
-      <p class="m-notification__text f-secondary">
-        <svg class="icon--info" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--info"></use></svg>{!! $_hours['closure']->present()->closureCopy ?? '' !!}
-      </p>
-      {{--
-      <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
-      --}}
-    </div>
-  </div>
-  @endif
 </header>
