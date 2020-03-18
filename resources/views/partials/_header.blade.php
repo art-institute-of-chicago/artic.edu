@@ -6,6 +6,7 @@
     ];
 @endphp
 <header class="g-header">
+    <a href="#content" class="skip-nav f-body">Skip to Content</a>
     @if (isset($_hours['closure']))
     <div class="m-notification m-notification--header" data-behavior="notification">
       <div class="m-notification--header__inner">
@@ -19,7 +20,6 @@
     </div>
     @endif
     <div class="g-header__inner">
-      <a href="#content" class="skip-nav f-body">Skip to Content</a>
       <nav aria-label="primary">
         @if (isset($filledLogo) and $filledLogo)
         <a class="g-header__logo" aria-label="Art Institute of Chicago" href="/">
