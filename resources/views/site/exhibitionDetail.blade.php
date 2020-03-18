@@ -57,7 +57,7 @@
     @endunless
 
     @component('site.shared._featuredRelated')
-        @slot('featuredRelated', $item->featuredRelated ?? null)
+        @slot('featuredRelated', $item->featuredRelated)
         @slot('variation', 'u-show@medium+')
     @endcomponent
   </div>
