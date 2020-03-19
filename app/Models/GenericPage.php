@@ -130,48 +130,51 @@ class GenericPage extends AbstractModel implements Sortable
         return route('admin.generic.genericPages.edit', $this->id);
     }
 
-    public static function saveTreeFromIds($nodesArray)
+    public static function saveTreeFromIds($nodeTree)
     {
-        $parentNodes = self::find(Arr::pluck($nodesArray, 'id'));
+        ini_set('max_execution_time', '300');
 
-        self::updateTreeRoots($nodesArray, $parentNodes);
+        // Up to a certain point, it's more effecient to load all pages into memory
+        $nodeModels = self::all();
+        $nodeArrays = self::flattenTree($nodeTree);
 
-        $parentNodes = self::find(Arr::pluck($nodesArray, 'id'));
+        foreach ($nodeArrays as $nodeArray) {
+            $nodeModel = $nodeModels->where('id', $nodeArray['id'])->first();
 
-        self::rebuildTree($nodesArray, $parentNodes);
-    }
-
-    public static function updateTreeRoots($nodesArray, $parentNodes)
-    {
-        if (is_array($nodesArray)) {
-            $position = 1;
-            foreach ($nodesArray as $nodeArray) {
-                $node = $parentNodes->where('id', $nodeArray['id'])->first();
-                $node->position = $position++;
-                $node->saveAsRoot();
-            }
-        }
-    }
-
-    public static function rebuildTree($nodesArray, $parentNodes)
-    {
-        if (is_array($nodesArray)) {
-            foreach ($nodesArray as $nodeArray) {
-                $parent = $parentNodes->where('id', $nodeArray['id'])->first();
-                if (isset($nodeArray['children']) && is_array($nodeArray['children'])) {
-                    $position = 1;
-                    $nodes = self::find(Arr::pluck($nodeArray['children'], 'id'));
-                    foreach ($nodeArray['children'] as $child) {
-                        //append the children to their (old/new)parents
-                        $descendant = $nodes->where('id', $child['id'])->first();
-                        $descendant->position = $position++;
-                        $descendant->parent_id = $parent->id;
-                        $descendant->save();
-                        self::rebuildTree($nodeArray['children'], $nodes);
-                    }
+            if ($nodeArray['parent_id'] === null) {
+                if (!$nodeModel->isRoot() || $nodeModel->position !== $nodeArray['position']) {
+                    $nodeModel->position = $nodeArray['position'];
+                    $nodeModel->saveAsRoot();
+                }
+            } else {
+                if ($nodeModel->position !== $nodeArray['position'] || $nodeModel->parent_id !== $nodeArray['parent_id']) {
+                    $nodeModel->position = $nodeArray['position'];
+                    $nodeModel->parent_id = $nodeArray['parent_id'];
+                    $nodeModel->save();
                 }
             }
         }
+    }
+
+    public static function flattenTree(array $nodeTree, int $parentId = null)
+    {
+        $nodeArrays = [];
+        $position = 0;
+
+        foreach ($nodeTree as $node) {
+            $nodeArrays[] = [
+                'id' => $node['id'],
+                'position' => $position++,
+                'parent_id' => $parentId,
+            ];
+
+            if (count($node['children']) > 0) {
+                $childArrays = self::flattenTree($node['children'], $node['id']);
+                $nodeArrays = array_merge($nodeArrays, $childArrays);
+            }
+        }
+
+        return $nodeArrays;
     }
 
     public function categories()
