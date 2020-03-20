@@ -13,32 +13,21 @@
     @endcomponent
 
     <div class="o-article__primary-actions">
-        @if ($item->articleType !== 'artwork')
-            @component('components.molecules._m-article-actions')
-                @slot('articleType', $item->articleType)
-            @endcomponent
-        @endif
-    </div>
-
-    <div class="o-article__secondary-actions">
-        @component('site.shared._featuredRelated')
-            @slot('featuredRelated', $item->featuredRelated ?? null)
-            @slot('variation', 'u-show@medium+')
+        @component('components.molecules._m-article-actions')
+            @slot('articleType', $item->articleType)
         @endcomponent
     </div>
 
-    @if ($item->getEditorsNote())
-        <div class="o-issue__intro">
-            @component('components.organisms._o-editors-note')
-                @slot('title', $item->getEditorsNote()->present()->shortTitle)
-                @slot('description', $item->getEditorsNote()->list_description)
-                @slot('issueNumber', $item->issue_number ?? null)
-            @endcomponent
-        </div>
-    @endif
-
     <div class="o-article__body o-blocks">
-
+        @if ($item->getEditorsNote())
+            <div class="o-issue__intro">
+                @component('components.organisms._o-editors-note')
+                    @slot('title', $item->getEditorsNote()->present()->shortTitle)
+                    @slot('description', $item->getEditorsNote()->present()->listDescription)
+                    @slot('issueNumber', $item->issue_number ?? null)
+                @endcomponent
+            </div>
+        @endif
     </div>
 
 </article>

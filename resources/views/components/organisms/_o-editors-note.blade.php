@@ -4,23 +4,12 @@
         Editor’s Note
     @endcomponent
 
-    <div class="o-editors-note__inner">
-        @component('components.blocks._text')
-            @slot('font', 'f-deck deck--black')
-            @slot('tag', 'span')
-            Issue {{ $issueNumber }}
-        @endcomponent
-
-        @component('components.blocks._text')
-            @slot('font', 'f-deck deck--black')
-            @slot('tag', 'span')
-            {{ $title }}
-        @endcomponent
-
-        @component('components.blocks._text')
-            @slot('font', 'f-deck')
-            @slot('tag', 'span')
-            {!! $description !!}
-        @endcomponent
+    <div class="o-editors-note__inner f-deck">
+        <div class="o-editors-note__issue-number">
+            <span class="deck--black">Issue {{ $issueNumber }}</span>
+        </div>
+        <div class="o-editors-note__title-lockup">
+            <span class="deck--black">{{ $title }}:</span> {!! $description !!}&nbsp;<svg class="icon--arrow"><use xlink:href="#icon--arrow" /></svg>
+        </div>
     </div>
 </div>

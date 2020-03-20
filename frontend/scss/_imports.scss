@@ -164,6 +164,10 @@ $include-icons: false; // see icons.scss!
 @import 'layout/a17';
 @import 'layout/content';
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ pages */
+
+@import 'pages/p-issue-show';
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ sections */
 
 @import 'globals/g-header';

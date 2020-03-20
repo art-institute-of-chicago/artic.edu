@@ -1,25 +1,35 @@
-.o-editors-note__inner {
-  position: relative;
-  margin-top: 24px;
-  flex-flow: row wrap;
-  display: flex;
+.o-editors-note {
 
-  @include breakpoint('medium+') {
-    /* display: inline-flex; */
+  .deck--black {
+    color: $color__text--title;
   }
-}
 
-.deck--black {
-  color: $color__text--title;
-  margin-right: 8px;
-}
+  .f-tag {
+    margin-bottom: 9px;
 
-.o-editors-note::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 1px;
-  background-color: $color__rules--primary;
+    @include breakpoint('small+') {
+      margin-bottom: 12px;
+    }
+
+    @include breakpoint('medium+') {
+      margin-bottom: 16px;
+    }
+
+    @include breakpoint('large+') {
+      margin-bottom: 20px;
+    }
+
+    @include breakpoint('xlarge') {
+    }
+  }
+
+  .o-editors-note__inner {
+    .o-editors-note__issue-number {
+      float: left;
+      margin-right: 8px;
+    }
+
+    .o-editors-note__title-lockup {
+    }
+  }
 }

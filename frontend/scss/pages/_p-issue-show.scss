@@ -1,0 +1,14 @@
+.p-issue-show {
+
+  .o-article__body {
+    border-top: none;
+  }
+
+  .o-article__primary-actions {
+    padding-top: initial;
+  }
+
+  .m-article-header~.o-article__primary-actions::before {
+    content: none;
+  }
+}

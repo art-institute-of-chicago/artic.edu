@@ -740,6 +740,20 @@
     padding-left: 0;
   }
 
+  margin-bottom: 24px;
+
+  @include breakpoint('small+') {
+    margin-bottom: 32px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-bottom: 48px;
+  }
+
+  @include breakpoint('large+') {
+    margin-bottom: 60px;
+  }
+
   .m-article-header__img {
     position: absolute;
     z-index: 1;

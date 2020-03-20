@@ -26,4 +26,7 @@ class IssueArticlePresenter extends BasePresenter
         }
     }
 
+    public function listDescription() {
+        return strip_tags($this->entity->list_description, '<i>');
+    }
 }
