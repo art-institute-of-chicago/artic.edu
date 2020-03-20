@@ -25,6 +25,7 @@
                     @slot('title', $item->getEditorsNote()->present()->shortTitle)
                     @slot('description', $item->getEditorsNote()->present()->listDescription)
                     @slot('issueNumber', $item->issue_number ?? null)
+                    @slot('articleLink', 'TODO')
                 @endcomponent
             </div>
         @endif
