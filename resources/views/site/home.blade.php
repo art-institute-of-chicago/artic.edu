@@ -36,7 +36,7 @@
 
 @component('components.molecules._m-intro-block')
     @slot('links', array(
-        array('label' => 'Plan your visit', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="Plan your visit" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"'),
+        array('label' => 'Visit us online', 'href' => $_pages['visit'], 'variation' => 'btn', 'font' => 'f-buttons', 'gtmAttributes' => 'data-gtm-event="Visit us online" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="nav-cta-button"'),
         array('label' => SmartyPants::defaultTransform($plan_your_visit_link_1_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_1_url),
         array('label' => SmartyPants::defaultTransform($plan_your_visit_link_2_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_2_url),
         array('label' => SmartyPants::defaultTransform($plan_your_visit_link_3_text) .'<span aria-hidden="true">&nbsp;&nbsp;&rsaquo;</span>', 'href' => $plan_your_visit_link_3_url),
