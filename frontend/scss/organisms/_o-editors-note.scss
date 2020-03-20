@@ -24,9 +24,31 @@
   }
 
   .o-editors-note__inner {
+    @include breakpoint('small+') {
+      display: flex;
+      flex: row nowrap;
+    }
+
     .o-editors-note__issue-number {
       float: left;
       margin-right: 8px;
+
+      @include breakpoint('small+') {
+        float: none;
+        margin-right: colspan(2, 'small');
+      }
+
+      @include breakpoint('medium+') {
+        margin-right: colspan(2, 'small');
+      }
+
+      @include breakpoint('large+') {
+        margin-right: colspan(2, 'large');
+      }
+
+      @include breakpoint('xlarge') {
+        margin-right: colspan(2, 'medium');
+      }
     }
 
     .o-editors-note__title-lockup {
