@@ -71,7 +71,7 @@ class Issue extends AbstractModel implements Sortable
 
     public function getEditorsNote()
     {
-        return $this->articles()->where('type', 'editors-note')->first();
+        return $this->articles()->where('type', 'editors-note')->published()->first();
     }
 
     // Generates the id-slug type of URL
