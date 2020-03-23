@@ -3,14 +3,17 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasSlug;
-use A17\Twill\Models\Behaviors\HasMedias;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
 
+use App\Models\Behaviors\HasMedias;
+use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasBlocks;
+
 class IssueArticle extends AbstractModel implements Sortable
 {
-    use HasSlug, HasMedias, HasRevisions, HasPosition;
+    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks;
 
     protected $presenter = 'App\Presenters\Admin\IssueArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\IssueArticlePresenter';
@@ -102,5 +105,10 @@ class IssueArticle extends AbstractModel implements Sortable
     public function getIssueSlugAttribute()
     {
         return join([$this->id, $this->getSlug()], '/');
+    }
+
+    public function getUrlAttribute()
+    {
+        return route('issue-articles.show', ['id' => $this->id, 'slug' => $this->getSlug()], false);
     }
 }
