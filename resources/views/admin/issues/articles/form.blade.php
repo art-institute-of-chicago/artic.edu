@@ -33,6 +33,7 @@
         'name' => 'type',
         'label' => 'Type',
         'placeholder' => 'Select a type',
+        'default' => 'article',
         'options' => [
             [
                 'value' => 'editors-note',
