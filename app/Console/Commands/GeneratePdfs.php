@@ -41,11 +41,18 @@ class GeneratePdfs extends Command
             $path = '/' . $path;
         }
 
+        // Check that the prince command exists
+        $commandCheck = 'which ' . config('aic.prince_command');
+        if (!`$commandCheck`) {
+            $this->error('Could not found prince command line command.');
+            exit(1);
+        }
+
         // Now, produce the PDF
+        $prince = new Prince(config('aic.prince_command'));
+
         set_time_limit(0);
         $html = file_get_contents(config('aic.protocol') . '://' . config('app.url') . $path . "?print=true");
-
-        $prince = new Prince(config('aic.prince_command'));
 
         $prince->convert_string_to_file($html, storage_path('app/download.pdf'));
     }
