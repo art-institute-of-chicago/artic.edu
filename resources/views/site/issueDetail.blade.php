@@ -19,13 +19,13 @@
     </div>
 
     <div class="o-article__body o-blocks">
-        @if ($item->getEditorsNote())
+        @if ($item->present()->editorsNote)
             <div class="o-issue__intro">
                 @component('components.organisms._o-editors-note')
-                    @slot('title', $item->getEditorsNote()->present()->shortTitle)
-                    @slot('description', $item->getEditorsNote()->present()->listDescription)
+                    @slot('title', $item->present()->editorsNote->present()->shortTitle)
+                    @slot('description', $item->present()->editorsNote->present()->listDescription)
                     @slot('issueNumber', $item->issue_number ?? null)
-                    @slot('articleLink', $item->getEditorsNote()->url)
+                    @slot('articleLink', $item->present()->editorsNote->url)
                 @endcomponent
             </div>
         @endif
