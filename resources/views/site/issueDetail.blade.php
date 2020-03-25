@@ -60,10 +60,10 @@
 
     </div>
 
-    <hr>
-
-    @include('components.organisms._o-journal-footer')
-
 </article>
+
+<hr>
+
+@include('components.organisms._o-journal-footer')
 
 @endsection

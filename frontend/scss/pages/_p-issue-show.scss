@@ -15,4 +15,24 @@
   .m-aside-newsletter {
     margin-top: 36px;
   }
+
+  .o-article {
+    padding-bottom: 0;
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        margin-bottom: #{map-get((
+          xsmall: 24,
+          small: 36,
+          medium: 48,
+          large: 60,
+          xlarge: 60
+        ), $name)}px;
+      }
+    }
+  }
+
+  .o-article ~ hr {
+    margin-top: 0;
+  }
 }
