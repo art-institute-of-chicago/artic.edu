@@ -333,7 +333,7 @@ X cols at XXXXX breakpoint
   .o-grid-listing--2-col\@medium > * {
     width: colspan(grid-cols-to-colspan(2), 'medium');
 
-    .o-article__body & {
+    .o-article__secondary-actions ~ .o-article__body & {
       width: colspan(18, 'medium');
     }
   }
@@ -373,6 +373,10 @@ X cols at XXXXX breakpoint
     width: colspan(grid-cols-to-colspan(2), 'large');
 
     .o-article__body & {
+      width: colspan(20.5, 'large');
+    }
+
+    .o-article__secondary-actions ~ .o-article__body & {
       width: colspan(13, 'large');
     }
   }
@@ -424,6 +428,10 @@ X cols at XXXXX breakpoint
     width: colspan(grid-cols-to-colspan(2), 'xlarge');
 
     .o-article__body & {
+      width: colspan(20.5, 'xlarge');
+    }
+
+    .o-article__secondary-actions ~ .o-article__body & {
       width: colspan(13, 'xlarge');
     }
   }
