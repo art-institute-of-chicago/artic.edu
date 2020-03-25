@@ -57,7 +57,13 @@
                 @endforeach
             @endcomponent
         @endif
+
     </div>
+
+    <hr>
+
+    @include('components.organisms._o-journal-footer')
+
 </article>
 
 @endsection
