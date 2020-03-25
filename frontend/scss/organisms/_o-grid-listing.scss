@@ -887,3 +887,41 @@ Variants: `.o-grid-listing--gridlines-top` and `o-listing--gridlines-rows`
 .o-grid-listing--gridlines-cols.o-grid-listing--basic-artworks > *::after {
   bottom: 0;
 }
+
+
+/***
+
+Variants: `.o-grid-listing--journal`
+
+Draws boxes around each grid item
+
+***/
+.o-grid-listing--journal {
+
+  // By default, top border is hidden; show it!
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      &[class*="col@#{$name}"] > * {
+        border-top: thin solid;
+      }
+    }
+  }
+
+  // Ensure all cards after the first rows have the right margin-top:
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      &[class*="2-col@#{$name}"]:not(.o-grid-listing--single-row) > *:nth-child(2) ~ *,
+      &[class*="3-col@#{$name}"]:not(.o-grid-listing--single-row) > *:nth-child(3) ~ *,
+      &[class*="4-col@#{$name}"]:not(.o-grid-listing--single-row) > *:nth-child(4) ~ *,
+      &[class*="6-col@#{$name}"]:not(.o-grid-listing--single-row) > *:nth-child(6) ~ * {
+        margin-top: #{map-get((
+          xsmall: 24,
+          small: 36,
+          medium: 48,
+          large: 48,
+          xlarge: 60
+        ), $name)}px;
+      }
+    }
+  }
+}

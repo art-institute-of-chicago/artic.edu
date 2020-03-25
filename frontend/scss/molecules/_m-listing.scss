@@ -1936,3 +1936,76 @@ $f-audio-subtitle: generate-font-obj(
 .m-listing--label.o-blocks__block .f-list-4 {
   margin-top: 15px;
 }
+
+
+// variant `m-listing--journal` for Art Institute Review
+.m-listing--journal {
+  border: thin solid $color__grey--100;
+
+  .m-listing__img img {
+    transition: transform .1s ease-in-out;
+  }
+
+  .m-listing__meta {
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        padding-left: colspan(1, #{$name});
+        padding-right: colspan(1, #{$name});
+        padding-top: 16px;
+      }
+    }
+
+    > .f-tag {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: $color__black--90;
+    }
+
+    .title {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: $color__black--90;
+    }
+
+    .short-description {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: $color__black--54;
+      font-size: 19px;
+      line-height: 24px;
+    }
+
+    .m-listing__meta-bottom {
+      @include untuck;
+      margin-bottom: 20px;
+
+      .f-tag {
+        text-transform: initial;
+        letter-spacing: 0.04em;
+        color: $color__black--54;
+      }
+    }
+  }
+
+  &:hover,
+  &:focus {
+    border-color: $color__blue--100;
+
+    .m-listing__img img {
+      transform: scale(1.2);
+    }
+
+    .m-listing__meta {
+
+      > .f-tag {
+        color: $color__blue--100;
+      }
+
+      .title {
+        text-decoration: underline;
+      }
+    }
+
+  }
+}
+
