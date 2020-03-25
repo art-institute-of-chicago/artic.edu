@@ -397,11 +397,6 @@
                 'required' => true,
             ])
 
-            @formField('checkbox', [
-                'name' => 'show_presented_by',
-                'label' => 'Include "This event is presented by the %%EventHost%%." in all pre-registration event emails',
-            ])
-
             <hr style="height: 5px; margin: 50px -20px 20px; padding: 0; background: #f2f2f2; border: 0 none;"/>
 
             <p>Please select the emails you wish to opt-in to:</p>

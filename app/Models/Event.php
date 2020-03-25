@@ -73,7 +73,6 @@ class Event extends AbstractModel
         'add_to_event_email_series',
         'join_url',
         'survey_url',
-        'show_presented_by',
         'event_host_id',
         'entrance',
         'test_emails',
@@ -84,7 +83,6 @@ class Event extends AbstractModel
     protected $casts = [
         'alt_types' => 'array',
         'alt_audiences' => 'array',
-        'show_presented_by' => 'boolean',
         // TODO: Confirm that this is safe to do?
         // 'is_private' => 'boolean',
         // 'is_sales_button_hidden' => 'boolean',
@@ -846,14 +844,6 @@ class Event extends AbstractModel
                 "doc" => "Identifier of an event host (event program) associated with this event",
                 "type" => "boolean",
                 "value" => function () {return $this->eventHost->id ?? null;},
-            ],
-            [
-                "name" => "show_presented_by",
-                "doc" => "Whether to include the presented-by-host message in emails",
-                "type" => "boolean",
-                "value" => function () {
-                    return $this->show_presented_by;
-                },
             ],
             [
                 "name" => "join_url",
