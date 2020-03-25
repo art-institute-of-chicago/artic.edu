@@ -106,7 +106,7 @@ class Exhibition extends BaseApiModel
     public function getIsNowOpenAttribute()
     {
         // If there's an active closure, don't show "NOW OPEN" text
-        if (\App\Models\Closure::today()->first()) {
+        if (app('closureservice')->getClosure()) {
             return false;
         }
         if (!empty($this->dateStart) && !empty($this->dateEnd)) {

@@ -2,7 +2,7 @@
     $_hours = [
         'general' => \App\Models\Hour::getOpeningUnlessClosure(),
         'url' => \App\Models\Hour::getOpeningUrl(),
-        'closure' => \App\Models\Closure::today()->first(),
+        'closure' => app('closureservice')->getClosure(),
     ];
 @endphp
 <header class="g-header">
