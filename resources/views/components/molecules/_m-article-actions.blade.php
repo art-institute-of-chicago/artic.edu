@@ -1,6 +1,6 @@
 <div>{{-- See :nth-child(x) in _o-article.scss --}}
-<h2 class="sr-only" id="h-article-actions">Share</h2>
-<ul class="m-article-actions{{ (isset($variation)) ? ' '.$variation : '' }}" aria-labelledby="h-article-actions">
+<h2 class="sr-only" id="h-article-actions{{ (isset($variation)) ? $variation : '' }}">Share</h2>
+<ul class="m-article-actions{{ (isset($variation)) ? ' '.$variation : '' }}" aria-labelledby="h-article-actions{{ (isset($variation)) ? $variation : '' }}">
     @if (empty($hideShare))
     <li class="m-article-actions__action">
         @component('components.atoms._btn')
