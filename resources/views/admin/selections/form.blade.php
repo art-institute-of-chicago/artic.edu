@@ -34,22 +34,7 @@
         ],
     ])
 
-    @formField('medias', [
-        'name' => 'hero',
-        'label' => 'Hero image',
-        'note' => 'Minimum image width 3000px'
-    ])
-
-    @formField('wysiwyg', [
-        'type' => 'textarea',
-        'name' => 'hero_caption',
-        'label' => 'Hero image Caption',
-        'note' => 'Usually used for copyright',
-        'maxlength' => 255,
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
+    @include('admin.partials.hero')
 
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([

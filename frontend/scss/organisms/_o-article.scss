@@ -13,7 +13,7 @@
   }
 }
 
-.o-article .m-article-header {
+.o-article .m-article-header:not(.m-article-header--gallery):not(.m-article-header--journal) {
 
   @include breakpoint('xsmall') {
     flex: 0 0 auto;
@@ -22,10 +22,6 @@
 
   @include breakpoint('large+') {
     margin-bottom: 28px;
-
-    &.m-article-header--gallery {
-      margin-bottom: 0;
-    }
   }
 }
 

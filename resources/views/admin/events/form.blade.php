@@ -27,24 +27,7 @@
         'default' => '0'
     ])
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'no_crop' => false,
-        'label' => 'Hero Image',
-        'name' => 'hero',
-        'note' => 'Minimum image width 3000px'
-    ])
-
-    @formField('wysiwyg', [
-        'type' => 'textarea',
-        'name' => 'hero_caption',
-        'label' => 'Hero image Caption',
-        'note' => 'Usually used for copyright',
-        'maxlength' => 255,
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
+    @include('admin.partials.hero')
 
     <p><strong>Note:</strong> Hero images are used by event listings, ticketing pages, and the mobile app.</p>
 

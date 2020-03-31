@@ -7,6 +7,11 @@ use App\Presenters\BasePresenter;
 class IssueArticlePresenter extends BasePresenter
 {
 
+    public function shortTitle()
+    {
+        return $this->entity->short_title_display ?? $this->entity->title_display ?? $this->entity->title;
+    }
+
     public function date()
     {
         if ($this->entity->date) {
@@ -21,4 +26,7 @@ class IssueArticlePresenter extends BasePresenter
         }
     }
 
+    public function listDescription() {
+        return strip_tags($this->entity->list_description, '<i>');
+    }
 }
