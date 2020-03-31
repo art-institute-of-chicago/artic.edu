@@ -103,7 +103,7 @@
   <div class="o-article__intro">
     @component('components.blocks._text')
         @slot('font', 'f-deck')
-        @slot('tag', 'span')
+        @slot('tag', 'div')
         {!! $item->present()->heading !!}
     @endcomponent
   </div>
