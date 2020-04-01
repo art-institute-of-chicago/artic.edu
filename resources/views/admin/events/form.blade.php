@@ -1,131 +1,85 @@
 @extends('twill::layouts.form', [
+    'disableContentFieldset' => true,
     'additionalFieldsets' => [
-        ['fieldset' => 'filters_and_types', 'label' => 'Filters and Types'],
-        ['fieldset' => 'ticketing', 'label' => 'Ticketing Information'],
+        ['fieldset' => 'title_and_image', 'label' => 'Title and Image'],
         ['fieldset' => 'dates', 'label' => 'Date Rules'],
+        ['fieldset' => 'ticketing', 'label' => 'Ticketing Info'],
+        ['fieldset' => 'sales_site', 'label' => 'Sales Site'],
+        ['fieldset' => 'content', 'label' => 'Content'],
         ['fieldset' => 'sponsors', 'label' => 'Sponsors'],
         ['fieldset' => 'related_elements', 'label' => 'Related'],
+        ['fieldset' => 'filters_and_types', 'label' => 'Filters and Types'],
         ['fieldset' => 'metadata', 'label' => 'Metadata'],
-        ['fieldset' => 'sales_site', 'label' => 'Sales Site'],
         ['fieldset' => 'event_series', 'label' => 'Email Series'],
     ]
 ])
 
-@section('contentFields')
-    @formField('input', [
-        'name' => 'title_display',
-        'label' => 'Title formatting (optional)',
-        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
-    ])
-
-    <hr>
-
-    @formField('select', [
-        'name' => 'layout_type',
-        'label' => 'Hero type',
-        'options' => $eventLayoutsList,
-        'default' => '0'
-    ])
-
-    @include('admin.partials.hero')
-
-    <p><strong>Note:</strong> Hero images are used by event listings, ticketing pages, and the mobile app.</p>
-
-    <hr>
-
-    <p><strong>Note:</strong> For the following three fields, please keep character count below 255.</p>
-
-    @formField('wysiwyg', [
-        'name' => 'description',
-        'label' => 'Header',
-        'maxlength' => 255,
-        'note' => 'Used by website, displayed above main content',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'short_description',
-        'label' => 'Short description (required)',
-        'note' => 'Used by Sales Site and for event emails',
-        'required' => true,
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
-
-    @formField('wysiwyg', [
-        'name' => 'list_description',
-        'label' => 'Listing description',
-        'maxlength'  => 255,
-        'note' => 'Used by website and Mobile App for listings',
-        'toolbarOptions' => [
-            'italic'
-        ],
-    ])
-
-    <hr>
-
-    @formField('input', [
-        'name' => 'location',
-        'label' => 'Location',
-        'note' => 'Displayed in left sidebar',
-    ])
-
-    @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
-            'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
-            'list', 'newsletter_signup_inline', 'timeline', 'link',
-            'artworks', 'artwork', 'hr', 'split_block', 'tour_stop', 'button',
-            'mobile_app', '3d_model'
-        ])
-    ])
-@stop
-
 @section('fieldsets')
 
-    <a17-fieldset id="filters_and_types" title="Filters and types">
-        @formField('select', [
-            'name' => 'event_type',
-            'label' => 'Event type (preferred)',
-            'options' => $eventTypesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // no effect?
-        ])
-
-        @formField('multi_select', [
-            'name' => 'alt_types',
-            'label' => 'Event type (alternative)',
-            'note' => 'Used to enhance filtering',
-            'options' => $eventTypesList,
-        ])
-
-        @formField('select', [
-            'name' => 'audience',
-            'label' => 'Event audience (preferred)',
-            'options' => $eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // no effect?
-        ])
-
-        @formField('multi_select', [
-            'name' => 'alt_audiences',
-            'label' => 'Event audience (alternative)',
-            'note' => 'Used to enhance filtering',
-            'options' => $eventAudiencesList,
-        ])
-
-        @formField('multi_select', [
-            'name' => 'programs',
-            'label' => 'Programs',
-            'note' => 'To view program URLS, select programs below, update event, and refresh the page',
-            'options' => $eventProgramsList,
-        ])
+    <a17-fieldset id="title_and_image" title="Title and Image">
         @formField('input', [
-            'name' => 'program_urls',
-            'label' => 'Program URLs',
+            'name' => 'title_display',
+            'label' => 'Title formatting (optional)',
+            'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+        ])
+
+        <hr>
+
+        @formField('select', [
+            'name' => 'layout_type',
+            'label' => 'Hero type',
+            'options' => $eventLayoutsList,
+            'default' => '0'
+        ])
+
+        @include('admin.partials.hero')
+
+        <p><strong>Note:</strong> Hero images are used by event listings, ticketing pages, and the mobile app.</p>
+    </a17-fieldset>
+
+    <a17-fieldset id="dates" title="Date rules">
+        @formField('input', [
+            'name' => 'all_dates_cms',
+            'label' => 'All computed dates',
+            'note' => 'Dates built using all rules below.',
             'type' => 'textarea',
-            'rows' => $item->programs->count(),
-            'disabled' => 'true',
+            'disabled' => true,
+            'rows' => 2
+        ])
+
+        @component('twill::partials.form.utils._columns')
+            @slot('left')
+                @formField('select', [
+                    'name' => 'start_time',
+                    'label' => 'Start Time',
+                    'options' => hoursSelectOptions()
+                ])
+
+                @formField('select', [
+                    'name' => 'door_time',
+                    'label' => 'Door Time',
+                    'options' => hoursSelectOptions()
+                ])
+            @endslot
+            @slot('right')
+                @formField('select', [
+                    'name' => 'end_time',
+                    'label' => 'End Time',
+                    'options' => hoursSelectOptions()
+                ])
+            @endslot
+        @endcomponent
+
+        @formField('input', [
+            'name' => 'forced_date',
+            'label' => 'Force the event to show this text as date',
+            'note' => 'Optional, the event will show this instead of the automatic computed date',
+            'type' => 'text'
+        ])
+
+        @formField('repeater', [
+            'type' => 'dateRules',
+            'title' => 'Date rule',
         ])
     </a17-fieldset>
 
@@ -240,49 +194,73 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset id="dates" title="Date rules">
-        @formField('input', [
-            'name' => 'all_dates_cms',
-            'label' => 'All computed dates',
-            'note' => 'Dates built using all rules below.',
-            'type' => 'textarea',
-            'disabled' => true,
-            'rows' => 2
+    <a17-fieldset id="sales_site" title="Sales site fields">
+        @formField('checkbox', [
+            'name' => 'is_admission_required',
+            'label' => 'Is Admission Required',
         ])
 
-        @component('twill::partials.form.utils._columns')
-            @slot('left')
-                @formField('select', [
-                    'name' => 'start_time',
-                    'label' => 'Start Time',
-                    'options' => hoursSelectOptions()
-                ])
-
-                @formField('select', [
-                    'name' => 'door_time',
-                    'label' => 'Door Time',
-                    'options' => hoursSelectOptions()
-                ])
-            @endslot
-            @slot('right')
-                @formField('select', [
-                    'name' => 'end_time',
-                    'label' => 'End Time',
-                    'options' => hoursSelectOptions()
-                ])
-            @endslot
-        @endcomponent
-
-        @formField('input', [
-            'name' => 'forced_date',
-            'label' => 'Force the event to show this text as date',
-            'note' => 'Optional, the event will show this instead of the automatic computed date',
-            'type' => 'text'
+        @formField('checkbox', [
+            'name' => 'is_after_hours',
+            'label' => 'Is After Hours',
         ])
 
-        @formField('repeater', [
-            'type' => 'dateRules',
-            'title' => 'Date rule',
+        @formField('select', [
+            'name' => 'entrance',
+            'label' => 'Entrance',
+            'options' => $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
+            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+        ])
+    </a17-fieldset>
+
+    <a17-fieldset title="Content" id="content" data-sticky-top="publisher">
+        <p><strong>Note:</strong> For the following three fields, please keep character count below 255.</p>
+
+        @formField('wysiwyg', [
+            'name' => 'description',
+            'label' => 'Header',
+            'maxlength' => 255,
+            'note' => 'Used by website, displayed above main content',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'short_description',
+            'label' => 'Short description (required)',
+            'note' => 'Used by Sales Site and for event emails',
+            'required' => true,
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'list_description',
+            'label' => 'Listing description',
+            'maxlength'  => 255,
+            'note' => 'Used by website and Mobile App for listings',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        <hr>
+
+        @formField('input', [
+            'name' => 'location',
+            'label' => 'Location',
+            'note' => 'Displayed in left sidebar',
+        ])
+
+        @formField('block_editor', [
+            'blocks' => getBlocksForEditor([
+                'paragraph', 'image', 'video', 'gallery', 'media_embed', 'quote',
+                'list', 'newsletter_signup_inline', 'timeline', 'link',
+                'artworks', 'artwork', 'hr', 'split_block', 'tour_stop', 'button',
+                'mobile_app', '3d_model'
+            ])
         ])
     </a17-fieldset>
 
@@ -308,6 +286,50 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset id="filters_and_types" title="Filters and types">
+        @formField('select', [
+            'name' => 'event_type',
+            'label' => 'Event type (preferred)',
+            'options' => $eventTypesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
+            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+        ])
+
+        @formField('multi_select', [
+            'name' => 'alt_types',
+            'label' => 'Event type (alternative)',
+            'note' => 'Used to enhance filtering',
+            'options' => $eventTypesList,
+        ])
+
+        @formField('select', [
+            'name' => 'audience',
+            'label' => 'Event audience (preferred)',
+            'options' => $eventAudiencesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
+            'default' => \App\Models\Event::NULL_OPTION, // no effect?
+        ])
+
+        @formField('multi_select', [
+            'name' => 'alt_audiences',
+            'label' => 'Event audience (alternative)',
+            'note' => 'Used to enhance filtering',
+            'options' => $eventAudiencesList,
+        ])
+
+        @formField('multi_select', [
+            'name' => 'programs',
+            'label' => 'Programs',
+            'note' => 'To view program URLS, select programs below, update event, and refresh the page',
+            'options' => $eventProgramsList,
+        ])
+        @formField('input', [
+            'name' => 'program_urls',
+            'label' => 'Program URLs',
+            'type' => 'textarea',
+            'rows' => $item->programs->count(),
+            'disabled' => 'true',
+        ])
+    </a17-fieldset>
+
     {{-- TODO: Use 'admin.partials.meta' as a component --}}
     <a17-fieldset id="metadata" title="Overwrite default metadata (optional)">
         @formField('input', [
@@ -329,26 +351,6 @@
         ])
 
         <p>Comma-separatated list of words or phrases. Don't worry about grammar or similar word variations. This field is intended to assist our internal search engine in finding your content. These tags will not be shown to website users and will have no effect on external search engines, e.g. Google.</p>
-
-    </a17-fieldset>
-
-    <a17-fieldset id="sales_site" title="Sales site fields">
-        @formField('checkbox', [
-            'name' => 'is_admission_required',
-            'label' => 'Is Admission Required',
-        ])
-
-        @formField('checkbox', [
-            'name' => 'is_after_hours',
-            'label' => 'Is After Hours',
-        ])
-
-        @formField('select', [
-            'name' => 'entrance',
-            'label' => 'Entrance',
-            'options' => $eventEntrancesList->put(strval(\App\Models\Event::NULL_OPTION), '[None]'),
-            'default' => \App\Models\Event::NULL_OPTION, // no effect?
-        ])
     </a17-fieldset>
 
     @if (!app()->environment('production'))
