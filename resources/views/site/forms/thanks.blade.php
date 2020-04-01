@@ -10,7 +10,6 @@
 
   @component('components.molecules._m-article-header')
     @slot('headerType', 'generic')
-    @slot('variation', 'o-article__header')
     @slot('title', $title)
     @slot('img', $headerImage ?? null)
     @slot('breadcrumb', $breadcrumb ?? null)

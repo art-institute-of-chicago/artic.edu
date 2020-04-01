@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerApiClient();
         $this->registerLakeviewImageService();
         $this->registerEmbedConverterService();
+        $this->registerClosureService();
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
 
@@ -100,6 +101,27 @@ class AppServiceProvider extends ServiceProvider
             return new LakeviewImageService();
         });
     }
+
+    public function registerClosureService()
+    {
+        $this->app->singleton('closureservice', function ($app) {
+            return new class() {
+
+                private $cachedClosure;
+
+                public function __construct()
+                {
+                    $this->cachedClosure = \App\Models\Closure::today()->first();
+                }
+
+                public function getClosure()
+                {
+                    return $this->cachedClosure;
+                }
+            };
+        });
+    }
+
     /**
      * Register any application services.
      *

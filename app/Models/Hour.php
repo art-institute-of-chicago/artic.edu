@@ -110,7 +110,7 @@ class Hour extends AbstractModel
 
     public static function getOpeningUnlessClosure()
     {
-        $closure = Closure::today()->first();
+        $closure = app('closureservice')->getClosure();
 
         return $closure ? null : self::getOpening();
     }

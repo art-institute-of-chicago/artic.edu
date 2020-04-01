@@ -122,6 +122,26 @@
   text-align: center;
   cursor: pointer;
   transition: opacity .15s;
+
+  // WEB-1579: Standardize the hero header info trigger buttons
+  &.m-article-header__info-trigger--inverse {
+    background-color: transparent;
+    border-radius: 0;
+
+    opacity: .7;
+
+    .icon--info {
+      width: 28px;
+      height: 28px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+      opacity: .9;
+    }
+  }
 }
 
 .m-article-header__info-trigger:hover,
@@ -706,6 +726,273 @@
 
   @include breakpoint('small+') {
     bottom: 60px;
+  }
+}
+
+
+
+.m-article-header--journal {
+  padding-top: 0;
+
+  @include breakpoint('large+') {
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  margin-bottom: 24px;
+
+  @include breakpoint('small+') {
+    margin-bottom: 32px;
+  }
+
+  @include breakpoint('medium+') {
+    margin-bottom: 48px;
+  }
+
+  @include breakpoint('large+') {
+    margin-bottom: 60px;
+  }
+
+  .m-article-header__img {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100%;
+    margin-left: -50vw;
+    overflow: hidden;
+  }
+
+  .m-article-header__img::after {
+    content: '';
+    border: solid thin white;
+    position: absolute;
+
+    z-index: 3;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    height: calc(100% - #{12px * 2});
+    width: colspan(58, xsmall);
+
+    @include breakpoint('small+') {
+      height: calc(100% - #{24px * 2});
+      width: colspan(58, small);
+    }
+
+    @include breakpoint('medium+') {
+      height: calc(100% - #{24px * 2});
+      width: colspan(58, medium);
+    }
+
+    @include breakpoint('large+') {
+      height: calc(100% - #{40px * 2});
+      width: colspan(58, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(58, xlarge);
+    }
+  }
+
+  .m-article-header__img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 2;
+  }
+
+  .m-article-header__img img,
+  .m-article-header__img video {
+    @include objectFitFix;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .m-article-header__text {
+    display: flex;
+    position: relative;
+    flex: 1;
+    z-index: 2;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    z-index: 3;
+
+    min-height: 60vh;
+
+    // We will account for the credit icon later
+    padding: calc(#{colspan(2, xsmall)} + 12px) colspan(2, xsmall);
+
+    @include breakpoint('small+') {
+      padding: calc(#{colspan(2, small)} + 24px) colspan(2, small);
+    }
+
+    @include breakpoint('medium+') {
+      padding: calc(#{colspan(2, medium)} + 24px) colspan(2, medium);
+    }
+
+    @include breakpoint('large+') {
+      padding: calc(#{colspan(2, large)} + 40px) colspan(2, large);
+      min-height: 80vh;
+    }
+
+    @include breakpoint('xlarge') {
+      padding: calc(#{colspan(2, xlarge)} + 40px) colspan(2, xlarge);
+      width: colspan(58, xlarge);
+    }
+
+    * {
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+      color: $color__text--title-contrast;
+    }
+
+    .icon--journal-logo {
+      height: 92px;
+      width: 120px;
+      color: white;
+      align-self: flex-start;
+    }
+
+    .m-article-header__intro,
+    .m-article-header__title-lockup {
+      width: 100%;
+
+      @include breakpoint('small+') {
+        width: 50%;
+      }
+
+      @include breakpoint('medium+') {
+        width: 50%;
+      }
+
+      @include breakpoint('large+') {
+        width: 33%;
+      }
+    }
+
+    .m-article-header__intro {
+      margin-top: 36px;
+
+      @include breakpoint('small+') {
+        margin-top: 48px;
+      }
+
+      @include breakpoint('medium+') {
+        margin-top: 64px;
+      }
+
+      @include breakpoint('large+') {
+        margin-top: 74px;
+      }
+    }
+
+    .m-article-header__title-lockup {
+      margin-top: 32px;
+
+      @include breakpoint('small+') {
+        margin-top: 36px;
+      }
+
+      @include breakpoint('medium+') {
+        margin-top: 58px;
+      }
+
+      @include breakpoint('large+') {
+        margin-top: 60px;
+      }
+    }
+
+    &.m-article-header__text--with-credit {
+      padding: calc(#{colspan(2, xsmall)} + 12px) colspan(2, xsmall) calc(#{colspan(2, xsmall)} + 12px + 28px);
+
+      @include breakpoint('small+') {
+        padding: calc(#{colspan(2, small)} + 24px) colspan(2, small) calc(#{colspan(2, small)} + 24px + 28px);
+      }
+
+      @include breakpoint('medium+') {
+        padding: calc(#{colspan(2, medium)} + 24px) colspan(2, medium) calc(#{colspan(2, medium)} + 24px + 28px);
+      }
+
+      @include breakpoint('large+') {
+        padding: calc(#{colspan(2, large)} + 40px) colspan(2, large) calc(#{colspan(2, large)} + 40px + 28px);
+        min-height: 80vh;
+      }
+
+      @include breakpoint('xlarge') {
+        padding: calc(#{colspan(2, xlarge)} + 40px) colspan(2, xlarge) calc(#{colspan(2, xlarge)} + 40px + 28px);
+        width: colspan(58, xlarge);
+      }
+
+      // Mirror the padding for .m-article-header__text
+      .m-article-header__info-trigger {
+        right: colspan(1, xsmall);
+        bottom: calc(#{colspan(1, xsmall)} + 12px);
+
+        @include breakpoint('small+') {
+          right: colspan(1, small);
+          bottom: calc(#{colspan(1, small)} + 24px);
+        }
+
+        @include breakpoint('medium+') {
+          right: colspan(1, medium);
+          bottom: calc(#{colspan(1, medium)} + 24px);
+        }
+
+        @include breakpoint('large+') {
+          right: colspan(1, large);
+          bottom: calc(#{colspan(1, large)} + 40px);
+        }
+
+        @include breakpoint('xlarge') {
+          right: colspan(1, xlarge);
+          bottom: calc(#{colspan(1, xlarge)} + 40px);
+        }
+      }
+
+      .m-article-header__info {
+        $button-vertical-offset: 30px;
+
+        right: colspan(1, xsmall);
+        bottom: calc(#{colspan(1, xsmall)} + 12px + #{$button-vertical-offset});
+
+        @include breakpoint('small+') {
+          right: colspan(1, small);
+          bottom: calc(#{colspan(1, small)} + 24px + #{$button-vertical-offset});
+        }
+
+        @include breakpoint('medium+') {
+          right: colspan(1, medium);
+          bottom: calc(#{colspan(1, medium)} + 24px + #{$button-vertical-offset});
+        }
+
+        @include breakpoint('large+') {
+          right: colspan(1, large);
+          bottom: calc(#{colspan(1, large)} + 40px + #{$button-vertical-offset});
+        }
+
+        @include breakpoint('xlarge') {
+          right: colspan(1, xlarge);
+          bottom: calc(#{colspan(1, xlarge)} + 40px + #{$button-vertical-offset});
+        }
+      }
+    }
   }
 }
 

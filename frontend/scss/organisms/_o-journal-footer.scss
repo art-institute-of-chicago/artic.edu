@@ -1,0 +1,51 @@
+// derived from _m-split-block
+.o-journal-footer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+  @include breakpoint('small+') {
+    flex-flow: row nowrap;
+  }
+
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-top: #{map-get((
+        xsmall: 24,
+        small: 36,
+        medium: 12,
+        large: 40,
+        xlarge: 40
+      ), $name)}px;
+    }
+  }
+
+  @include breakpoint('small+') {
+    flex-flow: row nowrap;
+  }
+
+  .o-journal-footer__logo {
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        margin-right: colspan(2, '#{$name}');
+      }
+    }
+
+    @include breakpoint('xsmall') {
+      margin-bottom: 24px;
+    }
+
+    .icon--journal-logo {
+      height: 92px;
+      width: 120px;
+    }
+  }
+
+  .o-journal-footer__text {
+    flex-basis: 100%;
+
+    p:before, p:after {
+      content: initial !important;
+    }
+  }
+}
