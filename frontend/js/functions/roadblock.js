@@ -7,7 +7,7 @@ const roadblock = function() {
   const roadblockActiveClass = 's-roadblock-active';
   const roadblockDefinedClass = 's-roadblock-defined';
   const $modal = document.getElementById('modal');
-  const $modalPromo = document.getElementById('modal-promo');
+  const $modalPromo = document.getElementById('slider-promo');
   let active = false;
 
   // Do not reset this between AJAX reloads!
@@ -24,7 +24,7 @@ const roadblock = function() {
     document.documentElement.classList.remove(modalActiveClass);
     setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
     setTimeout(function(){
-      $modal.className = 'g-modal';
+      $modal.className = 'g-slider';
       $modal.querySelector('[data-modal-content]').innerHTML = '';
     },300);
     active = false;
@@ -37,7 +37,7 @@ const roadblock = function() {
     }
 
     // Figure out which modal template to use and copy it to $modalPromo
-    let $modalTemplates = document.getElementsByClassName('g-modal--promo--template');
+    let $modalTemplates = document.getElementsByClassName('g-slider--promo--template');
 
     if ($modalTemplates.length < 1) {
       return;
@@ -91,7 +91,7 @@ const roadblock = function() {
   }
 
   function _swapRoadblock(geotarget) {
-      let $modalTemplate = document.querySelector('.g-modal--promo--template[data-geotarget="' + geotarget + '"]');
+      let $modalTemplate = document.querySelector('.g-slider--promo--template[data-geotarget="' + geotarget + '"]');
 
       if (!$modalTemplate) {
         switch (geotarget) {
@@ -146,13 +146,6 @@ const roadblock = function() {
     }
     document.documentElement.classList.add(roadblockActiveClass);
     active = true;
-    triggerCustomEvent(document, 'body:lock', {
-      breakpoints: 'all'
-    });
-    setTimeout(function(){ setFocusOnTarget($modalPromo); }, 0)
-    triggerCustomEvent(document, 'focus:trap', {
-      element: $modalPromo
-    });
     $modalPromo.querySelector('form').addEventListener('submit', _roadblockSubmit, true);
     if (expiryPeriodInDays > 0) {
       cookieHandler.create(cookieName, true, expiryPeriodInDays);

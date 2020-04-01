@@ -107,10 +107,10 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @include('partials._ajax-loader')
 
 @if (!empty($roadblocks))
-    <div id="modal-promo" class="g-modal g-modal--promo"></div>
+    <div id="slider-promo" class="g-slider g-slider--promo"></div>
     @foreach ($roadblocks as $roadblock)
-        <script type="text/template" class="g-modal--promo--template" data-geotarget="{{ $roadblock['geotarget'] }}" data-expires="{{ $roadblock['expiry_period'] ?? 86400 }}">
-            @component('partials._modal-promo', ['modal' => $roadblock])
+        <script type="text/template" class="g-slider--promo--template" data-geotarget="{{ $roadblock['geotarget'] }}" data-expires="{{ $roadblock['expiry_period'] ?? 86400 }}">
+            @component('partials._slider-promo', ['modal' => $roadblock])
             @endcomponent
         </script>
     @endforeach
