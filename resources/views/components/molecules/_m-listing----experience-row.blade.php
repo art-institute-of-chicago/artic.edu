@@ -20,9 +20,9 @@
                 @slot('font', $titleFont ?? 'f-list-4')
                 {{ $item->title }}
             @endcomponent
-            @if ($item->description)
+            @if ($item->listing_description)
             <br>
-            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->description }}</span>
+            <span class="intro {{ $captionFont ?? 'f-secondary' }}">{{ $item->listing_description }}</span>
             @endif
         </span>
     </a>

@@ -34,7 +34,7 @@
                 {{ $item->title }}
             @endcomponent
             <br>
-            <span class="subtitle {{ $subtitleFont ?? 'f-secondary'}}">{{ $item->description }}</span>
+            <span class="subtitle {{ $subtitleFont ?? 'f-secondary'}}">{{ $item->listing_description }}</span>
         </span>
     </a>
 </{{ $tag ?? 'li' }}>

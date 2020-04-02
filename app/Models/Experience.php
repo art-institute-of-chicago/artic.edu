@@ -26,7 +26,7 @@ class Experience extends AbstractModel implements Sortable
         'published',
         'title',
         'subtitle',
-        'description',
+        'listing_description',
         'position',
         'interactive_feature_id',
         'archived',
@@ -207,10 +207,10 @@ class Experience extends AbstractModel implements Sortable
                 "value" => function () {return $this->sub_title;},
             ],
             [
-                "name" => 'description',
-                "doc" => "Description",
+                "name" => 'listing_description',
+                "doc" => "Listing description",
                 "type" => "string",
-                "value" => function () {return $this->description;},
+                "value" => function () {return $this->listing_description;},
             ],
             [
                 "name" => 'position',
