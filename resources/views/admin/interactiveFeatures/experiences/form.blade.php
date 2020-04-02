@@ -32,6 +32,9 @@
         'type' => 'textarea',
         'maxlength' => 300,
         'note' => 'Used in listings and for social media',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('checkbox', [
