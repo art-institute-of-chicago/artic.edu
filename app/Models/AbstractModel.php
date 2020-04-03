@@ -28,4 +28,11 @@ class AbstractModel extends Model
     {
         return self::published()->find($this->id) != null;
     }
+
+    public function getPreviewUrlAttribute() {
+        return config('twill.admin_app_url') . '/p/' . encrypt([
+            get_class($this),
+            $this->id,
+        ]);
+    }
 }

@@ -99,3 +99,5 @@ Route::group(['prefix' => 'general'], function () {
     Route::module('tourStops');
     Route::module('vanityRedirects');
 });
+
+Route::name('previewLink')->get('p/{hash}', 'PreviewController@show');
