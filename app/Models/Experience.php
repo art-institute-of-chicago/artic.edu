@@ -142,6 +142,15 @@ class Experience extends AbstractModel implements Sortable
         return 'experience';
     }
 
+    public function getKioskOnlyAttribute($value)
+    {
+        if (config('aic.is_preview_mode')) {
+            return false;
+        }
+
+        return $value;
+    }
+
     /**
      * WEB-1296: Show preview links for published, but kiosk-only items, too.
      */
