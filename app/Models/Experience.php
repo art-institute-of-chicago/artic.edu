@@ -143,6 +143,14 @@ class Experience extends AbstractModel implements Sortable
     }
 
     /**
+     * WEB-1296: Show preview links for published, but kiosk-only items, too.
+     */
+    public function getIsPublishedAttribute()
+    {
+        return self::webPublished()->find($this->id) !== null;
+    }
+
+    /**
      * By default, `withoutTrashed` is applied to `Expereince` and also `IF` through `whereHas`.
      *
      * @TODO Consider moving this to just override `published`?

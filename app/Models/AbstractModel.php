@@ -30,7 +30,7 @@ class AbstractModel extends Model
 
     public function getIsPublishedAttribute()
     {
-        return self::published()->find($this->id) != null;
+        return self::published()->find($this->id) !== null;
     }
 
     public function getPreviewUrl($baseUrl) {

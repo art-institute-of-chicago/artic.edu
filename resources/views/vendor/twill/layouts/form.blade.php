@@ -41,6 +41,7 @@
                 </div>
             </a17-sticky-nav>
         </div>
+        {{-- WEB-1296: Add ability to share draft pages via links --}}
         @if (!$item->is_published)
             @php
                 $previewUrl = $item->getPreviewUrl($baseUrl);
@@ -49,6 +50,7 @@
                 <span class="f--note f--external"><strong>Preview:</strong>&nbsp;<a href="{{ $previewUrl }}" target="_blank" class="titleEditor__permalink f--small f--underlined--o" style="white-space: initial; word-wrap: break-word;">{{ $previewUrl }}</a></span>
             </div>
         @endif
+        {{-- WEB-1296: EOF --}}
         <form action="{{ $saveUrl }}" novalidate method="POST" @unless($customForm) v-on:submit.prevent="submitForm" @endif>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="container">
