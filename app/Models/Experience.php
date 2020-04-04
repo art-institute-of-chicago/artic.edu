@@ -149,6 +149,10 @@ class Experience extends AbstractModel implements Sortable
      */
     public function scopeWebPublished($query)
     {
+        if (config('aic.is_preview_mode')) {
+            return $query;
+        }
+
         return $query
             ->published()
             ->unarchived()
@@ -172,6 +176,10 @@ class Experience extends AbstractModel implements Sortable
 
     public function scopeUnarchived($query)
     {
+        if (config('aic.is_preview_mode')) {
+            return $query;
+        }
+
         return $query->where('archived', false);
     }
 
