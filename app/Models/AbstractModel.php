@@ -35,6 +35,7 @@ class AbstractModel extends Model
 
     public function getPreviewUrl($baseUrl) {
         // $baseUrl is missing protocol, starts with //, and ends with /
-        return config('twill.admin_app_url') . '/p/' . encrypt($baseUrl . $this->slug);
+        // config('app.url') should have no https://
+        return '//' . config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);
     }
 }
