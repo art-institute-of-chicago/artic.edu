@@ -13,7 +13,7 @@ class PreviewController extends BaseController
     public function show($hash)
     {
         $route = decrypt($hash);
-        config(['aic.is_current_request_preview' => true]);
+        config(['aic.is_preview_mode' => true]);
         $request = Request::create($route);
         return Route::dispatch($request)->getContent();
     }

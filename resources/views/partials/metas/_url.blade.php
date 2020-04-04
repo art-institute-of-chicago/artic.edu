@@ -12,7 +12,7 @@
 <meta property="og:url"  content="{!! $url !!}" />
 <meta name="twitter:url" content="{!! $url !!}" />
 
-@if (config('aic.is_current_request_preview'))
+@if (config('aic.is_preview_mode'))
     <meta name="robots" content="noindex,nofollow" />
 @else
     @if (!empty($robots))

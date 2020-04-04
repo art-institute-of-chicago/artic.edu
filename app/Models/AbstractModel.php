@@ -21,7 +21,7 @@ class AbstractModel extends Model
      */
     public function scopePublished($query)
     {
-        if (config('aic.is_current_request_preview')) {
+        if (config('aic.is_preview_mode')) {
             return $query;
         }
 
