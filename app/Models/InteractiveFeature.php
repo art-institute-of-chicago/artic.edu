@@ -68,6 +68,10 @@ class InteractiveFeature extends AbstractModel
 
     public function scopeUnarchived($query)
     {
+        if (config('aic.is_preview_mode')) {
+            return $query;
+        }
+
         return $query->where('archived', false);
     }
 

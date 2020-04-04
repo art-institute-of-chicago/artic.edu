@@ -12,6 +12,10 @@
 <meta property="og:url"  content="{!! $url !!}" />
 <meta name="twitter:url" content="{!! $url !!}" />
 
-@if (!empty($robots))
-    <meta name="robots" content="{{ implode(',', $robots) }}" />
+@if (config('aic.is_preview_mode'))
+    <meta name="robots" content="noindex,nofollow" />
+@else
+    @if (!empty($robots))
+        <meta name="robots" content="{{ implode(',', $robots) }}" />
+    @endif
 @endif

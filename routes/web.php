@@ -1,5 +1,7 @@
 <?php
 
+Route::name('previewLink')->get('p/{hash}', 'PreviewController@show');
+
 Route::name('target')->get('/target', 'HomeController@target');
 
 Route::name('home')->get('/', 'HomeController@index');

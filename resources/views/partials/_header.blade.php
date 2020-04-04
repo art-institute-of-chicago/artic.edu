@@ -7,11 +7,11 @@
 @endphp
 <header class="g-header">
     <a href="#content" class="skip-nav f-body">Skip to Content</a>
-    @if (isset($_hours['closure']))
+    @if (isset($_hours['closure']) || config('aic.is_preview_mode'))
     <div class="m-notification m-notification--header" data-behavior="notification">
       <div class="m-notification--header__inner">
         <p class="m-notification__text f-secondary">
-          <svg class="icon--info" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--info"></use></svg>{!! $_hours['closure']->present()->closureCopy ?? '' !!}
+          <svg class="icon--info" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--info"></use></svg>{!! config('aic.is_preview_mode') ? 'This a preview of unpublished content! Take care when sharing this link.' : ($_hours['closure']->present()->closureCopy ?? '') !!}
         </p>
         {{--
         <button class="m-notification__close" data-notification-closer=""><svg class="icon--close" aria-title="Close message"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon--close"></use></svg></button>
