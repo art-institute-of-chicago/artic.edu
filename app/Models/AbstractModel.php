@@ -21,6 +21,10 @@ class AbstractModel extends Model
      */
     public function scopePublished($query)
     {
+        if (config('aic.is_current_request_preview')) {
+            return $query;
+        }
+
         return $query->visible()->wherePublished(true);
     }
 
@@ -29,10 +33,8 @@ class AbstractModel extends Model
         return self::published()->find($this->id) != null;
     }
 
-    public function getPreviewUrlAttribute() {
-        return config('twill.admin_app_url') . '/p/' . encrypt([
-            get_class($this),
-            $this->id,
-        ]);
+    public function getPreviewUrl($baseUrl) {
+        // $baseUrl is missing protocol, starts with //, and ends with /
+        return config('twill.admin_app_url') . '/p/' . encrypt($baseUrl . $this->slug);
     }
 }

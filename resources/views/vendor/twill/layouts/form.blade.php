@@ -32,9 +32,6 @@
                     <template slot="modal-form">
                         @partialView(($moduleName ?? null), 'create')
                     </template>
-                    @if (!$item->is_published)
-                        <span class="f--note f--external f--underlined--o"><a href="//{{ $item->preview_url }}" target="_blank" class="titleEditor__permalink f--small">Preview: {{ $item->preview_url }}</a></span>
-                    @endif
                 </a17-title-editor>
                 <div slot="actions">
                     <a17-langswitcher :all-published="{{ json_encode(!$controlLanguagesPublication) }}"></a17-langswitcher>
@@ -44,6 +41,14 @@
                 </div>
             </a17-sticky-nav>
         </div>
+        @if (!$item->is_published)
+            @php
+                $previewUrl = $item->getPreviewUrl($baseUrl);
+            @endphp
+            <div class="container" style="border-bottom: 1px solid rgba(0, 0, 0, 0.05); margin-bottom: 20px; padding-bottom: 26px;">
+                <span class="f--note f--external"><strong>Preview:</strong>&nbsp;<a href="{{ $previewUrl }}" target="_blank" class="titleEditor__permalink f--small f--underlined--o" style="white-space: initial; word-wrap: break-word;">{{ $previewUrl }}</a></span>
+            </div>
+        @endif
         <form action="{{ $saveUrl }}" novalidate method="POST" @unless($customForm) v-on:submit.prevent="submitForm" @endif>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="container">
