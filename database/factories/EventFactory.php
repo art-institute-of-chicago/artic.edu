@@ -19,7 +19,6 @@ $factory->define(App\Models\Event::class, function (Faker $faker) {
         'is_after_hours' => $faker->boolean,
         'is_admission_required' => $faker->boolean,
         'add_to_event_email_series' => $faker->boolean,
-        'show_presented_by' => $faker->boolean,
         'is_rsvp' => $faker->boolean,
         'is_sales_button_hidden' => $faker->boolean,
     ];

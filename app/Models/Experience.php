@@ -26,7 +26,7 @@ class Experience extends AbstractModel implements Sortable
         'published',
         'title',
         'subtitle',
-        'description',
+        'listing_description',
         'position',
         'interactive_feature_id',
         'archived',
@@ -142,6 +142,23 @@ class Experience extends AbstractModel implements Sortable
         return 'experience';
     }
 
+    public function getKioskOnlyAttribute($value)
+    {
+        if (config('aic.is_preview_mode')) {
+            return false;
+        }
+
+        return $value;
+    }
+
+    /**
+     * WEB-1296: Show preview links for published, but kiosk-only items, too.
+     */
+    public function getIsPublishedAttribute()
+    {
+        return self::webPublished()->find($this->id) !== null;
+    }
+
     /**
      * By default, `withoutTrashed` is applied to `Expereince` and also `IF` through `whereHas`.
      *
@@ -149,6 +166,10 @@ class Experience extends AbstractModel implements Sortable
      */
     public function scopeWebPublished($query)
     {
+        if (config('aic.is_preview_mode')) {
+            return $query;
+        }
+
         return $query
             ->published()
             ->unarchived()
@@ -172,6 +193,10 @@ class Experience extends AbstractModel implements Sortable
 
     public function scopeUnarchived($query)
     {
+        if (config('aic.is_preview_mode')) {
+            return $query;
+        }
+
         return $query->where('archived', false);
     }
 
@@ -207,10 +232,10 @@ class Experience extends AbstractModel implements Sortable
                 "value" => function () {return $this->sub_title;},
             ],
             [
-                "name" => 'description',
-                "doc" => "Description",
+                "name" => 'listing_description',
+                "doc" => "Listing description",
                 "type" => "string",
-                "value" => function () {return $this->description;},
+                "value" => function () {return $this->listing_description;},
             ],
             [
                 "name" => 'position',

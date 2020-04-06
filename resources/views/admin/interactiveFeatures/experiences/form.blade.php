@@ -26,12 +26,15 @@
         'maxlength' => 300
     ])
 
-    @formField('input', [
-        'name' => 'description',
-        'label' => 'Description',
+    @formField('wysiwyg', [
+        'name' => 'listing_description',
+        'label' => 'Listing Description',
         'type' => 'textarea',
         'maxlength' => 300,
         'note' => 'Used in listings and for social media',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('checkbox', [

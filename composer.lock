@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f05bb85b2e872cad3202ec2e1f8d941",
+    "content-hash": "30fd3dc3de26828a82bde74f10558cfc",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -7987,6 +7987,53 @@
             "time": "2019-06-15T22:40:20+00:00"
         },
         {
+            "name": "yeslogic/prince-php-wrapper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/art-institute-of-chicago/prince-php-wrapper.git",
+                "reference": "d6199b1dd0aef6b72db466a6d20275f5fa35369f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/art-institute-of-chicago/prince-php-wrapper/zipball/d6199b1dd0aef6b72db466a6d20275f5fa35369f",
+                "reference": "d6199b1dd0aef6b72db466a6d20275f5fa35369f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Prince\\": "src/"
+                }
+            },
+            "license": [
+                "MIT License"
+            ],
+            "authors": [
+                {
+                    "name": "Håkon Wium Lie",
+                    "email": ""
+                },
+                {
+                    "name": "Michael Day",
+                    "email": "mikeday@yeslogic.com"
+                },
+                {
+                    "name": "Xuehong Liu",
+                    "email": ""
+                },
+                {
+                    "name": "Cong Liu",
+                    "email": ""
+                }
+            ],
+            "description": "PHP wrapper class for Prince HTML to PDF formatter",
+            "support": {
+                "source": "https://github.com/art-institute-of-chicago/prince-php-wrapper/tree/master"
+            },
+            "time": "2020-03-23T19:22:36+00:00"
+        },
+        {
             "name": "zendframework/zend-diactoros",
             "version": "2.1.4",
             "source": {
@@ -9937,7 +9984,8 @@
         "aic/data-hub-foundation": 20,
         "area17/twill": 20,
         "onelogin/php-saml": 20,
-        "spatie/laravel-feed": 20
+        "spatie/laravel-feed": 20,
+        "yeslogic/prince-php-wrapper": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

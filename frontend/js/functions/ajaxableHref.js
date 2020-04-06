@@ -30,6 +30,16 @@ const ajaxableHref = function(href, event) {
     return false;
   }
 
+  if (target.pathname.startsWith('/assets/')) {
+    // link targets a DAMS asset
+    return false;
+  }
+
+  if (target.pathname.includes('/interactive-features/')) {
+    // link targets an interactive feature
+    return false;
+  }
+
   if (window.location.pathname.includes('/interactive-features/')) {
     // user is in an interactive feature
     return false;

@@ -5,7 +5,6 @@
 <article class="o-article o-article--generic-page">
     @component('components.molecules._m-article-header')
       @slot('headerType', 'generic')
-      @slot('variation', 'o-article__header')
       @slot('title', 'Statics Index')
     @endcomponent
 

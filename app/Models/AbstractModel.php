@@ -21,11 +21,21 @@ class AbstractModel extends Model
      */
     public function scopePublished($query)
     {
+        if (config('aic.is_preview_mode')) {
+            return $query;
+        }
+
         return $query->visible()->wherePublished(true);
     }
 
     public function getIsPublishedAttribute()
     {
-        return self::published()->find($this->id) != null;
+        return self::published()->find($this->id) !== null;
+    }
+
+    public function getPreviewUrl($baseUrl) {
+        // $baseUrl is missing protocol, starts with //, and ends with /
+        // config('app.url') should have no https://
+        return '//' . config('app.url') . '/p/' . encrypt($baseUrl . $this->slug);
     }
 }

@@ -156,12 +156,18 @@ $include-icons: false; // see icons.scss!
 @import 'organisms/o-collapsing-nav';
 @import 'organisms/o-search-results';
 @import 'organisms/o-closer-look';
+@import 'organisms/o-editors-note';
+@import 'organisms/o-journal-footer';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ layout */
 
 @import 'layout/body';
 @import 'layout/a17';
 @import 'layout/content';
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ pages */
+
+@import 'pages/p-issue-show';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ sections */
 

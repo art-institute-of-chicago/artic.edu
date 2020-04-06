@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Fideloper\Proxy\TrustProxies as Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Closure;
-use Cache;
 
 class TrustProxies extends Middleware
 {
@@ -28,8 +29,12 @@ class TrustProxies extends Middleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $ips = Cache::remember('list-cloudfront-ips', 60, function () {
-            return file_get_contents('http://d7uri8nf7uskq.cloudfront.net/tools/list-cloudfront-ips');
+        $ips = Cache::remember('list-cloudfront-ips', 60 * 60, function () {
+            if (Storage::exists('list-cloudfront-ips.json')) {
+                return Storage::get('list-cloudfront-ips.json');
+            }
+
+            return '{"CLOUDFRONT_GLOBAL_IP_LIST": [], "CLOUDFRONT_REGIONAL_EDGE_IP_LIST": []}';
         });
 
         $ips = json_decode($ips);
