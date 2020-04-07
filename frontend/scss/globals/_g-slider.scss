@@ -1,8 +1,8 @@
 .g-slider {
 
-  $padding-edge: 48px;
-  $btn-padding: 12px;
-  $btn-size: 20px;
+  $slider-edge-spacing: 48px;
+  $btn-close-padding: 12px;
+  $btn-close-size: 20px;
 
   display: none;
   position: fixed;
@@ -26,7 +26,7 @@
   .g-slider__content {
     position: relative;
     margin: auto;
-    padding: $padding-edge 0;
+    padding: $slider-edge-spacing 0;
 
     @each $name, $point in $breakpoints {
       @include breakpoint('#{$name}') {
@@ -39,8 +39,8 @@
       position: absolute;
       z-index: 1;
       left: 0;
-      right: $btn-size + $btn-padding;
-      top: $padding-edge / 2;
+      right: $btn-close-size + $btn-close-padding;
+      top: $slider-edge-spacing / 2;
       height: 1px;
       background-color: #e6e6e6;
     }
@@ -51,7 +51,7 @@
       z-index: 1;
       left: 0;
       right: 0;
-      bottom: $padding-edge / 2;
+      bottom: $slider-edge-spacing / 2;
       height: 1px;
       background-color: #e6e6e6;
     }
@@ -59,7 +59,7 @@
     .g-slider__close {
       position: absolute;
       right: 0;
-      top: $padding-edge / 2 - $btn-size / 2;
+      top: $slider-edge-spacing / 2 - $btn-close-size / 2;
       padding: 0;
       border: 0 none;
       background: transparent;
@@ -71,117 +71,79 @@
       }
 
       .icon--close {
-        width: $btn-size;
-        height: $btn-size;
+        width: $btn-close-size;
+        height: $btn-close-size;
       }
     }
 
 
   }
-}
 
-.g-slider--promo {
+  &.g-slider--promo {
 
-  .g-slider__content {
-  }
+    .g-slider__content {
 
-  .g-slider__title {
-    @include f-display-1;
-    @include untuck;
-    margin-bottom: 12px;
-  }
+      .g-slider__main {
 
-  .g-slider__intro {
-    @include f-deck;
-    @include untuck;
-    margin-bottom: 24px;
-    color: $color__text--secondary;
-  }
+        .g-slider__title {
+          @include untuck;
+          margin-bottom: $slider-edge-spacing / 2;
+        }
 
-
-  .g-slider__form {
-    margin-top: 44px;
-  }
-
-  .g-slider__form-row {
-    margin-top: 16px;
-  }
-
-  .g-slider__form-row:first-child {
-    margin-top: 0;
-  }
-
-  .g-slider__form-row p {
-  }
-
-  .g-slider__form-row--split {
-    @include breakpoint('small+') {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-    }
-  }
-
-  .g-slider__form-row--split p {
-    width: 100%;
-    margin-top: 16px;
-
-    @include breakpoint('small+') {
-      margin-left: 20px;
-      margin-top: 0;
-    }
-  }
-
-  .g-slider__form-row--split p:first-child {
-    margin-top: 0;
-    margin-left: 0;
-  }
-
-  .g-slider__form-row--submit {
-    margin-top: 24px;
-  }
-
-  .g-slider__form-row--submit button {
-    width: 100%;
-  }
-
-  .g-slider__form-note {
-    margin-top: 32px;
-    color: $color__text--secondary;
-  }
-
-  // TODO: Make link styles more consistent! Here, we mirror .btn color conventions.
-  a {
-      color: $color__link--accent;
-
-      &:hover,
-      &:focus:hover {
-        color: $color__link--accent-hover;
+        .g-slider__intro {
+          @include untuck;
+          margin-bottom: $slider-edge-spacing / 2;
+          color: $color__text--secondary;
+        }
       }
 
-      &:active:hover {
-        color: $color__link--accent-active;
+     .g-slider__form {
+
+        .g-slider__form-row--split {
+          @include breakpoint('small+') {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+          }
+
+          p {
+            width: 100%;
+            margin-top: 16px;
+
+            @include breakpoint('small+') {
+              margin-left: 20px;
+              margin-top: 0;
+            }
+
+            &:first-child {
+              margin-top: 0;
+              margin-left: 0;
+            }
+          }
+        }
+
+        .g-slider__form-row--submit {
+          margin-top: 24px;
+
+          button {
+            width: 100%;
+          }
+        }
       }
-  }
-
-  // Borrowed from _m-article-header (m-article-header--hero)
-  .m-article-header__info-trigger {
-    bottom: 24px;
-    right: 24px;
-
-    @include breakpoint('small+') {
-      bottom: 28px;
-      right: 28px;
     }
-  }
 
-  .m-article-header__info {
-    bottom: 56px;
-    right: 56px;
+    // TODO: Make link styles more consistent! Here, we mirror .btn color conventions.
+    a {
+        color: $color__link--accent;
 
-    @include breakpoint('small+') {
-      bottom: 60px;
-      right: 60px;
+        &:hover,
+        &:focus:hover {
+          color: $color__link--accent-hover;
+        }
+
+        &:active:hover {
+          color: $color__link--accent-active;
+        }
     }
   }
 }
