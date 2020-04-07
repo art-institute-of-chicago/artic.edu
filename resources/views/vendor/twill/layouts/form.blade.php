@@ -44,10 +44,10 @@
         {{-- WEB-1296: Add ability to share draft pages via links --}}
         @if (!$item->is_published)
             @php
-                $previewUrl = $item->getPreviewUrl($baseUrl);
+                $sharePreviewUrl = $item->getPreviewUrl($baseUrl);
             @endphp
             <div class="container" style="border-bottom: 1px solid rgba(0, 0, 0, 0.05); margin-bottom: 20px; padding-bottom: 26px;">
-                <span class="f--note f--external"><strong>Preview:</strong>&nbsp;<a href="{{ $previewUrl }}" target="_blank" class="titleEditor__permalink f--small f--underlined--o" style="white-space: initial; word-wrap: break-word;">{{ ltrim($previewUrl, '/') }}</a></span>
+                <span class="f--note f--external"><strong>Preview:</strong>&nbsp;<a href="{{ $sharePreviewUrl }}" target="_blank" class="titleEditor__permalink f--small f--underlined--o" style="white-space: initial; word-wrap: break-word;">{{ ltrim($sharePreviewUrl, '/') }}</a></span>
             </div>
         @endif
         {{-- WEB-1296: EOF --}}
