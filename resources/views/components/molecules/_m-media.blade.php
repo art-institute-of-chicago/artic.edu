@@ -117,7 +117,7 @@
 
 @endphp
 <{{ $tag ?? 'figure' }} {!! isset($_figureCount) ? 'id="fig-' . $_figureCount . '" ' : '' !!} data-type="{{ $type }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <span class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
+    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
         @if ($type == 'image')
             @if ($showUrlFullscreen)
                 <a href="{!! $item['urlTitle'] !!}">
@@ -220,28 +220,28 @@
             @endcomponent</textarea>
         @endif
 
-    </span>
+    </div>
     @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>
         @if ($size == 'gallery')
             @if (isset($item['captionTitle']))
                 @if(isset($item['urlTitle']) && $item['urlTitle'])
-                    <strong class="f-caption"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></strong> <br>
+                    <div class="f-caption"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></div> <br>
                 @else
-                    <strong class="f-caption">{!! $item['captionTitle'] !!}</strong> <br>
+                    <div class="f-caption">{!! $item['captionTitle'] !!}</div> <br>
                 @endif
             @endif
-            @if (isset($item['caption']))<span class="f-caption">{!! $item['caption'] !!}</span>@endif
+            @if (isset($item['caption']))<div class="f-caption">{!! $item['caption'] !!}</div>@endif
         @else
             @if (isset($item['captionTitle']))
                 @if(isset($item['urlTitle']) && $item['urlTitle'])
-                    <strong class="f-caption-title"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></strong> <br>
+                    <div class="f-caption-title"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></div> <br>
                 @else
-                    <strong class="f-caption-title">{!! $item['captionTitle'] !!}</strong> <br>
+                    <div class="f-caption-title">{!! $item['captionTitle'] !!}</div> <br>
                 @endif
             @endif
             @if (isset($item['caption']))
-                <span class="f-caption">{!! $item['caption'] !!}</span>
+                <div class="f-caption">{!! $item['caption'] !!}</div>
             @endif
         @endif
     </figcaption>

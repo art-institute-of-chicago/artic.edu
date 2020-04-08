@@ -389,12 +389,15 @@ function aic_imageSettings($data) {
 
         // generate variants
         foreach ($srcset as $i => $size):
+            if ($stringSrcset) {
+                $stringSrcset .= ", ";
+            }
             $imgixSettings['w'] = $size;
             if ($height && $height !== 'auto') {
                 $imgixSettings['h'] = round(($height/$width) * $size);
             }
             $imgixSettingsString = http_build_query($imgixSettings);
-            $stringSrcset .= $base.$imgixSettingsString." ".$size."w, ";
+            $stringSrcset .= $base.$imgixSettingsString." ".$size."w";
         endforeach;
 
         // get data-pin-media for pinterest

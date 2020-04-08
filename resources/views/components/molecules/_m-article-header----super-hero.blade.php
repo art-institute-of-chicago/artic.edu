@@ -61,7 +61,7 @@
         @component('components.blocks._text')
             @slot('font','f-deck')
             @slot('variation', 'm-article-header__intro')
-            @slot('tag', 'span')
+            @slot('tag', 'div')
             {!! SmartyPants::defaultTransform($intro) !!}
         @endcomponent
       @endif
