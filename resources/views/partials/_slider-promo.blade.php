@@ -3,7 +3,7 @@
     Adjust $roadblock['geotarget'] from $roadblock to whatever you need.
     Copy all attributes from the top-level div here into the actual promo modal container.
 --}}
-<div class="{{ ($modal['hide_fields'] ?? false) ? 'g-slider--promo--hide_fields' : '' }}">
+<div class="g-slider--promo__variation--{{ $modal['variation_class'] }}">
     <div class="g-slider__content">
         <div class="g-slider__main">
             <h3 class="g-slider__title f-module-title-2">{{ $modal['title'] }}</h3>
@@ -11,16 +11,28 @@
         </div>
 
         <form class="g-slider__form" action="{{ $modal['action_url'] }}" method="post" enctype="multipart/form-data" accept-charset="UTF-8" target="_blank" data-gtm-event-category="lightbox" data-gtm-event-action="{{$seo->title}}" data-gtm-event="{{ $modal['lightbox_button_text'] ?? 'Join Now' }}">
-            @if (!$modal['hide_fields'])
+            @if ($modal['variation'] === \App\Models\Lightbox::VARIATION_EMAIL)
                 <div class="g-slider__form-row">
-                    <p>
-                        @component('components.atoms._email')
-                            @slot('id', 'edit-submitted-mail')
-                            @slot('name', 'submitted[mail]')
-                            @slot('required', 'required')
-                            Email address
-                        @endcomponent
-                    </p>
+                    @component('components.atoms._email')
+                        @slot('id', 'edit-submitted-mail')
+                        @slot('name', 'submitted[mail]')
+                        @slot('required', 'required')
+                        Email address
+                    @endcomponent
+                </div>
+            @elseif ($modal['variation'] === \App\Models\Lightbox::VARIATION_TICKETING)
+                <div class="g-slider__form-row">
+                    @component('components.atoms._select')
+                        @slot('id', 'g-slider--promo__ticketing')
+                        @slot('name', 'g-slider--promo__ticketing')
+                        @slot('options', [
+                            ['value' => '1', 'label' => 'Option 1'],
+                            ['value' => '2', 'label' => 'Option 2'],
+                            ['value' => '3', 'label' => 'Option 3'],
+                        ])
+                        @slot('error', 'Error message')
+                        Label
+                    @endcomponent
                 </div>
             @endif
 

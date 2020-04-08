@@ -50,6 +50,26 @@
         'note' => 'Defaults to "Join Now"',
     ])
 
+    @formField('radios', [
+        'name' => 'variation',
+        'label' => 'Variation',
+        'default' => \App\Models\Lightbox::VARIATION_DEFAULT,
+        'inline' => false,
+        'options' => [
+            [
+                'value' => \App\Models\Lightbox::VARIATION_DEFAULT,
+                'label' => 'Default (button)'
+            ],
+            [
+                'value' => \App\Models\Lightbox::VARIATION_TICKETING,
+                'label' => 'Ticketing (button + date select)'
+            ],
+            [
+                'value' => \App\Models\Lightbox::VARIATION_EMAIL,
+                'label' => 'Email capture (button + email input)'
+            ],
+        ],
+    ])
 @stop
 
 
