@@ -25,12 +25,19 @@ class AbstractModel extends Model
             return $query;
         }
 
-        return $query->visible()->wherePublished(true);
+        // scopeVisible checks for its fillable columns
+        $query->visible();
+
+        if ($this->isFillable('published')) {
+            $query->wherePublished(true);
+        }
+
+        return $query;
     }
 
     public function getIsPublishedAttribute()
     {
-        return self::published()->find($this->id) !== null;
+        return static::published()->find($this->id) !== null;
     }
 
     public function getPreviewUrl($baseUrl) {

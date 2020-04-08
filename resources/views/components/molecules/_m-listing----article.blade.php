@@ -25,7 +25,7 @@
             @endif
             <span class="m-listing__img__overlay"></span>
         </span>
-        <span class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
+        <div class="m-listing__meta"{{ (isset($variation) and strrpos($variation, "--hero") > -1) ? ' data-blur-clip-to' : '' }}>
             <em class="type f-tag">{!! $item->present()->subtype !!}</em>
             <br>
             @component('components.atoms._title')
@@ -34,7 +34,7 @@
                 @slot('title_display', $item->present()->title_display)
             @endcomponent
             <br>
-            <span class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</span>
-        </span>
+            <div class="intro {{ $captionFont ?? 'f-caption' }}">{!! $item->present()->list_description !!}</div>
+        </div>
     </a>
 </{{ $tag ?? 'li' }}>

@@ -7,6 +7,7 @@ const shareMenu = function(container) {
   let networks = [];
   let shareUrl;
   let shareTitle;
+  let returnChar = '%0D%0A';
 
   function _pageUrl() {
     return escapeString(shareUrl);
@@ -129,7 +130,7 @@ const shareMenu = function(container) {
     networks.push({
       name: 'email',
       href: function() {
-        return 'mailto:?Subject=' + _pageTitle() + '&Body=' + escapeString() + '\n\n' + _pageUrl() + '\n\n';
+        return 'mailto:?Subject=' + _pageTitle() + '&Body=' + escapeString() + returnChar + returnChar + _pageUrl() + returnChar + returnChar;
       },
       windowOptions: {},
     });
