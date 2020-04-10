@@ -110,7 +110,7 @@ $btn-close-size: 20px;
       }
 
       .g-slider__intro {
-        // @include untuck;
+        @include untuck;
         margin-bottom: $slider-edge-spacing / 2;
         color: $color__text--secondary;
 
@@ -123,7 +123,7 @@ $btn-close-size: 20px;
    .g-slider__form {
 
       @include breakpoint('small+') {
-        margin-left: $slider-edge-spacing / 2;
+        margin-left: $slider-edge-spacing;
       }
 
       .g-slider__form-row {
@@ -148,7 +148,7 @@ $btn-close-size: 20px;
   .g-slider__content {
 
     @include breakpoint('small+') {
-      align-items: flex-end;
+      // align-items: flex-end;
       flex-wrap: wrap;
     }
 

@@ -26,12 +26,8 @@
                         @slot('id', 'g-slider--promo__ticketing')
                         @slot('name', 'g-slider--promo__ticketing')
                         @slot('options', [
-                            ['value' => '1', 'label' => 'Option 1'],
-                            ['value' => '2', 'label' => 'Option 2'],
-                            ['value' => '3', 'label' => 'Option 3'],
+                            ['value' => '1', 'label' => 'Visit today'],
                         ])
-                        @slot('error', 'Error message')
-                        Label
                     @endcomponent
                 </div>
             @endif
