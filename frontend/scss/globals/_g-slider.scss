@@ -15,12 +15,10 @@ $btn-close-size: 20px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  width: 100vw;
+  width: 100%;
 
   bottom: 0;
-  top: auto;
-  right: auto;
-  left: auto;
+  left: 0;
 
   .g-slider__content {
     position: relative;
