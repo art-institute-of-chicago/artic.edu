@@ -92,7 +92,7 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 
   @include('partials._footer')
 
-  @if ( !app()->environment('production'))
+  @if (config('aic.show_design_grids'))
     @include('partials._designgrids')
   @endif
 </div>
