@@ -23,7 +23,7 @@ $btn-close-size: 20px;
   .g-slider__content {
     position: relative;
     margin: auto;
-    padding: $slider-edge-spacing 0;
+    padding: $slider-edge-spacing 0 $slider-edge-spacing / 2;
 
     @each $name, $point in $breakpoints {
       @include breakpoint('#{$name}') {
@@ -38,17 +38,6 @@ $btn-close-size: 20px;
       left: 0;
       right: $btn-close-size + $btn-close-padding;
       top: $slider-edge-spacing / 2;
-      height: 1px;
-      background-color: #e6e6e6;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      z-index: 1;
-      left: 0;
-      right: 0;
-      bottom: $slider-edge-spacing / 2;
       height: 1px;
       background-color: #e6e6e6;
     }
