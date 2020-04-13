@@ -24,3 +24,4 @@ export { default as accessibleContent } from './accessibleContent';
 export { default as videojsActivate } from './videojsActivate';
 export { default as headerHeight } from './headerHeight';
 export { default as ajaxRequestCustom } from './ajaxRequestCustom';
+export { default as roadblock } from './roadblock';

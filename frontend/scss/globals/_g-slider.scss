@@ -1,0 +1,205 @@
+$slider-edge-spacing: 48px;
+$btn-close-padding: 12px;
+$btn-close-size: 20px;
+
+.g-slider {
+  display: none;
+  position: fixed;
+  z-index: map-get($zindexs, 'modal');
+  background-color: $color__white;
+
+  opacity: 0;
+  transition: opacity .35s;
+
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  width: 100%;
+
+  bottom: 0;
+  left: 0;
+
+  .g-slider__content {
+    position: relative;
+    margin: auto;
+    padding: $slider-edge-spacing 0;
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        width: colspan(58, $name);
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      right: $btn-close-size + $btn-close-padding;
+      top: $slider-edge-spacing / 2;
+      height: 1px;
+      background-color: #e6e6e6;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      right: 0;
+      bottom: $slider-edge-spacing / 2;
+      height: 1px;
+      background-color: #e6e6e6;
+    }
+
+    .g-slider__close {
+      position: absolute;
+      right: 0;
+      top: $slider-edge-spacing / 2 - $btn-close-size / 2;
+      padding: 0;
+      border: 0 none;
+      background: transparent;
+      color: $color__text--forms;
+      cursor: pointer;
+
+      &:hover {
+        color: $color__text;
+      }
+
+      .icon--close {
+        width: $btn-close-size;
+        height: $btn-close-size;
+      }
+    }
+  }
+
+  // TODO: Make link styles more consistent! Here, we mirror .btn color conventions.
+  a {
+      color: $color__link--accent;
+
+      &:hover,
+      &:focus:hover {
+        color: $color__link--accent-hover;
+      }
+
+      &:active:hover {
+        color: $color__link--accent-active;
+      }
+  }
+}
+
+.g-slider.g-slider--promo {
+
+  .g-slider__content {
+
+    @include breakpoint('small+') {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .g-slider__main {
+
+      .g-slider__title {
+        @include untuck;
+        margin-bottom: $slider-edge-spacing / 2;
+      }
+
+      .g-slider__intro {
+        @include untuck;
+        margin-bottom: $slider-edge-spacing / 2;
+        color: $color__text--secondary;
+
+        @include breakpoint('small+') {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+   .g-slider__form {
+
+      @include breakpoint('small+') {
+        margin-left: $slider-edge-spacing;
+      }
+
+      .g-slider__form-row {
+        margin-bottom: $slider-edge-spacing / 2;
+      }
+
+      .g-slider__form-row--submit {
+        margin-bottom: 0;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// By necessity, variation is described by a subdiv
+.g-slider.g-slider--promo .g-slider--promo__variation--email,
+.g-slider.g-slider--promo .g-slider--promo__variation--ticketing {
+
+  .g-slider__content {
+
+    @include breakpoint('small+') {
+      // align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    @include breakpoint('medium+') {
+      flex-wrap: nowrap;
+    }
+
+    .g-slider__main {
+
+      @include breakpoint('small') {
+        flex-basis: 100%;
+      }
+
+      .g-slider__intro {
+
+        @include breakpoint('small') {
+          margin-bottom: $slider-edge-spacing / 2;
+        }
+      }
+    }
+
+    .g-slider__form {
+
+      @include breakpoint('small') {
+        flex-basis: 100%;
+        margin-left: 0;
+      }
+
+      @include breakpoint('small+') {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+      }
+
+      .g-slider__form-row {
+
+        @include breakpoint('small+') {
+          margin-left: $slider-edge-spacing / 2;
+          margin-bottom: 0;
+        }
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+
+      label {
+        white-space: nowrap;
+      }
+
+      input[type="email"] {
+        min-width: 15em;
+      }
+    }
+  }
+}
