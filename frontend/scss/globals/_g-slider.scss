@@ -209,3 +209,17 @@ $btn-close-size: 20px;
     }
   }
 }
+
+.g-slider.g-slider--promo .g-slider--promo__variation--email {
+
+  .g-slider__content {
+
+    @include breakpoint('medium+') {
+      align-items: flex-start;
+    }
+
+    .g-slider__form {
+      margin-top: 1px;
+    }
+  }
+}
