@@ -2,14 +2,30 @@ $slider-edge-spacing: 48px;
 $btn-close-padding: 12px;
 $btn-close-size: 20px;
 
+@keyframes g-slider-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(66%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.s-roadblock-active {
+
+  .g-slider--promo {
+    display: block;
+    animation: g-slider-reveal 0.70s ease-out;
+  }
+}
+
 .g-slider {
   display: none;
   position: fixed;
   z-index: map-get($zindexs, 'modal');
   background-color: $color__white;
-
-  opacity: 0;
-  transition: opacity .35s;
 
   max-height: 100vh;
   overflow-y: auto;
