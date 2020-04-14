@@ -152,6 +152,13 @@ const roadblock = function() {
     } else {
       cookieHandler.delete(cookieName);
     }
+    var $modalPromoButton = $modalPromo.getElementsByTagName('button')[0];
+    setTimeout(function() {
+      $modalPromoButton.classList.remove('btn--secondary');
+      setTimeout(function() {
+        $modalPromoButton.classList.add('btn--secondary');
+      }, 350);
+    }, 850);
   }
 
   function _closeRoadblock() {

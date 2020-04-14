@@ -38,6 +38,7 @@
 
             <div class="g-slider__form-row g-slider__form-row--submit">
                 @component('components.atoms._btn')
+                    @slot('variation', 'btn--secondary')
                     {{ $modal['lightbox_button_text'] ?? 'Join Now' }}
                 @endcomponent
             </div>

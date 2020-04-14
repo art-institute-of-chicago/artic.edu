@@ -2,14 +2,30 @@ $slider-edge-spacing: 48px;
 $btn-close-padding: 12px;
 $btn-close-size: 20px;
 
+@keyframes g-slider-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(66%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.s-roadblock-active {
+
+  .g-slider--promo {
+    display: block;
+    animation: g-slider-reveal 0.70s ease-out;
+  }
+}
+
 .g-slider {
   display: none;
   position: fixed;
   z-index: map-get($zindexs, 'modal');
   background-color: $color__white;
-
-  opacity: 0;
-  transition: opacity .35s;
 
   max-height: 100vh;
   overflow-y: auto;
@@ -23,7 +39,7 @@ $btn-close-size: 20px;
   .g-slider__content {
     position: relative;
     margin: auto;
-    padding: $slider-edge-spacing 0;
+    padding: $slider-edge-spacing 0 $slider-edge-spacing / 2;
 
     @each $name, $point in $breakpoints {
       @include breakpoint('#{$name}') {
@@ -38,17 +54,6 @@ $btn-close-size: 20px;
       left: 0;
       right: $btn-close-size + $btn-close-padding;
       top: $slider-edge-spacing / 2;
-      height: 1px;
-      background-color: #e6e6e6;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      z-index: 1;
-      left: 0;
-      right: 0;
-      bottom: $slider-edge-spacing / 2;
       height: 1px;
       background-color: #e6e6e6;
     }
@@ -133,6 +138,7 @@ $btn-close-size: 20px;
 
         button {
           width: 100%;
+          transition: all 0.3s ease;
         }
       }
     }
@@ -200,6 +206,20 @@ $btn-close-size: 20px;
       input[type="email"] {
         min-width: 15em;
       }
+    }
+  }
+}
+
+.g-slider.g-slider--promo .g-slider--promo__variation--email {
+
+  .g-slider__content {
+
+    @include breakpoint('medium+') {
+      align-items: flex-start;
+    }
+
+    .g-slider__form {
+      margin-top: 1px;
     }
   }
 }
