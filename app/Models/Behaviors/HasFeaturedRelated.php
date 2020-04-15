@@ -9,16 +9,12 @@ use Carbon\Carbon;
  */
 trait HasFeaturedRelated
 {
-    protected $selectedFeaturedRelated;
+    protected $selectedFeaturedRelateds;
 
-    /**
-     * Select a random element from the relationships below and return one per request.
-     * Adapted from \App\Repositories\Api\ArtistRepository::getCustomRelatedItems()
-     */
     public function getFeaturedRelatedAttribute()
     {
-        if ($this->selectedFeaturedRelated) {
-            return $this->selectedFeaturedRelated;
+        if ($this->selectedFeaturedRelateds) {
+            return $this->selectedFeaturedRelateds;
         }
 
         $relatedItems = $this->getRelatedWithApiModels('sidebar_items', [
@@ -66,56 +62,57 @@ trait HasFeaturedRelated
             return;
         }
 
-        // We only want a random one that's valid...
-        $relatedItem = $relatedItems->random();
+        $this->selectedFeaturedRelateds = [];
+        $relatedItems->each(function ($relatedItem) {
+            switch (get_class($relatedItem)) {
+                case \App\Models\Article::class:
+                    // Tag is often "In the Lab", "Collection Spotlight", etc.
+                    $label = 'Article';
+                    $type = 'article';
+                    break;
+                case \App\Models\Selection::class:
+                    $label = null;
+                    $type = 'selection';
+                    break;
+                case \App\Models\Event::class:
+                    // Tag is replaced by "Tour", "Member Exclusive", etc.
+                    $label = 'Event';
+                    $type = 'event';
+                    break;
+                case \App\Models\Api\Exhibition::class:
+                    // Tag is often "Closed", "Ongoing", "Closing soon", etc.
+                    $label = 'Exhibition';
+                    $type = 'exhibition';
+                    break;
+                case \App\Models\Experience::class:
+                    // Tag is "Interactive Feature"
+                    $label = null;
+                    $type = 'experience';
+                    break;
+                case \App\Models\DigitalPublication::class:
+                    // No tag
+                    $label = 'Digital Publication';
+                    $type = 'generic';
+                    break;
+                case \App\Models\Video::class:
+                    // Tag is "Video"
+                    $label = 'Media';
+                    $type = 'media';
+                    break;
+                default:
+                    throw new \Exception('Cannot determine sidebar item type');
+                    break;
+            }
 
-        switch (get_class($relatedItem)) {
-            case \App\Models\Article::class:
-                // Tag is often "In the Lab", "Collection Spotlight", etc.
-                $label = 'Article';
-                $type = 'article';
-                break;
-            case \App\Models\Selection::class:
-                $label = null;
-                $type = 'selection';
-                break;
-            case \App\Models\Event::class:
-                // Tag is replaced by "Tour", "Member Exclusive", etc.
-                $label = 'Event';
-                $type = 'event';
-                break;
-            case \App\Models\Api\Exhibition::class:
-                // Tag is often "Closed", "Ongoing", "Closing soon", etc.
-                $label = 'Exhibition';
-                $type = 'exhibition';
-                break;
-            case \App\Models\Experience::class:
-                // Tag is "Interactive Feature"
-                $label = null;
-                $type = 'experience';
-                break;
-            case \App\Models\DigitalPublication::class:
-                // No tag
-                $label = 'Digital Publication';
-                $type = 'generic';
-                break;
-            case \App\Models\Video::class:
-                // Tag is "Video"
-                $label = 'Media';
-                $type = 'media';
-                break;
-            default:
-                throw new \Exception('Cannot determine sidebar item type');
-                break;
-        }
-
-        return $this->selectedFeaturedRelated = [
-            'label' => $label ?? 'Content',
-            'type' => $type,
-            'items' => [
-                $relatedItem,
-            ],
-        ];
+            $this->selectedFeaturedRelateds[] = [
+                'label' => $label ?? 'Content',
+                'type' => $type,
+                'items' => [
+                    $relatedItem,
+                ],
+            ];
+        });
+        return $this->selectedFeaturedRelateds;
     }
 
 }

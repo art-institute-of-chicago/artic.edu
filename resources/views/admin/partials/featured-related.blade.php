@@ -4,7 +4,7 @@
         'moduleName' => $moduleName,
         'name' => 'sidebar_items',
         'label' => 'Sidebar items',
-        'max' => 1,
+        'max' => 3,
         'endpoints' => [
             [
                 'label' => 'Article',
