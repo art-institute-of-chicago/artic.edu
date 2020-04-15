@@ -55,20 +55,21 @@
         'label' => 'Variation',
         'default' => \App\Models\Lightbox::VARIATION_DEFAULT,
         'inline' => false,
-        'options' => [
+        'options' => array_merge([
             [
                 'value' => \App\Models\Lightbox::VARIATION_DEFAULT,
                 'label' => 'Default (button)'
             ],
-            // [
-            //    'value' => \App\Models\Lightbox::VARIATION_TICKETING,
-            //    'label' => 'Ticketing (button + date select)'
-            // ],
             [
                 'value' => \App\Models\Lightbox::VARIATION_EMAIL,
                 'label' => 'Email capture (button + email input)'
             ],
-        ],
+        ], app()->environment('production') ? [] : [
+            [
+               'value' => \App\Models\Lightbox::VARIATION_TICKETING,
+               'label' => 'Ticketing (button + date select) (WIP)'
+            ],
+        ]),
     ])
 @stop
 
