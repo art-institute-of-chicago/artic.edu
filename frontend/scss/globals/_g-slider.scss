@@ -36,6 +36,9 @@ $btn-close-size: 20px;
   bottom: 0;
   left: 0;
 
+  border-top: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+
   .g-slider__content {
     position: relative;
     margin: auto;
