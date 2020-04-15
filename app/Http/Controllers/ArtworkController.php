@@ -118,4 +118,25 @@ class ArtworkController extends BaseScopedController
         }
     }
 
+    public function exploreFurther($id)
+    {
+        try {
+            $item = Artwork::query()
+                ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
+                ->findOrFail((Integer) $id);
+        } catch (\Throwable $e) {
+            $item = Artwork::query()->forceEndpoint('deaccession')
+                ->include(['artist_pivots', 'place_pivots', 'dates', 'catalogue_pivots'])
+                ->findOrFail((Integer) $id);
+        }
+
+        $exploreFurther = new ExploreFurther($item);
+
+        $view['html'] = view('site.shared._exploreFurther', [
+            'artworks' => $exploreFurther->collection(request()->all()),
+        ])->render();
+
+        return $view;
+    }
+
 }

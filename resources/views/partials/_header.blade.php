@@ -53,7 +53,7 @@
             <li class="u-show@small+{{ (isset($primaryNavCurrent) && $primaryNavCurrent == 'collection') ? ' s-current' : '' }}">
               <a href="{{ $_pages['collection'] }}" data-gtm-event-category="top-nav" data-gtm-event-action="{{$seo->title}}" data-gtm-event="collection">The Collection</a>
             </li>
-            <li class="u-show@small+"><button data-behavior="globalSearchOpen" aria-label="Search site"><svg class="icon--search--24" aria-hidden="true"><use xlink:href="#icon--search--24" /></svg></button></li>
+            <li class="u-show@small+"><button id="global-search-icon" data-behavior="globalSearchOpen" aria-label="Search site"><svg class="icon--search--24" aria-hidden="true"><use xlink:href="#icon--search--24" /></svg></button></li>
           </ul>
         </div>
       </nav>
@@ -65,7 +65,9 @@
           <li><a href="{{ $_pages['shop'] }}" target="_blank" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="top-nav" data-gtm-event="shop">Shop</a></li>
         </ul>
       </nav>
-      <p class="g-header__opening-hours f-secondary"><a href="{{ $_hours['url'] }}">{!! $_hours['general'] !!}</a></p>
+      @if ($_hours['general'])
+        <p class="g-header__opening-hours f-secondary"><a href="{{ $_hours['url'] }}">{!! $_hours['general'] !!}</a></p>
+      @endif
       <button class="g-header__menu-link f-secondary" data-behavior="openNavMobile" aria-label="Show menu">Menu<svg class="icon--menu--24" aria-hidden="true"><use xlink:href="#icon--menu--24" /></svg></button>
   </div>
 </header>

@@ -106,6 +106,8 @@ class HomeController extends FrontController
             'form_token' => $lightbox->form_token,
             'form_tlc_source' => $lightbox->form_tlc_source,
             'lightbox_button_text' => $lightbox->lightbox_button_text,
+            'variation' => $lightbox->variation,
+            'variation_class' => $lightbox->variation_class,
             'expiry_period' => $lightbox->expiry_period,
             'hide_fields' => $lightbox->hide_fields,
             'geotarget' => $this->getLightboxGeotarget($lightbox->geotarget),

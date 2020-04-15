@@ -1,6 +1,6 @@
 import { manageBehaviors, resized, getCurrentMediaQuery, forEach, lazyLoad } from '@area17/a17-helpers';
 import * as Behaviors from './behaviors';
-import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, videojsActivate, headerHeight } from './functions';
+import { lockBody, focusTrap, focusDisplayHandler, ajaxPageLoad, ajaxPageLoadMaskToggle, historyProxy, loadProgressBar, setScrollDirection, anchorLinksScroll, fontObservers, modals, collectionFilters, googleTagManager, accessibleContent, videojsActivate, headerHeight, roadblock } from './functions';
 /*
 
   A17
@@ -63,8 +63,10 @@ document.addEventListener('DOMContentLoaded', function(){
   focusDisplayHandler();
   // scroll anchor links
   anchorLinksScroll();
-  // listen for modal open/close requests (including roadblock close)
+  // listen for modal open/close requests
   modals();
+  // listen for modal open/close requests
+  roadblock();
   // listen for calls to show/hide collection filters
   collectionFilters();
   // listen for ajax page load type events

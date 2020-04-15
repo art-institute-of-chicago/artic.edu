@@ -22,6 +22,7 @@ class Lightbox extends AbstractModel
         'lightbox_end_date',
         'expiry_period',
         'lightbox_button_text',
+        'variation',
         'terms_text',
         'action_url',
         'form_id',
@@ -60,4 +61,23 @@ class Lightbox extends AbstractModel
     const GEOTARGET_ALL = 1;
     const GEOTARGET_LOCAL = 2;
     const GEOTARGET_NOT_LOCAL = 3;
+
+    const VARIATION_DEFAULT = 1;
+    const VARIATION_TICKETING = 2;
+    const VARIATION_EMAIL = 3;
+
+    public function getVariationClassAttribute()
+    {
+        switch($this->variation) {
+            case self::VARIATION_TICKETING:
+                return 'ticketing';
+                break;
+            case self::VARIATION_EMAIL:
+                return 'email';
+                break;
+            default:
+                return 'default';
+                break;
+        }
+    }
 }

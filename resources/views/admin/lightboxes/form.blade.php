@@ -2,6 +2,7 @@
     'additionalFieldsets' => [
         ['fieldset' => 'duration', 'label' => 'Duration'],
         ['fieldset' => 'metadata', 'label' => 'Metadata'],
+        ['fieldset' => 'deprecated', 'label' => 'Deprecated'],
     ]
 ])
 
@@ -29,32 +30,9 @@
         ],
     ])
 
-    @formField('medias', [
-        'with_multiple' => false,
-        'label' => 'Cover Image',
-        'name' => 'cover',
-    ])
-
-    @formField('wysiwyg', [
-        'type' => 'textarea',
-        'name' => 'cover_caption',
-        'label' => 'Cover Image Caption',
-        'note' => 'Usually used for copyright',
-        'maxlength' => 255,
-        'toolbarOptions' => [
-            'italic', 'link',
-        ],
-    ])
-
     @formField('input', [
         'name' => 'header',
         'label' => 'Header',
-        'note' => 'Use "Title Case"',
-    ])
-
-    @formField('input', [
-        'name' => 'subheader',
-        'label' => 'Subheader',
         'note' => 'Use "Title Case"',
     ])
 
@@ -66,30 +44,33 @@
         ],
     ])
 
-    @formField('checkbox', [
-        'name' => 'hide_fields',
-        'label' => 'Hide first name, last name, and email fields',
-        'default' => false,
-    ])
-
     @formField('input', [
         'name' => 'lightbox_button_text',
         'label' => 'Button Text',
         'note' => 'Defaults to "Join Now"',
     ])
 
-    @formField('wysiwyg', [
-        'name' => 'terms_text',
-        'label' => '"Terms and Conditions" Line',
-        'note' => 'e.g "By joining you agree to the Terms and Conditions"',
-        'toolbarOptions' => [
-            'italic',
-            'link',
-        ],
+    @formField('radios', [
+        'name' => 'variation',
+        'label' => 'Variation',
+        'default' => \App\Models\Lightbox::VARIATION_DEFAULT,
+        'inline' => false,
+        'options' => array_merge([
+            [
+                'value' => \App\Models\Lightbox::VARIATION_DEFAULT,
+                'label' => 'Default (button)'
+            ],
+            [
+                'value' => \App\Models\Lightbox::VARIATION_EMAIL,
+                'label' => 'Email capture (button + email input)'
+            ],
+        ], app()->environment('production') ? [] : [
+            [
+               'value' => \App\Models\Lightbox::VARIATION_TICKETING,
+               'label' => 'Ticketing (button + date select) (WIP)'
+            ],
+        ]),
     ])
-
-    <p>Please use "/terms" as the "Terms and Conditions" link.</p>
-
 @stop
 
 
@@ -154,6 +135,51 @@
             'label' => 'Form ID',
             'note' => 'e.g. webform_client_form_5111',
         ])
+
+    </a17-fieldset>
+
+    <a17-fieldset id="deprecated" title="Deprecated">
+
+        @formField('medias', [
+            'with_multiple' => false,
+            'label' => 'Cover Image',
+            'name' => 'cover',
+        ])
+
+        @formField('wysiwyg', [
+            'type' => 'textarea',
+            'name' => 'cover_caption',
+            'label' => 'Cover Image Caption',
+            'note' => 'Usually used for copyright',
+            'maxlength' => 255,
+            'toolbarOptions' => [
+                'italic', 'link',
+            ],
+        ])
+
+        @formField('input', [
+            'name' => 'subheader',
+            'label' => 'Subheader',
+            'note' => 'Use "Title Case"',
+        ])
+
+        @formField('checkbox', [
+            'name' => 'hide_fields',
+            'label' => 'Hide first name, last name, and email fields',
+            'default' => false,
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'terms_text',
+            'label' => '"Terms and Conditions" Line',
+            'note' => 'e.g "By joining you agree to the Terms and Conditions"',
+            'toolbarOptions' => [
+                'italic',
+                'link',
+            ],
+        ])
+
+        <p>Please use "/terms" as the "Terms and Conditions" link.</p>
 
     </a17-fieldset>
 

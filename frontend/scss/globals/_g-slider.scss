@@ -1,0 +1,224 @@
+$slider-edge-spacing: 48px;
+$btn-close-padding: 12px;
+$btn-close-size: 20px;
+
+@keyframes g-slider-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(66%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.s-roadblock-active {
+
+  .g-slider--promo {
+    display: block;
+    animation: g-slider-reveal 0.70s ease-out;
+  }
+}
+
+.g-slider {
+  display: none;
+  position: fixed;
+  z-index: map-get($zindexs, 'modal');
+  background-color: $color__white;
+
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  width: 100%;
+
+  bottom: 0;
+  left: 0;
+
+  border-top: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+
+  .g-slider__content {
+    position: relative;
+    margin: auto;
+    padding: $slider-edge-spacing 0;
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        width: colspan(58, $name);
+      }
+    }
+
+    .g-slider__close {
+      position: absolute;
+      right: 0;
+      top: $slider-edge-spacing / 2 - $btn-close-size / 2;
+      padding: 0;
+      border: 0 none;
+      background: transparent;
+      color: $color__text--forms;
+      cursor: pointer;
+
+      &:hover {
+        color: $color__text;
+      }
+
+      .icon--close {
+        width: $btn-close-size;
+        height: $btn-close-size;
+      }
+    }
+  }
+
+  // TODO: Make link styles more consistent! Here, we mirror .btn color conventions.
+  a {
+      color: $color__link--accent;
+
+      &:hover,
+      &:focus:hover {
+        color: $color__link--accent-hover;
+      }
+
+      &:active:hover {
+        color: $color__link--accent-active;
+      }
+  }
+}
+
+.g-slider.g-slider--promo {
+
+  .g-slider__content {
+
+    @include breakpoint('small+') {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .g-slider__main {
+
+      .g-slider__title {
+        @include untuck;
+        margin-bottom: $slider-edge-spacing / 2;
+      }
+
+      .g-slider__intro {
+        @include untuck;
+        margin-bottom: $slider-edge-spacing / 2;
+        color: $color__text--secondary;
+
+        @include breakpoint('small+') {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+   .g-slider__form {
+
+      @include breakpoint('small+') {
+        margin-left: $slider-edge-spacing;
+      }
+
+      .g-slider__form-row {
+        margin-bottom: $slider-edge-spacing / 2;
+      }
+
+      .g-slider__form-row--submit {
+        margin-bottom: 0;
+
+        button {
+          width: 100%;
+
+          &.btn--animating {
+            transition: all 0.90s ease;
+          }
+        }
+      }
+    }
+  }
+}
+
+// By necessity, variation is described by a subdiv
+.g-slider.g-slider--promo .g-slider--promo__variation--email,
+.g-slider.g-slider--promo .g-slider--promo__variation--ticketing {
+
+  .g-slider__content {
+
+    @include breakpoint('small+') {
+      // align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    @include breakpoint('medium+') {
+      flex-wrap: nowrap;
+    }
+
+    .g-slider__main {
+
+      @include breakpoint('small') {
+        flex-basis: 100%;
+      }
+
+      .g-slider__intro {
+
+        @include breakpoint('small') {
+          margin-bottom: $slider-edge-spacing / 2;
+        }
+      }
+    }
+
+    .g-slider__form {
+
+      @include breakpoint('small') {
+        flex-basis: 100%;
+        margin-left: 0;
+      }
+
+      @include breakpoint('small+') {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+      }
+
+      .g-slider__form-row {
+
+        @include breakpoint('small+') {
+          margin-left: $slider-edge-spacing / 2;
+          margin-bottom: 0;
+        }
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+
+      label {
+        white-space: nowrap;
+      }
+
+      input[type="email"] {
+        min-width: 15em;
+      }
+    }
+  }
+}
+
+.g-slider.g-slider--promo .g-slider--promo__variation--email {
+
+  .g-slider__content {
+
+    @include breakpoint('medium+') {
+      align-items: flex-start;
+    }
+
+    .g-slider__main .g-slider__title {
+      margin-bottom: 43px;
+    }
+
+    .g-slider__form {
+      margin-top: 1px;
+    }
+  }
+}

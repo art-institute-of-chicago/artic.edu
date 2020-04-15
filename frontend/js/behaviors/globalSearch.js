@@ -136,7 +136,7 @@ const globalSearch = function(container) {
     triggerCustomEvent(document, 'body:unlock');
     triggerCustomEvent(document, 'focus:untrap');
     document.documentElement.classList.remove(stateKlass);
-    setTimeout(function(){ setFocusOnTarget(document.getElementById('a17')); }, 0)
+    setTimeout(function(){ setFocusOnTarget(document.getElementById('global-search-icon')); }, 0)
     textInput.value = '';
   }
 

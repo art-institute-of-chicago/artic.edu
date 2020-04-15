@@ -86,13 +86,24 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
   @include('partials._header')
 
   <main id="content">
+    @if (!empty($roadblocks))
+        <div id="slider-promo" class="g-slider g-slider--promo"></div>
+        @foreach ($roadblocks as $roadblock)
+            <script type="text/template" class="g-slider--promo--template" data-geotarget="{{ $roadblock['geotarget'] }}" data-expires="{{ $roadblock['expiry_period'] ?? 86400 }}">
+                @component('partials._slider-promo', ['modal' => $roadblock])
+                @endcomponent
+            </script>
+        @endforeach
+    @endif
+
     @yield('content')
+
     @include('partials._newsletter')
   </main>
 
   @include('partials._footer')
 
-  @if ( !app()->environment('production'))
+  @if (config('aic.show_design_grids'))
     @include('partials._designgrids')
   @endif
 </div>
@@ -105,16 +116,6 @@ $pClass = strtolower(preg_replace('/@/i','-',$pClass));
 @include('partials._search')
 @include('partials._modal')
 @include('partials._ajax-loader')
-
-@if (!empty($roadblocks))
-    <div id="modal-promo" class="g-modal g-modal--promo"></div>
-    @foreach ($roadblocks as $roadblock)
-        <script type="text/template" class="g-modal--promo--template" data-geotarget="{{ $roadblock['geotarget'] }}" data-expires="{{ $roadblock['expiry_period'] ?? 86400 }}">
-            @component('partials._modal-promo', ['modal' => $roadblock])
-            @endcomponent
-        </script>
-    @endforeach
-@endif
 
 @include('partials._scripts')
 </body>
