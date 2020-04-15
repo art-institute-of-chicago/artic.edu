@@ -155,9 +155,6 @@ const roadblock = function() {
     var $modalPromoButton = $modalPromo.getElementsByTagName('button')[0];
     setTimeout(function() {
       $modalPromoButton.classList.remove('btn--secondary');
-      setTimeout(function() {
-        $modalPromoButton.classList.add('btn--secondary');
-      }, 350);
     }, 850);
   }
 
