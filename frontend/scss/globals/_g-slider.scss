@@ -39,7 +39,7 @@ $btn-close-size: 20px;
   .g-slider__content {
     position: relative;
     margin: auto;
-    padding: $slider-edge-spacing 0 $slider-edge-spacing / 2;
+    padding: $slider-edge-spacing 0;
 
     @each $name, $point in $breakpoints {
       @include breakpoint('#{$name}') {
@@ -219,6 +219,10 @@ $btn-close-size: 20px;
 
     @include breakpoint('medium+') {
       align-items: flex-start;
+    }
+
+    .g-slider__main .g-slider__title {
+      margin-bottom: 43px;
     }
 
     .g-slider__form {
