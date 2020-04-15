@@ -158,8 +158,8 @@ const roadblock = function() {
       $modalPromoButton.classList.add('btn--animating');
       setTimeout(function() {
         $modalPromoButton.classList.remove('btn--animating');
-      }, 600);
-    }, 850);
+      }, 900);
+    }, 1200);
   }
 
   function _closeRoadblock() {
