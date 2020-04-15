@@ -50,17 +50,6 @@ $btn-close-size: 20px;
       }
     }
 
-    &::before {
-      content: '';
-      position: absolute;
-      z-index: 1;
-      left: 0;
-      right: $btn-close-size + $btn-close-padding;
-      top: $slider-edge-spacing / 2;
-      height: 1px;
-      background-color: #e6e6e6;
-    }
-
     .g-slider__close {
       position: absolute;
       right: 0;
