@@ -65,6 +65,7 @@ class Lightbox extends AbstractModel
     const VARIATION_DEFAULT = 1;
     const VARIATION_TICKETING = 2;
     const VARIATION_EMAIL = 3;
+    const VARIATION_NEWSLETTER = 4;
 
     public function getVariationClassAttribute()
     {
@@ -75,9 +76,21 @@ class Lightbox extends AbstractModel
             case self::VARIATION_EMAIL:
                 return 'email';
                 break;
+            case self::VARIATION_NEWSLETTER:
+                return 'newsletter';
+                break;
             default:
                 return 'default';
                 break;
         }
+    }
+
+    public function getActionUrlAttribute($value)
+    {
+        if ($this->variation === self::VARIATION_NEWSLETTER) {
+            return '/subscribe';
+        }
+
+        return $value;
     }
 }

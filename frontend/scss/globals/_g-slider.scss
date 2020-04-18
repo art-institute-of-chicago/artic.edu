@@ -39,6 +39,47 @@ $btn-close-size: 20px;
   border-top: 1px solid rgba(0,0,0,.1);
   box-shadow: 0 0 3px rgba(0,0,0,0.1);
 
+  &.g-slider--msg-active  {
+    border-top: none;
+    box-shadow: none;
+
+    .g-slider__msg {
+      display: block;
+    }
+  }
+
+  .g-slider__msg {
+    @include untuck;
+    display: none;
+    background-color: $color__link;
+    color: $color__white;
+    font-style: normal;
+
+    &.f-buttons {
+      padding-top: 11px;
+      padding-bottom: 13px;
+
+      @include breakpoint('medium+') {
+        padding-top: 10px;
+        padding-bottom: 14px;
+      }
+    }
+
+    &.g-slider__msg--error {
+      background-color: $color__error;
+    }
+
+    .g-slider__msg__content {
+      margin: auto;
+
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          width: colspan(58, $name);
+        }
+      }
+    }
+  }
+
   .g-slider__content {
     position: relative;
     margin: auto;
@@ -130,6 +171,7 @@ $btn-close-size: 20px;
 
         button {
           width: 100%;
+          transition: all 0.45s ease;
 
           &.btn--animating {
             transition: all 0.90s ease;
@@ -141,6 +183,7 @@ $btn-close-size: 20px;
 }
 
 // By necessity, variation is described by a subdiv
+.g-slider.g-slider--promo .g-slider--promo__variation--newsletter,
 .g-slider.g-slider--promo .g-slider--promo__variation--email,
 .g-slider.g-slider--promo .g-slider--promo__variation--ticketing {
 
@@ -205,6 +248,7 @@ $btn-close-size: 20px;
   }
 }
 
+.g-slider.g-slider--promo .g-slider--promo__variation--newsletter,
 .g-slider.g-slider--promo .g-slider--promo__variation--email {
 
   .g-slider__content {
