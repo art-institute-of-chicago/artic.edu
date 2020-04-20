@@ -907,6 +907,14 @@ Draws boxes around each grid item
     }
   }
 
+  // Override weird default above: no space to breathe!
+  @include breakpoint('xsmall') {
+    &.o-grid-listing[class*="col@xsmall"] > * {
+      margin-top: colspan(map-get($grid-padding-tops, 'xsmall'), xsmall);
+      width: colspan(58, xsmall);
+    }
+  }
+
   // Ensure all cards after the first rows have the right margin-top:
   @each $name, $point in $breakpoints {
     @include breakpoint('#{$name}') {
