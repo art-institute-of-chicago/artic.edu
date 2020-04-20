@@ -21,7 +21,7 @@
 
     @formField('input', [
         'name' => 'heading',
-        'label' => 'Copy',
+        'label' => 'Heading',
         'rows' => 3,
         'type' => 'textarea'
     ])

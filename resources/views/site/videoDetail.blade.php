@@ -9,19 +9,22 @@
             @slot('title_display', $item->present()->title_display)
             @slot('type', $item->present()->type)
             @slot('date', $item->date)
-            @slot('intro', $item->present()->heading)
         @endcomponent
+
+        @if ($item->heading)
+        <div class="o-article__intro">
+          @component('components.blocks._text')
+              @slot('font', 'f-deck')
+              @slot('tag', 'div')
+              {!! $item->present()->heading !!}
+          @endcomponent
+        </div>
+        @endif
 
         <div class="o-article__body o-blocks">
             @component('components.molecules._m-media')
                 @slot('variation', 'o-blocks__block')
                 @slot('item', $item->present()->videoBlock)
-            @endcomponent
-
-            @component('components.blocks._blocks')
-                @slot('editorial', false)
-                @slot('blocks', $blocks ?? null)
-                @slot('dropCapFirstPara', false)
             @endcomponent
 
             {!! $item->renderBlocks(false, [], [
