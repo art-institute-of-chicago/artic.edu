@@ -25,6 +25,14 @@
         'rows' => 3,
         'type' => 'textarea'
     ])
+
+    @formField('block_editor', [
+        'blocks' => getBlocksForEditor([
+            'paragraph', 'quote',
+            'list', 'artwork', 'artworks', 'hr', 'split_block',
+            'membership_banner', 'tour_stop', 'button', 'mobile_app'
+        ])
+    ])
 @stop
 
 @section('fieldsets')

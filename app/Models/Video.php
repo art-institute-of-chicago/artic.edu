@@ -5,13 +5,14 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
+use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 
 class Video extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasRelated, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasRelated, HasBlocks, Transformable;
 
     protected $presenter = 'App\Presenters\Admin\VideoPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\VideoPresenter';
@@ -126,6 +127,12 @@ class Video extends AbstractModel
                 "doc" => "heading",
                 "type" => "string",
                 "value" => function () {return $this->heading;},
+            ],
+            [
+                "name" => 'copy',
+                "doc" => "Copy",
+                "type" => "text",
+                "value" => function () {return $this->blocks;},
             ],
             [
                 "name" => 'related',

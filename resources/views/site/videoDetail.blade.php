@@ -24,6 +24,10 @@
                 @slot('dropCapFirstPara', false)
             @endcomponent
 
+            {!! $item->renderBlocks(false, [], [
+                'pageTitle' => $item->title
+              ]) !!}
+
             <div class="o-article__body-actions">
                 @component('components.molecules._m-article-actions')
                     @slot('articleType', $item->type)

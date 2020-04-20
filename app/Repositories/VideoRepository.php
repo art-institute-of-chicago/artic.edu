@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\Behaviors\HandleFiles;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
@@ -10,7 +11,7 @@ use App\Models\Video;
 
 class VideoRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
+    use HandleBlocks, HandleSlugs, HandleMedias, HandleFiles, HandleRevisions;
 
     public function __construct(Video $model)
     {
