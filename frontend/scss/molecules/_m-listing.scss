@@ -1951,7 +1951,7 @@ $f-audio-subtitle: generate-font-obj(
   border: thin solid $color__grey--100;
 
   .m-listing__img img {
-    transition: transform .1s ease-in-out;
+    transition: transform .35s ease-in-out;
   }
 
   .m-listing__meta {
@@ -1966,7 +1966,7 @@ $f-audio-subtitle: generate-font-obj(
     > .f-tag {
       margin-top: 0;
       margin-bottom: 12px;
-      color: $color__black--90;
+      color: $color__blue--100;
     }
 
     .title {
@@ -1997,18 +1997,11 @@ $f-audio-subtitle: generate-font-obj(
 
   &:hover,
   &:focus {
-    border-color: $color__blue--100;
-
     .m-listing__img img {
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
 
     .m-listing__meta {
-
-      > .f-tag {
-        color: $color__blue--100;
-      }
-
       .title {
         text-decoration: underline;
       }
