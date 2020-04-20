@@ -61,6 +61,10 @@
                 'label' => 'Default (button)'
             ],
             [
+                'value' => \App\Models\Lightbox::VARIATION_NEWSLETTER,
+                'label' => 'Newsletter (button + email input)'
+            ],
+            [
                 'value' => \App\Models\Lightbox::VARIATION_EMAIL,
                 'label' => 'Email capture (button + email input)'
             ],
@@ -71,6 +75,8 @@
             ],
         ]),
     ])
+
+    <p>If you choose any variation except "Newsletter", you must fill out the "Metadata" fields below. The "Newsletter" variation works like the newsletter signup in our footer.</p>
 @stop
 
 
@@ -111,6 +117,10 @@
     </a17-fieldset>
 
     <a17-fieldset id="metadata" title="Metadata">
+
+        <p><strong>Note:</strong> Metadata fields are not used for the "Newsletter" variation.</p>
+
+        <hr>
 
         @formField('input', [
             'name' => 'action_url',
