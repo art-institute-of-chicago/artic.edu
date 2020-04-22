@@ -110,18 +110,31 @@
         }
         const client = new Sketchfab(document.getElementById('sketchfab-frame'));
         client.init(id, {
-            success: (api) => {
-                api.start();
-                api.getCameraLookAt((err, camera) => {
-                    console.log(camera);
-                    this.updateFormField(this.fieldName('camera_position'), camera.position);
-                    this.updateFormField(this.fieldName('camera_target'), camera.target);
-                })
-                api.getAnnotationList((err, annotations) => {
-                    this.updateFormField(this.fieldName('annotation_list'), JSON.stringify(annotations));
-                })
-            }
+          success: function onSuccess(api) {
+            this.api = api;
+            api.start();
+            api.addEventListener('viewerready', this.onViewerReady.bind(this));
+          }.bind(this),
+          error: function onError() {
+            console.error('Viewer error');
+          }
         })
+      },
+      onViewerReady: function() {
+        this.isReady = true;
+        this.api.getCameraLookAt(
+          function(err, camera) {
+            this.camera = camera;
+            console.info('Viewer ready');
+            this.updateFormField(this.fieldName('camera_position'), camera.position);
+            this.updateFormField(this.fieldName('camera_target'), camera.target);
+          }.bind(this)
+        );
+        this.api.getAnnotationList(
+          function(err, annotations) {
+            this.updateFormField(this.fieldName('annotation_list'), JSON.stringify(annotations));
+          }.bind(this)
+        );
       },
       updateFormField: function(name, value) {
         this.$store.commit('updateFormField', {
