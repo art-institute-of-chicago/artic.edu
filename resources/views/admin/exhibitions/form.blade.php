@@ -64,6 +64,13 @@
         @endslot
     @endcomponent
 
+    @formField('input', [
+        'name' => 'date_display_override',
+        'label' => 'Date display override',
+        'maxlength' => 255,
+        'note' => 'Override exhibition start and end dates with custom text'
+    ])
+
     @formField('wysiwyg', [
         'name' => 'header_copy',
         'label' => 'Header',
