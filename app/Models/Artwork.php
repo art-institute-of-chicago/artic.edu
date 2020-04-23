@@ -74,7 +74,8 @@ class Artwork extends AbstractModel
                     ];
                 })->toArray(),
             ];
+            return $asset;
         }
-        return $asset;
+        return null;
     }
 }

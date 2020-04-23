@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if ($item->assetLibrary)
+<script type="application/json" data-closerLook-assetLibrary>
+    {!! json_encode($item->assetLibrary) !!}
+</script>
+@endif
+
 <article class="o-article" data-behavior="addHistory" data-add-url="{!! route('artworks.addRecentlyViewed', $item) !!}" itemscope itemtype="http://schema.org/CreativeWork">
 
   @component('site.shared._schemaItemProps')
