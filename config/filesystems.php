@@ -63,6 +63,14 @@ return [
             'bucket' => env('AWS_BUCKET', env('S3_BUCKET')),
         ],
 
+        'iiif_s3' => [
+            'driver' => 's3',
+            'key' => env('IIIF_S3_KEY', env('S3_KEY')),
+            'secret' => env('IIIF_S3_SECRET', env('S3_SECRET')),
+            'region' => env('IIIF_S3_REGION'),
+            'bucket' => env('IIIF_S3_BUCKET'),
+        ],
+
     ],
 
 ];

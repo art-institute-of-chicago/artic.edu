@@ -3,6 +3,8 @@
         ['fieldset' => 'side_related', 'label' => 'Sidebar Related'],
         ['fieldset' => 'metadata', 'label' => 'Metadata'],
         ['fieldset' => 'api', 'label' => 'Datahub fields'],
+        ['fieldset' => '3dModel', 'label' => '3D Model'],
+        ['fieldset' => 'high_res', 'label' => 'Hi-Res'],
     ]
 ])
 
@@ -29,6 +31,18 @@
 
     <a17-fieldset title="3D Object" id="3dModel">
         <a17-block-aic_3d_model name="aic_3d_model" :thumbnail="false" :caption="false" :browser="false" :cc0="false" />
+    </a17-fieldset>
+
+    <a17-fieldset title="Hi-Res" id="high_res">
+        <p>This functionality is meant to support super-resolution images. It is a work-around for the 3000-pixel limit on images coming from our DAMS. If you upload an image here, it will replace the primary image for the artwork on the website.</p>
+
+        @formField('medias', [
+            'with_multiple' => false,
+            'no_crop' => true,
+            'label' => 'Custom image',
+            'name' => 'iiif',
+            'note' => 'Minimum image width 3000px'
+        ])
     </a17-fieldset>
 @stop
 

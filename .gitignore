@@ -32,3 +32,6 @@ yarn-error.log
 /public/mix-manifest.json
 /public/sitemap.xml
 studio.json
+
+/bin/config.json
+/bin/*.log

@@ -2,6 +2,17 @@
 
 use Illuminate\Support\Str;
 
+// `uuid` represents the full S3 path, but we only want the UUID
+// For some reason, `null` gets prefixed to the `uuid`..?
+function get_clean_media_uuid($media)
+{
+    $uuid = $media->uuid;
+    $uuid = preg_replace('/^null/', '', $uuid);
+    $uuid = explode('/', $uuid)[0];
+
+    return $uuid;
+}
+
 /***
 
 aic_convertFromImageProxy
