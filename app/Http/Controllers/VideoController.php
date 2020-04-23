@@ -24,6 +24,10 @@ class VideoController extends FrontController
             $item = $this->repository->getById((integer) $slug);
         }
 
+        $this->seo->setTitle($item->meta_title ?: $item->title);
+        $this->seo->setDescription($item->meta_description ?: $item->heading ?: truncateStr(strip_tags($item->present()->copy()), 297));
+        $this->seo->setImage($item->imageFront('hero'));
+
         $relatedVideos = $this->repository->getRelatedVideos($item);
 
         return view('site.videoDetail', [
