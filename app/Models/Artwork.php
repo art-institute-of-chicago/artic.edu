@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use A17\Twill\Models\Behaviors\HasFiles;
 use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
@@ -13,7 +14,7 @@ use Illuminate\Support\Str;
 
 class Artwork extends AbstractModel
 {
-    use HasApiModel, HasRelated, HasApiRelations, HasFeaturedRelated, HasMedias;
+    use HasApiModel, HasRelated, HasApiRelations, HasFeaturedRelated, HasMedias, HasFiles;
 
     protected $apiModel = 'App\Models\Api\Artwork';
 
@@ -33,6 +34,8 @@ class Artwork extends AbstractModel
             ]
         ],
     ];
+
+    public $filesParams = ['image_sequence_file'];
 
     public function getFullTitleAttribute()
     {
