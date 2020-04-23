@@ -32,7 +32,8 @@ class VideoController extends FrontController
 
         return view('site.videoDetail', [
             'item' => $item,
-            'relatedVideos' => $relatedVideos
+            'relatedVideos' => $relatedVideos,
+            'unstickyHeader' => true,
         ]);
     }
 }
