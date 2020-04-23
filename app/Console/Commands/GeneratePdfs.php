@@ -50,6 +50,13 @@ class GeneratePdfs extends Command
 
         // Now, produce the PDF
         $prince = new Prince(config('aic.prince_command'));
+        $prince->setBaseURL(config('aic.protocol') . '://' . config('app.url'));
+        $prince->setMedia('print');
+
+        if (config('app.debug')) {
+            $prince->setVerbose(true);
+            $prince->setLog('/Users/ntrive/tmp/prince.log');
+        }
 
         set_time_limit(0);
         $html = file_get_contents(config('aic.protocol') . '://' . config('app.url') . $path . "?print=true");
