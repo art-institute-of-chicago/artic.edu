@@ -4,6 +4,12 @@
 
     <article class="o-article o-article--video">
 
+        <div class="o-article__primary-actions">
+            @component('components.molecules._m-article-actions')
+                @slot('articleType', 'video')
+            @endcomponent
+        </div>
+
         @component('components.molecules._m-article-header')
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
@@ -12,13 +18,13 @@
         @endcomponent
 
         @if ($item->heading)
-        <div class="o-article__intro">
-          @component('components.blocks._text')
-              @slot('font', 'f-deck')
-              @slot('tag', 'div')
-              {!! $item->present()->heading !!}
-          @endcomponent
-        </div>
+            <div class="o-article__intro">
+              @component('components.blocks._text')
+                  @slot('font', 'f-deck')
+                  @slot('tag', 'div')
+                  {!! $item->present()->heading !!}
+              @endcomponent
+            </div>
         @endif
 
         <div class="o-article__body o-blocks">
@@ -29,13 +35,7 @@
 
             {!! $item->renderBlocks(false, [], [
                 'pageTitle' => $item->title
-              ]) !!}
-
-            <div class="o-article__body-actions">
-                @component('components.molecules._m-article-actions')
-                    @slot('articleType', $item->type)
-                @endcomponent
-            </div>
+            ]) !!}
         </div>
     </article>
 
