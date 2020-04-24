@@ -32,7 +32,11 @@
                 @slot('item', [
                     'type' => 'embed',
                     'size' => 'l',
-                    'media' => $item->toArray(),
+                    'media' => [
+                        'url' => $item->video_url,
+                        'embed' => $item->embed,
+                        'medias' => $item->medias,
+                    ],
                     'poster' => $item->imageFront('hero'),
                     'hideCaption' => true,
                     'fullscreen' => false,
@@ -59,7 +63,6 @@
             @slot('behavior','dragScroll')
             @foreach ($relatedVideos as $item)
                 @component('components.molecules._m-listing----generic')
-                    @slot('href', route('videos.show', $item))
                     @slot('item', $item)
                     @slot('hideDate', true)
                     @slot('imageSettings', array(

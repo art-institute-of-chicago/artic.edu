@@ -56,11 +56,6 @@ class Video extends AbstractModel
         return \EmbedConverter::convertUrl($this->video_url);
     }
 
-    public function getUrlAttribute()
-    {
-        return $this->video_url;
-    }
-
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {
@@ -81,6 +76,11 @@ class Video extends AbstractModel
     public function getAdminEditUrlAttribute()
     {
         return route('admin.collection.articles_publications.videos.edit', $this->id);
+    }
+
+    public function getUrlAttribute()
+    {
+        return route('videos.show', ['id' => $this->id, 'slug' => $this->getSlug()], false);
     }
 
     protected function transformMappingInternal()

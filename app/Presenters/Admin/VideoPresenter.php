@@ -13,9 +13,4 @@ class VideoPresenter extends BasePresenter
             return $this->entity->date->format('M j, Y');
         }
     }
-
-    public function url()
-    {
-        return route('videos.show', $this->entity);
-    }
 }
