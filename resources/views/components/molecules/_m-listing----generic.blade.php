@@ -59,17 +59,16 @@
                 @endforeach
                 {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
             @else
-                @if ($item->intro)
+                @php
+                    $listDescription = $item->present()->intro
+                     ?? $item->present()->shortDesc
+                     ?? $item->present()->listing_description
+                     ?? $item->present()->list_description
+                     ?? null;
+                @endphp
+                @if (!empty($listDescription))
                 <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->intro !!}</span>
-                @endif
-                @if ($item->shortDesc)
-                <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->shortDesc !!}</span>
-                @endif
-                @if ($item->listing_description)
-                <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->listing_description !!}</span>
+                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $listDescription !!}</span>
                 @endif
             @endif
 
@@ -82,7 +81,8 @@
                     @endcomponent
                 @endif
             @else
-                @if ($item->date && (!isset($childBlock)))
+                {{-- TODO: We should probably remove this everywhere... why would we want to display unformatted dates? --}}
+                @if ($item->date && (!isset($hideDate)))
                     <br>
                     @component('components.atoms._date')
                         {{ $item->date }}

@@ -1,4 +1,9 @@
-@extends('twill::layouts.form')
+@extends('twill::layouts.form', [
+    'additionalFieldsets' => [
+        ['fieldset' => 'content', 'label' => 'Content'],
+        ['fieldset' => 'related_to', 'label' => 'Related'],
+    ]
+])
 
 @section('contentFields')
     @formField('input', [
@@ -17,6 +22,17 @@
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Display date',
+        'note' => 'When was this video published?',
+    ])
+
+    @formField('wysiwyg', [
+        'name' => 'list_description',
+        'label' => 'List description',
+        'maxlength' => 255,
+        'note' => 'Max 255 characters. Will be used in "Related Videos" and social media.',
+        'toolbarOptions' => [
+            'italic'
+        ],
     ])
 
     @formField('input', [
@@ -36,6 +52,20 @@
 @stop
 
 @section('fieldsets')
+
+    <a17-fieldset id="related_to" title="Related">
+
+        <p>If this is left blank, we will show the four most recently published videos.</p>
+
+        @formField('browser', [
+            'routePrefix' => 'collection.articles_publications',
+            'name' => 'related_videos',
+            'moduleName' => 'videos',
+            'label' => 'Related videos',
+            'max' => 4,
+        ])
+
+    </a17-fieldset>
 
     @include('admin.partials.related')
 

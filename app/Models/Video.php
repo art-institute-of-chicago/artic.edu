@@ -23,10 +23,16 @@ class Video extends AbstractModel
         'title',
         'heading',
         'video_url',
+        'list_description',
     ];
 
-    protected $dates = ['date'];
-    protected $appends = ['embed'];
+    protected $dates = [
+        'date',
+    ];
+
+    protected $appends = [
+        'embed',
+    ];
 
     public $mediasParams = [
         'hero' => [
@@ -48,11 +54,6 @@ class Video extends AbstractModel
     public function getEmbedAttribute()
     {
         return \EmbedConverter::convertUrl($this->video_url);
-    }
-
-    public function getUrlAttribute()
-    {
-        return $this->video_url;
     }
 
     // Generates the id-slug type of URL
@@ -77,6 +78,11 @@ class Video extends AbstractModel
         return route('admin.collection.articles_publications.videos.edit', $this->id);
     }
 
+    public function getUrlAttribute()
+    {
+        return route('videos.show', ['id' => $this->id, 'slug' => $this->getSlug()], false);
+    }
+
     protected function transformMappingInternal()
     {
         return [
@@ -85,18 +91,6 @@ class Video extends AbstractModel
                 "doc" => "Published",
                 "type" => "boolean",
                 "value" => function () {return $this->published;},
-            ],
-            [
-                "name" => 'publish_start_date',
-                "doc" => "Publish Start Date",
-                "type" => "datetime",
-                "value" => function() { return $this->publish_start_date; }
-            ],
-            [
-                "name" => 'publish_end_date',
-                "doc" => "Publish End Date",
-                "type" => "datetime",
-                "value" => function() { return $this->publish_end_date; }
             ],
             [
                 "name" => 'date',
