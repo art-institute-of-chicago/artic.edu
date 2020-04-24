@@ -17,7 +17,7 @@ class Image extends BaseApiModel
     public function imageFront($role = null, $crop = null)
     {
         $lake = new LakeviewImageService;
-        $credit = null;
+        $credit = $this->credit_line;
         $creditUrl = null;
         $shareTitle = empty($this->artwork_titles) ? null : $this->artwork_titles[0];
         $downloadName = null;

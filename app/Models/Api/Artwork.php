@@ -199,6 +199,11 @@ class Artwork extends BaseApiModel
         return $this->hasMany(\App\Models\Api\Artist::class, 'artist_id');
     }
 
+    public function mainImage()
+    {
+        return $this->hasMany(\App\Models\Api\Image::class, 'image_id');
+    }
+
     public function extraImages()
     {
         return $this->hasMany(\App\Models\Api\Image::class, 'alt_image_ids', self::EXTRA_IMAGES_LIMIT);
@@ -206,19 +211,19 @@ class Artwork extends BaseApiModel
 
     public function allImages()
     {
-        $main = $this->imageFront('hero');
+        $main = $this->mainImage->first()->imageFront();
 
         if (!empty($main)) {
-            $main['credit'] = $this->getImageCopyright();
-            $main['creditUrl'] = $this->getImageCopyrightUrl();
+            $main['credit'] = $this->getImageCopyright($main);
+            $main['creditUrl'] = $this->getImageCopyrightUrl($main);
         }
 
         return collect($this->extraImages)->map(function ($image) {
             if ($image && is_object($image)) {
                 $img = $image->imageFront();
 
-                $img['credit'] = ($image->copyright_notice ?? $this->getImageCopyright());
-                $img['creditUrl'] = ($image->copyright_notice ? null : $this->getImageCopyrightUrl());
+                $img['credit'] = $this->getImageCopyright($image);
+                $img['creditUrl'] = $this->getImageCopyrightUrl($image);
                 return $img;
             }
             return false;
@@ -255,16 +260,32 @@ class Artwork extends BaseApiModel
         return getUtf8Slug($this->title);
     }
 
-    public function getImageCopyright()
+    private function getImageCopyright(array $image)
     {
-        return !empty($this->copyright_notice) ? $this->copyright_notice : (
-            $this->is_public_domain ? 'CC0 Public Domain Designation' : ''
-        );
+        if ($image['credit'] ?? null) {
+            return $image['credit'];
+        }
+
+        if (!empty($this->copyright_notice)) {
+            return $this->copyright_notice;
+        }
+
+        if ($this->is_public_domain) {
+            return 'CC0 Public Domain Designation';
+        }
+
+        return '';
     }
 
-    public function getImageCopyrightUrl()
+    private function getImageCopyrightUrl(array $image)
     {
-        return $this->is_public_domain ? '/image-licensing' : null;
+        if ($image['credit'] ?? null) {
+            return;
+        }
+
+        if ($this->is_public_domain) {
+            return '/image-licensing';
+        }
     }
 
 
