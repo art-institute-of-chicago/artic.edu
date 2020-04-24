@@ -18,17 +18,40 @@ class VideoRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function afterSave($object, $fields)
+    {
+        $this->updateRelatedBrowser($object, $fields, 'related_videos');
+
+        parent::afterSave($object, $fields);
+    }
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+
+        $fields['browsers']['related_videos'] = $this->getFormFieldsForRelatedBrowser($object, 'related_videos');
+
+        return $fields;
+    }
+
     public function getShowData($item, $slug = null, $previewPage = null)
     {
         return [
             'item' => $item,
-            'relatedVideos' => collect([])
+            'relatedVideos' => $this->getRelatedVideos($item),
         ];
     }
 
     public function getRelatedVideos($item)
     {
-        return $this->model::published()->limit(4)->whereNotIn('id', [$item->id])->get();
+        // Filter collection after database query
+        $customRelatedVideos = $item->getRelated('related_videos')->where('published', true);
+
+        if (!$customRelatedVideos->isEmpty()) {
+            return $customRelatedVideos;
+        }
+
+        return $this->model::published()->orderBy('date', 'desc')->whereNotIn('id', [$item->id])->limit(4)->get();
     }
 
 }

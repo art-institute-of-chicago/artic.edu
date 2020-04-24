@@ -2,7 +2,7 @@
     $relatedTos = $item->relatedTos;
 @endphp
 @if ($relatedTos->isNotEmpty())
-    <a17-fieldset id="related" title="Related">
+    <a17-fieldset id="related_from" title="Related (inverse)">
 
         <p>The following content has been related to this one. These will be used to bring this item into global search results.</p>
 
