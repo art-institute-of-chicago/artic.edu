@@ -211,9 +211,10 @@ class Artwork extends BaseApiModel
 
     public function allImages()
     {
-        $main = $this->mainImage->first()->imageFront();
+        $main = $this->mainImage;
 
         if (!empty($main)) {
+            $main = $main->first()->imageFront();
             $main['credit'] = $this->getImageCopyright($main);
             $main['creditUrl'] = $this->getImageCopyrightUrl($main);
         }
@@ -221,9 +222,8 @@ class Artwork extends BaseApiModel
         return collect($this->extraImages)->map(function ($image) {
             if ($image && is_object($image)) {
                 $img = $image->imageFront();
-
-                $img['credit'] = $this->getImageCopyright($image);
-                $img['creditUrl'] = $this->getImageCopyrightUrl($image);
+                $img['credit'] = $this->getImageCopyright($img);
+                $img['creditUrl'] = $this->getImageCopyrightUrl($img);
                 return $img;
             }
             return false;
