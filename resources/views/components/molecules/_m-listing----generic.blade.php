@@ -59,17 +59,16 @@
                 @endforeach
                 {!! count($item['links']) > 1 ? '</ul>' : '</span>' !!}
             @else
-                @if ($item->intro)
+                @php
+                    $listDescription = $item->present()->intro
+                     ?? $item->present()->shortDesc
+                     ?? $item->present()->listing_description
+                     ?? $item->present()->list_description
+                     ?? null;
+                @endphp
+                @if (!empty($listDescription))
                 <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->intro !!}</span>
-                @endif
-                @if ($item->shortDesc)
-                <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->shortDesc !!}</span>
-                @endif
-                @if ($item->listing_description)
-                <br>
-                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $item->present()->listing_description !!}</span>
+                <span class="intro {{ $captionFont ?? 'f-secondary' }}">{!! $listDescription !!}</span>
                 @endif
             @endif
 

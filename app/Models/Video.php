@@ -23,6 +23,7 @@ class Video extends AbstractModel
         'title',
         'heading',
         'video_url',
+        'list_description',
     ];
 
     protected $dates = [

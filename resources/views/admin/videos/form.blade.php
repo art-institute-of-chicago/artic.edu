@@ -20,6 +20,16 @@
         'note' => 'When was this video published?',
     ])
 
+    @formField('wysiwyg', [
+        'name' => 'list_description',
+        'label' => 'List description',
+        'maxlength' => 255,
+        'note' => 'Max 255 characters. Will be used in "Related Videos" and social media.',
+        'toolbarOptions' => [
+            'italic'
+        ],
+    ])
+
     @formField('input', [
         'name' => 'heading',
         'label' => 'Heading',
