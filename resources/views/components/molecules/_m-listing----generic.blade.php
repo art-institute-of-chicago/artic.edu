@@ -82,7 +82,8 @@
                     @endcomponent
                 @endif
             @else
-                @if ($item->date && (!isset($childBlock)))
+                {{-- TODO: We should probably remove this everywhere... why would we want to display unformatted dates? --}}
+                @if ($item->date && (!isset($hideDate)))
                     <br>
                     @component('components.atoms._date')
                         {{ $item->date }}

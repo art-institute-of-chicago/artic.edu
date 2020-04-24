@@ -16,7 +16,7 @@
         @slot('variation', 'o-blocks__block')
         @component('components.molecules._m-listing----generic')
             @slot('item', $listing)
-            @slot('childBlock', true)
+            @slot('hideDate', true)
             @slot('image', $listing->imageFront('listing'))
             @slot('imageSettings', array(
                 'fit' => 'crop',
@@ -44,7 +44,7 @@
         @foreach ($grid as $item)
             @component('components.molecules._m-listing----generic')
                 @slot('item', $item)
-                @slot('childBlock', true)
+                @slot('hideDate', true)
                 @slot('image', $item->imageFront('listing'))
                 @slot('imageSettings', array(
                     'fit' => 'crop',

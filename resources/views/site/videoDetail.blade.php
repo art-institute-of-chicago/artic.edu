@@ -58,9 +58,10 @@
             @slot('cols_xlarge','4')
             @slot('behavior','dragScroll')
             @foreach ($relatedVideos as $item)
-                @component('components.molecules._m-listing----article-minimal')
+                @component('components.molecules._m-listing----generic')
                     @slot('href', route('videos.show', $item))
                     @slot('item', $item)
+                    @slot('hideDate', true)
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',
