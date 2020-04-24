@@ -56,7 +56,7 @@ class EventServiceProvider extends ServiceProvider
             // https://stackoverflow.com/questions/47581934/copying-a-file-using-2-disks-with-laravel
             $local->writeStream('tiles/src/' . $localFilename, $s3->readStream($iiifMedia->uuid));
 
-            exec(base_path() . '/bin/tile.sh ' . escapeshellarg($localFilename) . ' ' . config('aic.iiif_s3_endpoint') . ' >> ' . base_path() . '/bin/tile.log');
+            exec(base_path() . '/bin/tile.sh ' . escapeshellarg($localFilename) . '  2>&1');
 
             // This won't happen since we exited early, but if that check is removed, we need this
             if ($iiifS3->exists('iiif/static/' . $localFilename)) {

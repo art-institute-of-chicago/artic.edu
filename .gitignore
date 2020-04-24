@@ -33,5 +33,3 @@ yarn-error.log
 /public/sitemap.xml
 studio.json
 
-/bin/config.json
-/bin/*.log
