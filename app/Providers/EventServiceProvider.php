@@ -66,10 +66,8 @@ class EventServiceProvider extends ServiceProvider
             // There's probably a quicker way to transfer an entire directory to S3, but this'll do for now
             // https://bakerstreetsystems.com/blog/post/recursively-transfer-entire-directory-amazon-s3-laravel-52
             // https://stackoverflow.com/questions/44900585/aws-s3-copy-and-replicate-folder-in-laravel
-            $files = $local->allFiles('tiles/out/iiif/static/' . $localFilename);
-            foreach ($files as $file) {
-                $iiifS3->writeStream(substr($file, 10) , $local->readStream($file));
-            }
+            $s3Client = $iiifS3->getDriver()->getAdapter()->getClient();
+            $s3Client->uploadDirectory(storage_path() . '/app/tiles/out', config('filesystems.disks.iiif_s3.bucket'));
 
             $local->delete('tiles/src/' . $localFilename);
             $local->deleteDirectory('tiles/tmp/' . $localFilename);
