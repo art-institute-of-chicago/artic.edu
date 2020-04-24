@@ -17,6 +17,7 @@
     @formField('date_picker', [
         'name' => 'date',
         'label' => 'Display date',
+        'note' => 'When was this video published?',
     ])
 
     @formField('input', [

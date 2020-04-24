@@ -25,8 +25,13 @@ class Video extends AbstractModel
         'video_url',
     ];
 
-    protected $dates = ['date'];
-    protected $appends = ['embed'];
+    protected $dates = [
+        'date',
+    ];
+
+    protected $appends = [
+        'embed',
+    ];
 
     public $mediasParams = [
         'hero' => [
@@ -85,18 +90,6 @@ class Video extends AbstractModel
                 "doc" => "Published",
                 "type" => "boolean",
                 "value" => function () {return $this->published;},
-            ],
-            [
-                "name" => 'publish_start_date',
-                "doc" => "Publish Start Date",
-                "type" => "datetime",
-                "value" => function() { return $this->publish_start_date; }
-            ],
-            [
-                "name" => 'publish_end_date',
-                "doc" => "Publish End Date",
-                "type" => "datetime",
-                "value" => function() { return $this->publish_end_date; }
             ],
             [
                 "name" => 'date',

@@ -13,8 +13,7 @@
         @component('components.molecules._m-article-header')
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
-            @slot('type', $item->present()->type)
-            @slot('date', $item->date)
+            @slot('formattedDate', $item->present()->date)
         @endcomponent
 
         @if ($item->heading)
@@ -30,7 +29,14 @@
         <div class="o-article__body o-blocks">
             @component('components.molecules._m-media')
                 @slot('variation', 'o-blocks__block')
-                @slot('item', $item->present()->videoBlock)
+                @slot('item', [
+                    'type' => 'embed',
+                    'size' => 'l',
+                    'media' => $item->toArray(),
+                    'poster' => $item->imageFront('hero'),
+                    'hideCaption' => true,
+                    'fullscreen' => false,
+                ])
             @endcomponent
 
             {!! $item->renderBlocks(false, [], [
