@@ -215,8 +215,10 @@ class Artwork extends BaseApiModel
 
         if (!empty($main)) {
             $main = $main->first()->imageFront();
-            $main['credit'] = $this->getImageCopyright($main);
-            $main['creditUrl'] = $this->getImageCopyrightUrl($main);
+            $main = array_merge($this->imageFront('hero'), [
+                'credit' => $this->getImageCopyright($main),
+                'creditUrl' => $this->getImageCopyrightUrl($main),
+            ]);
         }
 
         return collect($this->extraImages)->map(function ($image) {
