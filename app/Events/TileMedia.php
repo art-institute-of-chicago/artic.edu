@@ -16,14 +16,18 @@ class TileMedia
 
     public $item;
 
+    public $forceRetile;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\A17\Twill\Models\Media $item)
+    public function __construct(\A17\Twill\Models\Media $item, bool $forceRetile)
     {
         $this->item = $item;
+
+        $this->forceRetile = $forceRetile;
     }
 
     /**

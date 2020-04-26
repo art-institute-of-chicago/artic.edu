@@ -34,7 +34,7 @@
     </a17-fieldset>
 
     <a17-fieldset title="Hi-Res" id="high_res">
-        <p>This functionality is meant to support super-resolution images. It is a work-around for the 3000-pixel limit on images coming from our DAMS. If you upload an image here, it will replace the primary image for the artwork on the website.</p>
+        <p>This functionality is meant to support super-resolution images. It is a work-around for the 3000-pixel limit on images coming from our DAMS. If you upload an image here, it will replace the primary zoomable image for the artwork on the website.</p>
 
         @formField('medias', [
             'with_multiple' => false,
@@ -43,6 +43,14 @@
             'name' => 'iiif',
             'note' => 'Minimum image width 3000px'
         ])
+
+        @formField('checkbox', [
+            'name' => 'force_iiif_regenerate',
+            'label' => 'Force tile regeneration',
+            'default' => false,
+        ])
+
+        <p>This checkbox is meant as a fail-safe. If for some reason, you see missing tiles when you zoom and pan around the deep-zoom viewer, check this option and re-publish. There's no need to use it under normal circumstances. Please note that it may take up to 10 minutes to generate tiles.</p>
     </a17-fieldset>
 @stop
 

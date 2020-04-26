@@ -45,9 +45,9 @@ class EventServiceProvider extends ServiceProvider
             $localFilename = $iiifMediaUuid;
 
             // No need to do all this work if the tiles have been generated..?
-            // if ($iiifS3->exists('iiif/static/' . $localFilename)) {
-            //     return true;
-            // }
+            if (!$event->forceRetile && $iiifS3->exists('iiif/static/' . $localFilename)) {
+                return true;
+            }
 
             if ($local->exists('tiles/src/' . $localFilename)) {
                 $local->delete('tiles/src/' . $localFilename);

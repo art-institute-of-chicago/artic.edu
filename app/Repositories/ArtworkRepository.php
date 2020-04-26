@@ -30,7 +30,7 @@ class ArtworkRepository extends BaseApiRepository
         if ($iiifMediaId) {
             $iiifMedia = Media::find($iiifMediaId);
             if ($iiifMedia) {
-                event(new TileMedia($iiifMedia));
+                event(new TileMedia($iiifMedia, $fields['force_iiif_regenerate'] ?? false));
             }
         }
 
