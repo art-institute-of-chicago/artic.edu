@@ -29,13 +29,18 @@ class TileMedia extends BaseJob
 
         $localFilename = $iiifMediaUuid;
 
+        // Clean up first if this job failed
+        if ($local->exists('tiles/src/' . $localFilename)) {
+            $local->delete('tiles/src/' . $localFilename);
+        }
+
+        if ($local->exists('tiles/out/iiif/static/' . $localFilename)) {
+            $local->deleteDirectory('tiles/out/iiif/static/' . $localFilename);
+        }
+
         // No need to do all this work if the tiles have been generated..?
         if (!$this->forceRetile && $iiifS3->exists('iiif/static/' . $localFilename)) {
             return true;
-        }
-
-        if ($local->exists('tiles/src/' . $localFilename)) {
-            $local->delete('tiles/src/' . $localFilename);
         }
 
         // https://stackoverflow.com/questions/47581934/copying-a-file-using-2-disks-with-laravel
@@ -54,8 +59,8 @@ class TileMedia extends BaseJob
         $s3Client = $iiifS3->getDriver()->getAdapter()->getClient();
         $s3Client->uploadDirectory(storage_path() . '/app/tiles/out', config('filesystems.disks.iiif_s3.bucket'));
 
+        // Clean up on success
         $local->delete('tiles/src/' . $localFilename);
-        $local->deleteDirectory('tiles/tmp/' . $localFilename);
         $local->deleteDirectory('tiles/out/iiif/static/' . $localFilename);
     }
 }
