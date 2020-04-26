@@ -5,7 +5,6 @@ DIR_ROOT="$(realpath "$DIR_SCRIPT/..")"
 DIR_BIN="$DIR_SCRIPT"
 
 DIR_SRC="$DIR_ROOT/storage/app/tiles/src"
-DIR_TMP="$DIR_ROOT/storage/app/tiles/tmp"
 DIR_OUT="$DIR_ROOT/storage/app/tiles/out/iiif/static"
 
 BIN_TILE="vips"
@@ -20,21 +19,15 @@ fi
 # https://stackoverflow.com/questions/6569478/detect-if-executable-file-is-on-users-path
 [[ $(type -P "$BIN_TILE") ]] || (echo 'Missing vips' && exit 1)
 
-mkdir -p "$DIR_TMP"
-
-if [ -d "$DIR_TMP/$1" ]; then
-  rm -r "$DIR_TMP/$1"
-fi
-
-"$BIN_TILE" \
-    dzsave \
-    "$DIR_SRC/$1" \
-    "$DIR_TMP/$1" \
-    --layout iiif \
-    --tile-size 256
-
 if [ -d "$DIR_OUT/$1" ]; then
   rm -r "$DIR_OUT/$1"
 fi
 
-cp -a "$DIR_TMP/$1" "$DIR_OUT"
+mkdir -p "$DIR_OUT"
+
+"$BIN_TILE" \
+    dzsave \
+    "$DIR_SRC/$1" \
+    "$DIR_OUT/$1" \
+    --layout iiif \
+    --tile-size 256
