@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use A17\Twill\Repositories\Behaviors\HandleMedias;
-use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Models\Artwork;
-use App\Repositories\Api\BaseApiRepository;
-use App\Repositories\Behaviors\Handle3DModel;
+use App\Jobs\TileMedia;
 use A17\Twill\Models\Media;
-use App\Events\TileMedia;
+use App\Repositories\Behaviors\HandleFeaturedRelated;
+use App\Repositories\Behaviors\Handle3DModel;
+use A17\Twill\Repositories\Behaviors\HandleMedias;
+use App\Repositories\Api\BaseApiRepository;
 
 class ArtworkRepository extends BaseApiRepository
 {
@@ -30,7 +30,7 @@ class ArtworkRepository extends BaseApiRepository
         if ($iiifMediaId) {
             $iiifMedia = Media::find($iiifMediaId);
             if ($iiifMedia) {
-                event(new TileMedia($iiifMedia, $fields['force_iiif_regenerate'] ?? false));
+                TileMedia::dispatch($iiifMedia, $fields['force_iiif_regenerate'] ?? false);
             }
         }
 
