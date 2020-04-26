@@ -34,12 +34,12 @@ class TileMedia extends BaseJob
             $local->delete('tiles/src/' . $localFilename);
         }
 
-        if ($local->exists('tiles/out/iiif/static/' . $localFilename)) {
-            $local->deleteDirectory('tiles/out/iiif/static/' . $localFilename);
+        if ($local->exists('tiles/out/' . $localFilename)) {
+            $local->deleteDirectory('tiles/out/' . $localFilename);
         }
 
         // No need to do all this work if the tiles have been generated..?
-        if (!$this->forceRetile && $iiifS3->exists('iiif/static/' . $localFilename)) {
+        if (!$this->forceRetile && $iiifS3->exists($localFilename)) {
             return true;
         }
 
@@ -49,8 +49,8 @@ class TileMedia extends BaseJob
         exec(base_path() . '/bin/tile.sh ' . escapeshellarg($localFilename) . '  2>&1');
 
         // This won't happen since we exited early, but if that check is removed, we need this
-        if ($iiifS3->exists('iiif/static/' . $localFilename)) {
-            $iiifS3->deleteDirectory('iiif/static/' . $localFilename);
+        if ($iiifS3->exists($localFilename)) {
+            $iiifS3->deleteDirectory($localFilename);
         }
 
         // There's probably a quicker way to transfer an entire directory to S3, but this'll do for now
@@ -61,6 +61,6 @@ class TileMedia extends BaseJob
 
         // Clean up on success
         $local->delete('tiles/src/' . $localFilename);
-        $local->deleteDirectory('tiles/out/iiif/static/' . $localFilename);
+        $local->deleteDirectory('tiles/out/' . $localFilename);
     }
 }

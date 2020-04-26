@@ -5,7 +5,7 @@ DIR_ROOT="$(realpath "$DIR_SCRIPT/..")"
 DIR_BIN="$DIR_SCRIPT"
 
 DIR_SRC="$DIR_ROOT/storage/app/tiles/src"
-DIR_OUT="$DIR_ROOT/storage/app/tiles/out/iiif/static"
+DIR_OUT="$DIR_ROOT/storage/app/tiles/out"
 
 BIN_TILE="vips"
 
