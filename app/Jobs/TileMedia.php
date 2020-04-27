@@ -47,7 +47,11 @@ class TileMedia extends BaseJob
         // https://stackoverflow.com/questions/47581934/copying-a-file-using-2-disks-with-laravel
         $local->writeStream('tiles/src/' . $localFilename, $s3->readStream($iiifMedia->uuid));
 
-        exec(base_path() . '/bin/tile.sh ' . escapeshellarg($localFilename) . '  2>&1');
+        exec(base_path() . '/bin/tile.sh ' . escapeshellarg($localFilename) . '  2>&1', $output, $status);
+
+        if ($status !== 0) {
+            throw new \Exception('TileMedia: ' . json_encode($output));
+        }
 
         // This won't happen since we exited early, but if that check is removed, we need this
         if ($iiifS3->exists($localFilename)) {
