@@ -4,31 +4,48 @@
 
     <article class="o-article o-article--video">
 
+        <div class="o-article__primary-actions">
+            @component('components.molecules._m-article-actions')
+                @slot('articleType', 'video')
+            @endcomponent
+        </div>
+
         @component('components.molecules._m-article-header')
             @slot('title', $item->present()->title)
             @slot('title_display', $item->present()->title_display)
-            @slot('type', $item->present()->type)
-            @slot('date', $item->date)
-            @slot('intro', $item->present()->heading)
+            @slot('formattedDate', $item->present()->date)
         @endcomponent
+
+        @if ($item->heading)
+            <div class="o-article__intro">
+              @component('components.blocks._text')
+                  @slot('font', 'f-deck')
+                  @slot('tag', 'div')
+                  {!! $item->present()->heading !!}
+              @endcomponent
+            </div>
+        @endif
 
         <div class="o-article__body o-blocks">
             @component('components.molecules._m-media')
                 @slot('variation', 'o-blocks__block')
-                @slot('item', $item->present()->videoBlock)
+                @slot('item', [
+                    'type' => 'embed',
+                    'size' => 'l',
+                    'media' => [
+                        'url' => $item->video_url,
+                        'embed' => $item->embed,
+                        'medias' => $item->medias,
+                    ],
+                    'poster' => $item->imageFront('hero'),
+                    'hideCaption' => true,
+                    'fullscreen' => false,
+                ])
             @endcomponent
 
-            @component('components.blocks._blocks')
-                @slot('editorial', false)
-                @slot('blocks', $blocks ?? null)
-                @slot('dropCapFirstPara', false)
-            @endcomponent
-
-            <div class="o-article__body-actions">
-                @component('components.molecules._m-article-actions')
-                    @slot('articleType', $item->type)
-                @endcomponent
-            </div>
+            {!! $item->renderBlocks(false, [], [
+                'pageTitle' => $item->title
+            ]) !!}
         </div>
     </article>
 
@@ -45,9 +62,9 @@
             @slot('cols_xlarge','4')
             @slot('behavior','dragScroll')
             @foreach ($relatedVideos as $item)
-                @component('components.molecules._m-listing----article-minimal')
-                    @slot('href', route('videos.show', $item))
+                @component('components.molecules._m-listing----generic')
                     @slot('item', $item)
+                    @slot('hideDate', true)
                     @slot('imageSettings', array(
                         'fit' => 'crop',
                         'ratio' => '16:9',

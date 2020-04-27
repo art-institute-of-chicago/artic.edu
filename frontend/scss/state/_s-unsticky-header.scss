@@ -1,0 +1,17 @@
+/***
+
+Sticky header
+============================
+
+For those times when you just don't want the navigation to get in the way of the experience.
+
+***/
+
+.s-unsticky-header {
+  #a17 {
+    padding-top: 0;
+    .g-header {
+      position: relative;
+    }
+  }
+}

@@ -53,6 +53,7 @@ class Exhibition extends AbstractModel
         'public_end_date',
         'member_preview_start_date',
         'member_preview_end_date',
+        'date_display_override',
         'product_section_title',
         'product_section_title_link_label',
         'product_section_title_link_href',

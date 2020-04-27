@@ -28,6 +28,16 @@
   }
 }
 
+.o-article__primary-actions + .m-article-header {
+  @include breakpoint('large+') {
+    padding-left: 0;
+  }
+
+  @include breakpoint('xlarge') {
+    padding-left: 0;
+  }
+}
+
 .m-article-header > * {
   flex: 0 0 auto;
   order: 1;

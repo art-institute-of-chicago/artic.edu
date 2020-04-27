@@ -137,19 +137,12 @@ class LakeviewImageService implements ImageServiceInterface
 
     public function getDimensions($id)
     {
-        try {
-            $imageMetadata = $this->fetchImageInfo($id);
+        $imageMetadata = $this->fetchImageInfo($id);
 
-            return [
-                'width' => $imageMetadata->width,
-                'height' => $imageMetadata->height,
-            ];
-        } catch (\Exception $e) {
-            return [
-                'width' => 0,
-                'height' => 0,
-            ];
-        }
+        return [
+            'width' => $imageMetadata->width ?? 0,
+            'height' => $imageMetadata->height ?? 0,
+        ];
     }
 
     protected function getCrop($crop_params)

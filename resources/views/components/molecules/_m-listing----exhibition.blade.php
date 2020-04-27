@@ -98,6 +98,7 @@
                 @slot('date', $item->present()->date)
                 @slot('dateStart', $item->present()->startAt)
                 @slot('dateEnd', $item->present()->endAt)
+                @slot('formattedDate', $item->present()->date_display_override)
             @endcomponent
         @endif
     </span>

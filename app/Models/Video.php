@@ -5,13 +5,14 @@ namespace App\Models;
 use A17\Twill\Models\Behaviors\HasFiles;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
+use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 
 class Video extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasRelated, Transformable;
+    use HasSlug, HasRevisions, HasMedias, HasFiles, HasMediasEloquent, HasRelated, HasBlocks, Transformable;
 
     protected $presenter = 'App\Presenters\Admin\VideoPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\VideoPresenter';
@@ -22,10 +23,16 @@ class Video extends AbstractModel
         'title',
         'heading',
         'video_url',
+        'list_description',
     ];
 
-    protected $dates = ['date'];
-    protected $appends = ['embed'];
+    protected $dates = [
+        'date',
+    ];
+
+    protected $appends = [
+        'embed',
+    ];
 
     public $mediasParams = [
         'hero' => [
@@ -47,11 +54,6 @@ class Video extends AbstractModel
     public function getEmbedAttribute()
     {
         return \EmbedConverter::convertUrl($this->video_url);
-    }
-
-    public function getUrlAttribute()
-    {
-        return $this->video_url;
     }
 
     // Generates the id-slug type of URL
@@ -76,6 +78,11 @@ class Video extends AbstractModel
         return route('admin.collection.articles_publications.videos.edit', $this->id);
     }
 
+    public function getUrlAttribute()
+    {
+        return route('videos.show', ['id' => $this->id, 'slug' => $this->getSlug()], false);
+    }
+
     protected function transformMappingInternal()
     {
         return [
@@ -84,18 +91,6 @@ class Video extends AbstractModel
                 "doc" => "Published",
                 "type" => "boolean",
                 "value" => function () {return $this->published;},
-            ],
-            [
-                "name" => 'publish_start_date',
-                "doc" => "Publish Start Date",
-                "type" => "datetime",
-                "value" => function() { return $this->publish_start_date; }
-            ],
-            [
-                "name" => 'publish_end_date',
-                "doc" => "Publish End Date",
-                "type" => "datetime",
-                "value" => function() { return $this->publish_end_date; }
             ],
             [
                 "name" => 'date',
@@ -126,6 +121,12 @@ class Video extends AbstractModel
                 "doc" => "heading",
                 "type" => "string",
                 "value" => function () {return $this->heading;},
+            ],
+            [
+                "name" => 'copy',
+                "doc" => "Copy",
+                "type" => "text",
+                "value" => function () {return $this->blocks;},
             ],
             [
                 "name" => 'related',

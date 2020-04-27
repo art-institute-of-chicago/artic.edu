@@ -88,7 +88,7 @@ Route::name('issue-articles.show')->get('/journal/articles/{id}/{slug?}', 'Issue
 
 // Videos routes
 Route::name('videos')->get('videos', function () {return abort(404);});
-Route::name('videos.show')->get('/videos/{slug}', 'VideoController@show');
+Route::name('videos.show')->get('/videos/{id}/{slug?}', 'VideoController@show');
 
 // Exhibition history routes
 // Must remain before exhibition routes

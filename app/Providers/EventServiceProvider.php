@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use A17\Twill\Repositories\UserRepository;
 use Auth;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use A17\Twill\Repositories\UserRepository;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Event;
+
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -16,9 +17,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
+        // 'App\Events\Event' => [
+        //     'App\Listeners\EventListener',
+        // ],
     ];
 
     /**

@@ -113,8 +113,7 @@ class InteractiveFeatureExperiencesController extends FrontController
             'furtherReading' => $articles,
             'canonicalUrl' => route('interactiveFeatures.show',
                 [
-                    'id' => $experience->id,
-                    'slug' => $experience->titleSlug
+                    'slug' => $experience->getSlug()
                 ]
             ),
         ]);

@@ -22,6 +22,7 @@
     @slot('intro', $item->present()->header_copy)
     @slot('img', $item->imageAsArray('hero', $item->cms_exhibition_type == \App\Models\Exhibition::SPECIAL ? 'special' : 'default'))
     @slot('credit', $item->present()->hero_caption)
+    @slot('formattedDate', $item->present()->date_display_override)
   @endcomponent
 
   <div class="o-article__primary-actions">

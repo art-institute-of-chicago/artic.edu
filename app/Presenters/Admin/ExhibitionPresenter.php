@@ -68,6 +68,10 @@ class ExhibitionPresenter extends BasePresenter
     // For exhibition listings. Pass to _m-article-header..?
     public function formattedDate()
     {
+        if (!empty($this->entity->date_display_override)) {
+            return $this->entity->date_display_override;
+        }
+
         $date = '';
         $date_format = false;
 
