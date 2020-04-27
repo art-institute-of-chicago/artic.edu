@@ -23,11 +23,12 @@ if [ -d "$DIR_OUT/$1" ]; then
   rm -r "$DIR_OUT/$1"
 fi
 
-mkdir -p "$DIR_OUT"
+# We are creating directories two levels deep, so we can upload just the inner one
+mkdir -p "$DIR_OUT/$1"
 
 "$BIN_TILE" \
     dzsave \
     "$DIR_SRC/$1" \
-    "$DIR_OUT/$1" \
+    "$DIR_OUT/$1/$1" \
     --layout iiif \
     --tile-size 256
