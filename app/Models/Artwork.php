@@ -6,12 +6,13 @@ use App\Models\Behaviors\HasApiModel;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
+use App\Models\Behaviors\HasMedias;
 
 use Illuminate\Support\Str;
 
 class Artwork extends AbstractModel
 {
-    use HasApiModel, HasRelated, HasApiRelations, HasFeaturedRelated;
+    use HasApiModel, HasRelated, HasApiRelations, HasFeaturedRelated, HasMedias;
 
     protected $apiModel = 'App\Models\Api\Artwork';
 
@@ -19,6 +20,17 @@ class Artwork extends AbstractModel
         'datahub_id',
         'meta_title',
         'meta_description',
+    ];
+
+    public $mediasParams = [
+        'iiif' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 'default',
+                ],
+            ]
+        ],
     ];
 
     public function getFullTitleAttribute()
@@ -40,5 +52,4 @@ class Artwork extends AbstractModel
     {
         return ['en' => getUtf8Slug($this->title)];
     }
-
 }
