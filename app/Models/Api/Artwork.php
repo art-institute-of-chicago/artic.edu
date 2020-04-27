@@ -219,18 +219,24 @@ class Artwork extends BaseApiModel
             return $main;
         }
 
-        if ($this->hasAugmentedModel()) {
-            $augmentedArtwork = $this->getAugmentedModel();
+        if (!$this->hasAugmentedModel()) {
+            return $main;
+        }
 
-            $iiifMedia = $augmentedArtwork->medias->first(function ($media) {
-                return $media->pivot->role === 'iiif';
-            });
+        $augmentedArtwork = $this->getAugmentedModel();
 
-            if ($iiifMedia) {
-                $main['iiifId'] = config('aic.iiif_s3_endpoint') . '/' . get_clean_media_uuid($iiifMedia);
-                $main['width'] = $iiifMedia->width;
-                $main['height'] = $iiifMedia->height;
-            }
+        if (!$augmentedArtwork) {
+            return $main;
+        }
+
+        $iiifMedia = $augmentedArtwork->medias->first(function ($media) {
+            return $media->pivot->role === 'iiif';
+        });
+
+        if ($iiifMedia) {
+            $main['iiifId'] = config('aic.iiif_s3_endpoint') . '/' . get_clean_media_uuid($iiifMedia);
+            $main['width'] = $iiifMedia->width;
+            $main['height'] = $iiifMedia->height;
         }
 
         return $main;
