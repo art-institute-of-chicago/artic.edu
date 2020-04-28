@@ -38,12 +38,19 @@ class Exhibition extends BaseApiModel
 
     public function getIsClosedAttribute()
     {
+        // If the start and end dates are overriden, don't consider this exhibition as closed
+        if ($this->date_display_override) {
+            return false;
+        }
+
+        // If the status was overriden, return that
         if (method_exists($this, 'getAugmentedModel') && $augmentedModel = $this->getAugmentedModel()) {
             if ($augmentedModel->getOriginal('status_override')) {
                 return $augmentedModel->getOriginal('status_override') == 'Closed';
             }
         }
 
+        // Otherwise, look at the dates to determine if the exhibition is closed
         if (empty($this->aic_end_at)) {
             if (empty($this->aic_start_at)) {
                 return true;
@@ -95,6 +102,7 @@ class Exhibition extends BaseApiModel
 
     public function getIsClosingSoonAttribute()
     {
+        // If the start and end dates are overriden, don't consider this exhibition as closing soon
         if ($this->date_display_override) {
             return false;
         }
@@ -109,6 +117,10 @@ class Exhibition extends BaseApiModel
 
     public function getIsNowOpenAttribute()
     {
+        // If the start and end dates are overriden, don't consider this exhibition as now open
+        if ($this->date_display_override) {
+            return false;
+        }
         // If there's an active closure, don't show "NOW OPEN" text
         if (app('closureservice')->getClosure()) {
             return false;
