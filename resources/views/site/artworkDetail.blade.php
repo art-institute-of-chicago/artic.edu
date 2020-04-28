@@ -3,6 +3,7 @@
 @section('content')
 
 @if ($item->assetLibrary)
+{{--@dd($item->assetLibrary);--}}
 <script type="application/json" data-closerLook-assetLibrary>
     {!! json_encode($item->assetLibrary) !!}
 </script>
@@ -17,7 +18,7 @@
   {{-- Gallery-type _m-article-header never renders title --}}
   <h1 class="sr-only">{{ $item->title }}</h1>
 
-  @component('components.molecules._m-article-header')
+  @component('components.molecules._m-article-header', ['is360' => $item->assetLibrary])
     {{-- @slot('editorial', false) --}}
     @slot('headerType', $item->present()->headerType)
     {{-- @slot('variation', ($item->headerVariation ?? null)) --}}

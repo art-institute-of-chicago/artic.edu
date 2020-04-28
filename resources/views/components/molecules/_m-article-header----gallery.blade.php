@@ -91,6 +91,29 @@ if ($maxZoomWindowSize >= 843) {
             @endcomponent</textarea>
         </li>
         @endif 
+        @if(isset($is360) && $is360)
+        <li data-type="is360"
+        @if(!isset($isPublicDomain) || !$isPublicDomain)
+          data-restricted="true"
+        @endif
+        >
+            @component('components.atoms._btn')
+              @slot('variation', 'btn--septenary btn--icon-sq')
+              @slot('font', '')
+              @slot('icon', 'icon--view360')
+              @slot('dataAttributes', 'data-gallery-360')
+              @slot('behavior', 'triggerMediaModal')
+              @slot('ariaLabel', '360 Viewer')
+              @slot('gtmAttributes', 'data-gtm-event="360-open-modal" data-gtm-event-action="{{$title}}" data-gtm-event-category="in-page"')
+            @endcomponent
+            <textarea style="display: none;">@component('components.molecules._m-viewer-360')
+              @slot('type', 'modal')
+              @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
+              @slot('title', $title)
+            @endcomponent</textarea>
+        </li>
+        @endif 
+
         @if(isset($isPublicDomain) && $isPublicDomain)
         <li>
             @component('components.atoms._btn')
