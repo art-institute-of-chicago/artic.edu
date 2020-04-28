@@ -750,18 +750,10 @@
     padding-left: 0;
   }
 
-  margin-bottom: 24px;
-
-  @include breakpoint('small+') {
-    margin-bottom: 32px;
-  }
-
-  @include breakpoint('medium+') {
-    margin-bottom: 48px;
-  }
-
-  @include breakpoint('large+') {
-    margin-bottom: 60px;
+  @each $name, $point in $breakpoints {
+    @include breakpoint('#{$name}') {
+      margin-bottom: #{map-get($journal-header-margin-bottom, $name)};
+    }
   }
 
   .m-article-header__img {
@@ -889,7 +881,7 @@
       }
 
       @include breakpoint('medium+') {
-        width: 50%;
+        width: 33%;
       }
 
       @include breakpoint('large+') {
