@@ -18,7 +18,7 @@
   {{-- Gallery-type _m-article-header never renders title --}}
   <h1 class="sr-only">{{ $item->title }}</h1>
 
-  @component('components.molecules._m-article-header', ['is360' => $item->assetLibrary])
+  @component('components.molecules._m-article-header')
     {{-- @slot('editorial', false) --}}
     @slot('headerType', $item->present()->headerType)
     {{-- @slot('variation', ($item->headerVariation ?? null)) --}}
@@ -33,6 +33,7 @@
     @slot('maxZoomWindowSize', $item->max_zoom_window_size)
     @slot('prevNextObject', $prevNextObject ?? null)
     @slot('module3d', $model3d ?? null)
+    @slot('is360', $item->assetLibrary !== null)
   @endcomponent
 
   <div class="o-article__primary-actions o-article__primary-actions--inline-header u-show@large+" aria-label="Additional information">
