@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerLakeviewImageService();
         $this->registerEmbedConverterService();
         $this->registerClosureService();
+        $this->registerPrintService();
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
 
@@ -117,6 +118,26 @@ class AppServiceProvider extends ServiceProvider
                 public function getClosure()
                 {
                     return $this->cachedClosure;
+                }
+            };
+        });
+    }
+
+    public function registerPrintService()
+    {
+        $this->app->singleton('printservice', function ($app) {
+            return new class() {
+
+                private $isPrintMode;
+
+                public function __construct()
+                {
+                    $this->isPrintMode = isset($_GET['print']);
+                }
+
+                public function isPrintMode()
+                {
+                    return $this->isPrintMode;
                 }
             };
         });

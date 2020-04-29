@@ -1,5 +1,5 @@
 @php
-$print = isset($_GET['print']);
+$print = app('printservice')->isPrintMode();
 @endphp
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="no-js{{ (isset($contrastHeader) and $contrastHeader) ? ' s-contrast-header' : '' }}{{ (isset($filledLogo) and $filledLogo) ? ' s-filled-logo' : '' }}{{ $print ? ' s-print' : '' }}  {{ !empty($modal) ? 's-modal-active' : '' }}">

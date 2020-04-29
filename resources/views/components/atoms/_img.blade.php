@@ -52,7 +52,7 @@
     @if (isset($behavior) || $restrict)
         data-behavior="{{ $behavior ?? '' }}{{ $restrict ? ' restrictDownload' : ''}}"
     @endif
-    @if (isset($_GET['print']) or (isset($settings['lazyload']) and $settings['lazyload'] === false))
+    @if (app('printservice')->isPrintMode() or (isset($settings['lazyload']) and $settings['lazyload'] === false))
     srcset="{{ $srcset ?? '' }}"
     @else
     data-srcset="{{ $srcset ?? '' }}"

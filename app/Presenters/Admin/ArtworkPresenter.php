@@ -112,7 +112,7 @@ class ArtworkPresenter extends BasePresenter
         ] : [
             "type" => 'text',
             "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu">'
-            .(isset($_GET['print']) ? 'collections@artic.edu' : '')
+            .(app('printservice')->isPrintMode() ? 'collections@artic.edu' : '')
             .'</a>. Information about image downloads and licensing is <a href="/image-licensing">available here</a>.</p>',
         ]);
 
