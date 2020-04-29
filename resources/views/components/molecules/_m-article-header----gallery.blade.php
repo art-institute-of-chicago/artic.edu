@@ -79,7 +79,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('dataAttributes', 'data-gallery-module3d')
               @slot('behavior', 'triggerMediaModal')
               @slot('ariaLabel', 'View 3D Module')
-              @slot('gtmAttributes', 'data-gtm-event="3D-open-modal" data-gtm-event-action="{{$title}}" data-gtm-event-category="in-page"')
+              @slot('gtmAttributes', 'data-gtm-event="3D-open-modal" data-gtm-event-action="' . $title . '" data-gtm-event-category="in-page"')
             @endcomponent
             <textarea style="display: none;">@component('components.molecules._m-viewer-3d')
               @slot('type', 'modal')
@@ -104,7 +104,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('dataAttributes', 'data-gallery-360')
               @slot('behavior', 'triggerMediaModal')
               @slot('ariaLabel', '360 Viewer')
-              @slot('gtmAttributes', 'data-gtm-event="360-open-modal" data-gtm-event-action="{{$title}}" data-gtm-event-category="in-page"')
+              @slot('gtmAttributes', 'data-gtm-event="360-open-modal" data-gtm-event-action="' . $title . '" data-gtm-event-category="in-page"')
             @endcomponent
             <textarea style="display: none;">@component('components.molecules._m-viewer-360')
               @slot('type', 'modal')
