@@ -91,8 +91,8 @@ if ($maxZoomWindowSize >= 843) {
             @endcomponent</textarea>
         </li>
         @endif 
-        @if(isset($is360) && $is360)
-        <li data-type="is360"
+        @if(isset($module360) && $module360)
+        <li data-type="module360"
         @if(!isset($isPublicDomain) || !$isPublicDomain)
           data-restricted="true"
         @endif
@@ -101,7 +101,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('variation', 'btn--septenary btn--icon-sq')
               @slot('font', '')
               @slot('icon', 'icon--view360')
-              @slot('dataAttributes', 'data-gallery-360')
+              @slot('dataAttributes', 'data-gallery-module360')
               @slot('behavior', 'triggerMediaModal')
               @slot('ariaLabel', '360 Viewer')
               @slot('gtmAttributes', 'data-gtm-event="360-open-modal" data-gtm-event-action="' . $title . '" data-gtm-event-category="in-page"')
