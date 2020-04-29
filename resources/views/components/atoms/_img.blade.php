@@ -15,6 +15,10 @@
         $srcset = $settings['srcset'];
         $sizes = $settings['sizes'];
         $src = $settings['lqip'] ?? $settings['src'];
+        if (app('printservice')->isPrintMode()) {
+            $lastSrcset = trim(last(explode(',', $srcset)));
+            $src = substr($lastSrcset, 0, strrpos($lastSrcset, ' '));
+        }
         $width = $settings['width'];
         $height = $settings['height'];
         $iiifId = $settings['iiifId'];
