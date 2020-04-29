@@ -13,8 +13,8 @@
     @endcomponent
 
     <div class="o-article__primary-actions">
-        @component('components.molecules._m-article-actions')
-            @slot('articleType', $item->articleType)
+        @component('components.molecules._m-article-actions----journal-issue')
+            @slot('issues', $issues)
         @endcomponent
     </div>
 
