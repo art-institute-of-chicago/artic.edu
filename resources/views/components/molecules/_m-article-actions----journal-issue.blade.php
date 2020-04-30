@@ -1,4 +1,4 @@
-<div>{{-- See :nth-child(x) in _o-article.scss --}}
+<div class="o-sticky-sidebar__sticker"  data-behavior="stickySidebar" data-sticky-offset="30">{{-- See :nth-child(x) in _o-article.scss --}}
 
     <div class="m-article-actions--journal__logo u-hide@xsmall u-hide@small u-hide@medium">
         <a href="/journal">
@@ -50,3 +50,5 @@
     <hr class="u-hide@large u-hide@xlarge">
 
 </div>
+
+<div class="o-sticky-sidebar__placeholder"></div>
