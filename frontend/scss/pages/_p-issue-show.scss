@@ -37,10 +37,10 @@
   }
 
   .o-article__primary-actions {
+    margin-top: 0;
 
     @each $name, $point in $breakpoints {
       @include breakpoint('#{$name}') {
-        .m-article-actions--journal__blurb,
         .m-search-bar,
         hr,
         ul {
@@ -48,6 +48,19 @@
             xsmall: 24,
             small: 24,
             medium: 24,
+            large: 24,
+            xlarge: 30
+          ), $name)}px;
+        }
+      }
+    }
+
+    .m-article-actions--journal__blurb {
+      @include untuck();
+
+      @each $name in ('large', 'xlarge') {
+        @include breakpoint('#{$name}') {
+          margin-top: #{map-get((
             large: 24,
             xlarge: 30
           ), $name)}px;
