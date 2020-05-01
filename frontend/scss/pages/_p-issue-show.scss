@@ -36,6 +36,91 @@
     margin-top: 0;
   }
 
+  .o-article__primary-actions {
+    margin-top: 0;
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        .m-search-bar,
+        hr,
+        ul {
+          margin-top: #{map-get((
+            xsmall: 24,
+            small: 24,
+            medium: 24,
+            large: 24,
+            xlarge: 30
+          ), $name)}px;
+        }
+      }
+    }
+
+    .m-article-actions--journal__blurb {
+      @include untuck();
+
+      @each $name in ('large', 'xlarge') {
+        @include breakpoint('#{$name}') {
+          margin-top: #{map-get((
+            large: 24,
+            xlarge: 30
+          ), $name)}px;
+        }
+      }
+    }
+
+    .m-article-actions--journal__logo {
+      a {
+        color: $color__black--90;
+      }
+
+      .icon--journal-logo {
+        height: 92px;
+        width: 120px;
+      }
+    }
+
+    .m-article-actions--journal__blurb {
+      color: $color__black--54;
+      padding-right: 2em;
+
+      a {
+        color: $color__black--54;
+        text-decoration: underline;
+      }
+    }
+
+    .m-search-bar {
+
+      input[type=text] {
+        height: 42px;
+      }
+
+      .m-search-bar__submit,
+      .m-search-bar__clear {
+        width: 42px;
+        height: 42px;
+      }
+    }
+
+    .tag--journal {
+      height: 60px;
+      padding-right: 16px;
+      line-height: 23px;
+      padding-left: 76px;
+      padding-top: 7px;
+      text-align: left;
+
+      @include breakpoint('large+') {
+        display: block;
+      }
+
+      img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+
   .o-article__body::before {
     position: absolute;
     background-color: $color__rules--primary;
@@ -50,6 +135,25 @@
         left: #{- colspan(1, '#{$name}')};
         top: #{- map-get($journal-header-margin-bottom, $name)};
         height: calc(100% + #{map-get($journal-header-margin-bottom, $name)});
+      }
+    }
+  }
+
+  @include breakpoint('large+') {
+    &.is-sidebar-fixed {
+      .o-sticky-sidebar__sticker {
+        position: fixed;
+        @each $name in ('large', 'xlarge') {
+          @include breakpoint('#{$name}') {
+            width: #{colspan(13, '#{$name}')};
+          }
+        }
+      }
+      .o-sticky-sidebar__placeholder::before {
+        content: '';
+      }
+      .o-sticky-sidebar__stopper {
+        clear: both;
       }
     }
   }
