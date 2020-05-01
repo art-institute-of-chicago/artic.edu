@@ -30,7 +30,7 @@ const stickySidebar = function(container){
       if(!document.documentElement.classList.contains('is-sidebar-fixed')) {
         document.documentElement.classList.add('is-sidebar-fixed');
       }
-      let offsetTop = (30 - Math.max(0, scrollTop + containerHeight - stopperOffset));
+      let offsetTop = (30 - Math.max(0, scrollTop + containerHeight + stickyOffset - stopperOffset));
       container.setAttribute('style','top:' + offsetTop + 'px');
     } else {
       if(document.documentElement.classList.contains('is-sidebar-top')) {
@@ -53,7 +53,7 @@ const stickySidebar = function(container){
     windowHeight = window.innerHeight || document.documentElement.clientHeight;
     containerHeight = container.offsetHeight;
     containerTop = getOffsetTop(container) + document.body.scrollTop;
-    stopperOffset = getOffsetTop(stopper) + document.body.scrollTop + stopper.offsetHeight;
+    handleScroll();
   }
 
   function _init() {
