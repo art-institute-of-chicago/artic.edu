@@ -46,10 +46,6 @@ header {
   }
 }
 
-@page {
-  size: letter portrait;
-}
-
 article,
 aside,
 dialog,
@@ -62,8 +58,17 @@ main {
   display: block;
 }
 
+html {
+  left: 0;
+  right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  width: auto;
+}
+
 body {
   line-height: 1;
+  width: auto;
 }
 
 blockquote,
