@@ -33,6 +33,7 @@ class IssueArticleController extends FrontController
             'contrastHeader' => false,
             'borderlessHeader' => false,
             'item' => $item,
+            'unstickyHeader' => true,
             'canonicalUrl' => route('issue-articles.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
     }
