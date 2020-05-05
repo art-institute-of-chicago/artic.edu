@@ -4,7 +4,13 @@
 
     <article class="o-article o-article--video">
 
-        <div class="o-article__primary-actions">
+        <div class="o-article__primary-actions o-article__primary-actions--video">
+            @component('components.atoms._title')
+                @slot('tag','p')
+                @slot('font', 'f-tag-2')
+                Video
+            @endcomponent
+
             @component('components.molecules._m-article-actions')
                 @slot('articleType', 'video')
             @endcomponent
@@ -15,16 +21,6 @@
             @slot('title_display', $item->present()->title_display)
             @slot('formattedDate', $item->present()->date)
         @endcomponent
-
-        @if ($item->heading)
-            <div class="o-article__intro">
-              @component('components.blocks._text')
-                  @slot('font', 'f-deck')
-                  @slot('tag', 'div')
-                  {!! $item->present()->heading !!}
-              @endcomponent
-            </div>
-        @endif
 
         <div class="o-article__body o-blocks">
             @component('components.molecules._m-media')
@@ -42,7 +38,19 @@
                     'fullscreen' => false,
                 ])
             @endcomponent
+        </div>
 
+        @if ($item->heading)
+            <div class="o-article__intro">
+              @component('components.blocks._text')
+                  @slot('font', 'f-deck')
+                  @slot('tag', 'div')
+                  {!! $item->present()->heading !!}
+              @endcomponent
+            </div>
+        @endif
+
+        <div class="o-article__body o-blocks">
             {!! $item->renderBlocks(false, [], [
                 'pageTitle' => $item->title
             ]) !!}

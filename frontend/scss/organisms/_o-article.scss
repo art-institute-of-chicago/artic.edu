@@ -273,6 +273,13 @@
   }
 }
 
+.o-article__body + .o-article__intro {
+  @include breakpoint('large+') {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
 .o-article__inline-header {
   position: relative;
   padding-top: .02px;
@@ -538,5 +545,24 @@
         margin-top: -4px;
       }
     }
+  }
+}
+
+// Positioned left of .m-article-header--default with date
+.o-article__primary-actions--video {
+  display: flex;
+  justify-content: space-between;
+
+  @include breakpoint('large+') {
+    min-height: 180px;
+    flex-direction: column;
+  }
+
+  >:not(:nth-child(1)):not([class*=f-]):not(.o-collapsing-nav) {
+    margin-top: auto;
+  }
+
+  .m-article-actions {
+    margin-bottom: 0;
   }
 }
