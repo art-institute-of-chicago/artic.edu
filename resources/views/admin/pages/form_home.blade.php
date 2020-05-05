@@ -45,6 +45,16 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset title="Artists" id="artists">
+        @formField('browser', [
+            'routePrefix' => 'collection',
+            'max' => 10,
+            'moduleName' => 'artists',
+            'name' => 'homeArtists',
+            'label' => 'Artists'
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="Interactive Features" id="interactive-features">
         @formField('browser', [
             'routePrefix' => 'collection',

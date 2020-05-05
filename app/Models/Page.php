@@ -255,6 +255,11 @@ class Page extends AbstractModel
         return $this->apiElements()->where('relation', 'homeShopItems');
     }
 
+    public function homeArtists()
+    {
+        return $this->apiElements()->where('relation', 'homeArtists');
+    }
+
     public function admissions()
     {
         return $this->hasMany(Admission::class)->orderBy('position');
