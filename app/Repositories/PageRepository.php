@@ -25,6 +25,7 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeExhibitions', 'position', 'Exhibition');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeEvents', 'position', 'Event');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeVideos', 'position', 'Video');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'mainHomeFeatures', 'position', 'HomeFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'secondaryHomeFeatures', 'position', 'HomeFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'collectionFeatures', 'position', 'CollectionFeature');
@@ -49,6 +50,7 @@ class PageRepository extends ModuleRepository
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
+        $this->updateBrowser($object, $fields, 'homeVideos');
         $this->updateBrowser($object, $fields, 'homeFeatures');
         $this->updateBrowser($object, $fields, 'mainHomeFeatures');
         $this->updateBrowser($object, $fields, 'secondaryHomeFeatures');
@@ -94,6 +96,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['homeEvents'] = $this->getFormFieldsForBrowser($object, 'homeEvents', 'exhibitions_events', 'title', 'events');
         $fields['browsers']['homeShopItems'] = $this->getFormFieldsForBrowserApi($object, 'homeShopItems', 'App\Models\Api\ShopItem', 'general');
         $fields['browsers']['homeFeatures'] = $this->getFormFieldsForBrowser($object, 'homeFeatures', 'homepage', 'title', 'homeFeatures');
+        $fields['browsers']['homeVideos'] = $this->getFormFieldsForBrowser($object, 'homeVideos', 'collection.articles_publications', 'title', 'videos');
         $fields['browsers']['mainHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'mainHomeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['secondaryHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'secondaryHomeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['collectionFeatures'] = $this->getFormFieldsForBrowser($object, 'collectionFeatures', 'homepage', 'title', 'collectionFeatures');

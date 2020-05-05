@@ -25,6 +25,16 @@
 @stop
 
 @section('fieldsets')
+    <a17-fieldset title="Video carousel" id="video-carousel">
+        @formField('browser', [
+            'routePrefix' => 'collection.articles_publications',
+            'max' => 10,
+            'moduleName' => 'videos',
+            'name' => 'homeVideos',
+            'label' => 'Video carousel'
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="Plan your visit" id="plan-your-visit">
         @formField('input', [
             'name' => 'home_plan_your_visit_link_1_text',
@@ -55,7 +65,7 @@
             'name' => 'home_plan_your_visit_link_3_url',
             'label' => 'Third "Plan your visit" link URL',
         ])
-</a17-fieldset>
+    </a17-fieldset>
 
     <a17-fieldset title="Exhibitions and Event" id="exhibitions-and-events">
         @formField('browser', [
