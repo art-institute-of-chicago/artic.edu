@@ -42,11 +42,11 @@
         global $_collectedReferences;
         $_collectedReferences = [];
 
-        global $_paragraphCount;
-        $_paragraphCount = app()->environment('production') ? null : 0;
+        // global $_paragraphCount;
+        // $_paragraphCount = 0;
 
         global $_figureCount;
-        $_figureCount = app()->environment('production') ? null : 0;
+        $_figureCount = 0;
         @endphp
 
         {!! $item->renderBlocks(false, [], [
