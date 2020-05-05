@@ -143,6 +143,12 @@
 @endcomponent
 
 
+@component('site.articles_publications._articleFeature')
+    @slot('featureHero', $articles['featureHero'] ?? null)
+    @slot('features', $articles['features'] ?? null)
+@endcomponent
+
+
 @component('components.molecules._m-title-bar')
     @slot('links',
         array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))

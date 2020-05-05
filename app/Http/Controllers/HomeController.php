@@ -54,9 +54,24 @@ class HomeController extends FrontController
             'membership_module_button_text' => $page->home_membership_module_button_text,
             'membership_module_short_copy' => $page->home_membership_module_short_copy,
             'roadblocks' => $this->getLightboxes(),
+            'articles' => $this->getArticles()
         ];
 
         return view('site.home', $view_data);
+    }
+
+    private function getArticles()
+    {
+        $page = Page::forType('Articles and Publications')->first();
+        $articles = $page->getRelatedWithApiModels("featured_items", [], [
+            'articles' => false,
+            'interactiveFeatures.experiences' => false
+        ]) ?? null;
+
+        return [
+            'featureHero' => $articles->shift(),
+            'features' => $articles,
+        ];
     }
 
     private function getLightboxes()
