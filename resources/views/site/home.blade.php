@@ -224,22 +224,25 @@
     @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title .'"  data-gtm-event-category="nav-link"')))
 @endcomponent
 
-@component('site.shared._featuredProducts')
-    @slot('title', 'From the shop')
-    @slot('titleLinks', [
-        [
-            'label' => 'Explore the shop',
-            'href' => $_pages['shop'],
-            'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
-        ]
-    ])
-    @slot('products', $products)
-@endcomponent
 
-@component('components.molecules._m-links-bar')
-    @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')))
-@endcomponent
+@if ($products->count() > 0)
+    @component('site.shared._featuredProducts')
+        @slot('title', 'From the shop')
+        @slot('titleLinks', [
+            [
+                'label' => 'Explore the shop',
+                'href' => $_pages['shop'],
+                'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
+            ]
+        ])
+        @slot('products', $products)
+    @endcomponent
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--title-bar-companion')
+        @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')))
+    @endcomponent
+@endif
+
 
 <script type="application/ld+json">
 {
