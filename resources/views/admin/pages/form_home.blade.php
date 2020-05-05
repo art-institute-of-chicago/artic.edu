@@ -45,6 +45,16 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset title="Interactive Features" id="interactive-features">
+        @formField('browser', [
+            'routePrefix' => 'collection',
+            'max' => 10,
+            'moduleName' => 'interactiveFeatures.experiences',
+            'name' => 'homeExperiences',
+            'label' => 'Interactive Features'
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="Plan your visit" id="plan-your-visit">
         @formField('input', [
             'name' => 'home_plan_your_visit_link_1_text',

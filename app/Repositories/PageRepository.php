@@ -57,6 +57,7 @@ class PageRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'mainHomeFeatures');
         $this->updateBrowser($object, $fields, 'secondaryHomeFeatures');
         $this->updateBrowser($object, $fields, 'collectionFeatures');
+        $this->updateRelatedBrowser($object, $fields, 'homeExperiences');
 
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
@@ -103,6 +104,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['mainHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'mainHomeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['secondaryHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'secondaryHomeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['collectionFeatures'] = $this->getFormFieldsForBrowser($object, 'collectionFeatures', 'homepage', 'title', 'collectionFeatures');
+        $fields['browsers']['homeExperiences'] = $this->getFormFieldsForRelatedBrowser($object, 'homeExperiences', 'collection', 'title', 'interactiveFeatures.experiences');
 
         // Exhibition & Events
         $fields['browsers']['exhibitionsUpcomingListing'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcomingListing', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
