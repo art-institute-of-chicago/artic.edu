@@ -3,8 +3,7 @@
 @section('content')
 
 @if ($item->assetLibrary)
-{{--@dd($item->assetLibrary);--}}
-<script type="application/json" data-closerLook-assetLibrary>
+<script type="application/json" id="assetLibrary">
     {!! json_encode($item->assetLibrary) !!}
 </script>
 @endif
