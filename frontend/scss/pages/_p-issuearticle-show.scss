@@ -16,4 +16,29 @@
       }
     }
   }
+
+  .s-sans-serif-loaded .o-blocks>p:not([class*=f-]),
+  .s-sans-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  .s-sans-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+    font-family: inherit;
+  }
+
+  .o-blocks>p:not([class*=f-]),
+  .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+    font-family: $serif-font;
+  }
+
+  .s-serif-loaded .o-blocks>p:not([class*=f-]),
+  .s-serif-loaded .o-blocks>ol:not([class*=f-]):not([class*=o-]):not([class*=m-]),
+  .s-serif-loaded .o-blocks>ul:not([class*=f-]):not([class*=o-]):not([class*=m-]) {
+    font-family: $serif-font-loaded-class;
+  }
+
+  .o-blocks > p {
+    @include f-body-editorial;
+    // &:first-of-type {
+    //   @include f-dropcap-editorial;
+    // }
+  }
 }

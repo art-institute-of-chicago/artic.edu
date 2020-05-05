@@ -50,7 +50,7 @@
         @endphp
 
         {!! $item->renderBlocks(false, [], [
-          'pageTitle' => $item->meta_title ?: $item->title
+            'pageTitle' => $item->meta_title ?: $item->title,
         ]) !!}
 
         @if (sizeof($_collectedReferences))
