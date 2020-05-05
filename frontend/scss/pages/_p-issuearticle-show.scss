@@ -1,0 +1,19 @@
+.p-issuearticle-show {
+  .o-article__body::before {
+    position: absolute;
+    background-color: $color__rules--primary;
+    width: 1px;
+
+    @include breakpoint('large+') {
+      content: '';
+    }
+
+    @each $name in ('large', 'xlarge') {
+      @include breakpoint('#{$name}') {
+        left: #{- colspan(1, '#{$name}')};
+        top: -100%;
+        height: 200%;
+      }
+    }
+  }
+}

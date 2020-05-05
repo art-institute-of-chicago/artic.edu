@@ -3,6 +3,11 @@
 @section('content')
 
 <article class="o-article">
+
+    <div class="o-article__primary-actions">
+
+    </div>
+
     @component('components.molecules._m-article-header')
         @slot('editorial', ($item->articleType === 'editorial'))
         @slot('headerType', $item->present()->headerType)
@@ -18,51 +23,16 @@
         @slot('prevArticle', $item->prevArticle)
     @endcomponent
 
-    <div class="o-article__primary-actions">
-        @if ($item->author)
-            @component('components.molecules._m-author')
-                @slot('variation', 'm-author---keyline-top')
-                @slot('editorial', ($item->articleType === 'editorial'))
-                @slot('img', $item->imageFront('author', 'square'));
-                @slot('name', $item->present()->author ?? null);
-                @slot('link', null);
-                @slot('date', $item->date ?? null);
-            @endcomponent
-        @endif
-
-        @if ($item->nav)
-            {{-- dupe 😢 - shows xlarge+ --}}
-            @component('components.molecules._m-link-list')
-                @slot('variation', 'u-show@large+')
-                @slot('links', $item->nav);
-            @endcomponent
-        @endif
-    </div>
-
-    {{-- dupe 😢 - hides xlarge+ --}}
-    @if ($item->nav)
-        <div class="o-article__meta">
-            @if ($item->nav)
-                @component('components.molecules._m-link-list')
-                    @slot('links', $item->nav);
-                @endcomponent
-            @endif
-        </div>
-    @endif
-
     <div class="o-article__secondary-actions">
-        @component('site.shared._featuredRelated')
-            @slot('featuredRelated', $item->featuredRelated ?? null)
-            @slot('variation', 'u-show@medium+')
-        @endcomponent
+        {{-- Intentionally left blank for layout --}}
     </div>
 
-    @if ($item->heading and $item->headerType !== 'super-hero')
+    @if ($item->description)
         <div class="o-article__intro">
             @component('components.blocks._text')
                 @slot('font', 'f-deck')
                 @slot('tag', 'div')
-                {!! $item->present()->heading !!}
+                {!! $item->present()->description !!}
             @endcomponent
         </div>
     @endif
