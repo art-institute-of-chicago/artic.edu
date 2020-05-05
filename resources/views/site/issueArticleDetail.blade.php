@@ -67,7 +67,7 @@
         </div>
     @endif
 
-    <div class="o-article__body o-blocks">
+    <div class="o-article__body o-blocks o-blocks--with-sidebar">
         @php
         global $_collectedReferences;
         $_collectedReferences = [];
