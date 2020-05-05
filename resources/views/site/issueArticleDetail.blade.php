@@ -134,6 +134,8 @@
     @endcomponent
 @endif
 
-<div class="o-injected-container" data-behavior="injectContent" data-injectContent-url="{!! route('artworks.recentlyViewed') !!}" data-user-artwork-history></div>
+<hr>
+
+@include('components.organisms._o-journal-footer')
 
 @endsection
