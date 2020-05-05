@@ -227,16 +227,6 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\Event', 'page_home_event')->withPivot('position')->orderBy('position');
     }
 
-    public function homeVideos()
-    {
-        return $this->belongsToMany('App\Models\Video', 'page_home_video')->withPivot('position')->orderBy('position');
-    }
-
-    public function homeHighlights()
-    {
-        return $this->belongsToMany('App\Models\Selection', 'page_home_selection')->withPivot('position')->orderBy('position');
-    }
-
     /**
      * DEPRECATED
      */
