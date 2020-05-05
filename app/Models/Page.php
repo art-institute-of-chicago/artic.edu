@@ -55,6 +55,9 @@ class Page extends AbstractModel
         'home_membership_module_short_copy',
         'home_membership_module_button_text',
 
+        'home_video_title',
+        'home_video_description',
+
         // Exhibition
         'exhibition_intro',
 

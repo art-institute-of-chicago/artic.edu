@@ -26,6 +26,20 @@
 
 @section('fieldsets')
     <a17-fieldset title="Video carousel" id="video-carousel">
+
+        @formField('input', [
+            'name' => 'home_video_title',
+            'label' => 'Title',
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'home_video_description',
+            'label' => 'Description',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
         @formField('browser', [
             'routePrefix' => 'collection.articles_publications',
             'max' => 10,
