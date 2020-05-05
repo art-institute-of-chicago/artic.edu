@@ -143,6 +143,39 @@
 @endcomponent
 
 
+@component('components.molecules._m-title-bar')
+    Highlights
+@endcomponent
+@component('components.atoms._hr')
+@endcomponent
+@component('components.organisms._o-grid-listing')
+    @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+    @slot('cols_small','2')
+    @slot('cols_medium','3')
+    @slot('cols_large','3')
+    @slot('cols_xlarge','3')
+    @foreach ($highlights as $k => $item)
+        @component('components.molecules._m-listing----' . strtolower($item->type))
+            @slot('variation', 'o-pinboard__item')
+            @slot('item', $item)
+            @slot('imageSettings', array(
+                'fit' => 'crop',
+                'ratio' => '1:1',
+                'srcset' => array(200,400,600,1000),
+                'sizes' => aic_gridListingImageSizes(array(
+                    'xsmall' => '1',
+                    'small' => '2',
+                    'medium' => '3',
+                    'large' => '3',
+                    'xlarge' => '3',
+                )),
+            ))
+            @slot('gtmAttributes', 'data-gtm-event="' . $item->type . '-' . $item->id . '-' . $item->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="highlight-listing-' . ($loop->index + 1) . '"')
+        @endcomponent
+    @endforeach
+@endcomponent
+
+
 @component('site.articles_publications._articleFeature')
     @slot('featureHero', $articles['featureHero'] ?? null)
     @slot('features', $articles['features'] ?? null)
@@ -155,7 +188,6 @@
     )
     From the Collection
 @endcomponent
-@php($countCollection = 0)
 @component('components.organisms._o-pinboard')
     @slot('cols_small','2')
     @slot('cols_medium','3')
@@ -163,7 +195,6 @@
     @slot('cols_xlarge','3')
     @slot('maintainOrder','true')
     @foreach ($theCollection as $k => $item)
-    @php($countCollection = $countCollection+1)
         @if ($item->enclosedItem())
             @component('components.molecules._m-listing----' . strtolower($item->enclosedItem()->type))
                 @slot('variation', 'o-pinboard__item')
@@ -175,14 +206,14 @@
                     ),
                     'srcset' => array(200,400,600,1000),
                     'sizes' => aic_gridListingImageSizes(array(
-                          'xsmall' => '1',
-                          'small' => '2',
-                          'medium' => '3',
-                          'large' => '3',
-                          'xlarge' => '3',
+                        'xsmall' => '1',
+                        'small' => '2',
+                        'medium' => '3',
+                        'large' => '3',
+                        'xlarge' => '3',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="' . $item->enclosedItem()->type . '-' . $item->enclosedItem()->id . '-' . $item->enclosedItem()->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . $countCollection . '"')
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->enclosedItem()->type . '-' . $item->enclosedItem()->id . '-' . $item->enclosedItem()->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"')
             @endcomponent
         @endif
     @endforeach

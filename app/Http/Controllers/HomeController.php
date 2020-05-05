@@ -54,7 +54,8 @@ class HomeController extends FrontController
             'membership_module_button_text' => $page->home_membership_module_button_text,
             'membership_module_short_copy' => $page->home_membership_module_short_copy,
             'roadblocks' => $this->getLightboxes(),
-            'articles' => $this->getArticles()
+            'highlights' => $page->getRelated('homeHighlights')->where('published', true),
+            'articles' => $this->getArticles(),
         ];
 
         return view('site.home', $view_data);
