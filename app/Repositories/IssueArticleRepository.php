@@ -5,13 +5,14 @@ namespace App\Repositories;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
+use A17\Twill\Repositories\Behaviors\HandleBlocks;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\IssueArticle;
 use App\Models\Api\Search;
 
 class IssueArticleRepository extends ModuleRepository
 {
-    use HandleSlugs, HandleMedias, HandleRevisions;
+    use HandleSlugs, HandleMedias, HandleRevisions, HandleBlocks;
 
     public function __construct(IssueArticle $model)
     {
