@@ -35,6 +35,16 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset title="Highlights" id="highlights">
+        @formField('browser', [
+            'routePrefix' => 'collection',
+            'max' => 10,
+            'moduleName' => 'selections',
+            'name' => 'homeHighlights',
+            'label' => 'Highlights'
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="Plan your visit" id="plan-your-visit">
         @formField('input', [
             'name' => 'home_plan_your_visit_link_1_text',
