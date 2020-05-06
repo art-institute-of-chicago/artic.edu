@@ -30,6 +30,14 @@ abstract class BasePresenter
         return $return;
     }
 
+    /**
+     * WEB-912, WEB-1644: For compatibility with BlockPresenter, media.blade.php, and videoUrl
+     */
+    public function input($name)
+    {
+        return $this->$name;
+    }
+
     public function contrastHeader()
     {
         switch ($this->headerType()) {

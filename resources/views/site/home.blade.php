@@ -44,6 +44,41 @@
     {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent
 
+
+@if ($videos->count() > 0)
+    @component('components.organisms._o-gallery----slider')
+        @slot('variation', 'o-blocks__block o-gallery----theme-2')
+        @slot('title', $video_title ?? 'Videos')
+        @slot('caption', $video_description ?? null)
+        @slot('allLink', null);
+        @slot('imageSettings', array(
+            'srcset' => array(200,400,600,1000,1500,3000,4500),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '50',
+                  'small' => '35',
+                  'medium' => '23',
+                  'large' => '23',
+                  'xlarge' => '18',
+            )),
+        ))
+        @slot('items', $videos->map(function($item) {
+            $item->type = 'embed';
+            $item->size = 'gallery';
+            $item->restrict = false;
+            $item->fullscreen = true;
+            $item->poster = $item->imageAsArray('hero');
+            $item->media = [
+                'embed' => \App\Facades\EmbedConverterFacade::convertUrl($item->video_url),
+            ];
+            // Setting caption to empty string forces the title to be bolded
+            $item->captionTitle = getTitleWithFigureNumber($item->title);
+            $item->caption = getSubtitleWithFigureNumber($item->list_description, $item->title) ?? '';
+            return $item;
+        }))
+    @endcomponent
+@endif
+
+
 {{-- Remove events from homepage during COVID-19 cancellations
 @component('components.molecules._m-title-bar')
     @slot('links', array(

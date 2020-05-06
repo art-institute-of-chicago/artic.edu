@@ -54,6 +54,9 @@ class HomeController extends FrontController
             'cta_module_button_text' => $page->home_cta_module_button_text,
             'cta_module_short_copy' => $page->home_cta_module_short_copy,
             'roadblocks' => $this->getLightboxes(),
+            'video_title' => $page->home_video_title,
+            'video_description' => $page->home_video_description,
+            'videos' => $page->getRelated('homeVideos')->where('published', true),
             'highlights' => $page->getRelated('homeHighlights')->where('published', true),
             'articles' => $this->getArticles(),
         ];
