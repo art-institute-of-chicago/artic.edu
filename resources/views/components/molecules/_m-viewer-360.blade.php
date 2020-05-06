@@ -12,7 +12,6 @@
 			max=""
 			value=""
 			name="frame"
-			{{--onChange={this.handleInputChange}--}}
 		/>
 	</div>
 
