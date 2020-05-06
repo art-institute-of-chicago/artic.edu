@@ -51,4 +51,9 @@ class Artist extends BaseApiModel
             return join(', ', $this->alt_titles);
         }
     }
+
+    public function getShortNameAttribute() {
+        $arr = explode(",", $this->sort_title, 2);
+        return $arr[0];
+    }
 }

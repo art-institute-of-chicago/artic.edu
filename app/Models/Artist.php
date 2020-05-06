@@ -22,6 +22,7 @@ class Artist extends AbstractModel
         'caption',
         'meta_title',
         'meta_description',
+        'short_name_display',
     ];
 
     public $slugAttributes = [
@@ -47,6 +48,10 @@ class Artist extends AbstractModel
     public function getSlugAttribute()
     {
         return ['en' => getUtf8Slug($this->title)];
+    }
+
+    public function getShortNameAttribute() {
+        return $this->short_name_display ?? $this->getApiModelFilledCached()->short_name;
     }
 
     protected function transformMappingInternal()

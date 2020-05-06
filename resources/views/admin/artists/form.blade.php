@@ -36,6 +36,12 @@
         'name' => 'intro',
         'label' => 'Intro',
     ])
+
+    @formField('input', [
+        'name' => 'short_name_display',
+        'label' => 'Short name',
+        'note' => 'Override default of "' .$item->getApiModelFilledCached()->short_name . '"',
+    ])
 @stop
 
 @section('fieldsets')
