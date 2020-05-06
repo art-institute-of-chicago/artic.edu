@@ -248,11 +248,6 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\HomeFeature', 'page_home_secondary_home_feature')->withPivot('position')->orderBy('position');
     }
 
-    public function collectionFeatures()
-    {
-        return $this->belongsToMany('App\Models\CollectionFeature', 'page_home_collection_feature')->withPivot('position')->orderBy('position');
-    }
-
     public function homeShopItems()
     {
         return $this->apiElements()->where('relation', 'homeShopItems');

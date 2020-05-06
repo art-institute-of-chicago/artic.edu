@@ -27,7 +27,6 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'mainHomeFeatures', 'position', 'HomeFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'secondaryHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'collectionFeatures', 'position', 'CollectionFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
@@ -52,7 +51,6 @@ class PageRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'homeFeatures');
         $this->updateBrowser($object, $fields, 'mainHomeFeatures');
         $this->updateBrowser($object, $fields, 'secondaryHomeFeatures');
-        $this->updateBrowser($object, $fields, 'collectionFeatures');
         $this->updateRelatedBrowser($object, $fields, 'homeVideos');
         $this->updateRelatedBrowser($object, $fields, 'homeHighlights');
         $this->updateRelatedBrowser($object, $fields, 'homeExperiences');
@@ -100,7 +98,6 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['homeFeatures'] = $this->getFormFieldsForBrowser($object, 'homeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['mainHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'mainHomeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['secondaryHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'secondaryHomeFeatures', 'homepage', 'title', 'homeFeatures');
-        $fields['browsers']['collectionFeatures'] = $this->getFormFieldsForBrowser($object, 'collectionFeatures', 'homepage', 'title', 'collectionFeatures');
         $fields['browsers']['homeVideos'] = $this->getFormFieldsForRelatedBrowser($object, 'homeVideos', 'collection.articles_publications', 'title', 'videos');
         $fields['browsers']['homeHighlights'] = $this->getFormFieldsForRelatedBrowser($object, 'homeHighlights', 'collection', 'title', 'selections');
         $fields['browsers']['homeExperiences'] = $this->getFormFieldsForRelatedBrowser($object, 'homeExperiences', 'collection', 'title', 'interactiveFeatures.experiences');
