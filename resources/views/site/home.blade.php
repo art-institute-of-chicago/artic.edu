@@ -194,28 +194,24 @@
     @slot('cols_large','3')
     @slot('cols_xlarge','3')
     @slot('maintainOrder','true')
-    @foreach ($theCollection as $k => $item)
-        @if ($item->enclosedItem())
-            @component('components.molecules._m-listing----' . strtolower($item->enclosedItem()->type))
-                @slot('variation', 'o-pinboard__item')
-                @slot('item', $item->enclosedItem())
-                @slot('imageSettings', array(
-                    'fit' => ($item->enclosedItem()->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->enclosedItem()->type === 'selection') ? '1:1' : (
-                        ($item->enclosedItem()->type === 'artwork') ? null : '16:9'
-                    ),
-                    'srcset' => array(200,400,600,1000),
-                    'sizes' => aic_gridListingImageSizes(array(
-                        'xsmall' => '1',
-                        'small' => '2',
-                        'medium' => '3',
-                        'large' => '3',
-                        'xlarge' => '3',
-                    )),
-                ))
-                @slot('gtmAttributes', 'data-gtm-event="' . $item->enclosedItem()->type . '-' . $item->enclosedItem()->id . '-' . $item->enclosedItem()->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"')
-            @endcomponent
-        @endif
+    @foreach ($artworks as $k => $item)
+        @component('components.molecules._m-listing----artwork')
+            @slot('variation', 'o-pinboard__item')
+            @slot('item', $item)
+            @slot('imageSettings', array(
+                'fit' => null,
+                'ratio' => null,
+                'srcset' => array(200,400,600,1000),
+                'sizes' => aic_gridListingImageSizes(array(
+                    'xsmall' => '1',
+                    'small' => '2',
+                    'medium' => '3',
+                    'large' => '3',
+                    'xlarge' => '3',
+                )),
+            ))
+            @slot('gtmAttributes', 'data-gtm-event="artwork-' . $item->id . '-' . $item->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"')
+        @endcomponent
     @endforeach
 @endcomponent
 

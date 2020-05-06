@@ -45,7 +45,7 @@ class PageRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'homeArtists', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'homeArtists', 'homeArtworks', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
@@ -56,6 +56,7 @@ class PageRepository extends ModuleRepository
         $this->updateRelatedBrowser($object, $fields, 'homeVideos');
         $this->updateRelatedBrowser($object, $fields, 'homeHighlights');
         $this->updateRelatedBrowser($object, $fields, 'homeExperiences');
+        $this->updateRelatedBrowser($object, $fields, 'homeArtworks');
 
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
@@ -104,6 +105,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['homeHighlights'] = $this->getFormFieldsForRelatedBrowser($object, 'homeHighlights', 'collection', 'title', 'selections');
         $fields['browsers']['homeExperiences'] = $this->getFormFieldsForRelatedBrowser($object, 'homeExperiences', 'collection', 'title', 'interactiveFeatures.experiences');
         $fields['browsers']['homeArtists'] = $this->getFormFieldsForBrowserApi($object, 'homeArtists', 'App\Models\Api\Artist', 'collection', 'title', 'artists');
+        $fields['browsers']['homeArtworks'] = $this->getFormFieldsForBrowserApi($object, 'homeArtworks', 'App\Models\Api\Artwork', 'collection', 'title', 'artworks');
 
         // Exhibition & Events
         $fields['browsers']['exhibitionsUpcomingListing'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcomingListing', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');

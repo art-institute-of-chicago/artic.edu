@@ -17,8 +17,10 @@ class HomeController extends FrontController
 
         $page = Page::forType('Home')->first();
 
-        $exhibitions = $page->apiModels('homeExhibitions', 'Exhibition');
-        $products    = $page->apiModels('homeShopItems', 'ShopItem');
+        $exhibitions  = $page->apiModels('homeExhibitions', 'Exhibition');
+        $products     = $page->apiModels('homeShopItems', 'ShopItem');
+        $homeArtworks = $page->apiModels('homeArtworks', 'Artwork');
+
         $events      = $page->homeEvents()->future()->published()->limit(4)->get();
 
         $mainHomeFeatures       = $page->mainHomeFeatures()->published()->limit(1)->get();
@@ -30,8 +32,6 @@ class HomeController extends FrontController
         if ($mainFeatures->count() < 1) {
             $mainFeatures = $page->homeFeatures()->published()->limit(3)->get();
         }
-
-        $collectionFeatures = $page->collectionFeatures()->published()->get();
 
         $view_data = [
             'contrastHeader' => sizeof($mainFeatures) > 0,
@@ -46,7 +46,7 @@ class HomeController extends FrontController
             'plan_your_visit_link_3_url' => $page->home_plan_your_visit_link_3_url,
             'exhibitions' => $exhibitions,
             'events' => $events,
-            'theCollection' => $collectionFeatures,
+            'artworks' => $homeArtworks,
             'products' => $products,
             'membership_module_image' => $page->imageFront('home_membership_module_image'),
             'membership_module_url' => $page->home_membership_module_url,

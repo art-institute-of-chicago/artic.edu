@@ -160,11 +160,11 @@
 
     <a17-fieldset title="From the Collection" id="from-the-collection">
         @formField('browser', [
-            'routePrefix' => 'homepage',
+            'routePrefix' => 'collection',
             'max' => 20,
-            'moduleName' => 'collectionFeatures',
-            'name' => 'collectionFeatures',
-            'label' => 'Collection features'
+            'moduleName' => 'artworks',
+            'name' => 'homeArtworks',
+            'label' => 'Artworks'
         ])
     </a17-fieldset>
 
