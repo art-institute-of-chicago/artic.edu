@@ -97,9 +97,9 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['homeFeatures'] = $this->getFormFieldsForBrowser($object, 'homeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['mainHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'mainHomeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['secondaryHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'secondaryHomeFeatures', 'homepage', 'title', 'homeFeatures');
-        $fields['browsers']['homeVideos'] = $this->getFormFieldsForRelatedBrowser($object, 'homeVideos', 'collection.articles_publications', 'title', 'videos');
-        $fields['browsers']['homeHighlights'] = $this->getFormFieldsForRelatedBrowser($object, 'homeHighlights', 'collection', 'title', 'selections');
-        $fields['browsers']['homeExperiences'] = $this->getFormFieldsForRelatedBrowser($object, 'homeExperiences', 'collection', 'title', 'interactiveFeatures.experiences');
+        $fields['browsers']['homeVideos'] = $this->getFormFieldsForRelatedBrowser($object, 'homeVideos');
+        $fields['browsers']['homeHighlights'] = $this->getFormFieldsForRelatedBrowser($object, 'homeHighlights');
+        $fields['browsers']['homeExperiences'] = $this->getFormFieldsForRelatedBrowser($object, 'homeExperiences');
         $fields['browsers']['homeArtists'] = $this->getFormFieldsForBrowserApi($object, 'homeArtists', 'App\Models\Api\Artist', 'collection', 'title', 'artists');
         $fields['browsers']['homeArtworks'] = $this->getFormFieldsForBrowserApi($object, 'homeArtworks', 'App\Models\Api\Artwork', 'collection', 'title', 'artworks');
 
