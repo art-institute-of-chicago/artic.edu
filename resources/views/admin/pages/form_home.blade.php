@@ -49,6 +49,34 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset title="Call to Action Module" id="call-to-action">
+
+        @formField('medias', [
+            'label' => 'Image',
+            'name' => 'home_cta_module_image'
+        ])
+
+        @formField('input', [
+            'name' => 'home_cta_module_headline',
+            'label' => 'Headline',
+        ])
+
+        @formField('input', [
+            'name' => 'home_cta_module_short_copy',
+            'label' => 'Short copy',
+        ])
+
+        @formField('input', [
+            'name' => 'home_cta_module_button_text',
+            'label' => 'Button text',
+        ])
+
+        @formField('input', [
+            'name' => 'home_cta_module_url',
+            'label' => 'URL',
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="Highlights" id="highlights">
         @formField('browser', [
             'routePrefix' => 'collection',
@@ -127,34 +155,6 @@
             'name' => 'homeEvents',
             'label' => 'Featured events',
             'note' => 'Select up to 10 events you want to feature on the homepage'
-        ])
-    </a17-fieldset>
-
-    <a17-fieldset title="Membership Module" id="membership">
-
-        @formField('medias', [
-            'label' => 'Image',
-            'name' => 'home_membership_module_image'
-        ])
-
-        @formField('input', [
-            'name' => 'home_membership_module_headline',
-            'label' => 'Headline',
-        ])
-
-        @formField('input', [
-            'name' => 'home_membership_module_short_copy',
-            'label' => 'Short copy',
-        ])
-
-        @formField('input', [
-            'name' => 'home_membership_module_button_text',
-            'label' => 'Button text',
-        ])
-
-        @formField('input', [
-            'name' => 'home_membership_module_url',
-            'label' => 'URL',
         ])
     </a17-fieldset>
 

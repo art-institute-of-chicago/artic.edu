@@ -134,12 +134,12 @@
 @endcomponent
 
 @component('components.molecules._m-cta-banner----become-a-member')
-    @slot('image', $membership_module_image)
-    @slot('href', $membership_module_url)
-    @slot('headline', $membership_module_headline)
-    @slot('short_copy', $membership_module_short_copy)
-    @slot('button_text', $membership_module_button_text)
-    @slot('gtmAttributes', 'data-gtm-event="'. $membership_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
+    @slot('image', $cta_module_image)
+    @slot('href', $cta_module_url)
+    @slot('headline', $cta_module_headline)
+    @slot('short_copy', $cta_module_short_copy)
+    @slot('button_text', $cta_module_button_text)
+    @slot('gtmAttributes', 'data-gtm-event="'. $cta_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
 @endcomponent
 
 

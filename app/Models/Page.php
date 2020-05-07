@@ -49,11 +49,11 @@ class Page extends AbstractModel
         'home_plan_your_visit_link_3_text',
         'home_plan_your_visit_link_3_url',
 
-        'home_membership_module_url',
-        'home_membership_module_image',
-        'home_membership_module_headline',
-        'home_membership_module_short_copy',
-        'home_membership_module_button_text',
+        'home_cta_module_url',
+        'home_cta_module_image',
+        'home_cta_module_headline',
+        'home_cta_module_short_copy',
+        'home_cta_module_button_text',
 
         'home_video_title',
         'home_video_description',
@@ -176,7 +176,7 @@ class Page extends AbstractModel
                 ],
             ],
         ],
-        'home_membership_module_image' => [
+        'home_cta_module_image' => [
             'default' => [
                 [
                     'name' => 'default',
