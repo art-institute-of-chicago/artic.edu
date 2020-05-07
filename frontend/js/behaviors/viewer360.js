@@ -3,7 +3,6 @@ import assetURL from "../functions/assetURL";
 
 const viewer360 = function(container) {
 	let wrapper = container;
-	console.log('wrapper', wrapper);
 	let frame = 0;
 	let touchX = null;
 	let touchFrame = null;
@@ -37,7 +36,7 @@ const viewer360 = function(container) {
 		const image360 = frames360[closestFrame].src;
 		image360Src.src = image360;
 		//update input control
-		control360.setAttribute('value', closestFrame);
+		control360.value = closestFrame;
 	}
 
 	//find closest frame based on input
@@ -59,52 +58,46 @@ const viewer360 = function(container) {
 	wrapper.addEventListener("wheel", handleMouseWheel.bind(this));
 	control360.addEventListener("input", handleInputChange.bind(this));
 
-	window.addEventListener("mousedown", handleTouchEvents.bind(this));
-	window.addEventListener("mousemove", handleTouchEvents.bind(this));
-	window.addEventListener("mouseup", handleTouchEvents.bind(this));
-	window.addEventListener("touchstart", handleTouchEvents.bind(this));
-	window.addEventListener("touchmove", handleTouchEvents.bind(this));
-	window.addEventListener("touchend", handleTouchEvents.bind(this));
-	window.addEventListener("touchcancel", handleTouchEvents.bind(this));
+	window.addEventListener("mousedown", handleEvents.bind(this));
+	window.addEventListener("mousemove", handleEvents.bind(this));
+	window.addEventListener("mouseup", handleEvents.bind(this));
+	window.addEventListener("touchstart", handleEvents.bind(this));
+	window.addEventListener("touchmove", handleEvents.bind(this));
+	window.addEventListener("touchend", handleEvents.bind(this));
+	window.addEventListener("touchcancel", handleEvents.bind(this));
 
-	function handleTouchEvents(e) {
-		/*
-		console.log('frame1', this.frame);
+	function handleEvents(e) {
 		let { pageX, touches } = e;
 		if (touches && touches.length) pageX = touches[0].pageX;
 		switch (e.type) {
       case "mousedown":
       case "touchstart":
-        this.touchX = pageX;
-				this.touchFrame = frame;
-				console.log('mousedown', this);
+        touchX = pageX;
+				touchFrame = frame;
 				break;
+			
 			case "mousemove":
 			case "touchmove":
-				console.log('mousemove', this);
-				if (this.touchX === null) return;
-				//console.log('frame2', frame);
+				if (touchX === null) return;
 				const delta = frames360.length / Math.min(1000, (wrapper.offsetWidth * 0.8));
-				const diff = (pageX - this.touchX) * delta;
-				//console.log('this.touchX', this.touchX);
-				//console.log('pageX', pageX);
-				let newFrame = this.touchFrame + diff;
-				//console.log('newFrame', newFrame);
+				const diff = (pageX - touchX) * delta;
+				let newFrame = touchFrame + diff;
+				if (frame == newFrame) return;
 				frame = constrainFrame(newFrame);
-				//console.log('new frame', frame);
-				//update360(frame);
+				update360(frame);
 				break;
-				/*
+			
 			case "touchend":
 			case "touchcancel":
 			case "mouseup":
-				this.touchX = null;
-				this.touchFrame = null;
+				touchX = null;
+				touchFrame = null;
 				break;
+			
 			default:
 				return;
 
-		}*/
+		}
 		
 	}
 	
