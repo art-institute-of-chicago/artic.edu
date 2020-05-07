@@ -54,7 +54,6 @@ class PageRepository extends ModuleRepository
         $this->updateRelatedBrowser($object, $fields, 'homeVideos');
         $this->updateRelatedBrowser($object, $fields, 'homeHighlights');
         $this->updateRelatedBrowser($object, $fields, 'homeExperiences');
-        $this->updateRelatedBrowser($object, $fields, 'homeArtworks');
 
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
