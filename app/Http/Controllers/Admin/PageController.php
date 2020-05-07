@@ -30,8 +30,13 @@ class PageController extends ModuleController
         Session::put("pages_back_link", route('admin.homepage.landing'));
 
         $additionalFieldsets = [
-            ['fieldset' => 'exhibitions-and-events', 'label' => 'Exhibitions and Event'],
-            ['fieldset' => 'membership', 'label' => 'Membership Module'],
+            ['fieldset' => 'video-carousel', 'label' => 'Video Carousel'],
+            ['fieldset' => 'call-to-action', 'label' => 'Call to Action'],
+            ['fieldset' => 'highlights', 'label' => 'Highlights'],
+            ['fieldset' => 'artists', 'label' => 'Artists'],
+            ['fieldset' => 'interactive-features', 'label' => 'Interactive Features'],
+            ['fieldset' => 'plan-your-visit', 'label' => 'Plan Your Visit'],
+            ['fieldset' => 'exhibitions-and-events', 'label' => 'Exhibitions and Events'],
             ['fieldset' => 'from-the-collection', 'label' => 'From the Collection'],
             ['fieldset' => 'from-the-shop', 'label' => 'From the Shop'],
         ];
