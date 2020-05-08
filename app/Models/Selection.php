@@ -34,10 +34,19 @@ class Selection extends AbstractModel
         'meta_description',
         'publish_start_date',
         'publish_end_date',
+        'highlight_type',
     ];
 
     public $slugAttributes = [
         'title',
+    ];
+
+    const NORMAL = 0;
+    const AUDIO_TOUR = 1;
+
+    public static $highlightTypes = [
+        self::NORMAL => 'Normal',
+        self::AUDIO_TOUR => 'Audio tour',
     ];
 
     // those fields get auto set to null if not submited

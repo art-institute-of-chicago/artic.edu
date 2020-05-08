@@ -67,6 +67,7 @@ class SelectionController extends ModuleController
         return [
             'baseUrl' => $baseUrl,
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+            'highlightTypeList' => $this->repository->getHighlightTypeList(),
         ];
     }
 

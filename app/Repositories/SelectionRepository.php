@@ -28,6 +28,10 @@ class SelectionRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function getHighlightTypeList() {
+        return collect($this->model::$highlightTypes);
+    }
+
     public function hydrate($object, $fields)
     {
         $this->hydrateBrowser($object, $fields, 'events', 'position', 'Event');
