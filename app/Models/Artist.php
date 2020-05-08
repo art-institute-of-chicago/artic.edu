@@ -50,10 +50,6 @@ class Artist extends AbstractModel
         return ['en' => getUtf8Slug($this->title)];
     }
 
-    public function getShortNameAttribute() {
-        return $this->short_name_display ?? $this->getApiModelFilledCached()->short_name;
-    }
-
     protected function transformMappingInternal()
     {
         return [
