@@ -192,6 +192,11 @@
     text-align: center;
   }
 
+  .loader {
+    top: 50%;
+    position: absolute;
+  }
+
   .g-modal__content {
     width:auto;
     min-width:100%;

@@ -1,9 +1,11 @@
 import { includes, memoize } from 'lodash'; 
 import assetURL from "../functions/assetURL";
+import fetchImageBlob from '../functions/fetchImageBlob';
+import { protectFromUnmount } from '../functions/protectFromUnmount';
 
 const viewer360 = function(container) {
 	let wrapper = container;
-	let frame = 0;
+	let curFrame = 0;
 	let touchX = null;
 	let touchFrame = null;
 	let windowWidth = window.innerWidth;
@@ -11,6 +13,8 @@ const viewer360 = function(container) {
 	let isLarge = windowWidth >= 900;
 	let image360Src = wrapper.querySelector('.m-viewer-360-image');
 	let control360 = wrapper.querySelector('.m-viewer-360-control .input360');
+	let loadedFrames = {};
+	let protect = protectFromUnmount();
 
 	//get JSON content from web page
 	let assetLibrary = document.getElementById("assetLibrary").textContent;
@@ -31,10 +35,13 @@ const viewer360 = function(container) {
 	control360.setAttribute('max', frames360.length-1);
 
 	//get index to find image to show
-	function update360(frame) {
-		const closestFrame = findClosestFrame(loadedFrameIndexes, frame);
-		const image360 = frames360[closestFrame].src;
-		image360Src.src = image360;
+	function update360(curFrame) {
+		const closestFrame = findClosestFrame(loadedFrameIndexes, curFrame);
+		const image360 = loadedFrames[closestFrame];
+		if (typeof image360 != 'undefined') {
+			image360Src.classList.remove('loader');
+			image360Src.src = image360;
+		}
 		//update input control
 		control360.value = closestFrame;
 	}
@@ -54,10 +61,31 @@ const viewer360 = function(container) {
     return Math.max(0, Math.min(loadedFrameIndexes.length - 1, parseInt(frame, 10)));
 	};
 
+	//preload all 360 images for smoother transition
+	function preloadFrameIndexes(frameIndexesToLoad) {
+		let fetchedAll = 0;
+    frameIndexesToLoad.map(frame => {
+      if( !frames360[frame] ) return [];
+      return frames360[frame];
+    }).forEach(({ src, frame }) => {
+      fetchImageBlob(src, protect((blob) => {
+				const url = URL.createObjectURL(blob);
+				Object.assign( loadedFrames, {
+					[frame]: url
+				});
+				fetchedAll++
+				if (fetchedAll == frames360.length) {
+					update360(curFrame);
+				}
+			}));
+			
+		})
+		
+  };
+
 	//inputs
 	wrapper.addEventListener("wheel", handleMouseWheel.bind(this));
 	control360.addEventListener("input", handleInputChange.bind(this));
-
 	window.addEventListener("mousedown", handleEvents.bind(this));
 	window.addEventListener("mousemove", handleEvents.bind(this));
 	window.addEventListener("mouseup", handleEvents.bind(this));
@@ -73,7 +101,7 @@ const viewer360 = function(container) {
       case "mousedown":
       case "touchstart":
         touchX = pageX;
-				touchFrame = frame;
+				touchFrame = curFrame;
 				break;
 			
 			case "mousemove":
@@ -82,9 +110,9 @@ const viewer360 = function(container) {
 				const delta = frames360.length / Math.min(1000, (wrapper.offsetWidth * 0.8));
 				const diff = (pageX - touchX) * delta;
 				let newFrame = touchFrame + diff;
-				if (frame == newFrame) return;
-				frame = constrainFrame(newFrame);
-				update360(frame);
+				if (curFrame == newFrame) return;
+				curFrame = constrainFrame(newFrame);
+				update360(curFrame);
 				break;
 			
 			case "touchend":
@@ -96,17 +124,14 @@ const viewer360 = function(container) {
 			
 			default:
 				return;
-
 		}
-		
 	}
 	
 	function handleInputChange(e) {
-		frame = constrainFrame(e.target.value);
-		update360(frame);
+		curFrame = constrainFrame(e.target.value);
+		update360(curFrame);
 	};
 	
-
 	function handleMouseWheel(e) {
 		e.preventDefault();
     //if (this.state.touchX !== null) return;
@@ -116,13 +141,13 @@ const viewer360 = function(container) {
     } else {
       dir = Math.sign(e.deltaX);
 		}
-		let newFrame = frame + dir;
-		frame = constrainFrame(newFrame);
-		update360(frame);
+		let newFrame = curFrame + dir;
+		curFrame = constrainFrame(newFrame);
+		update360(curFrame);
 	}
 
 	function _init() {
-		update360(frame);
+		preloadFrameIndexes(loadedFrameIndexes);
 	}  
 
 	this.init = function() {
