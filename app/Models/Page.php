@@ -49,11 +49,15 @@ class Page extends AbstractModel
         'home_plan_your_visit_link_3_text',
         'home_plan_your_visit_link_3_url',
 
-        'home_cta_module_url',
+        'home_cta_module_action_url',
         'home_cta_module_image',
-        'home_cta_module_headline',
-        'home_cta_module_short_copy',
+        'home_cta_module_header',
+        'home_cta_module_body',
         'home_cta_module_button_text',
+        'home_cta_module_variation',
+        'home_cta_module_form_id',
+        'home_cta_module_form_token',
+        'home_cta_module_form_tlc_source',
 
         'home_video_title',
         'home_video_description',

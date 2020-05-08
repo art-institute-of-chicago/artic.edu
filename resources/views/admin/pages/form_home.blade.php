@@ -57,13 +57,16 @@
         ])
 
         @formField('input', [
-            'name' => 'home_cta_module_headline',
-            'label' => 'Headline',
+            'name' => 'home_cta_module_header',
+            'label' => 'Header',
         ])
 
-        @formField('input', [
-            'name' => 'home_cta_module_short_copy',
-            'label' => 'Short copy',
+        @formField('wysiwyg', [
+            'name' => 'home_cta_module_body',
+            'label' => 'Body',
+            'toolbarOptions' => [
+                'italic'
+            ],
         ])
 
         @formField('input', [
@@ -71,9 +74,58 @@
             'label' => 'Button text',
         ])
 
+        @formField('radios', [
+            'name' => 'variation',
+            'label' => 'Variation',
+            'default' => \App\Models\Lightbox::VARIATION_DEFAULT,
+            'inline' => false,
+            'options' => array_merge([
+                [
+                    'value' => \App\Models\Lightbox::VARIATION_DEFAULT,
+                    'label' => 'Default (button)'
+                ],
+                [
+                    'value' => \App\Models\Lightbox::VARIATION_NEWSLETTER,
+                    'label' => 'Newsletter (button + email input)'
+                ],
+                [
+                    'value' => \App\Models\Lightbox::VARIATION_EMAIL,
+                    'label' => 'Email capture (button + email input)'
+                ],
+            ], app()->environment('production') ? [] : [
+                [
+                'value' => \App\Models\Lightbox::VARIATION_TICKETING,
+                'label' => 'Ticketing (button + date select) (WIP)'
+                ],
+            ]),
+        ])
+
+        <p>If you choose any variation except "Newsletter", you must fill out the "Metadata" fields below. The "Newsletter" variation works like the newsletter signup in our footer.</p>
+
+        <hr>
+
         @formField('input', [
-            'name' => 'home_cta_module_url',
-            'label' => 'URL',
+            'name' => 'home_cta_module_action_url',
+            'label' => 'Action URL',
+            'note' => 'e.g. https://join.artic.edu/secure/holiday-annual-fund',
+        ])
+
+        @formField('input', [
+            'name' => 'home_cta_module_form_tlc_source',
+            'label' => 'Form TLC Source',
+            'note' => 'e.g. AIC17137L01',
+        ])
+
+        @formField('input', [
+            'name' => 'home_cta_module_form_token',
+            'label' => 'Form Token',
+            'note' => 'e.g. pa5U17siEjW4suerjWEB5LP7sFJYgAwLZYMS6kNTEag',
+        ])
+
+        @formField('input', [
+            'name' => 'home_cta_module_form_id',
+            'label' => 'Form ID',
+            'note' => 'e.g. webform_client_form_5111',
         ])
     </a17-fieldset>
 

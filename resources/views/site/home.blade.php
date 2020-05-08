@@ -170,9 +170,9 @@
 
 @component('components.molecules._m-cta-banner----become-a-member')
     @slot('image', $cta_module_image)
-    @slot('href', $cta_module_url)
-    @slot('headline', $cta_module_headline)
-    @slot('short_copy', $cta_module_short_copy)
+    @slot('href', $cta_module_action_url)
+    @slot('header', $cta_module_header)
+    @slot('body', $cta_module_body)
     @slot('button_text', $cta_module_button_text)
     @slot('gtmAttributes', 'data-gtm-event="'. $cta_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
 @endcomponent
