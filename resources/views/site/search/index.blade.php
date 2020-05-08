@@ -31,7 +31,7 @@
     @endcomponent
 @endif
 
-@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($interactiveFeatures))
+@if (empty($featuredResults) && empty($artists) && empty($researchGuides) && empty($pressReleases) && empty($pages) && empty($press) && empty($publications) && empty($artworks) && empty($exhibitions) && empty($events) && empty($articles) && empty($interactiveFeatures) && empty($highlights))
     @component('components.molecules._m-no-results')
     @endcomponent
 @endif
@@ -304,6 +304,81 @@
         {!! $artworks->appends(request()->input())->links() !!}
     @endif
 
+@endif
+
+@if (isset($highlights) && $highlights->getMetadata('pagination')->total > 0)
+    @component('components.molecules._m-title-bar')
+        @unless ($allResultsView)
+            @slot('links', array(array('label' => 'See all '. $highlights->getMetadata('pagination')->total. ' '. Str::plural('highlight', $articles->getMetadata('pagination')->total), 'href' => route('search.highlights', ['q' => request('q')]))))
+        @endunless
+        Highlights
+    @endcomponent
+
+    @if (isset($allResultsView) && $allResultsView)
+
+        @component('components.organisms._o-grid-listing')
+          @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+          @slot('cols_small','2')
+          @slot('cols_medium','3')
+          @slot('cols_large','4')
+          @slot('cols_xlarge','4')
+          @foreach ($highlights as $item)
+              @component('components.molecules._m-listing----article')
+                  @slot('imgVariation','')
+                  @slot('item', $item)
+                  @slot('imageSettings', array(
+                      'fit' => 'crop',
+                      'ratio' => '16:9',
+                      'srcset' => array(200,400,600),
+                      'sizes' => aic_gridListingImageSizes(array(
+                            'xsmall' => '1',
+                            'small' => '2',
+                            'medium' => '3',
+                            'large' => '4',
+                            'xlarge' => '4',
+                      )),
+                  ))
+              @endcomponent
+          @endforeach
+        @endcomponent
+
+    @else
+
+        @component('components.atoms._hr')
+        @endcomponent
+
+        @component('components.organisms._o-grid-listing')
+            @slot('variation', 'o-grid-listing--single-row o-grid-listing--scroll@xsmall o-grid-listing--scroll@small o-grid-listing--scroll@medium o-grid-listing--gridlines-cols')
+            @slot('cols_medium','3')
+            @slot('cols_large','4')
+            @slot('cols_xlarge','4')
+
+            @foreach ($highlights as $item)
+                @component('components.molecules._m-listing----article')
+                    @slot('imgVariation','')
+                    @slot('item', $item)
+                    @slot('imageSettings', array(
+                        'fit' => 'crop',
+                        'ratio' => '16:9',
+                        'srcset' => array(200,400,600),
+                        'sizes' => aic_imageSizes(array(
+                              'xsmall' => '216px',
+                              'small' => '216px',
+                              'medium' => '18',
+                              'large' => '13',
+                              'xlarge' => '13',
+                        )),
+                    ))
+                @endcomponent
+            @endforeach
+        @endcomponent
+
+    @endif
+
+    @if (isset($allResultsView) && $allResultsView)
+        {{-- Pagination --}}
+        {!! $highlights->appends(request()->except('page'))->render() !!}
+    @endif
 @endif
 
 @if (isset($exhibitions))

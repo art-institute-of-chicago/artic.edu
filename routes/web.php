@@ -68,6 +68,7 @@ Route::name('search.exhibitions')->get('/search/exhibitions', 'SearchController@
 if (!app()->environment('production')) {
     Route::name('search.interactive-features')->get('/search/interactive-features', 'SearchController@interactiveFeatures');
 }
+Route::name('search.highlights')->get('/search/highlights', 'SearchController@highlights');
 
 // Events routes
 Route::name('events')->get('/events', 'EventsController@index');

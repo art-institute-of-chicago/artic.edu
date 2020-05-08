@@ -116,6 +116,11 @@ class Selection extends AbstractModel
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
     }
 
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
+    }
+
     public function artworks($perPage = 20)
     {
         return Search::query()

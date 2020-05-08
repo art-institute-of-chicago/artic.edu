@@ -14,7 +14,9 @@ use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 
-class SelectionRepository extends ModuleRepository
+use App\Repositories\Api\BaseApiRepository;
+
+class SelectionRepository extends BaseApiRepository
 {
 
     use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations, HandleFeaturedRelated {
@@ -49,4 +51,12 @@ class SelectionRepository extends ModuleRepository
         ];
     }
 
+    public function searchApi($string, $perPage = null)
+    {
+        $search  = Search::query()->search($string)->published()->resources(['selections']);
+
+        $results = $search->getSearch($perPage);
+
+        return $results;
+    }
 }
