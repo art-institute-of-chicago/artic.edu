@@ -13,6 +13,7 @@ class SelectionController extends ModuleController
 
     protected $indexOptions = [
         'permalink' => true,
+        'reorder' => true,
     ];
 
     protected $indexColumns = [
