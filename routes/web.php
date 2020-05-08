@@ -119,6 +119,7 @@ Route::name('departments.show')->get('/departments/{id}/{slug?}', 'DepartmentCon
 
 // Selections
 Route::name('selections.show')->get('/highlights/{id}/{slug?}', 'SelectionsController@show');
+Route::name('selections.index')->get('/highlights', 'SelectionsController@index');
 
 // About
 Route::name('about.press')->get('/press/press-releases', 'PressReleasesController@index');
