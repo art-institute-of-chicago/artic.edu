@@ -425,6 +425,7 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'articles')) {
             array_push($links, $this->buildLabel('Articles', extractAggregation($aggregations, 'articles'), route('search.articles', ['q' => request('q')]), $active == 'articles'));
         }
+        array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
         if (extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs'])) {
             array_push($links, $this->buildLabel('Publications', extractAggregation($aggregations, ['digital-catalogs', 'printed-catalogs']), route('search.publications', ['q' => request('q')]), $active == 'publications'));
         }
@@ -434,7 +435,6 @@ class SearchController extends BaseScopedController
         if (extractAggregation($aggregations, 'press-releases')) {
             array_push($links, $this->buildLabel('Press Releases', extractAggregation($aggregations, 'press-releases'), route('search.press-releases', ['q' => request('q')]), $active == 'press-releases'));
         }
-        array_push($links, $this->buildLabel('Interactive Features', $all->total(), route('search.interactive-features', ['q' => request('q')]), $active == 'interactive-features'));
 
         return $links;
     }
