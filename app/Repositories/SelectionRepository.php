@@ -16,7 +16,7 @@ use App\Repositories\Behaviors\HandleFeaturedRelated;
 
 use App\Repositories\Api\BaseApiRepository;
 
-class SelectionRepository extends BaseApiRepository
+class SelectionRepository extends ModuleRepository
 {
 
     use HandleSlugs, HandleRevisions, HandleMedias, HandleBlocks, HandleApiBlocks, HandleApiRelations, HandleFeaturedRelated {
