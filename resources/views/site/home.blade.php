@@ -291,6 +291,11 @@
     @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title .'"  data-gtm-event-category="nav-link"')))
 @endcomponent
 
+@if ($experiences->count() > 0)
+    @component('site.articles_publications._interactiveFeature')
+        @slot('experiences', $experiences)
+    @endcomponent
+@endif
 
 @if ($products->count() > 0)
     @component('site.shared._featuredProducts')

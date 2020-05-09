@@ -60,6 +60,7 @@ class HomeController extends FrontController
             'highlights' => $page->getRelated('homeHighlights')->where('published', true),
             'artists' => $page->apiModels('homeArtists', 'Artist'),
             'articles' => $this->getArticles(),
+            'experiences' => $this->getExperiences(),
         ];
 
         return view('site.home', $view_data);
@@ -77,6 +78,13 @@ class HomeController extends FrontController
             'featureHero' => $articles->shift(),
             'features' => $articles,
         ];
+    }
+
+    private function getExperiences()
+    {
+        $page = Page::forType('Articles and Publications')->first();
+
+        return $page->experiences()->webPublished()->get();
     }
 
     private function getLightboxes()
