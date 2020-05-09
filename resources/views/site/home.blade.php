@@ -47,12 +47,12 @@
 
 @if ($videos->count() > 0)
     @component('components.organisms._o-gallery----slider')
-        @slot('variation', 'o-blocks__block o-gallery----theme-2')
+        @slot('variation', 'o-gallery----theme-2')
         @slot('title', $video_title ?? 'Videos')
         @slot('caption', $video_description ?? null)
         @slot('allLink', null);
         @slot('imageSettings', array(
-            'srcset' => array(200,400,600,1000,1500,3000,4500),
+            'srcset' => array(200,400,600,1000,1500,3000),
             'sizes' => aic_imageSizes(array(
                   'xsmall' => '50',
                   'small' => '35',
@@ -209,6 +209,38 @@
                 @slot('gtmAttributes', 'data-gtm-event="' . $item->type . '-' . $item->id . '-' . $item->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="highlight-listing-' . ($loop->index + 1) . '"')
             @endcomponent
         @endforeach
+    @endcomponent
+@endif
+
+
+@if ($artists->count() > 0)
+    @component('components.organisms._o-gallery----slider')
+        @slot('variation', 'o-gallery----theme-2 o-gallery--artist')
+        @slot('title', 'Explore by Maker')
+        @slot('caption', null)
+        @slot('allLink', null);
+        @slot('imageSettings', array(
+            'fit' => 'crop',
+            'ratio' => '3:4',
+            'srcset' => array(200,400,600,1000,1500,3000),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '42',
+                  'small' => '23',
+                  'medium' => '12',
+                  'large' => '12',
+                  'xlarge' => '12',
+            )),
+        ))
+        @slot('items', $artists->filter(function($item) {
+            return ($item->imageFront('carousel') ?? $item->imageFront('hero')) !== null;
+        })->map(function($item) {
+            return [
+                'type' => 'image',
+                'size' => 'gallery',
+                'media' => $item->imageFront('carousel') ?? $item->imageFront('hero'),
+                'captionTitle' => $item->short_name_display,
+            ];
+        }))
     @endcomponent
 @endif
 

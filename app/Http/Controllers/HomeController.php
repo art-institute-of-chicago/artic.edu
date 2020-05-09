@@ -58,6 +58,7 @@ class HomeController extends FrontController
             'video_description' => $page->home_video_description,
             'videos' => $page->getRelated('homeVideos')->where('published', true),
             'highlights' => $page->getRelated('homeHighlights')->where('published', true),
+            'artists' => $page->apiModels('homeArtists', 'Artist'),
             'articles' => $this->getArticles(),
         ];
 

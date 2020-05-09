@@ -4,6 +4,16 @@
   background-color: $color__bg--gallery;
   color: $color__text--contrast;
   transform: translateZ(0);
+
+  margin-top: 48px;
+
+  @include breakpoint('small+') {
+    margin-top: 60px;
+  }
+
+  @include breakpoint('large+') {
+    margin-top: 72px;
+  }
 }
 
 .o-gallery__title {
@@ -455,7 +465,7 @@
 
     @include breakpoint('xlarge') {
       flex: 0 0 auto;
-      width: colspan(18, xlarge);
+      max-width: colspan(18, xlarge);
       margin-left: colspan(1, xlarge);
     }
   }
@@ -606,5 +616,50 @@
   hr,
   .hr {
     border-top-color: $color__rules--secondary;
+  }
+}
+
+/**
+ *  For the artist carousel on the homepage.
+ */
+.o-gallery--artist {
+  .m-media {
+    position: relative;
+    .m-media__img {
+      background-color: black;
+      img {
+        opacity: 0.9;
+      }
+    }
+    figcaption {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      transform: translateY(-50%);
+      text-align: center;
+      padding: 0 20px;
+      margin-top: 0;
+      z-index: 2;
+      .f-caption {
+        color: white;
+        text-shadow: 0 0 1px black;
+        @include untuck;
+        @include font-styles-untuck(generate-font-obj(
+          (
+            font-family: $serif-font,
+            font-family-loaded: $serif-font--loaded,
+            font-loaded-class: $serif-font-loaded-class,
+            settings: (
+              'xsmall': (font-size: 16, line-height: 19, text-transform: 'uppercase', letter-spacing: 0.1em, push: 0),
+              'small+': (font-size: 27, line-height: 31, push: -2),
+              'medium+': (font-size: 30, line-height: 36, push: -1),
+              'large+': (font-size: 36, line-height: 42, push: -1)
+            )
+          )
+        ));
+        font-feature-settings: 'lnum' on;
+      }
+    }
   }
 }

@@ -38,6 +38,14 @@ class Artist extends AbstractModel
                 ],
             ],
         ],
+        'carousel' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 3 / 4,
+                ],
+            ],
+        ],
     ];
 
     public function featuredArtworks()
