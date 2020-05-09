@@ -15,6 +15,11 @@ trait HasAugmentedModel
         $this->augmented      = true;
     }
 
+    public function getAugmentedModelClass()
+    {
+        return $this->augmentedModelClass;
+    }
+
     public function getAugmentedModel()
     {
         if (!$this->augmented) {

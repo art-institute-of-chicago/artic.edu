@@ -1,4 +1,5 @@
 <div class="o-gallery o-gallery--slider{{ (isset($variation)) ? ' '.$variation : '' }}{{ empty($title) ? ' o-gallery----headerless' : '' }}">
+    <div class="clearfix"></div>
     @if (!empty($title))
         <h3 class="o-gallery__title f-module-title-2">{!! $title !!}</h3>
     @endif
@@ -15,7 +16,8 @@
             @component('components.atoms._hr')
             @endcomponent
             @component('components.blocks._text')
-                @slot('font','f-caption')
+                @slot('font', 'f-caption')
+                @slot('tag', 'div')
                 {!! $caption !!}
             @endcomponent
         </div>

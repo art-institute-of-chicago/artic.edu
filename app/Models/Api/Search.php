@@ -30,6 +30,7 @@ class Search extends BaseApiModel
         'generic-pages'       => 'App\Models\GenericPage',
         'educator-resources'  => 'App\Models\EducatorResource',
         'press-releases'      => 'App\Models\PressRelease',
+        'selections'          => 'App\Models\Selection',
     ];
 
     // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).

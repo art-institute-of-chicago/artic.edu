@@ -223,26 +223,17 @@
     </div>
     @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>
-        @if ($size == 'gallery')
-            @if (isset($item['captionTitle']))
+        @if (isset($item['captionTitle']))
+            <div class="{{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}">
                 @if(isset($item['urlTitle']) && $item['urlTitle'])
-                    <div class="f-caption"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></div> <br>
+                    <a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a>
                 @else
-                    <div class="f-caption">{!! $item['captionTitle'] !!}</div> <br>
+                    {!! $item['captionTitle'] !!}
                 @endif
-            @endif
-            @if (isset($item['caption']))<div class="f-caption">{!! $item['caption'] !!}</div>@endif
-        @else
-            @if (isset($item['captionTitle']))
-                @if(isset($item['urlTitle']) && $item['urlTitle'])
-                    <div class="f-caption-title"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></div> <br>
-                @else
-                    <div class="f-caption-title">{!! $item['captionTitle'] !!}</div> <br>
-                @endif
-            @endif
-            @if (isset($item['caption']))
-                <div class="f-caption">{!! $item['caption'] !!}</div>
-            @endif
+            </div> <br>
+        @endif
+        @if (isset($item['caption']))
+            <div class="f-caption">{!! $item['caption'] !!}</div>
         @endif
     </figcaption>
     @endif

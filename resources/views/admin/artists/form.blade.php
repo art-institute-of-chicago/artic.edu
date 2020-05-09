@@ -40,6 +40,24 @@
 
 @section('fieldsets')
     <a17-fieldset id="related" title="Related">
+        <p>These fields will be used for the homepage carousel.</p>
+
+        @formField('medias', [
+            'with_multiple' => false,
+            'no_crop' => false,
+            'label' => 'Carousel Image',
+            'name' => 'carousel',
+            'note' => 'If left blank, hero image will be used instead',
+        ])
+
+        @formField('input', [
+            'name' => 'short_name_display',
+            'label' => 'Short name',
+            'note' => 'Override default of "' .$item->getApiModelFilledCached()->short_name . '"',
+        ])
+    </a17-fieldset>
+
+    <a17-fieldset id="related" title="Related">
 
         <p>Use "Custom related items" to relate as many items as possible. No more than 12 will be shown on the artist's detail page, but all of them will be used to augment search. See special note on exhibitions below.</p>
 

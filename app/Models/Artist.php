@@ -22,6 +22,7 @@ class Artist extends AbstractModel
         'caption',
         'meta_title',
         'meta_description',
+        'short_name_display',
     ];
 
     public $slugAttributes = [
@@ -34,6 +35,14 @@ class Artist extends AbstractModel
                 [
                     'name' => 'default',
                     'ratio' => 'default',
+                ],
+            ],
+        ],
+        'carousel' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 3 / 4,
                 ],
             ],
         ],

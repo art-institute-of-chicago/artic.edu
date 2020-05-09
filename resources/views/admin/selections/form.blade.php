@@ -36,6 +36,13 @@
 
     @include('admin.partials.hero')
 
+    @formField('select', [
+        'name' => 'highlight_type',
+        'label' => 'Type',
+        'options' => $highlightTypeList,
+        'placeholder' => 'Select a type',
+    ])
+
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'gallery', 'video', 'media_embed',

@@ -14,6 +14,8 @@ use App\Repositories\Behaviors\HandleApiRelations;
 use App\Repositories\Behaviors\HandleApiBlocks;
 use App\Repositories\Behaviors\HandleFeaturedRelated;
 
+use App\Repositories\Api\BaseApiRepository;
+
 class SelectionRepository extends ModuleRepository
 {
 
@@ -24,6 +26,10 @@ class SelectionRepository extends ModuleRepository
     public function __construct(Selection $model)
     {
         $this->model = $model;
+    }
+
+    public function getHighlightTypeList() {
+        return collect($this->model::$highlightTypes);
     }
 
     public function hydrate($object, $fields)
@@ -49,4 +55,12 @@ class SelectionRepository extends ModuleRepository
         ];
     }
 
+    public function searchApi($string, $perPage = null)
+    {
+        $search  = Search::query()->search($string)->published()->resources(['selections']);
+
+        $results = $search->getSearch($perPage);
+
+        return $results;
+    }
 }

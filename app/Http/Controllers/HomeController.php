@@ -17,8 +17,10 @@ class HomeController extends FrontController
 
         $page = Page::forType('Home')->first();
 
-        $exhibitions = $page->apiModels('homeExhibitions', 'Exhibition');
-        $products    = $page->apiModels('homeShopItems', 'ShopItem');
+        $exhibitions  = $page->apiModels('homeExhibitions', 'Exhibition');
+        $products     = $page->apiModels('homeShopItems', 'ShopItem');
+        $homeArtworks = $page->apiModels('homeArtworks', 'Artwork');
+
         $events      = $page->homeEvents()->future()->published()->limit(4)->get();
 
         $mainHomeFeatures       = $page->mainHomeFeatures()->published()->limit(1)->get();
@@ -30,8 +32,6 @@ class HomeController extends FrontController
         if ($mainFeatures->count() < 1) {
             $mainFeatures = $page->homeFeatures()->published()->limit(3)->get();
         }
-
-        $collectionFeatures = $page->collectionFeatures()->published()->get();
 
         $view_data = [
             'contrastHeader' => sizeof($mainFeatures) > 0,
@@ -46,17 +46,45 @@ class HomeController extends FrontController
             'plan_your_visit_link_3_url' => $page->home_plan_your_visit_link_3_url,
             'exhibitions' => $exhibitions,
             'events' => $events,
-            'theCollection' => $collectionFeatures,
+            'artworks' => $homeArtworks,
             'products' => $products,
-            'membership_module_image' => $page->imageFront('home_membership_module_image'),
-            'membership_module_url' => $page->home_membership_module_url,
-            'membership_module_headline' =>  $page->home_membership_module_headline,
-            'membership_module_button_text' => $page->home_membership_module_button_text,
-            'membership_module_short_copy' => $page->home_membership_module_short_copy,
+            'cta_module_image' => $page->imageFront('home_cta_module_image'),
+            'cta_module_action_url' => $page->home_cta_module_action_url,
+            'cta_module_header' =>  $page->home_cta_module_header,
+            'cta_module_button_text' => $page->home_cta_module_button_text,
+            'cta_module_body' => $page->home_cta_module_body,
             'roadblocks' => $this->getLightboxes(),
+            'video_title' => $page->home_video_title,
+            'video_description' => $page->home_video_description,
+            'videos' => $page->getRelated('homeVideos')->where('published', true),
+            'highlights' => $page->getRelated('homeHighlights')->where('published', true),
+            'artists' => $page->apiModels('homeArtists', 'Artist'),
+            'articles' => $this->getArticles(),
+            'experiences' => $this->getExperiences(),
         ];
 
         return view('site.home', $view_data);
+    }
+
+    private function getArticles()
+    {
+        $page = Page::forType('Articles and Publications')->first();
+        $articles = $page->getRelatedWithApiModels("featured_items", [], [
+            'articles' => false,
+            'interactiveFeatures.experiences' => false
+        ]) ?? null;
+
+        return [
+            'featureHero' => $articles->shift(),
+            'features' => $articles,
+        ];
+    }
+
+    private function getExperiences()
+    {
+        $page = Page::forType('Articles and Publications')->first();
+
+        return $page->experiences()->webPublished()->get();
     }
 
     private function getLightboxes()

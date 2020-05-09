@@ -15,11 +15,6 @@ $nav = [
                 'module' => true,
             ],
 
-            'collectionFeatures' => [
-                'title' => 'Collection Features',
-                'module' => true,
-            ],
-
             'lightboxes' => [
                 'title' => 'Lightboxes',
                 'module' => true,
