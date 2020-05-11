@@ -196,9 +196,9 @@
     position: relative;
   }
 
-  .loader {
-    top: 50%;
-    position: absolute;
+  .m-viewer-360-image {
+    opacity: 0;
+    transition: opacity .35s;
   }
 
   .g-modal__content {
@@ -230,6 +230,8 @@
   }
 
   .m-viewer-360-control {
+    opacity: 0;
+    transition: opacity .35s;
     background: rgba(#1a1a1a, 0.5);
     position: absolute;
     bottom: 20px;

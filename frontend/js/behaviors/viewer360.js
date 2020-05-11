@@ -12,7 +12,8 @@ const viewer360 = function(container) {
 	let windowHeight = window.innerHeight;
 	let isLarge = windowWidth >= 900;
 	let image360Src = wrapper.querySelector('.m-viewer-360-image');
-	let control360 = wrapper.querySelector('.m-viewer-360-control .input360');
+	let control360 = wrapper.querySelector('.m-viewer-360-control');
+	let input360 = wrapper.querySelector('.m-viewer-360-control .input360');
 	let loadedFrames = {};
 	let protect = protectFromUnmount();
 
@@ -32,18 +33,20 @@ const viewer360 = function(container) {
 	
 	//store indexes of frames
 	const loadedFrameIndexes = Object.keys(frames360).map(k => parseInt(k));
-	control360.setAttribute('max', frames360.length-1);
+	input360.setAttribute('max', frames360.length-1);
 
 	//get index to find image to show
 	function update360(curFrame) {
 		const closestFrame = findClosestFrame(loadedFrameIndexes, curFrame);
 		const image360 = loadedFrames[closestFrame];
 		if (typeof image360 != 'undefined') {
-			image360Src.classList.remove('loader');
+			wrapper.classList.remove('loader');
+			image360Src.style.opacity = 1;
 			image360Src.src = image360;
+			control360.style.opacity = 1;
 		}
 		//update input control
-		control360.value = closestFrame;
+		input360.value = closestFrame;
 	}
 
 	//find closest frame based on input
@@ -85,7 +88,7 @@ const viewer360 = function(container) {
 
 	//inputs
 	wrapper.addEventListener("wheel", handleMouseWheel.bind(this));
-	control360.addEventListener("input", handleInputChange.bind(this));
+	input360.addEventListener("input", handleInputChange.bind(this));
 	window.addEventListener("mousedown", handleEvents.bind(this));
 	window.addEventListener("mousemove", handleEvents.bind(this));
 	window.addEventListener("mouseup", handleEvents.bind(this));
