@@ -69,7 +69,9 @@ class BaseApiController extends ModuleController
 
         // WEB-1187: Fix the edit link
         $results = array_map(function($result) {
-            $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $result['id']);
+            if (moduleRouteExists($this->moduleName, $this->routePrefix, 'augment')) {
+                $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $result['id']);
+            }
             return $result;
         }, $results);
 

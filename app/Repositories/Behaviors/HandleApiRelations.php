@@ -120,7 +120,9 @@ trait HandleApiRelations
                 }
             } else {
                 // WEB-1187: This is reached after page refresh, if the model hasn't been augmented
-                $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'augment', $apiElement->id);
+                if (moduleRouteExists($moduleName ?? $relation, $routePrefix ?? '', 'augment')) {
+                    $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'augment', $apiElement->id);
+                }
 
                 if (classHasTrait($apiElement->getAugmentedModelClass(), \App\Models\Behaviors\HasMedias::class)) {
                     $data['thumbnail'] = ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100]);
