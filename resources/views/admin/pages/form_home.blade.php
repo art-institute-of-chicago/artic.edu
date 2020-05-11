@@ -193,16 +193,6 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset title="Interactive Features" id="interactive-features">
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'max' => 10,
-            'moduleName' => 'interactiveFeatures.experiences',
-            'name' => 'homeExperiences',
-            'label' => 'Interactive Features'
-        ])
-    </a17-fieldset>
-
     <a17-fieldset title="From the Shop" id="from-the-shop">
         @formField('browser', [
             'routePrefix' => 'general',
