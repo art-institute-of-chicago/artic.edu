@@ -66,6 +66,30 @@ if ($maxZoomWindowSize >= 843) {
             @endcomponent
         </li>
         @endif
+
+        @if(isset($module360) && $module360)
+        <li data-type="module360"
+        @if(!isset($isPublicDomain) || !$isPublicDomain)
+          data-restricted="true"
+        @endif
+        >
+            @component('components.atoms._btn')
+              @slot('variation', 'btn--septenary btn--icon-sq')
+              @slot('font', '')
+              @slot('icon', 'icon--view360')
+              @slot('dataAttributes', 'data-gallery-module360')
+              @slot('behavior', 'triggerMediaModal')
+              @slot('ariaLabel', '360 Viewer')
+              @slot('gtmAttributes', 'data-gtm-event="360-open-modal" data-gtm-event-action="' . $title . '" data-gtm-event-category="in-page"')
+            @endcomponent
+            <textarea style="display: none;">@component('components.molecules._m-viewer-360')
+              @slot('type', 'modal')
+              @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
+              @slot('title', $title)
+            @endcomponent</textarea>
+        </li>
+        @endif 
+        
         @if(isset($module3d) && $module3d)
         <li data-type="module3d"
         @if(!isset($isPublicDomain) || !$isPublicDomain)
@@ -87,28 +111,6 @@ if ($maxZoomWindowSize >= 843) {
               @slot('annotations', $module3d->annotation_list)
               @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
               @slot('guided', $module3d->guided_tour)
-              @slot('title', $title)
-            @endcomponent</textarea>
-        </li>
-        @endif 
-        @if(isset($module360) && $module360)
-        <li data-type="module360"
-        @if(!isset($isPublicDomain) || !$isPublicDomain)
-          data-restricted="true"
-        @endif
-        >
-            @component('components.atoms._btn')
-              @slot('variation', 'btn--septenary btn--icon-sq')
-              @slot('font', '')
-              @slot('icon', 'icon--view360')
-              @slot('dataAttributes', 'data-gallery-module360')
-              @slot('behavior', 'triggerMediaModal')
-              @slot('ariaLabel', '360 Viewer')
-              @slot('gtmAttributes', 'data-gtm-event="360-open-modal" data-gtm-event-action="' . $title . '" data-gtm-event-category="in-page"')
-            @endcomponent
-            <textarea style="display: none;">@component('components.molecules._m-viewer-360')
-              @slot('type', 'modal')
-              @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
               @slot('title', $title)
             @endcomponent</textarea>
         </li>
