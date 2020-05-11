@@ -83,6 +83,7 @@ if ($maxZoomWindowSize >= 843) {
               @slot('gtmAttributes', 'data-gtm-event="360-open-modal" data-gtm-event-action="' . $title . '" data-gtm-event-category="in-page"')
             @endcomponent
             <textarea style="display: none;">@component('components.molecules._m-viewer-360')
+              @slot('style', $style)
               @slot('type', 'modal')
               @slot('cc', isset($isPublicDomain) ? $isPublicDomain : false)
               @slot('title', $title)
