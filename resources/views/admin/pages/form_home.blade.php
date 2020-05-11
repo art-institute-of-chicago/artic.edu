@@ -25,6 +25,38 @@
 @stop
 
 @section('fieldsets')
+    <a17-fieldset title="Plan your visit" id="plan-your-visit">
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_1_text',
+            'label' => 'First "Plan your visit" link text',
+        ])
+
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_1_url',
+            'label' => 'First "Plan your visit" link URL',
+        ])
+
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_2_text',
+            'label' => 'Second "Plan your visit" link text',
+        ])
+
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_2_url',
+            'label' => 'Second "Plan your visit" link URL',
+        ])
+
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_3_text',
+            'label' => 'Third "Plan your visit" link text',
+        ])
+
+        @formField('input', [
+            'name' => 'home_plan_your_visit_link_3_url',
+            'label' => 'Third "Plan your visit" link URL',
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="Video carousel" id="video-carousel">
 
         @formField('input', [
@@ -151,6 +183,16 @@
         ])
     </a17-fieldset>
 
+    <a17-fieldset title="From the Collection" id="from-the-collection">
+        @formField('browser', [
+            'routePrefix' => 'collection',
+            'max' => 20,
+            'moduleName' => 'artworks',
+            'name' => 'homeArtworks',
+            'label' => 'Artworks'
+        ])
+    </a17-fieldset>
+
     <a17-fieldset title="Interactive Features" id="interactive-features">
         @formField('browser', [
             'routePrefix' => 'collection',
@@ -161,35 +203,14 @@
         ])
     </a17-fieldset>
 
-    <a17-fieldset title="Plan your visit" id="plan-your-visit">
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_1_text',
-            'label' => 'First "Plan your visit" link text',
-        ])
-
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_1_url',
-            'label' => 'First "Plan your visit" link URL',
-        ])
-
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_2_text',
-            'label' => 'Second "Plan your visit" link text',
-        ])
-
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_2_url',
-            'label' => 'Second "Plan your visit" link URL',
-        ])
-
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_3_text',
-            'label' => 'Third "Plan your visit" link text',
-        ])
-
-        @formField('input', [
-            'name' => 'home_plan_your_visit_link_3_url',
-            'label' => 'Third "Plan your visit" link URL',
+    <a17-fieldset title="From the Shop" id="from-the-shop">
+        @formField('browser', [
+            'routePrefix' => 'general',
+            'max' => 5,
+            'moduleName' => 'shopItems',
+            'name' => 'homeShopItems',
+            'label' => 'Featured shop items',
+            'note' => 'Select up to 5 shop items you want to feature on the homepage'
         ])
     </a17-fieldset>
 
@@ -209,27 +230,6 @@
             'name' => 'homeEvents',
             'label' => 'Featured events',
             'note' => 'Select up to 10 events you want to feature on the homepage'
-        ])
-    </a17-fieldset>
-
-    <a17-fieldset title="From the Collection" id="from-the-collection">
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'max' => 20,
-            'moduleName' => 'artworks',
-            'name' => 'homeArtworks',
-            'label' => 'Artworks'
-        ])
-    </a17-fieldset>
-
-    <a17-fieldset title="From the Shop" id="from-the-shop">
-        @formField('browser', [
-            'routePrefix' => 'general',
-            'max' => 5,
-            'moduleName' => 'shopItems',
-            'name' => 'homeShopItems',
-            'label' => 'Featured shop items',
-            'note' => 'Select up to 5 shop items you want to feature on the homepage'
         ])
     </a17-fieldset>
 @stop
