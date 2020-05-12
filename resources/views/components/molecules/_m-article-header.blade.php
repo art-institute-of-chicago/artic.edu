@@ -75,6 +75,7 @@
         @slot('maxZoomWindowSize', $maxZoomWindowSize ?? null)
         @slot('prevNextObject', $prevNextObject ?? null)
         @slot('module3d', $module3d ?? null)
+        @slot('module360', $module360 ?? null)
     @endcomponent
 @else
     {{-- Default header --}}

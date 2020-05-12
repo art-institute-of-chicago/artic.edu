@@ -20,6 +20,11 @@ const modals = function() {
     } else {
       $modal.classList.remove('g-modal--module3d');
     }
+    if (e.data.module360) {
+      $modal.classList.add('g-modal--module360');
+    } else {
+      $modal.classList.remove('g-modal--module360');
+    }
     if (embedCode) {
       $modal.classList.add('g-modal--media');
       if (e.data.subtype) {

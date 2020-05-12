@@ -52,6 +52,14 @@
 
         <p>This checkbox is meant as a fail-safe. If for some reason, you see missing tiles when you zoom and pan around the deep-zoom viewer, check this option and re-publish. There's no need to use it under normal circumstances. Please note that it may take up to 10 minutes to generate tiles.</p>
     </a17-fieldset>
+    
+    <a17-fieldset id="360file" title="360 File">
+        @formField('files', [
+            'name' => 'image_sequence_file',
+            'label' => 'Image Sequence Zip',
+            'note' => 'Upload a .zip file'
+        ])
+    </a17-fieldset>
 @stop
 
 @push('vuexStore')
