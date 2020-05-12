@@ -41,10 +41,12 @@
                             );
                         }
                     @endphp
-                    @component('components.molecules._m-media')
-                        @slot('item', $item)
-                        @slot('imageSettings', $currentImageSettings ?? '')
-                    @endcomponent
+                    <a href="{!! $item['href'] !!}">
+                        @component('components.molecules._m-media')
+                            @slot('item', $item)
+                            @slot('imageSettings', $currentImageSettings ?? '')
+                        @endcomponent
+                    </a>
                 @endforeach
             @endif
         </div>
