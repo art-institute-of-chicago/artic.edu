@@ -7,7 +7,7 @@ const viewer360 = function(container) {
 	let wrapper = container;
 	let curFrame = 0;
 	let touchX = null;
-	let touchFrame = null;
+	let touchFrame = 0;
 	let windowWidth = window.innerWidth;
 	let windowHeight = window.innerHeight;
 	let isLarge = windowWidth >= 900;
@@ -47,6 +47,7 @@ const viewer360 = function(container) {
 		}
 		//update input control
 		input360.value = closestFrame;
+		input360.setAttribute('value', closestFrame);
 	}
 
 	//find closest frame based on input
@@ -88,7 +89,6 @@ const viewer360 = function(container) {
 
 	//inputs
 	wrapper.addEventListener("wheel", handleMouseWheel.bind(this));
-	input360.addEventListener("input", handleInputChange.bind(this));
 	window.addEventListener("mousedown", handleEvents.bind(this));
 	window.addEventListener("mousemove", handleEvents.bind(this));
 	window.addEventListener("mouseup", handleEvents.bind(this));
@@ -103,18 +103,18 @@ const viewer360 = function(container) {
 		switch (e.type) {
       case "mousedown":
       case "touchstart":
-        touchX = pageX;
+				touchX = pageX;
 				touchFrame = curFrame;
 				break;
 			
 			case "mousemove":
 			case "touchmove":
 				if (touchX === null) return;
-				const delta = frames360.length / Math.min(1000, (wrapper.offsetWidth * 0.8));
+				const delta = frames360.length / Math.min(1000, (control360.offsetWidth * 0.8));
 				const diff = (pageX - touchX) * delta;
-				let newFrame = touchFrame + diff;
+				let newFrame = constrainFrame(touchFrame + diff);
 				if (curFrame == newFrame) return;
-				curFrame = constrainFrame(newFrame);
+				curFrame = newFrame;
 				update360(curFrame);
 				break;
 			
@@ -129,11 +129,6 @@ const viewer360 = function(container) {
 				return;
 		}
 	}
-	
-	function handleInputChange(e) {
-		curFrame = constrainFrame(e.target.value);
-		update360(curFrame);
-	};
 	
 	function handleMouseWheel(e) {
 		e.preventDefault();
