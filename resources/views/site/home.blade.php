@@ -215,8 +215,7 @@
     @endcomponent
 @endif
 
-
-@if ($artists->count() > 0)
+@if ($homeArtists->count() > 0)
     @component('components.organisms._o-gallery----slider')
         @slot('variation', 'o-gallery----theme-2 o-gallery--artist')
         @slot('title', 'Explore by Maker')
@@ -234,14 +233,17 @@
                   'xlarge' => '12',
             )),
         ))
-        @slot('items', $artists->filter(function($item) {
-            return ($item->imageFront('carousel') ?? $item->imageFront('hero')) !== null;
+        @slot('items', $homeArtists->filter(function($item) {
+            $artist = $item->apiModels('artists', 'Artist')->first();
+            return ($item->imageFront('artist_image') ?? $artist->imageFront('hero')) !== null;
         })->map(function($item) {
+            $artist = $item->apiModels('artists', 'Artist')->first();
             return [
                 'type' => 'image',
                 'size' => 'gallery',
-                'media' => $item->imageFront('carousel') ?? $item->imageFront('hero'),
-                'captionTitle' => $item->short_name_display,
+                'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
+                'captionTitle' => $artist->short_name_display,
+                'href' => route('artists.show', $artist),
             ];
         }))
     @endcomponent

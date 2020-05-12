@@ -172,15 +172,7 @@
     </a17-fieldset>
 
     <a17-fieldset title="Artists" id="artists">
-        <p>Please select a carousel image for each artist via their edit page in the CMS. If an artist has no carousel image, we will fall back to the hero image. If the artist has no hero image, we will not show that artist.</p>
-
-        @formField('browser', [
-            'routePrefix' => 'collection',
-            'max' => 10,
-            'moduleName' => 'artists',
-            'name' => 'homeArtists',
-            'label' => 'Artists'
-        ])
+        @formField('repeater', [ 'type' => 'homeArtists' ])
     </a17-fieldset>
 
     <a17-fieldset title="From the Collection" id="from-the-collection">

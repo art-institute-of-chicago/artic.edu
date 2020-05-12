@@ -38,13 +38,15 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
 
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeArtists', 'position', 'HomeArtist');
+
         return parent::hydrate($object, $fields);
     }
 
     public function afterSave($object, $fields)
     {
         // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'homeArtists', 'homeArtworks', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'homeArtworks', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
@@ -54,6 +56,7 @@ class PageRepository extends ModuleRepository
         $this->updateRelatedBrowser($object, $fields, 'homeVideos');
         $this->updateRelatedBrowser($object, $fields, 'homeHighlights');
         $this->updateRelatedBrowser($object, $fields, 'homeExperiences');
+        $this->updateRepeater($object, $fields, 'homeArtists', 'HomeArtist');
 
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
@@ -100,8 +103,8 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['homeVideos'] = $this->getFormFieldsForRelatedBrowser($object, 'homeVideos');
         $fields['browsers']['homeHighlights'] = $this->getFormFieldsForRelatedBrowser($object, 'homeHighlights');
         $fields['browsers']['homeExperiences'] = $this->getFormFieldsForRelatedBrowser($object, 'homeExperiences');
-        $fields['browsers']['homeArtists'] = $this->getFormFieldsForBrowserApi($object, 'homeArtists', 'App\Models\Api\Artist', 'collection', 'title', 'artists');
         $fields['browsers']['homeArtworks'] = $this->getFormFieldsForBrowserApi($object, 'homeArtworks', 'App\Models\Api\Artwork', 'collection', 'title', 'artworks');
+        $fields = $this->getFormFieldsForRepeater($object, $fields, 'homeArtists', 'HomeArtist');
 
         // Exhibition & Events
         $fields['browsers']['exhibitionsUpcomingListing'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcomingListing', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
