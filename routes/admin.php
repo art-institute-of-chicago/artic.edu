@@ -6,6 +6,7 @@ Route::group(['prefix' => 'homepage'], function () {
     Route::name('homepage.landing')->get('landing', 'PageController@home');
     Route::module('homeFeatures');
     Route::module('lightboxes');
+    Route::module('homeArtists');
 });
 
 Route::group(['prefix' => 'visit'], function () {
