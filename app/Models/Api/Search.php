@@ -125,7 +125,8 @@ class Search extends BaseApiModel
         $aggs = [
             'types' => [
                 'terms' => [
-                    'field' => 'api_model'
+                    'field' => 'api_model',
+                    'size' => 20,
                 ]
             ]
         ];
