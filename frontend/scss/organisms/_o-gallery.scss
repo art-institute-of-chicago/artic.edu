@@ -533,9 +533,14 @@
     height: colspan(50, xsmall) * 9/16;
     max-height: none;
 
+    @include breakpoint('xsmall') {
+      height: auto;
+    }
+
     @include breakpoint('small+') {
       height: colspan(35, small) * 9/16;
       max-height: none;
+      height: auto;
     }
 
     @include breakpoint('medium+') {
