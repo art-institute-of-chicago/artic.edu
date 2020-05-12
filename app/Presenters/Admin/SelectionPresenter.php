@@ -25,4 +25,8 @@ class SelectionPresenter extends BasePresenter
         }
     }
 
+    public function url() {
+        return route('selections.show', $this->entity);
+    }
+
 }
