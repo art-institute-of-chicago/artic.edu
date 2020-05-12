@@ -11,7 +11,7 @@ $srcset = array_merge([200,400,843], (isset($isPublicDomain) && $isPublicDomain 
 $maxZoomWindowSize = (isset($maxZoomWindowSize) && $maxZoomWindowSize) ? $maxZoomWindowSize : 1280;
 $style = "";
 $maxZoomWindowSize = ($maxZoomWindowSize === -1) ? 1280 : $maxZoomWindowSize;
-if ($maxZoomWindowSize >= 843) {
+if ($maxZoomWindowSize > 843) {
     $mainImgSize = '100%';
 } else {
     $mainImgSize = $maxZoomWindowSize.'px';
