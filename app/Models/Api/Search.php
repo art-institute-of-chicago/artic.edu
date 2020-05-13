@@ -624,9 +624,9 @@ class Search extends BaseApiModel
     }
 
     protected function transformYear($year) {
-        // Year could come with BC, AD, or 'Present'
+        // Year could come with BCE, CE, or 'Present'
 
-        if (Str::contains($year, 'BC')) {
+        if (Str::contains($year, 'BCE')) {
             $year = - (integer) $year;
         } else {
             if (Str::contains($year, 'Present')) {

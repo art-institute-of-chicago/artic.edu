@@ -13,8 +13,8 @@ const rangeSlider = function(container){
   const $customTo = container.querySelector('[data-range-custom-to]');
   const $customBtn = container.querySelector('[data-range-custom-btn]');
   const param = container.getAttribute('data-param');
-  const bcText = 'BC';
-  const adText = 'AD';
+  const bcText = 'BCE';
+  const adText = 'CE';
   const inputs = [$customFrom, $customTo];
   const displays = [$minDisplay, $maxDisplay];
   let rangeValues;
@@ -54,8 +54,8 @@ const rangeSlider = function(container){
   }
 
   function _triggerPageLoad(minIndex, maxIndex) {
-    var windowLocationHref = queryStringHandler.updateParameter(window.location.href, param+'-start', rangeValues[minIndex].replace(/\s(AD|BC)/ig,'$1'));
-    windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, param+'-end', rangeValues[maxIndex].replace(/\s(AD|BC)/ig,'$1'));
+    var windowLocationHref = queryStringHandler.updateParameter(window.location.href, param+'-start', rangeValues[minIndex].replace(/\s(CE|BCE)/ig,'$1'));
+    windowLocationHref = queryStringHandler.updateParameter(windowLocationHref, param+'-end', rangeValues[maxIndex].replace(/\s(CE|BCE)/ig,'$1'));
     // trigger ajax call
     triggerCustomEvent(document, 'ajax:getPage', {
       url: windowLocationHref,
@@ -151,7 +151,7 @@ const rangeSlider = function(container){
       return;
     }
 
-    // If fromValue starts with a '-' then search for BC else get AD
+    // If fromValue starts with a '-' then search for BCE else get CE
     if( customValue < 0 ){
       isBC = true;
     }
@@ -164,9 +164,9 @@ const rangeSlider = function(container){
       var parsedVal = parseInt(val);
 
       if( isBC ){
-        // if isBC == true then check if value contains 'BC'
+        // if isBC == true then check if value contains 'BCE'
         if( val.indexOf(bcText) != -1 ){
-          // convert BC numbers to negative
+          // convert BCE numbers to negative
           var negVal = parsedVal * -1;
 
           // check if value is less than current index value
