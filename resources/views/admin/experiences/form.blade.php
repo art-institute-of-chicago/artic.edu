@@ -11,6 +11,7 @@
 
 @section('contentFields')
     <br/><strong><a href="{{ url('collection/experiences/' . $item->id . '/slides') }}">{{ $item->slides->count() }} Slides</a></strong><br/>
+    <br/><h1><strong>Grouping: </strong><a href="{{ url('collection/interactiveFeatures/' . $item->interactiveFeature->id) }}">{{ $item->interactiveFeature->title }}</a></h1>
     <br/><h1><strong>Kiosk URL:</strong> <a href={{ $kiosk_url }}>{{ $kiosk_url }}</a></h1>
     <br/><h1><strong>Bundle ID: </strong>{{ $item->id }}</h1>
 
