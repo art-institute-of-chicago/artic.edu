@@ -10,6 +10,7 @@ use App\Libraries\LakeviewImageService;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -112,7 +113,9 @@ class AppServiceProvider extends ServiceProvider
 
                 public function __construct()
                 {
-                    $this->cachedClosure = \App\Models\Closure::today()->first();
+                    if (!($_COOKIE['has_seen_notification'] ?? false)) {
+                        $this->cachedClosure = \App\Models\Closure::today()->first();
+                    }
                 }
 
                 public function getClosure()
