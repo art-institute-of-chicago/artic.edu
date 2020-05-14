@@ -59,6 +59,11 @@ class ExperienceRepository extends ModuleRepository
         return $experience;
     }
 
+    public function search($search)
+    {
+        return Experience::where('title', 'ILIKE', "%{$search}%")->published();
+    }
+
     public function order($query, array $orders = []) {
 
         if (array_key_exists('interactiveFeatureTitle', $orders)){
