@@ -46,7 +46,7 @@ Route::group(['prefix' => 'collection'], function () {
     Route::module('artists');
     Route::name('collection.artists.augment')->get('artists/augment/{datahub_id}', 'ArtistController@augment');
     Route::module('interactiveFeatures');
-    Route::module('interactiveFeatures.experiences');
+    Route::module('experiences');
     Route::module('experiences.slides');
 
     Route::module('issues');

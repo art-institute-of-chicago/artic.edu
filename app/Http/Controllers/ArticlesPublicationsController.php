@@ -15,7 +15,7 @@ class ArticlesPublicationsController extends FrontController
 
         $articles = $page->getRelatedWithApiModels("featured_items", [], [
             'articles' => false,
-            'interactiveFeatures.experiences' => false
+            'experiences' => false
         ]) ?? null;
 
         $featureHero = $articles->shift();

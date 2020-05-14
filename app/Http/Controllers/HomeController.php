@@ -71,7 +71,7 @@ class HomeController extends FrontController
         $page = Page::forType('Articles and Publications')->first();
         $articles = $page->getRelatedWithApiModels("featured_items", [], [
             'articles' => false,
-            'interactiveFeatures.experiences' => false
+            'experiences' => false
         ]) ?? null;
 
         return [
