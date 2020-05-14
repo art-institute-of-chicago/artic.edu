@@ -29,7 +29,7 @@ class ArticleRepository extends ModuleRepository
 
         $this->updateMultiBrowserApiRelated($object, $fields, 'further_reading_items', [
             'articles' => false,
-            'interactiveFeatures.experiences' => false
+            'experiences' => false
         ]);
 
         parent::afterSave($object, $fields);
@@ -41,7 +41,7 @@ class ArticleRepository extends ModuleRepository
 
         $fields['browsers']['further_reading_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'further_reading_items', [], [
             'articles' => false,
-            'interactiveFeatures.experiences' => false
+            'experiences' => false
         ]);
 
         return $fields;
@@ -56,7 +56,7 @@ class ArticleRepository extends ModuleRepository
         // Get items set specifically in the CMS
         $relatedItems = $item->getRelatedWithApiModels("further_reading_items", [], [
             'articles' => false,
-            'interactiveFeatures.experiences' => false
+            'experiences' => false
         ]);
 
         // Append with auto-fills

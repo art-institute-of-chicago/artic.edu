@@ -105,7 +105,7 @@ class CollectionController extends BaseScopedController
         $featuredItems = $page->getRelatedWithApiModels(
             'featured_items', [], [
                 'articles' => false,
-                'interactiveFeatures.experiences' => false
+                'experiences' => false
         ]);
 
         $page = Page::forType('Art and Ideas')->with('apiElements')->first();

@@ -62,7 +62,7 @@ class AppServiceProvider extends ServiceProvider
             'artists' => 'App\Models\Artist',
             'homeFeatures' => 'App\Models\HomeFeature',
 
-            'interactiveFeatures.experiences' => 'App\Models\Experience',
+            'experiences' => 'App\Models\Experience',
 
             // TODO: Figure out what to do about this rebase left-over?
             // 'digitalLabels' => 'App\Models\DigitalLabel',

@@ -172,7 +172,7 @@ $nav = [
                 'title' => 'Departments',
                 'module' => true,
             ],
-            'interactiveFeatures' => [
+            'experiences' => [
                 'title' => 'Interactive Features',
                 'module' => true,
             ],

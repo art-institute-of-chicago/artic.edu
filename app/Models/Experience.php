@@ -200,6 +200,13 @@ class Experience extends AbstractModel implements Sortable
         return $query->where('archived', false);
     }
 
+    public function scopeOrderByInteractiveFeature($query, $sort_method = 'ASC') {
+        return $query
+            ->leftJoin('interactiveFeatures', 'experience.interactive_feature_id', '=', 'interactive_features.id')
+            ->select('interactiveFeatures.*', 'experiences.id', 'experiences.title')
+            ->orderBy('interactiveFeatures.title', $sort_method);
+    }
+
     public function getUrl()
     {
         return route('interactiveFeatures.show', $this->slug);

@@ -58,4 +58,20 @@ class ExperienceRepository extends ModuleRepository
         app(\App\Repositories\SlideRepository::class)->create($end_fields);
         return $experience;
     }
+
+    public function search($search)
+    {
+        return Experience::where('title', 'ILIKE', "%{$search}%")->published();
+    }
+
+    public function order($query, array $orders = []) {
+
+        if (array_key_exists('interactiveFeatureTitle', $orders)){
+            $sort_method = $orders['interactiveFeatureTitle'];
+            unset($orders['interactiveFeatureTitle']);
+            $query = $query->orderByInteractiveFeature($sort_method);
+        }
+        // don't forget to call the parent order function
+        return parent::order($query, $orders);
+    }
 }
