@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\Experience;
+use App\Models\InteractiveFeature;
 use App\Models\Article;
 use App\Repositories\InteractiveFeatureRepository;
 use App\Repositories\ExperienceRepository;
@@ -133,6 +134,14 @@ class ExperienceController extends ModuleController
             'canonicalUrl' => route('interactiveFeatures.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
         ];
     }
+
+    protected function formData($request)
+    {
+        return [
+            'groupingsList' => InteractiveFeature::all()->pluck('title', 'id')
+        ];
+    }
+
 
     protected function getBrowserTableData($items)
     {
