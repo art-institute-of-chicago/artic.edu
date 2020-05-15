@@ -21,10 +21,6 @@ class InteractiveFeatureController extends ModuleController
             'field' => 'updatedDate',
             'present' => true,
         ],
-        'experiences' => [
-            'title' => 'Experiences',
-            'nested' => 'experiences',
-        ]
     ];
 
     protected $formWith = ['revisions'];

@@ -175,6 +175,16 @@ $nav = [
             'experiences' => [
                 'title' => 'Interactive Features',
                 'module' => true,
+                'secondary_navigation' => [
+                    'experiences' => [
+                        'title' => 'Experiences',
+                        'route' => 'admin.collection.experiences.index',
+                    ],
+                    'interactiveFeatures' => [
+                        'title' => 'Groupings',
+                        'route' => 'admin.collection.interactiveFeatures.index',
+                    ],
+                ],
             ],
         ]
     ],
