@@ -216,6 +216,11 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-artists'
         ],
+        'image_slider' => [
+            'title' => 'Image Slider',
+            'icon' => 'image',
+            'component' => 'a17-block-image_slider'
+        ],
     ],
     'repeaters' => [
         'admissions' => [
@@ -505,6 +510,22 @@ return [
                 [
                     'name' => 'default',
                     'ratio' => 3 / 4,
+                ],
+            ],
+        ],
+        'left_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => null,
+                ],
+            ],
+        ],
+        'right_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => null,
                 ],
             ],
         ],
