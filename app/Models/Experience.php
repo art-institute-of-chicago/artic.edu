@@ -19,8 +19,8 @@ class Experience extends AbstractModel implements Sortable
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, Transformable;
 
-    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenter = 'App\Presenters\Admin\ExperiencePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\ExperiencePresenter';
 
     protected $fillable = [
         'published',

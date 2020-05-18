@@ -27,10 +27,14 @@ class ExperienceController extends ModuleController
                 'crop' => 'default',
             ],
         ],
+        'isWebPublished' => [
+            'title' => 'Is web published?',
+            'field' => 'isWebPublished',
+            'present' => true,
+        ],
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-            'sort' => true,
         ],
         'interactiveFeatureTitle' => [ // relation column
             'title' => 'Grouping',
