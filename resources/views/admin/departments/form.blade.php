@@ -106,7 +106,7 @@
                 ],
                 [
                     'label' => 'Interactive Features',
-                    'value' => '/collection/digitalLabels/browser'
+                    'value' => '/collection/interactiveFeatures/experiences/browser'
                 ],
                 [
                     'label' => 'Videos',
