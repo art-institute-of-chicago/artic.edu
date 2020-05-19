@@ -491,7 +491,7 @@
 
     @include breakpoint('xlarge') {
       width: 100%;
-      min-width: unset;
+      // min-width: unset; // Breaks f-fit-text!
       max-width: unset;
       max-height: #{colspan(18, xlarge) * 4/3};
     }
