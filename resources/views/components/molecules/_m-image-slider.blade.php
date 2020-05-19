@@ -1,13 +1,28 @@
+@php
+    $defaultSrcset = array(300,600,800,1200,1600,2000,3000,4500);
+    $imageSettings = array(
+        'srcset' => $defaultSrcset,
+        'sizes' => aic_imageSizes(array(
+            'xsmall' => '58',
+            'small' => '58',
+            'medium' => '38',
+            'large' => '28',
+            'xlarge' => '28',
+    )));
+@endphp
+
 <div class="m-image-slider" data-behavior="imageSlider">
   <figure class="m-image-slider__image-container">
     @component('components.atoms._img')
         @slot('image', $leftImage)
+        @slot('settings', $imageSettings)
     @endcomponent
     <span class="m-image-slider__label" data-type="original">Original</span>
 
     <div class="m-image-slider__resize-img"> <!-- the resizable image on top -->
         @component('components.atoms._img')
             @slot('image', $rightImage)
+            @slot('settings', $imageSettings)
         @endcomponent
       <span class="m-image-slider__label" data-type="modified">Modified</span>
     </div>

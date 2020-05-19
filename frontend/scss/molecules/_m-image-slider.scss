@@ -1,9 +1,37 @@
-.m-viewer-3d {
+.m-image-slider {
   display: block;
   position: relative;
   overflow: hidden;
   width: 100%;
   min-height: 100vh;
+
+  .m-image-slider__resize-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    overflow: hidden;
+    /* Force Hardware Acceleration in WebKit */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  .is-visible .m-image-slider__resize-img {
+    width: 50%;
+    /* bounce in animation of the modified image */
+    animation: m-image-slider__bounce-in 0.7s;
+  }
+  @keyframes m-image-slider__bounce-in {
+    0% {
+      width: 0;
+    }
+    60% {
+      width: 55%;
+    }
+    100% {
+      width: 50%;
+    }
+  }
 
   iframe {
     display: block;

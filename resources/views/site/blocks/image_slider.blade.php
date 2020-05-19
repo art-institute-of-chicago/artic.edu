@@ -6,22 +6,22 @@
     $artwork = \App\Models\Api\Artwork::query()->find($artwork_id);
 @endphp
 
-@if (isset($left_image['src']) && isset($right_image['src']))
+@if (isset($leftImage['src']) && isset($rightImage['src']))
     <div class="m-media m-media--l m-media--image_slider o-blocks__block">
         @component('components.molecules._m-image-slider')
             @slot('leftImage', [
-                "src" => $left_image['src'],
-                "srcset" => $left_image['src'],
-                "width" => $left_image['width'] ?? 0,
-                "height" => $left_image['height'] ?? 0,
-                "alt" => $left_image['alt'],
+                "src" => $leftImage['src'],
+                "srcset" => $leftImage['src'],
+                "width" => $leftImage['width'] ?? 0,
+                "height" => $leftImage['height'] ?? 0,
+                "alt" => $leftImage['alt'],
             ])
             @slot('rightImage', [
-                "src" => $left_image['src'],
-                "srcset" => $left_image['src'],
-                "width" => $left_image['width'] ?? 0,
-                "height" => $left_image['height'] ?? 0,
-                "alt" => $left_image['alt'],
+                "src" => $rightImage['src'],
+                "srcset" => $rightImage['src'],
+                "width" => $rightImage['width'] ?? 0,
+                "height" => $rightImage['height'] ?? 0,
+                "alt" => $rightImage['alt'],
             ])
             @slot('artwork', $artwork_id ? $artwork : '')
         @endcomponent
