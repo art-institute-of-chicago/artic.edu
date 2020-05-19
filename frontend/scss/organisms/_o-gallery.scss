@@ -628,12 +628,19 @@
  *  For the artist carousel on the homepage.
  */
 .o-gallery--artist {
+  a:hover,
+  a:focus {
+    .m-media__img img {
+      opacity: 0.9;
+    }
+  }
   .m-media {
     position: relative;
     .m-media__img {
-      background-color: #f3f3f3;
+      background-color: $color__black;
       img {
-        opacity: 0.9;
+        opacity: 0.8;
+        transition: opacity .20s;
       }
     }
     figcaption {
