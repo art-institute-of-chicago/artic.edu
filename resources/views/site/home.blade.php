@@ -239,7 +239,7 @@
         })->map(function($item) {
             $artist = $item->apiModels('artists', 'Artist')->first();
             return [
-                'type' => 'image',
+                'type' => 'artist',
                 'size' => 'gallery',
                 'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
                 'captionTitle' => $artist->short_name_display,
