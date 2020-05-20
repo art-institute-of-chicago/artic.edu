@@ -636,7 +636,7 @@
       z-index: 2;
       .f-caption {
         color: white;
-        text-shadow: 0 0 1px black;
+        text-shadow: 0 0 6px rgba($color__black, .5);
         @include untuck;
         @include font-styles-untuck(generate-font-obj(
           (
