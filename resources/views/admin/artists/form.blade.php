@@ -82,7 +82,7 @@
                 ],
                 [
                     'label' => 'Interactive Features',
-                    'value' => '/collection/interactiveFeatures/experiences/browser'
+                    'value' => '/collection/experiences/browser'
                 ],
                 [
                     'label' => 'Videos',
