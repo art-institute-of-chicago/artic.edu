@@ -71,7 +71,7 @@
                 'embed' => \App\Facades\EmbedConverterFacade::convertUrl($item->video_url),
             ];
             // Setting caption to empty string forces the title to be bolded
-            $item->captionTitle = getTitleWithFigureNumber($item->title);
+            $item->captionTitle = getTitleWithFigureNumber($item->present()->title_display ?? $item->present()->title);
             $item->caption = getSubtitleWithFigureNumber($item->list_description, $item->title) ?? '';
             return $item;
         }))
