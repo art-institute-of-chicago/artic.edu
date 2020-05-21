@@ -1,4 +1,4 @@
-import { purgeProperties } from '@area17/a17-helpers';
+import { purgeProperties, forEach } from '@area17/a17-helpers';
 import fitty from 'fitty';
 
 const fitText = function(container) {
@@ -12,6 +12,9 @@ const fitText = function(container) {
 
   this.destroy = function() {
     document.removeEventListener('fonts:loaded', _redrawFitty);
+    forEach(container.querySelectorAll('img'), function(index, el) {
+      el.removeEventListener('load', _redrawFitty);
+    });
 
     // remove properties of this behavior
     purgeProperties(this);
@@ -24,6 +27,9 @@ const fitText = function(container) {
     });
 
     document.addEventListener('fonts:loaded', _redrawFitty, false);
+    forEach(container.querySelectorAll('img'), function(index, el) {
+      el.addEventListener('load', _redrawFitty, false);
+    });
   };
 };
 
