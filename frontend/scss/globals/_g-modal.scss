@@ -194,11 +194,19 @@
     transform: translateY(-50%);
     text-align: center;
     position: relative;
+    height: 100%;
+    width: auto;
   }
 
   .m-viewer-360-image {
     opacity: 0;
     transition: opacity .35s;
+    position: relative;
+    max-height: 100%;
+    max-width: 100%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
 
   .g-modal__content {
