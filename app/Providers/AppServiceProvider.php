@@ -10,6 +10,7 @@ use App\Libraries\LakeviewImageService;
 use App\Observers\FileObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerLakeviewImageService();
         $this->registerEmbedConverterService();
         $this->registerClosureService();
+        $this->registerPrintService();
         $this->composeTemplatesViews();
         File::observe(FileObserver::class);
 
@@ -60,7 +62,7 @@ class AppServiceProvider extends ServiceProvider
             'artists' => 'App\Models\Artist',
             'homeFeatures' => 'App\Models\HomeFeature',
 
-            'interactiveFeatures.experiences' => 'App\Models\Experience',
+            'experiences' => 'App\Models\Experience',
 
             // TODO: Figure out what to do about this rebase left-over?
             // 'digitalLabels' => 'App\Models\DigitalLabel',
@@ -111,12 +113,34 @@ class AppServiceProvider extends ServiceProvider
 
                 public function __construct()
                 {
-                    $this->cachedClosure = \App\Models\Closure::today()->first();
+                    if (!($_COOKIE['has_seen_notification'] ?? false)) {
+                        $this->cachedClosure = \App\Models\Closure::today()->first();
+                    }
                 }
 
                 public function getClosure()
                 {
                     return $this->cachedClosure;
+                }
+            };
+        });
+    }
+
+    public function registerPrintService()
+    {
+        $this->app->singleton('printservice', function ($app) {
+            return new class() {
+
+                private $isPrintMode;
+
+                public function __construct()
+                {
+                    $this->isPrintMode = isset($_GET['print']);
+                }
+
+                public function isPrintMode()
+                {
+                    return $this->isPrintMode;
                 }
             };
         });

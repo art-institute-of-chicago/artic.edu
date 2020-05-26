@@ -82,7 +82,14 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    <br /><strong><a href="{{ url('/collection/interactiveFeatures/' . $item->id . '/experiences') }}">{{ $item->experiences->count() }} Experiences</a></strong>
+    <br/><h1><strong>Experiences:</strong></h1>
+
+    <dl>
+        @foreach ($item->experiences as $exp)
+            <li><a href="{{ url('/collection/experiences/' . $exp->id) }}">{{ $exp->title }}</a></li>
+        @endforeach
+    </dl>
+
     @formField('medias', [
         'with_multiple' => false,
         'label' => 'Image',

@@ -19,8 +19,8 @@ class Experience extends AbstractModel implements Sortable
 {
     use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, Transformable;
 
-    protected $presenter = 'App\Presenters\Admin\GenericPresenter';
-    protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
+    protected $presenter = 'App\Presenters\Admin\ExperiencePresenter';
+    protected $presenterAdmin = 'App\Presenters\Admin\ExperiencePresenter';
 
     protected $fillable = [
         'published',
@@ -198,6 +198,13 @@ class Experience extends AbstractModel implements Sortable
         }
 
         return $query->where('archived', false);
+    }
+
+    public function scopeOrderByInteractiveFeature($query, $sort_method = 'ASC') {
+        return $query
+            ->leftJoin('interactiveFeatures', 'experience.interactive_feature_id', '=', 'interactive_features.id')
+            ->select('interactiveFeatures.*', 'experiences.id', 'experiences.title')
+            ->orderBy('interactiveFeatures.title', $sort_method);
     }
 
     public function getUrl()

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Route;
 
 if (!function_exists('currentUrlWithQuery')) {
     function currentUrlWithQuery($options = [])
@@ -28,5 +29,14 @@ if (!function_exists('secureRoute')) {
         $url->forceScheme($defaultScheme);
 
         return $route;
+    }
+}
+
+// derived from moduleRoute
+if (!function_exists('moduleRouteExists')) {
+    function moduleRouteExists($moduleName, $prefix, $action)
+    {
+        $routeName = 'admin.' . ($prefix ? $prefix . '.' : '') . camel_case($moduleName) . '.' . $action;
+        return Route::has($routeName);
     }
 }

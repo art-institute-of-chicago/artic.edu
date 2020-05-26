@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Repositories\SelectionRepository;
 use App\Models\Selection;
 use App\Libraries\ExploreFurther\SelectionService as ExploreFurther;
@@ -17,6 +19,35 @@ class SelectionsController extends FrontController
         $this->repository = $repository;
 
         parent::__construct();
+    }
+
+    public function index(Request $request)
+    {
+        $items = $this->repository->published()->ordered()->paginate();
+        $title = 'Highlights';
+
+        $subNav = [
+            ['label' => $title, 'href' => route('selections.index'), 'active' => true]
+        ];
+
+        $nav = [
+            [ 'label' => 'The Collection', 'href' => route('collection'), 'links' => $subNav ]
+        ];
+
+        $this->seo->setTitle($title);
+
+        $view_data = [
+            'title'  => $title,
+            'subNav' => $subNav,
+            'nav'    => $nav,
+            'wideBody' => true,
+            'filters'    => null,
+            'listingCountText' => 'Showing '.$items->total().' highlights',
+            'listingItems' => $items,
+        ];
+
+
+        return view('site.genericPage.index', $view_data);
     }
 
     public function show($id, $slug = null)

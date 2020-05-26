@@ -17,7 +17,8 @@ class IssueController extends FrontController
 
     public function show($issueNumber, $slug = null)
     {
-        $item = $this->repository->published()->where('issue_number', (Integer) $issueNumber)->first();
+        $issues = $this->repository->published()->get();
+        $item = $issues->where('issue_number', (Integer) $issueNumber)->first();
 
         if (!$item) {
             abort(404);
@@ -37,6 +38,7 @@ class IssueController extends FrontController
             'contrastHeader' => false,
             'borderlessHeader' => false,
             'item' => $item,
+            'issues' => $issues,
             'canonicalUrl' => route('issues.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
     }

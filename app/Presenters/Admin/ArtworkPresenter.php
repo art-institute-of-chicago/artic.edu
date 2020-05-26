@@ -112,7 +112,7 @@ class ArtworkPresenter extends BasePresenter
         ] : [
             "type" => 'text',
             "content" => '<p class="f-caption">Object information is a work in progress and may be updated as new research findings emerge. To help improve this record, please email <a data-behavior="maskEmail" data-maskEmail-user="collections" data-maskEmail-domain="artic.edu">'
-            .(isset($_GET['print']) ? 'collections@artic.edu' : '')
+            .(app('printservice')->isPrintMode() ? 'collections@artic.edu' : '')
             .'</a>. Information about image downloads and licensing is <a href="/image-licensing">available here</a>.</p>',
         ]);
 
@@ -252,8 +252,8 @@ class ArtworkPresenter extends BasePresenter
         // TODO: Abstract this into a proper method, somewhere appropriate
         $generateDateRangeHref = function( $date_start, $date_end ) {
             return route('collection', [
-                'date-start' => abs($date_start) . ( $date_start < 0 ? 'BC' : '' ),
-                'date-end' => abs($date_end) . ( $date_end < 0 ? 'BC' : '' ),
+                'date-start' => abs($date_start) . ( $date_start < 0 ? 'BCE' : '' ),
+                'date-end' => abs($date_end) . ( $date_end < 0 ? 'BCE' : '' ),
             ]);
         };
 

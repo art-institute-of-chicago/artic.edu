@@ -15,11 +15,6 @@ $nav = [
                 'module' => true,
             ],
 
-            'collectionFeatures' => [
-                'title' => 'Collection Features',
-                'module' => true,
-            ],
-
             'lightboxes' => [
                 'title' => 'Lightboxes',
                 'module' => true,
@@ -177,9 +172,19 @@ $nav = [
                 'title' => 'Departments',
                 'module' => true,
             ],
-            'interactiveFeatures' => [
+            'experiences' => [
                 'title' => 'Interactive Features',
                 'module' => true,
+                'secondary_navigation' => [
+                    'experiences' => [
+                        'title' => 'Experiences',
+                        'route' => 'admin.collection.experiences.index',
+                    ],
+                    'interactiveFeatures' => [
+                        'title' => 'Groupings',
+                        'route' => 'admin.collection.interactiveFeatures.index',
+                    ],
+                ],
             ],
         ]
     ],

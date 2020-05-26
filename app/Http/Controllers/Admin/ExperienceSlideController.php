@@ -26,24 +26,15 @@ class ExperienceSlideController extends ModuleController
     protected function indexData($request)
     {
         $experience = app(ExperienceRepository::class)->getById(request('experience'));
-        $interactiveFeature = $experience->interactiveFeature;
         return [
             'breadcrumb' => [
                 [
-                    'label' => 'Groupings',
-                    'url' => moduleRoute('interactiveFeatures', 'collection', 'index'),
-                ],
-                [
-                    'label' => $interactiveFeature->title,
-                    'url' => moduleRoute('interactiveFeatures', 'collection', 'edit', $interactiveFeature->id),
-                ],
-                [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'index', $experience->interactiveFeature->id),
+                    'url' => moduleRoute('experiences', 'collection', 'index'),
                 ],
                 [
                     'label' => $experience->title,
-                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'edit', [$interactiveFeature->id, $experience->id]),
+                    'url' => moduleRoute('experiences', 'collection', 'edit', [$experience->id]),
                 ],
                 [
                     'label' => 'Slides',
@@ -56,7 +47,6 @@ class ExperienceSlideController extends ModuleController
     protected function formData($request)
     {
         $experience = app(ExperienceRepository::class)->getById(request('experience'));
-        $interactiveFeature = $experience->interactiveFeature;
         $slide = app(SlideRepository::class)->getById(request('slide'));
         $slides = $this->repository->get([], ['experience_id' => $experience->id], ['position' => 'asc']);
         $currentSlideIndex = $slides->search($slide);
@@ -72,20 +62,12 @@ class ExperienceSlideController extends ModuleController
             }),
             'breadcrumb' => [
                 [
-                    'label' => 'Groupings',
-                    'url' => moduleRoute('interactiveFeatures', 'collection', 'index'),
-                ],
-                [
-                    'label' => $interactiveFeature->title,
-                    'url' => moduleRoute('interactiveFeatures', 'collection', 'edit', $interactiveFeature->id),
-                ],
-                [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'index', $experience->interactiveFeature->id),
+                    'url' => moduleRoute('experiences', 'collection', 'index'),
                 ],
                 [
                     'label' => $experience->title,
-                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'edit', [$interactiveFeature->id, $experience->id]),
+                    'url' => moduleRoute('experiences', 'collection', 'edit', [$experience->id]),
                 ],
                 [
                     'label' => 'Slides',

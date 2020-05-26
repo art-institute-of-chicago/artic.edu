@@ -65,9 +65,8 @@ Route::name('search.artworks')->get('/search/artworks', 'SearchController@artwor
 Route::name('search.press-releases')->get('/search/press-releases', 'SearchController@pressReleases');
 Route::name('search.research-guides')->get('/search/research-guides', 'SearchController@researchGuides');
 Route::name('search.exhibitions')->get('/search/exhibitions', 'SearchController@exhibitions');
-if (!app()->environment('production')) {
-    Route::name('search.interactive-features')->get('/search/interactive-features', 'SearchController@interactiveFeatures');
-}
+Route::name('search.interactive-features')->get('/search/interactive-features', 'SearchController@interactiveFeatures');
+Route::name('search.highlights')->get('/search/highlights', 'SearchController@highlights');
 
 // Events routes
 Route::name('events')->get('/events', 'EventsController@index');
@@ -119,6 +118,7 @@ Route::name('departments.show')->get('/departments/{id}/{slug?}', 'DepartmentCon
 
 // Selections
 Route::name('selections.show')->get('/highlights/{id}/{slug?}', 'SelectionsController@show');
+Route::name('selections.index')->get('/highlights', 'SelectionsController@index');
 
 // About
 Route::name('about.press')->get('/press/press-releases', 'PressReleasesController@index');

@@ -5,11 +5,11 @@
     if (!isset($image)) {
         $image = null;
     }
-    if (!isset($headline)) {
-        $headline = null;
+    if (!isset($header)) {
+        $header = null;
     }
-    if (!isset($short_copy)) {
-        $short_copy = null;
+    if (!isset($body)) {
+        $body = null;
     }
     if (!isset($button_text)) {
         $button_text = null;
@@ -35,9 +35,9 @@
             @endcomponent
         </div>
         <div class="m-cta-banner__txt">
-            <p class="m-cta-banner__title f-module-title-2">{!! SmartyPants::defaultTransform($headline) !!}</p>
-            <p class="m-cta-banner__msg f-list-2">{!! SmartyPants::defaultTransform($short_copy) !!}</p>
-            <p class="m-cta-banner__action"><span class="btn f-buttons btn--contrast">{!! SmartyPants::defaultTransform($button_text) !!}</span></p>
+            <div class="m-cta-banner__title f-module-title-2">{!! SmartyPants::defaultTransform($header) !!}</div>
+            <div class="m-cta-banner__msg f-list-2">{!! SmartyPants::defaultTransform($body) !!}</div>
+            <div class="m-cta-banner__action"><span class="btn f-buttons btn--contrast">{!! SmartyPants::defaultTransform($button_text) !!}</span></div>
         </div>
     </a>
 </aside>

@@ -318,6 +318,134 @@
 /**/
 
 .o-blocks {
+  .m-media--m figcaption .f-caption {
+    @include breakpoint('large+') {
+      @include tucked-align-top($f-caption, 'large');
+    }
+
+    @include breakpoint('xlarge') {
+      @include tucked-align-top($f-caption, 'xlarge');
+    }
+  }
+
+  .m-media--m .m-media__share {
+    @include breakpoint('large+') {
+      display: block;
+      position: static;
+      margin-top: 24px;
+    }
+  }
+}
+
+.o-blocks.o-blocks--with-sidebar {
+  .o-gallery,
+  .m-media--m,
+  .m-media--l,
+  .m-cta-banner,
+  .m-mobile-block,
+  .m-aside-newsletter--wide,
+  .o-grid-block {
+    @include breakpoint('medium+') {
+      width: colspan(58, medium);
+      margin-right: colspan(20, medium, 0, true);
+    }
+
+    @include breakpoint('large+') {
+      width: colspan(43, large);
+      margin-left: 0;
+      margin-right: colspan(15, large, 0, true);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(43, xlarge);
+      margin-right: colspan(15, xlarge, 0, true);
+    }
+  }
+
+  .o-gallery::before {
+    left: 0;
+
+    @include breakpoint('large') {
+      margin-left: colspan(1, large, 0, true);
+    }
+
+    @include breakpoint('xlarge') {
+      margin-left: colspan(1, xlarge, 0, true);
+    }
+  }
+
+  .o-gallery--mosaic .o-gallery__title,
+  .o-gallery--mosaic .o-gallery__caption,
+  .o-gallery--mosaic .o-gallery__media {
+    margin-left: 0;
+  }
+
+  .o-gallery--mosaic .o-gallery__media {
+    @include breakpoint('large') {
+      width: colspan(42, large);
+      > * {
+        width: colspan(20, large);
+      }
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(42, xlarge);
+      > * {
+        width: colspan(20, xlarge);
+      }
+    }
+  }
+
+  .m-media--m {
+    @include breakpoint('large+') {
+      display: flex;
+      flex-flow: row nowrap;
+    }
+  }
+
+  .m-media--m .m-media__img {
+    @include breakpoint('large+') {
+      flex: 0 0 auto;
+      width: colspan(28, large);
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(28, xlarge);
+    }
+  }
+
+  .m-media--m figcaption {
+    @include breakpoint('large+') {
+      flex: 0 0 auto;
+      margin-top: 0;
+      padding-right:0;
+
+      width: colspan(13, large);
+      margin-left: colspan(2, large);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: colspan(13, large);
+        height: 1px;
+        background-color: $color__rules--primary;
+      }
+    }
+
+    @include breakpoint('xlarge') {
+      width: colspan(13, xlarge);
+      margin-left: colspan(2, xlarge);
+
+      &::before {
+        width: colspan(13, xlarge);
+      }
+    }
+  }
+}
+
+.o-blocks:not(.o-blocks--with-sidebar) {
   .o-gallery,
   .m-media--m,
   .m-media--l,
@@ -385,24 +513,6 @@
       &::before {
         width: colspan(13, xlarge);
       }
-    }
-  }
-
-  .m-media--m figcaption .f-caption {
-    @include breakpoint('large+') {
-      @include tucked-align-top($f-caption, 'large');
-    }
-
-    @include breakpoint('xlarge') {
-      @include tucked-align-top($f-caption, 'xlarge');
-    }
-  }
-
-  .m-media--m .m-media__share {
-    @include breakpoint('large+') {
-      display: block;
-      position: static;
-      margin-top: 24px;
     }
   }
 

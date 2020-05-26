@@ -81,7 +81,7 @@
     ])
         @formField('browser', [
             'routePrefix' => 'collection',
-            'moduleName' => 'interactiveFeatures.experiences',
+            'moduleName' => 'experiences',
             'name' => 'experiences',
             'label' => 'Interactive Feature'
         ])

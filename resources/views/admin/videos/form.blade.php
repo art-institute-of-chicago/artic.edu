@@ -7,6 +7,12 @@
 
 @section('contentFields')
     @formField('input', [
+        'name' => 'title_display',
+        'label' => 'Title formatting (optional)',
+        'note' => 'Use <i> tag to add italics. e.g. <i>Nighthawks</i>'
+    ])
+
+    @formField('input', [
         'name' => 'video_url',
         'label' => 'Video URL'
     ])

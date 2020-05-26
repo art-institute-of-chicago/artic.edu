@@ -27,7 +27,6 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeFeatures', 'position', 'HomeFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'mainHomeFeatures', 'position', 'HomeFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'secondaryHomeFeatures', 'position', 'HomeFeature');
-        $this->hydrateOrderedBelongsTomany($object, $fields, 'collectionFeatures', 'position', 'CollectionFeature');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'homeShopItems', 'position', 'ShopItem');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'visitTourPages', 'position', 'GenericPage');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'researchResourcesFeaturePages', 'position', 'GenericPage');
@@ -39,20 +38,25 @@ class PageRepository extends ModuleRepository
         $this->hydrateOrderedBelongsTomany($object, $fields, 'printedPublications', 'position', 'PrintedPublication');
         $this->hydrateOrderedBelongsTomany($object, $fields, 'digitalPublications', 'position', 'DigitalPublication');
 
+        $this->hydrateOrderedBelongsTomany($object, $fields, 'homeArtists', 'position', 'HomeArtist');
+
         return parent::hydrate($object, $fields);
     }
 
     public function afterSave($object, $fields)
     {
         // General
-        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
+        $this->updateBrowserApiRelated($object, $fields, ['homeShopItems', 'homeExhibitions', 'homeArtworks', 'exhibitionsExhibitions', 'exhibitionsUpcoming', 'exhibitionsUpcomingListing', 'exhibitionsCurrent', 'artCategoryTerms']);
 
         // Homepage
         $this->updateBrowser($object, $fields, 'homeEvents');
         $this->updateBrowser($object, $fields, 'homeFeatures');
         $this->updateBrowser($object, $fields, 'mainHomeFeatures');
         $this->updateBrowser($object, $fields, 'secondaryHomeFeatures');
-        $this->updateBrowser($object, $fields, 'collectionFeatures');
+        $this->updateRelatedBrowser($object, $fields, 'homeVideos');
+        $this->updateRelatedBrowser($object, $fields, 'homeHighlights');
+        $this->updateRelatedBrowser($object, $fields, 'homeExperiences');
+        $this->updateRepeater($object, $fields, 'homeArtists', 'HomeArtist');
 
         // Visits
         $this->updateRepeater($object, $fields, 'admissions', 'Admission');
@@ -69,7 +73,7 @@ class PageRepository extends ModuleRepository
         // Art & Ideas
         $this->updateMultiBrowserApiRelated($object, $fields, 'featured_items', [
             'articles' => false,
-            'interactiveFeatures.experiences' => false
+            'experiences' => false
         ]);
 
         // Research
@@ -96,7 +100,11 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['homeFeatures'] = $this->getFormFieldsForBrowser($object, 'homeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['mainHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'mainHomeFeatures', 'homepage', 'title', 'homeFeatures');
         $fields['browsers']['secondaryHomeFeatures'] = $this->getFormFieldsForBrowser($object, 'secondaryHomeFeatures', 'homepage', 'title', 'homeFeatures');
-        $fields['browsers']['collectionFeatures'] = $this->getFormFieldsForBrowser($object, 'collectionFeatures', 'homepage', 'title', 'collectionFeatures');
+        $fields['browsers']['homeVideos'] = $this->getFormFieldsForRelatedBrowser($object, 'homeVideos');
+        $fields['browsers']['homeHighlights'] = $this->getFormFieldsForRelatedBrowser($object, 'homeHighlights');
+        $fields['browsers']['homeExperiences'] = $this->getFormFieldsForRelatedBrowser($object, 'homeExperiences');
+        $fields['browsers']['homeArtworks'] = $this->getFormFieldsForBrowserApi($object, 'homeArtworks', 'App\Models\Api\Artwork', 'collection', 'title', 'artworks');
+        $fields = $this->getFormFieldsForRepeater($object, $fields, 'homeArtists', 'HomeArtist');
 
         // Exhibition & Events
         $fields['browsers']['exhibitionsUpcomingListing'] = $this->getFormFieldsForBrowserApi($object, 'exhibitionsUpcomingListing', 'App\Models\Api\Exhibition', 'exhibitions_events', 'title', 'exhibitions');
@@ -120,7 +128,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['artCategoryTerms'] = $this->getFormFieldsForBrowserApi($object, 'artCategoryTerms', 'App\Models\Api\CategoryTerm', 'collection', 'title', 'categoryTerms');
         $fields['browsers']['featured_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'featured_items', [], [
             'articles' => false,
-            'interactiveFeatures.experiences' => false
+            'experiences' => false
         ]);
 
         // Research
@@ -129,7 +137,7 @@ class PageRepository extends ModuleRepository
         $fields['browsers']['researchResourcesStudyRoomMore'] = $this->getFormFieldsForBrowser($object, 'researchResourcesStudyRoomMore', 'generic', 'title', 'genericPages');
 
         $fields['browsers']['articles'] = $this->getFormFieldsForBrowser($object, 'articles', 'collection.articles_publications', 'title', 'articles');
-        $fields['browsers']['experiences'] = $this->getFormFieldsForBrowser($object, 'experiences', 'collection', 'title', 'interactiveFeatures.experiences');
+        $fields['browsers']['experiences'] = $this->getFormFieldsForBrowser($object, 'experiences', 'collection', 'title', 'experiences');
         $fields['browsers']['printedPublications'] = $this->getFormFieldsForBrowser($object, 'printedPublications', 'collection.articles_publications', 'title', 'printedPublications');
         $fields['browsers']['digitalPublications'] = $this->getFormFieldsForBrowser($object, 'digitalPublications', 'collection.articles_publications', 'title', 'digitalPublications');
 

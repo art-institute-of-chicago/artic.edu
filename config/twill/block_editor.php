@@ -175,7 +175,12 @@ return [
             'title' => '3D Embed',
             'icon' => 'image',
             'component' => 'a17-block-aic_3d_embed'
-        ]
+        ],
+        'artists' => [
+            'title' => 'Artists',
+            'icon' => 'image',
+            'component' => 'a17-block-artists'
+        ],
     ],
     'repeaters' => [
         'admissions' => [
@@ -364,6 +369,12 @@ return [
             'component' => 'a17-block-experience_modal',
             'max' => 1,
         ],
+        'homeArtists' => [
+            'title' => 'Artists',
+            'trigger' => 'Add Artist',
+            'component' => 'a17-block-artists',
+            'max' => 10,
+        ],
     ],
     'crops' => [
         'image' => [
@@ -442,6 +453,15 @@ return [
                 ]
             ]
         ],
+        'artist_image' => [
+            'default' => [
+                [
+                    'name' => 'default',
+                    'ratio' => 9 / 16,
+                ],
+            ],
+        ],
+
     ],
     'files' => [
         'attachment',

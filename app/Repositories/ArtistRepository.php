@@ -26,6 +26,7 @@ class ArtistRepository extends BaseApiRepository
             'digitalLabels' => false,
             'videos' => false,
             'exhibitions' => true,
+            'experiences' => false,
         ]);
 
         $this->updateMultiBrowserApiRelated($object, $fields, 'hidden_related_items', [
@@ -40,11 +41,6 @@ class ArtistRepository extends BaseApiRepository
         $fields = parent::getFormFields($object);
 
         $fields['browsers']['related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'related_items', [
-            'digitalLabels' => [
-                'apiModel' => 'App\Models\Api\DigitalLabel',
-                'routePrefix' => 'collection',
-                'moduleName' => 'digitalLabels',
-            ],
             'exhibitions' => [
                 'apiModel' => 'App\Models\Api\Exhibition',
                 'routePrefix' => 'exhibitions_events',
@@ -58,6 +54,7 @@ class ArtistRepository extends BaseApiRepository
             'digitalLabels' => false,
             'videos' => false,
             'exhibitions' => true,
+            'experiences' => false,
         ]);
 
         $fields['browsers']['hidden_related_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'hidden_related_items', [

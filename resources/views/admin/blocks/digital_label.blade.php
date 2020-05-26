@@ -1,7 +1,7 @@
 @formField('browser', [
     'routePrefix' => 'collection',
     'name' => 'experiences',
-    'moduleName' => 'interactiveFeatures.experiences',
+    'moduleName' => 'experiences',
     'label' => 'Interactive Feature',
     'max' => 1
 ])

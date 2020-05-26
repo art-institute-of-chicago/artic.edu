@@ -15,6 +15,10 @@
         $srcset = $settings['srcset'];
         $sizes = $settings['sizes'];
         $src = $settings['lqip'] ?? $settings['src'];
+        if (app('printservice')->isPrintMode()) {
+            $lastSrcset = trim(last(explode(',', $srcset))) ?? '';
+            $src = substr($lastSrcset, 0, strrpos($lastSrcset, ' ')) ?? $src;
+        }
         $width = $settings['width'];
         $height = $settings['height'];
         $iiifId = $settings['iiifId'];
@@ -52,7 +56,7 @@
     @if (isset($behavior) || $restrict)
         data-behavior="{{ $behavior ?? '' }}{{ $restrict ? ' restrictDownload' : ''}}"
     @endif
-    @if (isset($_GET['print']) or (isset($settings['lazyload']) and $settings['lazyload'] === false))
+    @if (app('printservice')->isPrintMode() or (isset($settings['lazyload']) and $settings['lazyload'] === false))
     srcset="{{ $srcset ?? '' }}"
     @else
     data-srcset="{{ $srcset ?? '' }}"

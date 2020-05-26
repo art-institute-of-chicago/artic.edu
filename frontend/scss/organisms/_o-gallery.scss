@@ -4,6 +4,16 @@
   background-color: $color__bg--gallery;
   color: $color__text--contrast;
   transform: translateZ(0);
+
+  margin-top: 48px;
+
+  @include breakpoint('small+') {
+    margin-top: 60px;
+  }
+
+  @include breakpoint('large+') {
+    margin-top: 72px;
+  }
 }
 
 .o-gallery__title {
@@ -397,19 +407,19 @@
       content: '';
       display: block;
       flex: 0 0 auto;
-      width: colspan(3, xsmall);
+      width: colspan(1, xsmall);
       height: 1px;
 
       @include breakpoint('small+') {
-        width: colspan(3, small);
+        width: colspan(1, small);
       }
 
       @include breakpoint('medium+') {
-        width: colspan(3, medium);
+        width: colspan(1, medium);
       }
 
       @include breakpoint('large+') {
-        width: colspan(3, large);
+        width: colspan(1, large);
       }
 
       @include breakpoint('xlarge') {
@@ -420,7 +430,7 @@
   }
 
   .o-gallery__media > * {
-    flex: 1;
+    flex: 0 0 auto;
     margin-top: 0;
     margin-left: colspan(2, xsmall);
 
@@ -454,13 +464,12 @@
     }
 
     @include breakpoint('xlarge') {
-      flex: 0 0 auto;
-      width: colspan(18, xlarge);
+      max-width: colspan(18, xlarge);
       margin-left: colspan(1, xlarge);
     }
   }
 
-  .m-media__img img {
+  .m-media__img:not(.m-media__img--video) img {
     width: auto;
     min-width: 200px;
     max-width: 600px;
@@ -482,65 +491,52 @@
 
     @include breakpoint('xlarge') {
       width: 100%;
-      min-width: unset;
+      // min-width: unset; // Breaks f-fit-text!
       max-width: unset;
       max-height: #{colspan(18, xlarge) * 4/3};
     }
   }
 
-  .o-gallery__media > *[data-type="embed"],
-  .o-gallery__media > .m-media--video,
-  .o-gallery__media > .m-media--soundcloud {
+  $mediaColWidth: (
+    xsmall: 50,
+    small: 26,
+    medium: 18,
+    large: 18,
+    xlarge: 18
+  );
+
+  .o-gallery__media [data-type="embed"],
+  .o-gallery__media .m-media--video,
+  .o-gallery__media .m-media--soundcloud {
     flex: 0 0 auto;
-    width: colspan(50, xsmall);
 
-    @include breakpoint('small+') {
-      width: colspan(35, small);
-    }
-
-    @include breakpoint('medium+') {
-      width: colspan(23, medium);
-    }
-
-    @include breakpoint('large+') {
-      width: colspan(23, large);
-    }
-
-    @include breakpoint('xlarge') {
-      width: colspan(18, xlarge);
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        width: colspan(map-get($mediaColWidth, $name), $name);
+      }
     }
   }
 
-  .m-media__img--video,
-  .m-media__img--video img,
-  .m-media__img--video video,
-  .m-media__img--video embed,
-  .m-media__img--video iframe,
-  .m-media__img--video object {
-    width: 100%;
-    min-width: none;
-    max-width: none;
-    height: colspan(50, xsmall) * 9/16;
-    max-height: none;
-
-    @include breakpoint('small+') {
-      height: colspan(35, small) * 9/16;
-      max-height: none;
+  .m-media__img--video {
+    + figcaption {
+      padding-right: 0;
     }
 
-    @include breakpoint('medium+') {
-      height: colspan(23, medium) * 9/16;
-      max-height: none;
-    }
+    &,
+    img,
+    video,
+    embed,
+    iframe,
+    object {
+      width: 100%;
+      min-width: none;
 
-    @include breakpoint('large+') {
-      height: colspan(23, large) * 9/16;
-      max-height: none;
-    }
-
-    @include breakpoint('xlarge') {
-      height: #{colspan(18, xlarge) * 9/16};
-      max-height: none;
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          height: colspan(map-get($mediaColWidth, $name), $name) * 9/16;
+          max-height: none;
+        }
+      }
     }
   }
 
@@ -606,5 +602,57 @@
   hr,
   .hr {
     border-top-color: $color__rules--secondary;
+  }
+}
+
+/**
+ *  For the artist carousel on the homepage.
+ */
+.o-gallery--artist {
+  a:hover,
+  a:focus {
+    .m-media__img img {
+      opacity: 0.9;
+    }
+  }
+  .m-media {
+    position: relative;
+    .m-media__img {
+      background-color: $color__black;
+      img {
+        opacity: 0.8;
+        transition: opacity .20s;
+      }
+    }
+    figcaption {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: calc(100% - 40px);
+      transform: translateY(-50%) translateX(-50%);
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      z-index: 2;
+      .f-caption {
+        color: white;
+        text-shadow: 0 0 6px rgba($color__black, .5);
+        @include untuck;
+        @include font-styles-untuck(generate-font-obj(
+          (
+            font-family: $serif-font,
+            font-family-loaded: $serif-font--loaded,
+            font-loaded-class: $serif-font-loaded-class,
+            settings: (
+              'xsmall': (font-size: 16, line-height: 19, text-transform: 'uppercase', letter-spacing: 0.1em, push: 0),
+              'small+': (font-size: 27, line-height: 31, push: -2),
+              'medium+': (font-size: 30, line-height: 36, push: -1),
+              'large+': (font-size: 36, line-height: 42, push: -1)
+            )
+          )
+        ));
+        font-feature-settings: 'lnum' on;
+      }
+    }
   }
 }

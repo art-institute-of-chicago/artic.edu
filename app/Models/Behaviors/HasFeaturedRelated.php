@@ -29,7 +29,7 @@ trait HasFeaturedRelated
             'selections' => false,
             'events' => false,
             'exhibitions' => true, // API!
-            'interactiveFeatures.experiences' => false,
+            'experiences' => false,
             'digitalPublications' => false,
             'videos' => false,
         ]) ?? collect([]);

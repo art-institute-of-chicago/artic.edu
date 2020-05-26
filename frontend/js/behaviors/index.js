@@ -58,3 +58,6 @@ export { default as searchBarBlock } from './searchBarBlock';
 export { default as restrictDownload } from './restrictDownload';
 export { default as viewer3D } from './viewer3D';
 export { default as fixedOnScroll } from './fixedOnScroll';
+export { default as stickySidebar } from './stickySidebar';
+export { default as viewer360 } from './viewer360';
+export { default as fitText } from './fitText';

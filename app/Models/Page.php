@@ -49,11 +49,18 @@ class Page extends AbstractModel
         'home_plan_your_visit_link_3_text',
         'home_plan_your_visit_link_3_url',
 
-        'home_membership_module_url',
-        'home_membership_module_image',
-        'home_membership_module_headline',
-        'home_membership_module_short_copy',
-        'home_membership_module_button_text',
+        'home_cta_module_action_url',
+        'home_cta_module_image',
+        'home_cta_module_header',
+        'home_cta_module_body',
+        'home_cta_module_button_text',
+        'home_cta_module_variation',
+        'home_cta_module_form_id',
+        'home_cta_module_form_token',
+        'home_cta_module_form_tlc_source',
+
+        'home_video_title',
+        'home_video_description',
 
         // Exhibition
         'exhibition_intro',
@@ -173,7 +180,7 @@ class Page extends AbstractModel
                 ],
             ],
         ],
-        'home_membership_module_image' => [
+        'home_cta_module_image' => [
             'default' => [
                 [
                     'name' => 'default',
@@ -245,19 +252,24 @@ class Page extends AbstractModel
         return $this->belongsToMany('App\Models\HomeFeature', 'page_home_secondary_home_feature')->withPivot('position')->orderBy('position');
     }
 
-    public function collectionFeatures()
-    {
-        return $this->belongsToMany('App\Models\CollectionFeature', 'page_home_collection_feature')->withPivot('position')->orderBy('position');
-    }
-
     public function homeShopItems()
     {
         return $this->apiElements()->where('relation', 'homeShopItems');
     }
 
+    public function homeArtworks()
+    {
+        return $this->apiElements()->where('relation', 'homeArtworks');
+    }
+
     public function admissions()
     {
         return $this->hasMany(Admission::class)->orderBy('position');
+    }
+
+    public function homeArtists()
+    {
+        return $this->hasMany(HomeArtist::class)->orderBy('position');
     }
 
     public function locations()

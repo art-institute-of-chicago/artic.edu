@@ -30,6 +30,7 @@ class Search extends BaseApiModel
         'generic-pages'       => 'App\Models\GenericPage',
         'educator-resources'  => 'App\Models\EducatorResource',
         'press-releases'      => 'App\Models\PressRelease',
+        'selections'          => 'App\Models\Selection',
     ];
 
     // Use an overloaded ApiModelBuilder (ApiModelBuilderSearch).
@@ -124,7 +125,8 @@ class Search extends BaseApiModel
         $aggs = [
             'types' => [
                 'terms' => [
-                    'field' => 'api_model'
+                    'field' => 'api_model',
+                    'size' => 20,
                 ]
             ]
         ];
@@ -622,9 +624,9 @@ class Search extends BaseApiModel
     }
 
     protected function transformYear($year) {
-        // Year could come with BC, AD, or 'Present'
+        // Year could come with BCE, CE, or 'Present'
 
-        if (Str::contains($year, 'BC')) {
+        if (Str::contains($year, 'BCE')) {
             $year = - (integer) $year;
         } else {
             if (Str::contains($year, 'Present')) {

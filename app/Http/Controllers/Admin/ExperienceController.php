@@ -4,20 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use A17\Twill\Http\Controllers\Admin\ModuleController;
 use App\Models\Experience;
+use App\Models\InteractiveFeature;
 use App\Models\Article;
 use App\Repositories\InteractiveFeatureRepository;
 use App\Repositories\ExperienceRepository;
 
-class InteractiveFeatureExperienceController extends ModuleController
+class ExperienceController extends ModuleController
 {
-    protected $moduleName = 'interactiveFeatures.experiences';
+    protected $moduleName = 'experiences';
     protected $modelName = 'Experience';
     protected $previewView = 'site.experienceDetail';
 
-    protected function getParentModuleForeignKey()
-    {
-        return 'interactive_feature_id';
-    }
+    protected $indexOptions = [
+        'reorder' => true,
+    ];
 
     protected $indexColumns = [
         'image' => [
@@ -27,62 +27,25 @@ class InteractiveFeatureExperienceController extends ModuleController
                 'crop' => 'default',
             ],
         ],
+        'isWebPublished' => [
+            'title' => 'Is web published?',
+            'field' => 'isWebPublished',
+            'present' => true,
+        ],
         'title' => [
             'title' => 'Title',
             'field' => 'title',
-            'sort' => true,
+        ],
+        'interactiveFeatureTitle' => [ // relation column
+            'title' => 'Grouping',
+            'relationship' => 'interactiveFeature',
+            'field' => 'title'
         ],
         'experiences' => [
             'title' => 'Slides',
             'nested' => 'slides',
         ],
     ];
-
-    protected function indexData($request)
-    {
-        $interactiveFeature = app(InteractiveFeatureRepository::class)->getById(request('interactiveFeature'));
-        return [
-            'breadcrumb' => [
-                [
-                    'label' => 'Groupings',
-                    'url' => moduleRoute('interactiveFeatures', 'collection', 'index'),
-                ],
-                [
-                    'label' => $interactiveFeature->title,
-                    'url' => moduleRoute('interactiveFeatures', 'collection', 'edit', $interactiveFeature->id),
-                ],
-                [
-                    'label' => 'Experiences',
-                ],
-
-            ],
-        ];
-    }
-
-    protected function formData($request)
-    {
-        $experience = app(ExperienceRepository::class)->getById(request('experience'));
-        return [
-            'breadcrumb' => [
-                [
-                    'label' => 'Groupings',
-                    'url' => moduleRoute('interactiveFeatures', 'collection', 'index'),
-                ],
-                [
-                    'label' => $experience->interactiveFeature->title,
-                    'url' => moduleRoute('interactiveFeatures', 'collection', 'edit', $experience->interactiveFeature->id),
-                ],
-                [
-                    'label' => 'Experiences',
-                    'url' => moduleRoute('interactiveFeatures.experiences', 'collection', 'index', $request->route('interactiveFeature')),
-                ],
-                [
-                    'label' => $experience->title,
-                ],
-
-            ],
-        ];
-    }
 
     // Intend to override the lines:
     // thumbnail
@@ -175,6 +138,14 @@ class InteractiveFeatureExperienceController extends ModuleController
             'canonicalUrl' => route('interactiveFeatures.show', ['id' => $item->id, 'slug' => $item->titleSlug]),
         ];
     }
+
+    protected function formData($request)
+    {
+        return [
+            'groupingsList' => InteractiveFeature::all()->pluck('title', 'id')
+        ];
+    }
+
 
     protected function getBrowserTableData($items)
     {

@@ -11,7 +11,7 @@
             ],
             [
                 'label' => 'Interactive feature',
-                'value' => moduleRoute('interactiveFeatures.experiences', 'collection', 'browser')
+                'value' => moduleRoute('experiences', 'collection', 'browser')
             ]
         ],
         'label' => 'Featured items',
@@ -20,7 +20,7 @@
     @formField('browser', [
         'routePrefix' => 'collection',
         'max' => 4,
-        'moduleName' => 'interactiveFeatures.experiences',
+        'moduleName' => 'experiences',
         'name' => 'experiences',
         'label' => 'Interactive Features'
     ])

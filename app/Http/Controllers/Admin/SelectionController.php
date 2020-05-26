@@ -13,6 +13,7 @@ class SelectionController extends ModuleController
 
     protected $indexOptions = [
         'permalink' => true,
+        'reorder' => true,
     ];
 
     protected $indexColumns = [
@@ -66,6 +67,7 @@ class SelectionController extends ModuleController
         return [
             'baseUrl' => $baseUrl,
             'siteTagsList' => app(SiteTagRepository::class)->listAll('name'),
+            'highlightTypeList' => $this->repository->getHighlightTypeList(),
         ];
     }
 

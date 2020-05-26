@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Behaviors;
 
+use ImageService;
 use App\Models\ApiRelation;
 use A17\Twill\Models\RelatedItem;
 
@@ -118,7 +119,12 @@ trait HandleApiRelations
                     $data['thumbnail'] = $apiElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]);
                 }
             } else {
-                // WEB-1187: Add augment route here!
+                // WEB-1187: This is reached after page refresh, if the model hasn't been augmented
+                if (moduleRouteExists($moduleName ?? $relation, $routePrefix ?? '', 'augment')) {
+                    $data['edit'] = moduleRoute($moduleName ?? $relation, $routePrefix ?? '', 'augment', $apiElement->id);
+                }
+
+                $data['thumbnail'] = ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100]);
             }
 
             return [

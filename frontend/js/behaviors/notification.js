@@ -1,4 +1,4 @@
-import { purgeProperties, forEach } from '@area17/a17-helpers';
+import { purgeProperties, forEach, ajaxRequest } from '@area17/a17-helpers';
 
 const notification = function(container) {
 
@@ -14,6 +14,24 @@ const notification = function(container) {
     event.stopPropagation();
     container.classList.add('s-hide');
     container.addEventListener('transitionend', _afterAnimation, false);
+
+    let expiryPeriodInDaysForAll = Array.prototype.map.call(closers, function(template) {
+      return template.dataset['expires'];
+    });
+    let expiry = expiryPeriodInDaysForAll[0];
+
+    // Now set a cookie so we don't show the notification again for the specified period of time
+    if (expiry > 0) {
+      ajaxRequest({
+        url: '/api/v1/cookie/notification/' + expiry,
+        type: 'GET',
+      });
+    } else {
+      ajaxRequest({
+        url: '/api/v1/cookie/notification/-3600',
+        type: 'GET',
+      });
+    }
   }
 
   function _init() {

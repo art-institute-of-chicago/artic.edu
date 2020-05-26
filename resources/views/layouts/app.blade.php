@@ -1,5 +1,5 @@
 @php
-$print = isset($_GET['print']);
+$print = app('printservice')->isPrintMode();
 $pClass = request()->route()->getAction()['controller'] ?? 'App\Http\Controllers\GenericPagesController';
 $pClass = preg_replace('/App\\\\Http\\\\Controllers\\\\/i','p-',$pClass);
 $pClass = preg_replace('/Controller/i','',$pClass);

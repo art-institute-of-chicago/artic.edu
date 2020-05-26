@@ -27,7 +27,7 @@ class ArticleController extends FrontController
 
         $featuredItems = $page->getRelatedWithApiModels("featured_items", [], [
             'articles' => false,
-            'interactiveFeatures.experiences' => false
+            'experiences' => false
         ]);
 
         $heroArticle = $featuredItems->first();

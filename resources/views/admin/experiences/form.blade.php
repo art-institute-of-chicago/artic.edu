@@ -14,6 +14,13 @@
     <br/><h1><strong>Kiosk URL:</strong> <a href={{ $kiosk_url }}>{{ $kiosk_url }}</a></h1>
     <br/><h1><strong>Bundle ID: </strong>{{ $item->id }}</h1>
 
+    @formField('select', [
+        'name' => 'interactive_feature_id',
+        'label' => 'Grouping',
+        'placeholder' => 'Select an grouping',
+        'options' => $groupingsList,
+    ])
+
     @formField('medias', [
         'name' => 'thumbnail',
         'label' => 'Thumbnail',

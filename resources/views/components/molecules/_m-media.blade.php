@@ -7,6 +7,9 @@
     $fullscreen = (isset($item['fullscreen']) && $item['fullscreen']) && (!isset($media['restrict']) || !$media['restrict']);
     $poster = isset($item['poster']) ? $item['poster'] : false;
 
+    $fitCaptionTitle = $type === 'artist';
+    $type = $type === 'artist' ? 'image' : $type;
+
     // WEB-912: For Gallery Items; image module is an array, but gallery item is object?
     if (!is_array($item) && !empty($item->present()->input('videoUrl')))
     {
@@ -117,7 +120,7 @@
 
 @endphp
 <{{ $tag ?? 'figure' }} {!! isset($_figureCount) ? 'id="fig-' . $_figureCount . '" ' : '' !!} data-type="{{ $type }}"{!! $hasRestriction ? ' data-restricted="true"' : '' !!} class="m-media m-media--{{ $size }}{{ (isset($item['variation'])) ? ' '.$item['variation'] : '' }}{{ (isset($variation)) ? ' '.$variation : '' }}">
-    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}"{!! ($mediaBehavior) ? ' data-behavior="'.$mediaBehavior.'" aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
+    <div class="m-media__img{{ ($type === 'embed' || $type === 'video') ? ' m-media__img--video' : '' }}" data-behavior="fitText {!! ($mediaBehavior) ? $mediaBehavior  : '' !!}"{!! ($mediaBehavior) ? ' aria-label="Media embed, click to play" tabindex="0"' : '' !!}{!! !empty($embed_height) ? ' style="height: ' . $embed_height . '"' : '' !!}{!! isset($media['restrict']) && $media['restrict'] ? ' data-restrict="true"' : '' !!}{!! isset($media['title']) && $media['title'] ? ' data-title="'.$media['title'].'"' : '' !!}>
         @if ($type == 'image')
             @if ($showUrlFullscreen)
                 <a href="{!! $item['urlTitle'] !!}">
@@ -223,26 +226,17 @@
     </div>
     @if ((!isset($item['hideCaption']) or (isset($item['hideCaption']) and !$item['hideCaption'])) and (isset($item['caption']) or isset($item['captionTitle'])))
     <figcaption>
-        @if ($size == 'gallery')
-            @if (isset($item['captionTitle']))
+        @if (isset($item['captionTitle']))
+            <div class="{{ $fitCaptionTitle ? 'f-fit-text' : '' }} {{ $size !== 'gallery' || isset($item['caption']) ? 'f-caption-title' : 'f-caption' }}"><div>
                 @if(isset($item['urlTitle']) && $item['urlTitle'])
-                    <div class="f-caption"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></div> <br>
+                    <a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a>
                 @else
-                    <div class="f-caption">{!! $item['captionTitle'] !!}</div> <br>
+                    {!! $item['captionTitle'] !!}
                 @endif
-            @endif
-            @if (isset($item['caption']))<div class="f-caption">{!! $item['caption'] !!}</div>@endif
-        @else
-            @if (isset($item['captionTitle']))
-                @if(isset($item['urlTitle']) && $item['urlTitle'])
-                    <div class="f-caption-title"><a href="{!! $item['urlTitle'] !!}">{!! $item['captionTitle'] !!}</a></div> <br>
-                @else
-                    <div class="f-caption-title">{!! $item['captionTitle'] !!}</div> <br>
-                @endif
-            @endif
-            @if (isset($item['caption']))
-                <div class="f-caption">{!! $item['caption'] !!}</div>
-            @endif
+            </div></div> <br>
+        @endif
+        @if (isset($item['caption']))
+            <div class="f-caption">{!! $item['caption'] !!}</div>
         @endif
     </figcaption>
     @endif

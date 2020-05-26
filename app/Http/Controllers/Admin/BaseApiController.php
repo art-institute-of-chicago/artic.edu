@@ -65,7 +65,17 @@ class BaseApiController extends ModuleController
     protected function getBrowserTableData($items)
     {
         // Ensure data is an array and not an object to avoid json_encode wrong conversion
-        return array_values(parent::getBrowserTableData($items));
+        $results = array_values(parent::getBrowserTableData($items));
+
+        // WEB-1187: Fix the edit link
+        $results = array_map(function($result) {
+            if (moduleRouteExists($this->moduleName, $this->routePrefix, 'augment')) {
+                $result['edit'] = moduleRoute($this->moduleName, $this->routePrefix, 'augment', $result['id']);
+            }
+            return $result;
+        }, $results);
+
+        return $results;
     }
 
     protected function getApiRepository()

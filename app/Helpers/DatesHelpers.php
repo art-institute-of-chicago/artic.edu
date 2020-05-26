@@ -27,10 +27,10 @@ function printYear($date)
         return null;
     }
     if ($date < 0) {
-        return abs($date) ." BC";
+        return abs($date) ." BCE";
     }
     if ($date <= 1000) {
-        return $date ." AD";
+        return $date ." CE";
     }
     if ($date == Carbon::now()->year) {
         return "Present";
@@ -63,9 +63,9 @@ function convertArtworkDates($date)
     $formatdate = "";
 
     if($date < 0) {
-        $formatdate = abs($date) . " BC";
+        $formatdate = abs($date) . " BCE";
     } else if($date < 1000) {
-        $formatdate = $date . " AD";
+        $formatdate = $date . " CE";
     } else {
         $formatdate = $date;
     }

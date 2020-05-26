@@ -9,12 +9,14 @@ use App\Repositories\Behaviors\HandleFeaturedRelated;
 use App\Repositories\Behaviors\Handle3DModel;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use App\Repositories\Api\BaseApiRepository;
+use A17\Twill\Repositories\Behaviors\HandleFiles;
 
 class ArtworkRepository extends BaseApiRepository
 {
     use HandleFeaturedRelated;
     use Handle3DModel;
     use HandleMedias;
+    use HandleFiles;
 
     public function __construct(Artwork $model)
     {

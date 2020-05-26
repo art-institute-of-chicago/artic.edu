@@ -167,6 +167,122 @@
   }
 }
 
+.g-modal--module360 {
+  border-radius: $border-radius;
+  background-color: $color__black--80;
+  overflow: hidden;
+  padding-top:0;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  transform:none;
+
+  @media screen and (min-width: 1280px), screen and (min-height: 1024px) {
+    left: 50%;
+    top: 50%;
+    width: calc(100vw - 80px);
+    max-width: 1280px;
+    height: calc(100vh - 80px);
+    max-height: 1024px;
+    transform: translate(-50%, -50%);
+  }
+
+  .m-viewer-360 {
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+    position: relative;
+    height: 100%;
+    width: auto;
+  }
+
+  .m-viewer-360-image {
+    opacity: 0;
+    transition: opacity .35s;
+    position: relative;
+    max-height: 100%;
+    max-width: 100%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .g-modal__content {
+    width:auto;
+    min-width:100%;
+    min-height:100%;
+    padding-bottom:0;
+    max-height:auto;
+  }
+
+  .g-modal__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 25px;
+    padding: 15px;
+    background-color: rgba(0,0,0,0.5);
+    transition: background-color 0.4s ease;
+    border-radius: 50%;
+
+    >svg {
+      display: block;
+    }
+
+    &:hover,
+    &:active {
+      background-color: black !important;
+    }
+  }
+
+  .m-viewer-360-control {
+    opacity: 0;
+    transition: opacity .35s;
+    background: rgba(#1a1a1a, 0.5);
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin: auto;
+    border-radius: 30px;
+    padding: 20px 30px;
+    line-height: 0;
+
+    input {
+      -webkit-appearance: none;
+      width: 200px;
+      height: 4px;
+      border-radius: 5px;
+      background: #eee;
+      outline: none;
+      padding: 0;
+      margin: 0;
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #eee;
+        cursor: pointer;
+        transition: background 0.15s ease-in-out;
+      }
+
+      &::-moz-range-thumb {
+        width: 15px;
+        height: 15px;
+        border: 0;
+        border-radius: 50%;
+        background: #eee;
+        cursor: pointer;
+        transition: background 0.15s ease-in-out;
+      }
+    }
+  }
+}
+
 .g-modal--restricted {
   .g-modal__content {
     max-width:1280px !important;
@@ -174,6 +290,23 @@
   }
 
   &.g-modal--module3d {
+    max-width:1280px !important;
+    max-height:1024px !important;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    right:auto;
+    bottom:auto;
+    width:100%;
+    height:100%;
+
+    @include breakpoint('medium+') {
+      width:calc(100% - 120px);
+      height:calc(100% - 80px);
+    }
+  }
+
+  &.g-modal--module360 {
     max-width:1280px !important;
     max-height:1024px !important;
     left:50%;

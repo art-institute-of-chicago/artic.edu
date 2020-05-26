@@ -44,6 +44,41 @@
     {!! SmartyPants::defaultTransform($intro) !!}
 @endcomponent
 
+
+@if ($videos->count() > 0)
+    @component('components.organisms._o-gallery----slider')
+        @slot('variation', 'o-gallery----theme-2')
+        @slot('title', $video_title ?? 'Videos')
+        @slot('caption', $video_description ?? null)
+        @slot('allLink', null);
+        @slot('imageSettings', array(
+            'srcset' => array(200,400,600,1000,1500,3000),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '50',
+                  'small' => '35',
+                  'medium' => '23',
+                  'large' => '23',
+                  'xlarge' => '18',
+            )),
+        ))
+        @slot('items', $videos->map(function($item) {
+            $item->type = 'embed';
+            $item->size = 'gallery';
+            $item->restrict = false;
+            $item->fullscreen = true;
+            $item->poster = $item->imageAsArray('hero');
+            $item->media = [
+                'embed' => \App\Facades\EmbedConverterFacade::convertUrl($item->video_url),
+            ];
+            // Setting caption to empty string forces the title to be bolded
+            $item->captionTitle = getTitleWithFigureNumber($item->present()->title_display ?? $item->present()->title);
+            $item->caption = getSubtitleWithFigureNumber($item->list_description, $item->title) ?? '';
+            return $item;
+        }))
+    @endcomponent
+@endif
+
+
 {{-- Remove events from homepage during COVID-19 cancellations
 @component('components.molecules._m-title-bar')
     @slot('links', array(
@@ -134,75 +169,157 @@
 @endcomponent
 
 @component('components.molecules._m-cta-banner----become-a-member')
-    @slot('image', $membership_module_image)
-    @slot('href', $membership_module_url)
-    @slot('headline', $membership_module_headline)
-    @slot('short_copy', $membership_module_short_copy)
-    @slot('button_text', $membership_module_button_text)
-    @slot('gtmAttributes', 'data-gtm-event="'. $membership_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
+    @slot('image', $cta_module_image)
+    @slot('href', $cta_module_action_url)
+    @slot('header', $cta_module_header)
+    @slot('body', $cta_module_body)
+    @slot('button_text', $cta_module_button_text)
+    @slot('gtmAttributes', 'data-gtm-event="'. $cta_module_button_text . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="internal-ad-click"')
 @endcomponent
 
 
-@component('components.molecules._m-title-bar')
-    @slot('links',
-        array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
-    )
-    From the Collection
-@endcomponent
-@php($countCollection = 0)
-@component('components.organisms._o-pinboard')
-    @slot('cols_small','2')
-    @slot('cols_medium','3')
-    @slot('cols_large','3')
-    @slot('cols_xlarge','3')
-    @slot('maintainOrder','true')
-    @foreach ($theCollection as $k => $item)
-    @php($countCollection = $countCollection+1)
-        @if ($item->enclosedItem())
-            @component('components.molecules._m-listing----' . strtolower($item->enclosedItem()->type))
+@if ($highlights->count() > 0)
+    @component('components.molecules._m-title-bar')
+        @slot('links',
+            array(array('label' => 'See all highlights', 'href' => route('selections.index'), 'gtmAttributes' => 'data-gtm-event="home-highlights" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
+        )
+        Highlights
+    @endcomponent
+    @component('components.atoms._hr')
+    @endcomponent
+    @component('components.organisms._o-grid-listing')
+        @slot('variation', 'o-grid-listing--gridlines-cols o-grid-listing--gridlines-top')
+        @slot('cols_small','2')
+        @slot('cols_medium','3')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+        @foreach ($highlights as $k => $item)
+            @component('components.molecules._m-listing----' . strtolower($item->type))
                 @slot('variation', 'o-pinboard__item')
-                @slot('item', $item->enclosedItem())
+                @slot('item', $item)
                 @slot('imageSettings', array(
-                    'fit' => ($item->enclosedItem()->type !== 'artwork') ? 'crop' : null,
-                    'ratio' => ($item->enclosedItem()->type === 'selection') ? '1:1' : (
-                        ($item->enclosedItem()->type === 'artwork') ? null : '16:9'
-                    ),
+                    'fit' => 'crop',
+                    'ratio' => '1:1',
                     'srcset' => array(200,400,600,1000),
                     'sizes' => aic_gridListingImageSizes(array(
-                          'xsmall' => '1',
-                          'small' => '2',
-                          'medium' => '3',
-                          'large' => '3',
-                          'xlarge' => '3',
+                        'xsmall' => '1',
+                        'small' => '2',
+                        'medium' => '3',
+                        'large' => '3',
+                        'xlarge' => '3',
                     )),
                 ))
-                @slot('gtmAttributes', 'data-gtm-event="' . $item->enclosedItem()->type . '-' . $item->enclosedItem()->id . '-' . $item->enclosedItem()->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . $countCollection . '"')
+                @slot('gtmAttributes', 'data-gtm-event="' . $item->type . '-' . $item->id . '-' . $item->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="highlight-listing-' . ($loop->index + 1) . '"')
             @endcomponent
-        @endif
-    @endforeach
+        @endforeach
+    @endcomponent
+@endif
+
+@if ($homeArtists->count() > 0)
+    @component('components.organisms._o-gallery----slider')
+        @slot('variation', 'o-gallery----theme-2 o-gallery--artist')
+        @slot('title', 'Artists')
+        @slot('caption', null)
+        @slot('allLink', null);
+        @slot('imageSettings', array(
+            'fit' => 'crop',
+            'ratio' => '3:4',
+            'srcset' => array(200,400,600,1000,1500,3000),
+            'sizes' => aic_imageSizes(array(
+                  'xsmall' => '42',
+                  'small' => '23',
+                  'medium' => '12',
+                  'large' => '12',
+                  'xlarge' => '12',
+            )),
+        ))
+        @slot('items', $homeArtists->filter(function($item) {
+            $artist = $item->apiModels('artists', 'Artist')->first();
+            return ($item->imageFront('artist_image') ?? $artist->imageFront('hero')) !== null;
+        })->map(function($item) {
+            $artist = $item->apiModels('artists', 'Artist')->first();
+            return [
+                'type' => 'artist',
+                'size' => 'gallery',
+                'media' => $item->imageFront('artist_image') ?? $artist->imageFront('hero'),
+                'captionTitle' => $artist->short_name_display,
+                'href' => route('artists.show', $artist),
+            ];
+        }))
+    @endcomponent
+@endif
+
+
+@component('site.articles_publications._articleFeature')
+    @slot('featureHero', $articles['featureHero'] ?? null)
+    @slot('features', $articles['features'] ?? null)
 @endcomponent
+
+
+@if ($artworks->count() > 0)
+    @component('components.molecules._m-title-bar')
+        @slot('links',
+            array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
+        )
+        Artworks
+    @endcomponent
+    @component('components.organisms._o-pinboard')
+        @slot('cols_small','2')
+        @slot('cols_medium','3')
+        @slot('cols_large','3')
+        @slot('cols_xlarge','3')
+        @slot('maintainOrder','true')
+        @foreach ($artworks as $k => $item)
+            @component('components.molecules._m-listing----artwork')
+                @slot('variation', 'o-pinboard__item')
+                @slot('item', $item)
+                @slot('imageSettings', array(
+                    'fit' => null,
+                    'ratio' => null,
+                    'srcset' => array(200,400,600,1000),
+                    'sizes' => aic_gridListingImageSizes(array(
+                        'xsmall' => '1',
+                        'small' => '2',
+                        'medium' => '3',
+                        'large' => '3',
+                        'xlarge' => '3',
+                    )),
+                ))
+                @slot('gtmAttributes', 'data-gtm-event="artwork-' . $item->id . '-' . $item->trackingTitle . '" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="collection-listing-' . ($loop->index + 1) . '"')
+            @endcomponent
+        @endforeach
+    @endcomponent
+@endif
 
 @component('components.molecules._m-links-bar')
     @slot('variation', 'm-links-bar--title-bar-companion')
     @slot('linksPrimary', array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title .'"  data-gtm-event-category="nav-link"')))
 @endcomponent
 
-@component('site.shared._featuredProducts')
-    @slot('title', 'From the shop')
-    @slot('titleLinks', [
-        [
-            'label' => 'Explore the shop',
-            'href' => $_pages['shop'],
-            'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
-        ]
-    ])
-    @slot('products', $products)
-@endcomponent
+@if ($experiences->count() > 0)
+    @component('site.articles_publications._interactiveFeature')
+        @slot('experiences', $experiences)
+    @endcomponent
+@endif
 
-@component('components.molecules._m-links-bar')
-    @slot('variation', 'm-links-bar--title-bar-companion')
-    @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')))
-@endcomponent
+@if ($products->count() > 0)
+    @component('site.shared._featuredProducts')
+        @slot('title', 'From the shop')
+        @slot('titleLinks', [
+            [
+                'label' => 'Explore the shop',
+                'href' => $_pages['shop'],
+                'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
+            ]
+        ])
+        @slot('products', $products)
+    @endcomponent
+    @component('components.molecules._m-links-bar')
+        @slot('variation', 'm-links-bar--title-bar-companion')
+        @slot('linksPrimary', array(array('label' => 'Explore the shop', 'href' => $_pages['shop'], 'variation' => 'btn btn--secondary', 'gtmAttributes' => 'data-gtm-event="home-shop" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"')))
+    @endcomponent
+@endif
+
 
 <script type="application/ld+json">
 {

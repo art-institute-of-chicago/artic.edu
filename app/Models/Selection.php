@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasSlug;
 use App\Models\Api\Artwork;
@@ -17,7 +18,7 @@ use Illuminate\Support\Str;
 
 class Selection extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
+    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
 
     protected $presenterAdmin = 'App\Presenters\Admin\SelectionPresenter';
     protected $presenter = 'App\Presenters\Admin\SelectionPresenter';
@@ -33,10 +34,19 @@ class Selection extends AbstractModel
         'meta_description',
         'publish_start_date',
         'publish_end_date',
+        'highlight_type',
     ];
 
     public $slugAttributes = [
         'title',
+    ];
+
+    const NORMAL = 0;
+    const AUDIO_TOUR = 1;
+
+    public static $highlightTypes = [
+        self::NORMAL => 'Normal',
+        self::AUDIO_TOUR => 'Audio tour',
     ];
 
     // those fields get auto set to null if not submited
@@ -113,6 +123,11 @@ class Selection extends AbstractModel
     public function siteTags()
     {
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
+    }
+
+    public function scopeIds($query, $ids = [])
+    {
+        return $query->whereIn('id', $ids);
     }
 
     public function artworks($perPage = 20)
