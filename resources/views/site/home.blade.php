@@ -218,7 +218,7 @@
 @if ($homeArtists->count() > 0)
     @component('components.organisms._o-gallery----slider')
         @slot('variation', 'o-gallery----theme-2 o-gallery--artist')
-        @slot('title', 'Explore by Maker')
+        @slot('title', 'Artists')
         @slot('caption', null)
         @slot('allLink', null);
         @slot('imageSettings', array(
@@ -261,7 +261,7 @@
         @slot('links',
             array(array('label' => 'Explore the collection', 'href' => $_pages['collection'], 'gtmAttributes' => 'data-gtm-event="home-collection" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
         )
-        From the Collection
+        Artworks
     @endcomponent
     @component('components.organisms._o-pinboard')
         @slot('cols_small','2')

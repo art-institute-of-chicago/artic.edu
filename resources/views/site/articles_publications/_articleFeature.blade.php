@@ -2,7 +2,7 @@
     @component('components.molecules._m-title-bar')
         @slot('links', array(array('label' => 'Browse all articles', 'href' => route('articles'))))
         @slot('variation', 'm-title-bar--no-hr')
-        Art Institute Blog
+        Blog
     @endcomponent
 
     @component('components.atoms._hr')
