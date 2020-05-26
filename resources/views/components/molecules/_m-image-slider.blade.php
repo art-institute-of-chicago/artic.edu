@@ -5,26 +5,26 @@
         'sizes' => aic_imageSizes(array(
             'xsmall' => '58',
             'small' => '58',
-            'medium' => '38',
-            'large' => '28',
-            'xlarge' => '28',
+            'medium' => '58',
+            'large' => '43',
+            'xlarge' => '43',
     )));
 @endphp
 
 <div class="m-image-slider" data-behavior="imageSlider">
-  <figure class="m-image-slider__image-container">
+  <figure class="m-image-slider__image-container m-media__img">
     @component('components.atoms._img')
         @slot('image', $leftImage)
         @slot('settings', $imageSettings)
     @endcomponent
-    <span class="m-image-slider__label" data-type="original">Original</span>
+    <span class="m-image-slider__label">Original</span>
 
-    <div class="m-image-slider__resize-img"> <!-- the resizable image on top -->
+    <div class="m-image-slider__resize-img m-media__img"> <!-- the resizable image on top -->
         @component('components.atoms._img')
             @slot('image', $rightImage)
             @slot('settings', $imageSettings)
         @endcomponent
-      <span class="m-image-slider__label" data-type="modified">Modified</span>
+        <span class="m-image-slider__label">Modified</span>
     </div>
 
     <span class="m-image-slider__handle"></span> <!-- slider handle -->

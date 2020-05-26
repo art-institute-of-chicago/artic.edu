@@ -6,7 +6,7 @@
     padding-bottom:50vh;
     min-height:100vh;
 
-    .m-viewer-3d {
+    .m-viewer-3d, .m-image-slider {
       opacity:1;
       visibility:visible;
       position:absolute;//fixed;
@@ -81,15 +81,15 @@
     }
   }
 
-  &--3d-embed {
+  &--3d-embed, &--image_slider {
     position: relative;
 
-    .m-viewer-3d {
+    .m-viewer-3d, .m-image-slider {
       min-height:0;
       height:60vw;
       max-height:90vh;
 
-      iframe {
+      iframe, figure {
         height:100%;
       }
     }
