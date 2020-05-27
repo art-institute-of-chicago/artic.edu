@@ -11,7 +11,7 @@
             ],
             [
                 'label' => 'Interactive feature',
-                'value' => moduleRoute('experiences', 'collection', 'browser')
+                'value' => moduleRoute('experiences', 'collection.interactive_features', 'browser')
             ]
         ],
         'label' => 'Featured items',

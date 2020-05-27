@@ -30,11 +30,11 @@ class ExperienceSlideController extends ModuleController
             'breadcrumb' => [
                 [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('experiences', 'collection', 'index'),
+                    'url' => moduleRoute('experiences', 'collection.interactive_features', 'index'),
                 ],
                 [
                     'label' => $experience->title,
-                    'url' => moduleRoute('experiences', 'collection', 'edit', [$experience->id]),
+                    'url' => moduleRoute('experiences', 'collection.interactive_features', 'edit', [$experience->id]),
                 ],
                 [
                     'label' => 'Slides',
@@ -63,15 +63,15 @@ class ExperienceSlideController extends ModuleController
             'breadcrumb' => [
                 [
                     'label' => 'Experiences',
-                    'url' => moduleRoute('experiences', 'collection', 'index'),
+                    'url' => moduleRoute('experiences', 'collection.interactive_features', 'index'),
                 ],
                 [
                     'label' => $experience->title,
-                    'url' => moduleRoute('experiences', 'collection', 'edit', [$experience->id]),
+                    'url' => moduleRoute('experiences', 'collection.interactive_features', 'edit', [$experience->id]),
                 ],
                 [
                     'label' => 'Slides',
-                    'url' => moduleRoute('experiences.slides', 'collection', 'index', $experience->id),
+                    'url' => moduleRoute('experiences.slides', 'collection.interactive_features', 'index', $experience->id),
                 ],
                 [
                     'label' => $slide->title,

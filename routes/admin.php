@@ -34,7 +34,7 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
 
     Route::name('exhibitions_events.history')->get('history', 'PageController@exhibitionHistory');
 
-    Route::name('exhibitions_events.digitalLabels.augment')->get('interactive-features/augment/{datahub_id}', 'DigitalLabelController@augment');
+    //Route::name('exhibitions_events.digitalLabels.augment')->get('interactive-features/augment/{datahub_id}', 'DigitalLabelController@augment');
 
     Route::module('emailSeries');
 });
@@ -45,9 +45,12 @@ Route::group(['prefix' => 'collection'], function () {
     Route::name('collection.artworks.augment')->get('artworks/augment/{datahub_id}', 'ArtworkController@augment');
     Route::module('artists');
     Route::name('collection.artists.augment')->get('artists/augment/{datahub_id}', 'ArtistController@augment');
-    Route::module('interactiveFeatures');
-    Route::module('experiences');
-    Route::module('experiences.slides');
+
+    Route::group(['prefix' => 'interactive_features'], function () {
+        Route::module('interactiveFeatures');
+        Route::module('experiences');
+        Route::module('experiences.slides');
+    });
 
     Route::module('issues');
     Route::module('issues.articles');

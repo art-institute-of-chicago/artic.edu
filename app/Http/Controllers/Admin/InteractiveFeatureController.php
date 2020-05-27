@@ -32,11 +32,6 @@ class InteractiveFeatureController extends ModuleController
     ];
     protected $filters = [];
 
-    protected function indexData($request)
-    {
-        return [];
-    }
-
     protected function getIndexTableMainFilters($items, $scopes = [])
     {
         $statusFilters = parent::getIndexTableMainFilters($items, $scopes);

@@ -172,17 +172,17 @@ $nav = [
                 'title' => 'Departments',
                 'module' => true,
             ],
-            'experiences' => [
+            'interactive_features' => [
                 'title' => 'Interactive Features',
-                'module' => true,
+                'route' => 'admin.collection.interactive_features.experiences.index',
                 'secondary_navigation' => [
                     'experiences' => [
                         'title' => 'Experiences',
-                        'route' => 'admin.collection.experiences.index',
+                        'module' => true,
                     ],
                     'interactiveFeatures' => [
                         'title' => 'Groupings',
-                        'route' => 'admin.collection.interactiveFeatures.index',
+                        'module' => true,
                     ],
                 ],
             ],

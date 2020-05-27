@@ -82,13 +82,15 @@
 @extends('twill::layouts.form')
 
 @section('contentFields')
-    <br/><h1><strong>Experiences:</strong></h1>
+    @if($item->experiences->isNotEmpty())
+        <br/><h1><strong>Experiences:</strong></h1>
 
-    <dl>
-        @foreach ($item->experiences as $exp)
-            <li><a href="{{ url('/collection/experiences/' . $exp->id) }}">{{ $exp->title }}</a></li>
-        @endforeach
-    </dl>
+        <dl>
+            @foreach ($item->experiences as $exp)
+                <li><a href="{{ url('/collection/experiences/' . $exp->id) }}">{{ $exp->title }}</a></li>
+            @endforeach
+        </dl>
+    @endif
 
     @formField('medias', [
         'with_multiple' => false,

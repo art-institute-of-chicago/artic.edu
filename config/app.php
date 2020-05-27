@@ -286,4 +286,5 @@ return [
         'SmartyPants' => App\Libraries\SmartyPants::class,
     ],
 
+    'editor' => env('APP_EDITOR', 'subl'),
 ];
