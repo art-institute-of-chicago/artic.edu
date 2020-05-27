@@ -46,8 +46,6 @@
         'label' => 'Heading',
         'rows' => 3,
         'type' => 'textarea',
-        'optional' => false,
-        'note' => 'Required',
     ])
 
     @formField('block_editor', [

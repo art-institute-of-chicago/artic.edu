@@ -17,10 +17,6 @@ class VideoRequest extends Request
     {
         return [
             'title' => 'required',
-            'heading' => [
-                'required',
-                'max:255',
-            ],
         ];
     }
 }
