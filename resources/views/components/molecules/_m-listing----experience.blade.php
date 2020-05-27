@@ -33,8 +33,6 @@
                 @slot('font', $titleFont ?? 'f-list-1')
                 {{ $item->title }}
             @endcomponent
-            <br>
-            <span class="subtitle {{ $subtitleFont ?? 'f-secondary'}}">{!! $item->listing_description !!}</span>
         </span>
     </a>
 </{{ $tag ?? 'li' }}>
