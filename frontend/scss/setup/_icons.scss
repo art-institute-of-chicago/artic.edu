@@ -106,6 +106,9 @@ More variants maybe added later, so anything thats not a 16px square SVG needs a
   <svg class="icon--logo--outline--92">
     <use xlink:href="#icon--logo--outline--92"></use>
   </svg>
+  <svg class="icon--magazine-logo">
+    <use xlink:href="#icon--magazine-logo"></use>
+  </svg>
   <svg class="icon--menu--24">
     <use xlink:href="#icon--menu--24"></use>
   </svg>
@@ -376,6 +379,11 @@ The cloud front server caches icons, if you add a new icon, or edit an icon, you
 .icon--logo--outline--92 {
   width: 92px;
   height: 92px;
+}
+
+.icon--magazine-logo {
+  width: 163.2px;
+  height: 22px;
 }
 
 .icon--menu--24 {
