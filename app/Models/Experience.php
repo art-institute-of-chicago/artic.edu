@@ -159,6 +159,11 @@ class Experience extends AbstractModel implements Sortable
         return self::webPublished()->find($this->id) !== null;
     }
 
+    public function getTrackingTitleAttribute()
+    {
+        return $this->title;
+    }
+
     /**
      * By default, `withoutTrashed` is applied to `Expereince` and also `IF` through `whereHas`.
      *
