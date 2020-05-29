@@ -71,7 +71,7 @@
       </svg>
     </div>
     <div class="o-publication-footer__text">
-        <p class="f-secondary">Become a member or renew your membership today. Receive access to exhibition previews, exclusive events, and free admission year-round. Learn more.</p>
+        <p class="f-secondary">Become a member or renew your membership today. Receive access to exhibition previews, exclusive events, and free admission year-round. <a href="/support-us/membership">Learn more</a>.</p>
     </div>
 </div>
 

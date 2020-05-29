@@ -30,6 +30,10 @@
     p:before, p:after {
       content: initial !important;
     }
+
+    a {
+      text-decoration: underline;
+    }
   }
 
   + .m-aside-newsletter {
