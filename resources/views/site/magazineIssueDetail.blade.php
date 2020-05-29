@@ -64,6 +64,15 @@
 
 <hr>
 
-@include('components.organisms._o-journal-footer')
+<div class="o-publication-footer o-publication-footer--magazine">
+    <div class="o-publication-footer__logo">
+      <svg class="icon--magazine-logo">
+        <use xlink:href="#icon--magazine-logo"></use>
+      </svg>
+    </div>
+    <div class="o-publication-footer__text">
+        <p class="f-secondary">Become a member or renew your membership today. Receive access to exhibition previews, exclusive events, and free admission year-round. Learn more.</p>
+    </div>
+</div>
 
 @endsection
