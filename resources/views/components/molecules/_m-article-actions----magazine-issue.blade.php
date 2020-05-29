@@ -26,8 +26,8 @@
                 @component('components.atoms._tag')
                     @slot('href', $issue->title)
                     @slot('dataAttributes',' data-ajax-scroll-target="collection"')
-                    @slot('variation', 'tag--journal tag--senary tag--w-image')
-                    @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $issue->title ) . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="journal-sidebar-issue"')
+                    @slot('variation', 'tag--magazine tag--senary tag--w-image')
+                    @slot('gtmAttributes', 'data-gtm-event="' . getUtf8Slug( $issue->title ) . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="magazine-sidebar-issue"')
                     @if (!empty($issue->imageFront('hero', 'default')))
                         @component('components.atoms._img')
                             @slot('image', $issue->imageFront('hero', 'default'))
@@ -39,8 +39,6 @@
                             ))
                         @endcomponent
                     @endif
-                    Issue {!! $issue->issue_number !!}
-                    <br>
                     {!! $issue->present()->title !!}
                 @endcomponent
             </li>

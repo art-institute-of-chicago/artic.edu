@@ -99,17 +99,21 @@
       }
     }
 
+    .tag--magazine,
     .tag--journal {
-      height: 60px;
       padding-right: 16px;
-      line-height: 23px;
-      padding-left: 76px;
-      padding-top: 7px;
       text-align: left;
 
       @include breakpoint('large+') {
         display: block;
       }
+    }
+
+    .tag--journal {
+      height: 60px;
+      line-height: 23px;
+      padding-top: 7px;
+      padding-left: 76px;
 
       img {
         width: 60px;
