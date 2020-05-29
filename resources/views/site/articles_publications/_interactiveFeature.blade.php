@@ -1,6 +1,8 @@
 <section>
     @component('components.molecules._m-title-bar')
-        @slot('links', array(array('label' => 'Browse all interactive features', 'href' => route('interactiveFeatures'))))
+        @slot('links',
+            array(array('label' => 'Browse all interactive features', 'href' => route('interactiveFeatures'), 'gtmAttributes' => 'data-gtm-event="browse-all-interactive-features" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'))
+        )
         Interactive Features
     @endcomponent
 
@@ -28,6 +30,7 @@
                         'xlarge' => '18',
                     )),
                 ))
+                @slot('gtmAttributes', 'data-gtm-event="interactive-feature-'. $item->id . '-' . $item->trackingTitle . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="interactive-feature-listing-' . ($loop->index + 1) . '"')
             @endcomponent
         @endforeach
     @endcomponent
@@ -38,7 +41,8 @@
             array(
                 'label' => 'Browse all interactive features',
                 'href' => route('interactiveFeatures'),
-                'variation' => 'btn btn--secondary'
+                'variation' => 'btn btn--secondary',
+                'gtmAttributes' => 'data-gtm-event="browse-all-interactive-features" data-gtm-event-action="' . $seo->title . '"  data-gtm-event-category="nav-link"'
             ),
         ))
     @endcomponent

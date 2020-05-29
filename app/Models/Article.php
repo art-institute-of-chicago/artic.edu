@@ -112,7 +112,7 @@ class Article extends AbstractModel implements Feedable
         return 'article';
     }
 
-    public function getTrackingSlugAttribute()
+    public function getTrackingTitleAttribute()
     {
         return $this->title;
     }

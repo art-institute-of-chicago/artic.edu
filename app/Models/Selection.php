@@ -110,7 +110,7 @@ class Selection extends AbstractModel
         return $this->short_copy;
     }
 
-     public function getTrackingSlugAttribute()
+     public function getTrackingTitleAttribute()
     {
         return $this->title;
     }

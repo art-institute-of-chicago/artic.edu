@@ -47,7 +47,7 @@ class Artwork extends AbstractModel
         return $this->belongsTo('App\Models\Model3d', '3d_model_id');
     }
 
-    public function getTrackingSlugAttribute()
+    public function getTrackingTitleAttribute()
     {
         return $this->title;
     }
