@@ -59,6 +59,7 @@ if (!function_exists('getTitleWithFigureNumber')) {
 
 if (!function_exists('getSubtitleWithFigureNumber')) {
     function getSubtitleWithFigureNumber($subtitle, $title) {
+        // If the title isn't set, treat the subtitle like one and add a figure number
         return isset($title) ? $subtitle : getTitleWithFigureNumber($subtitle);
     }
 }
