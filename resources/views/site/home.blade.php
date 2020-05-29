@@ -61,7 +61,7 @@
                   'xlarge' => '18',
             )),
         ))
-        @slot('items', $videos->map(function($item) {
+        @slot('items', $videos->map(function($item, $key) use ($seo) {
             $item->type = 'embed';
             $item->size = 'gallery';
             $item->restrict = false;
@@ -71,8 +71,10 @@
                 'embed' => \App\Facades\EmbedConverterFacade::convertUrl($item->video_url),
             ];
             // Setting caption to empty string forces the title to be bolded
-            $item->captionTitle = getTitleWithFigureNumber($item->present()->title_display ?? $item->present()->title);
-            $item->caption = getSubtitleWithFigureNumber($item->list_description, $item->title) ?? '';
+            $item->captionTitle = $item->present()->title_display ?? $item->present()->title;
+            $item->caption = $item->list_description ?? '';
+            $item->gtmAttributes = 'data-gtm-event="'. $item->captionTitle . '" data-gtm-event-action="' . $seo->title . '" data-gtm-event-category="video-' . ($key) . '"';
+
             return $item;
         }))
     @endcomponent
