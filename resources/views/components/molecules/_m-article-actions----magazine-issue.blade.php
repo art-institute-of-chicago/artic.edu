@@ -12,7 +12,7 @@
 
     <hr>
 
-    <p class="m-article-actions--journal__blurb f-secondary">Become a member or renew your membership.</p>
+    <p class="m-article-actions--journal__blurb f-secondary"><a href="https://sales.artic.edu/memberships">Become a member</a> or <a href="https://sales.artic.edu/Profile/VerifyMembership">renew your membership</a>.</p>
 
     <hr>
 
