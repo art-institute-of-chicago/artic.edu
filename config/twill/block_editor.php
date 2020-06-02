@@ -191,6 +191,11 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-artists'
         ],
+        'magazine_items' => [
+            'title' => 'Magazine Items',
+            'icon' => 'text',
+            'component' => 'a17-block-magazine_items'
+        ],
     ],
     'repeaters' => [
         'admissions' => [
@@ -384,6 +389,12 @@ return [
             'trigger' => 'Add Artist',
             'component' => 'a17-block-artists',
             'max' => 10,
+        ],
+        'magazineItems' => [
+            'title' => 'Magazine Items',
+            'trigger' => 'Add an item',
+            'component' => 'a17-block-magazine_items',
+            'max' => 12,
         ],
     ],
     'crops' => [

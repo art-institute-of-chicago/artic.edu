@@ -13,13 +13,10 @@
     ])
 
     @include('admin.partials.hero')
+@stop
 
-    <hr>
-
-    @formField('block_editor', [
-        'blocks' => getBlocksForEditor([
-            // TODO: Custom magazine-only blocks here?
-        ])
-    ])
-
+@section('fieldsets')
+    <a17-fieldset title="Items" id="items">
+        @formField('repeater', [ 'type' => 'magazineItems' ])
+    </a17-fieldset>
 @stop

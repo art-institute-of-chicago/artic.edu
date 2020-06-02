@@ -41,4 +41,10 @@ class MagazineIssue extends AbstractModel
             ],
         ],
     ];
+
+    public function magazineItems()
+    {
+        return $this->hasMany(MagazineItem::class)->orderBy('position');
+    }
+
 }
