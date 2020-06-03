@@ -1,6 +1,24 @@
 
 @formField('files', [
     'name' => 'image_sequence_file',
-    'label' => 'Image Sequence Zip',
+    'label' => '360 Zip',
     'note' => 'Upload a .zip file'
+])
+
+@formField('wysiwyg', [
+    'name' => 'caption_title',
+    'label' => 'Caption title',
+    'toolbarOptions' => [
+        'italic',
+    ],
+])
+
+@formField('wysiwyg', [
+    'name' => 'caption',
+    'label' => 'Caption',
+    'maxlength' => 300,
+    'note' => 'Max 300 characters',
+    'toolbarOptions' => [
+        'italic', 'link',
+    ],
 ])
