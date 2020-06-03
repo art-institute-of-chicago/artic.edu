@@ -176,6 +176,11 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-aic_3d_embed'
         ],
+        '360_embed' => [
+            'title' => '360 Embed',
+            'icon' => 'image',
+            'component' => 'a17-block-threesixty_embed'
+        ],
         'artists' => [
             'title' => 'Artists',
             'icon' => 'image',
