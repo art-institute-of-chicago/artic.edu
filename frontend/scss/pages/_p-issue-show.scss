@@ -1,12 +1,9 @@
+// This file contains styles for both journal issues and magazine issues
 .p-magazineissue-show,
 .p-issue-show {
 
   .o-article__body {
     border-top: none;
-  }
-
-  .o-article__primary-actions {
-    padding-top: initial;
   }
 
   .m-article-header~.o-article__primary-actions::before {
@@ -34,6 +31,7 @@
   }
 
   .o-article__primary-actions {
+    padding-top: initial;
     margin-top: 0;
 
     @each $name, $point in $breakpoints {
@@ -69,11 +67,6 @@
       a {
         color: $color__black--90;
       }
-
-      .icon--journal-logo {
-        height: 92px;
-        width: 120px;
-      }
     }
 
     .m-article-actions--journal__blurb {
@@ -86,24 +79,6 @@
       }
     }
 
-    #h-nav-magazine-social {
-      font-weight: 400;
-      color: $color__black--90;
-    }
-
-    .m-search-bar {
-
-      input[type=text] {
-        height: 42px;
-      }
-
-      .m-search-bar__submit,
-      .m-search-bar__clear {
-        width: 42px;
-        height: 42px;
-      }
-    }
-
     .tag--magazine,
     .tag--journal {
       padding-right: 16px;
@@ -111,18 +86,6 @@
 
       @include breakpoint('large+') {
         display: block;
-      }
-    }
-
-    .tag--journal {
-      height: 60px;
-      line-height: 23px;
-      padding-top: 7px;
-      padding-left: 76px;
-
-      img {
-        width: 60px;
-        height: 60px;
       }
     }
   }
@@ -161,6 +124,52 @@
       .o-sticky-sidebar__stopper {
         clear: both;
       }
+    }
+  }
+}
+
+// Styles specific to journal issues:
+.p-issue-show {
+  .o-article__primary-actions {
+    .m-article-actions--journal__logo {
+      .icon--journal-logo {
+        height: 92px;
+        width: 120px;
+      }
+    }
+
+    .m-search-bar {
+      input[type=text] {
+        height: 42px;
+      }
+
+      .m-search-bar__submit,
+      .m-search-bar__clear {
+        width: 42px;
+        height: 42px;
+      }
+    }
+
+    .tag--journal {
+      height: 60px;
+      line-height: 23px;
+      padding-top: 7px;
+      padding-left: 76px;
+
+      img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+}
+
+// Styles specific to magazine issues:
+.p-magazineissue-show {
+  .o-article__primary-actions {
+    #h-nav-magazine-social {
+      font-weight: 400;
+      color: $color__black--90;
     }
   }
 }
