@@ -40,7 +40,7 @@
       @include breakpoint('#{$name}') {
         .m-search-bar,
         hr,
-        ul {
+        .m-article-actions--journal__issues {
           margin-top: #{map-get((
             xsmall: 24,
             small: 24,
@@ -84,6 +84,11 @@
         color: $color__black--54;
         text-decoration: underline;
       }
+    }
+
+    #h-nav-magazine-social {
+      font-weight: 400;
+      color: $color__black--90;
     }
 
     .m-search-bar {
