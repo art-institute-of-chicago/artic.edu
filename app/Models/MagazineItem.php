@@ -2,54 +2,46 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasMedias;
-use A17\Twill\Models\Behaviors\HasRevisions;
-use A17\Twill\Models\Behaviors\HasPosition;
-use A17\Twill\Models\Behaviors\Sortable;
-use A17\Twill\Models\Model;
-use App\Models\Behaviors\HasRelated;
+use Illuminate\Database\Eloquent\Model;
 
-class MagazineItem extends Model implements Sortable
+class MagazineItem extends Model
 {
-    use HasMedias, HasRevisions, HasPosition, HasRelated;
-
     protected $fillable = [
-        'title',
-        'description',
-        'publish_start_date',
-        'published',
         'position',
         'feature_type',
         'tag',
-        'call_to_action',
+        'title',
+        'list_description',
         'url',
-        'magazine_issue_id',
     ];
 
-    public $checkboxes = [
-        'published'
-    ];
+    // Aside from custom, these should also be defined in config('twill.block_editor.browser_route_prefixes')
+    const ITEM_TYPE_CUSTOM = 'custom';
+    const ITEM_TYPE_ARTICLE = 'articles';
+    const ITEM_TYPE_SELECTION = 'selections';
+    const ITEM_TYPE_EXPERIENCE = 'experiences';
 
-    // uncomment and modify this as needed if you use the HasMedias trait
-    // public $mediasParams = [
-    //     'cover' => [
-    //         'default' => [
-    //             [
-    //                 'name' => 'landscape',
-    //                 'ratio' => 16 / 9,
-    //             ],
-    //             [
-    //                 'name' => 'portrait',
-    //                 'ratio' => 3 / 4,
-    //             ],
-    //         ],
-    //         'mobile' => [
-    //             [
-    //                 'name' => 'mobile',
-    //                 'ratio' => 1,
-    //             ],
-    //         ],
-    //     ],
-    // ];
+    public static function getClassFromType($itemType)
+    {
+        switch ($itemType) {
+            case self::ITEM_TYPE_CUSTOM:
+                return null;
+            case self::ITEM_TYPE_ARTICLE:
+                return Article::class;
+            case self::ITEM_TYPE_SELECTION:
+                return Selection::class;
+            case self::ITEM_TYPE_EXPERIENCE:
+                return Experience::class;
+        }
+    }
 
+    public function magazineIssue()
+    {
+        return $this->belongsTo(MagazineIssue::class)->orderBy('position');
+    }
+
+    public function magazinable()
+    {
+        return $this->morphTo();
+    }
 }

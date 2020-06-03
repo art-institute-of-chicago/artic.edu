@@ -191,10 +191,10 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-artists'
         ],
-        'magazine_items' => [
-            'title' => 'Magazine Items',
+        'magazine_item' => [
+            'title' => 'Magazine Item',
             'icon' => 'text',
-            'component' => 'a17-block-magazine_items'
+            'component' => 'a17-block-magazine_item'
         ],
     ],
     'repeaters' => [
@@ -390,12 +390,6 @@ return [
             'component' => 'a17-block-artists',
             'max' => 10,
         ],
-        'magazineItems' => [
-            'title' => 'Magazine Items',
-            'trigger' => 'Add an item',
-            'component' => 'a17-block-magazine_items',
-            'max' => 12,
-        ],
     ],
     'crops' => [
         'image' => [
@@ -494,5 +488,8 @@ return [
         'selections' => 'collection',
         'artworks' => 'collection',
         'authors' => 'collection',
+        'selections' => 'collection',
+        'articles' => 'collection.articles_publications',
+        'experiences' => 'collection.interactive_features',
     ],
 ];

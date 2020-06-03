@@ -39,7 +39,6 @@ Route::group(['prefix' => 'exhibitions_events'], function () {
     Route::module('emailSeries');
 
     Route::module('magazineIssues');
-    Route::module('magazineItems');
 });
 
 Route::group(['prefix' => 'collection'], function () {
