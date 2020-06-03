@@ -79,6 +79,11 @@ class Selection extends AbstractModel
         ],
     ];
 
+    public function getListDescriptionAttribute()
+    {
+        return $this->short_copy;
+    }
+
     // Generates the id-slug type of URL
     public function getRouteKeyName()
     {

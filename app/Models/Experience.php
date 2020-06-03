@@ -42,6 +42,11 @@ class Experience extends AbstractModel implements Sortable
         'published',
     ];
 
+    public function getListDescriptionAttribute()
+    {
+        return $this->listing_description;
+    }
+
     public function getContentBundleAttribute()
     {
         return SlideResource::collection($this->slides()->published()->orderBy('position')->get())->toArray(request());

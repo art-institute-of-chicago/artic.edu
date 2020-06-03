@@ -35,6 +35,22 @@ class MagazineItem extends Model
         }
     }
 
+    public static function findByType($itemType, $ids)
+    {
+        $itemClass = self::getClassFromType($itemType);
+
+        if (!$itemClass) {
+            return null;
+        }
+
+        switch ($itemType) {
+            case self::ITEM_TYPE_EXPERIENCE:
+                return $itemClass::query()->webPublished()->find($ids)->first();
+            default:
+                return $itemClass::query()->published()->find($ids)->first();
+        }
+    }
+
     public function magazineIssue()
     {
         return $this->belongsTo(MagazineIssue::class)->orderBy('position');
