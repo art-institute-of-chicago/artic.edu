@@ -67,6 +67,11 @@
     'fieldValues' => \App\Models\MagazineItem::ITEM_TYPE_CUSTOM,
     'renderForBlocks' => true
 ])
+    @formField('medias', [
+        'name' => 'listing_image',
+        'label' => 'Hero image',
+    ])
+
     @formField('input', [
         'name' => 'tag',
         'label' => 'Tag',
@@ -82,6 +87,11 @@
     @formField('input', [
         'name' => 'url',
         'label' => 'URL for link'
+    ])
+
+    @formField('input', [
+        'name' => 'author_display',
+        'label' => 'Author'
     ])
 @endcomponent
 
