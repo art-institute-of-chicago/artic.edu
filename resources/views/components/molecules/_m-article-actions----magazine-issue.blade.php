@@ -16,7 +16,15 @@
 
     <hr>
 
-    <p class="m-article-actions--journal__blurb f-secondary">Stay connected.</p>
+    <div class="m-article-actions--journal__blurb f-secondary">
+        <h3 id="h-nav-magazine-social">Stay connected</h4>
+        <ul class="f-secondary" aria-labelledby="h-nav-magazine-social">
+            <li><a href="{{ $_pages['follow-facebook'] }}" data-gtm-event="facebook" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="follow" target="_blank">Facebook</a></li>
+            <li><a href="{{ $_pages['follow-twitter'] }}" data-gtm-event="twitter" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="follow" target="_blank">Twitter</a></li>
+            <li><a href="{{ $_pages['follow-instagram'] }}" data-gtm-event="instagram" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="follow" target="_blank">Instagram</a></li>
+            <li><a href="{{ $_pages['follow-youtube'] }}" data-gtm-event="youtube" data-gtm-event-action="{{$seo->title}}" data-gtm-event-category="follow" target="_blank">YouTube</a></li>
+        </ul>
+    </div>
 
     <hr>
 
