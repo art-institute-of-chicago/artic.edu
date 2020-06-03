@@ -167,6 +167,14 @@
 // Styles specific to magazine issues:
 .p-magazineissue-show {
   .o-article__primary-actions {
+    hr {
+      margin-bottom: 24px;
+
+      @include breakpoint('large+') {
+        margin-bottom: 0;
+      }
+    }
+
     #h-nav-magazine-social {
       font-weight: 400;
       color: $color__black--90;
