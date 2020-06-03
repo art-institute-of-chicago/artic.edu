@@ -181,6 +181,11 @@ return [
             'icon' => 'image',
             'component' => 'a17-block-threesixty_embed'
         ],
+        '360_modal' => [
+            'title' => '360 Modal',
+            'icon' => 'image',
+            'component' => 'a17-block-threesixty_modal'
+        ],
         'artists' => [
             'title' => 'Artists',
             'icon' => 'image',
