@@ -31,26 +31,24 @@ class MagazineIssueRepository extends ModuleRepository
             ->each(function ($block, $key) use ($object) {
                 $featureType = $block['content']->feature_type;
 
-                $magazineItem = new MagazineItem([
-                    'position' => $key,
-                    'feature_type' => $featureType,
+                if ($featureType !== MagazineItem::ITEM_TYPE_CUSTOM) {
 
-                    // Only for custom magazine items
-                    'tag' => $block['content']->tag ?? null,
-                    'title' => $block['content']->title ?? null,
-                    'list_description' => $block['content']->list_description ?? null,
-                    'url' => $block['content']->url ?? null,
-                ]);
+                    $magazineItem = new MagazineItem([
+                        'position' => $key,
+                        'feature_type' => $featureType,
+                        'list_description' => $block['content']->list_description ?? null,
+                    ]);
 
-                $magazineItem->magazineIssue()->associate($object);
+                    $magazineItem->magazineIssue()->associate($object);
 
-                if ($magazinableClass = MagazineItem::getClassFromType($featureType)) {
-                    if ($magazinableItem = $magazinableClass::find($block['browsers'][$featureType][0]['id'])) {
-                        $magazineItem->magazinable()->associate($magazinableItem);
+                    if ($magazinableClass = MagazineItem::getClassFromType($featureType)) {
+                        if ($magazinableItem = $magazinableClass::find($block['browsers'][$featureType][0]['id'])) {
+                            $magazineItem->magazinable()->associate($magazinableItem);
+                        }
                     }
-                }
 
-                $magazineItem->save();
+                    $magazineItem->save();
+                }
             });
 
         parent::afterSave($object, $fields);
