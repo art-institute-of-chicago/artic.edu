@@ -36,6 +36,7 @@ class ArticleController extends FrontController
 
         if (request('category') !== 'interactive-features') {
             $articles = Article::published()
+                ->listed()
                 ->byCategories(request('category'))
                 ->whereNotIn('id', $featuredItems->pluck('id'))
                 ->orderBy('date', 'desc')

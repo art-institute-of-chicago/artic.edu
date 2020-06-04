@@ -86,6 +86,11 @@
         'label' => 'Boost this article on search results'
     ])
 
+    @formField('checkbox', [
+        'name' => 'is_unlisted',
+        'label' => 'Don\'t show this article in listings',
+    ])
+
     @formField('wysiwyg', [
         'name' => 'citations',
         'label' => 'Citation',

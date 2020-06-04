@@ -10,13 +10,14 @@ use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasRelated;
 use App\Models\Behaviors\HasApiRelations;
 use App\Models\Behaviors\HasFeaturedRelated;
+use App\Models\Behaviors\HasUnlisted;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
 class Article extends AbstractModel implements Feedable
 {
-    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated;
+    use HasSlug, HasRevisions, HasMedias, HasMediasEloquent, HasBlocks, Transformable, HasRelated, HasApiRelations, HasFeaturedRelated, HasUnlisted;
 
     protected $presenter = 'App\Presenters\Admin\ArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ArticlePresenter';
@@ -47,6 +48,7 @@ class Article extends AbstractModel implements Feedable
         'meta_description',
         'publish_start_date',
         'publish_end_date',
+        'is_unlisted',
     ];
 
     public $slugAttributes = [
@@ -63,7 +65,7 @@ class Article extends AbstractModel implements Feedable
 
     public $nullable = [];
 
-    public $checkboxes = ['published', 'is_boosted'];
+    public $checkboxes = ['published', 'is_boosted', 'is_unlisted'];
 
     public $dates = [
         'date',
