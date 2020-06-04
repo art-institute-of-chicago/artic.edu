@@ -19,6 +19,7 @@ class MagazineIssue extends AbstractModel
     protected $fillable = [
         'title',
         'list_description',
+        'hero_caption',
         'publish_start_date',
         'published',
     ];
