@@ -14,10 +14,11 @@ use App\Models\SeamlessImage;
 use App\Models\ExperienceModal;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
+use App\Models\Behaviors\HasUnlisted;
 
 class Experience extends AbstractModel implements Sortable
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, Transformable;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, Transformable, HasUnlisted;
 
     protected $presenter = 'App\Presenters\Admin\ExperiencePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ExperiencePresenter';
@@ -32,6 +33,7 @@ class Experience extends AbstractModel implements Sortable
         'archived',
         'kiosk_only',
         'show_on_articles',
+        'is_unlisted'
     ];
 
     public $slugAttributes = [
@@ -40,6 +42,7 @@ class Experience extends AbstractModel implements Sortable
 
     public $checkboxes = [
         'published',
+        'is_unlisted',
     ];
 
     public function getListDescriptionAttribute()
