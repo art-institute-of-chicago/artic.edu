@@ -22,36 +22,44 @@ class MagazineIssueRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        // Replace all MagazineItems associated with this MagazineIssue by filtering blocks
+        $this->syncMagazineItems($object, $fields);
+
+        parent::afterSave($object, $fields);
+    }
+
+    /**
+     * Replace all MagazineItems associated with this MagazineIssue by filtering blocks
+     */
+    private function syncMagazineItems($object, $fields)
+    {
         $object->magazineItems()->delete();
 
         $this->getBlocks($object, $fields)
-            ->where('type', '=', 'magazine_item')
+            ->filter(function ($block, $key) {
+                return $block['type'] === 'magazine_item'
+                    && $block['content']->feature_type !== MagazineItem::ITEM_TYPE_CUSTOM;
+            })
             ->values()
             ->each(function ($block, $key) use ($object) {
                 $featureType = $block['content']->feature_type;
 
-                if ($featureType !== MagazineItem::ITEM_TYPE_CUSTOM) {
+                $magazineItem = new MagazineItem([
+                    'position' => $key,
+                    'feature_type' => $featureType,
+                    'list_description' => $block['content']->list_description ?? null,
+                ]);
 
-                    $magazineItem = new MagazineItem([
-                        'position' => $key,
-                        'feature_type' => $featureType,
-                        'list_description' => $block['content']->list_description ?? null,
-                    ]);
+                $magazineItem->magazineIssue()->associate($object);
 
-                    $magazineItem->magazineIssue()->associate($object);
-
-                    if ($magazinableClass = MagazineItem::getClassFromType($featureType)) {
-                        if ($magazinableItem = $magazinableClass::find($block['browsers'][$featureType][0]['id'])) {
-                            $magazineItem->magazinable()->associate($magazinableItem);
-                        }
+                if ($magazinableClass = MagazineItem::getClassFromType($featureType)) {
+                    if ($magazinableItem = $magazinableClass::find($block['browsers'][$featureType][0]['id'])) {
+                        $magazineItem->magazinable()->associate($magazinableItem);
                     }
-
-                    $magazineItem->save();
                 }
-            });
 
-        parent::afterSave($object, $fields);
+                $magazineItem->save();
+            });
     }
+
 }
 
