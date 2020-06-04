@@ -39,6 +39,7 @@ class MagazineIssueController extends FrontController
             'borderlessHeader' => false,
             'item' => $item,
             'issues' => $issues,
+            'welcomeNote' => $this->repository->getWelcomeNote($item),
             'canonicalUrl' => route('magazine-issues.show', ['id' => $item->id, 'slug' => $item->getSlug()]),
         ]);
     }

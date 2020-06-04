@@ -36,6 +36,6 @@ class ArticlePresenter extends BasePresenter
 
     public function url()
     {
-        return route('articles', $this->entity);
+        return route('articles.show', $this->entity);
     }
 }

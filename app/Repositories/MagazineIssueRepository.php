@@ -19,12 +19,28 @@ class MagazineIssueRepository extends ModuleRepository
         $this->model = $model;
     }
 
-
     public function afterSave($object, $fields)
     {
+        $this->updateRelatedBrowser($object, $fields, 'welcome_note');
+
         $this->syncMagazineItems($object, $fields);
 
         parent::afterSave($object, $fields);
+    }
+
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+
+        $fields['browsers']['welcome_note'] = $this->getFormFieldsForRelatedBrowser($object, 'welcome_note');
+
+        return $fields;
+    }
+
+    public function getWelcomeNote($item)
+    {
+        return $item->getRelated('welcome_note')->where('published', true)->first();
     }
 
     /**

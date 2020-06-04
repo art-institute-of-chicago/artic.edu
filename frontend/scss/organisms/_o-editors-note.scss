@@ -1,10 +1,13 @@
 .o-editors-note {
+  *:before, *:after {
+    content: none;
+  }
 
   .deck--black {
     color: $color__text--title;
   }
 
-  .f-tag {
+  .o-editors-note__tag {
     margin-bottom: 9px;
 
     @include breakpoint('small+') {
@@ -52,6 +55,26 @@
     }
 
     .o-editors-note__title-lockup {
+      * {
+        display: inline;
+      }
+
+      .icon--arrow {
+        color: $color__text--accent;
+        width: 32px;
+        height: 32px;
+        vertical-align: text-bottom;
+      }
     }
+  }
+}
+
+.o-editors-note--magazine {
+  .o-editors-note__tag {
+    color: $color__plum;
+  }
+
+  .o-editors-note__author {
+    margin-top: 12px;
   }
 }

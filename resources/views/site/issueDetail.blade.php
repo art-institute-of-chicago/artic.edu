@@ -21,7 +21,7 @@
     <div class="o-article__body o-blocks">
         @if ($item->present()->editorsNote)
             <div class="o-issue__intro">
-                @component('components.organisms._o-editors-note')
+                @component('components.organisms._o-editors-note----journal')
                     @slot('title', $item->present()->editorsNote->present()->shortTitle)
                     @slot('description', $item->present()->editorsNote->present()->listDescription)
                     @slot('issueNumber', $item->issue_number ?? null)

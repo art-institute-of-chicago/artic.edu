@@ -2,7 +2,7 @@
     'disableContentFieldset' => true,
     'additionalFieldsets' => [
         ['fieldset' => 'title_and_image', 'label' => 'Title and Image'],
-        ['fieldset' => 'editors_note', 'label' => 'Editor\'s Note'],
+        ['fieldset' => 'welcome_note', 'label' => 'Welcome Note'],
         ['fieldset' => 'content', 'label' => 'Content'],
     ]
 ])
@@ -23,14 +23,26 @@
         @include('admin.partials.hero')
     </a17-fieldset>
 
-    <a17-fieldset id="editors_note" title="Editor's Note">
-        <p>Lorem ipsum.</p>
-        {{--
-            TODO:
-             - Browser for an article that'll serve as the editor's note
-             - Text to display on the issue itself
-             - Author display
-        --}}
+    <a17-fieldset id="welcome_note" title="Welcome Note">
+        @formField('browser', [
+            'routePrefix' => 'collection.articles_publications',
+            'moduleName' => 'articles',
+            'name' => 'welcome_note',
+            'label' => 'Welcome Note',
+            'note' => 'Select one article',
+        ])
+
+        @formField('wysiwyg', [
+            'name' => 'welcome_note_display',
+            'label' => 'Preview Text',
+            'maxlength' => 255,
+            'note' => 'If empty, we use the article\'s "List description"',
+            'toolbarOptions' => [
+                'italic'
+            ],
+        ])
+
+        <p>For the attribution, we use the "Author Display" field from the linked article.</p>
     </a17-fieldset>
 
     <a17-fieldset id="content" title="Content">

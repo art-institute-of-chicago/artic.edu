@@ -8,10 +8,11 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
+use App\Models\Behaviors\HasRelated;
 
 class MagazineIssue extends AbstractModel
 {
-    use HasSlug, HasRevisions, HasBlocks, HasMedias, HasMediasEloquent;
+    use HasSlug, HasRevisions, HasBlocks, HasMedias, HasMediasEloquent, HasRelated;
 
     protected $presenter = 'App\Presenters\Admin\GenericPresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\GenericPresenter';
@@ -20,6 +21,7 @@ class MagazineIssue extends AbstractModel
         'title',
         'list_description',
         'hero_caption',
+        'welcome_note_display',
         'publish_start_date',
         'published',
     ];
