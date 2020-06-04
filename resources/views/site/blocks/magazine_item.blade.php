@@ -32,7 +32,8 @@
 @endphp
 
 @if ($isBlockReady)
-    @component('components.molecules._m-listing----journal')
+    @component('components.molecules._m-listing----publication')
+        @slot('variation', 'm-listing--magazine')
         @slot('href', $href ?? null)
         @slot('image', $image ?? null)
         @slot('type', $type ?? null)

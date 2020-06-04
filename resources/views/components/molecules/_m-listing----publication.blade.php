@@ -1,4 +1,4 @@
-<{{ $tag ?? 'li' }} class="m-listing m-listing--journal m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
+<{{ $tag ?? 'li' }} class="m-listing m-listing--publication m-listing--w-meta-bottom{{ (isset($variation)) ? ' '.$variation : '' }}">
   <a href="{{ $href ?? '' }}" class="m-listing__link"{!! (isset($gtmAttributes)) ? ' '.$gtmAttributes.'' : '' !!}>
     <span class="m-listing__img">
         @if ($image)
