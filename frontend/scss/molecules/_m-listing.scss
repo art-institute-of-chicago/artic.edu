@@ -1947,6 +1947,8 @@ $f-audio-subtitle: generate-font-obj(
 
 // shared styles for .m-listing--journal and .m-listing--magazine
 .m-listing--publication {
+  border: thin solid $color__grey--100;
+
   .m-listing__img img {
     transition: transform .35s ease-in-out;
   }
@@ -2008,8 +2010,6 @@ $f-audio-subtitle: generate-font-obj(
 
 // variant for Art Institute Review
 .m-listing--journal {
-  border: thin solid $color__grey--100;
-
   .m-listing__meta > .f-tag {
     color: $color__blue;
   }
@@ -2017,8 +2017,6 @@ $f-audio-subtitle: generate-font-obj(
 
 // variant for Member Magazine
 .m-listing--magazine {
-  border: thin solid $color__grey--110;
-
   .m-listing__meta > .f-tag {
     color: $color__plum;
   }
