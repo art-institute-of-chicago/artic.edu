@@ -23,7 +23,7 @@ class SelectionsController extends FrontController
 
     public function index(Request $request)
     {
-        $items = $this->repository->published()->ordered()->paginate();
+        $items = $this->repository->published()->listed()->ordered()->paginate();
         $title = 'Highlights';
 
         $subNav = [
