@@ -9,7 +9,11 @@
         @else
             <span class="default-img"></span>
         @endif
-        <span class="m-listing__img__overlay"></span>
+        <span class="m-listing__img__overlay">
+            <svg class="icon--slideshow--24">
+                <use xlink:href="#icon--slideshow--24"></use>
+            </svg>
+        </span>
     </span>
     <span class="m-listing__meta">
         @component('components.atoms._type')

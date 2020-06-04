@@ -1884,6 +1884,8 @@ $f-audio-subtitle: generate-font-obj(
 
 // adding gradients to homepage features and selections
 @mixin m-listing__img__overlay {
+  display: block;
+
   position: absolute;
   top: 0;
 
@@ -1898,6 +1900,10 @@ $f-audio-subtitle: generate-font-obj(
     $color__black--85,
     transparent
   );
+}
+
+.m-listing__img__overlay {
+  display: none;
 }
 
 .m-listing--selection .m-listing__img .m-listing__img__overlay {

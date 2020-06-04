@@ -4,6 +4,8 @@
     $featureType = $block->input('feature_type');
     $isBlockReady = false;
 
+    $variation = ['m-listing--magazine'];
+
     if ($featureType !== MagazineItem::ITEM_TYPE_CUSTOM) {
         $ids = $block->browserIds($featureType);
         $item = MagazineItem::findByType($featureType, $ids);
@@ -16,6 +18,10 @@
             $title_display = $item->present()->title_display;
             $list_description = $block->input('list_description') ?? $item->present()->list_description;
             $author_display = $item->author_display;
+
+            if ($featureType === MagazineItem::ITEM_TYPE_SELECTION) {
+                $variation[] = 'm-listing--selection';
+            }
 
             $isBlockReady = true;
         }
@@ -33,7 +39,7 @@
 
 @if ($isBlockReady)
     @component('components.molecules._m-listing----publication')
-        @slot('variation', 'm-listing--magazine')
+        @slot('variation', implode(' ', $variation))
         @slot('href', $href ?? null)
         @slot('image', $image ?? null)
         @slot('type', $type ?? null)
