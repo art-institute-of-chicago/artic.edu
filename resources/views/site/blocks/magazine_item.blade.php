@@ -20,12 +20,12 @@
             $isBlockReady = true;
         }
     } else {
-        $image = $block->imageAsArray('image', 'desktop');
+        $image = $block->imageAsArray('listing_image', 'default');
         $type = $block->input('tag');
         $title = $block->input('title');
         $title_display = null;
         $list_description = $block->input('list_description');
-        $author_display = null;
+        $author_display = $block->input('author_display');
 
         $isBlockReady = true;
     }
