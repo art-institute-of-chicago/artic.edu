@@ -115,6 +115,11 @@ return [
             'icon' => 'text',
             'component' => 'a17-block-mobile_app',
         ],
+        'magazine_item' => [
+            'title' => 'Magazine Item',
+            'icon' => 'text',
+            'component' => 'a17-block-magazine_item'
+        ],
         'event' => [
             'title' => 'Event',
             'icon' => 'text',
@@ -200,11 +205,6 @@ return [
             'title' => 'Artists',
             'icon' => 'image',
             'component' => 'a17-block-artists'
-        ],
-        'magazine_item' => [
-            'title' => 'Magazine Item',
-            'icon' => 'text',
-            'component' => 'a17-block-magazine_item'
         ],
     ],
     'repeaters' => [
