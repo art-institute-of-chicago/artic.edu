@@ -1,4 +1,4 @@
-<{{ $tag ?? 'header' }} class="m-article-header m-article-header--journal">
+<{{ $tag ?? 'header' }} class="m-article-header m-article-header--publication m-article-header--journal">
   <div class="m-article-header__img">
       @if ($img)
         @component('components.atoms._img')
