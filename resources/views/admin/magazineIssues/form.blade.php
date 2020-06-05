@@ -63,7 +63,7 @@
                 'magazine_item',
                 'events',
                 'exhibitions',
-                // TODO: magazine cta
+                'magazine_call_to_action',
             ])
         ])
     </a17-fieldset>

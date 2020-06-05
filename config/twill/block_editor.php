@@ -120,6 +120,11 @@ return [
             'icon' => 'text',
             'component' => 'a17-block-magazine_item'
         ],
+        'magazine_call_to_action' => [
+            'title' => 'Magazine Call to Action',
+            'icon' => 'text',
+            'component' => 'a17-block-magazine_call_to_action'
+        ],
         'event' => [
             'title' => 'Event',
             'icon' => 'text',
