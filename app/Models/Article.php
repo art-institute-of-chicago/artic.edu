@@ -35,7 +35,7 @@ class Article extends AbstractModel implements Feedable
         'title_display',
         'heading',
         'list_description',
-        'author',
+        'author_display',
         'copy',
         'subtype',
         'citation',

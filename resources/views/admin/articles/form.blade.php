@@ -68,8 +68,8 @@
     ])
 
     @formField('input', [
-        'name' => 'author',
-        'label' => 'Author',
+        'name' => 'author_display',
+        'label' => 'Author display',
         'maxlength' => 255
     ])
 
