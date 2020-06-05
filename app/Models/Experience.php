@@ -33,7 +33,8 @@ class Experience extends AbstractModel implements Sortable
         'archived',
         'kiosk_only',
         'show_on_articles',
-        'is_unlisted'
+        'is_unlisted',
+        'author_display'
     ];
 
     public $slugAttributes = [
