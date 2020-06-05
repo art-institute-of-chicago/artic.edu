@@ -61,7 +61,7 @@
         @formField('block_editor', [
             'blocks' => getBlocksForEditor([
                 'magazine_item',
-                // TODO: magazine events
+                'events',
                 // TODO: magazine exhibitions
                 // TODO: magazine cta
             ])

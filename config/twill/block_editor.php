@@ -120,6 +120,11 @@ return [
             'icon' => 'text',
             'component' => 'a17-block-event',
         ],
+        'events' => [
+            'title' => 'Events',
+            'icon' => 'text',
+            'component' => 'a17-block-events',
+        ],
         'newsletter_signup_inline' => [
             'title' => 'Newsletter signup inline',
             'icon' => 'text',
