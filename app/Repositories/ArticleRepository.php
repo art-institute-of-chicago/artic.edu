@@ -27,6 +27,7 @@ class ArticleRepository extends ModuleRepository
     {
         $object->categories()->sync($fields['categories'] ?? []);
 
+        $this->updateBrowser($object, $fields, 'authors');
         $this->updateMultiBrowserApiRelated($object, $fields, 'further_reading_items', [
             'articles' => false,
             'experiences' => false
@@ -39,6 +40,7 @@ class ArticleRepository extends ModuleRepository
     {
         $fields = parent::getFormFields($object);
 
+        $fields['browsers']['authors'] = $this->getFormFieldsForBrowser($object, 'authors', 'collection');
         $fields['browsers']['further_reading_items'] = $this->getFormFieldsForMultiBrowserApi($object, 'further_reading_items', [], [
             'articles' => false,
             'experiences' => false

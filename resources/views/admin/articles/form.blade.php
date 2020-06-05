@@ -73,6 +73,14 @@
         'maxlength' => 255
     ])
 
+    @formField('browser', [
+        'routePrefix' => 'collection',
+        'moduleName' => 'authors',
+        'name' => 'authors',
+        'label' => 'Authors',
+        'max' => 10
+    ])
+
     @formField('medias', [
         'with_multiple' => false,
         'no_crop' => false,

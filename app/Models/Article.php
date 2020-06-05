@@ -169,6 +169,11 @@ class Article extends AbstractModel implements Feedable
         return $this->belongsToMany('App\Models\Article', 'article_article', 'article_id', 'related_article_id')->withPivot('position')->orderBy('position');
     }
 
+    public function authors()
+    {
+        return $this->morphToMany('App\Models\Author', 'authorable')->orderBy('position');
+    }
+
     public static function getAllFeedItems()
     {
         return \App\Models\Article::query()->published()->orderBy('date', 'desc')->get();
