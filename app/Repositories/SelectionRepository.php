@@ -42,8 +42,18 @@ class SelectionRepository extends ModuleRepository
     public function afterSave($object, $fields)
     {
         $object->siteTags()->sync($fields['siteTags'] ?? []);
+        $this->updateBrowser($object, $fields, 'authors');
 
         parent::afterSave($object, $fields);
+    }
+
+    public function getFormFields($object)
+    {
+        $fields = parent::getFormFields($object);
+
+        $fields['browsers']['authors'] = $this->getFormFieldsForBrowser($object, 'authors', 'collection');
+
+        return $fields;
     }
 
     // Show data, moved here to allow preview

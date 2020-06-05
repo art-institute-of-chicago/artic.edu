@@ -133,6 +133,11 @@ class Selection extends AbstractModel
         return $this->morphToMany(\App\Models\SiteTag::class, 'site_taggable', 'site_tagged');
     }
 
+    public function authors()
+    {
+        return $this->morphToMany('App\Models\Author', 'authorable')->orderBy('position');
+    }
+
     public function scopeIds($query, $ids = [])
     {
         return $query->whereIn('id', $ids);
