@@ -36,7 +36,8 @@ class Selection extends AbstractModel
         'publish_start_date',
         'publish_end_date',
         'highlight_type',
-        'is_unlisted'
+        'is_unlisted',
+        'author_display'
     ];
 
     public $slugAttributes = [
