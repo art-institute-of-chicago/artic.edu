@@ -33,6 +33,8 @@ trait HandleApiBlocks
                     $data['edit'] = moduleRoute($relation, config('twill.block_editor.browser_route_prefixes.' . $relation), 'edit', $relatedElement->id);
                 }
 
+                $data['thumbnail'] = (method_exists($relatedElement, 'getAugmentedModel') ? $relatedElement->getAugmentedModel()->defaultCmsImage(['w' => 100, 'h' => 100]) : $relatedElement->defaultCmsImage(['w' => 100, 'h' => 100])) ?? ImageService::getTransparentFallbackUrl(['w' => 100, 'h' => 100]);
+
                 return [
                     'id' => $relatedElement->id,
                     'name' => $relatedElement->titleInBrowser ?? $relatedElement->title,

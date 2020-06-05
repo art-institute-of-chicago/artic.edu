@@ -125,6 +125,11 @@ return [
             'icon' => 'text',
             'component' => 'a17-block-events',
         ],
+        'exhibitions' => [
+            'title' => 'Exhibitions',
+            'icon' => 'text',
+            'component' => 'a17-block-exhibitions',
+        ],
         'newsletter_signup_inline' => [
             'title' => 'Newsletter signup inline',
             'icon' => 'text',
@@ -490,6 +495,7 @@ return [
     ],
     'browser_route_prefixes' => [
         'events' => 'exhibitions_events',
+        'exhibitions' => 'exhibitions_events',
         'selections' => 'collection',
         'artworks' => 'collection',
         'authors' => 'collection',

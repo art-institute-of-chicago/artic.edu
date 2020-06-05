@@ -62,7 +62,7 @@
             'blocks' => getBlocksForEditor([
                 'magazine_item',
                 'events',
-                // TODO: magazine exhibitions
+                'exhibitions',
                 // TODO: magazine cta
             ])
         ])
