@@ -48,17 +48,12 @@
         'label' => 'Don\'t show this highlight in listings',
     ])
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
     @formField('input', [
         'name' => 'author_display',
         'label' => 'Author display',
         'maxlength' => 255
     ])
 
->>>>>>> Stashed changes
     @formField('browser', [
         'routePrefix' => 'collection',
         'moduleName' => 'authors',
@@ -67,10 +62,6 @@
         'max' => 10
     ])
 
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     @formField('block_editor', [
         'blocks' => getBlocksForEditor([
             'paragraph', 'image', 'gallery', 'video', 'media_embed',
