@@ -44,6 +44,14 @@
         ],
     ])
 
+    @formField('browser', [
+        'routePrefix' => 'collection',
+        'moduleName' => 'authors',
+        'name' => 'authors',
+        'label' => 'Authors',
+        'max' => 10
+    ])
+
     @formField('checkbox', [
         'name' => 'archived',
         'label' => 'Archived'

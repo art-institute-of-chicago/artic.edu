@@ -145,6 +145,11 @@ class Experience extends AbstractModel implements Sortable
         return $this->belongsTo('App\Models\InteractiveFeature');
     }
 
+    public function authors()
+    {
+        return $this->morphToMany('App\Models\Author', 'authorable')->orderBy('position');
+    }
+
     public function getTypeAttribute()
     {
         return 'experience';
