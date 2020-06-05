@@ -9,6 +9,7 @@
             @slot('title', $item->present()->title ?? null)
             @slot('img', $heroImage)
             @slot('credit', $item->hero_caption ?? null)
+            @slot('intro', $item->hero_text ?? null)
         @endcomponent
     @endif
 

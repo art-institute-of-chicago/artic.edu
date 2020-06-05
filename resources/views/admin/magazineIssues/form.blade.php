@@ -1,7 +1,7 @@
 @extends('twill::layouts.form', [
     'disableContentFieldset' => true,
     'additionalFieldsets' => [
-        ['fieldset' => 'title_and_image', 'label' => 'Title and Image'],
+        ['fieldset' => 'header', 'label' => 'Header'],
         ['fieldset' => 'welcome_note', 'label' => 'Welcome Note'],
         ['fieldset' => 'content', 'label' => 'Content'],
     ]
@@ -9,7 +9,8 @@
 
 @section('fieldsets')
 
-    <a17-fieldset id="title_and_image" title="Title and Image">
+    <a17-fieldset id="header" title="Header">
+
         @formField('wysiwyg', [
             'name' => 'list_description',
             'label' => 'List description',
@@ -21,6 +22,15 @@
         ])
 
         @include('admin.partials.hero')
+
+        @formField('wysiwyg', [
+            'type' => 'textarea',
+            'name' => 'hero_text',
+            'label' => 'Hero text',
+            'toolbarOptions' => [
+                'italic', 'link',
+            ],
+        ])
     </a17-fieldset>
 
     <a17-fieldset id="welcome_note" title="Welcome Note">

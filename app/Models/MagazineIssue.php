@@ -21,6 +21,7 @@ class MagazineIssue extends AbstractModel
         'title',
         'list_description',
         'hero_caption',
+        'hero_text',
         'welcome_note_display',
         'publish_start_date',
         'published',
