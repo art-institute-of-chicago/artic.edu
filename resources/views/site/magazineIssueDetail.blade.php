@@ -5,9 +5,9 @@
 <article class="o-article">
     {{-- TODO: New header treatment --}}
     @if ($heroImage = $item->imageFront('hero') ?? null)
-        @component('components.molecules._m-article-header----journal')
-            @slot('title', $item->present()->title ?? null)
+        @component('components.molecules._m-article-header----magazine')
             @slot('img', $heroImage)
+            @slot('title', $item->present()->title ?? null)
             @slot('credit', $item->hero_caption ?? null)
             @slot('intro', $item->hero_text ?? null)
         @endcomponent

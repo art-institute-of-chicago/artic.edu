@@ -820,37 +820,8 @@
       color: $color__text--title-contrast;
     }
 
-    .m-article-header__intro,
-    .m-article-header__title-lockup {
-      width: 100%;
-
-      @include breakpoint('small+') {
-        width: 50%;
-      }
-
-      @include breakpoint('medium+') {
-        width: 33%;
-      }
-
-      @include breakpoint('large+') {
-        width: 33%;
-      }
-    }
-
-    .m-article-header__intro {
-      margin-top: 36px;
-
-      @include breakpoint('small+') {
-        margin-top: 48px;
-      }
-
-      @include breakpoint('medium+') {
-        margin-top: 64px;
-      }
-
-      @include breakpoint('large+') {
-        margin-top: 74px;
-      }
+    .m-article-header__logo {
+      align-self: flex-start;
     }
 
     .m-article-header__title-lockup {
@@ -905,7 +876,39 @@
       height: 92px;
       width: 120px;
       color: white;
-      align-self: flex-start;
+    }
+
+    .m-article-header__intro,
+    .m-article-header__title-lockup {
+      width: 100%;
+
+      @include breakpoint('small+') {
+        width: 50%;
+      }
+
+      @include breakpoint('medium+') {
+        width: 33%;
+      }
+
+      @include breakpoint('large+') {
+        width: 33%;
+      }
+    }
+
+    .m-article-header__intro {
+      margin-top: 36px;
+
+      @include breakpoint('small') {
+        margin-top: 48px;
+      }
+
+      @include breakpoint('medium') {
+        margin-top: 64px;
+      }
+
+      @include breakpoint('large+') {
+        margin-top: 74px;
+      }
     }
   }
 
@@ -934,6 +937,85 @@
         @include breakpoint('#{$name}') {
           right: colspan(1, $name);
           bottom: calc(#{colspan(1, $name)} + #{map-get($journal-header-padding, $name)} + #{$button-vertical-offset});
+        }
+      }
+    }
+  }
+}
+
+.m-article-header--magazine {
+
+  .m-article-header__text {
+    justify-content: flex-end;
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        padding: #{map-get($journal-header-padding, $name)} 0;
+      }
+    }
+
+    .m-article-header__logo {
+      flex-grow: 1;
+    }
+
+    .icon--magazine-logo {
+      color: white;
+    }
+
+    .m-article-header__intro {
+      @include breakpoint('xsmall') {
+        width: 75%;
+        align-self: flex-start;
+      }
+
+      @include breakpoint('small') {
+        width: 33%;
+      }
+
+      @include breakpoint('medium') {
+        width: 33%;
+      }
+
+      @include breakpoint('large') {
+        width: 33%;
+      }
+
+      @include breakpoint('xlarge') {
+        width: 25%;
+      }
+    }
+
+    .m-article-header__title-lockup {
+      align-self: flex-start;
+    }
+  }
+
+  .m-article-header__text--with-credit {
+
+    @each $name, $point in $breakpoints {
+      @include breakpoint('#{$name}') {
+        padding-top: #{map-get($journal-header-padding, $name)};
+        padding-bottom: #{map-get($journal-header-padding, $name) + 28px};
+      }
+    }
+
+    // Mirror the padding for .m-article-header__text
+    .m-article-header__info-trigger {
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          right: colspan(1, $name);
+          bottom: #{map-get($journal-header-padding, $name) + 20px};
+        }
+      }
+    }
+
+    .m-article-header__info {
+      $button-vertical-offset: 30px;
+
+      @each $name, $point in $breakpoints {
+        @include breakpoint('#{$name}') {
+          right: colspan(1, $name);
+          bottom: #{map-get($journal-header-padding, $name) + 20px + $button-vertical-offset};
         }
       }
     }
