@@ -12,13 +12,14 @@ use App\Http\Resources\SlideAsset as SlideAssetResource;
 use App\Http\Resources\Slide as SlideResource;
 use App\Models\SeamlessImage;
 use App\Models\ExperienceModal;
+use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasBlocks;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasUnlisted;
 
 class Experience extends AbstractModel implements Sortable
 {
-    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, Transformable, HasUnlisted;
+    use HasBlocks, HasSlug, HasMedias, HasFiles, HasRevisions, HasPosition, Transformable, HasUnlisted, HasAuthors;
 
     protected $presenter = 'App\Presenters\Admin\ExperiencePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\ExperiencePresenter';
@@ -144,11 +145,6 @@ class Experience extends AbstractModel implements Sortable
     public function interactiveFeature()
     {
         return $this->belongsTo('App\Models\InteractiveFeature');
-    }
-
-    public function authors()
-    {
-        return $this->morphToMany('App\Models\Author', 'authorable')->orderBy('position');
     }
 
     public function getTypeAttribute()

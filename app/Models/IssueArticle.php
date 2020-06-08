@@ -7,13 +7,14 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
 
+use App\Models\Behaviors\HasAuthors;
 use App\Models\Behaviors\HasMedias;
 use App\Models\Behaviors\HasMediasEloquent;
 use App\Models\Behaviors\HasBlocks;
 
 class IssueArticle extends AbstractModel implements Sortable
 {
-    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks;
+    use HasSlug, HasRevisions, HasPosition, HasMedias, HasMediasEloquent, HasBlocks, HasAuthors;
 
     protected $presenter = 'App\Presenters\Admin\IssueArticlePresenter';
     protected $presenterAdmin = 'App\Presenters\Admin\IssueArticlePresenter';
@@ -89,11 +90,6 @@ class IssueArticle extends AbstractModel implements Sortable
     public function issue()
     {
         return $this->belongsTo('App\Models\Issue');
-    }
-
-    public function authors()
-    {
-        return $this->morphToMany('App\Models\Author', 'authorable')->orderBy('position');
     }
 
     // Generates the id-slug type of URL
