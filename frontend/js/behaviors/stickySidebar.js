@@ -37,7 +37,7 @@ const stickySidebar = function(container){
     if(!document.documentElement.classList.contains('is-sidebar-fixed')) {
       document.documentElement.classList.add('is-sidebar-fixed');
     }
-    let offsetTop = (30 - Math.max(0, scrollTop + containerHeight + stickyOffset - stopperOffset));
+    let offsetTop = (stickyOffset - Math.max(0, scrollTop + containerHeight + stickyOffset - stopperOffset));
     container.setAttribute('style','top:' + offsetTop + 'px');
   }
 
